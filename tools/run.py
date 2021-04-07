@@ -7,6 +7,7 @@ import configparser
 from parse import get_debault_db, get_table_info, create_db, get_entrances
 from enums import Enums
 from starrod import sr_dump, sr_copy, sr_compile
+from logic import shuffle_entrances
 
 
 # Read configuration data
@@ -40,16 +41,19 @@ db = create_db(default_db)
 
 db["Options"]["InitialCoins"]["value"] = 999
 
-for table in db:
-    for name,data in db[table].items():
-        if data["enum_type"] == "Item":
-            data["value"] = Enums.get("Item").get_random(item_type="BADGE")
+db = shuffle_entrances(db)
 
 # Create a sorted list of key:value pairs to be written into the ROM
 table_data = []
 for table,data in db.items():
     for _,pair in data.items():
-        table_data.append(pair)
+        pairs = [pair]
+        if "key" not in pair:
+            pairs = []
+            for sub_dict in pair.values():
+                pairs.append(sub_dict)
+        table_data.extend(pairs)
+table_data.sort(key=lambda pair: pair["key"])
 
 # Update table info with variable data
 table_info["num_entries"] = len(table_data)
@@ -92,6 +96,8 @@ with open("../out/PM64.z64", "r+b") as file:
                     log_statement = f"{column_left:25} : {column_right}"
                     print(log_statement)
                     log.write(log_statement + "\n")
+                if enum_type == "Entrance":
+                    print(pair)
 
 # Dump the data we used for randomization
 with open("./debug/entrances.json", "w") as file:
