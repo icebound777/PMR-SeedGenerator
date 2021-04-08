@@ -100,8 +100,15 @@ def create_db(default_db):
                         "value": default_value,
                         "attribute": attribute,
                         "table": table,
-                        "enum_type": default_type,
+                        "enum_type": {
+                            0xAF: "Option",
+                            0xA1: "Item",
+                            0xA2: "Actor",
+                            0xA3: "Entrance",
+                            0xA4: "Palette",
+                        }.get((key & 0xFF000000) >> 24)
                     }
+
     db["Entrance"] = {}
     for map_name,entrance_data in default_db["Entrance"].items():
         db["Entrance"][map_name] = {}
@@ -110,32 +117,15 @@ def create_db(default_db):
             db["Entrance"][map_name][entrance] = {
                 "key": db_key,
                 "value": db_key & 0x00FFFFFF,
-                "enum_type": "Entrance",
                 "map_name": map_name,
                 "entrance": entrance,
+                "enum_type": {
+                    0xAF: "Option",
+                    0xA1: "Item",
+                    0xA2: "Actor",
+                    0xA3: "Entrance",
+                    0xA4: "Palette",
+                }.get((db_key & 0xFF000000) >> 24)
             }
 
     return db
-
-def get_entrances():
-    entrances = {}
-    with open("../globals/patch/RandomEntrances.patch", "r") as file:
-        for line in file:
-            if match := re.match(r"#export\s*.DBKey:Entrance:(\S*):(\S*)\s*(\S*)", line):
-                map_name = match.group(1)
-                map_exit = int(match.group(2), 16)
-                key = match.group(3)
-                byte_id = int(key[0:2], 16)
-                area_id = int(key[2:4], 16)
-                map_id =  int(key[4:6], 16)
-                entry_id =  int(key[6:8], 16)
-
-                if map_name not in entrances:
-                    entrances[map_name] = {}
-                entrances[map_name][map_exit] = {
-                    "byte_id": byte_id,
-                    "area": area_id,
-                    "map": map_id,
-                    "entry": entry_id,
-                }
-    return entrances
