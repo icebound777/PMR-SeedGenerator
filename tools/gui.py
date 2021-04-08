@@ -17,8 +17,11 @@ from logic import shuffle_entrances
 from starrod import sr_dump, sr_copy, sr_compile
 from parse import get_default_table, get_table_info, create_table
 
-from maps.map import Map
 from table import Table
+
+from maps.map import Map
+from items.item import Item
+
 
 
 class Stream(QtCore.QObject):
@@ -125,22 +128,52 @@ class Window(QMainWindow):
 		self.rom_path, _ = QFileDialog.getOpenFileName(self, "Select ROM", "./", "z64(*.z64)", options=options)
 
 	def randomize(self):
+		sr = False
+
 		# Ensure we've dumped a ROM, copied its contents to the mod folder, and compiled it
-		thread = sr_dump(self.sr_path, console=True)
-		while thread.is_alive():
-			self.app.processEvents()
-		thread = sr_copy(self.sr_path, console=True)
-		while thread.is_alive():
-			self.app.processEvents()
-		thread = sr_compile(self.sr_path, console=True)
-		while thread.is_alive():
-			self.app.processEvents()
+		if sr:
+			thread = sr_dump(self.sr_path, console=True)
+			while thread.is_alive():
+				self.app.processEvents()
+			thread = sr_copy(self.sr_path, console=True)
+			while thread.is_alive():
+				self.app.processEvents()
+			thread = sr_compile(self.sr_path, console=True)
+			while thread.is_alive():
+				self.app.processEvents()
 
 		# TODO: Be smart and figure out why the text printed after this overlaps the stuff above even though it shouldn't
 
 		# Create the ROM table
 		rom_table = Table()
 		rom_table.create()
+
+		# Create Maps
+		for map_name in rom_table["Entrance"]:
+			Map(map_name)
+
+		# Create Items
+		for table,table_data in rom_table.items():
+			for name,data in table_data.items():
+				if data.get("enum_type") == "Item":
+					Item(data)
+
+		# Test - List all items
+		"""
+		print("List of all items:")
+		for key,item in Item.items.items(): # Hooray for confusing syntax
+			print(item)
+		"""
+
+		# Test - Swap two items
+		item1 = Item.items[2701197584] # ShopItemA
+		item2 = Item.items[2701526790] # NOK_14 HiddenItemA 
+		item1.swap(item2)
+
+		# Set every entrance pointing to MAC_00 to go to instead
+		mac_00 = Map.maps["MAC_00"]
+		for entrance in mac_00.entrances():
+			entrance["value"] = 0xA3000000
 
 		# Create a sorted list of key:value pairs to be written into the ROM
 		table_data = []
@@ -195,7 +228,7 @@ class Window(QMainWindow):
 							log_statement = f"{column_left:25} : {column_right}"
 							log.write(log_statement + "\n")
 						if enum_type == "Entrance":
-							print(pair)
+							pass #print(pair)
 
 		# Dump the data we used for randomization
 		with open("./debug/default_db.json", "w") as file:

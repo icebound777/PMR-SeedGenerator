@@ -2,6 +2,7 @@ import re
 import random
 
 
+
 class Enums:
     all = {}
 
@@ -39,7 +40,7 @@ class Enums:
         if item_type is None:
             item = random.choice([key for key in self.data])
         else:
-            item = random.choice([key for key in self.data if get_item_type(self.data[key]) == item_type])
+            item = random.choice([key for key in self.data if Item.get_type(self.data[key]) == item_type])
         return self.__getitem__(item)
 
 def enum_int(enum:str) -> (int, str):
@@ -57,22 +58,3 @@ def enum_int(enum:str) -> (int, str):
                 value = line.strip().replace(" ", "").split("=")[-1]
                 value = int(value, 16)
                 return (value,enum_type)
-
-def get_item_type(item_id:int) -> str:
-    if item_id <= 0x7F:
-        return "KEYITEM"
-    elif 0x7F < item_id <= 0xDF:
-        return "ITEM"
-    elif 0xDF < item_id <= 0x155:
-        return "BADGE"
-    elif 0x155 < item_id <= 0x15C:
-        return {
-            0x156: "HEART",
-            0x157: "COIN",
-            0x159: "STARPOINT",
-            0x15A: "FULLHEAL",
-            0x15B: "FLOWER",
-            0x15C: "STARPIECE",
-        }.get(item_id)
-    else:
-        return "OTHER"

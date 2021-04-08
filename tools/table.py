@@ -9,7 +9,7 @@ class Table:
 
     def __init__(self):
         if Table.instance is None:
-            self = Table.instance
+            Table.instance = self
 
     def __getitem__(self, key):
         return self.db[key]
