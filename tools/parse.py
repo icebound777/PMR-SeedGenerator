@@ -3,7 +3,7 @@ import re
 from enums import Enums, enum_int
 
 
-def get_debault_db():
+def get_default_table():
     # Get general data
     db = {}
     with open("../globals/patch/Database.patch", "r") as file:
@@ -80,7 +80,7 @@ def get_table_info():
                 table_info["magic_value"] = int(match.group(1), 16)
     return table_info
 
-def create_db(default_db):
+def create_table(default_table):
     db = {}
     with open("../globals/patch/DatabaseKeys.patch", "r") as file:
         db = {}
@@ -92,7 +92,7 @@ def create_db(default_db):
                 if table not in db:
                     db[table] = {}
 
-                if data := default_db.get(table, {}).get(attribute):
+                if data := default_table.get(table, {}).get(attribute):
                     default_value = data["value"]
                     default_type = data["enum_type"]
                     db[table][attribute] = {
@@ -110,7 +110,7 @@ def create_db(default_db):
                     }
 
     db["Entrance"] = {}
-    for map_name,entrance_data in default_db["Entrance"].items():
+    for map_name,entrance_data in default_table["Entrance"].items():
         db["Entrance"][map_name] = {}
         for entrance,data in entrance_data.items():
             db_key = (data["byte_id"] << 24) | (data["area"] << 16) | (data["map"] << 8) | data["entry"]

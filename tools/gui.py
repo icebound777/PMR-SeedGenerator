@@ -15,7 +15,10 @@ from PyQt5.QtWidgets import *
 from enums import Enums
 from logic import shuffle_entrances
 from starrod import sr_dump, sr_copy, sr_compile
-from parse import get_debault_db, get_table_info, create_db
+from parse import get_default_table, get_table_info, create_table
+
+from maps.map import Map
+from table import Table
 
 
 class Stream(QtCore.QObject):
@@ -96,7 +99,6 @@ class Window(QMainWindow):
 		random.seed(self.seed)
 
 		# Create enums
-		self.enums = {}
 		for name in os.listdir("../globals/enum/"):
 			name = name.split(".")[0]
 			Enums(f"../globals/enum/{name}.enum")
@@ -135,20 +137,14 @@ class Window(QMainWindow):
 			self.app.processEvents()
 
 		# TODO: Be smart and figure out why the text printed after this overlaps the stuff above even though it shouldn't
-		time.sleep(3)
 
-		# Parse through the mod contents to obtain various data
-		table_info = get_table_info()
-		default_db = get_debault_db()
-		db = create_db(default_db)
-
-		db["Options"]["InitialCoins"]["value"] = 999
-
-		db = shuffle_entrances(db)
+		# Create the ROM table
+		rom_table = Table()
+		rom_table.create()
 
 		# Create a sorted list of key:value pairs to be written into the ROM
 		table_data = []
-		for table,data in db.items():
+		for table,data in rom_table.items():
 			for _,pair in data.items():
 				pairs = [pair]
 				if "key" not in pair:
@@ -159,14 +155,14 @@ class Window(QMainWindow):
 		table_data.sort(key=lambda pair: pair["key"])
 
 		# Update table info with variable data
-		table_info["num_entries"] = len(table_data)
-		table_info["seed"] = self.seed
+		rom_table.info["num_entries"] = len(table_data)
+		rom_table.info["seed"] = self.seed
 
 		# Write data to log file
 		with open("./debug/log.txt", "w") as log:
 			log.write("OPTIONS:\n\n")
 			log.write(f"Seed: 0x{self.seed:0X} \"{self.seed_str}\"\n")
-			for name,data in db["Options"].items():
+			for name,data in rom_table["Options"].items():
 				log.write(f"{name:20}: {data['value']}\n")
 			log.write("\n")
 
@@ -174,14 +170,14 @@ class Window(QMainWindow):
 		with open("../out/PM64.z64", "r+b") as file:
 
 			# Write the header
-			file.seek(table_info["address"])
-			file.write(table_info["magic_value"].to_bytes(4, byteorder="big"))
-			file.write(table_info["header_size"].to_bytes(4, byteorder="big"))
-			file.write(table_info["num_entries"].to_bytes(4, byteorder="big"))
-			file.write(table_info["seed"].to_bytes(4, byteorder="big"))
+			file.seek(rom_table.info["address"])
+			file.write(rom_table.info["magic_value"].to_bytes(4, byteorder="big"))
+			file.write(rom_table.info["header_size"].to_bytes(4, byteorder="big"))
+			file.write(rom_table.info["num_entries"].to_bytes(4, byteorder="big"))
+			file.write(rom_table.info["seed"].to_bytes(4, byteorder="big"))
 
 			# Write table data and generate log file
-			file.seek(table_info["address"] + table_info["header_size"])
+			file.seek(rom_table.info["address"] + rom_table.info["header_size"])
 			with open("./debug/log.txt", "a") as log:
 				log.write("ITEM CHANGES:\n\n")
 
@@ -193,7 +189,7 @@ class Window(QMainWindow):
 					if enum_type := pair.get("enum_type"):
 						if enum_type == "Item":
 							column_left = f"[{pair['table']}][{pair['attribute']}]"
-							original_item_id = default_db[pair["table"]][pair['attribute']]["value"]
+							original_item_id = rom_table.default_db[pair["table"]][pair['attribute']]["value"]
 							original_item = Enums.get("Item")[original_item_id]
 							column_right = f"{original_item} -> {Enums.get('Item')[pair['value']]}"
 							log_statement = f"{column_left:25} : {column_right}"
@@ -203,9 +199,9 @@ class Window(QMainWindow):
 
 		# Dump the data we used for randomization
 		with open("./debug/default_db.json", "w") as file:
-			json.dump(default_db, file, indent=4)
+			json.dump(rom_table.default_db, file, indent=4)
 		with open("./debug/db.json", "w") as file:
-			json.dump(db, file, indent=4)
+			json.dump(rom_table.db, file, indent=4)
 
 		self.display("Created Randomized ROM!")
 

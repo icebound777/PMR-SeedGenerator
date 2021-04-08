@@ -1,0 +1,6 @@
+from table import Table
+
+
+class Item:
+    def __init__(self, name):
+        self.name = name
