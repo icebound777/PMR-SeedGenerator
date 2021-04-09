@@ -165,18 +165,18 @@ class Window(QMainWindow):
 			print(item)
 		"""
 
-		# Test - Swap two items
+		# Test - Change an item
 		item1 = Item.items[2701197584] # ShopItemA
-		item2 = Item.items[2701526790] # NOK_14 HiddenItemA 
-		item1.swap(item2)
+		item1.value = Enums.get("Item")["Dolly"]
+		item1.update()
 
 		# Test - Cutting MAC_00 out of Toad Town
 
 		# Set the exit that goes to MAC_00[1] to the exit that goes to KMR_10[1]
-		rom_table["Entrance"]["MAC_00"][1]["value"] = rom_table["Entrance"]["KMR_10"][1]["value"]
+		#rom_table["Entrance"]["MAC_00"][1]["value"] = rom_table["Entrance"]["KMR_10"][1]["value"]
 
 		# Set the exit that goes to MAC_00[0] to the exit that goes to MAC_01[0]
-		rom_table["Entrance"]["MAC_00"][0]["value"] = rom_table["Entrance"]["MAC_01"][0]["value"]
+		#rom_table["Entrance"]["MAC_00"][0]["value"] = rom_table["Entrance"]["MAC_01"][0]["value"]
 
 		# Create a sorted list of key:value pairs to be written into the ROM
 		table_data = []
