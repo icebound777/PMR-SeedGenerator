@@ -19,7 +19,7 @@ from parse import get_default_table, get_table_info, create_table
 
 from table import Table
 
-from maps.map import Map
+from maps.map import Map, Entrance
 from items.item import Item
 
 
@@ -170,10 +170,13 @@ class Window(QMainWindow):
 		item2 = Item.items[2701526790] # NOK_14 HiddenItemA 
 		item1.swap(item2)
 
-		# Set every entrance pointing to MAC_00 to go to instead
-		mac_00 = Map.maps["MAC_00"]
-		for entrance in mac_00.entrances():
-			entrance["value"] = 0xA3000000
+		# Test - Cutting MAC_00 out of Toad Town
+
+		# Set the exit that goes to MAC_00[1] to the exit that goes to KMR_10[1]
+		rom_table["Entrance"]["MAC_00"][1]["value"] = rom_table["Entrance"]["KMR_10"][1]["value"]
+
+		# Set the exit that goes to MAC_00[0] to the exit that goes to MAC_01[0]
+		rom_table["Entrance"]["MAC_00"][0]["value"] = rom_table["Entrance"]["MAC_01"][0]["value"]
 
 		# Create a sorted list of key:value pairs to be written into the ROM
 		table_data = []

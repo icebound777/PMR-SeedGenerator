@@ -16,9 +16,20 @@ for child in root.iter():
 
 
 class Entrance:
-    def __init__(self, id):
-        self.id = id
+    entrances = {}
 
+    def __init__(self, map_instance, **kwargs):
+        self.map = map_instance
+        self.value = kwargs.get("value")
+        self.byte_id = (kwargs["key"] & 0xFF000000) >> 24
+        self.area_id = (kwargs["key"] & 0x00FF0000) >> 16
+        self.map_id =  (kwargs["key"] & 0x0000FF00) >> 8
+        self.entry_id = (kwargs["key"] & 0x000000FF)
+        self.key = (self.byte_id << 24 | self.area_id << 16 | self.map_id << 8 | self.entry_id)
+        Entrance.entrances[self.key] = self
+
+    def __str__(self):
+        return f"[{self.map}] Entrance 0x{self.key:0X} : 0x{self.value:0X}"
 
 class Map:
     maps = {}
@@ -27,11 +38,16 @@ class Map:
         self.name = name.upper()
         Map.maps[self.name] = self
 
+        # Create Entrances for this map
+        for entrance,data in Table.instance.db["Entrance"][self.name].items():
+            Entrance(self, **data)
+
     def __str__(self):
         return f"{self.name} - {pretty_names[self.name]}"
 
     def entrances(self):
         entrances = []
-        for map_name,data in Table.instance.db["Entrance"][self.name].items():
-            entrances.append(data)
+        for entrance in Entrance.entrances.values():
+            if entrance.map is self:
+                entrances.append(entrance)
         return entrances
