@@ -36,18 +36,10 @@ class Map:
 
     def __init__(self, name):
         self.name = name.upper()
-        self.area_id = None
-        self.map_id = None
         Map.maps[self.name] = self
 
         # Create Entrances for this map
-        retrieved_map_info = False
         for entrance,data in Table.instance.db["Entrance"][self.name].items():
-            if not retrieved_map_info:
-                retrieved_map_info = True
-                self.area_id = (data["key"] & 0x00FF0000) >> 16
-                self.map_id = (data["key"] & 0x0000FF00) >> 8
-
             Entrance(self, **data)
 
     def __str__(self):
