@@ -1,5 +1,6 @@
 import re
 import os
+import json
 import xml.etree.ElementTree as ET
 
 from enums import Enums, enum_int
@@ -135,21 +136,14 @@ def create_table(default_table):
 def get_map_linkages():
     linkages = {}
 
-    for filename in os.listdir("../map/src/"):
-        if filename.endswith(".xml"):
-            map_name = filename.replace(".xml", "").upper()
-            xml_tree = ET.parse(f"../map/src/{filename}")
-            linkages[map_name] = {}
-            root = xml_tree.getroot()
-            for child in root.iter():
-                if child.tag == "Generators":
-                    for element in child:
-                        data = element.attrib
-                        exit_id = int(data["entry"].split("Entry")[1])
-                        dest_map = data["destMap"].upper()
-                        dest_entry = int(data["destEntry"].split("Entry")[1])
-                        linkages[map_name][exit_id] = {
-                            "dest_map": dest_map,
-                            "dest_entry": dest_entry,
-                        }
+    xml_tree = ET.parse(f"../res/EntranceList.xml")
+    root = xml_tree.getroot()
+    for map_tag in root:
+        linkages[map_tag.attrib["name"].upper()] = {}
+        for index,exit_tag in enumerate(map_tag):
+            linkages[map_tag.attrib["name"].upper()][index] = {
+                "dest_map": exit_tag.attrib["map"].upper(),
+                "dest_entry": int(exit_tag.attrib["entry"], 16),
+                "fx": exit_tag.attrib.get("fx"),
+            }
     return linkages
