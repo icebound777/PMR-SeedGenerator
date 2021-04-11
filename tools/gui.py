@@ -3,6 +3,7 @@ import os
 import sys
 import json
 import time
+import copy
 import shutil
 import random
 import threading
@@ -158,42 +159,25 @@ class Window(QMainWindow):
 				if data.get("enum_type") == "Item":
 					Item(data)
 
-		# Test - List all items
-		"""
-		print("List of all items:")
-		for key,item in Item.items.items(): # Hooray for confusing syntax
-			print(item)
-		"""
+		with open("./maps/default_linkages.json", "r") as file:
+			linkages = json.load(file)
 
-		# Test - Change an item
-		item1 = Item.items[2701197584] # ShopItemA
-		item1.value = Enums.get("Item")["Dolly"]
-		item1.update()
+		exit1 = linkages["MAC_00"]["0"] # MAC_00[0] -> KMR_10
+		exit2 = linkages["ARN_07"]["1"] # ARN_07[1] -> ARN_03
+		link1 = (exit1, linkages[exit1["dest_map"]][str(exit1["dest_entry"])])
+		link2 = (exit2, linkages[exit2["dest_map"]][str(exit2["dest_entry"])])
 
-		# Test - Cutting MAC_00 out of Toad Town
+		# Linkage 1
+		e1 = rom_table["Entrance"][link1[0]["dest_map"]][int(link1[0]["dest_entry"])]
+		e2 = rom_table["Entrance"][link2[0]["dest_map"]][int(link2[0]["dest_entry"])]
 
-		# Set the exit that goes to MAC_00[1] to the exit that goes to KMR_10[1]
-		rom_table["Entrance"]["MAC_00"][1]["value"] = rom_table["Entrance"]["KMR_10"][1]["value"]
+		# Linkage 2
+		e3 = rom_table["Entrance"][link2[1]["dest_map"]][int(link2[1]["dest_entry"])]
+		e4 = rom_table["Entrance"][link1[1]["dest_map"]][int(link1[1]["dest_entry"])]
 
-		# Set the exit that goes to MAC_00[0] to the exit that goes to MAC_01[0]
-		rom_table["Entrance"]["MAC_00"][0]["value"] = rom_table["Entrance"]["MAC_01"][0]["value"]
-
-		for entrance,data in Entrance.entrances.items():
-			print(hex(entrance), data)
-
-		# Randomize map entrances
-		"""
-		all_entrances = {}
-		for map_name,entrance_data in rom_table["Entrance"].items():
-			for entrance,data in entrance_data.items():
-				all_entrances[(map_name, entrance)] = data["value"]
-		keys = [key for key in all_entrances.keys()]
-		random.shuffle(keys)
-		all_entrances = dict(zip(keys, all_entrances.values()))
-		for (map_name, entrance),value in all_entrances.items():
-			rom_table["Entrance"][map_name][entrance]["value"] = value
-		"""
-
+		# Swap exits
+		e1["value"] = e2["value"]
+		e3["value"] = e4["value"]
 
 		# Create a sorted list of key:value pairs to be written into the ROM
 		table_data = []
