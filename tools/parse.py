@@ -153,6 +153,3 @@ def get_map_linkages():
                             "dest_entry": dest_entry,
                         }
     return linkages
-
-linkages = get_map_linkages()
-print(linkages)
