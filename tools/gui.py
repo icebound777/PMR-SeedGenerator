@@ -173,10 +173,27 @@ class Window(QMainWindow):
 		# Test - Cutting MAC_00 out of Toad Town
 
 		# Set the exit that goes to MAC_00[1] to the exit that goes to KMR_10[1]
-		#rom_table["Entrance"]["MAC_00"][1]["value"] = rom_table["Entrance"]["KMR_10"][1]["value"]
+		rom_table["Entrance"]["MAC_00"][1]["value"] = rom_table["Entrance"]["KMR_10"][1]["value"]
 
 		# Set the exit that goes to MAC_00[0] to the exit that goes to MAC_01[0]
-		#rom_table["Entrance"]["MAC_00"][0]["value"] = rom_table["Entrance"]["MAC_01"][0]["value"]
+		rom_table["Entrance"]["MAC_00"][0]["value"] = rom_table["Entrance"]["MAC_01"][0]["value"]
+
+		for entrance,data in Entrance.entrances.items():
+			print(hex(entrance), data)
+
+		# Randomize map entrances
+		"""
+		all_entrances = {}
+		for map_name,entrance_data in rom_table["Entrance"].items():
+			for entrance,data in entrance_data.items():
+				all_entrances[(map_name, entrance)] = data["value"]
+		keys = [key for key in all_entrances.keys()]
+		random.shuffle(keys)
+		all_entrances = dict(zip(keys, all_entrances.values()))
+		for (map_name, entrance),value in all_entrances.items():
+			rom_table["Entrance"][map_name][entrance]["value"] = value
+		"""
+
 
 		# Create a sorted list of key:value pairs to be written into the ROM
 		table_data = []
