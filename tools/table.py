@@ -10,6 +10,8 @@ class Table:
     def __init__(self):
         if Table.instance is None:
             Table.instance = self
+        else:
+            self = Table.instance
 
     def __getitem__(self, key):
         return self.db[key]

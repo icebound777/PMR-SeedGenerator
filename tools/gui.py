@@ -9,9 +9,9 @@ import random
 import threading
 import configparser
 
+from pathlib import Path
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import *
-
 
 from enums import Enums
 from logic import shuffle_entrances
@@ -19,10 +19,8 @@ from starrod import sr_dump, sr_copy, sr_compile
 from parse import get_default_table, get_table_info, create_table
 
 from table import Table
-
 from maps.map import Map, Entrance
 from items.item import Item
-
 
 
 class Stream(QtCore.QObject):
@@ -162,22 +160,10 @@ class Window(QMainWindow):
 		with open("./maps/default_linkages.json", "r") as file:
 			linkages = json.load(file)
 
-		exit1 = linkages["MAC_00"]["0"] # MAC_00[0] -> KMR_10
-		exit2 = linkages["ARN_07"]["1"] # ARN_07[1] -> ARN_03
-		link1 = (exit1, linkages[exit1["dest_map"]][str(exit1["dest_entry"])])
-		link2 = (exit2, linkages[exit2["dest_map"]][str(exit2["dest_entry"])])
-
-		# Linkage 1
-		e1 = rom_table["Entrance"][link1[0]["dest_map"]][int(link1[0]["dest_entry"])]
-		e2 = rom_table["Entrance"][link2[0]["dest_map"]][int(link2[0]["dest_entry"])]
-
-		# Linkage 2
-		e3 = rom_table["Entrance"][link2[1]["dest_map"]][int(link2[1]["dest_entry"])]
-		e4 = rom_table["Entrance"][link1[1]["dest_map"]][int(link1[1]["dest_entry"])]
-
-		# Swap exits
-		e1["value"] = e2["value"]
-		e3["value"] = e4["value"]
+		# Test - Swap two entrances with each other
+		e1 = Entrance.entrances["MAC_00"][0]
+		e2 = Entrance.entrances["ARN_07"][1]
+		e1.swap(e2)
 
 		# Create a sorted list of key:value pairs to be written into the ROM
 		table_data = []
@@ -241,6 +227,11 @@ class Window(QMainWindow):
 			json.dump(rom_table.db, file, indent=4)
 
 		self.display("Created Randomized ROM!")
+
+		# Automatically open ROM
+		path = str(Path(__file__).parent).replace("\\", "/")
+		path = "".join(path.split("tools"))[0:-1]
+		os.startfile(path + "/out/PM64.z64")
 
 
 app = QApplication(sys.argv)
