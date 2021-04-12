@@ -147,7 +147,7 @@ class Window(QMainWindow):
 		rom_table = Table()
 		rom_table.create()
 
-		# Create Maps
+		# Create Maps & Entrances
 		for map_name in rom_table["Entrance"]:
 			Map(map_name)
 
@@ -156,9 +156,6 @@ class Window(QMainWindow):
 			for name,data in table_data.items():
 				if data.get("enum_type") == "Item":
 					Item(data)
-
-		with open("./maps/default_linkages.json", "r") as file:
-			linkages = json.load(file)
 
 		# Test - Swap two entrances with each other
 		e1 = Entrance.entrances["MAC_00"][0]
