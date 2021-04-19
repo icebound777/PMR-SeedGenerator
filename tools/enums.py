@@ -56,5 +56,7 @@ def enum_int(enum:str) -> (int, str):
         for line in file:
             if line.startswith(enum_value):
                 value = line.strip().replace(" ", "").split("=")[-1]
+                if "%" in value:
+                    value = value.split("%")[0]
                 value = int(value, 16)
                 return (value,enum_type)

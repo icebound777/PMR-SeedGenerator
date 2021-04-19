@@ -9,10 +9,10 @@ from enums import Enums, enum_int
 def get_default_table():
     # Get general data
     db = {}
-    with open("../globals/patch/Database.patch", "r") as file:
+    with open("../globals/patch/DatabaseDefaults.patch", "r") as file:
         db_found = False
         while not db_found:
-            if match := re.match(r"#new:Data\s*\$DefaultDatabase", next(file)):
+            if match := re.match(r"#export:Data\s*\$DefaultDatabase", next(file)):
                 db_found = True
         for line in file:
             if line.startswith("}"):
