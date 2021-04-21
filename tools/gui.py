@@ -157,10 +157,51 @@ class Window(QMainWindow):
 				if data.get("enum_type") == "Item":
 					Item(data)
 
-		# Test - Swap two entrances with each other
-		e1 = Entrance.entrances["MAC_00"][0]
-		e2 = Entrance.entrances["ARN_07"][1]
-		e1.swap(e2)
+
+		with open("./maps/links.csv", "r") as file:
+			columns = file.readline().strip().split(",")
+			links = []
+			for i,line in enumerate(file.readlines()):
+				values = line.strip().split(",")
+				links.append({
+					"src": (values[0], int(values[1])),
+					"dest": (values[2], int(values[3])),
+					"type": values[4],
+					"index": i,
+				})
+
+			# Test - Swap each link with the next one
+			for i in range(0, len(links), 2):
+				link = links[i]
+				if i < len(links)-1:
+					next_link = links[i+1]
+				else:
+					next_link = links[0]
+
+				src_map1,src_exit1 = link["src"]
+				src_map1 = src_map1.upper()
+				dest_map1,dest_exit1 = link["dest"]
+				dest_map1 = dest_map1.upper()
+
+				src_map2,src_exit2 = next_link["src"]
+				src_map2 = src_map2.upper()
+				dest_map2,dest_exit2 = next_link["dest"]
+				dest_map2 = dest_map2.upper()
+
+				e2 = rom_table["Entrance"][src_map1][src_exit1]
+				e1 = rom_table["Entrance"][dest_map1][dest_exit1]
+				e4 = rom_table["Entrance"][src_map2][src_exit2]
+				e3 = rom_table["Entrance"][dest_map2][dest_exit2]
+
+				v1 = e1["value"]
+				v2 = e2["value"]
+				v3 = e3["value"]
+				v4 = e4["value"]
+
+				e1["value"] = v3
+				e2["value"] = v4
+				e3["value"] = v1
+				e4["value"] = v2
 
 		# Create a sorted list of key:value pairs to be written into the ROM
 		table_data = []
@@ -215,7 +256,7 @@ class Window(QMainWindow):
 							log_statement = f"{column_left:25} : {column_right}"
 							log.write(log_statement + "\n")
 						if enum_type == "Entrance":
-							pass #print(pair)
+							print(pair)
 
 		# Dump the data we used for randomization
 		with open("./debug/default_db.json", "w") as file:
