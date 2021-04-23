@@ -43,6 +43,7 @@ def get_default_table():
                     "attribute": attribute,
                     "table": table,
                 }
+                
     # Get entrance data
     db["Entrance"] = {}
     with open("../globals/patch/RandomEntrances.patch", "r") as file:
@@ -84,33 +85,37 @@ def get_table_info():
     return table_info
 
 def create_table(default_table):
-    db = {}
-    with open("../globals/patch/DatabaseKeys.patch", "r") as file:
-        db = {}
-        for line in file:
-            if match := re.match(r"#export\s*.DBKey:(\S*):(\S*)\s*(\S*)", line):
-                table = match.group(1)
-                attribute = match.group(2)
-                key = int(match.group(3), 16)
-                if table not in db:
-                    db[table] = {}
 
-                if data := default_table.get(table, {}).get(attribute):
-                    default_value = data["value"]
-                    default_type = data["enum_type"]
-                    db[table][attribute] = {
-                        "key": key,
-                        "value": default_value,
-                        "attribute": attribute,
-                        "table": table,
-                        "enum_type": {
-                            0xAF: "Option",
-                            0xA1: "Item",
-                            0xA2: "Actor",
-                            0xA3: "Entrance",
-                            0xA4: "Palette",
-                        }.get((key & 0xFF000000) >> 24)
-                    }
+    def get_keys(db, filepath):
+        with open(filepath, "r") as file:
+            for line in file:
+                if match := re.match(r"#export\s*.DBKey:(\S*):(\S*)\s*(\S*)", line):
+                    table = match.group(1)
+                    attribute = match.group(2)
+                    key = int(match.group(3), 16)
+                    if table not in db:
+                        db[table] = {}
+
+                    if data := default_table.get(table, {}).get(attribute):
+                        default_value = data["value"]
+                        default_type = data["enum_type"]
+                        db[table][attribute] = {
+                            "key": key,
+                            "value": default_value,
+                            "attribute": attribute,
+                            "table": table,
+                            "enum_type": {
+                                0xAF: "Option",
+                                0xA1: "Item" if "ShopPrice" not in attribute else "ItemPrice",
+                                0xA2: "Actor",
+                                0xA3: "Entrance",
+                                0xA4: "Palette",
+                            }.get((key & 0xFF000000) >> 24)
+                        }
+    db = {}
+    get_keys(db, "../globals/patch/DatabaseKeys.patch")
+    get_keys(db, "../globals/patch/generated/keys.patch")
+    
 
     db["Entrance"] = {}
     for map_name,entrance_data in default_table["Entrance"].items():

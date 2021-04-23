@@ -1,3 +1,5 @@
+import random
+
 from table import Table
 from maps.map import Map
 
@@ -26,6 +28,48 @@ class Item:
             "table": self.map.name,
             "enum_type": "Item",
         }
+
+    @classmethod
+    def randomize(cls):
+        items = []
+        key_items = []
+        badges = []
+        other_items = []
+        for item in Item.items.values():
+            item_type = Item.get_type(item.value)
+            if item_type == "ITEM":
+                items.append(item)
+            elif item_type == "KEYITEM":
+                key_items.append(item)
+            elif item_type == "BADGE":
+                badges.append(item)
+        
+        random.shuffle(items)
+        for i in range(0, len(items), 2):
+            item = items[i]
+            if i < len(items)-1:
+                next_item = items[i+1]
+            else:
+                next_item = items[0]
+            item.swap(next_item)
+
+        random.shuffle(key_items)
+        for i in range(0, len(key_items), 2):
+            item = key_items[i]
+            if i < len(key_items)-1:
+                next_item = key_items[i+1]
+            else:
+                next_item = key_items[0]
+            item.swap(next_item)
+
+        random.shuffle(badges)
+        for i in range(0, len(badges), 2):
+            item = badges[i]
+            if i < len(badges)-1:
+                next_item = badges[i+1]
+            else:
+                next_item = badges[0]
+            item.swap(next_item)
 
     def swap(self, other):
         self.name, other.name = other.name, self.name

@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import *
 
 from enums import Enums
-from logic import shuffle_entrances
+from logic import shuffle_paths, shuffle_doors, shuffle_pipes
 from starrod import sr_dump, sr_copy, sr_compile
 from parse import get_default_table, get_table_info, create_table
 
@@ -127,7 +127,7 @@ class Window(QMainWindow):
 		self.rom_path, _ = QFileDialog.getOpenFileName(self, "Select ROM", "./", "z64(*.z64)", options=options)
 
 	def randomize(self):
-		sr = True
+		sr = False
 
 		# Ensure we've dumped a ROM, copied its contents to the mod folder, and compiled it
 		if sr:
@@ -157,7 +157,6 @@ class Window(QMainWindow):
 				if data.get("enum_type") == "Item":
 					Item(data)
 
-
 		with open("./maps/links.csv", "r") as file:
 			columns = file.readline().strip().split(",")
 			links = []
@@ -170,43 +169,14 @@ class Window(QMainWindow):
 					"index": i,
 				})
 
-			# Test - Swap each link with the next one
-			for i in range(0, len(links), 2):
-				link = links[i]
-				if i < len(links)-1:
-					next_link = links[i+1]
-				else:
-					next_link = links[0]
-
-				src_map1,src_exit1 = link["src"]
-				src_map1 = src_map1.upper()
-				dest_map1,dest_exit1 = link["dest"]
-				dest_map1 = dest_map1.upper()
-
-				src_map2,src_exit2 = next_link["src"]
-				src_map2 = src_map2.upper()
-				dest_map2,dest_exit2 = next_link["dest"]
-				dest_map2 = dest_map2.upper()
-
-				e2 = rom_table["Entrance"][src_map1][src_exit1]
-				e1 = rom_table["Entrance"][dest_map1][dest_exit1]
-				e4 = rom_table["Entrance"][src_map2][src_exit2]
-				e3 = rom_table["Entrance"][dest_map2][dest_exit2]
-
-				v1 = e1["value"]
-				v2 = e2["value"]
-				v3 = e3["value"]
-				v4 = e4["value"]
-
-				e1["value"] = v3
-				e2["value"] = v4
-				e3["value"] = v1
-				e4["value"] = v2
+			shuffle_pipes(links, rom_table)
+			shuffle_doors(links, rom_table)
+			shuffle_paths(links, rom_table)
 
 		# Create a sorted list of key:value pairs to be written into the ROM
 		table_data = []
 		for table,data in rom_table.items():
-			for _,pair in data.items():
+			for pair in data.values():
 				pairs = [pair]
 				if "key" not in pair:
 					pairs = []
@@ -229,7 +199,6 @@ class Window(QMainWindow):
 
 		# Modify the table data in the ROM
 		with open("../out/PM64.z64", "r+b") as file:
-
 			# Write the header
 			file.seek(rom_table.info["address"])
 			file.write(rom_table.info["magic_value"].to_bytes(4, byteorder="big"))
@@ -249,14 +218,15 @@ class Window(QMainWindow):
 					file.write(value_int)
 					if enum_type := pair.get("enum_type"):
 						if enum_type == "Item":
-							column_left = f"[{pair['table']}][{pair['attribute']}]"
-							original_item_id = rom_table.default_db[pair["table"]][pair['attribute']]["value"]
-							original_item = Enums.get("Item")[original_item_id]
-							column_right = f"{original_item} -> {Enums.get('Item')[pair['value']]}"
-							log_statement = f"{column_left:25} : {column_right}"
-							log.write(log_statement + "\n")
+							if "ShopPrice" not in pair["attribute"]:
+								column_left = f"[{pair['table']}][{pair['attribute']}]"
+								original_item_id = rom_table.default_db[pair["table"]][pair['attribute']]["value"]
+								original_item = Enums.get("Item")[original_item_id]
+								column_right = f"{original_item} -> {Enums.get('Item')[pair['value']]}"
+								log_statement = f"{column_left:25} : {column_right}"
+								log.write(log_statement + "\n")
 						if enum_type == "Entrance":
-							print(pair)
+							pass #print(pair)
 
 		# Dump the data we used for randomization
 		with open("./debug/default_db.json", "w") as file:
