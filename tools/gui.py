@@ -10,21 +10,26 @@ import threading
 import configparser
 
 from pathlib import Path
-from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import *
+from PyQt5 import QtCore, QtGui
 
 from enums import Enums
-from logic import shuffle_entrances, shuffle_items
+from table import Table
 from utility import sr_dump, sr_copy, sr_compile
+from logic import shuffle_entrances, shuffle_items, place_items
 from parse import get_default_table, get_table_info, create_table
 
-from table import Table
-
-from db.entrance import Entrance, create_entrances, connect_entrances
-from db.item import Item, create_items
-from db.item_price import ItemPrice, create_item_prices
 from db.map_area import MapArea
+from db.item import Item, create_items
 from db.option import Option, create_options
+from db.item_price import ItemPrice, create_item_prices
+from db.entrance import Entrance, create_entrances, connect_entrances
+
+
+# Create enums
+for name in os.listdir("../globals/enum/"):
+	name = name.split(".")[0]
+	Enums(f"../globals/enum/{name}.enum")
 
 # Uncomment to build database from scratch
 """
@@ -36,6 +41,8 @@ connect_entrances()
 shutil.copy("db.sqlite", "default_db.sqlite")
 quit()
 """
+
+# place_items()
 
 class Stream(QtCore.QObject):
 	newText = QtCore.pyqtSignal(str)
@@ -114,11 +121,6 @@ class Window(QMainWindow):
 		self.seed = hash(self.seed_str) & 0xFFFFFFFF
 		random.seed(self.seed)
 
-		# Create enums
-		for name in os.listdir("../globals/enum/"):
-			name = name.split(".")[0]
-			Enums(f"../globals/enum/{name}.enum")
-
 		# Check if the ROM already exists in the correct location
 		rom_exists = False
 		for filename in os.listdir("../ROM"):
@@ -180,6 +182,18 @@ class Window(QMainWindow):
 		shuffle_entrances(pairs, by_type="pipe")
 		shuffle_entrances(pairs, by_type="ground")
 		shuffle_entrances(pairs, by_type="door")
+
+		# Test - Display the requirements for all items
+		for item in Item.select():
+			has_requirements = False
+			for name,requirements in item.logic["requirements"].items():
+				has_requirements = True
+				if isinstance(requirements, list):
+					print(f"{item} requires {name}: {','.join(requirements)}")
+				else:
+					print(f"{item} requires {name}: {requirements}")
+			if has_requirements:
+				print()
 
 		# Shuffle Items
 		items = [item for item in Item.select()]

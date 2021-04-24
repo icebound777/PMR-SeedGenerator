@@ -20,11 +20,13 @@ class Item(Model):
     key_name = CharField()
     item_type = CharField(null=True)
     value = IntegerField()
+    item_name = CharField()
 
     logic = JSONField()
+    placed = BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.key_name} ({self.value:02X})"
+        return f"[{self.map_area.name}]: {self.key_name} ({self.item_name})"
 
     def get_key(self):
         return (Item._meta.key_type << 24) | (self.area_id << 16) | (self.map_id << 8) | self.index
@@ -32,6 +34,8 @@ class Item(Model):
     def swap(self, other):
         # self.key_name, other.key_name = other.key_name, self.key_name
         self.value, other.value = other.value, self.value
+        self.item_type, other.item_type = other.item_type, self.item_type
+        self.item_name, other.item_name = other.item_name, self.item_name
 
         self.save()
         other.save()
@@ -93,6 +97,7 @@ def create_items():
                                 index=index,
                                 item_type=Item.get_type(data["value"]),
                                 value=data["value"],
+                                item_name=Enums.get("Item")[data["value"]],
                                 key_name=attr,
                                 logic={"requirements": {}}, # TODO
                             )

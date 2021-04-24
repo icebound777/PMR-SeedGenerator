@@ -1,5 +1,7 @@
 import random
 
+from db.item import Item
+
 
 def shuffle_entrances(pairs, by_type=None):
     if by_type:
@@ -41,5 +43,57 @@ def shuffle_items(items, by_type=None):
         second = items[i+1]
         first.swap(second)
 
-        
+def place_items():
+    # Starting data. This should grow as we place items so more options become available.
+    # TODO: Initialize this based on configuration options
+    mario = {
+        "partners": [],
+        "items": [],
+        "boots": 0,
+        "hammer": 0,
+    }
+
+    def valid(item):
+        # If this item is already placed, it's not a valid option
+        if item.placed:
+            return False
+
+        # Mario must have obtained these partners
+        for partner in item.logic["requirements"].get("partners", []):
+            if partner not in mario["partners"]:
+                return False
+
+        # Mario must have obtained these items
+        for item in item.logic["requirements"].get("items", []):
+            if item not in mario["items"]:
+                return False
+            
+        # Mario must have an equal or greater boots value
+        if item.logic["requirements"].get("boots", -1) > mario["boots"]:
+            return False
+
+        # Mario must have an equal or greater hammer value
+        if item.logic["requirements"].get("hammer", -1) > mario["hammer"]:
+            return False
+
+        return True
+
+    passes = 0
+    while True:
+        # Get a list of valid item slots based on our current state
+        items = [item for item in filter(valid, Item.select())]
+        if len(items) > 0:
+            passes += 1
+            print(f"Pass #{passes}")
+            input()
+            for item in items:
+                print(item)
+        else:
+            unplaced_items = Item.select().where(Item.placed == False)
+            print("Unplaced Items:")
+            for item in unplaced_items:
+                print(item)
+
+
+
         
