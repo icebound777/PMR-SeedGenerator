@@ -48,13 +48,12 @@ def enum_int(enum:str) -> (int, str):
     with open(filename, "r") as file:
         longest = ""
         for line in file:
-            if line.startswith(enum_value):
+            try:
                 name,value = line.strip().replace(" ", "").split("=")
                 if "%" in value:
                     value = value.split("%")[0]
                 value = int(value, 16)
-                if len(name) > len(longest):
-                    longest = name
-                    longest_value = value
-    
-    return (longest_value,enum_type)
+                if name == enum_value:
+                    return (value,enum_type)
+            except:
+                pass
