@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import *
 
 from enums import Enums
-from logic import shuffle_pairs, shuffle_items
+from logic import shuffle_entrances, shuffle_items
 from utility import sr_dump, sr_copy, sr_compile
 from parse import get_default_table, get_table_info, create_table
 
@@ -22,13 +22,19 @@ from table import Table
 
 from db.entrance import Entrance, create_entrances, connect_entrances
 from db.item import Item, create_items
+from db.item_price import ItemPrice, create_item_prices
 from db.map_area import MapArea
+from db.option import Option, create_options
 
 # Uncomment to build database from scratch
 """
+create_options()
 create_items()
+create_item_prices()
 create_entrances()
 connect_entrances()
+shutil.copy("db.sqlite", "default_db.sqlite")
+quit()
 """
 
 class Stream(QtCore.QObject):
@@ -171,25 +177,16 @@ class Window(QMainWindow):
 				"dest": source.destination
 			})
 
-		shuffle_pairs(pairs, by_type="pipe")
-		shuffle_pairs(pairs, by_type="ground")
-		shuffle_pairs(pairs, by_type="door")
+		shuffle_entrances(pairs, by_type="pipe")
+		shuffle_entrances(pairs, by_type="ground")
+		shuffle_entrances(pairs, by_type="door")
 
 		# Shuffle Items
 		items = [item for item in Item.select()]
 		shuffle_items(items)
 
 		# Create a sorted list of key:value pairs to be written into the ROM
-		table_data = []
-		for table,data in rom_table.items():
-			for pair in data.values():
-				pairs = [pair]
-				if "key" not in pair:
-					pairs = []
-					for sub_dict in pair.values():
-						pairs.append(sub_dict)
-				table_data.extend(pairs)
-		table_data.sort(key=lambda pair: pair["key"])
+		table_data = rom_table.generate_pairs()
 
 		# Update table info with variable data
 		rom_table.info["num_entries"] = len(table_data)

@@ -1,9 +1,7 @@
 import random
 
-from table import Table
 
-
-def shuffle_pairs(pairs, by_type=None):
+def shuffle_entrances(pairs, by_type=None):
     if by_type:
         pairs = [pair for pair in pairs if pair["src"].entrance_type == by_type]
 
@@ -25,11 +23,10 @@ def shuffle_pairs(pairs, by_type=None):
         e3.destination = e1
         e4.destination = e2
 
-        rom_table = Table.instance
-        rom_table["Entrance"][e1.map_name][e1.index]["value"] = e1.destination.get_key()
-        rom_table["Entrance"][e2.map_name][e2.index]["value"] = e2.destination.get_key()
-        rom_table["Entrance"][e3.map_name][e3.index]["value"] = e3.destination.get_key()
-        rom_table["Entrance"][e4.map_name][e4.index]["value"] = e4.destination.get_key()
+        e1.save()
+        e2.save()
+        e3.save()
+        e4.save()
 
 def shuffle_items(items, by_type=None):
     if by_type:
