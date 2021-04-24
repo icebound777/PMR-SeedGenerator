@@ -36,13 +36,6 @@ class Enums:
                 if key == v:
                     return k
 
-    def get_random(self, item_type=None):
-        if item_type is None:
-            item = random.choice([key for key in self.data])
-        else:
-            item = random.choice([key for key in self.data if Item.get_type(self.data[key]) == item_type])
-        return self.__getitem__(item)
-
 def enum_int(enum:str) -> (int, str):
     enum_type,enum_value = enum[1:].split(":")
     filename = {

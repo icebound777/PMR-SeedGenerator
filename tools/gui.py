@@ -14,14 +14,22 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import *
 
 from enums import Enums
-from logic import shuffle_paths, shuffle_doors, shuffle_pipes
-from starrod import sr_dump, sr_copy, sr_compile
+from logic import shuffle_pairs
+from utility import sr_dump, sr_copy, sr_compile
 from parse import get_default_table, get_table_info, create_table
 
 from table import Table
-from maps.map import Map, Entrance
-from items.item import Item
 
+from db.entrance import Entrance, create_entrances, connect_entrances
+from db.item import Item, create_items
+from db.map_area import MapArea
+
+# Uncomment to build database from scratch
+"""
+create_items()
+create_entrances()
+connect_entrances()
+"""
 
 class Stream(QtCore.QObject):
 	newText = QtCore.pyqtSignal(str)
@@ -147,31 +155,25 @@ class Window(QMainWindow):
 		rom_table = Table()
 		rom_table.create()
 
-		# Create Maps & Entrances
-		for map_name in rom_table["Entrance"]:
-			Map(map_name)
+		# Shuffle Entrances by type
+		valid_entrances = [entrance for entrance in Entrance.select().where(Entrance.destination != None)]
+		found = set()
+		pairs = []
+		for source in valid_entrances:
+			if source in found:
+				continue
+			if source.destination in found:
+				continue
+			found.add(source)
+			found.add(source.destination)
+			pairs.append({
+				"src": source,
+				"dest": source.destination
+			})
 
-		# Create Items
-		for table,table_data in rom_table.items():
-			for name,data in table_data.items():
-				if data.get("enum_type") == "Item":
-					Item(data)
-
-		with open("./maps/links.csv", "r") as file:
-			columns = file.readline().strip().split(",")
-			links = []
-			for i,line in enumerate(file.readlines()):
-				values = line.strip().split(",")
-				links.append({
-					"src": (values[0], int(values[1])),
-					"dest": (values[2], int(values[3])),
-					"type": values[4],
-					"index": i,
-				})
-
-			shuffle_pipes(links, rom_table)
-			shuffle_doors(links, rom_table)
-			shuffle_paths(links, rom_table)
+		shuffle_pairs(pairs, by_type="pipe")
+		shuffle_pairs(pairs, by_type="ground")
+		shuffle_pairs(pairs, by_type="door")
 
 		# Create a sorted list of key:value pairs to be written into the ROM
 		table_data = []
