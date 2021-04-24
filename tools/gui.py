@@ -185,6 +185,13 @@ class Window(QMainWindow):
 		items = [item for item in Item.select()]
 		shuffle_items(items)
 
+		# Make everything inexpensive
+		item_prices = [item_price for item_price in ItemPrice.select()]
+		for item_price in item_prices:
+			item = item_price.item.get()
+			item_price.value = 1
+			item_price.save()
+
 		# Create a sorted list of key:value pairs to be written into the ROM
 		table_data = rom_table.generate_pairs()
 

@@ -46,10 +46,15 @@ def enum_int(enum:str) -> (int, str):
         raise Exception(f"Enum type {enum_type} isn't defined!")
 
     with open(filename, "r") as file:
+        longest = ""
         for line in file:
             if line.startswith(enum_value):
-                value = line.strip().replace(" ", "").split("=")[-1]
+                name,value = line.strip().replace(" ", "").split("=")
                 if "%" in value:
                     value = value.split("%")[0]
                 value = int(value, 16)
-                return (value,enum_type)
+                if len(name) > len(longest):
+                    longest = name
+                    longest_value = value
+    
+    return (longest_value,enum_type)

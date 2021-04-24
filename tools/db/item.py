@@ -1,6 +1,7 @@
 import re
 
 from peewee import *
+from playhouse.sqlite_ext import JSONField
 
 from db.db import db
 from db.map_area import MapArea
@@ -19,6 +20,8 @@ class Item(Model):
     key_name = CharField()
     item_type = CharField(null=True)
     value = IntegerField()
+
+    logic = JSONField()
 
     def __str__(self):
         return f"{self.key_name} ({self.value:02X})"
@@ -88,9 +91,10 @@ def create_items():
                                 area_id=area_id,
                                 map_id=map_id,
                                 index=index,
-                                item_type="Item",
+                                item_type=Item.get_type(data["value"]),
                                 value=data["value"],
                                 key_name=attr,
+                                logic={"requirements": {}}, # TODO
                             )
                             print(item, item.value, created)
         
