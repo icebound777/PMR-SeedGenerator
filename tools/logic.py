@@ -30,3 +30,19 @@ def shuffle_pairs(pairs, by_type=None):
         rom_table["Entrance"][e2.map_name][e2.index]["value"] = e2.destination.get_key()
         rom_table["Entrance"][e3.map_name][e3.index]["value"] = e3.destination.get_key()
         rom_table["Entrance"][e4.map_name][e4.index]["value"] = e4.destination.get_key()
+
+def shuffle_items(items, by_type=None):
+    if by_type:
+        items = [item for item in items if item.item_type == by_type]
+
+    if len(items) % 2 != 0:
+        items = items[:-1]
+
+    random.shuffle(items)
+    for i in range(0, len(items), 2):
+        first = items[i]
+        second = items[i+1]
+        first.swap(second)
+
+        
+        

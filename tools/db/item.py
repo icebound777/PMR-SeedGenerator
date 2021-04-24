@@ -6,6 +6,7 @@ from db.db import db
 from db.map_area import MapArea
 from enums import Enums
 from parse import get_default_table
+from table import Table
 
 
 class Item(Model):
@@ -24,6 +25,23 @@ class Item(Model):
 
     def get_key(self):
         return (Item._meta.key_type << 24) | (self.area_id << 16) | (self.map_id << 8) | self.index
+
+    def update(self):
+        Table.instance[self.map_area.name][self.key_name] = {
+            "key": self.get_key(),
+            "value": self.value,
+            "attribute": self.key_name,
+            "table": self.map_area.name,
+            "enum_type": "Item",
+        }
+
+    def swap(self, other):
+        self.key_name, other.key_name = other.key_name, self.key_name
+        self.value, other.value = other.value, self.value
+        self.map_area, other.map_area = other.map_area, self.map_area
+
+        self.update()
+        other.update()
 
     @classmethod
     def get_type(cls, item_id:int):

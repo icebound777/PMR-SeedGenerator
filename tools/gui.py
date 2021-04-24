@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import *
 
 from enums import Enums
-from logic import shuffle_pairs
+from logic import shuffle_pairs, shuffle_items
 from utility import sr_dump, sr_copy, sr_compile
 from parse import get_default_table, get_table_info, create_table
 
@@ -174,6 +174,10 @@ class Window(QMainWindow):
 		shuffle_pairs(pairs, by_type="pipe")
 		shuffle_pairs(pairs, by_type="ground")
 		shuffle_pairs(pairs, by_type="door")
+
+		# Shuffle Items
+		items = [item for item in Item.select()]
+		shuffle_items(items)
 
 		# Create a sorted list of key:value pairs to be written into the ROM
 		table_data = []
