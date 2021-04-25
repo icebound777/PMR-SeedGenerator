@@ -150,9 +150,7 @@ def gather_values():
                     values["options"][name] = get_value(value)
                 elif "Quiz" in key_info:
                     pass
-                
-                # Check for map name (which means it's an item or item price)
-                if match := re.match(r"([A-Z]{2,5}_\d+):(\S*)", key_info):
+                elif match := re.match(r"([A-Z]{2,5}_\d+):(\S*)", key_info):  # Check for map name (which means it's an item or item price)
                     map_name = match.group(1)
                     key_name = match.group(2)
                     if "ShopPrice" in key_name:
@@ -163,6 +161,13 @@ def gather_values():
                         if map_name not in values["items"]:
                             values["items"][map_name] = {}
                         values["items"][map_name][key_name] = get_value(value)
+                elif any(["HP" in key_info, "Damage" in key_info, "Level" in key_info, "Increment" in key_info]): # Check for actor data
+                    actor,attribute = key_info.split(":")
+                    value = get_value(value)
+                    if actor not in values["actors"]:
+                        values["actors"][actor] = {}
+                    values["actors"][actor][attribute] = value
+
     with open("./debug/values.json", "w") as file:
         json.dump(values, file, indent=4)
 

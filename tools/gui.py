@@ -24,7 +24,7 @@ from db.item import Item, create_items
 from db.option import Option, create_options
 from db.item_price import ItemPrice, create_item_prices
 from db.entrance import Entrance, create_entrances, connect_entrances
-
+from db.actor import Actor, create_actors
 
 create_enums()
 
@@ -36,6 +36,7 @@ gather_values()
 create_options()
 create_items()
 create_item_prices()
+create_actors()
 create_entrances()
 connect_entrances()
 shutil.copy("db.sqlite", "default_db.sqlite")
