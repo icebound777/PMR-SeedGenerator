@@ -21,10 +21,12 @@ from parse import get_default_table, get_table_info, create_table, gather_keys, 
 
 from db.map_area import MapArea
 from db.item import Item, create_items
+from db.quiz import Quiz, create_quizzes
 from db.option import Option, create_options
 from db.item_price import ItemPrice, create_item_prices
 from db.entrance import Entrance, create_entrances, connect_entrances
 from db.actor_attribute import ActorAttribute, create_actor_attributes
+
 
 create_enums()
 
@@ -37,6 +39,7 @@ create_options()
 create_items()
 create_item_prices()
 create_actor_attributes()
+create_quizzes()
 create_entrances()
 connect_entrances()
 shutil.copy("db.sqlite", "default_db.sqlite")

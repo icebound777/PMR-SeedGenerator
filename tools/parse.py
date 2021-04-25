@@ -102,6 +102,14 @@ def gather_keys():
                                 "map_id": map_id,
                                 "value_id": value_id,
                             }
+                        elif name == "Quiz":
+                            keys["quizzes"][key] = {
+                                "name": attribute,
+                                "byte_id": byte_id,
+                                "area_id": area_id,
+                                "map_id": map_id,
+                                "value_id": value_id,
+                            }
     with open("./debug/keys.json", "w") as file:
         json.dump(keys, file, indent=4)
 
@@ -149,7 +157,8 @@ def gather_values():
                     name = key_info.split(":")[-1]
                     values["options"][name] = get_value(value)
                 elif "Quiz" in key_info:
-                    pass
+                    name = key_info.split(":")[-1]
+                    values["quizzes"][name] = get_value(value)
                 elif match := re.match(r"([A-Z]{2,5}_\d+):(\S*)", key_info):  # Check for map name (which means it's an item or item price)
                     map_name = match.group(1)
                     key_name = match.group(2)

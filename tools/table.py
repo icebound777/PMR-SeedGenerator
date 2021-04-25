@@ -5,6 +5,7 @@ from db.entrance import Entrance
 from db.item import Item
 from db.item_price import ItemPrice
 from db.actor_attribute import ActorAttribute
+from db.quiz import Quiz
 
 
 class Table:
@@ -30,6 +31,13 @@ class Table:
 			table_data.append({
 				"key": option.get_key(),
 				"value": option.value,
+			})
+
+		# Quizzes
+		for quiz in Quiz.select():
+			table_data.append({
+				"key": quiz.get_key(),
+				"value": quiz.value,
 			})
 
 		# Entrances
