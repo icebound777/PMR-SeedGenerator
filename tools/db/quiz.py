@@ -3,7 +3,6 @@ import json
 from peewee import *
 from playhouse.sqlite_ext import JSONField
 from db.db import db
-from db.map_area import MapArea
 
 
 class Quiz(Model):
@@ -25,7 +24,7 @@ class Quiz(Model):
         key_type = 0xAF
 
 
-# Run this to create all actors in ActorAttribute table
+# Run this to create all quizzes in Quiz table
 def create_quizzes():
     db.drop_tables([Quiz])
     db.create_tables([Quiz])

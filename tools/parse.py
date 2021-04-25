@@ -94,7 +94,7 @@ def gather_keys():
                         }
                     elif byte_id == 0xAF:
                         name,attribute = key_info.split(":")
-                        if name == "Options":
+                        if name == "Options" or name == "Cosmetic":
                             keys["options"][key] = {
                                 "name": attribute,
                                 "byte_id": byte_id,

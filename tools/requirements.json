@@ -1,0 +1,6220 @@
+{
+    "MAC_00": {
+        "ShopItemA": {
+            "item": "FrightJar",
+            "value": 152,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemB": {
+            "item": "SleepySheep",
+            "value": 143,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemC": {
+            "item": "POWBlock",
+            "value": 144,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemD": {
+            "item": "FireFlower",
+            "value": 128,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemE": {
+            "item": "HoneySyrup",
+            "value": 164,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemF": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "MAC_04": {
+        "ShopItemA": {
+            "item": "StoneCap",
+            "value": 136,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemB": {
+            "item": "DizzyDial",
+            "value": 154,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemC": {
+            "item": "ThunderRage",
+            "value": 130,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemD": {
+            "item": "TastyTonic",
+            "value": 137,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemE": {
+            "item": "VoltShroom",
+            "value": 139,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemF": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "HOS_03": {
+        "ShopItemA": {
+            "item": "StopWatch",
+            "value": 146,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemB": {
+            "item": "ShootingStar",
+            "value": 131,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemC": {
+            "item": "SuperSoda",
+            "value": 155,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemD": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemE": {
+            "item": "LifeShroom",
+            "value": 149,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemF": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "NOK_01": {
+        "ShopItemA": {
+            "item": "DizzyDial",
+            "value": 154,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemB": {
+            "item": "POWBlock",
+            "value": 144,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemC": {
+            "item": "FireFlower",
+            "value": 128,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemD": {
+            "item": "HoneySyrup",
+            "value": 164,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemE": {
+            "item": "VoltShroom",
+            "value": 139,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemF": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "Bush6A_Drop1A": {
+            "item": "Glasses",
+            "value": 116,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "Bush7A_Drop1A": {
+            "item": "EmptyWallet",
+            "value": 112,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "DRO_01": {
+        "ShopItemA": {
+            "item": "ThunderBolt",
+            "value": 132,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemB": {
+            "item": "DustyHammer",
+            "value": 134,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemC": {
+            "item": "HoneySyrup",
+            "value": 164,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemD": {
+            "item": "DriedShroom",
+            "value": 141,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemE": {
+            "item": "DriedPasta",
+            "value": 167,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemF": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "Melody",
+            "value": 104,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftB": {
+            "item": "RedJar",
+            "value": 119,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OBK_03": {
+        "ShopItemA": {
+            "item": "Mystery",
+            "value": 150,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemB": {
+            "item": "StopWatch",
+            "value": 146,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemC": {
+            "item": "SnowmanDoll",
+            "value": 129,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemD": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemE": {
+            "item": "LifeShroom",
+            "value": 149,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemF": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "CrateA": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_03": {
+        "ShopItemA": {
+            "item": "SnowmanDoll",
+            "value": 129,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemB": {
+            "item": "ThunderRage",
+            "value": 130,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemC": {
+            "item": "FireFlower",
+            "value": 128,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemD": {
+            "item": "TastyTonic",
+            "value": 137,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemE": {
+            "item": "HoneySyrup",
+            "value": 164,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemF": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "MagicalSeed4",
+            "value": 46,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SAM_02": {
+        "ShopItemA": {
+            "item": "DizzyDial",
+            "value": 154,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemB": {
+            "item": "ShootingStar",
+            "value": 131,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemC": {
+            "item": "SnowmanDoll",
+            "value": 129,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemD": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemE": {
+            "item": "LifeShroom",
+            "value": 149,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemF": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "IcedPotato",
+            "value": 175,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "UltraShroom",
+            "value": 142,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemD": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemE": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemF": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_96": {
+        "ShopItemA": {
+            "item": "Mystery",
+            "value": 150,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemB": {
+            "item": "DizzyDial",
+            "value": 154,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemC": {
+            "item": "POWBlock",
+            "value": 144,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemD": {
+            "item": "ThunderRage",
+            "value": 130,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemE": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ShopItemF": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KMR_00": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KMR_03": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "RepelGel",
+            "value": 151,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemD": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemE": {
+            "item": "FireFlower",
+            "value": 128,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemF": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemG": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KMR_11": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "Tree1_Drop1A": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "MAC_02": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "OddKey",
+            "value": 107,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "MagicalSeed1",
+            "value": 43,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "MAC_03": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "Letter21",
+            "value": 79,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftB": {
+            "item": "Letter23",
+            "value": 81,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "MAC_05": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "Lyrics",
+            "value": 103,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "HOS_00": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "HOS_01": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "HOS_06": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "Autograph2",
+            "value": 113,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "NOK_13": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "RBlockA": {
+            "item": "AttackFXB",
+            "value": 326,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "HoneySyrup",
+            "value": 164,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "NOK_14": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemD": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemE": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemF": {
+            "item": "ThunderBolt",
+            "value": 132,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "FireFlower",
+            "value": 128,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "IWA_01": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "QuakeHammer",
+            "value": 232,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Letter01",
+            "value": 54,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "DRO_02": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "Letter08",
+            "value": 61,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "CrystalBall",
+            "value": 39,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftB": {
+            "item": "PulseStone",
+            "value": 18,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_33": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "MIM_12": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OBK_01": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "OldPhoto",
+            "value": 115,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OBK_02": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OBK_04": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "CrateA": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OBK_08": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "Record",
+            "value": 34,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Record",
+            "value": 34,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OMO_03": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "StoneCap",
+            "value": 136,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OMO_06": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ChestA": {
+            "item": "Mailbag",
+            "value": 105,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "ThunderRage",
+            "value": 130,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OMO_08": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "FireFlower",
+            "value": 128,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OMO_10": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_02": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "JadeRaven",
+            "value": 42,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_15": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KZN_09": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KZN_18": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_03": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "MagicalBean",
+            "value": 88,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_24": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "DizzyDial",
+            "value": 154,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_25": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SAM_01": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "Bucket",
+            "value": 49,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ChestA": {
+            "item": "AttackFXE",
+            "value": 327,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SAM_04": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "Letter05",
+            "value": 58,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "RepelGel",
+            "value": 151,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "PRA_21": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "PRA_22": {
+        "HiddenPanel": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "JamminJelly",
+            "value": 162,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KMR_02": {
+        "GiftA": {
+            "item": "Tape",
+            "value": 92,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "ShootingStar",
+            "value": 131,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "Tree1_Drop1A": {
+            "item": "Goomnut",
+            "value": 165,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KMR_04": {
+        "ItemA": {
+            "item": "Dolly",
+            "value": 86,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KMR_05": {
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KMR_06": {
+        "RBlockA": {
+            "item": "CloseCall",
+            "value": 274,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KMR_09": {
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KMR_10": {
+        "ChestA": {
+            "item": "HammerThrow",
+            "value": 263,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "SleepySheep",
+            "value": 143,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "MAC_01": {
+        "ItemA": {
+            "item": "QuickChange",
+            "value": 237,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "QuickChange",
+            "value": 237,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "Tree1_Drop1A": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TIK_02": {
+        "ChestA": {
+            "item": "ShrinkStomp",
+            "value": 303,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TIK_03": {
+        "YBlockA": {
+            "item": "SnowmanDoll",
+            "value": 129,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TIK_05": {
+        "ChestA": {
+            "item": "PowerSmash1",
+            "value": 292,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TIK_07": {
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TIK_10": {
+        "HiddenYBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TIK_18": {
+        "HiddenYBlockA": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TIK_20": {
+        "YBlockA": {
+            "item": "ShootingStar",
+            "value": 131,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TIK_21": {
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockD": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TIK_23": {
+        "HiddenYBlockA": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockB": {
+            "item": "StopWatch",
+            "value": 146,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockC": {
+            "item": "VoltShroom",
+            "value": 139,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TIK_24": {
+        "HiddenYBlockA": {
+            "item": "LifeShroom",
+            "value": 149,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KKJ_16": {
+        "ItemA": {
+            "item": "LifeShroom",
+            "value": 149,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "PowerRush",
+            "value": 269,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KKJ_17": {
+        "ItemA": {
+            "item": "DeepFocus1",
+            "value": 297,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KKJ_20": {
+        "ChestA": {
+            "item": "LastStand",
+            "value": 273,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "NOK_02": {
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "KoopaLegends",
+            "value": 110,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftB": {
+            "item": "SilverCredit",
+            "value": 123,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftC": {
+            "item": "GoldCredit",
+            "value": 124,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "NOK_03": {
+        "ItemA": {
+            "item": "HPPlusB",
+            "value": 308,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "NOK_04": {
+        "GiftA": {
+            "item": "KoopersShell",
+            "value": 25,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "NOK_11": {
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "RBlockA": {
+            "item": "DizzyAttack",
+            "value": 285,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "FrightJar",
+            "value": 152,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "NOK_12": {
+        "YBlockA": {
+            "item": "POWBlock",
+            "value": 144,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "SleepySheep",
+            "value": 143,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "NOK_15": {
+        "Tree1_Drop1A": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TRD_00": {
+        "ChestA": {
+            "item": "Refund",
+            "value": 260,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ChestB": {
+            "item": "FPPlusB",
+            "value": 309,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TRD_01": {
+        "ItemA": {
+            "item": "SmashCharge",
+            "value": 265,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "FortressKey",
+            "value": 16,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "FortressKey",
+            "value": 16,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TRD_03": {
+        "ItemA": {
+            "item": "FortressKey",
+            "value": 16,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "FortressKey",
+            "value": 16,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "PowerBounce",
+            "value": 228,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TRD_08": {
+        "ItemA": {
+            "item": "FortressKey",
+            "value": 16,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "TRD_09": {
+        "YBlockA": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "IWA_00": {
+        "ItemA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "SleepySheep",
+            "value": 143,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemD": {
+            "item": "WhackasBump",
+            "value": 147,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "IWA_02": {
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "MagicalSeed2",
+            "value": 44,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "IWA_03": {
+        "ChestA": {
+            "item": "DamageDodgeB",
+            "value": 314,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockC": {
+            "item": "HoneySyrup",
+            "value": 164,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "Letter25",
+            "value": 84,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemD": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemE": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemF": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemG": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemH": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemI": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemJ": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "IWA_04": {
+        "ItemA": {
+            "item": "Letter10",
+            "value": 64,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "IWA_10": {
+        "GiftA": {
+            "item": "Letter01",
+            "value": 54,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftB": {
+            "item": "Letter25",
+            "value": 84,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftC": {
+            "item": "Letter10",
+            "value": 64,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_00": {
+        "YBlockA": {
+            "item": "FrightJar",
+            "value": 152,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_05": {
+        "ItemA": {
+            "item": "FireFlower",
+            "value": 128,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_10": {
+        "HiddenYBlockA": {
+            "item": "ThunderRage",
+            "value": 130,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_14": {
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "HoneySyrup",
+            "value": 164,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_20": {
+        "YBlockA": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockC": {
+            "item": "UltraShroom",
+            "value": 142,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockD": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockE": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockF": {
+            "item": "UltraShroom",
+            "value": 142,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_22": {
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockD": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockE": {
+            "item": "FireFlower",
+            "value": 128,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_24": {
+        "HiddenRBlockA": {
+            "item": "RunawayPay",
+            "value": 259,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_30": {
+        "Tree2_Drop1A": {
+            "item": "Letter02",
+            "value": 55,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_36": {
+        "Tree9_Drop1A": {
+            "item": "Letter03",
+            "value": 56,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_43": {
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_45": {
+        "ItemA": {
+            "item": "StopWatch",
+            "value": 146,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "SpinAttack",
+            "value": 284,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_46": {
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "LifeShroom",
+            "value": 149,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_55": {
+        "ItemA": {
+            "item": "TastyTonic",
+            "value": 137,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_56": {
+        "Tree1_Drop1A": {
+            "item": "Lemon",
+            "value": 156,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "Tree2_Drop1A": {
+            "item": "Lime",
+            "value": 157,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_61": {
+        "HiddenRBlockA": {
+            "item": "AttackFXC",
+            "value": 328,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SBK_64": {
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "ISK_02": {
+        "ItemA": {
+            "item": "SpikeShield",
+            "value": 229,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "ISK_03": {
+        "ItemA": {
+            "item": "RuinsKey",
+            "value": 17,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "ISK_05": {
+        "ItemA": {
+            "item": "PyramidStone",
+            "value": 22,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "ISK_06": {
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "RuinsKey",
+            "value": 17,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "ISK_07": {
+        "ItemA": {
+            "item": "RuinsKey",
+            "value": 17,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Artifact",
+            "value": 83,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "RuinsKey",
+            "value": 17,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "ISK_09": {
+        "ChestA": {
+            "item": "SlowGo",
+            "value": 247,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "ISK_12": {
+        "ItemA": {
+            "item": "RuinsKey",
+            "value": 17,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "ISK_13": {
+        "ItemA": {
+            "item": "LunarStone",
+            "value": 21,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "ISK_14": {
+        "ItemA": {
+            "item": "DiamondStone",
+            "value": 23,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "MIM_04": {
+        "GiftA": {
+            "item": "MagicalSeed3",
+            "value": 45,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "MIM_08": {
+        "RBlockA": {
+            "item": "HPPlusA",
+            "value": 231,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "MIM_09": {
+        "RBlockA": {
+            "item": "FPPlusA",
+            "value": 248,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "MIM_11": {
+        "YBlockA": {
+            "item": "VoltShroom",
+            "value": 139,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OBK_05": {
+        "CrateA": {
+            "item": "Apple",
+            "value": 148,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "CrateB": {
+            "item": "Apple",
+            "value": 148,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OBK_06": {
+        "ItemA": {
+            "item": "BoosPortrait",
+            "value": 29,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "CrateA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OBK_07": {
+        "ChestA": {
+            "item": "Weight",
+            "value": 28,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "ARN_02": {
+        "ItemA": {
+            "item": "DizzyDial",
+            "value": 154,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Letter07",
+            "value": 60,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockC": {
+            "item": "RepelGel",
+            "value": 151,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "ARN_03": {
+        "GiftA": {
+            "item": "Package",
+            "value": 118,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "ARN_04": {
+        "YBlockA": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "DGB_03": {
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "DGB_06": {
+        "ChestA": {
+            "item": "CastleKey1",
+            "value": 19,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "DGB_07": {
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "DGB_11": {
+        "ItemA": {
+            "item": "DDownJump",
+            "value": 302,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "DGB_12": {
+        "ChestA": {
+            "item": "CastleKey1",
+            "value": 19,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "DGB_13": {
+        "ItemA": {
+            "item": "MegaRush",
+            "value": 249,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemD": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemE": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemF": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemG": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "DGB_14": {
+        "YBlockA": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "DGB_16": {
+        "ItemA": {
+            "item": "CastleKey1",
+            "value": 19,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OMO_01": {
+        "ItemA": {
+            "item": "Calculator",
+            "value": 48,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "Mystery",
+            "value": 150,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockB": {
+            "item": "FrightJar",
+            "value": 152,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OMO_02": {
+        "YBlockA": {
+            "item": "SleepySheep",
+            "value": 143,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "ShootingStar",
+            "value": 131,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OMO_04": {
+        "ItemA": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ChestA": {
+            "item": "StoreroomKey",
+            "value": 32,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockC": {
+            "item": "ThunderBolt",
+            "value": 132,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemD": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemE": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemF": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemG": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemH": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemI": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemJ": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemK": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OMO_05": {
+        "ItemA": {
+            "item": "Cookbook",
+            "value": 41,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Cookbook",
+            "value": 41,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "DizzyDial",
+            "value": 154,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockB": {
+            "item": "SuperSoda",
+            "value": 155,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OMO_07": {
+        "ItemA": {
+            "item": "ThunderRage",
+            "value": 130,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ChestA": {
+            "item": "FryingPan",
+            "value": 35,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ChestB": {
+            "item": "DefendPlusA",
+            "value": 251,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ChestC": {
+            "item": "IcePower",
+            "value": 250,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OMO_09": {
+        "ItemA": {
+            "item": "SuperSoda",
+            "value": 155,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ChestA": {
+            "item": "Dictionary",
+            "value": 36,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemD": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemE": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemF": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemG": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemH": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemI": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemJ": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemK": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemL": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemM": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemN": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemO": {
+            "item": "MysteryNote",
+            "value": 37,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OMO_11": {
+        "HiddenYBlockA": {
+            "item": "VoltShroom",
+            "value": 139,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockB": {
+            "item": "SnowmanDoll",
+            "value": 129,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenRBlockA": {
+            "item": "DeepFocus2",
+            "value": 306,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OMO_13": {
+        "ChestA": {
+            "item": "PowerPlusB",
+            "value": 316,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OMO_17": {
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_00": {
+        "ItemA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "StopWatch",
+            "value": 146,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_01": {
+        "ItemA": {
+            "item": "Letter11",
+            "value": 65,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "RepelGel",
+            "value": 151,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockB": {
+            "item": "Mystery",
+            "value": 150,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_04": {
+        "ChestA": {
+            "item": "VolcanoVase",
+            "value": 91,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "Tree2_Drop1A": {
+            "item": "Letter04",
+            "value": 57,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_05": {
+        "RBlockA": {
+            "item": "PowerQuake",
+            "value": 279,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_06": {
+        "ItemA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_08": {
+        "ItemA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "ThunderRage",
+            "value": 130,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_10": {
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_12": {
+        "ItemA": {
+            "item": "Egg2",
+            "value": 171,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "StoneCap",
+            "value": 136,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_13": {
+        "HiddenYBlockA": {
+            "item": "VoltShroom",
+            "value": 139,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_14": {
+        "ItemA": {
+            "item": "FireFlower",
+            "value": 128,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "Mushroom",
+            "value": 138,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_18": {
+        "ItemA": {
+            "item": "HappyHeartB",
+            "value": 310,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "JAN_22": {
+        "GiftA": {
+            "item": "UltraStone",
+            "value": 15,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "JamminJelly",
+            "value": 162,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KZN_03": {
+        "ItemA": {
+            "item": "FireShield",
+            "value": 236,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "POWBlock",
+            "value": 144,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockC": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockD": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KZN_06": {
+        "HiddenYBlockA": {
+            "item": "LifeShroom",
+            "value": 149,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KZN_08": {
+        "ChestA": {
+            "item": "DizzyStomp",
+            "value": 239,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KZN_19": {
+        "YBlockA": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_07": {
+        "ItemA": {
+            "item": "CrystalBerry",
+            "value": 30,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "CrystalBerry",
+            "value": 30,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "GiftA": {
+            "item": "FertileSoil",
+            "value": 89,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "CrystalBerry",
+            "value": 30,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemD": {
+            "item": "CrystalBerry",
+            "value": 30,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_08": {
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_09": {
+        "ItemA": {
+            "item": "HappyFlowerB",
+            "value": 321,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_10": {
+        "GiftA": {
+            "item": "MiracleWater",
+            "value": 90,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_12": {
+        "GiftA": {
+            "item": "WaterStone",
+            "value": 87,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_13": {
+        "ItemA": {
+            "item": "MegaSmash",
+            "value": 294,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "ShootingStar",
+            "value": 131,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_14": {
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_16": {
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_17": {
+        "HiddenYBlockA": {
+            "item": "ThunderRage",
+            "value": 130,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "Letter09",
+            "value": 62,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_19": {
+        "ItemA": {
+            "item": "SJumpChg",
+            "value": 268,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_22": {
+        "ItemA": {
+            "item": "FlowerSaverB",
+            "value": 312,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "FlowerSaverB",
+            "value": 312,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "FLO_23": {
+        "HiddenYBlockA": {
+            "item": "ShootingStar",
+            "value": 131,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockB": {
+            "item": "Coin",
+            "value": 343,
+            "item_type": "COIN",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SAM_05": {
+        "ItemA": {
+            "item": "Letter06",
+            "value": 59,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "StopWatch",
+            "value": 146,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SAM_06": {
+        "GiftA": {
+            "item": "Scarf",
+            "value": 50,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SAM_07": {
+        "HiddenYBlockA": {
+            "item": "UltraShroom",
+            "value": 142,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SAM_10": {
+        "RBlockA": {
+            "item": "MegaJump",
+            "value": 291,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SAM_11": {
+        "ItemA": {
+            "item": "WarehouseKey",
+            "value": 121,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "SAM_12": {
+        "ItemA": {
+            "item": "StarStone",
+            "value": 108,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "StarStone",
+            "value": 108,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "PRA_04": {
+        "YBlockA": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "PRA_05": {
+        "ChestA": {
+            "item": "BlueKey",
+            "value": 52,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "PRA_06": {
+        "ItemA": {
+            "item": "ShootingStar",
+            "value": 131,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "PRA_11": {
+        "ChestA": {
+            "item": "RedKey",
+            "value": 51,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "PRA_12": {
+        "ChestA": {
+            "item": "PDownDUp",
+            "value": 278,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "PRA_15": {
+        "ItemA": {
+            "item": "StarPiece",
+            "value": 348,
+            "item_type": "STARPIECE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "PRA_27": {
+        "ChestA": {
+            "item": "PalaceKey",
+            "value": 20,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "PRA_28": {
+        "ChestA": {
+            "item": "PUpDDown",
+            "value": 275,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "PRA_35": {
+        "ChestA": {
+            "item": "TripleDip",
+            "value": 262,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_01": {
+        "YBlockA": {
+            "item": "POWBlock",
+            "value": 144,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_03": {
+        "YBlockA": {
+            "item": "ShootingStar",
+            "value": 131,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_10": {
+        "YBlockA": {
+            "item": "LifeShroom",
+            "value": 149,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_11": {
+        "ItemA": {
+            "item": "CastleKey2",
+            "value": 26,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockA": {
+            "item": "LifeShroom",
+            "value": 149,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "CastleKey2",
+            "value": 26,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "CastleKey2",
+            "value": 26,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_14": {
+        "ItemA": {
+            "item": "Mystery",
+            "value": 150,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "ThunderRage",
+            "value": 130,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_15": {
+        "ChestA": {
+            "item": "CastleKey2",
+            "value": 26,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_17": {
+        "CrateA": {
+            "item": "TastyTonic",
+            "value": 137,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "CrateB": {
+            "item": "LifeShroom",
+            "value": 149,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_60": {
+        "RBlockA": {
+            "item": "DeepFocus3",
+            "value": 307,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_61": {
+        "YBlockA": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockB": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "YBlockC": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemA": {
+            "item": "JamminJelly",
+            "value": 162,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_62": {
+        "RBlockA": {
+            "item": "DeepFocus3",
+            "value": 307,
+            "item_type": "BADGE",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_91": {
+        "ItemA": {
+            "item": "PrisonKey1",
+            "value": 122,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "PrisonKey1",
+            "value": 122,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "PrisonKey1",
+            "value": 122,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_95": {
+        "ItemA": {
+            "item": "PrisonKey1",
+            "value": 122,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemB": {
+            "item": "PrisonKey1",
+            "value": 122,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "ItemC": {
+            "item": "PrisonKey1",
+            "value": 122,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_100": {
+        "ItemA": {
+            "item": "CastleKey2",
+            "value": 26,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_101": {
+        "ItemA": {
+            "item": "UltraShroom",
+            "value": 142,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_111": {
+        "YBlockA": {
+            "item": "SuperShroom",
+            "value": 140,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        },
+        "HiddenYBlockA": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_119": {
+        "ItemA": {
+            "item": "CastleKey2",
+            "value": 26,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_133": {
+        "ItemA": {
+            "item": "CastleKey2",
+            "value": 26,
+            "item_type": "KEYITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "KPA_134": {
+        "HiddenYBlockA": {
+            "item": "MapleSyrup",
+            "value": 163,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    },
+    "OSR_02": {
+        "HiddenYBlockA": {
+            "item": "UltraShroom",
+            "value": 142,
+            "item_type": "ITEM",
+            "requirements": {
+                "partners": [],
+                "items": [],
+                "boots": 0,
+                "hammer": 0,
+                "flip_panels": false
+            }
+        }
+    }
+}
