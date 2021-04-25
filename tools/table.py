@@ -4,6 +4,7 @@ from db.option import Option
 from db.entrance import Entrance
 from db.item import Item
 from db.item_price import ItemPrice
+from db.actor_attribute import ActorAttribute
 
 
 class Table:
@@ -21,7 +22,7 @@ class Table:
 	def __getitem__(self, key):
 		return self.db[key]
 
-	def generate_pairs(self):
+	def generate_pairs(self, **kwargs):
 		table_data = []
 
 		# Options
@@ -32,13 +33,14 @@ class Table:
 			})
 
 		# Entrances
-		for entrance in Entrance.select():
-			# Only include entrances that have destinations defined
-			if entrance.destination is not None:
-				table_data.append({
-					"key": entrance.get_key(),
-					"value": entrance.destination.get_key(),
-				})
+		if kwargs.get("entrances"):
+			for entrance in Entrance.select():
+				# Only include entrances that have destinations defined
+				if entrance.destination is not None:
+					table_data.append({
+						"key": entrance.get_key(),
+						"value": entrance.destination.get_key(),
+					})
 
 		# Items
 		for item in Item.select():
@@ -61,6 +63,13 @@ class Table:
 			table_data.append({
 				"key": item_price.get_key(),
 				"value": item_price.value,
+			})
+
+		# Actor Attributes
+		for actor_attribute in ActorAttribute.select():
+			table_data.append({
+				"key": actor_attribute.get_key(),
+				"value": actor_attribute.value,
 			})
 
 		table_data.sort(key=lambda pair: pair["key"])
