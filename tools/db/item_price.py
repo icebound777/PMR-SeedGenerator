@@ -32,44 +32,76 @@ class ItemPrice(Model):
 def create_item_prices():
     db.drop_tables([ItemPrice])
     db.create_tables([ItemPrice])
-    default_db = get_default_table()
-    def create_from(filepath):
-        with open(filepath, "r") as file:
-            for line in file:
-                if match := re.match(r"#export\s*.DBKey:(\S*):(\S*)\s*(\S*)", line):
-                    obj = match.group(1)
-                    attr = match.group(2)
-                    key = match.group(3)
 
-                    if attr.startswith("ShopPrice"):
-                        byte_id = int(key[0:2], 16)
-                        area_id = int(key[2:4], 16)
-                        map_id =  int(key[4:6], 16)
-                        index =  int(key[6:8], 16)
-                        
-                        map_area, created = MapArea.get_or_create(name=obj, defaults={
-                            "area_id": area_id,
-                            "map_id": map_id,
-                            "verbose_name": MapArea.get_verbose_name(obj),
-                        })
+    with open("./debug/keys.json", "r") as file:
+        item_prices = json.load(file)["item_prices"]
 
-                        data = default_db.get(obj, {}).get(attr, {})
-                        
-                        item_price, created = ItemPrice.get_or_create(
-                            map_area=map_area,
-                            area_id=area_id,
-                            map_id=map_id,
-                            index=index,
-                            value=data["value"],
-                            key_name=attr,
-                        )
-                        print(item_price, created)
 
-                        # Update item with reference to this ItemPrice
-                        from db.item import Item
-                        item = Item.get(Item.map_area==item_price.map_area, Item.key_name == f"ShopItem{item_price.key_name[-1]}")
-                        item.item_price = item_price
-                        item.save()
+    for key,data in item_prices.items():
+        map_area,created = MapArea.get_or_create(name=data["name"], defaults={
+            "area_id": data["area_id"],
+            "map_id": data["map_id"],
+            "verbose_name": MapArea.get_verbose_name(data["name"]),
+        })
+
+        item_price,created = ItemPrice.get_or_create(
+            map_area=map_area,
+            area_id=area_id,
+            map_id=map_id,
+            index=index,
+            value=data["value"],
+            key_name=attr,
+        )
+
+
+
+
+
+
+
+
+    for key,data in entrances.items():
+        # Create MapArea if neccessary
+        map_area,created = MapArea.get_or_create(
+            area_id=data["area_id"],
+            map_id=data["map_id"],
+            name=data["name"],
+            verbose_name=MapArea.get_verbose_name(data["name"]),
+        )
+        # Create Entrance
+        entrance,created = Entrance.get_or_create(
+            map_name=data["name"],
+            area_id=data["area_id"],
+            map_id=data["map_id"],
+            index=data["entrance"],
+            map_area=map_area,
+        )
+
+
+
+    map_area,created = MapArea.get_or_create(name=obj, defaults={
+        "area_id": area_id,
+        "map_id": map_id,
+        "verbose_name": MapArea.get_verbose_name(obj),
+    })
+
+    data = default_db.get(obj, {}).get(attr, {})
+    
+    item_price,created = ItemPrice.get_or_create(
+        map_area=map_area,
+        area_id=area_id,
+        map_id=map_id,
+        index=index,
+        value=data["value"],
+        key_name=attr,
+    )
+    print(item_price, created)
+
+    # Update item with reference to this ItemPrice
+    from db.item import Item
+    item = Item.get(Item.map_area==item_price.map_area, Item.key_name == f"ShopItem{item_price.key_name[-1]}")
+    item.item_price = item_price
+    item.save()
 
     create_from("../globals/patch/DatabaseKeys.patch")
     create_from("../globals/patch/generated/keys.patch")

@@ -1,4 +1,5 @@
 import re
+import json
 
 from peewee import *
 from playhouse.migrate import *
@@ -51,48 +52,26 @@ class Entrance(Model):
 def create_entrances():
     db.drop_tables([Entrance])
     db.create_tables([Entrance])
-    entrances = {}
-    with open("../globals/patch/RandomEntrances.patch", "r") as file:
-        for line in file:
-            if match := re.match(r"#export\s*.DBKey:Entrance:(\S*):(\S*)\s*(\S*)", line):
-                map_name = match.group(1)
-                map_exit = int(match.group(2), 16)
-                key = match.group(3)
-                byte_id = int(key[0:2], 16)
-                area_id = int(key[2:4], 16)
-                map_id =  int(key[4:6], 16)
-                entry_id =  int(key[6:8], 16)
 
-                if map_name not in entrances:
-                    entrances[map_name] = {}
-                entrances[map_name][map_exit] = {
-                    "byte_id": byte_id,
-                    "area": area_id,
-                    "map": map_id,
-                    "entry": entry_id,
-                }
+    with open("./debug/keys.json", "r") as file:
+        entrances = json.load(file)["entrances"]
 
-    for map_name,entrances in entrances.items():
-        for data in entrances.values():
-            map_area,created = MapArea.get_or_create(
-                area_id=data["area"],
-                map_id=data["map"],
-                name=map_name,
-                verbose_name=MapArea.get_verbose_name(map_name)
-            )
-
-            print(map_area, created)
-
-            entrance,created = Entrance.get_or_create(
-                map_name=map_name,
-                area_id=data["area"],
-                map_id=data["map"],
-                index=data["entry"],
-                map_area=map_area,
-            )
-
-            print(entrance, created)
-
+    for key,data in entrances.items():
+        # Create MapArea if neccessary
+        map_area,created = MapArea.get_or_create(
+            area_id=data["area_id"],
+            map_id=data["map_id"],
+            name=data["name"],
+            verbose_name=MapArea.get_verbose_name(data["name"]),
+        )
+        # Create Entrance
+        entrance,created = Entrance.get_or_create(
+            map_name=data["name"],
+            area_id=data["area_id"],
+            map_id=data["map_id"],
+            index=data["entrance"],
+            map_area=map_area,
+        )
 
 # Run this once to modify entrances with correct destination and type data
 def connect_entrances():

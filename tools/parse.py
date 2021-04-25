@@ -30,6 +30,7 @@ def gather_keys():
     files = get_files("../globals/patch")
     keys = {
         "items": dict(),
+        "item_prices": dict(),
         "actors": dict(),
         "entrances": dict(),
         "palettes": dict(),
@@ -51,13 +52,23 @@ def gather_keys():
                     key = (byte_id << 24) | (area_id << 16) | (map_id << 8) | value_id
 
                     if byte_id == 0xA1:
-                        keys["items"][key] = {
-                            "name": key_info.split(":")[-1],
-                            "byte_id": byte_id,
-                            "area_id": area_id,
-                            "map_id": map_id,
-                            "value_id": value_id,
-                        }
+                        name = key_info.split(":")[-1]
+                        if "ShopPrice" in name:
+                            keys["item_prices"][key] = {
+                                "name": name,
+                                "byte_id": byte_id,
+                                "area_id": area_id,
+                                "map_id": map_id,
+                                "value_id": value_id,
+                            }
+                        else:
+                            keys["items"][key] = {
+                                "name": name,
+                                "byte_id": byte_id,
+                                "area_id": area_id,
+                                "map_id": map_id,
+                                "value_id": value_id,
+                            }
                     elif byte_id == 0xA2:
                         name,attribute = key_info.split(":")
                         if key not in keys["actors"]:

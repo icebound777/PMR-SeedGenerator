@@ -43,7 +43,6 @@ quit()
 """
 
 
-
 class Stream(QtCore.QObject):
 	newText = QtCore.pyqtSignal(str)
 
@@ -143,7 +142,7 @@ class Window(QMainWindow):
 		self.rom_path, _ = QFileDialog.getOpenFileName(self, "Select ROM", "./", "z64(*.z64)", options=options)
 
 	def randomize(self):
-		sr = False
+		sr = True
 
 		# Ensure we've dumped a ROM, copied its contents to the mod folder, and compiled it
 		if sr:
