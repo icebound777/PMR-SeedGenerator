@@ -39,6 +39,11 @@ class Table:
 				"key": item.get_key(),
 				"value": item.value,
 			})
+			if item.item_type == "KEYITEM":
+				table_data.append({
+					"key": (0xA5 << 24) | (item.value),
+					"value": (item.area_id << 8) | (item.map_id),
+				})
 		for item_price in ItemPrice.select():
 			table_data.append({
 				"key": item_price.get_key(),

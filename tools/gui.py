@@ -42,7 +42,6 @@ shutil.copy("db.sqlite", "default_db.sqlite")
 quit()
 """
 
-# place_items()
 
 class Stream(QtCore.QObject):
 	newText = QtCore.pyqtSignal(str)
@@ -196,8 +195,9 @@ class Window(QMainWindow):
 				print()
 
 		# Shuffle Items
-		items = [item for item in Item.select()]
-		shuffle_items(items)
+		#items = [item for item in Item.select()]
+		#shuffle_items(items)
+		place_items(self.app)
 
 		# Make everything inexpensive
 		item_prices = [item_price for item_price in ItemPrice.select()]
