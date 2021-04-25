@@ -171,7 +171,7 @@ def place_items(app):
             key = (0xA1 << 24) | (area_id << 16) | (map_id << 8) | index
 
             item = Item.get(Item.area_id==area_id, Item.map_id==map_id, Item.index==index)
-            file.write(f"[{item.map_area.name}]: {item.key_name} - {item_name} -> {item.item_name}\n")
+            file.write(f"[{item.map_area.name}] ({item.map_area.verbose_name()}): {item.key_name} - {item_name} -> {item.item_name}\n")
             app.processEvents()
 
 

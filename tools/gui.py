@@ -43,6 +43,7 @@ quit()
 """
 
 
+
 class Stream(QtCore.QObject):
 	newText = QtCore.pyqtSignal(str)
 

@@ -6,6 +6,93 @@ import xml.etree.ElementTree as ET
 from enums import Enums, enum_int
 
 
+# Gather a list of ALL keys under the ../globals/patch/ directory
+# AF = Options
+# A1 = Items
+# A2 = Actors
+# A3 = Entrances
+# A4 = Palettes
+# A5 = 
+# AF = Quizzes
+def gather_keys():
+
+    def get_files(directory_name):
+        files = list()
+        for entry in os.listdir(directory_name):
+            full_path = os.path.join(directory_name, entry)
+            if os.path.isdir(full_path):
+                files += get_files(full_path)
+            else:
+                files.append(full_path)
+
+        return files
+
+    files = get_files("../globals/patch")
+    keys = {
+        "items": dict(),
+        "actors": dict(),
+        "entrances": dict(),
+        "palettes": dict(),
+        "options": dict(),
+        "quizzes": dict(),
+    }
+    for filepath in files:
+        with open(filepath, "r") as file:
+            for line in file:
+                if match := re.match(r"#export\s*.DBKey:", line):
+                    data = line[match.end():]
+                    match = re.match(r"(\S*)\s*(\S*)", data)
+                    key_info,number = match.group(1), match.group(2)
+                    
+                    byte_id = int(number[0:2], 16)
+                    area_id = int(number[2:4], 16)
+                    map_id =  int(number[4:6], 16)
+                    value_id =  int(number[6:8], 16)
+                    key = (byte_id << 24) | (area_id << 16) | (map_id << 8) | value_id
+
+                    if byte_id == 0xA1:
+                        keys["items"][key] = {
+                            "name": key_info.split(":")[-1],
+                            "byte_id": byte_id,
+                            "area_id": area_id,
+                            "map_id": map_id,
+                            "value_id": value_id,
+                        }
+                    elif byte_id == 0xA2:
+                        name,attribute = key_info.split(":")
+                        if key not in keys["actors"]:
+                            keys["actors"][key] = {}
+                        keys["actors"][key][attribute] = {
+                            "name": name,
+                            "byte_id": byte_id,
+                            "area_id": area_id,
+                            "map_id": map_id,
+                            "value_id": value_id,
+                        }
+                    elif byte_id == 0xA3:
+                        _,map_name,entrance = key_info.split(":")
+                        entrance = int(entrance, 16)
+                        keys["entrances"][key] = {
+                            "name": map_name,
+                            "entrance": entrance,
+                            "byte_id": byte_id,
+                            "area_id": area_id,
+                            "map_id": map_id,
+                            "value_id": value_id,
+                        }
+                    elif byte_id == 0xAF:
+                        name,attribute = key_info.split(":")
+                        if name == "Options":
+                            keys["options"][key] = {
+                                "name": attribute,
+                                "byte_id": byte_id,
+                                "area_id": area_id,
+                                "map_id": map_id,
+                                "value_id": value_id,
+                            }
+    with open("./debug/keys.json", "w") as file:
+        json.dump(keys, file, indent=4)
+
 def get_default_table():
     # Get general data
     db = {}

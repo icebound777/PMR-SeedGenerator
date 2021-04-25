@@ -88,6 +88,7 @@ def create_items():
                             map_area, created = MapArea.get_or_create(name=obj, defaults={
                                 "area_id": area_id,
                                 "map_id": map_id,
+                                "verbose_name": MapArea.get_verbose_name(obj),
                             })
 
                             item, created = Item.get_or_create(
@@ -99,7 +100,7 @@ def create_items():
                                 value=data["value"],
                                 item_name=Enums.get("Item")[data["value"]],
                                 key_name=attr,
-                                logic={"requirements": {}}, # TODO
+                                logic={"requirements": {}},
                             )
                             print(item, item.value, created)
         

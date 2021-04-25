@@ -78,6 +78,7 @@ def create_entrances():
                 area_id=data["area"],
                 map_id=data["map"],
                 name=map_name,
+                verbose_name=MapArea.get_verbose_name(map_name)
             )
 
             print(map_area, created)

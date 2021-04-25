@@ -50,6 +50,7 @@ def create_item_prices():
                         map_area, created = MapArea.get_or_create(name=obj, defaults={
                             "area_id": area_id,
                             "map_id": map_id,
+                            "verbose_name": MapArea.get_verbose_name(obj),
                         })
 
                         data = default_db.get(obj, {}).get(attr, {})
