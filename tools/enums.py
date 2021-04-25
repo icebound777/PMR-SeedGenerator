@@ -1,4 +1,5 @@
 import re
+import os
 import random
 
 
@@ -35,6 +36,11 @@ class Enums:
             for k,v in self.data.items():
                 if key == v:
                     return k
+
+def create_enums():
+    for name in os.listdir("../globals/enum/"):
+        name = name.split(".")[0]
+        Enums(f"../globals/enum/{name}.enum")
 
 def enum_int(enum:str) -> (int, str):
     enum_type,enum_value = enum[1:].split(":")

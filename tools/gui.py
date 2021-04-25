@@ -13,11 +13,11 @@ from pathlib import Path
 from PyQt5.QtWidgets import *
 from PyQt5 import QtCore, QtGui
 
-from enums import Enums
+from enums import Enums, create_enums
 from table import Table
 from utility import sr_dump, sr_copy, sr_compile
 from logic import shuffle_entrances, shuffle_items, place_items
-from parse import get_default_table, get_table_info, create_table
+from parse import get_default_table, get_table_info, create_table, gather_keys, gather_values
 
 from db.map_area import MapArea
 from db.item import Item, create_items
@@ -26,13 +26,13 @@ from db.item_price import ItemPrice, create_item_prices
 from db.entrance import Entrance, create_entrances, connect_entrances
 
 
-# Create enums
-for name in os.listdir("../globals/enum/"):
-	name = name.split(".")[0]
-	Enums(f"../globals/enum/{name}.enum")
+create_enums()
+
 
 # Uncomment to build database from scratch
 """
+gather_keys()
+gather_values()
 create_options()
 create_items()
 create_item_prices()
@@ -40,6 +40,7 @@ create_entrances()
 connect_entrances()
 shutil.copy("db.sqlite", "default_db.sqlite")
 quit()
+# END
 """
 
 
@@ -142,7 +143,7 @@ class Window(QMainWindow):
 		self.rom_path, _ = QFileDialog.getOpenFileName(self, "Select ROM", "./", "z64(*.z64)", options=options)
 
 	def randomize(self):
-		sr = True
+		sr = False
 
 		# Ensure we've dumped a ROM, copied its contents to the mod folder, and compiled it
 		if sr:

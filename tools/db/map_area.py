@@ -21,7 +21,7 @@ class MapArea(Model):
     area_id = IntegerField()
     map_id = IntegerField()
 
-    name = CharField()
+    name = CharField(null=True)
     verbose_name = CharField(null=True)
 
     def __str__(self):

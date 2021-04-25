@@ -1,4 +1,4 @@
-import re
+import json
 
 from peewee import *
 
@@ -34,75 +34,35 @@ def create_item_prices():
     db.create_tables([ItemPrice])
 
     with open("./debug/keys.json", "r") as file:
-        item_prices = json.load(file)["item_prices"]
+        item_price_keys = json.load(file)["item_prices"]
 
+    with open("./debug/values.json", "r") as file:
+        item_price_values = json.load(file)["item_prices"]
 
-    for key,data in item_prices.items():
-        map_area,created = MapArea.get_or_create(name=data["name"], defaults={
-            "area_id": data["area_id"],
-            "map_id": data["map_id"],
-            "verbose_name": MapArea.get_verbose_name(data["name"]),
-        })
-
-        item_price,created = ItemPrice.get_or_create(
-            map_area=map_area,
-            area_id=area_id,
-            map_id=map_id,
-            index=index,
-            value=data["value"],
-            key_name=attr,
-        )
-
-
-
-
-
-
-
-
-    for key,data in entrances.items():
-        # Create MapArea if neccessary
+    for key,data in item_price_keys.items():
         map_area,created = MapArea.get_or_create(
             area_id=data["area_id"],
             map_id=data["map_id"],
-            name=data["name"],
-            verbose_name=MapArea.get_verbose_name(data["name"]),
+            name=data["map_name"],
+            verbose_name=MapArea.get_verbose_name(data["map_name"]),
         )
-        # Create Entrance
-        entrance,created = Entrance.get_or_create(
-            map_name=data["name"],
+
+        value = item_price_values[map_area.name][data["name"]]
+
+        item_price,created = ItemPrice.get_or_create(
+            map_area=map_area,
             area_id=data["area_id"],
             map_id=data["map_id"],
-            index=data["entrance"],
-            map_area=map_area,
+            index=data["value_id"],
+            value=value,
+            key_name=data["name"],
         )
 
+        print(item_price, created)
 
-
-    map_area,created = MapArea.get_or_create(name=obj, defaults={
-        "area_id": area_id,
-        "map_id": map_id,
-        "verbose_name": MapArea.get_verbose_name(obj),
-    })
-
-    data = default_db.get(obj, {}).get(attr, {})
-    
-    item_price,created = ItemPrice.get_or_create(
-        map_area=map_area,
-        area_id=area_id,
-        map_id=map_id,
-        index=index,
-        value=data["value"],
-        key_name=attr,
-    )
-    print(item_price, created)
-
-    # Update item with reference to this ItemPrice
-    from db.item import Item
-    item = Item.get(Item.map_area==item_price.map_area, Item.key_name == f"ShopItem{item_price.key_name[-1]}")
-    item.item_price = item_price
-    item.save()
-
-    create_from("../globals/patch/DatabaseKeys.patch")
-    create_from("../globals/patch/generated/keys.patch")
-    
+        # Update item with reference to this ItemPrice
+        from db.item import Item
+        item = Item.get(Item.map_area==item_price.map_area, Item.key_name == f"ShopItem{item_price.key_name[-1]}")
+        item.item_price = item_price
+        item.save()
+        

@@ -3,8 +3,19 @@ import os
 import json
 import xml.etree.ElementTree as ET
 
-from enums import Enums, enum_int
+from enums import Enums, enum_int, create_enums
 
+
+def get_files(directory_name):
+    files = list()
+    for entry in os.listdir(directory_name):
+        full_path = os.path.join(directory_name, entry)
+        if os.path.isdir(full_path):
+            files += get_files(full_path)
+        else:
+            files.append(full_path)
+
+    return files
 
 # Gather a list of ALL keys under the ../globals/patch/ directory
 # AF = Options
@@ -15,18 +26,6 @@ from enums import Enums, enum_int
 # A5 = 
 # AF = Quizzes
 def gather_keys():
-
-    def get_files(directory_name):
-        files = list()
-        for entry in os.listdir(directory_name):
-            full_path = os.path.join(directory_name, entry)
-            if os.path.isdir(full_path):
-                files += get_files(full_path)
-            else:
-                files.append(full_path)
-
-        return files
-
     files = get_files("../globals/patch")
     keys = {
         "items": dict(),
@@ -56,6 +55,7 @@ def gather_keys():
                         if "ShopPrice" in name:
                             keys["item_prices"][key] = {
                                 "name": name,
+                                "map_name": key_info.split(":")[0],
                                 "byte_id": byte_id,
                                 "area_id": area_id,
                                 "map_id": map_id,
@@ -64,6 +64,7 @@ def gather_keys():
                         else:
                             keys["items"][key] = {
                                 "name": name,
+                                "map_name": key_info.split(":")[0],
                                 "byte_id": byte_id,
                                 "area_id": area_id,
                                 "map_id": map_id,
@@ -103,6 +104,67 @@ def gather_keys():
                             }
     with open("./debug/keys.json", "w") as file:
         json.dump(keys, file, indent=4)
+
+def gather_values():
+    def get_value(value):
+        # Booleans
+        if value == ".True":
+            return True
+        elif value == ".False":
+            return False
+
+        # Numbers
+        if value.endswith("`"):
+            return int(value[:-1])
+        try:
+            value = int(value, 16)
+        except:
+            pass
+        else:
+            return value
+
+        # Items
+        if value.startswith(".Item"):
+            item = value.split(":")[-1]
+            value = Enums.get("Item")[item]
+            return value
+
+    create_enums()
+
+    values = {
+        "items": dict(),
+        "item_prices": dict(),
+        "actors": dict(),
+        "entrances": dict(),
+        "palettes": dict(),
+        "options": dict(),
+        "quizzes": dict(),
+    }
+    with open("../globals/patch/DatabaseDefaults.patch", "r") as file:
+        for line in file:
+            if match := re.match(r"\s*.DBKey:(\S*)\s*(\S*)", line):
+                key_info = match.group(1)
+                value = match.group(2)
+                if "Options" in key_info or "Cosmetic" in key_info:
+                    name = key_info.split(":")[-1]
+                    values["options"][name] = get_value(value)
+                elif "Quiz" in key_info:
+                    pass
+                
+                # Check for map name (which means it's an item or item price)
+                if match := re.match(r"([A-Z]{2,5}_\d+):(\S*)", key_info):
+                    map_name = match.group(1)
+                    key_name = match.group(2)
+                    if "ShopPrice" in key_name:
+                        if map_name not in values["item_prices"]:
+                            values["item_prices"][map_name] = {}
+                        values["item_prices"][map_name][key_name] = get_value(value)
+                    else:
+                        if map_name not in values["items"]:
+                            values["items"][map_name] = {}
+                        values["items"][map_name][key_name] = get_value(value)
+    with open("./debug/values.json", "w") as file:
+        json.dump(values, file, indent=4)
 
 def get_default_table():
     # Get general data

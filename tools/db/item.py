@@ -1,4 +1,4 @@
-import re
+import json
 
 from peewee import *
 from playhouse.sqlite_ext import JSONField
@@ -69,41 +69,43 @@ class Item(Model):
 def create_items():
     db.drop_tables([Item])
     db.create_tables([Item])
-    default_db = get_default_table()
-    def create_from(filepath):
-        with open(filepath, "r") as file:
-            for line in file:
-                if match := re.match(r"#export\s*.DBKey:(\S*):(\S*)\s*(\S*)", line):
-                    obj = match.group(1)
-                    attr = match.group(2)
-                    key = match.group(3)
-                    
-                    if data := default_db.get(obj, {}).get(attr, {}):
-                        if data.get("enum_type") == "Item":
-                            byte_id = int(key[0:2], 16)
-                            area_id = int(key[2:4], 16)
-                            map_id =  int(key[4:6], 16)
-                            index =  int(key[6:8], 16)
-                            
-                            map_area, created = MapArea.get_or_create(name=obj, defaults={
-                                "area_id": area_id,
-                                "map_id": map_id,
-                                "verbose_name": MapArea.get_verbose_name(obj),
-                            })
 
-                            item, created = Item.get_or_create(
-                                map_area=map_area,
-                                area_id=area_id,
-                                map_id=map_id,
-                                index=index,
-                                item_type=Item.get_type(data["value"]),
-                                value=data["value"],
-                                item_name=Enums.get("Item")[data["value"]],
-                                key_name=attr,
-                                logic={"requirements": {}},
-                            )
-                            print(item, item.value, created)
-        
-    create_from("../globals/patch/DatabaseKeys.patch")
-    create_from("../globals/patch/generated/keys.patch")
+    with open("./debug/keys.json", "r") as file:
+        item_keys = json.load(file)["items"]
+
+    with open("./debug/values.json", "r") as file:
+        item_values = json.load(file)["items"]
+
+    for key,data in item_keys.items():
+        map_area,created = MapArea.get_or_create(
+            area_id=data["area_id"],
+            map_id=data["map_id"],
+            name=data["map_name"],
+            verbose_name=MapArea.get_verbose_name(data["map_name"]),
+        )
+
+        value = item_values[data["map_name"]][data["name"]]
+
+        item,created = Item.get_or_create(
+            map_area=map_area,
+            area_id=data["area_id"],
+            map_id=data["map_id"],
+            index=data["value_id"],
+            item_type=Item.get_type(value),
+            value=value,
+            item_name=Enums.get("Item")[value],
+            key_name=data["name"],
+            logic={"requirements": {}},
+        )
+        print(item, created)
+
+
+
+
+
+
+
+
+
+
     

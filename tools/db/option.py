@@ -1,3 +1,5 @@
+import json
+
 from peewee import *
 from playhouse.migrate import *
 from db.db import db, migrator
@@ -26,27 +28,21 @@ class Option(Model):
 def create_options():
     db.drop_tables([Option])
     db.create_tables([Option])
-    default_db = get_default_table()
-    def create_from(filepath):
-        with open(filepath, "r") as file:
-            for line in file:
-                if match := re.match(r"#export\s*.DBKey:Options:(\S*)\s*(\S*)", line):
-                    attr = match.group(1)
-                    key = match.group(2)
-                    byte_id = int(key[0:2], 16)
-                    area_id = int(key[2:4], 16)
-                    map_id =  int(key[4:6], 16)
-                    index =  int(key[6:8], 16)
 
-                    data = default_db["Options"][attr]
-                    option,created = Option.get_or_create(
-                        name=attr,
-                        value=data["value"],
-                        area_id=area_id,
-                        map_id=map_id,
-                        index=index,
-                    )
+    with open("./debug/keys.json", "r") as file:
+        option_keys = json.load(file)["options"]
 
-                    print(option, created)
+    with open("./debug/values.json", "r") as file:
+        option_values= json.load(file)["options"]
 
-    create_from("../globals/patch/DatabaseKeys.patch")
+    for key,data in option_keys.items():
+        value = option_values[data["name"]]
+        option,created = Option.get_or_create(
+            name=data["name"],
+            value=value,
+            area_id=data["area_id"],
+            map_id=data["map_id"],
+            index=data["value_id"],
+        )
+
+        print(option, created)
