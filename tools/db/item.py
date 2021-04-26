@@ -11,9 +11,9 @@ from parse import get_default_table
 
 
 class Item(Model):
-    area_id = IntegerField()
-    map_id = IntegerField()
-    index = IntegerField()
+    area_id = IntegerField(default=0)
+    map_id = IntegerField(default=0)
+    index = IntegerField(default=0)
 
     map_area = ForeignKeyField(MapArea, null=True, backref="items")
     item_price = ForeignKeyField(ItemPrice, null=True, backref="item")
@@ -22,11 +22,13 @@ class Item(Model):
     value = IntegerField()
     item_name = CharField()
 
-    logic = JSONField()
+    logic = JSONField(default=dict())
     placed = BooleanField(default=False)
 
     def __str__(self):
-        return f"[{self.map_area.name}]: {self.key_name} ({self.item_name})"
+        if self.map_area:
+            return f"[{self.map_area.name}]: {self.key_name} ({self.item_name})"
+        return f"{self.item_name}"
 
     def get_key(self):
         return (Item._meta.key_type << 24) | (self.area_id << 16) | (self.map_id << 8) | self.index
@@ -87,23 +89,26 @@ For the above diagram, the following table entries would exist:
     Bombette -> Refund
     Bombette -> PowerBounce
     Bombette -> FortressKey
-    FortressKey -> _Kooper (_ means you don't receive him, he's just necessary to progress)
+    FortressKey -> _Kooper (underscore means don't receive, just required to progress)
     Kooper -> _Bombette
     Bombette -> FortressKey
     FortressKey -> SmashCharge
     FortressKey -> _Bombette
     Bombette -> MapleSyrup
 
-To traverse the graph, get a list of all ItemRelation for FortressKey:
+To traverse the graph, get a list of all ItemRelation for FortressKey (or rather, the specific FortressKey using its DBKey value):
     1) For each relation, determine if Mario has the neccessary item or partner.
     2) If so, append it to a list of valid nodes.
-    3) Modify Mario's state as necessary to simulate traversing through the game.
+    3) Modify a copy of Mario's state as necessary to simulate traversing through the game (preserving the original at the root node)
     4) For each valid node, repeat steps 1-3, growing the valid node list.
     5) We now have a list of valid places Mario can reach given a certain inventory and partners.
 """
 class ItemRelation(Model):
-    src = ForeignKeyField(Item) # The item that unlocks the destionation item
+    chapter = IntegerField()
+    src = ForeignKeyField(Item, null=True) # The item that unlocks the destination item
     dest = ForeignKeyField(Item) # The item unlocked by the source item
+    level = IntegerField(default=0)
+    comment = CharField(default="")
 
     def __str__(self):
         return f"{self.src} -> {self.dest}"
@@ -111,12 +116,34 @@ class ItemRelation(Model):
     # Returns whether or not a Mario state can reach the destination item
     # E.g. If The source item is FortressKey, that item must be present in mario["items"]
     # E.g. If the source "item" is Bombette, that partner must be present in mario["partners"]
-    def can_pass(self, mario:dict) -> (bool, str):
-        if self.src.item_name in mario["items"]:
+    def valid(self, mario:dict) -> (bool, str):
+        if self.src.item_name == "Nothing":
+            return True
+        elif self.src.item_name in mario["items"]:
             return True
         elif self.src.item_name in mario["partners"]:
             return True
         return False
+
+    @classmethod
+    def get_relations(cls, item):
+        # Yield a list of expanded item relation data for a particular item
+        query = """
+            SELECT itemrelation.id, src_id, dest_id, s.area_id, s.map_id, s.`index`, s.item_name AS source_item, d.area_id, d.map_id, d.`index`, d.item_name as dest_item
+            FROM itemrelation
+            INNER JOIN item AS s ON src_id = s.id
+            LEFT JOIN item AS d ON dest_id = d.id
+            WHERE s.area_id=7 AND s.map_id=3 AND s.`index`=1
+        """
+        for row in ItemRelation._meta.database.execute_sql(query).fetchall():
+            dest = Item.get(Item.id == row[2])
+            yield {
+                "relation": ItemRelation.get(ItemRelation.id == row[0]),
+                "src": item,
+                "src_name": item.item_name,
+                "dest": dest,
+                "dest_name": dest.item_name,
+            }
 
     class Meta:
         database = db
@@ -133,33 +160,53 @@ def create_item_relationships():
     A source item can have multiple item relationships but each one should have a unique destination
     """
 
-    with open("item_relations.csv", "r") as file:
+    partners = ["Goombario", "Kooper", "Bombette", "Parakarry", "Bow", "Watt", "Sushi", "Lakilester"]
+    require = {partner: 0 for partner in partners}
+    with open("./progression/ch1.csv", "r") as file:
         for i,line in enumerate(file.readlines()):
             if i == 0:
                 continue
-            src_map,src_index,dest_map,dest_index = line.split(",")
+            src_map,src_index,dest_map,dest_index,level,comment = line.split(",")
 
-            if src_map.startswith("_") or dest_map.startswith("_"):
-                continue
-            if src_map.startswith("+") or dest_map.startswith("+"):
-                continue
+            src_item = None
 
-            src_map = MapArea.get(MapArea.name == src_map)
-            dest_map = MapArea.get(MapArea.name == dest_map)
-
-            src_item = Item.get(Item.map_area == src_map, Item.index == src_index)
-            dest_item = Item.get(Item.map_area == dest_map, Item.index == dest_index)
+            if src_map in partners:
+                src_item = Item.get(Item.item_type == "PARTNER", Item.item_name == src_map)
+            elif src_map == "Panel":
+                src_item = Item.get(Item.item_type == "PANEL", Item.item_name == src_map)
+            elif src_map == "Nothing":
+                src_item = Item.get(Item.item_type == "NOTHING", Item.item_name == src_map)
+            elif src_map != "":
+                src_map = MapArea.get(MapArea.name == src_map)
+                src_item = Item.get(Item.map_area == src_map, Item.index == src_index)
+            
+            if dest_map.startswith("_"):
+                dest_item,created = Item.get_or_create(
+                    key_name=dest_map[1:],
+                    item_type="PARTNER_REQUIRED",
+                    item_name=dest_map[1:],
+                    index=require[dest_map[1:]],
+                    value=0,
+                )
+                require[dest_map[1:]] += 1
+            else:
+                if dest_map in partners:
+                    dest_item = Item.get(Item.item_type == "PARTNER", Item.item_name == dest_map)
+                else:
+                    dest_map = MapArea.get(MapArea.name == dest_map)
+                    dest_item = Item.get(Item.map_area == dest_map, Item.index == dest_index)
 
             relation,created = ItemRelation.get_or_create(
+                chapter=1, # TODO: Variable
                 src=src_item,
                 dest=dest_item,
+                level=int(level),
+                comment=comment.strip(),
             )
 
             print(relation, created)
             
-                
-
-
+            
 # Run this to create all items in Item table
 def create_items():
     db.drop_tables([Item])
@@ -170,6 +217,43 @@ def create_items():
 
     with open("./debug/values.json", "r") as file:
         item_values = json.load(file)["items"]
+
+    # Create "items" for partners
+    for partner in ["Goombario", "Kooper", "Bombette", "Parakarry", "Bow", "Watt", "Sushi", "Lakilester"]:
+        item,created = Item.get_or_create(
+            area_id=0,
+            map_id=0,
+            index=0,
+            item_type="PARTNER",
+            value=0,
+            item_name=partner,
+            key_name=partner,
+            logic={},
+        )
+
+    # Create "item" to represent ability to find hidden panels
+    item,created = Item.get_or_create(
+        area_id=0,
+        map_id=0,
+        index=0,
+        item_type="PANEL",
+        value=0,
+        item_name="Panel",
+        key_name="Panel",
+        logic={},
+    )
+
+    # Create "item" that signifies having nothing
+    item,created = Item.get_or_create(
+        area_id=0,
+        map_id=0,
+        index=0,
+        item_type="NOTHING",
+        value=0,
+        item_name="Nothing",
+        key_name="Nothing",
+        logic={},
+    )
 
     for key,data in item_keys.items():
         map_area,created = MapArea.get_or_create(

@@ -1,7 +1,7 @@
 import random
 import sqlite3
 
-from db.item import Item
+from db.item import Item, ItemRelation
 
 
 # WIP
@@ -107,168 +107,26 @@ def shuffle_items(items, by_type=None):
         first.swap(second)
 
 
-
-rules = {
-    "Bombette": lambda mario: mario["items"].count("FortressKey") >= 2,
-    "Parakarry": lambda mario: rules["Bombette"] and all(["Letter01" in mario["items"], "Letter02" in mario["items"], "Letter25" in mario["items"]]),
-}
-
-
-
 def place_items(app):
-    # Start with everything and take away things as we place items
     mario = {
         "partners": set(),
         "items": [],
         "boots": 0,
         "hammer": 0,
+        "progression_level": 0,
     }
 
-
-    def update_state(item):
-        logic = eval(item.logic)
-        mario["items"].append(item.item_name)
-
-        for partner in logic["partners"]:
-            if valid := rules[partner](mario):
-                mario["partners"].add(partner)
-
-        print("__________________________")
-        print(f"Obtained {item.item_name}")
-        print("Partners: " + ",".join(mario["partners"]))
-        print("Items: " + ",".join(mario["items"]))
-        print(f"Hammer: {mario['hammer']}, Boots: {mario['boots']}")
-        print("__________________________\n")
-
-    def valid(item):
-        logic = eval(item.logic)
-        # If this item is already placed, it's not a valid option
-        if item.placed:
-            return False
-
-        # Mario must have obtained these partners
-        for partner in logic["partners"]:
-            if partner not in mario["partners"]:
-                return False
-
-        # Mario must have obtained these items
-        for item in logic["items"]:
-            if mario["items"].count(item) < logic["items"].count(item):
-                return False
-            
-        # Mario must have an equal or greater boots value
-        if logic["boots"] > mario["boots"]:
-            return False
-
-        # Mario must have an equal or greater hammer value
-        if logic["hammer"] > mario["hammer"]:
-            return False
-
-        # Mario must have ability to flip starpiece panels
-        if logic["flip_panels"]:
-            if mario["boots"] < 1 and mario["hammer"] < 2:
-                return False
-
-        return True
-
-    key_items = []
-    for name in progress:
-        key_items.append(Item.get(Item.item_name==name))
-    random.shuffle(key_items)
-
-    # Place Key Items
-    passes = 0
-    while True:
-        passes += 1
-        app.processEvents()
-    
-        # Get a list of valid item slots based on our current state
-        items = [item for item in filter(valid, Item.select())]
-        random.shuffle(items)
-
-        if len(key_items) == 0:
+    ch1_relations = ItemRelation.select().where(ItemRelation.chapter == 1).order_by(ItemRelation.level, ItemRelation.id.asc())
+    for relation in ch1_relations:
+        if relation.valid(mario):
+            print(f"Obtainable: {relation}")
+        elif relation.level > mario["progression_level"]:
+            print(f"Could not pass: {relation}. STOPPING.")
             break
-        elif len(items) == 0:
-            raise Exception("Ran out of item slots to place")
+        else:
+            print(f"Could not get: {relation} (but can still progress further)")
 
-        # Place the next key item
-        key_item = key_items.pop()
-        item = items.pop()
-        print(f"Items to place: {len(key_items)}. Placed: {item} -> ({key_item.item_name})")
-
-        item.value = key_item.value
-        item.item_type = key_item.item_type
-        item.item_name = key_item.item_name
-        item.placed = True
-        item.save()
-
-        key_item.placed = False
-        key_item.save()
-
-        # Update mario's state
-        update_state(key_item)
-
-    # Place remaining
-    unplaced_key_items = []
-    for name in progress:
-        item = Item.get(Item.item_name==name)
-        if not item.placed:
-            unplaced_key_items.append(item)
-    
-    for key_item in unplaced_key_items:
-        # Get a list of valid item slots based on our current state
-        items = [item for item in filter(valid, Item.select())]
-        random.shuffle(items)
-
-        if len(items) == 0:
-            raise Exception("Ran out of item slots to place")
-
-        item = items.pop()
-        print(f"Placed: {key_item} -> ({item.item_name})")
-
-        key_item.value = item.value
-        key_item.item_type = item.item_type
-        key_item.item_name = item.item_name
-        key_item.placed = True
-        key_item.save()
-
-        # Update mario's state
-        update_state(key_item)
-
-
-    # Place non key items
     """
-    items = [item for item in Item.select() if item.map_area.name != "Options" and item.item_type != "KEYITEM" and item.placed != True]
-    random.shuffle(items)
-    passes = 0
-    while True:
-        passes += 1
-        app.processEvents()
-
-        # Get a list of valid item slots based on our current state
-        item_slots = [item for item in filter(valid, Item.select())]
-        random.shuffle(item_slots)
-
-        if len(items) == 0:
-            break
-        elif len(item_slots) == 0:
-            raise Exception("Ran out of item slots to place")
-
-        # Place the next key item
-        item = items.pop()
-        item_slot = item_slots.pop()
-        print(f"Items to place: {len(items)}. Placed: {item_slot} -> ({item.item_name})")
-
-        item_slot.value = item.value
-        item_slot.item_type = item.item_type
-        item_slot.item_name = item.item_name
-        item_slot.placed = True
-        item_slot.save()
-
-        # Update mario's state
-        update_state(item)
-    """
-
     # Compare randomized database with default and log the changes
     with open("./debug/item_placement.txt", "w") as file:
         connection = sqlite3.connect("default_db.sqlite")
@@ -286,6 +144,7 @@ def place_items(app):
             item = Item.get(Item.area_id==area_id, Item.map_id==map_id, Item.index==index)
             file.write(f"[{item.map_area.name}] ({item.map_area.verbose_name}): {item.key_name} - {item_name} -> {item.item_name}\n")
             app.processEvents()
+    """
 
 
     

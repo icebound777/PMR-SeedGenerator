@@ -21,7 +21,7 @@ from logic import shuffle_entrances, shuffle_items, place_items
 from parse import get_default_table, get_table_info, create_table, gather_keys, gather_values
 
 from db.map_area import MapArea
-from db.item import Item, create_items, create_item_relationships
+from db.item import Item, ItemRelation, create_items, create_item_relationships
 from db.quiz import Quiz, create_quizzes
 from db.option import Option, create_options
 from db.item_price import ItemPrice, create_item_prices
@@ -49,6 +49,7 @@ update_db_requirements()
 quit()
 # END
 """
+
 
 # Read ./tools/requirements.json and update default_db.sqlite with its data
 update_db_requirements() 
@@ -191,11 +192,6 @@ class Window(QMainWindow):
 		shuffle_entrances(pairs, by_type="pipe")
 		shuffle_entrances(pairs, by_type="ground")
 		shuffle_entrances(pairs, by_type="door")
-
-		# Test - Display the requirements for all items
-		for item in Item.select():
-			has_requirements = False
-			data = eval(item.logic)
 
 		# Shuffle Items
 		#items = [item for item in Item.select()]
