@@ -4,6 +4,68 @@ import sqlite3
 from db.item import Item
 
 
+# WIP
+progress = [
+    # Chapter 0
+    "MagicalSeed1",
+
+    # Chapter 1
+    "KoopersShell",
+    "FortressKey",
+    "FortressKey",
+    "FortressKey",
+    "FortressKey",
+
+    # Chapter 2
+    "MagicalSeed2",
+    "PulseStone",
+    "RuinsKey",
+    "RuinsKey",
+    "RuinsKey",
+    "DiamondStone"
+    "PyramidStone",
+    "RuinsKey",
+    "LunarStone",
+
+    # Chapter 3
+    "MagicalSeed3",
+    "Weight",
+    "Record",
+    "BoosPortrait",
+    "CastleKey1",
+    "CastleKey2",
+    "CastleKey3",
+
+    # Chapter 4
+    "Cake",
+    # Technically need these if playing blind?
+    # "Dictionary",
+    # "MysteryNote",
+
+    # Chapter 5
+    "JadeRaven",
+    "MagicalSeed4",
+
+    # Chapter 6
+    "MagicalBean",
+    "CrystalBerry",
+    "FertileSoil",
+    "MiracleWater",
+    "WaterStone",
+
+    # Chapter 7
+    "Bucket",
+    "Scarf",
+    "StarStone",
+    "BlueKey",
+    "RedKey",
+    "PalaceKey",
+
+    # Chapter 8
+    "PrisonKey1",
+]
+
+
 def shuffle_entrances(pairs, by_type=None):
     if by_type:
         pairs = [pair for pair in pairs if pair["src"].entrance_type == by_type]
@@ -47,53 +109,48 @@ def shuffle_items(items, by_type=None):
 def place_items(app):
     # Start with everything and take away things as we place items
     mario = {
-        "partners": ["Goombario", "Kooper", "Bombette", "Parakarry", "Bow", "Watt", "Sushi", "Lakilester"],
-        "items": [item for item in Item.select() if item.map_area.name != "Options" and item.item_type == "KEYITEM"],
-        "boots": 2,
-        "hammer": 2,
+        "partners": [],
+        "items": [],
+        "boots": 0,
+        "hammer": 0,
     }
 
     def update_state(item):
-        for name,requirements in item.logic["requirements"].items():
-            if name == "partners":
-                for partner in requirements:
-                    del mario["partners"][mario["partners"].index(partner)]
-            if name == "items":
-                for item in requirements:
-                    if item in mario["items"]:
-                        del mario["items"][mario["items"].index(item)]
+        logic = eval(item.logic)
+        print(logic)
 
     def valid(item):
+        logic = eval(item.logic)
         # If this item is already placed, it's not a valid option
         if item.placed:
             return False
 
         # Mario must have obtained these partners
-        for partner in item.logic["requirements"].get("partners", []):
+        for partner in logic["partners"]:
             if partner not in mario["partners"]:
                 return False
 
         # Mario must have obtained these items
-        for item in item.logic["requirements"].get("items", []):
-            if item not in mario["items"]:
+        for item in logic["items"]:
+            if mario["items"].count(item) < logic["items"].count(item):
                 return False
             
         # Mario must have an equal or greater boots value
-        if item.logic["requirements"].get("boots", -1) > mario["boots"]:
+        if logic["boots"] > mario["boots"]:
             return False
 
         # Mario must have an equal or greater hammer value
-        if item.logic["requirements"].get("hammer", -1) > mario["hammer"]:
+        if logic["hammer"] > mario["hammer"]:
             return False
 
         # Mario must have ability to flip starpiece panels
-        if item.logic["requirements"].get("flip_panels", False):
+        if logic["flip_panels"]:
             if mario["boots"] < 1 and mario["hammer"] < 2:
                 return False
 
         return True
 
-    key_items = [item for item in Item.select() if item.map_area.name != "Options" and item.item_type == "KEYITEM"]
+    key_items = [Item.get(Item.item_name=name) for name in progress]
     random.shuffle(key_items)
 
     # Place Key Items
@@ -114,7 +171,7 @@ def place_items(app):
         # Place the next key item
         key_item = key_items.pop()
         item = items.pop()
-        print(f"Items to place: {len(key_items)}. Placed: {item} -> ({key_item.item_name})")
+        # print(f"Items to place: {len(key_items)}. Placed: {item} -> ({key_item.item_name})")
 
         item.value = key_item.value
         item.item_type = key_item.item_type

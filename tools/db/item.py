@@ -95,7 +95,7 @@ def create_items():
             value=value,
             item_name=Enums.get("Item")[value],
             key_name=data["name"],
-            logic={"requirements": {}},
+            logic={},
         )
         print(item, created)
 

@@ -15,6 +15,7 @@ from PyQt5 import QtCore, QtGui
 
 from enums import Enums, create_enums
 from table import Table
+from requirements import update_db_requirements
 from utility import sr_dump, sr_copy, sr_compile
 from logic import shuffle_entrances, shuffle_items, place_items
 from parse import get_default_table, get_table_info, create_table, gather_keys, gather_values
@@ -28,8 +29,8 @@ from db.entrance import Entrance, create_entrances, connect_entrances
 from db.actor_attribute import ActorAttribute, create_actor_attributes
 
 
+# Create enums from ./globals/enum/
 create_enums()
-
 
 # Uncomment to build database from scratch
 """
@@ -43,9 +44,13 @@ create_quizzes()
 create_entrances()
 connect_entrances()
 shutil.copy("db.sqlite", "default_db.sqlite")
+update_db_requirements() 
 quit()
 # END
 """
+
+# Read ./tools/requirements.json and update default_db.sqlite with its data
+update_db_requirements() 
 
 class Stream(QtCore.QObject):
 	newText = QtCore.pyqtSignal(str)
@@ -189,14 +194,8 @@ class Window(QMainWindow):
 		# Test - Display the requirements for all items
 		for item in Item.select():
 			has_requirements = False
-			for name,requirements in item.logic["requirements"].items():
-				has_requirements = True
-				if isinstance(requirements, list):
-					print(f"{item} requires {name}: {','.join(requirements)}")
-				else:
-					print(f"{item} requires {name}: {requirements}")
-			if has_requirements:
-				print()
+			data = eval(item.logic)
+			print(data)
 
 		# Shuffle Items
 		#items = [item for item in Item.select()]
@@ -211,7 +210,7 @@ class Window(QMainWindow):
 			item_price.save()
 
 		# Create a sorted list of key:value pairs to be written into the ROM
-		table_data = rom_table.generate_pairs(entrances=True)
+		table_data = rom_table.generate_pairs(entrances=False)
 
 		# Update table info with variable data
 		rom_table.info["num_entries"] = len(table_data)
