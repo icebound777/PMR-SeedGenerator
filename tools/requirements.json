@@ -4742,9 +4742,9 @@
             "map_name": "ISK_13",
             "requirements": {
                 "partners": ["Bombette", "Parakarry"],
-                "items": ["RuinsKey", "RuinsKey", "RuinsKey"],
+                "items": ["RuinsKey", "RuinsKey", "RuinsKey", "RuinsKey"],
                 "boots": 0,
-                "hammer": 0,
+                "hammer": 1,
                 "flip_panels": false
             }
         }
@@ -4760,7 +4760,7 @@
             "map_name": "ISK_14",
             "requirements": {
                 "partners": ["Bombette", "Parakarry"],
-                "items": ["RuinsKey", "RuinsKey", "RuinsKey", "RuinsKey"],
+                "items": ["RuinsKey", "RuinsKey", "RuinsKey"],
                 "boots": 0,
                 "hammer": 1,
                 "flip_panels": false

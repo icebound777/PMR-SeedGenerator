@@ -1,0 +1,12 @@
+src_map,src_index,dest_map,dest_index
+TRD_01,1,TRD_08,0
+TRD_08,0,+Bombette,0
+_Bombette,0,TRD_00,0
+_Bombette,0,TRD_03,2
+_Bombette,0,TRD_03,0
+TRD_03,0,_Kooper,0
+_Kooper,0,_Bombette,0
+_Bombette,0,TRD_03,1
+TRD_03,1,TRD_01,0
+TRD_03,1,_Bombette,0
+_Bombette,0,TRD_09,0

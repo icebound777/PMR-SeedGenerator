@@ -22,7 +22,7 @@ progress = [
     "RuinsKey",
     "RuinsKey",
     "RuinsKey",
-    "DiamondStone"
+    "DiamondStone",
     "PyramidStone",
     "RuinsKey",
     "LunarStone",
@@ -34,10 +34,10 @@ progress = [
     "BoosPortrait",
     "CastleKey1",
     "CastleKey2",
-    "CastleKey3",
+    #"CastleKey3",
 
     # Chapter 4
-    "Cake",
+    # "Cake",
     # Technically need these if playing blind?
     # "Dictionary",
     # "MysteryNote",
@@ -106,18 +106,39 @@ def shuffle_items(items, by_type=None):
         second = items[i+1]
         first.swap(second)
 
+
+
+rules = {
+    "Bombette": lambda mario: mario["items"].count("FortressKey") >= 2,
+    "Parakarry": lambda mario: rules["Bombette"] and all(["Letter01" in mario["items"], "Letter02" in mario["items"], "Letter25" in mario["items"]]),
+}
+
+
+
 def place_items(app):
     # Start with everything and take away things as we place items
     mario = {
-        "partners": [],
+        "partners": set(),
         "items": [],
         "boots": 0,
         "hammer": 0,
     }
 
+
     def update_state(item):
         logic = eval(item.logic)
-        print(logic)
+        mario["items"].append(item.item_name)
+
+        for partner in logic["partners"]:
+            if valid := rules[partner](mario):
+                mario["partners"].add(partner)
+
+        print("__________________________")
+        print(f"Obtained {item.item_name}")
+        print("Partners: " + ",".join(mario["partners"]))
+        print("Items: " + ",".join(mario["items"]))
+        print(f"Hammer: {mario['hammer']}, Boots: {mario['boots']}")
+        print("__________________________\n")
 
     def valid(item):
         logic = eval(item.logic)
@@ -150,7 +171,9 @@ def place_items(app):
 
         return True
 
-    key_items = [Item.get(Item.item_name=name) for name in progress]
+    key_items = []
+    for name in progress:
+        key_items.append(Item.get(Item.item_name==name))
     random.shuffle(key_items)
 
     # Place Key Items
@@ -158,7 +181,7 @@ def place_items(app):
     while True:
         passes += 1
         app.processEvents()
-
+    
         # Get a list of valid item slots based on our current state
         items = [item for item in filter(valid, Item.select())]
         random.shuffle(items)
@@ -171,7 +194,7 @@ def place_items(app):
         # Place the next key item
         key_item = key_items.pop()
         item = items.pop()
-        # print(f"Items to place: {len(key_items)}. Placed: {item} -> ({key_item.item_name})")
+        print(f"Items to place: {len(key_items)}. Placed: {item} -> ({key_item.item_name})")
 
         item.value = key_item.value
         item.item_type = key_item.item_type
@@ -179,10 +202,42 @@ def place_items(app):
         item.placed = True
         item.save()
 
+        key_item.placed = False
+        key_item.save()
+
         # Update mario's state
         update_state(key_item)
 
+    # Place remaining
+    unplaced_key_items = []
+    for name in progress:
+        item = Item.get(Item.item_name==name)
+        if not item.placed:
+            unplaced_key_items.append(item)
+    
+    for key_item in unplaced_key_items:
+        # Get a list of valid item slots based on our current state
+        items = [item for item in filter(valid, Item.select())]
+        random.shuffle(items)
+
+        if len(items) == 0:
+            raise Exception("Ran out of item slots to place")
+
+        item = items.pop()
+        print(f"Placed: {key_item} -> ({item.item_name})")
+
+        key_item.value = item.value
+        key_item.item_type = item.item_type
+        key_item.item_name = item.item_name
+        key_item.placed = True
+        key_item.save()
+
+        # Update mario's state
+        update_state(key_item)
+
+
     # Place non key items
+    """
     items = [item for item in Item.select() if item.map_area.name != "Options" and item.item_type != "KEYITEM" and item.placed != True]
     random.shuffle(items)
     passes = 0
@@ -212,6 +267,7 @@ def place_items(app):
 
         # Update mario's state
         update_state(item)
+    """
 
     # Compare randomized database with default and log the changes
     with open("./debug/item_placement.txt", "w") as file:
