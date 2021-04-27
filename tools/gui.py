@@ -97,7 +97,7 @@ class Window(QMainWindow):
 		self.log.moveCursor(QtGui.QTextCursor.Start)
 		self.log.ensureCursorVisible()
 		self.log.setLineWrapColumnOrWidth(500)
-		self.log.setLineWrapMode(QTextEdit.FixedPixelWidth)
+		self.log.setLineWrapMode(QTextEdit.NoWrap)
 		self.log.setReadOnly(True)
 
 		# Layout
@@ -194,8 +194,8 @@ class Window(QMainWindow):
 		shuffle_entrances(pairs, by_type="door")
 
 		# Shuffle Items
-		#items = [item for item in Item.select()]
-		#shuffle_items(items)
+		items = [item for item in Item.select()]
+		shuffle_items(items)
 		place_items(self.app)
 
 		# Make everything inexpensive

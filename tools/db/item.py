@@ -19,22 +19,29 @@ class Item(Model):
     item_price = ForeignKeyField(ItemPrice, null=True, backref="item")
     key_name = CharField()
     item_type = CharField(null=True)
+    original_item_type = CharField(null=True)
     value = IntegerField()
     item_name = CharField()
+    original_item_name = CharField()
 
     logic = JSONField(default=dict())
     placed = BooleanField(default=False)
 
     def __str__(self):
         if self.map_area:
-            return f"[{self.map_area.name}]: {self.key_name} ({self.item_name})"
-        return f"{self.item_name}"
+            return f"[{self.map_area.name}]: {self.key_name} ({self.original_item_name})"
+        return f"{self.original_item_name}"
 
     def get_key(self):
         return (Item._meta.key_type << 24) | (self.area_id << 16) | (self.map_id << 8) | self.index
 
     def swap(self, other):
-        # self.key_name, other.key_name = other.key_name, self.key_name
+        self.original_item_name = self.item_name
+        other.original_item_name = other.item_name
+
+        self.original_item_type = self.item_type
+        other.original_item_type = other.item_type
+
         self.value, other.value = other.value, self.value
         self.item_type, other.item_type = other.item_type, self.item_type
         self.item_name, other.item_name = other.item_name, self.item_name
@@ -117,11 +124,14 @@ class ItemRelation(Model):
     # E.g. If The source item is FortressKey, that item must be present in mario["items"]
     # E.g. If the source "item" is Bombette, that partner must be present in mario["partners"]
     def valid(self, mario:dict) -> (bool, str):
-        if self.src.item_name == "Nothing":
+        if self.src.original_item_name == "Nothing":
             return True
-        elif self.src.item_name in mario["items"]:
+        elif self.src.original_item_name == "Panel":
+            if mario["hammer"] >= 2 or mario["boots"] >= 1:
+                return True
+        elif self.src.original_item_name in mario["items"]:
             return True
-        elif self.src.item_name in mario["partners"]:
+        elif self.src.original_item_name in mario["partners"]:
             return True
         return False
 
@@ -184,7 +194,9 @@ def create_item_relationships():
                 dest_item,created = Item.get_or_create(
                     key_name=dest_map[1:],
                     item_type="PARTNER_REQUIRED",
+                    original_item_type="PARTNER_REQUIRED",
                     item_name=dest_map[1:],
+                    original_item_name=dest_map[1:],
                     index=require[dest_map[1:]],
                     value=0,
                 )
@@ -225,8 +237,10 @@ def create_items():
             map_id=0,
             index=0,
             item_type="PARTNER",
+            original_item_type="PARTNER",
             value=0,
             item_name=partner,
+            original_item_name=partner,
             key_name=partner,
             logic={},
         )
@@ -237,8 +251,10 @@ def create_items():
         map_id=0,
         index=0,
         item_type="PANEL",
+        original_item_type="PANEL",
         value=0,
         item_name="Panel",
+        original_item_name="Panel",
         key_name="Panel",
         logic={},
     )
@@ -249,8 +265,10 @@ def create_items():
         map_id=0,
         index=0,
         item_type="NOTHING",
+        original_item_type="NOTHING",
         value=0,
         item_name="Nothing",
+        original_item_name="Nothing",
         key_name="Nothing",
         logic={},
     )
@@ -271,8 +289,10 @@ def create_items():
             map_id=data["map_id"],
             index=data["value_id"],
             item_type=Item.get_type(value),
+            original_item_type=Item.get_type(value),
             value=value,
             item_name=Enums.get("Item")[value],
+            original_item_name=Enums.get("Item")[value],
             key_name=data["name"],
             logic={},
         )

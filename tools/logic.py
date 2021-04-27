@@ -1,7 +1,9 @@
 import random
 import sqlite3
 
+from enums import Enums
 from db.item import Item, ItemRelation
+from db.map_area import MapArea
 
 
 # WIP
@@ -94,8 +96,15 @@ def shuffle_entrances(pairs, by_type=None):
         e4.save()
 
 def shuffle_items(items, by_type=None):
+    partners = ["Goombario", "Kooper", "Bombette", "Parakarry", "Bow", "Watt", "Sushi", "Lakilester"]
+    items = [
+        item for item in items if item.item_type not in ["PARTNER", "PANEL", "PARTNER_REQUIRED", "NOTHING"]
+    ]
     if by_type:
-        items = [item for item in items if item.item_type == by_type]
+        items = [
+            item for item in items
+            if item.item_type == by_type
+        ]
 
     if len(items) % 2 != 0:
         items = items[:-1]
@@ -113,18 +122,72 @@ def place_items(app):
         "items": [],
         "boots": 0,
         "hammer": 0,
+        "coins": 0,
+        "star_pieces": 0,
         "progression_level": 0,
     }
 
-    ch1_relations = ItemRelation.select().where(ItemRelation.chapter == 1).order_by(ItemRelation.level, ItemRelation.id.asc())
-    for relation in ch1_relations:
-        if relation.valid(mario):
-            print(f"Obtainable: {relation}")
-        elif relation.level > mario["progression_level"]:
-            print(f"Could not pass: {relation}. STOPPING.")
-            break
-        else:
-            print(f"Could not get: {relation} (but can still progress further)")
+    def display_state():
+        print("    Items: " + ", ".join(mario["items"]))
+        print("    Partners: " + ", ".join(mario["partners"]))
+        print(f"    Hammer: {mario['hammer']}, Boots: {mario['boots']}, Star Pieces: {mario['star_pieces']}, Coins: {mario['coins']}")
+
+    # Testing
+    mario["partners"].add("Kooper")
+    # mario["items"].append("FortressKey")
+
+    """
+    # Force a FortressKey to be placed here
+    item = (
+        Item.select()
+        .join(MapArea, on=(Item.map_area == MapArea.id))
+        .where(Item.index == 2, MapArea.name == "NOK_12")
+        .get()
+    )
+    item.item_type = "KEYITEM"
+    item.item_name = "FortressKey"
+    item.value = Enums.get("Item")["FortressKey"]
+    item.save()
+    """
+
+    chapter_relations = {i: ItemRelation.select().where(ItemRelation.chapter == i).order_by(ItemRelation.level, ItemRelation.id.asc()) for i in range(0, 9)}
+
+    for chapter,relations in chapter_relations.items():
+        print(f"CHAPTER {chapter}")
+        unobtainable = set()
+        can_continue = True
+        for relation in relations:
+            if not can_continue:
+                unobtainable.add(relation)
+            elif relation.valid(mario):
+                if relation.level > mario["progression_level"]:
+                    mario["progression_level"] = relation.level
+
+                if relation.dest.item_type == "PARTNER":
+                    mario["partners"].add(relation.dest.item_name)
+                    print(f"OBTAINED PARTNER: {relation.dest.item_name} - {relation.comment}")
+                elif relation.dest.item_type in ["ITEM", "KEYITEM", "BADGE"]:
+                    mario["items"].append(relation.dest.item_name)
+                    print(f"OBTAINED {relation.dest.item_type}: {relation.dest.item_name} - {relation.comment} ({relation.dest.map_area.name})")
+                elif relation.dest.item_type == "STARPIECE":
+                    mario["star_pieces"] += 1
+                    print(f"OBTAINED STARPIECE - {relation.comment} ({relation.dest.map_area.name})")
+                elif relation.dest.item_type == "COIN":
+                    mario["coins"] += 1
+                    print(f"OBTAINED COIN - {relation.comment} ({relation.dest.map_area.name})")
+
+                if relation.src.original_item_type == "KEYITEM":
+                    mario["items"].remove(relation.src.original_item_name)
+                    print(f"USED {relation.src.original_item_name} - {relation.comment} ({relation.dest.map_area.name})")
+            elif relation.level > mario["progression_level"]:
+                unobtainable.add(relation)
+                can_continue = False
+                print(f"REACHED ROADBLOCK: {relation.comment}")
+            else:
+                unobtainable.add(relation)
+        attainable = sorted(set(relations).difference(unobtainable), key=lambda relation: (relation.level, relation.id))
+        print("Valid:\n - " + "\n - ".join([str(relation) for relation in attainable]))
+        display_state()
 
     """
     # Compare randomized database with default and log the changes
