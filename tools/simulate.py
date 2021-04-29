@@ -56,13 +56,16 @@ def simulate_gameplay(app, **kwargs):
 
     debug = kwargs.get("debug")
 
-    mario.partners = kwargs.get("partners", {"Goombario"})
-    mario.items = kwargs.get("items", set())
-    mario.boots = kwargs.get("boots", 0)
-    mario.hammer = kwargs.get("hammer", 0)
-    mario.coins = kwargs.get("coins", 0)
-    mario.star_pieces = kwargs.get("star_pieces", 0)
-    mario.level = kwargs.get("level", 0)
+    if kwargs.get("mario"):
+        mario = kwargs["mario"]
+    else:
+        mario.partners = kwargs.get("partners", {"Goombario", "Kooper"})
+        mario.items = kwargs.get("items", set())
+        mario.boots = kwargs.get("boots", 0)
+        mario.hammer = kwargs.get("hammer", 0)
+        mario.coins = kwargs.get("coins", 0)
+        mario.star_pieces = kwargs.get("star_pieces", 0)
+        mario.level = kwargs.get("level", 0)
 
     nodes = Node.select().order_by(Node.level, Node.id.asc())
     

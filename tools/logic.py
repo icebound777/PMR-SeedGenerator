@@ -85,27 +85,88 @@ def shuffle_items(items, by_type=None):
         first.swap(second)
 
 def place_items(app):
-    mario,activated = simulate_gameplay(app)
+    extracted = []
 
-    valid_slots = []
-    for node in activated:
-        if node.item_received:
-            item = (Item.select()
-                .join(MapArea, on=(Item.map_area == MapArea.id))
-                .where(MapArea.name == node.map_name, Item.item_name == node.item_received, Item.index == node.index).select()
-                .get()
-            )
-            if not item.placed and item not in valid_slots:
-                valid_slots.append(item)
-    slot = random.choice(valid_slots)
-    print(slot)
+    mario = None
+    placed_items = []
+    for key_item in required_items:
 
-    """
+        mario,activated = simulate_gameplay(app, mario=mario)
+
+        valid_slots = []
+        for node in activated:
+            if node.item_received:
+                item = (Item.select()
+                    .join(MapArea, on=(Item.map_area == MapArea.id))
+                    .where(MapArea.name == node.map_name, Item.original_item_name == node.item_received, Item.index == node.index).select()
+                    .get()
+                )
+                if not item.placed and item not in valid_slots:
+                    valid_slots.append(item)
+
+        if len(valid_slots) > 0:
+            item = random.choice(valid_slots)
+            extracted.append(item.item_name)
+
+            placed_items.append((key_item, item))
+            item.item_name = key_item
+            item.item_type = "KEYITEM"
+            item.value = Enums.get("Item")[key_item]
+            item.placed = True
+            item.save()
+
+            mario.items = set([(received_item, i) for i,(received_item,_) in enumerate(placed_items)])
+            mario.partners = {"Goombario", "Kooper"}
+        else:
+            print("No more item slots to fill! :(")
+
+    mario = None
+    for extracted_item in extracted:
+
+        mario,activated = simulate_gameplay(app, mario=mario)
+
+        valid_slots = []
+        for node in activated:
+            if node.item_received:
+                item = (Item.select()
+                    .join(MapArea, on=(Item.map_area == MapArea.id))
+                    .where(MapArea.name == node.map_name, Item.original_item_name == node.item_received, Item.index == node.index).select()
+                    .get()
+                )
+                if not item.placed and item not in valid_slots:
+                    valid_slots.append(item)
+
+        if len(valid_slots) > 0:
+            item = random.choice(valid_slots)
+            extracted.append(item.item_name)
+
+            placed_items.append((extracted_item, item))
+            item.item_name = extracted_item
+            item.item_type = Item.get_type(Enums.get("Item")[extracted_item])
+            item.value = Enums.get("Item")[extracted_item]
+            item.placed = True
+            item.save()
+
+            mario.items = set([(received_item, i) for i,(received_item,_) in enumerate(placed_items)])
+            mario.partners = {"Goombario", "Kooper"}
+        else:
+            print("No more item slots to fill! :(")
+
+
+    print("Items Extracted:")
+    for e in extracted:
+        print(e)
+
+    print("Placed:")
+    for received_item,item in placed_items:
+        print(f"{received_item} in {item}")
+    print(f"Placed {len(placed_items)} items")
+
     # Compare randomized database with default and log the changes
     with open("./debug/item_placement.txt", "w") as file:
         connection = sqlite3.connect("default_db.sqlite")
         cursor = connection.cursor()
-        cursor.execute("SELECT * FROM item INNER JOIN maparea ON item.map_area_id = maparea.id WHERE maparea.name != 'Options'")
+        cursor.execute("SELECT * FROM item INNER JOIN maparea ON item.map_area_id = maparea.id")
         for data in cursor.fetchall():
             map_name = data[15]
             key_name = data[6]
@@ -118,7 +179,6 @@ def place_items(app):
             item = Item.get(Item.area_id==area_id, Item.map_id==map_id, Item.index==index)
             file.write(f"[{item.map_area.name}] ({item.map_area.verbose_name}): {item.key_name} - {item_name} -> {item.item_name}\n")
             app.processEvents()
-    """
 
 
     
