@@ -15,7 +15,6 @@ from PyQt5 import QtCore, QtGui
 
 from enums import Enums, create_enums
 from table import Table
-from requirements import update_db_requirements
 from utility import sr_dump, sr_copy, sr_compile
 from logic import shuffle_entrances, shuffle_items, place_items
 from parse import get_default_table, get_table_info, create_table, gather_keys, gather_values
@@ -45,13 +44,9 @@ create_nodes()
 create_entrances()
 connect_entrances()
 shutil.copy("db.sqlite", "default_db.sqlite")
-update_db_requirements() 
 quit()
 # END
 """
-
-# Read ./tools/requirements.json and update default_db.sqlite with its data
-update_db_requirements() 
 
 class Stream(QtCore.QObject):
 	newText = QtCore.pyqtSignal(str)

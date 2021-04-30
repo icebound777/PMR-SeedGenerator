@@ -66,9 +66,6 @@ def shuffle_entrances(pairs, by_type=None):
 
 def shuffle_items(items, by_type=None):
     partners = ["Goombario", "Kooper", "Bombette", "Parakarry", "Bow", "Watt", "Sushi", "Lakilester"]
-    items = [
-        item for item in items if item.item_type not in ["PARTNER", "PANEL", "PARTNER_REQUIRED", "NOTHING"]
-    ]
     if by_type:
         items = [
             item for item in items
@@ -89,6 +86,7 @@ def place_items(app):
 
     mario = None
     placed_items = []
+    overflow = 0
     for key_item in required_items:
 
         mario,activated = simulate_gameplay(app, mario=mario)
@@ -118,7 +116,7 @@ def place_items(app):
             mario.items = set([(received_item, i) for i,(received_item,_) in enumerate(placed_items)])
             mario.partners = {"Goombario", "Kooper"}
         else:
-            print("No more item slots to fill! :(")
+            overflow += 1
 
     mario = None
     for extracted_item in extracted:
@@ -150,17 +148,18 @@ def place_items(app):
             mario.items = set([(received_item, i) for i,(received_item,_) in enumerate(placed_items)])
             mario.partners = {"Goombario", "Kooper"}
         else:
-            print("No more item slots to fill! :(")
-
+            overflow += 1
 
     print("Items Extracted:")
     for e in extracted:
-        print(e)
+        print("    " + str(e))
 
-    print("Placed:")
+    print(f"Items Placed ({len(placed_items)}):")
     for received_item,item in placed_items:
-        print(f"{received_item} in {item}")
-    print(f"Placed {len(placed_items)} items")
+        print(f"    {received_item} in {item}")
+    
+    if overflow > 0:
+        print(f"WARNING: Couldn't find space for {overflow} items")
 
     # Compare randomized database with default and log the changes
     with open("./debug/item_placement.txt", "w") as file:

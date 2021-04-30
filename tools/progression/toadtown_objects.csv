@@ -1,0 +1,21 @@
+comment,partner,item_required,hammer,boots,item_received,partner_received,required,remove,level,map_name,index
+Shop A,,,,,FrightJar,,,,0,MAC_00,16
+Shop B,,,,,SleepySheep,,,,0,MAC_00,18
+Shop C,,,,,POWBlock,,,,0,MAC_00,20
+Shop D,,,,,FireFlower,,,,0,MAC_00,22
+Shop E,,,,,HoneySyrup,,,,0,MAC_00,24
+Shop F,,,,,Mushroom,,,,0,MAC_00,26
+By House,Sushi,,,,StarPiece,,,,0,MAC_00,0
+Panel,,,2,1,StarPiece,,,,0,MAC_00,255
+Tree,,,,,StarPiece,,,,0,MAC_01,2
+Panel,,,2,1,StarPiece,,,,0,MAC_02,255
+Shop A,,,,,StoneCap,,,,0,MAC_04,16
+Shop B,,,,,DizzyDial,,,,0,MAC_04,18
+Shop C,,,,,ThunderRage,,,,0,MAC_04,20
+Shop D,,,,,TastyTonic,,,,0,MAC_04,22
+Shop E,,,,,VoltShroom,,,,0,MAC_04,24
+Shop F,,,,,SuperShroom,,,,0,MAC_04,26
+Panel,,,2,1,StarPiece,,,,0,MAC_02,255
+Panel,,,2,1,StarPiece,,,,0,MAC_03,255
+Panel,,,2,1,StarPiece,,,,0,MAC_05,255
+Merlon Badge,,,,,QuickChange,,,,999,MAC_01,0

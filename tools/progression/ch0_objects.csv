@@ -1,0 +1,24 @@
+comment,partner,item_required,hammer,boots,item_received,partner_received,required,remove,level,map_name,index
+Tree,,,,,Dolly,,,,0,KMR_04,0
+Tree,,,,,Mushroom,,,,0,KMR_03,7
+Block Coin,,,,,Coin,,,,0,KMR_03,1
+Coin 1,,,,,Coin,,,,0,KMR_03,2
+Coin 2,,,,,Coin,,,,0,KMR_03,3
+Coin 3,,,,,Coin,,,,0,KMR_03,4
+Coin 4,,,,,Coin,,,,0,KMR_03,5
+Upper Ledge,,,,,FireFlower,,,,0,KMR_03,6
+Above Grey Block,,,1,,RepelJel,,,,0,KMR_03,0
+Panel,,,2,1,StarPiece,,,,0,KMR_03,255
+Clifftop,,,,,StarPiece,,,,0,KMR_05,0
+Tree Coin,,,,,Coin,,,,0,KMR_05,1
+Tree,,,,,Goomnut,,,,0,KMR_02,2
+Panel,,,2,1,StarPiece,,,,0,KMR_00,255
+Yellow Block 1,,,,,Coin,,,,0,KMR_09,0
+Yellow Block 2,,,,,Coin,,,,0,KMR_09,1
+Red Block,,,,,CloseCall,,,,0,KMR_06,0
+Info Sign,,,,,Mushroom,,,,0,KMR_06,1
+Tree,,,,,StarPiece,,,,0,KMR_11,1
+Panel,,,2,1,StarPiece,,,,0,KMR_11,255
+Hidden Yellow Block,,,,,SuperShroom,,,,0,KMR_11,0
+Yellow Block,,,,,SleepySheep,,,,0,KMR_10,1
+Entrance Top,,,,,HammerThrow,,,,0,KMR_10,0

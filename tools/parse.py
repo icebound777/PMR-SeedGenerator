@@ -4,18 +4,8 @@ import json
 import xml.etree.ElementTree as ET
 
 from enums import Enums, enum_int, create_enums
+from utility import get_files
 
-
-def get_files(directory_name):
-    files = list()
-    for entry in os.listdir(directory_name):
-        full_path = os.path.join(directory_name, entry)
-        if os.path.isdir(full_path):
-            files += get_files(full_path)
-        else:
-            files.append(full_path)
-
-    return files
 
 # Gather a list of ALL keys under the ../globals/patch/ directory
 # AF = Options

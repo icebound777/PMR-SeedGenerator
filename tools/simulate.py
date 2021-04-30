@@ -55,7 +55,6 @@ def simulate_gameplay(app, **kwargs):
     global mario
 
     debug = kwargs.get("debug")
-
     if kwargs.get("mario"):
         mario = kwargs["mario"]
     else:
@@ -68,37 +67,27 @@ def simulate_gameplay(app, **kwargs):
         mario.level = kwargs.get("level", 0)
 
     nodes = Node.select().order_by(Node.level, Node.id.asc())
-    
     activated = set()
 
-    # First pass
-    print("First Pass")
-    for node in nodes:
-        if node.can_activate(mario):
-            if node not in activated:
-                print("+ " + f"{node}")
-                mario.update(node)
-            activated.add(node)
-        elif node.required and mario.level < node.level:
-            print("|| " + f"{node}")
-            break
-        elif mario.level < node.level:
-            pass
-    mario.display()
+    def traverse_nodes():
+        for node in nodes:
+            if node.can_activate(mario):
+                if node not in activated:
+                    if debug:
+                        print("+ " + f"{node}")
+                    mario.update(node)
+                activated.add(node)
+            elif node.required and mario.level < node.level:
+                if debug:
+                    print("|| " + f"{node}")
+                break
+            elif mario.level < node.level:
+                pass
+        if debug:
+            mario.display()
 
-    # Final pass
-    print("Final Pass")
-    for node in nodes:
-        if node.can_activate(mario):
-            if node not in activated:
-                print("+ " + f"{node}")
-                mario.update(node)
-            activated.add(node)
-        elif node.required and mario.level < node.level:
-            print("|| " + f"{node}")
-            break
-        elif mario.level < node.level:
-            pass
-    mario.display()
+    # Go through twice to pick up any nodes missed in the first pass
+    traverse_nodes()
+    traverse_nodes()
 
     return mario, activated
