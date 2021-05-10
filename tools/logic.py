@@ -37,7 +37,7 @@ def shuffle_entrances(pairs, by_type=None):
         e4.save()
 
 def shuffle_items(items, by_type=None):
-    partners = ["Goombario", "Kooper", "Bombette", "Parakarry", "Bow", "Watt", "Sushi", "Lakilester"]
+    partners = ["Goombario", "Kooper", "Bombette", "Parakarry", "Bow", "Watt", "Sushie", "Lakilester"]
     if by_type:
         items = [
             item for item in items
