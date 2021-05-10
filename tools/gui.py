@@ -20,7 +20,8 @@ from logic import shuffle_entrances, shuffle_items, place_items
 from parse import get_default_table, get_table_info, create_table, gather_keys, gather_values
 
 from db.map_area import MapArea
-from db.item import Item, create_items,  create_nodes
+from db.item import Item, create_items
+from db.node import Node, create_nodes
 from db.quiz import Quiz, create_quizzes
 from db.option import Option, create_options
 from db.item_price import ItemPrice, create_item_prices

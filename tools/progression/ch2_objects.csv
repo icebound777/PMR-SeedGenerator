@@ -1,58 +1,58 @@
-comment,partner,item_required,hammer,boots,item_received,partner_received,required,remove,level,map_name,index
-Bomb Rock,Bombette,,,,,,1,,1,MAC_03,
-Bush,,,,,Egg1,,,,1,IWA_10,-1
-Coin 1,,,,,Coin,,,,1,IWA_00,0
-Coin 2,,,,,Coin,,,,1,IWA_00,1
-Coin 3,,,,,Coin,,,,1,IWA_00,2
-Yellow Block,,,,,SleepySheep,,,,1,IWA_00,3
-Whacka,,,,,WhackasBump,,,,1,IWA_00,4
-Left Cliff,Parkarry,,,,QuakeHammer,,,,1,IWA_01,0
-Right Cliff,Parakarry | Kooper,,,,Letter01,,,,1,IWA_01,1
-Panel,,,2,1,StarPiece,,,,1,IWA_01,255
-Entrance Beam,,,,,StarPiece,,,,1,IWA_02,0
-Seed 1,Parakarry,,,,MagicalSeed2,,,,1,IWA_02,1
-Chest,,,,,DamageDodgeB,,,,1,IWA_03,0
-Yellow Block 1,,,,,Coin,,,,1,IWA_03,1
-Yellow Block 2,,,,,Mushroom,,,,1,IWA_03,2
-Yellow Block 3,,,,,HoneySyrup,,,,1,IWA_03,3
-Letter25,,,,,Letter25,,,,1,IWA_03,4
-Left Cliff,Parakarry,,,,StarPiece,,,,1,IWA_03,5
-Coin 1,Kooper | Parakarry,,,,Coin,,,,1,IWA_03,6
-Coin 2,Parakarry,,,,Coin,,,,1,IWA_03,7
-Coin 3,Parakarry,,,,Coin,,,,1,IWA_03,8
-Coin 4,Parakarry,,,,Coin,,,,1,IWA_03,9
-Coin 5,Parakarry,,,,Coin,,,,1,IWA_03,10
-Coin 6,Parakarry,,,,Coin,,,,1,IWA_03,11
-Coin 7,Parakarry,,,,Coin,,,,1,IWA_03,12
-Coin 8,Parakarry,,,,Coin,,,,1,IWA_03,13
-Letter10,,,,,Letter10,,,,1,IWA_04,0
-3 Letters,,<Any3Letters>,,,,Parakarry,1,,2,IWA_10,
-Broken Bridge,Parakarry,,,,,,1,,3,IWA_04,
-A0 Yellow Block 1,,,,,FrightJar,,,,3,SBK_00,0
-A0 Yellow Block 2,,,,,Coin,,,,3,SBK_00,1
-A5 Cactus,,,,,FireFlower,,,,3,SBK_05,0
-B0 Hidden Block,,,,,ThunderRage,,,,3,SBK_10,0
-B4 Yellow Block 1,,,,,Coin,,,,3,SBK_14,0
-B4 Yellow Block 1,,,,,HoneySyrup,,,,3,SBK_14,1
-C0 Yellow Block 1,,,,,Mushroom,,,,3,SBK_20,0
-C0 Yellow Block 2,,,,,SuperShroom,,,,3,SBK_20,1
-C0 Yellow Block 3,,,,,UltraShroom,,,,3,SBK_20,2
-C2 Coin 1,,,,,Coin,,,,3,SBK_22,0
-C2 Coin 2,,,,,Coin,,,,3,SBK_22,1
-C2 Coin 3,,,,,Coin,,,,3,SBK_22,2
-C2 Coin 4,,,,,Coin,,,,3,SBK_22,3
-C2 Middle Block,,,,,FireFlower,,,,3,SBK_22,4
-Between Trees,,,,,RunawayPay,,,,3,SBK_24,0
-D0 Tree,,,,,Letter02,,,,3,SBK_30,0
-Panel,,,2,1,StarPiece,,,,3,SBK_33,255
-D6 Tree,,,,,Letter03,,,,3,SBK_36,0
-E3 Yellow Block,,,,,Coin,,,,3,SBK_43,0
-E7 Brick Block,Kooper,,,2,StopWatch,,,,3,SBK_45,0
-E7 Mesa,,,,,SpinAttack,,,,3,SBK_45,1
-E8 Yellow Block,,,,,Coin,,,,3,SBK_46,0
-E8 Hidden Block,,,,,LifeShroom,,,,3,SBK_46,1
-F5 Bush,,,,,TastyTonic,,,,3,SBK_55,0
-F6 Left Tree,,,,,Lemon,,,,3,SBK_56,0
-F6 Right Tree,,,,,Lime,,,,3,SBK_56,1
-G1 Hidden Block,,,,,AttackFXC,,,,3,SBK_61,0
-G4 Yellow Block,,,,,Coin,,,,3,SBK_64,0
+comment,partner,item_required,sequence,hammer,boots,item_received,partner_received,required,remove,level,map_name,index
+Bomb Rock,Bombette,,,,,,,1,,1,MAC_03,
+Bush,,,,,,Egg1,,,,1,IWA_10,-1
+Coin 1,,,,,,Coin,,,,1,IWA_00,0
+Coin 2,,,,,,Coin,,,,1,IWA_00,1
+Coin 3,,,,,,Coin,,,,1,IWA_00,2
+Yellow Block,,,,,,SleepySheep,,,,1,IWA_00,3
+Whacka,,,,,,WhackasBump,,,,1,IWA_00,4
+Left Cliff,Parkarry,,,,,QuakeHammer,,,,1,IWA_01,0
+Right Cliff,Parakarry | Kooper,,,,,Letter01,,,,1,IWA_01,1
+Panel,,,,2,1,StarPiece,,,,1,IWA_01,255
+Entrance Beam,,,,,,StarPiece,,,,1,IWA_02,0
+Seed 1,Parakarry,,,,,MagicalSeed2,,,,1,IWA_02,1
+Chest,,,,,,DamageDodgeB,,,,1,IWA_03,0
+Yellow Block 1,,,,,,Coin,,,,1,IWA_03,1
+Yellow Block 2,,,,,,Mushroom,,,,1,IWA_03,2
+Yellow Block 3,,,,,,HoneySyrup,,,,1,IWA_03,3
+Letter25,,,,,,Letter25,,,,1,IWA_03,4
+Left Cliff,Parakarry,,,,,StarPiece,,,,1,IWA_03,5
+Coin 1,Kooper | Parakarry,,,,,Coin,,,,1,IWA_03,6
+Coin 2,Parakarry,,,,,Coin,,,,1,IWA_03,7
+Coin 3,Parakarry,,,,,Coin,,,,1,IWA_03,8
+Coin 4,Parakarry,,,,,Coin,,,,1,IWA_03,9
+Coin 5,Parakarry,,,,,Coin,,,,1,IWA_03,10
+Coin 6,Parakarry,,,,,Coin,,,,1,IWA_03,11
+Coin 7,Parakarry,,,,,Coin,,,,1,IWA_03,12
+Coin 8,Parakarry,,,,,Coin,,,,1,IWA_03,13
+Letter10,,,,,,Letter10,,,,1,IWA_04,0
+3 Letters,,<Any3Letters>,,,,,Parakarry,1,,2,IWA_10,
+Broken Bridge,Parakarry,,,,,,,1,,3,IWA_04,
+A0 Yellow Block 1,,,,,,FrightJar,,,,3,SBK_00,0
+A0 Yellow Block 2,,,,,,Coin,,,,3,SBK_00,1
+A5 Cactus,,,,,,FireFlower,,,,3,SBK_05,0
+B0 Hidden Block,,,,,,ThunderRage,,,,3,SBK_10,0
+B4 Yellow Block 1,,,,,,Coin,,,,3,SBK_14,0
+B4 Yellow Block 1,,,,,,HoneySyrup,,,,3,SBK_14,1
+C0 Yellow Block 1,,,,,,Mushroom,,,,3,SBK_20,0
+C0 Yellow Block 2,,,,,,SuperShroom,,,,3,SBK_20,1
+C0 Yellow Block 3,,,,,,UltraShroom,,,,3,SBK_20,2
+C2 Coin 1,,,,,,Coin,,,,3,SBK_22,0
+C2 Coin 2,,,,,,Coin,,,,3,SBK_22,1
+C2 Coin 3,,,,,,Coin,,,,3,SBK_22,2
+C2 Coin 4,,,,,,Coin,,,,3,SBK_22,3
+C2 Middle Block,,,,,,FireFlower,,,,3,SBK_22,4
+Between Trees,,,,,,RunawayPay,,,,3,SBK_24,0
+D0 Tree,,,,,,Letter02,,,,3,SBK_30,0
+Panel,,,,2,1,StarPiece,,,,3,SBK_33,255
+D6 Tree,,,,,,Letter03,,,,3,SBK_36,0
+E3 Yellow Block,,,,,,Coin,,,,3,SBK_43,0
+E7 Brick Block,Kooper,,,,2,StopWatch,,,,3,SBK_45,0
+E7 Mesa,,,,,,SpinAttack,,,,3,SBK_45,1
+E8 Yellow Block,,,,,,Coin,,,,3,SBK_46,0
+E8 Hidden Block,,,,,,LifeShroom,,,,3,SBK_46,1
+F5 Bush,,,,,,TastyTonic,,,,3,SBK_55,0
+F6 Left Tree,,,,,,Lemon,,,,3,SBK_56,0
+F6 Right Tree,,,,,,Lime,,,,3,SBK_56,1
+G1 Hidden Block,,,,,,AttackFXC,,,,3,SBK_61,0
+G4 Yellow Block,,,,,,Coin,,,,3,SBK_64,0

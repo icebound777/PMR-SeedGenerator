@@ -3,39 +3,11 @@ import sqlite3
 
 from enums import Enums
 from db.item import Item
+from db.node import Node
 from db.map_area import MapArea
 
-from simulate import simulate_gameplay
+from simulate import Mario, simulate_gameplay
 
-
-# Items in order of requirement to progress
-required_items = [
-    # Chapter 1
-    "FortressKey",
-    "FortressKey",
-    "FortressKey",
-    "FortressKey",
-
-    # Chapter 2
-    "PulseStone",
-    "RuinsKey",
-    "RuinsKey",
-    "RuinsKey",
-    "DiamondStone",
-    "PyramidStone",
-    "RuinsKey",
-    "LunarStone",
-
-    # Chapter 3
-    "Weight",
-    "Record",
-    "BoosPortrait",
-    "CastleKey1",
-    "CastleKey1",
-
-    # TODO
-
-]
 
 def shuffle_entrances(pairs, by_type=None):
     if by_type:
@@ -87,6 +59,45 @@ def place_items(app):
     mario = None
     placed_items = []
     overflow = 0
+
+    # Get a list of all nodes that have items required for progression in them
+    required_item_nodes = Node.select().where(Node.sequence != None).order_by(Node.sequence)
+    required_items = [item_node.item_received for item_node in required_item_nodes]
+
+    # Initialize Mario with nothing except defaults
+    mario = Mario()
+
+    # Get a list of all nodes we can currently activate
+    item_nodes,stop_nodes = mario.traverse_nodes(app, update=False)
+
+    # Get a list of all items we can place into
+    item_slots = []
+    for node in item_nodes:
+        item = (Item.select()
+            .join(MapArea, on=(Item.map_area == MapArea.id))
+            .where(
+                MapArea.name == node.map_name,
+                Item.original_item_name == node.item_received,
+                Item.index == node.index,
+                Item.placed == False,
+            )
+            .select().get()
+        )
+        item_slots.append(item)
+
+    # Stop Nodes are any nodes that are required for progression
+    # Therefore, we'll need to place their required items somewhere in the currently accessible nodes
+    for node in stop_nodes:
+        item_slot = random.choice(item_slots)
+        item_slot.placed = True
+        item_slot.item_name = node.item_received
+        item_slot.item_type = "KEYITEM"
+        item_slot.value = Enums.get("Item")[node.item_received]
+        item_slot.save()
+        print(f"Put {node.item_received} in {item_slot}")
+    
+
+    """
     for key_item in required_items:
 
         mario,activated = simulate_gameplay(app, mario=mario)
@@ -99,7 +110,10 @@ def place_items(app):
                     .where(MapArea.name == node.map_name, Item.original_item_name == node.item_received, Item.index == node.index).select()
                     .get()
                 )
-                if not item.placed and item not in valid_slots:
+                if all([
+                    item.placed == False,
+                    item not in valid_slots,
+                ]):
                     valid_slots.append(item)
 
         if len(valid_slots) > 0:
@@ -178,7 +192,7 @@ def place_items(app):
             item = Item.get(Item.area_id==area_id, Item.map_id==map_id, Item.index==index)
             file.write(f"[{item.map_area.name}] ({item.map_area.verbose_name}): {item.key_name} - {item_name} -> {item.item_name}\n")
             app.processEvents()
-
+"""
 
     
 

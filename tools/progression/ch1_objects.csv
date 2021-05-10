@@ -1,37 +1,38 @@
-comment,partner,item_required,hammer,boots,item_received,partner_received,required,remove,level,map_name,index
-Yellow Block 1,,,,,Coin,,,,0,NOK_11,0
-Red Block 1,,,,,DizzyAttack,,,,0,NOK_11,1
-Yellow Block 2,,,,,FrightJar,,,,0,NOK_11,2
-Yellow Block 3,,,,,POWBlock,,,,0,NOK_12,0
-Island,Kooper,,,,StarPiece,,,,0,NOK_12,1
-Behind Fence,,,,,SleepySheep,,,,0,NOK_12,2
-Panel,,,2,1,StarPiece,,,,0,NOK_13,255
-Blue Thing,,,,,HoneySyrup,,,,0,NOK_13,1
-Brick Block Puzzle,,,,,AttackFXB,,,,0,NOK_13,0
-Panel,,,2,1,StarPiece,,,,0,NOK_01,255
-Tree Stump,Kooper,,,,HPPlusB,,,,0,NOK_03,0
-Panel,,,2,1,StarPiece,,,,0,NOK_14,255
-Coin 1,,,,,Coin,,,,0,NOK_14,0
-Coin 2,,,,,Coin,,,,0,NOK_14,1
-Coin 3,,,,,Coin,,,,0,NOK_14,2
-Coin 4,,,,,Coin,,,,0,NOK_14,3
-Coin 5,,,,,Coin,,,,0,NOK_14,4
-Brick Block,Kooper,,,2,ThunderBolt,,,,0,NOK_14,5
-Bridge Puzzle,Kooper,,,,,,1,,1,NOK_14,
-Yellow Block 4,,,,,FireFlower,,,,1,NOK_14,6
-Tree,,,,,StarPiece,,,,1,NOK_15,0
-Bomb Wall,Bombette,,,,FPPlusB,,,,1,TRD_00,1
-Defeat Guard,,,,,FortressKey,,,,1,TRD_01,1
-First Lock,,FortressKey,,,,,1,1,2,TRD_01,
-Firebar Room,,,,,FortressKey,,,,2,TRD_08,0
-Second Lock,,FortressKey,,,,,1,1,3,TRD_04,
-Bomb Cell,,,,,,Bombette,,,3,TRD_06,
-Bomb Wall,Bombette,,,,Refund,,,,3,TRD_00,0
-Right Cell,Bombette,,,,FortressKey,,1,,3,TRD_03,0
-Middle Cell,Bombette,,,,PowerBounce,,,,3,TRD_03,2
-Third Lock,,FortressKey,,,,,1,1,4,TRD_04,
-Upper Passage,Kooper,,,,,,1,,5,TRD_03,
-Left Cell,Bombette,,,,FortressKey,,1,,6,TRD_03,1
-Fourth Lock,,FortressKey,,,,,1,1,7,TRD_03,1
-Upper Stairs,,,,,SmashCharge,,,,7,TRD_01,0
-Bomb Rock,Bombette,,,,MapleSyrup,,,,7,TRD_09,0
+comment,partner,item_required,sequence,hammer,boots,item_received,partner_received,required,remove,level,map_name,index
+Yellow Block 1,,,,,,Coin,,,,0,NOK_11,0
+Red Block 1,,,,,,DizzyAttack,,,,0,NOK_11,1
+Yellow Block 2,,,,,,FrightJar,,,,0,NOK_11,2
+Yellow Block 3,,,,,,POWBlock,,,,0,NOK_12,0
+Island,Kooper,,,,,StarPiece,,,,0,NOK_12,1
+Behind Fence,,,,,,SleepySheep,,,,0,NOK_12,2
+Panel,,,,2,1,StarPiece,,,,0,NOK_13,255
+Blue Thing,,,,,,HoneySyrup,,,,0,NOK_13,1
+Brick Block Puzzle,,,,,,AttackFXB,,,,0,NOK_13,0
+Panel,,,,2,1,StarPiece,,,,0,NOK_01,255
+Tree Stump,Kooper,,,,,HPPlusB,,,,0,NOK_03,0
+Fuzzy Battle,,,,,,,Kooper,,,0,NOK_04,0
+Panel,,,,2,1,StarPiece,,,,0,NOK_14,255
+Coin 1,,,,,,Coin,,,,0,NOK_14,0
+Coin 2,,,,,,Coin,,,,0,NOK_14,1
+Coin 3,,,,,,Coin,,,,0,NOK_14,2
+Coin 4,,,,,,Coin,,,,0,NOK_14,3
+Coin 5,,,,,,Coin,,,,0,NOK_14,4
+Brick Block,Kooper,,,,2,ThunderBolt,,,,0,NOK_14,5
+Bridge Puzzle,Kooper,,,,,,,1,,1,NOK_14,
+Yellow Block 4,,,,,,FireFlower,,,,1,NOK_14,6
+Tree,,,,,,StarPiece,,,,1,NOK_15,0
+Bomb Wall,Bombette,,,,,FPPlusB,,,,1,TRD_00,1
+Defeat Guard,,,1,,,FortressKey,,,,1,TRD_01,1
+First Lock,,FortressKey,,,,,,1,1,2,TRD_01,
+Firebar Room,,,2,,,FortressKey,,,,2,TRD_08,0
+Second Lock,,FortressKey,,,,,,1,1,3,TRD_04,
+Bomb Cell,,,,,,,Bombette,,,3,TRD_06,
+Bomb Wall,Bombette,,,,,Refund,,,,3,TRD_00,0
+Right Cell,Bombette,,3,,,FortressKey,,1,,3,TRD_03,0
+Middle Cell,Bombette,,,,,PowerBounce,,,,3,TRD_03,2
+Third Lock,,FortressKey,,,,,,1,1,4,TRD_04,
+Upper Passage,Kooper,,,,,,,1,,5,TRD_03,
+Left Cell,Bombette,,4,,,FortressKey,,1,,6,TRD_03,1
+Fourth Lock,,FortressKey,,,,,,1,1,7,TRD_03,1
+Upper Stairs,,,,,,SmashCharge,,,,7,TRD_01,0
+Bomb Rock,Bombette,,,,,MapleSyrup,,,,7,TRD_09,0

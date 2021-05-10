@@ -8,7 +8,7 @@ Important Files and General Structure:
 * `utility.py` is for any functions that provide general utility
 
 Currently, the system works as follows:
-* Using the command-line interface, tell StarRod to dump, copy, and compile a mod into and output ROM.
+* Using the command-line interface, tell StarRod to dump, copy, and compile a mod into an output ROM.
 * With the database (that is auto-generated) and other logical datastructures, randomize various elements.
 * Then, generate the list of key-value pairs to be written into the output ROM.
 
