@@ -6,6 +6,7 @@ from playhouse.sqlite_ext import JSONField
 from db.db import db
 from db.map_area import MapArea
 from db.item_price import ItemPrice
+from db.progression_items import progression_items
 from enums import Enums
 from parse import get_default_table
 from utility import get_files
@@ -18,6 +19,8 @@ class Item(Model):
     value = IntegerField()
     # actual item name w/o spaces or apostrophe
     item_name = CharField()
+    # True if item can be required to reach locations
+    progression = BooleanField(default=False)
 
     # def __str__(self):
     #     if self.map_area:
@@ -76,5 +79,6 @@ def create_items():
         item,created = Item.get_or_create(
             item_type = Item.get_type(value),
             value = value,
-            item_name = Enums.get("Item")[value]
+            item_name = Enums.get("Item")[value],
+            progression = (Item.get_type(value) == "KEYITEM" and value in progression_items.keys())
         )
