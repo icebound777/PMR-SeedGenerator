@@ -61,8 +61,9 @@ def create_item_prices():
         print(item_price, created)
 
         # Update item with reference to this ItemPrice
-        from db.item import Item
-        item = Item.get(Item.map_area==item_price.map_area, Item.key_name == f"ShopItem{item_price.key_name[-1]}")
-        item.item_price = item_price
-        item.save()
+        from db.itemlocation import ItemLocation
+        itemlocation = ItemLocation.get(ItemLocation.map_area == item_price.map_area,
+                                        ItemLocation.key_name == f"ShopItem{item_price.key_name[-1]}")
+        itemlocation.item_price = item_price
+        itemlocation.save()
         

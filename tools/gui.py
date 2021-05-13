@@ -16,12 +16,14 @@ from PyQt5 import QtCore, QtGui
 from enums import Enums, create_enums
 from table import Table
 from utility import sr_dump, sr_copy, sr_compile
-from logic import shuffle_entrances, shuffle_items, place_items
+#from logic import shuffle_entrances, shuffle_items, place_items
+from logic_ice import place_items
 from parse import get_default_table, get_table_info, create_table, gather_keys, gather_values
 
 from db.map_area import MapArea
 from db.item import Item, create_items
-from db.node import Node, create_nodes
+#from db.node import Node, create_nodes
+from db.itemlocation import ItemLocation, create_item_locations
 from db.quiz import Quiz, create_quizzes
 from db.option import Option, create_options
 from db.item_price import ItemPrice, create_item_prices
@@ -38,10 +40,10 @@ gather_keys()
 gather_values()
 create_options()
 create_items()
+create_item_locations()
 create_item_prices()
 create_actor_attributes()
 create_quizzes()
-create_nodes()
 create_entrances()
 connect_entrances()
 shutil.copy("db.sqlite", "default_db.sqlite")
@@ -169,34 +171,35 @@ class Window(QMainWindow):
 		rom_table.create()
 
 		# Shuffle Entrances by type
-		valid_entrances = [entrance for entrance in Entrance.select().where(Entrance.destination != None)]
-		found = set()
-		pairs = []
-		for source in valid_entrances:
-			if source in found:
-				continue
-			if source.destination in found:
-				continue
-			found.add(source)
-			found.add(source.destination)
-			pairs.append({
-				"src": source,
-				"dest": source.destination
-			})
+		# valid_entrances = [entrance for entrance in Entrance.select().where(Entrance.destination != None)]
+		# found = set()
+		# pairs = []
+		# for source in valid_entrances:
+		# 	if source in found:
+		# 		continue
+		# 	if source.destination in found:
+		# 		continue
+		# 	found.add(source)
+		# 	found.add(source.destination)
+		# 	pairs.append({
+		# 		"src": source,
+		# 		"dest": source.destination
+		# 	})
 
-		shuffle_entrances(pairs, by_type="pipe")
-		shuffle_entrances(pairs, by_type="ground")
-		shuffle_entrances(pairs, by_type="door")
+		# shuffle_entrances(pairs, by_type="pipe")
+		# shuffle_entrances(pairs, by_type="ground")
+		# shuffle_entrances(pairs, by_type="door")
 
 		# Shuffle Items
 		# items = [item for item in Item.select()]
 		# shuffle_items(items)
-		place_items(self.app)
+		#place_items(self.app)
+		place_items(self.app, isShuffle=True, algorithm="random_fill")
 
 		# Make everything inexpensive
 		item_prices = [item_price for item_price in ItemPrice.select()]
 		for item_price in item_prices:
-			item = item_price.item.get()
+			item = item_price.itemlocation.get() # ?
 			item_price.value = 1
 			item_price.save()
 
@@ -255,9 +258,9 @@ class Window(QMainWindow):
 		self.display("Created Randomized ROM!")
 
 		# Automatically open ROM
-		path = str(Path(__file__).parent).replace("\\", "/")
-		path = "".join(path.split("tools"))[0:-1]
-		os.startfile(path + "/out/PM64.z64")
+		# path = str(Path(__file__).parent).replace("\\", "/")
+		# path = "".join(path.split("tools"))[0:-1]
+		# os.startfile(path + "/out/PM64.z64")
 
 
 app = QApplication(sys.argv)

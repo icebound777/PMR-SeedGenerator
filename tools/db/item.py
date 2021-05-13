@@ -12,43 +12,20 @@ from utility import get_files
 
 
 class Item(Model):
-    area_id = IntegerField(default=0)
-    map_id = IntegerField(default=0)
-    index = IntegerField(default=0)
-
-    map_area = ForeignKeyField(MapArea, null=True, backref="items")
-    item_price = ForeignKeyField(ItemPrice, null=True, backref="item")
-    key_name = CharField()
+    # keyitem, badge etc
     item_type = CharField(null=True)
-    original_item_type = CharField(null=True)
+    # item byte value as int (eg 348 = 0x15c (StarPiece))
     value = IntegerField()
+    # actual item name w/o spaces or apostrophe
     item_name = CharField()
-    original_item_name = CharField()
 
-    logic = JSONField(default=dict())
-    placed = BooleanField(default=False)
+    # def __str__(self):
+    #     if self.map_area:
+    #         return f"[{self.map_area.name}]: {self.key_name} ({self.original_item_name} -> {self.item_name})"
+    #     return f"{self.original_item_name}"
 
-    def __str__(self):
-        if self.map_area:
-            return f"[{self.map_area.name}]: {self.key_name} ({self.original_item_name} -> {self.item_name})"
-        return f"{self.original_item_name}"
-
-    def get_key(self):
-        return (Item._meta.key_type << 24) | (self.area_id << 16) | (self.map_id << 8) | self.index
-
-    def swap(self, other):
-        self.original_item_name = self.item_name
-        other.original_item_name = other.item_name
-
-        self.original_item_type = self.item_type
-        other.original_item_type = other.item_type
-
-        self.value, other.value = other.value, self.value
-        self.item_type, other.item_type = other.item_type, self.item_type
-        self.item_name, other.item_name = other.item_name, self.item_name
-
-        self.save()
-        other.save()
+    # def get_key(self):
+    #     return (Item._meta.key_type << 24) | (self.area_id << 16) | (self.map_id << 8) | self.index
 
     @classmethod
     def get_type(cls, item_id:int):
@@ -77,6 +54,8 @@ class Item(Model):
             
 # Run this to create all items in Item table
 def create_items():
+    #from db.progression_items import progression_items
+
     db.drop_tables([Item])
     db.create_tables([Item])
 
@@ -86,38 +65,16 @@ def create_items():
     with open("./debug/values.json", "r") as file:
         item_values = json.load(file)["items"]
 
+    # abuse dict as list of unique entries
+    unique_itemvalues = {}
+
     for key,data in item_keys.items():
-        map_area,created = MapArea.get_or_create(
-            area_id=data["area_id"],
-            map_id=data["map_id"],
-            name=data["map_name"],
-            verbose_name=MapArea.get_verbose_name(data["map_name"]),
-        )
 
-        value = item_values[data["map_name"]][data["name"]]
+        unique_itemvalues[item_values[data["map_name"]][data["name"]]] = ""
 
+    for value in unique_itemvalues.keys():
         item,created = Item.get_or_create(
-            map_area=map_area,
-            area_id=data["area_id"],
-            map_id=data["map_id"],
-            index=data["value_id"],
-            item_type=Item.get_type(value),
-            original_item_type=Item.get_type(value),
-            value=value,
-            item_name=Enums.get("Item")[value],
-            original_item_name=Enums.get("Item")[value],
-            key_name=data["name"],
-            logic={},
+            item_type = Item.get_type(value),
+            value = value,
+            item_name = Enums.get("Item")[value]
         )
-        print(item, created)
-
-
-
-
-
-
-
-
-
-
-    

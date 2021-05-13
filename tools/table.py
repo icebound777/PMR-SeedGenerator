@@ -3,6 +3,7 @@ from parse import get_default_table, create_table, get_table_info
 from db.option import Option
 from db.entrance import Entrance
 from db.item import Item
+from db.itemlocation import ItemLocation
 from db.item_price import ItemPrice
 from db.actor_attribute import ActorAttribute
 from db.quiz import Quiz
@@ -51,22 +52,23 @@ class Table:
 					})
 
 		# Items
-		for item in Item.select():
+		for itemlocation in ItemLocation.select():
+			item = Item.get(Item.value == itemlocation.current_item.value)
 			table_data.append({
-				"key": item.get_key(),
+				"key": itemlocation.get_key(),
 				"value": item.value,
 			})
 			# Generate a ROM table pair that describes where a unique itemID resides in the game using areaID and mapID
 			if item.item_type in ["KEYITEM", "BADGE"]:
 				table_data.append({
 					"key": (0xA5 << 24) | (item.value),
-					"value": (item.area_id << 8) | (item.map_id),
+					"value": (itemlocation.area_id << 8) | (itemlocation.map_id),
 				})
 
 		# Item Prices
 		for item_price in ItemPrice.select():
 			# TODO: Modify price value based on the item its tied to
-			item = item_price.item.get()
+			item = item_price.itemlocation.get()
 
 			table_data.append({
 				"key": item_price.get_key(),
