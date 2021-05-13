@@ -743,84 +743,122 @@ requirements = {
 'FLO_22':   {'ItemA':           [],                 # 'FlowerSaverB',
              'ItemB':           [],                 # 'FlowerSaverB'
              }, #TODO
+# (West) Path to Maze
+'FLO_23':   {'HiddenYBlockA':   [],                 # 'ShootingStar',
+             'HiddenYBlockB':   [],                 # 'Coin'
+             },
+# Path to Starborn Valley
+'SAM_05':   {'ItemA':           [],                 # 'Letter06',
+             'HiddenYBlockA':   [],                 # 'StopWatch'
+             },
+# Starborn Valley
+'SAM_06':   {'GiftA':           [],                 # 'Scarf'
+             },
+# Shiver Mountain Passage
+'SAM_07':   {'HiddenYBlockA':   [],                 # 'UltraShroom'
+             },
 
- 'FLO_23': {'HiddenYBlockA': 'ShootingStar',
- 'HiddenYBlockB': 'Coin'},
+#TODO SAM_09 ??? wheres the 3 ice wall items?
+# Shiver Mountain Peaks
+'SAM_10':   {'RBlockA':         [],                 # 'MegaJump',
+             'ItemA':           [],                 # 'StarPiece'
+             },
+# Shiver City Pond Area
+'SAM_11':   {'ItemA':           [],                 # 'WarehouseKey'
+             },
+# Merlar's Sanctuary
+'SAM_12':   {'ItemA':           [],                 # 'StarStone',
+             'ItemB':           [],                 # 'StarStone'
+             }, #TODO duplicate?
+# Reflected Save Room
+'PRA_04':   {'YBlockA':         [],                 # 'SuperShroom'
+             },
+# Blue Key Room
+'PRA_05':   {'ChestA':          [],                 # 'BlueKey'
+             },
+# Shooting Star Room
+'PRA_06':   {'ItemA':           [],                 # 'ShootingStar'
+             },
+# Red Key Room
+'PRA_11':   {'ChestA':          [],                 # 'RedKey'
+             },
+# P-Down, D-Up Room
+'PRA_12':   {'ChestA':          [],                 # 'PDownDUp'
+             },
+# Star Piece Cave
+'PRA_15':   {'ItemA':           [],                 # 'StarPiece'
+             },
+# Palace Key Room
+'PRA_27':   {'ChestA':          [],                 # 'PalaceKey'
+             },
+# P-Up, D-Down Room
+'PRA_28':   {'ChestA':          [],                 # 'PUpDDown'
+             },
+# Triple Dip Room
+'PRA_35':   {'ChestA':          [],                 # 'TripleDip'
+             },
+# Dark Cave 1
+'KPA_01':   {'YBlockA':         [],                 # 'POWBlock'
+             },
+# Dark Cave 2
+'KPA_03':   {'YBlockA':         [],                 # 'ShootingStar'
+             },
+# Outside Lower Jail (No Lava)
+'KPA_10':   {'YBlockA':         [],                 # 'LifeShroom'
+             },
+# Outisde Lower Jail (Lava)
+'KPA_11':   {'ItemA':           [],                 # 'CastleKey2',
+             'YBlockA':         [],                 # 'LifeShroom'
+             },
+# Lava Channel 3
+'KPA_14':   {'ItemA':           [],                 # 'Mystery',
+             'ItemB':           [],                 # 'ThunderRage'
+             },
+# Lava Key Room
+'KPA_15':   {'ChestA':          [],                 # 'CastleKey2'
+             },
+# Lower Jail
+'KPA_17':   {'CrateA':          [],                 # 'TastyTonic',
+             'CrateB':          [],                 # 'LifeShroom'
+             },
+# Ship Enter/Exit Scenes
+'KPA_60':   {'RBlockA':         [],                 # 'DeepFocus3'
+             }, #TODO same as KPA_62, what do to?
+# Battlement
+'KPA_61':   {'YBlockA':         [],                 # 'SuperShroom',
+             'YBlockB':         [],                 # 'MapleSyrup',
+             'YBlockC':         [],                 # 'SuperShroom',
+             'ItemA':           [],                 # 'JamminJelly'
+             },
+#Front Door Exterior
+'KPA_62':   {'RBlockA':         [],                 # 'DeepFocus3'
+             }, #TODO same as KPA_60, what do to?
+# East Upper Jail
+'KPA_91':   {'ItemA':           [],                 # 'PrisonKey1'
+             },
+# West Upper Jail
+'KPA_95':   {'ItemA':           [],                 # 'PrisonKey1'
+             },
+# Castle Key Room
+'KPA_100':  {'ItemA':           [],                 # 'CastleKey2'
+             },
+# Ultra Shroom Room
+'KPA_101':  {'ItemA':           [],                 # 'UltraShroom'
+             },
+# Room with Hidden Door 1
+'KPA_111':  {'YBlockA':         [],                 # 'SuperShroom',
+             'HiddenYBlockA':   [],                 # 'MapleSyrup'
+             },
+# Hidden Key Room
+'KPA_119':  {'ItemA':           [],                 # 'CastleKey2'
+             },
 
- 'SAM_05': {'ItemA': 'Letter06',
- 'HiddenYBlockA': 'StopWatch'},
+'KPA_133':  {'ItemA':           [],                 # 'CastleKey2'
+             },
 
- 'SAM_06': {'GiftA': 'Scarf'},
+'KPA_134':  {'HiddenYBlockA':   [],                 # 'MapleSyrup'
+             },
 
- 'SAM_07': {'HiddenYBlockA': 'UltraShroom'},
-
- 'SAM_10': {'RBlockA': 'MegaJump',
- 'ItemA': 'StarPiece'},
-
- 'SAM_11': {'ItemA': 'WarehouseKey'},
-
- 'SAM_12': {'ItemA': 'StarStone',
- 'ItemB': 'StarStone'},
-
- 'PRA_04': {'YBlockA': 'SuperShroom'},
-
- 'PRA_05': {'ChestA': 'BlueKey'},
-
- 'PRA_06': {'ItemA': 'ShootingStar'},
-
- 'PRA_11': {'ChestA': 'RedKey'},
-
- 'PRA_12': {'ChestA': 'PDownDUp'},
-
- 'PRA_15': {'ItemA': 'StarPiece'},
-
- 'PRA_27': {'ChestA': 'PalaceKey'},
-
- 'PRA_28': {'ChestA': 'PUpDDown'},
-
- 'PRA_35': {'ChestA': 'TripleDip'},
-
- 'KPA_01': {'YBlockA': 'POWBlock'},
-
- 'KPA_03': {'YBlockA': 'ShootingStar'},
-
- 'KPA_10': {'YBlockA': 'LifeShroom'},
-
- 'KPA_11': {'ItemA': 'CastleKey2',
- 'YBlockA': 'LifeShroom'},
-
- 'KPA_14': {'ItemA': 'Mystery',
- 'ItemB': 'ThunderRage'},
-
- 'KPA_15': {'ChestA': 'CastleKey2'},
-
- 'KPA_17': {'CrateA': 'TastyTonic',
- 'CrateB': 'LifeShroom'},
-
- 'KPA_60': {'RBlockA': 'DeepFocus3'},
-
- 'KPA_61': {'YBlockA': 'SuperShroom',
- 'YBlockB': 'MapleSyrup',
- 'YBlockC': 'SuperShroom',
- 'ItemA': 'JamminJelly'},
-
- 'KPA_62': {'RBlockA': 'DeepFocus3'},
-
- 'KPA_91': {'ItemA': 'PrisonKey1'},
-
- 'KPA_95': {'ItemA': 'PrisonKey1'},
-
- 'KPA_100': {'ItemA': 'CastleKey2'},
-
- 'KPA_101': {'ItemA': 'UltraShroom'},
-
- 'KPA_111': {'YBlockA': 'SuperShroom',
- 'HiddenYBlockA': 'MapleSyrup'},
-
- 'KPA_119': {'ItemA': 'CastleKey2'},
-
- 'KPA_133': {'ItemA': 'CastleKey2'},
-
- 'KPA_134': {'HiddenYBlockA': 'MapleSyrup'},
-
- 'OSR_02': {'HiddenYBlockA': 'UltraShroom'}}
+'OSR_02':   {'HiddenYBlockA':   [],                 # 'UltraShroom'
+             },
+}
