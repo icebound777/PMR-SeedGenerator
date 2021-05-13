@@ -1,7 +1,7 @@
 locations = {
 #map          check             item            requires      #TODO index = least significat bit of dbkey
-"nok_11":  [("Yellow?Block",    "FrightJar",    None),
-            ("Red?Block",       "DizzyAttack",  None),
+"nok_11":  [("YBlockB",         "FrightJar",    None),
+            ("RBlockA",         "DizzyAttack",  None),
             ],
 
 "nok_12":  [("Yellow?Block",    "POWBlock",     None),
