@@ -2,27 +2,25 @@
 requirements = {
 #Map          ItemLocation      Requires            VanillaItem
 # Foyer
-'OBK_01':    {'HiddenPanel':    [],                 # 'StarPiece',
-              'GiftA':          [],                 # 'OldPhoto'
+'OBK_01':    {'HiddenPanel':    [("SuperBoots",),
+                                 ("UltraHammer")],  # 'StarPiece',
+              'GiftA':          [("p_KKF12",)],     # 'OldPhoto'
               },
               #TODO Missing: Letter12 to Franky
 # Pot Room
-'OBK_05':    {'CrateA':         [],                 # 'Apple',
-              'CrateB':         [],                 # 'Apple'
-              },
-# Library
-'OBK_06':    {'ItemA':          [],                 # 'BoosPortrait',
-              'CrateA':         [],                 # 'StarPiece'
+'OBK_05':    {'CrateA':         [("SuperBoots",)],  # 'Apple',
+              'CrateB':         [("SuperBoots",)],  # 'Apple'
               },
 # Record Room
-'OBK_08':    {'HiddenPanel':    [],                 # 'StarPiece',
+'OBK_08':    {'HiddenPanel':    [("SuperBoots",),
+                                 ("UltraHammer")],  # 'StarPiece',
               'ItemA':          [],                 # 'Record'
               },
 # Record Player Room
-'OBK_07':    {'ChestA':         [],                 # 'Weight'
+'OBK_07':    {'ChestA':         [("Record",)],      # 'Weight'
               },
 # Basement Stairs
-'OBK_02':    {'HiddenPanel':    [],                 # 'StarPiece'
+'OBK_02':    {'HiddenPanel':    [("Weight",)],      # 'StarPiece'
               },
 # Basement
 'OBK_03':    {'ShopItemA':      [],                 # 'Mystery',
@@ -31,12 +29,18 @@ requirements = {
               'ShopItemD':      [],                 # 'MapleSyrup',
               'ShopItemE':      [],                 # 'LifeShroom',
               'ShopItemF':      [],                 # 'SuperShroom',
-              'CrateA':         [],                 # 'SuperShroom'
+              'CrateA':         [("SuperBoots","Weight")], # 'SuperShroom'
               },
               #TODO Missing: Letter11 to Igor
 # Super Boots Room
-'OBK_04':    {'HiddenPanel':    [],                 # 'StarPiece',
-              'CrateA':         [],                 # 'MapleSyrup'
+'OBK_04':    {'HiddenPanel':    [("SuperBoots","Weight"),
+                                 ("UltraHammer","Weight")], # 'StarPiece',
+              'CrateA':         [("SuperBoots","Weight")],  # 'MapleSyrup'
               },
               #TODO Missing: SuperBoots
+# Library
+'OBK_06':    {'ItemA':          [("Parakarry","SuperBoots")], # 'BoosPortrait',
+              'CrateA':         [("SuperBoots",)],            # 'StarPiece'
+              },
+              # * Can softlock in library if entered from the top w/o Bombette
 }

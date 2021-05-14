@@ -15,6 +15,7 @@ requirements = {
               },
               #TODO Missing: Respawning StrangeLeaf in bush
 # Exit to Gusty Gulch
-'MIM_12':    {'HiddenPanel':    [],                 # 'StarPiece'
+'MIM_12':    {'HiddenPanel':    [("SuperBoots",),
+                                 ("UltraHammer")],  # 'StarPiece'
               },
 }

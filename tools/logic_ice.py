@@ -4,7 +4,29 @@ import sqlite3
 from db.itemlocation import ItemLocation
 from db.item import Item
 
-from progression.chy_objects import requirements
+from progression.hos_objects import requirements as requirements_hos
+from progression.mac_objects import requirements as requirements_mac
+from progression.tik_objects import requirements as requirements_tik
+from progression.chapter_0.kmr_objects import requirements as requirements_kmr
+from progression.chapter_1.nok_objects import requirements as requirements_nok
+from progression.chapter_1.trd_objects import requirements as requirements_trd
+from progression.chapter_2.iwa_objects import requirements as requirements_iwa
+from progression.chapter_2.sbk_objects import requirements as requirements_sbk
+from progression.chapter_2.dro_objects import requirements as requirements_dro
+from progression.chapter_2.isk_objects import requirements as requirements_isk
+from progression.chapter_3.mim_objects import requirements as requirements_mim
+from progression.chapter_3.obk_objects import requirements as requirements_obk
+from progression.chapter_3.arn_objects import requirements as requirements_arn
+from progression.chapter_3.dgb_objects import requirements as requirements_dgb
+from progression.chapter_4.omo_objects import requirements as requirements_omo
+from progression.chapter_5.jan_objects import requirements as requirements_jan
+from progression.chapter_5.kzn_objects import requirements as requirements_kzn
+from progression.chapter_6.flo_objects import requirements as requirements_flo
+from progression.chapter_7.sam_objects import requirements as requirements_sam
+from progression.chapter_7.pra_objects import requirements as requirements_pra
+from progression.chapter_8.kpa_objects import requirements as requirements_kpa
+from progression.chapter_8.osr_objects import requirements as requirements_osr
+from progression.chapter_8.kkj_objects import requirements as requirements_kkj
 
 
 def place_items(app, isShuffle, algorithm):
@@ -32,17 +54,28 @@ def place_items(app, isShuffle, algorithm):
         # TODO
 
     elif algorithm == "forward_fill":
-        def is_location_reachable(location, mario_inventory):
+        def is_location_reachable(location, mario_inventory, requirements):
             is_reachable = True
+
             for requirement_group in requirements.get(location.map_area).get(location.key_name):
                 is_reachable = len([req for req in requirement_group if req not in mario_inventory]) == 0
                 if is_reachable:
                     break
             return is_reachable
+
+        requirements = {}
+        requirements |= (requirements_hos | requirements_mac | requirements_tik | requirements_kmr)
+        requirements |= (requirements_nok | requirements_trd | requirements_iwa | requirements_sbk)
+        requirements |= (requirements_dro | requirements_isk | requirements_mim | requirements_obk)
+        requirements |= (requirements_arn | requirements_dgb | requirements_omo | requirements_jan)
+        requirements |= (requirements_kzn | requirements_flo | requirements_sam | requirements_pra)
+        requirements |= (requirements_kpa | requirements_osr | requirements_kkj)
         
         # Place items in accessible locations first, then expand accessible locations by unlocked locations
 
-        mario_inventory = ['Hammer', 'Goombario']
+        mario_inventory = ['Hammer',
+                           'Goombario',
+                           'p_OpenedToybox', 'ToyTrain']
         
         # Fetch all locations and their items from the database
         all_locations = []
@@ -66,7 +99,7 @@ def place_items(app, isShuffle, algorithm):
             # find all reachable locations that are not in filled-locations
             reachable_locations = []
             for location in [location for location in all_locations not in filled_locations]:
-                if is_location_reachable(location, mario_inventory):
+                if is_location_reachable(location, mario_inventory, requirements):
                     reachable_locations.append(location)
             # pop random reachable location
             random_location = reachable_locations.pop(random.randint(0,len(reachable_locations) - 1))
