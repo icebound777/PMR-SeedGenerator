@@ -51,74 +51,80 @@ requirements = {
               },
               # * Mushroom only exists if Peach answers a certain way during previous intermission
 # PNK Station
-'OMO_06':    {'HiddenPanel':    [("Bow","SuperBoots","ToyTrain"),
-                                 ("Bow","UltraHammer","ToyTrain")], # 'StarPiece',
-              'ChestA':         [("Bow","ToyTrain")], # 'Mailbag',
-              'HiddenYBlockA':  [("Bow","ToyTrain")], # 'ThunderRage'
+'OMO_06':    {'HiddenPanel':    [("Bow","SuperBoots","p_PlacedToyTrain"),
+                                 ("Bow","UltraHammer","p_PlacedToyTrain")], # 'StarPiece',
+              'ChestA':         [("Bow","p_PlacedToyTrain")], # 'Mailbag',
+              'HiddenYBlockA':  [("Bow","p_PlacedToyTrain")], # 'ThunderRage'
               },
 # PNK Tracks Hallway
-'OMO_17':   {'YBlockA':         [("Bow","ToyTrain")],                 # 'Coin',
-             'YBlockB':         [("Bow","ToyTrain")],                 # 'Coin',
-             'YBlockC':         [("Bow","ToyTrain")],                 # 'Coin'
+'OMO_17':   {'YBlockA':         [("Bow","p_PlacedToyTrain")],                 # 'Coin',
+             'YBlockB':         [("Bow","p_PlacedToyTrain")],                 # 'Coin',
+             'YBlockC':         [("Bow","p_PlacedToyTrain")],                 # 'Coin'
              },
 # PNK Gourmet Guy Crossing
-'OMO_05':    {'ItemA':          [("Bow","ToyTrain")],                 # 'Cookbook',
-              'YBlockA':        [("Bow","ToyTrain")],                 # 'Coin',
-              'YBlockB':        [("Bow","ToyTrain")],                 # 'Coin',
-              'ItemB':          [("Bow","ToyTrain")],                 # 'Cookbook',
-              'HiddenYBlockA':  [("Bow","ToyTrain")],                 # 'DizzyDial',
-              'HiddenYBlockB':  [("Bow","ToyTrain")],                 # 'SuperSoda'
+'OMO_05':    {'ItemA':          [("Bow","p_PlacedToyTrain")],                 # 'Cookbook',
+              'YBlockA':        [("Bow","p_PlacedToyTrain")],                 # 'Coin',
+              'YBlockB':        [("Bow","p_PlacedToyTrain")],                 # 'Coin',
+              'ItemB':          [("Bow","p_PlacedToyTrain")],                 # 'Cookbook',
+              'HiddenYBlockA':  [("Bow","p_PlacedToyTrain")],                 # 'DizzyDial',
+              'HiddenYBlockB':  [("Bow","p_PlacedToyTrain")],                 # 'SuperSoda'
               },
               #TODO duplicates?
 # PNK Playhouse
 'OMO_07':    {'ItemA':          [("p_NYI",)],                      # 'ThunderRage',
-              'ChestA':         [("Hammer","Bow","ToyTrain"),
-                                 ("SuperBoots","Bow","ToyTrain")], # 'FryingPan',
-              'ChestB':         [("Hammer","Bow","ToyTrain"),
-                                 ("SuperBoots","Bow","ToyTrain")], # 'DefendPlusA',
-              'ChestC':         [("Hammer","Bow","ToyTrain"),
-                                 ("SuperBoots","Bow","ToyTrain")], # 'IcePower',
-              'YBlockA':        [("Hammer","Bow","ToyTrain"),
-                                 ("SuperBoots","Bow","ToyTrain")], # 'Coin'
+              'ChestA':         [("Hammer","Bow","p_PlacedToyTrain"),
+                                 ("SuperBoots","Bow","p_PlacedToyTrain")], # 'FryingPan',
+              'ChestB':         [("Hammer","Bow","p_PlacedToyTrain"),
+                                 ("SuperBoots","Bow","p_PlacedToyTrain")], # 'DefendPlusA',
+              'ChestC':         [("Hammer","Bow","p_PlacedToyTrain"),
+                                 ("SuperBoots","Bow","p_PlacedToyTrain")], # 'IcePower',
+              'YBlockA':        [("Hammer","Bow","p_PlacedToyTrain"),
+                                 ("SuperBoots","Bow","p_PlacedToyTrain")], # 'Coin'
               },
               # * ThunderRage only exists if Peach answers a certain way during previous intermission
               # ! From here on down everything technically needs Cake for Gourment Guy
 # GRN Station
-'OMO_08':    {'HiddenPanel':    [("Bow","ToyTrain")],                 # 'StarPiece',
-              'HiddenYBlockA':  [("Bow","ToyTrain")],                 # 'FireFlower'
+'OMO_08':    {'HiddenPanel':    [("Bow","SuperBoots","p_PlacedToyTrain"),
+                                 ("Bow","UltraHammer","p_PlacedToyTrain")], # 'StarPiece',
+              'HiddenYBlockA':  [("Bow","p_PlacedToyTrain")],               # 'FireFlower'
               },
 # GRN Treadmills/Slot Machine
-'OMO_09':   {'ItemA':           [("Bow","ToyTrain")],                 # 'SuperSoda',
-             'ChestA':          [("Bow","ToyTrain")],                 # 'Dictionary',
-             'ItemB':           [("Bow","ToyTrain")],                 # 'Coin',
-             'ItemC':           [("Bow","ToyTrain")],                 # 'Coin',
-             'ItemD':           [("Bow","ToyTrain")],                 # 'Coin',
-             'ItemE':           [("Bow","ToyTrain")],                 # 'Coin',
-             'ItemF':           [("Bow","ToyTrain")],                 # 'Coin',
-             'ItemG':           [("Bow","ToyTrain")],                 # 'Coin',
-             'ItemH':           [("Bow","ToyTrain")],                 # 'StarPiece',
-             'ItemI':           [("Bow","ToyTrain")],                 # 'Coin',
-             'ItemJ':           [("Bow","ToyTrain")],                 # 'Coin',
-             'ItemK':           [("Bow","ToyTrain")],                 # 'Coin',
-             'ItemL':           [("Bow","ToyTrain")],                 # 'Coin',
-             'ItemM':           [("Bow","ToyTrain")],                 # 'Coin',
-             'ItemN':           [("Bow","ToyTrain")],                 # 'Coin',
-             'ItemO':           [("Bow","ToyTrain")],                 # 'MysteryNote'
+'OMO_09':   {'ItemA':           [("p_NYI")],                      # 'SuperSoda',
+             'ChestA':          [("Parakarry","Bow","p_PlacedToyTrain")], # 'Dictionary',
+             'ItemB':           [("Bow","p_PlacedToyTrain")],             # 'Coin',
+             'ItemC':           [("Bow","p_PlacedToyTrain")],             # 'Coin',
+             'ItemD':           [("Bow","p_PlacedToyTrain")],             # 'Coin',
+             'ItemE':           [("Bow","p_PlacedToyTrain")],             # 'Coin',
+             'ItemF':           [("Bow","p_PlacedToyTrain")],             # 'Coin',
+             'ItemG':           [("Bow","p_PlacedToyTrain")],             # 'Coin',
+             'ItemH':           [("Bow","p_PlacedToyTrain")],             # 'StarPiece',
+             'ItemI':           [("Bow","p_PlacedToyTrain")],             # 'Coin',
+             'ItemJ':           [("Bow","p_PlacedToyTrain")],             # 'Coin',
+             'ItemK':           [("Bow","p_PlacedToyTrain")],             # 'Coin',
+             'ItemL':           [("Bow","p_PlacedToyTrain")],             # 'Coin',
+             'ItemM':           [("Bow","p_PlacedToyTrain")],             # 'Coin',
+             'ItemN':           [("Bow","p_PlacedToyTrain")],             # 'Coin',
+             'ItemO':           [("Bow","p_PlacedToyTrain")],             # 'MysteryNote'
              },
+             # * SuperSoda only exists if Peach answers a certain way during previous intermission
 # RED Station
-'OMO_10':    {'HiddenPanel':    [("Bow","ToyTrain")],                 # 'StarPiece',
-              'HiddenYBlockA':  [("Bow","ToyTrain")],                 # 'SuperShroom'
+# * The logic from here on requires Hammer, since you have to do the box puzzle at GRN Station
+# TODO maybe exchange Hammer requirement for p_Ch4_BoxPuzzle?
+'OMO_10':    {'HiddenPanel':    [("Hammer","SuperBoots","Bow","p_PlacedToyTrain"),
+                                 ("UltraHammer","Bow","p_PlacedToyTrain")], # 'StarPiece',
+              'HiddenYBlockA':  [("Hammer","Bow","p_PlacedToyTrain")],      # 'SuperShroom'
               },
 # RED Moving Platforms
-'OMO_11':   {'HiddenYBlockA':   [("Bow","ToyTrain")],                 # 'VoltShroom',
-             'HiddenYBlockB':   [("Bow","ToyTrain")],                 # 'SnowmanDoll',
-             'YBlockA':         [("Bow","ToyTrain")],                 # 'Coin',
-             'HiddenRBlockA':   [("Bow","ToyTrain")],                 # 'DeepFocus2',
-             'YBlockB':         [("Bow","ToyTrain")],                 # 'Coin'
+'OMO_11':   {'HiddenYBlockA':   [("Hammer","Bow","p_PlacedToyTrain")],                 # 'VoltShroom',
+             'HiddenYBlockB':   [("Hammer","Bow","p_PlacedToyTrain")],                 # 'SnowmanDoll',
+             'YBlockA':         [("Hammer","Bow","p_PlacedToyTrain")],                 # 'Coin',
+             'HiddenRBlockA':   [("Hammer","Bow","p_PlacedToyTrain")],                 # 'DeepFocus2',
+             'YBlockB':         [("Hammer","Bow","p_PlacedToyTrain")],                 # 'Coin'
              },
 # RED Boss Barricade
-'OMO_02':    {'YBlockA':        [("Bow","ToyTrain")],                 # 'SleepySheep',
-              'HiddenYBlockA':  [("Bow","ToyTrain")],                 # 'Coin',
-              'ItemA':          [("Bow","ToyTrain")],                 # 'ShootingStar'
+'OMO_02':    {'YBlockA':        [("Hamemr","Bow","p_PlacedToyTrain")],                 # 'SleepySheep',
+              'HiddenYBlockA':  [("Hamemr","Bow","p_PlacedToyTrain")],                 # 'Coin',
+              'ItemA':          [("Hammer","Kooper","Bow","p_PlacedToyTrain"),
+                                 ("Hammer","UltraBoots","Bow","p_PlacedToyTrain")],    # 'ShootingStar'
               },
 }
