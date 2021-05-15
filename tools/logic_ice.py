@@ -59,6 +59,8 @@ def place_items(app, isShuffle, algorithm):
         # TODO
 
     elif algorithm == "forward_fill":
+        # Place items in accessible locations first, then expand accessible locations by unlocked locations
+
         # timer_start = time.time()
         # timers['timer_start'] = timer_start
         def is_location_reachable(location, mario_inventory, requirements):
@@ -82,7 +84,7 @@ def place_items(app, isShuffle, algorithm):
                 raise
             return is_reachable
 
-        # Generate item pool
+        # Generate item pool, requirements and starting inventory
         item_pool = []
         
         requirements = {}
@@ -94,14 +96,13 @@ def place_items(app, isShuffle, algorithm):
         requirements |= (requirements_kpa | requirements_osr | requirements_kkj)
         #print(len(requirements))
         
-        # Place items in accessible locations first, then expand accessible locations by unlocked locations
-
         mario_inventory = ['Hammer','SuperHammer','UltraHammer','SuperBoots','UltraBoots'
                            'Goombario', 'Kooper', 'Bombette', 'Parakarry', 'Bow', 'Watt', 'Sushie', 'Lakilester',
                            'p_OpenedToybox', 'p_PlacedToyTrain', 'p_PlacedRavenStatue',
                            'p_TalkedToRaphael', 'p_OpenedFlowerFields', 'p_PlantedBeanstalk']
         # timer_before_db = time.time()
         # timers['timer_before_db'] = timer_before_db
+
         # Fetch all locations and their items from the database
         all_locations = []
         for itemlocation in ItemLocation.select():
@@ -109,7 +110,8 @@ def place_items(app, isShuffle, algorithm):
             item_pool.append(itemlocation.vanilla_item)
         # timer_after_db = time.time()
         # timers['timer_after_db'] = timer_after_db
-        # 
+
+        # Order items into progression or non-progression groups
         progression_items = []
         other_items = []
         for item in item_pool:
@@ -122,30 +124,30 @@ def place_items(app, isShuffle, algorithm):
         
         # Place all progression items first to guarantee the seed to be beatable
         while len(progression_items) > 0:
-            # find all reachable locations that are not in filled-locations
+            # Find all reachable locations that are not in filled-locations
             reachable_locations = []
             for location in all_locations:
                 if location not in filled_locations:
                     if is_location_reachable(location, mario_inventory, requirements):
                         reachable_locations.append(location)
-            # pop random reachable location
+            # Pop random reachable location
             random_location = reachable_locations.pop(random.randint(0,len(reachable_locations) - 1))
-            # pop random item from progression-itempool
+            # Pop random item from progression-itempool
             random_item = progression_items.pop(random.randint(0,len(progression_items) - 1))
-            # place item into location and mark location as filled
+            # Place item into location and mark location as filled
             random_location.current_item = random_item
             filled_locations.append(random_location)
-            # place item into mario_inventory
+            # Place item into mario_inventory
             mario_inventory.append(random_item.item_name)
-            # workaround for specific requirements not being actual items
-            #add_hammer_boots_flags()
+            # Workaround for specific requirements not being actual items
+            #add_hammer_boots_flags() #TODO
         
         # Place all remaining items
         for location in all_locations:
             if location not in filled_locations:
-                # pop random item from non progression items
+                # Pop random item from non progression items
                 random_item = other_items.pop(random.randint(0,len(other_items) - 1))
-                # place item into location
+                # Place item into location
                 location.current_item = random_item
                 filled_locations.append(location)
         # timer_after_random = time.time()
