@@ -57,8 +57,6 @@ class Item(Model):
             
 # Run this to create all items in Item table
 def create_items():
-    #from db.progression_items import progression_items
-
     db.drop_tables([Item])
     db.create_tables([Item])
 
