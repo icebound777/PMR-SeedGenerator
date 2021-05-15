@@ -1,0 +1,96 @@
+# each row is an actor attribute
+# in this case each attribute is either level, hp, or damagevalues of enemies
+DESC TABLE ActorAttribute (
+  area_id    INT        #\
+  map_id     INT        # )- quasi FK to MapArea
+  index      INT        #/
+  actor_name VARCHAR    # human readable name
+  attribute  VARCHAR    # hp, level, damage etc.
+  value      INT        # value of attribute
+)
+
+# each row is map, eg. kmr.kmr_02
+DESC TABLE MapArea (
+  area_id      INT              # eg 0 (=kmr)
+  map_id       INT              # eg 1 (=kmr_02)
+  name         VARCHAR NULLABLE # eg kmr_02
+  verbose_name VARCHAR NULLABLE # descriptive location name
+)
+
+DESC TABLE Entrance (
+  area_id       INT                    #\
+  map_id        INT                    # )- FK to MapArea
+  index         INT                    #/
+  map_name      VARCHAR                # eg kmr_02
+  map_area      FK -> MapArea NULLABLE # FK
+  entrance_type VARCHAR NULLABLE       # eg ground, door, train, pipe
+  destination   FK -> self NULLABLE    # FK
+)
+
+# each row describes the price of an item at a certain point
+# on the shop's shelf on a certain shop
+DESC TABLE ItemPrice (
+  area_id  INT                    #\
+  map_id   INT                    # )- FK to MapArea
+  index    INT                    #/
+  map_area FK -> MapArea NULLABLE # FK
+  key_name VARCHAR                # human readable name of place in shop (eg ShopPriceC)
+  value    INT                    # cost in mushroom kingdom coins
+)
+
+# each row describes general info about an item
+DESC TABLE Item (
+  item_type          VARCHAR NULLABLE          # keyitem, badge etc
+  value              INT                       # item byte value as int (eg 348 = 0x15c (StarPiece))
+  item_name          VARCHAR                   # actual item name w/o spaces or apostrophe
+)
+CONSTRAINT (item_value UNIQUE)
+CONSTRAINT (value UNIQUE)
+
+# each row describes an itemlocation and references an item put here
+DESC TABLE ItemLocation (
+  area_id            INT                       #\
+  map_id             INT                       # )- FK to MapArea
+  index              INT                       #/
+  map_area           FK -> MapArea NULLABLE    # FK
+  key_name           VARCHAR                   # human readable name of item location (eg ItemA)
+  vanilla_item       FK -> Item                # FK
+  current_item       FK -> Item                # FK
+  item_price         FK -> ItemPrice NULLABLE  # FK
+)
+
+
+DESC TABLE Node (
+  partner          VARCHAR NULLABLE  # required partner to access node ?!
+  item_required    VARCHAR NULLABLE  # required item to access node ?!
+  hammer           INT NULLABLE      # required hammer to access node
+  boots            INT NULLABLE      # required boots to access node
+  sequence         INT NULLABLE      # "identify order of key items obtained necessary for progression"?
+  required         BOOL NULLABLE     # node is required to progress further
+  remove           BOOL NULLABLE     # required object is removed ?!
+  item_received    VARCHAR NULLABLE  # item received from this node
+  partner_received VARCHAR NULLABLE  # partner received from this node
+  comment          VARCHAR           # item location description (eg Brick Block Puzzle)
+  map_name         VARCHAR           # eg kmr_02 (only used for info output)
+  index            INT NULLABLE      # see DatabaseKeys.patch (just read from default_db ...)
+
+  level            INT               # rando sphere ?!
+)
+
+# each table is an option for the randomizer
+DESC TABLE Option (
+  area_id INT      #\
+  map_id  INT      # )- quasi FK to MapArea
+  index   INT      #/
+  name    VARCHAR  #
+  value   INT      #
+)
+
+# each row is a question asked by chuck quizmo
+DESC TABLE Quiz (
+  area_id INT      #\
+  map_id  INT      # )- quasi FK to MapArea
+  index   INT      #/
+  name    VARCHAR  #
+  value   INT      #
+)
