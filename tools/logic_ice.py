@@ -28,9 +28,12 @@ from progression.chapter_8.kpa_objects import requirements as requirements_kpa
 from progression.chapter_8.osr_objects import requirements as requirements_osr
 from progression.chapter_8.kkj_objects import requirements as requirements_kkj
 
+# import time
+
 
 def place_items(app, isShuffle, algorithm):
     """Places items into item locations according to the given algorithm."""
+    # timers = {}
 
     # Place items into item location
     if algorithm == "vanilla":
@@ -56,15 +59,29 @@ def place_items(app, isShuffle, algorithm):
         # TODO
 
     elif algorithm == "forward_fill":
+        # timer_start = time.time()
+        # timers['timer_start'] = timer_start
         def is_location_reachable(location, mario_inventory, requirements):
             is_reachable = True
 
-            for requirement_group in requirements.get(location.map_area).get(location.key_name):
-                is_reachable = len([req for req in requirement_group if req not in mario_inventory]) == 0
-                if is_reachable:
-                    break
+            try:
+                for requirement_group in requirements.get(location.map_area.name).get(location.key_name):
+                    tmp_mario_inventory = mario_inventory[:]
+                    list_requirement_group = list(requirement_group)
+
+                    for requirement in list_requirement_group:
+                        if requirement in tmp_mario_inventory:
+                            list_requirement_group.remove(requirement)
+                            tmp_mario_inventory.remove(requirement)
+
+                    is_reachable = len(list_requirement_group) == 0
+                    if is_reachable:
+                        break
+            except AttributeError:
+                print("AttributeError: " + location.map_area.name + " " + location.key_name)
+                raise
             return is_reachable
-            
+
         # Generate item pool
         item_pool = []
         
@@ -75,20 +92,23 @@ def place_items(app, isShuffle, algorithm):
         requirements |= (requirements_arn | requirements_dgb | requirements_omo | requirements_jan)
         requirements |= (requirements_kzn | requirements_flo | requirements_sam | requirements_pra)
         requirements |= (requirements_kpa | requirements_osr | requirements_kkj)
+        #print(len(requirements))
         
         # Place items in accessible locations first, then expand accessible locations by unlocked locations
 
-        mario_inventory = ['Hammer',
-                           'Goombario',
+        mario_inventory = ['Hammer','SuperHammer','UltraHammer','SuperBoots','UltraBoots'
+                           'Goombario', 'Kooper', 'Bombette', 'Parakarry', 'Bow', 'Watt', 'Sushie', 'Lakilester',
                            'p_OpenedToybox', 'p_PlacedToyTrain', 'p_PlacedRavenStatue',
                            'p_TalkedToRaphael', 'p_OpenedFlowerFields', 'p_PlantedBeanstalk']
-        
+        # timer_before_db = time.time()
+        # timers['timer_before_db'] = timer_before_db
         # Fetch all locations and their items from the database
         all_locations = []
         for itemlocation in ItemLocation.select():
             all_locations.append(itemlocation)
             item_pool.append(itemlocation.vanilla_item)
-
+        # timer_after_db = time.time()
+        # timers['timer_after_db'] = timer_after_db
         # 
         progression_items = []
         other_items = []
@@ -104,9 +124,10 @@ def place_items(app, isShuffle, algorithm):
         while len(progression_items) > 0:
             # find all reachable locations that are not in filled-locations
             reachable_locations = []
-            for location in [location for location in all_locations not in filled_locations]:
-                if is_location_reachable(location, mario_inventory, requirements):
-                    reachable_locations.append(location)
+            for location in all_locations:
+                if location not in filled_locations:
+                    if is_location_reachable(location, mario_inventory, requirements):
+                        reachable_locations.append(location)
             # pop random reachable location
             random_location = reachable_locations.pop(random.randint(0,len(reachable_locations) - 1))
             # pop random item from progression-itempool
@@ -117,16 +138,18 @@ def place_items(app, isShuffle, algorithm):
             # place item into mario_inventory
             mario_inventory.append(random_item.item_name)
             # workaround for specific requirements not being actual items
-            add_hammer_boots_flags()
+            #add_hammer_boots_flags()
         
         # Place all remaining items
-        for location in [location for location in all_locations not in filled_locations]:
-            # pop random item from non progression items
-            random_item = other_items.pop(random.randint(0,len(other_items) - 1))
-            # place item into location
-            location.current_item = random_item
-            filled_locations.append(location)
-
+        for location in all_locations:
+            if location not in filled_locations:
+                # pop random item from non progression items
+                random_item = other_items.pop(random.randint(0,len(other_items) - 1))
+                # place item into location
+                location.current_item = random_item
+                filled_locations.append(location)
+        # timer_after_random = time.time()
+        # timers['timer_after_random'] = timer_after_random
         # TODO make sure to recategorize mundane items that can be progression items before placing
 
         # Write new items to db
@@ -140,7 +163,8 @@ def place_items(app, isShuffle, algorithm):
             # Place item and save row
             itemlocation.current_item = current_location.current_item
             itemlocation.save()
-
+        # timer_after_random_db = time.time()
+        # timers['timer_after_random_db'] = timer_after_random_db
     elif algorithm == "assumed_fill":
         # Start with all items in inventory, remove an item and try to place it at a reachable location
         None # NYI # TODO
@@ -165,3 +189,8 @@ def place_items(app, isShuffle, algorithm):
             print(f"{itemlocation}")
             file.write(f"[{itemlocation.map_area.name}] ({itemlocation.map_area.verbose_name}): {itemlocation.key_name} - {itemlocation.vanilla_item.item_name} -> {itemlocation.current_item.item_name}\n")
             app.processEvents()
+        
+        # print("timer_before_db "       + format(timers.get('timer_start') - timers.get('timer_before_db')))
+        # print("timer_after_db "        + format(timers.get('timer_start') - timers.get('timer_after_db')))
+        # print("timer_after_random "    + format(timers.get('timer_start') - timers.get('timer_after_random')))
+        # print("timer_after_random_db " + format(timers.get('timer_start') - timers.get('timer_after_random_db')))

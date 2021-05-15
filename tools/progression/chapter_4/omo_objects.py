@@ -122,8 +122,8 @@ requirements = {
              'YBlockB':         [("Hammer","Bow","p_PlacedToyTrain")],                 # 'Coin'
              },
 # RED Boss Barricade
-'OMO_02':    {'YBlockA':        [("Hamemr","Bow","p_PlacedToyTrain")],                 # 'SleepySheep',
-              'HiddenYBlockA':  [("Hamemr","Bow","p_PlacedToyTrain")],                 # 'Coin',
+'OMO_02':    {'YBlockA':        [("Hammer","Bow","p_PlacedToyTrain")],                 # 'SleepySheep',
+              'HiddenYBlockA':  [("Hammer","Bow","p_PlacedToyTrain")],                 # 'Coin',
               'ItemA':          [("Hammer","Kooper","Bow","p_PlacedToyTrain"),
                                  ("Hammer","UltraBoots","Bow","p_PlacedToyTrain")],    # 'ShootingStar'
               },

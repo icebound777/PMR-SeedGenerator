@@ -104,8 +104,8 @@ class Window(QMainWindow):
 		layout.addWidget(self.log)
 
 		# Pipe stdout into this thingy
-		self.stream = Stream(newText=self.on_update_text)
-		sys.stdout = self.stream
+		#self.stream = Stream(newText=self.on_update_text)
+		#sys.stdout = self.stream
 
 		self.show()
 		self.configure()
@@ -194,7 +194,7 @@ class Window(QMainWindow):
 		# items = [item for item in Item.select()]
 		# shuffle_items(items)
 		#place_items(self.app)
-		place_items(self.app, isShuffle=True, algorithm="random_fill")
+		place_items(self.app, isShuffle=True, algorithm="forward_fill")
 
 		# Make everything inexpensive
 		item_prices = [item_price for item_price in ItemPrice.select()]
