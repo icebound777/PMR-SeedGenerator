@@ -32,15 +32,17 @@ from progression.chapter_8.kkj_objects import requirements as requirements_kkj
 def place_items(app, isShuffle, algorithm):
     """Places items into item locations according to the given algorithm."""
 
-    # Generate item pool
-    item_pool = []
-
     # Place items into item location
     if algorithm == "vanilla":
         # Place items in their vanilla locations
-        None # NYI # TODO
+        for itemlocation in ItemLocation.select():
+            itemlocation.current_item = itemlocation.vanilla_item
+            itemlocation.save()
 
     elif algorithm == "random_fill":
+        # Generate item pool
+        item_pool = []
+
         # Place items 100% randomly without any logic attached. Check for solvability afterwards, retry if necessary
         for itemlocation in ItemLocation.select():
             item_pool.append(itemlocation.vanilla_item)
@@ -62,7 +64,10 @@ def place_items(app, isShuffle, algorithm):
                 if is_reachable:
                     break
             return is_reachable
-
+            
+        # Generate item pool
+        item_pool = []
+        
         requirements = {}
         requirements |= (requirements_hos | requirements_mac | requirements_tik | requirements_kmr)
         requirements |= (requirements_nok | requirements_trd | requirements_iwa | requirements_sbk)
@@ -75,7 +80,8 @@ def place_items(app, isShuffle, algorithm):
 
         mario_inventory = ['Hammer',
                            'Goombario',
-                           'p_OpenedToybox', 'ToyTrain']
+                           'p_OpenedToybox', 'p_PlacedToyTrain', 'p_PlacedRavenStatue',
+                           'p_TalkedToRaphael', 'p_OpenedFlowerFields', 'p_PlantedBeanstalk']
         
         # Fetch all locations and their items from the database
         all_locations = []
