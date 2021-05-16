@@ -1,0 +1,146 @@
+{
+    "MAC_00": {
+        "0": {
+            "dest_map": "KMR_10",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Toad Town Entrance"
+        },
+        "1": {
+            "dest_map": "MAC_01",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "3": {
+            "dest_map": "TIK_19",
+            "dest_entry": 0,
+            "type": "pipe",
+            "verbose_name": "Pipe to Sewers (Super Block)"
+        },
+        "4": {
+            "dest_map": "KMR_20",
+            "dest_entry": 4,
+            "type": "pipe",
+            "verbose_name": "Pipe to Mario's House"
+        }
+    },
+    "MAC_01": {
+        "0": {
+            "dest_map": "MAC_00",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "NOK_11",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "OSR_01",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit North (Gate)"
+        },
+        "3": {
+            "dest_map": "MAC_02",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "MAC_02": {
+        "0": {
+            "dest_map": "MAC_04",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "MIM_10",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "MAC_01",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "MAC_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        },
+        "4": {
+            "dest_map": "TIK_06",
+            "dest_entry": 3,
+            "type": "pipe",
+            "verbose_name": "Pipe to Sewers (Rip Cheato)"
+        },
+        "5": {
+            "dest_map": "TIK_15",
+            "dest_entry": 1,
+            "type": "pipe",
+            "verbose_name": "Pipe to Sewers (Blue House)"
+        }
+    },
+    "MAC_03": {
+        "0": {
+            "dest_map": "MAC_02",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "1": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Train Exit"
+        },
+        "2": {
+            "dest_map": "MGM_00",
+            "dest_entry": 0,
+            "type": "pipe",
+            "verbose_name": "Pipe to Minigame Room"
+        }
+    },
+    "MAC_04": {
+        "0": {
+            "dest_map": "MAC_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "1": {
+            "dest_map": "MAC_05",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "2": {
+            "dest_map": "OMO_03",
+            "dest_entry": 4,
+            "type": "spring",
+            "verbose_name": "Spring to Shy Guy's Toybox"
+        }
+    },
+    "MAC_05": {
+        "0": {
+            "dest_map": "MAC_04",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "1": {
+            "dest_map": "JAN_10",
+            "dest_entry": 0,
+            "type": "whale",
+            "verbose_name": "Whale Voyage"
+        }
+    }
+}

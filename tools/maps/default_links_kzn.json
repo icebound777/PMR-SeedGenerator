@@ -1,0 +1,244 @@
+{
+    "KZN_01": {
+        "0": {
+            "dest_map": "JAN_22",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit West (Volcano Entrance)"
+        },
+        "1": {
+            "dest_map": "KZN_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "KZN_02": {
+        "0": {
+            "dest_map": "KZN_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "KZN_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "KZN_03": {
+        "0": {
+            "dest_map": "KZN_02",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West Upper"
+        },
+        "1": {
+            "dest_map": "KZN_04",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East Upper"
+        },
+        "2": {
+            "dest_map": "KZN_09",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East Lower 1 (Ultra Block)"
+        },
+        "3": {
+            "dest_map": "KZN_05",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West Lower"
+        },
+        "4": {
+            "dest_map": "KZN_09",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit East Lower 2"
+        }
+    },
+    "KZN_04": {
+        "0": {
+            "dest_map": "KZN_03",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        }
+    },
+    "KZN_05": {
+        "0": {
+            "dest_map": "KZN_06",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "KZN_03",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "KZN_06": {
+        "0": {
+            "dest_map": "KZN_05",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East Upper"
+        },
+        "1": {
+            "dest_map": "KZN_07",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "2": {
+            "dest_map": "KZN_08",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East Lower"
+        }
+    },
+    "KZN_07": {
+        "0": {
+            "dest_map": "KZN_06",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "KZN_08": {
+        "0": {
+            "dest_map": "KZN_06",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        }
+    },
+    "KZN_09": {
+        "0": {
+            "dest_map": "KZN_03",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit West Upper"
+        },
+        "1": {
+            "dest_map": "KZN_10",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "KZN_03",
+            "dest_entry": 4,
+            "type": "walk",
+            "verbose_name": "Exit West Lower"
+        }
+    },
+    "KZN_10": {
+        "0": {
+            "dest_map": "KZN_09",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "KZN_11",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "KZN_11": {
+        "0": {
+            "dest_map": "KZN_10",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "KZN_17",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "KZN_17": {
+        "0": {
+            "dest_map": "KZN_11",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "KZN_18",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "KZN_18": {
+        "0": {
+            "dest_map": "KZN_17",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "KZN_19",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East Upper"
+        },
+        "2": {
+            "dest_map": "KZN_19",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit East Lower"
+        }
+    },
+    "KZN_19": {
+        "0": {
+            "dest_map": "KZN_18",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West Upper"
+        },
+        "1": {
+            "dest_map": "KZN_18",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit West Lower"
+        },
+        "2": {
+            "dest_map": "KZN_20",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "KZN_20": {
+        "0": {
+            "dest_map": "KZN_19",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "KZN_22",
+            "dest_entry": 0,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        }
+    },
+    "KZN_22": {
+        "0": {
+            "dest_map": "KZN_20",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Bombable Wall (non-bomb side)"
+        }
+    }
+}
