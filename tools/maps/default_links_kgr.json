@@ -1,0 +1,24 @@
+{
+    "KGR_01": {
+        "0": {
+            "dest_map": "MAC_05",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Leave Whale"
+        },
+        "1": {
+            "dest_map": "KGR_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "KGR_02": {
+        "0": {
+            "dest_map": "KGR_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    }
+}
