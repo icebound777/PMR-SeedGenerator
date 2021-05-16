@@ -16,8 +16,8 @@ from PyQt5 import QtCore, QtGui
 from enums import Enums, create_enums
 from table import Table
 from utility import sr_dump, sr_copy, sr_compile
-#from logic import shuffle_entrances, shuffle_items, place_items
-from logic_ice import place_items
+from logic import place_items
+#from logic_ice import place_items
 from parse import get_default_table, get_table_info, create_table, gather_keys, gather_values
 
 from db.map_area import MapArea
@@ -34,13 +34,13 @@ from db.actor_attribute import ActorAttribute, create_actor_attributes
 create_enums()
 
 # Uncomment to build database from scratch
-"""
+
 gather_keys()
 gather_values()
 create_options()
 create_items()
 create_nodes()
-create_item_prices()
+#create_item_prices()
 create_actor_attributes()
 create_quizzes()
 create_entrances()
@@ -48,7 +48,7 @@ connect_entrances()
 shutil.copy("db.sqlite", "default_db.sqlite")
 quit()
 # END
-"""
+
 
 class Stream(QtCore.QObject):
 	newText = QtCore.pyqtSignal(str)

@@ -3,8 +3,7 @@ from parse import get_default_table, create_table, get_table_info
 from db.option import Option
 from db.entrance import Entrance
 from db.item import Item
-from db.itemlocation import ItemLocation
-from db.item_price import ItemPrice
+from db.node import Node
 from db.actor_attribute import ActorAttribute
 from db.quiz import Quiz
 
