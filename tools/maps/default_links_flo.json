@@ -1,0 +1,192 @@
+{
+    "FLO_00": {
+        "1": {
+            "dest_map": "FLO_14",
+            "dest_entry": 0
+        },
+        "2": {
+            "dest_map": "FLO_23",
+            "dest_entry": 0
+        },
+        "3": {
+            "dest_map": "FLO_25",
+            "dest_entry": 0
+        },
+        "4": {
+            "dest_map": "FLO_16",
+            "dest_entry": 0
+        },
+        "5": {
+            "dest_map": "FLO_09",
+            "dest_entry": 0
+        },
+        "6": {
+            "dest_map": "FLO_08",
+            "dest_entry": 0
+        }
+    },
+    "FLO_03": {
+        "0": {
+            "dest_map": "FLO_09",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "FLO_22",
+            "dest_entry": 0
+        }
+    },
+    "FLO_07": {
+        "0": {
+            "dest_map": "FLO_25",
+            "dest_entry": 1
+        }
+    },
+    "FLO_08": {
+        "0": {
+            "dest_map": "FLO_00",
+            "dest_entry": 6
+        },
+        "1": {
+            "dest_map": "FLO_24",
+            "dest_entry": 0
+        }
+    },
+    "FLO_09": {
+        "0": {
+            "dest_map": "FLO_00",
+            "dest_entry": 5
+        },
+        "1": {
+            "dest_map": "FLO_03",
+            "dest_entry": 0
+        }
+    },
+    "FLO_10": {
+        "0": {
+            "dest_map": "FLO_24",
+            "dest_entry": 1
+        }
+    },
+    "FLO_11": {
+        "1": {
+            "dest_map": "FLO_12",
+            "dest_entry": 0
+        },
+        "0": {
+            "dest_map": "FLO_23",
+            "dest_entry": 1
+        }
+    },
+    "FLO_12": {
+        "0": {
+            "dest_map": "FLO_11",
+            "dest_entry": 1
+        }
+    },
+    "FLO_13": {
+        "1": {
+            "dest_map": "FLO_15",
+            "dest_entry": 0
+        },
+        "0": {
+            "dest_map": "FLO_14",
+            "dest_entry": 1
+        }
+    },
+    "FLO_14": {
+        "1": {
+            "dest_map": "FLO_13",
+            "dest_entry": 0
+        },
+        "0": {
+            "dest_map": "FLO_00",
+            "dest_entry": 1
+        }
+    },
+    "FLO_15": {
+        "0": {
+            "dest_map": "FLO_13",
+            "dest_entry": 1
+        }
+    },
+    "FLO_16": {
+        "0": {
+            "dest_map": "FLO_00",
+            "dest_entry": 4
+        },
+        "1": {
+            "dest_map": "FLO_17",
+            "dest_entry": 0
+        }
+    },
+    "FLO_17": {
+        "0": {
+            "dest_map": "FLO_16",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "FLO_18",
+            "dest_entry": 0
+        }
+    },
+    "FLO_18": {
+        "0": {
+            "dest_map": "FLO_17",
+            "dest_entry": 1
+        }
+    },
+    "FLO_19": {
+        "1": {
+            "dest_map": "FLO_21",
+            "dest_entry": 0
+        }
+    },
+    "FLO_21": {
+        "0": {
+            "dest_map": "FLO_19",
+            "dest_entry": 1
+        }
+    },
+    "FLO_22": {
+        "0": {
+            "dest_map": "FLO_03",
+            "dest_entry": 1
+        }
+    },
+    "FLO_23": {
+        "1": {
+            "dest_map": "FLO_11",
+            "dest_entry": 0
+        },
+        "0": {
+            "dest_map": "FLO_00",
+            "dest_entry": 2
+        }
+    },
+    "FLO_24": {
+        "0": {
+            "dest_map": "FLO_08",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "FLO_10",
+            "dest_entry": 0
+        }
+    },
+    "FLO_25": {
+        "1": {
+            "dest_map": "FLO_07",
+            "dest_entry": 0
+        },
+        "0": {
+            "dest_map": "FLO_00",
+            "dest_entry": 3
+        }
+    },
+    "FLO_BT01": {},
+    "FLO_BT02": {},
+    "FLO_BT03": {},
+    "FLO_BT04": {},
+    "FLO_BT05": {},
+    "FLO_BT06": {}
+}

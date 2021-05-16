@@ -1,0 +1,60 @@
+{
+    "HOS_00": {
+        "1": {
+            "dest_map": "HOS_01",
+            "dest_entry": 0
+        },
+        "2": {
+            "dest_map": "HOS_06",
+            "dest_entry": 0
+        }
+    },
+    "HOS_01": {
+        "0": {
+            "dest_map": "HOS_00",
+            "dest_entry": 1
+        }
+    },
+    "HOS_02": {
+        "1": {
+            "dest_map": "HOS_03",
+            "dest_entry": 0
+        }
+    },
+    "HOS_03": {
+        "0": {
+            "dest_map": "HOS_02",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "HOS_04",
+            "dest_entry": 0
+        }
+    },
+    "HOS_04": {
+        "0": {
+            "dest_map": "HOS_03",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "HOS_05",
+            "dest_entry": 0
+        }
+    },
+    "HOS_05": {
+        "0": {
+            "dest_map": "HOS_04",
+            "dest_entry": 1
+        }
+    },
+    "HOS_06": {
+        "0": {
+            "dest_map": "HOS_00",
+            "dest_entry": 2
+        }
+    },
+    "HOS_10": {},
+    "HOS_20": {},
+    "HOS_BT01": {},
+    "HOS_BT02": {}
+}

@@ -1,0 +1,14 @@
+{
+    "DRO_01": {
+        "1": {
+            "dest_map": "DRO_02",
+            "dest_entry": 0
+        }
+    },
+    "DRO_02": {
+        "0": {
+            "dest_map": "DRO_01",
+            "dest_entry": 1
+        }
+    }
+}

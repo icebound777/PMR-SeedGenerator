@@ -1,0 +1,65 @@
+{
+    "ARN_02": {
+        "0": {
+            "dest_map": "ARN_05",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "ARN_04",
+            "dest_entry": 0
+        }
+    },
+    "ARN_03": {
+        "0": {
+            "dest_map": "ARN_07",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "ARN_05",
+            "dest_entry": 0
+        }
+    },
+    "ARN_04": {
+        "0": {
+            "dest_map": "ARN_02",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "DGB_00",
+            "dest_entry": 0
+        }
+    },
+    "ARN_05": {
+        "0": {
+            "dest_map": "ARN_03",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "ARN_02",
+            "dest_entry": 0
+        }
+    },
+    "ARN_07": {
+        "1": {
+            "dest_map": "ARN_03",
+            "dest_entry": 0
+        },
+        "2": {
+            "dest_map": "MIM_12",
+            "dest_entry": 1
+        }
+    },
+    "ARN_08": {},
+    "ARN_09": {},
+    "ARN_10": {},
+    "ARN_11": {},
+    "ARN_12": {},
+    "ARN_13": {},
+    "ARN_20": {},
+    "ARN_BT01": {},
+    "ARN_BT02": {},
+    "ARN_BT03": {},
+    "ARN_BT04": {},
+    "ARN_BT05": {},
+    "ARN_BT06": {}
+}

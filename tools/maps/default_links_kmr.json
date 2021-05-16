@@ -1,0 +1,118 @@
+{
+    "KMR_00": {
+        "0": {
+            "dest_map": "KMR_02",
+            "dest_entry": 1
+        }
+    },
+    "KMR_02": {
+        "2": {
+            "dest_map": "KMR_05",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "KMR_00",
+            "dest_entry": 0
+        },
+        "0": {
+            "dest_map": "KMR_09",
+            "dest_entry": 0
+        }
+    },
+    "KMR_03": {
+        "0": {
+            "dest_map": "KMR_04",
+            "dest_entry": 0
+        },
+        "1": {
+            "dest_map": "KMR_05",
+            "dest_entry": 0
+        }
+    },
+    "KMR_04": {
+        "0": {
+            "dest_map": "KMR_03",
+            "dest_entry": 0
+        }
+    },
+    "KMR_05": {
+        "0": {
+            "dest_map": "KMR_03",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "KMR_02",
+            "dest_entry": 2
+        }
+    },
+    "KMR_06": {
+        "0": {
+            "dest_map": "KMR_09",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "KMR_07",
+            "dest_entry": 0
+        }
+    },
+    "KMR_07": {
+        "0": {
+            "dest_map": "KMR_06",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "KMR_12",
+            "dest_entry": 0
+        }
+    },
+    "KMR_09": {
+        "0": {
+            "dest_map": "KMR_02",
+            "dest_entry": 0
+        },
+        "1": {
+            "dest_map": "KMR_06",
+            "dest_entry": 0
+        }
+    },
+    "KMR_10": {
+        "0": {
+            "dest_map": "KMR_11",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "MAC_00",
+            "dest_entry": 0
+        },
+        "2": {
+            "dest_map": "MAC_00",
+            "dest_entry": 2
+        }
+    },
+    "KMR_11": {
+        "0": {
+            "dest_map": "KMR_12",
+            "dest_entry": 1
+        }
+    },
+    "KMR_12": {
+        "0": {
+            "dest_map": "KMR_07",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "KMR_11",
+            "dest_entry": 0
+        }
+    },
+    "KMR_20": {},
+    "KMR_21": {},
+    "KMR_22": {},
+    "KMR_23": {},
+    "KMR_24": {},
+    "KMR_30": {},
+    "KMR_BT03": {},
+    "KMR_BT04": {},
+    "KMR_BT05": {},
+    "KMR_BT06": {}
+}

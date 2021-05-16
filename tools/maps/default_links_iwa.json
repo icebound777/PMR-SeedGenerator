@@ -1,0 +1,69 @@
+{
+    "IWA_00": {
+        "0": {
+            "dest_map": "IWA_10",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "IWA_01",
+            "dest_entry": 0
+        }
+    },
+    "IWA_01": {
+        "0": {
+            "dest_map": "IWA_00",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "IWA_03",
+            "dest_entry": 0
+        },
+        "2": {
+            "dest_map": "IWA_02",
+            "dest_entry": 0
+        },
+        "3": {
+            "dest_map": "IWA_02",
+            "dest_entry": 1
+        }
+    },
+    "IWA_02": {
+        "0": {
+            "dest_map": "IWA_01",
+            "dest_entry": 2
+        },
+        "1": {
+            "dest_map": "IWA_01",
+            "dest_entry": 3
+        },
+        "2": {
+            "dest_map": "IWA_04",
+            "dest_entry": 0
+        }
+    },
+    "IWA_03": {
+        "0": {
+            "dest_map": "IWA_01",
+            "dest_entry": 1
+        }
+    },
+    "IWA_04": {
+        "0": {
+            "dest_map": "IWA_02",
+            "dest_entry": 2
+        },
+        "1": {
+            "dest_map": "SBK_99",
+            "dest_entry": 0
+        }
+    },
+    "IWA_10": {
+        "1": {
+            "dest_map": "IWA_00",
+            "dest_entry": 0
+        }
+    },
+    "IWA_11": {},
+    "IWA_BT01": {},
+    "IWA_BT02": {}
+}

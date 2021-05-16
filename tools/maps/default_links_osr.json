@@ -1,0 +1,30 @@
+{
+    "OSR_00": {
+        "0": {
+            "dest_map": "MAC_01",
+            "dest_entry": 2
+        }
+    },
+    "OSR_01": {
+        "0": {
+            "dest_map": "MAC_01",
+            "dest_entry": 2
+        },
+        "1": {
+            "dest_map": "HOS_00",
+            "dest_entry": 0
+        }
+    },
+    "OSR_02": {
+        "0": {
+            "dest_map": "KPA_121",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "KKJ_10",
+            "dest_entry": 0
+        }
+    },
+    "OSR_03": {},
+    "OSR_04": {}
+}

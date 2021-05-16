@@ -1,0 +1,154 @@
+{    
+    "OMO_01": {
+        "0": {
+            "dest_map": "OMO_13",
+            "dest_entry": 0
+        }
+    },
+    "OMO_02": {
+        "0": {
+            "dest_map": "OMO_10",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "OMO_14",
+            "dest_entry": 0
+        }
+    },
+    "OMO_03": {
+        "0": {
+            "dest_map": "OMO_13",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "OMO_04",
+            "dest_entry": 0
+        }
+    },
+    "OMO_04": {
+        "0": {
+            "dest_map": "OMO_03",
+            "dest_entry": 1
+        }
+    },
+    "OMO_05": {
+        "0": {
+            "dest_map": "OMO_17",
+            "dest_entry": 0
+        },
+        "1": {
+            "dest_map": "OMO_17",
+            "dest_entry": 1
+        }
+    },
+    "OMO_06": {
+        "0": {
+            "dest_map": "OMO_17",
+            "dest_entry": 2
+        },
+        "1": {
+            "dest_map": "OMO_17",
+            "dest_entry": 3
+        },
+        "4": {
+            "dest_map": "OMO_07",
+            "dest_entry": 0
+        }
+    },
+    "OMO_07": {
+        "0": {
+            "dest_map": "OMO_06",
+            "dest_entry": 4
+        }
+    },
+    "OMO_08": {
+        "0": {
+            "dest_map": "OMO_09",
+            "dest_entry": 0
+        }
+    },
+    "OMO_09": {
+        "0": {
+            "dest_map": "OMO_08",
+            "dest_entry": 0
+        }
+    },
+    "OMO_10": {
+        "0": {
+            "dest_map": "OMO_11",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "OMO_02",
+            "dest_entry": 0
+        }
+    },
+    "OMO_11": {
+        "0": {
+            "dest_map": "OMO_12",
+            "dest_entry": 0
+        },
+        "1": {
+            "dest_map": "OMO_10",
+            "dest_entry": 0
+        }
+    },
+    "OMO_12": {
+        "0": {
+            "dest_map": "OMO_11",
+            "dest_entry": 0
+        }
+    },
+    "OMO_13": {
+        "0": {
+            "dest_map": "OMO_01",
+            "dest_entry": 0
+        },
+        "1": {
+            "dest_map": "OMO_03",
+            "dest_entry": 0
+        }
+    },
+    "OMO_14": {
+        "0": {
+            "dest_map": "OMO_02",
+            "dest_entry": 1
+        },
+        "1": {
+            "dest_map": "OMO_15",
+            "dest_entry": 0
+        }
+    },
+    "OMO_15": {
+        "0": {
+            "dest_map": "OMO_14",
+            "dest_entry": 1
+        }
+    },
+    "OMO_16": {},
+    "OMO_17": {
+        "0": {
+            "dest_map": "OMO_05",
+            "dest_entry": 0
+        },
+        "1": {
+            "dest_map": "OMO_05",
+            "dest_entry": 1
+        },
+        "2": {
+            "dest_map": "OMO_06",
+            "dest_entry": 0
+        },
+        "3": {
+            "dest_map": "OMO_06",
+            "dest_entry": 1
+        }
+    },
+    "OMO_BT01": {},
+    "OMO_BT02": {},
+    "OMO_BT03": {},
+    "OMO_BT04": {},
+    "OMO_BT05": {},
+    "OMO_BT06": {},
+    "OMO_BT07": {}
+}
