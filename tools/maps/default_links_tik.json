@@ -1,0 +1,369 @@
+{
+    "TIK_01": {
+        "0": {
+            "dest_map": "TIK_06",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "1": {
+            "dest_map": "TIK_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "2": {
+            "dest_map": "KMR_02",
+            "dest_entry": 3,
+            "type": "pipe",
+            "verbose_name": "Blue Warp Pipe (Right)"
+        },
+        "3": {
+            "dest_map": "NOK_02",
+            "dest_entry": 2,
+            "type": "pipe",
+            "verbose_name": "Blue Warp Pipe (Center)"
+        },
+        "4": {
+            "dest_map": "DRO_01",
+            "dest_entry": 2,
+            "type": "pipe",
+            "verbose_name": "Blue Warp Pipe (Left)"
+        }
+    },
+    "TIK_02": {
+        "0": {
+            "dest_map": "TIK_18",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "TIK_03": {
+        "0": {
+            "dest_map": "TIK_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "1": {
+            "dest_map": "TIK_04",
+            "dest_entry": 2,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Left"
+        }
+    },
+    "TIK_04": {
+        "0": {
+            "dest_map": "TIK_05",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "TIK_07",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "2": {
+            "dest_map": "TIK_03",
+            "dest_entry": 1,
+            "type": "pipe",
+            "verbose_name": "Green Pipe TopLeft"
+        },
+        "3": {
+            "dest_map": "TIK_12",
+            "dest_entry": 0,
+            "type": "pipe",
+            "verbose_name": "Green Pipe BottomRight"
+        }
+    },
+    "TIK_05": {
+        "0": {
+            "dest_map": "TIK_04",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "TIK_06": {
+        "0": {
+            "dest_map": "TIK_01",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "TIK_18",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "2": {
+            "dest_map": "TIK_08",
+            "dest_entry": 3,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Left"
+        },
+        "3": {
+            "dest_map": "MAC_02",
+            "dest_entry": 4,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Up"
+        },
+        "x": {
+            "dest_map": "TIK_08",
+            "dest_entry": 2,
+            "type": "oneway-hole",
+            "verbose_name": "Hole In Ground"
+        }
+    },
+    "TIK_07": {
+        "0": {
+            "dest_map": "TIK_04",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "TIK_07",
+            "dest_entry": 2,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Left"
+        },
+        "2": {
+            "dest_map": "TIK_07",
+            "dest_entry": 1,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Right"
+        }
+    },
+    "TIK_08": {
+        "0": {
+            "dest_map": "TIK_09",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "TIK_20",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "2": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "oneway-hole",
+            "verbose_name": "Hole In Ceiling"
+        },
+        "3": {
+            "dest_map": "TIK_06",
+            "dest_entry": 2,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Left"
+        },
+        "4": {
+            "dest_map": "JAN_03",
+            "dest_entry": 3,
+            "type": "pipe",
+            "verbose_name": "Blue Warp Pipe"
+        }
+    },
+    "TIK_09": {
+        "0": {
+            "dest_map": "TIK_10",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "TIK_08",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "2": {
+            "dest_map": "MIM_11",
+            "dest_entry": 3,
+            "type": "pipe",
+            "verbose_name": "Blue Warp Pipe"
+        }
+    },
+    "TIK_10": {
+        "0": {
+            "dest_map": "TIK_09",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "TIK_12": {
+        "0":{
+            "dest_map": "TIK_04",
+            "dest_entry": 3,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Left"
+        }
+    },
+    "TIK_14": {
+        "0": {
+            "dest_map": "TIK_21",
+            "dest_entry": 2,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Left"
+        },
+        "1": {
+            "dest_map": "TIK_15",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Bomb Wall Right"
+        }
+    },
+    "TIK_15": {
+        "0": {
+            "dest_map": "TIK_14",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Bomb Wall Left"
+        },
+        "1": {
+            "dest_map": "MAC_02",
+            "dest_entry": 5,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Right"
+        }
+    },
+    "TIK_17": {
+        "0": {
+            "dest_map": "TIK_22",
+            "dest_entry": 1,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Left"
+        },
+        "1": {
+            "dest_map": "SAM_02",
+            "dest_entry": 2,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Right"
+        }
+    },
+    "TIK_18": {
+        "0": {
+            "dest_map": "TIK_06",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "TIK_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "TIK_19": {
+        "0": {
+            "dest_map": "MAC_00",
+            "dest_entry": 3,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Left"
+        }
+    },
+    "TIK_20": {
+        "0": {
+            "dest_map": "TIK_08",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "TIK_21",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "2": {
+            "dest_map": "TIK_23",
+            "dest_entry": 1,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Center"
+        }
+    },
+    "TIK_21": {
+        "0": {
+            "dest_map": "TIK_20",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "TIK_22",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Top Right Door"
+        },
+        "2": {
+            "dest_map": "TIK_14",
+            "dest_entry": 0,
+            "type": "pipe",
+            "verbose_name": "Green Pipe BottomRight"
+        }
+    },
+    "TIK_22": {
+        "0": {
+            "dest_map": "TIK_21",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Left Door"
+        },
+        "1": {
+            "dest_map": "TIK_17",
+            "dest_entry": 0,
+            "type": "pipe",
+            "verbose_name": "Green Pipe"
+        }
+    },
+    "TIK_23": {
+        "0": {
+            "dest_map": "TIK_24",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "TIK_20",
+            "dest_entry": 2,
+            "type": "pipe",
+            "verbose_name": "Green Pipe"
+        }
+    },
+    "TIK_24": {
+        "0": {
+            "dest_map": "TIK_25",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "1": {
+            "dest_map": "TIK_23",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "TIK_25": {
+        "0": {
+            "dest_map": "TIK_24",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "TIK_BT01": {},
+    "TIK_BT02": {},
+    "TIK_BT03": {},
+    "TIK_BT04": {},
+    "TIK_BT05": {}
+}
