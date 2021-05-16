@@ -80,7 +80,7 @@
             "dest_map": "DGB_11",
             "dest_entry": 0,
             "type": "door",
-            "verbose_entry": "Door Top Right"
+            "verbose_name": "Door Top Right"
         }
     },
     "DGB_03": {

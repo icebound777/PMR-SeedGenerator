@@ -230,11 +230,5 @@
             "type": "door",
             "verbose_name": "Door Left"
         }
-    },
-    "KKJ_27": {
-        "0": {
-            "dest_map": "KKJ_14",
-            "dest_entry": 2
-        }
     }
 }

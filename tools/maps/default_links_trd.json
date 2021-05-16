@@ -205,7 +205,7 @@
             "dest_entry": 0,
             "type": "walk",
             "verbose_name": "Exit West"
-        },
+        }
     },
     "TRD_08": {
         "0": {

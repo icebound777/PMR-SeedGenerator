@@ -200,7 +200,7 @@
         }
     },
     "TIK_12": {
-        "0":{
+        "0": {
             "dest_map": "TIK_04",
             "dest_entry": 3,
             "type": "pipe",

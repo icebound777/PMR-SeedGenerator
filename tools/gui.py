@@ -34,7 +34,7 @@ from db.actor_attribute import ActorAttribute, create_actor_attributes
 create_enums()
 
 # Uncomment to build database from scratch
-
+"""
 gather_keys()
 gather_values()
 create_options()
@@ -47,6 +47,7 @@ create_entrances()
 connect_entrances()
 shutil.copy("db.sqlite", "default_db.sqlite")
 quit()
+"""
 # END
 
 

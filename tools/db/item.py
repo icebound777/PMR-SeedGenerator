@@ -64,7 +64,7 @@ def create_items():
     with open("./debug/values.json", "r") as file:
         item_values = json.load(file)["items"]
 
-    with open("../../globals/ItemTable.csv", "r") as file:
+    with open("../globals/ItemTable.csv", "r") as file:
         item_data = []
         csv_reader = csv.DictReader(file, delimiter=',')
         for row in csv_reader:

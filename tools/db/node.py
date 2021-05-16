@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 from db.db import db
 from db.map_area import MapArea
 from db.item import Item
@@ -33,10 +36,10 @@ class Node(Model):
         """Return string representation of current node"""
         entrance = ("[" + format(self.entrance_id) + "] ") if self.entrance_id else ''
         itemkey = ("[" + format(self.key_name_item) + "] ") if self.key_name_item else ''
-        item = format(self.current_item.name) if self.current_item else ''
+        item = format(self.current_item.item_name) if self.current_item else ''
         price = (" (" + format(self.current_item.base_price) + ")") if self.key_name_price else ''
 
-        return f"[{self.map_area.map_id}]{entrance}{itemkey}{item}{price}"
+        return f"[{self.map_area.name}]{entrance}{itemkey}{item}{price}"
 
     def get_item_key(self):
         """Return convention key for item location"""
@@ -61,16 +64,19 @@ def create_nodes():
     db.create_tables([Node])
 
     with open("./debug/keys.json", "r") as file:
-        item_keys = json.load(file)["items"]
-        price_keys = json.load(file)["item_prices"]
-        entrance_keys = json.load(file)["entrances"]
+        keys_dict = json.load(file)
+        item_keys = keys_dict["items"]
+        price_keys = keys_dict["item_prices"]
+        entrance_keys = keys_dict["entrances"]
 
     with open("./debug/values.json", "r") as file:
         item_values = json.load(file)["items"]
 
-    #TODO obviously load either all default_links jsons or save them as one big json beforehand
-    with open("./maps/default_links_tik.json", "r") as file:
-        entrance_links = json.load(file)
+    entrance_links = {}
+    for child in Path("./maps").iterdir():
+        if child.is_file():
+            with open(child, "r") as file:
+                entrance_links |= json.load(file)
 
     # Create item only nodes
     for key, data in item_keys.items():
@@ -85,7 +91,8 @@ def create_nodes():
             value = item_values[data["map_name"]][data["name"]]
         )
 
-
+        price_index = None
+        key_name_price = None
         if data["name"].startswith("ShopItem"):
             # Search for corresponding item_price and set index & key_name_price
             for price_id, price_data in price_keys.items():
@@ -129,6 +136,7 @@ def create_nodes():
                     entrance_type = entrance_data["type"],
                     entrance_name = entrance_data["verbose_name"]
                 )
+                print(node, created)
     
     # Create item + entrance nodes:
     #TODO ? Might be worth a manual setup to save on graph complexity
