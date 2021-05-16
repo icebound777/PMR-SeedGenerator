@@ -1,0 +1,156 @@
+{
+    "ARN_02": {
+        "0": {
+            "dest_map": "ARN_05",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "ARN_04",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "ARN_03": {
+        "0": {
+            "dest_map": "ARN_07",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "ARN_05",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name":"Exit Right"
+        }
+    },
+    "ARN_04": {
+        "0": {
+            "dest_map": "ARN_02",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "DGB_00",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "ARN_05": {
+        "0": {
+            "dest_map": "ARN_03",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name":"Exit Left"
+        },
+        "1": {
+            "dest_map": "ARN_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name":"Exit Right"
+        }
+    },
+    "ARN_07": {
+        "0": {
+            "dest_map": "ARN_08",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Enter Windmill"
+        },
+        "1": {
+            "dest_map": "ARN_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "2": {
+            "dest_map": "MIM_12",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "ARN_08": {
+        "0": {
+            "dest_map": "ARN_07",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Leave Windmill"
+        },
+        "1": {
+            "dest_map": "ARN_09",
+            "dest_entry": 1,
+            "type": "hole",
+            "verbose_name": "Into The Well"
+        }
+    },
+    "ARN_09": {
+        "0": {
+            "dest_map": "ARN_10",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Right"
+        },
+        "1": {
+            "dest_map": "ARN_08",
+            "dest_entry": 1,
+            "type": "spring",
+            "verbose_name": "Spring Up"
+        }
+    },
+    "ARN_10": {
+        "0": {
+            "dest_map": "ARN_09",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "ARN_12",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name":"Exit Right"
+        }
+    },
+    "ARN_11": {
+        "0": {
+            "dest_map": "ARN_13",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name":"Exit Left"
+        }
+    },
+    "ARN_12": {
+        "0": {
+            "dest_map": "ARN_10",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name":"Exit Left"
+        },
+        "1": {
+            "dest_map": "ARN_13",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "ARN_13": {
+        "0": {
+            "dest_map": "ARN_12",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "ARN_11",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Right"
+        }
+    }
+}

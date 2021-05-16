@@ -1,0 +1,112 @@
+{
+    "IWA_00": {
+        "0": {
+            "dest_map": "IWA_10",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "IWA_01",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "IWA_01": {
+        "0": {
+            "dest_map": "IWA_00",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name":"Exit Bottom Left"
+        },
+        "1": {
+            "dest_map": "IWA_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top Left"
+        },
+        "2": {
+            "dest_map": "IWA_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Right"
+        },
+        "3": {
+            "dest_map": "IWA_02",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Top Right"
+        }
+    },
+    "IWA_02": {
+        "0": {
+            "dest_map": "IWA_01",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Left"
+        },
+        "1": {
+            "dest_map": "IWA_01",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit Top Left"
+        },
+        "2": {
+            "dest_map": "IWA_04",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top Right"
+        }
+    },
+    "IWA_03": {
+        "0": {
+            "dest_map": "IWA_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "IWA_04": {
+        "0": {
+            "dest_map": "IWA_02",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "SBK_99",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "IWA_10": {
+        "0": {
+            "dest_map": "IWA_11",
+            "dest_entry": 1,
+            "type": "train",
+            "verbose_name": "Riding The Train"
+        },
+        "1": {
+            "dest_map": "IWA_00",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "IWA_11": {
+        "0": {
+            "dest_map": "MAC_03",
+            "dest_entry": 1,
+            "type": "train",
+            "verbose_name": "Train West Exit"
+        },
+        "1": {
+            "dest_map": "IWA_11",
+            "dest_entry": 0,
+            "type": "train",
+            "verbose_name": "Train East Exit"
+        }
+    }
+}
