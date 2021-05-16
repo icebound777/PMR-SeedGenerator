@@ -52,7 +52,6 @@ class Item(Model):
 
     class Meta:
         database = db
-        key_type = 0xA1
             
             
 # Run this to create all items in Item table

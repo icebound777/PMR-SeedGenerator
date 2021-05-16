@@ -33,7 +33,7 @@ class ItemLocation(Model):
 
     def get_key(self):
         """Return convention key for location"""
-        return (Item._meta.key_type << 24) | (self.area_id << 16) | (self.map_id << 8) | self.index
+        return (self._meta.key_type << 24) | (self.map_area.area_id << 16) | (self.map_area.map_id << 8) | self.index
         
     #def get_type():
 
