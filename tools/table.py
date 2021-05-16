@@ -52,20 +52,26 @@ class Table:
 					})
 
 		# Items
-		for itemlocation in ItemLocation.select():
-			item = Item.get(Item.value == itemlocation.current_item.value)
+		for node in Node.select().where(key_name_item.is_null(False) & current_item.is_null(False)):
+			item = Item.get(Item.value == node.current_item.value)
 			table_data.append({
-				"key": itemlocation.get_key(),
+				"key": node.get_item_key(),
 				"value": item.value,
 			})
 			# Generate a ROM table pair that describes where a unique itemID resides in the game using areaID and mapID
 			if item.item_type in ["KEYITEM", "BADGE"]:
 				table_data.append({
 					"key": (0xA5 << 24) | (item.value),
-					"value": (itemlocation.area_id << 8) | (itemlocation.map_id),
+					"value": (node.map_area.area_id << 8) | (node.map_area.map_id),
 				})
 
 		# Item Prices
+		for node in Node.select().where(key_name_price.is_null(False) & key_name_price % "ShopItem%"):
+			table_data.append({
+				"key": node.get_price_key(),
+				"value": node.current_item.base_price
+			})
+
 		for item_price in ItemPrice.select():
 			# TODO: Modify price value based on the item its tied to
 			item = item_price.itemlocation.get()

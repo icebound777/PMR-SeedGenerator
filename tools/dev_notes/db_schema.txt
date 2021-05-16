@@ -8,7 +8,6 @@ DESC TABLE MapArea (
   map_id        INT              # eg 1 (=kmr_02)
   name          VARCHAR NULLABLE # eg 'kmr_02'
   verbose_name  VARCHAR NULLABLE # descriptive location name
-
 )
 
 # each row is an actor attribute
@@ -22,19 +21,25 @@ DESC TABLE ActorAttribute (
 
 # each row describes general info about an item
 DESC TABLE Item (
-  type               VARCHAR NULLABLE          # keyitem, badge etc
+  item_type          VARCHAR NULLABLE          # keyitem, badge etc
   value              INT                       # item byte value as int (eg 348 = 0x15c (StarPiece))
-  name               VARCHAR                   # actual item name w/o spaces or apostrophe
-  price              INT                       # default cost in mushroom kingdom coins
+  item_name          VARCHAR                   # actual item name w/o spaces or apostrophe
+  base_price         INT                       # default cost of item if location is a shop
+  progression        BOOL                      # True if item can be required to reach locations
 )
 
 # each row describes a node in the world graph
 DESC TABLE Node (
-  map_area      FK -> MapArea
-  entrance_id   INT NULLABLE          # entrance_id of map entrance
-  key_name      VARCHAR NULLABLE      # human readable name of item location (eg ItemA)
-  vanilla_item  FK -> Item NULLABLE   # reference to item placed here in the unmodified game
-  current_item  FK -> Item NULLABLE   # reference to item placed here during randomization
+  map_area        FK -> MapArea
+  entrance_id     INT NULLABLE          # entrance_id of map entrance
+  entrance_type   VARCHAR NULLABLE      # door, walk, pipe etc.
+  entrance_name   VARCHAR NULLABLE      # verbose description of entrance
+  key_name_item   VARCHAR NULLABLE      # human readable name of item location (eg ItemA)
+  key_name_price  VARCHAR NULLABLE      # human readable name of item price in shop (eg ShopPriceA)
+  vanilla_item    FK -> Item NULLABLE   # reference to item placed here in the unmodified game
+  current_item    FK -> Item NULLABLE   # reference to item placed here during randomization
+  item_index      INT NULLABLE          # 
+  price_index     INT NULLABLE          # 
 )
 
 # each row describes an edge in the world graph

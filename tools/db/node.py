@@ -1,4 +1,6 @@
 from db.db import db
+from db.map_area import MapArea
+from db.item import Item
 from peewee import *
 from utility import get_files
 
@@ -9,34 +11,48 @@ class Node(Model):
     # MapArea this node is found in
     map_area = ForeignKeyField(MapArea, backref = "nodes")
 
-    # Entrance ID of the Map if this note represents an entrance
+    # Entrance data of the Map if this note represents an entrance
     entrance_id = IntegerField(null = True)
+    entrance_type = CharField(null = True) # like walk, pipe, door etc.
+    entrance_name = CharField(null = True) # verbose name of entrance
 
-    # Human readable name of item location (eg ItemA)
-    key_name = CharField(null = True)
+    # Human readable name of item location (eg ItemA) or item price (eg ShopPriceA)
+    key_name_item = CharField(null = True)
+    key_name_price = CharField(null = True)
 
     # reference to item placed here in the unmodified game
-    vanilla_item = ForeignKeyField(Item, backref="itemlocation")
+    vanilla_item = ForeignKeyField(Item, null = True)
 
     # reference to item placed here during randomization
-    current_item = ForeignKeyField(Item, null=True, backref="itemlocation")
+    current_item = ForeignKeyField(Item, null = True)
 
-    #TODO index?
+    item_index = IntegerField(null = True)
+    price_index = IntegerField(null = True)
 
     def __str__(self):
         """Return string representation of current node"""
         entrance = ("[" + format(self.entrance_id) + "] ") if self.entrance_id else ''
-        itemkey = ("[" + format(self.key_name) + "] ") if self.key_name else ''
+        itemkey = ("[" + format(self.key_name_item) + "] ") if self.key_name_item else ''
         item = format(self.current_item.name) if self.current_item else ''
+        price = (" (" + format(self.current_item.base_price) + ")") if self.key_name_price else ''
 
-        return f"[{self.map_area.map_id}]{entrance}{itemkey} {item}"
+        return f"[{self.map_area.map_id}]{entrance}{itemkey}{item}{price}"
 
-    # def get_key(self):
-    #     """Return convention key for location"""
-    #     return (Item._meta.key_type << 24) | (self.area_id << 16) | (self.map_id << 8) | self.index    
+    def get_item_key(self):
+        """Return convention key for item location"""
+        if self.current_item is None:
+            return None
+        return (self._meta.key_type << 24) | (self.map_area.area_id << 16) | (self.map_area.map_id << 8) | self.item_index
+
+    def get_price_key(self):
+        """Return convention key for item location"""
+        if self.current_item is None:
+            return None
+        return (self._meta.key_type << 24) | (self.map_area.area_id << 16) | (self.map_area.map_id << 8) | self.price_index
 
     class Meta:
         database = db
+        key_type = 0xA1
 
 
 def create_nodes():
@@ -46,12 +62,14 @@ def create_nodes():
 
     with open("./debug/keys.json", "r") as file:
         item_keys = json.load(file)["items"]
+        price_keys = json.load(file)["item_prices"]
+        entrance_keys = json.load(file)["entrances"]
 
     with open("./debug/values.json", "r") as file:
         item_values = json.load(file)["items"]
-        entrance_values = json.load(file)["entrances"]
 
-    with open("./maps/default_linkages.json", "r") as file:
+    #TODO obviously load either all default_links jsons or save them as one big json beforehand
+    with open("./maps/default_links_tik.json", "r") as file:
         entrance_links = json.load(file)
 
     # Create item only nodes
@@ -67,32 +85,50 @@ def create_nodes():
             value = item_values[data["map_name"]][data["name"]]
         )
 
+
+        if data["name"].startswith("ShopItem"):
+            # Search for corresponding item_price and set index & key_name_price
+            for price_id, price_data in price_keys.items():
+                # Look for corresponding "ShopPriceX" for "ShopItemX" on same map
+                if price_data["map_name"] == data["map_name"] and price_data["name"][-1] == data["name"][-1]:
+                    price_index = price_data["value_id"]
+                    key_name_price = price_data["name"]
+
         node, created = Node.get_or_create(
             map_area = map_area,
-            key_name = data["name"],
+            key_name_item = data["name"],
+            key_name_price = key_name_price if key_name_price else None,
             vanilla_item = vanilla_item,
-            current_item = vanilla_item
+            current_item = vanilla_item,
+            item_index = data["value_id"],
+            price_index = price_index if price_index else None
         )
         print(node, created)
 
     # Create entrance only nodes
-    for key, data in entrance_values.items():
+    for map_id, link_data in entrance_links.items():
+        maparea_data_found = False
 
-        if data["entrance"] in entrance_links.get(data["name"]).keys():
+        for entrance_id, entrance_data in entrance_keys.items():
 
-            map_area, created = MapArea.get_or_create(
-                area_id = data["area_id"],
-                map_id = data["map_id"],
-                name = data["name"],
-                verbose_name = MapArea.get_verbose_name(data["name"])
-            )
+            if entrance_data["name"] == map_id:
+                map_area, created = MapArea.get_or_create(
+                    area_id = entrance_data["area_id"],
+                    map_id = entrance_data["map_id"],
+                    name = entrance_data["name"],
+                    verbose_name = MapArea.get_verbose_name(entrance_data["name"])
+                )
+                maparea_data_found = True
+                break
 
-            #TODO makes too few entrances since default_linkages.json isnt complete
-            for entrance_id in entrance_links.get(data["name"]).keys():
+        if maparea_data_found:
+            for entrance_id, entrance_data in link_data.items():
                 node, created = Node.get_or_create(
                     map_area = map_area,
-                    entrance_id = entrance_id
+                    entrance_id = entrance_id,
+                    entrance_type = entrance_data["type"],
+                    entrance_name = entrance_data["verbose_name"]
                 )
     
     # Create item + entrance nodes:
-    #TODO ? Might be worth a manual setup
+    #TODO ? Might be worth a manual setup to save on graph complexity

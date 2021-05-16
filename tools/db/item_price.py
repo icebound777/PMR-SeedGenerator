@@ -15,7 +15,7 @@ class ItemPrice(Model):
 
     map_area = ForeignKeyField(MapArea, null=True, backref="item_prices")
     key_name = CharField()
-    value = IntegerField()
+    value = IntegerField(null = True)
 
     def __str__(self):
         return f"{self.key_name} ({self.value:02X})"
@@ -54,14 +54,13 @@ def create_item_prices():
             area_id=data["area_id"],
             map_id=data["map_id"],
             index=data["value_id"],
-            value=value,
             key_name=data["name"],
         )
 
         print(item_price, created)
 
         # Update item with reference to this ItemPrice
-        from db.itemlocation import ItemLocation
+        from db.item import Item
         itemlocation = ItemLocation.get(ItemLocation.map_area == item_price.map_area,
                                         ItemLocation.key_name == f"ShopItem{item_price.key_name[-1]}")
         itemlocation.item_price = item_price

@@ -1,11 +1,11 @@
 import json
+import csv
 
 from peewee import *
 from playhouse.sqlite_ext import JSONField
 
 from db.db import db
 from db.map_area import MapArea
-from db.item_price import ItemPrice
 from db.progression_items import progression_items
 from enums import Enums
 from parse import get_default_table
@@ -19,6 +19,8 @@ class Item(Model):
     value = IntegerField()
     # actual item name w/o spaces or apostrophe
     item_name = CharField()
+    # base sell price of the item
+    base_price = IntegerField()
     # True if item can be required to reach locations
     progression = BooleanField(default=False)
 
@@ -26,10 +28,7 @@ class Item(Model):
     #     if self.map_area:
     #         return f"[{self.map_area.name}]: {self.key_name} ({self.original_item_name} -> {self.item_name})"
     #     return f"{self.original_item_name}"
-
-    # def get_key(self):
-    #     return (Item._meta.key_type << 24) | (self.area_id << 16) | (self.map_id << 8) | self.index
-
+    
     @classmethod
     def get_type(cls, item_id:int):
         if item_id <= 0x7F:
@@ -52,7 +51,6 @@ class Item(Model):
 
     class Meta:
         database = db
-        key_type = 0xA1
             
             
 # Run this to create all items in Item table
@@ -66,6 +64,13 @@ def create_items():
     with open("./debug/values.json", "r") as file:
         item_values = json.load(file)["items"]
 
+    with open("../../globals/ItemTable.csv", "r") as file:
+        item_data = []
+        csv_reader = csv.DictReader(file, delimiter=',')
+        for row in csv_reader:
+            item_data.append(row)
+
+
     # abuse dict as list of unique entries
     unique_itemvalues = {}
 
@@ -74,9 +79,13 @@ def create_items():
         unique_itemvalues[item_values[data["map_name"]][data["name"]]] = ""
 
     for value in unique_itemvalues.keys():
-        item,created = Item.get_or_create(
-            item_type = Item.get_type(value),
-            value = value,
-            item_name = Enums.get("Item")[value],
-            progression = (Item.get_type(value) == "KEYITEM" and value in progression_items.keys())
-        )
+        for item in item_data:
+            if int(item["Index"], 16) == value:
+                item,created = Item.get_or_create(
+                    item_type = Item.get_type(value),
+                    value = value,
+                    item_name = Enums.get("Item")[value],
+                    base_price = int(item["Sell Value"], 16) if item["Sell Value"] != "FFFF" else 50,
+                    progression = (Item.get_type(value) == "KEYITEM" and value in progression_items.keys())
+                )
+                break
