@@ -1,0 +1,500 @@
+{
+    "PRA_01": {
+        "0": {
+            "dest_map": "SAM_10",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "PRA_02",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Front Door"
+        },
+        "2": {
+            "dest_map": "PRA_02",
+            "dest_entry": 5,
+            "type": "door",
+            "verbose_name": "Front Door (Mirror Side)"
+        },
+        "3": {
+            "dest_map": "PRA_15",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Cave Entrance"
+        }
+    },
+    "PRA_02": {
+        "0": {
+            "dest_map": "PRA_01",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Entrance Door"
+        },
+        "1": {
+            "dest_map": "PRA_03",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Hallway Door"
+        },
+        "2": {
+            "dest_map": "PRA_16",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Red Door"
+        },
+        "3": {
+            "dest_map": "PRA_16",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Red Door (Mirror Side)"
+        },
+        "4": {
+            "dest_map": "PRA_04",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Hallway Door (Mirror Side)"
+        },
+        "5": {
+            "dest_map": "PRA_01",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Entrance Door (Mirror Side)"
+        }
+    },
+    "PRA_03": {
+        "0": {
+            "dest_map": "PRA_02",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_38",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        },
+        "2": {
+            "dest_map": "PRA_09",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Basement Door"
+        }
+    },
+    "PRA_04": {
+        "0": {
+            "dest_map": "PRA_02",
+            "dest_entry": 4,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_39",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        },
+        "2": {
+            "dest_map": "PRA_10",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Basement Door"
+        }
+    },
+    "PRA_05": {
+        "0": {
+            "dest_map": "PRA_38",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        }
+    },
+    "PRA_06": {
+        "0": {
+            "dest_map": "PRA_39",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        }
+    },
+    "PRA_09": {
+        "0": {
+            "dest_map": "PRA_03",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_11",
+            "dest_entry": 0,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        }
+    },
+    "PRA_10": {
+        "0": {
+            "dest_map": "PRA_04",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_12",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        }
+    },
+    "PRA_11": {
+        "0": {
+            "dest_map": "PRA_09",
+            "dest_entry": 1,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        }
+    },
+    "PRA_12": {
+        "0": {
+            "dest_map": "PRA_10",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        }
+    },
+    "PRA_13": {
+        "0": {
+            "dest_map": "PRA_02",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_14",
+            "dest_entry": 0,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        },
+        "2": {
+            "dest_map": "PRA_14",
+            "dest_entry": 1,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall (Mirror Side)"
+        },
+        "3": {
+            "dest_map": "PRA_02",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door West (Mirror Side)"
+        }
+    },
+    "PRA_14": {
+        "0": {
+            "dest_map": "PRA_13",
+            "dest_entry": 1,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        },
+        "1": {
+            "dest_map": "PRA_13",
+            "dest_entry": 2,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        }
+    },
+    "PRA_15": {
+        "0": {
+            "dest_map": "PRA_01",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Cave Entrance"
+        }
+    },
+    "PRA_16": {
+        "0": {
+            "dest_map": "PRA_02",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_18",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        },
+        "2": {
+            "dest_map": "PRA_18",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door East (Mirror Side)"
+        },
+        "3": {
+            "dest_map": "PRA_02",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door West (Mirror Side)"
+        }
+    },
+    "PRA_18": {
+        "0": {
+            "dest_map": "PRA_16",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_33",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door East"
+        },
+        "2": {
+            "dest_map": "PRA_16",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door West (Mirror Side)"
+        }
+    },
+    "PRA_19": {
+        "0": {
+            "dest_map": "PRA_35",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_20",
+            "dest_entry": 0,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        }
+    },
+    "PRA_20": {
+        "0": {
+            "dest_map": "PRA_19",
+            "dest_entry": 1,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        },
+        "1": {
+            "dest_map": "PRA_21",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Hallway Door"
+        },
+        "2": {
+            "dest_map": "PRA_29",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        },
+        "3": {
+            "dest_map": "PRA_29",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door East (Mirror Side)"
+        },
+        "4": {
+            "dest_map": "PRA_22",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Hallway Door (Mirror Side)"
+        }
+    },
+    "PRA_21": {
+        "0": {
+            "dest_map": "PRA_20",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_36",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Basement Door"
+        }
+    },
+    "PRA_22": {
+        "0": {
+            "dest_map": "PRA_20",
+            "dest_entry": 4,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_37",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Basement Door"
+        }
+    },
+    "PRA_27": {
+        "0": {
+            "dest_map": "PRA_36",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        }
+    },
+    "PRA_28": {
+        "0": {
+            "dest_map": "PRA_37",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        }
+    },
+    "PRA_29": {
+        "0": {
+            "dest_map": "PRA_20",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_34",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        },
+        "2": {
+            "dest_map": "PRA_34",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door East (Mirror Side)"
+        },
+        "3": {
+            "dest_map": "PRA_20",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door West (Mirror Side)"
+        }
+    },
+    "PRA_31": {
+        "0": {
+            "dest_map": "PRA_34",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_40",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        },
+        "2": {
+            "dest_map": "PRA_34",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door West (Mirror Side)"
+        }
+    },
+    "PRA_32": {
+        "0": {
+            "dest_map": "PRA_40",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        }
+    },
+    "PRA_33": {
+        "0": {
+            "dest_map": "PRA_35",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        },
+        "1": {
+            "dest_map": "PRA_18",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        }
+    },
+    "PRA_34": {
+        "0": {
+            "dest_map": "PRA_29",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_31",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        },
+        "2": {
+            "dest_map": "PRA_31",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door East (Mirror Side)"
+        },
+        "3": {
+            "dest_map": "PRA_29",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door West (Mirror Side)"
+        }
+    },
+    "PRA_35": {
+        "0": {
+            "dest_map": "PRA_33",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_19",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        }
+    },
+    "PRA_36": {
+        "0": {
+            "dest_map": "PRA_21",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_27",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        }
+    },
+    "PRA_37": {
+        "0": {
+            "dest_map": "PRA_22",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_28",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        }
+    },
+    "PRA_38": {
+        "0": {
+            "dest_map": "PRA_03",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_05",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        }
+    }
+}

@@ -1,0 +1,152 @@
+{
+    "NOK_01": {
+        "0": {
+            "dest_map": "NOK_13",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West (Entrance)"
+        },
+        "1": {
+            "dest_map": "NOK_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "NOK_02": {
+        "0": {
+            "dest_map": "NOK_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "NOK_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Behind Kooper's House"
+        },
+        "2": {
+            "dest_map": "TIK_01",
+            "dest_entry": 3,
+            "type": "pipe",
+            "verbose_name": "Pipe to Toad Town Sewers (Three Pipes Area)"
+        }
+    },
+    "NOK_03": {
+        "0": {
+            "dest_map": "NOK_02",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "NOK_04",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "NOK_04": {
+        "0": {
+            "dest_map": "NOK_03",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        }
+    },
+    "NOK_11": {
+        "0": {
+            "dest_map": "MAC_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "NOK_12",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "NOK_12": {
+        "0": {
+            "dest_map": "NOK_11",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "NOK_13",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "NOK_13": {
+        "0": {
+            "dest_map": "NOK_12",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "NOK_01",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East Lower"
+        },
+        "2": {
+            "dest_map": "NOK_14",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East Upper (Bridge)"
+        }
+    },
+    "NOK_14": {
+        "0": {
+            "dest_map": "NOK_13",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "NOK_15",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "NOK_15": {
+        "0": {
+            "dest_map": "NOK_14",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "TRD_00",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East Lower"
+        },
+        "2": {
+            "dest_map": "TRD_00",
+            "dest_entry": 4,
+            "type": "walk",
+            "verbose_name": "Exit East Upper"
+        },
+        "3": {
+            "dest_map": "NOK_15",
+            "dest_entry": 4,
+            "type": "pipe",
+            "verbose_name": "Lower Pipe to Upper Pipe"
+        },
+        "4": {
+            "dest_map": "NOK_15",
+            "dest_entry": 3,
+            "type": "pipe",
+            "verbose_name": "Upper Pipe to Lower Pipe"
+        }
+    }
+}

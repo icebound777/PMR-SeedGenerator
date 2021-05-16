@@ -1,0 +1,140 @@
+{
+    "OBK_01": {
+        "0": {
+            "dest_map": "MIM_11",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Front Door"
+        },
+        "1": {
+            "dest_map": "OBK_02",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Lower Hidden Door"
+        },
+        "2": {
+            "dest_map": "OBK_05",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Lower Door"
+        },
+        "3": {
+            "dest_map": "OBK_07",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Upper Door West"
+        },
+        "4": {
+            "dest_map": "OBK_08",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Upper Door East"
+        },
+        "5": {
+            "dest_map": "OBK_09",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Third Floor Door West"
+        },
+        "6": {
+            "dest_map": "OBK_09",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Third Floor Door East"
+        }
+    },
+    "OBK_02": {
+        "0": {
+            "dest_map": "OBK_01",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Upper Door"
+        },
+        "1": {
+            "dest_map": "OBK_03",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Lower Door South"
+        },
+        "2": {
+            "dest_map": "OBK_06",
+            "dest_entry": 1,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        }
+    },
+    "OBK_03": {
+        "0": {
+            "dest_map": "OBK_02",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Upper Door North"
+        },
+        "1": {
+            "dest_map": "OBK_04",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Upper Door East"
+        }
+    },
+    "OBK_04": {
+        "1": {
+            "dest_map": "OBK_03",
+            "dest_entry": 2,
+            "type": "oneway-hole",
+            "verbose_name": "Hole Under Planks"
+        }
+    },
+    "OBK_05": {
+        "0": {
+            "dest_map": "OBK_01",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door South"
+        },
+        "1": {
+            "dest_map": "OBK_06",
+            "dest_entry": 0,
+            "type": "oneway-hole",
+            "verbose_name": "Hole Under Planks"
+        }
+    },
+    "OBK_06": {
+        "1": {
+            "dest_map": "OBK_02",
+            "dest_entry": 2,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        }
+    },
+    "OBK_07": {
+        "0": {
+            "dest_map": "OBK_01",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door South"
+        }
+    },
+    "OBK_08": {
+        "0": {
+            "dest_map": "OBK_01",
+            "dest_entry": 4,
+            "type": "door",
+            "verbose_name": "Door South"
+        }
+    },
+    "OBK_09": {
+        "0": {
+            "dest_map": "OBK_01",
+            "dest_entry": 5,
+            "type": "walk",
+            "verbose_name": "Door South West"
+        },
+        "1": {
+            "dest_map": "OBK_01",
+            "dest_entry": 6,
+            "type": "walk",
+            "verbose_name": "Door South East"
+        }
+    }
+}
