@@ -1,0 +1,240 @@
+{
+    "TRD_00": {
+        "0": {
+            "dest_map": "NOK_15",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "TRD_01",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Castle Front Door"
+        },
+        "2": {
+            "dest_map": "TRD_05",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Castle South Door"
+        },
+        "3": {
+            "dest_map": "TRD_05",
+            "dest_entry": 2,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        },
+        "4": {
+            "dest_map": "NOK_15",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Upper Cliff Area"
+        }
+    },
+    "TRD_01": {
+        "0": {
+            "dest_map": "TRD_00",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Castle Front Door"
+        },
+        "1": {
+            "dest_map": "TRD_02",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "First Locked Door"
+        },
+        "2": {
+            "dest_map": "TRD_02",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Upper Locked Door"
+        },
+        "3": {
+            "dest_map": "TRD_09",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door to Upper Walkway"
+        }
+    },
+    "TRD_02": {
+        "0": {
+            "dest_map": "TRD_01",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "First Locked Door"
+        },
+        "1": {
+            "dest_map": "TRD_03",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        },
+        "2": {
+            "dest_map": "TRD_01",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Upper Door West"
+        },
+        "3": {
+            "dest_map": "TRD_03",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Upper Door East"
+        },
+        "4": {
+            "dest_map": "TRD_03",
+            "dest_entry": 4,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        }
+    },
+    "TRD_03": {
+        "0": {
+            "dest_map": "TRD_02",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "TRD_04",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        },
+        "2": {
+            "dest_map": "TRD_02",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Upper Door West"
+        },
+        "3": {
+            "dest_map": "TRD_04",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Upper Door East"
+        },
+        "4": {
+            "dest_map": "TRD_02",
+            "dest_entry": 4,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        }
+    },
+    "TRD_04": {
+        "0": {
+            "dest_map": "TRD_03",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "TRD_05",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        },
+        "2": {
+            "dest_map": "TRD_03",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Upper Door West"
+        },
+        "3": {
+            "dest_map": "TRD_05",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Upper Door East"
+        },
+        "4": {
+            "dest_map": "TRD_07",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Lower West Exit"
+        },
+        "5": {
+            "dest_map": "TRD_06",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Lower East Door"
+        }
+    },
+    "TRD_05": {
+        "0": {
+            "dest_map": "TRD_04",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Lower Door West"
+        },
+        "1": {
+            "dest_map": "TRD_00",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Lower Door South"
+        },
+        "2": {
+            "dest_map": "TRD_00",
+            "dest_entry": 3,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        },
+        "3": {
+            "dest_map": "TRD_04",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Upper Door West"
+        }
+    },
+    "TRD_06": {
+        "1": {
+            "dest_map": "TRD_04",
+            "dest_entry": 5,
+            "type": "door",
+            "verbose_name": "Door West"
+        }
+    },
+    "TRD_07": {
+        "0": {
+            "dest_map": "TRD_04",
+            "dest_entry": 4,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "1": {
+            "dest_map": "TRD_08",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+    },
+    "TRD_08": {
+        "0": {
+            "dest_map": "TRD_07",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "TRD_09": {
+        "0": {
+            "dest_map": "TRD_01",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "TRD_10",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        }
+    },
+    "TRD_10": {
+        "0": {
+            "dest_map": "TRD_09",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        }
+    }
+}
