@@ -1,0 +1,170 @@
+{
+    "SAM_01": {
+        "0": {
+            "dest_map": "SAM_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "SAM_02": {
+        "0": {
+            "dest_map": "SAM_01",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SAM_11",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "TI<_17",
+            "dest_entry": 1,
+            "type": "pipe",
+            "verbose_name": "Pipe Entrance"
+        }
+    },
+    "SAM_03": {
+        "0": {
+            "dest_map": "SAM_11",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SAM_04",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "SAM_04": {
+        "0": {
+            "dest_map": "SAM_03",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SAM_05",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SAM_07",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Palace Entrance"
+        }
+    },
+    "SAM_05": {
+        "0": {
+            "dest_map": "SAM_04",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SAM_06",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "SAM_06": {
+        "0": {
+            "dest_map": "SAM_05",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Town Entrance"
+        }
+    },
+    "SAM_07": {
+        "0": {
+            "dest_map": "SAM_04",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Palace Entrance"
+        },
+        "1": {
+            "dest_map": "SAM_08",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "SAM_08": {
+        "0": {
+            "dest_map": "SAM_07",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SAM_09",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "SAM_09": {
+        "0": {
+            "dest_map": "SAM_08",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SAM_10",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "SAM_10": {
+        "0": {
+            "dest_map": "SAM_09",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "PRA_01",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SAM_12",
+            "dest_entry": 0,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        }
+    },
+    "SAM_11": {
+        "0": {
+            "dest_map": "SAM_02",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SAM_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "SAM_12": {
+        "0": {
+            "dest_map": "SAM_10",
+            "dest_entry": 2,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall"
+        }
+    }
+}
