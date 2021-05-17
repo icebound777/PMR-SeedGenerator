@@ -108,7 +108,7 @@
             "dest_map": "KMR_06",
             "dest_entry": 0,
             "type": "walk",
-            "verbose_name": "Exit RIght"
+            "verbose_name": "Exit Right"
         }
     },
     "KMR_10": {
