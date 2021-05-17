@@ -73,32 +73,3 @@ def create_entrances():
             map_area=map_area,
         )
 
-# Run this once to modify entrances with correct destination and type data
-def connect_entrances():
-    with open("./maps/links.csv", "r") as file:
-        columns = file.readline().strip().split(",")
-        links = []
-        for i,line in enumerate(file.readlines()):
-            values = line.strip().split(",")
-            links.append({
-                "src": (values[0], int(values[1])),
-                "dest": (values[2], int(values[3])),
-                "type": values[4],
-                "index": i,
-            })
-
-        for link in links:
-            src = Entrance.get(Entrance.map_name==link["src"][0].upper(), Entrance.index==link["src"][1])
-            dest = Entrance.get(Entrance.map_name==link["dest"][0].upper(), Entrance.index==link["dest"][1])
-
-            src.destination = dest
-            src.entrance_type = link["type"]
-            src.save()
-
-            dest.destination = src
-            dest.entrance_type = link["type"]
-            dest.save()
-
-
-
-

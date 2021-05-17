@@ -1,201 +1,207 @@
 import random
 import sqlite3
 
-from enums import Enums
+from db.itemlocation import ItemLocation
 from db.item import Item
-from db.node import Node
-from db.map_area import MapArea
 
-from simulate import Mario, simulate_gameplay
+from progression.hos_objects import requirements as requirements_hos
+from progression.mac_objects import requirements as requirements_mac
+from progression.tik_objects import requirements as requirements_tik
+from progression.chapter_0.kmr_objects import requirements as requirements_kmr
+from progression.chapter_1.nok_objects import requirements as requirements_nok
+from progression.chapter_1.trd_objects import requirements as requirements_trd
+from progression.chapter_2.iwa_objects import requirements as requirements_iwa
+from progression.chapter_2.sbk_objects import requirements as requirements_sbk
+from progression.chapter_2.dro_objects import requirements as requirements_dro
+from progression.chapter_2.isk_objects import requirements as requirements_isk
+from progression.chapter_3.mim_objects import requirements as requirements_mim
+from progression.chapter_3.obk_objects import requirements as requirements_obk
+from progression.chapter_3.arn_objects import requirements as requirements_arn
+from progression.chapter_3.dgb_objects import requirements as requirements_dgb
+from progression.chapter_4.omo_objects import requirements as requirements_omo
+from progression.chapter_5.jan_objects import requirements as requirements_jan
+from progression.chapter_5.kzn_objects import requirements as requirements_kzn
+from progression.chapter_6.flo_objects import requirements as requirements_flo
+from progression.chapter_7.sam_objects import requirements as requirements_sam
+from progression.chapter_7.pra_objects import requirements as requirements_pra
+from progression.chapter_8.kpa_objects import requirements as requirements_kpa
+from progression.chapter_8.osr_objects import requirements as requirements_osr
+from progression.chapter_8.kkj_objects import requirements as requirements_kkj
+
+# import time
 
 
-def shuffle_entrances(pairs, by_type=None):
-    if by_type:
-        pairs = [pair for pair in pairs if pair["src"].entrance_type == by_type]
+def place_items(app, isShuffle, algorithm):
+    """Places items into item locations according to the given algorithm."""
+    # timers = {}
 
-    if len(pairs) % 2 != 0:
-        pairs = pairs[:-1]
+    # Place items into item location
+    if algorithm == "vanilla":
+        # Place items in their vanilla locations
+        for itemlocation in ItemLocation.select():
+            itemlocation.current_item = itemlocation.vanilla_item
+            itemlocation.save()
 
-    # Swap connections between one link with the next one
-    random.shuffle(pairs)
-    for i in range(0, len(pairs), 2):
-        first = pairs[i]
-        second = pairs[i+1]
-        e1 = first["src"]
-        e2 = first["src"].destination
-        e3 = second["src"]
-        e4 = second["src"].destination
+    elif algorithm == "random_fill":
+        # Generate item pool
+        item_pool = []
 
-        e1.destination = e3
-        e2.destination = e4
-        e3.destination = e1
-        e4.destination = e2
+        # Place items 100% randomly without any logic attached. Check for solvability afterwards, retry if necessary
+        for itemlocation in ItemLocation.select():
+            item_pool.append(itemlocation.vanilla_item)
+        
+        for itemlocation in ItemLocation.select():
+            # Place random items
+            itemlocation.current_item = item_pool.pop(random.randint(0,len(item_pool) - 1))
+            itemlocation.save()
+            
+        # Check for solvability
+        # TODO
 
-        e1.save()
-        e2.save()
-        e3.save()
-        e4.save()
+    elif algorithm == "forward_fill":
+        # Place items in accessible locations first, then expand accessible locations by unlocked locations
 
-def shuffle_items(items, by_type=None):
-    partners = ["Goombario", "Kooper", "Bombette", "Parakarry", "Bow", "Watt", "Sushie", "Lakilester"]
-    if by_type:
-        items = [
-            item for item in items
-            if item.item_type == by_type
-        ]
+        # timer_start = time.time()
+        # timers['timer_start'] = timer_start
+        def is_location_reachable(location, mario_inventory, requirements):
+            is_reachable = True
 
-    if len(items) % 2 != 0:
-        items = items[:-1]
+            try:
+                for requirement_group in requirements.get(location.map_area.name).get(location.key_name):
+                    tmp_mario_inventory = mario_inventory[:]
+                    list_requirement_group = list(requirement_group)
 
-    random.shuffle(items)
-    for i in range(0, len(items), 2):
-        first = items[i]
-        second = items[i+1]
-        first.swap(second)
+                    for requirement in list_requirement_group:
+                        if requirement in tmp_mario_inventory:
+                            list_requirement_group.remove(requirement)
+                            tmp_mario_inventory.remove(requirement)
 
-def place_items(app):
-    extracted = []
+                    is_reachable = len(list_requirement_group) == 0
+                    if is_reachable:
+                        break
+            except AttributeError:
+                print("AttributeError: " + location.map_area.name + " " + location.key_name)
+                raise
+            return is_reachable
 
-    mario = None
-    placed_items = []
-    overflow = 0
+        # Generate item pool, requirements and starting inventory
+        item_pool = []
+        
+        requirements = {}
+        requirements |= (requirements_hos | requirements_mac | requirements_tik | requirements_kmr)
+        requirements |= (requirements_nok | requirements_trd | requirements_iwa | requirements_sbk)
+        requirements |= (requirements_dro | requirements_isk | requirements_mim | requirements_obk)
+        requirements |= (requirements_arn | requirements_dgb | requirements_omo | requirements_jan)
+        requirements |= (requirements_kzn | requirements_flo | requirements_sam | requirements_pra)
+        requirements |= (requirements_kpa | requirements_osr | requirements_kkj)
+        #print(len(requirements))
+        
+        mario_inventory = ['Hammer','SuperHammer','UltraHammer','SuperBoots','UltraBoots'
+                           'Goombario', 'Kooper', 'Bombette', 'Parakarry', 'Bow', 'Watt', 'Sushie', 'Lakilester',
+                           'p_OpenedToybox', 'p_PlacedToyTrain', 'p_PlacedRavenStatue',
+                           'p_TalkedToRaphael', 'p_OpenedFlowerFields', 'p_PlantedBeanstalk']
+        # timer_before_db = time.time()
+        # timers['timer_before_db'] = timer_before_db
 
-    # Get a list of all nodes that have items required for progression in them
-    required_item_nodes = Node.select().where(Node.sequence != None).order_by(Node.sequence)
-    required_items = [item_node.item_received for item_node in required_item_nodes]
+        # Fetch all locations and their items from the database
+        all_locations = []
+        for itemlocation in ItemLocation.select():
+            all_locations.append(itemlocation)
+            item_pool.append(itemlocation.vanilla_item)
+        # timer_after_db = time.time()
+        # timers['timer_after_db'] = timer_after_db
 
-    # Initialize Mario with nothing except defaults
-    mario = Mario()
+        # Order items into progression or non-progression groups
+        progression_items = []
+        other_items = []
+        for item in item_pool:
+            if item.progression:
+                progression_items.append(item)
+            else:
+                other_items.append(item)
 
-    # Get a list of all nodes we can currently activate
-    item_nodes,stop_nodes = mario.traverse_nodes(app, update=False)
+        filled_locations = []
+        
+        num_progression_items = len(progression_items)
 
-    # Get a list of all items we can place into
-    item_slots = []
-    for node in item_nodes:
-        item = (Item.select()
-            .join(MapArea, on=(Item.map_area == MapArea.id))
-            .where(
-                MapArea.name == node.map_name,
-                Item.original_item_name == node.item_received,
-                Item.index == node.index,
-                Item.placed == False,
-            )
-            .select().get()
-        )
-        item_slots.append(item)
+        # Place all progression items first to guarantee the seed to be beatable
+        while len(progression_items) > 0:
+            # Find all reachable locations that are not in filled-locations
+            reachable_locations = []
+            for location in all_locations:
+                if location not in filled_locations:
+                    if is_location_reachable(location, mario_inventory, requirements):
+                        reachable_locations.append(location)
+            # Pop random reachable location
+            random_location = reachable_locations.pop(random.randint(0,len(reachable_locations) - 1))
+            # Pop random item from progression-itempool
+            random_item = progression_items.pop(random.randint(0,len(progression_items) - 1))
+            # Place item into location and mark location as filled
+            random_location.current_item = random_item
+            filled_locations.append(random_location)
+            # Place item into mario_inventory
+            mario_inventory.append(random_item.item_name)
+            # Workaround for specific requirements not being actual items
+            #add_hammer_boots_flags() #TODO
 
-    # Stop Nodes are any nodes that are required for progression
-    # Therefore, we'll need to place their required items somewhere in the currently accessible nodes
-    for node in stop_nodes:
-        item_slot = random.choice(item_slots)
-        item_slot.placed = True
-        item_slot.item_name = node.item_received
-        item_slot.item_type = "KEYITEM"
-        item_slot.value = Enums.get("Item")[node.item_received]
-        item_slot.save()
-        print(f"Put {node.item_received} in {item_slot}")
+            yield ("Placing Progression Items", int(100 - 100 * len(progression_items) / num_progression_items))
+        
+        # Place all remaining items
+        for i,location in enumerate(all_locations):
+            if location not in filled_locations:
+                # Pop random item from non progression items
+                random_item = other_items.pop(random.randint(0,len(other_items) - 1))
+                # Place item into location
+                location.current_item = random_item
+                filled_locations.append(location)
+
+        # timer_after_random = time.time()
+        # timers['timer_after_random'] = timer_after_random
+        # TODO make sure to recategorize mundane items that can be progression items before placing
+
+        # Write new items to db
+        for itemlocation in ItemLocation.select():
+            # Find location that corresponds to the current db row
+            for filled_location in filled_locations:
+                if (filled_location.map_area == itemlocation.map_area
+                    and filled_location.key_name == itemlocation.key_name):
+                    current_location = filled_location
+                    break
+            # Place item and save row
+            itemlocation.current_item = current_location.current_item
+            itemlocation.save()
+
+        # timer_after_random_db = time.time()
+        # timers['timer_after_random_db'] = timer_after_random_db
+    elif algorithm == "assumed_fill":
+        # Start with all items in inventory, remove an item and try to place it at a reachable location
+        None # NYI # TODO
     
-
-    """
-    for key_item in required_items:
-
-        mario,activated = simulate_gameplay(app, mario=mario)
-
-        valid_slots = []
-        for node in activated:
-            if node.item_received:
-                item = (Item.select()
-                    .join(MapArea, on=(Item.map_area == MapArea.id))
-                    .where(MapArea.name == node.map_name, Item.original_item_name == node.item_received, Item.index == node.index).select()
-                    .get()
-                )
-                if all([
-                    item.placed == False,
-                    item not in valid_slots,
-                ]):
-                    valid_slots.append(item)
-
-        if len(valid_slots) > 0:
-            item = random.choice(valid_slots)
-            extracted.append(item.item_name)
-
-            placed_items.append((key_item, item))
-            item.item_name = key_item
-            item.item_type = "KEYITEM"
-            item.value = Enums.get("Item")[key_item]
-            item.placed = True
-            item.save()
-
-            mario.items = set([(received_item, i) for i,(received_item,_) in enumerate(placed_items)])
-            mario.partners = {"Goombario", "Kooper"}
-        else:
-            overflow += 1
-
-    mario = None
-    for extracted_item in extracted:
-
-        mario,activated = simulate_gameplay(app, mario=mario)
-
-        valid_slots = []
-        for node in activated:
-            if node.item_received:
-                item = (Item.select()
-                    .join(MapArea, on=(Item.map_area == MapArea.id))
-                    .where(MapArea.name == node.map_name, Item.original_item_name == node.item_received, Item.index == node.index).select()
-                    .get()
-                )
-                if not item.placed and item not in valid_slots:
-                    valid_slots.append(item)
-
-        if len(valid_slots) > 0:
-            item = random.choice(valid_slots)
-            extracted.append(item.item_name)
-
-            placed_items.append((extracted_item, item))
-            item.item_name = extracted_item
-            item.item_type = Item.get_type(Enums.get("Item")[extracted_item])
-            item.value = Enums.get("Item")[extracted_item]
-            item.placed = True
-            item.save()
-
-            mario.items = set([(received_item, i) for i,(received_item,_) in enumerate(placed_items)])
-            mario.partners = {"Goombario", "Kooper"}
-        else:
-            overflow += 1
-
-    print("Items Extracted:")
-    for e in extracted:
-        print("    " + str(e))
-
-    print(f"Items Placed ({len(placed_items)}):")
-    for received_item,item in placed_items:
-        print(f"    {received_item} in {item}")
-    
-    if overflow > 0:
-        print(f"WARNING: Couldn't find space for {overflow} items")
-
     # Compare randomized database with default and log the changes
     with open("./debug/item_placement.txt", "w") as file:
         connection = sqlite3.connect("default_db.sqlite")
+        connection.row_factory = sqlite3.Row
         cursor = connection.cursor()
-        cursor.execute("SELECT * FROM item INNER JOIN maparea ON item.map_area_id = maparea.id")
-        for data in cursor.fetchall():
-            map_name = data[15]
-            key_name = data[6]
-            item_name = data[9]
-            area_id = data[1]
-            map_id = data[2]
-            index = data[3]
-            key = (0xA1 << 24) | (area_id << 16) | (map_id << 8) | index
+        select_statement = ("SELECT *\
+                               FROM itemlocation\
+                              INNER JOIN maparea\
+                                 ON itemlocation.map_area_id = maparea.id")
+        cursor.execute(select_statement)
+        tablerows = [row for row in cursor.fetchall()]
+        for i,tablerow in enumerate(tablerows):
+            key_name = tablerow['key_name']
+            area_id = tablerow['area_id']
+            map_id = tablerow['map_id']
+            index = tablerow['index']
 
-            item = Item.get(Item.area_id==area_id, Item.map_id==map_id, Item.index==index)
-            file.write(f"[{item.map_area.name}] ({item.map_area.verbose_name}): {item.key_name} - {item_name} -> {item.item_name}\n")
+            itemlocation = ItemLocation.get(ItemLocation.area_id==area_id, ItemLocation.map_id==map_id, ItemLocation.index==index)
+            print(f"{itemlocation}")
+            file.write(f"[{itemlocation.map_area.name}] ({itemlocation.map_area.verbose_name}): {itemlocation.key_name} - {itemlocation.vanilla_item.item_name} -> {itemlocation.current_item.item_name}\n")
             app.processEvents()
-"""
 
-    
-
-
-
+            yield ("Generating Log", int(100 * i / len(tablerows)))
         
+        # print("timer_before_db "       + format(timers.get('timer_start') - timers.get('timer_before_db')))
+        # print("timer_after_db "        + format(timers.get('timer_start') - timers.get('timer_after_db')))
+        # print("timer_after_random "    + format(timers.get('timer_start') - timers.get('timer_after_random')))
+        # print("timer_after_random_db " + format(timers.get('timer_start') - timers.get('timer_after_random_db')))
