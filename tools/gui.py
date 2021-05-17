@@ -56,6 +56,12 @@ class Window(QMainWindow):
 		super(Window, self).__init__()
 		uic.loadUi(resource_path("gui/main.ui"), self)
 
+		# Icons
+		self.setWindowIcon(QtGui.QIcon(resource_path("gui/icons/random_bag.ico")))
+		self.tabwidget.setTabIcon(0, QtGui.QIcon(resource_path("gui/icons/starrod.ico")))
+		self.tabwidget.setTabIcon(1, QtGui.QIcon(resource_path("gui/icons/fireflower.ico")))
+		self.tabwidget.setTabIcon(2, QtGui.QIcon(resource_path("gui/icons/pupddown.ico")))
+
 		# Setup
 		self.setWindowTitle("Paper Mario Open World Randomizer")
 		self.app = app
