@@ -78,7 +78,34 @@ class Window(QMainWindow):
 		self.config = configparser.ConfigParser()
 		self.config.read("./config.ini")
 		self.sr_path = self.config.get("starrod", "path")
+
+		# Seed
 		self.edit_seed.setText(self.config.get("options", "seed"))
+
+		# Initial Coin Amount
+		self.edit_coins.setText(str(Option.get(Option.name == "InitialCoins").value))
+
+		# Duplicate Key Replacement
+		self.edit_key_replacement.setEnabled(Option.get(Option.name == "ReplaceDuplicateKeys").value)
+		self.chk_replace_keys.setChecked(Option.get(Option.name == "ReplaceDuplicateKeys").value)
+		self.chk_replace_keys.clicked.connect(lambda checked: self.edit_key_replacement.setEnabled(checked))
+
+		# Checkboxes
+		self.chk_flower_gate.setChecked(Option.get(Option.name == "FlowerGateOpen").value)
+		self.chk_blue_house.setChecked(Option.get(Option.name == "BlueHouseOpen").value)
+		self.chk_blocks_content.setChecked(Option.get(Option.name == "BlocksMatchContent").value)
+		self.chk_skip_quiz.setChecked(Option.get(Option.name == "SkipQuiz").value)
+		self.chk_cap_xp.setChecked(Option.get(Option.name == "CapEnemyXP").value)
+
+		# Radioboxes
+		self.radio_ohko.setChecked(Option.get(Option.name == "OHKO").value)
+		self.radio_damage_4.setChecked(Option.get(Option.name == "4xDamage").value)
+		self.radio_damage_2.setChecked(Option.get(Option.name == "2xDamage").value)
+		self.radio_damage_1.setChecked(all([
+			not self.radio_ohko.isChecked(),
+			not self.radio_damage_4.isChecked(),
+			not self.radio_damage_2.isChecked(),
+		]))
 
 		# Check if the ROM already exists in the correct location
 		rom_exists = False
@@ -144,8 +171,8 @@ class Window(QMainWindow):
 		# Shuffle Items
 		# items = [item for item in Item.select()]
 		# shuffle_items(items)
-		#place_items(self.app)
-		place_items(self.app, isShuffle=True, algorithm="forward_fill")
+		place_items(self.app)
+		# place_items(self.app, isShuffle=True, algorithm="forward_fill")
 
 		# Make everything inexpensive
 		item_prices = [item_price for item_price in ItemPrice.select()]
