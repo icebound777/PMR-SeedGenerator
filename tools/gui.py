@@ -11,13 +11,13 @@ import configparser
 
 from pathlib import Path
 from PyQt5.QtWidgets import *
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, uic
 
 from enums import Enums, create_enums
 from table import Table
-from utility import sr_dump, sr_copy, sr_compile
-#from logic import shuffle_entrances, shuffle_items, place_items
-from logic_ice import place_items
+from utility import resource_path, sr_dump, sr_copy, sr_compile
+from logic import place_items
+#from logic_ice import place_items
 from parse import get_default_table, get_table_info, create_table, gather_keys, gather_values
 
 from db.map_area import MapArea
@@ -29,7 +29,6 @@ from db.option import Option, create_options
 from db.item_price import ItemPrice, create_item_prices
 from db.entrance import Entrance, create_entrances, connect_entrances
 from db.actor_attribute import ActorAttribute, create_actor_attributes
-
 
 # Create enums from ./globals/enum/
 create_enums()
@@ -51,22 +50,19 @@ quit()
 # END
 """
 
-class Stream(QtCore.QObject):
-	newText = QtCore.pyqtSignal(str)
-
-	def write(self, text):
-		self.newText.emit(str(text))
-
-
 class Window(QMainWindow):
 
 	def __init__(self, app):
-		super().__init__()
+		super(Window, self).__init__()
+		uic.loadUi(resource_path("gui/main.ui"), self)
 
 		# Setup
-		self.app = app
-		self.setGeometry(0, 0, 800, 600)
 		self.setWindowTitle("Paper Mario Open World Randomizer")
+		self.app = app
+		self.app.setStyle("Fusion")
+		
+		self.button_compile.clicked.connect(self.compile_mod)
+		self.button_randomize.clicked.connect(self.randomize)
 
 		# Move to center of window
 		rectangle = self.frameGeometry()
@@ -74,59 +70,15 @@ class Window(QMainWindow):
 		rectangle.moveCenter(center_point)
 		self.move(rectangle.topLeft())
 
-		# Actions
-		self.action_select_rom = QAction("&Select ROM", self)
-		self.action_select_rom.triggered.connect(self.select_rom)
-		self.action_randomize = QAction("&Randomize", self)
-		self.action_randomize.triggered.connect(self.randomize)
-
-		# Create Menu Bar
-		self.menu_bar = self.menuBar()
-
-		# Add File Menu
-		self.menu_file = QMenu("&File", self)
-		self.menu_file.addAction(self.action_select_rom)
-		self.menu_file.addAction(self.action_randomize)
-		self.menu_bar.addMenu(self.menu_file)
-
-		# Create log box
-		self.log = QTextEdit()
-		self.log.moveCursor(QtGui.QTextCursor.Start)
-		self.log.ensureCursorVisible()
-		self.log.setLineWrapColumnOrWidth(500)
-		self.log.setLineWrapMode(QTextEdit.NoWrap)
-		self.log.setReadOnly(True)
-
-		# Layout
-		self.main_widget = QWidget(self)
-		self.setCentralWidget(self.main_widget)
-		layout = QHBoxLayout(self.main_widget)
-		layout.addWidget(self.log)
-
-		# Pipe stdout into this thingy
-		#self.stream = Stream(newText=self.on_update_text)
-		#sys.stdout = self.stream
-
 		self.show()
 		self.configure()
-
-	def on_update_text(self, text):
-		cursor = self.log.textCursor()
-		cursor.movePosition(QtGui.QTextCursor.End)
-		cursor.insertText(text)
-		self.log.setTextCursor(cursor)
-		self.log.ensureCursorVisible()
 
 	def configure(self):
 		# Read configuration data
 		self.config = configparser.ConfigParser()
 		self.config.read("./config.ini")
 		self.sr_path = self.config.get("starrod", "path")
-		self.seed_str = self.config.get("options", "seed")
-
-		# Initialize Random Seed
-		self.seed = hash(self.seed_str) & 0xFFFFFFFF
-		random.seed(self.seed)
+		self.edit_seed.setText(self.config.get("options", "seed"))
 
 		# Check if the ROM already exists in the correct location
 		rom_exists = False
@@ -149,22 +101,21 @@ class Window(QMainWindow):
 		options |= QFileDialog.DontUseNativeDialog
 		self.rom_path, _ = QFileDialog.getOpenFileName(self, "Select ROM", "./", "z64(*.z64)", options=options)
 
+	def compile_mod(self):
+		thread = sr_dump(self.sr_path, console=True)
+		while thread.is_alive():
+			self.app.processEvents()
+		thread = sr_copy(self.sr_path, console=True)
+		while thread.is_alive():
+			self.app.processEvents()
+		thread = sr_compile(self.sr_path, console=True)
+		while thread.is_alive():
+			self.app.processEvents()
+
 	def randomize(self):
-		sr = False
-
-		# Ensure we've dumped a ROM, copied its contents to the mod folder, and compiled it
-		if sr:
-			thread = sr_dump(self.sr_path, console=True)
-			while thread.is_alive():
-				self.app.processEvents()
-			thread = sr_copy(self.sr_path, console=True)
-			while thread.is_alive():
-				self.app.processEvents()
-			thread = sr_compile(self.sr_path, console=True)
-			while thread.is_alive():
-				self.app.processEvents()
-
-		# TODO: Be smart and figure out why the text printed after this overlaps the stuff above even though it shouldn't
+		# Initialize Random Seed
+		self.seed = hash(self.edit_seed.text()) & 0xFFFFFFFF
+		random.seed(self.seed)
 
 		# Create the ROM table
 		rom_table = Table()
