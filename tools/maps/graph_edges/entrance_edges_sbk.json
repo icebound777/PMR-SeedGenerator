@@ -1,0 +1,1905 @@
+[
+    {
+        "from": {
+            "map": "SBK_00",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_01",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_00",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_10",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_01",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_00",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_01",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_02",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_01",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_11",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_02",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_01",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_02",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_03",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_02",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_12",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_02",
+            "id": "4"
+        },
+        "to": {
+            "map": "ISK_01",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_03",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_02",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_03",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_04",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_03",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_13",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_04",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_03",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_04",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_05",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_04",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_14",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_05",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_04",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_05",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_06",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_05",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_15",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_06",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_05",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_06",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_16",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_10",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_11",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_10",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_00",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_10",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_20",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_11",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_10",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_11",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_12",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_11",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_01",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_11",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_21",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_12",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_11",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_12",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_13",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_12",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_02",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_12",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_22",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_13",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_12",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_13",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_14",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_13",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_03",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_13",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_23",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_14",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_13",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_14",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_15",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_14",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_04",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_14",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_24",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_15",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_14",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_15",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_16",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_15",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_05",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_15",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_25",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_16",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_15",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_16",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_06",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_16",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_26",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_20",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_21",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_20",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_10",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_20",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_30",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_21",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_20",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_21",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_22",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_21",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_11",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_21",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_31",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_22",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_21",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_22",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_23",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_22",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_12",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_22",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_32",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_23",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_22",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_23",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_24",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_23",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_13",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_23",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_33",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_24",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_23",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_24",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_25",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_24",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_14",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_24",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_34",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_25",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_24",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_25",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_26",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_25",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_15",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_25",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_35",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_26",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_25",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_26",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_16",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_26",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_36",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_30",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_99",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_30",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_31",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_30",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_20",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_30",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_40",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_31",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_30",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_31",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_32",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_31",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_21",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_31",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_41",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_32",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_31",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_32",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_33",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_32",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_22",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_32",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_42",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_33",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_32",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_33",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_34",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_33",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_23",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_33",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_43",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_34",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_33",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_34",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_35",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_34",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_24",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_34",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_44",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_35",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_34",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_35",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_36",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_35",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_25",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_35",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_45",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_36",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_35",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_36",
+            "id": "1"
+        },
+        "to": {
+            "map": "DRO_01",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_36",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_26",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_36",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_46",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_40",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_41",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_40",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_30",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_40",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_50",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_41",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_40",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_41",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_42",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_41",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_31",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_41",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_51",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_42",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_41",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_42",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_43",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_42",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_32",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_42",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_52",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_43",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_42",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_43",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_44",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_43",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_33",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_43",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_53",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_44",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_43",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_44",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_45",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_44",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_34",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_44",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_54",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_45",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_44",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_45",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_46",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_45",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_35",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_45",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_55",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_46",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_45",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_46",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_36",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_46",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_56",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_50",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_51",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_50",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_40",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_50",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_60",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_51",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_50",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_51",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_52",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_51",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_41",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_51",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_61",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_52",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_51",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_52",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_53",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_52",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_42",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_52",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_62",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_53",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_52",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_53",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_54",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_53",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_43",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_53",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_63",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_54",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_53",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_54",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_55",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_54",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_44",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_54",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_64",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_55",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_54",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_55",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_56",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_55",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_45",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_55",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_65",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_56",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_55",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_56",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_46",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_56",
+            "id": "3"
+        },
+        "to": {
+            "map": "SBK_66",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_60",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_61",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_60",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_50",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_61",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_60",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_61",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_62",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_61",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_51",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_62",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_61",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_62",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_63",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_62",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_52",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_63",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_62",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_63",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_64",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_63",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_53",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_64",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_63",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_64",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_65",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_64",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_54",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_65",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_64",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_65",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_66",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_65",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_55",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_66",
+            "id": "0"
+        },
+        "to": {
+            "map": "SBK_65",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_66",
+            "id": "2"
+        },
+        "to": {
+            "map": "SBK_56",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_99",
+            "id": "0"
+        },
+        "to": {
+            "map": "IWA_04",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SBK_99",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_30",
+            "id": 0
+        },
+        "reqs": ""
+    }
+]

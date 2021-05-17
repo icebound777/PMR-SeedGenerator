@@ -1,0 +1,387 @@
+[
+    {
+        "from": {
+            "map": "KZN_01",
+            "id": "0"
+        },
+        "to": {
+            "map": "JAN_22",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_01",
+            "id": "1"
+        },
+        "to": {
+            "map": "KZN_02",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_02",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_01",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_02",
+            "id": "1"
+        },
+        "to": {
+            "map": "KZN_03",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_03",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_02",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_03",
+            "id": "1"
+        },
+        "to": {
+            "map": "KZN_04",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_03",
+            "id": "2"
+        },
+        "to": {
+            "map": "KZN_09",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_03",
+            "id": "3"
+        },
+        "to": {
+            "map": "KZN_05",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_03",
+            "id": "4"
+        },
+        "to": {
+            "map": "KZN_09",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_04",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_03",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_05",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_06",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_05",
+            "id": "1"
+        },
+        "to": {
+            "map": "KZN_03",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_06",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_05",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_06",
+            "id": "1"
+        },
+        "to": {
+            "map": "KZN_07",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_06",
+            "id": "2"
+        },
+        "to": {
+            "map": "KZN_08",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_07",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_06",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_08",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_06",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_09",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_03",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_09",
+            "id": "1"
+        },
+        "to": {
+            "map": "KZN_10",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_09",
+            "id": "2"
+        },
+        "to": {
+            "map": "KZN_03",
+            "id": 4
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_10",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_09",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_10",
+            "id": "1"
+        },
+        "to": {
+            "map": "KZN_11",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_11",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_10",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_11",
+            "id": "1"
+        },
+        "to": {
+            "map": "KZN_17",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_17",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_11",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_17",
+            "id": "1"
+        },
+        "to": {
+            "map": "KZN_18",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_18",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_17",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_18",
+            "id": "1"
+        },
+        "to": {
+            "map": "KZN_19",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_18",
+            "id": "2"
+        },
+        "to": {
+            "map": "KZN_19",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_19",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_18",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_19",
+            "id": "1"
+        },
+        "to": {
+            "map": "KZN_18",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_19",
+            "id": "2"
+        },
+        "to": {
+            "map": "KZN_20",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_20",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_19",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_20",
+            "id": "1"
+        },
+        "to": {
+            "map": "KZN_22",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "KZN_22",
+            "id": "0"
+        },
+        "to": {
+            "map": "KZN_20",
+            "id": 1
+        },
+        "reqs": ""
+    }
+]

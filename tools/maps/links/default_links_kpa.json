@@ -391,6 +391,7 @@
         },
         "5": {
             "dest_map": "KPA_63",
+            "dest_entry": 1,
             "type": "starship",
             "verbose_name": "Land Starship In Hangar"
         }

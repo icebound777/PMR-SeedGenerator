@@ -1,0 +1,244 @@
+[
+    {
+        "from": {
+            "map": "ARN_02",
+            "id": "0"
+        },
+        "to": {
+            "map": "ARN_05",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_02",
+            "id": "1"
+        },
+        "to": {
+            "map": "ARN_04",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_03",
+            "id": "0"
+        },
+        "to": {
+            "map": "ARN_07",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_03",
+            "id": "1"
+        },
+        "to": {
+            "map": "ARN_05",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_04",
+            "id": "0"
+        },
+        "to": {
+            "map": "ARN_02",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_04",
+            "id": "1"
+        },
+        "to": {
+            "map": "DGB_00",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_05",
+            "id": "0"
+        },
+        "to": {
+            "map": "ARN_03",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_05",
+            "id": "1"
+        },
+        "to": {
+            "map": "ARN_02",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_07",
+            "id": "0"
+        },
+        "to": {
+            "map": "ARN_08",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_07",
+            "id": "1"
+        },
+        "to": {
+            "map": "ARN_03",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_07",
+            "id": "2"
+        },
+        "to": {
+            "map": "MIM_12",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_08",
+            "id": "0"
+        },
+        "to": {
+            "map": "ARN_07",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_08",
+            "id": "1"
+        },
+        "to": {
+            "map": "ARN_09",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_09",
+            "id": "0"
+        },
+        "to": {
+            "map": "ARN_10",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_09",
+            "id": "1"
+        },
+        "to": {
+            "map": "ARN_08",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_10",
+            "id": "0"
+        },
+        "to": {
+            "map": "ARN_09",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_10",
+            "id": "1"
+        },
+        "to": {
+            "map": "ARN_12",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_11",
+            "id": "0"
+        },
+        "to": {
+            "map": "ARN_13",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_12",
+            "id": "0"
+        },
+        "to": {
+            "map": "ARN_10",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_12",
+            "id": "1"
+        },
+        "to": {
+            "map": "ARN_13",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_13",
+            "id": "0"
+        },
+        "to": {
+            "map": "ARN_12",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "ARN_13",
+            "id": "1"
+        },
+        "to": {
+            "map": "ARN_11",
+            "id": 0
+        },
+        "reqs": ""
+    }
+]

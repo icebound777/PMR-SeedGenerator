@@ -1,0 +1,266 @@
+[
+    {
+        "from": {
+            "map": "SAM_01",
+            "id": "0"
+        },
+        "to": {
+            "map": "SAM_02",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_02",
+            "id": "0"
+        },
+        "to": {
+            "map": "SAM_01",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_02",
+            "id": "1"
+        },
+        "to": {
+            "map": "SAM_11",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_02",
+            "id": "2"
+        },
+        "to": {
+            "map": "TI<_17",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_03",
+            "id": "0"
+        },
+        "to": {
+            "map": "SAM_11",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_03",
+            "id": "1"
+        },
+        "to": {
+            "map": "SAM_04",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_04",
+            "id": "0"
+        },
+        "to": {
+            "map": "SAM_03",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_04",
+            "id": "1"
+        },
+        "to": {
+            "map": "SAM_05",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_04",
+            "id": "2"
+        },
+        "to": {
+            "map": "SAM_07",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_05",
+            "id": "0"
+        },
+        "to": {
+            "map": "SAM_04",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_05",
+            "id": "1"
+        },
+        "to": {
+            "map": "SAM_06",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_06",
+            "id": "0"
+        },
+        "to": {
+            "map": "SAM_05",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_07",
+            "id": "0"
+        },
+        "to": {
+            "map": "SAM_04",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_07",
+            "id": "1"
+        },
+        "to": {
+            "map": "SAM_08",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_08",
+            "id": "0"
+        },
+        "to": {
+            "map": "SAM_07",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_08",
+            "id": "1"
+        },
+        "to": {
+            "map": "SAM_09",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_09",
+            "id": "0"
+        },
+        "to": {
+            "map": "SAM_08",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_09",
+            "id": "1"
+        },
+        "to": {
+            "map": "SAM_10",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_10",
+            "id": "0"
+        },
+        "to": {
+            "map": "SAM_09",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_10",
+            "id": "1"
+        },
+        "to": {
+            "map": "PRA_01",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_10",
+            "id": "2"
+        },
+        "to": {
+            "map": "SAM_12",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_11",
+            "id": "0"
+        },
+        "to": {
+            "map": "SAM_02",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_11",
+            "id": "1"
+        },
+        "to": {
+            "map": "SAM_03",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "SAM_12",
+            "id": "0"
+        },
+        "to": {
+            "map": "SAM_10",
+            "id": 2
+        },
+        "reqs": ""
+    }
+]

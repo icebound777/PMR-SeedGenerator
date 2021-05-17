@@ -1,0 +1,178 @@
+[
+    {
+        "from": {
+            "map": "IWA_00",
+            "id": "0"
+        },
+        "to": {
+            "map": "IWA_10",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_00",
+            "id": "1"
+        },
+        "to": {
+            "map": "IWA_01",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_01",
+            "id": "0"
+        },
+        "to": {
+            "map": "IWA_00",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_01",
+            "id": "1"
+        },
+        "to": {
+            "map": "IWA_03",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_01",
+            "id": "2"
+        },
+        "to": {
+            "map": "IWA_02",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_01",
+            "id": "3"
+        },
+        "to": {
+            "map": "IWA_02",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_02",
+            "id": "0"
+        },
+        "to": {
+            "map": "IWA_01",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_02",
+            "id": "1"
+        },
+        "to": {
+            "map": "IWA_01",
+            "id": 3
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_02",
+            "id": "2"
+        },
+        "to": {
+            "map": "IWA_04",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_03",
+            "id": "0"
+        },
+        "to": {
+            "map": "IWA_01",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_04",
+            "id": "0"
+        },
+        "to": {
+            "map": "IWA_02",
+            "id": 2
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_04",
+            "id": "1"
+        },
+        "to": {
+            "map": "SBK_99",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_10",
+            "id": "0"
+        },
+        "to": {
+            "map": "IWA_11",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_10",
+            "id": "1"
+        },
+        "to": {
+            "map": "IWA_00",
+            "id": 0
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_11",
+            "id": "0"
+        },
+        "to": {
+            "map": "MAC_03",
+            "id": 1
+        },
+        "reqs": ""
+    },
+    {
+        "from": {
+            "map": "IWA_11",
+            "id": "1"
+        },
+        "to": {
+            "map": "IWA_11",
+            "id": 0
+        },
+        "reqs": ""
+    }
+]
