@@ -74,7 +74,7 @@ def create_nodes():
 
     entrance_links = {}
     for child in Path("./maps").iterdir():
-        if child.is_file():
+        if child.is_file() and child.name.endswith(".json"):
             with open(child, "r") as file:
                 entrance_links |= json.load(file)
 
