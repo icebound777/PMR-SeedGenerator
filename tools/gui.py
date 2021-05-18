@@ -6,6 +6,7 @@ import time
 import copy
 import shutil
 import random
+import hashlib
 import sqlite3 as sql
 import threading
 import configparser
@@ -28,6 +29,7 @@ from db.option import Option, create_options
 from db.item_price import ItemPrice, create_item_prices
 from db.entrance import Entrance, create_entrances
 from db.actor_attribute import ActorAttribute, create_actor_attributes
+
 
 # Create enums from ./globals/enum/
 create_enums()
@@ -325,8 +327,11 @@ class Window(QMainWindow):
 	def randomize(self):
 		self.log.clear()
 		self.progress_bar.setVisible(True)
+
 		# Initialize Random Seed
-		self.seed = hash(self.edit_seed.text()) & 0xFFFFFFFF
+		m = hashlib.md5()
+		m.update(self.edit_seed.text().encode("utf-8"))
+		self.seed = int(m.hexdigest()[0:8], 16)
 		random.seed(self.seed)
 
 		# Create the ROM table
