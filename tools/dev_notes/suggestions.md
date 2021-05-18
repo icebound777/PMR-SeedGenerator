@@ -3,7 +3,9 @@ This list may include yet undecided upon suggestions, suggestions that were decl
 
 # Undecided
 
-* Choose key item prices based on how many nodes they ultimately open up. A more useful key item should cost more.
+* Choose key item prices based on how many nodes they ultimately open up. A more useful key item should cost more. -Jdog
+* Progression that dynamically scales enemies in the entire world based on the number of chapter bosses defeated. -Quackles
+* Offer a hard mode setting that removes strong badges, offer an easy mode that starts you with a 0 BP cost Peekaboo and 0 BP I Spy. -Icebound
 
 # Declined
 
