@@ -132,7 +132,7 @@ class Window(QMainWindow):
 		# Prompt user for a database to use for populating GUI widgets
 		options = QFileDialog.Options()
 		options |= QFileDialog.DontUseNativeDialog
-		filename, ok = QFileDialog.getOpenFileName(self, "Select Settings File", "", "Sqlite Files (*.sqlite)", options=options)
+		filename, ok = QFileDialog.getOpenFileName(self, "Load Settings", "", "Settings Files (*.settings)", options=options)
 
 		if not ok:
 			# Poor lil' GUI :(
@@ -170,10 +170,10 @@ class Window(QMainWindow):
 	def save_settings(self):
 		options = QFileDialog.Options()
 		options |= QFileDialog.DontUseNativeDialog
-		filename, ok = QFileDialog.getSaveFileName(self ,"Save Settings", "", "Sqlite Files (*.sqlite)", options=options)
+		filename, ok = QFileDialog.getSaveFileName(self ,"Save Settings", "", "Settings Files (*.settings)", options=options)
 		if ok:
-			if not filename.endswith(".sqlite"):
-				filename += ".sqlite"
+			if not filename.endswith(".settings"):
+				filename += ".settings"
 
 			self.update_db()
 			shutil.copy("db.sqlite", filename)

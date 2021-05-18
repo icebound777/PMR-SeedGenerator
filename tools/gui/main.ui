@@ -22,22 +22,22 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QFormLayout" name="formLayout">
     <property name="horizontalSpacing">
-     <number>5</number>
+     <number>3</number>
     </property>
     <property name="verticalSpacing">
-     <number>5</number>
+     <number>3</number>
     </property>
     <property name="leftMargin">
-     <number>5</number>
+     <number>3</number>
     </property>
     <property name="topMargin">
-     <number>5</number>
+     <number>3</number>
     </property>
     <property name="rightMargin">
-     <number>5</number>
+     <number>3</number>
     </property>
     <property name="bottomMargin">
-     <number>5</number>
+     <number>3</number>
     </property>
     <item row="0" column="0">
      <widget class="QFrame" name="frame_dev">
@@ -54,6 +54,21 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>5</number>
+       </property>
+       <property name="leftMargin">
+        <number>5</number>
+       </property>
+       <property name="topMargin">
+        <number>5</number>
+       </property>
+       <property name="rightMargin">
+        <number>5</number>
+       </property>
+       <property name="bottomMargin">
+        <number>5</number>
+       </property>
        <item>
         <widget class="QPushButton" name="button_compile">
          <property name="minimumSize">
@@ -215,7 +230,7 @@
            <item>
             <widget class="QLabel" name="label_4">
              <property name="text">
-              <string>Initial Coin Amount</string>
+              <string>Initial Coins</string>
              </property>
             </widget>
            </item>
@@ -466,13 +481,6 @@
       </widget>
      </widget>
     </item>
-    <item row="2" column="0" colspan="2">
-     <widget class="QProgressBar" name="progress_bar">
-      <property name="value">
-       <number>0</number>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="0" colspan="2">
      <widget class="QTextEdit" name="log">
       <property name="minimumSize">
@@ -492,6 +500,13 @@
       </property>
       <property name="readOnly">
        <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="2">
+     <widget class="QProgressBar" name="progress_bar">
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
