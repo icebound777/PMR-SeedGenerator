@@ -1,1 +1,37 @@
-[{"from": {"map": "KMR_00", "id": 0}, "to": {"map": "KMR_02", "id": 1}, "reqs": ""}, {"from": {"map": "KMR_02", "id": 0}, "to": {"map": "KMR_09", "id": 0}, "reqs": ""}, {"from": {"map": "KMR_02", "id": 1}, "to": {"map": "KMR_00", "id": 0}, "reqs": ""}, {"from": {"map": "KMR_02", "id": 2}, "to": {"map": "KMR_05", "id": 1}, "reqs": ""}, {"from": {"map": "KMR_02", "id": 3}, "to": {"map": "TIK_01", "id": 2}, "reqs": ""}, {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_04", "id": 0}, "reqs": ""}, {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_05", "id": 0}, "reqs": ""}, {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_03", "id": 0}, "reqs": ""}, {"from": {"map": "KMR_05", "id": 0}, "to": {"map": "KMR_03", "id": 1}, "reqs": ""}, {"from": {"map": "KMR_05", "id": 1}, "to": {"map": "KMR_02", "id": 2}, "reqs": ""}, {"from": {"map": "KMR_06", "id": 0}, "to": {"map": "KMR_09", "id": 1}, "reqs": ""}, {"from": {"map": "KMR_06", "id": 1}, "to": {"map": "KMR_07", "id": 0}, "reqs": ""}, {"from": {"map": "KMR_07", "id": 0}, "to": {"map": "KMR_06", "id": 1}, "reqs": ""}, {"from": {"map": "KMR_07", "id": 1}, "to": {"map": "KMR_12", "id": 0}, "reqs": ""}, {"from": {"map": "KMR_09", "id": 0}, "to": {"map": "KMR_02", "id": 0}, "reqs": ""}, {"from": {"map": "KMR_09", "id": 1}, "to": {"map": "KMR_06", "id": 0}, "reqs": ""}, {"from": {"map": "KMR_10", "id": 0}, "to": {"map": "KMR_11", "id": 1}, "reqs": ""}, {"from": {"map": "KMR_10", "id": 1}, "to": {"map": "MAC_00", "id": 0}, "reqs": ""}, {"from": {"map": "KMR_11", "id": 0}, "to": {"map": "KMR_12", "id": 1}, "reqs": ""}, {"from": {"map": "KMR_11", "id": 1}, "to": {"map": "KMR_10", "id": 0}, "reqs": ""}, {"from": {"map": "KMR_12", "id": 0}, "to": {"map": "KMR_07", "id": 1}, "reqs": ""}, {"from": {"map": "KMR_12", "id": 1}, "to": {"map": "KMR_11", "id": 0}, "reqs": ""}, {"from": {"map": "KMR_20", "id": 4}, "to": {"map": "MAC_00", "id": 4}, "reqs": ""}]
+[
+    # KMR_00 Forest Clearing
+    {"from": {"map": "KMR_00", "id": 0}, "to": {"map": "KMR_02", "id": 1}, "reqs": ""}, # 
+    # KMR_02 Goomba Village
+    {"from": {"map": "KMR_02", "id": 0}, "to": {"map": "KMR_09", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KMR_02", "id": 1}, "to": {"map": "KMR_00", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KMR_02", "id": 2}, "to": {"map": "KMR_05", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KMR_02", "id": 3}, "to": {"map": "TIK_01", "id": 2}, "reqs": ""}, # 
+    # KMR_05 Behind the Village
+    {"from": {"map": "KMR_05", "id": 0}, "to": {"map": "KMR_03", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KMR_05", "id": 1}, "to": {"map": "KMR_02", "id": 2}, "reqs": ""}, # 
+    # KMR_03 Bottom of the Cliff
+    {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_04", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_05", "id": 0}, "reqs": ""}, # 
+    # KMR_04 Jr. Troopa's Playground
+    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_03", "id": 0}, "reqs": ""}, # 
+    # KMR_09 Goomba Road 1
+    {"from": {"map": "KMR_09", "id": 0}, "to": {"map": "KMR_02", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KMR_09", "id": 1}, "to": {"map": "KMR_06", "id": 0}, "reqs": ""}, # 
+    # KMR_06 Goomba Road 2
+    {"from": {"map": "KMR_06", "id": 0}, "to": {"map": "KMR_09", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KMR_06", "id": 1}, "to": {"map": "KMR_07", "id": 0}, "reqs": ""}, # 
+    # KMR_07 Goomba Road 3
+    {"from": {"map": "KMR_07", "id": 0}, "to": {"map": "KMR_06", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KMR_07", "id": 1}, "to": {"map": "KMR_12", "id": 0}, "reqs": ""}, # 
+    # KMR_12 Goomba Road 4
+    {"from": {"map": "KMR_12", "id": 0}, "to": {"map": "KMR_07", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KMR_12", "id": 1}, "to": {"map": "KMR_11", "id": 0}, "reqs": ""}, # 
+    # KMR_11 Goomba King's Castle
+    {"from": {"map": "KMR_11", "id": 0}, "to": {"map": "KMR_12", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KMR_11", "id": 1}, "to": {"map": "KMR_10", "id": 0}, "reqs": ""}, # 
+    # KMR_10 Toad Town Entrance
+    {"from": {"map": "KMR_10", "id": 0}, "to": {"map": "KMR_11", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KMR_10", "id": 1}, "to": {"map": "MAC_00", "id": 0}, "reqs": ""}, # 
+    # KMR_20 Mario's House
+    {"from": {"map": "KMR_20", "id": 4}, "to": {"map": "MAC_00", "id": 4}, "reqs": ""}, # 
+]
