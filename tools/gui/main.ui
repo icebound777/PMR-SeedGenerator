@@ -215,6 +215,13 @@
            <item>
             <widget class="QLineEdit" name="edit_seed"/>
            </item>
+           <item>
+            <widget class="QPushButton" name="button_generate">
+             <property name="text">
+              <string>Generate</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
@@ -463,22 +470,22 @@
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="chk_include_coins">
-             <property name="toolTip">
-              <string>Include coins in the list of potential places items can be shuffled</string>
-             </property>
-             <property name="text">
-              <string>Include Coins</string>
-             </property>
-            </widget>
-           </item>
-           <item>
             <widget class="QCheckBox" name="chk_include_shops">
              <property name="toolTip">
               <string>Include shops in the list of potential places items can be shuffled</string>
              </property>
              <property name="text">
               <string>Include Shops</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="chk_include_coins">
+             <property name="toolTip">
+              <string>Include coins in the list of potential places items can be shuffled</string>
+             </property>
+             <property name="text">
+              <string>Include Coins</string>
              </property>
             </widget>
            </item>

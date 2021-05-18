@@ -88,6 +88,7 @@ class Window(QMainWindow):
 		self.button_save_settings.clicked.connect(self.save_settings)
 		self.button_randomize.clicked.connect(self.randomize)
 		self.button_about.clicked.connect(self.about)
+		self.button_generate.clicked.connect(self.generate_seed)
 
 		# Move to center of window
 		rectangle = self.frameGeometry()
@@ -123,6 +124,14 @@ class Window(QMainWindow):
 		cursor.insertText(text)
 		self.log.setTextCursor(cursor)
 		self.log.ensureCursorVisible()
+
+	def generate_seed(self):
+		items = set()
+		while len(items) < 4:
+			item_str = Enums.get("Item")[random.randrange(0x80, 0xE0)]
+			item_str = "".join([c for c in item_str if c.isalpha()])
+			items.add(item_str)
+		self.edit_seed.setText("".join(items))
 
 	def about(self):
 		msg = QMessageBox()
@@ -270,8 +279,27 @@ class Window(QMainWindow):
 		def reset(checked, chk_widget):
 			if not checked:
 				chk_widget.setChecked(False)
+				chk_widget.setEnabled(False)
+			else:
+				chk_widget.setEnabled(True)
 		self.chk_shuffle_items.clicked.connect(lambda checked: reset(checked, self.chk_include_coins))
 		self.chk_shuffle_items.clicked.connect(lambda checked: reset(checked, self.chk_include_shops))
+
+		# Disable Entrance options if ShuffleEntrances is unchecked
+		def update_entrance_widgets(checked):
+			if not checked:
+				self.radio_by_area.setChecked(False)
+				self.radio_by_all.setChecked(False)
+				self.radio_by_area.setEnabled(False)
+				self.radio_by_all.setEnabled(False)
+				self.chk_match_types.setChecked(False)
+				self.chk_match_types.setEnabled(False)
+			else:
+				self.radio_by_area.setEnabled(True)
+				self.radio_by_all.setEnabled(True)
+				self.chk_match_types.setEnabled(True)
+				self.radio_by_area.setChecked(True)
+		self.chk_shuffle_entrances.clicked.connect(lambda checked: update_entrance_widgets(checked))
 
 	def display(self, message):
 		self.statusBar().showMessage(message)
