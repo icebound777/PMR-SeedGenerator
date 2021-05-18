@@ -1,1 +1,4 @@
-[{"from": {"map": "MGM_00", "id": 0}, "to": {"map": "MAC_03", "id": 2}, "reqs": ""}]
+[
+    # MGM_00 Playroom Lobby
+    {"from": {"map": "MGM_00", "id": 0}, "to": {"map": "MAC_03", "id": 2}, "reqs": ""}, # 
+]

@@ -1,53 +1,77 @@
-[{"from": {"map": "JAN_00", "id": 0}, "to": {"map": "MAC_06", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_00", "id": 1}, "to": {"map": "JAN_01", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_00", "id": 2}, "to": {"map": "JAN_08", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_01", "id": 0}, "to": {"map": "JAN_00", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_01", "id": 1}, "to": {"map": "JAN_02", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_02", "id": 0}, "to": {"map": "JAN_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_02", "id": 1}, "to": {"map": "JAN_03", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_02", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_03", "id": 1}, "to": {"map": "JAN_05", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_03", "id": 2}, "to": {"map": "JAN_22", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_03", "id": 3}, "to": {"map": "TIK_08", "id": 4}, "reqs": ""},
-    {"from": {"map": "JAN_04", "id": 0}, "to": {"map": "JAN_05", "id": 2}, "reqs": ""},
-    {"from": {"map": "JAN_05", "id": 0}, "to": {"map": "JAN_03", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_05", "id": 1}, "to": {"map": "JAN_08", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_05", "id": 2}, "to": {"map": "JAN_04", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_05", "id": 3}, "to": {"map": "JAN_06", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_06", "id": 0}, "to": {"map": "JAN_05", "id": 3}, "reqs": ""},
-    {"from": {"map": "JAN_06", "id": 1}, "to": {"map": "JAN_07", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_06", "id": 2}, "to": {"map": "JAN_12", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_06", "id": 3}, "to": {"map": "JAN_09", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_07", "id": 0}, "to": {"map": "JAN_06", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_08", "id": 0}, "to": {"map": "JAN_00", "id": 2}, "reqs": ""},
-    {"from": {"map": "JAN_08", "id": 1}, "to": {"map": "JAN_05", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_08", "id": 2}, "to": {"map": "JAN_09", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_09", "id": 0}, "to": {"map": "JAN_08", "id": 2}, "reqs": ""},
-    {"from": {"map": "JAN_09", "id": 1}, "to": {"map": "JAN_06", "id": 3}, "reqs": ""},
-    {"from": {"map": "JAN_09", "id": 2}, "to": {"map": "JAN_10", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_09", "id": 3}, "to": {"map": "JAN_11", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_10", "id": 0}, "to": {"map": "JAN_09", "id": 2}, "reqs": ""},
-    {"from": {"map": "JAN_11", "id": 0}, "to": {"map": "JAN_09", "id": 3}, "reqs": ""},
-    {"from": {"map": "JAN_12", "id": 0}, "to": {"map": "JAN_06", "id": 2}, "reqs": ""},
-    {"from": {"map": "JAN_12", "id": 1}, "to": {"map": "JAN_13", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_13", "id": 0}, "to": {"map": "JAN_12", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_13", "id": 1}, "to": {"map": "JAN_14", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_14", "id": 0}, "to": {"map": "JAN_13", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_14", "id": 1}, "to": {"map": "JAN_15", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_15", "id": 0}, "to": {"map": "JAN_14", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_15", "id": 1}, "to": {"map": "JAN_16", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_16", "id": 0}, "to": {"map": "JAN_15", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_16", "id": 1}, "to": {"map": "JAN_22", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_16", "id": 2}, "to": {"map": "JAN_17", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_16", "id": 4}, "to": {"map": null, "id": null}, "reqs": ""},
-    {"from": {"map": "JAN_17", "id": 0}, "to": {"map": "JAN_16", "id": 2}, "reqs": ""},
-    {"from": {"map": "JAN_17", "id": 1}, "to": {"map": "JAN_18", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_18", "id": 0}, "to": {"map": "JAN_17", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_18", "id": 1}, "to": {"map": "JAN_19", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_19", "id": 0}, "to": {"map": "JAN_18", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_19", "id": 1}, "to": {"map": "JAN_23", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_03", "id": 2}, "reqs": ""},
-    {"from": {"map": "JAN_22", "id": 1}, "to": {"map": "JAN_16", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_22", "id": 2}, "to": {"map": "KZN_01", "id": 0}, "reqs": ""},
-    {"from": {"map": "JAN_23", "id": 0}, "to": {"map": "JAN_19", "id": 1}, "reqs": ""},
-    {"from": {"map": "JAN_23", "id": 1}, "to": {"map": "JAN_16", "id": 4}, "reqs": ""}]
+[
+    # JAN_00 Whale Cove
+    {"from": {"map": "JAN_00", "id": 0}, "to": {"map": "MAC_06", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_00", "id": 1}, "to": {"map": "JAN_01", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "JAN_00", "id": 2}, "to": {"map": "JAN_08", "id": 0}, "reqs": ""}, # 
+    # JAN_01 Beach
+    {"from": {"map": "JAN_01", "id": 0}, "to": {"map": "JAN_00", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_01", "id": 1}, "to": {"map": "JAN_02", "id": 0}, "reqs": ""}, # 
+    # JAN_02 Village Cove
+    {"from": {"map": "JAN_02", "id": 0}, "to": {"map": "JAN_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_02", "id": 1}, "to": {"map": "JAN_03", "id": 0}, "reqs": ""}, # 
+    # JAN_03 Village Buildings
+    {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_02", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_03", "id": 1}, "to": {"map": "JAN_05", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "JAN_03", "id": 2}, "to": {"map": "JAN_22", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "JAN_03", "id": 3}, "to": {"map": "TIK_08", "id": 4}, "reqs": ""}, # 
+    # JAN_04 Sushi Tree
+    {"from": {"map": "JAN_04", "id": 0}, "to": {"map": "JAN_05", "id": 2}, "reqs": ""}, # 
+    # JAN_05 SE Jungle (Quake Hammer)
+    {"from": {"map": "JAN_05", "id": 0}, "to": {"map": "JAN_03", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_05", "id": 1}, "to": {"map": "JAN_08", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_05", "id": 2}, "to": {"map": "JAN_04", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "JAN_05", "id": 3}, "to": {"map": "JAN_06", "id": 0}, "reqs": ""}, # 
+    # JAN_06 NE Jungle (Raven Statue)
+    {"from": {"map": "JAN_06", "id": 0}, "to": {"map": "JAN_05", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "JAN_06", "id": 1}, "to": {"map": "JAN_07", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "JAN_06", "id": 2}, "to": {"map": "JAN_12", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "JAN_06", "id": 3}, "to": {"map": "JAN_09", "id": 1}, "reqs": ""}, # 
+    # JAN_07 Small Jungle Ledge
+    {"from": {"map": "JAN_07", "id": 0}, "to": {"map": "JAN_06", "id": 1}, "reqs": ""}, # 
+    # JAN_08 SW Jungle (Super Block)
+    {"from": {"map": "JAN_08", "id": 0}, "to": {"map": "JAN_00", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "JAN_08", "id": 1}, "to": {"map": "JAN_05", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_08", "id": 2}, "to": {"map": "JAN_09", "id": 0}, "reqs": ""}, # 
+    # JAN_09 NW Jungle (Large Ledge)
+    {"from": {"map": "JAN_09", "id": 0}, "to": {"map": "JAN_08", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "JAN_09", "id": 1}, "to": {"map": "JAN_06", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "JAN_09", "id": 2}, "to": {"map": "JAN_10", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "JAN_09", "id": 3}, "to": {"map": "JAN_11", "id": 0}, "reqs": ""}, # 
+    # JAN_10 Western Dead End
+    {"from": {"map": "JAN_10", "id": 0}, "to": {"map": "JAN_09", "id": 2}, "reqs": ""}, # 
+    # JAN_11 Root Cavern
+    {"from": {"map": "JAN_11", "id": 0}, "to": {"map": "JAN_09", "id": 3}, "reqs": ""}, # 
+    # JAN_12 Deep Jungle 1
+    {"from": {"map": "JAN_12", "id": 0}, "to": {"map": "JAN_06", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "JAN_12", "id": 1}, "to": {"map": "JAN_13", "id": 0}, "reqs": ""}, # 
+    # JAN_13 Deep Jungle 2 (Block Puzzle)
+    {"from": {"map": "JAN_13", "id": 0}, "to": {"map": "JAN_12", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_13", "id": 1}, "to": {"map": "JAN_14", "id": 0}, "reqs": ""}, # 
+    # JAN_14 Deep Jungle 3
+    {"from": {"map": "JAN_14", "id": 0}, "to": {"map": "JAN_13", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_14", "id": 1}, "to": {"map": "JAN_15", "id": 0}, "reqs": ""}, # 
+    # JAN_15 Deep Jungle 4 (Ambush)
+    {"from": {"map": "JAN_15", "id": 0}, "to": {"map": "JAN_14", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_15", "id": 1}, "to": {"map": "JAN_16", "id": 0}, "reqs": ""}, # 
+    # JAN_16 Base of Great Tree
+    {"from": {"map": "JAN_16", "id": 0}, "to": {"map": "JAN_15", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_16", "id": 1}, "to": {"map": "JAN_22", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_16", "id": 2}, "to": {"map": "JAN_17", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "JAN_16", "id": 4}, "to": {"map": null, "id": null}, "reqs": ""},  # 
+    # JAN_17 Lower Great Tree Interior
+    {"from": {"map": "JAN_17", "id": 0}, "to": {"map": "JAN_16", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "JAN_17", "id": 1}, "to": {"map": "JAN_18", "id": 0}, "reqs": ""}, # 
+    # JAN_18 Great Tree Vine Ascent
+    {"from": {"map": "JAN_18", "id": 0}, "to": {"map": "JAN_17", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_18", "id": 1}, "to": {"map": "JAN_19", "id": 0}, "reqs": ""}, # 
+    # JAN_19 Upper Great Tree Interior
+    {"from": {"map": "JAN_19", "id": 0}, "to": {"map": "JAN_18", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_19", "id": 1}, "to": {"map": "JAN_23", "id": 0}, "reqs": ""}, # 
+    # JAN_22 Path to the Volcano
+    {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_03", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "JAN_22", "id": 1}, "to": {"map": "JAN_16", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_22", "id": 2}, "to": {"map": "KZN_01", "id": 0}, "reqs": ""}, # 
+    # JAN_23 Great Treetop Roost
+    {"from": {"map": "JAN_23", "id": 0}, "to": {"map": "JAN_19", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "JAN_23", "id": 1}, "to": {"map": "JAN_16", "id": 4}, "reqs": ""}, # 
+]

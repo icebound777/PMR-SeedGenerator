@@ -1,29 +1,47 @@
-[{"from": {"map": "OMO_01", "id": 0}, "to": {"map": "OMO_13", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_02", "id": 0}, "to": {"map": "OMO_10", "id": 1}, "reqs": ""},
-    {"from": {"map": "OMO_02", "id": 1}, "to": {"map": "OMO_14", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_13", "id": 1}, "reqs": ""},
-    {"from": {"map": "OMO_03", "id": 1}, "to": {"map": "OMO_04", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "MAC_04", "id": 2}, "reqs": ""},
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_03", "id": 1}, "reqs": ""},
-    {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_17", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_05", "id": 1}, "to": {"map": "OMO_17", "id": 1}, "reqs": ""},
-    {"from": {"map": "OMO_06", "id": 0}, "to": {"map": "OMO_17", "id": 2}, "reqs": ""},
-    {"from": {"map": "OMO_06", "id": 1}, "to": {"map": "OMO_17", "id": 3}, "reqs": ""},
-    {"from": {"map": "OMO_06", "id": 4}, "to": {"map": "OMO_07", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_07", "id": 0}, "to": {"map": "OMO_06", "id": 4}, "reqs": ""},
-    {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_09", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_08", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_10", "id": 0}, "to": {"map": "OMO_11", "id": 1}, "reqs": ""},
-    {"from": {"map": "OMO_10", "id": 1}, "to": {"map": "OMO_02", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_11", "id": 0}, "to": {"map": "OMO_12", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_11", "id": 1}, "to": {"map": "OMO_10", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_12", "id": 0}, "to": {"map": "OMO_11", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_13", "id": 0}, "to": {"map": "OMO_01", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_13", "id": 1}, "to": {"map": "OMO_03", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_14", "id": 0}, "to": {"map": "OMO_02", "id": 1}, "reqs": ""},
-    {"from": {"map": "OMO_14", "id": 1}, "to": {"map": "OMO_15", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_15", "id": 0}, "to": {"map": "OMO_14", "id": 1}, "reqs": ""},
-    {"from": {"map": "OMO_17", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_17", "id": 1}, "to": {"map": "OMO_05", "id": 1}, "reqs": ""},
-    {"from": {"map": "OMO_17", "id": 2}, "to": {"map": "OMO_06", "id": 0}, "reqs": ""},
-    {"from": {"map": "OMO_17", "id": 3}, "to": {"map": "OMO_06", "id": 1}, "reqs": ""}]
+[
+    # OMO_01 BLU Large Playroom
+    {"from": {"map": "OMO_01", "id": 0}, "to": {"map": "OMO_13", "id": 0}, "reqs": ""}, # 
+    # OMO_02 RED Boss Barricade
+    {"from": {"map": "OMO_02", "id": 0}, "to": {"map": "OMO_10", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "OMO_02", "id": 1}, "to": {"map": "OMO_14", "id": 0}, "reqs": ""}, # 
+    # OMO_03 BLU Station
+    {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_13", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "OMO_03", "id": 1}, "to": {"map": "OMO_04", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "MAC_04", "id": 2}, "reqs": ""}, # 
+    # OMO_04 BLU Block City
+    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_03", "id": 1}, "reqs": ""}, # 
+    # OMO_05 PNK Gourmet Guy Crossing
+    {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_17", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "OMO_05", "id": 1}, "to": {"map": "OMO_17", "id": 1}, "reqs": ""}, # 
+    # OMO_06 PNK Station
+    {"from": {"map": "OMO_06", "id": 0}, "to": {"map": "OMO_17", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "OMO_06", "id": 1}, "to": {"map": "OMO_17", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "OMO_06", "id": 4}, "to": {"map": "OMO_07", "id": 0}, "reqs": ""}, # 
+    # OMO_07 PNK Playhouse
+    {"from": {"map": "OMO_07", "id": 0}, "to": {"map": "OMO_06", "id": 4}, "reqs": ""}, # 
+    # OMO_08 GRN Station
+    {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_09", "id": 0}, "reqs": ""}, # 
+    # OMO_09 GRN Treadmills/Slot Machine
+    {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_08", "id": 0}, "reqs": ""}, # 
+    # OMO_10 RED Station
+    {"from": {"map": "OMO_10", "id": 0}, "to": {"map": "OMO_11", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "OMO_10", "id": 1}, "to": {"map": "OMO_02", "id": 0}, "reqs": ""}, # 
+    # OMO_11 RED Moving Platforms
+    {"from": {"map": "OMO_11", "id": 0}, "to": {"map": "OMO_12", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "OMO_11", "id": 1}, "to": {"map": "OMO_10", "id": 0}, "reqs": ""}, # 
+    # OMO_12 RED Lantern Ghost
+    {"from": {"map": "OMO_12", "id": 0}, "to": {"map": "OMO_11", "id": 0}, "reqs": ""}, # 
+    # OMO_13 BLU Anti-Guy Hall
+    {"from": {"map": "OMO_13", "id": 0}, "to": {"map": "OMO_01", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "OMO_13", "id": 1}, "to": {"map": "OMO_03", "id": 0}, "reqs": ""}, # 
+    # OMO_14 RED Boss Antechamber
+    {"from": {"map": "OMO_14", "id": 0}, "to": {"map": "OMO_02", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "OMO_14", "id": 1}, "to": {"map": "OMO_15", "id": 0}, "reqs": ""}, # 
+    # OMO_15 RED General Guy Room
+    {"from": {"map": "OMO_15", "id": 0}, "to": {"map": "OMO_14", "id": 1}, "reqs": ""}, # 
+    # OMO_17 PNK Tracks Hallway
+    {"from": {"map": "OMO_17", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "OMO_17", "id": 1}, "to": {"map": "OMO_05", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "OMO_17", "id": 2}, "to": {"map": "OMO_06", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "OMO_17", "id": 3}, "to": {"map": "OMO_06", "id": 1}, "reqs": ""}, # 
+]

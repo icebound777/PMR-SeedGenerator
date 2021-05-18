@@ -1,20 +1,31 @@
-[{"from": {"map": "OBK_01", "id": 0}, "to": {"map": "MIM_11", "id": 2}, "reqs": ""},
-    {"from": {"map": "OBK_01", "id": 1}, "to": {"map": "OBK_02", "id": 0}, "reqs": ""},
-    {"from": {"map": "OBK_01", "id": 2}, "to": {"map": "OBK_05", "id": 0}, "reqs": ""},
-    {"from": {"map": "OBK_01", "id": 3}, "to": {"map": "OBK_07", "id": 0}, "reqs": ""},
-    {"from": {"map": "OBK_01", "id": 4}, "to": {"map": "OBK_08", "id": 0}, "reqs": ""},
-    {"from": {"map": "OBK_01", "id": 5}, "to": {"map": "OBK_09", "id": 0}, "reqs": ""},
-    {"from": {"map": "OBK_01", "id": 6}, "to": {"map": "OBK_09", "id": 1}, "reqs": ""},
-    {"from": {"map": "OBK_02", "id": 0}, "to": {"map": "OBK_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "OBK_02", "id": 1}, "to": {"map": "OBK_03", "id": 0}, "reqs": ""},
-    {"from": {"map": "OBK_02", "id": 2}, "to": {"map": "OBK_06", "id": 1}, "reqs": ""},
-    {"from": {"map": "OBK_03", "id": 0}, "to": {"map": "OBK_02", "id": 1}, "reqs": ""},
-    {"from": {"map": "OBK_03", "id": 1}, "to": {"map": "OBK_04", "id": 0}, "reqs": ""},
-    {"from": {"map": "OBK_04", "id": 1}, "to": {"map": "OBK_03", "id": 2}, "reqs": ""},
-    {"from": {"map": "OBK_05", "id": 0}, "to": {"map": "OBK_01", "id": 2}, "reqs": ""},
-    {"from": {"map": "OBK_05", "id": 1}, "to": {"map": "OBK_06", "id": 0}, "reqs": ""},
-    {"from": {"map": "OBK_06", "id": 1}, "to": {"map": "OBK_02", "id": 2}, "reqs": ""},
-    {"from": {"map": "OBK_07", "id": 0}, "to": {"map": "OBK_01", "id": 3}, "reqs": ""},
-    {"from": {"map": "OBK_08", "id": 0}, "to": {"map": "OBK_01", "id": 4}, "reqs": ""},
-    {"from": {"map": "OBK_09", "id": 0}, "to": {"map": "OBK_01", "id": 5}, "reqs": ""},
-    {"from": {"map": "OBK_09", "id": 1}, "to": {"map": "OBK_01", "id": 6}, "reqs": ""}]
+[
+    # OBK_01 Foyer
+    {"from": {"map": "OBK_01", "id": 0}, "to": {"map": "MIM_11", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "OBK_01", "id": 1}, "to": {"map": "OBK_02", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "OBK_01", "id": 2}, "to": {"map": "OBK_05", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "OBK_01", "id": 3}, "to": {"map": "OBK_07", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "OBK_01", "id": 4}, "to": {"map": "OBK_08", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "OBK_01", "id": 5}, "to": {"map": "OBK_09", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "OBK_01", "id": 6}, "to": {"map": "OBK_09", "id": 1}, "reqs": ""}, # 
+    # OBK_02 Basement Stairs
+    {"from": {"map": "OBK_02", "id": 0}, "to": {"map": "OBK_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "OBK_02", "id": 1}, "to": {"map": "OBK_03", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "OBK_02", "id": 2}, "to": {"map": "OBK_06", "id": 1}, "reqs": ""}, # 
+    # OBK_03 Basement
+    {"from": {"map": "OBK_03", "id": 0}, "to": {"map": "OBK_02", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "OBK_03", "id": 1}, "to": {"map": "OBK_04", "id": 0}, "reqs": ""}, # 
+    # OBK_04 Super Boots Room
+    {"from": {"map": "OBK_04", "id": 1}, "to": {"map": "OBK_03", "id": 2}, "reqs": ""}, # 
+    # OBK_05 Pot Room
+    {"from": {"map": "OBK_05", "id": 0}, "to": {"map": "OBK_01", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "OBK_05", "id": 1}, "to": {"map": "OBK_06", "id": 0}, "reqs": ""}, # 
+    # OBK_06 Library
+    {"from": {"map": "OBK_06", "id": 1}, "to": {"map": "OBK_02", "id": 2}, "reqs": ""}, # 
+    # OBK_07 Record Player Room
+    {"from": {"map": "OBK_07", "id": 0}, "to": {"map": "OBK_01", "id": 3}, "reqs": ""}, # 
+    # OBK_08 Record Room
+    {"from": {"map": "OBK_08", "id": 0}, "to": {"map": "OBK_01", "id": 4}, "reqs": ""}, # 
+    # OBK_09 Lady Bow's Room
+    {"from": {"map": "OBK_09", "id": 0}, "to": {"map": "OBK_01", "id": 5}, "reqs": ""}, # 
+    {"from": {"map": "OBK_09", "id": 1}, "to": {"map": "OBK_01", "id": 6}, "reqs": ""}, # 
+]

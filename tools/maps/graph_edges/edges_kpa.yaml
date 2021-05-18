@@ -1,113 +1,165 @@
-[{"from": {"map": "KPA_01", "id": 0}, "to": {"map": "KPA_14", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_01", "id": 1}, "to": {"map": "KPA_03", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_03", "id": 0}, "to": {"map": "KPA_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_03", "id": 1}, "to": {"map": "KPA_04", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_04", "id": 0}, "to": {"map": "KPA_03", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_04", "id": 1}, "to": {"map": "KPA_81", "id": 3}, "reqs": ""},
-    {"from": {"map": "KPA_08", "id": 0}, "to": {"map": "KPA_52", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_08", "id": 1}, "to": {"map": "KPA_100", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_09", "id": 0}, "to": {"map": "KPA_101", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_09", "id": 1}, "to": {"map": "KPA_33", "id": 3}, "reqs": ""},
-    {"from": {"map": "KPA_10", "id": 0}, "to": {"map": "KPA_62", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_10", "id": 1}, "to": {"map": "KPA_12", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_10", "id": 2}, "to": {"map": "KPA_17", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_10", "id": 3}, "to": {"map": "KPA_62", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_10", "id": 4}, "to": {"map": "KPA_12", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_11", "id": 0}, "to": {"map": "KPA_62", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_11", "id": 1}, "to": {"map": "KPA_12", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_11", "id": 2}, "to": {"map": "KPA_17", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_11", "id": 3}, "to": {"map": "KPA_62", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_11", "id": 4}, "to": {"map": "KPA_12", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_12", "id": 0}, "to": {"map": "KPA_10", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_12", "id": 1}, "to": {"map": "KPA_13", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_12", "id": 2}, "to": {"map": "KPA_10", "id": 4}, "reqs": ""},
-    {"from": {"map": "KPA_13", "id": 0}, "to": {"map": "KPA_12", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_13", "id": 1}, "to": {"map": "KPA_14", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_13", "id": 2}, "to": {"map": "KPA_15", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_14", "id": 0}, "to": {"map": "KPA_13", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_14", "id": 1}, "to": {"map": "KPA_01", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_14", "id": 2}, "to": {"map": "KPA_16", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_15", "id": 0}, "to": {"map": "KPA_13", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_16", "id": 0}, "to": {"map": "KPA_14", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_17", "id": 0}, "to": {"map": null, "id": null}, "reqs": ""},
-    {"from": {"map": "KPA_17", "id": 1}, "to": {"map": "KPA_10", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_32", "id": 0}, "to": {"map": "KPA_81", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_32", "id": 1}, "to": {"map": "KPA_90", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_32", "id": 2}, "to": {"map": "KPA_51", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_32", "id": 3}, "to": {"map": "KPA_96", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_33", "id": 0}, "to": {"map": "KPA_94", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_33", "id": 1}, "to": {"map": "KPA_61", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_33", "id": 2}, "to": {"map": "KPA_52", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_33", "id": 3}, "to": {"map": "KPA_09", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_40", "id": 0}, "to": {"map": "KPA_52", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_40", "id": 1}, "to": {"map": "KPA_40", "id": 3}, "reqs": ""},
-    {"from": {"map": "KPA_40", "id": 2}, "to": {"map": "KPA_41", "id": 3}, "reqs": ""},
-    {"from": {"map": "KPA_41", "id": 0}, "to": {"map": "KPA_40", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_41", "id": 1}, "to": {"map": "KPA_41", "id": "0"}, "reqs": ""},
-    {"from": {"map": "KPA_41", "id": 2}, "to": {"map": "KPA_102", "id": "0"}, "reqs": ""},
-    {"from": {"map": "KPA_41", "id": 3}, "to": {"map": "KPA_40", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_50", "id": 0}, "to": {"map": "KPA_70", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_50", "id": 1}, "to": {"map": "KPA_81", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_51", "id": 0}, "to": {"map": "KPA_32", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_51", "id": 1}, "to": {"map": "KPA_133", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_52", "id": 0}, "to": {"map": "KPA_33", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_52", "id": 1}, "to": {"map": "KPA_40", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_53", "id": 0}, "to": {"map": "KPA_102", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_53", "id": 1}, "to": {"map": "KPA_83", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_60", "id": 4}, "to": {"map": "HOS_20", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_60", "id": 5}, "to": {"map": "KPA_63", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_61", "id": 0}, "to": {"map": "KPA_82", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_61", "id": 1}, "to": {"map": "KPA_33", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_62", "id": 0}, "to": {"map": "KPA_70", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_62", "id": 1}, "to": {"map": "KPA_10", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_62", "id": 2}, "to": {"map": "KPA_10", "id": 3}, "reqs": ""},
-    {"from": {"map": "KPA_62", "id": 3}, "to": {"map": "KPA_63", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_63", "id": 0}, "to": {"map": "KPA_62", "id": 3}, "reqs": ""},
-    {"from": {"map": "KPA_63", "id": 1}, "to": {"map": "KPA_60", "id": 5}, "reqs": ""},
-    {"from": {"map": "KPA_70", "id": 0}, "to": {"map": "KPA_62", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_70", "id": 1}, "to": {"map": "KPA_50", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_81", "id": 0}, "to": {"map": "KPA_50", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_81", "id": 1}, "to": {"map": "KPA_17", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_81", "id": 2}, "to": {"map": "KPA_32", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_81", "id": 3}, "to": {"map": "KPA_04", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_82", "id": 0}, "to": {"map": "KPA_113", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_82", "id": 1}, "to": {"map": "KPA_61", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_83", "id": 0}, "to": {"map": "KPA_53", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_83", "id": 1}, "to": {"map": "KPA_121", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_90", "id": 0}, "to": {"map": "KPA_32", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_90", "id": 1}, "to": {"map": "KPA_91", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_91", "id": 0}, "to": {"map": "KPA_90", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_94", "id": 0}, "to": {"map": "KPA_95", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_94", "id": 1}, "to": {"map": "KPA_33", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_95", "id": 0}, "to": {"map": "KPA_94", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_96", "id": 0}, "to": {"map": "KPA_32", "id": 3}, "reqs": ""},
-    {"from": {"map": "KPA_100", "id": 0}, "to": {"map": "KPA_08", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_101", "id": 0}, "to": {"map": "KPA_09", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_102", "id": 0}, "to": {"map": "KPA_41", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_102", "id": 1}, "to": {"map": "KPA_53", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_111", "id": 0}, "to": {"map": "KPA_130", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_111", "id": 1}, "to": {"map": "KPA_112", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_112", "id": 0}, "to": {"map": "KPA_111", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_112", "id": 1}, "to": {"map": "KPA_113", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_113", "id": 0}, "to": {"map": "KPA_112", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_113", "id": 1}, "to": {"map": "KPA_82", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_113", "id": 2}, "to": {"map": "KPA_114", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_114", "id": 0}, "to": {"map": "KPA_113", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_114", "id": 1}, "to": {"map": "KPA_115", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_115", "id": 0}, "to": {"map": "KPA_114", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_115", "id": 1}, "to": {"map": "KPA_116", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_115", "id": 2}, "to": {"map": "KPA_118", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_116", "id": 0}, "to": {"map": "KPA_115", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_116", "id": 1}, "to": {"map": "KPA_117", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_117", "id": 0}, "to": {"map": "KPA_116", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_118", "id": 0}, "to": {"map": "KPA_115", "id": 2}, "reqs": ""},
-    {"from": {"map": "KPA_118", "id": 1}, "to": {"map": "KPA_119", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_119", "id": 0}, "to": {"map": "KPA_118", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_121", "id": 0}, "to": {"map": "KPA_83", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_121", "id": 1}, "to": {"map": "OSR_02", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_130", "id": 0}, "to": {"map": "KPA_134", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_130", "id": 1}, "to": {"map": "KPA_111", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_133", "id": 0}, "to": {"map": "KPA_51", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_133", "id": 1}, "to": {"map": "KPA_134", "id": 0}, "reqs": ""},
-    {"from": {"map": "KPA_134", "id": 0}, "to": {"map": "KPA_133", "id": 1}, "reqs": ""},
-    {"from": {"map": "KPA_134", "id": 1}, "to": {"map": "KPA_130", "id": 0}, "reqs": ""}]
+[
+    # KPA_01 Dark Cave 1
+    {"from": {"map": "KPA_01",  "id": 0}, "to": {"map": "KPA_14",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_01",  "id": 1}, "to": {"map": "KPA_03",  "id": 0}, "reqs": ""}, # 
+    # KPA_03 Dark Cave 2
+    {"from": {"map": "KPA_03",  "id": 0}, "to": {"map": "KPA_01",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_03",  "id": 1}, "to": {"map": "KPA_04",  "id": 0}, "reqs": ""}, # 
+    # KPA_04 Cave Exit
+    {"from": {"map": "KPA_04",  "id": 0}, "to": {"map": "KPA_03",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_04",  "id": 1}, "to": {"map": "KPA_81",  "id": 3}, "reqs": ""}, # 
+    # KPA_08 Castle Key Timing Puzzle
+    {"from": {"map": "KPA_08",  "id": 0}, "to": {"map": "KPA_52",  "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "KPA_08",  "id": 1}, "to": {"map": "KPA_100", "id": 0}, "reqs": ""}, # 
+    # KPA_09 Ultra Shroom Timing Puzzle
+    {"from": {"map": "KPA_09",  "id": 0}, "to": {"map": "KPA_101", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_09",  "id": 1}, "to": {"map": "KPA_33",  "id": 3}, "reqs": ""}, # 
+    # KPA_10 Outside Lower Jail (No Lava)
+    {"from": {"map": "KPA_10",  "id": 0}, "to": {"map": "KPA_62",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_10",  "id": 1}, "to": {"map": "KPA_12",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_10",  "id": 2}, "to": {"map": "KPA_17",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_10",  "id": 3}, "to": {"map": "KPA_62",  "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "KPA_10",  "id": 4}, "to": {"map": "KPA_12",  "id": 2}, "reqs": ""}, # 
+    # KPA_11 Outisde Lower Jail (Lava)
+    {"from": {"map": "KPA_11",  "id": 0}, "to": {"map": "KPA_62",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_11",  "id": 1}, "to": {"map": "KPA_12",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_11",  "id": 2}, "to": {"map": "KPA_17",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_11",  "id": 3}, "to": {"map": "KPA_62",  "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "KPA_11",  "id": 4}, "to": {"map": "KPA_12",  "id": 2}, "reqs": ""}, # 
+    # KPA_12 Lava Channel 1
+    {"from": {"map": "KPA_12",  "id": 0}, "to": {"map": "KPA_10",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_12",  "id": 1}, "to": {"map": "KPA_13",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_12",  "id": 2}, "to": {"map": "KPA_10",  "id": 4}, "reqs": ""}, # 
+    # KPA_13 Lava Channel 2
+    {"from": {"map": "KPA_13",  "id": 0}, "to": {"map": "KPA_12",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_13",  "id": 1}, "to": {"map": "KPA_14",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_13",  "id": 2}, "to": {"map": "KPA_15",  "id": 0}, "reqs": ""}, # 
+    # KPA_14 Lava Channel 3
+    {"from": {"map": "KPA_14",  "id": 0}, "to": {"map": "KPA_13",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_14",  "id": 1}, "to": {"map": "KPA_01",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_14",  "id": 2}, "to": {"map": "KPA_16",  "id": 0}, "reqs": ""}, # 
+    # KPA_15 Lava Key Room
+    {"from": {"map": "KPA_15",  "id": 0}, "to": {"map": "KPA_13",  "id": 2}, "reqs": ""}, # 
+    # KPA_16 Lava Control Room
+    {"from": {"map": "KPA_16",  "id": 0}, "to": {"map": "KPA_14",  "id": 2}, "reqs": ""}, # 
+    # KPA_17 Lower Jail
+    {"from": {"map": "KPA_17",  "id": 0}, "to": {"map": null, "id": null}, "reqs": ""},   # 
+    {"from": {"map": "KPA_17",  "id": 1}, "to": {"map": "KPA_10",  "id": 2}, "reqs": ""}, # 
+    # KPA_32 Lower Grand Hall
+    {"from": {"map": "KPA_32",  "id": 0}, "to": {"map": "KPA_81",  "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "KPA_32",  "id": 1}, "to": {"map": "KPA_90",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_32",  "id": 2}, "to": {"map": "KPA_51",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_32",  "id": 3}, "to": {"map": "KPA_96",  "id": 0}, "reqs": ""}, # 
+    # KPA_33 Upper Grand Hall
+    {"from": {"map": "KPA_33",  "id": 0}, "to": {"map": "KPA_94",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_33",  "id": 1}, "to": {"map": "KPA_61",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_33",  "id": 2}, "to": {"map": "KPA_52",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_33",  "id": 3}, "to": {"map": "KPA_09",  "id": 1}, "reqs": ""}, # 
+    # KPA_40 Maze Guide Room
+    {"from": {"map": "KPA_40",  "id": 0}, "to": {"map": "KPA_52",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_40",  "id": 1}, "to": {"map": "KPA_40",  "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "KPA_40",  "id": 2}, "to": {"map": "KPA_41",  "id": 3}, "reqs": ""}, # 
+    # KPA_41 Maze Room
+    {"from": {"map": "KPA_41",  "id": 0}, "to": {"map": "KPA_40",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_41",  "id": 1}, "to": {"map": "KPA_41",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_41",  "id": 2}, "to": {"map": "KPA_102", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_41",  "id": 3}, "to": {"map": "KPA_40",  "id": 2}, "reqs": ""}, # 
+    # KPA_50 Hall to Guard Door 1
+    {"from": {"map": "KPA_50",  "id": 0}, "to": {"map": "KPA_70",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_50",  "id": 1}, "to": {"map": "KPA_81",  "id": 0}, "reqs": ""}, # 
+    # KPA_51 Hall to Water Puzzle
+    {"from": {"map": "KPA_51",  "id": 0}, "to": {"map": "KPA_32",  "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "KPA_51",  "id": 1}, "to": {"map": "KPA_133", "id": 0}, "reqs": ""}, # 
+    # KPA_52 Split Level Hall
+    {"from": {"map": "KPA_52",  "id": 0}, "to": {"map": "KPA_33",  "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "KPA_52",  "id": 1}, "to": {"map": "KPA_40",  "id": 0}, "reqs": ""}, # 
+    # KPA_53 Fake Peach Hallway
+    {"from": {"map": "KPA_53",  "id": 0}, "to": {"map": "KPA_102", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_53",  "id": 1}, "to": {"map": "KPA_83",  "id": 0}, "reqs": ""}, # 
+    # KPA_60 Ship Enter/Exit Scenes
+    {"from": {"map": "KPA_60",  "id": 4}, "to": {"map": "HOS_20",  "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "KPA_60",  "id": 5}, "to": {"map": "KPA_63",  "id": 1}, "reqs": ""}, # 
+    # KPA_61 Battlement
+    {"from": {"map": "KPA_61",  "id": 0}, "to": {"map": "KPA_82",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_61",  "id": 1}, "to": {"map": "KPA_33",  "id": 1}, "reqs": ""}, # 
+    # KPA_62 Front Door Exterior
+    {"from": {"map": "KPA_62",  "id": 0}, "to": {"map": "KPA_70",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_62",  "id": 1}, "to": {"map": "KPA_10",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_62",  "id": 2}, "to": {"map": "KPA_10",  "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "KPA_62",  "id": 3}, "to": {"map": "KPA_63",  "id": 0}, "reqs": ""}, # 
+    # KPA_63 Hanger
+    {"from": {"map": "KPA_63",  "id": 0}, "to": {"map": "KPA_62",  "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "KPA_63",  "id": 1}, "to": {"map": "KPA_60",  "id": 5}, "reqs": ""}, # 
+    # KPA_70 Entry Lava Hall
+    {"from": {"map": "KPA_70",  "id": 0}, "to": {"map": "KPA_62",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_70",  "id": 1}, "to": {"map": "KPA_50",  "id": 0}, "reqs": ""}, # 
+    # KPA_81 Guard Door 1
+    {"from": {"map": "KPA_81",  "id": 0}, "to": {"map": "KPA_50",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_81",  "id": 1}, "to": {"map": "KPA_17",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_81",  "id": 2}, "to": {"map": "KPA_32",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_81",  "id": 3}, "to": {"map": "KPA_04",  "id": 1}, "reqs": ""}, # 
+    # KPA_82 Guard Door 2
+    {"from": {"map": "KPA_82",  "id": 0}, "to": {"map": "KPA_113", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_82",  "id": 1}, "to": {"map": "KPA_61",  "id": 0}, "reqs": ""}, # 
+    # KPA_83 Guard Door 3
+    {"from": {"map": "KPA_83",  "id": 0}, "to": {"map": "KPA_53",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_83",  "id": 1}, "to": {"map": "KPA_121", "id": 0}, "reqs": ""}, # 
+    # KPA_90 Stairs to East Upper Jail
+    {"from": {"map": "KPA_90",  "id": 0}, "to": {"map": "KPA_32",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_90",  "id": 1}, "to": {"map": "KPA_91",  "id": 0}, "reqs": ""}, # 
+    # KPA_91 East Upper Jail
+    {"from": {"map": "KPA_91",  "id": 0}, "to": {"map": "KPA_90",  "id": 1}, "reqs": ""}, # 
+    # KPA_94 Stairs to West Upper Jail
+    {"from": {"map": "KPA_94",  "id": 0}, "to": {"map": "KPA_95",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_94",  "id": 1}, "to": {"map": "KPA_33",  "id": 0}, "reqs": ""}, # 
+    # KPA_95 West Upper Jail
+    {"from": {"map": "KPA_95",  "id": 0}, "to": {"map": "KPA_94",  "id": 0}, "reqs": ""}, # 
+    # KPA_96 Item Shop
+    {"from": {"map": "KPA_96",  "id": 0}, "to": {"map": "KPA_32",  "id": 3}, "reqs": ""}, # 
+    # KPA_100 Castle Key Room
+    {"from": {"map": "KPA_100", "id": 0}, "to": {"map": "KPA_08",  "id": 1}, "reqs": ""}, # 
+    # KPA_101 Ultra Shroom Room
+    {"from": {"map": "KPA_101", "id": 0}, "to": {"map": "KPA_09",  "id": 0}, "reqs": ""}, # 
+    # KPA_102 Blue Fire Bridge
+    {"from": {"map": "KPA_102", "id": 0}, "to": {"map": "KPA_41",  "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "KPA_102", "id": 1}, "to": {"map": "KPA_53",  "id": 0}, "reqs": ""}, # 
+    # KPA_111 Room with Hidden Door 1
+    {"from": {"map": "KPA_111", "id": 0}, "to": {"map": "KPA_130", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_111", "id": 1}, "to": {"map": "KPA_112", "id": 0}, "reqs": ""}, # 
+    # KPA_112 Hidden Passage 1
+    {"from": {"map": "KPA_112", "id": 0}, "to": {"map": "KPA_111", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_112", "id": 1}, "to": {"map": "KPA_113", "id": 0}, "reqs": ""}, # 
+    # KPA_113 Room with Hidden Door 2
+    {"from": {"map": "KPA_113", "id": 0}, "to": {"map": "KPA_112", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_113", "id": 1}, "to": {"map": "KPA_82",  "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_113", "id": 2}, "to": {"map": "KPA_114", "id": 0}, "reqs": ""}, # 
+    # KPA_114 Hidden Passage 2
+    {"from": {"map": "KPA_114", "id": 0}, "to": {"map": "KPA_113", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "KPA_114", "id": 1}, "to": {"map": "KPA_115", "id": 0}, "reqs": ""}, # 
+    # KPA_115 Room with Hidden Door 3
+    {"from": {"map": "KPA_115", "id": 0}, "to": {"map": "KPA_114", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_115", "id": 1}, "to": {"map": "KPA_116", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "KPA_115", "id": 2}, "to": {"map": "KPA_118", "id": 0}, "reqs": ""}, # 
+    # KPA_116 Dead End Passage
+    {"from": {"map": "KPA_116", "id": 0}, "to": {"map": "KPA_115", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_116", "id": 1}, "to": {"map": "KPA_117", "id": 0}, "reqs": ""}, # 
+    # KPA_117 Dead End Room
+    {"from": {"map": "KPA_117", "id": 0}, "to": {"map": "KPA_116", "id": 1}, "reqs": ""}, # 
+    # KPA_118 Hidden Passage 3
+    {"from": {"map": "KPA_118", "id": 0}, "to": {"map": "KPA_115", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "KPA_118", "id": 1}, "to": {"map": "KPA_119", "id": 0}, "reqs": ""}, # 
+    # KPA_119 Hidden Key Room
+    {"from": {"map": "KPA_119", "id": 0}, "to": {"map": "KPA_118", "id": 1}, "reqs": ""}, # 
+    # KPA_121 Exit to Peach's Castle
+    {"from": {"map": "KPA_121", "id": 0}, "to": {"map": "KPA_83",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_121", "id": 1}, "to": {"map": "OSR_02",  "id": 0}, "reqs": ""}, # 
+    # KPA_130 Bill Blaster Hall
+    {"from": {"map": "KPA_130", "id": 0}, "to": {"map": "KPA_134", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_130", "id": 1}, "to": {"map": "KPA_111", "id": 0}, "reqs": ""}, # 
+    # KPA_133 Left Water Puzzle
+    {"from": {"map": "KPA_133", "id": 0}, "to": {"map": "KPA_51",  "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_133", "id": 1}, "to": {"map": "KPA_134", "id": 0}, "reqs": ""}, # 
+    # KPA_134 Right Water Puzzle
+    {"from": {"map": "KPA_134", "id": 0}, "to": {"map": "KPA_133", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "KPA_134", "id": 1}, "to": {"map": "KPA_130", "id": 0}, "reqs": ""}, # 
+]

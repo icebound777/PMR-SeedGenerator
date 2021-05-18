@@ -1,44 +1,58 @@
-[{"from": {"map": "MIM_01", "id": 0}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_01", "id": 1}, "to": {"map": "MIM_10", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_01", "id": 2}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_01", "id": 3}, "to": {"map": "MIM_02", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_02", "id": 0}, "to": {"map": "MIM_03", "id": 2}, "reqs": ""},
-    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_01", "id": 3}, "reqs": ""},
-    {"from": {"map": "MIM_02", "id": 2}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_02", "id": 3}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_03", "id": 0}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_03", "id": 1}, "to": {"map": "MIM_04", "id": 3}, "reqs": ""},
-    {"from": {"map": "MIM_03", "id": 2}, "to": {"map": "MIM_02", "id": 0}, "reqs": ""},
-    {"from": {"map": "MIM_03", "id": 3}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_04", "id": 0}, "to": {"map": "MIM_05", "id": 2}, "reqs": ""},
-    {"from": {"map": "MIM_04", "id": 1}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_04", "id": 2}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_04", "id": 3}, "to": {"map": "MIM_03", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_05", "id": 0}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_05", "id": 1}, "to": {"map": "MIM_06", "id": 3}, "reqs": ""},
-    {"from": {"map": "MIM_05", "id": 2}, "to": {"map": "MIM_04", "id": 0}, "reqs": ""},
-    {"from": {"map": "MIM_05", "id": 3}, "to": {"map": "MIM_08", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_06", "id": 0}, "to": {"map": "MIM_07", "id": 2}, "reqs": ""},
-    {"from": {"map": "MIM_06", "id": 1}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_06", "id": 2}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_06", "id": 3}, "to": {"map": "MIM_05", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_07", "id": 0}, "to": {"map": "MIM_09", "id": 2}, "reqs": ""},
-    {"from": {"map": "MIM_07", "id": 1}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_07", "id": 2}, "to": {"map": "MIM_06", "id": 0}, "reqs": ""},
-    {"from": {"map": "MIM_07", "id": 3}, "to": {"map": "MIM_11", "id": 0}, "reqs": ""},
-    {"from": {"map": "MIM_08", "id": 0}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_08", "id": 1}, "to": {"map": "MIM_05", "id": 3}, "reqs": ""},
-    {"from": {"map": "MIM_08", "id": 2}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_08", "id": 3}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_09", "id": 0}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_09", "id": 1}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_09", "id": 2}, "to": {"map": "MIM_07", "id": 0}, "reqs": ""},
-    {"from": {"map": "MIM_09", "id": 3}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_10", "id": 0}, "to": {"map": "MAC_02", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_10", "id": 1}, "to": {"map": "MAC_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_11", "id": 0}, "to": {"map": "MIM_07", "id": 3}, "reqs": ""},
-    {"from": {"map": "MIM_11", "id": 1}, "to": {"map": "MIM_12", "id": 0}, "reqs": ""},
-    {"from": {"map": "MIM_11", "id": 2}, "to": {"map": "OBK_01", "id": 0}, "reqs": ""},
-    {"from": {"map": "MIM_11", "id": 3}, "to": {"map": "TIK_09", "id": 2}, "reqs": ""},
-    {"from": {"map": "MIM_12", "id": 0}, "to": {"map": "MIM_11", "id": 1}, "reqs": ""},
-    {"from": {"map": "MIM_12", "id": 1}, "to": {"map": "ARN_07", "id": 2}, "reqs": ""}]
+[
+    # MIM_01 Flower Sounds
+    {"from": {"map": "MIM_01", "id": 0}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_01", "id": 1}, "to": {"map": "MIM_10", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_01", "id": 2}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_01", "id": 3}, "to": {"map": "MIM_02", "id": 1}, "reqs": ""}, # 
+    # MIM_02 Stump Eyes
+    {"from": {"map": "MIM_02", "id": 0}, "to": {"map": "MIM_03", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_01", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "MIM_02", "id": 2}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_02", "id": 3}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    # MIM_03 Flowers (Oaklie)
+    {"from": {"map": "MIM_03", "id": 0}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_03", "id": 1}, "to": {"map": "MIM_04", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "MIM_03", "id": 2}, "to": {"map": "MIM_02", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "MIM_03", "id": 3}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    # MIM_04 Tree Face (Bub-ulb)
+    {"from": {"map": "MIM_04", "id": 0}, "to": {"map": "MIM_05", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "MIM_04", "id": 1}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_04", "id": 2}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_04", "id": 3}, "to": {"map": "MIM_03", "id": 1}, "reqs": ""}, # 
+    # MIM_05 Mushrooms (HP Plus)
+    {"from": {"map": "MIM_05", "id": 0}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_05", "id": 1}, "to": {"map": "MIM_06", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "MIM_05", "id": 2}, "to": {"map": "MIM_04", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "MIM_05", "id": 3}, "to": {"map": "MIM_08", "id": 1}, "reqs": ""}, # 
+    # MIM_06 Bee Hive (Path Splits)
+    {"from": {"map": "MIM_06", "id": 0}, "to": {"map": "MIM_07", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "MIM_06", "id": 1}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_06", "id": 2}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_06", "id": 3}, "to": {"map": "MIM_05", "id": 1}, "reqs": ""}, # 
+    # MIM_07 Flowers Vanish
+    {"from": {"map": "MIM_07", "id": 0}, "to": {"map": "MIM_09", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "MIM_07", "id": 1}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_07", "id": 2}, "to": {"map": "MIM_06", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "MIM_07", "id": 3}, "to": {"map": "MIM_11", "id": 0}, "reqs": ""}, # 
+    # MIM_08 Laughing Rock
+    {"from": {"map": "MIM_08", "id": 0}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_08", "id": 1}, "to": {"map": "MIM_05", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "MIM_08", "id": 2}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_08", "id": 3}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    # MIM_09 Flowers Appear (FP Plus)
+    {"from": {"map": "MIM_09", "id": 0}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_09", "id": 1}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_09", "id": 2}, "to": {"map": "MIM_07", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "MIM_09", "id": 3}, "to": {"map": "MIM_01", "id": 1}, "reqs": ""}, # 
+    # MIM_10 Exit to Toad Town
+    {"from": {"map": "MIM_10", "id": 0}, "to": {"map": "MAC_02", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_10", "id": 1}, "to": {"map": "MAC_01", "id": 1}, "reqs": ""}, # 
+    # MIM_11 Outside Boo's Mansion
+    {"from": {"map": "MIM_11", "id": 0}, "to": {"map": "MIM_07", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "MIM_11", "id": 1}, "to": {"map": "MIM_12", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "MIM_11", "id": 2}, "to": {"map": "OBK_01", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "MIM_11", "id": 3}, "to": {"map": "TIK_09", "id": 2}, "reqs": ""}, # 
+    # MIM_12 Exit to Gusty Gulch
+    {"from": {"map": "MIM_12", "id": 0}, "to": {"map": "MIM_11", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "MIM_12", "id": 1}, "to": {"map": "ARN_07", "id": 2}, "reqs": ""}, # 
+]

@@ -97,8 +97,8 @@
             "verbose_name": "Exit North"
         },
         "1": {
-            "dest_map": null,
-            "dest_entry": null,
+            "dest_map": "IWA_11",
+            "dest_entry": 1,
             "type": "train",
             "verbose_name": "Train Exit"
         },

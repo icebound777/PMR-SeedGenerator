@@ -183,9 +183,21 @@
             "dest_entry": 3,
             "type": "door",
             "verbose_name": "Upper Door West"
+        },
+        "4": {
+            "dest_map": "TRD_06",
+            "dest_entry": 0,
+            "type": "oneway-hole",
+            "verbose_name": "Yellow Block Trap"
         }
     },
     "TRD_06": {
+        "0": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "oneway-hole",
+            "verbose_name": "Fall From Ceiling"
+        },
         "1": {
             "dest_map": "TRD_04",
             "dest_entry": 5,

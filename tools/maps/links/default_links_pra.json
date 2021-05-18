@@ -496,5 +496,33 @@
             "type": "door",
             "verbose_name": "Door East"
         }
+    },
+    "PRA_39": {
+        "0": {
+            "dest_map": "PRA_04",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_06",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        }
+    },
+    "PRA_40": {
+        "0": {
+            "dest_map": "PRA_31",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door West"
+        },
+        "1": {
+            "dest_map": "PRA_32",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door East"
+        }
     }
 }

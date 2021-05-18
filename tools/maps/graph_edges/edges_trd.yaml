@@ -1,36 +1,51 @@
-[{"from": {"map": "TRD_00", "id": 0}, "to": {"map": "NOK_15", "id": 1}, "reqs": ""},
-    {"from": {"map": "TRD_00", "id": 1}, "to": {"map": "TRD_01", "id": 0}, "reqs": ""},
-    {"from": {"map": "TRD_00", "id": 2}, "to": {"map": "TRD_05", "id": 1}, "reqs": ""},
-    {"from": {"map": "TRD_00", "id": 3}, "to": {"map": "TRD_05", "id": 2}, "reqs": ""},
-    {"from": {"map": "TRD_00", "id": 4}, "to": {"map": "NOK_15", "id": 2}, "reqs": ""},
-    {"from": {"map": "TRD_01", "id": 0}, "to": {"map": "TRD_00", "id": 1}, "reqs": ""},
-    {"from": {"map": "TRD_01", "id": 1}, "to": {"map": "TRD_02", "id": 0}, "reqs": ""},
-    {"from": {"map": "TRD_01", "id": 2}, "to": {"map": "TRD_02", "id": 2}, "reqs": ""},
-    {"from": {"map": "TRD_01", "id": 3}, "to": {"map": "TRD_09", "id": 0}, "reqs": ""},
-    {"from": {"map": "TRD_02", "id": 0}, "to": {"map": "TRD_01", "id": 1}, "reqs": ""},
-    {"from": {"map": "TRD_02", "id": 1}, "to": {"map": "TRD_03", "id": 0}, "reqs": ""},
-    {"from": {"map": "TRD_02", "id": 2}, "to": {"map": "TRD_01", "id": 2}, "reqs": ""},
-    {"from": {"map": "TRD_02", "id": 3}, "to": {"map": "TRD_03", "id": 2}, "reqs": ""},
-    {"from": {"map": "TRD_02", "id": 4}, "to": {"map": "TRD_03", "id": 4}, "reqs": ""},
-    {"from": {"map": "TRD_03", "id": 0}, "to": {"map": "TRD_02", "id": 1}, "reqs": ""},
-    {"from": {"map": "TRD_03", "id": 1}, "to": {"map": "TRD_04", "id": 0}, "reqs": ""},
-    {"from": {"map": "TRD_03", "id": 2}, "to": {"map": "TRD_02", "id": 3}, "reqs": ""},
-    {"from": {"map": "TRD_03", "id": 3}, "to": {"map": "TRD_04", "id": 2}, "reqs": ""},
-    {"from": {"map": "TRD_03", "id": 4}, "to": {"map": "TRD_02", "id": 4}, "reqs": ""},
-    {"from": {"map": "TRD_04", "id": 0}, "to": {"map": "TRD_03", "id": 1}, "reqs": ""},
-    {"from": {"map": "TRD_04", "id": 1}, "to": {"map": "TRD_05", "id": 0}, "reqs": ""},
-    {"from": {"map": "TRD_04", "id": 2}, "to": {"map": "TRD_03", "id": 3}, "reqs": ""},
-    {"from": {"map": "TRD_04", "id": 3}, "to": {"map": "TRD_05", "id": 3}, "reqs": ""},
-    {"from": {"map": "TRD_04", "id": 4}, "to": {"map": "TRD_07", "id": 0}, "reqs": ""},
-    {"from": {"map": "TRD_04", "id": 5}, "to": {"map": "TRD_06", "id": 1}, "reqs": ""},
-    {"from": {"map": "TRD_05", "id": 0}, "to": {"map": "TRD_04", "id": 1}, "reqs": ""},
-    {"from": {"map": "TRD_05", "id": 1}, "to": {"map": "TRD_00", "id": 2}, "reqs": ""},
-    {"from": {"map": "TRD_05", "id": 2}, "to": {"map": "TRD_00", "id": 3}, "reqs": ""},
-    {"from": {"map": "TRD_05", "id": 3}, "to": {"map": "TRD_04", "id": 3}, "reqs": ""},
-    {"from": {"map": "TRD_06", "id": 1}, "to": {"map": "TRD_04", "id": 5}, "reqs": ""},
-    {"from": {"map": "TRD_07", "id": 0}, "to": {"map": "TRD_04", "id": 4}, "reqs": ""},
-    {"from": {"map": "TRD_07", "id": 1}, "to": {"map": "TRD_08", "id": 0}, "reqs": ""},
-    {"from": {"map": "TRD_08", "id": 0}, "to": {"map": "TRD_07", "id": 1}, "reqs": ""},
-    {"from": {"map": "TRD_09", "id": 0}, "to": {"map": "TRD_01", "id": 3}, "reqs": ""},
-    {"from": {"map": "TRD_09", "id": 1}, "to": {"map": "TRD_10", "id": 0}, "reqs": ""},
-    {"from": {"map": "TRD_10", "id": 0}, "to": {"map": "TRD_09", "id": 1}, "reqs": ""}]
+[
+    # TRD_00 Fortress Exterior
+    {"from": {"map": "TRD_00", "id": 0}, "to": {"map": "NOK_15", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "TRD_00", "id": 1}, "to": {"map": "TRD_01", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "TRD_00", "id": 2}, "to": {"map": "TRD_05", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "TRD_00", "id": 3}, "to": {"map": "TRD_05", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "TRD_00", "id": 4}, "to": {"map": "NOK_15", "id": 2}, "reqs": ""}, # 
+    # TRD_01 Left Tower
+    {"from": {"map": "TRD_01", "id": 0}, "to": {"map": "TRD_00", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "TRD_01", "id": 1}, "to": {"map": "TRD_02", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "TRD_01", "id": 2}, "to": {"map": "TRD_02", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "TRD_01", "id": 3}, "to": {"map": "TRD_09", "id": 0}, "reqs": ""}, # 
+    # TRD_02 Left Stairway
+    {"from": {"map": "TRD_02", "id": 0}, "to": {"map": "TRD_01", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "TRD_02", "id": 1}, "to": {"map": "TRD_03", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "TRD_02", "id": 2}, "to": {"map": "TRD_01", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "TRD_02", "id": 3}, "to": {"map": "TRD_03", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "TRD_02", "id": 4}, "to": {"map": "TRD_03", "id": 4}, "reqs": ""}, # 
+    # TRD_03 Central Hall
+    {"from": {"map": "TRD_03", "id": 0}, "to": {"map": "TRD_02", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "TRD_03", "id": 1}, "to": {"map": "TRD_04", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "TRD_03", "id": 2}, "to": {"map": "TRD_02", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "TRD_03", "id": 3}, "to": {"map": "TRD_04", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "TRD_03", "id": 4}, "to": {"map": "TRD_02", "id": 4}, "reqs": ""}, # 
+    # TRD_04 Right Starway
+    {"from": {"map": "TRD_04", "id": 0}, "to": {"map": "TRD_03", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "TRD_04", "id": 1}, "to": {"map": "TRD_05", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "TRD_04", "id": 2}, "to": {"map": "TRD_03", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "TRD_04", "id": 3}, "to": {"map": "TRD_05", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "TRD_04", "id": 4}, "to": {"map": "TRD_07", "id": 0}, "reqs": ""}, # 
+    {"from": {"map": "TRD_04", "id": 5}, "to": {"map": "TRD_06", "id": 1}, "reqs": ""}, # 
+    # TRD_05 Right Tower
+    {"from": {"map": "TRD_05", "id": 0}, "to": {"map": "TRD_04", "id": 1}, "reqs": ""}, # 
+    {"from": {"map": "TRD_05", "id": 1}, "to": {"map": "TRD_00", "id": 2}, "reqs": ""}, # 
+    {"from": {"map": "TRD_05", "id": 2}, "to": {"map": "TRD_00", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "TRD_05", "id": 3}, "to": {"map": "TRD_04", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "TRD_05", "id": 4}, "to": {"map": "TRD_06", "id": 0}, "reqs": ""}, # 
+    # TRD_06 Jail
+    {"from": {"map": "TRD_06", "id": 0}, "to": {"map": null, "id": null},  "reqs": ""}, # 
+    {"from": {"map": "TRD_06", "id": 1}, "to": {"map": "TRD_04", "id": 5}, "reqs": ""}, # 
+    # TRD_07 Dungeon Trap
+    {"from": {"map": "TRD_07", "id": 0}, "to": {"map": "TRD_04", "id": 4}, "reqs": ""}, # 
+    {"from": {"map": "TRD_07", "id": 1}, "to": {"map": "TRD_08", "id": 0}, "reqs": ""}, # 
+    # TRD_08 Dungeon Fire Room
+    {"from": {"map": "TRD_08", "id": 0}, "to": {"map": "TRD_07", "id": 1}, "reqs": ""}, # 
+    # TRD_09 Battlement
+    {"from": {"map": "TRD_09", "id": 0}, "to": {"map": "TRD_01", "id": 3}, "reqs": ""}, # 
+    {"from": {"map": "TRD_09", "id": 1}, "to": {"map": "TRD_10", "id": 0}, "reqs": ""}, # 
+    # TRD_10 Boss Battle Room
+    {"from": {"map": "TRD_10", "id": 0}, "to": {"map": "TRD_09", "id": 1}, "reqs": ""}, # 
+]
