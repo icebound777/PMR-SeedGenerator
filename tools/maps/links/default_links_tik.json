@@ -112,7 +112,7 @@
             "type": "pipe",
             "verbose_name": "Green Pipe Up"
         },
-        "x": {
+        "4": {
             "dest_map": "TIK_08",
             "dest_entry": 2,
             "type": "oneway-hole",

@@ -354,7 +354,7 @@
             "type": "door",
             "verbose_name": "Exit Left"
         },
-        "x": {
+        "1": {
             "dest_map": "JAN_16",
             "dest_entry": 4,
             "type": "door",

@@ -142,7 +142,7 @@
             "type": "door",
             "verbose_name": "Door Top"
         },
-        "x": {
+        "1": {
             "dest_map": "DGB_06",
             "dest_entry": 1,
             "type": "oneway-hole",
@@ -224,13 +224,13 @@
             "type": "hole",
             "verbose_name": "Top Left Hole"
         },
-        "x": {
+        "2": {
             "dest_map": "DGB_11",
             "dest_entry": 2,
             "type": "oneway-hole",
             "verbose_name": "Top Right Hole"
         },
-        "y": {
+        "3": {
             "dest_map":"DGB_11",
             "dest_entry": 1,
             "type": "oneway-hole",
@@ -271,7 +271,14 @@
             "verbose_name": "Door Bottom Left"
         }
     },
-    "DGB_13": {},
+    "DGB_13": {
+        "0": {
+            "dest_map": "DGB_03",
+            "dest_entry": 5,
+            "type": "door",
+            "verbose_name": "Door Bottom"
+        }
+    },
     "DGB_14": {
         "0": {
             "dest_map": "DGB_03",
