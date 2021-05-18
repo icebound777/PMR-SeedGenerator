@@ -66,7 +66,7 @@ class Window(QMainWindow):
 
 		# Icons
 		self.setWindowIcon(QtGui.QIcon(resource_path("gui/icons/random_bag.ico")))
-		self.tabwidget.setTabIcon(0, QtGui.QIcon(resource_path("gui/icons/starrod.ico")))
+		self.tabwidget.setTabIcon(0, QtGui.QIcon(resource_path("gui/icons/book.ico")))
 		self.tabwidget.setTabIcon(1, QtGui.QIcon(resource_path("gui/icons/fireflower.ico")))
 		self.tabwidget.setTabIcon(2, QtGui.QIcon(resource_path("gui/icons/pupddown.ico")))
 
@@ -89,6 +89,19 @@ class Window(QMainWindow):
 		self.button_randomize.clicked.connect(self.randomize)
 		self.button_about.clicked.connect(self.about)
 		self.button_generate.clicked.connect(self.generate_seed)
+
+		self.button_compile.setIcon(QtGui.QIcon(resource_path("gui/icons/calculator.ico")))
+		self.button_load_settings.setIcon(QtGui.QIcon(resource_path("gui/icons/load.ico")))
+		self.button_save_settings.setIcon(QtGui.QIcon(resource_path("gui/icons/save.ico")))
+		self.button_randomize.setIcon(QtGui.QIcon(resource_path("gui/icons/random_bag.ico")))
+		self.button_about.setIcon(QtGui.QIcon(resource_path("gui/icons/book.ico")))
+
+		# CSS skillz
+		self.button_compile.setStyleSheet("QPushButton { text-align: left; padding: 0px 10px 0px 10px;}")
+		self.button_load_settings.setStyleSheet("QPushButton { text-align: left; padding: 0px 10px 0px 10px;}")
+		self.button_save_settings.setStyleSheet("QPushButton { text-align: left; padding: 0px 10px 0px 10px;}")
+		self.button_randomize.setStyleSheet("QPushButton { text-align: left; padding: 0px 10px 0px 10px;}")
+		self.button_about.setStyleSheet("QPushButton { text-align: left; padding: 0px 10px 0px 10px;}")
 
 		# Move to center of window
 		rectangle = self.frameGeometry()
