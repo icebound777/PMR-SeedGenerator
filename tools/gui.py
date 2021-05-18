@@ -70,6 +70,12 @@ class Window(QMainWindow):
 		self.tabwidget.setTabIcon(1, QtGui.QIcon(resource_path("gui/icons/fireflower.ico")))
 		self.tabwidget.setTabIcon(2, QtGui.QIcon(resource_path("gui/icons/pupddown.ico")))
 
+		# Warning icons for options that cause a big difficulty spike
+		self.chk_include_coins.setIcon(QtGui.QIcon(resource_path("gui/icons/allornothing.ico")))
+		self.radio_damage_4.setIcon(QtGui.QIcon(resource_path("gui/icons/allornothing.ico")))
+		self.chk_ohko.setIcon(QtGui.QIcon(resource_path("gui/icons/allornothing.ico")))
+		self.radio_by_all.setIcon(QtGui.QIcon(resource_path("gui/icons/allornothing.ico")))
+
 		# Setup
 		self.setWindowTitle("Paper Mario Open World Randomizer")
 		self.app = app
@@ -151,9 +157,15 @@ class Window(QMainWindow):
 			"2xDamage": Option.get(Option.name == "2xDamage"),
 			"4xDamage": Option.get(Option.name == "4xDamage"),
 			"OHKO": Option.get(Option.name == "OHKO"),
+			# Items Tab
 			"ShuffleItems": Option.get(Option.name == "ShuffleItems"),
 			"IncludeCoins": Option.get(Option.name == "IncludeCoins"),
 			"IncludeShops": Option.get(Option.name == "IncludeShops"),
+			# Entrances Tab
+			"ShuffleEntrances": Option.get(Option.name == "ShuffleEntrances"),
+			"ShuffleEntrancesByArea": Option.get(Option.name == "ShuffleEntrancesByArea"),
+			"ShuffleEntrancesByAll": Option.get(Option.name == "ShuffleEntrancesByAll"),
+			"MatchEntranceTypes": Option.get(Option.name == "MatchEntranceTypes"),
 		}
 
 		connection = sql.connect(filename)
@@ -228,11 +240,10 @@ class Window(QMainWindow):
 		self.chk_cap_xp.setChecked(Option.get(Option.name == "CapEnemyXP").value)
 
 		# Radioboxes
-		self.radio_ohko.setChecked(Option.get(Option.name == "OHKO").value)
+		self.chk_ohko.setChecked(Option.get(Option.name == "OHKO").value)
 		self.radio_damage_4.setChecked(Option.get(Option.name == "4xDamage").value)
 		self.radio_damage_2.setChecked(Option.get(Option.name == "2xDamage").value)
 		self.radio_damage_1.setChecked(all([
-			not self.radio_ohko.isChecked(),
 			not self.radio_damage_4.isChecked(),
 			not self.radio_damage_2.isChecked(),
 		]))
@@ -241,6 +252,12 @@ class Window(QMainWindow):
 		self.chk_shuffle_items.setChecked(Option.get(Option.name == "ShuffleItems").value)
 		self.chk_include_coins.setChecked(Option.get(Option.name == "IncludeCoins").value)
 		self.chk_include_shops.setChecked(Option.get(Option.name == "IncludeShops").value)
+
+		# Entrance Options
+		self.chk_shuffle_entrances.setChecked(Option.get(Option.name == "ShuffleEntrances").value)
+		self.radio_by_area.setChecked(Option.get(Option.name == "ShuffleEntrancesByArea").value)
+		self.radio_by_all.setChecked(Option.get(Option.name == "ShuffleEntrancesByAll").value)
+		self.chk_match_types.setChecked(Option.get(Option.name == "MatchEntranceTypes").value)
 
 		# Ensure ShuffleItems is checked if extra item options are selected
 		def update(checked):
@@ -301,9 +318,15 @@ class Window(QMainWindow):
 			"2xDamage": Option.get(Option.name == "2xDamage"),
 			"4xDamage": Option.get(Option.name == "4xDamage"),
 			"OHKO": Option.get(Option.name == "OHKO"),
+			# Items Tab
 			"ShuffleItems": Option.get(Option.name == "ShuffleItems"),
 			"IncludeCoins": Option.get(Option.name == "IncludeCoins"),
 			"IncludeShops": Option.get(Option.name == "IncludeShops"),
+			# Entrances Tab
+			"ShuffleEntrances": Option.get(Option.name == "ShuffleEntrances"),
+			"ShuffleEntrancesByArea": Option.get(Option.name == "ShuffleEntrancesByArea"),
+			"ShuffleEntrancesByAll": Option.get(Option.name == "ShuffleEntrancesByAll"),
+			"MatchEntranceTypes": Option.get(Option.name == "MatchEntranceTypes"),
 		}
 
 		options["InitialCoins"].value = int(self.edit_coins.text())
@@ -316,10 +339,16 @@ class Window(QMainWindow):
 		options["CapEnemyXP"].value = int(self.chk_cap_xp.isChecked())
 		options["2xDamage"].value = int(self.radio_damage_2.isChecked())
 		options["4xDamage"].value = int(self.radio_damage_4.isChecked())
-		options["OHKO"].value = int(self.radio_ohko.isChecked())
+		options["OHKO"].value = int(self.chk_ohko.isChecked())
+		# Items Tab
 		options["ShuffleItems"].value = int(self.chk_shuffle_items.isChecked())
 		options["IncludeCoins"].value = int(self.chk_include_coins.isChecked())
 		options["IncludeShops"].value = int(self.chk_include_shops.isChecked())
+		# Entrances Tab
+		options["ShuffleEntrances"].value = int(self.chk_shuffle_entrances.isChecked())
+		options["ShuffleEntrancesByArea"].value = int(self.radio_by_area.isChecked())
+		options["ShuffleEntrancesByAll"].value = int(self.radio_by_all.isChecked())
+		options["MatchEntranceTypes"].value = int(self.chk_match_types.isChecked())
 
 		for option in options.values():
 			option.save()
