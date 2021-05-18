@@ -48,6 +48,14 @@ quit()
 # END
 """
 
+
+class Stream(QtCore.QObject):
+	newText = QtCore.pyqtSignal(str)
+
+	def write(self, text):
+		self.newText.emit(str(text))
+
+
 class Window(QMainWindow):
 
 	def __init__(self, app):
@@ -82,6 +90,12 @@ class Window(QMainWindow):
 		self.show()
 		self.configure()
 
+		# Log
+		self.log.moveCursor(QtGui.QTextCursor.Start)
+		self.log.ensureCursorVisible()
+		self.stream = Stream(newText=self.on_update_text)
+		sys.stdout = self.stream
+
 		# Check if the ROM already exists in the correct location
 		rom_exists = False
 		for filename in os.listdir("../ROM"):
@@ -94,6 +108,13 @@ class Window(QMainWindow):
 				shutil.copyfile(self.rom_path, "../ROM/PM64.z64")
 		else:
 			self.display(f"Successfully found ROM")
+
+	def on_update_text(self, text):
+		cursor = self.log.textCursor()
+		cursor.movePosition(QtGui.QTextCursor.End)
+		cursor.insertText(text)
+		self.log.setTextCursor(cursor)
+		self.log.ensureCursorVisible()
 
 	def about(self):
 		msg = QMessageBox()
@@ -109,7 +130,11 @@ class Window(QMainWindow):
 		# Prompt user for a database to use for populating GUI widgets
 		options = QFileDialog.Options()
 		options |= QFileDialog.DontUseNativeDialog
-		filename, _ = QFileDialog.getOpenFileName(self, "Select Settings File", "", "Sqlite Files (*.sqlite)", options=options)
+		filename, ok = QFileDialog.getOpenFileName(self, "Select Settings File", "", "Sqlite Files (*.sqlite)", options=options)
+
+		if not ok:
+			# Poor lil' GUI :(
+			return
 
 		# Update the temporary DB with data from this file
 		options = {
@@ -143,13 +168,14 @@ class Window(QMainWindow):
 	def save_settings(self):
 		options = QFileDialog.Options()
 		options |= QFileDialog.DontUseNativeDialog
-		filename, _ = QFileDialog.getSaveFileName(self ,"Save Settings", "", "Sqlite Files (*.sqlite)", options=options)
-		if not filename.endswith(".sqlite"):
-			filename += ".sqlite"
+		filename, ok = QFileDialog.getSaveFileName(self ,"Save Settings", "", "Sqlite Files (*.sqlite)", options=options)
+		if ok:
+			if not filename.endswith(".sqlite"):
+				filename += ".sqlite"
 
-		self.update_db()
-		shutil.copy("db.sqlite", filename)
-		self.display(f"Saved: {filename}")
+			self.update_db()
+			shutil.copy("db.sqlite", filename)
+			self.display(f"Saved: {filename}")
 
 	def configure(self):
 		# Read configuration data
@@ -171,10 +197,13 @@ class Window(QMainWindow):
 
 		# Get all regular item names
 		self.item_choices = []
+		"""
 		for item_id in range(0x01, 0x16D):
 			name = Enums.get("Item")[item_id]
 			if Item.get_type(item_id) == "ITEM":
 				self.item_choices.append((name, item_id))
+		"""
+		self.item_choices.append(("Mistake", 0xC2))
 		self.item_choices.append(("Coin", 0x157))
 
 		# Sort alphabetically and populate combobox
@@ -211,6 +240,20 @@ class Window(QMainWindow):
 		self.chk_include_coins.setChecked(Option.get(Option.name == "IncludeCoins").value)
 		self.chk_include_shops.setChecked(Option.get(Option.name == "IncludeShops").value)
 
+		# Ensure ShuffleItems is checked if extra item options are selected
+		def update(checked):
+			if checked:
+				self.chk_shuffle_items.setChecked(True)
+		self.chk_include_coins.clicked.connect(lambda checked: update(checked))
+		self.chk_include_shops.clicked.connect(lambda checked: update(checked))
+
+		# Disable/Enable extra item options when ShuffleItems changes
+		def reset(checked, chk_widget):
+			if not checked:
+				chk_widget.setChecked(False)
+		self.chk_shuffle_items.clicked.connect(lambda checked: reset(checked, self.chk_include_coins))
+		self.chk_shuffle_items.clicked.connect(lambda checked: reset(checked, self.chk_include_shops))
+
 	def display(self, message):
 		self.statusBar().showMessage(message)
 
@@ -220,6 +263,7 @@ class Window(QMainWindow):
 		self.rom_path, _ = QFileDialog.getOpenFileName(self, "Select ROM", "./", "z64(*.z64)", options=options)
 
 	def compile_mod(self):
+		self.log.clear()
 		self.progress_bar.setVisible(True)
 		self.progress_bar.setValue(0)
 		self.progress_bar.setFormat(f"Dumping ROM")
@@ -279,6 +323,7 @@ class Window(QMainWindow):
 			option.save()
 
 	def randomize(self):
+		self.log.clear()
 		self.progress_bar.setVisible(True)
 		# Initialize Random Seed
 		self.seed = hash(self.edit_seed.text()) & 0xFFFFFFFF
