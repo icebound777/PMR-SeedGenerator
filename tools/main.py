@@ -17,7 +17,7 @@ from PyQt5 import QtCore, QtGui, uic
 
 from enums import Enums, create_enums
 from table import Table
-from utility import resource_path, sr_dump, sr_copy, sr_compile
+from utility import sr_dump, sr_copy, sr_compile
 from logic import place_items
 from parse import get_default_table, get_table_info, create_table, gather_keys, gather_values
 
@@ -30,6 +30,18 @@ from db.item_price import ItemPrice, create_item_prices
 from db.entrance import Entrance, create_entrances
 from db.actor_attribute import ActorAttribute, create_actor_attributes
 
+
+# Get application path based on if running as script or EXE
+# https://stackoverflow.com/a/42615559
+if getattr(sys, 'frozen', False):
+	# If the application is run as a bundle, the PyInstaller bootloader
+	# extends the sys module by a flag frozen=True and sets the app 
+	# path into variable _MEIPASS'.
+	APP_PATH = sys._MEIPASS
+	COMPILED = True
+else:
+	APP_PATH = os.path.dirname(os.path.abspath(__file__))
+	COMPILED = False
 
 # Create enums from ./globals/enum/
 create_enums()
@@ -62,19 +74,19 @@ class Window(QMainWindow):
 
 	def __init__(self, app):
 		super(Window, self).__init__()
-		uic.loadUi(resource_path("gui/main.ui"), self)
+		uic.loadUi("gui/main.ui", self)
 
 		# Icons
-		self.setWindowIcon(QtGui.QIcon(resource_path("gui/icons/random_bag.ico")))
-		self.tabwidget.setTabIcon(0, QtGui.QIcon(resource_path("gui/icons/book.ico")))
-		self.tabwidget.setTabIcon(1, QtGui.QIcon(resource_path("gui/icons/fireflower.ico")))
-		self.tabwidget.setTabIcon(2, QtGui.QIcon(resource_path("gui/icons/pupddown.ico")))
+		self.setWindowIcon(QtGui.QIcon("gui/icons/random_bag.ico"))
+		self.tabwidget.setTabIcon(0, QtGui.QIcon("gui/icons/book.ico"))
+		self.tabwidget.setTabIcon(1, QtGui.QIcon("gui/icons/fireflower.ico"))
+		self.tabwidget.setTabIcon(2, QtGui.QIcon("gui/icons/pupddown.ico"))
 
 		# Warning icons for options that cause a big difficulty spike
-		self.chk_include_coins.setIcon(QtGui.QIcon(resource_path("gui/icons/allornothing.ico")))
-		self.radio_damage_4.setIcon(QtGui.QIcon(resource_path("gui/icons/allornothing.ico")))
-		self.chk_ohko.setIcon(QtGui.QIcon(resource_path("gui/icons/allornothing.ico")))
-		self.radio_by_all.setIcon(QtGui.QIcon(resource_path("gui/icons/allornothing.ico")))
+		self.chk_include_coins.setIcon(QtGui.QIcon("gui/icons/allornothing.ico"))
+		self.radio_damage_4.setIcon(QtGui.QIcon("gui/icons/allornothing.ico"))
+		self.chk_ohko.setIcon(QtGui.QIcon("gui/icons/allornothing.ico"))
+		self.radio_by_all.setIcon(QtGui.QIcon("gui/icons/allornothing.ico"))
 
 		# Setup
 		self.setWindowTitle("Paper Mario Open World Randomizer")
@@ -90,11 +102,11 @@ class Window(QMainWindow):
 		self.button_about.clicked.connect(self.about)
 		self.button_generate.clicked.connect(self.generate_seed)
 
-		self.button_compile.setIcon(QtGui.QIcon(resource_path("gui/icons/calculator.ico")))
-		self.button_load_settings.setIcon(QtGui.QIcon(resource_path("gui/icons/load.ico")))
-		self.button_save_settings.setIcon(QtGui.QIcon(resource_path("gui/icons/save.ico")))
-		self.button_randomize.setIcon(QtGui.QIcon(resource_path("gui/icons/random_bag.ico")))
-		self.button_about.setIcon(QtGui.QIcon(resource_path("gui/icons/book.ico")))
+		self.button_compile.setIcon(QtGui.QIcon("gui/icons/calculator.ico"))
+		self.button_load_settings.setIcon(QtGui.QIcon("gui/icons/load.ico"))
+		self.button_save_settings.setIcon(QtGui.QIcon("gui/icons/save.ico"))
+		self.button_randomize.setIcon(QtGui.QIcon("gui/icons/random_bag.ico"))
+		self.button_about.setIcon(QtGui.QIcon("gui/icons/book.ico"))
 
 		# CSS skillz
 		self.button_compile.setStyleSheet("QPushButton { text-align: left; padding: 0px 10px 0px 10px;}")
@@ -148,7 +160,7 @@ class Window(QMainWindow):
 
 	def about(self):
 		msg = QMessageBox()
-		msg.setWindowIcon(QtGui.QIcon(resource_path("gui/icons/book.ico")))
+		msg.setWindowIcon(QtGui.QIcon("gui/icons/book.ico"))
 		msg.setWindowTitle("About")
 		msg.setText(
 			"This is an open world randomizer for Paper Mario 64.\n" \
@@ -211,6 +223,17 @@ class Window(QMainWindow):
 
 			self.update_db()
 			shutil.copy("db.sqlite", filename)
+			self.display(f"Saved: {filename}")
+
+	def save_rom(self):
+		options = QFileDialog.Options()
+		options |= QFileDialog.DontUseNativeDialog
+		filename, ok = QFileDialog.getSaveFileName(self ,"Save Randomized ROM", "PM64.z64", "Settings Files (*.z64)", options=options)
+		if ok:
+			if not filename.endswith(".z64"):
+				filename += ".z64"
+
+			shutil.copy("../out/PM64.z64", filename)
 			self.display(f"Saved: {filename}")
 
 	def configure(self):
@@ -479,11 +502,14 @@ class Window(QMainWindow):
 		self.progress_bar.setValue(0)
 		self.display("Finished Randomizing ROM")
 
-		answer = QMessageBox.question(self, "Open ROM", "Open ROM with Default Application?", QMessageBox.Yes | QMessageBox.No)
-		if answer == QMessageBox.Yes:
-			path = str(Path(__file__).parent).replace("\\", "/")
-			path = "".join(path.split("tools"))[0:-1]
-			os.startfile(path + "/out/PM64.z64")
+		if COMPILED:
+			self.save_rom()
+
+		# For dev use
+		if not COMPILED:
+			answer = QMessageBox.question(self, "Open ROM", "Open ROM with Default Application?", QMessageBox.Yes | QMessageBox.No)
+			if answer == QMessageBox.Yes:
+				os.startfile(APP_PATH + "/../out/PM64.z64")
 
 
 app = QApplication(sys.argv)
