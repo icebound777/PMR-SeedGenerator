@@ -123,6 +123,14 @@
     # KMR_10 Toad Town Entrance
     {"from": {"map": "KMR_10", "id": 0}, "to": {"map": "KMR_11", "id": 1}, "reqs": ""}, # Toad Town Entrance Exit Left -> Goomba King's Castle Exit Right
     {"from": {"map": "KMR_10", "id": 1}, "to": {"map": "MAC_00", "id": 0}, "reqs": ""}, # Toad Town Entrance Exit Right -> Gate District Exit Left
+    
+    {"from": {"map": "KMR_10", "id": 0}, "to": {"map": "KMR_10", "id": 1}, "reqs": ""}, #? Toad Town Entrance Exit Left -> Toad Town Entrance Exit Right
+    {"from": {"map": "KMR_10", "id": 1}, "to": {"map": "KMR_10", "id": 0}, "reqs": ""}, #? Toad Town Entrance Exit Right -> Toad Town Entrance Exit Left
+    
+    {"from": {"map": "KMR_10", "id": 1},         "to": {"map": "KMR_10", "id": "YBlockA"}, "reqs": ""}, #* Toad Town Entrance Exit Right -> YBlockA (SleepySheep)
+    {"from": {"map": "KMR_10", "id": "YBlockA"}, "to": {"map": "KMR_10", "id": 1},         "reqs": ""}, #* YBlockA (SleepySheep) -> Toad Town Entrance Exit Right
+    {"from": {"map": "KMR_10", "id": 1},         "to": {"map": "KMR_10", "id": "ChestA"},  "reqs": ""}, #* Toad Town Entrance Exit Right -> ChestA (HammerThrow)
+    {"from": {"map": "KMR_10", "id": "ChestA"},  "to": {"map": "KMR_10", "id": 1},         "reqs": ""}, #* ChestA (HammerThrow) -> Toad Town Entrance Exit Right
 
     # KMR_20 Mario's House
     {"from": {"map": "KMR_20", "id": 4}, "to": {"map": "MAC_00", "id": 4}, "reqs": ""}, # Mario's House Green Pipe -> Gate District Top Green Pipe
