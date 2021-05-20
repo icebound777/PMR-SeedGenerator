@@ -104,18 +104,18 @@ edges_mac = [
     {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 2}, "reqs": []}, #? Residental District Exit Right -> Residental District Toybox Spring
     {"from": {"map": "MAC_04", "id": 2}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #? Residental District Toybox Spring -> Residental District Exit Right
     
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": "ShopItemA"}, "reqs": []}, #* Residental District Exit Right -> ShopItemA (StoneCap)
-    {"from": {"map": "MAC_04", "id": "ShopItemA"}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #* ShopItemA (StoneCap) -> Residental District Exit Right
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": "ShopItemB"}, "reqs": []}, #* Residental District Exit Right -> ShopItemB (DizzyDial)
-    {"from": {"map": "MAC_04", "id": "ShopItemB"}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #* ShopItemB (DizzyDial) -> Residental District Exit Right
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": "ShopItemC"}, "reqs": []}, #* Residental District Exit Right -> ShopItemC (ThunderRage)
-    {"from": {"map": "MAC_04", "id": "ShopItemC"}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #* ShopItemC (ThunderRage) -> Residental District Exit Right
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": "ShopItemD"}, "reqs": []}, #* Residental District Exit Right -> ShopItemD (TastyTonic)
-    {"from": {"map": "MAC_04", "id": "ShopItemD"}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #* ShopItemD (TastyTonic) -> Residental District Exit Right
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": "ShopItemE"}, "reqs": []}, #* Residental District Exit Right -> ShopItemE (VoltShroom)
-    {"from": {"map": "MAC_04", "id": "ShopItemE"}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #* ShopItemE (VoltShroom) -> Residental District Exit Right
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": "ShopItemF"}, "reqs": []}, #* Residental District Exit Right -> ShopItemF (SuperShroom)
-    {"from": {"map": "MAC_04", "id": "ShopItemF"}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #* ShopItemF (SuperShroom) -> Residental District Exit Right
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ShopItemA"}, "reqs": []}, #* Residental District Exit Right -> ShopItemA (StoneCap)
+    {"from": {"map": "MAC_04", "id": "ShopItemA"}, "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ShopItemA (StoneCap) -> Residental District Exit Right
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ShopItemB"}, "reqs": []}, #* Residental District Exit Right -> ShopItemB (DizzyDial)
+    {"from": {"map": "MAC_04", "id": "ShopItemB"}, "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ShopItemB (DizzyDial) -> Residental District Exit Right
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ShopItemC"}, "reqs": []}, #* Residental District Exit Right -> ShopItemC (ThunderRage)
+    {"from": {"map": "MAC_04", "id": "ShopItemC"}, "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ShopItemC (ThunderRage) -> Residental District Exit Right
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ShopItemD"}, "reqs": []}, #* Residental District Exit Right -> ShopItemD (TastyTonic)
+    {"from": {"map": "MAC_04", "id": "ShopItemD"}, "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ShopItemD (TastyTonic) -> Residental District Exit Right
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ShopItemE"}, "reqs": []}, #* Residental District Exit Right -> ShopItemE (VoltShroom)
+    {"from": {"map": "MAC_04", "id": "ShopItemE"}, "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ShopItemE (VoltShroom) -> Residental District Exit Right
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ShopItemF"}, "reqs": []}, #* Residental District Exit Right -> ShopItemF (SuperShroom)
+    {"from": {"map": "MAC_04", "id": "ShopItemF"}, "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ShopItemF (SuperShroom) -> Residental District Exit Right
 
     # MAC_05 Port District
     {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_04", "id": 1}, "reqs": []}, # Port District Exit Right -> Residental District Exit Left
