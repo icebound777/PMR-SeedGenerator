@@ -1,7 +1,6 @@
 from parse import get_default_table, create_table, get_table_info
 
 from db.option import Option
-from db.entrance import Entrance
 from db.item import Item
 from db.itemlocation import ItemLocation
 from db.item_price import ItemPrice
@@ -40,16 +39,6 @@ class Table:
 				"key": quiz.get_key(),
 				"value": quiz.value,
 			})
-
-		# Entrances
-		if kwargs.get("entrances"):
-			for entrance in Entrance.select():
-				# Only include entrances that have destinations defined
-				if entrance.destination is not None:
-					table_data.append({
-						"key": entrance.get_key(),
-						"value": entrance.destination.get_key(),
-					})
 
 		# Items
 		for itemlocation in ItemLocation.select():

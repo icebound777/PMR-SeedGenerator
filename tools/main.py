@@ -27,7 +27,6 @@ from db.itemlocation import ItemLocation, create_item_locations
 from db.quiz import Quiz, create_quizzes
 from db.option import Option, create_options
 from db.item_price import ItemPrice, create_item_prices
-from db.entrance import Entrance, create_entrances
 from db.actor_attribute import ActorAttribute, create_actor_attributes
 
 
@@ -56,7 +55,6 @@ create_item_locations()
 create_item_prices()
 create_actor_attributes()
 create_quizzes()
-create_entrances()
 shutil.copy("db.sqlite", "default_db.sqlite")
 quit()
 # END
@@ -448,7 +446,7 @@ class Window(QMainWindow):
 			item_price.save()
 
 		# Create a sorted list of key:value pairs to be written into the ROM
-		table_data = rom_table.generate_pairs(entrances=False)
+		table_data = rom_table.generate_pairs()
 
 		# Update table info with variable data
 		rom_table.info["num_entries"] = len(table_data)
