@@ -1,4 +1,5 @@
-[
+"""This file represents all edges of the world graph that have origin-nodes in the KMR (Goomba Region) area."""
+edges_kmr  = [
     # KMR_00 Forest Clearing
     {"from": {"map": "KMR_00", "id": 0            },   "to": {"map": "KMR_02", "id": 1            },   "reqs": ""}, # Forest Clearing Exit East -> Goomba Village Exit Left
     {"from": {"map": "KMR_00", "id": 0            },   "to": {"map": "KMR_00", "id": "HiddenPanel"},   "reqs": ""}, #* Forest Clearing Exit East -> HiddenPanel
