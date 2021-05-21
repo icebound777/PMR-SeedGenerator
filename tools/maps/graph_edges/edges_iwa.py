@@ -90,8 +90,8 @@ edges_iwa = [
     {"from": {"map": "IWA_04", "id": 0}, "to": {"map": "IWA_04", "id": 1}, "reqs": ""}, #? Suspension Bridge Exit Left -> Suspension Bridge Exit Right
     {"from": {"map": "IWA_04", "id": 1}, "to": {"map": "IWA_04", "id": 0}, "reqs": ""}, #? Suspension Bridge Exit Right -> Suspension Bridge Exit Left
     
-    {"from": {"map": "IWA_04", "id": 0}, "to": {"map": "IWA_04", "id": "ItemA"}, "reqs": ""}, #* Suspension Bridge Exit Left -> ItemA (Letter10)
-    {"from": {"map": "IWA_04", "id": "ItemA"}, "to": {"map": "IWA_04", "id": 0}, "reqs": ""}, #* ItemA (Letter10) -> Suspension Bridge Exit Left
+    {"from": {"map": "IWA_04", "id": 0},       "to": {"map": "IWA_04", "id": "ItemA"}, "reqs": ""}, #* Suspension Bridge Exit Left -> ItemA (Letter10)
+    {"from": {"map": "IWA_04", "id": "ItemA"}, "to": {"map": "IWA_04", "id": 0},       "reqs": ""}, #* ItemA (Letter10) -> Suspension Bridge Exit Left
 
     # IWA_10 Train Station
     {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_11", "id": 1}, "reqs": ""}, # Train Station Ride The Train -> Train Ride Scene Exit Right
