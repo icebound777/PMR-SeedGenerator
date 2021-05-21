@@ -1,4 +1,5 @@
-[
+"""This file represents all edges of the world graph that have origin-nodes in the IWA (Mt. Rugged) area."""
+edges_iwa = [
     # IWA_00 Mt Rugged 1
     {"from": {"map": "IWA_00", "id": 0}, "to": {"map": "IWA_10", "id": 1}, "reqs": ""}, # Mt Rugged 1 Exit Left -> Train Station Exit Top Right
     {"from": {"map": "IWA_00", "id": 1}, "to": {"map": "IWA_01", "id": 0}, "reqs": ""}, # Mt Rugged 1 Exit Right -> Mt Rugged 2 Exit Bottom Left
