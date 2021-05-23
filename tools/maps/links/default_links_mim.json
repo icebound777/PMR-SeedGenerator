@@ -114,19 +114,19 @@
             "dest_map": "MIM_06",
             "dest_entry": 3,
             "type": "walk",
-            "verbose_name": "Wrong Exit"
+            "verbose_name": "Correct Exit"
         },
         "2": {
             "dest_map": "MIM_04",
             "dest_entry": 0,
             "type": "walk",
-            "verbose_name": " Wrong Exit (To Previous)"
+            "verbose_name": "Wrong Exit (To Previous)"
         },
         "3": {
             "dest_map": "MIM_08",
             "dest_entry": 1,
             "type": "walk",
-            "verbose_name": "Correct Exit"
+            "verbose_name": "To HPPlus"
         }
     },
     "MIM_06": {
@@ -160,7 +160,7 @@
             "dest_map": "MIM_09",
             "dest_entry": 2,
             "type": "walk",
-            "verbose_name": "Wrong Exit"
+            "verbose_name": "To FPPlus"
         },
         "1": {
             "dest_map": "MIM_01",
@@ -204,7 +204,7 @@
             "dest_map": "MIM_01",
             "dest_entry": 1,
             "type": "walk",
-            "verbose_name": "Exit"
+            "verbose_name": "Wrong Exit"
         }
     },
     "MIM_09": {
@@ -241,7 +241,7 @@
             "verbose_name": "Toad Town Entrance"
         },
         "1": {
-            "dest_map": "MAC_01",
+            "dest_map": "MIM_01",
             "dest_entry": 1,
             "type": "walk",
             "verbose_name": "Entry to Forever Forest"
