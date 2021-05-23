@@ -1,8 +1,0 @@
-[
-    # DRO_01 Outpost 1
-    {"from": {"map": "DRO_01", "id": 0}, "to": {"map": "SBK_36", "id": 1}, "reqs": ""}, #
-    {"from": {"map": "DRO_01", "id": 1}, "to": {"map": "DRO_02", "id": 0}, "reqs": ""}, #
-    {"from": {"map": "DRO_01", "id": 2}, "to": {"map": "TIK_01", "id": 4}, "reqs": ""}, #
-    # DRO_02 Outpost 2
-    {"from": {"map": "DRO_02", "id": 0}, "to": {"map": "DRO_01", "id": 1}, "reqs": ""}, #
-]
