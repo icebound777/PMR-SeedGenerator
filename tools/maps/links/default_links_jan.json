@@ -1,7 +1,7 @@
 {
     "JAN_00": {
         "0": {
-            "dest_map": "MAC_06",
+            "dest_map": "MAC_05",
             "dest_entry": 1,
             "type": "whale",
             "verbose_name": "Ride The Whale"
