@@ -344,7 +344,7 @@
             "dest_map": "TIK_25",
             "dest_entry": 0,
             "type": "walk",
-            "verbose_name": "Exit Right"
+            "verbose_name": "Exit Left"
         },
         "1": {
             "dest_map": "TIK_23",
@@ -360,10 +360,5 @@
             "type": "walk",
             "verbose_name": "Exit Right"
         }
-    },
-    "TIK_BT01": {},
-    "TIK_BT02": {},
-    "TIK_BT03": {},
-    "TIK_BT04": {},
-    "TIK_BT05": {}
+    }
 }
