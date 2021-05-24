@@ -34,6 +34,18 @@
             "type": "walk",
             "verbose_name": "Exit East"
         },
+        "2": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train West"
+        },
+        "3": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train East"
+        },
         "4": {
             "dest_map": "MAC_04",
             "dest_entry": 2,
@@ -76,6 +88,18 @@
             "type": "walk",
             "verbose_name": "Exit West (Switch Area)"
         },
+        "2": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train West"
+        },
+        "3": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train East"
+        },
         "4": {
             "dest_map": "OMO_07",
             "dest_entry": 0,
@@ -97,6 +121,18 @@
             "dest_entry": 0,
             "type": "walk",
             "verbose_name": "Exit East"
+        },
+        "1": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train West"
+        },
+        "2": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train East"
         }
     },
     "OMO_09": {
@@ -119,6 +155,18 @@
             "dest_entry": 0,
             "type": "walk",
             "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train West"
+        },
+        "3": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train East"
         }
     },
     "OMO_11": {
