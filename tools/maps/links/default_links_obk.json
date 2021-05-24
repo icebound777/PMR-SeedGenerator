@@ -75,9 +75,21 @@
             "dest_entry": 0,
             "type": "door",
             "verbose_name": "Upper Door East"
+        },
+        "2": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "oneway-hole",
+            "verbose_name": "Fall From Ceiling"
         }
     },
     "OBK_04": {
+        "0": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "oneway-door",
+            "verbose_name": "Vanishing Door"
+        },
         "1": {
             "dest_map": "OBK_03",
             "dest_entry": 2,
@@ -100,6 +112,12 @@
         }
     },
     "OBK_06": {
+        "0": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "oneway-hole",
+            "verbose_name": "Fall From Ceiling"
+        },
         "1": {
             "dest_map": "OBK_02",
             "dest_entry": 2,
