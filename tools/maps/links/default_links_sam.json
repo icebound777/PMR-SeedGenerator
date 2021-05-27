@@ -21,7 +21,7 @@
             "verbose_name": "Exit East"
         },
         "2": {
-            "dest_map": "TI<_17",
+            "dest_map": "TIK_17",
             "dest_entry": 1,
             "type": "pipe",
             "verbose_name": "Pipe Entrance"
@@ -58,7 +58,7 @@
             "dest_map": "SAM_07",
             "dest_entry": 0,
             "type": "door",
-            "verbose_name": "Palace Entrance"
+            "verbose_name": "Mountain Entrance"
         }
     },
     "SAM_05": {
@@ -88,7 +88,7 @@
             "dest_map": "SAM_04",
             "dest_entry": 2,
             "type": "door",
-            "verbose_name": "Palace Entrance"
+            "verbose_name": "Mountain Entrance"
         },
         "1": {
             "dest_map": "SAM_08",

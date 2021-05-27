@@ -42,13 +42,13 @@
             "dest_map": "PRA_16",
             "dest_entry": 0,
             "type": "door",
-            "verbose_name": "Red Door"
+            "verbose_name": "Blue/Red Door"
         },
         "3": {
             "dest_map": "PRA_16",
             "dest_entry": 3,
             "type": "door",
-            "verbose_name": "Red Door (Mirror Side)"
+            "verbose_name": "Blue/Red Door (Mirror Side)"
         },
         "4": {
             "dest_map": "PRA_04",
@@ -200,7 +200,7 @@
             "dest_map": "PRA_13",
             "dest_entry": 2,
             "type": "bomb-wall",
-            "verbose_name": "Bombable Wall"
+            "verbose_name": "Bombable Wall (Mirror Side)"
         }
     },
     "PRA_15": {
@@ -248,7 +248,7 @@
             "dest_map": "PRA_33",
             "dest_entry": 1,
             "type": "door",
-            "verbose_name": "Door East"
+            "verbose_name": "Door East (Mirror Side)"
         },
         "2": {
             "dest_map": "PRA_16",
@@ -413,6 +413,12 @@
             "dest_entry": 1,
             "type": "door",
             "verbose_name": "Door West"
+        },
+        "2": {
+            "dest_map": "PRA_35",
+            "dest_entry": 2,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall (Mirror Side)"
         }
     },
     "PRA_34": {
@@ -453,6 +459,12 @@
             "dest_entry": 0,
             "type": "door",
             "verbose_name": "Door East"
+        },
+        "2": {
+            "dest_map": "PRA_33",
+            "dest_entry": 2,
+            "type": "bomb-wall",
+            "verbose_name": "Bombable Wall (Mirror Side)"
         }
     },
     "PRA_36": {
