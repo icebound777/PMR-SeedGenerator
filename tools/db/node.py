@@ -73,7 +73,7 @@ def create_nodes():
         item_values = json.load(file)["items"]
 
     entrance_links = {}
-    for child in Path("./maps").iterdir():
+    for child in Path("./maps/links").iterdir():
         if child.is_file() and child.name.endswith(".json"):
             with open(child, "r") as file:
                 entrance_links |= json.load(file)
