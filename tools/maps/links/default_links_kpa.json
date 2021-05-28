@@ -296,6 +296,12 @@
             "dest_entry": 3,
             "type": "door",
             "verbose_name": "Door Top Right"
+        },
+        "3": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "door",
+            "verbose_name": "Door Top Left"
         }
     },
     "KPA_41": {
@@ -366,6 +372,12 @@
             "dest_entry": 0,
             "type": "door",
             "verbose_name": "Door Bottom Right"
+        },
+        "2": {
+            "dest_map": "KPA_08",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Right"
         }
     },
     "KPA_53": {
@@ -449,7 +461,7 @@
             "dest_map": "KPA_60",
             "dest_entry": 5,
             "type": "starship",
-            "verbose_name": "Leave Hangar With Starship"
+            "verbose_name": "Leave Hanger With Starship"
         }
     },
     "KPA_70": {
@@ -768,6 +780,18 @@
             "dest_entry": 0,
             "type": "door",
             "verbose_name": "Door Bottom Right"
+        },
+        "2": {
+            "dest_map": "KPA_134",
+            "dest_entry": 2,
+            "type": "swim",
+            "verbose_name": "Door Bottom Right Upper Half"
+        },
+        "3": {
+            "dest_map": "KPA_134",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Bombable Wall"
         }
     },
     "KPA_134": {
@@ -782,6 +806,18 @@
             "dest_entry": 0,
             "type": "door",
             "verbose_name": "Door Bottom Right"
+        },
+        "2": {
+            "dest_map": "KPA_133",
+            "dest_entry": 2,
+            "type": "swim",
+            "verbose_name": "Door Bottom Left Upper Half"
+        },
+        "3": {
+            "dest_map": "KPA_133",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Bombable Wall"
         }
     }
 }
