@@ -25,8 +25,6 @@ from db.item import Item, create_items
 from db.node import Node, create_nodes
 from db.quiz import Quiz, create_quizzes
 from db.option import Option, create_options
-from db.item_price import ItemPrice, create_item_prices
-from db.entrance import Entrance, create_entrances, connect_entrances
 from db.actor_attribute import ActorAttribute, create_actor_attributes
 
 
@@ -34,20 +32,17 @@ from db.actor_attribute import ActorAttribute, create_actor_attributes
 create_enums()
 
 # Uncomment to build database from scratch
-"""
+
 gather_keys()
 gather_values()
 create_options()
 create_items()
 create_nodes()
-#create_item_prices()
 create_actor_attributes()
 create_quizzes()
-create_entrances()
-connect_entrances()
 shutil.copy("db.sqlite", "default_db.sqlite")
 quit()
-"""
+
 # END
 
 
@@ -170,30 +165,9 @@ class Window(QMainWindow):
 		rom_table = Table()
 		rom_table.create()
 
-		# Shuffle Entrances by type
-		# valid_entrances = [entrance for entrance in Entrance.select().where(Entrance.destination != None)]
-		# found = set()
-		# pairs = []
-		# for source in valid_entrances:
-		# 	if source in found:
-		# 		continue
-		# 	if source.destination in found:
-		# 		continue
-		# 	found.add(source)
-		# 	found.add(source.destination)
-		# 	pairs.append({
-		# 		"src": source,
-		# 		"dest": source.destination
-		# 	})
-
-		# shuffle_entrances(pairs, by_type="pipe")
-		# shuffle_entrances(pairs, by_type="ground")
-		# shuffle_entrances(pairs, by_type="door")
-
 		# Shuffle Items
 		# items = [item for item in Item.select()]
 		# shuffle_items(items)
-		#place_items(self.app)
 		place_items(self.app, isShuffle=True, algorithm="forward_fill")
 
 		# Make everything inexpensive
