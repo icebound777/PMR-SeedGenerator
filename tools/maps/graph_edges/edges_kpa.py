@@ -126,6 +126,11 @@ edges_kpa = [
     
     {"from": {"map": "KPA_17",  "id": 0}, "to": {"map": "KPA_17",  "id": 1}, "reqs": []}, #? Lower Jail Fall From Ceiling -> Lower Jail Cracked Wall Right
     {"from": {"map": "KPA_17",  "id": 1}, "to": {"map": "KPA_17",  "id": 0}, "reqs": []}, #? Lower Jail Cracked Wall Right -> Lower Jail Fall From Ceiling
+    
+    {"from": {"map": "KPA_17",  "id": 0},        "to": {"map": "KPA_17",  "id": "CrateA"}, "reqs": []}, #* Lower Jail Fall From Ceiling -> CrateA (TastyTonic)
+    {"from": {"map": "KPA_17",  "id": "CrateA"}, "to": {"map": "KPA_17",  "id": 0},        "reqs": []}, #* CrateA (TastyTonic) -> Lower Jail Fall From Ceiling
+    {"from": {"map": "KPA_17",  "id": 0},        "to": {"map": "KPA_17",  "id": "CrateB"}, "reqs": []}, #* Lower Jail Fall From Ceiling -> CrateB (LifeShroom)
+    {"from": {"map": "KPA_17",  "id": "CrateB"}, "to": {"map": "KPA_17",  "id": 0},        "reqs": []}, #* CrateB (LifeShroom) -> Lower Jail Fall From Ceiling
 
     # KPA_32 Lower Grand Hall
     {"from": {"map": "KPA_32",  "id": 0}, "to": {"map": "KPA_81",  "id": 2}, "reqs": []}, # Lower Grand Hall Door Bottom Left -> Guard Door 1 Guard Door Right
@@ -457,6 +462,7 @@ edges_kpa = [
     
     {"from": {"map": "KPA_134", "id": 0}, "to": {"map": "KPA_134", "id": 1}, "reqs": []}, #? Right Water Puzzle Door Bottom Left -> Right Water Puzzle Door Bottom Right
     {"from": {"map": "KPA_134", "id": 1}, "to": {"map": "KPA_134", "id": 0}, "reqs": []}, #? Right Water Puzzle Door Bottom Right -> Right Water Puzzle Door Bottom Left
+    {"from": {"map": "KPA_134", "id": 0}, "to": {"map": "KPA_134", "id": 2}, "reqs": []}, #? Right Water Puzzle Door Bottom Left -> Right Water Puzzle Door Bottom Left Upper Half
     {"from": {"map": "KPA_134", "id": 2}, "to": {"map": "KPA_134", "id": 0}, "reqs": []}, #? Right Water Puzzle Door Bottom Left Upper Half -> Right Water Puzzle Door Bottom Left
     
     {"from": {"map": "KPA_134", "id": 3},               "to": {"map": "KPA_134", "id": "HiddenYBlockA"}, "reqs": []}, #* Right Water Puzzle Bombable Wall -> HiddenYBlockA (MapleSyrup)

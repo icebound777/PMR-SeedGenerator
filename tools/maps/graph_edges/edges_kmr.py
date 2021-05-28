@@ -30,7 +30,7 @@ edges_kmr  = [
     {"from": {"map": "KMR_05", "id": 1},               "to": {"map": "KMR_02", "id": 2},               "reqs": []}, # Behind the Village Exit Right -> Goomba Village Exit Top Left
 
     {"from": {"map": "KMR_05", "id": 0},               "to": {"map": "KMR_05", "id": 1},               "reqs": []}, #? Behind the Village Exit Left -> Behind the Village Exit Right
-    {"from": {"map": "KMR_05", "id": 1},               "to": {"map": "KMR_05", "id": 2},               "reqs": []}, #? Behind the Village Exit Right -> Behind the Village Exit Left
+    {"from": {"map": "KMR_05", "id": 1},               "to": {"map": "KMR_05", "id": 0},               "reqs": []}, #? Behind the Village Exit Right -> Behind the Village Exit Left
     
     {"from": {"map": "KMR_05", "id": 1      },         "to": {"map": "KMR_05", "id": "ItemA"},         "reqs": []}, #* Behind the Village Exit Right -> ItemA (StarPiece)
     {"from": {"map": "KMR_05", "id": "ItemA"},         "to": {"map": "KMR_05", "id": 1      },         "reqs": []}, #* ItemA (StarPiece) -> Behind the Village Exit Right

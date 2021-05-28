@@ -49,6 +49,12 @@
             "dest_entry": 2,
             "type": "walk",
             "verbose_name": "Exit South"
+        },
+        "5": {
+            "dest_map": "FLO_00",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Flower Fields Door"
         }
     },
     "MAC_02": {
@@ -141,6 +147,12 @@
             "dest_entry": 0,
             "type": "whale",
             "verbose_name": "Whale Voyage"
+        },
+        "3": {
+            "dest_map": "KGR_01",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Enter Whale"
         }
     }
 }

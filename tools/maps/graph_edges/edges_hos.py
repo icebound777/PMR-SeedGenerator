@@ -78,6 +78,6 @@ edges_hos = [
     {"from": {"map": "HOS_20", "id": 0}, "to": {"map": "HOS_05", "id": 1}, "reqs": []}, # Riding Star Ship Scene Fly To Star Haven -> Star Sanctuary Fly Starship
     {"from": {"map": "HOS_20", "id": 2}, "to": {"map": "KPA_60", "id": 4}, "reqs": []}, # Riding Star Ship Scene Fly To Bowser's Castle -> Ship Enter/Exit Scenes Leave Hangar To Starhaven
     
-    {"from": {"map": "HOS_20", "id": 0}, "to": {"map": "HOS_20", "id": 1}, "reqs": []}, #? Riding Star Ship Scene Fly To Star Haven -> Riding Star Ship Scene Fly To Bowser's Castle
-    {"from": {"map": "HOS_20", "id": 1}, "to": {"map": "HOS_20", "id": 0}, "reqs": []}, #? Riding Star Ship Scene Fly To Bowser's Castle -> Riding Star Ship Scene Fly To Star Haven
+    {"from": {"map": "HOS_20", "id": 0}, "to": {"map": "HOS_20", "id": 2}, "reqs": []}, #? Riding Star Ship Scene Fly To Star Haven -> Riding Star Ship Scene Fly To Bowser's Castle
+    {"from": {"map": "HOS_20", "id": 2}, "to": {"map": "HOS_20", "id": 0}, "reqs": []}, #? Riding Star Ship Scene Fly To Bowser's Castle -> Riding Star Ship Scene Fly To Star Haven
 ]

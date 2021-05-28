@@ -97,12 +97,6 @@
             "dest_entry": 2,
             "type": "walk",
             "verbose_name": "Exit South"
-        },
-        "4": {
-            "dest_map": null,
-            "dest_entry": null,
-            "type": "tweester",
-            "verbose_name": "Fall From Sky"
         }
     },
     "SBK_05": {
@@ -123,6 +117,12 @@
             "dest_entry": 2,
             "type": "walk",
             "verbose_name": "Exit South"
+        },
+        "4": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "tweester",
+            "verbose_name": "Fall From Sky"
         }
     },
     "SBK_06": {
