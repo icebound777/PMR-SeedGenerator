@@ -58,9 +58,9 @@ def require(**kwargs):
 """
 mario = Mario()
 mario.partners.append("Kooper")
-mario.items.append("Mushroom")
+# mario.items.append("Mushroom")
 
-reqs = [require(partner="Kooper"), require(item="Mushroom")]
+reqs = [require(partner="Kooper", item="Mushroom")]
 if all([r() for r in reqs]):
     print("Accessible")
 else:
