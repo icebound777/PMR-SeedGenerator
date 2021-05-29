@@ -67,8 +67,7 @@ def place_items(app, isShuffle, algorithm):
         
             outgoing_edges = world_graph.get(node_id).get("edge_list")
             for edge in outgoing_edges:
-                #TODO check against mario's current inventory
-                if all(edge.get("reqs")):
+                if all([r() for r in edge.get("reqs")]):
                     depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
                 else:
                     non_traversable_edges.append(edge)
