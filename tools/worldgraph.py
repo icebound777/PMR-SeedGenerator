@@ -84,13 +84,16 @@ def generate(all_nodes=[], all_edges=[]):
 
     for node in all_nodes:
         if node.entrance_id is not None:
-            node_id = str(node.entrance_id)
+            node_data_id = str(node.entrance_id)
         elif node.key_name_item:
-            node_id = node.key_name_item
+            node_data_id = node.key_name_item
         else:
             print("Error: Node without entrance_id and key_name_item found! Stopping ...")
             quit(1)
-        world_graph[node.map_area.name + "/" + node_id] = []
+        node_id = node.map_area.name + "/" + node_data_id
+        world_graph[node_id] = {}
+        world_graph[node_id]["node"] = node
+        world_graph[node_id]["edge_list"] = []
 
         for edge in all_edges:
             if edge.get("from").get("map") == node.map_area.name:
@@ -99,8 +102,7 @@ def generate(all_nodes=[], all_edges=[]):
                     pass
                 elif (   edge.get("from").get("id") == node.entrance_id
                       or edge.get("from").get("id") == node.key_name_item):
-                    edge_target_node_id = edge.get("to").get("map") + "/" + str(edge.get("to").get("id"))
-                    world_graph[node.map_area.name + "/" + node_id].append(edge_target_node_id)
+                    world_graph[node_id]["edge_list"].append(edge)
     return world_graph
 
 def check_graph():
@@ -221,10 +223,10 @@ def check_graph():
         if node_id in visited_node_ids:
             return
         visited_node_ids.append(node_id)
-
-        neighboring_nodes = world_graph.get(node_id)
-        for node_id in neighboring_nodes:
-            depth_first_search(node_id)
+        
+        outgoing_edges = world_graph.get(node_id).get("edge_list")
+        for edge in outgoing_edges:
+            depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
 
     # traverse world graph  
     print("Checking node reachability in world graph ...")      
