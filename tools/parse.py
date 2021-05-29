@@ -301,25 +301,3 @@ def create_table(default_table):
             }
 
     return db
-
-def get_map_linkages():
-    linkages = {}
-
-    for filename in os.listdir("../map/src/"):
-        if filename.endswith(".xml"):
-            map_name = filename.replace(".xml", "").upper()
-            xml_tree = ET.parse(f"../map/src/{filename}")
-            linkages[map_name] = {}
-            root = xml_tree.getroot()
-            for child in root.iter():
-                if child.tag == "Generators":
-                    for element in child:
-                        data = element.attrib
-                        exit_id = int(data["entry"].split("Entry")[1])
-                        dest_map = data["destMap"].upper()
-                        dest_entry = int(data["destEntry"].split("Entry")[1])
-                        linkages[map_name][exit_id] = {
-                            "dest_map": dest_map,
-                            "dest_entry": dest_entry,
-                        }
-    return linkages
