@@ -7,6 +7,7 @@ class Mario:
         self.hammer = kwargs.get("hammer", 0)
         self.items = kwargs.get("items", [])
         self.partners = kwargs.get("partners", [])
+        self.favors = kwargs.get("favors", []) # https://www.mariowiki.com/Koopa_Koot%27s_favors
 
 
 def flip_panels():
@@ -36,31 +37,36 @@ def require(**kwargs):
         global mario
         # Partners
         if partner := kwargs.get("partner"):
-            if partner not in mario.partners:
-                return False
+            if partner in mario.partners:
+                return True
         # Items
         if item := kwargs.get("item"):
-            if item not in mario.items:
-                return False
+            if item in mario.items:
+                return True
         # Hammer
         if hammer := kwargs.get("hammer"):
-            if mario.hammer < hammer:
-                return False
+            if mario.hammer >= hammer:
+                return True
         # Boots
         if boots := kwargs.get("boots"):
-            if mario.boots < boots:
-                return False
-        return True
+            if mario.boots >= boots:
+                return True
+
+        # Koopa Koot Favors
+        if favor := kwargs.get("favor"):
+            if favor in mario.favors:
+                return True
+        return False
     return func
 
 
 # Example
-"""
 mario = Mario()
+"""
 mario.partners.append("Kooper")
-# mario.items.append("Mushroom")
+mario.boots = 0
 
-reqs = [require(partner="Kooper", item="Mushroom")]
+reqs = [require(partner="Kooper", boots=2)]
 if all([r() for r in reqs]):
     print("Accessible")
 else:
