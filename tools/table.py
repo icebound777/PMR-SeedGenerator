@@ -54,7 +54,7 @@ class Table:
 				})
 
 		# Item Prices
-		for node in Node.select().where(Node.key_name_price.is_null(False) & Node.key_name_price % "ShopItem%"):
+		for node in Node.select().where(Node.key_name_price.is_null(False) & Node.key_name_price.startswith("ShopPrice")):
 			# TODO: Modify price value based on the item its tied to
 			table_data.append({
 				"key": node.get_price_key(),
