@@ -1,0 +1,290 @@
+{
+    "MIM_01": {
+        "0": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "1": {
+            "dest_map": "MIM_10",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Forever Forest Entrance (Toad Town)"
+        },
+        "2": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "3": {
+            "dest_map": "MIM_02",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Correct Exit"
+        }
+    },
+    "MIM_02": {
+        "0": {
+            "dest_map": "MIM_03",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Correct Exit"
+        },
+        "1": {
+            "dest_map": "MIM_01",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Wrong Exit (To Previous)"
+        },
+        "2": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "3": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        }
+    },
+    "MIM_03": {
+        "0": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "1": {
+            "dest_map": "MIM_04",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Correct Exit"
+        },
+        "2": {
+            "dest_map": "MIM_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Wrong Exit (To Previous)"
+        },
+        "3": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        }
+    },
+    "MIM_04": {
+        "0": {
+            "dest_map": "MIM_05",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Correct Exit"
+        },
+        "1": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "2": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "3": {
+            "dest_map": "MIM_03",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit (To Previous)"
+        }
+    },
+    "MIM_05": {
+        "0": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "1": {
+            "dest_map": "MIM_06",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Correct Exit"
+        },
+        "2": {
+            "dest_map": "MIM_04",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Wrong Exit (To Previous)"
+        },
+        "3": {
+            "dest_map": "MIM_08",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "To HPPlus"
+        }
+    },
+    "MIM_06": {
+        "0": {
+            "dest_map": "MIM_07",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Correct Exit"
+        },
+        "1": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "2": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "3": {
+            "dest_map": "MIM_05",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit (To Previous)"
+        }
+    },
+    "MIM_07": {
+        "0": {
+            "dest_map": "MIM_09",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "To FPPlus"
+        },
+        "1": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "2": {
+            "dest_map": "MIM_06",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Wrong Exit (To Previous)"
+        },
+        "3": {
+            "dest_map": "MIM_11",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Forever Forest Entrance (Boo's Mansion)"
+        }
+    },
+    "MIM_08": {
+        "0": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "1": {
+            "dest_map": "MIM_05",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Correct Exit"
+        },
+        "2": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "3": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        }
+    },
+    "MIM_09": {
+        "0": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "1": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        },
+        "2": {
+            "dest_map": "MIM_07",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Correct Exit"
+        },
+        "3": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Wrong Exit"
+        }
+    },
+    "MIM_10": {
+        "0": {
+            "dest_map": "MAC_02",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Toad Town Entrance"
+        },
+        "1": {
+            "dest_map": "MIM_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Entry to Forever Forest"
+        }
+    },
+    "MIM_11": {
+        "0": {
+            "dest_map": "MIM_07",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Forever Forest Entrance"
+        },
+        "1": {
+            "dest_map": "MIM_12",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Entrance to Wasteland"
+        },
+        "2": {
+            "dest_map": "OBK_01",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Boo's Mansion Front Door"
+        },
+        "3": {
+            "dest_map": "TIK_09",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Pipe to Sewers"
+        }
+    },
+    "MIM_12": {
+        "0": {
+            "dest_map": "MIM_11",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "ARN_07",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    }
+}

@@ -1,0 +1,234 @@
+{
+    "KKJ_10": {
+        "0": {
+            "dest_map": "OSR_02",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Bottom"
+        },
+        "1": {
+            "dest_map": "KKJ_11",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top"
+        },
+        "2": {
+            "dest_map": "KKJ_21",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Far Left"
+        },
+        "3": {
+            "dest_map": "KKJ_19",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Back Right"
+        },
+        "4": {
+            "dest_map": "KKJ_20",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Far Right"
+        }
+    },
+    "KKJ_11": {
+        "0": {
+            "dest_map": "KKJ_10",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Bottom Left"
+        },
+        "1": {
+            "dest_map": "KKJ_12",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Back"
+        },
+        "2": {
+            "dest_map": "KKJ_16",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "3": {
+            "dest_map": "KKJ_15",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Back Left"
+        },
+        "4": {
+            "dest_map": "KKJ_14",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Bottom Back"
+        },
+        "5": {
+            "dest_map": "KKJ_17",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        },
+        "6": {
+            "dest_map": "KKJ_18",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Bottom Right"
+        }
+    },
+    "KKJ_12": {
+        "0": {
+            "dest_map": "KKJ_11",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KKJ_13",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KKJ_13": {
+        "0": {
+            "dest_map": "KKJ_12",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KKJ_22",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KKJ_14": {
+        "0": {
+            "dest_map": "KKJ_11",
+            "dest_entry": 4,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KKJ_26",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KKJ_15": {
+        "0": {
+            "dest_map": "KKJ_11",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KKJ_16": {
+        "0": {
+            "dest_map": "KKJ_11",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KKJ_17": {
+        "0": {
+            "dest_map": "KKJ_11",
+            "dest_entry": 5,
+            "type": "door",
+            "verbose_name": "Door Left"
+        }
+    },
+    "KKJ_18": {
+        "0": {
+            "dest_map": "KKJ_11",
+            "dest_entry": 6,
+            "type": "door",
+            "verbose_name": "Door Left"
+        }
+    },
+    "KKJ_19": {
+        "0": {
+            "dest_map": "KKJ_10",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door Bottom Right"
+        }
+    },
+    "KKJ_20": {
+        "0": {
+            "dest_map": "KKJ_10",
+            "dest_entry": 4,
+            "type": "door",
+            "verbose_name": "Door Left"
+        }
+    },
+    "KKJ_21": {
+        "0": {
+            "dest_map": "KKJ_10",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KKJ_22": {
+        "0": {
+            "dest_map": "KKJ_13",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Bottom Left"
+        },
+        "1": {
+            "dest_map": "KKJ_23",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Left"
+        }
+    },
+    "KKJ_23": {
+        "0": {
+            "dest_map": "KKJ_22",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Right"
+        },
+        "1": {
+            "dest_map": "KKJ_24",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Left"
+        }
+    },
+    "KKJ_24": {
+        "0": {
+            "dest_map": "KKJ_23",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Bottom"
+        },
+        "1": {
+            "dest_map": "KKJ_25",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top"
+        }
+    },
+    "KKJ_25": {
+        "0": {
+            "dest_map": "KKJ_24",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        }
+    },
+    "KKJ_26": {
+        "0": {
+            "dest_map": "KKJ_14",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        }
+    }
+}

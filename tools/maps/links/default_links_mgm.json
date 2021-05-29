@@ -1,0 +1,10 @@
+{
+    "MGM_00": {
+        "0": {
+            "dest_map": "MAC_03",
+            "dest_entry": 2,
+            "type": "pipe",
+            "verbose_name": "Pipe to Toad Town"
+        }
+    }
+}

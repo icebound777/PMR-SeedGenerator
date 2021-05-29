@@ -1,0 +1,823 @@
+{
+    "KPA_01": {
+        "0": {
+            "dest_map": "KPA_14",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Bottom Left"
+        },
+        "1": {
+            "dest_map": "KPA_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top Left"
+        }
+    },
+    "KPA_03": {
+        "0": {
+            "dest_map": "KPA_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "1": {
+            "dest_map": "KPA_04",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Left"
+        }
+    },
+    "KPA_04": {
+        "0": {
+            "dest_map": "KPA_03",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Right"
+        },
+        "1": {
+            "dest_map": "KPA_81",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Hidden Door Bottom"
+        }
+    },
+    "KPA_08": {
+        "0": {
+            "dest_map": "KPA_52",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_100",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_09": {
+        "0": {
+            "dest_map": "KPA_101",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_33",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_10": {
+        "0": {
+            "dest_map": "KPA_62",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Top Left"
+        },
+        "1": {
+            "dest_map": "KPA_12",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        },
+        "2": {
+            "dest_map": "KPA_17",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Cracked Wall To Jail"
+        },
+        "3": {
+            "dest_map": "KPA_62",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Lava Door Left"
+        },
+        "4": {
+            "dest_map": "KPA_12",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Lava Door Right"
+        }
+    },
+    "KPA_11": {
+        "0": {
+            "dest_map": "KPA_62",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Top Left"
+        },
+        "1": {
+            "dest_map": "KPA_12",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        },
+        "2": {
+            "dest_map": "KPA_17",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Cracked Wall To Jail"
+        },
+        "3": {
+            "dest_map": "KPA_62",
+            "dest_entry": 2,
+            "type": "lava",
+            "verbose_name": "Lava Door Left"
+        },
+        "4": {
+            "dest_map": "KPA_12",
+            "dest_entry": 2,
+            "type": "lava",
+            "verbose_name": "Lava Door Right"
+        }
+    },
+    "KPA_12": {
+        "0": {
+            "dest_map": "KPA_10",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left",
+            "loadKPA_11ifLavaOn": true
+        },
+        "1": {
+            "dest_map": "KPA_13",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        },
+        "2": {
+            "dest_map": "KPA_10",
+            "dest_entry": 4,
+            "type": "lava",
+            "verbose_name": "Lava Door Left",
+            "loadKPA_11ifLavaOn": true
+        }
+    },
+    "KPA_13": {
+        "0": {
+            "dest_map": "KPA_12",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_14",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        },
+        "2": {
+            "dest_map": "KPA_15",
+            "dest_entry": 0,
+            "type": "lava",
+            "verbose_name": "Lava Door Center"
+        }
+    },
+    "KPA_14": {
+        "0": {
+            "dest_map": "KPA_13",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_01",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        },
+        "2": {
+            "dest_map": "KPA_16",
+            "dest_entry": 0,
+            "type": "lava",
+            "verbose_name": "Lava Door Center"
+        }
+    },
+    "KPA_15": {
+        "0": {
+            "dest_map": "KPA_13",
+            "dest_entry": 2,
+            "type": "lava",
+            "verbose_name": "Door Left"
+        }
+    },
+    "KPA_16": {
+        "0": {
+            "dest_map": "KPA_14",
+            "dest_entry": 2,
+            "type": "lava",
+            "verbose_name": "Lava Door Left"
+        }
+    },
+    "KPA_17": {
+        "0": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "oneway-hole",
+            "verbose_name": "Fall From Ceiling"
+        },
+        "1": {
+            "dest_map": "KPA_10",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Cracked Wall Right",
+            "loadKPA_11ifLavaOn": true
+        }
+    },
+    "KPA_32": {
+        "0": {
+            "dest_map": "KPA_81",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door Bottom Left"
+        },
+        "1": {
+            "dest_map": "KPA_90",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Bottom Right"
+        },
+        "2": {
+            "dest_map": "KPA_51",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Right"
+        },
+        "3": {
+            "dest_map": "KPA_96",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Left"
+        }
+    },
+    "KPA_33": {
+        "0": {
+            "dest_map": "KPA_94",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Bottom Left"
+        },
+        "1": {
+            "dest_map": "KPA_61",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Bottom Right"
+        },
+        "2": {
+            "dest_map": "KPA_52",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Right"
+        },
+        "3": {
+            "dest_map": "KPA_09",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Top Left"
+        }
+    },
+    "KPA_40": {
+        "0": {
+            "dest_map": "KPA_52",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_40",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door Bottom Right"
+        },
+        "2": {
+            "dest_map": "KPA_41",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door Top Right"
+        },
+        "3": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "door",
+            "verbose_name": "Door Top Left"
+        }
+    },
+    "KPA_41": {
+        "0": {
+            "dest_map": "KPA_40",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Bottom Left"
+        },
+        "1": {
+            "dest_map": "KPA_41",
+            "dest_entry": "0",
+            "type": "door",
+            "verbose_name": "Door Bottom Right",
+            "kpa_door_puzzle": true
+        },
+        "2": {
+            "dest_map": "KPA_102",
+            "dest_entry": "0",
+            "type": "door",
+            "verbose_name": "Door Top Right",
+            "kpa_door_puzzle": true
+        },
+        "3": {
+            "dest_map": "KPA_40",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door Top Left"
+        }
+    },
+    "KPA_50": {
+        "0": {
+            "dest_map": "KPA_70",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_81",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_51": {
+        "0": {
+            "dest_map": "KPA_32",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_133",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_52": {
+        "0": {
+            "dest_map": "KPA_33",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_40",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Bottom Right"
+        },
+        "2": {
+            "dest_map": "KPA_08",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Right"
+        }
+    },
+    "KPA_53": {
+        "0": {
+            "dest_map": "KPA_102",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_83",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_60": {
+        "4": {
+            "dest_map": "HOS_20",
+            "dest_entry": 2,
+            "type": "starship",
+            "verbose_name": "Leave Hangar To Starhaven"
+        },
+        "5": {
+            "dest_map": "KPA_63",
+            "dest_entry": 1,
+            "type": "starship",
+            "verbose_name": "Land Starship In Hangar"
+        }
+    },
+    "KPA_61": {
+        "0": {
+            "dest_map": "KPA_82",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Bottom Left"
+        },
+        "1": {
+            "dest_map": "KPA_33",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Top Left"
+        }
+    },
+    "KPA_62": {
+        "0": {
+            "dest_map": "KPA_70",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Front Door"
+        },
+        "1": {
+            "dest_map": "KPA_10",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right",
+            "loadKPA_11ifLavaOn": true
+        },
+        "2": {
+            "dest_map": "KPA_10",
+            "dest_entry": 3,
+            "type": "lava",
+            "verbose_name": "Lava Door Right",
+            "loadKPA_11ifLavaOn": true
+        },
+        "3": {
+            "dest_map": "KPA_63",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Hangar Door Bottom Left"
+        }
+    },
+    "KPA_63": {
+        "0": {
+            "dest_map": "KPA_62",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door Bottom Right"
+        },
+        "1": {
+            "dest_map": "KPA_60",
+            "dest_entry": 5,
+            "type": "starship",
+            "verbose_name": "Leave Hanger With Starship"
+        }
+    },
+    "KPA_70": {
+        "0": {
+            "dest_map": "KPA_62",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_50",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_81": {
+        "0": {
+            "dest_map": "KPA_50",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_17",
+            "dest_entry": 0,
+            "type": "oneway-hole",
+            "verbose_name": "Fall In Trap Door"
+        },
+        "2": {
+            "dest_map": "KPA_32",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Guard Door Right"
+        },
+        "3": {
+            "dest_map": "KPA_04",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Hidden Door Top"
+        }
+    },
+    "KPA_82": {
+        "0": {
+            "dest_map": "KPA_113",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_61",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Guard Door Right"
+        }
+    },
+    "KPA_83": {
+        "0": {
+            "dest_map": "KPA_53",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_121",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Guard Door Right"
+        }
+    },
+    "KPA_90": {
+        "0": {
+            "dest_map": "KPA_32",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Top Left"
+        },
+        "1": {
+            "dest_map": "KPA_91",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Bottom Right To Jail"
+        }
+    },
+    "KPA_91": {
+        "0": {
+            "dest_map": "KPA_90",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        }
+    },
+    "KPA_94": {
+        "0": {
+            "dest_map": "KPA_95",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Bottom Left To Jail"
+        },
+        "1": {
+            "dest_map": "KPA_33",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Right"
+        }
+    },
+    "KPA_95": {
+        "0": {
+            "dest_map": "KPA_94",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_96": {
+        "0": {
+            "dest_map": "KPA_32",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_100": {
+        "0": {
+            "dest_map": "KPA_08",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        }
+    },
+    "KPA_101": {
+        "0": {
+            "dest_map": "KPA_09",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_102": {
+        "0": {
+            "dest_map": "KPA_41",
+            "dest_entry": 2,
+            "type":"door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_53",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_111": {
+        "0": {
+            "dest_map": "KPA_130",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_112",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Hidden Door"
+        }
+    },
+    "KPA_112": {
+        "0": {
+            "dest_map": "KPA_111",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Hidden Door Bottom Left"
+        },
+        "1": {
+            "dest_map": "KPA_113",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_113": {
+        "0": {
+            "dest_map": "KPA_112",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_82",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        },
+        "2": {
+            "dest_map": "KPA_114",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Hidden Door"
+        }
+    },
+    "KPA_114": {
+        "0": {
+            "dest_map": "KPA_113",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Hidden Door Bottom Left"
+        },
+        "1": {
+            "dest_map": "KPA_115",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_115": {
+        "0": {
+            "dest_map": "KPA_114",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_116",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Fake Hidden Door"
+        },
+        "2": {
+            "dest_map": "KPA_118",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Actual Hidden Door"
+        }
+    },
+    "KPA_116": {
+        "0": {
+            "dest_map": "KPA_115",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Hidden Door Bottom Left"
+        },
+        "1": {
+            "dest_map": "KPA_117",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_117": {
+        "0": {
+            "dest_map": "KPA_116",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        }
+    },
+    "KPA_118": {
+        "0": {
+            "dest_map": "KPA_115",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Hidden Door Bottom Right"
+        },
+        "1": {
+            "dest_map": "KPA_119",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Left"
+        }
+    },
+    "KPA_119": {
+        "0": {
+            "dest_map": "KPA_118",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "KPA_121": {
+        "0": {
+            "dest_map": "KPA_83",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Bottom Left"
+        },
+        "1": {
+            "dest_map": "OSR_02",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Right"
+        }
+    },
+    "KPA_130": {
+        "0": {
+            "dest_map": "KPA_134",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "KPA_111",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Right"
+        }
+    },
+    "KPA_133": {
+        "0": {
+            "dest_map": "KPA_51",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Bottom Left"
+        },
+        "1": {
+            "dest_map": "KPA_134",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Bottom Right"
+        },
+        "2": {
+            "dest_map": "KPA_134",
+            "dest_entry": 2,
+            "type": "swim",
+            "verbose_name": "Door Bottom Right Upper Half"
+        },
+        "3": {
+            "dest_map": "KPA_134",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Bombable Wall"
+        }
+    },
+    "KPA_134": {
+        "0": {
+            "dest_map": "KPA_133",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Bottom Left"
+        },
+        "1": {
+            "dest_map": "KPA_130",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Bottom Right"
+        },
+        "2": {
+            "dest_map": "KPA_133",
+            "dest_entry": 2,
+            "type": "swim",
+            "verbose_name": "Door Bottom Left Upper Half"
+        },
+        "3": {
+            "dest_map": "KPA_133",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Bombable Wall"
+        }
+    }
+}

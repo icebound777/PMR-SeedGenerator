@@ -1,0 +1,114 @@
+{
+    "HOS_00": {
+        "0": {
+            "dest_map": "OSR_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "HOS_01",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top Right"
+        },
+        "2": {
+            "dest_map": "HOS_06",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Right"
+        }
+    },
+    "HOS_01": {
+        "0": {
+            "dest_map": "HOS_00",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Left"
+        },
+        "1": {
+            "dest_map": "HOS_02",
+            "dest_entry": 0,
+            "type": "startransporter",
+            "verbose_name": "Ride Up To Starway"
+        }
+    },
+    "HOS_02": {
+        "0": {
+            "dest_map": "HOS_01",
+            "dest_entry": 1,
+            "type": "startransporter",
+            "verbose_name": "Ride Down To Summit"
+        },
+        "1": {
+            "dest_map": "HOS_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top Right"
+        }
+    },
+    "HOS_03": {
+        "0": {
+            "dest_map": "HOS_02",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Left"
+        },
+        "1": {
+            "dest_map": "HOS_04",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name":"Exit Top Right"
+        }
+    },
+    "HOS_04": {
+        "0": {
+            "dest_map": "HOS_03",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "HOS_05",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "HOS_05": {
+        "0": {
+            "dest_map": "HOS_04",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "HOS_20",
+            "dest_entry": 0,
+            "type": "starship",
+            "verbose_name": "Fly Starship"
+        }
+    },
+    "HOS_06": {
+        "0": {
+            "dest_map": "HOS_00",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "HOS_20": {
+        "0": {
+            "dest_map": "HOS_05",
+            "dest_entry": 1,
+            "type": "starship",
+            "verbose_name": "Fly To Star Haven"
+        },
+        "2": {
+            "dest_map": "KPA_60",
+            "dest_entry": 4,
+            "type": "starship",
+            "verbose_name": "Fly To Bowser's Castle"
+        }
+    }
+}

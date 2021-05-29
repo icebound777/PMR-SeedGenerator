@@ -1,0 +1,256 @@
+{
+    "OMO_01": {
+        "0": {
+            "dest_map": "OMO_13",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "OMO_02": {
+        "0": {
+            "dest_map": "OMO_10",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "OMO_14",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "OMO_03": {
+        "0": {
+            "dest_map": "OMO_13",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "OMO_04",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train West"
+        },
+        "3": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train East"
+        },
+        "4": {
+            "dest_map": "MAC_04",
+            "dest_entry": 2,
+            "type": "spring",
+            "verbose_name": "Spring to Toad Town"
+        }
+    },
+    "OMO_04": {
+        "0": {
+            "dest_map": "OMO_03",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        }
+    },
+    "OMO_05": {
+        "0": {
+            "dest_map": "OMO_17",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East (South)"
+        },
+        "1": {
+            "dest_map": "OMO_17",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit East (North)"
+        }
+    },
+    "OMO_06": {
+        "0": {
+            "dest_map": "OMO_17",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "OMO_17",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit West (Switch Area)"
+        },
+        "2": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train West"
+        },
+        "3": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train East"
+        },
+        "4": {
+            "dest_map": "OMO_07",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "OMO_07": {
+        "0": {
+            "dest_map": "OMO_06",
+            "dest_entry": 4,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        }
+    },
+    "OMO_08": {
+        "0": {
+            "dest_map": "OMO_09",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "1": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train West"
+        },
+        "2": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train East"
+        }
+    },
+    "OMO_09": {
+        "0": {
+            "dest_map": "OMO_08",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        }
+    },
+    "OMO_10": {
+        "0": {
+            "dest_map": "OMO_11",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "OMO_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train West"
+        },
+        "3": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "train",
+            "verbose_name": "Ride Train East"
+        }
+    },
+    "OMO_11": {
+        "0": {
+            "dest_map": "OMO_12",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit West (Miniboss Room)"
+        },
+        "1": {
+            "dest_map": "OMO_10",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "OMO_12": {
+        "0": {
+            "dest_map": "OMO_11",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "OMO_13": {
+        "0": {
+            "dest_map": "OMO_01",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "OMO_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "OMO_14": {
+        "0": {
+            "dest_map": "OMO_02",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "OMO_15",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    },
+    "OMO_15": {
+        "0": {
+            "dest_map": "OMO_14",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        }
+    },
+    "OMO_17": {
+        "0": {
+            "dest_map": "OMO_05",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit West (South)"
+        },
+        "1": {
+            "dest_map": "OMO_05",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West (North)"
+        },
+        "2": {
+            "dest_map": "OMO_06",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East (South)"
+        },
+        "3": {
+            "dest_map": "OMO_06",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit East (North)"
+        }
+    }
+}

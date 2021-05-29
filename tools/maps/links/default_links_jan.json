@@ -1,0 +1,364 @@
+{
+    "JAN_00": {
+        "0": {
+            "dest_map": "MAC_05",
+            "dest_entry": 1,
+            "type": "whale",
+            "verbose_name": "Ride The Whale"
+        },
+        "1": {
+            "dest_map": "JAN_01",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Right"
+        },
+        "2": {
+            "dest_map": "JAN_08",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top Right"
+        }
+    },
+    "JAN_01": {
+        "0": {
+            "dest_map": "JAN_00",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "JAN_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "JAN_02": {
+        "0": {
+            "dest_map": "JAN_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Top Left"
+        },
+        "1": {
+            "dest_map": "JAN_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "JAN_03": {
+        "0": {
+            "dest_map": "JAN_02",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "JAN_05",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top Left"
+        },
+        "2": {
+            "dest_map": "JAN_22",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "3": {
+            "dest_map": "TIK_08",
+            "dest_entry": 4,
+            "type": "pipe",
+            "verbose_name": "Blue Warp Pipe"
+        }
+    },
+    "JAN_04": {
+        "0": {
+            "dest_map": "JAN_05",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "JAN_05": {
+        "0": {
+            "dest_map": "JAN_03",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Right"
+        },
+        "1": {
+            "dest_map": "JAN_08",
+            "dest_entry": 1,
+            "type": "swim",
+            "verbose_name": "Exit Left"
+        },
+        "2": {
+            "dest_map": "JAN_04",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "3": {
+            "dest_map": "JAN_06",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top"
+        }
+    },
+    "JAN_06": {
+        "0": {
+            "dest_map": "JAN_05",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit Bottom"
+        },
+        "1": {
+            "dest_map": "JAN_07",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "2": {
+            "dest_map": "JAN_12",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top"
+        },
+        "3": {
+            "dest_map": "JAN_09",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "JAN_07": {
+        "0": {
+            "dest_map": "JAN_06",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "JAN_08": {
+        "0": {
+            "dest_map": "JAN_00",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Left"
+        },
+        "1": {
+            "dest_map": "JAN_05",
+            "dest_entry": 1,
+            "type": "swim",
+            "verbose_name": "Exit Right"
+        },
+        "2": {
+            "dest_map": "JAN_09",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top"
+        }
+    },
+    "JAN_09": {
+        "0": {
+            "dest_map": "JAN_08",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit Bottom"
+        },
+        "1": {
+            "dest_map": "JAN_06",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "2": {
+            "dest_map": "JAN_10",
+            "dest_entry": 0,
+            "type": "swim",
+            "verbose_name": "Exit Left"
+        },
+        "3": {
+            "dest_map": "JAN_11",
+            "dest_entry": 0,
+            "type": "pipe",
+            "verbose_name": "Pipe On Hill"
+        }
+    },
+    "JAN_10": {
+        "0": {
+            "dest_map": "JAN_09",
+            "dest_entry": 2,
+            "type": "swim",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "JAN_11": {
+        "0": {
+            "dest_map": "JAN_09",
+            "dest_entry": 3,
+            "type": "pipe",
+            "verbose_name": "Pipe Left"
+        }
+    },
+    "JAN_12": {
+        "0": {
+            "dest_map": "JAN_06",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Left"
+        },
+        "1": {
+            "dest_map": "JAN_13",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top Right"
+        }
+    },
+    "JAN_13": {
+        "0": {
+            "dest_map": "JAN_12",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Left"
+        },
+        "1": {
+            "dest_map": "JAN_14",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top Right"
+        }
+    },
+    "JAN_14": {
+        "0": {
+            "dest_map": "JAN_13",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Left"
+        },
+        "1": {
+            "dest_map": "JAN_15",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top Right"
+        }
+    },
+    "JAN_15": {
+        "0": {
+            "dest_map": "JAN_14",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Left"
+        },
+        "1": {
+            "dest_map": "JAN_16",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "JAN_16": {
+        "0": {
+            "dest_map": "JAN_15",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "JAN_22",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "2": {
+            "dest_map": "JAN_17",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Enter Tree"
+        },
+        "4": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "oneway-hole",
+            "verbose_name": "Fall Off Of Tree"
+        }
+    },
+    "JAN_17": {
+        "0": {
+            "dest_map": "JAN_16",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Exit Bottom"
+        },
+        "1": {
+            "dest_map": "JAN_18",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Top"
+        }
+    },
+    "JAN_18": {
+        "0": {
+            "dest_map": "JAN_17",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Bottom"
+        },
+        "1": {
+            "dest_map": "JAN_19",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Top"
+        }
+    },
+    "JAN_19": {
+        "0": {
+            "dest_map": "JAN_18",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Bottom"
+        },
+        "1": {
+            "dest_map": "JAN_23",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Top"
+        }
+    },
+    "JAN_22": {
+        "0": {
+            "dest_map": "JAN_03",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "JAN_16",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Top"
+        },
+        "2": {
+            "dest_map": "KZN_01",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "JAN_23": {
+        "0": {
+            "dest_map": "JAN_19",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "JAN_16",
+            "dest_entry": 4,
+            "type": "door",
+            "verbose_name": "Jump Off Of Tree"
+        }
+    }
+}

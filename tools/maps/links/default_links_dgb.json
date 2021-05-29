@@ -1,0 +1,346 @@
+{
+    "DGB_00": {
+        "0": {
+            "dest_map": "ARN_04",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "DGB_01",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "DGB_01": {
+        "0": {
+            "dest_map": "DGB_00",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door 1F Bottom"
+        },
+        "1": {
+            "dest_map": "DGB_02",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door 1F Left"
+        },
+        "2": {
+            "dest_map": "DGB_08",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door 1F Right"
+        },
+        "3": {
+            "dest_map": "DGB_09",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door 2F Left"
+        },
+        "4": {
+            "dest_map": "DGB_08",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door 2F Right"
+        },
+        "5": {
+            "dest_map": "DGB_17",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door 3F Left"
+        },
+        "6": {
+            "dest_map": "DGB_18",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door 3F Right"
+        }
+    },
+    "DGB_02": {
+        "0": {
+            "dest_map": "DGB_03",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Far Left"
+        },
+        "1": {
+            "dest_map": "DGB_01",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Far Right"
+        },
+        "2": {
+            "dest_map": "DGB_07",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Left"
+        },
+        "3": {
+            "dest_map": "DGB_11",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Right"
+        }
+    },
+    "DGB_03": {
+        "0": {
+            "dest_map": "DGB_04",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door 1F Far Left"
+        },
+        "1": {
+            "dest_map": "DGB_02",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door 1F Right"
+        },
+        "2": {
+            "dest_map": "DGB_05",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door 1F Top Left"
+        },
+        "3": {
+            "dest_map": "DGB_14",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door 2F Far Left"
+        },
+        "4": {
+            "dest_map": "DGB_09",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door 2F Far Right"
+        },
+        "5": {
+            "dest_map": "DGB_13",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "2F Behind The Clock"
+        }
+    },
+    "DGB_04": {
+        "0": {
+            "dest_map": "DGB_03",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Right"
+        },
+        "1": {
+            "dest_map": "DGB_06",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Bottom Right"
+        }
+    },
+    "DGB_05": {
+        "0": {
+            "dest_map": "DGB_03",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door Top"
+        },
+        "1": {
+            "dest_map": "DGB_06",
+            "dest_entry": 1,
+            "type": "oneway-hole",
+            "verbose_name": "Hole Bottom"
+        }
+    },
+    "DGB_06": {
+        "0": {
+            "dest_map": "DGB_04",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Bottom Left"
+        },
+        "1": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "oneway-hole",
+            "verbose_name": "Fall From Ceiling"
+        }
+    },
+    "DGB_07": {
+        "0": {
+            "dest_map": "DGB_02",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door Bottom"
+        }
+    },
+    "DGB_08": {
+        "0": {
+            "dest_map": "DGB_01",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door 1F Left"
+        },
+        "1": {
+            "dest_map": "DGB_01",
+            "dest_entry": 4,
+            "type": "door",
+            "verbose_name": "Door 2F Left"
+        }
+    },
+    "DGB_09": {
+        "0": {
+            "dest_map": "DGB_03",
+            "dest_entry": 4,
+            "type": "door",
+            "verbose_name": "Door Far Left"
+        },
+        "1": {
+            "dest_map": "DGB_01",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door Far Right"
+        },
+        "2": {
+            "dest_map": "DGB_12",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Left"
+        },
+        "3": {
+            "dest_map": "DGB_10",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Cracked Wall"
+        }
+    },
+    "DGB_10": {
+        "0": {
+            "dest_map": "DGB_09",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Cracked Wall Bottom Left"
+        },
+        "1": {
+            "dest_map": "DGB_11",
+            "dest_entry": 3,
+            "type": "hole",
+            "verbose_name": "Top Left Hole"
+        },
+        "2": {
+            "dest_map": "DGB_11",
+            "dest_entry": 2,
+            "type": "oneway-hole",
+            "verbose_name": "Top Right Hole"
+        },
+        "3": {
+            "dest_map":"DGB_11",
+            "dest_entry": 1,
+            "type": "oneway-hole",
+            "verbose_name": "Bottom Right Hole"
+        }
+    },
+    "DGB_11": {
+        "0": {
+            "dest_map": "DGB_02",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Door Bottom"
+        },
+        "1": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "oneway-hole",
+            "verbose_name": "Bottom Right Ceiling Hole"
+        },
+        "2": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "oneway-hole",
+            "verbose_name": "Top Right Ceiling Hole"
+        },
+        "3": {
+            "dest_map": "DGB_10",
+            "dest_entry": 1,
+            "type": "spring",
+            "verbose_name": "Spring To Ceiling"
+        }
+    },
+    "DGB_12": {
+        "0": {
+            "dest_map": "DGB_09",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door Bottom Left"
+        }
+    },
+    "DGB_13": {
+        "0": {
+            "dest_map": "DGB_03",
+            "dest_entry": 5,
+            "type": "door",
+            "verbose_name": "Door Bottom"
+        }
+    },
+    "DGB_14": {
+        "0": {
+            "dest_map": "DGB_03",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name":"Door Bottom Right"
+        },
+        "1": {
+            "dest_map": "DGB_15",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Right"
+        }
+    },
+    "DGB_15": {
+        "0": {
+            "dest_map": "DGB_14",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Far Left"
+        },
+        "1": {
+            "dest_map": "DGB_17",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Far Right"
+        },
+        "2": {
+            "dest_map": "DGB_16",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Door Top Right"
+        }
+    },
+    "DGB_16": {
+        "0": {
+            "dest_map": "DGB_15",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Door Bottom Right"
+        }
+    },
+    "DGB_17": {
+        "0": {
+            "dest_map": "DGB_15",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Door Left"
+        },
+        "1": {
+            "dest_map": "DGB_01",
+            "dest_entry": 5,
+            "type": "door",
+            "verbose_name": "Door Right"
+        }
+    },
+    "DGB_18": {
+        "0": {
+            "dest_map": "DGB_01",
+            "dest_entry": 6,
+            "type": "door",
+            "verbose_name": "Door Left"
+        }
+    }
+}

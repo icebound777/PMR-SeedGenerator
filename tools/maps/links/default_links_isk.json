@@ -1,0 +1,282 @@
+{
+    "ISK_01": {
+        "0": {
+            "dest_map": "SBK_02",
+            "dest_entry": 4,
+            "type": "door",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "ISK_02",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "ISK_02": {
+        "0": {
+            "dest_map": "ISK_01",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name":"Exit Left"
+        },
+        "1": {
+            "dest_map": "ISK_03",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name":"Exit Top Right"
+        },
+        "2": {
+            "dest_map": "ISK_03",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Bottom Right"
+        }
+    },
+    "ISK_03": {
+        "0": {
+            "dest_map": "ISK_02",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Upper Room Left"
+        },
+        "1": {
+            "dest_map": "ISK_02",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Exit Lower Room Left"
+        },
+        "2": {
+            "dest_map": "ISK_04",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Lower Room Right"
+        }
+    },
+    "ISK_04": {
+        "0": {
+            "dest_map": "ISK_03",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Exit Middle Left"
+        },
+        "1": {
+            "dest_map": "ISK_07",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Bottom Left"
+        },
+        "2": {
+            "dest_map": "ISK_06",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Top Right Cracked Wall"
+        },
+        "3": {
+            "dest_map": "ISK_06",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Middle Right"
+        },
+        "4": {
+            "dest_map": "ISK_05",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Bottom Right"
+        }
+    },
+    "ISK_05": {
+        "0": {
+            "dest_map": "ISK_04",
+            "dest_entry": 4,
+            "type": "door",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "ISK_06": {
+        "0": {
+            "dest_map": "ISK_04",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name":"Exit Upper Room Left"
+        },
+        "1": {
+            "dest_map": "ISK_04",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name":"Exit Lower Room Left"
+        }
+    },
+    "ISK_07": {
+        "0": {
+            "dest_map": "ISK_08",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "ISK_04",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "ISK_08": {
+        "0": {
+            "dest_map": "ISK_09",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Top Left"
+        },
+        "1": {
+            "dest_map": "ISK_10",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Bottom Left Cracked Wall"
+        },
+        "2": {
+            "dest_map": "ISK_07",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Top Right"
+        },
+        "3": {
+            "dest_map": "ISK_11",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Bottom Right"
+        }
+    },
+    "ISK_09": {
+        "0": {
+            "dest_map": "ISK_08",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "ISK_10": {
+        "0": {
+            "dest_map": "ISK_08",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Top Right"
+        },
+        "1": {
+            "dest_map": "ISK_14",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Bottom Left"
+        },
+        "2": {
+            "dest_map": "ISK_18",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Bottom Right"
+        }
+    },
+    "ISK_11": {
+        "0": {
+            "dest_map": "ISK_08",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "ISK_12",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Top Right"
+        },
+        "2": {
+            "dest_map": "ISK_12",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Bottom Right"
+        },
+        "3": {
+            "dest_map": "ISK_19",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Hidden Stairway"
+        }
+    },
+    "ISK_12": {
+        "0": {
+            "dest_map": "ISK_11",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Upper Room Left"
+        },
+        "1": {
+            "dest_map": "ISK_11",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Exit Top Left"
+        },
+        "2": {
+            "dest_map": "ISK_18",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name":"Exit Bottom Left"
+        },
+        "3": {
+            "dest_map": "ISK_13",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Top Right"
+        }
+    },
+    "ISK_13": {
+        "0": {
+            "dest_map": "ISK_12",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "ISK_14": {
+        "0": {
+            "dest_map": "ISK_10",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "ISK_16": {
+        "0": {
+            "dest_map": "ISK_19",
+            "dest_entry": 1,
+            "type": "door",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "ISK_18": {
+        "0": {
+            "dest_map": "ISK_10",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "ISK_12",
+            "dest_entry": 2,
+            "type": "door",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "ISK_19": {
+        "0": {
+            "dest_map": "ISK_11",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "ISK_16",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Exit Right"
+        }
+    }
+}

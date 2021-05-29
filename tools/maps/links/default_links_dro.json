@@ -1,0 +1,30 @@
+{
+    "DRO_01": {
+        "0": {
+            "dest_map": "SBK_36",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "DRO_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "TIK_01",
+            "dest_entry": 4,
+            "type": "pipe",
+            "verbose_name": "Blue Warp Pipe"
+        }
+    },
+    "DRO_02": {
+        "0": {
+            "dest_map": "DRO_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        }
+    }
+}

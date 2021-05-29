@@ -2,8 +2,7 @@ from parse import get_default_table, create_table, get_table_info
 
 from db.option import Option
 from db.item import Item
-from db.itemlocation import ItemLocation
-from db.item_price import ItemPrice
+from db.node import Node
 from db.actor_attribute import ActorAttribute
 from db.quiz import Quiz
 
@@ -41,27 +40,25 @@ class Table:
 			})
 
 		# Items
-		for itemlocation in ItemLocation.select():
-			item = Item.get(Item.value == itemlocation.current_item.value)
+		for node in Node.select().where(Node.key_name_item.is_null(False) & Node.current_item.is_null(False)):
+			item = Item.get(Item.value == node.current_item.value)
 			table_data.append({
-				"key": itemlocation.get_key(),
+				"key": node.get_item_key(),
 				"value": item.value,
 			})
 			# Generate a ROM table pair that describes where a unique itemID resides in the game using areaID and mapID
 			if item.item_type in ["KEYITEM", "BADGE"]:
 				table_data.append({
 					"key": (0xA5 << 24) | (item.value),
-					"value": (itemlocation.area_id << 8) | (itemlocation.map_id),
+					"value": (node.map_area.area_id << 8) | (node.map_area.map_id),
 				})
 
 		# Item Prices
-		for item_price in ItemPrice.select():
+		for node in Node.select().where(Node.key_name_price.is_null(False) & Node.key_name_price.startswith("ShopPrice")):
 			# TODO: Modify price value based on the item its tied to
-			item = item_price.itemlocation.get()
-
 			table_data.append({
-				"key": item_price.get_key(),
-				"value": item_price.value,
+				"key": node.get_price_key(),
+				"value": node.current_item.base_price
 			})
 
 		# Actor Attributes

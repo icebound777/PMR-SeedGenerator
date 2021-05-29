@@ -1,0 +1,1194 @@
+{
+    "SBK_00": {
+        "1": {
+            "dest_map": "SBK_01",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "3": {
+            "dest_map": "SBK_10",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_01": {
+        "0": {
+            "dest_map": "SBK_00",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "3": {
+            "dest_map": "SBK_11",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_02": {
+        "0": {
+            "dest_map": "SBK_01",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "3": {
+            "dest_map": "SBK_12",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        },
+        "4": {
+            "dest_map": "ISK_01",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Temple Entrance"
+        }
+    },
+    "SBK_03": {
+        "0": {
+            "dest_map": "SBK_02",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_04",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "3": {
+            "dest_map": "SBK_13",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_04": {
+        "0": {
+            "dest_map": "SBK_03",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_05",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "3": {
+            "dest_map": "SBK_14",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_05": {
+        "0": {
+            "dest_map": "SBK_04",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_06",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "3": {
+            "dest_map": "SBK_15",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        },
+        "4": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "tweester",
+            "verbose_name": "Fall From Sky"
+        }
+    },
+    "SBK_06": {
+        "0": {
+            "dest_map": "SBK_05",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "3": {
+            "dest_map": "SBK_16",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_10": {
+        "1": {
+            "dest_map": "SBK_11",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_00",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_20",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_11": {
+        "0": {
+            "dest_map": "SBK_10",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_12",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_01",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_21",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_12": {
+        "0": {
+            "dest_map": "SBK_11",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_13",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_02",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_22",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_13": {
+        "0": {
+            "dest_map": "SBK_12",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Weset"
+        },
+        "1": {
+            "dest_map": "SBK_14",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_03",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_23",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_14": {
+        "0": {
+            "dest_map": "SBK_13",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_15",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_04",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_24",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        },
+        "4": {
+            "dest_map": "SBK_05",
+            "dest_entry": 4,
+            "type": "tweester",
+            "verbose_name": "Tweester"
+        }
+    },
+    "SBK_15": {
+        "0": {
+            "dest_map": "SBK_14",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_16",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_05",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_25",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_16": {
+        "0": {
+            "dest_map": "SBK_15",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "2": {
+            "dest_map": "SBK_06",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_26",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_20": {
+        "1": {
+            "dest_map": "SBK_21",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_10",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_30",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_21": {
+        "0": {
+            "dest_map": "SBK_20",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_22",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_11",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_31",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_22": {
+        "0": {
+            "dest_map": "SBK_21",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_23",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_12",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_32",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_23": {
+        "0": {
+            "dest_map": "SBK_22",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_24",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_13",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_33",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        },
+        "4": {
+            "dest_map": "SBK_14",
+            "dest_entry": 4,
+            "type": "tweester",
+            "verbose_name": "Tweester"
+        }
+    },
+    "SBK_24": {
+        "0": {
+            "dest_map": "SBK_23",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_25",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_14",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_34",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        },
+        "4": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "tweester",
+            "verbose_name": "Fall From Sky"
+        }
+    },
+    "SBK_25": {
+        "0": {
+            "dest_map": "SBK_24",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_26",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_15",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_35",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_26": {
+        "0": {
+            "dest_map": "SBK_25",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "2": {
+            "dest_map": "SBK_16",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_36",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_30": {
+        "0": {
+            "dest_map": "SBK_99",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_31",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_20",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_40",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_31": {
+        "0": {
+            "dest_map": "SBK_30",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_32",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_21",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_41",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_32": {
+        "0": {
+            "dest_map": "SBK_31",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_33",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_22",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_42",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        },
+        "4": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "tweester",
+            "verbose_name": "Fall From Sky"
+        }
+    },
+    "SBK_33": {
+        "0": {
+            "dest_map": "SBK_32",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_34",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_23",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_43",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        },
+        "4": {
+            "dest_map": "SBK_24",
+            "dest_entry": 4,
+            "type": "tweester",
+            "verbose_name": "Tweester"
+        }
+    },
+    "SBK_34": {
+        "0": {
+            "dest_map": "SBK_33",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_35",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_24",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_44",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_35": {
+        "0": {
+            "dest_map": "SBK_34",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_36",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_25",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_45",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_36": {
+        "0": {
+            "dest_map": "SBK_35",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "DRO_01",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_26",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_46",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_40": {
+        "1": {
+            "dest_map": "SBK_41",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_30",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_50",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_41": {
+        "0": {
+            "dest_map": "SBK_40",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_42",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_31",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_51",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        },
+        "4": {
+            "dest_map": "SBK_32",
+            "dest_entry": 4,
+            "type": "tweester",
+            "verbose_name": "Tweester"
+        }
+    },
+    "SBK_42": {
+        "0": {
+            "dest_map": "SBK_41",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_43",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_32",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_52",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_43": {
+        "0": {
+            "dest_map": "SBK_42",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_44",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_33",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_53",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_44": {
+        "0": {
+            "dest_map": "SBK_43",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_45",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_34",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_54",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_45": {
+        "0": {
+            "dest_map": "SBK_44",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_46",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_35",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_55",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        },
+        "4": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "tweester",
+            "verbose_name": "Fall From Sky"
+        }
+    },
+    "SBK_46": {
+        "0": {
+            "dest_map": "SBK_45",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "2": {
+            "dest_map": "SBK_36",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_56",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_50": {
+        "1": {
+            "dest_map": "SBK_51",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_40",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_60",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_51": {
+        "0": {
+            "dest_map": "SBK_50",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_52",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_41",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_61",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_52": {
+        "0": {
+            "dest_map": "SBK_51",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_53",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_42",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_62",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_53": {
+        "0": {
+            "dest_map": "SBK_52",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_54",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_43",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_63",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_54": {
+        "0": {
+            "dest_map": "SBK_53",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_55",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_44",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_64",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        },
+        "4": {
+            "dest_map": "SBK_45",
+            "dest_entry": 4,
+            "type": "tweester",
+            "verbose_name": "Tweester"
+        }
+    },
+    "SBK_55": {
+        "0": {
+            "dest_map": "SBK_54",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_56",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_45",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_65",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_56": {
+        "0": {
+            "dest_map": "SBK_55",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "2": {
+            "dest_map": "SBK_46",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        },
+        "3": {
+            "dest_map": "SBK_66",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit South"
+        }
+    },
+    "SBK_60": {
+        "1": {
+            "dest_map": "SBK_61",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_50",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        }
+    },
+    "SBK_61": {
+        "0": {
+            "dest_map": "SBK_60",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_62",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_51",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        }
+    },
+    "SBK_62": {
+        "0": {
+            "dest_map": "SBK_61",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_63",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_52",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        }
+    },
+    "SBK_63": {
+        "0": {
+            "dest_map": "SBK_62",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_64",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_53",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        }
+    },
+    "SBK_64": {
+        "0": {
+            "dest_map": "SBK_63",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_65",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_54",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        }
+    },
+    "SBK_65": {
+        "0": {
+            "dest_map": "SBK_64",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_66",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        },
+        "2": {
+            "dest_map": "SBK_55",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        }
+    },
+    "SBK_66": {
+        "0": {
+            "dest_map": "SBK_65",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "2": {
+            "dest_map": "SBK_56",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit North"
+        }
+    },
+    "SBK_99": {
+        "0": {
+            "dest_map": "IWA_04",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit West"
+        },
+        "1": {
+            "dest_map": "SBK_30",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit East"
+        }
+    }
+}

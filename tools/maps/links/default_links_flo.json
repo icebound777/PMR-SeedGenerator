@@ -1,0 +1,276 @@
+{
+    "FLO_00": {
+        "0": {
+            "dest_map": "MAC_01",
+            "dest_entry": 5,
+            "type": "door",
+            "verbose_name": "Tree Door"
+        },
+        "1": {
+            "dest_map": "FLO_14",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top Left"
+        },
+        "2": {
+            "dest_map": "FLO_23",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "3": {
+            "dest_map": "FLO_25",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Left"
+        },
+        "4": {
+            "dest_map": "FLO_16",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Top Right"
+        },
+        "5": {
+            "dest_map": "FLO_09",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "6": {
+            "dest_map": "FLO_08",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Bottom Right"
+        },
+        "8": {
+            "dest_map": "FLO_19",
+            "dest_entry": 3,
+            "type": "beakstalk",
+            "verbose_name": "Ride Beanstalk Up"
+        }
+    },
+    "FLO_03": {
+        "0": {
+            "dest_map": "FLO_09",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "FLO_22",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "FLO_07": {
+        "0": {
+            "dest_map": "FLO_25",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "FLO_08": {
+        "0": {
+            "dest_map": "FLO_00",
+            "dest_entry": 6,
+            "type": "walk",
+            "verbose_name":"Exit Left"
+        },
+        "1": {
+            "dest_map": "FLO_24",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "FLO_09": {
+        "0": {
+            "dest_map": "FLO_00",
+            "dest_entry": 5,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "FLO_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "FLO_10": {
+        "0": {
+            "dest_map": "FLO_24",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "FLO_11": {
+        "0": {
+            "dest_map": "FLO_23",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "1": {
+            "dest_map": "FLO_12",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "FLO_12": {
+        "0": {
+            "dest_map": "FLO_11",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "FLO_13": {
+        "0": {
+            "dest_map": "FLO_14",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "1": {
+            "dest_map": "FLO_15",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "FLO_14": {
+        "0": {
+            "dest_map": "FLO_00",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name":"Exit Right"
+        },
+        "1": {
+            "dest_map": "FLO_13",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "FLO_15": {
+        "0": {
+            "dest_map": "FLO_13",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "FLO_16": {
+        "0": {
+            "dest_map": "FLO_00",
+            "dest_entry": 4,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "FLO_17",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "FLO_17": {
+        "0": {
+            "dest_map": "FLO_16",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "FLO_18",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "FLO_18": {
+        "0": {
+            "dest_map": "FLO_17",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "FLO_19": {
+        "1": {
+            "dest_map": "FLO_21",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "3": {
+            "dest_map": "FLO_00",
+            "dest_entry": 8,
+            "type": "beakstalk",
+            "verbose_name": "Ride Beanstalk Down"
+        }
+    },
+    "FLO_21": {
+        "0": {
+            "dest_map": "FLO_19",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "FLO_22": {
+        "0": {
+            "dest_map": "FLO_03",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "FLO_23": {
+        "0": {
+            "dest_map": "FLO_00",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "1": {
+            "dest_map": "FLO_11",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    },
+    "FLO_24": {
+        "0": {
+            "dest_map": "FLO_08",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "FLO_10",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "FLO_25": {
+        "0": {
+            "dest_map": "FLO_00",
+            "dest_entry": 3,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "1": {
+            "dest_map": "FLO_07",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        }
+    }
+}

@@ -23,10 +23,9 @@ from parse import get_default_table, get_table_info, create_table, gather_keys, 
 
 from db.map_area import MapArea
 from db.item import Item, create_items
-from db.itemlocation import ItemLocation, create_item_locations
+from db.node import Node, create_nodes
 from db.quiz import Quiz, create_quizzes
 from db.option import Option, create_options
-from db.item_price import ItemPrice, create_item_prices
 from db.actor_attribute import ActorAttribute, create_actor_attributes
 
 
@@ -51,8 +50,7 @@ gather_keys()
 gather_values()
 create_options()
 create_items()
-create_item_locations()
-create_item_prices()
+create_nodes()
 create_actor_attributes()
 create_quizzes()
 shutil.copy("db.sqlite", "default_db.sqlite")
@@ -439,11 +437,9 @@ class Window(QMainWindow):
 			self.app.processEvents()
 
 		# Make everything inexpensive
-		item_prices = [item_price for item_price in ItemPrice.select()]
-		for item_price in item_prices:
-			item = item_price.itemlocation.get() # ?
-			item_price.value = 1
-			item_price.save()
+		for item in Item.select():
+			item.base_price = 1
+			item.save()
 
 		# Create a sorted list of key:value pairs to be written into the ROM
 		table_data = rom_table.generate_pairs()

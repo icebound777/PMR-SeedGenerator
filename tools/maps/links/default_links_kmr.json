@@ -1,0 +1,164 @@
+{
+    "KMR_00": {
+        "0": {
+            "dest_map": "KMR_02",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "KMR_02": {
+        "0": {
+            "dest_map": "KMR_09",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        },
+        "1": {
+            "dest_map": "KMR_00",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "2": {
+            "dest_map": "KMR_05",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Top Left"
+        },
+        "3": {
+            "dest_map": "TIK_01",
+            "dest_entry": 2,
+            "type": "pipe",
+            "verbose_name": "Blue Warp Pipe"
+        }
+    },
+    "KMR_03": {
+        "0": {
+            "dest_map": "KMR_04",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "KMR_05",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "KMR_04": {
+        "0": {
+            "dest_map": "KMR_03",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "KMR_05": {
+        "0": {
+            "dest_map": "KMR_03",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "KMR_02",
+            "dest_entry": 2,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "KMR_06": {
+        "0": {
+            "dest_map": "KMR_09",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "KMR_07",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "KMR_07": {
+        "0": {
+            "dest_map": "KMR_06",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "KMR_12",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "KMR_09": {
+        "0": {
+            "dest_map": "KMR_02",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "KMR_06",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "KMR_10": {
+        "0": {
+            "dest_map": "KMR_11",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "MAC_00",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "KMR_11": {
+        "0": {
+            "dest_map": "KMR_12",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1" : {
+            "dest_map": "KMR_10",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "KMR_12": {
+        "0": {
+            "dest_map": "KMR_07",
+            "dest_entry": 1,
+            "type": "walk",
+            "verbose_name": "Exit Left"
+        },
+        "1": {
+            "dest_map": "KMR_11",
+            "dest_entry": 0,
+            "type": "walk",
+            "verbose_name": "Exit Right"
+        }
+    },
+    "KMR_20": {
+        "4": {
+            "dest_map": "MAC_00",
+            "dest_entry": 4,
+            "type": "pipe",
+            "verbose_name": "Green Pipe Right"
+        }
+    }
+}
