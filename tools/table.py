@@ -40,7 +40,7 @@ class Table:
 			})
 
 		# Items
-		for node in Node.select().where(key_name_item.is_null(False) & current_item.is_null(False)):
+		for node in Node.select().where(Node.key_name_item.is_null(False) & Node.current_item.is_null(False)):
 			item = Item.get(Item.value == node.current_item.value)
 			table_data.append({
 				"key": node.get_item_key(),
@@ -54,19 +54,11 @@ class Table:
 				})
 
 		# Item Prices
-		for node in Node.select().where(key_name_price.is_null(False) & key_name_price % "ShopItem%"):
+		for node in Node.select().where(Node.key_name_price.is_null(False) & Node.key_name_price % "ShopItem%"):
+			# TODO: Modify price value based on the item its tied to
 			table_data.append({
 				"key": node.get_price_key(),
 				"value": node.current_item.base_price
-			})
-
-		for item_price in ItemPrice.select():
-			# TODO: Modify price value based on the item its tied to
-			item = item_price.itemlocation.get()
-
-			table_data.append({
-				"key": item_price.get_key(),
-				"value": item_price.value,
 			})
 
 		# Actor Attributes

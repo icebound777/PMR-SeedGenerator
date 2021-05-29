@@ -2,6 +2,7 @@ import random
 import sqlite3
 
 from db.node import Node
+from db.map_area import MapArea
 import worldgraph
 
 
@@ -51,14 +52,18 @@ def place_items(app, isShuffle, algorithm):
                     pool_other_items.append(cur_node.vanilla_item)
 
         # Prepare datastructures
+        reachable_nodes = []
         reachable_item_nodes = {}
         non_traversable_edges = []
         filled_item_nodes = []
+        filled_item_node_ids = []
 
         def depth_first_search(node_id):
-            if node_id in reachable_item_nodes.keys():
+            if node_id in reachable_nodes:
                 return
-            reachable_item_nodes[node_id] = world_graph.get(node_id).get("node")
+            reachable_nodes.append(node_id)
+            if world_graph.get(node_id).get("node").key_name_item is not None:
+                reachable_item_nodes[node_id] = world_graph.get(node_id).get("node")
         
             outgoing_edges = world_graph.get(node_id).get("edge_list")
             for edge in outgoing_edges:
@@ -73,6 +78,7 @@ def place_items(app, isShuffle, algorithm):
 
         # Place all items that influence progression
         while len(pool_progression_items) > 0:
+            reachable_nodes = []
             reachable_item_nodes = {}
 
             # Find all currently reachable item nodes
@@ -80,24 +86,35 @@ def place_items(app, isShuffle, algorithm):
 
             # Pick random progression_item and place it into random reachable and unfilled item node
             while True:
-                random_node = reachable_item_nodes.pop(random.choice(reachable_item_nodes.keys()))
+                random_node = reachable_item_nodes.pop(random.choice(list(reachable_item_nodes.keys())))
                 if random_node not in filled_item_nodes:
                     break
             random_item = pool_progression_items.pop(random.randint(0, len(pool_progression_items) - 1))
             random_node.current_item = random_item
             filled_item_nodes.append(random_node)
+            if random_node.entrance_id is not None:
+                filled_item_node_ids.append(random_node.map_area.name + "/" + str(random_node.entrance_id))
+            else:
+                filled_item_node_ids.append(random_node.map_area.name + "/" + random_node.key_name_item)
 
             # Add placed progression_item into mario's inventory
             #TODO add random_item to mario's inventory
         
         # Place all remaining items
+        print(filled_item_node_ids)
         for item_node in all_item_nodes:
-            if item_node not in filled_item_nodes:
+            if item_node.entrance_id is not None:
+                item_node_id = item_node.map_area.name + "/" + str(item_node.entrance_id)
+            else:
+                item_node_id = item_node.map_area.name + "/" + item_node.key_name_item
+
+            if item_node_id not in filled_item_node_ids:
                 random_item = pool_other_items.pop(random.randint(0, len(pool_other_items) - 1))
                 item_node.current_item = random_item
                 filled_item_nodes.append(item_node)
+                filled_item_node_ids.append(item_node_id)
 
-        for node in Node.select().where(key_name_item.is_null(False)):
+        for node in Node.select().where(Node.key_name_item.is_null(False)):
             for filled_item_node in filled_item_nodes:
                 if (    filled_item_node.map_area == node.map_area
                     and filled_item_node.key_name_item == node.key_name_item):
@@ -115,7 +132,10 @@ def place_items(app, isShuffle, algorithm):
         connection = sqlite3.connect("default_db.sqlite")
         connection.row_factory = sqlite3.Row
         cursor = connection.cursor()
-        select_statement = ("SELECT *\
+        select_statement = ("SELECT node.key_name_item AS key_name_item\
+                                  , maparea.area_id    AS area_id\
+                                  , maparea.map_id     AS map_id\
+                                  , node.item_index    AS item_index\
                                FROM node\
                               INNER JOIN maparea\
                                  ON node.map_area_id = maparea.id\
@@ -123,12 +143,13 @@ def place_items(app, isShuffle, algorithm):
         cursor.execute(select_statement)
         tablerows = [row for row in cursor.fetchall()]
         for i,tablerow in enumerate(tablerows):
-            key_name = tablerow['key_name']
+            key_name = tablerow['key_name_item']
             area_id = tablerow['area_id']
             map_id = tablerow['map_id']
-            index = tablerow['index']
+            item_index = tablerow['item_index']
 
-            node = Node.get(Node.map_area.area_id==area_id, Node.map_area.map_id==map_id, Node.item_index==index)
+            node = Node.select().join(MapArea).where((MapArea.area_id==area_id) & (MapArea.map_id==map_id) & (Node.item_index==item_index)).get()
+            #node = Node.get(Node.map_area.area_id==area_id, Node.map_area.map_id==map_id, Node.item_index==item_index)
             print(f"{node}")
             file.write(f"[{node.map_area.name}] ({node.map_area.verbose_name}): {node.key_name_item} - {node.vanilla_item.item_name} -> {node.current_item.item_name}\n")
             app.processEvents()
