@@ -449,7 +449,7 @@ edges_kpa = [
     {"from": {"map": "KPA_133", "id": 2}, "to": {"map": "KPA_133", "id": 3}, "reqs": []}, #? Left Water Puzzle Door Bottom Right Upper Half -> Left Water Puzzle Door Bombable Wall
     {"from": {"map": "KPA_133", "id": 3}, "to": {"map": "KPA_133", "id": 2}, "reqs": []}, #? Left Water Puzzle Door Bombable Wall -> Left Water Puzzle Door Bottom Right Upper Half
     {"from": {"map": "KPA_133", "id": 2}, "to": {"map": "KPA_133", "id": 1}, "reqs": []}, #? Left Water Puzzle Door Bottom Right Upper Half -> Left Water Puzzle Door Bottom Right
-    {"from": {"map": "KPA_133", "id": 3}, "to": {"map": "KPA_133", "id": 2}, "reqs": []}, #? Left Water Puzzle Door Bombable Wall -> Left Water Puzzle Door Bottom Right
+    {"from": {"map": "KPA_133", "id": 3}, "to": {"map": "KPA_133", "id": 1}, "reqs": []}, #? Left Water Puzzle Door Bombable Wall -> Left Water Puzzle Door Bottom Right
 
     {"from": {"map": "KPA_133", "id": 3},       "to": {"map": "KPA_133", "id": "ItemA"}, "reqs": []}, #* Left Water Puzzle Door Bombable Wall -> ItemA (CastleKey2)
     {"from": {"map": "KPA_133", "id": "ItemA"}, "to": {"map": "KPA_133", "id": 3},       "reqs": []}, #* ItemA (CastleKey2) -> Left Water Puzzle Door Bombable Wall

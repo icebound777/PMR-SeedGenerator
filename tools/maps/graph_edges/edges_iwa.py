@@ -102,7 +102,7 @@ edges_iwa = [
 
     # IWA_11 Train Ride Scene
     {"from": {"map": "IWA_11", "id": 0}, "to": {"map": "MAC_03", "id": 1}, "reqs": []}, # Train Ride Scene Exit Left -> Station District Train
-    {"from": {"map": "IWA_11", "id": 1}, "to": {"map": "IWA_11", "id": 0}, "reqs": []}, # Train Ride Scene Exit Right -> Train Station Ride The Train
+    {"from": {"map": "IWA_11", "id": 1}, "to": {"map": "IWA_10", "id": 0}, "reqs": []}, # Train Ride Scene Exit Right -> Train Station Ride The Train
     
     {"from": {"map": "IWA_11", "id": 0}, "to": {"map": "IWA_11", "id": 1}, "reqs": []}, #? Train Ride Scene Exit Left -> Train Ride Scene Exit Right
     {"from": {"map": "IWA_11", "id": 1}, "to": {"map": "IWA_11", "id": 0}, "reqs": []}, #? Train Ride Scene Exit Right -> Train Ride Scene Exit Left
