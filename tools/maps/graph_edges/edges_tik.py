@@ -15,6 +15,9 @@ edges_tik = [
     {"from": {"map": "TIK_01", "id": 3}, "to": {"map": "TIK_01", "id": 0}, "reqs": []}, #? Warp Zone 1 (B1) Blue Warp Pipe (Center) -> Warp Zone 1 (B1) Exit Right
     {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 4}, "reqs": []}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Blue Warp Pipe (Left)
     {"from": {"map": "TIK_01", "id": 4}, "to": {"map": "TIK_01", "id": 0}, "reqs": []}, #? Warp Zone 1 (B1) Blue Warp Pipe (Left) -> Warp Zone 1 (B1) Exit Right
+    
+    {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 0}, "reqs": [], "pseudoitems": ["GF_TIK01_Defeated_Blooper"]}, #+ Warp Zone 1 (B1) Exit Right
+    {"from": {"map": "TIK_01", "id": 1}, "to": {"map": "TIK_01", "id": 1}, "reqs": [], "pseudoitems": ["GF_TIK01_Defeated_Blooper"]}, #+ Warp Zone 1 (B1) Exit Left
 
     # TIK_02 Blooper Boss 1 (B1)
     {"from": {"map": "TIK_02", "id": 0}, "to": {"map": "TIK_18", "id": 1}, "reqs": []}, # Blooper Boss 1 (B1) Exit Left -> Hall to Blooper 1 (B1) Exit Right

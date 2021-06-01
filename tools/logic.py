@@ -4,6 +4,7 @@ import sqlite3
 from db.node import Node
 from db.map_area import MapArea
 import worldgraph
+from simulate import Mario, add_to_inventory
 
 
 def place_items(app, isShuffle, algorithm):
@@ -35,9 +36,14 @@ def place_items(app, isShuffle, algorithm):
     elif algorithm == "forward_fill":
         # Place items in accessible locations first, then expand accessible locations by unlocked locations
         # Prepare world graph
+        print("Generating World Graph ...")
         world_graph = worldgraph.generate()
 
+        # Prepare Mario's starting inventory
+        mario = Mario()
+
         # Generate item pools
+        print("Generating Item Pool ...")
         pool_progression_items = []
         pool_other_items = []
         all_item_nodes = []
@@ -64,24 +70,29 @@ def place_items(app, isShuffle, algorithm):
             reachable_nodes.append(node_id)
             if world_graph.get(node_id).get("node").key_name_item is not None:
                 reachable_item_nodes[node_id] = world_graph.get(node_id).get("node")
-        
+
             outgoing_edges = world_graph.get(node_id).get("edge_list")
             for edge in outgoing_edges:
                 if all([r() for r in edge.get("reqs")]):
+                    if edge.get("pseudoitems") is not None:
+                        for pseudoitem in edge.get("pseudoitems"):
+                            pseudoitem_acquired = add_to_inventory(pseudoitem)
                     depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
-                else:
+                elif edge not in non_traversable_edges:
                     non_traversable_edges.append(edge)
         
         # Set node to start graph traversal from
-        node_id = "KMR_20/4"
+        node_id = "MAC_00/4"
+        
+        # Find initially reachable nodes
+        print("Placing Progression Items ...")
+        reachable_nodes = []
+        reachable_item_nodes = {}
 
-        # Place all items that influence progression
+        depth_first_search(node_id)
+
+        # Place all items that influence progression and re-traverse formerly locked parts of the graph
         while len(pool_progression_items) > 0:
-            reachable_nodes = []
-            reachable_item_nodes = {}
-
-            # Find all currently reachable item nodes
-            depth_first_search(node_id)
 
             # Pick random progression_item and place it into random reachable and unfilled item node
             while True:
@@ -97,10 +108,35 @@ def place_items(app, isShuffle, algorithm):
                 filled_item_node_ids.append(random_node.map_area.name + "/" + random_node.key_name_item)
 
             # Add placed progression_item into mario's inventory
-            #TODO add random_item to mario's inventory
+            add_to_inventory(random_item.item_name)
+
+            # Check for newly available nodes and add those to reachable_nodes
+            while True:
+                pseudoitem_acquired = False
+                non_traversable_edges_tmp = non_traversable_edges.copy()
+                non_traversable_edges = []
+                for non_traversable_edge in non_traversable_edges_tmp:
+                    from_node_id = (  non_traversable_edge.get("from").get("map")
+                                    + "/" 
+                                    + str(non_traversable_edge.get("from").get("id")))
+                    # remove edge's from-node from reachable_nodes, or else DFS won't do anything
+                    i = 0
+                    while i < len(reachable_nodes):
+                        cur_node_id = reachable_nodes[i]
+                        if cur_node_id == from_node_id:
+                            reachable_nodes.pop(i)
+                            break
+                        else:
+                            i += 1
+                    # DFS from edge's from-node
+                    depth_first_search(from_node_id)
+                # If we find atleast one pseudo-item (partner, upgrade, flag, koopa koot favor), then
+                # we have to check for reachable_nodes repeatedly until no new pseudoitems are found
+                if not pseudoitem_acquired:
+                    break
         
         # Place all remaining items
-        print(filled_item_node_ids)
+        print("Placing Miscellaneous Items ...")
         for item_node in all_item_nodes:
             if item_node.entrance_id is not None:
                 item_node_id = item_node.map_area.name + "/" + str(item_node.entrance_id)
@@ -113,6 +149,8 @@ def place_items(app, isShuffle, algorithm):
                 filled_item_nodes.append(item_node)
                 filled_item_node_ids.append(item_node_id)
 
+        # Write changed items to sqlite db
+        print("Writing Items to SQLite DB ...")
         for node in Node.select().where(Node.key_name_item.is_null(False)):
             for filled_item_node in filled_item_nodes:
                 if (    filled_item_node.map_area == node.map_area

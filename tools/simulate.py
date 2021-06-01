@@ -8,7 +8,29 @@ class Mario:
         self.items = kwargs.get("items", [])
         self.partners = kwargs.get("partners", [])
         self.favors = kwargs.get("favors", []) # https://www.mariowiki.com/Koopa_Koot%27s_favors
+        self.flags = kwargs.get("flags", [])
 
+def add_to_inventory(item_object):
+    is_new_pseudoitem = False
+    
+    if item_object.startswith("GF") and item_object not in mario.flags:
+        mario.flags.append(item_object)
+        is_new_pseudoitem = True
+    if item_object.startswith("PARTNERS") and item_object not in mario.partners:
+        mario.partners.append(item_object)
+        is_new_pseudoitem = True
+    if item_object.startswith("FAVOR") and item_object not in mario.favors:
+        mario.favors.append(item_object)
+        is_new_pseudoitem = True
+    if item_object.startswith("EQUIPMENT"):
+        if item_object == "EQUIPMENT_Boots_Progressive":
+            mario.hammer = mario.boots + 1 if mario.boots < 2 else mario.boots
+        if item_object == "EQUIPMENT_Hammer_Progressive":
+            mario.hammer = mario.hammer + 1 if mario.hammer < 2 else mario.hammer
+    else:
+        mario.items.append(item_object)
+
+    return is_new_pseudoitem
 
 def flip_panels():
     global mario
@@ -51,11 +73,15 @@ def require(**kwargs):
         if boots := kwargs.get("boots"):
             if mario.boots >= boots:
                 return True
-
         # Koopa Koot Favors
         if favor := kwargs.get("favor"):
             if favor in mario.favors:
                 return True
+        # Flags
+        if flag := kwargs.get("flag"):
+            if flag in mario.flags:
+                return True
+                
         return False
     return func
 
