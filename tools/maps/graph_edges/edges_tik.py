@@ -1,3 +1,5 @@
+from simulate import *
+
 """This file represents all edges of the world graph that have origin-nodes in the TIK (Toad Town Tunnels) area."""
 edges_tik = [
     # TIK_01 Warp Zone 1 (B1)
@@ -9,15 +11,14 @@ edges_tik = [
     
     {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 1}, "reqs": []}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Exit Left
     {"from": {"map": "TIK_01", "id": 1}, "to": {"map": "TIK_01", "id": 0}, "reqs": []}, #? Warp Zone 1 (B1) Exit Left -> Warp Zone 1 (B1) Exit Right
-    {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 2}, "reqs": []}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Blue Warp Pipe (Right)
+    {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 2}, "reqs": [require(flag="GF_TIK01_WarpPipes")]}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Blue Warp Pipe (Right)
     {"from": {"map": "TIK_01", "id": 2}, "to": {"map": "TIK_01", "id": 0}, "reqs": []}, #? Warp Zone 1 (B1) Blue Warp Pipe (Right) -> Warp Zone 1 (B1) Exit Right
-    {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 3}, "reqs": []}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Blue Warp Pipe (Center)
+    {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 3}, "reqs": [require(flag="GF_TIK01_WarpPipes")]}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Blue Warp Pipe (Center)
     {"from": {"map": "TIK_01", "id": 3}, "to": {"map": "TIK_01", "id": 0}, "reqs": []}, #? Warp Zone 1 (B1) Blue Warp Pipe (Center) -> Warp Zone 1 (B1) Exit Right
-    {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 4}, "reqs": []}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Blue Warp Pipe (Left)
+    {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 4}, "reqs": [require(flag="GF_TIK01_WarpPipes")]}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Blue Warp Pipe (Left)
     {"from": {"map": "TIK_01", "id": 4}, "to": {"map": "TIK_01", "id": 0}, "reqs": []}, #? Warp Zone 1 (B1) Blue Warp Pipe (Left) -> Warp Zone 1 (B1) Exit Right
     
-    {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 0}, "reqs": [], "pseudoitems": ["GF_TIK01_Defeated_Blooper"]}, #+ Warp Zone 1 (B1) Exit Right
-    {"from": {"map": "TIK_01", "id": 1}, "to": {"map": "TIK_01", "id": 1}, "reqs": [], "pseudoitems": ["GF_TIK01_Defeated_Blooper"]}, #+ Warp Zone 1 (B1) Exit Left
+    {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 0}, "reqs": [], "pseudoitems": ["GF_TIK01_WarpPipes"]}, #+ Warp Zone 1 (B1) Exit Right
 
     # TIK_02 Blooper Boss 1 (B1)
     {"from": {"map": "TIK_02", "id": 0}, "to": {"map": "TIK_18", "id": 1}, "reqs": []}, # Blooper Boss 1 (B1) Exit Left -> Hall to Blooper 1 (B1) Exit Right
@@ -96,18 +97,22 @@ edges_tik = [
     {"from": {"map": "TIK_08", "id": 2}, "to": {"map": "TIK_08", "id": 0}, "reqs": []}, #? Second Level Entry (B2) Hole In Ceiling -> Second Level Entry (B2) Exit Left
     {"from": {"map": "TIK_08", "id": 0}, "to": {"map": "TIK_08", "id": 3}, "reqs": []}, #? Second Level Entry (B2) Exit Left -> Second Level Entry (B2) Green Pipe Left
     {"from": {"map": "TIK_08", "id": 3}, "to": {"map": "TIK_08", "id": 0}, "reqs": []}, #? Second Level Entry (B2) Green Pipe Left -> Second Level Entry (B2) Exit Left
-    {"from": {"map": "TIK_08", "id": 1}, "to": {"map": "TIK_08", "id": 4}, "reqs": []}, #? Second Level Entry (B2) Exit Right -> Second Level Entry (B2) Blue Warp Pipe
+    {"from": {"map": "TIK_08", "id": 1}, "to": {"map": "TIK_08", "id": 4}, "reqs": [require(flag="GF_TIK08_WarpPipe")]}, #? Second Level Entry (B2) Exit Right -> Second Level Entry (B2) Blue Warp Pipe
     {"from": {"map": "TIK_08", "id": 4}, "to": {"map": "TIK_08", "id": 1}, "reqs": []}, #? Second Level Entry (B2) Blue Warp Pipe -> Second Level Entry (B2) Exit Right
+    
+    {"from": {"map": "TIK_08", "id": 1}, "to": {"map": "TIK_08", "id": 1}, "reqs": [], "pseudoitems": ["GF_TIK08_WarpPipe"]}, #+ Second Level Entry (B2) Exit Right
 
-    # TIK_09 Warp Zone 2 (B2)
+    # TIK_09 Warp Zone 2 (B2) 
     {"from": {"map": "TIK_09", "id": 0}, "to": {"map": "TIK_10", "id": 0}, "reqs": []}, # Warp Zone 2 (B2) Exit Left -> Block Puzzle Room (B2) Exit Right
     {"from": {"map": "TIK_09", "id": 1}, "to": {"map": "TIK_08", "id": 0}, "reqs": []}, # Warp Zone 2 (B2) Exit Right -> Second Level Entry (B2) Exit Left
     {"from": {"map": "TIK_09", "id": 2}, "to": {"map": "MIM_11", "id": 3}, "reqs": []}, # Warp Zone 2 (B2) Blue Warp Pipe -> Outside Boo's Mansion Blue Warp Pipe
     
     {"from": {"map": "TIK_09", "id": 0}, "to": {"map": "TIK_09", "id": 1}, "reqs": []}, #? Warp Zone 2 (B2) Exit Left -> Warp Zone 2 (B2) Exit Right
     {"from": {"map": "TIK_09", "id": 1}, "to": {"map": "TIK_09", "id": 0}, "reqs": []}, #? Warp Zone 2 (B2) Exit Right -> Warp Zone 2 (B2) Exit Left
-    {"from": {"map": "TIK_09", "id": 0}, "to": {"map": "TIK_09", "id": 2}, "reqs": []}, #? Warp Zone 2 (B2) Exit Left -> Warp Zone 2 (B2) Blue Warp Pipe
+    {"from": {"map": "TIK_09", "id": 0}, "to": {"map": "TIK_09", "id": 2}, "reqs": [require(flag="GF_TIK09_WarpPipe")]}, #? Warp Zone 2 (B2) Exit Left -> Warp Zone 2 (B2) Blue Warp Pipe
     {"from": {"map": "TIK_09", "id": 2}, "to": {"map": "TIK_09", "id": 0}, "reqs": []}, #? Warp Zone 2 (B2) Blue Warp Pipe -> Warp Zone 2 (B2) Exit Left
+
+    {"from": {"map": "TIK_09", "id": 0}, "to": {"map": "TIK_09", "id": 0}, "reqs": [], "pseudoitems": ["GF_TIK09_WarpPipe"]}, #+ Warp Zone 2 (B2) Exit Left
 
     # TIK_10 Block Puzzle Room (B2)
     {"from": {"map": "TIK_10", "id": 0}, "to": {"map": "TIK_09", "id": 0}, "reqs": []}, # Block Puzzle Room (B2) Exit Right -> Warp Zone 2 (B2) Exit Left

@@ -1,3 +1,5 @@
+from simulate import *
+
 """This file represents all edges of the world graph that have origin-nodes in the KMR (Goomba Region) area."""
 edges_kmr  = [
     # KMR_00 Forest Clearing
@@ -15,8 +17,10 @@ edges_kmr  = [
     {"from": {"map": "KMR_02", "id": 0             },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #? Goomba Village Exit Right -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": 2             },  "reqs": []}, #? Goomba Village Exit Left -> Goomba Village Exit Top Left
     {"from": {"map": "KMR_02", "id": 2             },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #? Goomba Village Exit Top Left -> Goomba Village Exit Left
-    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": 3             },  "reqs": []}, #? Goomba Village Exit Left -> Goomba Village Blue Warp Pipe
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": 3             },  "reqs": [require(flag="GF_KMR02_WarpPipe")]}, #? Goomba Village Exit Left -> Goomba Village Blue Warp Pipe
     {"from": {"map": "KMR_02", "id": 3             },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #? Goomba Village Blue Warp Pipe -> Goomba Village Exit Left
+    
+    {"from": {"map": "KMR_02", "id": 3             },  "to": {"map": "KMR_02", "id": 3             },  "reqs": [], "pseudoitems": ["GF_KMR02_WarpPipe"]}, #+ Goomba Village Blue Warp Pipe
 
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "ItemA"       },  "reqs": []}, #* Goomba Village Exit Left -> ItemA (ShootingStar)
     {"from": {"map": "KMR_02", "id": "ItemA"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* ItemA (ShootingStar) -> Goomba Village Exit Left

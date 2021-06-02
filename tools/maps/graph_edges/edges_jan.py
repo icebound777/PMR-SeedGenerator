@@ -1,3 +1,5 @@
+from simulate import *
+
 """This file represents all edges of the world graph that have origin-nodes in the JAN (Jade Jungle) area."""
 edges_jan = [
     # JAN_00 Whale Cove
@@ -57,8 +59,10 @@ edges_jan = [
     {"from": {"map": "JAN_03", "id": 1}, "to": {"map": "JAN_03", "id": 0}, "reqs": []}, #? Village Buildings Exit Top Left -> Village Buildings Exit Left
     {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_03", "id": 2}, "reqs": []}, #? Village Buildings Exit Left -> Village Buildings Exit Right
     {"from": {"map": "JAN_03", "id": 2}, "to": {"map": "JAN_03", "id": 0}, "reqs": []}, #? Village Buildings Exit Right -> Village Buildings Exit Left
-    {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_03", "id": 3}, "reqs": []}, #? Village Buildings Exit Left -> Village Buildings Blue Warp Pipe
+    {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_03", "id": 3}, "reqs": [require(flag="GF_JAN03_WarpPipe")]}, #? Village Buildings Exit Left -> Village Buildings Blue Warp Pipe
     {"from": {"map": "JAN_03", "id": 3}, "to": {"map": "JAN_03", "id": 0}, "reqs": []}, #? Village Buildings Blue Warp Pipe -> Village Buildings Exit Left
+    
+    {"from": {"map": "JAN_03", "id": 3}, "to": {"map": "JAN_03", "id": 3}, "reqs": [], "pseudoitems": ["GF_JAN03_WarpPipe"]}, #+ Village Buildings Blue Warp Pipe
     
     {"from": {"map": "JAN_03", "id": 0},           "to": {"map": "JAN_03", "id": "GiftA"},     "reqs": []}, #* Village Buildings Exit Left -> GiftA (MagicalSeed4)
     {"from": {"map": "JAN_03", "id": "GiftA"},     "to": {"map": "JAN_03", "id": 0},           "reqs": []}, #* GiftA (MagicalSeed4) -> Village Buildings Exit Left

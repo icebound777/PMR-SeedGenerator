@@ -1,3 +1,5 @@
+from simulate import *
+
 """This file represents all edges of the world graph that have origin-nodes in the DRO (Dry Dry Outpost) area."""
 edges_dro = [
     # DRO_01 Outpost 1
@@ -7,8 +9,10 @@ edges_dro = [
     
     {"from": {"map": "DRO_01", "id": 0}, "to": {"map": "DRO_01", "id": 1}, "reqs": []}, #? Outpost 1 Exit West -> Outpost 1 Exit East
     {"from": {"map": "DRO_01", "id": 1}, "to": {"map": "DRO_01", "id": 0}, "reqs": []}, #? Outpost 1 Exit East -> Outpost 1 Exit West
-    {"from": {"map": "DRO_01", "id": 0}, "to": {"map": "DRO_01", "id": 2}, "reqs": []}, #? Outpost 1 Exit West -> Outpost 1 Blue Warp Pipe
+    {"from": {"map": "DRO_01", "id": 0}, "to": {"map": "DRO_01", "id": 2}, "reqs": [require(flag="GF_DRO01_WarpPipe")]}, #? Outpost 1 Exit West -> Outpost 1 Blue Warp Pipe
     {"from": {"map": "DRO_01", "id": 2}, "to": {"map": "DRO_01", "id": 0}, "reqs": []}, #? Outpost 1 Blue Warp Pipe -> Outpost 1 Exit West
+    
+    {"from": {"map": "DRO_01", "id": 2}, "to": {"map": "DRO_01", "id": 2}, "reqs": [], "pseudoitems": ["GF_DRO01_WarpPipe"]}, #+ Outpost 1 Blue Warp Pipe
     
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "GiftA"},     "reqs": []}, #* Outpost 1 Exit West -> GiftA (Melody)
     {"from": {"map": "DRO_01", "id": "GiftA"},     "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* GiftA (Melody) -> Outpost 1 Exit West

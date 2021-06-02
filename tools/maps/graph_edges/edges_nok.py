@@ -31,12 +31,14 @@ edges_nok = [
     # NOK_02 Koopa Village 2
     {"from": {"map": "NOK_02", "id": 0}, "to": {"map": "NOK_01", "id": 1}, "reqs": []}, # Koopa Village 2 Exit Left -> Koopa Village 1 Exit Right
     {"from": {"map": "NOK_02", "id": 1}, "to": {"map": "NOK_03", "id": 0}, "reqs": []}, # Koopa Village 2 Exit Top -> Behind Koopa Village Exit Left
-    {"from": {"map": "NOK_02", "id": 2}, "to": {"map": "TIK_01", "id": 3}, "reqs": [require(flag="GF_TIK01_Defeated_Blooper")]}, # Koopa Village 2 Blue Pipe -> Warp Zone 1 (B1) Blue Pipe (Center)
+    {"from": {"map": "NOK_02", "id": 2}, "to": {"map": "TIK_01", "id": 3}, "reqs": []}, # Koopa Village 2 Blue Pipe -> Warp Zone 1 (B1) Blue Pipe (Center)
     
     {"from": {"map": "NOK_02", "id": 0}, "to": {"map": "NOK_02", "id": 1}, "reqs": []}, #? Koopa Village 2 Exit Left -> Koopa Village 2 Exit Top
     {"from": {"map": "NOK_02", "id": 1}, "to": {"map": "NOK_02", "id": 0}, "reqs": []}, #? Koopa Village 2 Exit Top -> Koopa Village 2 Exit Left
-    {"from": {"map": "NOK_02", "id": 0}, "to": {"map": "NOK_02", "id": 2}, "reqs": []}, #? Koopa Village 2 Exit Left -> Koopa Village 2 Blue Pipe
+    {"from": {"map": "NOK_02", "id": 0}, "to": {"map": "NOK_02", "id": 2}, "reqs": [require(flag="GF_NOK02_WarpPipe")]}, #? Koopa Village 2 Exit Left -> Koopa Village 2 Blue Pipe
     {"from": {"map": "NOK_02", "id": 2}, "to": {"map": "NOK_02", "id": 0}, "reqs": []}, #? Koopa Village 2 Blue Pipe -> Koopa Village 2 Exit Left
+    
+    {"from": {"map": "NOK_02", "id": 2}, "to": {"map": "NOK_02", "id": 0}, "reqs": [], "pseudoitems": ["GF_NOK02_WarpPipe"]}, #+ Koopa Village 2 Blue Pipe
     
     {"from": {"map": "NOK_02", "id": 0},       "to": {"map": "NOK_02", "id": "GiftA"}, "reqs": [require(favor="favor_ch0_1")]}, #* Koopa Village 2 Exit Left -> GiftA (KoopaLegends)
     {"from": {"map": "NOK_02", "id": "GiftA"}, "to": {"map": "NOK_02", "id": 0},       "reqs": []}, #* GiftA (KoopaLegends) -> Koopa Village 2 Exit Left
