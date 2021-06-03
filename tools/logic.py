@@ -3,62 +3,78 @@ import sqlite3
 
 from db.node import Node
 from db.map_area import MapArea
+from db.option import Option
 import worldgraph
 from simulate import Mario, add_to_inventory
 
 
-def place_items(app, isShuffle, algorithm):
-    """Places items into item locations according to the given algorithm."""
+def remove_coins_from_randomization(world_graph, filled_item_nodes, filled_item_node_ids, pool_other_items):
+    # Mark vanilla coin item nodes as filled
+    for key in world_graph.keys():
+        node = world_graph.get(key).get("node")
+        if node.key_name_item is not None and node.vanilla_item.item_name == "Coin":
+            filled_item_nodes.append(node)
+            filled_item_node_ids.append(node.map_area.name + "/" + node.key_name_item)
+    # Remove coins from item pool
+    i = 0
+    while i < len(pool_other_items):
+        cur_item = pool_other_items[i].item_name
+        if cur_item == "Coin":
+            pool_other_items.pop(i)
+        else:
+            i += 1
 
-    # Place items into item location
-    if algorithm == "vanilla":
+
+def remove_shops_from_randomization(world_graph, filled_item_nodes, filled_item_node_ids, pool_other_items):
+    # Mark vanilla shop item nodes as filled
+    items_to_remove = {}
+    for key in world_graph.keys():
+        node = world_graph.get(key).get("node")
+        if node.key_name_item is not None and node.key_name_item.startswith("ShopItem"):
+            filled_item_nodes.append(node)
+            filled_item_node_ids.append(node.map_area.name + "/" + node.key_name_item)
+            if items_to_remove.get(node.vanilla_item.item_name) is None:
+                items_to_remove[node.vanilla_item.item_name] = 1
+            else:
+                items_to_remove[node.vanilla_item.item_name] = items_to_remove.get(node.vanilla_item.item_name) + 1
+    # Remove shop items from item pool
+    i = 0
+    while i < len(pool_other_items):
+        cur_item = pool_other_items[i].item_name
+        if items_to_remove.get(cur_item) is not None and items_to_remove.get(cur_item) > 0:
+            pool_other_items.pop(i)
+            items_to_remove[cur_item] = items_to_remove[cur_item] - 1
+        else:
+            i += 1
+
+
+def place_items(app, isShuffle, algorithm):
+    """Places items into item locations according to chosen settings."""
+
+    do_shuffle_items = Option.get(Option.name == "ShuffleItems").value
+    if not do_shuffle_items:
         # Place items in their vanilla locations
-        for node in Node.select().where(key_name_item.is_null(False)):
+        for node in Node.select().where(Node.key_name_item.is_null(False)):
             node.current_item = node.vanilla_item
             node.save()
 
-    elif algorithm == "random_fill":
-        # Place items 100% randomly without any logic attached. Check for solvability afterwards, retry if necessary
-        # Generate item pool
-        item_pool = []
-
-        for node in Node.select().where(key_name_item.is_null(False)):
-            item_pool.append(node.vanilla_item)
-        
-        for node in Node.select().where(key_name_item.is_null(False)):
-            # Place random items
-            node.current_item = item_pool.pop(random.randint(0,len(item_pool) - 1))
-            node.save()
-            
-        # Check for solvability
-        # TODO
-
     elif algorithm == "forward_fill":
         # Place items in accessible locations first, then expand accessible locations by unlocked locations
-        # Prepare world graph
-        print("Generating World Graph ...")
-        world_graph = worldgraph.generate()
-
+        
         # Prepare Mario's starting inventory
         mario = Mario()
         add_to_inventory(["PARTNER_Goombario","PARTNER_Kooper","PARTNER_Bombette","PARTNER_Parakarry",
                           "PARTNER_Bow","PARTNER_Watt","PARTNER_Sushie","PARTNER_Lakilester"])
         add_to_inventory("EQUIPMENT_Hammer_Progressive")
 
-        # Generate item pools
-        print("Generating Item Pool ...")
-        pool_progression_items = []
-        pool_other_items = []
-        all_item_nodes = []
+        startwith_bluehouse_open = Option.get(Option.name == "BlueHouseOpen").value
+        if startwith_bluehouse_open:
+            add_to_inventory("GF_MAC02_UnlockedHouse")
+            #TODO maybe remove OddKey from itempool?
 
-        for node_id in world_graph.keys():
-            if world_graph.get(node_id).get("node").key_name_item:
-                cur_node = world_graph.get(node_id).get("node")
-                all_item_nodes.append(cur_node)
-                if cur_node.vanilla_item.progression:
-                    pool_progression_items.append(cur_node.vanilla_item)
-                else:
-                    pool_other_items.append(cur_node.vanilla_item)
+        # Prepare world graph
+        print("Generating World Graph ...")
+        world_graph = worldgraph.generate()
 
         # Prepare datastructures
         reachable_nodes = []
@@ -87,6 +103,31 @@ def place_items(app, isShuffle, algorithm):
                 except TypeError as err:
                     print(f"{err.args}: {edge}")
                     raise
+
+        # Generate item pools
+        print("Generating Item Pool ...")
+        pool_progression_items = []
+        pool_other_items = []
+        all_item_nodes = []
+
+        for node_id in world_graph.keys():
+            if world_graph.get(node_id).get("node").key_name_item:
+                cur_node = world_graph.get(node_id).get("node")
+                all_item_nodes.append(cur_node)
+                if cur_node.vanilla_item.progression:
+                    pool_progression_items.append(cur_node.vanilla_item)
+                else:
+                    pool_other_items.append(cur_node.vanilla_item)
+        
+        # Randomize coins off -> Mark vanilla coin item nodes as filled, remove coins from item pool
+        do_randomize_coins = Option.get(Option.name == "IncludeCoins").value
+        if not do_randomize_coins:
+            remove_coins_from_randomization(world_graph, filled_item_nodes, filled_item_node_ids, pool_other_items)
+        
+        # Randomize shops off -> Mark vanilla shop item nodes as filled, remove their items from item pool
+        do_randomize_shops = Option.get(Option.name == "IncludeShops").value
+        if not do_randomize_shops:
+            remove_shops_from_randomization(world_graph, filled_item_nodes, filled_item_node_ids, pool_other_items)
         
         # Set node to start graph traversal from
         node_id = "MAC_00/4"
