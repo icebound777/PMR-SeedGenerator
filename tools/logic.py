@@ -41,6 +41,9 @@ def place_items(app, isShuffle, algorithm):
 
         # Prepare Mario's starting inventory
         mario = Mario()
+        add_to_inventory(["PARTNER_Goombario","PARTNER_Kooper","PARTNER_Bombette","PARTNER_Parakarry",
+                          "PARTNER_Bow","PARTNER_Watt","PARTNER_Sushie","PARTNER_Lakilester"])
+        add_to_inventory("EQUIPMENT_Hammer_Progressive")
 
         # Generate item pools
         print("Generating Item Pool ...")
@@ -73,13 +76,17 @@ def place_items(app, isShuffle, algorithm):
 
             outgoing_edges = world_graph.get(node_id).get("edge_list")
             for edge in outgoing_edges:
-                if all([r() for r in edge.get("reqs")]):
-                    if edge.get("pseudoitems") is not None:
-                        for pseudoitem in edge.get("pseudoitems"):
-                            pseudoitem_acquired = add_to_inventory(pseudoitem)
-                    depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
-                elif edge not in non_traversable_edges:
-                    non_traversable_edges.append(edge)
+                try:
+                    if all([r() for r in edge.get("reqs")]):
+                        if edge.get("pseudoitems") is not None:
+                            for pseudoitem in edge.get("pseudoitems"):
+                                pseudoitem_acquired = add_to_inventory(pseudoitem)
+                        depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
+                    elif edge not in non_traversable_edges:
+                        non_traversable_edges.append(edge)
+                except TypeError as err:
+                    print(f"{err.args}: {edge}")
+                    raise
         
         # Set node to start graph traversal from
         node_id = "MAC_00/4"
