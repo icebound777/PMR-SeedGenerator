@@ -48,6 +48,29 @@ def remove_shops_from_randomization(world_graph, filled_item_nodes, filled_item_
             i += 1
 
 
+def remove_hiddenpanels_from_randomization(world_graph, filled_item_nodes, filled_item_node_ids, pool_other_items):
+    # Mark vanilla hidden panel item nodes as filled
+    items_to_remove = {}
+    for key in world_graph.keys():
+        node = world_graph.get(key).get("node")
+        if node.key_name_item is not None and node.key_name_item == "HiddenPanel":
+            filled_item_nodes.append(node)
+            filled_item_node_ids.append(node.map_area.name + "/" + node.key_name_item)
+            if items_to_remove.get(node.vanilla_item.item_name) is None:
+                items_to_remove[node.vanilla_item.item_name] = 1
+            else:
+                items_to_remove[node.vanilla_item.item_name] = items_to_remove.get(node.vanilla_item.item_name) + 1
+    # Remove hidden panel star pieces from item pool
+    i = 0
+    while i < len(pool_other_items):
+        cur_item = pool_other_items[i].item_name
+        if items_to_remove.get(cur_item) is not None and items_to_remove.get(cur_item) > 0:
+            pool_other_items.pop(i)
+            items_to_remove[cur_item] = items_to_remove[cur_item] - 1
+        else:
+            i += 1
+
+
 def place_items(app, isShuffle, algorithm):
     """Places items into item locations according to chosen settings."""
 
