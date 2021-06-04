@@ -8,34 +8,21 @@ from worldgraph import generate as generate_world_graph, get_node_identifier
 from simulate import Mario, add_to_inventory
 
 
-def remove_coins_from_randomization(world_graph, filled_item_nodes, pool_other_items):
-    # Mark vanilla coin item nodes as filled
-    for key in world_graph.keys():
-        node = world_graph.get(key).get("node")
-        if node.key_name_item is not None and node.vanilla_item.item_name == "Coin":
-            filled_item_nodes.append(node)
-    # Remove coins from item pool
-    i = 0
-    while i < len(pool_other_items):
-        cur_item = pool_other_items[i].item_name
-        if cur_item == "Coin":
-            pool_other_items.pop(i)
-        else:
-            i += 1
-
-
-def remove_shops_from_randomization(world_graph, filled_item_nodes, pool_other_items):
-    # Mark vanilla shop item nodes as filled
+def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, pool_other_items):
+    # Mark vanilla item nodes as filled
     items_to_remove = {}
     for key in world_graph.keys():
         node = world_graph.get(key).get("node")
-        if node.key_name_item is not None and node.key_name_item.startswith("ShopItem"):
+        if (    node.key_name_item is not None
+            and (   ("Shops" in item_types and node.key_name_item.startswith("ShopItem"))
+                 or ("Coins" in item_types and node.vanilla_item.item_name == "Coin")
+                 or ("Panels" in item_types and node.key_name_item == "HiddenPanel"))):
             filled_item_nodes.append(node)
             if items_to_remove.get(node.vanilla_item.item_name) is None:
                 items_to_remove[node.vanilla_item.item_name] = 1
             else:
                 items_to_remove[node.vanilla_item.item_name] = items_to_remove.get(node.vanilla_item.item_name) + 1
-    # Remove shop items from item pool
+    # Remove items from item pool
     i = 0
     while i < len(pool_other_items):
         cur_item = pool_other_items[i].item_name
@@ -116,15 +103,19 @@ def place_items(app, isShuffle, algorithm):
                 else:
                     pool_other_items.append(cur_node.vanilla_item)
         
-        # Randomize coins off -> Mark vanilla coin item nodes as filled, remove coins from item pool
+        # Check if items and nodes need to be excluded from randomization based on settings
+        dont_randomize = []
+        # Randomize coins?
         do_randomize_coins = Option.get(Option.name == "IncludeCoins").value
         if not do_randomize_coins:
-            remove_coins_from_randomization(world_graph, filled_item_nodes, pool_other_items)
-        
-        # Randomize shops off -> Mark vanilla shop item nodes as filled, remove their items from item pool
+            dont_randomize.append("Coins")
+        # Randomize shops?
         do_randomize_shops = Option.get(Option.name == "IncludeShops").value
         if not do_randomize_shops:
-            remove_shops_from_randomization(world_graph, filled_item_nodes, pool_other_items)
+            dont_randomize.append("Shops")
+
+        if len(dont_randomize) > 0:
+            remove_items_from_randomization(dont_randomize, world_graph, filled_item_nodes, pool_other_items)
         
         # Set node to start graph traversal from
         node_id = "MAC_00/4"
