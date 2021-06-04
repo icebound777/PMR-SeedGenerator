@@ -8,6 +8,21 @@ def print_node_info(node):
     itemnode_string = node.key_name_item + "/" + node.vanilla_item.item_name if node.key_name_item else ''
     print(f"{node.map_area.name} - {entrancenode_string}{itemnode_string}")
 
+def get_node_identifier(node):
+    """Returns a string representation of uniquely identifying data within a node"""
+    if   (    node.entrance_id is not None
+          and not node.key_name_item):
+        node_data_id = str(node.entrance_id)
+    elif (    node.entrance_id is None
+          and node.key_name_item):
+        node_data_id = node.key_name_item
+    else:
+        raise ValueError('Node argument has invalid entrance_id/item_id state',
+                         str(node.entrance_id),
+                         node.key_name_item,
+                         node)
+    return node.map_area.name + "/" + node_data_id
+
 def get_all_nodes():
     """Returns a list of all item and entrance nodes"""
     all_nodes = []
@@ -83,14 +98,7 @@ def generate(all_nodes=[], all_edges=[]):
     world_graph = {}
 
     for node in all_nodes:
-        if node.entrance_id is not None:
-            node_data_id = str(node.entrance_id)
-        elif node.key_name_item:
-            node_data_id = node.key_name_item
-        else:
-            print("Error: Node without entrance_id and key_name_item found! Stopping ...")
-            quit(1)
-        node_id = node.map_area.name + "/" + node_data_id
+        node_id = get_node_identifier(node)
         world_graph[node_id] = {}
         world_graph[node_id]["node"] = node
         world_graph[node_id]["edge_list"] = []
@@ -229,7 +237,7 @@ def check_graph():
             depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
 
     # traverse world graph  
-    print("Checking node reachability in world graph ...")      
+    print("Checking node reachability in world graph ...")
     depth_first_search("KMR_20/4")
 
     not_visited_node_ids = [id for id in world_graph.keys() if id not in visited_node_ids]
