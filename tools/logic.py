@@ -4,17 +4,16 @@ import sqlite3
 from db.node import Node
 from db.map_area import MapArea
 from db.option import Option
-import worldgraph
+from worldgraph import generate as generate_world_graph, get_node_identifier
 from simulate import Mario, add_to_inventory
 
 
-def remove_coins_from_randomization(world_graph, filled_item_nodes, filled_item_node_ids, pool_other_items):
+def remove_coins_from_randomization(world_graph, filled_item_nodes, pool_other_items):
     # Mark vanilla coin item nodes as filled
     for key in world_graph.keys():
         node = world_graph.get(key).get("node")
         if node.key_name_item is not None and node.vanilla_item.item_name == "Coin":
             filled_item_nodes.append(node)
-            filled_item_node_ids.append(node.map_area.name + "/" + node.key_name_item)
     # Remove coins from item pool
     i = 0
     while i < len(pool_other_items):
@@ -25,14 +24,13 @@ def remove_coins_from_randomization(world_graph, filled_item_nodes, filled_item_
             i += 1
 
 
-def remove_shops_from_randomization(world_graph, filled_item_nodes, filled_item_node_ids, pool_other_items):
+def remove_shops_from_randomization(world_graph, filled_item_nodes, pool_other_items):
     # Mark vanilla shop item nodes as filled
     items_to_remove = {}
     for key in world_graph.keys():
         node = world_graph.get(key).get("node")
         if node.key_name_item is not None and node.key_name_item.startswith("ShopItem"):
             filled_item_nodes.append(node)
-            filled_item_node_ids.append(node.map_area.name + "/" + node.key_name_item)
             if items_to_remove.get(node.vanilla_item.item_name) is None:
                 items_to_remove[node.vanilla_item.item_name] = 1
             else:
@@ -74,14 +72,13 @@ def place_items(app, isShuffle, algorithm):
 
         # Prepare world graph
         print("Generating World Graph ...")
-        world_graph = worldgraph.generate()
+        world_graph = generate_world_graph()
 
         # Prepare datastructures
         reachable_nodes = []
         reachable_item_nodes = {}
         non_traversable_edges = []
         filled_item_nodes = []
-        filled_item_node_ids = []
 
         def depth_first_search(node_id):
             if node_id in reachable_nodes:
@@ -122,12 +119,12 @@ def place_items(app, isShuffle, algorithm):
         # Randomize coins off -> Mark vanilla coin item nodes as filled, remove coins from item pool
         do_randomize_coins = Option.get(Option.name == "IncludeCoins").value
         if not do_randomize_coins:
-            remove_coins_from_randomization(world_graph, filled_item_nodes, filled_item_node_ids, pool_other_items)
+            remove_coins_from_randomization(world_graph, filled_item_nodes, pool_other_items)
         
         # Randomize shops off -> Mark vanilla shop item nodes as filled, remove their items from item pool
         do_randomize_shops = Option.get(Option.name == "IncludeShops").value
         if not do_randomize_shops:
-            remove_shops_from_randomization(world_graph, filled_item_nodes, filled_item_node_ids, pool_other_items)
+            remove_shops_from_randomization(world_graph, filled_item_nodes, pool_other_items)
         
         # Set node to start graph traversal from
         node_id = "MAC_00/4"
@@ -150,10 +147,6 @@ def place_items(app, isShuffle, algorithm):
             random_item = pool_progression_items.pop(random.randint(0, len(pool_progression_items) - 1))
             random_node.current_item = random_item
             filled_item_nodes.append(random_node)
-            if random_node.entrance_id is not None:
-                filled_item_node_ids.append(random_node.map_area.name + "/" + str(random_node.entrance_id))
-            else:
-                filled_item_node_ids.append(random_node.map_area.name + "/" + random_node.key_name_item)
 
             # Add placed progression_item into mario's inventory
             add_to_inventory(random_item.item_name)
@@ -186,16 +179,13 @@ def place_items(app, isShuffle, algorithm):
         # Place all remaining items
         print("Placing Miscellaneous Items ...")
         for item_node in all_item_nodes:
-            if item_node.entrance_id is not None:
-                item_node_id = item_node.map_area.name + "/" + str(item_node.entrance_id)
-            else:
-                item_node_id = item_node.map_area.name + "/" + item_node.key_name_item
+            item_node_id = get_node_identifier(item_node)
 
-            if item_node_id not in filled_item_node_ids:
+            if item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]:
+                print(item_node_id)
                 random_item = pool_other_items.pop(random.randint(0, len(pool_other_items) - 1))
                 item_node.current_item = random_item
                 filled_item_nodes.append(item_node)
-                filled_item_node_ids.append(item_node_id)
 
         # Write changed items to sqlite db
         print("Writing Items to SQLite DB ...")
