@@ -153,14 +153,23 @@ def place_items(app, isShuffle, algorithm):
             remove_shops_from_randomization(world_graph, filled_item_nodes, filled_item_node_ids, pool_other_items)
         
         # Set node to start graph traversal from
-        node_id = "MAC_00/4"
+        starting_map_hex = hex(Option.get(Option.name == "StartingMap").value)[2:]
+        starting_map_entrance_id = starting_map_hex[-1:]
+        starting_map_map_id = starting_map_hex[-4:-2] if starting_map_hex[-4:-2] != "" else 0
+        starting_map_area_id = starting_map_hex[-6:-4] if starting_map_hex[-6:-4] != "" else 0
+
+        starting_maparea = MapArea.get(  (MapArea.area_id == starting_map_area_id)
+                                       & (MapArea.map_id  == starting_map_map_id))
+
+        starting_node_id = starting_maparea.name + "/" + str(starting_map_entrance_id)
+        print (starting_node_id)
         
         # Find initially reachable nodes
         print("Placing Progression Items ...")
         reachable_nodes = []
         reachable_item_nodes = {}
 
-        depth_first_search(node_id)
+        depth_first_search(starting_node_id)
 
         # Place all items that influence progression and re-traverse formerly locked parts of the graph
         while len(pool_progression_items) > 0:
