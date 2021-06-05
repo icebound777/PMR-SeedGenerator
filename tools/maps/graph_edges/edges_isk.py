@@ -130,6 +130,7 @@ edges_isk = [
     {"from": {"map": "ISK_12", "id": 2},       "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": []}, #* Sand Drainage Room 3 Exit Bottom Left -> ItemA (RuinsKey)
     {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 2},       "reqs": []}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Bottom Left
     {"from": {"map": "ISK_12", "id": 3},       "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": []}, #* Sand Drainage Room 3 Exit Top Right -> ItemA (RuinsKey)
+    {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 3},       "reqs": []}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Top Right
 
     # ISK_13 Lunar Stone Room
     {"from": {"map": "ISK_13", "id": 0}, "to": {"map": "ISK_12", "id": 3}, "reqs": []}, # Lunar Stone Room Exit Left -> Sand Drainage Room 3 Exit Top Right
