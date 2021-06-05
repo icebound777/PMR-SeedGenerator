@@ -16,14 +16,14 @@ edges_dro = [
     {"from": {"map": "DRO_01", "id": "GiftB"},     "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* GiftB (RedJar) -> Outpost 1 Exit West
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemA"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemA (ThunderBolt)
     {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* ShopItemA (ThunderBolt) -> Outpost 1 Exit West
-    {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemB"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemB (DustyHammer)
-    {"from": {"map": "DRO_01", "id": "ShopItemB"}, "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* ShopItemB (DustyHammer) -> Outpost 1 Exit West
+    # {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemB"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemB (DustyHammer)
+    # {"from": {"map": "DRO_01", "id": "ShopItemB"}, "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* ShopItemB (DustyHammer) -> Outpost 1 Exit West
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemC"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemC (HoneySyrup)
     {"from": {"map": "DRO_01", "id": "ShopItemC"}, "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* ShopItemC (HoneySyrup) -> Outpost 1 Exit West
-    {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemD"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemD (DriedShroom)
-    {"from": {"map": "DRO_01", "id": "ShopItemD"}, "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* ShopItemD (DriedShroom) -> Outpost 1 Exit West
-    {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemE"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemE (DriedPasta)
-    {"from": {"map": "DRO_01", "id": "ShopItemE"}, "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* ShopItemE (DriedPasta) -> Outpost 1 Exit West
+    # {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemD"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemD (DriedShroom)
+    # {"from": {"map": "DRO_01", "id": "ShopItemD"}, "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* ShopItemD (DriedShroom) -> Outpost 1 Exit West
+    # {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemE"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemE (DriedPasta)
+    # {"from": {"map": "DRO_01", "id": "ShopItemE"}, "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* ShopItemE (DriedPasta) -> Outpost 1 Exit West
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemF"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemF (Mushroom)
     {"from": {"map": "DRO_01", "id": "ShopItemF"}, "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* ShopItemF (Mushroom) -> Outpost 1 Exit West
     
