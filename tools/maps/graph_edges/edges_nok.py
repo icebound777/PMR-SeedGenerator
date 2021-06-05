@@ -9,9 +9,9 @@ edges_nok = [
     {"from": {"map": "NOK_01", "id": 0}, "to": {"map": "NOK_01", "id": 1}, "reqs": []}, #? Koopa Village 1 Exit Left -> Koopa Village 1 Exit Right
     {"from": {"map": "NOK_01", "id": 1}, "to": {"map": "NOK_01", "id": 0}, "reqs": []}, #? Koopa Village 1 Exit Right -> Koopa Village 1 Exit Left
     
-    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush6A_Drop1A"}, "reqs": [require(favor="favor_ch5_1")]}, #* Koopa Village 1 Exit Left -> Bush6A_Drop1A (Glasses)
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush6A_Drop1A"}, "reqs": [require(favor="FAVOR_CH5_1")]}, #* Koopa Village 1 Exit Left -> Bush6A_Drop1A (Glasses)
     {"from": {"map": "NOK_01", "id": "Bush6A_Drop1A"}, "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush6A_Drop1A (Glasses) -> Koopa Village 1 Exit Left
-    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush7A_Drop1A"}, "reqs": [require(favor="favor_ch2_1")]}, #* Koopa Village 1 Exit Left -> Bush7A_Drop1A (EmptyWallet)
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush7A_Drop1A"}, "reqs": [require(favor="FAVOR_CH2_1")]}, #* Koopa Village 1 Exit Left -> Bush7A_Drop1A (EmptyWallet)
     {"from": {"map": "NOK_01", "id": "Bush7A_Drop1A"}, "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush7A_Drop1A (EmptyWallet) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "HiddenPanel"},   "reqs": [flip_panels]}, #* Koopa Village 1 Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "NOK_01", "id": "HiddenPanel"},   "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> Koopa Village 1 Exit Left
@@ -40,7 +40,7 @@ edges_nok = [
     
     {"from": {"map": "NOK_02", "id": 2}, "to": {"map": "NOK_02", "id": 0}, "reqs": [], "pseudoitems": ["GF_NOK02_WarpPipe"]}, #+ Koopa Village 2 Blue Pipe
     
-    {"from": {"map": "NOK_02", "id": 0},       "to": {"map": "NOK_02", "id": "GiftA"}, "reqs": [require(favor="favor_ch0_1")]}, #* Koopa Village 2 Exit Left -> GiftA (KoopaLegends)
+    {"from": {"map": "NOK_02", "id": 0},       "to": {"map": "NOK_02", "id": "GiftA"}, "reqs": [require(favor="FAVOR_CH0_1")]}, #* Koopa Village 2 Exit Left -> GiftA (KoopaLegends)
     {"from": {"map": "NOK_02", "id": "GiftA"}, "to": {"map": "NOK_02", "id": 0},       "reqs": []}, #* GiftA (KoopaLegends) -> Koopa Village 2 Exit Left
     {"from": {"map": "NOK_02", "id": 0},       "to": {"map": "NOK_02", "id": "GiftB"}, "reqs": [require(item="SleepySheep")]}, #* Koopa Village 2 Exit Left -> GiftB (SilverCredit)
     {"from": {"map": "NOK_02", "id": "GiftB"}, "to": {"map": "NOK_02", "id": 0},       "reqs": []}, #* GiftB (SilverCredit) -> Koopa Village 2 Exit Left
@@ -56,7 +56,7 @@ edges_nok = [
     {"from": {"map": "NOK_03", "id": 0}, "to": {"map": "NOK_03", "id": 1}, "reqs": []}, #? Behind Koopa Village Exit Left -> Behind Koopa Village Exit Right
     {"from": {"map": "NOK_03", "id": 1}, "to": {"map": "NOK_03", "id": 0}, "reqs": []}, #? Behind Koopa Village Exit Right -> Behind Koopa Village Exit Left
     
-    {"from": {"map": "NOK_03", "id": 0},       "to": {"map": "NOK_03", "id": "ItemA"}, "reqs": [require(partner="Kooper")]}, #* Behind Koopa Village Exit Left -> ItemA (HPPlusB)
+    {"from": {"map": "NOK_03", "id": 0},       "to": {"map": "NOK_03", "id": "ItemA"}, "reqs": [require(partner="PARTNER_Kooper")]}, #* Behind Koopa Village Exit Left -> ItemA (HPPlusB)
     {"from": {"map": "NOK_03", "id": "ItemA"}, "to": {"map": "NOK_03", "id": 0},       "reqs": []}, #* ItemA (HPPlusB) -> Behind Koopa Village Exit Left
 
     # NOK_04 Fuzzy Forest
@@ -88,7 +88,7 @@ edges_nok = [
     
     {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_12", "id": "YBlockA"}, "reqs": []}, #* Pleasant Path Bridge Exit Left -> YBlockA (POWBlock)
     {"from": {"map": "NOK_12", "id": "YBlockA"}, "to": {"map": "NOK_12", "id": 0}, "reqs": []}, #* YBlockA (POWBlock) -> Pleasant Path Bridge Exit Left
-    {"from": {"map": "NOK_12", "id": 1}, "to": {"map": "NOK_12", "id": "ItemA"}, "reqs": [require(partner="Kooper")]}, #* Pleasant Path Bridge Exit Right -> ItemA (StarPiece)
+    {"from": {"map": "NOK_12", "id": 1}, "to": {"map": "NOK_12", "id": "ItemA"}, "reqs": [require(partner="PARTNER_Kooper")]}, #* Pleasant Path Bridge Exit Right -> ItemA (StarPiece)
     {"from": {"map": "NOK_12", "id": "ItemA"}, "to": {"map": "NOK_12", "id": 1}, "reqs": []}, #* ItemA (StarPiece) -> Pleasant Path Bridge Exit Right
     {"from": {"map": "NOK_12", "id": 1}, "to": {"map": "NOK_12", "id": "ItemB"}, "reqs": []}, #* Pleasant Path Bridge Exit Right -> ItemB (SleepySheep)
     {"from": {"map": "NOK_12", "id": "ItemB"}, "to": {"map": "NOK_12", "id": 1}, "reqs": []}, #* ItemB (SleepySheep) -> Pleasant Path Bridge Exit Right
@@ -129,7 +129,7 @@ edges_nok = [
     {"from": {"map": "NOK_14", "id": "ItemD"},         "to": {"map": "NOK_14", "id": 0},               "reqs": []}, #* ItemD (Coin) -> Path to Fortress 1 Exit Left
     {"from": {"map": "NOK_14", "id": 0},               "to": {"map": "NOK_14", "id": "ItemE"},         "reqs": []}, #* Path to Fortress 1 Exit Left -> ItemE (Coin)
     {"from": {"map": "NOK_14", "id": "ItemE"},         "to": {"map": "NOK_14", "id": 0},               "reqs": []}, #* ItemE (Coin) -> Path to Fortress 1 Exit Left
-    {"from": {"map": "NOK_14", "id": 0},               "to": {"map": "NOK_14", "id": "ItemF"},         "reqs": [require(partner="Kooper", boots=2)]}, #* Path to Fortress 1 Exit Left -> ItemF (ThunderBolt)
+    {"from": {"map": "NOK_14", "id": 0},               "to": {"map": "NOK_14", "id": "ItemF"},         "reqs": [require(partner="PARTNER_Kooper", boots=2)]}, #* Path to Fortress 1 Exit Left -> ItemF (ThunderBolt)
     {"from": {"map": "NOK_14", "id": "ItemF"},         "to": {"map": "NOK_14", "id": 0},               "reqs": []}, #* ItemF (ThunderBolt) -> Path to Fortress 1 Exit Left
     {"from": {"map": "NOK_14", "id": 1},               "to": {"map": "NOK_14", "id": "HiddenYBlockA"}, "reqs": []}, #* Path to Fortress 1 Exit Right -> HiddenYBlockA (FireFlower)
     {"from": {"map": "NOK_14", "id": "HiddenYBlockA"}, "to": {"map": "NOK_14", "id": 1},               "reqs": []}, #* HiddenYBlockA (FireFlower) -> Path to Fortress 1 Exit Right
@@ -143,7 +143,7 @@ edges_nok = [
 
     {"from": {"map": "NOK_15", "id": 0}, "to": {"map": "NOK_15", "id": 1}, "reqs": []}, #? Path to Fortress 2 Exit Left -> Path to Fortress 2 Exit Bottom Right
     {"from": {"map": "NOK_15", "id": 1}, "to": {"map": "NOK_15", "id": 0}, "reqs": []}, #? Path to Fortress 2 Exit Bottom Right -> Path to Fortress 2 Exit Left
-    {"from": {"map": "NOK_15", "id": 1}, "to": {"map": "NOK_15", "id": 3}, "reqs": [require(partner="Bombette")]}, #? Path to Fortress 2 Exit Bottom Right -> Path to Fortress 2 Bottom Pipe
+    {"from": {"map": "NOK_15", "id": 1}, "to": {"map": "NOK_15", "id": 3}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Path to Fortress 2 Exit Bottom Right -> Path to Fortress 2 Bottom Pipe
     {"from": {"map": "NOK_15", "id": 3}, "to": {"map": "NOK_15", "id": 1}, "reqs": []}, #? Path to Fortress 2 Bottom Pipe -> Path to Fortress 2 Exit Bottom Right
     {"from": {"map": "NOK_15", "id": 4}, "to": {"map": "NOK_15", "id": 2}, "reqs": []}, #? Path to Fortress 2 Top Pipe -> Path to Fortress 2 Exit Top Right
     {"from": {"map": "NOK_15", "id": 2}, "to": {"map": "NOK_15", "id": 4}, "reqs": []}, #? Path to Fortress 2 Exit Top Right -> Path to Fortress 2 Top Pipe
