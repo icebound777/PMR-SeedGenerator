@@ -34,7 +34,7 @@ edges_sbk = [
     {"from": {"map": "SBK_02", "id": 1}, "to": {"map": "SBK_02", "id": 0}, "reqs": []}, #? N3W1 Ruins Entrance Exit East -> N3W1 Ruins Entrance Exit West
     {"from": {"map": "SBK_02", "id": 0}, "to": {"map": "SBK_02", "id": 3}, "reqs": []}, #? N3W1 Ruins Entrance Exit West -> N3W1 Ruins Entrance Exit South
     {"from": {"map": "SBK_02", "id": 3}, "to": {"map": "SBK_02", "id": 0}, "reqs": []}, #? N3W1 Ruins Entrance Exit South -> N3W1 Ruins Entrance Exit West
-    {"from": {"map": "SBK_02", "id": 0}, "to": {"map": "SBK_02", "id": 4}, "reqs": []}, #TODO#? N3W1 Ruins Entrance Exit West -> N3W1 Ruins Entrance Enter Ruins
+    {"from": {"map": "SBK_02", "id": 0}, "to": {"map": "SBK_02", "id": 4}, "reqs": [require(item="PulseStone")]}, #? N3W1 Ruins Entrance Exit West -> N3W1 Ruins Entrance Enter Ruins
     {"from": {"map": "SBK_02", "id": 4}, "to": {"map": "SBK_02", "id": 0}, "reqs": []}, #? N3W1 Ruins Entrance Enter Ruins -> N3W1 Ruins Entrance Exit West
 
     # SBK_03 N3
@@ -90,8 +90,8 @@ edges_sbk = [
     {"from": {"map": "SBK_10", "id": 1}, "to": {"map": "SBK_10", "id": 3}, "reqs": []}, #? N2W3 Exit East -> N2W3 Exit South
     {"from": {"map": "SBK_10", "id": 3}, "to": {"map": "SBK_10", "id": 1}, "reqs": []}, #? N2W3 Exit South -> N2W3 Exit East
     
-    {"from": {"map": "SBK_10", "id": 1}, "to": {"map": "SBK_10", "id": "HiddenYBlockA"}, "reqs": []}, #* N2W3 Exit East -> HiddenYBlockA (ThunderRage)
-    {"from": {"map": "SBK_10", "id": "HiddenYBlockA"}, "to": {"map": "SBK_10", "id": 1}, "reqs": []}, #* HiddenYBlockA (ThunderRage) -> N2W3 Exit East
+    {"from": {"map": "SBK_10", "id": 1},               "to": {"map": "SBK_10", "id": "HiddenYBlockA"}, "reqs": []}, #* N2W3 Exit East -> HiddenYBlockA (ThunderRage)
+    {"from": {"map": "SBK_10", "id": "HiddenYBlockA"}, "to": {"map": "SBK_10", "id": 1},               "reqs": []}, #* HiddenYBlockA (ThunderRage) -> N2W3 Exit East
 
     # SBK_11 N2W2
     {"from": {"map": "SBK_11", "id": 0}, "to": {"map": "SBK_10", "id": 1}, "reqs": []}, # N2W2 Exit West -> N2W3 Exit East
@@ -301,7 +301,7 @@ edges_sbk = [
     {"from": {"map": "SBK_30", "id": 0}, "to": {"map": "SBK_30", "id": 3}, "reqs": []}, #? W3 Kolorado's Camp Exit West -> W3 Kolorado's Camp Exit South
     {"from": {"map": "SBK_30", "id": 3}, "to": {"map": "SBK_30", "id": 0}, "reqs": []}, #? W3 Kolorado's Camp Exit South -> W3 Kolorado's Camp Exit West
     
-    {"from": {"map": "SBK_30", "id": 0},              "to": {"map": "SBK_30", "id": "Tree2_Drop1A"}, "reqs": []}, #TODO#* W3 Kolorado's Camp Exit West -> Tree2_Drop1A (Letter02)
+    {"from": {"map": "SBK_30", "id": 0},              "to": {"map": "SBK_30", "id": "Tree2_Drop1A"}, "reqs": [require(flag="RF_Ch2_SavedStarSpirit"), shake_trees]}, #* W3 Kolorado's Camp Exit West -> Tree2_Drop1A (Letter02)
     {"from": {"map": "SBK_30", "id": "Tree2_Drop1A"}, "to": {"map": "SBK_30", "id": 0},              "reqs": []}, #* Tree2_Drop1A (Letter02) -> W3 Kolorado's Camp Exit West
 
     # SBK_31 W2

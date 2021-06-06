@@ -83,8 +83,10 @@ edges_nok = [
     {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_11", "id": 1}, "reqs": []}, # Pleasant Path Bridge Exit Left -> Pleasant Path Entry Exit Right
     {"from": {"map": "NOK_12", "id": 1}, "to": {"map": "NOK_13", "id": 0}, "reqs": []}, # Pleasant Path Bridge Exit Right -> Pleasant Crossroads Exit Left
     
-    {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_12", "id": 1}, "reqs": []}, #? Pleasant Path Bridge Exit Left -> Pleasant Path Bridge Exit Right
-    {"from": {"map": "NOK_12", "id": 1}, "to": {"map": "NOK_12", "id": 0}, "reqs": []}, #? Pleasant Path Bridge Exit Right -> Pleasant Path Bridge Exit Left
+    {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_12", "id": 1}, "reqs": [require(flag="MF_NOK12_BuiltBridge")]}, #? Pleasant Path Bridge Exit Left -> Pleasant Path Bridge Exit Right
+    {"from": {"map": "NOK_12", "id": 1}, "to": {"map": "NOK_12", "id": 0}, "reqs": [require(flag="MF_NOK12_BuiltBridge")]}, #? Pleasant Path Bridge Exit Right -> Pleasant Path Bridge Exit Left
+    
+    {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_12", "id": 0}, "reqs": [shake_trees], "pseudoitems": ["MF_NOK12_BuiltBridge"]}, #+ Pleasant Path Bridge Exit Left
     
     {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_12", "id": "YBlockA"}, "reqs": []}, #* Pleasant Path Bridge Exit Left -> YBlockA (POWBlock)
     {"from": {"map": "NOK_12", "id": "YBlockA"}, "to": {"map": "NOK_12", "id": 0}, "reqs": []}, #* YBlockA (POWBlock) -> Pleasant Path Bridge Exit Left
@@ -107,15 +109,17 @@ edges_nok = [
     {"from": {"map": "NOK_13", "id": "HiddenPanel"}, "to": {"map": "NOK_13", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Pleasant Crossroads Exit Left
     {"from": {"map": "NOK_13", "id": 0},             "to": {"map": "NOK_13", "id": "ItemA"},       "reqs": []}, #* Pleasant Crossroads Exit Left -> ItemA (HoneySyrup)
     {"from": {"map": "NOK_13", "id": "ItemA"},       "to": {"map": "NOK_13", "id": 0},             "reqs": []}, #* ItemA (HoneySyrup) -> Pleasant Crossroads Exit Left
-    {"from": {"map": "NOK_13", "id": 0},             "to": {"map": "NOK_13", "id": "RBlockA"},     "reqs": []}, #* Pleasant Crossroads Exit Left -> RBlockA (AttackFXB)
+    {"from": {"map": "NOK_13", "id": 0},             "to": {"map": "NOK_13", "id": "RBlockA"},     "reqs": [require(hammer=0)]}, #* Pleasant Crossroads Exit Left -> RBlockA (AttackFXB)
     {"from": {"map": "NOK_13", "id": "RBlockA"},     "to": {"map": "NOK_13", "id": 0},             "reqs": []}, #* RBlockA (AttackFXB) -> Pleasant Crossroads Exit Left
 
     # NOK_14 Path to Fortress 1
     {"from": {"map": "NOK_14", "id": 0}, "to": {"map": "NOK_13", "id": 2}, "reqs": []}, # Path to Fortress 1 Exit Left -> Pleasant Crossroads Exit Right
     {"from": {"map": "NOK_14", "id": 1}, "to": {"map": "NOK_15", "id": 0}, "reqs": []}, # Path to Fortress 1 Exit Right -> Path to Fortress 2 Exit Left
     
-    {"from": {"map": "NOK_14", "id": 0}, "to": {"map": "NOK_14", "id": 1}, "reqs": []}, #? Path to Fortress 1 Exit Left -> Path to Fortress 1 Exit Right
-    {"from": {"map": "NOK_14", "id": 1}, "to": {"map": "NOK_14", "id": 0}, "reqs": []}, #? Path to Fortress 1 Exit Right -> Path to Fortress 1 Exit Left
+    {"from": {"map": "NOK_14", "id": 0}, "to": {"map": "NOK_14", "id": 1}, "reqs": [require(flag="MF_NOK14_BuiltBridge")]}, #? Path to Fortress 1 Exit Left -> Path to Fortress 1 Exit Right
+    {"from": {"map": "NOK_14", "id": 1}, "to": {"map": "NOK_14", "id": 0}, "reqs": [require(flag="MF_NOK14_BuiltBridge")]}, #? Path to Fortress 1 Exit Right -> Path to Fortress 1 Exit Left
+    
+    {"from": {"map": "NOK_14", "id": 0}, "to": {"map": "NOK_14", "id": 0}, "reqs": [require(partner="PARTNER_Kooper")], "pseudoitems": ["MF_NOK14_BuiltBridge"]}, #+ Path to Fortress 1 Exit Left
     
     {"from": {"map": "NOK_14", "id": 0},               "to": {"map": "NOK_14", "id": "HiddenPanel"},   "reqs": [flip_panels]}, #* Path to Fortress 1 Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "NOK_14", "id": "HiddenPanel"},   "to": {"map": "NOK_14", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> Path to Fortress 1 Exit Left
@@ -144,11 +148,11 @@ edges_nok = [
     {"from": {"map": "NOK_15", "id": 0}, "to": {"map": "NOK_15", "id": 1}, "reqs": []}, #? Path to Fortress 2 Exit Left -> Path to Fortress 2 Exit Bottom Right
     {"from": {"map": "NOK_15", "id": 1}, "to": {"map": "NOK_15", "id": 0}, "reqs": []}, #? Path to Fortress 2 Exit Bottom Right -> Path to Fortress 2 Exit Left
     {"from": {"map": "NOK_15", "id": 1}, "to": {"map": "NOK_15", "id": 3}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Path to Fortress 2 Exit Bottom Right -> Path to Fortress 2 Bottom Pipe
-    {"from": {"map": "NOK_15", "id": 3}, "to": {"map": "NOK_15", "id": 1}, "reqs": []}, #? Path to Fortress 2 Bottom Pipe -> Path to Fortress 2 Exit Bottom Right
+    {"from": {"map": "NOK_15", "id": 3}, "to": {"map": "NOK_15", "id": 1}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Path to Fortress 2 Bottom Pipe -> Path to Fortress 2 Exit Bottom Right
     {"from": {"map": "NOK_15", "id": 4}, "to": {"map": "NOK_15", "id": 2}, "reqs": []}, #? Path to Fortress 2 Top Pipe -> Path to Fortress 2 Exit Top Right
     {"from": {"map": "NOK_15", "id": 2}, "to": {"map": "NOK_15", "id": 4}, "reqs": []}, #? Path to Fortress 2 Exit Top Right -> Path to Fortress 2 Top Pipe
     {"from": {"map": "NOK_15", "id": 4}, "to": {"map": "NOK_15", "id": 1}, "reqs": []}, #? Path to Fortress 2 Top Pipe -> Path to Fortress 2 Exit Bottom Right
     
-    {"from": {"map": "NOK_15", "id": 0},              "to": {"map": "NOK_15", "id": "Tree1_Drop1A"}, "reqs": []}, #* Path to Fortress 2 Exit Left -> Tree1_Drop1A (StarPiece)
+    {"from": {"map": "NOK_15", "id": 0},              "to": {"map": "NOK_15", "id": "Tree1_Drop1A"}, "reqs": [shake_trees]}, #* Path to Fortress 2 Exit Left -> Tree1_Drop1A (StarPiece)
     {"from": {"map": "NOK_15", "id": "Tree1_Drop1A"}, "to": {"map": "NOK_15", "id": 0},              "reqs": []}, #* Tree1_Drop1A (StarPiece) -> Path to Fortress 2 Exit Left
 ]
