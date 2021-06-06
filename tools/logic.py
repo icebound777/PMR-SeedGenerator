@@ -79,8 +79,7 @@ def place_items(app, isShuffle, algorithm):
                 try:
                     if all([r() for r in edge.get("reqs")]):
                         if edge.get("pseudoitems") is not None:
-                            for pseudoitem in edge.get("pseudoitems"):
-                                pseudoitem_acquired = add_to_inventory(pseudoitem)
+                            pseudoitem_acquired = add_to_inventory(edge.get("pseudoitems"))
                         depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
                     elif edge not in non_traversable_edges:
                         non_traversable_edges.append(edge)
@@ -131,35 +130,18 @@ def place_items(app, isShuffle, algorithm):
                                        & (MapArea.map_id  == starting_map_map_id))
 
         starting_node_id = starting_maparea.name + "/" + str(starting_map_entrance_id)
-        print (starting_node_id)
         
         # Find initially reachable nodes
         print("Placing Progression Items ...")
         reachable_nodes = []
         reachable_item_nodes = {}
 
-        depth_first_search(starting_node_id)
-
-        # Place all items that influence progression and re-traverse formerly locked parts of the graph
-        while len(pool_progression_items) > 0:
-
-            # Pick random progression_item and place it into random reachable and unfilled item node
-            while True:
-                random_node = reachable_item_nodes.pop(random.choice(list(reachable_item_nodes.keys())))
-                if random_node not in filled_item_nodes:
-                    break
-            random_item = pool_progression_items.pop(random.randint(0, len(pool_progression_items) - 1))
-            random_node.current_item = random_item
-            filled_item_nodes.append(random_node)
-
-            # Add placed progression_item into mario's inventory
-            add_to_inventory(random_item.item_name)
-
+        def find_reachable_nodes(non_traversable_edges):
             # Check for newly available nodes and add those to reachable_nodes
             while True:
                 pseudoitem_acquired = False
                 non_traversable_edges_tmp = non_traversable_edges.copy()
-                non_traversable_edges = []
+                non_traversable_edges.clear()
                 for non_traversable_edge in non_traversable_edges_tmp:
                     from_node_id = (  non_traversable_edge.get("from").get("map")
                                     + "/" 
@@ -179,6 +161,26 @@ def place_items(app, isShuffle, algorithm):
                 # we have to check for reachable_nodes repeatedly until no new pseudoitems are found
                 if not pseudoitem_acquired:
                     break
+
+        depth_first_search(starting_node_id)
+        find_reachable_nodes(non_traversable_edges)
+
+        # Place all items that influence progression and re-traverse formerly locked parts of the graph
+        while len(pool_progression_items) > 0:
+
+            # Pick random progression_item and place it into random reachable and unfilled item node
+            while True:
+                random_node = reachable_item_nodes.pop(random.choice(list(reachable_item_nodes.keys())))
+                if random_node not in filled_item_nodes:
+                    break
+            random_item = pool_progression_items.pop(random.randint(0, len(pool_progression_items) - 1))
+            random_node.current_item = random_item
+            filled_item_nodes.append(random_node)
+
+            # Add placed progression_item into mario's inventory
+            add_to_inventory(random_item.item_name)
+
+            find_reachable_nodes(non_traversable_edges)
         
         # Place all remaining items
         print("Placing Miscellaneous Items ...")
@@ -190,7 +192,6 @@ def place_items(app, isShuffle, algorithm):
                 random_item = pool_other_items.pop(random.randint(0, len(pool_other_items) - 1))
                 item_node.current_item = random_item
                 filled_item_nodes.append(item_node)
-
         # Write changed items to sqlite db
         print("Writing Items to SQLite DB ...")
         for node in Node.select().where(Node.key_name_item.is_null(False)):
