@@ -5,6 +5,16 @@ edges_omo = [
     
     {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "ItemA"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemA (Calculator)
     {"from": {"map": "OMO_01", "id": "ItemA"},         "to": {"map": "OMO_01", "id": 0},               "reqs": []}, #* ItemA (Calculator) -> BLU Large Playroom Exit East
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "ItemB"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemB (MapleSyrup)
+    {"from": {"map": "OMO_01", "id": "ItemB"},         "to": {"map": "OMO_01", "id": 0},               "reqs": []}, #* ItemB (MapleSyrup) -> BLU Large Playroom Exit East
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "ItemC"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemC (CakeMix)
+    {"from": {"map": "OMO_01", "id": "ItemC"},         "to": {"map": "OMO_01", "id": 0},               "reqs": []}, #* ItemC (CakeMix) -> BLU Large Playroom Exit East
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "ItemD"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemD (CakeMix)
+    {"from": {"map": "OMO_01", "id": "ItemD"},         "to": {"map": "OMO_01", "id": 0},               "reqs": []}, #* ItemD (CakeMix) -> BLU Large Playroom Exit East
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "ItemE"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemE (Mushroom)
+    {"from": {"map": "OMO_01", "id": "ItemE"},         "to": {"map": "OMO_01", "id": 0},               "reqs": []}, #* ItemE (Mushroom) -> BLU Large Playroom Exit East
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "ItemF"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemF (FireFLower)
+    {"from": {"map": "OMO_01", "id": "ItemF"},         "to": {"map": "OMO_01", "id": 0},               "reqs": []}, #* ItemF (FireFLower) -> BLU Large Playroom Exit East
     {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "HiddenYBlockA"}, "reqs": []}, #* BLU Large Playroom Exit East -> HiddenYBlockA (Mystery)
     {"from": {"map": "OMO_01", "id": "HiddenYBlockA"}, "to": {"map": "OMO_01", "id": 0},               "reqs": []}, #* HiddenYBlockA (Mystery) -> BLU Large Playroom Exit East
     {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "HiddenYBlockB"}, "reqs": []}, #* BLU Large Playroom Exit East -> HiddenYBlockB (FrightJar)

@@ -104,13 +104,16 @@ edges_sam = [
     {"from": {"map": "SAM_08", "id": 0}, "to": {"map": "SAM_08", "id": 1}, "reqs": []}, #? Shiver Mountain Hills Exit West -> Shiver Mountain Hills Exit East
     {"from": {"map": "SAM_08", "id": 1}, "to": {"map": "SAM_08", "id": 0}, "reqs": []}, #? Shiver Mountain Hills Exit East -> Shiver Mountain Hills Exit West
 
+    {"from": {"map": "SAM_08", "id": 0},       "to": {"map": "SAM_08", "id": "ItemA"}, "reqs": []}, #* Shiver Mountain Hills Exit West -> ItemA (Pebble)
+    {"from": {"map": "SAM_08", "id": "ItemA"}, "to": {"map": "SAM_08", "id": 0},       "reqs": []}, #* ItemA (Pebble) -> Shiver Mountain Hills Exit West
+
     # SAM_09 Shiver Mountain Tunnel
     {"from": {"map": "SAM_09", "id": 0}, "to": {"map": "SAM_08", "id": 1}, "reqs": []}, # Shiver Mountain Tunnel Exit West -> Shiver Mountain Hills Exit East
     {"from": {"map": "SAM_09", "id": 1}, "to": {"map": "SAM_10", "id": 0}, "reqs": []}, # Shiver Mountain Tunnel Exit East -> Shiver Mountain Peaks Exit West
     
     {"from": {"map": "SAM_09", "id": 0}, "to": {"map": "SAM_09", "id": 1}, "reqs": []}, #? Shiver Mountain Tunnel Exit West -> Shiver Mountain Tunnel Exit East
     {"from": {"map": "SAM_09", "id": 1}, "to": {"map": "SAM_09", "id": 0}, "reqs": []}, #? Shiver Mountain Tunnel Exit East -> Shiver Mountain Tunnel Exit West
-
+    
     # SAM_10 Shiver Mountain Peaks
     {"from": {"map": "SAM_10", "id": 0}, "to": {"map": "SAM_09", "id": 1}, "reqs": []}, # Shiver Mountain Peaks Exit West -> Shiver Mountain Tunnel Exit East
     {"from": {"map": "SAM_10", "id": 1}, "to": {"map": "PRA_01", "id": 0}, "reqs": []}, # Shiver Mountain Peaks Exit East -> Entrance Exit West
@@ -138,4 +141,7 @@ edges_sam = [
 
     # SAM_12 Merlar's Sanctuary
     {"from": {"map": "SAM_12", "id": 0}, "to": {"map": "SAM_10", "id": 2}, "reqs": []}, # Merlar's Sanctuary Bombable Wall -> Shiver Mountain Peaks Bombable Wall
+
+    {"from": {"map": "SAM_12", "id": 0},       "to": {"map": "SAM_12", "id": "ItemA"}, "reqs": []}, #* Merlar's Sanctuary Bombable Wall -> ItemA (StarStone)
+    {"from": {"map": "SAM_12", "id": "ItemA"}, "to": {"map": "SAM_12", "id": 0},       "reqs": []}, #* ItemA (StarStone) -> Merlar's Sanctuary Bombable Wall
 ]

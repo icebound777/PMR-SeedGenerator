@@ -135,4 +135,7 @@ edges_kmr  = [
 
     # KMR_20 Mario's House
     {"from": {"map": "KMR_20", "id": 4}, "to": {"map": "MAC_00", "id": 4}, "reqs": []}, # Mario's House Green Pipe -> Gate District Top Green Pipe
+
+    {"from": {"map": "KMR_20", "id": 4},       "to": {"map": "KMR_20", "id": "GiftA"}, "reqs": []}, #* Mario's House Green Pipe -> GiftA (Autograph1)
+    {"from": {"map": "KMR_20", "id": "GiftA"}, "to": {"map": "KMR_20", "id": 4},       "reqs": []}, #* GiftA (Autograph1) -> Mario's House Green Pipe
 ]

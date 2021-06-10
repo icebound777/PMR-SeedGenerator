@@ -100,6 +100,15 @@ edges_iwa = [
     {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": 1}, "reqs": []}, #? Train Station Ride The Train -> Train Station Exit Top Right
     {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": 0}, "reqs": []}, #? Train Station Exit Top Right -> Train Station Ride The Train
 
+    {"from": {"map": "IWA_10", "id": 1},       "to": {"map": "IWA_10", "id": "ItemA"}, "reqs": []}, #* Train Station Exit Top Right -> ItemA (Coin) Bottom Bush
+    {"from": {"map": "IWA_10", "id": "ItemA"}, "to": {"map": "IWA_10", "id": 1},       "reqs": []}, #* ItemA (Coin) Bottom Bush -> Train Station Exit Top Right
+    {"from": {"map": "IWA_10", "id": 1},       "to": {"map": "IWA_10", "id": "ItemB"}, "reqs": []}, #* Train Station Exit Top Right -> ItemB (Coin) Right Bush
+    {"from": {"map": "IWA_10", "id": "ItemB"}, "to": {"map": "IWA_10", "id": 1},       "reqs": []}, #* ItemB (Coin) Right Bush -> Train Station Exit Top Right
+    {"from": {"map": "IWA_10", "id": 1},       "to": {"map": "IWA_10", "id": "ItemC"}, "reqs": []}, #* Train Station Exit Top Right -> ItemC (Coin) Left Bush
+    {"from": {"map": "IWA_10", "id": "ItemC"}, "to": {"map": "IWA_10", "id": 1},       "reqs": []}, #* ItemC (Coin) Left Bush -> Train Station Exit Top Right
+    {"from": {"map": "IWA_10", "id": 1},       "to": {"map": "IWA_10", "id": "ItemD"}, "reqs": []}, #* Train Station Exit Top Right -> ItemD (Egg2) Top Bush
+    {"from": {"map": "IWA_10", "id": "ItemD"}, "to": {"map": "IWA_10", "id": 1},       "reqs": []}, #* ItemD (Egg2) Top Bush -> Train Station Exit Top Right
+
     # IWA_11 Train Ride Scene
     {"from": {"map": "IWA_11", "id": 0}, "to": {"map": "MAC_03", "id": 1}, "reqs": []}, # Train Ride Scene Exit Left -> Station District Train
     {"from": {"map": "IWA_11", "id": 1}, "to": {"map": "IWA_10", "id": 0}, "reqs": []}, # Train Ride Scene Exit Right -> Train Station Ride The Train
