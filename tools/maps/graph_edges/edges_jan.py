@@ -36,20 +36,20 @@ edges_jan = [
     {"from": {"map": "JAN_01", "id": "HiddenYBlockA"}, "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* HiddenYBlockA (RepelGel) -> Beach Exit Left
     {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "HiddenYBlockB"}, "reqs": []}, #* Beach Exit Left -> HiddenYBlockB (Mystery)
     {"from": {"map": "JAN_01", "id": "HiddenYBlockB"}, "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* HiddenYBlockB (Mystery) -> Beach Exit Left
-    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "Tree2_Drop1A"},  "reqs": []}, #* Beach Exit Left -> Tree2_Drop1A (Coconut)
-    {"from": {"map": "JAN_01", "id": "Tree2_Drop1A"},  "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* Tree2_Drop1A (Coconut) -> Beach Exit Left
-    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "Tree3_Drop1A"},  "reqs": []}, #* Beach Exit Left -> Tree3_Drop1A (Coconut)
-    {"from": {"map": "JAN_01", "id": "Tree3_Drop1A"},  "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* Tree3_Drop1A (Coconut) -> Beach Exit Left
-    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "Tree4_Drop1A"},  "reqs": []}, #* Beach Exit Left -> Tree4_Drop1A (Coconut)
-    {"from": {"map": "JAN_01", "id": "Tree4_Drop1A"},  "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* Tree4_Drop1A (Coconut) -> Beach Exit Left
-    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "Tree5_Drop1A"},  "reqs": []}, #* Beach Exit Left -> Tree5_Drop1A (Coconut)
-    {"from": {"map": "JAN_01", "id": "Tree5_Drop1A"},  "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* Tree5_Drop1A (Coconut) -> Beach Exit Left
-    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "Tree6_Drop1A"},  "reqs": []}, #* Beach Exit Left -> Tree6_Drop1A (Coconut)
-    {"from": {"map": "JAN_01", "id": "Tree6_Drop1A"},  "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* Tree6_Drop1A (Coconut) -> Beach Exit Left
-    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "Tree7_Drop1A"},  "reqs": []}, #* Beach Exit Left -> Tree7_Drop1A (StarPiece)
-    {"from": {"map": "JAN_01", "id": "Tree7_Drop1A"},  "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* Tree7_Drop1A (StarPiece) -> Beach Exit Left
-    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "Tree7_Drop2A"},  "reqs": []}, #* Beach Exit Left -> Tree7_Drop2A (Coconut)
-    {"from": {"map": "JAN_01", "id": "Tree7_Drop2A"},  "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* Tree7_Drop2A (Coconut) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemD"},         "reqs": []}, #* Beach Exit Left -> ItemD (Coconut)
+    {"from": {"map": "JAN_01", "id": "ItemD"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemD (Coconut) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemE"},         "reqs": []}, #* Beach Exit Left -> ItemE (Coconut)
+    {"from": {"map": "JAN_01", "id": "ItemE"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemE (Coconut) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemF"},         "reqs": []}, #* Beach Exit Left -> ItemF (Coconut)
+    {"from": {"map": "JAN_01", "id": "ItemF"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemF (Coconut) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemG"},         "reqs": []}, #* Beach Exit Left -> ItemG (Coconut)
+    {"from": {"map": "JAN_01", "id": "ItemG"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemG (Coconut) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemH"},         "reqs": []}, #* Beach Exit Left -> ItemH (Coconut)
+    {"from": {"map": "JAN_01", "id": "ItemH"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemH (Coconut) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemI"},         "reqs": []}, #* Beach Exit Left -> ItemI (StarPiece)
+    {"from": {"map": "JAN_01", "id": "ItemI"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemI (StarPiece) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemJ"},         "reqs": []}, #* Beach Exit Left -> ItemJ (Coconut)
+    {"from": {"map": "JAN_01", "id": "ItemJ"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemJ (Coconut) -> Beach Exit Left
 
     # JAN_02 Village Cove
     {"from": {"map": "JAN_02", "id": 0}, "to": {"map": "JAN_01", "id": 1}, "reqs": []}, # Village Cove Exit Top Left -> Beach Exit Right
