@@ -250,3 +250,6 @@ def check_graph():
             print(node_id)
 
     print("Done.")
+
+if __name__ == "__main__":
+    check_graph()

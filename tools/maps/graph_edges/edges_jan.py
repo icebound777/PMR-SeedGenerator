@@ -12,12 +12,14 @@ edges_jan = [
     {"from": {"map": "JAN_00", "id": 0}, "to": {"map": "JAN_00", "id": 2}, "reqs": []}, #? Whale Cove Ride The Whale -> Whale Cove Exit Top Right
     {"from": {"map": "JAN_00", "id": 2}, "to": {"map": "JAN_00", "id": 0}, "reqs": []}, #? Whale Cove Exit Top Right -> Whale Cove Ride The Whale
     
-    {"from": {"map": "JAN_00", "id": 0},       "to": {"map": "JAN_00", "id": "ItemA"}, "reqs": []}, #* Whale Cove Ride The Whale -> ItemA (Coin)
-    {"from": {"map": "JAN_00", "id": "ItemA"}, "to": {"map": "JAN_00", "id": 0},       "reqs": []}, #* ItemA (Coin) -> Whale Cove Ride The Whale
-    {"from": {"map": "JAN_00", "id": 0},       "to": {"map": "JAN_00", "id": "ItemB"}, "reqs": []}, #* Whale Cove Ride The Whale -> ItemB (Coin)
-    {"from": {"map": "JAN_00", "id": "ItemB"}, "to": {"map": "JAN_00", "id": 0},       "reqs": []}, #* ItemB (Coin) -> Whale Cove Ride The Whale
-    {"from": {"map": "JAN_00", "id": 0},       "to": {"map": "JAN_00", "id": "ItemC"}, "reqs": []}, #* Whale Cove Ride The Whale -> ItemC (StopWatch)
-    {"from": {"map": "JAN_00", "id": "ItemC"}, "to": {"map": "JAN_00", "id": 0},       "reqs": []}, #* ItemC (StopWatch) -> Whale Cove Ride The Whale
+    {"from": {"map": "JAN_00", "id": 0},              "to": {"map": "JAN_00", "id": "ItemA"},        "reqs": []}, #* Whale Cove Ride The Whale -> ItemA (Coin)
+    {"from": {"map": "JAN_00", "id": "ItemA"},        "to": {"map": "JAN_00", "id": 0},              "reqs": []}, #* ItemA (Coin) -> Whale Cove Ride The Whale
+    {"from": {"map": "JAN_00", "id": 0},              "to": {"map": "JAN_00", "id": "ItemB"},        "reqs": []}, #* Whale Cove Ride The Whale -> ItemB (Coin)
+    {"from": {"map": "JAN_00", "id": "ItemB"},        "to": {"map": "JAN_00", "id": 0},              "reqs": []}, #* ItemB (Coin) -> Whale Cove Ride The Whale
+    {"from": {"map": "JAN_00", "id": 0},              "to": {"map": "JAN_00", "id": "ItemC"},        "reqs": []}, #* Whale Cove Ride The Whale -> ItemC (StopWatch)
+    {"from": {"map": "JAN_00", "id": "ItemC"},        "to": {"map": "JAN_00", "id": 0},              "reqs": []}, #* ItemC (StopWatch) -> Whale Cove Ride The Whale
+    {"from": {"map": "JAN_00", "id": 0},              "to": {"map": "JAN_00", "id": "Tree1_Drop1A"}, "reqs": []}, #* Whale Cove Ride The Whale -> Tree1_Drop1A (Coconut)
+    {"from": {"map": "JAN_00", "id": "Tree1_Drop1A"}, "to": {"map": "JAN_00", "id": 0},              "reqs": []}, #* Tree1_Drop1A (Coconut) -> Whale Cove Ride The Whale
 
     # JAN_01 Beach
     {"from": {"map": "JAN_01", "id": 0}, "to": {"map": "JAN_00", "id": 1}, "reqs": []}, # Beach Exit Left -> Whale Cove Exit Bottom Right
@@ -36,6 +38,20 @@ edges_jan = [
     {"from": {"map": "JAN_01", "id": "HiddenYBlockA"}, "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* HiddenYBlockA (RepelGel) -> Beach Exit Left
     {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "HiddenYBlockB"}, "reqs": []}, #* Beach Exit Left -> HiddenYBlockB (Mystery)
     {"from": {"map": "JAN_01", "id": "HiddenYBlockB"}, "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* HiddenYBlockB (Mystery) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemD"},         "reqs": []}, #* Beach Exit Left -> ItemD (Coconut)
+    {"from": {"map": "JAN_01", "id": "ItemD"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemD (Coconut) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemE"},         "reqs": []}, #* Beach Exit Left -> ItemE (Coconut)
+    {"from": {"map": "JAN_01", "id": "ItemE"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemE (Coconut) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemF"},         "reqs": []}, #* Beach Exit Left -> ItemF (Coconut)
+    {"from": {"map": "JAN_01", "id": "ItemF"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemF (Coconut) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemG"},         "reqs": []}, #* Beach Exit Left -> ItemG (Coconut)
+    {"from": {"map": "JAN_01", "id": "ItemG"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemG (Coconut) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemH"},         "reqs": []}, #* Beach Exit Left -> ItemH (Coconut)
+    {"from": {"map": "JAN_01", "id": "ItemH"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemH (Coconut) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemI"},         "reqs": []}, #* Beach Exit Left -> ItemI (StarPiece)
+    {"from": {"map": "JAN_01", "id": "ItemI"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemI (StarPiece) -> Beach Exit Left
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemJ"},         "reqs": []}, #* Beach Exit Left -> ItemJ (Coconut)
+    {"from": {"map": "JAN_01", "id": "ItemJ"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemJ (Coconut) -> Beach Exit Left
 
     # JAN_02 Village Cove
     {"from": {"map": "JAN_02", "id": 0}, "to": {"map": "JAN_01", "id": 1}, "reqs": []}, # Village Cove Exit Top Left -> Beach Exit Right
@@ -44,10 +60,14 @@ edges_jan = [
     {"from": {"map": "JAN_02", "id": 0}, "to": {"map": "JAN_02", "id": 1}, "reqs": []}, #? Village Cove Exit Top Left -> Village Cove Exit Right
     {"from": {"map": "JAN_02", "id": 1}, "to": {"map": "JAN_02", "id": 0}, "reqs": []}, #? Village Cove Exit Right -> Village Cove Exit Top Left
     
-    {"from": {"map": "JAN_02", "id": 0},             "to": {"map": "JAN_02", "id": "HiddenPanel"}, "reqs": []}, #* Village Cove Exit Top Left -> HiddenPanel (StarPiece)
-    {"from": {"map": "JAN_02", "id": "HiddenPanel"}, "to": {"map": "JAN_02", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Village Cove Exit Top Left
-    {"from": {"map": "JAN_02", "id": 0},             "to": {"map": "JAN_02", "id": "GiftA"},       "reqs": []}, #* Village Cove Exit Top Left -> GiftA (JadeRaven)
-    {"from": {"map": "JAN_02", "id": "GiftA"},       "to": {"map": "JAN_02", "id": 0},             "reqs": []}, #* GiftA (JadeRaven) -> Village Cove Exit Top Left
+    {"from": {"map": "JAN_02", "id": 0},              "to": {"map": "JAN_02", "id": "HiddenPanel"},  "reqs": []}, #* Village Cove Exit Top Left -> HiddenPanel (StarPiece)
+    {"from": {"map": "JAN_02", "id": "HiddenPanel"},  "to": {"map": "JAN_02", "id": 0},              "reqs": []}, #* HiddenPanel (StarPiece) -> Village Cove Exit Top Left
+    {"from": {"map": "JAN_02", "id": 0},              "to": {"map": "JAN_02", "id": "GiftA"},        "reqs": []}, #* Village Cove Exit Top Left -> GiftA (JadeRaven)
+    {"from": {"map": "JAN_02", "id": "GiftA"},        "to": {"map": "JAN_02", "id": 0},              "reqs": []}, #* GiftA (JadeRaven) -> Village Cove Exit Top Left
+    {"from": {"map": "JAN_02", "id": 0},              "to": {"map": "JAN_02", "id": "Tree2_Drop1A"}, "reqs": []}, #* Village Cove Exit Top Left -> Tree2_Drop1A (Coconut)
+    {"from": {"map": "JAN_02", "id": "Tree2_Drop1A"}, "to": {"map": "JAN_02", "id": 0},              "reqs": []}, #* Tree2_Drop1A (Coconut) -> Village Cove Exit Top Left
+    {"from": {"map": "JAN_02", "id": 0},              "to": {"map": "JAN_02", "id": "Tree3_Drop1A"}, "reqs": []}, #* Village Cove Exit Top Left -> Tree3_Drop1A (Coconut)
+    {"from": {"map": "JAN_02", "id": "Tree3_Drop1A"}, "to": {"map": "JAN_02", "id": 0},              "reqs": []}, #* Tree3_Drop1A (Coconut) -> Village Cove Exit Top Left
 
     # JAN_03 Village Buildings
     {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_02", "id": 1}, "reqs": []}, # Village Buildings Exit Left -> Village Cove Exit Right
@@ -66,6 +86,8 @@ edges_jan = [
     
     {"from": {"map": "JAN_03", "id": 0},           "to": {"map": "JAN_03", "id": "GiftA"},     "reqs": []}, #* Village Buildings Exit Left -> GiftA (MagicalSeed4)
     {"from": {"map": "JAN_03", "id": "GiftA"},     "to": {"map": "JAN_03", "id": 0},           "reqs": []}, #* GiftA (MagicalSeed4) -> Village Buildings Exit Left
+    {"from": {"map": "JAN_03", "id": 0},           "to": {"map": "JAN_03", "id": "GiftB"},     "reqs": []}, #* Village Buildings Exit Left -> GiftB (Melon)
+    {"from": {"map": "JAN_03", "id": "GiftB"},     "to": {"map": "JAN_03", "id": 0},           "reqs": []}, #* GiftB (Melon) -> Village Buildings Exit Left
     {"from": {"map": "JAN_03", "id": 0},           "to": {"map": "JAN_03", "id": "ShopItemA"}, "reqs": []}, #* Village Buildings Exit Left -> ShopItemA (SnowmanDoll)
     {"from": {"map": "JAN_03", "id": "ShopItemA"}, "to": {"map": "JAN_03", "id": 0},           "reqs": []}, #* ShopItemA (SnowmanDoll) -> Village Buildings Exit Left
     {"from": {"map": "JAN_03", "id": 0},           "to": {"map": "JAN_03", "id": "ShopItemB"}, "reqs": []}, #* Village Buildings Exit Left -> ShopItemB (ThunderRage)
@@ -155,6 +177,15 @@ edges_jan = [
     {"from": {"map": "JAN_09", "id": 2}, "to": {"map": "JAN_09", "id": 1}, "reqs": []}, #? NW Jungle (Large Ledge) Exit Left -> NW Jungle (Large Ledge) Exit Right
     {"from": {"map": "JAN_09", "id": 1}, "to": {"map": "JAN_09", "id": 3}, "reqs": []}, #? NW Jungle (Large Ledge) Exit Right -> NW Jungle (Large Ledge) Pipe On Hill
     {"from": {"map": "JAN_09", "id": 3}, "to": {"map": "JAN_09", "id": 1}, "reqs": []}, #? NW Jungle (Large Ledge) Pipe On Hill -> NW Jungle (Large Ledge) Exit Right
+    
+    {"from": {"map": "JAN_09", "id": 0},       "to": {"map": "JAN_09", "id": "ItemA"}, "reqs": []}, #* NW Jungle (Large Ledge) Exit Bottom -> ItemA (Coin)
+    {"from": {"map": "JAN_09", "id": "ItemA"}, "to": {"map": "JAN_09", "id": 0},       "reqs": []}, #* ItemA (Coin) -> NW Jungle (Large Ledge) Exit Bottom
+    {"from": {"map": "JAN_09", "id": 0},       "to": {"map": "JAN_09", "id": "ItemB"}, "reqs": []}, #* NW Jungle (Large Ledge) Exit Bottom -> ItemB (Coin)
+    {"from": {"map": "JAN_09", "id": "ItemB"}, "to": {"map": "JAN_09", "id": 0},       "reqs": []}, #* ItemB (Coin) -> NW Jungle (Large Ledge) Exit Bottom
+    {"from": {"map": "JAN_09", "id": 3},       "to": {"map": "JAN_09", "id": "ItemC"}, "reqs": []}, #* NW Jungle (Large Ledge) Pipe On Hill -> ItemC (Coin)
+    {"from": {"map": "JAN_09", "id": "ItemC"}, "to": {"map": "JAN_09", "id": 3},       "reqs": []}, #* ItemC (Coin) -> NW Jungle (Large Ledge) Pipe On Hill
+    {"from": {"map": "JAN_09", "id": 1},       "to": {"map": "JAN_09", "id": "ItemD"}, "reqs": []}, #* NW Jungle (Large Ledge) Exit Right -> ItemD (FrightJar)
+    {"from": {"map": "JAN_09", "id": "ItemD"}, "to": {"map": "JAN_09", "id": 1},       "reqs": []}, #* ItemD (FrightJar) -> NW Jungle (Large Ledge) Exit Right
 
     # JAN_10 Western Dead End
     {"from": {"map": "JAN_10", "id": 0}, "to": {"map": "JAN_09", "id": 2}, "reqs": []}, # Western Dead End Exit Right -> NW Jungle (Large Ledge) Exit Left

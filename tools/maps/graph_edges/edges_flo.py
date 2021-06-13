@@ -34,6 +34,8 @@ edges_flo = [
     
     {"from": {"map": "FLO_16", "id": 1},       "to": {"map": "FLO_16", "id": "ItemA"}, "reqs": []}, #* (NE) Elevators Exit Right -> ItemA (StarPiece)
     {"from": {"map": "FLO_16", "id": "ItemA"}, "to": {"map": "FLO_16", "id": 1},       "reqs": []}, #* ItemA (StarPiece) -> (NE) Elevators Exit Right
+    {"from": {"map": "FLO_16", "id": 0},       "to": {"map": "FLO_16", "id": "ItemB"}, "reqs": []}, #* (NE) Elevators Exit Left -> ItemB (StinkyHerb)
+    {"from": {"map": "FLO_16", "id": "ItemB"}, "to": {"map": "FLO_16", "id": 0},       "reqs": []}, #* ItemB (StinkyHerb) -> (NE) Elevators Exit Left
 
     # FLO_17 (NE) Fallen Logs
     {"from": {"map": "FLO_17", "id": 0}, "to": {"map": "FLO_16", "id": 1}, "reqs": []}, # (NE) Fallen Logs Exit Left -> (NE) Elevators Exit Right
@@ -59,6 +61,8 @@ edges_flo = [
     
     {"from": {"map": "FLO_09", "id": 0},       "to": {"map": "FLO_09", "id": "ItemA"}, "reqs": []}, #* (East) Triple Tree Path Exit Left -> ItemA (HappyFlowerB)
     {"from": {"map": "FLO_09", "id": "ItemA"}, "to": {"map": "FLO_09", "id": 0},       "reqs": []}, #* ItemA (HappyFlowerB) -> (East) Triple Tree Path Exit Left
+    {"from": {"map": "FLO_09", "id": 0},       "to": {"map": "FLO_09", "id": "ItemB"}, "reqs": []}, #* (East) Triple Tree Path Exit Left -> ItemA (StinkyHerb)
+    {"from": {"map": "FLO_09", "id": "ItemB"}, "to": {"map": "FLO_09", "id": 0},       "reqs": []}, #* ItemA (StinkyHerb) -> (East) Triple Tree Path Exit Left
 
     # FLO_03 (East) Petunia's Field
     {"from": {"map": "FLO_03", "id": 0}, "to": {"map": "FLO_09", "id": 1}, "reqs": []}, # (East) Petunia's Field Exit Left -> (East) Triple Tree Path Exit Right
@@ -67,10 +71,14 @@ edges_flo = [
     {"from": {"map": "FLO_03", "id": 0}, "to": {"map": "FLO_03", "id": 1}, "reqs": []}, #? (East) Petunia's Field Exit Left -> (East) Petunia's Field Exit Right
     {"from": {"map": "FLO_03", "id": 1}, "to": {"map": "FLO_03", "id": 0}, "reqs": []}, #? (East) Petunia's Field Exit Right -> (East) Petunia's Field Exit Left
     
-    {"from": {"map": "FLO_03", "id": 0},             "to": {"map": "FLO_03", "id": "HiddenPanel"}, "reqs": []}, #* (East) Petunia's Field Exit Left -> HiddenPanel (StarPiece)
-    {"from": {"map": "FLO_03", "id": "HiddenPanel"}, "to": {"map": "FLO_03", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> (East) Petunia's Field Exit Left
-    {"from": {"map": "FLO_03", "id": 0},             "to": {"map": "FLO_03", "id": "GiftA"},       "reqs": []}, #* (East) Petunia's Field Exit Left -> GiftA (MagicalBean)
-    {"from": {"map": "FLO_03", "id": "GiftA"},       "to": {"map": "FLO_03", "id": 0},             "reqs": []}, #* GiftA (MagicalBean) -> (East) Petunia's Field Exit Left
+    {"from": {"map": "FLO_03", "id": 0},              "to": {"map": "FLO_03", "id": "HiddenPanel"},  "reqs": []}, #* (East) Petunia's Field Exit Left -> HiddenPanel (StarPiece)
+    {"from": {"map": "FLO_03", "id": "HiddenPanel"},  "to": {"map": "FLO_03", "id": 0},              "reqs": []}, #* HiddenPanel (StarPiece) -> (East) Petunia's Field Exit Left
+    {"from": {"map": "FLO_03", "id": 0},              "to": {"map": "FLO_03", "id": "GiftA"},        "reqs": []}, #* (East) Petunia's Field Exit Left -> GiftA (MagicalBean)
+    {"from": {"map": "FLO_03", "id": "GiftA"},        "to": {"map": "FLO_03", "id": 0},              "reqs": []}, #* GiftA (MagicalBean) -> (East) Petunia's Field Exit Left
+    {"from": {"map": "FLO_03", "id": 0},              "to": {"map": "FLO_03", "id": "Tree1_Drop1A"}, "reqs": []}, #* (East) Petunia's Field Exit Left -> Tree1_Drop1A (RedBerry)
+    {"from": {"map": "FLO_03", "id": "Tree1_Drop1A"}, "to": {"map": "FLO_03", "id": 0},              "reqs": []}, #* Tree1_Drop1A (RedBerry) -> (East) Petunia's Field Exit Left
+    {"from": {"map": "FLO_03", "id": 0},              "to": {"map": "FLO_03", "id": "Tree1_Drop1B"}, "reqs": []}, #* (East) Petunia's Field Exit Left -> Tree1_Drop1B (RedBerry)
+    {"from": {"map": "FLO_03", "id": "Tree1_Drop1B"}, "to": {"map": "FLO_03", "id": 0},              "reqs": []}, #* Tree1_Drop1B (RedBerry) -> (East) Petunia's Field Exit Left
 
     # FLO_22 (East) Old Well
     {"from": {"map": "FLO_22", "id": 0}, "to": {"map": "FLO_03", "id": 1}, "reqs": []}, # (East) Old Well Exit Left -> (East) Petunia's Field Exit Right
@@ -85,8 +93,14 @@ edges_flo = [
     {"from": {"map": "FLO_08", "id": 0}, "to": {"map": "FLO_08", "id": 1}, "reqs": []}, #? (SE) Briar Platforming Exit Left -> (SE) Briar Platforming Exit Right
     {"from": {"map": "FLO_08", "id": 1}, "to": {"map": "FLO_08", "id": 0}, "reqs": []}, #? (SE) Briar Platforming Exit Right -> (SE) Briar Platforming Exit Left
     
-    {"from": {"map": "FLO_08", "id": 1},       "to": {"map": "FLO_08", "id": "ItemA"}, "reqs": []}, #* (SE) Briar Platforming Exit Right -> ItemA (StarPiece)
-    {"from": {"map": "FLO_08", "id": "ItemA"}, "to": {"map": "FLO_08", "id": 1},       "reqs": []}, #* ItemA (StarPiece) -> (SE) Briar Platforming Exit Right
+    {"from": {"map": "FLO_08", "id": 1},              "to": {"map": "FLO_08", "id": "ItemA"},        "reqs": []}, #* (SE) Briar Platforming Exit Right -> ItemA (StarPiece)
+    {"from": {"map": "FLO_08", "id": "ItemA"},        "to": {"map": "FLO_08", "id": 1},              "reqs": []}, #* ItemA (StarPiece) -> (SE) Briar Platforming Exit Right
+    {"from": {"map": "FLO_08", "id": 0},              "to": {"map": "FLO_08", "id": "ItemB"},        "reqs": []}, #* (SE) Briar Platforming Exit Left -> ItemB (StinkyHerb)
+    {"from": {"map": "FLO_08", "id": "ItemB"},        "to": {"map": "FLO_08", "id": 0},              "reqs": []}, #* ItemB (StinkyHerb) -> (SE) Briar Platforming Exit Left
+    {"from": {"map": "FLO_08", "id": 1},              "to": {"map": "FLO_08", "id": "Tree1_Drop1A"}, "reqs": []}, #* (SE) Briar Platforming Exit Right -> Tree1_Drop1A (BlueBerry)
+    {"from": {"map": "FLO_08", "id": "Tree1_Drop1A"}, "to": {"map": "FLO_08", "id": 1},              "reqs": []}, #* Tree1_Drop1A (BlueBerry) -> (SE) Briar Platforming Exit Right
+    {"from": {"map": "FLO_08", "id": 1},              "to": {"map": "FLO_08", "id": "Tree1_Drop1B"}, "reqs": []}, #* (SE) Briar Platforming Exit Right -> ItemA (BlueBerry)
+    {"from": {"map": "FLO_08", "id": "Tree1_Drop1B"}, "to": {"map": "FLO_08", "id": 1},              "reqs": []}, #* ItemA (BlueBerry) -> (SE) Briar Platforming Exit Right
 
     # FLO_24 (SE) Water Level Room
     {"from": {"map": "FLO_24", "id": 0}, "to": {"map": "FLO_08", "id": 1}, "reqs": []}, # (SE) Water Level Room Exit Left -> (SE) Briar Platforming Exit Right
@@ -101,12 +115,18 @@ edges_flo = [
     {"from": {"map": "FLO_24", "id": "HiddenPanel"},   "to": {"map": "FLO_24", "id": 1},               "reqs": []}, #* HiddenPanel (StarPiece) -> (SE) Water Level Room Exit Right
     {"from": {"map": "FLO_24", "id": 1},               "to": {"map": "FLO_24", "id": "HiddenYBlockA"}, "reqs": []}, #* (SE) Water Level Room Exit Right -> HiddenYBlockA (MapleSyrup)
     {"from": {"map": "FLO_24", "id": "HiddenYBlockA"}, "to": {"map": "FLO_24", "id": 1},               "reqs": []}, #* HiddenYBlockA (MapleSyrup) -> (SE) Water Level Room Exit Right
+    {"from": {"map": "FLO_24", "id": 0},               "to": {"map": "FLO_24", "id": "Tree1_Drop1A"},  "reqs": []}, #* (SE) Water Level Room Exit Left -> Tree1_Drop1A (BubbleBerry)
+    {"from": {"map": "FLO_24", "id": "Tree1_Drop1A"},  "to": {"map": "FLO_24", "id": 0},               "reqs": []}, #* Tree1_Drop1A (BubbleBerry) -> (SE) Water Level Room Exit Left
+    {"from": {"map": "FLO_24", "id": 0},               "to": {"map": "FLO_24", "id": "Tree1_Drop1B"},  "reqs": []}, #* (SE) Water Level Room Exit Left -> Tree1_Drop1B (BubbleBerry)
+    {"from": {"map": "FLO_24", "id": "Tree1_Drop1B"},  "to": {"map": "FLO_24", "id": 0},               "reqs": []}, #* Tree1_Drop1B (BubbleBerry) -> (SE) Water Level Room Exit Left
 
     # FLO_10 (SE) Lily's Fountain
     {"from": {"map": "FLO_10", "id": 0}, "to": {"map": "FLO_24", "id": 1}, "reqs": []}, # (SE) Lily's Fountain Exit Left -> (SE) Water Level Room Exit Right
     
-    {"from": {"map": "FLO_10", "id": 0},       "to": {"map": "FLO_10", "id": "GiftA"}, "reqs": []}, #* (SE) Lily's Fountain Exit Left -> GiftA (MiracleWater)
-    {"from": {"map": "FLO_10", "id": "GiftA"}, "to": {"map": "FLO_10", "id": 0},       "reqs": []}, #* GiftA (MiracleWater) -> (SE) Lily's Fountain Exit Left
+    {"from": {"map": "FLO_10", "id": 0},              "to": {"map": "FLO_10", "id": "GiftA"},        "reqs": []}, #* (SE) Lily's Fountain Exit Left -> GiftA (MiracleWater)
+    {"from": {"map": "FLO_10", "id": "GiftA"},        "to": {"map": "FLO_10", "id": 0},              "reqs": []}, #* GiftA (MiracleWater) -> (SE) Lily's Fountain Exit Left
+    {"from": {"map": "FLO_10", "id": 0},              "to": {"map": "FLO_10", "id": "Tree1_Drop1A"}, "reqs": []}, #* (SE) Lily's Fountain Exit Left -> Tree1_Drop1A (JamminJelly)
+    {"from": {"map": "FLO_10", "id": "Tree1_Drop1A"}, "to": {"map": "FLO_10", "id": 0},              "reqs": []}, #* Tree1_Drop1A (JamminJelly) -> (SE) Lily's Fountain Exit Left
 
     # FLO_25 (SW) Path to Crystal Tree
     {"from": {"map": "FLO_25", "id": 0}, "to": {"map": "FLO_00", "id": 3}, "reqs": []}, # (SW) Path to Crystal Tree Exit Right -> Center Exit Bottom Left
@@ -115,8 +135,14 @@ edges_flo = [
     {"from": {"map": "FLO_25", "id": 0}, "to": {"map": "FLO_25", "id": 1}, "reqs": []}, #? (SW) Path to Crystal Tree Exit Right -> (SW) Path to Crystal Tree Exit Left
     {"from": {"map": "FLO_25", "id": 1}, "to": {"map": "FLO_25", "id": 0}, "reqs": []}, #? (SW) Path to Crystal Tree Exit Left -> (SW) Path to Crystal Tree Exit Right
     
-    {"from": {"map": "FLO_25", "id": 1},             "to": {"map": "FLO_25", "id": "HiddenPanel"}, "reqs": []}, #* (SW) Path to Crystal Tree Exit Left -> HiddenPanel (StarPiece)
-    {"from": {"map": "FLO_25", "id": "HiddenPanel"}, "to": {"map": "FLO_25", "id": 1},             "reqs": []}, #* HiddenPanel (StarPiece) -> (SW) Path to Crystal Tree Exit Left
+    {"from": {"map": "FLO_25", "id": 1},              "to": {"map": "FLO_25", "id": "HiddenPanel"},  "reqs": []}, #* (SW) Path to Crystal Tree Exit Left -> HiddenPanel (StarPiece)
+    {"from": {"map": "FLO_25", "id": "HiddenPanel"},  "to": {"map": "FLO_25", "id": 1},              "reqs": []}, #* HiddenPanel (StarPiece) -> (SW) Path to Crystal Tree Exit Left
+    {"from": {"map": "FLO_25", "id": 1},              "to": {"map": "FLO_25", "id": "ItemA"},        "reqs": []}, #* (SW) Path to Crystal Tree Exit Left -> ItemA (StinkyHerb)
+    {"from": {"map": "FLO_25", "id": "ItemA"},        "to": {"map": "FLO_25", "id": 1},              "reqs": []}, #* ItemA (StinkyHerb) -> (SW) Path to Crystal Tree Exit Left
+    {"from": {"map": "FLO_25", "id": 1},              "to": {"map": "FLO_25", "id": "Tree1_Drop1A"}, "reqs": []}, #* (SW) Path to Crystal Tree Exit Left -> Tree1_Drop1A (YellowBerry)
+    {"from": {"map": "FLO_25", "id": "Tree1_Drop1A"}, "to": {"map": "FLO_25", "id": 1},              "reqs": []}, #* Tree1_Drop1A (YellowBerry) -> (SW) Path to Crystal Tree Exit Left
+    {"from": {"map": "FLO_25", "id": 1},              "to": {"map": "FLO_25", "id": "Tree1_Drop1B"}, "reqs": []}, #* (SW) Path to Crystal Tree Exit Left -> Tree1_Drop1B (YellowBerry)
+    {"from": {"map": "FLO_25", "id": "Tree1_Drop1B"}, "to": {"map": "FLO_25", "id": 1},              "reqs": []}, #* Tree1_Drop1B (YellowBerry) -> (SW) Path to Crystal Tree Exit Left
 
     # FLO_07 (SW) Posie and Crystal Tree
     {"from": {"map": "FLO_07", "id": 0}, "to": {"map": "FLO_25", "id": 1}, "reqs": []}, # (SW) Posie and Crystal Tree Exit Right -> (SW) Path to Crystal Tree Exit Left
@@ -160,6 +186,8 @@ edges_flo = [
     
     {"from": {"map": "FLO_14", "id": 1},       "to": {"map": "FLO_14", "id": "ItemA"}, "reqs": []}, #* (NW) Bubble Flower Exit Left -> ItemA (StarPiece)
     {"from": {"map": "FLO_14", "id": "ItemA"}, "to": {"map": "FLO_14", "id": 1},       "reqs": []}, #* ItemA (StarPiece) -> (NW) Bubble Flower Exit Left
+    {"from": {"map": "FLO_14", "id": 0},       "to": {"map": "FLO_14", "id": "ItemB"}, "reqs": []}, #* (NW) Bubble Flower Exit Right -> ItemB (StinkyHerb)
+    {"from": {"map": "FLO_14", "id": "ItemB"}, "to": {"map": "FLO_14", "id": 0},       "reqs": []}, #* ItemB (StinkyHerb) -> (NW) Bubble Flower Exit Right
 
     # FLO_13 (NW) Lakilester
     {"from": {"map": "FLO_13", "id": 0}, "to": {"map": "FLO_14", "id": 1}, "reqs": []}, # (NW) Lakilester Exit Right -> (NW) Bubble Flower Exit Left

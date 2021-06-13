@@ -152,6 +152,8 @@ edges_mim = [
     
     {"from": {"map": "MIM_11", "id": 0},         "to": {"map": "MIM_11", "id": "YBlockA"}, "reqs": []}, #* Outside Boo's Mansion Forever Forest Entrance -> YBlockA (VoltShroom)
     {"from": {"map": "MIM_11", "id": "YBlockA"}, "to": {"map": "MIM_11", "id": 0},         "reqs": []}, #* YBlockA (VoltShroom) -> Outside Boo's Mansion Forever Forest Entrance
+    {"from": {"map": "MIM_11", "id": 1},         "to": {"map": "MIM_11", "id": "ItemA"},   "reqs": []}, #* Outside Boo's Mansion Entrance to Wasteland -> ItemA (StrangeLeaf)
+    {"from": {"map": "MIM_11", "id": "ItemA"},   "to": {"map": "MIM_11", "id": 1},         "reqs": []}, #* ItemA (StrangeLeaf) -> Outside Boo's Mansion Entrance to Wasteland
     
     # MIM_12 Exit to Gusty Gulch
     {"from": {"map": "MIM_12", "id": 0}, "to": {"map": "MIM_11", "id": 1}, "reqs": []}, # Exit to Gusty Gulch Exit West -> Outside Boo's Mansion Entrance to Wasteland
