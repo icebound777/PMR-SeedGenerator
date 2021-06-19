@@ -63,7 +63,7 @@ edges_arn = [
     {"from": {"map": "ARN_07", "id": 1}, "to": {"map": "ARN_07", "id": 2}, "reqs": []}, #? Windmill Exterior Exit East -> Windmill Exterior Exit West
     {"from": {"map": "ARN_07", "id": 2}, "to": {"map": "ARN_07", "id": 1}, "reqs": []}, #? Windmill Exterior Exit West -> Windmill Exterior Exit East
     
-    #{"from": {"map": "ARN_07", "id": 0}, "to": {"map": "ARN_07", "id": 0}, "reqs": [require(flag="beat_tubba_heart")], "pseudoitems": ["STARSPIRIT"]}, #TODO + Windmill Exterior Enter Windmill
+    {"from": {"map": "ARN_07", "id": 0}, "to": {"map": "ARN_07", "id": 0}, "reqs": [require(flag="RF_Ch3_HeartFledFirstTunnel")], "pseudoitems": ["STARSPIRIT"]}, #+ Windmill Exterior Enter Windmill
 
     # ARN_08 Windmill Interior
     {"from": {"map": "ARN_08", "id": 0}, "to": {"map": "ARN_07", "id": 0}, "reqs": []}, # Windmill Interior Exit Windmill -> Windmill Exterior Enter Windmill
@@ -88,6 +88,8 @@ edges_arn = [
 
     # ARN_11 Tubba's Heart Chamber
     {"from": {"map": "ARN_11", "id": 0}, "to": {"map": "ARN_13", "id": 1}, "reqs": []}, # Tubba's Heart Chamber Exit West -> Tunnel 3 Exit East
+
+    {"from": {"map": "ARN_11", "id": 0}, "to": {"map": "ARN_11", "id": 0}, "reqs": [], "pseudoitems": ["RF_Ch3_HeartFledFirstTunnel"]}, #+ Tubba's Heart Chamber Exit West
 
     # ARN_12 Tunnel 2
     {"from": {"map": "ARN_12", "id": 0}, "to": {"map": "ARN_10", "id": 1}, "reqs": []}, # Tunnel 2 Exit West -> Tunnel 1 Exit East
