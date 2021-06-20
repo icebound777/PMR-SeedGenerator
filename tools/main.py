@@ -191,6 +191,7 @@ class Window(QMainWindow):
 			"ShuffleItems": Option.get(Option.name == "ShuffleItems"),
 			"IncludeCoins": Option.get(Option.name == "IncludeCoins"),
 			"IncludeShops": Option.get(Option.name == "IncludeShops"),
+			"IncludePanels": Option.get(Option.name == "IncludePanels"),
 			# Entrances Tab
 			"ShuffleEntrances": Option.get(Option.name == "ShuffleEntrances"),
 			"ShuffleEntrancesByArea": Option.get(Option.name == "ShuffleEntrancesByArea"),
@@ -293,6 +294,7 @@ class Window(QMainWindow):
 		self.chk_shuffle_items.setChecked(Option.get(Option.name == "ShuffleItems").value)
 		self.chk_include_coins.setChecked(Option.get(Option.name == "IncludeCoins").value)
 		self.chk_include_shops.setChecked(Option.get(Option.name == "IncludeShops").value)
+		self.chk_include_panels.setChecked(Option.get(Option.name == "IncludePanels").value)
 
 		# Entrance Options
 		self.chk_shuffle_entrances.setChecked(Option.get(Option.name == "ShuffleEntrances").value)
@@ -306,6 +308,7 @@ class Window(QMainWindow):
 				self.chk_shuffle_items.setChecked(True)
 		self.chk_include_coins.clicked.connect(lambda checked: update(checked))
 		self.chk_include_shops.clicked.connect(lambda checked: update(checked))
+		self.chk_include_panels.clicked.connect(lambda checked: update(checked))
 
 		# Disable/Enable extra item options when ShuffleItems changes
 		def reset(checked, chk_widget):
@@ -316,6 +319,7 @@ class Window(QMainWindow):
 				chk_widget.setEnabled(True)
 		self.chk_shuffle_items.clicked.connect(lambda checked: reset(checked, self.chk_include_coins))
 		self.chk_shuffle_items.clicked.connect(lambda checked: reset(checked, self.chk_include_shops))
+		self.chk_shuffle_items.clicked.connect(lambda checked: reset(checked, self.chk_include_panels))
 
 		# Disable Entrance options if ShuffleEntrances is unchecked
 		def update_entrance_widgets(checked):
@@ -382,6 +386,7 @@ class Window(QMainWindow):
 			"ShuffleItems": Option.get(Option.name == "ShuffleItems"),
 			"IncludeCoins": Option.get(Option.name == "IncludeCoins"),
 			"IncludeShops": Option.get(Option.name == "IncludeShops"),
+			"IncludePanels": Option.get(Option.name == "IncludePanels"),
 			# Entrances Tab
 			"ShuffleEntrances": Option.get(Option.name == "ShuffleEntrances"),
 			"ShuffleEntrancesByArea": Option.get(Option.name == "ShuffleEntrancesByArea"),
@@ -404,6 +409,7 @@ class Window(QMainWindow):
 		options["ShuffleItems"].value = int(self.chk_shuffle_items.isChecked())
 		options["IncludeCoins"].value = int(self.chk_include_coins.isChecked())
 		options["IncludeShops"].value = int(self.chk_include_shops.isChecked())
+		options["IncludePanels"].value = int(self.chk_include_panels.isChecked())
 		# Entrances Tab
 		options["ShuffleEntrances"].value = int(self.chk_shuffle_entrances.isChecked())
 		options["ShuffleEntrancesByArea"].value = int(self.radio_by_area.isChecked())
@@ -419,7 +425,7 @@ class Window(QMainWindow):
 
 		# Initialize Random Seed
 		m = hashlib.md5()
-		m.update(self.edit_seed.text().encode("utf-8"))
+		m.update(self.edit_seed.text().lower().encode("utf-8"))
 		self.seed = int(m.hexdigest()[0:8], 16)
 		random.seed(self.seed)
 
