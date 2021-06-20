@@ -40,26 +40,27 @@ class Table:
 			})
 
 		# Items
-		for node in Node.select().where(Node.key_name_item.is_null(False) & Node.current_item.is_null(False)):
-			item = Item.get(Item.value == node.current_item.value)
-			table_data.append({
-				"key": node.get_item_key(),
-				"value": item.value,
-			})
-			# Generate a ROM table pair that describes where a unique itemID resides in the game using areaID and mapID
-			if item.item_type in ["KEYITEM", "BADGE"]:
+		placed_items = kwargs.get("items")
+		for node in placed_items:
+			if node.key_name_item is not None and node.current_item is not None:
 				table_data.append({
-					"key": (0xA5 << 24) | (item.value),
-					"value": (node.map_area.area_id << 8) | (node.map_area.map_id),
+					"key": node.get_item_key(),
+					"value": node.current_item.value,
 				})
+				# Generate a ROM table pair that describes where a unique itemID resides in the game using areaID and mapID
+				if node.current_item.item_type in ["KEYITEM", "BADGE"]:
+					table_data.append({
+						"key": (0xA5 << 24) | (node.current_item.value),
+						"value": (node.map_area.area_id << 8) | (node.map_area.map_id),
+					})
 
-		# Item Prices
-		for node in Node.select().where(Node.key_name_price.is_null(False) & Node.key_name_price.startswith("ShopPrice")):
-			# TODO: Modify price value based on the item its tied to
-			table_data.append({
-				"key": node.get_price_key(),
-				"value": node.current_item.base_price
-			})
+			# Item Prices
+			if node.key_name_price is not None and node.key_name_price.startswith("ShopPrice"):
+				# TODO: Modify price value based on the item its tied to
+				table_data.append({
+					"key": node.get_price_key(),
+					"value": node.current_item.base_price
+				})
 
 		# Actor Attributes
 		for actor_attribute in ActorAttribute.select():

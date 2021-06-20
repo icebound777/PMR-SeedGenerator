@@ -33,7 +33,7 @@ def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, 
             i += 1
 
 
-def place_items(app, isShuffle, algorithm):
+def place_items(app, isShuffle, algorithm, item_placement):
     """Places items into item locations according to chosen settings."""
 
     do_shuffle_items = Option.get(Option.name == "ShuffleItems").value
@@ -41,7 +41,7 @@ def place_items(app, isShuffle, algorithm):
         # Place items in their vanilla locations
         for node in Node.select().where(Node.key_name_item.is_null(False)):
             node.current_item = node.vanilla_item
-            node.save()
+            item_placement.append(node)
 
     elif algorithm == "forward_fill":
         # Place items in accessible locations first, then expand accessible locations by unlocked locations
@@ -191,46 +191,10 @@ def place_items(app, isShuffle, algorithm):
                 item_node.current_item = random_item
                 filled_item_nodes.append(item_node)
 
-        # Write changed items to sqlite db
-        print("Writing Items to SQLite DB ...")
-        for node in Node.select().where(Node.key_name_item.is_null(False)):
-            for filled_item_node in filled_item_nodes:
-                if (    filled_item_node.map_area == node.map_area
-                    and filled_item_node.key_name_item == node.key_name_item):
-                    current_node = filled_item_node
-                    break
-            node.current_item = current_node.current_item
-            node.save()
+        item_placement.extend(filled_item_nodes)
 
     elif algorithm == "assumed_fill":
         # Start with all items in inventory, remove an item and try to place it at a reachable location
         None # NYI # TODO
-    
-    # Compare randomized database with default and log the changes
-    with open("./debug/item_placement.txt", "w") as file:
-        connection = sqlite3.connect("default_db.sqlite")
-        connection.row_factory = sqlite3.Row
-        cursor = connection.cursor()
-        select_statement = ("SELECT node.key_name_item AS key_name_item\
-                                  , maparea.area_id    AS area_id\
-                                  , maparea.map_id     AS map_id\
-                                  , node.item_index    AS item_index\
-                               FROM node\
-                              INNER JOIN maparea\
-                                 ON node.map_area_id = maparea.id\
-                              WHERE node.key_name_item IS NOT NULL")
-        cursor.execute(select_statement)
-        tablerows = [row for row in cursor.fetchall()]
-        for i,tablerow in enumerate(tablerows):
-            key_name = tablerow['key_name_item']
-            area_id = tablerow['area_id']
-            map_id = tablerow['map_id']
-            item_index = tablerow['item_index']
 
-            node = Node.select().join(MapArea).where((MapArea.area_id==area_id) & (MapArea.map_id==map_id) & (Node.item_index==item_index)).get()
-            #node = Node.get(Node.map_area.area_id==area_id, Node.map_area.map_id==map_id, Node.item_index==item_index)
-            print(f"{node}")
-            file.write(f"[{node.map_area.name}] ({node.map_area.verbose_name}): {node.key_name_item} - {node.vanilla_item.item_name} -> {node.current_item.item_name}\n")
-            app.processEvents()
-
-            yield ("Generating Log", int(100 * i / len(tablerows)))
+    yield ("Generating Log", int(100 * 1))

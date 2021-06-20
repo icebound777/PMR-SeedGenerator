@@ -437,18 +437,26 @@ class Window(QMainWindow):
 		self.update_db()
 
 		# Item Placement
-		for text,percent_complete in place_items(self.app, isShuffle=True, algorithm="forward_fill"):
+		placed_items = []
+		for text,percent_complete in place_items(self.app, isShuffle=True, algorithm="forward_fill", item_placement=placed_items):
 			self.progress_bar.setValue(percent_complete)
 			self.progress_bar.setFormat(f"{text} ({percent_complete}%)")
 			self.app.processEvents()
 
 		# Make everything inexpensive
-		for item in Item.select():
-			item.base_price = 1
-			item.save()
+		for node in placed_items:
+			node.current_item.base_price = 1
+
+		# Write sorted spoiler log
+		sorted_by_key = sorted(placed_items, key=lambda node: node.key_name_item)
+		sorted_by_map = sorted(sorted_by_key, key=lambda node: node.map_area.map_id)
+		sorted_by_area = sorted(sorted_by_map, key=lambda node: node.map_area.area_id)
+		with open("./debug/item_placement.txt", "w") as file:
+			for node in sorted_by_area:
+				file.write(f"[{node.map_area.name}] ({node.map_area.verbose_name}): {node.key_name_item} - {node.vanilla_item.item_name} -> {node.current_item.item_name}\n")
 
 		# Create a sorted list of key:value pairs to be written into the ROM
-		table_data = rom_table.generate_pairs()
+		table_data = rom_table.generate_pairs(items=placed_items)
 
 		# Update table info with variable data
 		rom_table.info["num_entries"] = len(table_data)
