@@ -114,7 +114,7 @@ def place_items(app, isShuffle, algorithm):
         if not do_randomize_shops:
             dont_randomize.append("Shops")
         # Randomize hidden panels?
-        do_randomize_panels = True #TODO Option.get(Option.name == "?").value
+        do_randomize_panels = Option.get(Option.name == "IncludePanels").value
         if not do_randomize_panels:
             dont_randomize.append("Panels")
 
