@@ -15,6 +15,8 @@ from pathlib import Path
 from PyQt5.QtWidgets import *
 from PyQt5 import QtCore, QtGui, uic
 
+import custom_seed
+
 from enums import Enums, create_enums
 from table import Table
 from utility import sr_dump, sr_copy, sr_compile
@@ -125,6 +127,15 @@ class Window(QMainWindow):
 		self.log.ensureCursorVisible()
 		self.stream = Stream(newText=self.on_update_text)
 		sys.stdout = self.stream
+
+		# Check if custom seed file exists in the correct location
+		try:
+			with open("./custom_seed.json", "r") as file:
+				self.display(f"Custom seed file found")
+		except FileNotFoundError:
+			self.display(f"Generating default custom seed file...")
+			custom_seed.generate()
+			self.display(f"Custom seed file generated")
 
 		# Check if the ROM already exists in the correct location
 		rom_exists = False

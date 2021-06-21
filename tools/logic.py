@@ -1,11 +1,14 @@
 import random
 import sqlite3
+import json
 
 from db.node import Node
+from db.item import Item
 from db.map_area import MapArea
 from db.option import Option
 from worldgraph import generate as generate_world_graph, get_node_identifier
 from simulate import Mario, add_to_inventory
+from custom_seed import validate_seed
 
 
 def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, pool_other_items):
@@ -36,8 +39,28 @@ def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, 
 def place_items(app, isShuffle, algorithm, item_placement):
     """Places items into item locations according to chosen settings."""
 
+    do_custom_seed = False #NYI
     do_shuffle_items = Option.get(Option.name == "ShuffleItems").value
-    if not do_shuffle_items:
+
+    if do_custom_seed:
+        # Place items according to custom seed
+        try:
+            seed_path = "./custom_seed.json"
+            is_valid = validate_seed(seed_path)
+            if is_valid:
+                with open(seed_path, "r") as custom_seed_file:
+                    custom_items = json.load(custom_seed_file)
+            #TODO: handle invalid seed: GUI message?
+        except FileNotFoundError as err:
+            print(f"{err.args}: Custom Seed file \'{seed_path}\' cannot be read.")
+            raise
+
+        for node in Node.select().where(Node.key_name_item.is_null(False)):
+            new_item = Item.get(Item.item_name == custom_items.get(node.map_area.name).get(node.key_name_item))
+            node.current_item = new_item
+            item_placement.append(node)
+
+    elif not do_shuffle_items:
         # Place items in their vanilla locations
         for node in Node.select().where(Node.key_name_item.is_null(False)):
             node.current_item = node.vanilla_item
