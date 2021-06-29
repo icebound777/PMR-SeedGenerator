@@ -1,11 +1,14 @@
 import random
 import sqlite3
+import json
 
 from db.node import Node
+from db.item import Item
 from db.map_area import MapArea
 from db.option import Option
 from worldgraph import generate as generate_world_graph, get_node_identifier
 from simulate import Mario, add_to_inventory
+from custom_seed import validate_seed
 
 
 def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, pool_other_items):
@@ -33,15 +36,35 @@ def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, 
             i += 1
 
 
-def place_items(app, isShuffle, algorithm):
+def place_items(app, isShuffle, algorithm, item_placement):
     """Places items into item locations according to chosen settings."""
 
+    do_custom_seed = False #NYI
     do_shuffle_items = Option.get(Option.name == "ShuffleItems").value
-    if not do_shuffle_items:
+
+    if do_custom_seed:
+        # Place items according to custom seed
+        try:
+            seed_path = "./custom_seed.json"
+            is_valid = validate_seed(seed_path)
+            if is_valid:
+                with open(seed_path, "r") as custom_seed_file:
+                    custom_items = json.load(custom_seed_file)
+            #TODO: handle invalid seed: GUI message?
+        except FileNotFoundError as err:
+            print(f"{err.args}: Custom Seed file \'{seed_path}\' cannot be read.")
+            raise
+
+        for node in Node.select().where(Node.key_name_item.is_null(False)):
+            new_item = Item.get(Item.item_name == custom_items.get(node.map_area.name).get(node.key_name_item))
+            node.current_item = new_item
+            item_placement.append(node)
+
+    elif not do_shuffle_items:
         # Place items in their vanilla locations
         for node in Node.select().where(Node.key_name_item.is_null(False)):
             node.current_item = node.vanilla_item
-            node.save()
+            item_placement.append(node)
 
     elif algorithm == "forward_fill":
         # Place items in accessible locations first, then expand accessible locations by unlocked locations
@@ -113,7 +136,7 @@ def place_items(app, isShuffle, algorithm):
         if not do_randomize_shops:
             dont_randomize.append("Shops")
         # Randomize hidden panels?
-        do_randomize_panels = True #TODO Option.get(Option.name == "?").value
+        do_randomize_panels = Option.get(Option.name == "IncludePanels").value
         if not do_randomize_panels:
             dont_randomize.append("Panels")
 
@@ -192,46 +215,11 @@ def place_items(app, isShuffle, algorithm):
                 random_item = pool_other_items.pop(random.randint(0, len(pool_other_items) - 1))
                 item_node.current_item = random_item
                 filled_item_nodes.append(item_node)
-        # Write changed items to sqlite db
-        print("Writing Items to SQLite DB ...")
-        for node in Node.select().where(Node.key_name_item.is_null(False)):
-            for filled_item_node in filled_item_nodes:
-                if (    filled_item_node.map_area == node.map_area
-                    and filled_item_node.key_name_item == node.key_name_item):
-                    current_node = filled_item_node
-                    break
-            node.current_item = current_node.current_item
-            node.save()
+
+        item_placement.extend(filled_item_nodes)
 
     elif algorithm == "assumed_fill":
         # Start with all items in inventory, remove an item and try to place it at a reachable location
         None # NYI # TODO
-    
-    # Compare randomized database with default and log the changes
-    with open("./debug/item_placement.txt", "w") as file:
-        connection = sqlite3.connect("default_db.sqlite")
-        connection.row_factory = sqlite3.Row
-        cursor = connection.cursor()
-        select_statement = ("SELECT node.key_name_item AS key_name_item\
-                                  , maparea.area_id    AS area_id\
-                                  , maparea.map_id     AS map_id\
-                                  , node.item_index    AS item_index\
-                               FROM node\
-                              INNER JOIN maparea\
-                                 ON node.map_area_id = maparea.id\
-                              WHERE node.key_name_item IS NOT NULL")
-        cursor.execute(select_statement)
-        tablerows = [row for row in cursor.fetchall()]
-        for i,tablerow in enumerate(tablerows):
-            key_name = tablerow['key_name_item']
-            area_id = tablerow['area_id']
-            map_id = tablerow['map_id']
-            item_index = tablerow['item_index']
 
-            node = Node.select().join(MapArea).where((MapArea.area_id==area_id) & (MapArea.map_id==map_id) & (Node.item_index==item_index)).get()
-            #node = Node.get(Node.map_area.area_id==area_id, Node.map_area.map_id==map_id, Node.item_index==item_index)
-            print(f"{node}")
-            file.write(f"[{node.map_area.name}] ({node.map_area.verbose_name}): {node.key_name_item} - {node.vanilla_item.item_name} -> {node.current_item.item_name}\n")
-            app.processEvents()
-
-            yield ("Generating Log", int(100 * i / len(tablerows)))
+    yield ("Generating Log", int(100 * 1))

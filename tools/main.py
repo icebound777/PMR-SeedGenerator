@@ -15,6 +15,8 @@ from pathlib import Path
 from PyQt5.QtWidgets import *
 from PyQt5 import QtCore, QtGui, uic
 
+import custom_seed
+
 from enums import Enums, create_enums
 from table import Table
 from utility import sr_dump, sr_copy, sr_compile
@@ -126,6 +128,15 @@ class Window(QMainWindow):
 		self.stream = Stream(newText=self.on_update_text)
 		sys.stdout = self.stream
 
+		# Check if custom seed file exists in the correct location
+		try:
+			with open("./custom_seed.json", "r") as file:
+				self.display(f"Custom seed file found")
+		except FileNotFoundError:
+			self.display(f"Generating default custom seed file...")
+			custom_seed.generate()
+			self.display(f"Custom seed file generated")
+
 		# Check if the ROM already exists in the correct location
 		rom_exists = False
 		for filename in os.listdir("../ROM"):
@@ -191,6 +202,7 @@ class Window(QMainWindow):
 			"ShuffleItems": Option.get(Option.name == "ShuffleItems"),
 			"IncludeCoins": Option.get(Option.name == "IncludeCoins"),
 			"IncludeShops": Option.get(Option.name == "IncludeShops"),
+			"IncludePanels": Option.get(Option.name == "IncludePanels"),
 			# Entrances Tab
 			"ShuffleEntrances": Option.get(Option.name == "ShuffleEntrances"),
 			"ShuffleEntrancesByArea": Option.get(Option.name == "ShuffleEntrancesByArea"),
@@ -293,6 +305,7 @@ class Window(QMainWindow):
 		self.chk_shuffle_items.setChecked(Option.get(Option.name == "ShuffleItems").value)
 		self.chk_include_coins.setChecked(Option.get(Option.name == "IncludeCoins").value)
 		self.chk_include_shops.setChecked(Option.get(Option.name == "IncludeShops").value)
+		self.chk_include_panels.setChecked(Option.get(Option.name == "IncludePanels").value)
 
 		# Entrance Options
 		self.chk_shuffle_entrances.setChecked(Option.get(Option.name == "ShuffleEntrances").value)
@@ -306,6 +319,7 @@ class Window(QMainWindow):
 				self.chk_shuffle_items.setChecked(True)
 		self.chk_include_coins.clicked.connect(lambda checked: update(checked))
 		self.chk_include_shops.clicked.connect(lambda checked: update(checked))
+		self.chk_include_panels.clicked.connect(lambda checked: update(checked))
 
 		# Disable/Enable extra item options when ShuffleItems changes
 		def reset(checked, chk_widget):
@@ -316,6 +330,7 @@ class Window(QMainWindow):
 				chk_widget.setEnabled(True)
 		self.chk_shuffle_items.clicked.connect(lambda checked: reset(checked, self.chk_include_coins))
 		self.chk_shuffle_items.clicked.connect(lambda checked: reset(checked, self.chk_include_shops))
+		self.chk_shuffle_items.clicked.connect(lambda checked: reset(checked, self.chk_include_panels))
 
 		# Disable Entrance options if ShuffleEntrances is unchecked
 		def update_entrance_widgets(checked):
@@ -382,6 +397,7 @@ class Window(QMainWindow):
 			"ShuffleItems": Option.get(Option.name == "ShuffleItems"),
 			"IncludeCoins": Option.get(Option.name == "IncludeCoins"),
 			"IncludeShops": Option.get(Option.name == "IncludeShops"),
+			"IncludePanels": Option.get(Option.name == "IncludePanels"),
 			# Entrances Tab
 			"ShuffleEntrances": Option.get(Option.name == "ShuffleEntrances"),
 			"ShuffleEntrancesByArea": Option.get(Option.name == "ShuffleEntrancesByArea"),
@@ -404,6 +420,7 @@ class Window(QMainWindow):
 		options["ShuffleItems"].value = int(self.chk_shuffle_items.isChecked())
 		options["IncludeCoins"].value = int(self.chk_include_coins.isChecked())
 		options["IncludeShops"].value = int(self.chk_include_shops.isChecked())
+		options["IncludePanels"].value = int(self.chk_include_panels.isChecked())
 		# Entrances Tab
 		options["ShuffleEntrances"].value = int(self.chk_shuffle_entrances.isChecked())
 		options["ShuffleEntrancesByArea"].value = int(self.radio_by_area.isChecked())
@@ -419,7 +436,7 @@ class Window(QMainWindow):
 
 		# Initialize Random Seed
 		m = hashlib.md5()
-		m.update(self.edit_seed.text().encode("utf-8"))
+		m.update(self.edit_seed.text().lower().encode("utf-8"))
 		self.seed = int(m.hexdigest()[0:8], 16)
 		random.seed(self.seed)
 
@@ -431,18 +448,26 @@ class Window(QMainWindow):
 		self.update_db()
 
 		# Item Placement
-		for text,percent_complete in place_items(self.app, isShuffle=True, algorithm="forward_fill"):
+		placed_items = []
+		for text,percent_complete in place_items(self.app, isShuffle=True, algorithm="forward_fill", item_placement=placed_items):
 			self.progress_bar.setValue(percent_complete)
 			self.progress_bar.setFormat(f"{text} ({percent_complete}%)")
 			self.app.processEvents()
 
 		# Make everything inexpensive
-		for item in Item.select():
-			item.base_price = 1
-			item.save()
+		for node in placed_items:
+			node.current_item.base_price = 1
+
+		# Write sorted spoiler log
+		sorted_by_key = sorted(placed_items, key=lambda node: node.key_name_item)
+		sorted_by_map = sorted(sorted_by_key, key=lambda node: node.map_area.map_id)
+		sorted_by_area = sorted(sorted_by_map, key=lambda node: node.map_area.area_id)
+		with open("./debug/item_placement.txt", "w") as file:
+			for node in sorted_by_area:
+				file.write(f"[{node.map_area.name}] ({node.map_area.verbose_name}): {node.key_name_item} - {node.vanilla_item.item_name} -> {node.current_item.item_name}\n")
 
 		# Create a sorted list of key:value pairs to be written into the ROM
-		table_data = rom_table.generate_pairs()
+		table_data = rom_table.generate_pairs(items=placed_items)
 
 		# Update table info with variable data
 		rom_table.info["num_entries"] = len(table_data)
