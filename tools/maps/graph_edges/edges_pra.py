@@ -1,3 +1,5 @@
+from simulate import *
+
 """This file represents all edges of the world graph that have origin-nodes in the PRA (Crystal Palace) area."""
 edges_pra = [
     # PRA_01 Entrance

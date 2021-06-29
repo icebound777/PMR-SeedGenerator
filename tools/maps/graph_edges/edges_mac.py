@@ -45,8 +45,14 @@ edges_mac = [
     {"from": {"map": "MAC_01", "id": 2}, "to": {"map": "MAC_01", "id": 0}, "reqs": []}, #? Plaza District Exit Top -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 3}, "reqs": []}, #? Plaza District Exit Left -> Plaza District Exit Bottom
     {"from": {"map": "MAC_01", "id": 3}, "to": {"map": "MAC_01", "id": 0}, "reqs": []}, #? Plaza District Exit Bottom -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 5}, "reqs": []}, #? Plaza District Exit Left -> Plaza District Flower Door
+    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 5}, "reqs": [require(flag="RF_Ch6_FlowerGateOpen")]}, #? Plaza District Exit Left -> Plaza District Flower Door
     {"from": {"map": "MAC_01", "id": 5}, "to": {"map": "MAC_01", "id": 0}, "reqs": []}, #? Plaza District Flower Door -> Plaza District Exit Left
+
+    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 0}, "reqs": [require(item="MagicalSeed1"),
+                                                                                    require(item="MagicalSeed2"),
+                                                                                    require(item="MagicalSeed3"),
+                                                                                    require(item="MagicalSeed4")],
+                                                                           "pseudoitems": ["RF_Ch6_FlowerGateOpen"]}, #+ Plaza District Exit Left
     
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ItemA"},        "reqs": [require(boots=1)]}, #* Plaza District Exit Left -> ItemA (QuickChange)
     {"from": {"map": "MAC_01", "id": "ItemA"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ItemA (QuickChange) -> Plaza District Exit Left

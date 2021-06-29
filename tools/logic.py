@@ -79,6 +79,10 @@ def place_items(app, isShuffle, algorithm, item_placement):
         if startwith_bluehouse_open:
             add_to_inventory("GF_MAC02_UnlockedHouse")
             #TODO maybe remove OddKey from itempool?
+        startwith_flowergate_open = Option.get(Option.name == "FlowerGateOpen").value
+        if startwith_flowergate_open:
+            add_to_inventory("RF_Ch6_FlowerGateOpen")
+            #TODO maybe remove MagicalSeeds from itempool?
 
         # Prepare world graph
         print("Generating World Graph ...")
