@@ -6,7 +6,7 @@ from playhouse.sqlite_ext import JSONField
 
 from db.db import db
 from db.map_area import MapArea
-from db.progression_items import progression_items
+from metadata.progression_items import progression_keyitems
 from enums import Enums
 from parse import get_default_table
 from utility import get_files
