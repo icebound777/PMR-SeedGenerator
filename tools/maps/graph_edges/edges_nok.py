@@ -9,6 +9,14 @@ edges_nok = [
     {"from": {"map": "NOK_01", "id": 0}, "to": {"map": "NOK_01", "id": 1}, "reqs": []}, #? Koopa Village 1 Exit Left -> Koopa Village 1 Exit Right
     {"from": {"map": "NOK_01", "id": 1}, "to": {"map": "NOK_01", "id": 0}, "reqs": []}, #? Koopa Village 1 Exit Right -> Koopa Village 1 Exit Left
     
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush1_Drop1A"},  "reqs": []}, #* Koopa Village 1 Exit Left -> Bush1_Drop1A (Coin)
+    {"from": {"map": "NOK_01", "id": "Bush1_Drop1A"},  "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush1_Drop1A (Coin) -> Koopa Village 1 Exit Left
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush3_Drop1A"},  "reqs": []}, #* Koopa Village 1 Exit Left -> Bush3_Drop1A (DriedShroom)
+    {"from": {"map": "NOK_01", "id": "Bush3_Drop1A"},  "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush3_Drop1A (DriedShroom) -> Koopa Village 1 Exit Left
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush4_Drop1A"},  "reqs": []}, #* Koopa Village 1 Exit Left -> Bush4_Drop1A (KoopaLeaf)
+    {"from": {"map": "NOK_01", "id": "Bush4_Drop1A"},  "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush4_Drop1A (KoopaLeaf) -> Koopa Village 1 Exit Left
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush5_Drop1A"},  "reqs": []}, #* Koopa Village 1 Exit Left -> Bush5_Drop1A (Coin)
+    {"from": {"map": "NOK_01", "id": "Bush5_Drop1A"},  "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush5_Drop1A (Coin) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush6A_Drop1A"}, "reqs": [require(favor="favor_ch5_1")]}, #* Koopa Village 1 Exit Left -> Bush6A_Drop1A (Glasses)
     {"from": {"map": "NOK_01", "id": "Bush6A_Drop1A"}, "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush6A_Drop1A (Glasses) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush7A_Drop1A"}, "reqs": [require(favor="favor_ch2_1")]}, #* Koopa Village 1 Exit Left -> Bush7A_Drop1A (EmptyWallet)
@@ -38,14 +46,16 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": 0}, "to": {"map": "NOK_02", "id": 2}, "reqs": []}, #? Koopa Village 2 Exit Left -> Koopa Village 2 Blue Pipe
     {"from": {"map": "NOK_02", "id": 2}, "to": {"map": "NOK_02", "id": 0}, "reqs": []}, #? Koopa Village 2 Blue Pipe -> Koopa Village 2 Exit Left
     
-    {"from": {"map": "NOK_02", "id": 0},       "to": {"map": "NOK_02", "id": "GiftA"}, "reqs": [require(favor="favor_ch0_1")]}, #* Koopa Village 2 Exit Left -> GiftA (KoopaLegends)
-    {"from": {"map": "NOK_02", "id": "GiftA"}, "to": {"map": "NOK_02", "id": 0},       "reqs": []}, #* GiftA (KoopaLegends) -> Koopa Village 2 Exit Left
-    {"from": {"map": "NOK_02", "id": 0},       "to": {"map": "NOK_02", "id": "GiftB"}, "reqs": [require(item="SleepySheep")]}, #* Koopa Village 2 Exit Left -> GiftB (SilverCredit)
-    {"from": {"map": "NOK_02", "id": "GiftB"}, "to": {"map": "NOK_02", "id": 0},       "reqs": []}, #* GiftB (SilverCredit) -> Koopa Village 2 Exit Left
-    {"from": {"map": "NOK_02", "id": 0},       "to": {"map": "NOK_02", "id": "GiftC"}, "reqs": [require(item="LifeShroom")]}, #* Koopa Village 2 Exit Left -> GiftC (GoldCredit)
-    {"from": {"map": "NOK_02", "id": "GiftC"}, "to": {"map": "NOK_02", "id": 0},       "reqs": []}, #* GiftC (GoldCredit) -> Koopa Village 2 Exit Left
-    {"from": {"map": "NOK_02", "id": 0},       "to": {"map": "NOK_02", "id": "ItemA"}, "reqs": []}, #* Koopa Village 2 Exit Left -> ItemA (StarPiece)
-    {"from": {"map": "NOK_02", "id": "ItemA"}, "to": {"map": "NOK_02", "id": 0},       "reqs": []}, #* ItemA (StarPiece) -> Koopa Village 2 Exit Left
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "GiftA"},       "reqs": [require(favor="favor_ch0_1")]}, #* Koopa Village 2 Exit Left -> GiftA (KoopaLegends)
+    {"from": {"map": "NOK_02", "id": "GiftA"},       "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* GiftA (KoopaLegends) -> Koopa Village 2 Exit Left
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "GiftB"},       "reqs": [require(item="SleepySheep")]}, #* Koopa Village 2 Exit Left -> GiftB (SilverCredit)
+    {"from": {"map": "NOK_02", "id": "GiftB"},       "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* GiftB (SilverCredit) -> Koopa Village 2 Exit Left
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "GiftC"},       "reqs": [require(item="LifeShroom")]}, #* Koopa Village 2 Exit Left -> GiftC (GoldCredit)
+    {"from": {"map": "NOK_02", "id": "GiftC"},       "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* GiftC (GoldCredit) -> Koopa Village 2 Exit Left
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "ItemA"},       "reqs": []}, #* Koopa Village 2 Exit Left -> ItemA (StarPiece)
+    {"from": {"map": "NOK_02", "id": "ItemA"},       "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* ItemA (StarPiece) -> Koopa Village 2 Exit Left
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "Bush1_Drop1"}, "reqs": []}, #* Koopa Village 2 Exit Left -> Bush1_Drop1 (KoopaLeaf)
+    {"from": {"map": "NOK_02", "id": "Bush1_Drop1"}, "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* Bush1_Drop1 (KoopaLeaf) -> Koopa Village 2 Exit Left
 
     # NOK_03 Behind Koopa Village
     {"from": {"map": "NOK_03", "id": 0}, "to": {"map": "NOK_02", "id": 1}, "reqs": []}, # Behind Koopa Village Exit Left -> Koopa Village 2 Exit Top
