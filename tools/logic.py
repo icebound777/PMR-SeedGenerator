@@ -90,7 +90,7 @@ def place_items(item_placement, algorithm="forward_fill"):
 
         # Prepare world graph
         print("Generating World Graph ...")
-        world_graph = generate_world_graph()
+        world_graph = generate_world_graph(None, None)
 
         # Prepare datastructures
         reachable_nodes = []

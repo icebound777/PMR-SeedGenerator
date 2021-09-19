@@ -1,7 +1,14 @@
-
+"""
+This module represents Mario as an abstract object for simulating world traversal.
+This is required for checking randomization logic.
+"""
 
 
 class Mario:
+    """
+    Represents a state of Mario, including items, partners and more abstract
+    things that influence progression.
+    """
     def __init__(self, **kwargs):
         self.boots = kwargs.get("boots", 0)
         self.hammer = kwargs.get("hammer", -1)
@@ -10,12 +17,14 @@ class Mario:
         self.favors = kwargs.get("favors", []) # https://www.mariowiki.com/Koopa_Koot%27s_favors
         self.flags = kwargs.get("flags", [])
 
+
 def add_to_inventory(item_object):
+    """Add something to Mario's inventory."""
     global mario
     # Overload: Single item -> Add item
-    if type(item_object) is str:
+    if isinstance(item_object, str):
         is_new_pseudoitem = False
-    
+
         if item_object.startswith("GF") and item_object not in mario.flags:
             mario.flags.append(item_object)
             is_new_pseudoitem = True
@@ -35,33 +44,53 @@ def add_to_inventory(item_object):
 
         return is_new_pseudoitem
     # Overload: List of items -> Call function per item
-    if type(item_object) is list:
+    if isinstance(item_object, list):
         has_new_pseudoitem = False
-        for item in item_object:
-            is_new_pseudoitem = add_to_inventory(item)
+        for singular_item in item_object:
+            is_new_pseudoitem = add_to_inventory(singular_item)
             if is_new_pseudoitem:
                 has_new_pseudoitem = True
         return has_new_pseudoitem
-    else:
-        raise TypeError('item_object argument is not of type str or list', type(item_object), item_object)
 
-def flip_panels():
+    raise TypeError('item_object argument is not of type str or list',
+                    type(item_object),
+                    item_object)
+
+
+def can_flip_panels():
+    """
+    Checks if Mario can currently flip hidden panels:
+    * Superboots or better, or
+    * UltraHammer
+    """
     global mario
     return mario.hammer == 2 or mario.boots >= 1
 
-def shake_trees():
+
+def can_shake_trees():
+    """
+    Checks if Mario can currently shake trees:
+    * Hammer or better, or
+    * Bombette
+    """
     global mario
     return mario.hammer >= 0 or "PARTNER_Bombette" in mario.partners
 
-def item(item_str):
+
+def has_item(item_str):
+    """Checks if Mario currently has a certain item."""
     global mario
     return item_str in mario.items
 
-def partner(partner_str):
+
+def has_partner(partner_str):
+    """Checks if Mario currently has a certain partner."""
     global mario
     return partner_str in mario.partners
 
-def parakarry_3_letters():
+
+def has_parakarry_3_letters():
+    """Checks if Mario has three or more different letters he can give to Parakarry."""
     global mario
     count = 0
     for item_str in mario.items:
@@ -70,6 +99,7 @@ def parakarry_3_letters():
             if count >= 3:
                 return True
     return False
+
 
 def require(**kwargs):
     def func(kwargs=kwargs):
@@ -103,7 +133,7 @@ def require(**kwargs):
         if flag := kwargs.get("flag"):
             if flag in mario.flags:
                 return True
-                
+
         return False
     return func
 
