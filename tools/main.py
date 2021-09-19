@@ -466,8 +466,7 @@ class Window(QMainWindow):
 
         # Item Placement
         placed_items = []
-        for text,percent_complete in place_items(self.app,
-                                                 item_placement=placed_items):
+        for text,percent_complete in place_items(item_placement=placed_items):
             self.progress_bar.setValue(percent_complete)
             self.progress_bar.setFormat(f"{text} ({percent_complete}%)")
             self.app.processEvents()
