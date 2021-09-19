@@ -10,7 +10,7 @@ import configparser
 from PyQt5.QtWidgets import QMainWindow, QApplication, QDesktopWidget, QMessageBox, QFileDialog
 from PyQt5 import QtCore, QtGui, uic
 
-from custom_seed import custom_seed_path, generate as custom_seed_generate
+from custom_seed import CUSTOM_SEED_PATH, generate as custom_seed_generate
 import randomizer
 
 from enums import Enums
@@ -112,7 +112,7 @@ class Window(QMainWindow):
 
         # Check if custom seed file exists in the correct location
         try:
-            with open(custom_seed_path, "r", encoding="utf-8") as _:
+            with open(CUSTOM_SEED_PATH, "r", encoding="utf-8") as _:
                 self.display("Custom seed file found")
         except FileNotFoundError:
             self.display("Generating default custom seed file...")
