@@ -36,7 +36,7 @@ def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, 
             i += 1
 
 
-def place_items(app, isShuffle, algorithm, item_placement):
+def place_items(app, item_placement, algorithm="forward_fill"):
     """Places items into item locations according to chosen settings."""
 
     do_custom_seed = False #NYI

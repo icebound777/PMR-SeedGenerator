@@ -15,20 +15,15 @@ from pathlib import Path
 from PyQt5.QtWidgets import *
 from PyQt5 import QtCore, QtGui, uic
 
-import custom_seed
+from custom_seed import custom_seed_path, generate as custom_seed_generate
+import randomizer
 
-from enums import Enums, create_enums
+from enums import Enums
 from table import Table
 from utility import sr_dump, sr_copy, sr_compile
 from logic import place_items
-from parse import get_default_table, get_table_info, create_table, gather_keys, gather_values
 
-from db.map_area import MapArea
-from db.item import Item, create_items
-from db.node import Node, create_nodes
-from db.quiz import Quiz, create_quizzes
-from db.option import Option, create_options
-from db.actor_attribute import ActorAttribute, create_actor_attributes
+from db.option import Option
 
 
 # Get application path based on if running as script or EXE
@@ -43,22 +38,7 @@ else:
 	APP_PATH = os.path.dirname(os.path.abspath(__file__))
 	COMPILED = False
 
-# Create enums from ./globals/enum/
-create_enums()
-
-# Uncomment to build database from scratch
-"""
-gather_keys()
-gather_values()
-create_options()
-create_items()
-create_nodes()
-create_actor_attributes()
-create_quizzes()
-shutil.copy("db.sqlite", "default_db.sqlite")
-quit()
-# END
-"""
+randomizer.init_randomizer(rebuild_database=False)
 
 
 class Stream(QtCore.QObject):
@@ -130,14 +110,14 @@ class Window(QMainWindow):
 
 		# Check if custom seed file exists in the correct location
 		try:
-			with open("./custom_seed.json", "r") as file:
+			with open(custom_seed_path, "r") as file:
 				self.display(f"Custom seed file found")
 		except FileNotFoundError:
 			self.display(f"Generating default custom seed file...")
-			custom_seed.generate()
+			custom_seed_generate()
 			self.display(f"Custom seed file generated")
 
-		# Check if the ROM already exists in the correct location
+		# Check if the ROM already exists in the correct location #TODO
 		rom_exists = False
 		for filename in os.listdir("../ROM"):
 			if filename == "PM64.z64":
@@ -233,7 +213,7 @@ class Window(QMainWindow):
 			shutil.copy("db.sqlite", filename)
 			self.display(f"Saved: {filename}")
 
-	def save_rom(self):
+	def save_rom(self): #TODO ?
 		options = QFileDialog.Options()
 		options |= QFileDialog.DontUseNativeDialog
 		filename, ok = QFileDialog.getSaveFileName(self ,"Save Randomized ROM", "PM64.z64", "Settings Files (*.z64)", options=options)
@@ -430,7 +410,7 @@ class Window(QMainWindow):
 		for option in options.values():
 			option.save()
 
-	def randomize(self):
+	def randomize(self): #TODO
 		self.log.clear()
 		self.progress_bar.setVisible(True)
 
@@ -440,82 +420,25 @@ class Window(QMainWindow):
 		self.seed = int(m.hexdigest()[0:8], 16)
 		random.seed(self.seed)
 
-		# Create the ROM table
-		rom_table = Table()
-		rom_table.create()
-
 		# Update database values from widgets
 		self.update_db()
 
 		# Item Placement
 		placed_items = []
-		for text,percent_complete in place_items(self.app, isShuffle=True, algorithm="forward_fill", item_placement=placed_items):
+		for text,percent_complete in place_items(self.app,
+												 item_placement=placed_items):
 			self.progress_bar.setValue(percent_complete)
 			self.progress_bar.setFormat(f"{text} ({percent_complete}%)")
 			self.app.processEvents()
 
 		# Make everything inexpensive
-		for node in placed_items:
-			node.current_item.base_price = 1
+		randomizer.set_cheap_shopitems(placed_items)
+
+		# Write item data to ROM
+		randomizer.write_itemdata_to_rom(placed_items, self.seed, self.edit_seed)
 
 		# Write sorted spoiler log
-		sorted_by_key = sorted(placed_items, key=lambda node: node.key_name_item)
-		sorted_by_map = sorted(sorted_by_key, key=lambda node: node.map_area.map_id)
-		sorted_by_area = sorted(sorted_by_map, key=lambda node: node.map_area.area_id)
-		with open("./debug/item_placement.txt", "w") as file:
-			for node in sorted_by_area:
-				file.write(f"[{node.map_area.name}] ({node.map_area.verbose_name}): {node.key_name_item} - {node.vanilla_item.item_name} -> {node.current_item.item_name}\n")
-
-		# Create a sorted list of key:value pairs to be written into the ROM
-		table_data = rom_table.generate_pairs(items=placed_items)
-
-		# Update table info with variable data
-		rom_table.info["num_entries"] = len(table_data)
-		rom_table.info["seed"] = self.seed
-
-		# Write data to log file
-		with open("./debug/log.txt", "w") as log:
-			log.write("OPTIONS:\n\n")
-			log.write(f"Seed: 0x{self.seed:0X} \"{self.edit_seed.text()}\"\n")
-			for name,data in rom_table["Options"].items():
-				log.write(f"{name:20}: {data['value']}\n")
-			log.write("\n")
-
-		# Modify the table data in the ROM
-		with open("../out/PM64.z64", "r+b") as file:
-			# Write the header
-			file.seek(rom_table.info["address"])
-			file.write(rom_table.info["magic_value"].to_bytes(4, byteorder="big"))
-			file.write(rom_table.info["header_size"].to_bytes(4, byteorder="big"))
-			file.write(rom_table.info["num_entries"].to_bytes(4, byteorder="big"))
-			file.write(rom_table.info["seed"].to_bytes(4, byteorder="big"))
-
-			# Write table data and generate log file
-			file.seek(rom_table.info["address"] + rom_table.info["header_size"])
-			with open("./debug/log.txt", "a") as log:
-				log.write("ITEM CHANGES:\n\n")
-
-				num_pairs = len(table_data)
-				for i,pair in enumerate(table_data):
-					self.progress_bar.setValue(int(100 * i / num_pairs))
-					self.progress_bar.setFormat(f"Writing ROM Data ({int(100 * i / num_pairs)}%)")
-					self.app.processEvents()
-
-					key_int = pair["key"].to_bytes(4, byteorder="big")
-					value_int = pair["value"].to_bytes(4, byteorder="big")
-					file.write(key_int)
-					file.write(value_int)
-					if enum_type := pair.get("enum_type"):
-						if enum_type == "Item":
-							if "ShopPrice" not in pair["attribute"]:
-								column_left = f"[{pair['table']}][{pair['attribute']}]"
-								original_item_id = rom_table.default_db[pair["table"]][pair['attribute']]["value"]
-								original_item = Enums.get("Item")[original_item_id]
-								column_right = f"{original_item} -> {Enums.get('Item')[pair['value']]}"
-								log_statement = f"{column_left:25} : {column_right}"
-								log.write(log_statement + "\n")
-						if enum_type == "Entrance":
-							pass #print(pair)
+		randomizer.write_spoiler_log(placed_items)
 
 		self.progress_bar.setVisible(False)
 		self.progress_bar.setValue(0)

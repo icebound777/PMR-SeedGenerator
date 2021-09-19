@@ -2,6 +2,9 @@ import sqlite3
 import json
 
 
+custom_seed_path = "./custom_seed.json"
+
+
 def generate():
     """Generate a custom_seed.json file with default items."""
 
@@ -18,7 +21,9 @@ def generate():
                           INNER JOIN item\
                              ON node.vanilla_item_id = item.id\
                           WHERE node.key_name_item IS NOT NULL\
-                          ORDER BY maparea.area_id ASC, maparea.map_id ASC, node.key_name_item ASC")
+                          ORDER BY maparea.area_id ASC\
+                                 , maparea.map_id ASC\
+                                 , node.key_name_item ASC")
     cursor.execute(select_statement)
     tablerows = [row for row in cursor.fetchall()]
     for i,tablerow in enumerate(tablerows):
@@ -30,7 +35,7 @@ def generate():
             custom_seed_dict[map_name] = {}
         custom_seed_dict[map_name][key_name] = item_name
 
-    with open("./custom_seed.json", "w") as file:
+    with open(custom_seed_path, "w") as file:
         json.dump(custom_seed_dict, file, indent=4)
 
 def validate_seed(filepath):
@@ -40,5 +45,5 @@ def validate_seed(filepath):
     * are all itemlocations correctly listed
     * is the seed beatable
     """
-    #NYI
+    #TODO NYI
     return True
