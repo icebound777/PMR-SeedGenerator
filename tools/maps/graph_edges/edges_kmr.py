@@ -22,6 +22,8 @@ edges_kmr  = [
     {"from": {"map": "KMR_02", "id": "ItemA"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* ItemA (ShootingStar) -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftA"       },  "reqs": []}, #* Goomba Village Exit Left -> GiftA (Tape)
     {"from": {"map": "KMR_02", "id": "GiftA"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftA (Tape) -> Goomba Village Exit Left
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftB"       },  "reqs": []}, #* Goomba Village Exit Left -> GiftA (PowerJump)
+    {"from": {"map": "KMR_02", "id": "GiftB"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftA (PowerJump) -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "Tree1_Drop1A"},  "reqs": []}, #* Goomba Village Exit Left -> Tree1_Drop1A (Goomnut)
     {"from": {"map": "KMR_02", "id": "Tree1_Drop1A"},  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* Tree1_Drop1A (Goomnut) -> Goomba Village Exit Left
 
