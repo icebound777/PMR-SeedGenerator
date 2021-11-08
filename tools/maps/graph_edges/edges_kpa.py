@@ -68,8 +68,6 @@ edges_kpa = [
     {"from": {"map": "KPA_11",  "id": 3}, "to": {"map": "KPA_11",  "id": 4}, "reqs": []}, #? Outside Lower Jail (Lava) Lava Door Left -> Outside Lower Jail (Lava) Lava Door Right
     {"from": {"map": "KPA_11",  "id": 4}, "to": {"map": "KPA_11",  "id": 3}, "reqs": []}, #? Outside Lower Jail (Lava) Lava Door Right -> Outside Lower Jail (Lava) Lava Door Left
     
-    {"from": {"map": "KPA_11",  "id": 4},         "to": {"map": "KPA_11",  "id": "YBlockA"}, "reqs": []}, #* Outside Lower Jail (Lava) Lava Door Right -> YBlockA (LifeShroom)
-    {"from": {"map": "KPA_11",  "id": "YBlockA"}, "to": {"map": "KPA_11",  "id": 4},         "reqs": []}, #* YBlockA (LifeShroom) -> Outside Lower Jail (Lava) Lava Door Right
     {"from": {"map": "KPA_11",  "id": 0},         "to": {"map": "KPA_11",  "id": "ItemA"},   "reqs": []}, #* Outside Lower Jail (Lava) Door Top Left -> ItemA (CastleKey)
     {"from": {"map": "KPA_11",  "id": "ItemA"},   "to": {"map": "KPA_11",  "id": 0},         "reqs": []}, #* ItemA (CastleKey) -> Outside Lower Jail (Lava) Door Top Left
 
