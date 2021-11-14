@@ -72,6 +72,8 @@ edges_mac = [
     
     {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftA"},       "reqs": []}, #* Southern District Exit Top -> GiftA (MagicalSeed1)
     {"from": {"map": "MAC_02", "id": "GiftA"},       "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* GiftA (MagicalSeed1) -> Southern District Exit Top
+    {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftB"},       "reqs": []}, #* Southern District Exit Top -> GiftB (Cake)
+    {"from": {"map": "MAC_02", "id": "GiftB"},       "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* GiftB (Cake) -> Southern District Exit Top
     {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "HiddenPanel"}, "reqs": []}, #* Southern District Exit Top -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_02", "id": "HiddenPanel"}, "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* HiddenPanel (StarPiece) -> Southern District Exit Top
     {"from": {"map": "MAC_02", "id": 5},             "to": {"map": "MAC_02", "id": "ItemA"},       "reqs": []}, #* Southern District Blue House Pipe -> ItemA (OddKey)
@@ -104,6 +106,14 @@ edges_mac = [
     {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 2}, "reqs": []}, #? Residental District Exit Right -> Residental District Toybox Spring
     {"from": {"map": "MAC_04", "id": 2}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #? Residental District Toybox Spring -> Residental District Exit Right
     
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ItemA"},     "reqs": []}, #* Residental District Exit Right -> ItemA (SnowmanDoll)
+    {"from": {"map": "MAC_04", "id": "ItemA"},     "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ItemA (SnowmanDoll) -> Residental District Exit Right
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ItemB"},     "reqs": []}, #* Residental District Exit Right -> ItemB (VoltShroom)
+    {"from": {"map": "MAC_04", "id": "ItemB"},     "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ItemB (VoltShroom) -> Residental District Exit Right
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ItemC"},     "reqs": []}, #* Residental District Exit Right -> ItemC (ToyTrain)
+    {"from": {"map": "MAC_04", "id": "ItemC"},     "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ItemC (ToyTrain) -> Residental District Exit Right
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ItemD"},     "reqs": []}, #* Residental District Exit Right -> ItemD (DizzyDial)
+    {"from": {"map": "MAC_04", "id": "ItemD"},     "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ItemD (DizzyDial) -> Residental District Exit Right
     {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ShopItemA"}, "reqs": []}, #* Residental District Exit Right -> ShopItemA (StoneCap)
     {"from": {"map": "MAC_04", "id": "ShopItemA"}, "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ShopItemA (StoneCap) -> Residental District Exit Right
     {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ShopItemB"}, "reqs": []}, #* Residental District Exit Right -> ShopItemB (DizzyDial)
