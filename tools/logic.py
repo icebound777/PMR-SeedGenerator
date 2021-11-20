@@ -9,6 +9,8 @@ from db.node import Node
 from db.item import Item
 from db.map_area import MapArea
 from db.option import Option
+from metadata.itemlocation_replenish import replenishing_itemlocations
+from metadata.progression_items import progression_miscitems
 from worldgraph import generate as generate_world_graph, get_node_identifier
 from simulate import Mario, add_to_inventory
 from custom_seed import validate_seed
@@ -88,6 +90,11 @@ def place_items(item_placement, algorithm="forward_fill"):
             add_to_inventory("GF_MAC02_UnlockedHouse")
             #TODO maybe remove OddKey from itempool?
 
+        startwith_flowergate_open = Option.get(Option.name == "FlowerGateOpen").value
+        if startwith_flowergate_open:
+            add_to_inventory("RF_Ch6_FlowerGateOpen")
+            #TODO maybe remove MagicalSeeds from itempool?
+
         # Prepare world graph
         print("Generating World Graph ...")
         world_graph = generate_world_graph(None, None)
@@ -95,6 +102,7 @@ def place_items(item_placement, algorithm="forward_fill"):
         # Prepare datastructures
         reachable_nodes = []
         reachable_item_nodes = {}
+        reachable_repleneshing_item_nodes = {}
         non_traversable_edges = []
         filled_item_nodes = []
 
@@ -103,7 +111,10 @@ def place_items(item_placement, algorithm="forward_fill"):
                 return
             reachable_nodes.append(node_id)
             if world_graph.get(node_id).get("node").key_name_item is not None:
-                reachable_item_nodes[node_id] = world_graph.get(node_id).get("node")
+                if node_id in replenishing_itemlocations:
+                    reachable_repleneshing_item_nodes[node_id] = world_graph.get(node_id).get("node")
+                else:
+                    reachable_item_nodes[node_id] = world_graph.get(node_id).get("node")
 
             outgoing_edges = world_graph.get(node_id).get("edge_list")
             for edge in outgoing_edges:
@@ -125,6 +136,7 @@ def place_items(item_placement, algorithm="forward_fill"):
         pool_progression_items = []
         pool_other_items = []
         all_item_nodes = []
+        progression_miscitems_check = progression_miscitems.copy()
 
         for node_id in world_graph.keys():
             if world_graph.get(node_id).get("node").key_name_item:
@@ -145,17 +157,38 @@ def place_items(item_placement, algorithm="forward_fill"):
         do_randomize_shops = Option.get(Option.name == "IncludeShops").value
         if not do_randomize_shops:
             dont_randomize.append("Shops")
+            # Let shop items overrule progression miscitems
+            #! TODO Buyable does not equal reachable!
+            for node_id in world_graph.keys():
+                cur_node = world_graph.get(node_id).get("node")
+                if (    cur_node.key_name_item
+                    and cur_node.key_name_item.startswith("ShopItem")
+                    and cur_node.vanilla_item.value in progression_miscitems_check):
+                    progression_miscitems_check.remove(cur_node.vanilla_item.value)
+                    print(f'Can buy {cur_node.vanilla_item.item_name}, skipping')
         # Randomize hidden panels?
         do_randomize_panels = Option.get(Option.name == "IncludePanels").value
         if not do_randomize_panels:
             dont_randomize.append("Panels")
+
+        for node_id in world_graph.keys():
+            if world_graph.get(node_id).get("node").key_name_item:
+                cur_node = world_graph.get(node_id).get("node")
+                all_item_nodes.append(cur_node)
+                if cur_node.vanilla_item.value in progression_miscitems_check:
+                    pool_progression_items.append(cur_node.vanilla_item)
+                    progression_miscitems_check.remove(cur_node.vanilla_item.value)
+                elif cur_node.vanilla_item.progression:
+                    pool_progression_items.append(cur_node.vanilla_item)
+                else:
+                    pool_other_items.append(cur_node.vanilla_item)
 
         if len(dont_randomize) > 0:
             remove_items_from_randomization(dont_randomize,
                                             world_graph,
                                             filled_item_nodes,
                                             pool_other_items)
-
+        
         # Set node to start graph traversal from
         starting_map_hex = hex(Option.get(Option.name == "StartingMap").value)[2:]
         starting_map_entrance_id = starting_map_hex[-1:]
@@ -219,6 +252,42 @@ def place_items(item_placement, algorithm="forward_fill"):
                 if not pseudoitem_acquired:
                     break
 
+        depth_first_search(starting_node_id)
+        find_reachable_nodes(non_traversable_edges)
+
+        # Place all items that influence progression and re-traverse formerly locked parts of the graph
+        while len(pool_progression_items) > 0:
+
+            # Pick random progression_item and place it into random reachable and unfilled item node
+            i_random = random.randint(0,len(pool_progression_items) - 1)
+            random_item = pool_progression_items.pop(i_random)
+            while True:
+                if (    random_item.value in progression_miscitems
+                    and len(reachable_repleneshing_item_nodes) > 0):
+                    i_random = random.choice(list(reachable_repleneshing_item_nodes.keys()))
+                    random_node = reachable_repleneshing_item_nodes.pop(i_random)
+                else:
+                    i_random = random.choice(list(reachable_item_nodes.keys()))
+                    random_node = reachable_item_nodes.pop(i_random)
+                if random_node not in filled_item_nodes:
+                    break
+            random_node.current_item = random_item
+            filled_item_nodes.append(random_node)
+            print(f'Put {random_item.item_name} into {random_node}')
+
+            # If no more progression_miscitems have to be placed, then merge the lists
+            if (    len(reachable_repleneshing_item_nodes) > 0
+                and all([False for item in pool_progression_items if item.value in progression_miscitems])):
+                print(f'No more progression_miscitems necessary: Merging node dicts.')
+                reachable_item_nodes.update(reachable_repleneshing_item_nodes)
+                reachable_repleneshing_item_nodes.clear()
+                print(len(reachable_repleneshing_item_nodes))
+
+            # Add placed progression_item into mario's inventory
+            add_to_inventory(random_item.item_name)
+
+            find_reachable_nodes(non_traversable_edges)
+        
         # Place all remaining items
         print("Placing Miscellaneous Items ...")
         for item_node in all_item_nodes:
