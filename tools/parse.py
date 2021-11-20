@@ -1,39 +1,39 @@
 import re
-import os
 import json
-import xml.etree.ElementTree as ET
 
 from enums import Enums, enum_int, create_enums
 from utility import get_files
 
 
-# Gather a list of ALL keys under the ../globals/patch/ directory
-# AF = Options
-# A1 = Items
-# A2 = Actors
-# A3 = Entrances
-# A4 = Palettes
-# A5 = 
-# AF = Quizzes
 def gather_keys():
+    """
+    Gather a list of ALL keys under the ../globals/patch/ directory
+    AF = Options
+    A1 = Items
+    A2 = Actors
+    A3 = Entrances
+    A4 = Palettes
+    A5 =
+    AF = Quizzes
+    """
     files = get_files("../globals/patch")
     keys = {
-        "items": dict(),
-        "item_prices": dict(),
-        "actors": dict(),
-        "entrances": dict(),
-        "palettes": dict(),
-        "options": dict(),
-        "quizzes": dict(),
+        "items": {},
+        "item_prices": {},
+        "actors": {},
+        "entrances": {},
+        "palettes": {},
+        "options": {},
+        "quizzes": {},
     }
     for filepath in files:
-        with open(filepath, "r") as file:
+        with open(filepath, "r", encoding="utf-8") as file:
             for line in file:
                 if match := re.match(r"#export\s*.DBKey:", line):
                     data = line[match.end():]
                     match = re.match(r"(\S*)\s*(\S*)", data)
                     key_info,number = match.group(1), match.group(2)
-                    
+
                     byte_id = int(number[0:2], 16)
                     area_id = int(number[2:4], 16)
                     map_id =  int(number[4:6], 16)
@@ -84,7 +84,7 @@ def gather_keys():
                         }
                     elif byte_id == 0xAF:
                         name,attribute = key_info.split(":")
-                        if name == "Options" or name == "Cosmetic":
+                        if name in ("Options", "Cosmetic"):
                             keys["options"][key] = {
                                 "name": attribute,
                                 "byte_id": byte_id,
@@ -100,7 +100,7 @@ def gather_keys():
                                 "map_id": map_id,
                                 "value_id": value_id,
                             }
-    with open("./debug/keys.json", "w") as file:
+    with open("./debug/keys.json", "w", encoding="utf-8") as file:
         json.dump(keys, file, indent=4)
 
 def gather_values():
@@ -108,7 +108,7 @@ def gather_values():
         # Booleans
         if value == ".True":
             return True
-        elif value == ".False":
+        if value == ".False":
             return False
 
         # Numbers
@@ -127,18 +127,20 @@ def gather_values():
             value = Enums.get("Item")[item]
             return value
 
+        return None
+
     create_enums()
 
     values = {
-        "items": dict(),
-        "item_prices": dict(),
-        "actors": dict(),
-        "entrances": dict(),
-        "palettes": dict(),
-        "options": dict(),
-        "quizzes": dict(),
+        "items": {},
+        "item_prices": {},
+        "actors": {},
+        "entrances": {},
+        "palettes": {},
+        "options": {},
+        "quizzes": {},
     }
-    with open("../globals/patch/DatabaseDefaults.patch", "r") as file:
+    with open("../globals/patch/DatabaseDefaults.patch", "r", encoding="utf-8") as file:
         for line in file:
             if match := re.match(r"\s*.DBKey:(\S*)\s*(\S*)", line):
                 key_info = match.group(1)
@@ -149,7 +151,8 @@ def gather_values():
                 elif "Quiz" in key_info:
                     name = key_info.split(":")[-1]
                     values["quizzes"][name] = get_value(value)
-                elif match := re.match(r"([A-Z]{2,5}_\d+):(\S*)", key_info):  # Check for map name (which means it's an item or item price)
+                # Check for map name (which means it's an item or item price)
+                elif match := re.match(r"([A-Z]{2,5}_\d+):(\S*)", key_info):
                     map_name = match.group(1)
                     key_name = match.group(2)
                     if "ShopPrice" in key_name:
@@ -160,20 +163,24 @@ def gather_values():
                         if map_name not in values["items"]:
                             values["items"][map_name] = {}
                         values["items"][map_name][key_name] = get_value(value)
-                elif any(["HP" in key_info, "Damage" in key_info, "Level" in key_info, "Increment" in key_info]): # Check for actor data
+                # Check for actor data
+                elif any(["HP" in key_info,
+                          "Damage" in key_info,
+                          "Level" in key_info,
+                          "Increment" in key_info]):
                     actor,attribute = key_info.split(":")
                     value = get_value(value)
                     if actor not in values["actors"]:
                         values["actors"][actor] = {}
                     values["actors"][actor][attribute] = value
 
-    with open("./debug/values.json", "w") as file:
+    with open("./debug/values.json", "w", encoding="utf-8") as file:
         json.dump(values, file, indent=4)
 
 def get_default_table():
     # Get general data
     db = {}
-    with open("../globals/patch/DatabaseDefaults.patch", "r") as file:
+    with open("../globals/patch/DatabaseDefaults.patch", "r", encoding="utf-8") as file:
         db_found = False
         while not db_found:
             if match := re.match(r"#export:Data\s*\$DefaultDatabase", next(file)):
@@ -207,10 +214,10 @@ def get_default_table():
                     "attribute": attribute,
                     "table": table,
                 }
-                
+
     # Get entrance data
     db["Entrance"] = {}
-    with open("../globals/patch/RandomEntrances.patch", "r") as file:
+    with open("../globals/patch/RandomEntrances.patch", "r", encoding="utf-8") as file:
         for line in file:
             if match := re.match(r"#export\s*.DBKey:Entrance:(\S*):(\S*)\s*(\S*)", line):
                 map_name = match.group(1)
@@ -230,7 +237,8 @@ def get_default_table():
                     "entry": entry_id,
                 }
     return db
-            
+
+
 def get_table_info():
     # Defaults
     table_info = {
@@ -240,18 +248,19 @@ def get_table_info():
         "seed": 0xDEADBEEF,
         "address": 0x1D00000,
     }
-    with open("../globals/patch/Database.patch", "r") as file:
+    with open("../globals/patch/Database.patch", "r", encoding="utf-8") as file:
         for line in file:
             if match := re.match(r"#define\s*.Table:RomOffset\s*(\S*)", line):
-               table_info["address"] = int(match.group(1), 16)
+                table_info["address"] = int(match.group(1), 16)
             elif match := re.match(r"#define\s*.Table:Header:MagicValue\s*(\S*)", line):
                 table_info["magic_value"] = int(match.group(1), 16)
     return table_info
 
+
 def create_table(default_table):
 
     def get_keys(db, filepath):
-        with open(filepath, "r") as file:
+        with open(filepath, "r", encoding="utf-8") as file:
             for line in file:
                 if match := re.match(r"#export\s*.DBKey:(\S*):(\S*)\s*(\S*)", line):
                     table = match.group(1)
@@ -262,7 +271,6 @@ def create_table(default_table):
 
                     if data := default_table.get(table, {}).get(attribute):
                         default_value = data["value"]
-                        default_type = data["enum_type"]
                         db[table][attribute] = {
                             "key": key,
                             "value": default_value,
@@ -279,13 +287,15 @@ def create_table(default_table):
     db = {}
     get_keys(db, "../globals/patch/DatabaseKeys.patch")
     get_keys(db, "../globals/patch/generated/keys.patch")
-    
 
     db["Entrance"] = {}
     for map_name,entrance_data in default_table["Entrance"].items():
         db["Entrance"][map_name] = {}
         for entrance,data in entrance_data.items():
-            db_key = (data["byte_id"] << 24) | (data["area"] << 16) | (data["map"] << 8) | data["entry"]
+            db_key = (data["byte_id"] << 24) \
+                   | (data["area"] << 16) \
+                   | (data["map"] << 8) \
+                   | data["entry"]
             db["Entrance"][map_name][entrance] = {
                 "key": db_key,
                 "value": db_key & 0x00FFFFFF,

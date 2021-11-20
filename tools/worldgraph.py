@@ -1,11 +1,43 @@
-from peewee import *
+"""
+This module represents a world graph. This graph maps item locations and the
+connections between them to allow simulated traversal of the in-game world.
+"""
+#from peewee import *
 
 from db.node import Node
 
+from maps.graph_edges.edges_arn import edges_arn
+from maps.graph_edges.edges_dgb import edges_dgb
+from maps.graph_edges.edges_dro import edges_dro
+from maps.graph_edges.edges_flo import edges_flo
+from maps.graph_edges.edges_hos import edges_hos
+from maps.graph_edges.edges_isk import edges_isk
+from maps.graph_edges.edges_iwa import edges_iwa
+from maps.graph_edges.edges_jan import edges_jan
+from maps.graph_edges.edges_kgr import edges_kgr
+from maps.graph_edges.edges_kkj import edges_kkj
+from maps.graph_edges.edges_kmr import edges_kmr
+from maps.graph_edges.edges_kpa import edges_kpa
+from maps.graph_edges.edges_kzn import edges_kzn
+from maps.graph_edges.edges_mac import edges_mac
+from maps.graph_edges.edges_mgm import edges_mgm
+from maps.graph_edges.edges_mim import edges_mim
+from maps.graph_edges.edges_nok import edges_nok
+from maps.graph_edges.edges_obk import edges_obk
+from maps.graph_edges.edges_omo import edges_omo
+from maps.graph_edges.edges_osr import edges_osr
+from maps.graph_edges.edges_pra import edges_pra
+from maps.graph_edges.edges_sam import edges_sam
+from maps.graph_edges.edges_sbk import edges_sbk
+from maps.graph_edges.edges_tik import edges_tik
+from maps.graph_edges.edges_trd import edges_trd
+
 def print_node_info(node):
     """Print a node's map name and its entrance_id or item key, depending on the node"""
-    entrancenode_string = str(node.entrance_id) + "/" + node.entrance_name if node.entrance_id else ''
-    itemnode_string = node.key_name_item + "/" + node.vanilla_item.item_name if node.key_name_item else ''
+    entrancenode_string = str(node.entrance_id) + "/" \
+                        + node.entrance_name if node.entrance_id else ''
+    itemnode_string = node.key_name_item + "/" \
+                    + node.vanilla_item.item_name if node.key_name_item else ''
     print(f"{node.map_area.name} - {entrancenode_string}{itemnode_string}")
 
 def get_node_identifier(node):
@@ -32,32 +64,6 @@ def get_all_nodes():
 
 def get_all_edges():
     """Returns a list of all edges"""
-    from maps.graph_edges.edges_arn import edges_arn
-    from maps.graph_edges.edges_dgb import edges_dgb
-    from maps.graph_edges.edges_dro import edges_dro
-    from maps.graph_edges.edges_flo import edges_flo
-    from maps.graph_edges.edges_hos import edges_hos
-    from maps.graph_edges.edges_isk import edges_isk
-    from maps.graph_edges.edges_iwa import edges_iwa
-    from maps.graph_edges.edges_jan import edges_jan
-    from maps.graph_edges.edges_kgr import edges_kgr
-    from maps.graph_edges.edges_kkj import edges_kkj
-    from maps.graph_edges.edges_kmr import edges_kmr
-    from maps.graph_edges.edges_kpa import edges_kpa
-    from maps.graph_edges.edges_kzn import edges_kzn
-    from maps.graph_edges.edges_mac import edges_mac
-    from maps.graph_edges.edges_mgm import edges_mgm
-    from maps.graph_edges.edges_mim import edges_mim
-    from maps.graph_edges.edges_nok import edges_nok
-    from maps.graph_edges.edges_obk import edges_obk
-    from maps.graph_edges.edges_omo import edges_omo
-    from maps.graph_edges.edges_osr import edges_osr
-    from maps.graph_edges.edges_pra import edges_pra
-    from maps.graph_edges.edges_sam import edges_sam
-    from maps.graph_edges.edges_sbk import edges_sbk
-    from maps.graph_edges.edges_tik import edges_tik
-    from maps.graph_edges.edges_trd import edges_trd
-    
     all_edges = []
     all_edges.extend(edges_arn)
     all_edges.extend(edges_dgb)
@@ -86,14 +92,14 @@ def get_all_edges():
     all_edges.extend(edges_trd)
     return all_edges
 
-def generate(all_nodes=[], all_edges=[]):
+def generate(all_nodes, all_edges):
     """
     Generates and returns a world graph dictionary with nodes' node_ids in string form as keys and
     a list of neighboring nodes' node_ids in string form as values.
     """
-    if len(all_nodes) == 0:
+    if not all_nodes or len(all_nodes) == 0:
         all_nodes = get_all_nodes()
-    if len(all_edges) == 0:
+    if not all_edges or len(all_edges) == 0:
         all_edges = get_all_edges()
     world_graph = {}
 
@@ -114,7 +120,9 @@ def generate(all_nodes=[], all_edges=[]):
     return world_graph
 
 def check_graph():
-    """Generate world graph from default entrance links and edges, then run a few validation checks"""
+    """
+    Generate world graph from default entrance links and edges, then run a few validation checks
+    """
     print("Loading world graph nodes and edges ...")
 
     all_nodes = get_all_nodes()
@@ -125,6 +133,22 @@ def check_graph():
     print()
 
     # Check for nodes without atleast one outbound edge
+    check_unleavable_nodes(all_nodes, all_edges)
+
+    # Check if nodes exist that are unreachable (not targets of any edges)
+    check_unreachable_nodes(all_nodes, all_edges)
+
+    # Check if edges exist that reference non-existing nodes
+    check_nullnode_reference(all_nodes, all_edges)
+
+    # Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe)
+    check_unreachable_from_start(all_nodes, all_edges)
+
+    print("Done.")
+
+
+def check_unleavable_nodes(all_nodes, all_edges):
+    """Check for nodes without atleast one outbound edge."""
     print("Check for nodes without atleast one outbound edge ...")
     unleavable_nodes = []
 
@@ -146,10 +170,12 @@ def check_graph():
         print(str(len(unleavable_nodes)) + " unleavable nodes found:")
         for node in unleavable_nodes:
             print_node_info(node)
-    
+
     print()
 
-    # Check if nodes exist that are unreachable (not targets of any edges)
+
+def check_unreachable_nodes(all_nodes, all_edges):
+    """Check if nodes exist that are unreachable (not targets of any edges)"""
     print("Check for unreachable nodes ...")
     unreachable_nodes = []
 
@@ -157,7 +183,7 @@ def check_graph():
         edge_target_found = False
         for edge in all_edges:
             if edge.get("to").get("map") == node.map_area.name:
-                if (   edge.get("to").get("id") == node.entrance_id 
+                if (   edge.get("to").get("id") == node.entrance_id
                     or edge.get("to").get("id") == node.key_name_item):
                     edge_target_found = True
                     break
@@ -173,7 +199,9 @@ def check_graph():
 
     print()
 
-    # Check if edges exist that reference non-existing nodes
+
+def check_nullnode_reference(all_nodes, all_edges):
+    """Check if edges exist that reference non-existing nodes"""
     print("Check for edges that reference non-existing nodes ...")
     invalid_origin_edges = []
     invalid_target_edges = []
@@ -198,7 +226,7 @@ def check_graph():
             invalid_origin_edges.append(edge)
         if not edge_target_found:
             invalid_target_edges.append(edge)
-    
+
     if len(invalid_origin_edges) == 0:
         print("No edges with non-existing origin nodes found.")
     else:
@@ -217,7 +245,9 @@ def check_graph():
 
     print()
 
-    # Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe)
+
+def check_unreachable_from_start(all_nodes, all_edges):
+    """Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe)"""
     print("Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe) ...")
 
     # build world graph
@@ -231,12 +261,12 @@ def check_graph():
         if node_id in visited_node_ids:
             return
         visited_node_ids.append(node_id)
-        
+
         outgoing_edges = world_graph.get(node_id).get("edge_list")
         for edge in outgoing_edges:
             depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
 
-    # traverse world graph  
+    # traverse world graph
     print("Checking node reachability in world graph ...")
     depth_first_search("KMR_20/4")
 
@@ -249,7 +279,6 @@ def check_graph():
         for node_id in not_visited_node_ids:
             print(node_id)
 
-    print("Done.")
 
 if __name__ == "__main__":
     check_graph()

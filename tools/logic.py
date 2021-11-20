@@ -1,5 +1,8 @@
+"""
+This modules offers the randomization logic and takes care of actually randomizing
+the game according to the settings chosen.
+"""
 import random
-import sqlite3
 import json
 
 from db.node import Node
@@ -12,6 +15,7 @@ from custom_seed import validate_seed
 
 
 def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, pool_other_items):
+    """Removes items and their vanilla locations from consideration for randomization."""
     # Mark vanilla item nodes as filled
     items_to_remove = {}
     for key in world_graph.keys():
@@ -24,7 +28,8 @@ def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, 
             if items_to_remove.get(node.vanilla_item.item_name) is None:
                 items_to_remove[node.vanilla_item.item_name] = 1
             else:
-                items_to_remove[node.vanilla_item.item_name] = items_to_remove.get(node.vanilla_item.item_name) + 1
+                items_to_remove[node.vanilla_item.item_name] = \
+                    items_to_remove.get(node.vanilla_item.item_name) + 1
     # Remove items from item pool
     i = 0
     while i < len(pool_other_items):
@@ -36,7 +41,7 @@ def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, 
             i += 1
 
 
-def place_items(app, isShuffle, algorithm, item_placement):
+def place_items(item_placement, algorithm="forward_fill"):
     """Places items into item locations according to chosen settings."""
 
     do_custom_seed = False #NYI
@@ -48,7 +53,7 @@ def place_items(app, isShuffle, algorithm, item_placement):
             seed_path = "./custom_seed.json"
             is_valid = validate_seed(seed_path)
             if is_valid:
-                with open(seed_path, "r") as custom_seed_file:
+                with open(seed_path, "r", encoding="utf-8") as custom_seed_file:
                     custom_items = json.load(custom_seed_file)
             #TODO: handle invalid seed: GUI message?
         except FileNotFoundError as err:
@@ -56,7 +61,8 @@ def place_items(app, isShuffle, algorithm, item_placement):
             raise
 
         for node in Node.select().where(Node.key_name_item.is_null(False)):
-            new_item = Item.get(Item.item_name == custom_items.get(node.map_area.name).get(node.key_name_item))
+            new_item = Item.get(Item.item_name == \
+                                custom_items.get(node.map_area.name).get(node.key_name_item))
             node.current_item = new_item
             item_placement.append(node)
 
@@ -67,12 +73,14 @@ def place_items(app, isShuffle, algorithm, item_placement):
             item_placement.append(node)
 
     elif algorithm == "forward_fill":
-        # Place items in accessible locations first, then expand accessible locations by unlocked locations
-        
+        # Place items in accessible locations first, then expand accessible
+        # locations by unlocked locations
+
         # Prepare Mario's starting inventory
         mario = Mario()
-        add_to_inventory(["PARTNER_Goombario","PARTNER_Kooper","PARTNER_Bombette","PARTNER_Parakarry",
-                          "PARTNER_Bow","PARTNER_Watt","PARTNER_Sushie","PARTNER_Lakilester"])
+        add_to_inventory(["PARTNER_Goombario","PARTNER_Kooper","PARTNER_Bombette",
+                          "PARTNER_Parakarry","PARTNER_Bow","PARTNER_Watt","PARTNER_Sushie",
+                          "PARTNER_Lakilester"])
         add_to_inventory("EQUIPMENT_Hammer_Progressive")
 
         startwith_bluehouse_open = Option.get(Option.name == "BlueHouseOpen").value
@@ -86,7 +94,7 @@ def place_items(app, isShuffle, algorithm, item_placement):
 
         # Prepare world graph
         print("Generating World Graph ...")
-        world_graph = generate_world_graph()
+        world_graph = generate_world_graph(None, None)
 
         # Prepare datastructures
         reachable_nodes = []
@@ -106,8 +114,10 @@ def place_items(app, isShuffle, algorithm, item_placement):
                 try:
                     if all([r() for r in edge.get("reqs")]):
                         if edge.get("pseudoitems") is not None:
-                            pseudoitem_acquired = add_to_inventory(edge.get("pseudoitems"))
-                        depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
+                            for pseudoitem in edge.get("pseudoitems"):
+                                pseudoitem_acquired = add_to_inventory(pseudoitem)
+                        depth_first_search(edge.get("to").get("map") + "/" + \
+                                           str(edge.get("to").get("id")))
                     elif edge not in non_traversable_edges:
                         non_traversable_edges.append(edge)
                 except TypeError as err:
@@ -128,7 +138,7 @@ def place_items(app, isShuffle, algorithm, item_placement):
                     pool_progression_items.append(cur_node.vanilla_item)
                 else:
                     pool_other_items.append(cur_node.vanilla_item)
-        
+
         # Check if items and nodes need to be excluded from randomization based on settings
         dont_randomize = []
         # Randomize coins?
@@ -145,8 +155,11 @@ def place_items(app, isShuffle, algorithm, item_placement):
             dont_randomize.append("Panels")
 
         if len(dont_randomize) > 0:
-            remove_items_from_randomization(dont_randomize, world_graph, filled_item_nodes, pool_other_items)
-        
+            remove_items_from_randomization(dont_randomize,
+                                            world_graph,
+                                            filled_item_nodes,
+                                            pool_other_items)
+
         # Set node to start graph traversal from
         starting_map_hex = hex(Option.get(Option.name == "StartingMap").value)[2:]
         starting_map_entrance_id = starting_map_hex[-1:]
@@ -157,7 +170,8 @@ def place_items(app, isShuffle, algorithm, item_placement):
                                        & (MapArea.map_id  == starting_map_map_id))
 
         starting_node_id = starting_maparea.name + "/" + str(starting_map_entrance_id)
-        
+        print (starting_node_id)
+
         # Find initially reachable nodes
         print("Placing Progression Items ...")
         reachable_nodes = []
@@ -171,7 +185,7 @@ def place_items(app, isShuffle, algorithm, item_placement):
                 non_traversable_edges.clear()
                 for non_traversable_edge in non_traversable_edges_tmp:
                     from_node_id = (  non_traversable_edge.get("from").get("map")
-                                    + "/" 
+                                    + "/"
                                     + str(non_traversable_edge.get("from").get("id")))
                     # remove edge's from-node from reachable_nodes, or else DFS won't do anything
                     i = 0
@@ -180,12 +194,12 @@ def place_items(app, isShuffle, algorithm, item_placement):
                         if cur_node_id == from_node_id:
                             reachable_nodes.pop(i)
                             break
-                        else:
-                            i += 1
+                        i += 1
                     # DFS from edge's from-node
                     depth_first_search(from_node_id)
-                # If we find atleast one pseudo-item (partner, upgrade, flag, koopa koot favor), then
-                # we have to check for reachable_nodes repeatedly until no new pseudoitems are found
+                # If we find atleast one pseudo-item (partner, upgrade, flag, koopa koot favor),
+                # then we have to check for reachable_nodes repeatedly until no new pseudoitems
+                # are found
                 if not pseudoitem_acquired:
                     break
 
@@ -222,8 +236,9 @@ def place_items(app, isShuffle, algorithm, item_placement):
 
         item_placement.extend(filled_item_nodes)
 
-    elif algorithm == "assumed_fill":
-        # Start with all items in inventory, remove an item and try to place it at a reachable location
-        None # NYI # TODO
+    #elif algorithm == "assumed_fill":
+    #    # Start with all items in inventory, remove an item and try to place it
+    #    # at a reachable location
+    #    None # NYI # TODO
 
     yield ("Generating Log", int(100 * 1))

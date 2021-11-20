@@ -1,5 +1,12 @@
+"""
+Generates and validates a custom seed file in json format. This file offers players
+the option to set itemlocations instead of randomizing them.
+"""
 import sqlite3
 import json
+
+
+CUSTOM_SEED_PATH = "./custom_seed.json"
 
 
 def generate():
@@ -18,10 +25,12 @@ def generate():
                           INNER JOIN item\
                              ON node.vanilla_item_id = item.id\
                           WHERE node.key_name_item IS NOT NULL\
-                          ORDER BY maparea.area_id ASC, maparea.map_id ASC, node.key_name_item ASC")
+                          ORDER BY maparea.area_id ASC\
+                                 , maparea.map_id ASC\
+                                 , node.key_name_item ASC")
     cursor.execute(select_statement)
-    tablerows = [row for row in cursor.fetchall()]
-    for i,tablerow in enumerate(tablerows):
+    tablerows = list(cursor.fetchall())
+    for _,tablerow in enumerate(tablerows):
         key_name = tablerow['key_name_item']
         map_name = tablerow['map_name']
         item_name = tablerow['item_name']
@@ -30,7 +39,7 @@ def generate():
             custom_seed_dict[map_name] = {}
         custom_seed_dict[map_name][key_name] = item_name
 
-    with open("./custom_seed.json", "w") as file:
+    with open(CUSTOM_SEED_PATH, "w", encoding="utf-8") as file:
         json.dump(custom_seed_dict, file, indent=4)
 
 def validate_seed(filepath):
@@ -40,5 +49,5 @@ def validate_seed(filepath):
     * are all itemlocations correctly listed
     * is the seed beatable
     """
-    #NYI
+    #TODO NYI
     return True
