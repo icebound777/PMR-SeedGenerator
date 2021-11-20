@@ -1,10 +1,16 @@
 """General setup and supportive functionalities for the randomizer."""
 import shutil
 import sys
+import hashlib
+import time
+import yaml
+from yaml.loader import SafeLoader
 
 from enums import create_enums
 from table import Table
 from parse import gather_keys, gather_values
+
+from logic import place_items
 
 from db.option          import create_options
 from db.item            import create_items
@@ -40,7 +46,7 @@ def set_cheap_shopitems(placed_items):
         node.current_item.base_price = 1
 
 
-def write_itemdata_to_rom(placed_items, seed, edit_seed):
+def write_itemdata_to_rom(placed_items, seed=int(hashlib.md5().hexdigest()[0:8], 16), edit_seed="0x0123456789ABCDEF"):
     """
     Generates key:value pairs of locations and items from randomized item set
     and writes these pairs to the ROM. Also logs the pairs to a file.
@@ -59,7 +65,7 @@ def write_itemdata_to_rom(placed_items, seed, edit_seed):
     # Write data to log file
     with open("./debug/log.txt", "w", encoding="utf-8") as log:
         log.write("OPTIONS:\n\n")
-        log.write(f"Seed: 0x{seed:0X} \"{edit_seed.text()}\"\n")
+        log.write(f"Seed: 0x{seed:0X} \"{edit_seed}\"\n")
         for name,data in rom_table["Options"].items():
             log.write(f"{name:20}: {data['value']}\n")
         log.write("\n")
@@ -107,3 +113,42 @@ def write_spoiler_log(placed_items):
             file.write(f"[{node.map_area.name}] ({node.map_area.verbose_name}): "
                        f"{node.key_name_item} - {node.vanilla_item.item_name} -> "
                        f"{node.current_item.item_name}\n")
+
+def main_randomizer():
+    timer_start = time.perf_counter()
+
+    # Load settings
+    rando_settings = {}
+    with open("default_settings.yaml", "r", encoding="utf-8") as file:
+        rando_settings = yaml.load(file, Loader=SafeLoader)
+
+    #
+    init_randomizer(rebuild_database=False)
+
+    # Item Placement
+    placed_items = []
+    for _, _ in place_items(item_placement=placed_items,
+                            algorithm=rando_settings.get("PlacementAlgorithm"),
+                            do_shuffle_items=rando_settings.get("ShuffleItems"),
+                            do_randomize_coins=rando_settings.get("IncludeCoins"),
+                            do_randomize_shops=rando_settings.get("IncludeShops"),
+                            do_randomize_panels=rando_settings.get("IncludePanels"),
+                            starting_map_id=rando_settings.get("StartingMap"),
+                            startwith_bluehouse_open=rando_settings.get("BlueHouseOpen")):
+        pass
+
+    # Make everything inexpensive
+    set_cheap_shopitems(placed_items)
+
+    # Write item data to ROM
+    write_itemdata_to_rom(placed_items)
+
+    # Write sorted spoiler log
+    write_spoiler_log(placed_items)
+    
+    timer_end = time.perf_counter()
+    print(f'Seed generated in {round(timer_end - timer_start, 2)}s')
+
+
+if __name__ == "__main__":
+    main_randomizer()

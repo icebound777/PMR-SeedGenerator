@@ -1,0 +1,66 @@
+---
+# OPEN WORLD PM64 SETTINGS
+SettingsName   : Default Dev Preset
+SettingsVersion: 0.1
+
+# Options
+StartingMap            : 0x00010104 # mac_00, Entry4
+ReplaceDuplicateKeys   : false
+DuplicateKeyReplacement: '.Item:Mistake'
+BlocksMatchContent     : true
+
+InitialCoins: 50
+CapEnemyXP  : true
+2xDamage    : false
+4xDamage    : false
+OHKO        : false
+
+# Pre-opened areas
+FlowerGateOpen: false
+BlueHouseOpen : false
+
+# Randomization: Logic
+PlacementAlgorithm: ForwardFill
+#PlacementAlgorithm: WeightedForwardFill # NYI
+#PlacementAlgorithm: AssumedFill # NYI
+#PlacementAlgorithm: CustomSeed
+RandoLogic: NoGlitches
+#RandoLogic: Glitches # NYI
+#RandoLogic: NoLogic
+
+# Randomization: Items
+ShuffleItems : true
+IncludeCoins : false
+IncludeShops : true
+IncludePanels: true
+
+# Randomization: Entrances
+ShuffleEntrances        : true  # NYI
+ShuffleEntrancesByArea  : true  # NYI
+ShuffleEntrancesByAll   : false # NYI
+MatchEntranceTypes      : true  # NYI
+RandomizeOnewayEntrances: false # NYI
+UnpairEntrances         : false # NYI
+
+# Randomization: Quizzes
+RandomQuiz: true
+SkipQuiz  : false
+
+# Partner
+StartWithPartners:
+- Goombario : true
+- Kooper    : false
+- Bombette  : false
+- Parakarry : false
+- Bow       : false
+- Watt      : false
+- Sushie    : false
+- Lakilester: false
+
+# Spoiler log
+WriteSpoilerLog: true
+PrettySpoilerlog: false
+
+# Cosmetics
+ColorA: 0xEBE677FF # Box5ColorA
+ColorB: 0x8E5A25FF # Box5ColorB

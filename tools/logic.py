@@ -8,7 +8,6 @@ import json
 from db.node import Node
 from db.item import Item
 from db.map_area import MapArea
-from db.option import Option
 from worldgraph import generate as generate_world_graph, get_node_identifier
 from simulate import Mario, add_to_inventory
 from custom_seed import validate_seed
@@ -41,13 +40,12 @@ def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, 
             i += 1
 
 
-def place_items(item_placement, algorithm="forward_fill"):
+def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
+  do_randomize_shops, do_randomize_panels, starting_map_id, startwith_bluehouse_open
+):
     """Places items into item locations according to chosen settings."""
 
-    do_custom_seed = False #NYI
-    do_shuffle_items = Option.get(Option.name == "ShuffleItems").value
-
-    if do_custom_seed:
+    if algorithm == "CustomSeed":
         # Place items according to custom seed
         try:
             seed_path = "./custom_seed.json"
@@ -72,7 +70,7 @@ def place_items(item_placement, algorithm="forward_fill"):
             node.current_item = node.vanilla_item
             item_placement.append(node)
 
-    elif algorithm == "forward_fill":
+    elif algorithm == "ForwardFill":
         # Place items in accessible locations first, then expand accessible
         # locations by unlocked locations
 
@@ -83,7 +81,7 @@ def place_items(item_placement, algorithm="forward_fill"):
                           "PARTNER_Lakilester"])
         add_to_inventory("EQUIPMENT_Hammer_Progressive")
 
-        startwith_bluehouse_open = Option.get(Option.name == "BlueHouseOpen").value
+        # Read settings: Blue House Open
         if startwith_bluehouse_open:
             add_to_inventory("GF_MAC02_UnlockedHouse")
             #TODO maybe remove OddKey from itempool?
@@ -138,15 +136,12 @@ def place_items(item_placement, algorithm="forward_fill"):
         # Check if items and nodes need to be excluded from randomization based on settings
         dont_randomize = []
         # Randomize coins?
-        do_randomize_coins = Option.get(Option.name == "IncludeCoins").value
         if not do_randomize_coins:
             dont_randomize.append("Coins")
         # Randomize shops?
-        do_randomize_shops = Option.get(Option.name == "IncludeShops").value
         if not do_randomize_shops:
             dont_randomize.append("Shops")
         # Randomize hidden panels?
-        do_randomize_panels = Option.get(Option.name == "IncludePanels").value
         if not do_randomize_panels:
             dont_randomize.append("Panels")
 
@@ -157,7 +152,7 @@ def place_items(item_placement, algorithm="forward_fill"):
                                             pool_other_items)
 
         # Set node to start graph traversal from
-        starting_map_hex = hex(Option.get(Option.name == "StartingMap").value)[2:]
+        starting_map_hex = hex(starting_map_id)[2:]
         starting_map_entrance_id = starting_map_hex[-1:]
         starting_map_map_id = starting_map_hex[-4:-2] if starting_map_hex[-4:-2] != "" else 0
         starting_map_area_id = starting_map_hex[-6:-4] if starting_map_hex[-6:-4] != "" else 0
@@ -166,7 +161,7 @@ def place_items(item_placement, algorithm="forward_fill"):
                                        & (MapArea.map_id  == starting_map_map_id))
 
         starting_node_id = starting_maparea.name + "/" + str(starting_map_entrance_id)
-        print (starting_node_id)
+        print(f'Starting map: {starting_node_id}')
 
         # Find initially reachable nodes
         print("Placing Progression Items ...")
@@ -225,7 +220,7 @@ def place_items(item_placement, algorithm="forward_fill"):
             item_node_id = get_node_identifier(item_node)
 
             if item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]:
-                print(item_node_id)
+                #print(item_node_id)
                 random_item = pool_other_items.pop(random.randint(0, len(pool_other_items) - 1))
                 item_node.current_item = random_item
                 filled_item_nodes.append(item_node)
