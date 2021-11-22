@@ -41,7 +41,8 @@ def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, 
 
 
 def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
-  do_randomize_shops, do_randomize_panels, starting_map_id, startwith_bluehouse_open
+  do_randomize_shops, do_randomize_panels, starting_map_id, startwith_bluehouse_open,
+  starting_partners=None
 ):
     """Places items into item locations according to chosen settings."""
 
@@ -79,6 +80,7 @@ def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
         add_to_inventory(["PARTNER_Goombario","PARTNER_Kooper","PARTNER_Bombette",
                           "PARTNER_Parakarry","PARTNER_Bow","PARTNER_Watt","PARTNER_Sushie",
                           "PARTNER_Lakilester"])
+        # add_to_inventory(starting_partners) # the above are logic partners (abilities)
         add_to_inventory("EQUIPMENT_Hammer_Progressive")
 
         # Read settings: Blue House Open

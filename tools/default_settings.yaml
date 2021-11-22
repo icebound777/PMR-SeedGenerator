@@ -6,7 +6,7 @@ SettingsVersion: 0.1
 # Options
 StartingMap            : 0x00010104 # mac_00, Entry4
 ReplaceDuplicateKeys   : false
-DuplicateKeyReplacement: '.Item:Mistake'
+DuplicateKeyReplacement: 194 # '.Item:Mistake'
 BlocksMatchContent     : true
 
 InitialCoins: 50
@@ -24,15 +24,17 @@ PlacementAlgorithm: ForwardFill
 #PlacementAlgorithm: WeightedForwardFill # NYI
 #PlacementAlgorithm: AssumedFill # NYI
 #PlacementAlgorithm: CustomSeed
-RandoLogic: NoGlitches
-#RandoLogic: Glitches # NYI
-#RandoLogic: NoLogic
+PlacementLogic: NoGlitches
+#PlacementLogic: Glitches # NYI
+#PlacementLogic: NoLogic
 
 # Randomization: Items
-ShuffleItems : true
-IncludeCoins : false
-IncludeShops : true
-IncludePanels: true
+ShuffleItems          : true
+IncludeCoins          : false
+IncludeShops          : true
+IncludePanels         : true
+KeyitemsOutsideArea   : true # false -> NYI
+KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
 # Randomization: Entrances
 ShuffleEntrances        : true  # NYI
@@ -40,26 +42,29 @@ ShuffleEntrancesByArea  : true  # NYI
 ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI
 RandomizeOnewayEntrances: false # NYI
-UnpairEntrances         : false # NYI
+UnpairedEntrances       : false # NYI
 
 # Randomization: Quizzes
 RandomQuiz: true
 SkipQuiz  : false
 
 # Partner
-StartWithPartners:
-- Goombario : true
-- Kooper    : false
-- Bombette  : false
-- Parakarry : false
-- Bow       : false
-- Watt      : false
-- Sushie    : false
-- Lakilester: false
-
+StartWithRandomPartners: false
+RandomPartnersMin      : 1
+RandomPartnersMax      : 8
+StartWithPartners: { # ignored if StartWithRandomPartners true
+    Goombario : true,
+    Kooper    : false,
+    Bombette  : false,
+    Parakarry : false,
+    Bow       : false,
+    Watt      : false,
+    Sushie    : false,
+    Lakilester: false
+}
 # Spoiler log
 WriteSpoilerLog: true
-PrettySpoilerlog: false
+PrettySpoilerlog: true
 
 # Cosmetics
 ColorA: 0xEBE677FF # Box5ColorA

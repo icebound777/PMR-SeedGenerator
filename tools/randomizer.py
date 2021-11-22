@@ -1,16 +1,20 @@
 """General setup and supportive functionalities for the randomizer."""
 import shutil
 import sys
+import getopt
 import hashlib
 import time
 import yaml
 from yaml.loader import SafeLoader
+import json
 
 from enums import create_enums
 from table import Table
 from parse import gather_keys, gather_values
 
 from logic import place_items
+from spoilerlog import write_spoiler_log
+from optionset import OptionSet
 
 from db.option          import create_options
 from db.item            import create_items
@@ -46,7 +50,7 @@ def set_cheap_shopitems(placed_items):
         node.current_item.base_price = 1
 
 
-def write_itemdata_to_rom(placed_items, seed=int(hashlib.md5().hexdigest()[0:8], 16), edit_seed="0x0123456789ABCDEF"):
+def write_itemdata_to_rom(placed_items, target_modfile, seed=int(hashlib.md5().hexdigest()[0:8], 16), edit_seed="0x0123456789ABCDEF"):
     """
     Generates key:value pairs of locations and items from randomized item set
     and writes these pairs to the ROM. Also logs the pairs to a file.
@@ -71,7 +75,7 @@ def write_itemdata_to_rom(placed_items, seed=int(hashlib.md5().hexdigest()[0:8],
         log.write("\n")
 
     # Modify the table data in the ROM
-    with open("../out/PM64.z64", "r+b") as file:
+    with open(target_modfile, "r+b") as file:
         # Write the header
         file.seek(rom_table.info["address"])
         file.write(rom_table.info["magic_value"].to_bytes(4, byteorder="big"))
@@ -89,6 +93,7 @@ def write_itemdata_to_rom(placed_items, seed=int(hashlib.md5().hexdigest()[0:8],
                 value_int = pair["value"].to_bytes(4, byteorder="big")
                 file.write(key_int)
                 file.write(value_int)
+                log.write(f'{hex(pair["key"])}: {hex(pair["value"])}\n')
 
                 #if enum_type := pair.get("enum_type"):
                 #    if enum_type == "Item":
@@ -103,24 +108,54 @@ def write_itemdata_to_rom(placed_items, seed=int(hashlib.md5().hexdigest()[0:8],
                 #            pass #print(pair)
 
 
-def write_spoiler_log(placed_items):
-    """Outputs a log file listing the final locations of all items after randomization."""
-    sorted_by_key =  sorted(placed_items,  key=lambda node: node.key_name_item)
-    sorted_by_map =  sorted(sorted_by_key, key=lambda node: node.map_area.map_id)
-    sorted_by_area = sorted(sorted_by_map, key=lambda node: node.map_area.area_id)
-    with open("./debug/item_placement.txt", "w",encoding='utf-8') as file:
-        for node in sorted_by_area:
-            file.write(f"[{node.map_area.name}] ({node.map_area.verbose_name}): "
-                       f"{node.key_name_item} - {node.vanilla_item.item_name} -> "
-                       f"{node.current_item.item_name}\n")
-
 def main_randomizer():
     timer_start = time.perf_counter()
 
-    # Load settings
-    rando_settings = {}
-    with open("default_settings.yaml", "r", encoding="utf-8") as file:
-        rando_settings = yaml.load(file, Loader=SafeLoader)
+    rando_settings = OptionSet()
+    target_modfile = ""
+    spoilerlog_file_path = ""
+    rando_outputfile = ""
+
+    # Get arguments from cmd
+    argv = sys.argv[1:]
+    try:
+        opts, args = getopt.getopt(argv, 'c:t:s:', ['config', 'targetmod', 'spoilerlog'])
+        for opt, arg in opts:
+            # Config file for rando
+            if opt == "-c":
+                with open(arg, "r", encoding="utf-8") as file:
+                    if arg[arg.rfind(".") + 1:] == "json":
+                        data = json.load(file)
+                    elif arg[arg.rfind(".") + 1:] == "yaml":
+                        data = yaml.load(file, Loader=SafeLoader)
+                rando_settings.update_options(data)
+            
+            # Pre-modded Open World PM64 ROM
+            if opt == "-t":
+                target_modfile = arg
+
+            # Spoilerlog output file
+            if opt == "-s":
+                spoilerlog_file_path = arg
+
+        for arg in args:
+            # Output modded and randomized file
+            rando_outputfile = arg
+            break
+
+    except getopt.GetoptError:
+        print('usage: randomizer.py -c <config file> -t <modded base ROM> -s <spoilerlog file> <output file>')
+
+    # DEFAULTS: Load settings if none provided
+    #if not rando_settings:
+    #    with open("default_settings.yaml", "r", encoding="utf-8") as file:
+    #        rando_settings = yaml.load(file, Loader=SafeLoader)
+    # DEFAULTS: Set targetmod if none provided
+    if not target_modfile:
+        target_modfile = "../out/PM64.z64"
+    # DEFAULTS: Set randomized output file if none provided
+    if not rando_outputfile:
+        rando_outputfile = "../out/PM64.z64"
 
     #
     init_randomizer(rebuild_database=False)
@@ -128,23 +163,29 @@ def main_randomizer():
     # Item Placement
     placed_items = []
     for _, _ in place_items(item_placement=placed_items,
-                            algorithm=rando_settings.get("PlacementAlgorithm"),
-                            do_shuffle_items=rando_settings.get("ShuffleItems"),
-                            do_randomize_coins=rando_settings.get("IncludeCoins"),
-                            do_randomize_shops=rando_settings.get("IncludeShops"),
-                            do_randomize_panels=rando_settings.get("IncludePanels"),
-                            starting_map_id=rando_settings.get("StartingMap"),
-                            startwith_bluehouse_open=rando_settings.get("BlueHouseOpen")):
+                            algorithm=rando_settings.placement_algorithm,
+                            do_shuffle_items=rando_settings.shuffle_items.value,
+                            do_randomize_coins=rando_settings.include_coins.value,
+                            do_randomize_shops=rando_settings.include_shops.value,
+                            do_randomize_panels=rando_settings.include_panels.value,
+                            starting_map_id=rando_settings.starting_map,
+                            startwith_bluehouse_open=rando_settings.bluehouse_open.value,
+                            starting_partners=rando_settings.starting_partners):
         pass
 
     # Make everything inexpensive
     set_cheap_shopitems(placed_items)
 
     # Write item data to ROM
-    write_itemdata_to_rom(placed_items)
+    write_itemdata_to_rom(placed_items, target_modfile)
 
     # Write sorted spoiler log
-    write_spoiler_log(placed_items)
+    if (rando_settings.write_spoilerlog):
+        write_spoiler_log(
+            placed_items,
+            do_pretty=rando_settings.pretty_spoilerlog,
+            spoilerlog_file=spoilerlog_file_path
+        )
     
     timer_end = time.perf_counter()
     print(f'Seed generated in {round(timer_end - timer_start, 2)}s')

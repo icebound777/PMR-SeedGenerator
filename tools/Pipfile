@@ -6,9 +6,10 @@ name = "pypi"
 [packages]
 pyqt5 = "==5.15.4"
 peewee = "==3.14.4"
-pyinstaller = "4.3"
+pyyaml = "*"
 
 [dev-packages]
+pyinstaller = "4.3"
 
 [requires]
 python_version = "3.9"

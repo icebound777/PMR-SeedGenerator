@@ -466,7 +466,14 @@ class Window(QMainWindow):
 
         # Item Placement
         placed_items = []
-        for text,percent_complete in place_items(item_placement=placed_items):
+        for text,percent_complete in place_items(item_placement=placed_items,
+                                                 algorithm="ForwardFill",
+                                                 do_shuffle_items=self.chk_shuffle_items.isChecked(),
+                                                 do_randomize_coins=self.chk_include_coins.isChecked(),
+                                                 do_randomize_shops=self.chk_include_shops.isChecked(),
+                                                 do_randomize_panels=self.chk_include_panels.isChecked(),
+                                                 starting_map_id=0x00010104,
+                                                 startwith_bluehouse_open=self.chk_blue_house.isChecked()):
             self.progress_bar.setValue(percent_complete)
             self.progress_bar.setFormat(f"{text} ({percent_complete}%)")
             self.app.processEvents()
@@ -475,7 +482,7 @@ class Window(QMainWindow):
         randomizer.set_cheap_shopitems(placed_items)
 
         # Write item data to ROM
-        randomizer.write_itemdata_to_rom(placed_items, self.seed, self.edit_seed)
+        randomizer.write_itemdata_to_rom(placed_items, "../out/PM64.z64", self.seed, self.edit_seed)
 
         # Write sorted spoiler log
         randomizer.write_spoiler_log(placed_items)
