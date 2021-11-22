@@ -99,9 +99,6 @@ edges_omo = [
     
     {"from": {"map": "OMO_05", "id": 0},               "to": {"map": "OMO_05", "id": "ItemA"},         "reqs": []}, #* PNK Gourmet Guy Crossing Exit East (South) -> ItemA (Cookbook)
     {"from": {"map": "OMO_05", "id": "ItemA"},         "to": {"map": "OMO_05", "id": 0},               "reqs": []}, #* ItemA (Cookbook) -> PNK Gourmet Guy Crossing Exit East (South)
-    {"from": {"map": "OMO_05", "id": 0},               "to": {"map": "OMO_05", "id": "ItemB"},         "reqs": []}, #* PNK Gourmet Guy Crossing Exit East (South) -> ItemB (Cookbook)
-    {"from": {"map": "OMO_05", "id": "ItemB"},         "to": {"map": "OMO_05", "id": 0},               "reqs": []}, #* ItemB (Cookbook) -> PNK Gourmet Guy Crossing Exit East (South)
-    #TODO duplicate?
     {"from": {"map": "OMO_05", "id": 1},               "to": {"map": "OMO_05", "id": "YBlockA"},       "reqs": []}, #* PNK Gourmet Guy Crossing Exit East (North) -> YBlockA (Coin)
     {"from": {"map": "OMO_05", "id": "YBlockA"},       "to": {"map": "OMO_05", "id": 1},               "reqs": []}, #* YBlockA (Coin) -> PNK Gourmet Guy Crossing Exit East (North)
     {"from": {"map": "OMO_05", "id": 1},               "to": {"map": "OMO_05", "id": "YBlockB"},       "reqs": []}, #* PNK Gourmet Guy Crossing Exit East (North) -> YBlockB (Coin)

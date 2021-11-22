@@ -29,7 +29,7 @@ def add_to_inventory(item_object):
         if (item_object.startswith("GF") or item_object.startswith("MF") or item_object.startswith("RF")) and item_object not in mario.flags:
             mario.flags.append(item_object)
             is_new_pseudoitem = True
-        elif item_object.startswith("PARTNERS") and item_object not in mario.partners:
+        elif item_object.startswith("PARTNER") and item_object not in mario.partners:
             mario.partners.append(item_object)
             is_new_pseudoitem = True
         elif item_object.startswith("FAVOR") and item_object not in mario.favors:
