@@ -23,6 +23,9 @@ from db.actor_attribute import create_actor_attributes
 from db.quiz            import create_quizzes
 
 
+VERSION = "Randomizer 0.1 for Open World Paper Mario mod 0.1"
+
+
 def init_randomizer(rebuild_database=False):
     """Deals with the initialization of data required for the randomizer to work."""
     # Create enums from ./globals/enum/
@@ -41,13 +44,32 @@ def init_randomizer(rebuild_database=False):
         create_actor_attributes()
         create_quizzes()
         shutil.copy(work_db_name, default_db_name)
-        sys.exit()
 
 
 def set_cheap_shopitems(placed_items):
     """[in-dev] Sets the buying price of all items to 1."""
     for node in placed_items:
         node.current_item.base_price = 1
+
+
+def print_usage():
+    print("Usage: randomizer.py [OPTION]... [FILE]")
+    print("Main module for the Open World Paper Mario Randomizer.")
+    print("Randomizes items, entrances and more and writes those to a pre-")
+    print("modded Paper Mario ROM, outputting to FILE.")
+    print("")
+    print("OPTIONs")
+    print("  -c, --config-file set path to config-file (json/yaml) to use for")
+    print("                      the current randomization, overwriting defaults")
+    print("  -t, --targetmod   set path to pre-modded PM64 ROM to randomize")
+    print("  -s, --spoilerlog  set path to output spoilerlog file")
+    print("  -r, --rebuild-db  rebuild database from mod files and exit")
+    print("  -h, --help        display this help and exit")
+    print("  -v, --version     display version information and exit")
+
+
+def print_version():
+    print(VERSION)
 
 
 def write_itemdata_to_rom(placed_items, target_modfile, seed=int(hashlib.md5().hexdigest()[0:8], 16), edit_seed="0x0123456789ABCDEF"):
@@ -119,10 +141,29 @@ def main_randomizer():
     # Get arguments from cmd
     argv = sys.argv[1:]
     try:
-        opts, args = getopt.getopt(argv, 'c:t:s:', ['config', 'targetmod', 'spoilerlog'])
+        opts, args = getopt.gnu_getopt(
+            argv,
+            'hc:t:s:rv',
+            ['help', 'config-file=', 'targetmod=', 'spoilerlog=', 'rebuild-db', 'version']
+        )
         for opt, arg in opts:
+            # Print usage
+            if opt in ["-h", "--help"]:
+                print_usage()
+                sys.exit()
+
+            # Print version
+            if opt in ["-v", "--version"]:
+                print_version()
+                sys.exit()
+
+            # Rebuild database
+            if opt in ["-r", "--rebuild-db"]:
+                init_randomizer(rebuild_database=True)
+                sys.exit()
+
             # Config file for rando
-            if opt == "-c":
+            if opt in ["-c", "--config-file"]:
                 with open(arg, "r", encoding="utf-8") as file:
                     if arg[arg.rfind(".") + 1:] == "json":
                         data = json.load(file)
@@ -131,11 +172,11 @@ def main_randomizer():
                 rando_settings.update_options(data)
             
             # Pre-modded Open World PM64 ROM
-            if opt == "-t":
+            if opt in ["-t", "--targetmod"]:
                 target_modfile = arg
 
             # Spoilerlog output file
-            if opt == "-s":
+            if opt in ["-s", "--spoilerlog"]:
                 spoilerlog_file_path = arg
 
         for arg in args:
@@ -144,7 +185,8 @@ def main_randomizer():
             break
 
     except getopt.GetoptError:
-        print('usage: randomizer.py -c <config file> -t <modded base ROM> -s <spoilerlog file> <output file>')
+        print_usage()
+        raise
 
     # DEFAULTS: Load settings if none provided
     #if not rando_settings:
