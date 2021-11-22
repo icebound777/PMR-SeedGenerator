@@ -12,7 +12,7 @@ edges_hos = [
     {"from": {"map": "HOS_00", "id": 0}, "to": {"map": "HOS_00", "id": 2}, "reqs": []}, #? Shooting Star Path Exit Left -> Shooting Star Path Exit Bottom Right
     {"from": {"map": "HOS_00", "id": 2}, "to": {"map": "HOS_00", "id": 0}, "reqs": []}, #? Shooting Star Path Exit Bottom Right -> Shooting Star Path Exit Left
     
-    {"from": {"map": "HOS_00", "id": 0},             "to": {"map": "HOS_00", "id": "HiddenPanel"}, "reqs": [flip_panels]}, #* Shooting Star Path Exit Left -> HiddenPanel (StarPiece)
+    {"from": {"map": "HOS_00", "id": 0},             "to": {"map": "HOS_00", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Shooting Star Path Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "HOS_00", "id": "HiddenPanel"}, "to": {"map": "HOS_00", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Shooting Star Path Exit Left
 
     # HOS_01 Shooting Star Summit
@@ -22,7 +22,7 @@ edges_hos = [
     {"from": {"map": "HOS_01", "id": 0}, "to": {"map": "HOS_01", "id": 1}, "reqs": [require(starspirits=7)]}, #? Shooting Star Summit Exit Bottom Left -> Shooting Star Summit Ride Up To Starway
     {"from": {"map": "HOS_01", "id": 1}, "to": {"map": "HOS_01", "id": 0}, "reqs": []}, #? Shooting Star Summit Ride Up To Starway -> Shooting Star Summit Exit Bottom Left
     
-    {"from": {"map": "HOS_01", "id": 0},             "to": {"map": "HOS_01", "id": "HiddenPanel"}, "reqs": [flip_panels]}, #* Shooting Star Summit Exit Bottom Left -> HiddenPanel (StarPiece)
+    {"from": {"map": "HOS_01", "id": 0},             "to": {"map": "HOS_01", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Shooting Star Summit Exit Bottom Left -> HiddenPanel (StarPiece)
     {"from": {"map": "HOS_01", "id": "HiddenPanel"}, "to": {"map": "HOS_01", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Shooting Star Summit Exit Bottom Left
     {"from": {"map": "HOS_01", "id": 0},             "to": {"map": "HOS_01", "id": "ItemA"},       "reqs": []}, #* Shooting Star Summit Exit Bottom Left -> ItemA (StarPiece)
     {"from": {"map": "HOS_01", "id": "ItemA"},       "to": {"map": "HOS_01", "id": 0},             "reqs": []}, #* ItemA (StarPiece) -> Shooting Star Summit Exit Bottom Left
@@ -71,7 +71,7 @@ edges_hos = [
     # HOS_06 Merluvlee's House
     {"from": {"map": "HOS_06", "id": 0}, "to": {"map": "HOS_00", "id": 2}, "reqs": []}, # Merluvlee's House Exit Left -> Shooting Star Path Exit Bottom Right
     
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "HiddenPanel"}, "reqs": [flip_panels]}, #* Merluvlee's House Exit Left -> HiddenPanel (StarPiece)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Merluvlee's House Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "HOS_06", "id": "HiddenPanel"}, "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Merluvlee's House Exit Left
     {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "GiftA"},       "reqs": [require(favor="FAVOR_CH2_3"), require(item="CrystalBall")]}, #* Merluvlee's House Exit Left -> GiftA (Autograph2)
     {"from": {"map": "HOS_06", "id": "GiftA"},       "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* GiftA (Autograph2) -> Merluvlee's House Exit Left

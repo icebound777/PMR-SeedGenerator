@@ -349,7 +349,7 @@ edges_sbk = [
     {"from": {"map": "SBK_33", "id": 0}, "to": {"map": "SBK_33", "id": 4}, "reqs": []}, #? Center (Tweester C) Exit West -> Center (Tweester C) Tweester
     {"from": {"map": "SBK_33", "id": 4}, "to": {"map": "SBK_33", "id": 0}, "reqs": []}, #? Center (Tweester C) Tweester -> Center (Tweester C) Exit West
     
-    {"from": {"map": "SBK_33", "id": 0},             "to": {"map": "SBK_33", "id": "HiddenPanel"}, "reqs": [flip_panels]}, #* Center (Tweester C) Exit West -> HiddenPanel (StarPiece)
+    {"from": {"map": "SBK_33", "id": 0},             "to": {"map": "SBK_33", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Center (Tweester C) Exit West -> HiddenPanel (StarPiece)
     {"from": {"map": "SBK_33", "id": "HiddenPanel"}, "to": {"map": "SBK_33", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Center (Tweester C) Exit West
 
     # SBK_34 E1 Nomadimouse
@@ -391,7 +391,7 @@ edges_sbk = [
     {"from": {"map": "SBK_36", "id": 0}, "to": {"map": "SBK_36", "id": 3}, "reqs": []}, #? E3 Outside Outpost Exit West -> E3 Outside Outpost Exit South
     {"from": {"map": "SBK_36", "id": 3}, "to": {"map": "SBK_36", "id": 0}, "reqs": []}, #? E3 Outside Outpost Exit South -> E3 Outside Outpost Exit West
     
-    {"from": {"map": "SBK_36", "id": 0},              "to": {"map": "SBK_36", "id": "Tree9_Drop1A"}, "reqs": [shake_trees]}, #* E3 Outside Outpost Exit West -> Tree9_Drop1A (Letter03)
+    {"from": {"map": "SBK_36", "id": 0},              "to": {"map": "SBK_36", "id": "Tree9_Drop1A"}, "reqs": [can_shake_trees]}, #* E3 Outside Outpost Exit West -> Tree9_Drop1A (Letter03)
     {"from": {"map": "SBK_36", "id": "Tree9_Drop1A"}, "to": {"map": "SBK_36", "id": 0},              "reqs": []}, #* Tree9_Drop1A (Letter03) -> E3 Outside Outpost Exit West
 
     # SBK_40 S1W3
@@ -588,9 +588,9 @@ edges_sbk = [
     {"from": {"map": "SBK_56", "id": 0}, "to": {"map": "SBK_56", "id": 3}, "reqs": []}, #? S2E3 Oasis Exit West -> S2E3 Oasis Exit South
     {"from": {"map": "SBK_56", "id": 3}, "to": {"map": "SBK_56", "id": 0}, "reqs": []}, #? S2E3 Oasis Exit South -> S2E3 Oasis Exit West
     
-    {"from": {"map": "SBK_56", "id": 0},              "to": {"map": "SBK_56", "id": "Tree1_Drop1A"}, "reqs": [shake_trees]}, #* S2E3 Oasis Exit West -> Tree1_Drop1A (Lemon)
+    {"from": {"map": "SBK_56", "id": 0},              "to": {"map": "SBK_56", "id": "Tree1_Drop1A"}, "reqs": [can_shake_trees]}, #* S2E3 Oasis Exit West -> Tree1_Drop1A (Lemon)
     {"from": {"map": "SBK_56", "id": "Tree1_Drop1A"}, "to": {"map": "SBK_56", "id": 0},              "reqs": []}, #* Tree1_Drop1A (Lemon) -> S2E3 Oasis Exit West
-    {"from": {"map": "SBK_56", "id": 0},              "to": {"map": "SBK_56", "id": "Tree2_Drop1A"}, "reqs": [shake_trees]}, #* S2E3 Oasis Exit West -> Tree2_Drop1A (Lime)
+    {"from": {"map": "SBK_56", "id": 0},              "to": {"map": "SBK_56", "id": "Tree2_Drop1A"}, "reqs": [can_shake_trees]}, #* S2E3 Oasis Exit West -> Tree2_Drop1A (Lime)
     {"from": {"map": "SBK_56", "id": "Tree2_Drop1A"}, "to": {"map": "SBK_56", "id": 0},              "reqs": []}, #* Tree2_Drop1A (Lime) -> S2E3 Oasis Exit West
 
     # SBK_60 S3W3

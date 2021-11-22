@@ -168,7 +168,7 @@ edges_pra = [
     {"from": {"map": "PRA_21", "id": 0}, "to": {"map": "PRA_21", "id": 1}, "reqs": [require(flag="MF_PRA_22_FoundHiddenRoomUnderStatue")]}, #? Huge Statue Room Door West -> Huge Statue Room Basement Door
     {"from": {"map": "PRA_21", "id": 1}, "to": {"map": "PRA_21", "id": 0}, "reqs": []}, #? Huge Statue Room Basement Door -> Huge Statue Room Door West
     
-    {"from": {"map": "PRA_21", "id": 0},             "to": {"map": "PRA_21", "id": "HiddenPanel"}, "reqs": [flip_panels]}, #* Huge Statue Room Door West -> HiddenPanel (StarPiece)
+    {"from": {"map": "PRA_21", "id": 0},             "to": {"map": "PRA_21", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Huge Statue Room Door West -> HiddenPanel (StarPiece)
     {"from": {"map": "PRA_21", "id": "HiddenPanel"}, "to": {"map": "PRA_21", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Huge Statue Room Door West
     {"from": {"map": "PRA_21", "id": 0},             "to": {"map": "PRA_21", "id": "YBlockA"},     "reqs": []}, #* Huge Statue Room Door West -> YBlockA (MapleSyrup)
     {"from": {"map": "PRA_21", "id": "YBlockA"},     "to": {"map": "PRA_21", "id": 0},             "reqs": []}, #* YBlockA (MapleSyrup) -> Huge Statue Room Door West
@@ -182,7 +182,7 @@ edges_pra = [
     
     {"from": {"map": "PRA_22", "id": 0}, "to": {"map": "PRA_22", "id": 1}, "reqs": [], "pseudoitems": ["MF_PRA_22_FoundHiddenRoomUnderStatue"]}, #+ Small Statue Room Door West
     
-    {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenPanel"},   "reqs": [flip_panels]}, #* Small Statue Room Door West -> HiddenPanel (StarPiece)
+    {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenPanel"},   "reqs": [can_flip_panels]}, #* Small Statue Room Door West -> HiddenPanel (StarPiece)
     {"from": {"map": "PRA_22", "id": "HiddenPanel"},   "to": {"map": "PRA_22", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> Small Statue Room Door West
     {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenYBlockA"}, "reqs": []}, #* Small Statue Room Door West -> HiddenYBlockA (JamminJelly)
     {"from": {"map": "PRA_22", "id": "HiddenYBlockA"}, "to": {"map": "PRA_22", "id": 0},               "reqs": []}, #* HiddenYBlockA (JamminJelly) -> Small Statue Room Door West

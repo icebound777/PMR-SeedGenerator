@@ -101,7 +101,7 @@ edges_mac = [
     {"from": {"map": "MAC_03", "id": "GiftA"},       "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* GiftA (Letter21) -> Station District Exit Top
     {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "GiftB"},       "reqs": [require(partner="PARTNER_Parakarry",item="Letter22")]}, #* Station District Exit Top -> GiftB (Letter23)
     {"from": {"map": "MAC_03", "id": "GiftB"},       "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* GiftB (Letter23) -> Station District Exit Top
-    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "HiddenPanel"}, "reqs": [flip_panels]}, #* Station District Exit Top -> HiddenPanel (StarPiece)
+    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Station District Exit Top -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_03", "id": "HiddenPanel"}, "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Station District Exit Top
 
     # MAC_04 Residental District

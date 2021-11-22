@@ -8,7 +8,7 @@ edges_sam = [
     {"from": {"map": "SAM_01", "id": 0}, "to": {"map": "SAM_01", "id": 0}, "reqs": [], "pseudoitems": ["RF_Ch7_MurderMysteryStarted"]}, #+ Shiver City Mayor Area Exit East
     {"from": {"map": "SAM_01", "id": 0}, "to": {"map": "SAM_01", "id": 0}, "reqs": [require(flag="RF_Ch7_SpokeWithHerringway")], "pseudoitems": ["RF_Ch7_MurderMysterySolved"]}, #+ Shiver City Mayor Area Exit East
     
-    {"from": {"map": "SAM_01", "id": 0},             "to": {"map": "SAM_01", "id": "HiddenPanel"}, "reqs": [flip_panels, require(flag="RF_Ch7_MurderMysterySolved")]}, #* Shiver City Mayor Area Exit East -> HiddenPanel (StarPiece)
+    {"from": {"map": "SAM_01", "id": 0},             "to": {"map": "SAM_01", "id": "HiddenPanel"}, "reqs": [can_flip_panels, require(flag="RF_Ch7_MurderMysterySolved")]}, #* Shiver City Mayor Area Exit East -> HiddenPanel (StarPiece)
     {"from": {"map": "SAM_01", "id": "HiddenPanel"}, "to": {"map": "SAM_01", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Shiver City Mayor Area Exit East
     {"from": {"map": "SAM_01", "id": 0},             "to": {"map": "SAM_01", "id": "GiftA"},       "reqs": [require(flag="RF_Ch7_MurderMysterySolved"), require(flag="RF_Ch7_GotSnowmanScarf")]}, #* Shiver City Mayor Area Exit East -> GiftA (Bucket)
     {"from": {"map": "SAM_01", "id": "GiftA"},       "to": {"map": "SAM_01", "id": 0},             "reqs": []}, #* GiftA (Bucket) -> Shiver City Mayor Area Exit East
@@ -67,9 +67,9 @@ edges_sam = [
     {"from": {"map": "SAM_04", "id": 0}, "to": {"map": "SAM_04", "id": 2}, "reqs": [require(item="Bucket"), require(item="Scarf")], "pseudoitems": ["MF_SAM_04_UnlockedShiverMountain"]}, #? Shiver Snowfield Exit West -> Shiver Snowfield Mountain Entrance
     {"from": {"map": "SAM_04", "id": 2}, "to": {"map": "SAM_04", "id": 0}, "reqs": []}, #? Shiver Snowfield Mountain Entrance -> Shiver Snowfield Exit West
     
-    {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "HiddenPanel"}, "reqs": [flip_panels]}, #* Shiver Snowfield Exit West -> HiddenPanel (StarPiece)
+    {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Shiver Snowfield Exit West -> HiddenPanel (StarPiece)
     {"from": {"map": "SAM_04", "id": "HiddenPanel"}, "to": {"map": "SAM_04", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Shiver Snowfield Exit West
-    {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "ItemA"},       "reqs": [shake_trees]}, #* Shiver Snowfield Exit West -> ItemA (Letter05)
+    {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "ItemA"},       "reqs": [can_shake_trees]}, #* Shiver Snowfield Exit West -> ItemA (Letter05)
     {"from": {"map": "SAM_04", "id": "ItemA"},       "to": {"map": "SAM_04", "id": 0},             "reqs": []}, #* ItemA (Letter05) -> Shiver Snowfield Exit West
     {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "ItemB"},       "reqs": []}, #* Shiver Snowfield Exit West -> ItemB (RepelGel)
     {"from": {"map": "SAM_04", "id": "ItemB"},       "to": {"map": "SAM_04", "id": 0},             "reqs": []}, #* ItemB (RepelGel) -> Shiver Snowfield Exit West

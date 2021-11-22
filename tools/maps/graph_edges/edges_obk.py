@@ -26,7 +26,7 @@ edges_obk = [
     
     {"from": {"map": "OBK_01", "id": 0},             "to": {"map": "OBK_01", "id": "GiftA"},       "reqs": [require(favor="FAVOR_CH4_2")]}, #* Foyer Front Door -> GiftA (OldPhoto)
     {"from": {"map": "OBK_01", "id": "GiftA"},       "to": {"map": "OBK_01", "id": 0},             "reqs": []}, #* GiftA (OldPhoto) -> Foyer Front Door
-    {"from": {"map": "OBK_01", "id": 0},             "to": {"map": "OBK_01", "id": "HiddenPanel"}, "reqs": [flip_panels]}, #* Foyer Front Door -> HiddenPanel (StarPiece)
+    {"from": {"map": "OBK_01", "id": 0},             "to": {"map": "OBK_01", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Foyer Front Door -> HiddenPanel (StarPiece)
     {"from": {"map": "OBK_01", "id": "HiddenPanel"}, "to": {"map": "OBK_01", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Foyer Front Door
 
     # OBK_02 Basement Stairs
@@ -39,7 +39,7 @@ edges_obk = [
     {"from": {"map": "OBK_02", "id": 0}, "to": {"map": "OBK_02", "id": 2}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Basement Stairs Upper Door -> Basement Stairs Bombable Wall
     {"from": {"map": "OBK_02", "id": 2}, "to": {"map": "OBK_02", "id": 0}, "reqs": []}, #? Basement Stairs Bombable Wall -> Basement Stairs Upper Door
     
-    {"from": {"map": "OBK_02", "id": 0},             "to": {"map": "OBK_02", "id": "HiddenPanel"}, "reqs": [flip_panels]}, #* Basement Stairs Upper Door -> HiddenPanel (StarPiece)
+    {"from": {"map": "OBK_02", "id": 0},             "to": {"map": "OBK_02", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Basement Stairs Upper Door -> HiddenPanel (StarPiece)
     {"from": {"map": "OBK_02", "id": "HiddenPanel"}, "to": {"map": "OBK_02", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Basement Stairs Upper Door
 
     # OBK_03 Basement
@@ -78,7 +78,7 @@ edges_obk = [
     
     {"from": {"map": "OBK_04", "id": 0},             "to": {"map": "OBK_04", "id": "CrateA"},      "reqs": [require(boots=1)]}, #* Super Boots Room Vanishing Door -> CrateA (MapleSyrup)
     {"from": {"map": "OBK_04", "id": "CrateA"},      "to": {"map": "OBK_04", "id": 0},             "reqs": []}, #* CrateA (MapleSyrup) -> Super Boots Room Vanishing Door
-    {"from": {"map": "OBK_04", "id": 0},             "to": {"map": "OBK_04", "id": "HiddenPanel"}, "reqs": [flip_panels]}, #* Super Boots Room Vanishing Door -> HiddenPanel (StarPiece)
+    {"from": {"map": "OBK_04", "id": 0},             "to": {"map": "OBK_04", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Super Boots Room Vanishing Door -> HiddenPanel (StarPiece)
     {"from": {"map": "OBK_04", "id": "HiddenPanel"}, "to": {"map": "OBK_04", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Super Boots Room Vanishing Door
 
     # OBK_05 Pot Room
@@ -113,7 +113,7 @@ edges_obk = [
     # OBK_08 Record Room
     {"from": {"map": "OBK_08", "id": 0}, "to": {"map": "OBK_01", "id": 4}, "reqs": []}, # Record Room Door South -> Foyer Upper Door East
     
-    {"from": {"map": "OBK_08", "id": 0},             "to": {"map": "OBK_08", "id": "HiddenPanel"}, "reqs": [flip_panels]}, #* Record Room Door South -> HiddenPanel (StarPiece)
+    {"from": {"map": "OBK_08", "id": 0},             "to": {"map": "OBK_08", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Record Room Door South -> HiddenPanel (StarPiece)
     {"from": {"map": "OBK_08", "id": "HiddenPanel"}, "to": {"map": "OBK_08", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Record Room Door South
     {"from": {"map": "OBK_08", "id": 0},             "to": {"map": "OBK_08", "id": "ItemA"},       "reqs": []}, #* Record Room Door South -> ItemA (Record)
     {"from": {"map": "OBK_08", "id": "ItemA"},       "to": {"map": "OBK_08", "id": 0},             "reqs": []}, #* ItemA (Record) -> Record Room Door South

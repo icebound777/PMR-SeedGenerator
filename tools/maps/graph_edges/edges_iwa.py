@@ -31,7 +31,7 @@ edges_iwa = [
     {"from": {"map": "IWA_01", "id": 3}, "to": {"map": "IWA_01", "id": 1}, "reqs": []}, #? Mt Rugged 2 Exit Top Right -> Mt Rugged 2 Exit Top Left
     {"from": {"map": "IWA_01", "id": 1}, "to": {"map": "IWA_01", "id": 0}, "reqs": []}, #? Mt Rugged 2 Exit Top Left -> Mt Rugged 2 Exit Bottom Left
     
-    {"from": {"map": "IWA_01", "id": 0},             "to": {"map": "IWA_01", "id": "HiddenPanel"}, "reqs": [flip_panels]}, #* Mt Rugged 2 Exit Bottom Left -> HiddenPanel (StarPiece)
+    {"from": {"map": "IWA_01", "id": 0},             "to": {"map": "IWA_01", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Mt Rugged 2 Exit Bottom Left -> HiddenPanel (StarPiece)
     {"from": {"map": "IWA_01", "id": "HiddenPanel"}, "to": {"map": "IWA_01", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Mt Rugged 2 Exit Bottom Left
     {"from": {"map": "IWA_01", "id": "ItemB"},       "to": {"map": "IWA_01", "id": "ItemA"},       "reqs": [require(partner="PARTNER_Parakarry")]}, #* ItemB (Letter01) -> ItemA (QuakeHammer)
     {"from": {"map": "IWA_01", "id": "ItemA"},       "to": {"map": "IWA_01", "id": "ItemB"},       "reqs": []}, #* ItemA (QuakeHammer) -> ItemB (Letter01)

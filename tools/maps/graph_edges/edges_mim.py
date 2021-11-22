@@ -160,6 +160,6 @@ edges_mim = [
     {"from": {"map": "MIM_12", "id": 0}, "to": {"map": "MIM_12", "id": 1}, "reqs": [require(flag="RF_OpenedGustyGulch")]}, #? Exit to Gusty Gulch Exit West -> Exit to Gusty Gulch Exit East
     {"from": {"map": "MIM_12", "id": 1}, "to": {"map": "MIM_12", "id": 0}, "reqs": [require(flag="RF_OpenedGustyGulch")]}, #? Exit to Gusty Gulch Exit East -> Exit to Gusty Gulch Exit West
     
-    {"from": {"map": "MIM_12", "id": 1},             "to": {"map": "MIM_12", "id": "HiddenPanel"}, "reqs": [flip_panels]}, #* Exit to Gusty Gulch Exit East -> HiddenPanel (StarPiece)
+    {"from": {"map": "MIM_12", "id": 1},             "to": {"map": "MIM_12", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Exit to Gusty Gulch Exit East -> HiddenPanel (StarPiece)
     {"from": {"map": "MIM_12", "id": "HiddenPanel"}, "to": {"map": "MIM_12", "id": 1},             "reqs": []}, #* HiddenPanel (StarPiece) -> Exit to Gusty Gulch Exit East
 ]
