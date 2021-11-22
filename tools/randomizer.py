@@ -4,9 +4,9 @@ import sys
 import getopt
 import hashlib
 import time
+import json
 import yaml
 from yaml.loader import SafeLoader
-import json
 
 from enums import create_enums
 from table import Table
@@ -53,6 +53,7 @@ def set_cheap_shopitems(placed_items):
 
 
 def print_usage():
+    """Prints this program's usage."""
     print("Usage: randomizer.py [OPTION]... [FILE]")
     print("Main module for the Open World Paper Mario Randomizer.")
     print("Randomizes items, entrances and more and writes those to a pre-")
@@ -69,12 +70,18 @@ def print_usage():
 
 
 def print_version():
+    """Prints version."""
     print(VERSION)
 
 
-def write_itemdata_to_rom(placed_items, target_modfile, seed=int(hashlib.md5().hexdigest()[0:8], 16), edit_seed="0x0123456789ABCDEF"):
+def write_itemdata_to_rom(
+    placed_items,
+    target_modfile,
+    seed=int(hashlib.md5().hexdigest()[0:8], 16),
+    edit_seed="0x0123456789ABCDEF"
+):
     """
-    Generates key:value pairs of locations and items from randomized item set
+    Generates key:value pairs of locations and items from a randomized item set
     and writes these pairs to the ROM. Also logs the pairs to a file.
     """
     # Create the ROM table
@@ -131,6 +138,10 @@ def write_itemdata_to_rom(placed_items, target_modfile, seed=int(hashlib.md5().h
 
 
 def main_randomizer():
+    """
+    Main randomizer module, used for controlling the randomizer from the
+    commandline. Calling this forgoes using the GUI.
+    """
     timer_start = time.perf_counter()
 
     rando_settings = OptionSet()
@@ -170,7 +181,7 @@ def main_randomizer():
                     elif arg[arg.rfind(".") + 1:] == "yaml":
                         data = yaml.load(file, Loader=SafeLoader)
                 rando_settings.update_options(data)
-            
+
             # Pre-modded Open World PM64 ROM
             if opt in ["-t", "--targetmod"]:
                 target_modfile = arg
@@ -222,13 +233,13 @@ def main_randomizer():
     write_itemdata_to_rom(placed_items, target_modfile)
 
     # Write sorted spoiler log
-    if (rando_settings.write_spoilerlog):
+    if rando_settings.write_spoilerlog:
         write_spoiler_log(
             placed_items,
             do_pretty=rando_settings.pretty_spoilerlog,
             spoilerlog_file=spoilerlog_file_path
         )
-    
+
     timer_end = time.perf_counter()
     print(f'Seed generated in {round(timer_end - timer_start, 2)}s')
 
