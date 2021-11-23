@@ -11,5 +11,5 @@ edges_kgr = [
     
     # KGR_02 Whale Stomach
     {"from": {"map": "KGR_02", "id": 0}, "to": {"map": "KGR_01", "id": 1}, "reqs": []}, # Whale Stomach Exit West -> Whale Mouth Exit East
-    {"from": {"map": "KGR_02", "id": 0}, "to": {"map": "KGR_02", "id": 0}, "reqs": [require(partner="PARTNER_Watt")], "pseudoitems":["RF_CanRideWhale"]}, #+ Defeat Fuzzipede
+    {"from": {"map": "KGR_02", "id": 0}, "to": {"map": "KGR_02", "id": 0}, "reqs": [require(partner="PARTNER_Watt",flag="RF_WattCanFight")], "pseudoitems":["RF_CanRideWhale"]}, #+ Defeat Fuzzipede
 ]
