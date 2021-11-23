@@ -1,0 +1,71 @@
+---
+# OPEN WORLD PM64 SETTINGS
+SettingsName   : Default Dev Preset
+SettingsVersion: 0.1
+
+# Options
+StartingMap            : 0x00010104 # mac_00, Entry4
+ReplaceDuplicateKeys   : false
+DuplicateKeyReplacement: 194 # '.Item:Mistake'
+BlocksMatchContent     : true
+
+InitialCoins: 50
+CapEnemyXP  : true
+2xDamage    : false
+4xDamage    : false
+OHKO        : false
+
+# Pre-opened areas
+FlowerGateOpen: false
+BlueHouseOpen : false
+
+# Randomization: Logic
+PlacementAlgorithm: ForwardFill
+#PlacementAlgorithm: WeightedForwardFill # NYI
+#PlacementAlgorithm: AssumedFill # NYI
+#PlacementAlgorithm: CustomSeed
+PlacementLogic: NoGlitches
+#PlacementLogic: Glitches # NYI
+#PlacementLogic: NoLogic
+
+# Randomization: Items
+ShuffleItems          : true
+IncludeCoins          : false
+IncludeShops          : true
+IncludePanels         : true
+KeyitemsOutsideArea   : true # false -> NYI
+KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
+
+# Randomization: Entrances
+ShuffleEntrances        : true  # NYI
+ShuffleEntrancesByArea  : true  # NYI
+ShuffleEntrancesByAll   : false # NYI
+MatchEntranceTypes      : true  # NYI
+RandomizeOnewayEntrances: false # NYI
+UnpairedEntrances       : false # NYI
+
+# Randomization: Quizzes
+RandomQuiz: true
+SkipQuiz  : false
+
+# Partner
+StartWithRandomPartners: false
+RandomPartnersMin      : 1
+RandomPartnersMax      : 8
+StartWithPartners: { # ignored if StartWithRandomPartners true
+    Goombario : true,
+    Kooper    : false,
+    Bombette  : false,
+    Parakarry : false,
+    Bow       : false,
+    Watt      : false,
+    Sushie    : false,
+    Lakilester: false
+}
+# Spoiler log
+WriteSpoilerLog: true
+PrettySpoilerlog: true
+
+# Cosmetics
+ColorA: 0xEBE677FF # Box5ColorA
+ColorB: 0x8E5A25FF # Box5ColorB

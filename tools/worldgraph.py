@@ -262,9 +262,13 @@ def check_unreachable_from_start(all_nodes, all_edges):
             return
         visited_node_ids.append(node_id)
 
-        outgoing_edges = world_graph.get(node_id).get("edge_list")
-        for edge in outgoing_edges:
-            depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
+        try:
+            outgoing_edges = world_graph.get(node_id).get("edge_list")
+            for edge in outgoing_edges:
+                depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
+        except AttributeError as err:
+            print(f"{err.args}: Cannot find edges of {node_id}!")
+            raise
 
     # traverse world graph
     print("Checking node reachability in world graph ...")

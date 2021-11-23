@@ -1,3 +1,5 @@
+from simulate import *
+
 """This file represents all edges of the world graph that have origin-nodes in the DRO (Dry Dry Outpost) area."""
 edges_dro = [
     # DRO_01 Outpost 1
@@ -7,8 +9,10 @@ edges_dro = [
     
     {"from": {"map": "DRO_01", "id": 0}, "to": {"map": "DRO_01", "id": 1}, "reqs": []}, #? Outpost 1 Exit West -> Outpost 1 Exit East
     {"from": {"map": "DRO_01", "id": 1}, "to": {"map": "DRO_01", "id": 0}, "reqs": []}, #? Outpost 1 Exit East -> Outpost 1 Exit West
-    {"from": {"map": "DRO_01", "id": 0}, "to": {"map": "DRO_01", "id": 2}, "reqs": []}, #? Outpost 1 Exit West -> Outpost 1 Blue Warp Pipe
+    {"from": {"map": "DRO_01", "id": 0}, "to": {"map": "DRO_01", "id": 2}, "reqs": [require(flag="GF_DRO01_WarpPipe")]}, #? Outpost 1 Exit West -> Outpost 1 Blue Warp Pipe
     {"from": {"map": "DRO_01", "id": 2}, "to": {"map": "DRO_01", "id": 0}, "reqs": []}, #? Outpost 1 Blue Warp Pipe -> Outpost 1 Exit West
+    
+    {"from": {"map": "DRO_01", "id": 2}, "to": {"map": "DRO_01", "id": 2}, "reqs": [], "pseudoitems": ["GF_DRO01_WarpPipe"]}, #+ Outpost 1 Blue Warp Pipe
     
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "GiftA"},     "reqs": []}, #* Outpost 1 Exit West -> GiftA (Melody)
     {"from": {"map": "DRO_01", "id": "GiftA"},     "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* GiftA (Melody) -> Outpost 1 Exit West
@@ -30,11 +34,11 @@ edges_dro = [
     # DRO_02 Outpost 2
     {"from": {"map": "DRO_02", "id": 0}, "to": {"map": "DRO_01", "id": 1}, "reqs": []}, # Outpost 2 Exit West -> Outpost 1 Exit East
     
-    {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "GiftA"},       "reqs": []}, #* Outpost 2 Exit West -> GiftA (CrystalBall)
+    {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "GiftA"},       "reqs": [require(flag="GF_HOS06_MerluvleeRequestedCrystalBall")]}, #* Outpost 2 Exit West -> GiftA (CrystalBall)
     {"from": {"map": "DRO_02", "id": "GiftA"},       "to": {"map": "DRO_02", "id": 0},             "reqs": []}, #* GiftA (CrystalBall) -> Outpost 2 Exit West
     {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "GiftB"},       "reqs": []}, #* Outpost 2 Exit West -> GiftB (PulseStone)
     {"from": {"map": "DRO_02", "id": "GiftB"},       "to": {"map": "DRO_02", "id": 0},             "reqs": []}, #* GiftB (PulseStone) -> Outpost 2 Exit West
-    {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "HiddenPanel"}, "reqs": []}, #* Outpost 2 Exit West -> HiddenPanel (StarPiece)
+    {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Outpost 2 Exit West -> HiddenPanel (StarPiece)
     {"from": {"map": "DRO_02", "id": "HiddenPanel"}, "to": {"map": "DRO_02", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Outpost 2 Exit West
     {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "ItemA"},       "reqs": []}, #* Outpost 2 Exit West -> ItemA (Letter08)
     {"from": {"map": "DRO_02", "id": "ItemA"},       "to": {"map": "DRO_02", "id": 0},             "reqs": []}, #* ItemA (Letter08) -> Outpost 2 Exit West

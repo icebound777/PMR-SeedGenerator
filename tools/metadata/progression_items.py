@@ -1,4 +1,4 @@
-progression_items = {
+progression_keyitems = {
     0x0001 : "Boots",
     0x0002 : "SuperBoots",
     0x0003 : "UltraBoots",
@@ -86,3 +86,22 @@ progression_items = {
 }
     # 0x0030 calculator
     # 0x0078 ??
+
+progression_miscitems = [
+    0x0089, # TastyTonic  (Koopa Koot) alternative: Lime,Lemon;BubbleBerry,Coconut
+    0x008F, # SleepySheep (Koopa Koot)
+    0x0095, # LifeShroom  (Koopa Koot)
+    0x009D, # Lime        (Koopa Koot)
+    0x009E, # BlueBerry   (Blue Flower Guard / Flower Fields Well)
+    0x009F, # RedBerry    (Red Flower Guard)
+    0x00A0, # YellowBerry (Yellow Flower Guard)
+    0x00A1, # BubbleBerry (BubbleFlower)
+    0x00A5, # GoomNut     (Koopa Koot: NuttyCake from Tayce T.)
+    0x00A6, # KoopaLeaf   (Koopa Koot: KoopaTea from Tayce T.)
+ #   0x00A7, # DriedPasta  (Koopa Koot: +KoopaLeaf -> Koopasta from Tayce T.)
+    0x00AA, # CakeMix     (Koopa Koot: +KoopaLeaf -> KookyCookie from Tayce T.)
+    0x00AC, # Coconut     (Koopa Koot)
+    0x00C1, # Cake        (Gourmet Guy)
+]
+
+progression_items = progression_keyitems #+ progression_miscitems

@@ -8,7 +8,6 @@ import json
 from db.node import Node
 from db.item import Item
 from db.map_area import MapArea
-from db.option import Option
 from metadata.itemlocation_replenish import replenishing_itemlocations
 from metadata.progression_items import progression_miscitems
 from worldgraph import generate as generate_world_graph, get_node_identifier
@@ -43,13 +42,13 @@ def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, 
             i += 1
 
 
-def place_items(item_placement, algorithm="forward_fill"):
+def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
+  do_randomize_shops, do_randomize_panels, starting_map_id, startwith_bluehouse_open,
+  startwith_flowergate_open, starting_partners=None
+):
     """Places items into item locations according to chosen settings."""
 
-    do_custom_seed = False #NYI
-    do_shuffle_items = Option.get(Option.name == "ShuffleItems").value
-
-    if do_custom_seed:
+    if algorithm == "CustomSeed":
         # Place items according to custom seed
         try:
             seed_path = "./custom_seed.json"
@@ -74,7 +73,7 @@ def place_items(item_placement, algorithm="forward_fill"):
             node.current_item = node.vanilla_item
             item_placement.append(node)
 
-    elif algorithm == "forward_fill":
+    elif algorithm == "ForwardFill":
         # Place items in accessible locations first, then expand accessible
         # locations by unlocked locations
 
@@ -83,14 +82,17 @@ def place_items(item_placement, algorithm="forward_fill"):
         add_to_inventory(["PARTNER_Goombario","PARTNER_Kooper","PARTNER_Bombette",
                           "PARTNER_Parakarry","PARTNER_Bow","PARTNER_Watt","PARTNER_Sushie",
                           "PARTNER_Lakilester"])
+        # add_to_inventory(starting_partners) # the above are logic partners (abilities)
         add_to_inventory("EQUIPMENT_Hammer_Progressive")
 
-        startwith_bluehouse_open = Option.get(Option.name == "BlueHouseOpen").value
+        # Read settings: Blue House Open
         if startwith_bluehouse_open:
             add_to_inventory("GF_MAC02_UnlockedHouse")
             #TODO maybe remove OddKey from itempool?
+        if startwith_flowergate_open:
+            add_to_inventory("RF_Ch6_FlowerGateOpen")
+            #TODO maybe remove MagicalSeeds from itempool?
 
-        startwith_flowergate_open = Option.get(Option.name == "FlowerGateOpen").value
         if startwith_flowergate_open:
             add_to_inventory("RF_Ch6_FlowerGateOpen")
             #TODO maybe remove MagicalSeeds from itempool?
@@ -150,11 +152,9 @@ def place_items(item_placement, algorithm="forward_fill"):
         # Check if items and nodes need to be excluded from randomization based on settings
         dont_randomize = []
         # Randomize coins?
-        do_randomize_coins = Option.get(Option.name == "IncludeCoins").value
         if not do_randomize_coins:
             dont_randomize.append("Coins")
         # Randomize shops?
-        do_randomize_shops = Option.get(Option.name == "IncludeShops").value
         if not do_randomize_shops:
             dont_randomize.append("Shops")
             # Let shop items overrule progression miscitems
@@ -167,7 +167,6 @@ def place_items(item_placement, algorithm="forward_fill"):
                     progression_miscitems_check.remove(cur_node.vanilla_item.value)
                     print(f'Can buy {cur_node.vanilla_item.item_name}, skipping')
         # Randomize hidden panels?
-        do_randomize_panels = Option.get(Option.name == "IncludePanels").value
         if not do_randomize_panels:
             dont_randomize.append("Panels")
 
@@ -190,7 +189,7 @@ def place_items(item_placement, algorithm="forward_fill"):
                                             pool_other_items)
         
         # Set node to start graph traversal from
-        starting_map_hex = hex(Option.get(Option.name == "StartingMap").value)[2:]
+        starting_map_hex = hex(starting_map_id)[2:]
         starting_map_entrance_id = starting_map_hex[-1:]
         starting_map_map_id = starting_map_hex[-4:-2] if starting_map_hex[-4:-2] != "" else 0
         starting_map_area_id = starting_map_hex[-6:-4] if starting_map_hex[-6:-4] != "" else 0
@@ -199,39 +198,19 @@ def place_items(item_placement, algorithm="forward_fill"):
                                        & (MapArea.map_id  == starting_map_map_id))
 
         starting_node_id = starting_maparea.name + "/" + str(starting_map_entrance_id)
-        print (starting_node_id)
+        print(f'Starting map: {starting_node_id}')
 
         # Find initially reachable nodes
         print("Placing Progression Items ...")
         reachable_nodes = []
         reachable_item_nodes = {}
 
-        depth_first_search(starting_node_id)
-
-        # Place all items that influence progression and re-traverse formerly
-        # locked parts of the graph
-        while len(pool_progression_items) > 0:
-
-            # Pick random progression_item and place it into random reachable
-            # and unfilled item node
-            while True:
-                random_node = \
-                    reachable_item_nodes.pop(random.choice(list(reachable_item_nodes.keys())))
-                if random_node not in filled_item_nodes:
-                    break
-            random_item = \
-                pool_progression_items.pop(random.randint(0, len(pool_progression_items) - 1))
-            random_node.current_item = random_item
-            filled_item_nodes.append(random_node)
-
-            # Add placed progression_item into mario's inventory
-            add_to_inventory(random_item.item_name)
-
+        def find_reachable_nodes(non_traversable_edges):
             # Check for newly available nodes and add those to reachable_nodes
             while True:
                 pseudoitem_acquired = False
                 non_traversable_edges_tmp = non_traversable_edges.copy()
-                non_traversable_edges = []
+                non_traversable_edges.clear()
                 for non_traversable_edge in non_traversable_edges_tmp:
                     from_node_id = (  non_traversable_edge.get("from").get("map")
                                     + "/"
@@ -294,7 +273,7 @@ def place_items(item_placement, algorithm="forward_fill"):
             item_node_id = get_node_identifier(item_node)
 
             if item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]:
-                print(item_node_id)
+                #print(item_node_id)
                 random_item = pool_other_items.pop(random.randint(0, len(pool_other_items) - 1))
                 item_node.current_item = random_item
                 filled_item_nodes.append(item_node)

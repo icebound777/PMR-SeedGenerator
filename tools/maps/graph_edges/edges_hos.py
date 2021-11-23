@@ -1,3 +1,5 @@
+from simulate import *
+
 """This file represents all edges of the world graph that have origin-nodes in the HOS (Shooting Star Summit) area."""
 edges_hos = [
     # HOS_00 Shooting Star Path
@@ -10,17 +12,17 @@ edges_hos = [
     {"from": {"map": "HOS_00", "id": 0}, "to": {"map": "HOS_00", "id": 2}, "reqs": []}, #? Shooting Star Path Exit Left -> Shooting Star Path Exit Bottom Right
     {"from": {"map": "HOS_00", "id": 2}, "to": {"map": "HOS_00", "id": 0}, "reqs": []}, #? Shooting Star Path Exit Bottom Right -> Shooting Star Path Exit Left
     
-    {"from": {"map": "HOS_00", "id": 0},             "to": {"map": "HOS_00", "id": "HiddenPanel"}, "reqs": []}, #* Shooting Star Path Exit Left -> HiddenPanel (StarPiece)
+    {"from": {"map": "HOS_00", "id": 0},             "to": {"map": "HOS_00", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Shooting Star Path Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "HOS_00", "id": "HiddenPanel"}, "to": {"map": "HOS_00", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Shooting Star Path Exit Left
 
     # HOS_01 Shooting Star Summit
     {"from": {"map": "HOS_01", "id": 0}, "to": {"map": "HOS_00", "id": 1}, "reqs": []}, # Shooting Star Summit Exit Bottom Left -> Shooting Star Path Exit Top Right
     {"from": {"map": "HOS_01", "id": 1}, "to": {"map": "HOS_02", "id": 0}, "reqs": []}, # Shooting Star Summit Ride Up To Starway -> Star Way Ride Down To Summit
     
-    {"from": {"map": "HOS_01", "id": 0}, "to": {"map": "HOS_01", "id": 1}, "reqs": []}, #? Shooting Star Summit Exit Bottom Left -> Shooting Star Summit Ride Up To Starway
+    {"from": {"map": "HOS_01", "id": 0}, "to": {"map": "HOS_01", "id": 1}, "reqs": [require(starspirits=7)]}, #? Shooting Star Summit Exit Bottom Left -> Shooting Star Summit Ride Up To Starway
     {"from": {"map": "HOS_01", "id": 1}, "to": {"map": "HOS_01", "id": 0}, "reqs": []}, #? Shooting Star Summit Ride Up To Starway -> Shooting Star Summit Exit Bottom Left
     
-    {"from": {"map": "HOS_01", "id": 0},             "to": {"map": "HOS_01", "id": "HiddenPanel"}, "reqs": []}, #* Shooting Star Summit Exit Bottom Left -> HiddenPanel (StarPiece)
+    {"from": {"map": "HOS_01", "id": 0},             "to": {"map": "HOS_01", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Shooting Star Summit Exit Bottom Left -> HiddenPanel (StarPiece)
     {"from": {"map": "HOS_01", "id": "HiddenPanel"}, "to": {"map": "HOS_01", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Shooting Star Summit Exit Bottom Left
     {"from": {"map": "HOS_01", "id": 0},             "to": {"map": "HOS_01", "id": "ItemA"},       "reqs": []}, #* Shooting Star Summit Exit Bottom Left -> ItemA (StarPiece)
     {"from": {"map": "HOS_01", "id": "ItemA"},       "to": {"map": "HOS_01", "id": 0},             "reqs": []}, #* ItemA (StarPiece) -> Shooting Star Summit Exit Bottom Left
@@ -63,16 +65,18 @@ edges_hos = [
     {"from": {"map": "HOS_05", "id": 0}, "to": {"map": "HOS_04", "id": 1}, "reqs": []}, # Star Sanctuary Exit Left -> Outside the Sanctuary Exit Right
     {"from": {"map": "HOS_05", "id": 1}, "to": {"map": "HOS_20", "id": 0}, "reqs": []}, # Star Sanctuary Fly Starship -> Riding Star Ship Scene Fly To Star Haven
     
-    {"from": {"map": "HOS_05", "id": 0}, "to": {"map": "HOS_05", "id": 1}, "reqs": []}, #? Star Sanctuary Exit Left -> Star Sanctuary Fly Starship
+    {"from": {"map": "HOS_05", "id": 0}, "to": {"map": "HOS_05", "id": 1}, "reqs": [], "pseudoitems": ["RF_HasStarbeam"]}, #? Star Sanctuary Exit Left -> Star Sanctuary Fly Starship
     {"from": {"map": "HOS_05", "id": 1}, "to": {"map": "HOS_05", "id": 0}, "reqs": []}, #? Star Sanctuary Fly Starship -> Star Sanctuary Exit Left
 
     # HOS_06 Merluvlee's House
     {"from": {"map": "HOS_06", "id": 0}, "to": {"map": "HOS_00", "id": 2}, "reqs": []}, # Merluvlee's House Exit Left -> Shooting Star Path Exit Bottom Right
     
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "HiddenPanel"}, "reqs": []}, #* Merluvlee's House Exit Left -> HiddenPanel (StarPiece)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Merluvlee's House Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "HOS_06", "id": "HiddenPanel"}, "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "GiftA"},       "reqs": []}, #* Merluvlee's House Exit Left -> GiftA (Autograph2)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "GiftA"},       "reqs": [require(favor="FAVOR_CH2_3"), require(item="CrystalBall")]}, #* Merluvlee's House Exit Left -> GiftA (Autograph2)
     {"from": {"map": "HOS_06", "id": "GiftA"},       "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* GiftA (Autograph2) -> Merluvlee's House Exit Left
+    
+    {"from": {"map": "HOS_06", "id": 0}, "to": {"map": "HOS_06", "id": 0}, "reqs": [require(favor="FAVOR_CH2_3")], "pseudoitems": ["GF_HOS06_MerluvleeRequestedCrystalBall"]}, #+ Merluvlee's House Exit Left
 
     # HOS_20 Riding Star Ship Scene
     {"from": {"map": "HOS_20", "id": 0}, "to": {"map": "HOS_05", "id": 1}, "reqs": []}, # Riding Star Ship Scene Fly To Star Haven -> Star Sanctuary Fly Starship

@@ -1,3 +1,5 @@
+from simulate import *
+
 """This file represents all edges of the world graph that have origin-nodes in the MAC (Toad Town) area."""
 edges_mac = [
     # MAC_00 Gate District
@@ -9,13 +11,13 @@ edges_mac = [
     {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 1}, "reqs": []}, #? Gate District Exit Left -> Gate District Exit Right
     {"from": {"map": "MAC_00", "id": 1}, "to": {"map": "MAC_00", "id": 0}, "reqs": []}, #? Gate District Exit Right -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 3}, "reqs": []}, #? Gate District Exit Left -> Gate District Island Pipe
-    {"from": {"map": "MAC_00", "id": 3}, "to": {"map": "MAC_00", "id": 0}, "reqs": []}, #? Gate District Island Pipe -> Gate District Exit Left
+    {"from": {"map": "MAC_00", "id": 3}, "to": {"map": "MAC_00", "id": 0}, "reqs": [require(partner="PARTNER_Sushie")]}, #? Gate District Island Pipe -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 4}, "reqs": []}, #? Gate District Exit Left -> Gate District Top Green Pipe
     {"from": {"map": "MAC_00", "id": 4}, "to": {"map": "MAC_00", "id": 0}, "reqs": []}, #? Gate District Top Green Pipe -> Gate District Exit Left
     
-    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "HiddenPanel"}, "reqs": []}, #* Gate District Exit Left -> HiddenPanel (StarPiece)
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Gate District Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_00", "id": "HiddenPanel"}, "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Gate District Exit Left
-    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "ItemA"},       "reqs": []}, #* Gate District Exit Left -> ItemA (StarPiece)
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "ItemA"},       "reqs": [require(partner="PARTNER_Sushie")]}, #* Gate District Exit Left -> ItemA (StarPiece)
     {"from": {"map": "MAC_00", "id": "ItemA"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ItemA (StarPiece) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "ShopItemA"},   "reqs": []}, #* Gate District Exit Left -> ShopItemA (FrightJar)
     {"from": {"map": "MAC_00", "id": "ShopItemA"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemA (FrightJar) -> Gate District Exit Left
@@ -30,6 +32,8 @@ edges_mac = [
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "ShopItemF"},   "reqs": []}, #* Gate District Exit Left -> ShopItemF (Mushroom)
     {"from": {"map": "MAC_00", "id": "ShopItemF"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemF (Mushroom) -> Gate District Exit Left
 
+    {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 0}, "reqs": [require(item="MysteryNote"), require(item="Dictionary")], "pseudoitems": ["RF_CanSolveColorPuzzle"]}, #+ Decipher MysteryNote
+
     # MAC_01 Plaza District
     {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_00", "id": 1}, "reqs": []}, # Plaza District Exit Left -> Gate District Exit Right
     {"from": {"map": "MAC_01", "id": 1}, "to": {"map": "NOK_11", "id": 0}, "reqs": []}, # Plaza District Exit Right -> Pleasant Path Entry Exit Left
@@ -43,12 +47,18 @@ edges_mac = [
     {"from": {"map": "MAC_01", "id": 2}, "to": {"map": "MAC_01", "id": 0}, "reqs": []}, #? Plaza District Exit Top -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 3}, "reqs": []}, #? Plaza District Exit Left -> Plaza District Exit Bottom
     {"from": {"map": "MAC_01", "id": 3}, "to": {"map": "MAC_01", "id": 0}, "reqs": []}, #? Plaza District Exit Bottom -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 5}, "reqs": []}, #? Plaza District Exit Left -> Plaza District Flower Door
+    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 5}, "reqs": [require(flag="RF_Ch6_FlowerGateOpen")]}, #? Plaza District Exit Left -> Plaza District Flower Door
     {"from": {"map": "MAC_01", "id": 5}, "to": {"map": "MAC_01", "id": 0}, "reqs": []}, #? Plaza District Flower Door -> Plaza District Exit Left
+
+    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 0}, "reqs": [require(item="MagicalSeed1"),
+                                                                                    require(item="MagicalSeed2"),
+                                                                                    require(item="MagicalSeed3"),
+                                                                                    require(item="MagicalSeed4")],
+                                                                           "pseudoitems": ["RF_Ch6_FlowerGateOpen"]}, #+ Plaza District Exit Left
     
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ItemA"},        "reqs": []}, #* Plaza District Exit Left -> ItemA (QuickChange)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ItemA"},        "reqs": [require(boots=1)]}, #* Plaza District Exit Left -> ItemA (QuickChange)
     {"from": {"map": "MAC_01", "id": "ItemA"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ItemA (QuickChange) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "Tree1_Drop1A"}, "reqs": []}, #* Plaza District Exit Left -> Tree1_Drop1A (StarPiece)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "Tree1_Drop1A"}, "reqs": [can_shake_trees]}, #* Plaza District Exit Left -> Tree1_Drop1A (StarPiece)
     {"from": {"map": "MAC_01", "id": "Tree1_Drop1A"}, "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* Tree1_Drop1A (StarPiece) -> Plaza District Exit Left
 
     # MAC_02 Southern District
@@ -67,31 +77,35 @@ edges_mac = [
     {"from": {"map": "MAC_02", "id": 3}, "to": {"map": "MAC_02", "id": 2}, "reqs": []}, #? Southern District Exit Bottom -> Southern District Exit Top
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": 4}, "reqs": []}, #? Southern District Exit Top -> Southern District Open Pipe
     {"from": {"map": "MAC_02", "id": 4}, "to": {"map": "MAC_02", "id": 2}, "reqs": []}, #? Southern District Open Pipe -> Southern District Exit Top
-    {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": 5}, "reqs": []}, #? Southern District Exit Top -> Southern District Blue House Pipe
-    {"from": {"map": "MAC_02", "id": 5}, "to": {"map": "MAC_02", "id": 2}, "reqs": []}, #? Southern District Blue House Pipe -> Southern District Exit Top
+    {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": 5}, "reqs": [require(flag="GF_MAC02_UnlockedHouse")]}, #? Southern District Exit Top -> Southern District Blue House Pipe
+    {"from": {"map": "MAC_02", "id": 5}, "to": {"map": "MAC_02", "id": 2}, "reqs": [require(item="OddKey",flag="GF_MAC02_UnlockedHouse")], "pseudoitems": ["GF_MAC02_UnlockedHouse"]}, #? Southern District Blue House Pipe -> Southern District Exit Top
     
     {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftA"},       "reqs": []}, #* Southern District Exit Top -> GiftA (MagicalSeed1)
     {"from": {"map": "MAC_02", "id": "GiftA"},       "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* GiftA (MagicalSeed1) -> Southern District Exit Top
-    {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "HiddenPanel"}, "reqs": []}, #* Southern District Exit Top -> HiddenPanel (StarPiece)
+    {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftB"},       "reqs": [require(item="FryingPan")]}, #* Southern District Exit Top -> GiftB (Cake)
+    {"from": {"map": "MAC_02", "id": "GiftB"},       "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* GiftB (Cake) -> Southern District Exit Top
+    {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Southern District Exit Top -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_02", "id": "HiddenPanel"}, "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* HiddenPanel (StarPiece) -> Southern District Exit Top
     {"from": {"map": "MAC_02", "id": 5},             "to": {"map": "MAC_02", "id": "ItemA"},       "reqs": []}, #* Southern District Blue House Pipe -> ItemA (OddKey)
     {"from": {"map": "MAC_02", "id": "ItemA"},       "to": {"map": "MAC_02", "id": 5},             "reqs": []}, #* ItemA (OddKey) -> Southern District Blue House Pipe
+
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanVisitTayceT"]}, #+ Can visit Tayce T. for cooking
 
     # MAC_03 Station District
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_02", "id": 3}, "reqs": []}, # Station District Exit Top -> Southern District Exit Bottom
     {"from": {"map": "MAC_03", "id": 1}, "to": {"map": "IWA_11", "id": 1}, "reqs": []}, # Station District Train -> Train Ride Scene Exit Left
     {"from": {"map": "MAC_03", "id": 2}, "to": {"map": "MGM_00", "id": 0}, "reqs": []}, # Station District Minigame Pipe -> Playroom Lobby Exit Pipe
     
-    {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 1}, "reqs": []}, #? Station District Exit Top -> Station District Train
+    {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 1}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Station District Exit Top -> Station District Train
     {"from": {"map": "MAC_03", "id": 1}, "to": {"map": "MAC_03", "id": 0}, "reqs": []}, #? Station District Train -> Station District Exit Top
-    {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 2}, "reqs": []}, #? Station District Exit Top -> Station District Minigame Pipe
+    {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 2}, "reqs": [can_shake_trees]}, #? Station District Exit Top -> Station District Minigame Pipe
     {"from": {"map": "MAC_03", "id": 2}, "to": {"map": "MAC_03", "id": 0}, "reqs": []}, #? Station District Minigame Pipe -> Station District Exit Top
     
-    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "GiftA"},       "reqs": []}, #* Station District Exit Top -> GiftA (Letter21)
+    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "GiftA"},       "reqs": [require(partner="PARTNER_Parakarry",item="Letter20")]}, #* Station District Exit Top -> GiftA (Letter21)
     {"from": {"map": "MAC_03", "id": "GiftA"},       "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* GiftA (Letter21) -> Station District Exit Top
-    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "GiftB"},       "reqs": []}, #* Station District Exit Top -> GiftB (Letter23)
+    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "GiftB"},       "reqs": [require(partner="PARTNER_Parakarry",item="Letter22")]}, #* Station District Exit Top -> GiftB (Letter23)
     {"from": {"map": "MAC_03", "id": "GiftB"},       "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* GiftB (Letter23) -> Station District Exit Top
-    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "HiddenPanel"}, "reqs": []}, #* Station District Exit Top -> HiddenPanel (StarPiece)
+    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Station District Exit Top -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_03", "id": "HiddenPanel"}, "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Station District Exit Top
 
     # MAC_04 Residental District
@@ -101,9 +115,19 @@ edges_mac = [
     
     {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 1}, "reqs": []}, #? Residental District Exit Right -> Residental District Exit Left
     {"from": {"map": "MAC_04", "id": 1}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #? Residental District Exit Left -> Residental District Exit Right
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 2}, "reqs": []}, #? Residental District Exit Right -> Residental District Toybox Spring
+    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 2}, "reqs": [require(partner="PARTNER_Bow")]}, #? Residental District Exit Right -> Residental District Toybox Spring    
     {"from": {"map": "MAC_04", "id": 2}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #? Residental District Toybox Spring -> Residental District Exit Right
+
+    {"from": {"map": "MAC_04", "id": 2}, "to": {"map": "MAC_04", "id": 2}, "reqs": [require(item="ToyTrain")], "pseudoitems": ["MF_Ch4_ReturnedToyTrain"]}, #+ Toybox: Throw in ToyTrain
     
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ItemA"},     "reqs": [require(item="StoreroomKey")]}, #* Residental District Exit Right -> ItemA (SnowmanDoll)
+    {"from": {"map": "MAC_04", "id": "ItemA"},     "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ItemA (SnowmanDoll) -> Residental District Exit Right
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ItemB"},     "reqs": [require(item="StoreroomKey")]}, #* Residental District Exit Right -> ItemB (VoltShroom)
+    {"from": {"map": "MAC_04", "id": "ItemB"},     "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ItemB (VoltShroom) -> Residental District Exit Right
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ItemC"},     "reqs": [require(item="StoreroomKey")]}, #* Residental District Exit Right -> ItemC (ToyTrain)
+    {"from": {"map": "MAC_04", "id": "ItemC"},     "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ItemC (ToyTrain) -> Residental District Exit Right
+    {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ItemD"},     "reqs": [require(item="StoreroomKey")]}, #* Residental District Exit Right -> ItemD (DizzyDial)
+    {"from": {"map": "MAC_04", "id": "ItemD"},     "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ItemD (DizzyDial) -> Residental District Exit Right
     {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ShopItemA"}, "reqs": []}, #* Residental District Exit Right -> ShopItemA (StoneCap)
     {"from": {"map": "MAC_04", "id": "ShopItemA"}, "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ShopItemA (StoneCap) -> Residental District Exit Right
     {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ShopItemB"}, "reqs": []}, #* Residental District Exit Right -> ShopItemB (DizzyDial)
@@ -119,16 +143,23 @@ edges_mac = [
 
     # MAC_05 Port District
     {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_04", "id": 1}, "reqs": []}, # Port District Exit Right -> Residental District Exit Left
-    {"from": {"map": "MAC_05", "id": 1}, "to": {"map": "JAN_00", "id": 0}, "reqs": []}, # Port District Ride Whale -> Whale Cove Ride Whale
+    {"from": {"map": "MAC_05", "id": 1}, "to": {"map": "MAC_06", "id": 0}, "reqs": []}, # Port District Ride Whale -> Ride Whale (Toad Town)
     {"from": {"map": "MAC_05", "id": 3}, "to": {"map": "KGR_01", "id": 0}, "reqs": []}, # Port District Enter Whale -> Whale Mouth Exit Left
     
-    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 1}, "reqs": []}, #? Port District Exit Right -> Port District Ride Whale
+    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 1}, "reqs": [require(flag="RF_CanRideWhale")]}, #? Port District Exit Right -> Port District Ride Whale
     {"from": {"map": "MAC_05", "id": 1}, "to": {"map": "MAC_05", "id": 0}, "reqs": []}, #? Port District Ride Whale -> Port District Exit Right
-    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 3}, "reqs": []}, #? Port District Exit Right -> Port District Enter Whale
+    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 3}, "reqs": [require(hammer=0)]}, #? Port District Exit Right -> Port District Enter Whale
     {"from": {"map": "MAC_05", "id": 3}, "to": {"map": "MAC_05", "id": 0}, "reqs": []}, #? Port District Enter Whale -> Port District Exit Right
     
     {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftA"},       "reqs": []}, #* Port District Exit Right -> GiftA (Lyrics)
     {"from": {"map": "MAC_05", "id": "GiftA"},       "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* GiftA (Lyrics) -> Port District Exit Right
-    {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "HiddenPanel"}, "reqs": []}, #* Port District Exit Right -> HiddenPanel (StarPiece)
+    {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Port District Exit Right -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_05", "id": "HiddenPanel"}, "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Port District Exit Right
+
+    # MAC_06 Riding the Whale
+    {"from": {"map": "MAC_06", "id": 0}, "to": {"map": "MAC_05", "id": 1}, "reqs": []}, # Ride Whale (Toad Town) -> Port District Ride Whale
+    {"from": {"map": "MAC_06", "id": 0}, "to": {"map": "JAN_00", "id": 0}, "reqs": []}, # Ride Whale (Lavalava Island) -> Whale Cove Ride The Whale
+
+    {"from": {"map": "MAC_06", "id": 0}, "to": {"map": "MAC_06", "id": 1}, "reqs": []}, #? Ride Whale (Toad Town) -> Ride Whale (Lavalava Island)
+    {"from": {"map": "MAC_06", "id": 1}, "to": {"map": "MAC_06", "id": 0}, "reqs": []}, #? Ride Whale (Lavalava Island) -> Ride Whale (Toad Town)
 ]
