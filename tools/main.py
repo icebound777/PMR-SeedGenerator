@@ -473,7 +473,8 @@ class Window(QMainWindow):
                                                  do_randomize_shops=self.chk_include_shops.isChecked(),
                                                  do_randomize_panels=self.chk_include_panels.isChecked(),
                                                  starting_map_id=0x00010104,
-                                                 startwith_bluehouse_open=self.chk_blue_house.isChecked()):
+                                                 startwith_bluehouse_open=self.chk_blue_house.isChecked(),
+                                                 startwith_flowergate_open=self.chk_flower_gate.isChecked()):
             self.progress_bar.setValue(percent_complete)
             self.progress_bar.setFormat(f"{text} ({percent_complete}%)")
             self.app.processEvents()

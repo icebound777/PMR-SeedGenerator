@@ -42,7 +42,7 @@ def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, 
 
 def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
   do_randomize_shops, do_randomize_panels, starting_map_id, startwith_bluehouse_open,
-  starting_partners=None
+  startwith_flowergate_open, starting_partners=None
 ):
     """Places items into item locations according to chosen settings."""
 
@@ -87,6 +87,9 @@ def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
         if startwith_bluehouse_open:
             add_to_inventory("GF_MAC02_UnlockedHouse")
             #TODO maybe remove OddKey from itempool?
+        if startwith_flowergate_open:
+            add_to_inventory("RF_Ch6_FlowerGateOpen")
+            #TODO maybe remove MagicalSeeds from itempool?
 
         # Prepare world graph
         print("Generating World Graph ...")

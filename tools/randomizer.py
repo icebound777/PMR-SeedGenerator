@@ -223,6 +223,7 @@ def main_randomizer():
                             do_randomize_panels=rando_settings.include_panels.value,
                             starting_map_id=rando_settings.starting_map,
                             startwith_bluehouse_open=rando_settings.bluehouse_open.value,
+                            startwith_flowergate_open=rando_settings.flowergate_open.value,
                             starting_partners=rando_settings.starting_partners):
         pass
 
