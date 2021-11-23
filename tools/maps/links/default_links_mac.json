@@ -143,7 +143,7 @@
             "verbose_name": "Exit East"
         },
         "1": {
-            "dest_map": "JAN_10",
+            "dest_map": "MAC_06",
             "dest_entry": 0,
             "type": "whale",
             "verbose_name": "Whale Voyage"
@@ -153,6 +153,20 @@
             "dest_entry": 0,
             "type": "door",
             "verbose_name": "Enter Whale"
+        }
+    },
+    "MAC_06": {
+        "0": {
+            "dest_map": "MAC_05",
+            "dest_entry": 1,
+            "type": "whale",
+            "verbose_name": "Whale Voyage (Toad Town)"
+        },
+        "1": {
+            "dest_map": "JAN_00",
+            "dest_entry": 0,
+            "type": "whale",
+            "verbose_name": "Whale Voyage (Lavalava Island)"
         }
     }
 }
