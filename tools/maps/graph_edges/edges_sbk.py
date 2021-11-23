@@ -301,7 +301,7 @@ edges_sbk = [
     {"from": {"map": "SBK_30", "id": 0}, "to": {"map": "SBK_30", "id": 3}, "reqs": []}, #? W3 Kolorado's Camp Exit West -> W3 Kolorado's Camp Exit South
     {"from": {"map": "SBK_30", "id": 3}, "to": {"map": "SBK_30", "id": 0}, "reqs": []}, #? W3 Kolorado's Camp Exit South -> W3 Kolorado's Camp Exit West
     
-    {"from": {"map": "SBK_30", "id": 0},              "to": {"map": "SBK_30", "id": "Tree2_Drop1A"}, "reqs": [require(flag="RF_Ch2_SavedStarSpirit"), shake_trees]}, #* W3 Kolorado's Camp Exit West -> Tree2_Drop1A (Letter02)
+    {"from": {"map": "SBK_30", "id": 0},              "to": {"map": "SBK_30", "id": "Tree2_Drop1A"}, "reqs": [require(flag="RF_Ch2_SavedStarSpirit"), can_shake_trees]}, #* W3 Kolorado's Camp Exit West -> Tree2_Drop1A (Letter02)
     {"from": {"map": "SBK_30", "id": "Tree2_Drop1A"}, "to": {"map": "SBK_30", "id": 0},              "reqs": []}, #* Tree2_Drop1A (Letter02) -> W3 Kolorado's Camp Exit West
 
     # SBK_31 W2

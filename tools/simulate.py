@@ -105,6 +105,18 @@ def has_parakarry_3_letters():
     return False
 
 
+def saved_all_yoshikids():
+    """Checks if Mario has saved all 5 of the Yoshi Kids"""
+    global Mario
+    count = 0
+    for flag_str in mario.flags:
+        if flag_str == "RF_SavedYoshiKid":
+            count += 1
+            if count >= 5:
+                return True
+    return False
+
+
 def require(**kwargs):
     def func(kwargs=kwargs):
         global mario

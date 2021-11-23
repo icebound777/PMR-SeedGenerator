@@ -105,6 +105,8 @@ edges_kmr  = [
     {"from": {"map": "KMR_07", "id": 0}, "to": {"map": "KMR_07", "id": 1}, "reqs": []}, #? Goomba Road 3 Exit Left -> Goomba Road 3 Exit Right
     {"from": {"map": "KMR_07", "id": 1}, "to": {"map": "KMR_07", "id": 0}, "reqs": []}, #? Goomba Road 3 Exit Right -> Goomba Road 3 Exit Left
 
+    {"from": {"map": "KMR_07", "id": 0}, "to": {"map": "KMR_07", "id": 0}, "reqs": [], "pseudoitems": ["RF_BeatGoombaBros"]}, #+ Defeat Goomba Bros.
+
     # KMR_12 Goomba Road 4
     {"from": {"map": "KMR_12", "id": 0}, "to": {"map": "KMR_07", "id": 1}, "reqs": []}, # Goomba Road 4 Exit Left -> Goomba Road 3 Exit Right
     {"from": {"map": "KMR_12", "id": 1}, "to": {"map": "KMR_11", "id": 0}, "reqs": []}, # Goomba Road 4 Exit Right -> Goomba King's Castle Exit Left
@@ -116,8 +118,8 @@ edges_kmr  = [
     {"from": {"map": "KMR_11", "id": 0}, "to": {"map": "KMR_12", "id": 1}, "reqs": []}, # Goomba King's Castle Exit Left -> Goomba Road 4 Exit Right
     {"from": {"map": "KMR_11", "id": 1}, "to": {"map": "KMR_10", "id": 0}, "reqs": []}, # Goomba King's Castle Exit Right -> Toad Town Entrance Exit Left
     
-    {"from": {"map": "KMR_11", "id": 0}, "to": {"map": "KMR_11", "id": 1}, "reqs": []}, #? Goomba King's Castle Exit Left -> Goomba King's Castle Exit Right
-    {"from": {"map": "KMR_11", "id": 1}, "to": {"map": "KMR_11", "id": 0}, "reqs": []}, #? Goomba King's Castle Exit Right -> Goomba King's Castle Exit Left
+    {"from": {"map": "KMR_11", "id": 0}, "to": {"map": "KMR_11", "id": 1}, "reqs": [require(flag="RF_BeatGoombaBros")], "pseudoitems": ["RF_BeatGoombaKing"]}, #? Goomba King's Castle Exit Left -> Goomba King's Castle Exit Right
+    {"from": {"map": "KMR_11", "id": 1}, "to": {"map": "KMR_11", "id": 0}, "reqs": [require(flag="RF_BeatGoombaKing")]}, #? Goomba King's Castle Exit Right -> Goomba King's Castle Exit Left
     
     {"from": {"map": "KMR_11", "id": 0},              "to": {"map": "KMR_11", "id": "Tree1_Drop1A"}, "reqs": [can_shake_trees]}, #* Goomba King's Castle Exit Left -> Tree1_Drop1A (StarPiece)
     {"from": {"map": "KMR_11", "id": "Tree1_Drop1A"}, "to": {"map": "KMR_11", "id": 0},              "reqs": []}, #* Tree1_Drop1A (StarPiece) -> Goomba King's Castle Exit Left
@@ -141,6 +143,6 @@ edges_kmr  = [
     # KMR_20 Mario's House
     {"from": {"map": "KMR_20", "id": 4}, "to": {"map": "MAC_00", "id": 4}, "reqs": []}, # Mario's House Green Pipe -> Gate District Top Green Pipe
 
-    {"from": {"map": "KMR_20", "id": 4},       "to": {"map": "KMR_20", "id": "GiftA"}, "reqs": []}, #* Mario's House Green Pipe -> GiftA (Autograph1)
+    {"from": {"map": "KMR_20", "id": 4},       "to": {"map": "KMR_20", "id": "GiftA"}, "reqs": [require(favor="FAVOR_Ch1_3")]}, #* Mario's House Green Pipe -> GiftA (Autograph1)
     {"from": {"map": "KMR_20", "id": "GiftA"}, "to": {"map": "KMR_20", "id": 4},       "reqs": []}, #* GiftA (Autograph1) -> Mario's House Green Pipe
 ]

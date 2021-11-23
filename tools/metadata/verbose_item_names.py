@@ -8,7 +8,7 @@ verbose_item_names = {
     "Letter02": "Letter (To Goompa)",
     "Letter03": "Letter (To Mort T.)",
     "Letter04": "Letter (To Russ T.)",
-    "Letter05": "Letter (To Mayor Penguin",
+    "Letter05": "Letter (To Mayor Penguin)",
     "Letter06": "Letter (To Merlow)",
     "Letter07": "Letter (To Fice T.)",
     "Letter08": "Letter (To Nomadimouse)",

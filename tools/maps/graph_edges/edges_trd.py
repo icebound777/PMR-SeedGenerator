@@ -61,8 +61,8 @@ edges_trd = [
     
     {"from": {"map": "TRD_03", "id": 0}, "to": {"map": "TRD_03", "id": 1}, "reqs": []}, #? Central Hall Exit Bottom Left -> Central Hall Exit Bottom Right
     {"from": {"map": "TRD_03", "id": 1}, "to": {"map": "TRD_03", "id": 0}, "reqs": []}, #? Central Hall Exit Bottom Right -> Central Hall Exit Bottom Left
-    {"from": {"map": "TRD_03", "id": 2}, "to": {"map": "TRD_03", "id": 3}, "reqs": [require(partners=["PARTNER_Kooper", "PARTNER_Parakarry"])]}, #? Central Hall Exit Top Left -> Central Hall Exit Top Right
-    {"from": {"map": "TRD_03", "id": 3}, "to": {"map": "TRD_03", "id": 2}, "reqs": [require(partners=["PARTNER_Kooper", "PARTNER_Parakarry"])]}, #? Central Hall Exit Top Right-> Central Hall Exit Top Left
+    {"from": {"map": "TRD_03", "id": 2}, "to": {"map": "TRD_03", "id": 3}, "reqs": [require(partner=["PARTNER_Kooper", "PARTNER_Parakarry"])]}, #? Central Hall Exit Top Left -> Central Hall Exit Top Right
+    {"from": {"map": "TRD_03", "id": 3}, "to": {"map": "TRD_03", "id": 2}, "reqs": [require(partner=["PARTNER_Kooper", "PARTNER_Parakarry"])]}, #? Central Hall Exit Top Right-> Central Hall Exit Top Left
     {"from": {"map": "TRD_03", "id": 2}, "to": {"map": "TRD_03", "id": 0}, "reqs": []}, #? Central Hall Exit Top Left -> Central Hall Exit Bottom Left
     {"from": {"map": "TRD_03", "id": 3}, "to": {"map": "TRD_03", "id": 1}, "reqs": []}, #? Central Hall Exit Top Right-> Central Hall Exit Bottom Right
     

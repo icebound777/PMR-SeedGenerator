@@ -101,4 +101,7 @@ progression_miscitems = [
  #   0x00A7, # DriedPasta  (Koopa Koot: +KoopaLeaf -> Koopasta from Tayce T.)
     0x00AA, # CakeMix     (Koopa Koot: +KoopaLeaf -> KookyCookie from Tayce T.)
     0x00AC, # Coconut     (Koopa Koot)
+    0x00C1, # Cake        (Gourmet Guy)
 ]
+
+progression_items = progression_keyitems #+ progression_miscitems

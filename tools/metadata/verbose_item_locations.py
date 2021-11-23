@@ -105,7 +105,7 @@ verbose_item_locations = {
                "ShopItemE": "Shop Item 5",
                "ShopItemF": "Shop Item 6",},
     "HOS_06": {"GiftA": "Merluvlee Koopa Koot Favor",
-               "HiddenPanel": "Hidden",},
+               "HiddenPanel": "Hidden Panel",},
 
 # Koopa Region
     "NOK_01": {"Bush1_Drop1A": "Coin Bush 1",
