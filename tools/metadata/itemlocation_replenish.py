@@ -1,4 +1,5 @@
 replenishing_itemlocations = [
+    "DRO_01/ShopItemA","DRO_01/ShopItemC","DRO_01/ShopItemF",
     "FLO_16/ItemB",
     "FLO_09/ItemB",
     "FLO_03/Tree1_Drop1A","FLO_03/Tree1_Drop1B",
@@ -24,6 +25,7 @@ replenishing_itemlocations = [
     "OMO_01/ItemB","OMO_01/ItemC","OMO_01/ItemD","OMO_01/ItemE","OMO_01/ItemF",
     "SAM_02/ItemA","SAM_02/ShopItemA","SAM_02/ShopItemB","SAM_02/ShopItemC","SAM_02/ShopItemD","SAM_02/ShopItemE","SAM_02/ShopItemF",
     "SBK_56/Tree1_Drop1A","SBK_56/Tree2_Drop1A",
+    "TIK_15/GiftH",
 ]
 
 # replenishing_locations = {

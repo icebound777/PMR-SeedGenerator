@@ -15,6 +15,24 @@ from simulate import Mario, add_to_inventory
 from custom_seed import validate_seed
 
 
+def get_startingnode_id_from_startingmap_id (starting_map_id):
+    """Returns the starting node id (e.g. "MAC_00/4") for a given map id """
+    # Extract entrance, map and area from map-hex
+    starting_map_hex = hex(starting_map_id)[2:]
+    starting_map_entrance_id = starting_map_hex[-1:]
+    starting_map_map_id = starting_map_hex[-4:-2] if starting_map_hex[-4:-2] != "" else 0
+    starting_map_area_id = starting_map_hex[-6:-4] if starting_map_hex[-6:-4] != "" else 0
+
+    # Get maparea from db
+    starting_maparea = MapArea.get(  (MapArea.area_id == starting_map_area_id)
+                                   & (MapArea.map_id  == starting_map_map_id))
+
+    # String concat maparea-name and entrance-id to node-id string
+    starting_node_id = starting_maparea.name + "/" + str(starting_map_entrance_id)
+
+    return starting_node_id
+
+
 def remove_items_from_randomization(item_types, world_graph, filled_item_nodes, pool_other_items):
     """Removes items and their vanilla locations from consideration for randomization."""
     # Mark vanilla item nodes as filled
@@ -140,15 +158,6 @@ def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
         all_item_nodes = []
         progression_miscitems_check = progression_miscitems.copy()
 
-        for node_id in world_graph.keys():
-            if world_graph.get(node_id).get("node").key_name_item:
-                cur_node = world_graph.get(node_id).get("node")
-                all_item_nodes.append(cur_node)
-                if cur_node.vanilla_item.progression:
-                    pool_progression_items.append(cur_node.vanilla_item)
-                else:
-                    pool_other_items.append(cur_node.vanilla_item)
-
         # Check if items and nodes need to be excluded from randomization based on settings
         dont_randomize = []
         # Randomize coins?
@@ -189,15 +198,7 @@ def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
                                             pool_other_items)
         
         # Set node to start graph traversal from
-        starting_map_hex = hex(starting_map_id)[2:]
-        starting_map_entrance_id = starting_map_hex[-1:]
-        starting_map_map_id = starting_map_hex[-4:-2] if starting_map_hex[-4:-2] != "" else 0
-        starting_map_area_id = starting_map_hex[-6:-4] if starting_map_hex[-6:-4] != "" else 0
-
-        starting_maparea = MapArea.get(  (MapArea.area_id == starting_map_area_id)
-                                       & (MapArea.map_id  == starting_map_map_id))
-
-        starting_node_id = starting_maparea.name + "/" + str(starting_map_entrance_id)
+        starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
         print(f'Starting map: {starting_node_id}')
 
         # Find initially reachable nodes
@@ -241,14 +242,18 @@ def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
             i_random = random.randint(0,len(pool_progression_items) - 1)
             random_item = pool_progression_items.pop(i_random)
             while True:
-                if (    random_item.value in progression_miscitems
-                    and len(reachable_repleneshing_item_nodes) > 0):
-                    i_random = random.choice(list(reachable_repleneshing_item_nodes.keys()))
-                    random_node = reachable_repleneshing_item_nodes.pop(i_random)
+                item_returned = False
+                if random_item.value in progression_miscitems:
+                    if len(reachable_repleneshing_item_nodes) > 0:
+                        i_random = random.choice(list(reachable_repleneshing_item_nodes.keys()))
+                        random_node = reachable_repleneshing_item_nodes.pop(i_random)
+                    else:
+                        pool_progression_items.append(random_item)
+                        item_returned = True
                 else:
                     i_random = random.choice(list(reachable_item_nodes.keys()))
                     random_node = reachable_item_nodes.pop(i_random)
-                if random_node not in filled_item_nodes:
+                if not item_returned and random_node not in filled_item_nodes:
                     break
             random_node.current_item = random_item
             filled_item_nodes.append(random_node)
