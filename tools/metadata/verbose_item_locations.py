@@ -198,7 +198,7 @@ verbose_item_locations = {
     "DRO_02": {"GiftA": "Merlee Request (Koopa Koot Favor)",
                "GiftB": "Moustafa Gift",
                "HiddenPanel": "Hidden Panel",
-               "ItemA": "Toad Letter Delivery",},
+               "ItemA": "Mr. E. Letter Delivery",},
 
 # Dry Dry Desert
     "SBK_00": {"YBlockA": "Yellow Block Left",

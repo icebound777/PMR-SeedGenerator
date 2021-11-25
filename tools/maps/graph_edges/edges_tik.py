@@ -203,19 +203,14 @@ edges_tik = [
     
     {"from": {"map": "TIK_21", "id": 0},               "to": {"map": "TIK_21", "id": "YBlockA"},       "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockA (Coin)
     {"from": {"map": "TIK_21", "id": "YBlockA"},       "to": {"map": "TIK_21", "id": 0},               "reqs": []}, #* YBlockA (Coin) -> Hidden Blocks Room (B2) Exit Left
-    {"from": {"map": "TIK_21", "id": 0},               "to": {"map": "TIK_21", "id": "HiddenYBlockA"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> HiddenYBlockA (Coin)
+    {"from": {"map": "TIK_21", "id": 0},               "to": {"map": "TIK_21", "id": "HiddenYBlockA"}, "reqs": [require(boots=2)], "pseudoitems": ["GF_TIK21_HiddenItem_CoinA"]}, #* Hidden Blocks Room (B2) Exit Left -> HiddenYBlockA (Coin)
     {"from": {"map": "TIK_21", "id": "HiddenYBlockA"}, "to": {"map": "TIK_21", "id": 0},               "reqs": []}, #* HiddenYBlockA (Coin) -> Hidden Blocks Room (B2) Exit Left
-    {"from": {"map": "TIK_21", "id": 0},               "to": {"map": "TIK_21", "id": "HiddenYBlockB"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> HiddenYBlockB (Coin)
+    {"from": {"map": "TIK_21", "id": 0},               "to": {"map": "TIK_21", "id": "HiddenYBlockB"}, "reqs": [require(boots=2)], "pseudoitems": ["GF_TIK21_HiddenItem_CoinB"]}, #* Hidden Blocks Room (B2) Exit Left -> HiddenYBlockB (Coin)
     {"from": {"map": "TIK_21", "id": "HiddenYBlockB"}, "to": {"map": "TIK_21", "id": 0},               "reqs": []}, #* HiddenYBlockB (Coin) -> Hidden Blocks Room (B2) Exit Left
-    {"from": {"map": "TIK_21", "id": 0},               "to": {"map": "TIK_21", "id": "HiddenYBlockC"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> HiddenYBlockC (Coin)
+    {"from": {"map": "TIK_21", "id": 0},               "to": {"map": "TIK_21", "id": "HiddenYBlockC"}, "reqs": [require(boots=2)], "pseudoitems": ["GF_TIK21_HiddenItem_CoinC"]}, #* Hidden Blocks Room (B2) Exit Left -> HiddenYBlockC (Coin)
     {"from": {"map": "TIK_21", "id": "HiddenYBlockC"}, "to": {"map": "TIK_21", "id": 0},               "reqs": []}, #* HiddenYBlockC (Coin) -> Hidden Blocks Room (B2) Exit Left
-    {"from": {"map": "TIK_21", "id": 0},               "to": {"map": "TIK_21", "id": "HiddenYBlockD"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> HiddenYBlockD (Coin)
+    {"from": {"map": "TIK_21", "id": 0},               "to": {"map": "TIK_21", "id": "HiddenYBlockD"}, "reqs": [require(boots=2)], "pseudoitems": ["GF_TIK21_HiddenItem_CoinD"]}, #* Hidden Blocks Room (B2) Exit Left -> HiddenYBlockD (Coin)
     {"from": {"map": "TIK_21", "id": "HiddenYBlockD"}, "to": {"map": "TIK_21", "id": 0},               "reqs": []}, #* HiddenYBlockD (Coin) -> Hidden Blocks Room (B2) Exit Left
-    
-    {"from": {"map": "TIK_21", "id": "HiddenYBlockA"}, "to": {"map": "TIK_21", "id": "HiddenYBlockA"}, "reqs": [], "pseudoitems": ["GF_TIK21_HiddenItem_CoinA"]}, #+ HiddenYBlockA (Coin)
-    {"from": {"map": "TIK_21", "id": "HiddenYBlockB"}, "to": {"map": "TIK_21", "id": "HiddenYBlockB"}, "reqs": [], "pseudoitems": ["GF_TIK21_HiddenItem_CoinB"]}, #+ HiddenYBlockB (Coin)
-    {"from": {"map": "TIK_21", "id": "HiddenYBlockC"}, "to": {"map": "TIK_21", "id": "HiddenYBlockC"}, "reqs": [], "pseudoitems": ["GF_TIK21_HiddenItem_CoinC"]}, #+ HiddenYBlockC (Coin)
-    {"from": {"map": "TIK_21", "id": "HiddenYBlockD"}, "to": {"map": "TIK_21", "id": "HiddenYBlockD"}, "reqs": [], "pseudoitems": ["GF_TIK21_HiddenItem_CoinD"]}, #+ HiddenYBlockD (Coin)
 
     # TIK_22 Path to Shiver City (B2)
     {"from": {"map": "TIK_22", "id": 0}, "to": {"map": "TIK_21", "id": 1}, "reqs": []}, # Path to Shiver City (B2) Left Door -> Hidden Blocks Room (B2) Top Right Door

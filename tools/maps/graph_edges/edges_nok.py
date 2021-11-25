@@ -57,6 +57,8 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "Bush1_Drop1"}, "reqs": []}, #* Koopa Village 2 Exit Left -> Bush1_Drop1 (KoopaLeaf)
     {"from": {"map": "NOK_02", "id": "Bush1_Drop1"}, "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* Bush1_Drop1 (KoopaLeaf) -> Koopa Village 2 Exit Left
 
+    {"from": {"map": "NOK_02", "id": 0}, "to": {"map": "NOK_02", "id": 0}, "reqs": [require(item="KoopersShell")], "pseudoitems": ["PARTNER_Kooper"]}, #+ Give KoopersShell to Kooper
+
     # NOK_03 Behind Koopa Village
     {"from": {"map": "NOK_03", "id": 0}, "to": {"map": "NOK_02", "id": 1}, "reqs": []}, # Behind Koopa Village Exit Left -> Koopa Village 2 Exit Top
     {"from": {"map": "NOK_03", "id": 1}, "to": {"map": "NOK_04", "id": 0}, "reqs": []}, # Behind Koopa Village Exit Right -> Fuzzy Forest Exit Left

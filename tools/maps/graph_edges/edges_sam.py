@@ -106,7 +106,7 @@ edges_sam = [
     {"from": {"map": "SAM_08", "id": 0}, "to": {"map": "SAM_07", "id": 1}, "reqs": []}, # Shiver Mountain Hills Exit West -> Shiver Mountain Passage Exit East
     {"from": {"map": "SAM_08", "id": 1}, "to": {"map": "SAM_09", "id": 0}, "reqs": []}, # Shiver Mountain Hills Exit East -> Shiver Mountain Tunnel Exit West
     
-    {"from": {"map": "SAM_08", "id": 0}, "to": {"map": "SAM_08", "id": 1}, "reqs": [require(flag="DefeatedFirstDuplighost")]}, #? Shiver Mountain Hills Exit West -> Shiver Mountain Hills Exit East
+    {"from": {"map": "SAM_08", "id": 0}, "to": {"map": "SAM_08", "id": 1}, "reqs": [require(flag="RF_DefeatedFirstDuplighost")]}, #? Shiver Mountain Hills Exit West -> Shiver Mountain Hills Exit East
     {"from": {"map": "SAM_08", "id": 1}, "to": {"map": "SAM_08", "id": 0}, "reqs": []}, #? Shiver Mountain Hills Exit East -> Shiver Mountain Hills Exit West
     
     {"from": {"map": "SAM_08", "id": 1}, "to": {"map": "SAM_08", "id": 1}, "reqs": [require(hammer=0)], "pseudoitems": ["RF_DefeatedFirstDuplighost"]}, #+ Shiver Mountain Hills Exit East
