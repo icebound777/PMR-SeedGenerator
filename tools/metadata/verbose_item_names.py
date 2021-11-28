@@ -1,9 +1,4 @@
 verbose_item_names = {
-    "Egg2": "Egg",
-    "Autograph1": "Autograph (Luigi's)",
-    "Autograph2": "Autograph (Merluvlee's)",
-    "CastleKey1": "CastleKey (Tubba's)",
-    "CastleKey2": "CastleKey (Bowser's)",
     "Letter01": "Letter (To Merlon)",
     "Letter02": "Letter (To Goompa)",
     "Letter03": "Letter (To Mort T.)",
