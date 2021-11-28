@@ -93,7 +93,7 @@ def create_nodes():
 
         price_index = None
         key_name_price = None
-        if data["name"].startswith("ShopItem"):
+        if data["name"].startswith("ShopItem") or data["name"].startswith("ShopBadge"):
             # Search for corresponding item_price and set index & key_name_price
             for price_id, price_data in price_keys.items():
                 # Look for corresponding "ShopPriceX" for "ShopItemX" on same map
