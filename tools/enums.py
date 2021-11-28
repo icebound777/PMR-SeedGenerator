@@ -54,18 +54,7 @@ def create_enums():
     Enums("../globals/Items.xml")
 
 def enum_int(enum:str) -> (int, str):
-    # enum = .Item:KootTheTape
-    enum_type,enum_value = enum[1:].split(":") # enum_type,enum_value = Item, KootTheTape
-    filename = {
-        "Item": "../globals/Items.xml",
-    }.get(enum_type)
-
-    if not filename:
+    enum_type,enum_value = enum[1:].split(":")
+    if enum_type != "Item":
         raise Exception(f"Enum type {enum_type} isn't defined!")
-
-    items_doc = xml.dom.minidom.parse(filename)
-    for item in items_doc.getElementsByTagName("Item"):
-        name = item.getAttribute("name")
-        if (name == enum_value):
-            value = int(item.getAttribute("index"), 16)
-            return (value,enum_type)
+    return (Enums.all["Item"].data.get(enum_value), enum_type)
