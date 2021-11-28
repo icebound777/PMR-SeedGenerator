@@ -5,17 +5,17 @@ progression_items = {
     0x0004 : "Hammer",
     0x0005 : "SuperHammer",
     0x0006 : "UltraHammer",
-    0x0010 : "KoopaFortressKey",
-    0x0011 : "RuinsKey",
+    #0x0010 : "KoopaFortressKey", # see end of list
+    #0x0011 : "RuinsKey", # see end of list
     0x0012 : "PulseStone",
-    0x0013 : "TubbaCastleKey",
+    #0x0013 : "TubbaCastleKey", # see end of list
     0x0014 : "CrystalPalaceKey",
     0x0015 : "LunarStone",
     0x0016 : "PyramidStone",
     0x0017 : "DiamondStone",
     0x0018 : "GoldenJar",
     0x0019 : "KooperShell",
-    0x001A : "BowserCastleKey",
+    #0x001A : "BowserCastleKey", # see end of list
     0x001C : "BooWeight",
     0x001D : "BooPortrait",
     0x001E : "CrystalBerry",
@@ -82,6 +82,22 @@ progression_items = {
     0x0076 : "KootPackage",
     0x0077 : "KootRedJar",
     0x0079 : "WarehouseKey",
+    0x016D : "KoopaFortressKeyA",
+    0x016E : "KoopaFortressKeyB",
+    0x016F : "KoopaFortressKeyC",
+    0x0170 : "KoopaFortressKeyD",
+    0x0171 : "RuinsKeyA",
+    0x0172 : "RuinsKeyB",
+    0x0173 : "RuinsKeyC",
+    0x0174 : "RuinsKeyD",
+    0x0175 : "TubbaCastleKeyA",
+    0x0176 : "TubbaCastleKeyB",
+    0x0177 : "TubbaCastleKeyC",
+    0x0178 : "BowserCastleKeyA",
+    0x0179 : "BowserCastleKeyB",
+    0x017A : "BowserCastleKeyC",
+    0x017B : "BowserCastleKeyD",
+    0x017C : "BowserCastleKeyE",
 }
     # 0x0030 calculator
     # 0x0078 ??

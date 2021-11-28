@@ -31,7 +31,7 @@ class Item(Model):
     
     @classmethod
     def get_type(cls, item_id:int):
-        if item_id <= 0x7F:
+        if item_id <= 0x7F or item_id >= 0x16D:
             return "KEYITEM"
         elif 0x7F < item_id <= 0xDF:
             return "ITEM"
