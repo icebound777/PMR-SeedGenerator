@@ -101,3 +101,20 @@ progression_items = {
 }
     # 0x0030 calculator
     # 0x0078 ??
+
+progression_miscitems = [
+    "TastyTonic",  # 0x0089 (Koopa Koot) alternative: Lime,Lemon;BubbleBerry,Coconut
+    "SleepySheep", # 0x008F (Koopa Koot)
+    "LifeShroom",  # 0x0095 (Koopa Koot)
+    "Lime",        # 0x009D (Koopa Koot)
+    "BlueBerry",   # 0x009E (Blue Flower Guard / Flower Fields Well)
+    "RedBerry",    # 0x009F (Red Flower Guard)
+    "YellowBerry", # 0x00A0 (Yellow Flower Guard)
+    "BubbleBerry", # 0x00A1 (BubbleFlower)
+    "GoomNut",     # 0x00A5 (Koopa Koot: NuttyCake from Tayce T.)
+    "KoopaLeaf",   # 0x00A6 (Koopa Koot: KoopaTea from Tayce T.)
+    "DriedPasta",  # 0x00A7 (Koopa Koot: +KoopaLeaf -> Koopasta from Tayce T.)
+    "CakeMix",     # 0x00AA (Koopa Koot: +KoopaLeaf -> KookyCookie from Tayce T.)
+    "Coconut",     # 0x00AC (Koopa Koot)
+    "Cake",        # 0x00C1 (Gourmet Guy)
+]

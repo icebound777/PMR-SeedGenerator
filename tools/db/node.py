@@ -37,7 +37,7 @@ class Node(Model):
         entrance = ("[" + format(self.entrance_id) + "] ") if self.entrance_id else ''
         itemkey = ("[" + format(self.key_name_item) + "] ") if self.key_name_item else ''
         item = format(self.current_item.item_name) if self.current_item else ''
-        price = (" (" + format(self.current_item.base_price) + ")") if self.key_name_price else ''
+        price = (" (" + format(self.current_item.base_price) + ")") if self.current_item and self.key_name_price else ''
 
         return f"[{self.map_area.name}]{entrance}{itemkey}{item}{price}"
 
@@ -106,7 +106,7 @@ def create_nodes():
             key_name_item = data["name"],
             key_name_price = key_name_price if key_name_price else None,
             vanilla_item = vanilla_item,
-            current_item = vanilla_item,
+            current_item = None,
             item_index = data["value_id"],
             price_index = price_index if price_index else None
         )
