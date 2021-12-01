@@ -9,7 +9,7 @@ from db.node import Node
 from db.item import Item
 from db.map_area import MapArea
 from worldgraph import generate as generate_world_graph, get_node_identifier
-from simulate import add_to_inventory
+from simulate import add_to_inventory, clear_inventory
 from custom_seed import validate_seed
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
@@ -211,8 +211,10 @@ def _find_new_nodes_and_edges(
                     and current_item in pool_misc_progression_items
                 ):
                     pool_misc_progression_items.remove(current_item)
+                    #print(f"Considered item placed: {node_id}: {current_item}")
 
                 filled_item_nodes.append(item_node)
+                #print(f"Unrandom: {node_id}: {current_item.item_name}")
         
         # Keep searching for new edges and nodes until we don't find any new
         # items which might open up even more edges and nodes
@@ -233,6 +235,7 @@ def _init_mario_inventory(
     Starting equipment irrelevant to world graph traversal (such as Lucky Star,
     starting coins) is ignored.
     """
+    clear_inventory()
     add_to_inventory(["PARTNER_Goombario","PARTNER_Kooper","PARTNER_Bombette",
                       "PARTNER_Parakarry","PARTNER_Bow","PARTNER_Watt",
                       "PARTNER_Sushie","PARTNER_Lakilester"])
@@ -345,6 +348,9 @@ def _algo_forward_fill(
                          do_randomize_coins,
                          do_randomize_shops,
                          do_randomize_panels)
+    #print(f"Size pool_progression_items: {len(pool_progression_items)}")
+    #print(f"Size pool_misc_progression_items: {len(pool_misc_progression_items)}")
+    #print(f"Size pool_other_items: {len(pool_other_items)}")
 
     # Set node to start graph traversal from
     starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
@@ -364,14 +370,22 @@ def _algo_forward_fill(
     # Place items influencing progression, giving misc. items priority for
     # repleneshing item locations
     print("Placing Progression Items ...")
-    while pool_progression_items:
+    while pool_progression_items or pool_misc_progression_items:
 
         # Pick random reachable item node
         while True:
             random_node_key = random.choice(list(reachable_item_nodes.keys()))
             random_node = reachable_item_nodes.pop(random_node_key)
             if random_node not in filled_item_nodes:
-                break
+                if not pool_progression_items:
+                    # All keyitems already placed, search for replenish node
+                    # for remaining misc items
+                    if is_itemlocation_replenishable(random_node):
+                        # Suitable replenishable node found
+                        break
+                else:
+                    # Suitable Node found
+                    break
 
         # If item node is replenishable and we have misc. items still to place,
         # then pick misc. item, otherwise any item will do
@@ -389,6 +403,7 @@ def _algo_forward_fill(
         random_node.current_item = random_item
         add_to_inventory(random_item.item_name)
         filled_item_nodes.append(random_node)
+        #print(f"{get_node_identifier(random_node)}: {random_item.item_name}")
 
         _find_new_nodes_and_edges(pool_misc_progression_items,
                                   world_graph,
@@ -404,13 +419,24 @@ def _algo_forward_fill(
 
         if item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]:
             # Place random remaining item here
-            random_item_id = random.randint(0, len(pool_other_items) - 1)
-            random_item = pool_other_items.pop(random_item_id)
-            item_node.current_item = random_item
-            filled_item_nodes.append(item_node)
+            try:
+                random_item_id = random.randint(0, len(pool_other_items) - 1)
+                random_item = pool_other_items.pop(random_item_id)
+                item_node.current_item = random_item
+                filled_item_nodes.append(item_node)
+                print(f"{get_node_identifier(item_node)}: {random_item.item_name}")
+            except ValueError as err:
+                print(f"filled_item_nodes size: {len(filled_item_nodes)}")
+                print(f"pool_other_items size: {len(pool_other_items)}")
+                print(f"nodes left: {len([item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]])}")
+                raise
 
     # "Return" list of modified item nodes
     item_placement.extend(filled_item_nodes)
+    #print(f"Seed {cur_seed}")
+    #print(f"filled_item_nodes size: {len(filled_item_nodes)}")
+    #print(f"pool_other_items size: {len(pool_other_items)}")
+    #print(f"nodes left: {len([item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]])}")
 
 
 def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,

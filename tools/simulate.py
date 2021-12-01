@@ -60,6 +60,12 @@ def add_to_inventory(item_object):
                     item_object)
 
 
+def clear_inventory():
+    """Completely clear Mario's inventory."""
+    global mario
+    mario = Mario()
+
+
 def can_flip_panels():
     """
     Checks if Mario can currently flip hidden panels:
@@ -149,17 +155,3 @@ def require(**kwargs):
 
         return False
     return func
-
-
-# Example
-mario = Mario()
-"""
-mario.partners.append("Kooper")
-mario.boots = 0
-
-reqs = [require(partner="Kooper", boots=2)]
-if all([r() for r in reqs]):
-    print("Accessible")
-else:
-    print("Not accessible")
-"""
