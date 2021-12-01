@@ -92,8 +92,13 @@ def write_itemdata_to_rom(
     table_data = rom_table.generate_pairs(items=placed_items)
 
     # Update table info with variable data
-    rom_table.info["num_entries"] = len(table_data)
+    rom_table.info["db_size"] = (  rom_table.info["header_size"]
+                                 + (len(table_data) * 8)
+                                 + 8
+                                 + 16)
     rom_table.info["seed"] = seed
+    rom_table.info["formations_offset"] = (  rom_table.info["header_size"]
+                                           + (len(table_data) * 8))
 
     # Write data to log file
     with open("./debug/log.txt", "w", encoding="utf-8") as log:
@@ -109,8 +114,9 @@ def write_itemdata_to_rom(
         file.seek(rom_table.info["address"])
         file.write(rom_table.info["magic_value"].to_bytes(4, byteorder="big"))
         file.write(rom_table.info["header_size"].to_bytes(4, byteorder="big"))
-        file.write(rom_table.info["num_entries"].to_bytes(4, byteorder="big"))
+        file.write(rom_table.info["db_size"].to_bytes(4, byteorder="big"))
         file.write(rom_table.info["seed"].to_bytes(4, byteorder="big"))
+        file.write(rom_table.info["formations_offset"].to_bytes(4, byteorder="big"))
 
         # Write table data and generate log file
         file.seek(rom_table.info["address"] + rom_table.info["header_size"])
@@ -123,6 +129,9 @@ def write_itemdata_to_rom(
                 file.write(key_int)
                 file.write(value_int)
                 log.write(f'{hex(pair["key"])}: {hex(pair["value"])}\n')
+            
+            # Write empty random formations table (for now)
+            file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
 
                 #if enum_type := pair.get("enum_type"):
                 #    if enum_type == "Item":

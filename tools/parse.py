@@ -244,9 +244,10 @@ def get_table_info():
     table_info = {
         "magic_value": 0x504D4442,
         "header_size": 0x20,
-        "num_entries": 0,
+        "db_size": 0,
         "seed": 0xDEADBEEF,
         "address": 0x1D00000,
+        "formations_offset": 0,
     }
     with open("../globals/patch/Database.patch", "r", encoding="utf-8") as file:
         for line in file:
