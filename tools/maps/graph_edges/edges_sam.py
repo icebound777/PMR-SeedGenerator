@@ -113,6 +113,13 @@ edges_sam = [
     
     {"from": {"map": "SAM_09", "id": 0}, "to": {"map": "SAM_09", "id": 1}, "reqs": []}, #? Shiver Mountain Tunnel Exit West -> Shiver Mountain Tunnel Exit East
     {"from": {"map": "SAM_09", "id": 1}, "to": {"map": "SAM_09", "id": 0}, "reqs": []}, #? Shiver Mountain Tunnel Exit East -> Shiver Mountain Tunnel Exit West
+
+    {"from": {"map": "SAM_09", "id": 0},       "to": {"map": "SAM_09", "id": "ItemA"}, "reqs": []}, #* Shiver Mountain Tunnel Exit West -> ItemA (ShootingStar)
+    {"from": {"map": "SAM_09", "id": "ItemA"}, "to": {"map": "SAM_09", "id": 0}      , "reqs": []}, #* ItemA (ShootingStar) -> Shiver Mountain Tunnel Exit West
+    {"from": {"map": "SAM_09", "id": 0},       "to": {"map": "SAM_09", "id": "ItemB"}, "reqs": []}, #* Shiver Mountain Tunnel Exit West -> ItemB (SnowmanDoll)
+    {"from": {"map": "SAM_09", "id": "ItemB"}, "to": {"map": "SAM_09", "id": 0}      , "reqs": []}, #* ItemB (SnowmanDoll) -> Shiver Mountain Tunnel Exit West
+    {"from": {"map": "SAM_09", "id": 0},       "to": {"map": "SAM_09", "id": "ItemC"}, "reqs": []}, #* Shiver Mountain Tunnel Exit West -> ItemC (ThunderRage)
+    {"from": {"map": "SAM_09", "id": "ItemC"}, "to": {"map": "SAM_09", "id": 0}      , "reqs": []}, #* ItemC (ThunderRage) -> Shiver Mountain Tunnel Exit West
     
     # SAM_10 Shiver Mountain Peaks
     {"from": {"map": "SAM_10", "id": 0}, "to": {"map": "SAM_09", "id": 1}, "reqs": []}, # Shiver Mountain Peaks Exit West -> Shiver Mountain Tunnel Exit East
