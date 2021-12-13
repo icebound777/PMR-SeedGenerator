@@ -68,7 +68,7 @@ def gather_keys():
                             "name": name,
                             "byte_id": byte_id,
                             "area_id": area_id,
-                            "map_id": map_id,
+                            "actor_id": map_id,
                             "value_id": value_id,
                         }
                     elif byte_id == 0xA3:

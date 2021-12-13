@@ -32,6 +32,7 @@ class OptionSet:
         # General
         self.starting_map = 0x00010104 # mac_00 Entry 4
         self.random_quiz = True # ?
+        self.shuffle_chapter_difficulty = False
 
         # Item related
         self.placement_algorithm = "ForwardFill"
@@ -137,6 +138,8 @@ class OptionSet:
             self.starting_map = options_dict.get("StartingMap")
         if "RandomQuiz" in options_dict:
             self.random_quiz = options_dict.get("RandomQuiz")
+        if "ShuffleChapterDifficulty" in options_dict:
+            self.shuffle_chapter_difficulty = options_dict.get("ShuffleChapterDifficulty")
 
         # Item related
         if "PlacementAlgorithm" in options_dict:
@@ -224,6 +227,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("StartingMap"), int)
     if "RandomQuiz" in options_dict:
         assert isinstance(options_dict.get("RandomQuiz"), bool)
+    if "ShuffleChapterDifficulty" in options_dict:
+        assert isinstance(options_dict.get("ShuffleChapterDifficulty"), bool)
 
     # Item related
     if "PlacementAlgorithm" in options_dict:

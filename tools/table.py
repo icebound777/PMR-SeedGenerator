@@ -62,10 +62,11 @@ class Table:
                 })
 
         # Actor Attributes
-        for actor_attribute in ActorAttribute.select():
+        actor_attributes = kwargs.get("actor_data")
+        for key, value in actor_attributes:
             table_data.append({
-                "key": actor_attribute.get_key(),
-                "value": actor_attribute.value,
+                "key": key,
+                "value": value
             })
 
         table_data.sort(key=lambda pair: pair["key"])

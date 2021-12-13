@@ -28,6 +28,9 @@ PlacementLogic: NoGlitches
 #PlacementLogic: Glitches # NYI
 #PlacementLogic: NoLogic
 
+# Randomization: Difficulty
+ShuffleChapterDifficulty: false
+
 # Randomization: Items
 ShuffleItems          : true
 IncludeCoins          : false

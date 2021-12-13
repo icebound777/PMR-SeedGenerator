@@ -12,9 +12,11 @@ from enums import create_enums
 from table import Table
 from parse import gather_keys, gather_values
 
+from optionset import OptionSet
+
 from logic import place_items
 from spoilerlog import write_spoiler_log
-from optionset import OptionSet
+from enemystats import get_shuffled_chapter_difficulty
 
 from db.option          import create_options
 from db.item            import create_items
@@ -75,8 +77,9 @@ def print_version():
 
 
 def write_itemdata_to_rom(
-    placed_items,
-    target_modfile,
+    placed_items:list,
+    enemy_stats:list,
+    target_modfile:str,
     seed=int(hashlib.md5().hexdigest()[0:8], 16),
     edit_seed="0x0123456789ABCDEF"
 ):
@@ -89,16 +92,21 @@ def write_itemdata_to_rom(
     rom_table.create()
 
     # Create a sorted list of key:value pairs to be written into the ROM
-    table_data = rom_table.generate_pairs(items=placed_items)
+    table_data = rom_table.generate_pairs(
+        items=placed_items,
+        actor_data=enemy_stats
+    )
 
     # Update table info with variable data
+    end_of_content_marker = 0x4 # end of table FFFFFFFF
+    end_padding = 0x10
     rom_table.info["db_size"] = (  rom_table.info["header_size"]
                                  + (len(table_data) * 8)
-                                 + 8
-                                 + 16)
+                          #       + 32
+                                 + end_of_content_marker
+                                 + end_padding)
     rom_table.info["seed"] = seed
-    rom_table.info["formations_offset"] = (  rom_table.info["header_size"]
-                                           + (len(table_data) * 8))
+    rom_table.info["formations_offset"] = len(table_data) * 8
 
     # Write data to log file
     with open("./debug/log.txt", "w", encoding="utf-8") as log:
@@ -129,8 +137,18 @@ def write_itemdata_to_rom(
                 file.write(key_int)
                 file.write(value_int)
                 log.write(f'{hex(pair["key"])}: {hex(pair["value"])}\n')
-            
-            # Write empty random formations table (for now)
+
+            # Write test formation
+#            file.write(0x0000010A.to_bytes(4, byteorder="big"))
+ #           file.write(0x8021B0AC.to_bytes(4, byteorder="big"))
+  #          file.write(0x00000000.to_bytes(4, byteorder="big"))
+   #         file.write(0x00000000.to_bytes(4, byteorder="big"))
+    #        file.write(0x00000209.to_bytes(4, byteorder="big"))
+     #       file.write(0x8021B0AC.to_bytes(4, byteorder="big"))
+      #      file.write(0x00000000.to_bytes(4, byteorder="big"))
+       #     file.write(0x00000000.to_bytes(4, byteorder="big"))
+
+            # Write end of random formations table
             file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
 
                 #if enum_type := pair.get("enum_type"):
@@ -239,13 +257,20 @@ def main_randomizer():
     # Make everything inexpensive
     set_cheap_shopitems(placed_items)
 
+    # Shuffle chapter difficulty / enemy stats if needed
+    enemy_stats = []
+    chapter_changes = {}
+    if rando_settings.shuffle_chapter_difficulty:
+        enemy_stats, chapter_changes = get_shuffled_chapter_difficulty()
+
     # Write item data to ROM
-    write_itemdata_to_rom(placed_items, target_modfile)
+    write_itemdata_to_rom(placed_items, enemy_stats, target_modfile)
 
     # Write sorted spoiler log
     if rando_settings.write_spoilerlog:
         write_spoiler_log(
             placed_items,
+            random_chapter_difficulty=chapter_changes,
             do_pretty=rando_settings.pretty_spoilerlog,
             spoilerlog_file=spoilerlog_file_path
         )
