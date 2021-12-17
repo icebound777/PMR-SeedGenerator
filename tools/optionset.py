@@ -53,7 +53,7 @@ class OptionSet:
         # Partner related
         self.random_partners = False
         self.random_partners_min = 1
-        self.random_partners_max = 8
+        self.random_partners_max = 1
         self.starting_partners = ["PARTNER_Goombario"]
 
         # Spoiler log
@@ -63,6 +63,7 @@ class OptionSet:
         # Cosmetics
         self.color_a = 0xEBE677FF # Box5ColorA
         self.color_b = 0x8E5A25FF # Box5ColorB
+        self.random_coin_palette = False
 
     def update_options(self, options_dict=None):
 
@@ -185,6 +186,10 @@ class OptionSet:
             for partner, start_with_partner in options_dict.get("StartWithPartners").items():
                 if (start_with_partner):
                     self.starting_partners.append(f"PARTNER_{partner}")
+
+        # Cosmetics / Palettes
+        if "RandomCoinPalette" in options_dict:
+            self.random_coin_palette = options_dict.get("RandomCoinPalette")
 
 
 def validate_options(options_dict):
@@ -317,3 +322,7 @@ def validate_options(options_dict):
             and all(key in permitted_values for key in options_dict.get("StartWithPartners"))
             and all(isinstance(value, bool) for value in options_dict.get("StartWithPartners").values())
             and any(value for value in options_dict.get("StartWithPartners").values()))
+
+    # Cosmetics / Palettes
+    if "RandomCoinPalette" in options_dict:
+        assert isinstance(options_dict.get("RandomCoinPalette"), bool)

@@ -57,7 +57,7 @@ UnpairedEntrances       : false # NYI
 RandomQuiz: true
 SkipQuiz  : false
 
-# Partner
+# Randomization: Partner
 StartWithRandomPartners: false
 RandomPartnersMin      : 1
 RandomPartnersMax      : 8
@@ -75,6 +75,7 @@ StartWithPartners: { # ignored if StartWithRandomPartners true
 WriteSpoilerLog: true
 PrettySpoilerlog: true
 
-# Cosmetics
+# Cosmetics / Palettes
 ColorA: 0xEBE677FF # Box5ColorA
 ColorB: 0x8E5A25FF # Box5ColorB
+RandomCoinPalette: true

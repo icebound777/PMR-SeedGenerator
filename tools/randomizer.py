@@ -11,6 +11,7 @@ from yaml.loader import SafeLoader
 from enums import create_enums
 from table import Table
 from parse import gather_keys, gather_values
+from calculate_crc import recalculate_crcs
 
 from optionset import OptionSet
 
@@ -18,6 +19,7 @@ from logic import place_items
 from spoilerlog import write_spoiler_log
 from enemystats import get_shuffled_chapter_difficulty
 from random_movecosts import get_randomized_moves
+from random_palettes import get_randomized_coinpalette
 
 from db.option          import create_options
 from db.item            import create_items
@@ -83,6 +85,8 @@ def write_data_to_rom(
     placed_items:list,
     enemy_stats:list,
     move_costs:list,
+    coin_palette_data:list,
+    coin_palette_targets:list,
     target_modfile:str,
     seed=int(hashlib.md5().hexdigest()[0:8], 16),
     edit_seed="0x0123456789ABCDEF"
@@ -122,8 +126,9 @@ def write_data_to_rom(
         log.write("\n")
 
     # Modify the table data in the ROM
+    changed_coin_palette = False
     with open(target_modfile, "r+b") as file:
-        # Write the header
+        # Write the db header
         file.seek(rom_table.info["address"])
         file.write(rom_table.info["magic_value"].to_bytes(4, byteorder="big"))
         file.write(rom_table.info["header_size"].to_bytes(4, byteorder="big"))
@@ -155,6 +160,17 @@ def write_data_to_rom(
 
             # Write end of random formations table
             file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
+
+        # Special solution for random coin palettes
+        if coin_palette_data and coin_palette_targets:
+            changed_coin_palette = True
+            for target_rom_location in coin_palette_targets:
+                file.seek(target_rom_location)
+                for palette_byte in coin_palette_data:
+                    file.write(palette_byte.to_bytes(4, byteorder="big"))
+
+    if changed_coin_palette:
+        recalculate_crcs(target_modfile)
 
                 #if enum_type := pair.get("enum_type"):
                 #    if enum_type == "Item":
@@ -279,11 +295,19 @@ def main_randomizer():
             rando_settings.shuffle_starpower_sp
         )
 
+    # Randomize sprite palettes
+    coin_palette_data = []
+    coin_palette_targets = []
+    if rando_settings.random_coin_palette:
+        coin_palette_data, coin_palette_targets = get_randomized_coinpalette()
+
     # Write item data to ROM
     write_data_to_rom(
         placed_items,
         enemy_stats,
         move_costs,
+        coin_palette_data,
+        coin_palette_targets,
         target_modfile
     )
 
