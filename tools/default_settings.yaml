@@ -39,6 +39,12 @@ IncludePanels         : true
 KeyitemsOutsideArea   : true # false -> NYI
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
+# Moves and Badges
+ShuffleBadgesBP: false
+ShuffleBadgesFP: false
+ShufflePartnerFP: false
+ShuffleStarpowerSP: false
+
 # Randomization: Entrances
 ShuffleEntrances        : true  # NYI
 ShuffleEntrancesByArea  : true  # NYI

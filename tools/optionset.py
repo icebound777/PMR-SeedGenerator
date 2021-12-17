@@ -40,6 +40,12 @@ class OptionSet:
         self.keyitems_outside_area = True # False -> NYI
         self.keyitems_outside_chapter = True # "Keysanity" # false -> NYI
 
+        # Moves and Badges
+        self.shuffle_badges_bp = False
+        self.shuffle_badges_fp = False
+        self.shuffle_partner_fp = False
+        self.shuffle_starpower_sp = False
+
         # Entrance related
         self.random_oneway_entrances = False # NYI
         self.unpaired_entrances = False # NYI
@@ -151,6 +157,16 @@ class OptionSet:
         if "KeyitemsOutsideChapter" in options_dict:
             self.keyitems_outside_chapter = options_dict.get("KeyitemsOutsideChapter")
 
+        # Moves and Badges
+        if "ShuffleBadgesBP" in options_dict:
+            self.shuffle_badges_bp = options_dict.get("ShuffleBadgesBP")
+        if "ShuffleBadgesFP" in options_dict:
+            self.shuffle_badges_fp = options_dict.get("ShuffleBadgesFP")
+        if "ShufflePartnerFP" in options_dict:
+            self.shuffle_partner_fp = options_dict.get("ShufflePartnerFP")
+        if "ShuffleStarpowerSP" in options_dict:
+            self.shuffle_starpower_sp = options_dict.get("ShuffleStarpowerSP")
+
         # Entrance related
         if "RandomizeOnewayEntrances" in options_dict:
             self.random_oneway_entrances = options_dict.get("RandomizeOnewayEntrances")
@@ -252,6 +268,16 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("KeyitemsOutsideArea"), bool)
     if "KeyitemsOutsideChapter" in options_dict:
         assert isinstance(options_dict.get("KeyitemsOutsideChapter"), bool)
+
+    # Moves and Badges
+    if "ShuffleBadgesBP" in options_dict:
+        assert isinstance(options_dict.get("ShuffleBadgesBP"), bool)
+    if "ShuffleBadgesFP" in options_dict:
+        assert isinstance(options_dict.get("ShuffleBadgesFP"), bool)
+    if "ShufflePartnerFP" in options_dict:
+        assert isinstance(options_dict.get("ShufflePartnerFP"), bool)
+    if "ShuffleStarpowerSP" in options_dict:
+        assert isinstance(options_dict.get("ShuffleStarpowerSP"), bool)
 
     # Entrance related
     if "RandomizeOnewayEntrances" in options_dict:

@@ -13,13 +13,16 @@ def gather_keys():
     A2 = Actors
     A3 = Entrances
     A4 = Palettes
-    A5 =
+    A5 = 
+    A6 = Moves (cost FP/BP)
+    AA = RESERVED (see table.py unique itemID)
     AF = Quizzes
     """
     files = get_files("../globals/patch")
     keys = {
         "items": {},
         "item_prices": {},
+        "move_costs": {},
         "actors": {},
         "entrances": {},
         "palettes": {},
@@ -82,6 +85,16 @@ def gather_keys():
                             "map_id": map_id,
                             "value_id": value_id,
                         }
+                    elif byte_id == 0xA6:
+                        cost_type,move = key_info.split(":")
+                        keys["move_costs"][key] = {
+                            "name": move,
+                            "cost_type": cost_type,
+                            "byte_id": byte_id,
+                            "area_id": area_id,
+                            "map_id": map_id,
+                            "value_id": value_id,
+                        }
                     elif byte_id == 0xAF:
                         name,attribute = key_info.split(":")
                         if name in ("Options", "Cosmetic"):
@@ -134,6 +147,7 @@ def gather_values():
     values = {
         "items": {},
         "item_prices": {},
+        "move_costs": {},
         "actors": {},
         "entrances": {},
         "palettes": {},
@@ -151,6 +165,12 @@ def gather_values():
                 elif "Quiz" in key_info:
                     name = key_info.split(":")[-1]
                     values["quizzes"][name] = get_value(value)
+                elif "Move" in key_info: # MoveBP:SpinSmash                 1`
+                    name = key_info.split(":")[-1]
+                    cost_type = key_info.split(":")[0][-2:]
+                    if name not in values["move_costs"]:
+                        values["move_costs"][name] = {}
+                    values["move_costs"][name][cost_type] = get_value(value)
                 # Check for map name (which means it's an item or item price)
                 elif match := re.match(r"([A-Z]{2,5}_\d+):(\S*)", key_info):
                     map_name = match.group(1)
@@ -283,6 +303,7 @@ def create_table(default_table):
                                 0xA2: "Actor",
                                 0xA3: "Entrance",
                                 0xA4: "Palette",
+                                0xA6: "Move"
                             }.get((key & 0xFF000000) >> 24)
                         }
     db = {}
@@ -308,6 +329,7 @@ def create_table(default_table):
                     0xA2: "Actor",
                     0xA3: "Entrance",
                     0xA4: "Palette",
+                    0xA6: "Move"
                 }.get((db_key & 0xFF000000) >> 24)
             }
 

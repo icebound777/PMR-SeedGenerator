@@ -49,7 +49,7 @@ class Table:
 				# resides in the game using areaID and mapID
                 if node.current_item.item_type in ["KEYITEM", "BADGE"]:
                     table_data.append({
-                        "key": (0xA5 << 24) | (node.current_item.value),
+                        "key": (0xAA << 24) | (node.current_item.value),
                         "value": (node.map_area.area_id << 8) | (node.map_area.map_id),
                     })
 
@@ -64,6 +64,14 @@ class Table:
         # Actor Attributes
         actor_attributes = kwargs.get("actor_data")
         for key, value in actor_attributes:
+            table_data.append({
+                "key": key,
+                "value": value
+            })
+
+        # Move Costs
+        move_costs = kwargs.get("move_costs")
+        for key, value in move_costs:
             table_data.append({
                 "key": key,
                 "value": value
