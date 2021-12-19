@@ -56,7 +56,7 @@ class OptionSet:
         self.random_partners_max = 1
         self.starting_partners = ["PARTNER_Goombario"]
 
-        # Spoiler log
+        # Spoilerlog
         self.write_spoilerlog = True
         self.pretty_spoilerlog = True
 
@@ -186,6 +186,12 @@ class OptionSet:
             for partner, start_with_partner in options_dict.get("StartWithPartners").items():
                 if (start_with_partner):
                     self.starting_partners.append(f"PARTNER_{partner}")
+
+        # Spoilerlog
+        if "WriteSpoilerLog" in options_dict:
+            self.write_spoilerlog = options_dict.get("WriteSpoilerLog")
+        if "PrettySpoilerlog" in options_dict:
+            self.pretty_spoilerlog = options_dict.get("PrettySpoilerlog")
 
         # Cosmetics / Palettes
         if "RandomCoinPalette" in options_dict:
@@ -322,6 +328,12 @@ def validate_options(options_dict):
             and all(key in permitted_values for key in options_dict.get("StartWithPartners"))
             and all(isinstance(value, bool) for value in options_dict.get("StartWithPartners").values())
             and any(value for value in options_dict.get("StartWithPartners").values()))
+
+    # Spoilerlog
+    if "WriteSpoilerLog" in options_dict:
+        assert isinstance(options_dict.get("WriteSpoilerLog"), bool)
+    if "PrettySpoilerlog" in options_dict:
+        assert isinstance(options_dict.get("PrettySpoilerlog"), bool)
 
     # Cosmetics / Palettes
     if "RandomCoinPalette" in options_dict:
