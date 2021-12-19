@@ -9,7 +9,7 @@ from db.node import Node
 from db.item import Item
 from db.map_area import MapArea
 from worldgraph import generate as generate_world_graph, get_node_identifier
-from simulate import add_to_inventory, clear_inventory
+from rando_modules.simulate import add_to_inventory, clear_inventory
 from custom_seed import validate_seed
 
 from metadata.itemlocation_replenish import replenishing_itemlocations

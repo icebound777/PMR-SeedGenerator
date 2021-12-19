@@ -15,7 +15,7 @@ import randomizer
 
 from enums import Enums
 from utility import sr_dump, sr_copy, sr_compile
-from logic import place_items
+from rando_modules.logic import place_items
 
 from db.option import Option
 

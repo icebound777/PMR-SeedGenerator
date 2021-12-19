@@ -15,12 +15,12 @@ from calculate_crc import recalculate_crcs
 
 from optionset import OptionSet
 
-from logic import place_items
+from rando_modules.logic import place_items
 from spoilerlog import write_spoiler_log
-from enemystats import get_shuffled_chapter_difficulty
-from random_movecosts import get_randomized_moves
-from random_palettes import get_randomized_coinpalette
-from random_audio import get_turned_off_music
+from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
+from rando_modules.random_movecosts import get_randomized_moves
+from rando_modules.random_palettes import get_randomized_coinpalette
+from rando_modules.random_audio import get_turned_off_music
 
 from db.option          import create_options
 from db.item            import create_items
