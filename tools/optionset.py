@@ -65,6 +65,10 @@ class OptionSet:
         self.color_b = 0x8E5A25FF # Box5ColorB
         self.random_coin_palette = False
 
+        # Audio
+        self.turn_off_music = False
+
+
     def update_options(self, options_dict=None):
 
         try:
@@ -196,6 +200,10 @@ class OptionSet:
         # Cosmetics / Palettes
         if "RandomCoinPalette" in options_dict:
             self.random_coin_palette = options_dict.get("RandomCoinPalette")
+
+        # Audio
+        if "TurnOffMusic" in options_dict:
+            self.turn_off_music = options_dict.get("TurnOffMusic")
 
 
 def validate_options(options_dict):
@@ -338,3 +346,7 @@ def validate_options(options_dict):
     # Cosmetics / Palettes
     if "RandomCoinPalette" in options_dict:
         assert isinstance(options_dict.get("RandomCoinPalette"), bool)
+
+    # Audio
+    if "TurnOffAudio" in options_dict:
+        assert isinstance(options_dict.get("TurnOffMusic"), bool)

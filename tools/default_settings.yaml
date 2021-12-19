@@ -79,3 +79,6 @@ PrettySpoilerlog: true
 ColorA: 0xEBE677FF # Box5ColorA
 ColorB: 0x8E5A25FF # Box5ColorB
 RandomCoinPalette: true
+
+# Audio
+TurnOffMusic: false

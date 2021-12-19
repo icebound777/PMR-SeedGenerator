@@ -20,6 +20,7 @@ from spoilerlog import write_spoiler_log
 from enemystats import get_shuffled_chapter_difficulty
 from random_movecosts import get_randomized_moves
 from random_palettes import get_randomized_coinpalette
+from random_audio import get_turned_off_music
 
 from db.option          import create_options
 from db.item            import create_items
@@ -87,6 +88,7 @@ def write_data_to_rom(
     move_costs:list,
     coin_palette_data:list,
     coin_palette_targets:list,
+    music_list:list,
     target_modfile:str,
     seed=int(hashlib.md5().hexdigest()[0:8], 16),
     edit_seed="0x0123456789ABCDEF"
@@ -103,7 +105,8 @@ def write_data_to_rom(
     table_data = rom_table.generate_pairs(
         items=placed_items,
         actor_data=enemy_stats,
-        move_costs=move_costs
+        move_costs=move_costs,
+        music_list=music_list
     )
 
     # Update table info with variable data
@@ -301,13 +304,19 @@ def main_randomizer():
     if rando_settings.random_coin_palette:
         coin_palette_data, coin_palette_targets = get_randomized_coinpalette()
 
-    # Write item data to ROM
+    # Music settings
+    music_list = []
+    if rando_settings.turn_off_music:
+        music_list = get_turned_off_music()
+
+    # Write data to ROM
     write_data_to_rom(
         placed_items,
         enemy_stats,
         move_costs,
         coin_palette_data,
         coin_palette_targets,
+        music_list,
         target_modfile
     )
 

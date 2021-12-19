@@ -77,6 +77,14 @@ class Table:
                 "value": value
             })
 
+        # Audio
+        music_list = kwargs.get("music_list")
+        for key, value in music_list:
+            table_data.append({
+                "key": key,
+                "value": value
+            })
+
         table_data.sort(key=lambda pair: pair["key"])
         return table_data
 
