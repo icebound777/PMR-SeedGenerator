@@ -171,6 +171,8 @@ edges_mac = [
     
     {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftA"},       "reqs": []}, #* Port District Exit Right -> GiftA (Lyrics)
     {"from": {"map": "MAC_05", "id": "GiftA"},       "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* GiftA (Lyrics) -> Port District Exit Right
+    {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftB"},       "reqs": []}, #* Port District Exit Right -> GiftB (AttackFXD)
+    {"from": {"map": "MAC_05", "id": "GiftB"},       "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* GiftB (AttackFXD) -> Port District Exit Right
     {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "HiddenPanel"}, "reqs": []}, #* Port District Exit Right -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_05", "id": "HiddenPanel"}, "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Port District Exit Right
 ]
