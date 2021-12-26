@@ -86,6 +86,7 @@ def print_version():
 
 
 def write_data_to_rom(
+    target_modfile:str,
     placed_items:list,
     enemy_stats:list,
     battle_formations:list,
@@ -93,7 +94,6 @@ def write_data_to_rom(
     coin_palette_data:list,
     coin_palette_targets:list,
     music_list:list,
-    target_modfile:str,
     seed=int(hashlib.md5().hexdigest()[0:8], 16),
     edit_seed="0x0123456789ABCDEF"
 ):
@@ -319,14 +319,14 @@ def main_randomizer():
 
     # Write data to ROM
     write_data_to_rom(
-        placed_items,
-        enemy_stats,
-        battle_formations,
-        move_costs,
-        coin_palette_data,
-        coin_palette_targets,
-        music_list,
-        target_modfile
+        target_modfile=target_modfile,
+        placed_items=placed_items,
+        enemy_stats=enemy_stats,
+        battle_formations=battle_formations,
+        move_costs=move_costs,
+        coin_palette_data=coin_palette_data,
+        coin_palette_targets=coin_palette_targets,
+        music_list=music_list
     )
 
     # Write sorted spoiler log

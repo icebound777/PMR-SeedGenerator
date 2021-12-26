@@ -482,8 +482,19 @@ class Window(QMainWindow):
         # Make everything inexpensive
         randomizer.set_cheap_shopitems(placed_items)
 
-        # Write item data to ROM
-        randomizer.write_itemdata_to_rom(placed_items, "../out/PM64.z64", self.seed, self.edit_seed)
+        # Write data to ROM
+        randomizer.write_data_to_rom(
+            target_modfile="../out/PM64.z64",
+            placed_items=placed_items,
+            enemy_stats=[],
+            battle_formations=[],
+            move_costs=[],
+            coin_palette_data=[],
+            coin_palette_targets=[],
+            music_list=[],
+            seed=self.seed,
+            edit_seed=self.edit_seed
+        )
 
         # Write sorted spoiler log
         randomizer.write_spoiler_log(placed_items)

@@ -40,6 +40,7 @@ class Table:
         # Items
         placed_items = kwargs.get("items")
         for node in placed_items:
+            print(f"{node}")
             if node.key_name_item is not None and node.current_item is not None:
                 table_data.append({
                     "key": node.get_item_key(),
