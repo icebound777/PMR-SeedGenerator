@@ -9,7 +9,6 @@ peewee = "==3.14.4"
 pyyaml = "*"
 
 [dev-packages]
-pyinstaller = "4.3"
 
 [requires]
 python_version = "3.9"
