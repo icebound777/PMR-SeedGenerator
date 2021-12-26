@@ -5,7 +5,7 @@ SettingsVersion: 0.1
 
 # Options
 StartingMap            : 0x00010104 # mac_00, Entry4
-ReplaceDuplicateKeys   : false
+ReplaceDuplicateKeys   : true
 DuplicateKeyReplacement: 194 # '.Item:Mistake'
 BlocksMatchContent     : true
 
@@ -59,18 +59,18 @@ RandomQuiz: true
 SkipQuiz  : false
 
 # Randomization: Partner
-StartWithRandomPartners: false
-RandomPartnersMin      : 1
-RandomPartnersMax      : 8
-StartWithPartners: { # ignored if StartWithRandomPartners true
-    Goombario : true,
-    Kooper    : false,
-    Bombette  : false,
-    Parakarry : false,
-    Bow       : false,
-    Watt      : false,
-    Sushie    : false,
-    Lakilester: false
+StartWithRandomPartners: false # NYI
+RandomPartnersMin      : 1     # NYI
+RandomPartnersMax      : 8     # NYI
+StartWithPartners: { # ignored if StartWithRandomPartners true # NYI
+    Goombario : true,                                          # NYI
+    Kooper    : false,                                         # NYI
+    Bombette  : false,                                         # NYI
+    Parakarry : false,                                         # NYI
+    Bow       : false,                                         # NYI
+    Watt      : false,                                         # NYI
+    Sushie    : false,                                         # NYI
+    Lakilester: false                                          # NYI
 }
 # Spoiler log
 WriteSpoilerLog: true
