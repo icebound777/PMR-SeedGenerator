@@ -30,6 +30,7 @@ PlacementLogic: NoGlitches
 
 # Randomization: Difficulty
 ShuffleChapterDifficulty: false
+RandomBattleFormations: false
 
 # Randomization: Items
 ShuffleItems          : true

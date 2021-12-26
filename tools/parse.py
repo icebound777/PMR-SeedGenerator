@@ -194,6 +194,16 @@ def gather_values():
                         values["actors"][actor] = {}
                     values["actors"][actor][attribute] = value
 
+    with open("../globals/patch/Actors.patch", "r", encoding="utf-8") as file:
+        for line in file:
+            if match := re.match(r"#export\s*.ActorPtr:", line):
+                data = line[match.end():]
+                match = re.match(r"(\S*)\s*(\S*)", data)
+                actor, pointer = match.group(1), match.group(2)
+                if actor not in values["actors"]:
+                    values["actors"][actor] = {}
+                values["actors"][actor]["Pointer"] = int(pointer, base=16)
+
     with open("./debug/values.json", "w", encoding="utf-8") as file:
         json.dump(values, file, indent=4)
 

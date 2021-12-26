@@ -18,6 +18,7 @@ from optionset import OptionSet
 from rando_modules.logic import place_items
 from spoilerlog import write_spoiler_log
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
+from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_palettes import get_randomized_coinpalette
 from rando_modules.random_audio import get_turned_off_music
@@ -25,6 +26,7 @@ from rando_modules.random_audio import get_turned_off_music
 from db.option          import create_options
 from db.item            import create_items
 from db.node            import create_nodes
+from db.actor           import create_actors
 from db.actor_attribute import create_actor_attributes
 from db.move            import create_moves
 from db.quiz            import create_quizzes
@@ -48,6 +50,7 @@ def init_randomizer(rebuild_database=False):
         create_options()
         create_items()
         create_nodes()
+        create_actors()
         create_actor_attributes()
         create_moves()
         create_quizzes()
@@ -85,6 +88,7 @@ def print_version():
 def write_data_to_rom(
     placed_items:list,
     enemy_stats:list,
+    battle_formations:list,
     move_costs:list,
     coin_palette_data:list,
     coin_palette_targets:list,
@@ -111,10 +115,11 @@ def write_data_to_rom(
 
     # Update table info with variable data
     end_of_content_marker = 0x4 # end of table FFFFFFFF
-    end_padding = 0x10
+    end_padding = 0x10 # 4x FFFFFFFF
+    len_battle_formations = sum([len(formation) for formation in battle_formations])
     rom_table.info["db_size"] = (  rom_table.info["header_size"]
                                  + (len(table_data) * 8)
-                          #       + 32
+                                 + (len_battle_formations * 4)
                                  + end_of_content_marker
                                  + end_padding)
     rom_table.info["seed"] = seed
@@ -151,18 +156,15 @@ def write_data_to_rom(
                 file.write(value_int)
                 log.write(f'{hex(pair["key"])}: {hex(pair["value"])}\n')
 
-            # Write test formation
-#            file.write(0x0000010A.to_bytes(4, byteorder="big"))
- #           file.write(0x8021B0AC.to_bytes(4, byteorder="big"))
-  #          file.write(0x00000000.to_bytes(4, byteorder="big"))
-   #         file.write(0x00000000.to_bytes(4, byteorder="big"))
-    #        file.write(0x00000209.to_bytes(4, byteorder="big"))
-     #       file.write(0x8021B0AC.to_bytes(4, byteorder="big"))
-      #      file.write(0x00000000.to_bytes(4, byteorder="big"))
-       #     file.write(0x00000000.to_bytes(4, byteorder="big"))
+            for formation in battle_formations:
+                for formation_hex_word in formation:
+                    file.write(formation_hex_word.to_bytes(4, byteorder="big"))
 
             # Write end of random formations table
             file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
+            # Write end of db padding
+            for _ in range(1, 5):
+                file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
 
         # Special solution for random coin palettes
         if coin_palette_data and coin_palette_targets:
@@ -280,8 +282,14 @@ def main_randomizer():
     # Randomize chapter difficulty / enemy stats if needed
     enemy_stats = []
     chapter_changes = {}
-    if rando_settings.shuffle_chapter_difficulty:
-        enemy_stats, chapter_changes = get_shuffled_chapter_difficulty()
+    enemy_stats, chapter_changes = get_shuffled_chapter_difficulty(
+        rando_settings.shuffle_chapter_difficulty
+    )
+
+    # Randomize enemy battle formations
+    battle_formations = []
+    if rando_settings.random_battle_formations:
+        battle_formations = get_random_formations(chapter_changes)
 
     # Randomize move costs (FP/BP) if needed
     move_costs = []
@@ -313,6 +321,7 @@ def main_randomizer():
     write_data_to_rom(
         placed_items,
         enemy_stats,
+        battle_formations,
         move_costs,
         coin_palette_data,
         coin_palette_targets,

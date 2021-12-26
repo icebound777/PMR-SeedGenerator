@@ -3,7 +3,7 @@ import random
 
 from db.actor_attribute import ActorAttribute
 
-def get_shuffled_chapter_difficulty():
+def get_shuffled_chapter_difficulty(shuffle_chapter_difficulty):
     # Load enemy stats csv
     ENEMY_STATS_CSV_PATH = '../res/actor_params.csv'
 
@@ -42,20 +42,25 @@ def get_shuffled_chapter_difficulty():
 
     # Random chance for enemy promotion: 20%
     for actor_name in all_enemy_stats:
-        all_enemy_stats[actor_name]["Promoted"] = (random.random() <= 0.2)
+        if not shuffle_chapter_difficulty:
+            all_enemy_stats[actor_name]["Promoted"] = False
+        else:
+            all_enemy_stats[actor_name]["Promoted"] = (random.random() <= 0.2)
 
     for actor_name in all_enemy_stats:
         if all_enemy_stats[actor_name]["Promoted"]:
             print(f"Promoted {actor_name}")
 
-    # Randomize chapter order, skip 0 since prologue is part of ch1, skip 8
-    #   since we don't randomize it
+    # Randomize chapter order
     chapters_to_shuffle = [1,2,3,4,5,6,7]
-    random.shuffle(chapters_to_shuffle)
+    if shuffle_chapter_difficulty:
+        random.shuffle(chapters_to_shuffle)
 
     chapter_dict = {}
     for old_chapter_number, new_chapter_number in enumerate(chapters_to_shuffle):
         chapter_dict[old_chapter_number + 1] = new_chapter_number
+    # Chapter 8 is never shuffled
+    chapter_dict[8] = 8
 
     new_enemy_stats = []
 
@@ -67,13 +72,13 @@ def get_shuffled_chapter_difficulty():
                actor_name not in all_enemy_stats
             or actor_stat_name not in all_enemy_stats[actor_name]
         ):
-            continue
-        native_chapter = all_enemy_stats[actor_name]["NativeChapter"]
-        if native_chapter not in chapters_to_shuffle:
-            continue
-        value = int(all_enemy_stats[actor_name][actor_stat_name][chapter_dict.get(native_chapter)])
-        if all_enemy_stats[actor_name]["Promoted"]:
-            value += 1
+            # not supposed to be random, so write defaults
+            value = actor_attribute.value
+        else:
+            native_chapter = all_enemy_stats[actor_name]["NativeChapter"]
+            value = int(all_enemy_stats[actor_name][actor_stat_name][chapter_dict.get(native_chapter)])
+            if all_enemy_stats[actor_name]["Promoted"]:
+                value += 1
 
         new_enemy_stats.append((dbkey, value))
 
