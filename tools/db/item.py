@@ -31,7 +31,7 @@ class Item(Model):
     
     @classmethod
     def get_type(cls, item_id:int):
-        if item_id <= 0x7F or item_id >= 0x16D:
+        if item_id <= 0x7F or (0x16D <= item_id <= 0x17E ):
             return "KEYITEM"
         elif 0x7F < item_id <= 0xDF:
             return "ITEM"
@@ -46,6 +46,10 @@ class Item(Model):
                 0x15B: "FLOWER",
                 0x15C: "STARPIECE",
             }.get(item_id)
+        elif 0x17F <= item_id <= 0x1C0:
+            return "STARPIECE"
+        elif 0x1C1 <= item_id <= 0x1C9:
+            return "PARTNER"
         else:
             return "OTHER"
 

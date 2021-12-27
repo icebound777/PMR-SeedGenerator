@@ -40,6 +40,7 @@ dont_randomize_formations = [
     "20-XX", # CrystalKing
     "23-XX", # Bowser
     "24-00", # AntiGuy x3, duplighosts
+    "25-05", # unused
     "25-06", # unused
     "25-07", # unused
     "25-08", # unused

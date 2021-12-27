@@ -16,6 +16,7 @@ from calculate_crc import recalculate_crcs
 from optionset import OptionSet, populate_keys
 
 from rando_modules.logic import place_items
+from itemhints import get_itemhints
 from spoilerlog import write_spoiler_log
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.random_formations import get_random_formations
@@ -92,6 +93,7 @@ def write_data_to_rom(
     enemy_stats:list,
     battle_formations:list,
     move_costs:list,
+    itemhints:list,
     coin_palette_data:list,
     coin_palette_targets:list,
     music_list:list,
@@ -118,13 +120,20 @@ def write_data_to_rom(
     end_of_content_marker = 0x4 # end of table FFFFFFFF
     end_padding = 0x10 # 4x FFFFFFFF
     len_battle_formations = sum([len(formation) for formation in battle_formations])
+    len_itemhints = sum([len(itemhint_word) for itemhint_word in itemhints])
+
     rom_table.info["db_size"] = (  rom_table.info["header_size"]
                                  + (len(table_data) * 8)
                                  + (len_battle_formations * 4)
                                  + end_of_content_marker
+                                 + (len_itemhints * 4)
+                                 + end_of_content_marker
                                  + end_padding)
     rom_table.info["seed"] = seed
     rom_table.info["formations_offset"] = len(table_data) * 8
+    rom_table.info["itemhints_offset"] = (  rom_table.info["formations_offset"]
+                                          + end_of_content_marker
+                                          + (len_battle_formations * 4))
 
     # Write data to log file
     with open("./debug/log.txt", "w", encoding="utf-8") as log:
@@ -144,6 +153,7 @@ def write_data_to_rom(
         file.write(rom_table.info["db_size"].to_bytes(4, byteorder="big"))
         file.write(rom_table.info["seed"].to_bytes(4, byteorder="big"))
         file.write(rom_table.info["formations_offset"].to_bytes(4, byteorder="big"))
+        file.write(rom_table.info["itemhints_offset"].to_bytes(4, byteorder="big"))
 
         # Write table data and generate log file
         file.seek(rom_table.info["address"] + rom_table.info["header_size"])
@@ -161,7 +171,15 @@ def write_data_to_rom(
                 for formation_hex_word in formation:
                     file.write(formation_hex_word.to_bytes(4, byteorder="big"))
 
-            # Write end of random formations table
+            # Write end of formations table
+            file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
+
+            # Write itemhint table
+            for itemhint in itemhints:
+                for itemhint_hex in itemhint:
+                    file.write(itemhint_hex.to_bytes(4, byteorder="big"))
+
+            # Write end of item hints table
             file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
             # Write end of db padding
             for _ in range(1, 5):
@@ -308,6 +326,9 @@ def main_randomizer():
             rando_settings.shuffle_starpower_sp
         )
 
+    # Build item hint db
+    itemhints = get_itemhints(placed_items)
+
     # Randomize sprite palettes
     coin_palette_data = []
     coin_palette_targets = []
@@ -327,6 +348,7 @@ def main_randomizer():
         enemy_stats=enemy_stats,
         battle_formations=battle_formations,
         move_costs=move_costs,
+        itemhints=itemhints,
         coin_palette_data=coin_palette_data,
         coin_palette_targets=coin_palette_targets,
         music_list=music_list

@@ -278,6 +278,7 @@ def get_table_info():
         "seed": 0xDEADBEEF,
         "address": 0x1D00000,
         "formations_offset": 0,
+        "itemhints_offset": 0,
     }
     with open("../globals/patch/Database.patch", "r", encoding="utf-8") as file:
         for line in file:
