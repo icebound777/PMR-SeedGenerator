@@ -24,11 +24,14 @@ class Table:
         table_data = []
 
         # Options
-        for option in Option.select():
-            table_data.append({
-                "key": option.get_key(),
-                "value": option.value,
-            })
+        options = kwargs.get("options")
+
+        for keyvaluepair in options.__dict__.values():
+            if isinstance(keyvaluepair, dict) and "key" in keyvaluepair:
+                table_data.append({
+                    "key": keyvaluepair.get("key"),
+                    "value": keyvaluepair.get("value"),
+                })
 
         # Quizzes
         for quiz in Quiz.select():
@@ -40,7 +43,6 @@ class Table:
         # Items
         placed_items = kwargs.get("items")
         for node in placed_items:
-            print(f"{node}")
             if node.key_name_item is not None and node.current_item is not None:
                 table_data.append({
                     "key": node.get_item_key(),

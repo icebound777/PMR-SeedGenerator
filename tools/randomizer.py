@@ -13,7 +13,7 @@ from table import Table
 from parse import gather_keys, gather_values
 from calculate_crc import recalculate_crcs
 
-from optionset import OptionSet
+from optionset import OptionSet, populate_keys
 
 from rando_modules.logic import place_items
 from spoilerlog import write_spoiler_log
@@ -87,6 +87,7 @@ def print_version():
 
 def write_data_to_rom(
     target_modfile:str,
+    options:OptionSet,
     placed_items:list,
     enemy_stats:list,
     battle_formations:list,
@@ -104,9 +105,9 @@ def write_data_to_rom(
     # Create the ROM table
     rom_table = Table()
     rom_table.create()
-
     # Create a sorted list of key:value pairs to be written into the ROM
     table_data = rom_table.generate_pairs(
+        options=options,
         items=placed_items,
         actor_data=enemy_stats,
         move_costs=move_costs,
@@ -233,6 +234,7 @@ def main_randomizer():
                         data = json.load(file)
                     elif arg[arg.rfind(".") + 1:] == "yaml":
                         data = yaml.load(file, Loader=SafeLoader)
+                populate_keys(data)
                 rando_settings.update_options(data)
 
             # Pre-modded Open World PM64 ROM
@@ -266,13 +268,13 @@ def main_randomizer():
     placed_items = []
     for _, _ in place_items(item_placement=placed_items,
                             algorithm=rando_settings.placement_algorithm,
-                            do_shuffle_items=rando_settings.shuffle_items.value,
-                            do_randomize_coins=rando_settings.include_coins.value,
-                            do_randomize_shops=rando_settings.include_shops.value,
-                            do_randomize_panels=rando_settings.include_panels.value,
-                            starting_map_id=rando_settings.starting_map,
-                            startwith_bluehouse_open=rando_settings.bluehouse_open.value,
-                            startwith_flowergate_open=rando_settings.flowergate_open.value,
+                            do_shuffle_items=rando_settings.shuffle_items["value"],
+                            do_randomize_coins=rando_settings.include_coins["value"],
+                            do_randomize_shops=rando_settings.include_shops["value"],
+                            do_randomize_panels=rando_settings.include_panels["value"],
+                            starting_map_id=rando_settings.starting_map["value"],
+                            startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
+                            startwith_flowergate_open=rando_settings.flowergate_open["value"],
                             starting_partners=rando_settings.starting_partners):
         pass
 
@@ -288,7 +290,7 @@ def main_randomizer():
 
     # Randomize enemy battle formations
     battle_formations = []
-    if rando_settings.random_battle_formations:
+    if rando_settings.random_formations:
         battle_formations = get_random_formations(chapter_changes)
 
     # Randomize move costs (FP/BP) if needed
@@ -320,6 +322,7 @@ def main_randomizer():
     # Write data to ROM
     write_data_to_rom(
         target_modfile=target_modfile,
+        options=rando_settings,
         placed_items=placed_items,
         enemy_stats=enemy_stats,
         battle_formations=battle_formations,
