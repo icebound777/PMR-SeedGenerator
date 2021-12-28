@@ -3,6 +3,7 @@ This module represents Mario as an abstract object for simulating world traversa
 This is required for checking randomization logic.
 """
 
+from metadata.multiuse_progression_items import multiuse_progression_items
 
 class Mario:
     """
@@ -45,6 +46,8 @@ def add_to_inventory(item_object):
             is_new_pseudoitem = True
         else:
             mario.items.append(item_object)
+        
+#        print(f"New item: {item_object}")
 
         return is_new_pseudoitem
     # Overload: List of items -> Call function per item
@@ -59,6 +62,12 @@ def add_to_inventory(item_object):
     raise TypeError('item_object argument is not of type str or list',
                     type(item_object),
                     item_object)
+
+
+def clear_inventory():
+    """Completely clear Mario's inventory."""
+    global mario
+    mario = Mario()
 
 
 def can_flip_panels():
@@ -134,6 +143,16 @@ def require(**kwargs):
                 return True
         # Items
         if item := kwargs.get("item"):
+            if item in multiuse_progression_items:
+                have_any_req_item = True in (multi_item in mario.items
+                                             for multi_item in multiuse_progression_items.get(item))
+                if have_any_req_item:
+                    # remove single multiuse item #TODO very janky, pls rework
+                    for multi_item in multiuse_progression_items.get(item):
+                        if multi_item in mario.items:
+                            mario.items.remove(multi_item)
+                            break
+                    return True
             if item in mario.items:
                 return True
         # Hammer
@@ -160,17 +179,3 @@ def require(**kwargs):
 
         return False
     return func
-
-
-# Example
-mario = Mario()
-"""
-mario.partners.append("Kooper")
-mario.boots = 0
-
-reqs = [require(partner="Kooper", boots=2)]
-if all([r() for r in reqs]):
-    print("Accessible")
-else:
-    print("Not accessible")
-"""

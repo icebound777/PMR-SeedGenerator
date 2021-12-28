@@ -1,12 +1,13 @@
 import json
 from pathlib import Path
 
+from peewee import *
+
 from db.db import db
 from db.map_area import MapArea
 from db.item import Item
-from peewee import *
-from utility import get_files
 
+from metadata.item_source_types import item_source_types
 
 # A table that represents all areas of interactivity
 class Node(Model):
@@ -22,6 +23,7 @@ class Node(Model):
     # Human readable name of item location (eg ItemA) or item price (eg ShopPriceA)
     key_name_item = CharField(null = True)
     key_name_price = CharField(null = True)
+    item_source_type = IntegerField(null = True)
 
     # reference to item placed here in the unmodified game
     vanilla_item = ForeignKeyField(Item, null = True)
@@ -37,7 +39,7 @@ class Node(Model):
         entrance = ("[" + format(self.entrance_id) + "] ") if self.entrance_id else ''
         itemkey = ("[" + format(self.key_name_item) + "] ") if self.key_name_item else ''
         item = format(self.current_item.item_name) if self.current_item else ''
-        price = (" (" + format(self.current_item.base_price) + ")") if self.key_name_price else ''
+        price = (" (" + format(self.current_item.base_price) + ")") if self.current_item and self.key_name_price else ''
 
         return f"[{self.map_area.name}]{entrance}{itemkey}{item}{price}"
 
@@ -93,7 +95,7 @@ def create_nodes():
 
         price_index = None
         key_name_price = None
-        if data["name"].startswith("ShopItem"):
+        if data["name"].startswith("ShopItem") or data["name"].startswith("ShopBadge"):
             # Search for corresponding item_price and set index & key_name_price
             for price_id, price_data in price_keys.items():
                 # Look for corresponding "ShopPriceX" for "ShopItemX" on same map
@@ -101,12 +103,16 @@ def create_nodes():
                     price_index = price_data["value_id"]
                     key_name_price = price_data["name"]
 
+        print(f"map_name={data['map_name']}, name={data['name']}")
+        item_source_type = item_source_types.get(data["map_name"]).get(data["name"])
+
         node, created = Node.get_or_create(
             map_area = map_area,
             key_name_item = data["name"],
             key_name_price = key_name_price if key_name_price else None,
+            item_source_type = item_source_type,
             vanilla_item = vanilla_item,
-            current_item = vanilla_item,
+            current_item = None,
             item_index = data["value_id"],
             price_index = price_index if price_index else None
         )

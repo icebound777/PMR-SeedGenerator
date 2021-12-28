@@ -11,15 +11,25 @@ from yaml.loader import SafeLoader
 from enums import create_enums
 from table import Table
 from parse import gather_keys, gather_values
+from calculate_crc import recalculate_crcs
 
-from logic import place_items
+from optionset import OptionSet, populate_keys
+
+from rando_modules.logic import place_items
+from itemhints import get_itemhints
 from spoilerlog import write_spoiler_log
-from optionset import OptionSet
+from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
+from rando_modules.random_formations import get_random_formations
+from rando_modules.random_movecosts import get_randomized_moves
+from rando_modules.random_palettes import get_randomized_coinpalette
+from rando_modules.random_audio import get_turned_off_music
 
 from db.option          import create_options
 from db.item            import create_items
 from db.node            import create_nodes
+from db.actor           import create_actors
 from db.actor_attribute import create_actor_attributes
+from db.move            import create_moves
 from db.quiz            import create_quizzes
 
 
@@ -41,7 +51,9 @@ def init_randomizer(rebuild_database=False):
         create_options()
         create_items()
         create_nodes()
+        create_actors()
         create_actor_attributes()
+        create_moves()
         create_quizzes()
         shutil.copy(work_db_name, default_db_name)
 
@@ -74,9 +86,17 @@ def print_version():
     print(VERSION)
 
 
-def write_itemdata_to_rom(
-    placed_items,
-    target_modfile,
+def write_data_to_rom(
+    target_modfile:str,
+    options:OptionSet,
+    placed_items:list,
+    enemy_stats:list,
+    battle_formations:list,
+    move_costs:list,
+    itemhints:list,
+    coin_palette_data:list,
+    coin_palette_targets:list,
+    music_list:list,
     seed=int(hashlib.md5().hexdigest()[0:8], 16),
     edit_seed="0x0123456789ABCDEF"
 ):
@@ -87,13 +107,33 @@ def write_itemdata_to_rom(
     # Create the ROM table
     rom_table = Table()
     rom_table.create()
-
     # Create a sorted list of key:value pairs to be written into the ROM
-    table_data = rom_table.generate_pairs(items=placed_items)
+    table_data = rom_table.generate_pairs(
+        options=options,
+        items=placed_items,
+        actor_data=enemy_stats,
+        move_costs=move_costs,
+        music_list=music_list
+    )
 
     # Update table info with variable data
-    rom_table.info["num_entries"] = len(table_data)
+    end_of_content_marker = 0x4 # end of table FFFFFFFF
+    end_padding = 0x10 # 4x FFFFFFFF
+    len_battle_formations = sum([len(formation) for formation in battle_formations])
+    len_itemhints = sum([len(itemhint_word) for itemhint_word in itemhints])
+
+    rom_table.info["db_size"] = (  rom_table.info["header_size"]
+                                 + (len(table_data) * 8)
+                                 + (len_battle_formations * 4)
+                                 + end_of_content_marker
+                                 + (len_itemhints * 4)
+                                 + end_of_content_marker
+                                 + end_padding)
     rom_table.info["seed"] = seed
+    rom_table.info["formations_offset"] = len(table_data) * 8
+    rom_table.info["itemhints_offset"] = (  rom_table.info["formations_offset"]
+                                          + end_of_content_marker
+                                          + (len_battle_formations * 4))
 
     # Write data to log file
     with open("./debug/log.txt", "w", encoding="utf-8") as log:
@@ -104,13 +144,16 @@ def write_itemdata_to_rom(
         log.write("\n")
 
     # Modify the table data in the ROM
+    changed_coin_palette = False
     with open(target_modfile, "r+b") as file:
-        # Write the header
+        # Write the db header
         file.seek(rom_table.info["address"])
         file.write(rom_table.info["magic_value"].to_bytes(4, byteorder="big"))
         file.write(rom_table.info["header_size"].to_bytes(4, byteorder="big"))
-        file.write(rom_table.info["num_entries"].to_bytes(4, byteorder="big"))
+        file.write(rom_table.info["db_size"].to_bytes(4, byteorder="big"))
         file.write(rom_table.info["seed"].to_bytes(4, byteorder="big"))
+        file.write(rom_table.info["formations_offset"].to_bytes(4, byteorder="big"))
+        file.write(rom_table.info["itemhints_offset"].to_bytes(4, byteorder="big"))
 
         # Write table data and generate log file
         file.seek(rom_table.info["address"] + rom_table.info["header_size"])
@@ -123,6 +166,35 @@ def write_itemdata_to_rom(
                 file.write(key_int)
                 file.write(value_int)
                 log.write(f'{hex(pair["key"])}: {hex(pair["value"])}\n')
+
+            for formation in battle_formations:
+                for formation_hex_word in formation:
+                    file.write(formation_hex_word.to_bytes(4, byteorder="big"))
+
+            # Write end of formations table
+            file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
+
+            # Write itemhint table
+            for itemhint in itemhints:
+                for itemhint_hex in itemhint:
+                    file.write(itemhint_hex.to_bytes(4, byteorder="big"))
+
+            # Write end of item hints table
+            file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
+            # Write end of db padding
+            for _ in range(1, 5):
+                file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
+
+        # Special solution for random coin palettes
+        if coin_palette_data and coin_palette_targets:
+            changed_coin_palette = True
+            for target_rom_location in coin_palette_targets:
+                file.seek(target_rom_location)
+                for palette_byte in coin_palette_data:
+                    file.write(palette_byte.to_bytes(4, byteorder="big"))
+
+    if changed_coin_palette:
+        recalculate_crcs(target_modfile)
 
                 #if enum_type := pair.get("enum_type"):
                 #    if enum_type == "Item":
@@ -180,6 +252,7 @@ def main_randomizer():
                         data = json.load(file)
                     elif arg[arg.rfind(".") + 1:] == "yaml":
                         data = yaml.load(file, Loader=SafeLoader)
+                populate_keys(data)
                 rando_settings.update_options(data)
 
             # Pre-modded Open World PM64 ROM
@@ -199,10 +272,6 @@ def main_randomizer():
         print_usage()
         raise
 
-    # DEFAULTS: Load settings if none provided
-    #if not rando_settings:
-    #    with open("default_settings.yaml", "r", encoding="utf-8") as file:
-    #        rando_settings = yaml.load(file, Loader=SafeLoader)
     # DEFAULTS: Set targetmod if none provided
     if not target_modfile:
         target_modfile = "../out/PM64.z64"
@@ -217,26 +286,79 @@ def main_randomizer():
     placed_items = []
     for _, _ in place_items(item_placement=placed_items,
                             algorithm=rando_settings.placement_algorithm,
-                            do_shuffle_items=rando_settings.shuffle_items.value,
-                            do_randomize_coins=rando_settings.include_coins.value,
-                            do_randomize_shops=rando_settings.include_shops.value,
-                            do_randomize_panels=rando_settings.include_panels.value,
-                            starting_map_id=rando_settings.starting_map,
-                            startwith_bluehouse_open=rando_settings.bluehouse_open.value,
-                            startwith_flowergate_open=rando_settings.flowergate_open.value,
+                            do_shuffle_items=rando_settings.shuffle_items["value"],
+                            do_randomize_coins=rando_settings.include_coins["value"],
+                            do_randomize_shops=rando_settings.include_shops["value"],
+                            do_randomize_panels=rando_settings.include_panels["value"],
+                            starting_map_id=rando_settings.starting_map["value"],
+                            startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
+                            startwith_flowergate_open=rando_settings.flowergate_open["value"],
                             starting_partners=rando_settings.starting_partners):
         pass
 
     # Make everything inexpensive
     set_cheap_shopitems(placed_items)
 
-    # Write item data to ROM
-    write_itemdata_to_rom(placed_items, target_modfile)
+    # Randomize chapter difficulty / enemy stats if needed
+    enemy_stats = []
+    chapter_changes = {}
+    enemy_stats, chapter_changes = get_shuffled_chapter_difficulty(
+        rando_settings.shuffle_chapter_difficulty
+    )
+
+    # Randomize enemy battle formations
+    battle_formations = []
+    if rando_settings.random_formations:
+        battle_formations = get_random_formations(chapter_changes)
+
+    # Randomize move costs (FP/BP) if needed
+    move_costs = []
+    if (
+           rando_settings.shuffle_badges_bp
+        or rando_settings.shuffle_badges_fp
+        or rando_settings.shuffle_partner_fp
+        or rando_settings.shuffle_starpower_sp
+    ):
+        move_costs = get_randomized_moves(
+            rando_settings.shuffle_badges_bp,
+            rando_settings.shuffle_badges_fp,
+            rando_settings.shuffle_partner_fp,
+            rando_settings.shuffle_starpower_sp
+        )
+
+    # Build item hint db
+    itemhints = get_itemhints(placed_items)
+
+    # Randomize sprite palettes
+    coin_palette_data = []
+    coin_palette_targets = []
+    if rando_settings.random_coin_palette:
+        coin_palette_data, coin_palette_targets = get_randomized_coinpalette()
+
+    # Music settings
+    music_list = []
+    if rando_settings.turn_off_music:
+        music_list = get_turned_off_music()
+
+    # Write data to ROM
+    write_data_to_rom(
+        target_modfile=target_modfile,
+        options=rando_settings,
+        placed_items=placed_items,
+        enemy_stats=enemy_stats,
+        battle_formations=battle_formations,
+        move_costs=move_costs,
+        itemhints=itemhints,
+        coin_palette_data=coin_palette_data,
+        coin_palette_targets=coin_palette_targets,
+        music_list=music_list
+    )
 
     # Write sorted spoiler log
     if rando_settings.write_spoilerlog:
         write_spoiler_log(
             placed_items,
+            random_chapter_difficulty=chapter_changes,
             do_pretty=rando_settings.pretty_spoilerlog,
             spoilerlog_file=spoilerlog_file_path
         )

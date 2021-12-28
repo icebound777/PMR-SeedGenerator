@@ -12,10 +12,11 @@ from PyQt5 import QtCore, QtGui, uic
 
 from custom_seed import CUSTOM_SEED_PATH, generate as custom_seed_generate
 import randomizer
+from optionset import OptionSet, get_option_keyvalue_dict
 
 from enums import Enums
 from utility import sr_dump, sr_copy, sr_compile
-from logic import place_items
+from rando_modules.logic import place_items
 
 from db.option import Option
 
@@ -395,57 +396,62 @@ class Window(QMainWindow):
         self.progress_bar.setVisible(False)
         self.display("Finished Compiling Mod")
 
-    def update_db(self):
-        """Updates sqlite database with currently selected option within the UI."""
+    def update_options(self):
+        rando_settings = OptionSet()
+
+        """Get option defaults from sqlite database."""
         options = {
-            "InitialCoins": Option.get(Option.name == "InitialCoins"),
-            "ReplaceDuplicateKeys": Option.get(Option.name == "ReplaceDuplicateKeys"),
-            "DuplicateKeyReplacement": Option.get(Option.name == "DuplicateKeyReplacement"),
-            "FlowerGateOpen": Option.get(Option.name == "FlowerGateOpen"),
-            "BlueHouseOpen": Option.get(Option.name == "BlueHouseOpen"),
-            "BlocksMatchContent": Option.get(Option.name == "BlocksMatchContent"),
-            "SkipQuiz": Option.get(Option.name == "SkipQuiz"),
-            "CapEnemyXP": Option.get(Option.name == "CapEnemyXP"),
-            "2xDamage": Option.get(Option.name == "2xDamage"),
-            "4xDamage": Option.get(Option.name == "4xDamage"),
-            "OHKO": Option.get(Option.name == "OHKO"),
+            "InitialCoins": get_option_keyvalue_dict("InitialCoins"),
+            "ReplaceDuplicateKeys": get_option_keyvalue_dict("ReplaceDuplicateKeys"),
+            "DuplicateKeyReplacement": get_option_keyvalue_dict("DuplicateKeyReplacement"),
+            "FlowerGateOpen": get_option_keyvalue_dict("FlowerGateOpen"),
+            "BlueHouseOpen": get_option_keyvalue_dict("BlueHouseOpen"),
+            "BlocksMatchContent": get_option_keyvalue_dict("BlocksMatchContent"),
+            "SkipQuiz": get_option_keyvalue_dict("SkipQuiz"),
+            "CapEnemyXP": get_option_keyvalue_dict("CapEnemyXP"),
+            "2xDamage": get_option_keyvalue_dict("2xDamage"),
+            "4xDamage": get_option_keyvalue_dict("4xDamage"),
+            "OHKO": get_option_keyvalue_dict("OHKO"),
             # Items Tab
-            "ShuffleItems": Option.get(Option.name == "ShuffleItems"),
-            "IncludeCoins": Option.get(Option.name == "IncludeCoins"),
-            "IncludeShops": Option.get(Option.name == "IncludeShops"),
-            "IncludePanels": Option.get(Option.name == "IncludePanels"),
+            "ShuffleItems": get_option_keyvalue_dict("ShuffleItems"),
+            "IncludeCoins": get_option_keyvalue_dict("IncludeCoins"),
+            "IncludeShops": get_option_keyvalue_dict("IncludeShops"),
+            "IncludePanels": get_option_keyvalue_dict("IncludePanels"),
             # Entrances Tab
-            "ShuffleEntrances": Option.get(Option.name == "ShuffleEntrances"),
-            "ShuffleEntrancesByArea": Option.get(Option.name == "ShuffleEntrancesByArea"),
-            "ShuffleEntrancesByAll": Option.get(Option.name == "ShuffleEntrancesByAll"),
-            "MatchEntranceTypes": Option.get(Option.name == "MatchEntranceTypes"),
+            "ShuffleEntrances": get_option_keyvalue_dict("ShuffleEntrances"),
+            "ShuffleEntrancesByArea": get_option_keyvalue_dict("ShuffleEntrancesByArea"),
+            "ShuffleEntrancesByAll": get_option_keyvalue_dict("ShuffleEntrancesByAll"),
+            "MatchEntranceTypes": get_option_keyvalue_dict("MatchEntranceTypes"),
         }
 
-        options["InitialCoins"].value = int(self.edit_coins.text())
-        options["ReplaceDuplicateKeys"].value = int(self.chk_replace_keys.isChecked())
-        options["DuplicateKeyReplacement"].value = \
+        # Update options with values from the GUI
+        options["InitialCoins"]["value"] = int(self.edit_coins.text())
+        options["ReplaceDuplicateKeys"]["value"] = self.chk_replace_keys.isChecked()
+        options["DuplicateKeyReplacement"]["value"] = \
             self.item_choices[self.combo_replace.currentIndex()][1]
-        options["FlowerGateOpen"].value = int(self.chk_flower_gate.isChecked())
-        options["BlueHouseOpen"].value = int(self.chk_blue_house.isChecked())
-        options["BlocksMatchContent"].value = int(self.chk_blocks_content.isChecked())
-        options["SkipQuiz"].value = int(self.chk_skip_quiz.isChecked())
-        options["CapEnemyXP"].value = int(self.chk_cap_xp.isChecked())
-        options["2xDamage"].value = int(self.radio_damage_2.isChecked())
-        options["4xDamage"].value = int(self.radio_damage_4.isChecked())
-        options["OHKO"].value = int(self.chk_ohko.isChecked())
+        options["FlowerGateOpen"]["value"] = self.chk_flower_gate.isChecked()
+        options["BlueHouseOpen"]["value"] = self.chk_blue_house.isChecked()
+        options["BlocksMatchContent"]["value"] = self.chk_blocks_content.isChecked()
+        options["SkipQuiz"]["value"] = self.chk_skip_quiz.isChecked()
+        options["CapEnemyXP"]["value"] = self.chk_cap_xp.isChecked()
+        options["2xDamage"]["value"] = self.radio_damage_2.isChecked()
+        options["4xDamage"]["value"] = self.radio_damage_4.isChecked()
+        options["OHKO"]["value"] = self.chk_ohko.isChecked()
         # Items Tab
-        options["ShuffleItems"].value = int(self.chk_shuffle_items.isChecked())
-        options["IncludeCoins"].value = int(self.chk_include_coins.isChecked())
-        options["IncludeShops"].value = int(self.chk_include_shops.isChecked())
-        options["IncludePanels"].value = int(self.chk_include_panels.isChecked())
+        options["ShuffleItems"]["value"] = self.chk_shuffle_items.isChecked()
+        options["IncludeCoins"]["value"] = self.chk_include_coins.isChecked()
+        options["IncludeShops"]["value"] = self.chk_include_shops.isChecked()
+        options["IncludePanels"]["value"] = self.chk_include_panels.isChecked()
         # Entrances Tab
-        options["ShuffleEntrances"].value = int(self.chk_shuffle_entrances.isChecked())
-        options["ShuffleEntrancesByArea"].value = int(self.radio_by_area.isChecked())
-        options["ShuffleEntrancesByAll"].value = int(self.radio_by_all.isChecked())
-        options["MatchEntranceTypes"].value = int(self.chk_match_types.isChecked())
+        options["ShuffleEntrances"]["value"] = self.chk_shuffle_entrances.isChecked()
+        options["ShuffleEntrancesByArea"]["value"] = self.radio_by_area.isChecked()
+        options["ShuffleEntrancesByAll"]["value"] = self.radio_by_all.isChecked()
+        options["MatchEntranceTypes"]["value"] = self.chk_match_types.isChecked()
 
-        for option in options.values():
-            option.save()
+        # Update OptionSet with chosen options
+        rando_settings.update_options(options)
+
+        return rando_settings
 
     def randomize(self):
         """
@@ -462,19 +468,21 @@ class Window(QMainWindow):
         random.seed(self.seed)
 
         # Update database values from widgets
-        self.update_db()
+        selected_settings = self.update_options()
 
         # Item Placement
         placed_items = []
-        for text,percent_complete in place_items(item_placement=placed_items,
-                                                 algorithm="ForwardFill",
-                                                 do_shuffle_items=self.chk_shuffle_items.isChecked(),
-                                                 do_randomize_coins=self.chk_include_coins.isChecked(),
-                                                 do_randomize_shops=self.chk_include_shops.isChecked(),
-                                                 do_randomize_panels=self.chk_include_panels.isChecked(),
-                                                 starting_map_id=0x00010104,
-                                                 startwith_bluehouse_open=self.chk_blue_house.isChecked(),
-                                                 startwith_flowergate_open=self.chk_flower_gate.isChecked()):
+        for text,percent_complete in place_items(
+            item_placement=placed_items,
+            algorithm="ForwardFill",
+            do_shuffle_items=selected_settings.shuffle_items["value"],
+            do_randomize_coins=selected_settings.include_coins["value"],
+            do_randomize_shops=selected_settings.include_shops["value"],
+            do_randomize_panels=selected_settings.include_panels["value"],
+            starting_map_id=selected_settings.starting_map["value"],
+            startwith_bluehouse_open=selected_settings.bluehouse_open["value"],
+            startwith_flowergate_open=selected_settings.flowergate_open["value"]
+        ):
             self.progress_bar.setValue(percent_complete)
             self.progress_bar.setFormat(f"{text} ({percent_complete}%)")
             self.app.processEvents()
@@ -482,11 +490,27 @@ class Window(QMainWindow):
         # Make everything inexpensive
         randomizer.set_cheap_shopitems(placed_items)
 
-        # Write item data to ROM
-        randomizer.write_itemdata_to_rom(placed_items, "../out/PM64.z64", self.seed, self.edit_seed)
+        # Write data to ROM
+        randomizer.write_data_to_rom(
+            target_modfile="../out/PM64.z64",
+            options=selected_settings,
+            placed_items=placed_items,
+            enemy_stats=[],
+            battle_formations=[],
+            move_costs=[],
+            coin_palette_data=[],
+            coin_palette_targets=[],
+            music_list=[],
+            seed=self.seed,
+            edit_seed=self.edit_seed
+        )
 
         # Write sorted spoiler log
-        randomizer.write_spoiler_log(placed_items)
+        if selected_settings.write_spoilerlog:
+            randomizer.write_spoiler_log(
+                placed_items,
+                do_pretty=selected_settings.pretty_spoilerlog
+            )
 
         self.progress_bar.setVisible(False)
         self.progress_bar.setValue(0)

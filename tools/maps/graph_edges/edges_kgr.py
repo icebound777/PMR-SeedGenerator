@@ -1,5 +1,5 @@
 """This file represents all edges of the world graph that have origin-nodes in the KGR (Inside the Whale) area."""
-from simulate import *
+from rando_modules.simulate import *
 
 edges_kgr = [
     # KGR_01 Whale Mouth

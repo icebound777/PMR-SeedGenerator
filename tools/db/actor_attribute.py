@@ -7,7 +7,7 @@ from db.db import db
 
 class ActorAttribute(Model):
     area_id = IntegerField()
-    map_id = IntegerField()
+    actor_id = IntegerField()
     index = IntegerField()
 
     actor_name = CharField()
@@ -18,7 +18,7 @@ class ActorAttribute(Model):
         return f"{self.actor_name}[{self.attribute}] = {self.value}"
 
     def get_key(self):
-        return (ActorAttribute._meta.key_type << 24) | (self.area_id << 16) | (self.map_id << 8) | self.index
+        return (ActorAttribute._meta.key_type << 24) | (self.area_id << 16) | (self.actor_id << 8) | self.index
 
     class Meta:
         database = db
@@ -42,7 +42,7 @@ def create_actor_attributes():
 
             actor_attribute,created = ActorAttribute.get_or_create(
                 area_id=data["area_id"],
-                map_id=data["map_id"],
+                actor_id=data["actor_id"],
                 index=data["value_id"],
                 actor_name=data["name"],
                 defaults={

@@ -2,10 +2,15 @@ from metadata.verbose_area_names import verbose_area_names
 from metadata.verbose_item_names import verbose_item_names
 from metadata.verbose_item_locations import verbose_item_locations
 
-def write_spoiler_log(placed_items, do_pretty=False, spoilerlog_file=None):
+def write_spoiler_log(
+    placed_items:list,
+    random_chapter_difficulty:dict=None,
+    do_pretty:bool=False,
+    spoilerlog_file:str=None
+):
     """
     Outputs a log file listing the final locations of all items
-    after randomization.
+    after randomization and randomized chapter difficulty
     """
     if not spoilerlog_file:
         spoilerlog_file = "./debug/item_placement.txt"
@@ -14,6 +19,7 @@ def write_spoiler_log(placed_items, do_pretty=False, spoilerlog_file=None):
     sorted_by_map =  sorted(sorted_by_key, key=lambda node: node.map_area.map_id)
     sorted_by_area = sorted(sorted_by_map, key=lambda node: node.map_area.area_id)
     with open(spoilerlog_file, "w", encoding="utf-8") as file:
+        # Print item locations
         if do_pretty:
             current_area_name = None
             for node in sorted_by_area:
@@ -43,3 +49,9 @@ def write_spoiler_log(placed_items, do_pretty=False, spoilerlog_file=None):
             for node in sorted_by_area:
                 file.write(f"[{node.map_area.name}] {node.key_name_item} - "
                            f"{node.current_item.item_name}\n")
+        
+        # Print chapter difficulties
+        if random_chapter_difficulty:
+            file.write("\n\nModified Chapter Difficulty:")
+            for old_chapter, new_chapter in random_chapter_difficulty.items():
+                file.write(f"\nChapter {old_chapter} -> Chapter {new_chapter}")

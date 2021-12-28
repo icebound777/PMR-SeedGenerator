@@ -1,39 +1,38 @@
-progression_keyitems = {
-    0x0001 : "Boots",
-    0x0002 : "SuperBoots",
-    0x0003 : "UltraBoots",
+progression_items = {
+    0x0001 : "Jump",
+    0x0002 : "SpinJump",
+    0x0003 : "TornadoJump",
     0x0004 : "Hammer",
     0x0005 : "SuperHammer",
     0x0006 : "UltraHammer",
-    0x0010 : "FortressKey",
-    0x0011 : "RuinsKey",
+    #0x0010 : "KoopaFortressKey", # see end of list
+    #0x0011 : "RuinsKey", # see end of list
     0x0012 : "PulseStone",
-    0x0013 : "CastleKey1", # Tubba Blubba's Castle
-    0x0014 : "PalaceKey",
+    #0x0013 : "TubbaCastleKey", # see end of list
+    0x0014 : "CrystalPalaceKey",
     0x0015 : "LunarStone",
     0x0016 : "PyramidStone",
     0x0017 : "DiamondStone",
     0x0018 : "GoldenJar",
-    0x0019 : "KoopersShell",
-    0x001A : "CastleKey2", # Bowser's Castle
-    0x001C : "Weight",
-    0x001D : "BoosPortrait",
+    0x0019 : "KooperShell",
+    #0x001A : "BowserCastleKey", # see end of list
+    0x001C : "BooWeight",
+    0x001D : "BooPortrait",
     0x001E : "CrystalBerry",
     0x001F : "MysticalKey",
     0x0020 : "StoreroomKey",
     0x0021 : "ToyTrain",
-    0x0022 : "Record",
+    0x0022 : "BooRecord",
     0x0023 : "FryingPan",
     0x0024 : "Dictionary",
-    0x0025 : "MysteryNote",
     0x0027 : "CrystalBall",
     0x002A : "JadeRaven",
     0x002B : "MagicalSeed1",
     0x002C : "MagicalSeed2",
     0x002D : "MagicalSeed3",
     0x002E : "MagicalSeed4",
-    0x0031 : "Bucket",
-    0x0032 : "Scarf",
+    0x0031 : "SnowmanBucket",
+    0x0032 : "SnowmanScarf",
     0x0033 : "RedKey",
     0x0034 : "BlueKey",
     0x0036 : "Letter01",
@@ -68,41 +67,54 @@ progression_keyitems = {
     0x0059 : "FertileSoil",
     0x005A : "MiracleWater",
     0x005B : "VolcanoVase",
-    0x005C : "Tape",
+    0x005C : "KootTheTape",
     0x0067 : "Lyrics",
     0x0068 : "Melody",
     0x0069 : "Mailbag",
-    0x006A : "CastleKey3", # Peach's Castle
     0x006B : "OddKey",
     0x006C : "StarStone",
-    0x006E : "KoopaLegends",
-    0x006F : "Autograph1", # Luigi's
-    0x0070 : "EmptyWallet",
-    0x0071 : "Autograph2", # Merluvlee's
-    0x0073 : "OldPhoto",
-    0x0074 : "Glasses",
-    0x0076 : "Package",
-    0x0077 : "RedJar",
+    0x006E : "KootKoopaLegends",
+    0x006F : "KootLuigiAutograph", # Luigi's
+    0x0070 : "KootEmptyWallet",
+    0x0071 : "KootMerluvleeAutograph", # Merluvlee's
+    0x0073 : "KootOldPhoto",
+    0x0074 : "KootGlasses",
+    0x0076 : "KootPackage",
+    0x0077 : "KootRedJar",
     0x0079 : "WarehouseKey",
+    0x016D : "KoopaFortressKeyA",
+    0x016E : "KoopaFortressKeyB",
+    0x016F : "KoopaFortressKeyC",
+    0x0170 : "KoopaFortressKeyD",
+    0x0171 : "RuinsKeyA",
+    0x0172 : "RuinsKeyB",
+    0x0173 : "RuinsKeyC",
+    0x0174 : "RuinsKeyD",
+    0x0175 : "TubbaCastleKeyA",
+    0x0176 : "TubbaCastleKeyB",
+    0x0177 : "TubbaCastleKeyC",
+    0x0178 : "BowserCastleKeyA",
+    0x0179 : "BowserCastleKeyB",
+    0x017A : "BowserCastleKeyC",
+    0x017B : "BowserCastleKeyD",
+    0x017C : "BowserCastleKeyE",
 }
     # 0x0030 calculator
     # 0x0078 ??
 
 progression_miscitems = [
-    0x0089, # TastyTonic  (Koopa Koot) alternative: Lime,Lemon;BubbleBerry,Coconut
-    0x008F, # SleepySheep (Koopa Koot)
-    0x0095, # LifeShroom  (Koopa Koot)
-    0x009D, # Lime        (Koopa Koot)
-    0x009E, # BlueBerry   (Blue Flower Guard / Flower Fields Well)
-    0x009F, # RedBerry    (Red Flower Guard)
-    0x00A0, # YellowBerry (Yellow Flower Guard)
-    0x00A1, # BubbleBerry (BubbleFlower)
-    0x00A5, # GoomNut     (Koopa Koot: NuttyCake from Tayce T.)
-    0x00A6, # KoopaLeaf   (Koopa Koot: KoopaTea from Tayce T.)
- #   0x00A7, # DriedPasta  (Koopa Koot: +KoopaLeaf -> Koopasta from Tayce T.)
-    0x00AA, # CakeMix     (Koopa Koot: +KoopaLeaf -> KookyCookie from Tayce T.)
-    0x00AC, # Coconut     (Koopa Koot)
-    0x00C1, # Cake        (Gourmet Guy)
+    "TastyTonic",  # 0x0089 (Koopa Koot) alternative: Lime,Lemon;BubbleBerry,Coconut
+    "SleepySheep", # 0x008F (Koopa Koot)
+    "LifeShroom",  # 0x0095 (Koopa Koot)
+    "Lime",        # 0x009D (Koopa Koot)
+    "BlueBerry",   # 0x009E (Blue Flower Guard / Flower Fields Well)
+    "RedBerry",    # 0x009F (Red Flower Guard)
+    "YellowBerry", # 0x00A0 (Yellow Flower Guard)
+    "BubbleBerry", # 0x00A1 (BubbleFlower)
+    "GoomNut",     # 0x00A5 (Koopa Koot: NuttyCake from Tayce T.)
+    "KoopaLeaf",   # 0x00A6 (Koopa Koot: KoopaTea from Tayce T.)
+    "DriedPasta",  # 0x00A7 (Koopa Koot: +KoopaLeaf -> Koopasta from Tayce T.)
+    "CakeMix",     # 0x00AA (Koopa Koot: +KoopaLeaf -> KookyCookie from Tayce T.)
+    "Coconut",     # 0x00AC (Koopa Koot)
+    "Cake",        # 0x00C1 (Gourmet Guy)
 ]
-
-progression_items = progression_keyitems #+ progression_miscitems

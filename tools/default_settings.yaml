@@ -5,7 +5,7 @@ SettingsVersion: 0.1
 
 # Options
 StartingMap            : 0x00010104 # mac_00, Entry4
-ReplaceDuplicateKeys   : false
+ReplaceDuplicateKeys   : true
 DuplicateKeyReplacement: 194 # '.Item:Mistake'
 BlocksMatchContent     : true
 
@@ -28,6 +28,10 @@ PlacementLogic: NoGlitches
 #PlacementLogic: Glitches # NYI
 #PlacementLogic: NoLogic
 
+# Randomization: Difficulty
+ShuffleChapterDifficulty: false
+RandomFormations: false
+
 # Randomization: Items
 ShuffleItems          : true
 IncludeCoins          : false
@@ -35,6 +39,12 @@ IncludeShops          : true
 IncludePanels         : true
 KeyitemsOutsideArea   : true # false -> NYI
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
+
+# Moves and Badges
+ShuffleBadgesBP: false
+ShuffleBadgesFP: false
+ShufflePartnerFP: false
+ShuffleStarpowerSP: false
 
 # Randomization: Entrances
 ShuffleEntrances        : true  # NYI
@@ -48,10 +58,10 @@ UnpairedEntrances       : false # NYI
 RandomQuiz: true
 SkipQuiz  : false
 
-# Partner
-StartWithRandomPartners: false
-RandomPartnersMin      : 1
-RandomPartnersMax      : 8
+# Randomization: Partner
+StartWithRandomPartners: false # NYI
+RandomPartnersMin      : 1     # NYI
+RandomPartnersMax      : 8     # NYI
 StartWithPartners: { # ignored if StartWithRandomPartners true
     Goombario : true,
     Kooper    : false,
@@ -62,10 +72,15 @@ StartWithPartners: { # ignored if StartWithRandomPartners true
     Sushie    : false,
     Lakilester: false
 }
+
 # Spoiler log
 WriteSpoilerLog: true
 PrettySpoilerlog: true
 
-# Cosmetics
+# Cosmetics / Palettes
 ColorA: 0xEBE677FF # Box5ColorA
 ColorB: 0x8E5A25FF # Box5ColorB
+RandomCoinPalette: true
+
+# Audio
+TurnOffMusic: false

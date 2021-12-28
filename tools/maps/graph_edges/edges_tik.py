@@ -1,4 +1,4 @@
-from simulate import *
+from rando_modules.simulate import *
 
 """This file represents all edges of the world graph that have origin-nodes in the TIK (Toad Town Tunnels) area."""
 edges_tik = [
@@ -141,22 +141,28 @@ edges_tik = [
     {"from": {"map": "TIK_15", "id": 0}, "to": {"map": "TIK_15", "id": 1}, "reqs": []}, #? Rip Cheato's Home (B3) Bomb Wall Left -> Rip Cheato's Home (B3) Green Pipe Right
     {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": 0}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Rip Cheato's Home (B3) Green Pipe Right -> Rip Cheato's Home (B3) Bomb Wall Left
 
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftA"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftA (LifeShroom)
-    {"from": {"map": "TIK_15", "id": "GiftA"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftA (LifeShroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftB"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftB (BumpAttack)
-    {"from": {"map": "TIK_15", "id": "GiftB"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftB (BumpAttack) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftC"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftC (RepelGel)
-    {"from": {"map": "TIK_15", "id": "GiftC"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftC (RepelGel) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftD"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftD (SuperShroom)
-    {"from": {"map": "TIK_15", "id": "GiftD"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftD (SuperShroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftE"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftE (Mushroom)
-    {"from": {"map": "TIK_15", "id": "GiftE"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftE (Mushroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftF"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftF (DriedShroom)
-    {"from": {"map": "TIK_15", "id": "GiftF"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftF (DriedShroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftG"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftG (DriedShroom)
-    {"from": {"map": "TIK_15", "id": "GiftG"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftG (DriedShroom) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftA"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftA (StarPiece3F)
+    {"from": {"map": "TIK_15", "id": "GiftA"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftA (StarPiece3F) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftB"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftB (LifeShroom)
+    {"from": {"map": "TIK_15", "id": "GiftB"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftB (LifeShroom) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftC"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftC (BumpAttack)
+    {"from": {"map": "TIK_15", "id": "GiftC"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftC (BumpAttack) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftD"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftD (RepelGel)
+    {"from": {"map": "TIK_15", "id": "GiftD"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftD (RepelGel) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftE"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftE (StarPiece40)
+    {"from": {"map": "TIK_15", "id": "GiftE"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftE (StarPiece40) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftF"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftF (SuperShroom)
+    {"from": {"map": "TIK_15", "id": "GiftF"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftF (SuperShroom) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftG"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftG (Mushroom)
+    {"from": {"map": "TIK_15", "id": "GiftG"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftG (Mushroom) -> Rip Cheato's Home (B3) Green Pipe Right
     {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftH"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftH (DriedShroom)
     {"from": {"map": "TIK_15", "id": "GiftH"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftH (DriedShroom) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftI"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftI (DriedShroom)
+    {"from": {"map": "TIK_15", "id": "GiftI"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftI (DriedShroom) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftJ"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftI (StarPiece41)
+    {"from": {"map": "TIK_15", "id": "GiftJ"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftI (StarPiece41) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftK"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftK (DriedShroom)
+    {"from": {"map": "TIK_15", "id": "GiftK"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftK (DriedShroom) -> Rip Cheato's Home (B3) Green Pipe Right
 
     # TIK_17 Frozen Room (B3)
     {"from": {"map": "TIK_17", "id": 0}, "to": {"map": "TIK_22", "id": 1}, "reqs": []}, # Frozen Room (B3) Green Pipe Left -> Path to Shiver City (B2) Green Pipe

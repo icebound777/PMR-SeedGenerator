@@ -1,3 +1,10 @@
+"""
+List of repleneshing item locations.
+These are item locations, where the item can be acquired multiple times.
+Thusly this list includes items sold by shops, items found in certain trees,
+bushes and crates, as well as the item traded by the hungry Yoshi and the final
+trade item from Rip Cheato.
+"""
 replenishing_itemlocations = [
     "DRO_01/ShopItemA","DRO_01/ShopItemC","DRO_01/ShopItemF",
     "FLO_16/ItemB",
@@ -27,30 +34,3 @@ replenishing_itemlocations = [
     "SBK_56/Tree1_Drop1A","SBK_56/Tree2_Drop1A",
     "TIK_15/GiftH",
 ]
-
-# replenishing_locations = {
-#     "FLO_16": ["ItemB"],
-#     "FLO_09": ["ItemB"],
-#     "FLO_03": ["Tree1_Drop1A","Tree1_Drop1B"],
-#     "FLO_08": ["ItemB","Tree1_Drop1A","Tree1_Drop1B"],
-#     "FLO_24": ["Tree1_Drop1A","Tree1_Drop1B"],
-#     "FLO_25": ["ItemA","Tree1_Drop1A","Tree1_Drop1B"],
-#     "FLO_14": ["ItemB"],
-#     "HOS_03": ["ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
-#     "IWA_10": ["ItemD"],
-#     "JAN_00": ["Tree1_Drop1A"],
-#     "JAN_01": ["ItemD","ItemE","ItemF","ItemG","ItemH","ItemJ"],
-#     "JAN_02": ["Tree2_Drop1A","Tree3_Drop1A"],
-#     "JAN_03": ["GiftB","ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
-#     "KMR_02": ["Tree1_Drop1A"],
-#     "KPA_96": ["ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
-#     "MAC_00": ["ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
-#     "MAC_04": ["ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
-#     "MIM_11": ["ItemA"],
-#     "NOK_01": ["Bush4_Drop1A","ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
-#     "NOK_02": ["Bush1_Drop1"],
-#     "OBK_03": ["ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
-#     "OBK_05": ["CrateA","CrateB"],
-#     "SAM_02": ["ItemA","ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
-#     "SBK_56": ["Tree1_Drop1A","Tree2_Drop1A"],
-# }

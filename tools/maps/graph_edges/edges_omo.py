@@ -1,4 +1,4 @@
-from simulate import *
+from rando_modules.simulate import *
 
 """This file represents all edges of the world graph that have origin-nodes in the OMO (Shy Guy's Toybox) area."""
 edges_omo = [

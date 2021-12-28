@@ -24,11 +24,14 @@ class Table:
         table_data = []
 
         # Options
-        for option in Option.select():
-            table_data.append({
-                "key": option.get_key(),
-                "value": option.value,
-            })
+        options = kwargs.get("options")
+
+        for keyvaluepair in options.__dict__.values():
+            if isinstance(keyvaluepair, dict) and "key" in keyvaluepair:
+                table_data.append({
+                    "key": keyvaluepair.get("key"),
+                    "value": keyvaluepair.get("value"),
+                })
 
         # Quizzes
         for quiz in Quiz.select():
@@ -47,9 +50,14 @@ class Table:
                 })
                 # Generate a ROM table pair that describes where a unique itemID
 				# resides in the game using areaID and mapID
-                if node.current_item.item_type in ["KEYITEM", "BADGE"]:
+                if node.current_item.item_type in [
+                    "KEYITEM",
+                    "BADGE",
+                    "STARPIECE",
+                    "PARTNER"
+                ]:
                     table_data.append({
-                        "key": (0xA5 << 24) | (node.current_item.value),
+                        "key": (0xAA << 24) | (node.current_item.value),
                         "value": (node.map_area.area_id << 8) | (node.map_area.map_id),
                     })
 
@@ -62,10 +70,27 @@ class Table:
                 })
 
         # Actor Attributes
-        for actor_attribute in ActorAttribute.select():
+        actor_attributes = kwargs.get("actor_data")
+        for key, value in actor_attributes:
             table_data.append({
-                "key": actor_attribute.get_key(),
-                "value": actor_attribute.value,
+                "key": key,
+                "value": value
+            })
+
+        # Move Costs
+        move_costs = kwargs.get("move_costs")
+        for key, value in move_costs:
+            table_data.append({
+                "key": key,
+                "value": value
+            })
+
+        # Audio
+        music_list = kwargs.get("music_list")
+        for key, value in music_list:
+            table_data.append({
+                "key": key,
+                "value": value
             })
 
         table_data.sort(key=lambda pair: pair["key"])

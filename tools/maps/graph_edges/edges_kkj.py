@@ -1,6 +1,5 @@
 """This file represents all edges of the world graph that have origin-nodes in the KKJ (Peach's Castle) area."""
-from simulate import require
-
+from rando_modules.simulate import require
 
 edges_kkj = [
     # KKJ_10 Entry Hall (1F)

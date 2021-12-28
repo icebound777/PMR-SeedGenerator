@@ -1,4 +1,4 @@
-from simulate import *
+from rando_modules.simulate import *
 
 """This file represents all edges of the world graph that have origin-nodes in the ISK (Dry Dry Ruins) area."""
 # Note: Instead of checking for hammer-levels, these edges check for a custom RandomizerFlag "RF_ISK09_OpenedHammerChest".
