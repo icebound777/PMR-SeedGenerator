@@ -90,7 +90,7 @@ edges_sbk = [
     {"from": {"map": "SBK_10", "id": 1}, "to": {"map": "SBK_10", "id": 3}, "reqs": []}, #? N2W3 Exit East -> N2W3 Exit South
     {"from": {"map": "SBK_10", "id": 3}, "to": {"map": "SBK_10", "id": 1}, "reqs": []}, #? N2W3 Exit South -> N2W3 Exit East
     
-    {"from": {"map": "SBK_10", "id": 1},               "to": {"map": "SBK_10", "id": "HiddenYBlockA"}, "reqs": []}, #* N2W3 Exit East -> HiddenYBlockA (ThunderRage)
+    {"from": {"map": "SBK_10", "id": 1},               "to": {"map": "SBK_10", "id": "HiddenYBlockA"}, "reqs": [require(partner="PARTNER_Watt")]}, #* N2W3 Exit East -> HiddenYBlockA (ThunderRage)
     {"from": {"map": "SBK_10", "id": "HiddenYBlockA"}, "to": {"map": "SBK_10", "id": 1},               "reqs": []}, #* HiddenYBlockA (ThunderRage) -> N2W3 Exit East
 
     # SBK_11 N2W2
@@ -262,7 +262,7 @@ edges_sbk = [
     {"from": {"map": "SBK_24", "id": 0}, "to": {"map": "SBK_24", "id": 4}, "reqs": []}, #? N1E1 Palm Trio Exit West -> N1E1 Palm Trio Fall From Sky
     {"from": {"map": "SBK_24", "id": 4}, "to": {"map": "SBK_24", "id": 0}, "reqs": []}, #? N1E1 Palm Trio Fall From Sky -> N1E1 Palm Trio Exit West
     
-    {"from": {"map": "SBK_24", "id": 0},               "to": {"map": "SBK_24", "id": "HiddenRBlockA"}, "reqs": []}, #* N1E1 Palm Trio Exit West -> HiddenRBlockA (RunawayPay)
+    {"from": {"map": "SBK_24", "id": 0},               "to": {"map": "SBK_24", "id": "HiddenRBlockA"}, "reqs": [require(partner="PARTNER_Watt")]}, #* N1E1 Palm Trio Exit West -> HiddenRBlockA (RunawayPay)
     {"from": {"map": "SBK_24", "id": "HiddenRBlockA"}, "to": {"map": "SBK_24", "id": 0},               "reqs": []}, #* HiddenRBlockA (RunawayPay) -> N1E1 Palm Trio Exit West
 
     # SBK_25 N1E2
@@ -492,7 +492,7 @@ edges_sbk = [
     {"from": {"map": "SBK_46", "id": 0}, "to": {"map": "SBK_46", "id": 3}, "reqs": []}, #? S1E3 North of Oasis Exit West -> S1E3 North of Oasis Exit South
     {"from": {"map": "SBK_46", "id": 3}, "to": {"map": "SBK_46", "id": 0}, "reqs": []}, #? S1E3 North of Oasis Exit South -> S1E3 North of Oasis Exit West
     
-    {"from": {"map": "SBK_46", "id": 0},               "to": {"map": "SBK_46", "id": "HiddenYBlockA"}, "reqs": []}, #* S1E3 North of Oasis Exit West -> HiddenYBlockA (LifeShroom)
+    {"from": {"map": "SBK_46", "id": 0},               "to": {"map": "SBK_46", "id": "HiddenYBlockA"}, "reqs": [require(partner="PARTNER_Watt")]}, #* S1E3 North of Oasis Exit West -> HiddenYBlockA (LifeShroom)
     {"from": {"map": "SBK_46", "id": "HiddenYBlockA"}, "to": {"map": "SBK_46", "id": 0},               "reqs": []}, #* HiddenYBlockA (LifeShroom) -> S1E3 North of Oasis Exit West
     {"from": {"map": "SBK_46", "id": 0},               "to": {"map": "SBK_46", "id": "YBlockA"},       "reqs": [require(hammer=0)]}, #* S1E3 North of Oasis Exit West -> YBlockA (Coin)
     {"from": {"map": "SBK_46", "id": "YBlockA"},       "to": {"map": "SBK_46", "id": 0},               "reqs": []}, #* YBlockA (Coin) -> S1E3 North of Oasis Exit West
@@ -610,7 +610,7 @@ edges_sbk = [
     {"from": {"map": "SBK_61", "id": 0}, "to": {"map": "SBK_61", "id": 2}, "reqs": []}, #? S3W2 Hidden AttackFX Exit West -> S3W2 Hidden AttackFX Exit North
     {"from": {"map": "SBK_61", "id": 2}, "to": {"map": "SBK_61", "id": 0}, "reqs": []}, #? S3W2 Hidden AttackFX Exit North -> S3W2 Hidden AttackFX Exit West
     
-    {"from": {"map": "SBK_61", "id": 0},               "to": {"map": "SBK_61", "id": "HiddenRBlockA"}, "reqs": []}, #* S3W2 Hidden AttackFX Exit West -> HiddenRBlockA (AttackFXC)
+    {"from": {"map": "SBK_61", "id": 0},               "to": {"map": "SBK_61", "id": "HiddenRBlockA"}, "reqs": [require(partner="PARTNER_Watt")]}, #* S3W2 Hidden AttackFX Exit West -> HiddenRBlockA (AttackFXC)
     {"from": {"map": "SBK_61", "id": "HiddenRBlockA"}, "to": {"map": "SBK_61", "id": 0},               "reqs": []}, #* HiddenRBlockA (AttackFXC) -> S3W2 Hidden AttackFX Exit West
 
     # SBK_62 S3W1

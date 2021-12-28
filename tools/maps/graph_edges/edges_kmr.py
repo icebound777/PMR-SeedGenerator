@@ -55,7 +55,7 @@ edges_kmr  = [
     {"from": {"map": "KMR_03", "id": "ItemF"},         "to": {"map": "KMR_03", "id": 0},               "reqs": []}, #* ItemF (Mushroom) -> Bottom of the Cliff Exit Left
     {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "HiddenPanel"},   "reqs": [can_flip_panels]}, #* Bottom of the Cliff Exit Right -> HiddenPanel (StarPiece)
     {"from": {"map": "KMR_03", "id": "HiddenPanel"},   "to": {"map": "KMR_03", "id": 1},               "reqs": []}, #* HiddenPanel (StarPiece) -> Bottom of the Cliff Exit Right
-    {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "HiddenYBlockA"}, "reqs": [require(hammer=1)]}, #* Bottom of the Cliff Exit Right -> HiddenYBlockA (RepelGel)
+    {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "HiddenYBlockA"}, "reqs": [require(hammer=1), require(partner="PARTNER_Watt")]}, #* Bottom of the Cliff Exit Right -> HiddenYBlockA (RepelGel)
     {"from": {"map": "KMR_03", "id": "HiddenYBlockA"}, "to": {"map": "KMR_03", "id": 1},               "reqs": []}, #* HiddenYBlockA (RepelGel) -> Bottom of the Cliff Exit Right
     {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "ItemA"},         "reqs": []}, #* Bottom of the Cliff Exit Right -> ItemA (Coin)
     {"from": {"map": "KMR_03", "id": "ItemA"},         "to": {"map": "KMR_03", "id": 1},               "reqs": []}, #* ItemA (Coin) -> Bottom of the Cliff Exit Right

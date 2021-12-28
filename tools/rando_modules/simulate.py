@@ -96,6 +96,23 @@ def has_item(item_str):
     return item_str in mario.items
 
 
+def uses_key(item_str):
+    """
+    Checks if Mario currently has a certain key and uses/removes it.
+    This method is intended for FortressKeyX, RuinsKeyX etc.
+    """
+    global mario
+    key_found = False
+    generic_key_name = item_str[:-1]
+    if generic_key_name in mario.items:
+        for i, item_name in enumerate(mario.items):
+            if item_name[:-1] == generic_key_name:
+                mario.items.pop(i)
+                key_found = True
+                break
+    return key_found
+
+
 def has_partner(partner_str):
     """Checks if Mario currently has a certain partner."""
     global mario

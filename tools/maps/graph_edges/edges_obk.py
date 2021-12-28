@@ -11,7 +11,7 @@ edges_obk = [
     {"from": {"map": "OBK_01", "id": 5}, "to": {"map": "OBK_09", "id": 0}, "reqs": []}, # Foyer Third Floor Door West -> Lady Bow's Room Door South West
     {"from": {"map": "OBK_01", "id": 6}, "to": {"map": "OBK_09", "id": 1}, "reqs": []}, # Foyer Third Floor Door East -> Lady Bow's Room Door South East
     
-    {"from": {"map": "OBK_01", "id": 0}, "to": {"map": "OBK_01", "id": 1}, "reqs": [require(item="Weight")]}, #? Foyer Front Door -> Foyer Lower Hidden Door
+    {"from": {"map": "OBK_01", "id": 0}, "to": {"map": "OBK_01", "id": 1}, "reqs": [require(item="BooWeight")]}, #? Foyer Front Door -> Foyer Lower Hidden Door
     {"from": {"map": "OBK_01", "id": 1}, "to": {"map": "OBK_01", "id": 0}, "reqs": []}, #? Foyer Lower Hidden Door -> Foyer Front Door
     {"from": {"map": "OBK_01", "id": 0}, "to": {"map": "OBK_01", "id": 2}, "reqs": []}, #? Foyer Front Door -> Foyer Lower Door
     {"from": {"map": "OBK_01", "id": 2}, "to": {"map": "OBK_01", "id": 0}, "reqs": []}, #? Foyer Lower Door -> Foyer Front Door
@@ -19,7 +19,7 @@ edges_obk = [
     {"from": {"map": "OBK_01", "id": 3}, "to": {"map": "OBK_01", "id": 0}, "reqs": []}, #? Foyer Upper Door West -> Foyer Front Door
     {"from": {"map": "OBK_01", "id": 0}, "to": {"map": "OBK_01", "id": 4}, "reqs": []}, #? Foyer Front Door -> Foyer Upper Door East
     {"from": {"map": "OBK_01", "id": 4}, "to": {"map": "OBK_01", "id": 0}, "reqs": []}, #? Foyer Upper Door East -> Foyer Front Door
-    {"from": {"map": "OBK_01", "id": 0}, "to": {"map": "OBK_01", "id": 5}, "reqs": [require(item="BoosPortrait")]}, #? Foyer Front Door -> Foyer Third Floor Door West
+    {"from": {"map": "OBK_01", "id": 0}, "to": {"map": "OBK_01", "id": 5}, "reqs": [require(item="BooPortrait")]}, #? Foyer Front Door -> Foyer Third Floor Door West
     {"from": {"map": "OBK_01", "id": 5}, "to": {"map": "OBK_01", "id": 0}, "reqs": []}, #? Foyer Third Floor Door West -> Foyer Front Door
     {"from": {"map": "OBK_01", "id": 5}, "to": {"map": "OBK_01", "id": 6}, "reqs": []}, #? Foyer Third Floor Door West -> Foyer Third Floor Door East
     {"from": {"map": "OBK_01", "id": 6}, "to": {"map": "OBK_01", "id": 5}, "reqs": []}, #? Foyer Third Floor Door East -> Foyer Third Floor Door West
@@ -49,8 +49,8 @@ edges_obk = [
     
     {"from": {"map": "OBK_03", "id": 0}, "to": {"map": "OBK_03", "id": 1}, "reqs": []}, #? Basement Upper Door North -> Basement Upper Door East
     {"from": {"map": "OBK_03", "id": 1}, "to": {"map": "OBK_03", "id": 0}, "reqs": []}, #? Basement Upper Door East -> Basement Upper Door North
-    {"from": {"map": "OBK_03", "id": 0}, "to": {"map": "OBK_03", "id": 2}, "reqs": [require(flag="GF_TIK01_WarpPipes")]}, #? Basement Upper Door North -> Basement Fall From Ceiling
-    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": 0}, "reqs": [require(flag="GF_TIK01_WarpPipes")]}, #? Basement Fall From Ceiling -> Basement Upper Door North
+    {"from": {"map": "OBK_03", "id": 0}, "to": {"map": "OBK_03", "id": 2}, "reqs": [require(flag="MF_OBK03_HitHugeBlueSwitch")]}, #? Basement Upper Door North -> Basement Fall From Ceiling
+    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": 0}, "reqs": [require(flag="MF_OBK03_HitHugeBlueSwitch")]}, #? Basement Fall From Ceiling -> Basement Upper Door North
     
     {"from": {"map": "OBK_03", "id": 0},           "to": {"map": "OBK_03", "id": "CrateA"},    "reqs": [require(boots=1)]}, #* Basement Upper Door North -> CrateA (SuperShroom)
     {"from": {"map": "OBK_03", "id": "CrateA"},    "to": {"map": "OBK_03", "id": 0},           "reqs": []}, #* CrateA (SuperShroom) -> Basement Upper Door North
@@ -66,6 +66,8 @@ edges_obk = [
     {"from": {"map": "OBK_03", "id": "ShopItemE"}, "to": {"map": "OBK_03", "id": 2},           "reqs": []}, #* ShopItemE (LifeShroom) -> Basement Fall From Ceiling
     {"from": {"map": "OBK_03", "id": 2},           "to": {"map": "OBK_03", "id": "ShopItemF"}, "reqs": [require(flag="RF_OpenedGustyGulch")]}, #* Basement Fall From Ceiling -> ShopItemF (SuperShroom)
     {"from": {"map": "OBK_03", "id": "ShopItemF"}, "to": {"map": "OBK_03", "id": 2},           "reqs": []}, #* ShopItemF (SuperShroom) -> Basement Fall From Ceiling
+    
+    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": 2}, "reqs": [require(boots=1)], "pseudoitems": ["MF_OBK03_HitHugeBlueSwitch"]}, #+ Basement Fall From Ceiling
 
     # OBK_04 Super Boots Room
     {"from": {"map": "OBK_04", "id": 0}, "to": {"map": None, "id": None},  "reqs": []}, # Super Boots Room Vanishing Door
@@ -101,22 +103,22 @@ edges_obk = [
     
     {"from": {"map": "OBK_06", "id": 0},        "to": {"map": "OBK_06", "id": "CrateA"}, "reqs": [require(boots=1)]}, #* Library Fall From Ceiling -> CrateA (StarPiece)
     {"from": {"map": "OBK_06", "id": "CrateA"}, "to": {"map": "OBK_06", "id": 1},        "reqs": [require(partner="PARTNER_Bombette")]}, #* CrateA (StarPiece) -> Library Bombable Wall
-    {"from": {"map": "OBK_06", "id": 0},        "to": {"map": "OBK_06", "id": "ItemA"},  "reqs": [require(partner="PARTNER_Parakarry")]}, #* Library Fall From Ceiling -> ItemA (BoosPortrait)
-    {"from": {"map": "OBK_06", "id": "ItemA"},  "to": {"map": "OBK_06", "id": 0},        "reqs": [require(partner="PARTNER_Parakarry")]}, #* ItemA (BoosPortrait) -> Library Fall From Ceiling
+    {"from": {"map": "OBK_06", "id": 0},        "to": {"map": "OBK_06", "id": "ItemA"},  "reqs": [require(partner="PARTNER_Parakarry")]}, #* Library Fall From Ceiling -> ItemA (BooPortrait)
+    {"from": {"map": "OBK_06", "id": "ItemA"},  "to": {"map": "OBK_06", "id": 0},        "reqs": [require(partner="PARTNER_Parakarry")]}, #* ItemA (BooPortrait) -> Library Fall From Ceiling
 
     # OBK_07 Record Player Room
     {"from": {"map": "OBK_07", "id": 0}, "to": {"map": "OBK_01", "id": 3}, "reqs": []}, # Record Player Room Door South -> Foyer Upper Door West
     
-    {"from": {"map": "OBK_07", "id": 0},        "to": {"map": "OBK_07", "id": "ChestA"}, "reqs": [require(item="Record")]}, #* Record Player Room Door South -> ChestA (Weight)
-    {"from": {"map": "OBK_07", "id": "ChestA"}, "to": {"map": "OBK_07", "id": 0},        "reqs": []}, #* ChestA (Weight) -> Record Player Room Door South
+    {"from": {"map": "OBK_07", "id": 0},        "to": {"map": "OBK_07", "id": "ChestA"}, "reqs": [require(item="BooRecord")]}, #* Record Player Room Door South -> ChestA (BooWeight)
+    {"from": {"map": "OBK_07", "id": "ChestA"}, "to": {"map": "OBK_07", "id": 0},        "reqs": []}, #* ChestA (BooWeight) -> Record Player Room Door South
 
     # OBK_08 Record Room
     {"from": {"map": "OBK_08", "id": 0}, "to": {"map": "OBK_01", "id": 4}, "reqs": []}, # Record Room Door South -> Foyer Upper Door East
     
     {"from": {"map": "OBK_08", "id": 0},             "to": {"map": "OBK_08", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Record Room Door South -> HiddenPanel (StarPiece)
     {"from": {"map": "OBK_08", "id": "HiddenPanel"}, "to": {"map": "OBK_08", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Record Room Door South
-    {"from": {"map": "OBK_08", "id": 0},             "to": {"map": "OBK_08", "id": "ItemA"},       "reqs": []}, #* Record Room Door South -> ItemA (Record)
-    {"from": {"map": "OBK_08", "id": "ItemA"},       "to": {"map": "OBK_08", "id": 0},             "reqs": []}, #* ItemA (Record) -> Record Room Door South
+    {"from": {"map": "OBK_08", "id": 0},             "to": {"map": "OBK_08", "id": "ItemA"},       "reqs": []}, #* Record Room Door South -> ItemA (BooRecord)
+    {"from": {"map": "OBK_08", "id": "ItemA"},       "to": {"map": "OBK_08", "id": 0},             "reqs": []}, #* ItemA (BooRecord) -> Record Room Door South
 
     # OBK_09 Lady Bow's Room
     {"from": {"map": "OBK_09", "id": 0}, "to": {"map": "OBK_01", "id": 5}, "reqs": []}, # Lady Bow's Room Door South West -> Foyer Third Floor Door West

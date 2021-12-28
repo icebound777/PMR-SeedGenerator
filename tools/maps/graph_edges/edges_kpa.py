@@ -70,8 +70,8 @@ edges_kpa = [
     {"from": {"map": "KPA_11",  "id": 3}, "to": {"map": "KPA_11",  "id": 4}, "reqs": [require(partner="PARTNER_Lakilester",flag="GF_KPA16_ShutOffLava")]}, #? Outside Lower Jail (Lava) Lava Door Left -> Outside Lower Jail (Lava) Lava Door Right
     {"from": {"map": "KPA_11",  "id": 4}, "to": {"map": "KPA_11",  "id": 3}, "reqs": [require(partner="PARTNER_Lakilester",flag="GF_KPA16_ShutOffLava")]}, #? Outside Lower Jail (Lava) Lava Door Right -> Outside Lower Jail (Lava) Lava Door Left
     
-    {"from": {"map": "KPA_11",  "id": 0},         "to": {"map": "KPA_11",  "id": "ItemA"},   "reqs": []}, #* Outside Lower Jail (Lava) Door Top Left -> ItemA (CastleKey2)
-    {"from": {"map": "KPA_11",  "id": "ItemA"},   "to": {"map": "KPA_11",  "id": 0},         "reqs": []}, #* ItemA (CastleKey2) -> Outside Lower Jail (Lava) Door Top Left
+    {"from": {"map": "KPA_11",  "id": 0},         "to": {"map": "KPA_11",  "id": "ItemA"},   "reqs": []}, #* Outside Lower Jail (Lava) Door Top Left -> ItemA (BowserCastleKey)
+    {"from": {"map": "KPA_11",  "id": "ItemA"},   "to": {"map": "KPA_11",  "id": 0},         "reqs": []}, #* ItemA (BowserCastleKey) -> Outside Lower Jail (Lava) Door Top Left
 
     # KPA_12 Lava Channel 1
     {"from": {"map": "KPA_12",  "id": 0}, "to": {"map": "KPA_10",  "id": 1}, "reqs": []}, # Lava Channel 1 Door Left -> Outside Lower Jail (No Lava) Door Right
@@ -100,7 +100,7 @@ edges_kpa = [
     {"from": {"map": "KPA_14",  "id": 1}, "to": {"map": "KPA_01",  "id": 0}, "reqs": []}, # Lava Channel 3 Door Right -> Dark Cave 1 Door Bottom Left
     {"from": {"map": "KPA_14",  "id": 2}, "to": {"map": "KPA_16",  "id": 0}, "reqs": []}, # Lava Channel 3 Lava Door Center -> Lava Control Room Lava Door Left
     
-    {"from": {"map": "KPA_14",  "id": 0}, "to": {"map": "KPA_14",  "id": 1}, "reqs": [require(flag="GF_KPA16_ShutOffLava"),require(item="CastleKey2")]}, #? Lava Channel 3 Door Left -> Lava Channel 3 Door Right
+    {"from": {"map": "KPA_14",  "id": 0}, "to": {"map": "KPA_14",  "id": 1}, "reqs": [require(flag="GF_KPA16_ShutOffLava"),uses_key("BowserCastleKey")]}, #? Lava Channel 3 Door Left -> Lava Channel 3 Door Right
     {"from": {"map": "KPA_14",  "id": 1}, "to": {"map": "KPA_14",  "id": 0}, "reqs": [require(partner="PARTNER_Lakilester",flag="GF_KPA16_ShutOffLava")]}, #? Lava Channel 3 Door Right -> Lava Channel 3 Door Left
     {"from": {"map": "KPA_14",  "id": 0}, "to": {"map": "KPA_14",  "id": 2}, "reqs": [require(partner="PARTNER_Lakilester",flag="GF_KPA16_ShutOffLava"),require(partner="PARTNER_Bow",flag="GF_KPA16_ShutOffLava"),require(partner="PARTNER_Parakarry",flag="GF_KPA16_ShutOffLava")]}, #? Lava Channel 3 Door Left -> Lava Channel 3 Lava Door Center
     {"from": {"map": "KPA_14",  "id": 2}, "to": {"map": "KPA_14",  "id": 0}, "reqs": [require(partner="PARTNER_Lakilester",flag="GF_KPA16_ShutOffLava")]}, #? Lava Channel 3 Lava Door Center -> Lava Channel 3 Door Left
@@ -113,8 +113,8 @@ edges_kpa = [
     # KPA_15 Lava Key Room
     {"from": {"map": "KPA_15",  "id": 0}, "to": {"map": "KPA_13",  "id": 2}, "reqs": []}, # Lava Key Room Door Left -> Lava Channel 2 Lava Door Center
     
-    {"from": {"map": "KPA_15",  "id": 0},        "to": {"map": "KPA_15",  "id": "ChestA"}, "reqs": [require(flag="GF_KPA16_ShutOffLava")]}, #* Lava Key Room Door Left -> ChestA (CastleKey2)
-    {"from": {"map": "KPA_15",  "id": "ChestA"}, "to": {"map": "KPA_15",  "id": 0},        "reqs": []}, #* ChestA (CastleKey2) -> Lava Key Room Door Left
+    {"from": {"map": "KPA_15",  "id": 0},        "to": {"map": "KPA_15",  "id": "ChestA"}, "reqs": [require(flag="GF_KPA16_ShutOffLava")]}, #* Lava Key Room Door Left -> ChestA (BowserCastleKey)
+    {"from": {"map": "KPA_15",  "id": "ChestA"}, "to": {"map": "KPA_15",  "id": 0},        "reqs": []}, #* ChestA (BowserCastleKey) -> Lava Key Room Door Left
 
     # KPA_16 Lava Control Room
     {"from": {"map": "KPA_16",  "id": 0}, "to": {"map": "KPA_14",  "id": 2}, "reqs": []}, # Lava Control Room Lava Door Left -> Lava Channel 3 Lava Door Center
@@ -204,7 +204,7 @@ edges_kpa = [
     {"from": {"map": "KPA_52",  "id": 1}, "to": {"map": "KPA_40",  "id": 0}, "reqs": []}, # Split Level Hall Door Bottom Right -> Maze Guide Room Door Left
     {"from": {"map": "KPA_52",  "id": 2}, "to": {"map": "KPA_08",  "id": 0}, "reqs": []}, # Split Level Hall Door Top Right -> Castle Key Timing Puzzle Door Left
     
-    {"from": {"map": "KPA_52",  "id": 0}, "to": {"map": "KPA_52",  "id": 1}, "reqs": [require(item="CastleKey2")]}, #? Split Level Hall Door Left -> Split Level Hall Door Bottom Right
+    {"from": {"map": "KPA_52",  "id": 0}, "to": {"map": "KPA_52",  "id": 1}, "reqs": [uses_key("BowserCastleKey")]}, #? Split Level Hall Door Left -> Split Level Hall Door Bottom Right
     {"from": {"map": "KPA_52",  "id": 1}, "to": {"map": "KPA_52",  "id": 0}, "reqs": []}, #? Split Level Hall Door Bottom Right -> Split Level Hall Door Left
     {"from": {"map": "KPA_52",  "id": 0}, "to": {"map": "KPA_52",  "id": 2}, "reqs": []}, #? Split Level Hall Door Left -> Split Level Hall Door Top Right
     {"from": {"map": "KPA_52",  "id": 2}, "to": {"map": "KPA_52",  "id": 0}, "reqs": []}, #? Split Level Hall Door Top Right -> Split Level Hall Door Left
@@ -341,8 +341,8 @@ edges_kpa = [
     # KPA_100 Castle Key Room
     {"from": {"map": "KPA_100", "id": 0}, "to": {"map": "KPA_08",  "id": 1}, "reqs": []}, # Castle Key Room Door Left -> Castle Key Timing Puzzle Door Right
     
-    {"from": {"map": "KPA_100", "id": 0},       "to": {"map": "KPA_100", "id": "ItemA"}, "reqs": []}, #* Castle Key Room Door Left -> ItemA (CastleKey2)
-    {"from": {"map": "KPA_100", "id": "ItemA"}, "to": {"map": "KPA_100", "id": 0},       "reqs": []}, #* ItemA (CastleKey2) -> Castle Key Room Door Left
+    {"from": {"map": "KPA_100", "id": 0},       "to": {"map": "KPA_100", "id": "ItemA"}, "reqs": []}, #* Castle Key Room Door Left -> ItemA (BowserCastleKey)
+    {"from": {"map": "KPA_100", "id": "ItemA"}, "to": {"map": "KPA_100", "id": 0},       "reqs": []}, #* ItemA (BowserCastleKey) -> Castle Key Room Door Left
 
     # KPA_101 Ultra Shroom Room
     {"from": {"map": "KPA_101", "id": 0}, "to": {"map": "KPA_09",  "id": 0}, "reqs": []}, # Ultra Shroom Room Door Right -> Ultra Shroom Timing Puzzle Door Left
@@ -366,7 +366,7 @@ edges_kpa = [
     
     {"from": {"map": "KPA_111", "id": 0},               "to": {"map": "KPA_111", "id": "YBlockA"},       "reqs": []}, #* Room with Hidden Door 1 Door Left -> YBlockA (SuperShroom)
     {"from": {"map": "KPA_111", "id": "YBlockA"},       "to": {"map": "KPA_111", "id": 0},               "reqs": []}, #* YBlockA (SuperShroom) -> Room with Hidden Door 1 Door Left
-    {"from": {"map": "KPA_111", "id": 0},               "to": {"map": "KPA_111", "id": "HiddenYBlockA"}, "reqs": []}, #* Room with Hidden Door 1 Door Left -> HiddenYBlockA (MapleSyrup)
+    {"from": {"map": "KPA_111", "id": 0},               "to": {"map": "KPA_111", "id": "HiddenYBlockA"}, "reqs": [require(partner="PARTNER_Watt")]}, #* Room with Hidden Door 1 Door Left -> HiddenYBlockA (MapleSyrup)
     {"from": {"map": "KPA_111", "id": "HiddenYBlockA"}, "to": {"map": "KPA_111", "id": 0},               "reqs": []}, #* HiddenYBlockA (MapleSyrup) -> Room with Hidden Door 1 Door Left
 
     # KPA_112 Hidden Passage 1
@@ -381,7 +381,7 @@ edges_kpa = [
     {"from": {"map": "KPA_113", "id": 1}, "to": {"map": "KPA_82",  "id": 0}, "reqs": []}, # Room with Hidden Door 2 Door Right -> Guard Door 2 Door Left
     {"from": {"map": "KPA_113", "id": 2}, "to": {"map": "KPA_114", "id": 0}, "reqs": []}, # Room with Hidden Door 2 Hidden Door -> Hidden Passage 2 Hidden Door Bottom Left
     
-    {"from": {"map": "KPA_113", "id": 0}, "to": {"map": "KPA_113", "id": 1}, "reqs": [require(item="CastleKey2")]}, #? Room with Hidden Door 2 Door Left -> Room with Hidden Door 2 Door Right
+    {"from": {"map": "KPA_113", "id": 0}, "to": {"map": "KPA_113", "id": 1}, "reqs": [uses_key("BowserCastleKey")]}, #? Room with Hidden Door 2 Door Left -> Room with Hidden Door 2 Door Right
     {"from": {"map": "KPA_113", "id": 1}, "to": {"map": "KPA_113", "id": 0}, "reqs": []}, #? Room with Hidden Door 2 Door Right -> Room with Hidden Door 2 Door Left
     {"from": {"map": "KPA_113", "id": 0}, "to": {"map": "KPA_113", "id": 2}, "reqs": []}, #? Room with Hidden Door 2 Door Left -> Room with Hidden Door 2 Hidden Door
     {"from": {"map": "KPA_113", "id": 2}, "to": {"map": "KPA_113", "id": 0}, "reqs": []}, #? Room with Hidden Door 2 Hidden Door -> Room with Hidden Door 2 Door Left
@@ -423,8 +423,8 @@ edges_kpa = [
     # KPA_119 Hidden Key Room
     {"from": {"map": "KPA_119", "id": 0}, "to": {"map": "KPA_118", "id": 1}, "reqs": []}, # Hidden Key Room Door Right -> Hidden Passage 3 Door Left
     
-    {"from": {"map": "KPA_119", "id": 0},       "to": {"map": "KPA_119", "id": "ItemA"}, "reqs": []}, #* Hidden Key Room Door Right -> ItemA (CastleKey2)
-    {"from": {"map": "KPA_119", "id": "ItemA"}, "to": {"map": "KPA_119", "id": 0},       "reqs": []}, #* ItemA (CastleKey2) -> Hidden Key Room Door Right
+    {"from": {"map": "KPA_119", "id": 0},       "to": {"map": "KPA_119", "id": "ItemA"}, "reqs": []}, #* Hidden Key Room Door Right -> ItemA (BowserCastleKey)
+    {"from": {"map": "KPA_119", "id": "ItemA"}, "to": {"map": "KPA_119", "id": 0},       "reqs": []}, #* ItemA (BowserCastleKey) -> Hidden Key Room Door Right
 
     # KPA_121 Exit to Peach's Castle
     {"from": {"map": "KPA_121", "id": 0}, "to": {"map": "KPA_83",  "id": 1}, "reqs": []}, # Exit to Peach's Castle Door Bottom Left -> Guard Door 3 Guard Door Right
@@ -453,8 +453,8 @@ edges_kpa = [
     {"from": {"map": "KPA_133", "id": 2}, "to": {"map": "KPA_133", "id": 1}, "reqs": []}, #? Left Water Puzzle Door Bottom Right Upper Half -> Left Water Puzzle Door Bottom Right
     {"from": {"map": "KPA_133", "id": 3}, "to": {"map": "KPA_133", "id": 1}, "reqs": []}, #? Left Water Puzzle Door Bombable Wall -> Left Water Puzzle Door Bottom Right
 
-    {"from": {"map": "KPA_133", "id": 3},       "to": {"map": "KPA_133", "id": "ItemA"}, "reqs": [require(partner="PARTNER_Sushie")]}, #* Left Water Puzzle Door Bombable Wall -> ItemA (CastleKey2)
-    {"from": {"map": "KPA_133", "id": "ItemA"}, "to": {"map": "KPA_133", "id": 3},       "reqs": []}, #* ItemA (CastleKey2) -> Left Water Puzzle Door Bombable Wall
+    {"from": {"map": "KPA_133", "id": 3},       "to": {"map": "KPA_133", "id": "ItemA"}, "reqs": [require(partner="PARTNER_Sushie")]}, #* Left Water Puzzle Door Bombable Wall -> ItemA (BowserCastleKey)
+    {"from": {"map": "KPA_133", "id": "ItemA"}, "to": {"map": "KPA_133", "id": 3},       "reqs": []}, #* ItemA (BowserCastleKey) -> Left Water Puzzle Door Bombable Wall
 
     # KPA_134 Right Water Puzzle
     {"from": {"map": "KPA_134", "id": 0}, "to": {"map": "KPA_133", "id": 1}, "reqs": []}, # Right Water Puzzle Door Bottom Left -> Left Water Puzzle Door Bottom Right
@@ -462,7 +462,7 @@ edges_kpa = [
     {"from": {"map": "KPA_134", "id": 2}, "to": {"map": "KPA_133", "id": 2}, "reqs": []}, # Right Water Puzzle Door Bottom Left Upper Half -> Left Water Puzzle Door Bottom Right Upper Half
     {"from": {"map": "KPA_134", "id": 3}, "to": {"map": "KPA_133", "id": 3}, "reqs": []}, # Right Water Puzzle Bombable Wall -> Left Water Puzzle Door Bombable Wall
     
-    {"from": {"map": "KPA_134", "id": 0}, "to": {"map": "KPA_134", "id": 1}, "reqs": [require(item="CastleKey2")]}, #? Right Water Puzzle Door Bottom Left -> Right Water Puzzle Door Bottom Right
+    {"from": {"map": "KPA_134", "id": 0}, "to": {"map": "KPA_134", "id": 1}, "reqs": [uses_key("BowserCastleKey")]}, #? Right Water Puzzle Door Bottom Left -> Right Water Puzzle Door Bottom Right
     {"from": {"map": "KPA_134", "id": 1}, "to": {"map": "KPA_134", "id": 0}, "reqs": []}, #? Right Water Puzzle Door Bottom Right -> Right Water Puzzle Door Bottom Left
     {"from": {"map": "KPA_134", "id": 0}, "to": {"map": "KPA_134", "id": 2}, "reqs": [require(partner="PARTNER_Sushie")]}, #? Right Water Puzzle Door Bottom Left -> Right Water Puzzle Door Bottom Left Upper Half
     {"from": {"map": "KPA_134", "id": 2}, "to": {"map": "KPA_134", "id": 0}, "reqs": [require(partner="PARTNER_Sushie")]}, #? Right Water Puzzle Door Bottom Left Upper Half -> Right Water Puzzle Door Bottom Left

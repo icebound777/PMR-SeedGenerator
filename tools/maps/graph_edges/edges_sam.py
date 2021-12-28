@@ -10,8 +10,8 @@ edges_sam = [
     
     {"from": {"map": "SAM_01", "id": 0},             "to": {"map": "SAM_01", "id": "HiddenPanel"}, "reqs": [can_flip_panels, require(flag="RF_Ch7_MurderMysterySolved")]}, #* Shiver City Mayor Area Exit East -> HiddenPanel (StarPiece)
     {"from": {"map": "SAM_01", "id": "HiddenPanel"}, "to": {"map": "SAM_01", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Shiver City Mayor Area Exit East
-    {"from": {"map": "SAM_01", "id": 0},             "to": {"map": "SAM_01", "id": "GiftA"},       "reqs": [require(flag="RF_Ch7_MurderMysterySolved"), require(flag="RF_Ch7_GotSnowmanScarf")]}, #* Shiver City Mayor Area Exit East -> GiftA (Bucket)
-    {"from": {"map": "SAM_01", "id": "GiftA"},       "to": {"map": "SAM_01", "id": 0},             "reqs": []}, #* GiftA (Bucket) -> Shiver City Mayor Area Exit East
+    {"from": {"map": "SAM_01", "id": 0},             "to": {"map": "SAM_01", "id": "GiftA"},       "reqs": [require(flag="RF_Ch7_MurderMysterySolved"), require(flag="RF_Ch7_GotSnowmanScarf")]}, #* Shiver City Mayor Area Exit East -> GiftA (SnowmanBucket)
+    {"from": {"map": "SAM_01", "id": "GiftA"},       "to": {"map": "SAM_01", "id": 0},             "reqs": []}, #* GiftA (SnowmanBucket) -> Shiver City Mayor Area Exit East
     {"from": {"map": "SAM_01", "id": 0},             "to": {"map": "SAM_01", "id": "ChestA"},      "reqs": []}, #* Shiver City Mayor Area Exit East -> ChestA (AttackFXE)
     {"from": {"map": "SAM_01", "id": "ChestA"},      "to": {"map": "SAM_01", "id": 0},             "reqs": []}, #* ChestA (AttackFXE) -> Shiver City Mayor Area Exit East
 
@@ -64,7 +64,7 @@ edges_sam = [
     
     {"from": {"map": "SAM_04", "id": 0}, "to": {"map": "SAM_04", "id": 1}, "reqs": []}, #? Shiver Snowfield Exit West -> Shiver Snowfield Exit East
     {"from": {"map": "SAM_04", "id": 1}, "to": {"map": "SAM_04", "id": 0}, "reqs": []}, #? Shiver Snowfield Exit East -> Shiver Snowfield Exit West
-    {"from": {"map": "SAM_04", "id": 0}, "to": {"map": "SAM_04", "id": 2}, "reqs": [require(item="Bucket"), require(item="Scarf")], "pseudoitems": ["MF_SAM_04_UnlockedShiverMountain"]}, #? Shiver Snowfield Exit West -> Shiver Snowfield Mountain Entrance
+    {"from": {"map": "SAM_04", "id": 0}, "to": {"map": "SAM_04", "id": 2}, "reqs": [require(item="SnowmanBucket"), require(item="SnowmanScarf")], "pseudoitems": ["MF_SAM_04_UnlockedShiverMountain"]}, #? Shiver Snowfield Exit West -> Shiver Snowfield Mountain Entrance
     {"from": {"map": "SAM_04", "id": 2}, "to": {"map": "SAM_04", "id": 0}, "reqs": []}, #? Shiver Snowfield Mountain Entrance -> Shiver Snowfield Exit West
     
     {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Shiver Snowfield Exit West -> HiddenPanel (StarPiece)
@@ -83,14 +83,14 @@ edges_sam = [
     
     {"from": {"map": "SAM_05", "id": 0},               "to": {"map": "SAM_05", "id": "ItemA"},         "reqs": []}, #* Path to Starborn Valley Exit West -> ItemA (Letter06)
     {"from": {"map": "SAM_05", "id": "ItemA"},         "to": {"map": "SAM_05", "id": 0},               "reqs": []}, #* ItemA (Letter06) -> Path to Starborn Valley Exit West
-    {"from": {"map": "SAM_05", "id": 0},               "to": {"map": "SAM_05", "id": "HiddenYBlockA"}, "reqs": []}, #* Path to Starborn Valley Exit West -> HiddenYBlockA (StopWatch)
+    {"from": {"map": "SAM_05", "id": 0},               "to": {"map": "SAM_05", "id": "HiddenYBlockA"}, "reqs": [require(partner="PARTNER_Watt")]}, #* Path to Starborn Valley Exit West -> HiddenYBlockA (StopWatch)
     {"from": {"map": "SAM_05", "id": "HiddenYBlockA"}, "to": {"map": "SAM_05", "id": 0},               "reqs": []}, #* HiddenYBlockA (StopWatch) -> Path to Starborn Valley Exit West
 
     # SAM_06 Starborn Valley
     {"from": {"map": "SAM_06", "id": 0}, "to": {"map": "SAM_05", "id": 1}, "reqs": []}, # Starborn Valley Town Entrance -> Path to Starborn Valley Exit East
     
-    {"from": {"map": "SAM_06", "id": 0},       "to": {"map": "SAM_06", "id": "GiftA"}, "reqs": [], "pseudoitems": ["RF_Ch7_GotSnowmanScarf"]}, #* Starborn Valley Town Entrance -> GiftA (Scarf)
-    {"from": {"map": "SAM_06", "id": "GiftA"}, "to": {"map": "SAM_06", "id": 0},       "reqs": []}, #* GiftA (Scarf) -> Starborn Valley Town Entrance
+    {"from": {"map": "SAM_06", "id": 0},       "to": {"map": "SAM_06", "id": "GiftA"}, "reqs": [], "pseudoitems": ["RF_Ch7_GotSnowmanScarf"]}, #* Starborn Valley Town Entrance -> GiftA (SnowmanScarf)
+    {"from": {"map": "SAM_06", "id": "GiftA"}, "to": {"map": "SAM_06", "id": 0},       "reqs": []}, #* GiftA (SnowmanScarf) -> Starborn Valley Town Entrance
 
     # SAM_07 Shiver Mountain Passage
     {"from": {"map": "SAM_07", "id": 0}, "to": {"map": "SAM_04", "id": 2}, "reqs": []}, # Shiver Mountain Passage Mountain Entrance -> Shiver Snowfield Mountain Entrance

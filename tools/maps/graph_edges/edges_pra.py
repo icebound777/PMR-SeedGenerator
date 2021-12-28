@@ -184,14 +184,14 @@ edges_pra = [
     
     {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenPanel"},   "reqs": [can_flip_panels]}, #* Small Statue Room Door West -> HiddenPanel (StarPiece)
     {"from": {"map": "PRA_22", "id": "HiddenPanel"},   "to": {"map": "PRA_22", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> Small Statue Room Door West
-    {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenYBlockA"}, "reqs": []}, #* Small Statue Room Door West -> HiddenYBlockA (JamminJelly)
+    {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenYBlockA"}, "reqs": [require(partner="PARTNER_Watt")]}, #* Small Statue Room Door West -> HiddenYBlockA (JamminJelly)
     {"from": {"map": "PRA_22", "id": "HiddenYBlockA"}, "to": {"map": "PRA_22", "id": 0},               "reqs": []}, #* HiddenYBlockA (JamminJelly) -> Small Statue Room Door West
 
     # PRA_27 Palace Key Room
     {"from": {"map": "PRA_27", "id": 0}, "to": {"map": "PRA_36", "id": 1}, "reqs": []}, # Palace Key Room Door West -> Palace Key Hall Door East
     
-    {"from": {"map": "PRA_27", "id": 0},        "to": {"map": "PRA_27", "id": "ChestA"}, "reqs": []}, #* Palace Key Room Door West -> ChestA (PalaceKey)
-    {"from": {"map": "PRA_27", "id": "ChestA"}, "to": {"map": "PRA_27", "id": 0},        "reqs": []}, #* ChestA (PalaceKey) -> Palace Key Room Door West
+    {"from": {"map": "PRA_27", "id": 0},        "to": {"map": "PRA_27", "id": "ChestA"}, "reqs": []}, #* Palace Key Room Door West -> ChestA (CrystalPalaceKey)
+    {"from": {"map": "PRA_27", "id": "ChestA"}, "to": {"map": "PRA_27", "id": 0},        "reqs": []}, #* ChestA (CrystalPalaceKey) -> Palace Key Room Door West
 
     # PRA_28 P-Up, D-Down Room
     {"from": {"map": "PRA_28", "id": 0}, "to": {"map": "PRA_37", "id": 1}, "reqs": []}, # P-Up, D-Down Room Door West -> P-Up, D-Down Hall Door East
@@ -239,9 +239,9 @@ edges_pra = [
     {"from": {"map": "PRA_34", "id": 2}, "to": {"map": "PRA_31", "id": 2}, "reqs": []}, # Mirror Hole Room Door East (Mirror Side) -> Dino Puzzle Room Door West (Mirror Side)
     {"from": {"map": "PRA_34", "id": 3}, "to": {"map": "PRA_29", "id": 2}, "reqs": []}, # Mirror Hole Room Door West (Mirror Side) -> Hidden Bridge Room Door East (Mirror Side)
     
-    {"from": {"map": "PRA_34", "id": 0}, "to": {"map": "PRA_34", "id": 1}, "reqs": [require(item="PalaceKey")]}, #? Mirror Hole Room Door West -> Mirror Hole Room Door East
+    {"from": {"map": "PRA_34", "id": 0}, "to": {"map": "PRA_34", "id": 1}, "reqs": [require(item="CrystalPalaceKey")]}, #? Mirror Hole Room Door West -> Mirror Hole Room Door East
     {"from": {"map": "PRA_34", "id": 1}, "to": {"map": "PRA_34", "id": 0}, "reqs": []}, #? Mirror Hole Room Door East -> Mirror Hole Room Door West
-    {"from": {"map": "PRA_34", "id": 0}, "to": {"map": "PRA_34", "id": 2}, "reqs": [require(item="PalaceKey")]}, #? Mirror Hole Room Door West -> Mirror Hole Room Door East (Mirror Side)
+    {"from": {"map": "PRA_34", "id": 0}, "to": {"map": "PRA_34", "id": 2}, "reqs": [require(item="CrystalPalaceKey")]}, #? Mirror Hole Room Door West -> Mirror Hole Room Door East (Mirror Side)
     {"from": {"map": "PRA_34", "id": 2}, "to": {"map": "PRA_34", "id": 0}, "reqs": []}, #? Mirror Hole Room Door East (Mirror Side) -> Mirror Hole Room Door West
     {"from": {"map": "PRA_34", "id": 0}, "to": {"map": "PRA_34", "id": 3}, "reqs": []}, #? Mirror Hole Room Door West -> Mirror Hole Room Door West (Mirror Side)
     {"from": {"map": "PRA_34", "id": 3}, "to": {"map": "PRA_34", "id": 0}, "reqs": []}, #? Mirror Hole Room Door West (Mirror Side) -> Mirror Hole Room Door West

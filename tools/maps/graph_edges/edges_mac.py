@@ -68,29 +68,29 @@ edges_mac = [
     {"from": {"map": "MAC_01", "id": "ShopBadgeC"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeC (Multibounce) -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeD"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeD (DDownPound)
     {"from": {"map": "MAC_01", "id": "ShopBadgeD"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeD (DDownPound) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeE"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeE (DodgeMaster)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeE"},   "reqs": [require(starspirits=1)]}, #* Plaza District Exit Left -> ShopBadgeE (DodgeMaster)
     {"from": {"map": "MAC_01", "id": "ShopBadgeE"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeE (DodgeMaster) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeF"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeF (SleepStomp)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeF"},   "reqs": [require(starspirits=1)]}, #* Plaza District Exit Left -> ShopBadgeF (SleepStomp)
     {"from": {"map": "MAC_01", "id": "ShopBadgeF"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeF (SleepStomp) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeG"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeG (DoubleDip)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeG"},   "reqs": [require(starspirits=1)]}, #* Plaza District Exit Left -> ShopBadgeG (DoubleDip)
     {"from": {"map": "MAC_01", "id": "ShopBadgeG"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeG (DoubleDip) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeH"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeH (JumpCharge)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeH"},   "reqs": [require(starspirits=2)]}, #* Plaza District Exit Left -> ShopBadgeH (JumpCharge)
     {"from": {"map": "MAC_01", "id": "ShopBadgeH"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeH (JumpCharge) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeI"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeI (SpinSmash)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeI"},   "reqs": [require(starspirits=2)]}, #* Plaza District Exit Left -> ShopBadgeI (SpinSmash)
     {"from": {"map": "MAC_01", "id": "ShopBadgeI"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeI (SpinSmash) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeJ"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeJ (GroupFocus)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeJ"},   "reqs": [require(starspirits=2)]}, #* Plaza District Exit Left -> ShopBadgeJ (GroupFocus)
     {"from": {"map": "MAC_01", "id": "ShopBadgeJ"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeJ (GroupFocus) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeK"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeK (AllorNothing)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeK"},   "reqs": [require(starspirits=3)]}, #* Plaza District Exit Left -> ShopBadgeK (AllorNothing)
     {"from": {"map": "MAC_01", "id": "ShopBadgeK"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeK (AllorNothing) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeL"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeL (HPPlusC)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeL"},   "reqs": [require(starspirits=3)]}, #* Plaza District Exit Left -> ShopBadgeL (HPPlusC)
     {"from": {"map": "MAC_01", "id": "ShopBadgeL"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeL (HPPlusC) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeM"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeM (FPPlusC)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeM"},   "reqs": [require(starspirits=3)]}, #* Plaza District Exit Left -> ShopBadgeM (FPPlusC)
     {"from": {"map": "MAC_01", "id": "ShopBadgeM"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeM (FPPlusC) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeN"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeN (SSmashChg)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeN"},   "reqs": [require(starspirits=4)]}, #* Plaza District Exit Left -> ShopBadgeN (SSmashChg)
     {"from": {"map": "MAC_01", "id": "ShopBadgeN"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeN (SSmashChg) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeO"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeO (DamageDodgeA)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeO"},   "reqs": [require(starspirits=4)]}, #* Plaza District Exit Left -> ShopBadgeO (DamageDodgeA)
     {"from": {"map": "MAC_01", "id": "ShopBadgeO"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeO (DamageDodgeA) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeP"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeP (MegaQuake)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeP"},   "reqs": [require(starspirits=4)]}, #* Plaza District Exit Left -> ShopBadgeP (MegaQuake)
     {"from": {"map": "MAC_01", "id": "ShopBadgeP"},   "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ShopBadgeP (MegaQuake) -> Plaza District Exit Left
 
     # MAC_02 Southern District
@@ -185,7 +185,7 @@ edges_mac = [
     
     {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftA"},       "reqs": []}, #* Port District Exit Right -> GiftA (Lyrics)
     {"from": {"map": "MAC_05", "id": "GiftA"},       "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* GiftA (Lyrics) -> Port District Exit Right
-    {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftB"},       "reqs": []}, #* Port District Exit Right -> GiftB (AttackFXD)
+    {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftB"},       "reqs": [require(item="Melody")]}, #* Port District Exit Right -> GiftB (AttackFXD)
     {"from": {"map": "MAC_05", "id": "GiftB"},       "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* GiftB (AttackFXD) -> Port District Exit Right
     {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Port District Exit Right -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_05", "id": "HiddenPanel"}, "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Port District Exit Right
