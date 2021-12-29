@@ -31,10 +31,33 @@ class OptionSet:
 
         # Settings unavailable in the GUI
         # General
-        self.starting_map = get_option_keyvalue_dict("StartingMap") # mac_00 Entry 4
         self.random_quiz = get_option_keyvalue_dict("RandomQuiz")
         self.shuffle_chapter_difficulty = False
         self.random_formations = get_option_keyvalue_dict("RandomFormations")
+
+        # Starting setup
+        self.starting_map = get_option_keyvalue_dict("StartingMap") # mac_00 Entry 4
+        self.starting_level = get_option_keyvalue_dict("StartingLevel")
+        self.starting_maxhp = get_option_keyvalue_dict("StartingMaxHP")
+        self.starting_maxfp = get_option_keyvalue_dict("StartingMaxFP")
+        self.starting_maxbp = get_option_keyvalue_dict("StartingMaxBP")
+
+        self.starting_item_0 = get_option_keyvalue_dict("StartingItem0")
+        self.starting_item_1 = get_option_keyvalue_dict("StartingItem1")
+        self.starting_item_2 = get_option_keyvalue_dict("StartingItem2")
+        self.starting_item_3 = get_option_keyvalue_dict("StartingItem3")
+        self.starting_item_4 = get_option_keyvalue_dict("StartingItem4")
+        self.starting_item_5 = get_option_keyvalue_dict("StartingItem5")
+        self.starting_item_6 = get_option_keyvalue_dict("StartingItem6")
+        self.starting_item_7 = get_option_keyvalue_dict("StartingItem7")
+        self.starting_item_8 = get_option_keyvalue_dict("StartingItem8")
+        self.starting_item_9 = get_option_keyvalue_dict("StartingItem9")
+        self.starting_item_A = get_option_keyvalue_dict("StartingItemA")
+        self.starting_item_B = get_option_keyvalue_dict("StartingItemB")
+        self.starting_item_C = get_option_keyvalue_dict("StartingItemC")
+        self.starting_item_D = get_option_keyvalue_dict("StartingItemD")
+        self.starting_item_E = get_option_keyvalue_dict("StartingItemE")
+        self.starting_item_F = get_option_keyvalue_dict("StartingItemF")
 
         # Item related
         self.include_favors = False
@@ -140,14 +163,57 @@ class OptionSet:
 
         # Settings unavailable in the GUI
         # General
-        if "StartingMap" in options_dict:
-            self.starting_map = options_dict.get("StartingMap")
         if "RandomQuiz" in options_dict:
             self.random_quiz = options_dict.get("RandomQuiz")
         if "ShuffleChapterDifficulty" in options_dict:
             self.shuffle_chapter_difficulty = options_dict.get("ShuffleChapterDifficulty").get("value")
         if "RandomFormations" in options_dict:
             self.random_formations = options_dict.get("RandomFormations")
+
+        # Starting setup
+        if "StartingMap" in options_dict:
+            self.starting_map = options_dict.get("StartingMap")
+        if "StartingLevel" in options_dict:
+            self.starting_level = options_dict.get("StartingLevel")
+        if "StartingMaxHP" in options_dict:
+            self.starting_maxhp = options_dict.get("StartingMaxHP")
+        if "StartingMaxFP" in options_dict:
+            self.starting_maxfp = options_dict.get("StartingMaxFP")
+        if "StartingMaxBP" in options_dict:
+            self.starting_maxbp = options_dict.get("StartingMaxBP")
+
+        if "StartingItem0" in options_dict:
+            self.starting_item_0 = options_dict.get("StartingItem0")
+        if "StartingItem1" in options_dict:
+            self.starting_item_1 = options_dict.get("StartingItem1")
+        if "StartingItem2" in options_dict:
+            self.starting_item_2 = options_dict.get("StartingItem2")
+        if "StartingItem3" in options_dict:
+            self.starting_item_3 = options_dict.get("StartingItem3")
+        if "StartingItem4" in options_dict:
+            self.starting_item_4 = options_dict.get("StartingItem4")
+        if "StartingItem5" in options_dict:
+            self.starting_item_5 = options_dict.get("StartingItem5")
+        if "StartingItem6" in options_dict:
+            self.starting_item_6 = options_dict.get("StartingItem6")
+        if "StartingItem7" in options_dict:
+            self.starting_item_7 = options_dict.get("StartingItem7")
+        if "StartingItem8" in options_dict:
+            self.starting_item_8 = options_dict.get("StartingItem8")
+        if "StartingItem9" in options_dict:
+            self.starting_item_9 = options_dict.get("StartingItem9")
+        if "StartingItemA" in options_dict:
+            self.starting_item_A = options_dict.get("StartingItemA")
+        if "StartingItemB" in options_dict:
+            self.starting_item_B = options_dict.get("StartingItemB")
+        if "StartingItemC" in options_dict:
+            self.starting_item_C = options_dict.get("StartingItemC")
+        if "StartingItemD" in options_dict:
+            self.starting_item_D = options_dict.get("StartingItemD")
+        if "StartingItemE" in options_dict:
+            self.starting_item_E = options_dict.get("StartingItemE")
+        if "StartingItemF" in options_dict:
+            self.starting_item_F = options_dict.get("StartingItemF")
 
         # Item related
         if "IncludeFavors" in options_dict:
@@ -277,14 +343,57 @@ def validate_options(options_dict):
 
     # Settings unavailable in the GUI
     # General
-    if "StartingMap" in options_dict:
-        assert isinstance(options_dict.get("StartingMap").get("value"), int)
     if "RandomQuiz" in options_dict:
         assert isinstance(options_dict.get("RandomQuiz").get("value"), bool)
     if "ShuffleChapterDifficulty" in options_dict:
         assert isinstance(options_dict.get("ShuffleChapterDifficulty").get("value"), bool)
     if "RandomFormations" in options_dict:
         assert isinstance(options_dict.get("RandomFormations").get("value"), bool)
+
+    # Starting setup
+    if "StartingMap" in options_dict:
+        assert isinstance(options_dict.get("StartingMap").get("value"), int)
+    if "StartingLevel" in options_dict:
+        assert isinstance(options_dict.get("StartingLevel").get("value"), int)
+    if "StartingMaxHP" in options_dict:
+        assert isinstance(options_dict.get("StartingMaxHP").get("value"), int)
+    if "StartingMaxFP" in options_dict:
+        assert isinstance(options_dict.get("StartingMaxFP").get("value"), int)
+    if "StartingMaxBP" in options_dict:
+        assert isinstance(options_dict.get("StartingMaxBP").get("value"), int)
+
+    if "StartingItem0" in options_dict:
+        assert isinstance(options_dict.get("StartingItem0").get("value"), int)
+    if "StartingItem1" in options_dict:
+        assert isinstance(options_dict.get("StartingItem1").get("value"), int)
+    if "StartingItem2" in options_dict:
+        assert isinstance(options_dict.get("StartingItem2").get("value"), int)
+    if "StartingItem3" in options_dict:
+        assert isinstance(options_dict.get("StartingItem3").get("value"), int)
+    if "StartingItem4" in options_dict:
+        assert isinstance(options_dict.get("StartingItem4").get("value"), int)
+    if "StartingItem5" in options_dict:
+        assert isinstance(options_dict.get("StartingItem5").get("value"), int)
+    if "StartingItem6" in options_dict:
+        assert isinstance(options_dict.get("StartingItem6").get("value"), int)
+    if "StartingItem7" in options_dict:
+        assert isinstance(options_dict.get("StartingItem7").get("value"), int)
+    if "StartingItem8" in options_dict:
+        assert isinstance(options_dict.get("StartingItem8").get("value"), int)
+    if "StartingItem9" in options_dict:
+        assert isinstance(options_dict.get("StartingItem9").get("value"), int)
+    if "StartingItemA" in options_dict:
+        assert isinstance(options_dict.get("StartingItemA").get("value"), int)
+    if "StartingItemB" in options_dict:
+        assert isinstance(options_dict.get("StartingItemB").get("value"), int)
+    if "StartingItemC" in options_dict:
+        assert isinstance(options_dict.get("StartingItemC").get("value"), int)
+    if "StartingItemD" in options_dict:
+        assert isinstance(options_dict.get("StartingItemD").get("value"), int)
+    if "StartingItemE" in options_dict:
+        assert isinstance(options_dict.get("StartingItemE").get("value"), int)
+    if "StartingItemF" in options_dict:
+        assert isinstance(options_dict.get("StartingItemF").get("value"), int)
 
     # Item related
     if "IncludeFavors" in options_dict:
