@@ -14,7 +14,7 @@ from rando_modules.simulate import add_to_inventory, clear_inventory, has_item
 from custom_seed import validate_seed
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
-from metadata.itemlocation_koopakootfavors import kootfavors_locations
+from metadata.itemlocation_special import kootfavors_locations, chainletter_giver_locations
 from metadata.progression_items import progression_miscitems as progression_miscitems_names
 
 
@@ -279,7 +279,8 @@ def _generate_item_pools(
     do_randomize_coins,
     do_randomize_shops,
     do_randomize_panels,
-    do_randomize_koopakoot
+    do_randomize_koopakoot,
+    do_randomize_letterchain
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -319,7 +320,12 @@ def _generate_item_pools(
             if (    get_node_identifier(current_node) in kootfavors_locations
                 and not do_randomize_koopakoot
             ):
-                print(kootfavors_locations)
+                current_node.current_item = current_node.vanilla_item
+                continue
+
+            if (    get_node_identifier(current_node) in chainletter_giver_locations
+                and not do_randomize_letterchain
+            ):
                 current_node.current_item = current_node.vanilla_item
                 continue
 
@@ -343,6 +349,7 @@ def _algo_forward_fill(
     do_randomize_shops,
     do_randomize_panels,
     do_randomize_koopakoot,
+    do_randomize_letterchain,
     starting_map_id,
     startwith_bluehouse_open,
     startwith_flowergate_open,
@@ -381,7 +388,8 @@ def _algo_forward_fill(
                          do_randomize_coins,
                          do_randomize_shops,
                          do_randomize_panels,
-                         do_randomize_koopakoot)
+                         do_randomize_koopakoot,
+                         do_randomize_letterchain)
     #print(f"Size pool_progression_items: {len(pool_progression_items)}")
     #print(f"Size pool_misc_progression_items: {len(pool_misc_progression_items)}")
     #print(f"Size pool_other_items: {len(pool_other_items)}")
@@ -499,9 +507,19 @@ def _algo_forward_fill(
     
 
 
-def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
-  do_randomize_shops, do_randomize_panels, do_randomize_koopakoot, starting_map_id,
-  startwith_bluehouse_open, startwith_flowergate_open, starting_partners=None
+def place_items(
+    item_placement,
+    algorithm,
+    do_shuffle_items,
+    do_randomize_coins,
+    do_randomize_shops,
+    do_randomize_panels,
+    do_randomize_koopakoot,
+    do_randomize_letterchain,
+    starting_map_id,
+    startwith_bluehouse_open,
+    startwith_flowergate_open,
+    starting_partners=None
 ):
     """Places items into item locations according to chosen settings."""
 
@@ -528,6 +546,7 @@ def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
             do_randomize_shops,
             do_randomize_panels,
             do_randomize_koopakoot,
+            do_randomize_letterchain,
             starting_map_id,
             startwith_bluehouse_open,
             startwith_flowergate_open,

@@ -12,3 +12,8 @@ kootfavors_locations = [
     "DRO_01/GiftB", # KootRedJar
     "DRO_02/GiftA", # CrystalBall
 ]
+
+chainletter_giver_locations = [
+    "MAC_03/GiftA",
+    "MAC_03/GiftB",
+]

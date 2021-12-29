@@ -38,6 +38,7 @@ IncludeCoins          : false
 IncludeShops          : true
 IncludePanels         : true
 IncludeFavors         : false # Koopa Koot Favors
+IncludeLetterChain    : false
 KeyitemsOutsideArea   : true # false -> NYI
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
