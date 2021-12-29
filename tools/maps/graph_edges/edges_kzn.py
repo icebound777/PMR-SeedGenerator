@@ -71,7 +71,7 @@ edges_kzn = [
     # KZN_07 Ultra Hammer Room
     {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_06", "id": 1}, "reqs": []}, # Ultra Hammer Room Exit East -> Flowing Lava Puzzle Exit West
 
-    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": 0}, "reqs": [require(partner="PARTNER_Parakarry")], "pseudoitems": ["RF_KZN07_OpenedHammerChest"]}, #+ Open Ultra Hammer Chest
+    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": 0}, "reqs": [require(partner="PARTNER_Parakarry")], "pseudoitems": ["EQUIPMENT_Hammer_Progressive","RF_KZN07_OpenedHammerChest"]}, #+ Open Ultra Hammer Chest
 
     # KZN_08 Dizzy Stomp Room
     {"from": {"map": "KZN_08", "id": 0}, "to": {"map": "KZN_06", "id": 2}, "reqs": []}, # Dizzy Stomp Room Exit West -> Flowing Lava Puzzle Exit East Lower

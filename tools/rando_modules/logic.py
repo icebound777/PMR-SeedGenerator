@@ -3,13 +3,14 @@ This modules offers the randomization logic and takes care of actually randomizi
 the game according to the settings chosen.
 """
 import random
+import logging
 import json
 
 from db.node import Node
 from db.item import Item
 from db.map_area import MapArea
 from worldgraph import generate as generate_world_graph, get_node_identifier
-from rando_modules.simulate import add_to_inventory, clear_inventory
+from rando_modules.simulate import add_to_inventory, clear_inventory, has_item
 from custom_seed import validate_seed
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
@@ -97,6 +98,7 @@ def _depth_first_search(
     Returns whether or not one or more pseudoitems have been found during
     graph traversal.
     """
+    logging.debug(f"> DFS node {node_id}")
     found_new_pseudoitems = False
 
     # Node already visited? -> Return!
@@ -109,6 +111,7 @@ def _depth_first_search(
             return found_new_pseudoitems
     else:
         reachable_node_ids.append(node_id)
+    logging.debug(f"DFS node_checked_earlier {node_checked_earlier}")
 
     # If the current node is an item node and thus not an entrance node,
     # add it to the list of reachable item nodes for later item placement
@@ -123,16 +126,22 @@ def _depth_first_search(
         # Get all formerly untraversable edges
         outgoing_edges = [edge for edge in non_traversable_edges
                                if get_edge_origin_node_id(edge) == node_id]
+    logging.debug(f"DFS outgoing_edges {outgoing_edges}")
     for edge in outgoing_edges:
         # Check if all requirements for edge traversal are fulfilled
         if all([r() for r in edge.get("reqs")]):
+            logging.debug(f"DFS edge requirements fullfilled {edge}")
             # Add all pseudoitems provided by this edge to the inventory
             if edge.get("pseudoitems") is not None:
                 add_to_inventory(edge.get("pseudoitems"))
                 found_new_pseudoitems = True
 
-            if edge in non_traversable_edges:
+            while edge in non_traversable_edges:
+                logging.debug(f"DFS remove edge from non_traversable_edges {edge}")
+                logging.debug(f"non_traversable_edges before {non_traversable_edges}")
                 non_traversable_edges.remove(edge)
+                logging.debug(f"non_traversable_edges after {non_traversable_edges}")
+
 
             # If edge requires multiuse item, remove one applicable item from
             # our inventory
@@ -148,7 +157,10 @@ def _depth_first_search(
                                                             non_traversable_edges)
                                      or found_new_pseudoitems)
         elif edge not in non_traversable_edges:
+            logging.debug(f"DFS edge requirements not fullfilled {edge}")
             non_traversable_edges.append(edge)
+        else:
+            logging.debug(f"DFS edge requirements not fullfilled but already in non_traversable_edges {edge}")
     return found_new_pseudoitems
 
 
@@ -165,12 +177,14 @@ def _find_new_nodes_and_edges(
     This re-traversing is accomplished by calling DFS on each respective edge's
     origin node ("from-node").
     """
+    logging.debug("++++ _find_new_nodes_and_edges called")
     while True:
         found_new_items = False
 
         # We require a copy here since we cannot iterate over a list and
         # at the same time possibly delete entries from it (see DFS)
         non_traversable_edges_cpy = non_traversable_edges.copy()
+        logging.debug(f"non_traversable_edges_cpy before {non_traversable_edges_cpy}")
 
         # Re-traverse already found edges which could not be traversed before.
         node_ids_to_check = []
@@ -181,6 +195,7 @@ def _find_new_nodes_and_edges(
             if from_node_id not in node_ids_to_check:
                 node_ids_to_check.append(from_node_id)
 
+        logging.debug(node_ids_to_check)
         for from_node_id in node_ids_to_check:
             found_new_items = (   _depth_first_search(from_node_id,
                                                       world_graph,
@@ -188,7 +203,9 @@ def _find_new_nodes_and_edges(
                                                       reachable_item_nodes,
                                                       non_traversable_edges_cpy)
                                or found_new_items)
-        non_traversable_edges = non_traversable_edges_cpy
+        non_traversable_edges = non_traversable_edges_cpy.copy()
+        logging.debug(f"non_traversable_edges_cpy after {non_traversable_edges_cpy}")
+        logging.debug(f"non_traversable_edges after {non_traversable_edges}")
 
         # Check if an item node is reachable which already has an item placed.
         # Since nodes are usually removed from this dict the moment an item is
@@ -220,6 +237,10 @@ def _find_new_nodes_and_edges(
         # items which might open up even more edges and nodes
         if not found_new_items:
             break
+    logging.debug(f"non_traversable_edges after after {non_traversable_edges}")
+    logging.debug("---- _find_new_nodes_and_edges end")
+    return pool_misc_progression_items, reachable_node_ids, reachable_item_nodes, non_traversable_edges, filled_item_nodes
+
 
 
 def _init_mario_inventory(
@@ -360,6 +381,11 @@ def _algo_forward_fill(
     for edge in world_graph.get(starting_node_id).get("edge_list"):
         non_traversable_edges.append(edge)
     reachable_node_ids.append(starting_node_id)
+    pool_misc_progression_items, \
+    reachable_node_ids, \
+    reachable_item_nodes, \
+    non_traversable_edges, \
+    filled_item_nodes = \
     _find_new_nodes_and_edges(pool_misc_progression_items,
                               world_graph,
                               reachable_node_ids,
@@ -403,14 +429,25 @@ def _algo_forward_fill(
         random_node.current_item = random_item
         add_to_inventory(random_item.item_name)
         filled_item_nodes.append(random_node)
+        print(f"{get_node_identifier(random_node)}: {random_item.item_name}")
+
         #print(f"{get_node_identifier(random_node)}: {random_item.item_name}")
 
+        pool_misc_progression_items, \
+        reachable_node_ids, \
+        reachable_item_nodes, \
+        non_traversable_edges, \
+        filled_item_nodes = \
         _find_new_nodes_and_edges(pool_misc_progression_items,
                                   world_graph,
                                   reachable_node_ids,
                                   reachable_item_nodes,
                                   non_traversable_edges,
                                   filled_item_nodes)
+        logging.debug(f"non_traversable_edges after _find_new_nodes_and_edges {non_traversable_edges}")
+    logging.debug("non_traversable_edges after progression:")
+    for edge in non_traversable_edges:
+        logging.debug(edge)
 
     # Place all remaining items into still empty item nodes
     print("Placing Miscellaneous Items ...")
@@ -429,14 +466,18 @@ def _algo_forward_fill(
                 print(f"filled_item_nodes size: {len(filled_item_nodes)}")
                 print(f"pool_other_items size: {len(pool_other_items)}")
                 print(f"nodes left: {len([item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]])}")
-                raise
+                #raise
+                item_node.current_item = item_node.vanilla_item
+                print(f"{item_node_id}")
+
+    if has_item("YOUWIN"):
+        print("Beatable! Yay!")
+    else:
+        print("Not beatable! Booo!")
 
     # "Return" list of modified item nodes
     item_placement.extend(filled_item_nodes)
-    #print(f"Seed {cur_seed}")
-    #print(f"filled_item_nodes size: {len(filled_item_nodes)}")
-    #print(f"pool_other_items size: {len(pool_other_items)}")
-    #print(f"nodes left: {len([item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]])}")
+    
 
 
 def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
@@ -444,6 +485,10 @@ def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
   startwith_bluehouse_open, startwith_flowergate_open, starting_partners=None
 ):
     """Places items into item locations according to chosen settings."""
+
+    level = logging.DEBUG
+    fmt = '[%(levelname)s] %(asctime)s - %(message)s'
+    logging.basicConfig(level=level, format=fmt)
 
     if algorithm == "CustomSeed":
         # Place items according to custom seed

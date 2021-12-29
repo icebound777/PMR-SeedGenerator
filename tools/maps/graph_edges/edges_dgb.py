@@ -20,7 +20,8 @@ edges_dgb = [
     
     {"from": {"map": "DGB_01", "id": 0}, "to": {"map": "DGB_01", "id": 1}, "reqs": [require(partner="PARTNER_Bow")]}, #? Great Hall Door 1F Bottom -> Great Hall Door Door 1F Left
     {"from": {"map": "DGB_01", "id": 1}, "to": {"map": "DGB_01", "id": 0}, "reqs": []}, #? Great Hall Door Door 1F Left -> Great Hall Door 1F Bottom
-    {"from": {"map": "DGB_01", "id": 0}, "to": {"map": "DGB_01", "id": 2}, "reqs": [uses_key("TubbaCastleKey"), require(partner="PARTNER_Bow")]}, #? Great Hall Door 1F Bottom -> Great Hall Door Door 1F Right
+    {"from": {"map": "DGB_01", "id": 0}, "to": {"map": "DGB_01", "id": 2}, "reqs": [require(item="TubbaCastleKey")]}, #? Great Hall Door 1F Bottom -> Great Hall Door Door 1F Right
+    #! , require(partner="PARTNER_Bow") ^ 
     {"from": {"map": "DGB_01", "id": 2}, "to": {"map": "DGB_01", "id": 0}, "reqs": []}, #? Great Hall Door Door 1F Right -> Great Hall Door 1F Bottom
     {"from": {"map": "DGB_01", "id": 3}, "to": {"map": "DGB_01", "id": 4}, "reqs": []}, #? Great Hall Door Door 2F Left -> Great Hall Door Door 2F Right
     {"from": {"map": "DGB_01", "id": 4}, "to": {"map": "DGB_01", "id": 3}, "reqs": []}, #? Great Hall Door Door 2F Right -> Great Hall Door Door 2F Left
@@ -53,7 +54,7 @@ edges_dgb = [
     {"from": {"map": "DGB_03", "id": 0}, "to": {"map": "DGB_03", "id": 2}, "reqs": []}, #? Table/Clock Room (1/2F) Door 1F Far Left -> Table/Clock Room (1/2F) Door 1F Top Left
     {"from": {"map": "DGB_03", "id": 2}, "to": {"map": "DGB_03", "id": 0}, "reqs": []}, #? Table/Clock Room (1/2F) Door 1F Top Left -> Table/Clock Room (1/2F) Door 1F Far Left
     {"from": {"map": "DGB_03", "id": 3}, "to": {"map": "DGB_03", "id": 4}, "reqs": []}, #? Table/Clock Room (1/2F) Door 2F Far Left -> Table/Clock Room (1/2F) Door 2F Far Right
-    {"from": {"map": "DGB_03", "id": 4}, "to": {"map": "DGB_03", "id": 3}, "reqs": [uses_key("TubbaCastleKey")]}, #? Table/Clock Room (1/2F) Door 2F Far Right -> Table/Clock Room (1/2F) Door 2F Far Left
+    {"from": {"map": "DGB_03", "id": 4}, "to": {"map": "DGB_03", "id": 3}, "reqs": [require(item="TubbaCastleKey")]}, #? Table/Clock Room (1/2F) Door 2F Far Right -> Table/Clock Room (1/2F) Door 2F Far Left
     {"from": {"map": "DGB_03", "id": 4}, "to": {"map": "DGB_03", "id": 5}, "reqs": []}, #? Table/Clock Room (1/2F) Door 2F Far Right -> Table/Clock Room (1/2F) 2F Behind The Clock
     {"from": {"map": "DGB_03", "id": 5}, "to": {"map": "DGB_03", "id": 4}, "reqs": []}, #? Table/Clock Room (1/2F) 2F Behind The Clock -> Table/Clock Room (1/2F) Door 2F Far Right
     
@@ -178,7 +179,7 @@ edges_dgb = [
     {"from": {"map": "DGB_15", "id": 1}, "to": {"map": "DGB_17", "id": 0}, "reqs": []}, # West Hall (3F) Door Far Right -> Save Room (3F) Door Left
     {"from": {"map": "DGB_15", "id": 2}, "to": {"map": "DGB_16", "id": 0}, "reqs": []}, # West Hall (3F) Door Top Right -> Sleeping Clubbas Room (3F) Door Bottom Right
     
-    {"from": {"map": "DGB_15", "id": 0}, "to": {"map": "DGB_15", "id": 1}, "reqs": [uses_key("TubbaCastleKey")]}, #? West Hall (3F) Door Far Left -> West Hall (3F) Door Far Right
+    {"from": {"map": "DGB_15", "id": 0}, "to": {"map": "DGB_15", "id": 1}, "reqs": [require(item="TubbaCastleKey")]}, #? West Hall (3F) Door Far Left -> West Hall (3F) Door Far Right
     {"from": {"map": "DGB_15", "id": 1}, "to": {"map": "DGB_15", "id": 0}, "reqs": []}, #? West Hall (3F) Door Far Right -> West Hall (3F) Door Far Left
     {"from": {"map": "DGB_15", "id": 0}, "to": {"map": "DGB_15", "id": 2}, "reqs": []}, #? West Hall (3F) Door Far Left -> West Hall (3F) Door Top Right
     {"from": {"map": "DGB_15", "id": 2}, "to": {"map": "DGB_15", "id": 0}, "reqs": []}, #? West Hall (3F) Door Top Right -> West Hall (3F) Door Far Left

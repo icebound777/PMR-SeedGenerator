@@ -25,6 +25,7 @@ progression_items = {
     0x0022 : "BooRecord",
     0x0023 : "FryingPan",
     0x0024 : "Dictionary",
+    0x0025 : "MysteryNote",
     0x0027 : "CrystalBall",
     0x002A : "JadeRaven",
     0x002B : "MagicalSeed1",

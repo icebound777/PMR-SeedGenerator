@@ -20,7 +20,10 @@ def get_itemhints(placed_items:list):
 
             item_id = item_node.current_item.value
             item_source_id = source_types.get(cur_map_name).get(cur_keyname)
-            print(f"{cur_map_name=}; {cur_keyname=}")
+            if item_source_id is None:
+                print(f"item_source_id is None: {cur_map_name}:{cur_keyname}")
+                raise TypeError
+            #print(f"{cur_map_name=}; {cur_keyname=}")
 
             hint_word_1 = item_id
             hint_word_2 = (

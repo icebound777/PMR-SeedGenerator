@@ -22,7 +22,7 @@ edges_trd = [
     {"from": {"map": "TRD_01", "id": 2}, "to": {"map": "TRD_02", "id": 2}, "reqs": []}, # Left Tower Exit Middle Right -> Left Stairway Exit Top Left
     {"from": {"map": "TRD_01", "id": 3}, "to": {"map": "TRD_09", "id": 0}, "reqs": []}, # Left Tower Exit Top Right -> Battlement Exit Left
     
-    {"from": {"map": "TRD_01", "id": 0}, "to": {"map": "TRD_01", "id": 1}, "reqs": [uses_key("KoopaFortressKey")]}, #? Left Tower Exit Bottom Left -> Left Tower Exit Bottom Right
+    {"from": {"map": "TRD_01", "id": 0}, "to": {"map": "TRD_01", "id": 1}, "reqs": [require(item="KoopaFortressKey")]}, #? Left Tower Exit Bottom Left -> Left Tower Exit Bottom Right
     {"from": {"map": "TRD_01", "id": 1}, "to": {"map": "TRD_01", "id": 0}, "reqs": []}, #? Left Tower Exit Bottom Right -> Left Tower Exit Bottom Left
     {"from": {"map": "TRD_01", "id": 2}, "to": {"map": "TRD_01", "id": 3}, "reqs": [require(flag="MF_TRD01_RaisedStairs")]}, #? Left Tower Exit Middle Right -> Left Tower Exit Top Right
     {"from": {"map": "TRD_01", "id": 3}, "to": {"map": "TRD_01", "id": 2}, "reqs": [require(flag="MF_TRD01_RaisedStairs")]}, #? Left Tower Exit Top Right -> Left Tower Exit Middle Right
@@ -46,7 +46,7 @@ edges_trd = [
     {"from": {"map": "TRD_02", "id": 1}, "to": {"map": "TRD_02", "id": 4}, "reqs": [require(flag="MF_TRD02_LoweredStairs"),require(partner="PARTNER_Bombette")]}, #? Left Stairway Exit Bottom Right -> Left Stairway Exit Middle Right
     {"from": {"map": "TRD_02", "id": 4}, "to": {"map": "TRD_02", "id": 1}, "reqs": []}, #? Left Stairway Exit Middle Right -> Left Stairway Exit Bottom Right
     {"from": {"map": "TRD_02", "id": 2}, "to": {"map": "TRD_02", "id": 3}, "reqs": []}, #? Left Stairway Exit Top Left -> Left Stairway Exit Top Right
-    {"from": {"map": "TRD_02", "id": 3}, "to": {"map": "TRD_02", "id": 2}, "reqs": [uses_key("KoopaFortressKey")]}, #? Left Stairway Exit Top Right -> Left Stairway Exit Top Left
+    {"from": {"map": "TRD_02", "id": 3}, "to": {"map": "TRD_02", "id": 2}, "reqs": [require(item="KoopaFortressKey")]}, #? Left Stairway Exit Top Right -> Left Stairway Exit Top Left
     {"from": {"map": "TRD_02", "id": 3}, "to": {"map": "TRD_02", "id": 1}, "reqs": [require(flag="MF_TRD02_LoweredStairs")]}, #? Left Stairway Exit Top Right -> Left Stairway Exit Bottom Right
     {"from": {"map": "TRD_02", "id": 1}, "to": {"map": "TRD_02", "id": 3}, "reqs": [require(flag="MF_TRD02_LoweredStairs")]}, #? Left Stairway Exit Bottom Right -> Left Stairway Exit Top Right
     
@@ -81,14 +81,14 @@ edges_trd = [
     {"from": {"map": "TRD_04", "id": 4}, "to": {"map": "TRD_07", "id": 0}, "reqs": []}, # Right Starway Exit Bottom Left -> Dungeon Trap Exit Right
     {"from": {"map": "TRD_04", "id": 5}, "to": {"map": "TRD_06", "id": 1}, "reqs": []}, # Right Starway Exit Bottom Right -> Jail Exit Left
     
-    {"from": {"map": "TRD_04", "id": 0}, "to": {"map": "TRD_04", "id": 1}, "reqs": [uses_key("KoopaFortressKey")]}, #? Right Starway Exit Middle Left -> Right Starway Exit Middle Right
+    {"from": {"map": "TRD_04", "id": 0}, "to": {"map": "TRD_04", "id": 1}, "reqs": [require(item="KoopaFortressKey")]}, #? Right Starway Exit Middle Left -> Right Starway Exit Middle Right
     {"from": {"map": "TRD_04", "id": 1}, "to": {"map": "TRD_04", "id": 0}, "reqs": []}, #? Right Starway Exit Middle Right -> Right Starway Exit Middle Left
     {"from": {"map": "TRD_04", "id": 0}, "to": {"map": "TRD_04", "id": 5}, "reqs": [require(flag="MF_TRD04_LoweredStairs")]}, #? Right Starway Exit Middle Left -> Right Starway Exit Bottom Right
     {"from": {"map": "TRD_04", "id": 5}, "to": {"map": "TRD_04", "id": 0}, "reqs": [require(flag="MF_TRD04_LoweredStairs")]}, #? Right Starway Exit Bottom Right -> Right Starway Exit Middle Left
     {"from": {"map": "TRD_04", "id": 4}, "to": {"map": "TRD_04", "id": 5}, "reqs": []}, #? Right Starway Exit Bottom Left -> Right Starway Exit Bottom Right
     {"from": {"map": "TRD_04", "id": 5}, "to": {"map": "TRD_04", "id": 4}, "reqs": []}, #? Right Starway Exit Bottom Right -> Right Starway Exit Bottom Left
     {"from": {"map": "TRD_04", "id": 2}, "to": {"map": "TRD_04", "id": 3}, "reqs": []}, #? Right Starway Exit Top Left -> Right Starway Exit Top Right
-    {"from": {"map": "TRD_04", "id": 3}, "to": {"map": "TRD_04", "id": 2}, "reqs": [uses_key("KoopaFortressKey")]}, #? Right Starway Exit Top Right -> Right Starway Exit Top Left
+    {"from": {"map": "TRD_04", "id": 3}, "to": {"map": "TRD_04", "id": 2}, "reqs": [require(item="KoopaFortressKey")]}, #? Right Starway Exit Top Right -> Right Starway Exit Top Left
     {"from": {"map": "TRD_04", "id": 3}, "to": {"map": "TRD_04", "id": 0}, "reqs": []}, #? Right Starway Exit Top Right -> Right Starway Exit Middle Left
     
     {"from": {"map": "TRD_04", "id": 0}, "to": {"map": "TRD_04", "id": 0}, "reqs": [], "pseudoitems": ["MF_TRD04_LoweredStairs"]}, #+ Right Starway Exit Middle Left

@@ -27,7 +27,10 @@ def add_to_inventory(item_object):
     if isinstance(item_object, str):
         is_new_pseudoitem = False
     
-        if (item_object.startswith("GF") or item_object.startswith("MF") or item_object.startswith("RF")) and item_object not in mario.flags:
+        if (  item_object.startswith("GF")
+            or item_object.startswith("MF")
+            or item_object.startswith("MB")
+            or item_object.startswith("RF")):
             mario.flags.append(item_object)
             is_new_pseudoitem = True
         elif item_object.startswith("PARTNER") and item_object not in mario.partners:
@@ -94,23 +97,6 @@ def has_item(item_str):
     """Checks if Mario currently has a certain item."""
     global mario
     return item_str in mario.items
-
-
-def uses_key(item_str):
-    """
-    Checks if Mario currently has a certain key and uses/removes it.
-    This method is intended for FortressKeyX, RuinsKeyX etc.
-    """
-    global mario
-    key_found = False
-    generic_key_name = item_str[:-1]
-    if generic_key_name in mario.items:
-        for i, item_name in enumerate(mario.items):
-            if item_name[:-1] == generic_key_name:
-                mario.items.pop(i)
-                key_found = True
-                break
-    return key_found
 
 
 def has_partner(partner_str):

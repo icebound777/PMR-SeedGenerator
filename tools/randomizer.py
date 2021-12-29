@@ -216,7 +216,6 @@ def main_randomizer():
     """
     timer_start = time.perf_counter()
 
-    rando_settings = OptionSet()
     target_modfile = ""
     spoilerlog_file_path = ""
     rando_outputfile = ""
@@ -253,6 +252,7 @@ def main_randomizer():
                     elif arg[arg.rfind(".") + 1:] == "yaml":
                         data = yaml.load(file, Loader=SafeLoader)
                 populate_keys(data)
+                rando_settings = OptionSet()
                 rando_settings.update_options(data)
 
             # Pre-modded Open World PM64 ROM
@@ -271,6 +271,9 @@ def main_randomizer():
     except getopt.GetoptError:
         print_usage()
         raise
+
+    if not rando_settings:
+        rando_settings = OptionSet()
 
     # DEFAULTS: Set targetmod if none provided
     if not target_modfile:

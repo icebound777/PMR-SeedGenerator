@@ -48,7 +48,7 @@ edges_omo = [
     {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": 1}, "reqs": []}, #? BLU Station Spring to Toad Town -> BLU Station Exit East
     {"from": {"map": "OMO_03", "id": 1}, "to": {"map": "OMO_03", "id": 4}, "reqs": []}, #? BLU Station Exit East -> BLU Station Spring to Toad Town
     {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": 2}, "reqs": [require(flag="MF_Ch4_ReturnedToyTrain"),require(flag="RF_BlueSwitchPulled")]}, #? BLU Station Spring to Toad Town -> BLU Station Ride Train West
-    {"from": {"map": "OMO_03", "id": 2}, "to": {"map": "OMO_03", "id": 4}, "reqs": [require(flag="RF_BlueSwitchPulled")], "pseudoitems": ["RF_BlueSwitchPulled"]}, #? BLU Station Ride Train West -> BLU Station Spring to Toad Town
+    {"from": {"map": "OMO_03", "id": 2}, "to": {"map": "OMO_03", "id": 4}, "reqs": [], "pseudoitems": ["RF_BlueSwitchPulled"]}, #? BLU Station Ride Train West -> BLU Station Spring to Toad Town
     {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": 3}, "reqs": [require(flag="MF_Ch4_ReturnedToyTrain")]}, #? BLU Station Spring to Toad Town -> BLU Station Ride Train East
     {"from": {"map": "OMO_03", "id": 3}, "to": {"map": "OMO_03", "id": 4}, "reqs": []}, #? BLU Station Ride Train East -> BLU Station Spring to Toad Town
     
