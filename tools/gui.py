@@ -479,6 +479,7 @@ class Window(QMainWindow):
             do_randomize_coins=selected_settings.include_coins["value"],
             do_randomize_shops=selected_settings.include_shops["value"],
             do_randomize_panels=selected_settings.include_panels["value"],
+            do_randomize_favors=False,
             starting_map_id=selected_settings.starting_map["value"],
             startwith_bluehouse_open=selected_settings.bluehouse_open["value"],
             startwith_flowergate_open=selected_settings.flowergate_open["value"]

@@ -37,6 +37,7 @@ ShuffleItems          : true
 IncludeCoins          : false
 IncludeShops          : true
 IncludePanels         : true
+IncludeFavors         : false # Koopa Koot Favors
 KeyitemsOutsideArea   : true # false -> NYI
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 

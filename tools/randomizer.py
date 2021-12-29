@@ -293,6 +293,7 @@ def main_randomizer():
                             do_randomize_coins=rando_settings.include_coins["value"],
                             do_randomize_shops=rando_settings.include_shops["value"],
                             do_randomize_panels=rando_settings.include_panels["value"],
+                            do_randomize_koopakoot=rando_settings.include_favors,
                             starting_map_id=rando_settings.starting_map["value"],
                             startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
                             startwith_flowergate_open=rando_settings.flowergate_open["value"],

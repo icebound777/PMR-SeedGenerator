@@ -17,10 +17,10 @@ edges_nok = [
     {"from": {"map": "NOK_01", "id": "Bush4_Drop1A"},  "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush4_Drop1A (KoopaLeaf) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush5_Drop1A"},  "reqs": []}, #* Koopa Village 1 Exit Left -> Bush5_Drop1A (Coin)
     {"from": {"map": "NOK_01", "id": "Bush5_Drop1A"},  "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush5_Drop1A (Coin) -> Koopa Village 1 Exit Left
-    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush6A_Drop1A"}, "reqs": [require(favor="favor_ch5_1")]}, #* Koopa Village 1 Exit Left -> Bush6A_Drop1A (Glasses)
-    {"from": {"map": "NOK_01", "id": "Bush6A_Drop1A"}, "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush6A_Drop1A (Glasses) -> Koopa Village 1 Exit Left
-    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush7A_Drop1A"}, "reqs": [require(favor="FAVOR_CH2_1")]}, #* Koopa Village 1 Exit Left -> Bush7A_Drop1A (EmptyWallet)
-    {"from": {"map": "NOK_01", "id": "Bush7A_Drop1A"}, "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush7A_Drop1A (EmptyWallet) -> Koopa Village 1 Exit Left
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush6A_Drop1A"}, "reqs": [require(favor="favor_ch5_1")]}, #* Koopa Village 1 Exit Left -> Bush6A_Drop1A (KootGlasses)
+    {"from": {"map": "NOK_01", "id": "Bush6A_Drop1A"}, "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush6A_Drop1A (KootGlasses) -> Koopa Village 1 Exit Left
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "Bush7A_Drop1A"}, "reqs": [require(favor="FAVOR_CH2_1")]}, #* Koopa Village 1 Exit Left -> Bush7A_Drop1A (KootEmptyWallet)
+    {"from": {"map": "NOK_01", "id": "Bush7A_Drop1A"}, "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush7A_Drop1A (KootEmptyWallet) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "HiddenPanel"},   "reqs": [can_flip_panels]}, #* Koopa Village 1 Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "NOK_01", "id": "HiddenPanel"},   "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "ShopItemA"},     "reqs": []}, #* Koopa Village 1 Exit Left -> ShopItemA (DizzyDial)

@@ -37,6 +37,7 @@ class OptionSet:
         self.random_formations = get_option_keyvalue_dict("RandomFormations")
 
         # Item related
+        self.include_favors = False
         self.placement_algorithm = "ForwardFill"
         self.placement_logic = "NoGlitches"
         self.keyitems_outside_area = True # False -> NYI
@@ -148,6 +149,8 @@ class OptionSet:
             self.random_formations = options_dict.get("RandomFormations")
 
         # Item related
+        if "IncludeFavors" in options_dict:
+            self.include_favors = options_dict.get("IncludeFavors").get("value")
         if "PlacementAlgorithm" in options_dict:
             self.placement_algorithm = options_dict.get("PlacementAlgorithm").get("value")
         if "PlacementLogic" in options_dict:
@@ -281,6 +284,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("RandomFormations").get("value"), bool)
 
     # Item related
+    if "IncludeFavors" in options_dict:
+        assert isinstance(options_dict.get("IncludeFavors").get("value"), bool)
     if "PlacementAlgorithm" in options_dict:
         assert (isinstance(options_dict.get("PlacementAlgorithm").get("value"), str)
             and options_dict.get("PlacementAlgorithm").get("value") in [

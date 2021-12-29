@@ -14,6 +14,7 @@ from rando_modules.simulate import add_to_inventory, clear_inventory, has_item
 from custom_seed import validate_seed
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
+from metadata.itemlocation_koopakootfavors import kootfavors_locations
 from metadata.progression_items import progression_miscitems as progression_miscitems_names
 
 
@@ -231,7 +232,7 @@ def _find_new_nodes_and_edges(
                     #print(f"Considered item placed: {node_id}: {current_item}")
 
                 filled_item_nodes.append(item_node)
-                #print(f"Unrandom: {node_id}: {current_item.item_name}")
+                print(f"Unrandom: {node_id}: {current_item.item_name}")
         
         # Keep searching for new edges and nodes until we don't find any new
         # items which might open up even more edges and nodes
@@ -278,6 +279,7 @@ def _generate_item_pools(
     do_randomize_coins,
     do_randomize_shops,
     do_randomize_panels,
+    do_randomize_koopakoot
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -314,6 +316,13 @@ def _generate_item_pools(
                 current_node.current_item = current_node.vanilla_item
                 continue
 
+            if (    get_node_identifier(current_node) in kootfavors_locations
+                and not do_randomize_koopakoot
+            ):
+                print(kootfavors_locations)
+                current_node.current_item = current_node.vanilla_item
+                continue
+
             # Item shall be randomized: Add it to the correct item pool
             if current_node.vanilla_item.progression:
                 pool_progression_items.append(current_node.vanilla_item)
@@ -333,6 +342,7 @@ def _algo_forward_fill(
     do_randomize_coins,
     do_randomize_shops,
     do_randomize_panels,
+    do_randomize_koopakoot,
     starting_map_id,
     startwith_bluehouse_open,
     startwith_flowergate_open,
@@ -340,7 +350,9 @@ def _algo_forward_fill(
 ):
     print("Initialize Mario's starting inventory...")
     _init_mario_inventory(
-        starting_partners, startwith_bluehouse_open, startwith_flowergate_open
+        starting_partners,
+        startwith_bluehouse_open,
+        startwith_flowergate_open
     )
 
     # Prepare world graph
@@ -368,7 +380,8 @@ def _algo_forward_fill(
                          all_item_nodes,
                          do_randomize_coins,
                          do_randomize_shops,
-                         do_randomize_panels)
+                         do_randomize_panels,
+                         do_randomize_koopakoot)
     #print(f"Size pool_progression_items: {len(pool_progression_items)}")
     #print(f"Size pool_misc_progression_items: {len(pool_misc_progression_items)}")
     #print(f"Size pool_other_items: {len(pool_other_items)}")
@@ -449,6 +462,12 @@ def _algo_forward_fill(
     for edge in non_traversable_edges:
         logging.debug(edge)
 
+    # Mark all unreachable nodes, which hold unrandom items, as filled
+    for item_node in all_item_nodes:
+        if item_node.current_item and item_node not in filled_item_nodes:
+            filled_item_nodes.append(item_node)
+            print(f"Unrandom and unreachable: {get_node_identifier(item_node)}: {item_node.current_item.item_name}")
+
     # Place all remaining items into still empty item nodes
     print("Placing Miscellaneous Items ...")
     for item_node in all_item_nodes:
@@ -481,7 +500,7 @@ def _algo_forward_fill(
 
 
 def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
-  do_randomize_shops, do_randomize_panels, starting_map_id,
+  do_randomize_shops, do_randomize_panels, do_randomize_koopakoot, starting_map_id,
   startwith_bluehouse_open, startwith_flowergate_open, starting_partners=None
 ):
     """Places items into item locations according to chosen settings."""
@@ -508,6 +527,7 @@ def place_items(item_placement, algorithm, do_shuffle_items, do_randomize_coins,
             do_randomize_coins,
             do_randomize_shops,
             do_randomize_panels,
+            do_randomize_koopakoot,
             starting_map_id,
             startwith_bluehouse_open,
             startwith_flowergate_open,

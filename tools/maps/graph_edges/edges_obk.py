@@ -24,8 +24,8 @@ edges_obk = [
     {"from": {"map": "OBK_01", "id": 5}, "to": {"map": "OBK_01", "id": 6}, "reqs": []}, #? Foyer Third Floor Door West -> Foyer Third Floor Door East
     {"from": {"map": "OBK_01", "id": 6}, "to": {"map": "OBK_01", "id": 5}, "reqs": []}, #? Foyer Third Floor Door East -> Foyer Third Floor Door West
     
-    {"from": {"map": "OBK_01", "id": 0},             "to": {"map": "OBK_01", "id": "GiftA"},       "reqs": [require(favor="FAVOR_CH4_2")]}, #* Foyer Front Door -> GiftA (OldPhoto)
-    {"from": {"map": "OBK_01", "id": "GiftA"},       "to": {"map": "OBK_01", "id": 0},             "reqs": []}, #* GiftA (OldPhoto) -> Foyer Front Door
+    {"from": {"map": "OBK_01", "id": 0},             "to": {"map": "OBK_01", "id": "GiftA"},       "reqs": [require(favor="FAVOR_CH4_2")]}, #* Foyer Front Door -> GiftA (KootOldPhoto)
+    {"from": {"map": "OBK_01", "id": "GiftA"},       "to": {"map": "OBK_01", "id": 0},             "reqs": []}, #* GiftA (KootOldPhoto) -> Foyer Front Door
     {"from": {"map": "OBK_01", "id": 0},             "to": {"map": "OBK_01", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Foyer Front Door -> HiddenPanel (StarPiece)
     {"from": {"map": "OBK_01", "id": "HiddenPanel"}, "to": {"map": "OBK_01", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Foyer Front Door
 

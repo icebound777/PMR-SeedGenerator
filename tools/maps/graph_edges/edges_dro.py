@@ -16,8 +16,8 @@ edges_dro = [
     
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "GiftA"},     "reqs": []}, #* Outpost 1 Exit West -> GiftA (Melody)
     {"from": {"map": "DRO_01", "id": "GiftA"},     "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* GiftA (Melody) -> Outpost 1 Exit West
-    {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "GiftB"},     "reqs": []}, #* Outpost 1 Exit West -> GiftB (RedJar)
-    {"from": {"map": "DRO_01", "id": "GiftB"},     "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* GiftB (RedJar) -> Outpost 1 Exit West
+    {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "GiftB"},     "reqs": []}, #* Outpost 1 Exit West -> GiftB (KootRedJar)
+    {"from": {"map": "DRO_01", "id": "GiftB"},     "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* GiftB (KootRedJar) -> Outpost 1 Exit West
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemA"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemA (ThunderBolt)
     {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* ShopItemA (ThunderBolt) -> Outpost 1 Exit West
     # {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemB"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemB (DustyHammer)

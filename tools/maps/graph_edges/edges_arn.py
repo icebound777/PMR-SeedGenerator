@@ -27,8 +27,8 @@ edges_arn = [
     {"from": {"map": "ARN_03", "id": 0}, "to": {"map": "ARN_03", "id": 1}, "reqs": []}, #? Ghost Town 1 Exit West -> Ghost Town 1 Exit East
     {"from": {"map": "ARN_03", "id": 1}, "to": {"map": "ARN_03", "id": 0}, "reqs": []}, #? Ghost Town 1 Exit East -> Ghost Town 1 Exit West
     
-    {"from": {"map": "ARN_03", "id": 0},         "to": {"map": "ARN_03", "id": "GiftA"},   "reqs": [require(favor="FAVOR_CH6_1")]}, #* Ghost Town 1 Exit West -> GiftA (Package)
-    {"from": {"map": "ARN_03", "id": "GiftA"},   "to": {"map": "ARN_03", "id": 0},         "reqs": []}, #* GiftA (Package) -> Ghost Town 1 Exit West
+    {"from": {"map": "ARN_03", "id": 0},         "to": {"map": "ARN_03", "id": "GiftA"},   "reqs": [require(favor="FAVOR_CH6_1")]}, #* Ghost Town 1 Exit West -> GiftA (KootPackage)
+    {"from": {"map": "ARN_03", "id": "GiftA"},   "to": {"map": "ARN_03", "id": 0},         "reqs": []}, #* GiftA (KootPackage) -> Ghost Town 1 Exit West
     {"from": {"map": "ARN_03", "id": 0},         "to": {"map": "ARN_03", "id": "YBlockA"}, "reqs": []}, #* Ghost Town 1 Exit West -> YBlockA (Coin)
     {"from": {"map": "ARN_03", "id": "YBlockA"}, "to": {"map": "ARN_03", "id": 0},         "reqs": []}, #* YBlockA (Coin) -> Ghost Town 1 Exit West
 
