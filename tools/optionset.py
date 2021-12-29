@@ -4,7 +4,7 @@ class OptionSet:
     def __init__(self):
         """ Load Defaults from DB """
         # General
-        self.initial_coins = get_option_keyvalue_dict("InitialCoins")
+        self.starting_coins = get_option_keyvalue_dict("StartingCoins")
         self.replace_duplicate_keys = get_option_keyvalue_dict("ReplaceDuplicateKeys")
         self.duplicate_key_replacement = get_option_keyvalue_dict("DuplicateKeyReplacement")
         self.shorten_cutscenes = get_option_keyvalue_dict("ShortenCutscenes")
@@ -91,8 +91,8 @@ class OptionSet:
             raise
 
         # General
-        if "InitialCoins" in options_dict:
-            self.initial_coins = options_dict.get("InitialCoins")
+        if "StartingCoins" in options_dict:
+            self.starting_coins = options_dict.get("StartingCoins")
         if "ReplaceDuplicateKeys" in options_dict:
             self.replace_duplicate_keys = options_dict.get("ReplaceDuplicateKeys")
         if "DuplicateKeyReplacement" in options_dict:
@@ -222,9 +222,9 @@ def validate_options(options_dict):
         raise ValueError
 
     # General
-    if "InitialCoins" in options_dict:
-        assert (isinstance(options_dict.get("InitialCoins").get("value"), int)
-            and 0 <= options_dict.get("InitialCoins").get("value") <= 999
+    if "StartingCoins" in options_dict:
+        assert (isinstance(options_dict.get("StartingCoins").get("value"), int)
+            and 0 <= options_dict.get("StartingCoins").get("value") <= 999
         )
     if "ReplaceDuplicateKeys" in options_dict:
         assert isinstance(options_dict.get("ReplaceDuplicateKeys").get("value"), bool)
