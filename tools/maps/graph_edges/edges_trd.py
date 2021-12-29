@@ -92,6 +92,8 @@ edges_trd = [
     {"from": {"map": "TRD_04", "id": 3}, "to": {"map": "TRD_04", "id": 0}, "reqs": []}, #? Right Starway Exit Top Right -> Right Starway Exit Middle Left
     
     {"from": {"map": "TRD_04", "id": 0}, "to": {"map": "TRD_04", "id": 0}, "reqs": [], "pseudoitems": ["MF_TRD04_LoweredStairs"]}, #+ Right Starway Exit Middle Left
+    {"from": {"map": "TRD_04", "id": 4}, "to": {"map": "TRD_04", "id": 4}, "reqs": [], "pseudoitems": ["MF_TRD04_LoweredStairs"]}, #+ Right Starway Exit Bottom Left
+    {"from": {"map": "TRD_04", "id": 5}, "to": {"map": "TRD_04", "id": 5}, "reqs": [], "pseudoitems": ["MF_TRD04_LoweredStairs"]}, #+ Right Starway Exit Bottom Right
 
     # TRD_05 Right Tower
     {"from": {"map": "TRD_05", "id": 0}, "to": {"map": "TRD_04", "id": 1}, "reqs": []}, # Right Tower Exit Bottom Left -> Right Starway Exit Middle Right
