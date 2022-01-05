@@ -1,3 +1,10 @@
+"""
+This file lists item locations that are, under certain circumstances, handled
+in special ways.
+"""
+
+# Item locations that are associated with Koopa Koot's favors.
+# These may be excluded from randomization.
 kootfavors_locations = [
     "NOK_01/Bush6A_Drop1A", # KootGlasses
     "NOK_01/Bush7A_Drop1A", # KootEmptyWallet
@@ -13,7 +20,96 @@ kootfavors_locations = [
     "DRO_02/GiftA", # CrystalBall
 ]
 
+# Item locations that are associated with the letter chain sidequest.
+# This quest is started by giving Goompapa in Goomba Village a specific letter
+# and sends Mario around the world to acquire the Lucky Day badge in the end.
 chainletter_giver_locations = [
     "MAC_03/GiftA",
     "MAC_03/GiftB",
+]
+
+# Areas that are considered 'limited by item'.
+# 'Limited by item' areas are only allowed to hold a subset of specific
+# randomized items, instead of every item available in the pool.
+# However, if every allowed item is already placed somewhere, these areas
+# are again allowed to hold other items.
+# This is used for limiting progression items to certain areas.
+limited_by_item_areas = {
+    # Chapter 1 Koopa Bros Fortress
+    "TRD": {
+        "keys": [
+            "KoopaFortressKeyA",
+            "KoopaFortressKeyB",
+            "KoopaFortressKeyC",
+            "KoopaFortressKeyD",
+        ]
+    },
+    # Chapter 2 Dry Dry Ruins
+    "ISK": {
+        "keys": [
+            "RuinsKeyA",
+            "RuinsKeyB",
+            "RuinsKeyC",
+            "RuinsKeyD",
+            "PyramidStone",
+            "LunarStone",
+            "DiamondStone",
+        ]
+    },
+    # Chapter 3 Tubba Blubba's Castle
+    "DGB": {
+        "keys": [
+            "TubbaCastleKeyA",
+            "TubbaCastleKeyB",
+            "TubbaCastleKeyC",
+        ]
+    },
+    # Chapter 4 Shy Guy's Toybox
+    "OMO": {
+        "keys": [
+            "ToyTrain",
+        ],
+        "misc": [
+            "Cake",
+        ]
+    },
+    # Chapter 5 Mt. Lavalava
+    # Chapter 6 Flower Fields
+    "FLO": {
+        "keys": [
+            "MagicalBean",
+            "FertileSoil",
+            "MiracleWater",
+        ],
+        "misc": [
+            "BubbleBerry",
+        ]
+    },
+    # Chapter 7 Crystal Palace
+    "PRA": {
+        "keys": [
+            "BlueKey",
+            "RedKey",
+            "CrystalPalaceKey",
+        ]
+    },
+    # Chapter 8 Bowser's Castle
+    "KPA": {
+        "keys": [
+            "BowserCastleKeyA",
+            "BowserCastleKeyB",
+            "BowserCastleKeyC",
+            "BowserCastleKeyD",
+            "BowserCastleKeyE",
+        ]
+    },
+}
+
+# Item locations that are considered 'limited by item type'.
+# 'Limited by item type' locations are only allowed to hold a items of a certain
+# item type, instead of every item available in the pool.
+# This is used for limiting randomization of certain item types (like keyitems, 
+# badges), so they are easier to find.
+limited_by_itemtype_locations = [
+
 ]

@@ -24,10 +24,8 @@ class Item(Model):
     # True if item can be required to reach locations
     progression = BooleanField(default=False)
 
-    # def __str__(self):
-    #     if self.map_area:
-    #         return f"[{self.map_area.name}]: {self.key_name} ({self.original_item_name} -> {self.item_name})"
-    #     return f"{self.original_item_name}"
+    def __str__(self):
+        return f"{self.item_name} ({self.item_type})[{hex(self.value)}]"
     
     @classmethod
     def get_type(cls, item_id:int):

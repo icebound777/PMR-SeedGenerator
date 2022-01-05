@@ -4,7 +4,10 @@ connections between them to allow simulated traversal of the in-game world.
 """
 #from peewee import *
 
+from metadata.area_name_mappings import area_name_id_map, area_name_edges_map
+
 from db.node import Node
+from db.map_area import MapArea
 
 from maps.graph_edges.edges_arn import edges_arn
 from maps.graph_edges.edges_dgb import edges_dgb
@@ -32,6 +35,7 @@ from maps.graph_edges.edges_sbk import edges_sbk
 from maps.graph_edges.edges_tik import edges_tik
 from maps.graph_edges.edges_trd import edges_trd
 
+
 def print_node_info(node):
     """Print a node's map name and its entrance_id or item key, depending on the node"""
     entrancenode_string = str(node.entrance_id) + "/" \
@@ -39,6 +43,7 @@ def print_node_info(node):
     itemnode_string = node.key_name_item + "/" \
                     + node.vanilla_item.item_name if node.key_name_item else ''
     print(f"{node.map_area.name} - {entrancenode_string}{itemnode_string}")
+
 
 def get_node_identifier(node):
     """Returns a string representation of uniquely identifying data within a node"""
@@ -55,12 +60,35 @@ def get_node_identifier(node):
                          node)
     return node.map_area.name + "/" + node_data_id
 
+
 def get_all_nodes():
     """Returns a list of all item and entrance nodes"""
     all_nodes = []
     for node in Node.select():
         all_nodes.append(node)
     return all_nodes
+
+
+def get_area_nodes(area_shorthand:str):
+    area_nodes = []
+    if area_shorthand in area_name_id_map:
+        cur_area_id = area_name_id_map.get(area_shorthand)
+        for node in (Node
+                     .select(
+                         Node.map_area, Node.entrance_id, Node.entrance_type,
+                         Node.entrance_name, Node.key_name_item,
+                         Node.key_name_price, Node.item_source_type,
+                         Node.vanilla_item, Node.current_item, Node.item_index,
+                         Node.price_index
+                     )
+                     .join(MapArea)
+                     .where(MapArea.area_id == cur_area_id)):
+            area_nodes.append(node)
+    else:
+        raise KeyError
+    
+    return area_nodes
+
 
 def get_all_edges():
     """Returns a list of all edges"""
@@ -92,6 +120,17 @@ def get_all_edges():
     all_edges.extend(edges_trd)
     return all_edges
 
+
+def get_area_edges(area_shorthand:str):
+    area_edges = []
+    if area_shorthand in area_name_edges_map:
+        area_edges.extend(area_name_edges_map.get(area_shorthand))
+    else:
+        raise KeyError
+
+    return area_edges
+
+
 def generate(all_nodes, all_edges):
     """
     Generates and returns a world graph dictionary with nodes' node_ids in string form as keys and
@@ -118,6 +157,7 @@ def generate(all_nodes, all_edges):
                       or edge.get("from").get("id") == node.key_name_item):
                     world_graph[node_id]["edge_list"].append(edge)
     return world_graph
+
 
 def check_graph():
     """

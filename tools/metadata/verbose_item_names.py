@@ -36,6 +36,7 @@ verbose_item_names = {
     "RuinsKeyA": "RuinsKey",
     "RuinsKeyB": "RuinsKey",
     "RuinsKeyC": "RuinsKey",
+    "RuinsKeyD": "RuinsKey",
     "TubbaCastleKeyA": "TubbaCastleKey",
     "TubbaCastleKeyB": "TubbaCastleKey",
     "TubbaCastleKeyC": "TubbaCastleKey",

@@ -39,7 +39,7 @@ IncludeShops          : true
 IncludePanels         : true
 IncludeFavors         : false # Koopa Koot Favors
 IncludeLetterChain    : false
-KeyitemsOutsideArea   : true # false -> NYI
+KeyitemsOutsideDungeon: false # false -> NYI
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
 # Moves and Badges

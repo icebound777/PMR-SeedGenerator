@@ -298,7 +298,8 @@ def main_randomizer():
                             starting_map_id=rando_settings.starting_map["value"],
                             startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
                             startwith_flowergate_open=rando_settings.flowergate_open["value"],
-                            starting_partners=rando_settings.starting_partners):
+                            starting_partners=rando_settings.starting_partners,
+                            keyitems_outside_dungeon=rando_settings.keyitems_outside_dungeon):
         pass
 
     # Make everything inexpensive

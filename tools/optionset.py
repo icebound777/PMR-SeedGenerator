@@ -64,7 +64,7 @@ class OptionSet:
         self.include_letterchain = False
         self.placement_algorithm = "ForwardFill"
         self.placement_logic = "NoGlitches"
-        self.keyitems_outside_area = True # False -> NYI
+        self.keyitems_outside_dungeon = True # False -> NYI
         self.keyitems_outside_chapter = True # "Keysanity" # false -> NYI
 
         # Moves and Badges
@@ -224,8 +224,8 @@ class OptionSet:
             self.placement_algorithm = options_dict.get("PlacementAlgorithm").get("value")
         if "PlacementLogic" in options_dict:
             self.placement_logic = options_dict.get("PlacementLogic").get("value")
-        if "KeyitemsOutsideArea" in options_dict:
-            self.keyitems_outside_area = options_dict.get("KeyitemsOutsideArea").get("value")
+        if "KeyitemsOutsideDungeon" in options_dict:
+            self.keyitems_outside_dungeon = options_dict.get("KeyitemsOutsideDungeon").get("value")
         if "KeyitemsOutsideChapter" in options_dict:
             self.keyitems_outside_chapter = options_dict.get("KeyitemsOutsideChapter").get("value")
 
@@ -417,8 +417,8 @@ def validate_options(options_dict):
                 "NoLogic"
             ]
         )
-    if "KeyitemsOutsideArea" in options_dict:
-        assert isinstance(options_dict.get("KeyitemsOutsideArea").get("value"), bool)
+    if "KeyitemsOutsideDungeon" in options_dict:
+        assert isinstance(options_dict.get("KeyitemsOutsideDungeon").get("value"), bool)
     if "KeyitemsOutsideChapter" in options_dict:
         assert isinstance(options_dict.get("KeyitemsOutsideChapter").get("value"), bool)
 

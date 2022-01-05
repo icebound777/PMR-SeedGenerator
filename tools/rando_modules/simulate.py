@@ -41,12 +41,16 @@ def add_to_inventory(item_object):
             is_new_pseudoitem = True
         elif item_object.startswith("EQUIPMENT"):
             if item_object == "EQUIPMENT_Boots_Progressive":
+                print("BOOTS GOT")
                 mario.boots = mario.boots + 1 if mario.boots < 2 else mario.boots
             if item_object == "EQUIPMENT_Hammer_Progressive":
+                print("HAMMER GOT")
                 mario.hammer = mario.hammer + 1 if mario.hammer < 2 else mario.hammer
+                print(f"HAMMER now: {mario.hammer}")
         elif item_object == "STARSPIRIT":
             mario.starspirits = mario.starspirits + 1 if mario.starspirits < 7 else mario.starspirits
             is_new_pseudoitem = True
+            print("STARSPIRIT GOT")
         else:
             mario.items.append(item_object)
         
