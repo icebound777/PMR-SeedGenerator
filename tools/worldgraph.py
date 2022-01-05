@@ -70,6 +70,7 @@ def get_all_nodes():
 
 
 def get_area_nodes(area_shorthand:str):
+    """Generates and returns a list of all nodes for a given ingame area."""
     area_nodes = []
     if area_shorthand in area_name_id_map:
         cur_area_id = area_name_id_map.get(area_shorthand)
@@ -122,6 +123,7 @@ def get_all_edges():
 
 
 def get_area_edges(area_shorthand:str):
+    """Returns a list of all edges which are part of a given ingame area."""
     area_edges = []
     if area_shorthand in area_name_edges_map:
         area_edges.extend(area_name_edges_map.get(area_shorthand))
@@ -131,24 +133,24 @@ def get_area_edges(area_shorthand:str):
     return area_edges
 
 
-def generate(all_nodes, all_edges):
+def generate(node_list, edge_list):
     """
     Generates and returns a world graph dictionary with nodes' node_ids in string form as keys and
     a list of neighboring nodes' node_ids in string form as values.
     """
-    if not all_nodes or len(all_nodes) == 0:
-        all_nodes = get_all_nodes()
-    if not all_edges or len(all_edges) == 0:
-        all_edges = get_all_edges()
+    if not node_list or len(node_list) == 0:
+        node_list = get_all_nodes()
+    if not edge_list or len(edge_list) == 0:
+        edge_list = get_all_edges()
     world_graph = {}
 
-    for node in all_nodes:
+    for node in node_list:
         node_id = get_node_identifier(node)
         world_graph[node_id] = {}
         world_graph[node_id]["node"] = node
         world_graph[node_id]["edge_list"] = []
 
-        for edge in all_edges:
+        for edge in edge_list:
             if edge.get("from").get("map") == node.map_area.name:
                 if edge.get("to").get("map") is None:
                     # This edge exists for completeness' sake only and has no use inside the graph

@@ -238,10 +238,9 @@ def _find_new_nodes_and_edges(
                     and current_item in pool_misc_progression_items
                 ):
                     pool_misc_progression_items.remove(current_item)
-                    #print(f"Considered item placed: {node_id}: {current_item}")
 
                 filled_item_nodes.append(item_node)
-                print(f"Pre-filled: {node_id}: {current_item.item_name}")
+                logging.debug(f"Pre-filled: {node_id}: {current_item.item_name}")
         
         # Keep searching for new edges and nodes until we don't find any new
         # items which might open up even more edges and nodes
@@ -281,7 +280,9 @@ def _init_mario_inventory(
 
 def _get_limit_items_to_dungeons(all_item_nodes):
     """
-    Returns a list of item nodes
+    Logically places progression items into their 'dungeons', then returns a
+    list of the affected item nodes, as well as lists for items places and items
+    overwritten in those nodes.
     """
     modified_nodes = []
     items_placed = []
@@ -409,7 +410,6 @@ def _get_limit_items_to_dungeons(all_item_nodes):
         "KPA": "KPA_60/4",
     }
 
-    print("LIMIT")
     for area_name in areas_to_limit:
         # Build small world graph only encompassing the current area
         area_nodes = get_area_nodes(area_name)
@@ -448,16 +448,11 @@ def _get_limit_items_to_dungeons(all_item_nodes):
         for edge in cur_area_graph.get(starting_node_id).get("edge_list"):
             non_traversable_edges.append(edge)
 
-        clear_inventory()
+        # Reset Mario's inventory
+        _init_mario_inventory(None, False, False)
         add_to_inventory([
-            "PARTNER_Goombario",
-            "PARTNER_Kooper",
-            "PARTNER_Bombette",
-            "PARTNER_Parakarry",
-            "PARTNER_Bow",
-            "PARTNER_Watt",
-            "PARTNER_Sushie",
-            "PARTNER_Lakilester"
+            "CrystalBerry",
+            "WaterStone"
         ])
 
         # Find initially reachable nodes
@@ -473,7 +468,6 @@ def _get_limit_items_to_dungeons(all_item_nodes):
                                       non_traversable_edges,
                                       limited_filled_item_nodes)
 
-        print("LIMIT TRY PLACING")
         successfully_placed = False
         while not successfully_placed:
             pool_progression_items_try = pool_progression_items.copy()
@@ -500,14 +494,11 @@ def _get_limit_items_to_dungeons(all_item_nodes):
             except IndexError:
                 # Items were placed in a way that makes the seed unbeatable,
                 # so we have to clear the lists and retry
-                print("LIMIT RESET")
                 cur_items_placed = []
                 cur_items_overwritten = []
 
         items_placed.extend(cur_items_placed)
-        print(cur_items_placed)
         items_overwritten.extend(cur_items_overwritten)
-        print(cur_items_overwritten)
     return modified_nodes, items_placed, items_overwritten
 
 
@@ -616,7 +607,6 @@ def _generate_item_pools(
                     pool_other_items.append(current_node.vanilla_item)
     
     for item in items_to_add_to_pools:
-        print(f"LIMIT should add {item}")
         if item.progression:
             pool_progression_items.append(item)
         else:
@@ -631,7 +621,6 @@ def _generate_item_pools(
 
     while items_to_remove_from_pools:
         item = items_to_remove_from_pools.pop()
-        print(f"LIMIT should remove {item}")
         if item in pool_progression_items:
             pool_progression_items.remove(item)
             continue
@@ -690,7 +679,6 @@ def place_progression_items(
         items_placed.append(random_item)
         items_overwritten.append(random_node.vanilla_item)
         filled_item_nodes.append(random_node)
-        print(f"{get_node_identifier(random_node)}: {random_item.item_name}")
 
         pool_misc_progression_items, \
         reachable_node_ids, \
@@ -755,9 +743,6 @@ def _algo_forward_fill(
         do_randomize_letterchain,
         keyitems_outside_dungeon
     )
-    #print(f"Size pool_progression_items: {len(pool_progression_items)}")
-    #print(f"Size pool_misc_progression_items: {len(pool_misc_progression_items)}")
-    #print(f"Size pool_other_items: {len(pool_other_items)}")
 
     print("Initialize Mario's starting inventory...")
     _init_mario_inventory(
@@ -803,7 +788,7 @@ def _algo_forward_fill(
     for item_node in all_item_nodes:
         if item_node.current_item and item_node not in filled_item_nodes:
             filled_item_nodes.append(item_node)
-            print(f"Pre-filled and unreachable: {get_node_identifier(item_node)}: {item_node.current_item.item_name}")
+            logging.debug(f"Pre-filled and unreachable: {get_node_identifier(item_node)}: {item_node.current_item.item_name}")
 
     # Place all remaining items into still empty item nodes
     print("Placing Miscellaneous Items ...")
@@ -817,19 +802,19 @@ def _algo_forward_fill(
                 random_item = pool_other_items.pop(random_item_id)
                 item_node.current_item = random_item
                 filled_item_nodes.append(item_node)
-                print(f"{get_node_identifier(item_node)}: {random_item.item_name}")
+                logging.debug(f"{get_node_identifier(item_node)}: {random_item.item_name}")
             except ValueError as err:
-                print(f"filled_item_nodes size: {len(filled_item_nodes)}")
-                print(f"pool_other_items size: {len(pool_other_items)}")
-                print(f"nodes left: {len([item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]])}")
+                logging.debug(f"filled_item_nodes size: {len(filled_item_nodes)}")
+                logging.debug(f"pool_other_items size: {len(pool_other_items)}")
+                logging.debug(f"nodes left: {len([item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]])}")
                 #raise
                 item_node.current_item = item_node.vanilla_item
-                print(f"{item_node_id}")
+                logging.debug(f"{item_node_id}")
 
     if has_item("YOUWIN"):
-        print("Beatable! Yay!")
+        print("Seed verification: Beatable! Yay!")
     else:
-        print("Not beatable! Booo!")
+        print("Seed verification: Not beatable! Booo!")
 
     # "Return" list of modified item nodes
     item_placement.extend(filled_item_nodes)
@@ -852,7 +837,6 @@ def place_items(
     keyitems_outside_dungeon:bool
 ):
     """Places items into item locations according to chosen settings."""
-    random.seed("jrtroopa")
     level = logging.DEBUG
     fmt = '[%(levelname)s] %(asctime)s - %(message)s'
     logging.basicConfig(level=level, format=fmt)

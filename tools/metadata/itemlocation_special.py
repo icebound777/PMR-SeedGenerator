@@ -83,6 +83,9 @@ limited_by_item_areas = {
         ],
         "misc": [
             "BubbleBerry",
+            "RedBerry",
+            "BlueBerry",
+            "YellowBerry"
         ]
     },
     # Chapter 7 Crystal Palace
