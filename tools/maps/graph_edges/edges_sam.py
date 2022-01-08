@@ -83,7 +83,7 @@ edges_sam = [
     
     {"from": {"map": "SAM_05", "id": 0},               "to": {"map": "SAM_05", "id": "ItemA"},         "reqs": []}, #* Path to Starborn Valley Exit West -> ItemA (Letter06)
     {"from": {"map": "SAM_05", "id": "ItemA"},         "to": {"map": "SAM_05", "id": 0},               "reqs": []}, #* ItemA (Letter06) -> Path to Starborn Valley Exit West
-    {"from": {"map": "SAM_05", "id": 0},               "to": {"map": "SAM_05", "id": "HiddenYBlockA"}, "reqs": [require(partner="PARTNER_Watt")]}, #* Path to Starborn Valley Exit West -> HiddenYBlockA (StopWatch)
+    {"from": {"map": "SAM_05", "id": 0},               "to": {"map": "SAM_05", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* Path to Starborn Valley Exit West -> HiddenYBlockA (StopWatch)
     {"from": {"map": "SAM_05", "id": "HiddenYBlockA"}, "to": {"map": "SAM_05", "id": 0},               "reqs": []}, #* HiddenYBlockA (StopWatch) -> Path to Starborn Valley Exit West
 
     # SAM_06 Starborn Valley
@@ -110,7 +110,7 @@ edges_sam = [
     {"from": {"map": "SAM_08", "id": 1}, "to": {"map": "SAM_08", "id": 0}, "reqs": []}, #? Shiver Mountain Hills Exit East -> Shiver Mountain Hills Exit West
     
     {"from": {"map": "SAM_08", "id": 1}, "to": {"map": "SAM_08", "id": 1}, "reqs": [require(hammer=0)], "pseudoitems": ["RF_DefeatedFirstDuplighost"]}, #+ Shiver Mountain Hills Exit East
-    {"from": {"map": "SAM_08", "id": 0}, "to": {"map": "SAM_08", "id": 0}, "reqs": [require(partner="PARTNER_Kooper"), require(hammer=0)], "pseudoitems": ["RF_DefeatedFirstDuplighost"]}, #+ Shiver Mountain Hills Exit East
+    {"from": {"map": "SAM_08", "id": 0}, "to": {"map": "SAM_08", "id": 0}, "reqs": [require(partner="Kooper"), require(hammer=0)], "pseudoitems": ["RF_DefeatedFirstDuplighost"]}, #+ Shiver Mountain Hills Exit East
 
     {"from": {"map": "SAM_08", "id": 0},       "to": {"map": "SAM_08", "id": "ItemA"}, "reqs": []}, #* Shiver Mountain Hills Exit West -> ItemA (Pebble)
     {"from": {"map": "SAM_08", "id": "ItemA"}, "to": {"map": "SAM_08", "id": 0},       "reqs": []}, #* ItemA (Pebble) -> Shiver Mountain Hills Exit West
@@ -136,7 +136,7 @@ edges_sam = [
     
     {"from": {"map": "SAM_10", "id": 0}, "to": {"map": "SAM_10", "id": 1}, "reqs": [require(item="StarStone")]}, #? Shiver Mountain Peaks Exit West -> Shiver Mountain Peaks Exit East
     {"from": {"map": "SAM_10", "id": 1}, "to": {"map": "SAM_10", "id": 0}, "reqs": []}, #? Shiver Mountain Peaks Exit East -> Shiver Mountain Peaks Exit West
-    {"from": {"map": "SAM_10", "id": 0}, "to": {"map": "SAM_10", "id": 2}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Shiver Mountain Peaks Exit West -> Shiver Mountain Peaks Bombable Wall
+    {"from": {"map": "SAM_10", "id": 0}, "to": {"map": "SAM_10", "id": 2}, "reqs": [require(partner="Bombette")]}, #? Shiver Mountain Peaks Exit West -> Shiver Mountain Peaks Bombable Wall
     {"from": {"map": "SAM_10", "id": 2}, "to": {"map": "SAM_10", "id": 0}, "reqs": []}, #? Shiver Mountain Peaks Bombable Wall -> Shiver Mountain Peaks Exit West
     
     {"from": {"map": "SAM_10", "id": 0},         "to": {"map": "SAM_10", "id": "RBlockA"}, "reqs": [require(item="StarStone")]}, #* Shiver Mountain Peaks Exit West -> RBlockA (MegaJump)
@@ -153,7 +153,7 @@ edges_sam = [
 
     {"from": {"map": "SAM_11", "id": 0}, "to": {"map": "SAM_11", "id": 0}, "reqs": [require(flag="RF_Ch7_MurderMysteryStarted"), require(item="WarehouseKey")], "pseudoitems": ["RF_Ch7_SpokeWithHerringway"]}, #+ Shiver City Pond Area Exit West
     
-    {"from": {"map": "SAM_11", "id": 0},       "to": {"map": "SAM_11", "id": "ItemA"}, "reqs": [require(partner="PARTNER_Bombette",boots=1), require(partner="PARTNER_Sushie"), require(flag="RF_Ch7_MurderMysteryStarted")]}, #* Shiver City Pond Area Exit West -> ItemA (WarehouseKey)
+    {"from": {"map": "SAM_11", "id": 0},       "to": {"map": "SAM_11", "id": "ItemA"}, "reqs": [require(partner="Bombette",boots=1), require(partner="Sushie"), require(flag="RF_Ch7_MurderMysteryStarted")]}, #* Shiver City Pond Area Exit West -> ItemA (WarehouseKey)
     {"from": {"map": "SAM_11", "id": "ItemA"}, "to": {"map": "SAM_11", "id": 0},       "reqs": []}, #* ItemA (WarehouseKey) -> Shiver City Pond Area Exit West
 
     # SAM_12 Merlar's Sanctuary

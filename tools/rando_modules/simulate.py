@@ -22,6 +22,8 @@ class Mario:
 
 def add_to_inventory(item_object):
     """Add something to Mario's inventory."""
+    all_partners = ["Goombario", "Kooper", "Bombette", "Parakarry",
+                    "Bow", "Watt", "Sushie", "Lakilester"]
     global mario
     # Overload: Single item -> Add item
     if isinstance(item_object, str):
@@ -33,7 +35,7 @@ def add_to_inventory(item_object):
             or item_object.startswith("RF")):
             mario.flags.append(item_object)
             is_new_pseudoitem = True
-        elif item_object.startswith("PARTNER") and item_object not in mario.partners:
+        elif item_object in all_partners and item_object not in mario.partners:
             mario.partners.append(item_object)
             is_new_pseudoitem = True
         elif item_object.startswith("FAVOR") and item_object not in mario.favors:
@@ -90,7 +92,7 @@ def can_shake_trees():
     * Bombette
     """
     global mario
-    return mario.hammer >= 0 or "PARTNER_Bombette" in mario.partners
+    return mario.hammer >= 0 or "Bombette" in mario.partners
 
 
 def has_item(item_str):

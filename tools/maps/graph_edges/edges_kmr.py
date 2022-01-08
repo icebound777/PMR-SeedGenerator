@@ -23,12 +23,14 @@ edges_kmr  = [
 
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "ItemA"       },  "reqs": []}, #* Goomba Village Exit Left -> ItemA (ShootingStar)
     {"from": {"map": "KMR_02", "id": "ItemA"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* ItemA (ShootingStar) -> Goomba Village Exit Left
-    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftA"       },  "reqs": [require(favor="favor_ch1_1")]}, #* Goomba Village Exit Left -> GiftA (KootTheTape)
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftA"       },  "reqs": [require(favor="FAVOR_2_01_active")]}, #* Goomba Village Exit Left -> GiftA (KootTheTape)
     {"from": {"map": "KMR_02", "id": "GiftA"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftA (KootTheTape) -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftB"       },  "reqs": []}, #* Goomba Village Exit Left -> GiftA (PowerJump)
     {"from": {"map": "KMR_02", "id": "GiftB"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftA (PowerJump) -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "Tree1_Drop1A"},  "reqs": [can_shake_trees]}, #* Goomba Village Exit Left -> Tree1_Drop1A (Goomnut)
     {"from": {"map": "KMR_02", "id": "Tree1_Drop1A"},  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* Tree1_Drop1A (Goomnut) -> Goomba Village Exit Left
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "Partner"     },  "reqs": [require(flag="RF_CanGetGoombario")]}, #* Goomba Village Exit Left -> Partner (Goombario)
+    {"from": {"map": "KMR_02", "id": "Partner"     },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* Partner (Goombario) -> Goomba Village Exit Left
 
     # KMR_05 Behind the Village
     {"from": {"map": "KMR_05", "id": 0},               "to": {"map": "KMR_03", "id": 1},               "reqs": []}, # Behind the Village Exit Left -> Bottom of the Cliff Exit Right
@@ -55,7 +57,7 @@ edges_kmr  = [
     {"from": {"map": "KMR_03", "id": "ItemF"},         "to": {"map": "KMR_03", "id": 0},               "reqs": []}, #* ItemF (Mushroom) -> Bottom of the Cliff Exit Left
     {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "HiddenPanel"},   "reqs": [can_flip_panels]}, #* Bottom of the Cliff Exit Right -> HiddenPanel (StarPiece)
     {"from": {"map": "KMR_03", "id": "HiddenPanel"},   "to": {"map": "KMR_03", "id": 1},               "reqs": []}, #* HiddenPanel (StarPiece) -> Bottom of the Cliff Exit Right
-    {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "HiddenYBlockA"}, "reqs": [require(hammer=1), require(partner="PARTNER_Watt")]}, #* Bottom of the Cliff Exit Right -> HiddenYBlockA (RepelGel)
+    {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "HiddenYBlockA"}, "reqs": [require(hammer=1), require(partner="Watt")]}, #* Bottom of the Cliff Exit Right -> HiddenYBlockA (RepelGel)
     {"from": {"map": "KMR_03", "id": "HiddenYBlockA"}, "to": {"map": "KMR_03", "id": 1},               "reqs": []}, #* HiddenYBlockA (RepelGel) -> Bottom of the Cliff Exit Right
     {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "ItemA"},         "reqs": []}, #* Bottom of the Cliff Exit Right -> ItemA (Coin)
     {"from": {"map": "KMR_03", "id": "ItemA"},         "to": {"map": "KMR_03", "id": 1},               "reqs": []}, #* ItemA (Coin) -> Bottom of the Cliff Exit Right
@@ -143,6 +145,6 @@ edges_kmr  = [
     # KMR_20 Mario's House
     {"from": {"map": "KMR_20", "id": 4}, "to": {"map": "MAC_00", "id": 4}, "reqs": []}, # Mario's House Green Pipe -> Gate District Top Green Pipe
 
-    {"from": {"map": "KMR_20", "id": 4},       "to": {"map": "KMR_20", "id": "GiftA"}, "reqs": [require(favor="FAVOR_Ch1_3")]}, #* Mario's House Green Pipe -> GiftA (KootLuigiAutograph)
+    {"from": {"map": "KMR_20", "id": 4},       "to": {"map": "KMR_20", "id": "GiftA"}, "reqs": [require(favor="FAVOR_2_03_active")]}, #* Mario's House Green Pipe -> GiftA (KootLuigiAutograph)
     {"from": {"map": "KMR_20", "id": "GiftA"}, "to": {"map": "KMR_20", "id": 4},       "reqs": []}, #* GiftA (KootLuigiAutograph) -> Mario's House Green Pipe
 ]

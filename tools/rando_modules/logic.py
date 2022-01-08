@@ -253,9 +253,9 @@ def _find_new_nodes_and_edges(
 
 
 def _init_mario_inventory(
-    starting_partners,
-    startwith_bluehouse_open,
-    startwith_flowergate_open
+    starting_partners:list,
+    startwith_bluehouse_open:bool,
+    startwith_flowergate_open:bool
 ):
     """
     Initializes Mario's starting inventory.
@@ -266,10 +266,30 @@ def _init_mario_inventory(
     starting coins) is ignored.
     """
     clear_inventory()
-    add_to_inventory(["PARTNER_Goombario","PARTNER_Kooper","PARTNER_Bombette",
-                      "PARTNER_Parakarry","PARTNER_Bow","PARTNER_Watt",
-                      "PARTNER_Sushie","PARTNER_Lakilester"])
-    # add_to_inventory(starting_partners) # the above are logic partners (abilities)
+    partner_gettable_flags = {
+        "Goombario": "RF_CanGetGoombario",
+        "Kooper": "RF_CanGetKooper",
+        "Bombette": "RF_CanGetBombette",
+        "Parakarry": "RF_CanGetParakarry",
+        "Bow": "RF_CanGetBow",
+        "Watt": "RF_CanGetWatt",
+        "Sushie": "RF_CanGetSushie",
+        "Lakilester": "RF_CanGetLakilester",
+    }
+
+    if starting_partners is None:
+        starting_partners = [
+            "Goombario","Kooper","Bombette","Parakarry","Bow","Watt",
+            "Sushie","Lakilester"
+        ]
+    add_to_inventory(starting_partners)
+    for partner in [x for x in partner_gettable_flags if x not in starting_partners]:
+        add_to_inventory(partner_gettable_flags.get(partner))
+    if "Bow" in starting_partners:
+        add_to_inventory("RF_OpenedGustyGulch")
+    if "Watt" in starting_partners:
+        add_to_inventory("RF_WattCanFight")
+
     add_to_inventory("EQUIPMENT_Hammer_Progressive")
 
     if startwith_bluehouse_open:
@@ -306,7 +326,7 @@ def _get_limit_items_to_dungeons(all_item_nodes):
             {
                 "from": {"map": "TRD_00", "id": 0},
                 "to":   {"map": "TRD_00", "id": 4},
-                "reqs": [require(partner="PARTNER_Bombette")]
+                "reqs": [require(partner="Bombette")]
             },
             # Fortress Exterior Exit Top Left
             # -> Fortress Exterior Exit Bottom Left
@@ -676,6 +696,8 @@ def place_progression_items(
         # inventory, then check for newly reachable item nodes
         random_node.current_item = random_item
         add_to_inventory(random_item.item_name)
+        if random_item.item_name == "Watt":
+            add_to_inventory("RF_WattCanFight")
         items_placed.append(random_item)
         items_overwritten.append(random_node.vanilla_item)
         filled_item_nodes.append(random_node)
@@ -837,7 +859,10 @@ def place_items(
     keyitems_outside_dungeon:bool
 ):
     """Places items into item locations according to chosen settings."""
-    level = logging.DEBUG
+    cur_seed = random.random()
+    #print(f"{cur_seed}")
+    random.seed(cur_seed)
+    level = logging.INFO
     fmt = '[%(levelname)s] %(asctime)s - %(message)s'
     logging.basicConfig(level=level, format=fmt)
 

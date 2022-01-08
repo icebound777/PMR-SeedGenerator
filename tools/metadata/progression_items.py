@@ -99,6 +99,14 @@ progression_items = {
     0x017A : "BowserCastleKeyC",
     0x017B : "BowserCastleKeyD",
     0x017C : "BowserCastleKeyE",
+    0x01C1 : "Goombario",
+    0x01C2 : "Kooper",
+    0x01C3 : "Bombette",
+    0x01C4 : "Parakarry",
+    0x01C6 : "Watt",
+    0x01C7 : "Sushie",
+    0x01C8 : "Lakilester",
+    0x01C9 : "Bow",
 }
     # 0x0030 calculator
     # 0x0078 ??
@@ -112,7 +120,7 @@ progression_miscitems = [
     "RedBerry",    # 0x009F (Red Flower Guard)
     "YellowBerry", # 0x00A0 (Yellow Flower Guard)
     "BubbleBerry", # 0x00A1 (BubbleFlower)
-    "GoomNut",     # 0x00A5 (Koopa Koot: NuttyCake from Tayce T.)
+    "Goomnut",     # 0x00A5 (Koopa Koot: NuttyCake from Tayce T.)
     "KoopaLeaf",   # 0x00A6 (Koopa Koot: KoopaTea from Tayce T.)
     "DriedPasta",  # 0x00A7 (Koopa Koot: +KoopaLeaf -> Koopasta from Tayce T.)
     "CakeMix",     # 0x00AA (Koopa Koot: +KoopaLeaf -> KookyCookie from Tayce T.)

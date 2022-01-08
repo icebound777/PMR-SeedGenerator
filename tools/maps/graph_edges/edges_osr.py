@@ -16,6 +16,6 @@ edges_osr = [
     {"from": {"map": "OSR_02", "id": 0}, "to": {"map": "OSR_02", "id": 1}, "reqs": []}, #? Hijacked Castle Entrance Door West -> Hijacked Castle Entrance Door North
     {"from": {"map": "OSR_02", "id": 1}, "to": {"map": "OSR_02", "id": 0}, "reqs": []}, #? Hijacked Castle Entrance Door North -> Hijacked Castle Entrance Door West
     
-    {"from": {"map": "OSR_02", "id": 0},               "to": {"map": "OSR_02", "id": "HiddenYBlockA"}, "reqs": [require(partner="PARTNER_Watt")]}, #* Hijacked Castle Entrance Door West -> HiddenYBlockA (UltraShroom)
+    {"from": {"map": "OSR_02", "id": 0},               "to": {"map": "OSR_02", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* Hijacked Castle Entrance Door West -> HiddenYBlockA (UltraShroom)
     {"from": {"map": "OSR_02", "id": "HiddenYBlockA"}, "to": {"map": "OSR_02", "id": 0},               "reqs": []}, #* HiddenYBlockA (UltraShroom) -> Hijacked Castle Entrance Door West
 ]

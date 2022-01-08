@@ -71,7 +71,7 @@ edges_pra = [
     {"from": {"map": "PRA_09", "id": 0}, "to": {"map": "PRA_03", "id": 2}, "reqs": []}, # Red Key Hall Door West -> Save Room Basement Door
     {"from": {"map": "PRA_09", "id": 1}, "to": {"map": "PRA_11", "id": 0}, "reqs": []}, # Red Key Hall Bombable Wall -> Red Key Room Bombable Wall
     
-    {"from": {"map": "PRA_09", "id": 0}, "to": {"map": "PRA_09", "id": 1}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Red Key Hall Door West -> Red Key Hall Bombable Wall
+    {"from": {"map": "PRA_09", "id": 0}, "to": {"map": "PRA_09", "id": 1}, "reqs": [require(partner="Bombette")]}, #? Red Key Hall Door West -> Red Key Hall Bombable Wall
     {"from": {"map": "PRA_09", "id": 1}, "to": {"map": "PRA_09", "id": 0}, "reqs": []}, #? Red Key Hall Bombable Wall -> Red Key Hall Door West
 
     # PRA_10 P-Down, D-Up Hall
@@ -99,17 +99,17 @@ edges_pra = [
     {"from": {"map": "PRA_13", "id": 2}, "to": {"map": "PRA_14", "id": 1}, "reqs": []}, # Blue Mirror Hall 1 Bombable Wall (Mirror Side) -> Blue Mirror Hall 2 Bombable Wall (Mirror Side)
     {"from": {"map": "PRA_13", "id": 3}, "to": {"map": "PRA_02", "id": 3}, "reqs": []}, # Blue Mirror Hall 1 Door West (Mirror Side) -> Entry Hall Blue/Red Door (Mirror Side)
     
-    {"from": {"map": "PRA_13", "id": 0}, "to": {"map": "PRA_13", "id": 1}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Blue Mirror Hall 1 Door West -> Blue Mirror Hall 1 Bombable Wall
+    {"from": {"map": "PRA_13", "id": 0}, "to": {"map": "PRA_13", "id": 1}, "reqs": [require(partner="Bombette")]}, #? Blue Mirror Hall 1 Door West -> Blue Mirror Hall 1 Bombable Wall
     {"from": {"map": "PRA_13", "id": 1}, "to": {"map": "PRA_13", "id": 0}, "reqs": []}, #? Blue Mirror Hall 1 Bombable Wall -> Blue Mirror Hall 1 Door West
-    {"from": {"map": "PRA_13", "id": 2}, "to": {"map": "PRA_13", "id": 3}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Blue Mirror Hall 1 Bombable Wall (Mirror Side) -> Blue Mirror Hall 1 Door West (Mirror Side)
+    {"from": {"map": "PRA_13", "id": 2}, "to": {"map": "PRA_13", "id": 3}, "reqs": [require(partner="Bombette")]}, #? Blue Mirror Hall 1 Bombable Wall (Mirror Side) -> Blue Mirror Hall 1 Door West (Mirror Side)
     {"from": {"map": "PRA_13", "id": 3}, "to": {"map": "PRA_13", "id": 2}, "reqs": []}, #? Blue Mirror Hall 1 Door West (Mirror Side) -> Blue Mirror Hall 1 Bombable Wall (Mirror Side)
 
     # PRA_14 Blue Mirror Hall 2
     {"from": {"map": "PRA_14", "id": 0}, "to": {"map": "PRA_13", "id": 1}, "reqs": []}, # Blue Mirror Hall 2 Bombable Wall -> Blue Mirror Hall 1 Bombable Wall
     {"from": {"map": "PRA_14", "id": 1}, "to": {"map": "PRA_13", "id": 2}, "reqs": []}, # Blue Mirror Hall 2 Bombable Wall (Mirror Side) -> Blue Mirror Hall 1 Bombable Wall (Mirror Side)
     
-    {"from": {"map": "PRA_14", "id": 0}, "to": {"map": "PRA_14", "id": 1}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Blue Mirror Hall 2 Bombable Wall -> Blue Mirror Hall 2 Bombable Wall (Mirror Side)
-    {"from": {"map": "PRA_14", "id": 1}, "to": {"map": "PRA_14", "id": 0}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Blue Mirror Hall 2 Bombable Wall (Mirror Side) -> Blue Mirror Hall 2 Bombable Wall
+    {"from": {"map": "PRA_14", "id": 0}, "to": {"map": "PRA_14", "id": 1}, "reqs": [require(partner="Bombette")]}, #? Blue Mirror Hall 2 Bombable Wall -> Blue Mirror Hall 2 Bombable Wall (Mirror Side)
+    {"from": {"map": "PRA_14", "id": 1}, "to": {"map": "PRA_14", "id": 0}, "reqs": [require(partner="Bombette")]}, #? Blue Mirror Hall 2 Bombable Wall (Mirror Side) -> Blue Mirror Hall 2 Bombable Wall
 
     # PRA_15 Star Piece Cave
     {"from": {"map": "PRA_15", "id": 0}, "to": {"map": "PRA_01", "id": 3}, "reqs": []}, # Star Piece Cave Cave Entrance -> Entrance Cave Entrance
@@ -144,7 +144,7 @@ edges_pra = [
     {"from": {"map": "PRA_19", "id": 0}, "to": {"map": "PRA_35", "id": 1}, "reqs": []}, # Reflection Mimic Room Door West -> Triple Dip Room Door East
     {"from": {"map": "PRA_19", "id": 1}, "to": {"map": "PRA_20", "id": 0}, "reqs": []}, # Reflection Mimic Room Bombable Wall -> Mirrored Door Room Bombable Wall
     
-    {"from": {"map": "PRA_19", "id": 0}, "to": {"map": "PRA_19", "id": 1}, "reqs": [require(partner="PARTNER_Kooper")]}, #? Reflection Mimic Room Door West -> Reflection Mimic Room Bombable Wall
+    {"from": {"map": "PRA_19", "id": 0}, "to": {"map": "PRA_19", "id": 1}, "reqs": [require(partner="Kooper")]}, #? Reflection Mimic Room Door West -> Reflection Mimic Room Bombable Wall
     {"from": {"map": "PRA_19", "id": 1}, "to": {"map": "PRA_19", "id": 0}, "reqs": []}, #? Reflection Mimic Room Bombable Wall -> Reflection Mimic Room Door West
 
     # PRA_20 Mirrored Door Room
@@ -184,7 +184,7 @@ edges_pra = [
     
     {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenPanel"},   "reqs": [can_flip_panels]}, #* Small Statue Room Door West -> HiddenPanel (StarPiece)
     {"from": {"map": "PRA_22", "id": "HiddenPanel"},   "to": {"map": "PRA_22", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> Small Statue Room Door West
-    {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenYBlockA"}, "reqs": [require(partner="PARTNER_Watt")]}, #* Small Statue Room Door West -> HiddenYBlockA (JamminJelly)
+    {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* Small Statue Room Door West -> HiddenYBlockA (JamminJelly)
     {"from": {"map": "PRA_22", "id": "HiddenYBlockA"}, "to": {"map": "PRA_22", "id": 0},               "reqs": []}, #* HiddenYBlockA (JamminJelly) -> Small Statue Room Door West
 
     # PRA_27 Palace Key Room
@@ -205,7 +205,7 @@ edges_pra = [
     {"from": {"map": "PRA_29", "id": 2}, "to": {"map": "PRA_34", "id": 3}, "reqs": []}, # Hidden Bridge Room Door East (Mirror Side) -> Mirror Hole Room Door West (Mirror Side)
     {"from": {"map": "PRA_29", "id": 3}, "to": {"map": "PRA_20", "id": 3}, "reqs": []}, # Hidden Bridge Room Door West (Mirror Side) -> Mirrored Door Room Door East (Mirror Side)
     
-    {"from": {"map": "PRA_29", "id": 0}, "to": {"map": "PRA_29", "id": 1}, "reqs": [require(partner="PARTNER_Kooper")]}, #? Hidden Bridge Room Door West -> Hidden Bridge Room Door East
+    {"from": {"map": "PRA_29", "id": 0}, "to": {"map": "PRA_29", "id": 1}, "reqs": [require(partner="Kooper")]}, #? Hidden Bridge Room Door West -> Hidden Bridge Room Door East
     {"from": {"map": "PRA_29", "id": 1}, "to": {"map": "PRA_29", "id": 0}, "reqs": []}, #? Hidden Bridge Room Door East -> Hidden Bridge Room Door West
     {"from": {"map": "PRA_29", "id": 2}, "to": {"map": "PRA_29", "id": 3}, "reqs": []}, #? Hidden Bridge Room Door East (Mirror Side) -> Hidden Bridge Room Door West (Mirror Side)
     {"from": {"map": "PRA_29", "id": 3}, "to": {"map": "PRA_29", "id": 2}, "reqs": []}, #? Hidden Bridge Room Door West (Mirror Side) -> Hidden Bridge Room Door East (Mirror Side)
@@ -228,9 +228,9 @@ edges_pra = [
     {"from": {"map": "PRA_33", "id": 1}, "to": {"map": "PRA_18", "id": 1}, "reqs": []}, # Turnstyle Room Door West -> Bridge Mirror Hall Door East (Mirror Side)
     {"from": {"map": "PRA_33", "id": 2}, "to": {"map": "PRA_35", "id": 2}, "reqs": []}, # Turnstyle Room Bombable Wall (Mirror Side) -> Triple Dip Room Bombable Wall (Mirror Side)
     
-    {"from": {"map": "PRA_33", "id": 0}, "to": {"map": "PRA_33", "id": 1}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Turnstyle Room Door East -> Turnstyle Room Door West
-    {"from": {"map": "PRA_33", "id": 1}, "to": {"map": "PRA_33", "id": 0}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Turnstyle Room Door West -> Turnstyle Room Door East
-    {"from": {"map": "PRA_33", "id": 1}, "to": {"map": "PRA_33", "id": 2}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Turnstyle Room Door West -> Turnstyle Room Bombable Wall (Mirror Side)
+    {"from": {"map": "PRA_33", "id": 0}, "to": {"map": "PRA_33", "id": 1}, "reqs": [require(partner="Bombette")]}, #? Turnstyle Room Door East -> Turnstyle Room Door West
+    {"from": {"map": "PRA_33", "id": 1}, "to": {"map": "PRA_33", "id": 0}, "reqs": [require(partner="Bombette")]}, #? Turnstyle Room Door West -> Turnstyle Room Door East
+    {"from": {"map": "PRA_33", "id": 1}, "to": {"map": "PRA_33", "id": 2}, "reqs": [require(partner="Bombette")]}, #? Turnstyle Room Door West -> Turnstyle Room Bombable Wall (Mirror Side)
     {"from": {"map": "PRA_33", "id": 2}, "to": {"map": "PRA_33", "id": 1}, "reqs": []}, #? Turnstyle Room Bombable Wall (Mirror Side) -> Turnstyle Room Door West
 
     # PRA_34 Mirror Hole Room
@@ -255,7 +255,7 @@ edges_pra = [
     {"from": {"map": "PRA_35", "id": 1}, "to": {"map": "PRA_35", "id": 0}, "reqs": []}, #? Triple Dip Room Door East -> Triple Dip Room Door West
     
     {"from": {"map": "PRA_35", "id": 2},        "to": {"map": "PRA_35", "id": "ChestA"}, "reqs": []}, #* Triple Dip Room Bombable Wall (Mirror Side) -> ChestA (TripleDip)
-    {"from": {"map": "PRA_35", "id": "ChestA"}, "to": {"map": "PRA_35", "id": 2},        "reqs": [require(partner="PARTNER_Bombette")]}, #* ChestA (TripleDip) -> Triple Dip Room Bombable Wall (Mirror Side)
+    {"from": {"map": "PRA_35", "id": "ChestA"}, "to": {"map": "PRA_35", "id": 2},        "reqs": [require(partner="Bombette")]}, #* ChestA (TripleDip) -> Triple Dip Room Bombable Wall (Mirror Side)
 
     # PRA_36 Palace Key Hall
     {"from": {"map": "PRA_36", "id": 0}, "to": {"map": "PRA_21", "id": 1}, "reqs": []}, # Palace Key Hall Door West -> Huge Statue Room Basement Door

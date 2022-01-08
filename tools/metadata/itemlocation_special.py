@@ -11,6 +11,26 @@ kootfavors_locations = [
     "NOK_02/GiftA", # KoopaLegends
     "NOK_02/GiftB", # Koopa Koot Reward SilverCredit
     "NOK_02/GiftC", # Koopa Koot Reward GoldCredit
+    "NOK_02/KootGift00", # Koopa Koot Reward Coin
+    "NOK_02/KootGift01", # Koopa Koot Reward Coin
+    "NOK_02/KootGift02", # Koopa Koot Reward Coin
+    "NOK_02/KootGift03", # Koopa Koot Reward StarPiecex3
+    "NOK_02/KootGift04", # Koopa Koot Reward Coin
+    "NOK_02/KootGift05", # Koopa Koot Reward Coin
+    "NOK_02/KootGift06", # Koopa Koot Reward Coin
+    "NOK_02/KootGift07", # Koopa Koot Reward StarPiecex3
+    "NOK_02/KootGift08", # Koopa Koot Reward Coin
+    "NOK_02/KootGift09", # Koopa Koot Reward Coin
+    "NOK_02/KootGift0A", # Koopa Koot Reward Coin
+    "NOK_02/KootGift0B", # Koopa Koot Reward StarPiecex3
+    "NOK_02/KootGift0C", # Koopa Koot Reward Coin
+    "NOK_02/KootGift0D", # Koopa Koot Reward Coin
+    "NOK_02/KootGift0E", # Koopa Koot Reward Coin
+    "NOK_02/KootGift0F", # Koopa Koot Reward StarPiecex3
+    "NOK_02/KootGift10", # Koopa Koot Reward Coin
+    "NOK_02/KootGift11", # Koopa Koot Reward Coin
+    "NOK_02/KootGift12", # Koopa Koot Reward Coin
+    "NOK_02/KootGift13", # Koopa Koot Reward StarPiecex3
     "HOS_06/GiftA", # KootMerluvleeAutograph
     "OBK_01/GiftA", # KootOldPhoto
     "KMR_20/GiftA", # KootLuigiAutograph

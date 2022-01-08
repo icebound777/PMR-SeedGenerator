@@ -81,7 +81,7 @@ class OptionSet:
         self.random_partners = False
         self.random_partners_min = 1
         self.random_partners_max = 1
-        self.starting_partners = ["PARTNER_Goombario"]
+        self.starting_partners = ["Goombario"]
         self.start_with_goombario = get_option_keyvalue_dict("StartWithGoombario")
         self.start_with_kooper = get_option_keyvalue_dict("StartWithKooper")
         self.start_with_bombette = get_option_keyvalue_dict("StartWithBombette")
@@ -256,7 +256,7 @@ class OptionSet:
             self.starting_partners.clear()
             for partner, start_with_partner in options_dict.get("StartWithPartners").get("value").items():
                 if start_with_partner:
-                    self.starting_partners.append(f"PARTNER_{partner}")
+                    self.starting_partners.append(partner)
                 if partner == "Goombario":
                     self.start_with_goombario["value"] = start_with_partner
                 elif partner == "Kooper":

@@ -73,7 +73,7 @@ edges_hos = [
     
     {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Merluvlee's House Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "HOS_06", "id": "HiddenPanel"}, "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "GiftA"},       "reqs": [require(favor="FAVOR_CH2_3"), require(item="CrystalBall")]}, #* Merluvlee's House Exit Left -> GiftA (KootMerluvleeAutograph)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "GiftA"},       "reqs": [require(favor="FAVOR_3_03_active"), require(item="CrystalBall")]}, #* Merluvlee's House Exit Left -> GiftA (KootMerluvleeAutograph)
     {"from": {"map": "HOS_06", "id": "GiftA"},       "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* GiftA (KootMerluvleeAutograph) -> Merluvlee's House Exit Left
     
     {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeA"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeA (AttackFXA)
@@ -107,7 +107,7 @@ edges_hos = [
     {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeO"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeO (PowerPlusA)
     {"from": {"map": "HOS_06", "id": "ShopBadgeO"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeO (PowerPlusA) -> Merluvlee's House Exit Left
 
-    {"from": {"map": "HOS_06", "id": 0}, "to": {"map": "HOS_06", "id": 0}, "reqs": [require(favor="FAVOR_CH2_3")], "pseudoitems": ["GF_HOS06_MerluvleeRequestedCrystalBall"]}, #+ Merluvlee's House Exit Left
+    {"from": {"map": "HOS_06", "id": 0}, "to": {"map": "HOS_06", "id": 0}, "reqs": [require(favor="FAVOR_3_03_active")], "pseudoitems": ["GF_HOS06_MerluvleeRequestedCrystalBall"]}, #+ Merluvlee's House Exit Left
 
     # HOS_20 Riding Star Ship Scene
     {"from": {"map": "HOS_20", "id": 0}, "to": {"map": "HOS_05", "id": 1}, "reqs": []}, # Riding Star Ship Scene Fly To Star Haven -> Star Sanctuary Fly Starship

@@ -104,7 +104,13 @@ def create_nodes():
                     key_name_price = price_data["name"]
 
         print(f"map_name={data['map_name']}, name={data['name']}")
-        item_source_type = item_source_types.get(data["map_name"]).get(data["name"])
+        try:
+            item_source_type = item_source_types.get(data["map_name"]).get(data["name"])
+            if item_source_type is None:
+                raise AttributeError
+        except AttributeError as err:
+            print(f"{err.args}: No item source type for {data['map_name']}/{data['name']}!")
+            raise
 
         node, created = Node.get_or_create(
             map_area = map_area,

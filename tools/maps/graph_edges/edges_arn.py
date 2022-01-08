@@ -9,7 +9,7 @@ edges_arn = [
     {"from": {"map": "ARN_02", "id": 0}, "to": {"map": "ARN_02", "id": 1}, "reqs": []}, #? Wasteland Ascent 1 Exit West -> Wasteland Ascent 1 Exit East
     {"from": {"map": "ARN_02", "id": 1}, "to": {"map": "ARN_02", "id": 0}, "reqs": []}, #? Wasteland Ascent 1 Exit East -> Wasteland Ascent 1 Exit West
     
-    {"from": {"map": "ARN_02", "id": 0},         "to": {"map": "ARN_02", "id": "ItemA"},   "reqs": [require(partner="PARTNER_Kooper")]}, #* Wasteland Ascent 1 Exit West -> ItemA (DizzyDial)
+    {"from": {"map": "ARN_02", "id": 0},         "to": {"map": "ARN_02", "id": "ItemA"},   "reqs": [require(partner="Kooper")]}, #* Wasteland Ascent 1 Exit West -> ItemA (DizzyDial)
     {"from": {"map": "ARN_02", "id": "ItemA"},   "to": {"map": "ARN_02", "id": 0},         "reqs": []}, #* ItemA (DizzyDial) -> Wasteland Ascent 1 Exit West
     {"from": {"map": "ARN_02", "id": 0},         "to": {"map": "ARN_02", "id": "ItemB"},   "reqs": []}, #* Wasteland Ascent 1 Exit West -> ItemB (Letter07)
     {"from": {"map": "ARN_02", "id": "ItemB"},   "to": {"map": "ARN_02", "id": 0},         "reqs": []}, #* ItemB (Letter07) -> Wasteland Ascent 1 Exit West
@@ -27,7 +27,7 @@ edges_arn = [
     {"from": {"map": "ARN_03", "id": 0}, "to": {"map": "ARN_03", "id": 1}, "reqs": []}, #? Ghost Town 1 Exit West -> Ghost Town 1 Exit East
     {"from": {"map": "ARN_03", "id": 1}, "to": {"map": "ARN_03", "id": 0}, "reqs": []}, #? Ghost Town 1 Exit East -> Ghost Town 1 Exit West
     
-    {"from": {"map": "ARN_03", "id": 0},         "to": {"map": "ARN_03", "id": "GiftA"},   "reqs": [require(favor="FAVOR_CH6_1")]}, #* Ghost Town 1 Exit West -> GiftA (KootPackage)
+    {"from": {"map": "ARN_03", "id": 0},         "to": {"map": "ARN_03", "id": "GiftA"},   "reqs": [require(favor="FAVOR_7_01_active")]}, #* Ghost Town 1 Exit West -> GiftA (KootPackage)
     {"from": {"map": "ARN_03", "id": "GiftA"},   "to": {"map": "ARN_03", "id": 0},         "reqs": []}, #* GiftA (KootPackage) -> Ghost Town 1 Exit West
     {"from": {"map": "ARN_03", "id": 0},         "to": {"map": "ARN_03", "id": "YBlockA"}, "reqs": []}, #* Ghost Town 1 Exit West -> YBlockA (Coin)
     {"from": {"map": "ARN_03", "id": "YBlockA"}, "to": {"map": "ARN_03", "id": 0},         "reqs": []}, #* YBlockA (Coin) -> Ghost Town 1 Exit West
@@ -36,7 +36,7 @@ edges_arn = [
     {"from": {"map": "ARN_04", "id": 0}, "to": {"map": "ARN_02", "id": 1}, "reqs": []}, # Wasteland Ascent 2 Exit West -> Wasteland Ascent 1 Exit East
     {"from": {"map": "ARN_04", "id": 1}, "to": {"map": "DGB_00", "id": 0}, "reqs": []}, # Wasteland Ascent 2 Exit East -> Escape Scene Exit West
     
-    {"from": {"map": "ARN_04", "id": 0}, "to": {"map": "ARN_04", "id": 1}, "reqs": [require(partner="PARTNER_Parakarry")]}, #? Wasteland Ascent 2 Exit West -> Wasteland Ascent 2 Exit East
+    {"from": {"map": "ARN_04", "id": 0}, "to": {"map": "ARN_04", "id": 1}, "reqs": [require(partner="Parakarry")]}, #? Wasteland Ascent 2 Exit West -> Wasteland Ascent 2 Exit East
     {"from": {"map": "ARN_04", "id": 1}, "to": {"map": "ARN_04", "id": 0}, "reqs": []}, #? Wasteland Ascent 2 Exit East -> Wasteland Ascent 2 Exit West
     
     {"from": {"map": "ARN_04", "id": 1},         "to": {"map": "ARN_04", "id": "ItemA"},   "reqs": []}, #* Wasteland Ascent 2 Exit East -> ItemA (StarPiece)

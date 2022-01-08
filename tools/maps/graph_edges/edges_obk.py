@@ -1,3 +1,4 @@
+import re
 from rando_modules.simulate import *
 
 """This file represents all edges of the world graph that have origin-nodes in the OBK (Boo's Mansion) area."""
@@ -24,7 +25,7 @@ edges_obk = [
     {"from": {"map": "OBK_01", "id": 5}, "to": {"map": "OBK_01", "id": 6}, "reqs": []}, #? Foyer Third Floor Door West -> Foyer Third Floor Door East
     {"from": {"map": "OBK_01", "id": 6}, "to": {"map": "OBK_01", "id": 5}, "reqs": []}, #? Foyer Third Floor Door East -> Foyer Third Floor Door West
     
-    {"from": {"map": "OBK_01", "id": 0},             "to": {"map": "OBK_01", "id": "GiftA"},       "reqs": [require(favor="FAVOR_CH4_2")]}, #* Foyer Front Door -> GiftA (KootOldPhoto)
+    {"from": {"map": "OBK_01", "id": 0},             "to": {"map": "OBK_01", "id": "GiftA"},       "reqs": [require(favor="FAVOR_5_02_active")]}, #* Foyer Front Door -> GiftA (KootOldPhoto)
     {"from": {"map": "OBK_01", "id": "GiftA"},       "to": {"map": "OBK_01", "id": 0},             "reqs": []}, #* GiftA (KootOldPhoto) -> Foyer Front Door
     {"from": {"map": "OBK_01", "id": 0},             "to": {"map": "OBK_01", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Foyer Front Door -> HiddenPanel (StarPiece)
     {"from": {"map": "OBK_01", "id": "HiddenPanel"}, "to": {"map": "OBK_01", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Foyer Front Door
@@ -36,7 +37,7 @@ edges_obk = [
     
     {"from": {"map": "OBK_02", "id": 0}, "to": {"map": "OBK_02", "id": 1}, "reqs": []}, #? Basement Stairs Upper Door -> Basement Stairs Lower Door South
     {"from": {"map": "OBK_02", "id": 1}, "to": {"map": "OBK_02", "id": 0}, "reqs": []}, #? Basement Stairs Lower Door South -> Basement Stairs Upper Door
-    {"from": {"map": "OBK_02", "id": 0}, "to": {"map": "OBK_02", "id": 2}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Basement Stairs Upper Door -> Basement Stairs Bombable Wall
+    {"from": {"map": "OBK_02", "id": 0}, "to": {"map": "OBK_02", "id": 2}, "reqs": [require(partner="Bombette")]}, #? Basement Stairs Upper Door -> Basement Stairs Bombable Wall
     {"from": {"map": "OBK_02", "id": 2}, "to": {"map": "OBK_02", "id": 0}, "reqs": []}, #? Basement Stairs Bombable Wall -> Basement Stairs Upper Door
     
     {"from": {"map": "OBK_02", "id": 0},             "to": {"map": "OBK_02", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Basement Stairs Upper Door -> HiddenPanel (StarPiece)
@@ -99,12 +100,12 @@ edges_obk = [
     {"from": {"map": "OBK_06", "id": 0}, "to": {"map": None, "id": None},  "reqs": []}, # Library Fall From Ceiling
     {"from": {"map": "OBK_06", "id": 1}, "to": {"map": "OBK_02", "id": 2}, "reqs": []}, # Library Bombable Wall -> Basement Stairs Bombable Wall
     
-    {"from": {"map": "OBK_06", "id": 0}, "to": {"map": "OBK_06", "id": 1}, "reqs": [require(partner="PARTNER_Bombette")]}, #? Library Fall From Ceiling -> Library Bombable Wall
+    {"from": {"map": "OBK_06", "id": 0}, "to": {"map": "OBK_06", "id": 1}, "reqs": [require(partner="Bombette")]}, #? Library Fall From Ceiling -> Library Bombable Wall
     
     {"from": {"map": "OBK_06", "id": 0},        "to": {"map": "OBK_06", "id": "CrateA"}, "reqs": [require(boots=1)]}, #* Library Fall From Ceiling -> CrateA (StarPiece)
-    {"from": {"map": "OBK_06", "id": "CrateA"}, "to": {"map": "OBK_06", "id": 1},        "reqs": [require(partner="PARTNER_Bombette")]}, #* CrateA (StarPiece) -> Library Bombable Wall
-    {"from": {"map": "OBK_06", "id": 0},        "to": {"map": "OBK_06", "id": "ItemA"},  "reqs": [require(partner="PARTNER_Parakarry")]}, #* Library Fall From Ceiling -> ItemA (BooPortrait)
-    {"from": {"map": "OBK_06", "id": "ItemA"},  "to": {"map": "OBK_06", "id": 0},        "reqs": [require(partner="PARTNER_Parakarry")]}, #* ItemA (BooPortrait) -> Library Fall From Ceiling
+    {"from": {"map": "OBK_06", "id": "CrateA"}, "to": {"map": "OBK_06", "id": 1},        "reqs": [require(partner="Bombette")]}, #* CrateA (StarPiece) -> Library Bombable Wall
+    {"from": {"map": "OBK_06", "id": 0},        "to": {"map": "OBK_06", "id": "ItemA"},  "reqs": [require(partner="Parakarry")]}, #* Library Fall From Ceiling -> ItemA (BooPortrait)
+    {"from": {"map": "OBK_06", "id": "ItemA"},  "to": {"map": "OBK_06", "id": 0},        "reqs": [require(partner="Parakarry")]}, #* ItemA (BooPortrait) -> Library Fall From Ceiling
 
     # OBK_07 Record Player Room
     {"from": {"map": "OBK_07", "id": 0}, "to": {"map": "OBK_01", "id": 3}, "reqs": []}, # Record Player Room Door South -> Foyer Upper Door West
@@ -127,5 +128,8 @@ edges_obk = [
     {"from": {"map": "OBK_09", "id": 0}, "to": {"map": "OBK_09", "id": 1}, "reqs": []}, #? Lady Bow's Room Door South West -> Lady Bow's Room Door South East
     {"from": {"map": "OBK_09", "id": 1}, "to": {"map": "OBK_09", "id": 0}, "reqs": []}, #? Lady Bow's Room Door South East -> Lady Bow's Room Door South West
 
-    {"from": {"map": "OBK_09", "id": 0}, "to": {"map": "OBK_09", "id": 0}, "reqs": [], "pseudoitems": ["PARTNER_Bow", "RF_OpenedGustyGulch"]}, #+ Lady Bow's Room Door South West
+    {"from": {"map": "OBK_09", "id": 0},         "to": {"map": "OBK_09", "id": "Partner"}, "reqs": [require(flag="RF_CanGetBow")]}, #* Lady Bow's Room Door South West -> Partner (Bow)
+    {"from": {"map": "OBK_09", "id": "Partner"}, "to": {"map": "OBK_09", "id": 0},         "reqs": []}, #* Partner (Bow) -> Lady Bow's Room Door South West
+
+    {"from": {"map": "OBK_09", "id": 0},         "to": {"map": "OBK_09", "id": 0}, "reqs": [require(flag="RF_CanGetBow")], "pseudoitems": ["RF_OpenedGustyGulch"]}, #+ Lady Bow's Room Door South West
 ]
