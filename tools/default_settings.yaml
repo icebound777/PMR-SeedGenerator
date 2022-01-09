@@ -37,12 +37,12 @@ ShuffleItems          : true
 IncludeCoins          : false
 IncludeShops          : true
 IncludePanels         : true
-IncludeFavors         : true # Koopa Koot Favors
-IncludeLetterChain    : false
-KeyitemsOutsideDungeon: false # false -> NYI
+IncludeFavors         : false # Koopa Koot Favors
+IncludeLetterChain    : false # true -> NYI
+KeyitemsOutsideDungeon: false
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
-# Moves and Badges
+# Randomization: Moves and Badges
 ShuffleBadgesBP: false
 ShuffleBadgesFP: false
 ShufflePartnerFP: false
@@ -61,9 +61,10 @@ RandomQuiz: true
 SkipQuiz  : false
 
 # Randomization: Partner
-StartWithRandomPartners: false # NYI
-RandomPartnersMin      : 1     # NYI
-RandomPartnersMax      : 8     # NYI
+PartnersInDefaultLocations: true
+StartWithRandomPartners   : false # NYI
+RandomPartnersMin         : 1     # NYI
+RandomPartnersMax         : 8     # NYI
 StartWithPartners: { # ignored if StartWithRandomPartners true
     Goombario : true,
     Kooper    : false,

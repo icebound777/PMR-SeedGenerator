@@ -78,6 +78,7 @@ class OptionSet:
         self.unpaired_entrances = False # NYI
 
         # Partner related
+        self.partners_in_default_locations = True
         self.random_partners = False
         self.random_partners_min = 1
         self.random_partners_max = 1
@@ -246,6 +247,8 @@ class OptionSet:
             self.unpaired_entrances = options_dict.get("UnpairedEntrances").get("value")
 
         # Partner related
+        if "PartnersInDefaultLocations" in options_dict:
+            self.partners_in_default_locations = options_dict.get("PartnersInDefaultLocations").get("value")
         if "StartWithRandomPartners" in options_dict:
             self.random_partners = options_dict.get("StartWithRandomPartners").get("value")
         if "RandomPartnersMin" in options_dict:
@@ -439,6 +442,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("UnpairedEntrances").get("value"), bool)
 
     # Partner related
+    if "PartnersInDefaultLocations" in options_dict:
+        assert isinstance(options_dict.get("PartnersInDefaultLocations").get("value"), bool)
     if "StartWithRandomPartners" in options_dict:
         assert isinstance(options_dict.get("StartWithRandomPartners").get("value"), bool)
     if "RandomPartnersMin" in options_dict:

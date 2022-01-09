@@ -228,6 +228,8 @@ def _find_new_nodes_and_edges(
             if current_item and item_node not in filled_item_nodes:
                 current_item_name = current_item.item_name
                 add_to_inventory(current_item_name)
+                if current_item.item_name == "Watt":
+                    add_to_inventory("RF_WattCanFight")
                 found_new_items = True
 
                 # Special case: Item location is replenishable, holds a misc.
@@ -277,11 +279,6 @@ def _init_mario_inventory(
         "Lakilester": "RF_CanGetLakilester",
     }
 
-    if starting_partners is None:
-        starting_partners = [
-            "Goombario","Kooper","Bombette","Parakarry","Bow","Watt",
-            "Sushie","Lakilester"
-        ]
     add_to_inventory(starting_partners)
     for partner in [x for x in partner_gettable_flags if x not in starting_partners]:
         add_to_inventory(partner_gettable_flags.get(partner))
@@ -298,7 +295,7 @@ def _init_mario_inventory(
         add_to_inventory("RF_Ch6_FlowerGateOpen")
 
 
-def _get_limit_items_to_dungeons(all_item_nodes):
+def _get_limit_items_to_dungeons(all_item_nodes, partners_in_default_locations):
     """
     Logically places progression items into their 'dungeons', then returns a
     list of the affected item nodes, as well as lists for items places and items
@@ -430,6 +427,25 @@ def _get_limit_items_to_dungeons(all_item_nodes):
         "KPA": "KPA_60/4",
     }
 
+    all_partners = [
+        "Goombario",
+        "Kooper",
+        "Bombette",
+        "Parakarry",
+        "Bow",
+        "Watt",
+        "Sushie",
+        "Lakilester"
+    ]
+
+    # If partners are forced into their default locations, then we have to
+    # place key items with those partners considered unavailable
+    exclude_starting_partners = {
+        "TRD": "Bombette",
+        "OMO": "Watt",
+        "FLO": "Lakilester"
+    }
+
     for area_name in areas_to_limit:
         # Build small world graph only encompassing the current area
         area_nodes = get_area_nodes(area_name)
@@ -440,6 +456,12 @@ def _get_limit_items_to_dungeons(all_item_nodes):
             cleaned_area_edges = [x for x in area_edges if x not in remove_edges.get(area_name)]
             area_edges = cleaned_area_edges
         cur_area_graph = generate_world_graph(area_nodes,area_edges)
+        if partners_in_default_locations and area_name in exclude_starting_partners:
+            # place partners manually into their nodes, so they can be found
+            # by the _find_new_nodes_and_edges call and added to inventory
+            for node_id in cur_area_graph:
+                if cur_area_graph.get(node_id).get("node").key_name_item == "Partner":
+                    cur_area_graph[node_id]["node"].current_item = cur_area_graph[node_id]["node"].vanilla_item
 
         # Prepare data structures
         pool_progression_items = []
@@ -469,7 +491,11 @@ def _get_limit_items_to_dungeons(all_item_nodes):
             non_traversable_edges.append(edge)
 
         # Reset Mario's inventory
-        _init_mario_inventory(None, False, False)
+        if partners_in_default_locations:
+            almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name)]
+            _init_mario_inventory(almost_all_partners, False, False)
+        else:
+            _init_mario_inventory(all_partners, False, False)
         add_to_inventory([
             "CrystalBerry",
             "WaterStone"
@@ -533,7 +559,8 @@ def _generate_item_pools(
     do_randomize_panels:bool,
     do_randomize_koopakoot:bool,
     do_randomize_letterchain:bool,
-    keyitems_outside_dungeon:bool
+    keyitems_outside_dungeon:bool,
+    partners_in_default_locations:bool
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -588,6 +615,13 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
+            if (    current_node.key_name_item == "Partner"
+                and partners_in_default_locations
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
     # Pre-fill 'dungeon' nodes if keyitems are limited to there
     items_to_remove_from_pools = []
     items_to_add_to_pools = []
@@ -596,7 +630,10 @@ def _generate_item_pools(
     if not keyitems_outside_dungeon:
         pre_filled_nodes,\
             items_to_remove_from_pools,\
-            items_to_add_to_pools = _get_limit_items_to_dungeons(all_item_nodes)
+            items_to_add_to_pools = _get_limit_items_to_dungeons(
+                    all_item_nodes,
+                    partners_in_default_locations
+                )
         for node in pre_filled_nodes:
             pre_filled_node_ids.append(get_node_identifier(node))
 
@@ -732,6 +769,7 @@ def _algo_forward_fill(
     startwith_bluehouse_open,
     startwith_flowergate_open,
     starting_partners,
+    partners_in_default_locations,
     keyitems_outside_dungeon:bool
 ):
     # Prepare world graph
@@ -763,7 +801,8 @@ def _algo_forward_fill(
         do_randomize_panels,
         do_randomize_koopakoot,
         do_randomize_letterchain,
-        keyitems_outside_dungeon
+        keyitems_outside_dungeon,
+        partners_in_default_locations
     )
 
     print("Initialize Mario's starting inventory...")
@@ -856,15 +895,18 @@ def place_items(
     startwith_bluehouse_open,
     startwith_flowergate_open,
     starting_partners,
+    partners_in_default_locations,
     keyitems_outside_dungeon:bool
 ):
     """Places items into item locations according to chosen settings."""
-    cur_seed = random.random()
-    #print(f"{cur_seed}")
-    random.seed(cur_seed)
     level = logging.INFO
     fmt = '[%(levelname)s] %(asctime)s - %(message)s'
     logging.basicConfig(level=level, format=fmt)
+
+    cur_seed = random.random()
+    if level == logging.DEBUG:
+        print(f"{cur_seed}")
+    random.seed(cur_seed)
 
     if algorithm == "CustomSeed":
         # Place items according to custom seed
@@ -890,6 +932,7 @@ def place_items(
             startwith_bluehouse_open,
             startwith_flowergate_open,
             starting_partners,
+            partners_in_default_locations,
             keyitems_outside_dungeon
         )
 

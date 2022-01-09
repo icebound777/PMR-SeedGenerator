@@ -88,6 +88,8 @@ limited_by_item_areas = {
     "OMO": {
         "keys": [
             "ToyTrain",
+            "Dictionary",
+            "MysteryNote"
         ],
         "misc": [
             "Cake",
