@@ -228,8 +228,6 @@ def _find_new_nodes_and_edges(
             if current_item and item_node not in filled_item_nodes:
                 current_item_name = current_item.item_name
                 add_to_inventory(current_item_name)
-                if current_item.item_name == "Watt":
-                    add_to_inventory("RF_WattCanFight")
                 found_new_items = True
 
                 # Special case: Item location is replenishable, holds a misc.
@@ -284,8 +282,6 @@ def _init_mario_inventory(
         add_to_inventory(partner_gettable_flags.get(partner))
     if "Bow" in starting_partners:
         add_to_inventory("RF_OpenedGustyGulch")
-    if "Watt" in starting_partners:
-        add_to_inventory("RF_WattCanFight")
 
     add_to_inventory("EQUIPMENT_Hammer_Progressive")
 
@@ -733,8 +729,6 @@ def place_progression_items(
         # inventory, then check for newly reachable item nodes
         random_node.current_item = random_item
         add_to_inventory(random_item.item_name)
-        if random_item.item_name == "Watt":
-            add_to_inventory("RF_WattCanFight")
         items_placed.append(random_item)
         items_overwritten.append(random_node.vanilla_item)
         filled_item_nodes.append(random_node)
