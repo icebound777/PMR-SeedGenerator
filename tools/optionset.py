@@ -34,6 +34,8 @@ class OptionSet:
         self.random_quiz = get_option_keyvalue_dict("RandomQuiz")
         self.shuffle_chapter_difficulty = False
         self.random_formations = get_option_keyvalue_dict("RandomFormations")
+        self.toybox_open = get_option_keyvalue_dict("ToyboxOpen")
+        self.whale_open = get_option_keyvalue_dict("WhaleOpen")
 
         # Starting setup
         self.starting_map = get_option_keyvalue_dict("StartingMap") # mac_00 Entry 4
@@ -79,6 +81,7 @@ class OptionSet:
 
         # Partner related
         self.partners_in_default_locations = True
+        self.partners_always_usable = get_option_keyvalue_dict("PartnersAlwaysUsable")
         self.random_partners = False
         self.random_partners_min = 1
         self.random_partners_max = 1
@@ -170,6 +173,10 @@ class OptionSet:
             self.shuffle_chapter_difficulty = options_dict.get("ShuffleChapterDifficulty").get("value")
         if "RandomFormations" in options_dict:
             self.random_formations = options_dict.get("RandomFormations")
+        if "ToyboxOpen" in options_dict:
+            self.toybox_open = options_dict.get("ToyboxOpen")
+        if "WhaleOpen" in options_dict:
+            self.whale_open = options_dict.get("WhaleOpen")
 
         # Starting setup
         if "StartingMap" in options_dict:
@@ -249,6 +256,8 @@ class OptionSet:
         # Partner related
         if "PartnersInDefaultLocations" in options_dict:
             self.partners_in_default_locations = options_dict.get("PartnersInDefaultLocations").get("value")
+        if "PartnersAlwaysUsable" in options_dict:
+            self.partners_always_usable = options_dict.get("PartnersAlwaysUsable")
         if "StartWithRandomPartners" in options_dict:
             self.random_partners = options_dict.get("StartWithRandomPartners").get("value")
         if "RandomPartnersMin" in options_dict:
@@ -352,6 +361,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("ShuffleChapterDifficulty").get("value"), bool)
     if "RandomFormations" in options_dict:
         assert isinstance(options_dict.get("RandomFormations").get("value"), bool)
+    if "ToyboxOpen" in options_dict:
+        assert isinstance(options_dict.get("ToyboxOpen").get("value"), bool)
+    if "WhaleOpen" in options_dict:
+        assert isinstance(options_dict.get("WhaleOpen").get("value"), bool)
 
     # Starting setup
     if "StartingMap" in options_dict:
@@ -444,6 +457,8 @@ def validate_options(options_dict):
     # Partner related
     if "PartnersInDefaultLocations" in options_dict:
         assert isinstance(options_dict.get("PartnersInDefaultLocations").get("value"), bool)
+    if "PartnersAlwaysUsable" in options_dict:
+        assert isinstance(options_dict.get("PartnersAlwaysUsable").get("value"), bool)
     if "StartWithRandomPartners" in options_dict:
         assert isinstance(options_dict.get("StartWithRandomPartners").get("value"), bool)
     if "RandomPartnersMin" in options_dict:

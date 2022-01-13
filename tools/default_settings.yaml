@@ -18,6 +18,8 @@ OHKO        : false
 # Pre-opened areas
 FlowerGateOpen: false
 BlueHouseOpen : false
+ToyboxOpen    : true
+WhaleOpen     : true
 
 # Randomization: Logic
 PlacementAlgorithm: ForwardFill
@@ -62,6 +64,7 @@ SkipQuiz  : false
 
 # Randomization: Partner
 PartnersInDefaultLocations: true
+PartnersAlwaysUsable      : true
 StartWithRandomPartners   : false # NYI
 RandomPartnersMin         : 1     # NYI
 RandomPartnersMax         : 8     # NYI

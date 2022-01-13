@@ -254,8 +254,11 @@ def _find_new_nodes_and_edges(
 
 def _init_mario_inventory(
     starting_partners:list,
+    partners_always_usable:bool,
     startwith_bluehouse_open:bool,
-    startwith_flowergate_open:bool
+    startwith_flowergate_open:bool,
+    startwith_toybox_open:bool,
+    startwith_whale_open:bool
 ):
     """
     Initializes Mario's starting inventory.
@@ -277,7 +280,11 @@ def _init_mario_inventory(
         "Lakilester": "RF_CanGetLakilester",
     }
 
-    add_to_inventory(starting_partners)
+    if partners_always_usable:
+        for partner in partner_gettable_flags.keys():
+            add_to_inventory(partner)
+    else:
+        add_to_inventory(starting_partners)
     for partner in [x for x in partner_gettable_flags if x not in starting_partners]:
         add_to_inventory(partner_gettable_flags.get(partner))
     if "Bow" in starting_partners:
@@ -289,9 +296,17 @@ def _init_mario_inventory(
         add_to_inventory("GF_MAC02_UnlockedHouse")
     if startwith_flowergate_open:
         add_to_inventory("RF_Ch6_FlowerGateOpen")
+    if startwith_toybox_open:
+        add_to_inventory("RF_ToyboxOpen")
+    if startwith_whale_open:
+        add_to_inventory("RF_CanRideWhale")
 
 
-def _get_limit_items_to_dungeons(all_item_nodes, partners_in_default_locations):
+def _get_limit_items_to_dungeons(
+    all_item_nodes,
+    partners_always_usable:bool,
+    partners_in_default_locations
+):
     """
     Logically places progression items into their 'dungeons', then returns a
     list of the affected item nodes, as well as lists for items places and items
@@ -489,9 +504,9 @@ def _get_limit_items_to_dungeons(all_item_nodes, partners_in_default_locations):
         # Reset Mario's inventory
         if partners_in_default_locations:
             almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name)]
-            _init_mario_inventory(almost_all_partners, False, False)
+            _init_mario_inventory(almost_all_partners, partners_always_usable, False, False, False, False)
         else:
-            _init_mario_inventory(all_partners, False, False)
+            _init_mario_inventory(all_partners, partners_always_usable, False, False, False, False)
         add_to_inventory([
             "CrystalBerry",
             "WaterStone"
@@ -556,6 +571,7 @@ def _generate_item_pools(
     do_randomize_koopakoot:bool,
     do_randomize_letterchain:bool,
     keyitems_outside_dungeon:bool,
+    partners_always_usable:bool,
     partners_in_default_locations:bool
 ):
     """
@@ -628,6 +644,7 @@ def _generate_item_pools(
             items_to_remove_from_pools,\
             items_to_add_to_pools = _get_limit_items_to_dungeons(
                     all_item_nodes,
+                    partners_always_usable,
                     partners_in_default_locations
                 )
         for node in pre_filled_nodes:
@@ -762,7 +779,10 @@ def _algo_forward_fill(
     starting_map_id,
     startwith_bluehouse_open,
     startwith_flowergate_open,
+    startwith_toybox_open,
+    startwith_whale_open,
     starting_partners,
+    partners_always_usable,
     partners_in_default_locations,
     keyitems_outside_dungeon:bool
 ):
@@ -796,14 +816,18 @@ def _algo_forward_fill(
         do_randomize_koopakoot,
         do_randomize_letterchain,
         keyitems_outside_dungeon,
+        partners_always_usable,
         partners_in_default_locations
     )
 
     print("Initialize Mario's starting inventory...")
     _init_mario_inventory(
         starting_partners,
+        partners_always_usable,
         startwith_bluehouse_open,
-        startwith_flowergate_open
+        startwith_flowergate_open,
+        startwith_toybox_open,
+        startwith_whale_open
     )
 
     # Set node to start graph traversal from
@@ -888,7 +912,10 @@ def place_items(
     starting_map_id,
     startwith_bluehouse_open,
     startwith_flowergate_open,
+    startwith_toybox_open,
+    startwith_whale_open,
     starting_partners,
+    partners_always_usable:bool,
     partners_in_default_locations,
     keyitems_outside_dungeon:bool
 ):
@@ -925,7 +952,10 @@ def place_items(
             starting_map_id,
             startwith_bluehouse_open,
             startwith_flowergate_open,
+            startwith_toybox_open,
+            startwith_whale_open,
             starting_partners,
+            partners_always_usable,
             partners_in_default_locations,
             keyitems_outside_dungeon
         )

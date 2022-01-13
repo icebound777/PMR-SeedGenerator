@@ -298,8 +298,11 @@ def main_randomizer():
                             starting_map_id=rando_settings.starting_map["value"],
                             startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
                             startwith_flowergate_open=rando_settings.flowergate_open["value"],
-                            partners_in_default_locations=rando_settings.partners_in_default_locations,
+                            startwith_toybox_open=rando_settings.toybox_open["value"],
+                            startwith_whale_open=rando_settings.whale_open["value"],
                             starting_partners=rando_settings.starting_partners,
+                            partners_always_usable=rando_settings.partners_always_usable["value"],
+                            partners_in_default_locations=rando_settings.partners_in_default_locations,
                             keyitems_outside_dungeon=rando_settings.keyitems_outside_dungeon):
         pass
 
