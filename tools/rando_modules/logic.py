@@ -572,7 +572,8 @@ def _generate_item_pools(
     do_randomize_letterchain:bool,
     keyitems_outside_dungeon:bool,
     partners_always_usable:bool,
-    partners_in_default_locations:bool
+    partners_in_default_locations:bool,
+    starting_partners:list
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -629,6 +630,13 @@ def _generate_item_pools(
 
             if (    current_node.key_name_item == "Partner"
                 and partners_in_default_locations
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    current_node.key_name_item == "Partner"
+                and current_node.vanilla_item.item_name in starting_partners
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -817,7 +825,8 @@ def _algo_forward_fill(
         do_randomize_letterchain,
         keyitems_outside_dungeon,
         partners_always_usable,
-        partners_in_default_locations
+        partners_in_default_locations,
+        starting_partners
     )
 
     print("Initialize Mario's starting inventory...")
