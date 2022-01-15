@@ -13,9 +13,12 @@ class OptionSet:
         self.blocks_match_content = get_option_keyvalue_dict("BlocksMatchContent")
         self.skip_quiz = get_option_keyvalue_dict("SkipQuiz")
         self.cap_enemy_xp = get_option_keyvalue_dict("CapEnemyXP")
+        self.no_xp = get_option_keyvalue_dict("NoXP")
         self.damage_x2 = get_option_keyvalue_dict("2xDamage")
         self.damage_x4 = get_option_keyvalue_dict("4xDamage")
         self.ohko = get_option_keyvalue_dict("OHKO")
+        self.no_save_blocks = get_option_keyvalue_dict("NoSaveBlocks")
+        self.no_heart_blocks = get_option_keyvalue_dict("NoHeartBlocks")
 
         # Item related
         self.shuffle_items = get_option_keyvalue_dict("ShuffleItems")
@@ -138,12 +141,18 @@ class OptionSet:
             self.skip_quiz = options_dict.get("SkipQuiz")
         if "CapEnemyXP" in options_dict:
             self.cap_enemy_xp = options_dict.get("CapEnemyXP")
+        if "NoXP" in options_dict:
+            self.no_xp = options_dict.get("NoXP")
         if "2xDamage" in options_dict:
             self.damage_x2 = options_dict.get("2xDamage")
         if "4xDamage" in options_dict:
             self.damage_x4 = options_dict.get("4xDamage")
         if "OHKO" in options_dict:
             self.ohko = options_dict.get("OHKO")
+        if "NoSaveBlocks" in options_dict:
+            self.no_save_blocks = options_dict.get("NoSaveBlocks")
+        if "NoHeartBlocks" in options_dict:
+            self.no_heart_blocks = options_dict.get("NoHeartBlocks")
 
         # Item related
         if "ShuffleItems" in options_dict:
@@ -326,12 +335,18 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("SkipQuiz").get("value"), bool)
     if "CapEnemyXP" in options_dict:
         assert isinstance(options_dict.get("CapEnemyXP").get("value"), bool)
+    if "NoXP" in options_dict:
+        assert isinstance(options_dict.get("NoXP").get("value"), bool)
     if "2xDamage" in options_dict:
         assert isinstance(options_dict.get("2xDamage").get("value"), bool)
     if "4xDamage" in options_dict:
         assert isinstance(options_dict.get("4xDamage").get("value"), bool)
     if "OHKO" in options_dict:
         assert isinstance(options_dict.get("OHKO").get("value"), bool)
+    if "NoSaveBlocks" in options_dict:
+        assert isinstance(options_dict.get("NoSaveBlocks").get("value"), bool)
+    if "NoHeartBlocks" in options_dict:
+        assert isinstance(options_dict.get("NoHeartBlocks").get("value"), bool)
 
     # Item related
     if "ShuffleItems" in options_dict:

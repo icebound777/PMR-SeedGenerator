@@ -9,17 +9,20 @@ ReplaceDuplicateKeys   : true
 DuplicateKeyReplacement: 194 # '.Item:Mistake'
 BlocksMatchContent     : true
 
-InitialCoins: 50
-CapEnemyXP  : true
-2xDamage    : false
-4xDamage    : false
-OHKO        : false
+InitialCoins : 50
+CapEnemyXP   : true
+NoXP         : false
+2xDamage     : false
+4xDamage     : false
+OHKO         : false
+NoSaveBlocks : false
+NoHeartBlocks: false
 
 # Pre-opened areas
 FlowerGateOpen: false
 BlueHouseOpen : false
-ToyboxOpen    : true
-WhaleOpen     : true
+ToyboxOpen    : false
+WhaleOpen     : false
 
 # Randomization: Logic
 PlacementAlgorithm: ForwardFill

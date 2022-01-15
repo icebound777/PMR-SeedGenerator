@@ -247,12 +247,12 @@ edges_kpa = [
     {"from": {"map": "KPA_62",  "id": 2}, "to": {"map": "KPA_10",  "id": 3}, "reqs": []}, # Front Door Exterior Lava Door Right -> Outside Lower Jail (No Lava) Lava Door Left
     {"from": {"map": "KPA_62",  "id": 2}, "to": {"map": "KPA_11",  "id": 3}, "reqs": []}, # Front Door Exterior Lava Door Right -> Outside Lower Jail (Lava) Lava Door Left
     {"from": {"map": "KPA_62",  "id": 3}, "to": {"map": "KPA_63",  "id": 0}, "reqs": []}, # Front Door Exterior Hangar Door Bottom Left -> Hangar Door Bottom Right
-    
-    {"from": {"map": "KPA_62",  "id": 0}, "to": {"map": "KPA_62",  "id": 1}, "reqs": []}, #? Front Door Exterior Front Door -> Front Door Exterior Door Right
-    {"from": {"map": "KPA_62",  "id": 1}, "to": {"map": "KPA_62",  "id": 0}, "reqs": []}, #? Front Door Exterior Door Right -> Front Door Exterior Front Door
+
+    {"from": {"map": "KPA_62",  "id": 3}, "to": {"map": "KPA_62",  "id": 1}, "reqs": []}, #? Front Door Exterior Hangar Door Bottom Left -> Front Door Exterior Door Right
+    {"from": {"map": "KPA_62",  "id": 1}, "to": {"map": "KPA_62",  "id": 3}, "reqs": []}, #? Front Door Exterior Door Right -> Front Door Exterior Hangar Door Bottom Left
     {"from": {"map": "KPA_62",  "id": 0}, "to": {"map": "KPA_62",  "id": 3}, "reqs": []}, #? Front Door Exterior Front Door -> Front Door Exterior Hangar Door Bottom Left
-    {"from": {"map": "KPA_62",  "id": 3}, "to": {"map": "KPA_62",  "id": 0}, "reqs": []}, #? Front Door Exterior Hangar Door Bottom Left -> Front Door Exterior Front Door
-    
+    {"from": {"map": "KPA_62",  "id": 3}, "to": {"map": "KPA_62",  "id": 0}, "reqs": [require(item="BowserCastleKey")]}, #? Front Door Exterior Hangar Door Bottom Left -> Front Door Exterior Front Door
+
     {"from": {"map": "KPA_62",  "id": 2},         "to": {"map": "KPA_62",  "id": "RBlockA"}, "reqs": [require(partner="Lakilester",flag="GF_KPA16_ShutOffLava")]}, #* Front Door Exterior Lava Door Right -> RBlockA (DeepFocus3)
     {"from": {"map": "KPA_62",  "id": "RBlockA"}, "to": {"map": "KPA_62",  "id": 2},         "reqs": [require(partner="Lakilester",flag="GF_KPA16_ShutOffLava")]}, #* RBlockA (DeepFocus3) -> Front Door Exterior Lava Door Right
 
