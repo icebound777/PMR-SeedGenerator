@@ -22,6 +22,7 @@ dont_randomize_formations = [
     "0E-10", # TubbaBlubba
     "0F-04", # TubbaBlubba
     "0F-05", # TubbaBlubba
+    "10-09", # MysteryNote ShyGuys
     "10-2C", # AntiGuy
     "10-30", # SlotMachine
     "11-XX", # GeneralGuy
