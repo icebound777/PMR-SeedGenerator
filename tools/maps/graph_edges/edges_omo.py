@@ -253,7 +253,7 @@ edges_omo = [
     {"from": {"map": "OMO_13", "id": 0}, "to": {"map": "OMO_13", "id": 1}, "reqs": []}, #? BLU Anti-Guy Hall Exit West -> BLU Anti-Guy Hall Exit East
     {"from": {"map": "OMO_13", "id": 1}, "to": {"map": "OMO_13", "id": 0}, "reqs": []}, #? BLU Anti-Guy Hall Exit East -> BLU Anti-Guy Hall Exit West
     
-    {"from": {"map": "OMO_13", "id": 0},               "to": {"map": "OMO_13", "id": "ChestA"},        "reqs": []}, #* BLU Anti-Guy Hall Exit West -> ChestA (PowerPlusB)
+    {"from": {"map": "OMO_13", "id": 0},               "to": {"map": "OMO_13", "id": "ChestA"},        "reqs": [require(flag="RF_CanVisitTayceT"),require(item="Lemon"),require(item="Cookbook"),require(item="CakeMix")]}, #* BLU Anti-Guy Hall Exit West -> ChestA (PowerPlusB)
     {"from": {"map": "OMO_13", "id": "ChestA"},        "to": {"map": "OMO_13", "id": 0},               "reqs": []}, #* ChestA (PowerPlusB) -> BLU Anti-Guy Hall Exit West
     {"from": {"map": "OMO_13", "id": 0},               "to": {"map": "OMO_13", "id": "YBlockA"},       "reqs": []}, #* BLU Anti-Guy Hall Exit West -> YBlockA (Coin)
     {"from": {"map": "OMO_13", "id": "YBlockA"},       "to": {"map": "OMO_13", "id": 0},               "reqs": []}, #* YBlockA (Coin) -> BLU Anti-Guy Hall Exit West

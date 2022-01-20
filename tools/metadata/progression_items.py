@@ -115,6 +115,7 @@ progression_miscitems = [
     "TastyTonic",  # 0x0089 (Koopa Koot) alternative: Lime,Lemon;BubbleBerry,Coconut
     "SleepySheep", # 0x008F (Koopa Koot)
     "LifeShroom",  # 0x0095 (Koopa Koot)
+    "Lemon",       # 0x009C (LemonCandy for AntiGuy)
     "Lime",        # 0x009D (Koopa Koot)
     "BlueBerry",   # 0x009E (Blue Flower Guard / Flower Fields Well)
     "RedBerry",    # 0x009F (Red Flower Guard)
