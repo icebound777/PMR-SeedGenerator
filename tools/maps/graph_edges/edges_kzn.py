@@ -60,8 +60,8 @@ edges_kzn = [
     {"from": {"map": "KZN_06", "id": 1}, "to": {"map": "KZN_07", "id": 0}, "reqs": []}, # Flowing Lava Puzzle Exit West -> Ultra Hammer Room Exit East
     {"from": {"map": "KZN_06", "id": 2}, "to": {"map": "KZN_08", "id": 0}, "reqs": []}, # Flowing Lava Puzzle Exit East Lower -> Dizzy Stomp Room Exit West
     
-    {"from": {"map": "KZN_06", "id": 0}, "to": {"map": "KZN_06", "id": 1}, "reqs": [require(partner="Parakarry")]}, #? Flowing Lava Puzzle Exit East Upper -> Flowing Lava Puzzle Exit West
-    {"from": {"map": "KZN_06", "id": 1}, "to": {"map": "KZN_06", "id": 0}, "reqs": [require(partner="Parakarry")]}, #? Flowing Lava Puzzle Exit West -> Flowing Lava Puzzle Exit East Upper
+    {"from": {"map": "KZN_06", "id": 0}, "to": {"map": "KZN_06", "id": 1}, "reqs": [require(partner=["Parakarry","Lakilester"])]}, #? Flowing Lava Puzzle Exit East Upper -> Flowing Lava Puzzle Exit West
+    {"from": {"map": "KZN_06", "id": 1}, "to": {"map": "KZN_06", "id": 0}, "reqs": [require(partner=["Parakarry","Lakilester"])]}, #? Flowing Lava Puzzle Exit West -> Flowing Lava Puzzle Exit East Upper
     {"from": {"map": "KZN_06", "id": 0}, "to": {"map": "KZN_06", "id": 2}, "reqs": [require(flag="RF_KZN07_OpenedHammerChest")]}, #? Flowing Lava Puzzle Exit East Upper -> Flowing Lava Puzzle Exit East Lower
     {"from": {"map": "KZN_06", "id": 2}, "to": {"map": "KZN_06", "id": 0}, "reqs": []}, #? Flowing Lava Puzzle Exit East Lower -> Flowing Lava Puzzle Exit East Upper
     
@@ -71,12 +71,12 @@ edges_kzn = [
     # KZN_07 Ultra Hammer Room
     {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_06", "id": 1}, "reqs": []}, # Ultra Hammer Room Exit East -> Flowing Lava Puzzle Exit West
 
-    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": 0}, "reqs": [require(partner="Parakarry")], "pseudoitems": ["EQUIPMENT_Hammer_Progressive","RF_KZN07_OpenedHammerChest"]}, #+ Open Ultra Hammer Chest
+    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": 0}, "reqs": [require(partner=["Parakarry","Lakilester"])], "pseudoitems": ["EQUIPMENT_Hammer_Progressive","RF_KZN07_OpenedHammerChest"]}, #+ Open Ultra Hammer Chest
 
     # KZN_08 Dizzy Stomp Room
     {"from": {"map": "KZN_08", "id": 0}, "to": {"map": "KZN_06", "id": 2}, "reqs": []}, # Dizzy Stomp Room Exit West -> Flowing Lava Puzzle Exit East Lower
     
-    {"from": {"map": "KZN_08", "id": 0},        "to": {"map": "KZN_08", "id": "ChestA"}, "reqs": [require(partner="Parakarry")]}, #* Dizzy Stomp Room Exit West -> ChestA (DizzyStomp)
+    {"from": {"map": "KZN_08", "id": 0},        "to": {"map": "KZN_08", "id": "ChestA"}, "reqs": [require(partner=["Parakarry","Lakilester"])]}, #* Dizzy Stomp Room Exit West -> ChestA (DizzyStomp)
     {"from": {"map": "KZN_08", "id": "ChestA"}, "to": {"map": "KZN_08", "id": 0},        "reqs": []}, #* ChestA (DizzyStomp) -> Dizzy Stomp Room Exit West
 
     # KZN_09 Zipline Cavern

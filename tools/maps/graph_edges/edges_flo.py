@@ -235,5 +235,5 @@ edges_flo = [
     # FLO_21 Huff N Puff Room
     {"from": {"map": "FLO_21", "id": 0}, "to": {"map": "FLO_19", "id": 1}, "reqs": []}, # Huff N Puff Room Exit Left -> Cloudy Climb Exit Right
 
-    {"from": {"map": "FLO_21", "id": 0}, "to": {"map": "FLO_21", "id": 0}, "reqs": [], "pseudoitems": ["STARSPIRIT"]}, #+ Huff N Puff Room Exit Left
+    {"from": {"map": "FLO_21", "id": 0}, "to": {"map": "FLO_21", "id": 0}, "reqs": [], "pseudoitems": ["STARSPIRIT_6"]}, #+ Huff N Puff Room Exit Left
 ]

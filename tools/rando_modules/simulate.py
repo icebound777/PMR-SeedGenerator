@@ -17,7 +17,7 @@ class Mario:
         self.partners = kwargs.get("partners", [])
         self.favors = kwargs.get("favors", []) # https://www.mariowiki.com/Koopa_Koot%27s_favors
         self.flags = kwargs.get("flags", [])
-        self.starspirits = kwargs.get("starspirits", 0)
+        self.starspirits = kwargs.get("starspirits", [])
 
 
 def add_to_inventory(item_object):
@@ -46,8 +46,9 @@ def add_to_inventory(item_object):
                 mario.boots = mario.boots + 1 if mario.boots < 2 else mario.boots
             if item_object == "EQUIPMENT_Hammer_Progressive":
                 mario.hammer = mario.hammer + 1 if mario.hammer < 2 else mario.hammer
-        elif item_object == "STARSPIRIT":
-            mario.starspirits = mario.starspirits + 1 if mario.starspirits < 7 else mario.starspirits
+        elif item_object.startswith("STARSPIRIT"):
+            if item_object not in mario.starspirits:
+                mario.starspirits.append(item_object)
             is_new_pseudoitem = True
         else:
             mario.items.append(item_object)
@@ -178,7 +179,7 @@ def require(**kwargs):
                 return True
         # Star Spirits
         if starspirits := kwargs.get("starspirits"):
-            if mario.starspirits >= starspirits:
+            if len(mario.starspirits) >= starspirits:
                 return True
                 
 

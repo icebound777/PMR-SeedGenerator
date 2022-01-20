@@ -63,7 +63,7 @@ edges_arn = [
     {"from": {"map": "ARN_07", "id": 1}, "to": {"map": "ARN_07", "id": 2}, "reqs": []}, #? Windmill Exterior Exit East -> Windmill Exterior Exit West
     {"from": {"map": "ARN_07", "id": 2}, "to": {"map": "ARN_07", "id": 1}, "reqs": []}, #? Windmill Exterior Exit West -> Windmill Exterior Exit East
     
-    {"from": {"map": "ARN_07", "id": 0}, "to": {"map": "ARN_07", "id": 0}, "reqs": [require(flag="RF_Ch3_HeartFledFirstTunnel")], "pseudoitems": ["STARSPIRIT"]}, #+ Windmill Exterior Enter Windmill
+    {"from": {"map": "ARN_07", "id": 0}, "to": {"map": "ARN_07", "id": 0}, "reqs": [require(flag="RF_Ch3_HeartFledFirstTunnel")], "pseudoitems": ["STARSPIRIT_3"]}, #+ Windmill Exterior Enter Windmill
 
     # ARN_08 Windmill Interior
     {"from": {"map": "ARN_08", "id": 0}, "to": {"map": "ARN_07", "id": 0}, "reqs": []}, # Windmill Interior Exit Windmill -> Windmill Exterior Enter Windmill

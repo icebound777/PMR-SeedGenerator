@@ -159,7 +159,7 @@ edges_isk = [
     # ISK_16 Tutankoopa Room
     {"from": {"map": "ISK_16", "id": 0}, "to": {"map": "ISK_19", "id": 1}, "reqs": []}, # Tutankoopa Room Exit Left -> Boss Antechamber Exit Right
     
-    {"from": {"map": "ISK_16", "id": 0}, "to": {"map": "ISK_16", "id": 0}, "reqs": [require(flag="MB_Ch2_Spirit_ISK11_SolvedArtifactPuzzle")], "pseudoitems": ["STARSPIRIT", "RF_Ch2_SavedStarSpirit"]}, #+ Tutankoopa Room Exit Left
+    {"from": {"map": "ISK_16", "id": 0}, "to": {"map": "ISK_16", "id": 0}, "reqs": [require(flag="MB_Ch2_Spirit_ISK11_SolvedArtifactPuzzle")], "pseudoitems": ["STARSPIRIT_2", "RF_Ch2_SavedStarSpirit"]}, #+ Tutankoopa Room Exit Left
 
     # ISK_18 Deep Tunnel
     {"from": {"map": "ISK_18", "id": 0}, "to": {"map": "ISK_10", "id": 2}, "reqs": []}, # Deep Tunnel Exit Left -> Vertical Shaft Exit Bottom Right

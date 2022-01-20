@@ -305,7 +305,7 @@ edges_jan = [
     {"from": {"map": "JAN_22", "id": 0},       "to": {"map": "JAN_22", "id": "ItemA"}, "reqs": []}, #* Path to the Volcano Exit Left -> ItemA (JamminJelly)
     {"from": {"map": "JAN_22", "id": "ItemA"}, "to": {"map": "JAN_22", "id": 0},       "reqs": []}, #* ItemA (JamminJelly) -> Path to the Volcano Exit Left
 
-    {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": 0}, "reqs": [require(flag="MF_Ch5_FoundEscapeRoute")], "pseudoitems": ["STARSPIRIT", "MF_Ch5_RescuedStarSpirit"]}, #+ Get Star Spirit after escaping Volcano
+    {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": 0}, "reqs": [require(flag="MF_Ch5_FoundEscapeRoute")], "pseudoitems": ["STARSPIRIT_5", "MF_Ch5_RescuedStarSpirit"]}, #+ Get Star Spirit after escaping Volcano
 
     # JAN_23 Great Treetop Roost
     {"from": {"map": "JAN_23", "id": 0}, "to": {"map": "JAN_19", "id": 1}, "reqs": []}, # Great Treetop Roost Exit Left -> Upper Great Tree Interior Exit Top
