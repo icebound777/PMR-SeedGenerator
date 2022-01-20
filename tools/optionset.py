@@ -5,8 +5,6 @@ class OptionSet:
         """ Load Defaults from DB """
         # General
         self.starting_coins = get_option_keyvalue_dict("StartingCoins")
-        self.replace_duplicate_keys = get_option_keyvalue_dict("ReplaceDuplicateKeys")
-        self.duplicate_key_replacement = get_option_keyvalue_dict("DuplicateKeyReplacement")
         self.shorten_cutscenes = get_option_keyvalue_dict("ShortenCutscenes")
         self.flowergate_open = get_option_keyvalue_dict("FlowerGateOpen")
         self.bluehouse_open = get_option_keyvalue_dict("BlueHouseOpen")
@@ -125,10 +123,6 @@ class OptionSet:
         # General
         if "StartingCoins" in options_dict:
             self.starting_coins = options_dict.get("StartingCoins")
-        if "ReplaceDuplicateKeys" in options_dict:
-            self.replace_duplicate_keys = options_dict.get("ReplaceDuplicateKeys")
-        if "DuplicateKeyReplacement" in options_dict:
-            self.duplicate_key_replacement = options_dict.get("DuplicateKeyReplacement")
         if "ShortenCutscenes" in options_dict:
             self.shorten_cutscenes = options_dict.get("ShortenCutscenes")
         if "FlowerGateOpen" in options_dict:
@@ -319,10 +313,6 @@ def validate_options(options_dict):
         assert (isinstance(options_dict.get("StartingCoins").get("value"), int)
             and 0 <= options_dict.get("StartingCoins").get("value") <= 999
         )
-    if "ReplaceDuplicateKeys" in options_dict:
-        assert isinstance(options_dict.get("ReplaceDuplicateKeys").get("value"), bool)
-    if "DuplicateKeyReplacement" in options_dict:
-        assert isinstance(options_dict.get("DuplicateKeyReplacement").get("value"), int)
     if "ShortenCutscenes" in options_dict:
         assert isinstance(options_dict.get("ShortenCutscenes").get("value"), bool)
     if "FlowerGateOpen" in options_dict:

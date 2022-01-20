@@ -31,6 +31,16 @@ edges_mac = [
     {"from": {"map": "MAC_00", "id": "ShopItemE"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemE (HoneySyrup) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "ShopItemF"},   "reqs": []}, #* Gate District Exit Left -> ShopItemF (Mushroom)
     {"from": {"map": "MAC_00", "id": "ShopItemF"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemF (Mushroom) -> Gate District Exit Left
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoA"},   "reqs": []}, #* Gate District Exit Left -> ShopItemF (Mushroom)
+    {"from": {"map": "MAC_00", "id": "DojoA"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemF (Mushroom) -> Gate District Exit Left
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoB"},   "reqs": []}, #* Gate District Exit Left -> ShopItemF (Mushroom)
+    {"from": {"map": "MAC_00", "id": "DojoB"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemF (Mushroom) -> Gate District Exit Left
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoC"},   "reqs": []}, #* Gate District Exit Left -> ShopItemF (Mushroom)
+    {"from": {"map": "MAC_00", "id": "DojoC"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemF (Mushroom) -> Gate District Exit Left
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoD"},   "reqs": []}, #* Gate District Exit Left -> ShopItemF (Mushroom)
+    {"from": {"map": "MAC_00", "id": "DojoD"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemF (Mushroom) -> Gate District Exit Left
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoE"},   "reqs": []}, #* Gate District Exit Left -> ShopItemF (Mushroom)
+    {"from": {"map": "MAC_00", "id": "DojoE"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemF (Mushroom) -> Gate District Exit Left
 
     {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 0}, "reqs": [require(item="MysteryNote"), require(item="Dictionary")], "pseudoitems": ["RF_CanSolveColorPuzzle"]}, #+ Decipher MysteryNote
 
