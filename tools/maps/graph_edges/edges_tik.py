@@ -207,15 +207,15 @@ edges_tik = [
     {"from": {"map": "TIK_21", "id": 0}, "to": {"map": "TIK_21", "id": 2}, "reqs": []}, #? Hidden Blocks Room (B2) Exit Left -> Hidden Blocks Room (B2) Green Pipe BottomRight
     {"from": {"map": "TIK_21", "id": 2}, "to": {"map": "TIK_21", "id": 0}, "reqs": []}, #? Hidden Blocks Room (B2) Green Pipe BottomRight -> Hidden Blocks Room (B2) Exit Left
     
-    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockA"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockA (Coin)
+    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockA"}, "reqs": [require(boots=1)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockA (Coin)
     {"from": {"map": "TIK_21", "id": "YBlockA"}, "to": {"map": "TIK_21", "id": 0},         "reqs": []}, #* YBlockA (Coin) -> Hidden Blocks Room (B2) Exit Left
-    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockB"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockB (Coin)
+    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockB"}, "reqs": [require(boots=1)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockB (Coin)
     {"from": {"map": "TIK_21", "id": "YBlockB"}, "to": {"map": "TIK_21", "id": 0},         "reqs": []}, #* YBlockB (Coin) -> Hidden Blocks Room (B2) Exit Left
-    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockC"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockC (Coin)
+    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockC"}, "reqs": [require(boots=1)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockC (Coin)
     {"from": {"map": "TIK_21", "id": "YBlockC"}, "to": {"map": "TIK_21", "id": 0},         "reqs": []}, #* YBlockC (Coin) -> Hidden Blocks Room (B2) Exit Left
-    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockD"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockD (Coin)
+    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockD"}, "reqs": [require(boots=1)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockD (Coin)
     {"from": {"map": "TIK_21", "id": "YBlockD"}, "to": {"map": "TIK_21", "id": 0},         "reqs": []}, #* YBlockD (Coin) -> Hidden Blocks Room (B2) Exit Left
-    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockE"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockE (Coin)
+    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockE"}, "reqs": [require(boots=1)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockE (Coin)
     {"from": {"map": "TIK_21", "id": "YBlockE"}, "to": {"map": "TIK_21", "id": 0},         "reqs": []}, #* YBlockE (Coin) -> Hidden Blocks Room (B2) Exit Left
 
     # TIK_22 Path to Shiver City (B2)
