@@ -117,11 +117,11 @@ edges_tik = [
     # TIK_10 Block Puzzle Room (B2)
     {"from": {"map": "TIK_10", "id": 0}, "to": {"map": "TIK_09", "id": 0}, "reqs": []}, # Block Puzzle Room (B2) Exit Right -> Warp Zone 2 (B2) Exit Left
     
-    {"from": {"map": "TIK_10", "id": 0},               "to": {"map": "TIK_10", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* Block Puzzle Room (B2) Exit Right -> HiddenYBlockA (Coin)
+    {"from": {"map": "TIK_10", "id": 0},               "to": {"map": "TIK_10", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Block Puzzle Room (B2) Exit Right -> HiddenYBlockA (Coin)
     {"from": {"map": "TIK_10", "id": "HiddenYBlockA"}, "to": {"map": "TIK_10", "id": 0},               "reqs": []}, #* HiddenYBlockA (Coin) -> Block Puzzle Room (B2) Exit Right
-    {"from": {"map": "TIK_10", "id": 0},               "to": {"map": "TIK_10", "id": "HiddenYBlockB"}, "reqs": [require(partner="Watt")]}, #* Block Puzzle Room (B2) Exit Right -> HiddenYBlockB (Coin)
+    {"from": {"map": "TIK_10", "id": 0},               "to": {"map": "TIK_10", "id": "HiddenYBlockB"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Block Puzzle Room (B2) Exit Right -> HiddenYBlockB (Coin)
     {"from": {"map": "TIK_10", "id": "HiddenYBlockB"}, "to": {"map": "TIK_10", "id": 0},               "reqs": []}, #* HiddenYBlockB (Coin) -> Block Puzzle Room (B2) Exit Right
-    {"from": {"map": "TIK_10", "id": 0},               "to": {"map": "TIK_10", "id": "HiddenYBlockC"}, "reqs": [require(partner="Watt")]}, #* Block Puzzle Room (B2) Exit Right -> HiddenYBlockC (Coin)
+    {"from": {"map": "TIK_10", "id": 0},               "to": {"map": "TIK_10", "id": "HiddenYBlockC"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Block Puzzle Room (B2) Exit Right -> HiddenYBlockC (Coin)
     {"from": {"map": "TIK_10", "id": "HiddenYBlockC"}, "to": {"map": "TIK_10", "id": 0},               "reqs": []}, #* HiddenYBlockC (Coin) -> Block Puzzle Room (B2) Exit Right
 
     # TIK_12 Metal Block Room (B3)
@@ -178,7 +178,7 @@ edges_tik = [
     {"from": {"map": "TIK_18", "id": 0}, "to": {"map": "TIK_18", "id": 1}, "reqs": []}, #? Hall to Blooper 1 (B1) Exit Left -> Hall to Blooper 1 (B1) Exit Right
     {"from": {"map": "TIK_18", "id": 1}, "to": {"map": "TIK_18", "id": 0}, "reqs": []}, #? Hall to Blooper 1 (B1) Exit Right -> Hall to Blooper 1 (B1) Exit Left
     
-    {"from": {"map": "TIK_18", "id": 0},               "to": {"map": "TIK_18", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* Hall to Blooper 1 (B1) Exit Left -> HiddenYBlockA (SuperShroom)
+    {"from": {"map": "TIK_18", "id": 0},               "to": {"map": "TIK_18", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Hall to Blooper 1 (B1) Exit Left -> HiddenYBlockA (SuperShroom)
     {"from": {"map": "TIK_18", "id": "HiddenYBlockA"}, "to": {"map": "TIK_18", "id": 0},               "reqs": []}, #* HiddenYBlockA (SuperShroom) -> Hall to Blooper 1 (B1) Exit Left
 
     # TIK_19 Under the Toad Town Pond
@@ -232,11 +232,11 @@ edges_tik = [
     {"from": {"map": "TIK_23", "id": 0}, "to": {"map": "TIK_23", "id": 1}, "reqs": []}, #? Windy Path (B3) Exit Left -> Windy Path (B3) Green Pipe
     {"from": {"map": "TIK_23", "id": 1}, "to": {"map": "TIK_23", "id": 0}, "reqs": [require(hammer=1)]}, #? Windy Path (B3) Green Pipe -> Windy Path (B3) Exit Left
     
-    {"from": {"map": "TIK_23", "id": 1},               "to": {"map": "TIK_23", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* Windy Path (B3) Green Pipe -> HiddenYBlockA (MapleSyrup)
+    {"from": {"map": "TIK_23", "id": 1},               "to": {"map": "TIK_23", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Windy Path (B3) Green Pipe -> HiddenYBlockA (MapleSyrup)
     {"from": {"map": "TIK_23", "id": "HiddenYBlockA"}, "to": {"map": "TIK_23", "id": 1},               "reqs": []}, #* HiddenYBlockA (MapleSyrup) -> Windy Path (B3) Green Pipe
-    {"from": {"map": "TIK_23", "id": 1},               "to": {"map": "TIK_23", "id": "HiddenYBlockB"}, "reqs": [require(partner="Watt")]}, #* Windy Path (B3) Green Pipe -> HiddenYBlockB (StopWatch)
+    {"from": {"map": "TIK_23", "id": 1},               "to": {"map": "TIK_23", "id": "HiddenYBlockB"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Windy Path (B3) Green Pipe -> HiddenYBlockB (StopWatch)
     {"from": {"map": "TIK_23", "id": "HiddenYBlockB"}, "to": {"map": "TIK_23", "id": 1},               "reqs": []}, #* HiddenYBlockB (StopWatch) -> Windy Path (B3) Green Pipe
-    {"from": {"map": "TIK_23", "id": 1},               "to": {"map": "TIK_23", "id": "HiddenYBlockC"}, "reqs": [require(partner="Watt")]}, #* Windy Path (B3) Green Pipe -> HiddenYBlockC (VoltShroom)
+    {"from": {"map": "TIK_23", "id": 1},               "to": {"map": "TIK_23", "id": "HiddenYBlockC"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Windy Path (B3) Green Pipe -> HiddenYBlockC (VoltShroom)
     {"from": {"map": "TIK_23", "id": "HiddenYBlockC"}, "to": {"map": "TIK_23", "id": 1},               "reqs": []}, #* HiddenYBlockC (VoltShroom) -> Windy Path (B3) Green Pipe
     {"from": {"map": "TIK_23", "id": 1},               "to": {"map": "TIK_23", "id": "YBlockA"},       "reqs": []}, #* Windy Path (B3) Green Pipe -> YBlockA (Coin)
     {"from": {"map": "TIK_23", "id": "YBlockA"},       "to": {"map": "TIK_23", "id": 1},               "reqs": []}, #* YBlockA (Coin) -> Windy Path (B3) Green Pipe
@@ -248,7 +248,7 @@ edges_tik = [
     {"from": {"map": "TIK_24", "id": 0}, "to": {"map": "TIK_24", "id": 1}, "reqs": []}, #? Hall to Ultra Boots (B3) Exit Left -> Hall to Ultra Boots (B3) Exit Right
     {"from": {"map": "TIK_24", "id": 1}, "to": {"map": "TIK_24", "id": 0}, "reqs": [require(hammer=2)]}, #? Hall to Ultra Boots (B3) Exit Right -> Hall to Ultra Boots (B3) Exit Left
     
-    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "HiddenYBlockA"}, "reqs": [require(boots=2),require(partner="Watt")]}, #* Hall to Ultra Boots (B3) Exit Right -> HiddenYBlockA (LifeShroom)
+    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "HiddenYBlockA"}, "reqs": [require(boots=2),require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Hall to Ultra Boots (B3) Exit Right -> HiddenYBlockA (LifeShroom)
     {"from": {"map": "TIK_24", "id": "HiddenYBlockA"}, "to": {"map": "TIK_24", "id": 1},               "reqs": []}, #* HiddenYBlockA (LifeShroom) -> Hall to Ultra Boots (B3) Exit Right
     {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "YBlockA"},       "reqs": [require(boots=2)]}, #* Hall to Ultra Boots (B3) Exit Right -> YBlockA (Coin)
     {"from": {"map": "TIK_24", "id": "YBlockA"},       "to": {"map": "TIK_24", "id": 1},               "reqs": []}, #* YBlockA (Coin) -> Hall to Ultra Boots (B3) Exit Right

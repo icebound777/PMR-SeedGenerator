@@ -40,6 +40,7 @@ class OptionSet:
         self.always_speedyspin = get_option_keyvalue_dict("AlwaysSpeedySpin")
         self.always_ispy = get_option_keyvalue_dict("AlwaysISpy")
         self.always_peekaboo = get_option_keyvalue_dict("AlwaysPeekaboo")
+        self.hidden_block_mode = get_option_keyvalue_dict("HiddenBlockMode")
 
         # Starting setup
         self.starting_map = get_option_keyvalue_dict("StartingMap") # mac_00 Entry 4
@@ -184,11 +185,13 @@ class OptionSet:
         if "WhaleOpen" in options_dict:
             self.whale_open = options_dict.get("WhaleOpen")
         if "AlwaysSpeedySpin" in options_dict:
-            self.always_speedyspin = get_option_keyvalue_dict("AlwaysSpeedySpin")
+            self.always_speedyspin = options_dict.get("AlwaysSpeedySpin")
         if "AlwaysISpy" in options_dict:
-            self.always_ispy = get_option_keyvalue_dict("AlwaysISpy")
+            self.always_ispy = options_dict.get("AlwaysISpy")
         if "AlwaysPeekaboo" in options_dict:
-            self.always_peekaboo = get_option_keyvalue_dict("AlwaysPeekaboo")
+            self.always_peekaboo = options_dict.get("AlwaysPeekaboo")
+        if "HiddenBlockMode" in options_dict:
+            self.hidden_block_mode = options_dict.get("HiddenBlockMode")
 
         # Starting setup
         if "StartingMap" in options_dict:
@@ -385,6 +388,9 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("AlwaysISpy").get("value"), bool)
     if "AlwaysPeekaboo" in options_dict:
         assert isinstance(options_dict.get("AlwaysPeekaboo").get("value"), bool)
+    if "HiddenBlockMode" in options_dict:
+        assert (    isinstance(options_dict.get("HiddenBlockMode").get("value"), int)
+                and 0 <= options_dict.get("HiddenBlockMode").get("value") <= 3)
 
     # Starting setup
     if "StartingMap" in options_dict:

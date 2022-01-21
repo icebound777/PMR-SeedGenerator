@@ -65,7 +65,7 @@ edges_kzn = [
     {"from": {"map": "KZN_06", "id": 0}, "to": {"map": "KZN_06", "id": 2}, "reqs": [require(flag="RF_KZN07_OpenedHammerChest")]}, #? Flowing Lava Puzzle Exit East Upper -> Flowing Lava Puzzle Exit East Lower
     {"from": {"map": "KZN_06", "id": 2}, "to": {"map": "KZN_06", "id": 0}, "reqs": []}, #? Flowing Lava Puzzle Exit East Lower -> Flowing Lava Puzzle Exit East Upper
     
-    {"from": {"map": "KZN_06", "id": 0},               "to": {"map": "KZN_06", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* Flowing Lava Puzzle Exit East Upper -> HiddenYBlockA (LifeShroom)
+    {"from": {"map": "KZN_06", "id": 0},               "to": {"map": "KZN_06", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Flowing Lava Puzzle Exit East Upper -> HiddenYBlockA (LifeShroom)
     {"from": {"map": "KZN_06", "id": "HiddenYBlockA"}, "to": {"map": "KZN_06", "id": 0},               "reqs": []}, #* HiddenYBlockA (LifeShroom) -> Flowing Lava Puzzle Exit East Upper
 
     # KZN_07 Ultra Hammer Room

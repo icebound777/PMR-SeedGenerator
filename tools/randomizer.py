@@ -301,6 +301,7 @@ def main_randomizer():
                             starting_partners=rando_settings.starting_partners,
                             partners_always_usable=rando_settings.partners_always_usable["value"],
                             partners_in_default_locations=rando_settings.partners_in_default_locations,
+                            hidden_block_mode=rando_settings.hidden_block_mode["value"],
                             keyitems_outside_dungeon=rando_settings.keyitems_outside_dungeon):
         pass
 

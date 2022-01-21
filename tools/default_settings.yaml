@@ -9,6 +9,7 @@ BlocksMatchContent: true
 AlwaysSpeedySpin  : true
 AlwaysISpy        : false
 AlwaysPeekaboo    : false
+HiddenBlockMode   : 1
 
 InitialCoins : 50
 CapEnemyXP   : true
@@ -36,7 +37,7 @@ PlacementLogic: NoGlitches
 
 # Randomization: Difficulty
 ShuffleChapterDifficulty: false
-RandomFormations: false
+RandomFormations        : false
 
 # Randomization: Items
 ShuffleItems          : true
@@ -49,9 +50,9 @@ KeyitemsOutsideDungeon: false
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
 # Randomization: Moves and Badges
-ShuffleBadgesBP: false
-ShuffleBadgesFP: false
-ShufflePartnerFP: false
+ShuffleBadgesBP   : false
+ShuffleBadgesFP   : false
+ShufflePartnerFP  : false
 ShuffleStarpowerSP: false
 
 # Randomization: Entrances
@@ -84,7 +85,7 @@ StartWithPartners: { # ignored if StartWithRandomPartners true
 }
 
 # Spoiler log
-WriteSpoilerLog: true
+WriteSpoilerLog : true
 PrettySpoilerlog: true
 
 # Cosmetics / Palettes

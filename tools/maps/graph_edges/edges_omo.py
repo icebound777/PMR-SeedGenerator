@@ -18,9 +18,9 @@ edges_omo = [
     {"from": {"map": "OMO_01", "id": "ItemE"},         "to": {"map": "OMO_01", "id": 0},               "reqs": []}, #* ItemE (Mushroom) -> BLU Large Playroom Exit East
     {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "ItemF"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemF (FireFLower)
     {"from": {"map": "OMO_01", "id": "ItemF"},         "to": {"map": "OMO_01", "id": 0},               "reqs": []}, #* ItemF (FireFLower) -> BLU Large Playroom Exit East
-    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* BLU Large Playroom Exit East -> HiddenYBlockA (Mystery)
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* BLU Large Playroom Exit East -> HiddenYBlockA (Mystery)
     {"from": {"map": "OMO_01", "id": "HiddenYBlockA"}, "to": {"map": "OMO_01", "id": 0},               "reqs": []}, #* HiddenYBlockA (Mystery) -> BLU Large Playroom Exit East
-    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "HiddenYBlockB"}, "reqs": [require(partner="Watt")]}, #* BLU Large Playroom Exit East -> HiddenYBlockB (FrightJar)
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "HiddenYBlockB"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* BLU Large Playroom Exit East -> HiddenYBlockB (FrightJar)
     {"from": {"map": "OMO_01", "id": "HiddenYBlockB"}, "to": {"map": "OMO_01", "id": 0},               "reqs": []}, #* HiddenYBlockB (FrightJar) -> BLU Large Playroom Exit East
 
     # OMO_02 RED Boss Barricade
@@ -32,7 +32,7 @@ edges_omo = [
     
     {"from": {"map": "OMO_02", "id": 1},               "to": {"map": "OMO_02", "id": "YBlockA"},       "reqs": []}, #* RED Boss Barricade Exit East -> YBlockA (SleepySheep)
     {"from": {"map": "OMO_02", "id": "YBlockA"},       "to": {"map": "OMO_02", "id": 1},               "reqs": []}, #* YBlockA (SleepySheep) -> RED Boss Barricade Exit East
-    {"from": {"map": "OMO_02", "id": 1},               "to": {"map": "OMO_02", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* RED Boss Barricade Exit East -> HiddenYBlockA (Coin)
+    {"from": {"map": "OMO_02", "id": 1},               "to": {"map": "OMO_02", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* RED Boss Barricade Exit East -> HiddenYBlockA (Coin)
     {"from": {"map": "OMO_02", "id": "HiddenYBlockA"}, "to": {"map": "OMO_02", "id": 1},               "reqs": []}, #* HiddenYBlockA (Coin) -> RED Boss Barricade Exit East
     {"from": {"map": "OMO_02", "id": 1},               "to": {"map": "OMO_02", "id": "ItemA"},         "reqs": []}, #* RED Boss Barricade Exit East -> ItemA (ShootingStar)
     {"from": {"map": "OMO_02", "id": "ItemA"},         "to": {"map": "OMO_02", "id": 1},               "reqs": []}, #* ItemA (ShootingStar) -> RED Boss Barricade Exit East
@@ -55,7 +55,7 @@ edges_omo = [
     
     {"from": {"map": "OMO_03", "id": 4},               "to": {"map": "OMO_03", "id": "HiddenPanel"},   "reqs": [can_flip_panels]}, #* BLU Station Spring to Toad Town -> HiddenPanel (StarPiece)
     {"from": {"map": "OMO_03", "id": "HiddenPanel"},   "to": {"map": "OMO_03", "id": 4},               "reqs": []}, #* HiddenPanel (StarPiece) -> BLU Station Spring to Toad Town
-    {"from": {"map": "OMO_03", "id": 4},               "to": {"map": "OMO_03", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* BLU Station Spring to Toad Town -> HiddenYBlockA (StoneCap)
+    {"from": {"map": "OMO_03", "id": 4},               "to": {"map": "OMO_03", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* BLU Station Spring to Toad Town -> HiddenYBlockA (StoneCap)
     {"from": {"map": "OMO_03", "id": "HiddenYBlockA"}, "to": {"map": "OMO_03", "id": 4},               "reqs": []}, #* HiddenYBlockA (StoneCap) -> BLU Station Spring to Toad Town
 
     # OMO_04 BLU Block City
@@ -105,9 +105,9 @@ edges_omo = [
     {"from": {"map": "OMO_05", "id": "YBlockA"},       "to": {"map": "OMO_05", "id": 1},               "reqs": []}, #* YBlockA (Coin) -> PNK Gourmet Guy Crossing Exit East (North)
     {"from": {"map": "OMO_05", "id": 1},               "to": {"map": "OMO_05", "id": "YBlockB"},       "reqs": []}, #* PNK Gourmet Guy Crossing Exit East (North) -> YBlockB (Coin)
     {"from": {"map": "OMO_05", "id": "YBlockB"},       "to": {"map": "OMO_05", "id": 1},               "reqs": []}, #* YBlockB (Coin) -> PNK Gourmet Guy Crossing Exit East (North)
-    {"from": {"map": "OMO_05", "id": 1},               "to": {"map": "OMO_05", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* PNK Gourmet Guy Crossing Exit East (North) -> HiddenYBlockA (DizzyDial)
+    {"from": {"map": "OMO_05", "id": 1},               "to": {"map": "OMO_05", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* PNK Gourmet Guy Crossing Exit East (North) -> HiddenYBlockA (DizzyDial)
     {"from": {"map": "OMO_05", "id": "HiddenYBlockA"}, "to": {"map": "OMO_05", "id": 1},               "reqs": []}, #* HiddenYBlockA (DizzyDial) -> PNK Gourmet Guy Crossing Exit East (North)
-    {"from": {"map": "OMO_05", "id": 1},               "to": {"map": "OMO_05", "id": "HiddenYBlockB"}, "reqs": [require(partner="Watt")]}, #* PNK Gourmet Guy Crossing Exit East (North) -> HiddenYBlockB (SuperSoda)
+    {"from": {"map": "OMO_05", "id": 1},               "to": {"map": "OMO_05", "id": "HiddenYBlockB"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* PNK Gourmet Guy Crossing Exit East (North) -> HiddenYBlockB (SuperSoda)
     {"from": {"map": "OMO_05", "id": "HiddenYBlockB"}, "to": {"map": "OMO_05", "id": 1},               "reqs": []}, #* HiddenYBlockB (SuperSoda) -> PNK Gourmet Guy Crossing Exit East (North)
 
     {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": [require(item="Cake")], "pseudoitems": ["MF_Ch4_GaveCakeToGourmetGuy"]}, #+ Give Cake to Gourmet Guy
@@ -130,7 +130,7 @@ edges_omo = [
     {"from": {"map": "OMO_06", "id": "HiddenPanel"},   "to": {"map": "OMO_06", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> PNK Station Exit West
     {"from": {"map": "OMO_06", "id": 0},               "to": {"map": "OMO_06", "id": "ChestA"},        "reqs": []}, #* PNK Station Exit West -> ChestA (Mailbag)
     {"from": {"map": "OMO_06", "id": "ChestA"},        "to": {"map": "OMO_06", "id": 0},               "reqs": []}, #* ChestA (Mailbag) -> PNK Station Exit West
-    {"from": {"map": "OMO_06", "id": 1},               "to": {"map": "OMO_06", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* PNK Station Exit West (Switch Area) -> HiddenYBlockA (ThunderRage)
+    {"from": {"map": "OMO_06", "id": 1},               "to": {"map": "OMO_06", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* PNK Station Exit West (Switch Area) -> HiddenYBlockA (ThunderRage)
     {"from": {"map": "OMO_06", "id": "HiddenYBlockA"}, "to": {"map": "OMO_06", "id": 1},               "reqs": []}, #* HiddenYBlockA (ThunderRage) -> PNK Station Exit West (Switch Area)
 
     {"from": {"map": "OMO_06", "id": 1}, "to": {"map": "OMO_06", "id": 1}, "reqs": [], "pseudoitems": ["MF_Ch4_PulledPinkSwitch"]}, #+ Pull pink switch
@@ -161,7 +161,7 @@ edges_omo = [
     
     {"from": {"map": "OMO_08", "id": 0},               "to": {"map": "OMO_08", "id": "HiddenPanel"},   "reqs": [can_flip_panels]}, #* GRN Station Exit East -> HiddenPanel (StarPiece)
     {"from": {"map": "OMO_08", "id": "HiddenPanel"},   "to": {"map": "OMO_08", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> GRN Station Exit East
-    {"from": {"map": "OMO_08", "id": 0},               "to": {"map": "OMO_08", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* GRN Station Exit East -> HiddenYBlockA (FireFlower)
+    {"from": {"map": "OMO_08", "id": 0},               "to": {"map": "OMO_08", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* GRN Station Exit East -> HiddenYBlockA (FireFlower)
     {"from": {"map": "OMO_08", "id": "HiddenYBlockA"}, "to": {"map": "OMO_08", "id": 0},               "reqs": []}, #* HiddenYBlockA (FireFlower) -> GRN Station Exit East
 
     {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_08", "id": 0}, "reqs": [require(flag="RF_CanSolveColorPuzzle")], "pseudoitems": ["MF_Ch4_SolvedColorPuzzle"]}, #+ Solve Color Puzzle
@@ -219,7 +219,7 @@ edges_omo = [
     
     {"from": {"map": "OMO_10", "id": 0},               "to": {"map": "OMO_10", "id": "HiddenPanel"},   "reqs": [can_flip_panels]}, #* RED Station Exit West -> HiddenPanel (StarPiece)
     {"from": {"map": "OMO_10", "id": "HiddenPanel"},   "to": {"map": "OMO_10", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> RED Station Exit West
-    {"from": {"map": "OMO_10", "id": 0},               "to": {"map": "OMO_10", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* RED Station Exit West -> HiddenYBlockA (SuperShroom)
+    {"from": {"map": "OMO_10", "id": 0},               "to": {"map": "OMO_10", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* RED Station Exit West -> HiddenYBlockA (SuperShroom)
     {"from": {"map": "OMO_10", "id": "HiddenYBlockA"}, "to": {"map": "OMO_10", "id": 0},               "reqs": []}, #* HiddenYBlockA (SuperShroom) -> RED Station Exit West
 
     # OMO_11 RED Moving Platforms
@@ -229,15 +229,15 @@ edges_omo = [
     {"from": {"map": "OMO_11", "id": 0}, "to": {"map": "OMO_11", "id": 1}, "reqs": []}, #? RED Moving Platforms Exit West -> RED Moving Platforms Exit East
     {"from": {"map": "OMO_11", "id": 1}, "to": {"map": "OMO_11", "id": 0}, "reqs": []}, #? RED Moving Platforms Exit East -> RED Moving Platforms Exit West
     
-    {"from": {"map": "OMO_11", "id": 0},               "to": {"map": "OMO_11", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* RED Moving Platforms Exit West -> HiddenYBlockA (VoltShroom)
+    {"from": {"map": "OMO_11", "id": 0},               "to": {"map": "OMO_11", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* RED Moving Platforms Exit West -> HiddenYBlockA (VoltShroom)
     {"from": {"map": "OMO_11", "id": "HiddenYBlockA"}, "to": {"map": "OMO_11", "id": 0},               "reqs": []}, #* HiddenYBlockA (VoltShroom) -> RED Moving Platforms Exit West
-    {"from": {"map": "OMO_11", "id": 0},               "to": {"map": "OMO_11", "id": "HiddenYBlockB"}, "reqs": [require(partner="Watt")]}, #* RED Moving Platforms Exit West -> HiddenYBlockB (SnowmanDoll)
+    {"from": {"map": "OMO_11", "id": 0},               "to": {"map": "OMO_11", "id": "HiddenYBlockB"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* RED Moving Platforms Exit West -> HiddenYBlockB (SnowmanDoll)
     {"from": {"map": "OMO_11", "id": "HiddenYBlockB"}, "to": {"map": "OMO_11", "id": 0},               "reqs": []}, #* HiddenYBlockB (SnowmanDoll) -> RED Moving Platforms Exit West
     {"from": {"map": "OMO_11", "id": 0},               "to": {"map": "OMO_11", "id": "YBlockA"},       "reqs": []}, #* RED Moving Platforms Exit West -> YBlockA (Coin)
     {"from": {"map": "OMO_11", "id": "YBlockA"},       "to": {"map": "OMO_11", "id": 0},               "reqs": []}, #* YBlockA (Coin) -> RED Moving Platforms Exit West
     {"from": {"map": "OMO_11", "id": 0},               "to": {"map": "OMO_11", "id": "YBlockB"},       "reqs": []}, #* RED Moving Platforms Exit West -> YBlockB (Coin)
     {"from": {"map": "OMO_11", "id": "YBlockB"},       "to": {"map": "OMO_11", "id": 0},               "reqs": []}, #* YBlockB (Coin) -> RED Moving Platforms Exit West
-    {"from": {"map": "OMO_11", "id": 0},               "to": {"map": "OMO_11", "id": "HiddenRBlockA"}, "reqs": [require(partner="Watt")]}, #* RED Moving Platforms Exit West -> HiddenRBlockA (DeepFocus2)
+    {"from": {"map": "OMO_11", "id": 0},               "to": {"map": "OMO_11", "id": "HiddenRBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* RED Moving Platforms Exit West -> HiddenRBlockA (DeepFocus2)
     {"from": {"map": "OMO_11", "id": "HiddenRBlockA"}, "to": {"map": "OMO_11", "id": 0},               "reqs": []}, #* HiddenRBlockA (DeepFocus2) -> RED Moving Platforms Exit West
 
     # OMO_12 RED Lantern Ghost
@@ -257,7 +257,7 @@ edges_omo = [
     {"from": {"map": "OMO_13", "id": "ChestA"},        "to": {"map": "OMO_13", "id": 0},               "reqs": []}, #* ChestA (PowerPlusB) -> BLU Anti-Guy Hall Exit West
     {"from": {"map": "OMO_13", "id": 0},               "to": {"map": "OMO_13", "id": "YBlockA"},       "reqs": []}, #* BLU Anti-Guy Hall Exit West -> YBlockA (Coin)
     {"from": {"map": "OMO_13", "id": "YBlockA"},       "to": {"map": "OMO_13", "id": 0},               "reqs": []}, #* YBlockA (Coin) -> BLU Anti-Guy Hall Exit West
-    {"from": {"map": "OMO_13", "id": 0},               "to": {"map": "OMO_13", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* BLU Anti-Guy Hall Exit West -> HiddenYBlockA (MapleSyrup)
+    {"from": {"map": "OMO_13", "id": 0},               "to": {"map": "OMO_13", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* BLU Anti-Guy Hall Exit West -> HiddenYBlockA (MapleSyrup)
     {"from": {"map": "OMO_13", "id": "HiddenYBlockA"}, "to": {"map": "OMO_13", "id": 0},               "reqs": []}, #* HiddenYBlockA (MapleSyrup) -> BLU Anti-Guy Hall Exit West
 
     # OMO_14 RED Boss Antechamber

@@ -255,6 +255,7 @@ def _find_new_nodes_and_edges(
 def _init_mario_inventory(
     starting_partners:list,
     partners_always_usable:bool,
+    hidden_block_mode:int,
     startwith_bluehouse_open:bool,
     startwith_flowergate_open:bool,
     startwith_toybox_open:bool,
@@ -292,6 +293,10 @@ def _init_mario_inventory(
 
     add_to_inventory("EQUIPMENT_Hammer_Progressive")
 
+    if hidden_block_mode == 3:
+        # hidden blocks always visible
+        add_to_inventory("RF_HiddenBlocksVisible")
+
     if startwith_bluehouse_open:
         add_to_inventory("GF_MAC02_UnlockedHouse")
     if startwith_flowergate_open:
@@ -305,7 +310,8 @@ def _init_mario_inventory(
 def _get_limit_items_to_dungeons(
     all_item_nodes,
     partners_always_usable:bool,
-    partners_in_default_locations
+    partners_in_default_locations,
+    hidden_block_mode:int
 ):
     """
     Logically places progression items into their 'dungeons', then returns a
@@ -504,9 +510,25 @@ def _get_limit_items_to_dungeons(
         # Reset Mario's inventory
         if partners_in_default_locations:
             almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name)]
-            _init_mario_inventory(almost_all_partners, partners_always_usable, False, False, False, False)
+            _init_mario_inventory(
+                almost_all_partners,
+                partners_always_usable,
+                hidden_block_mode,
+                False,
+                False,
+                False,
+                False
+            )
         else:
-            _init_mario_inventory(all_partners, partners_always_usable, False, False, False, False)
+            _init_mario_inventory(
+                all_partners,
+                partners_always_usable,
+                hidden_block_mode,
+                False,
+                False,
+                False,
+                False
+            )
         add_to_inventory([
             "CrystalBerry",
             "WaterStone"
@@ -573,6 +595,7 @@ def _generate_item_pools(
     keyitems_outside_dungeon:bool,
     partners_always_usable:bool,
     partners_in_default_locations:bool,
+    hidden_block_mode:int,
     starting_partners:list
 ):
     """
@@ -653,7 +676,8 @@ def _generate_item_pools(
             items_to_add_to_pools = _get_limit_items_to_dungeons(
                     all_item_nodes,
                     partners_always_usable,
-                    partners_in_default_locations
+                    partners_in_default_locations,
+                    hidden_block_mode
                 )
         for node in pre_filled_nodes:
             pre_filled_node_ids.append(get_node_identifier(node))
@@ -792,6 +816,7 @@ def _algo_forward_fill(
     starting_partners,
     partners_always_usable,
     partners_in_default_locations,
+    hidden_block_mode:int,
     keyitems_outside_dungeon:bool
 ):
     # Prepare world graph
@@ -826,6 +851,7 @@ def _algo_forward_fill(
         keyitems_outside_dungeon,
         partners_always_usable,
         partners_in_default_locations,
+        hidden_block_mode,
         starting_partners
     )
 
@@ -833,6 +859,7 @@ def _algo_forward_fill(
     _init_mario_inventory(
         starting_partners,
         partners_always_usable,
+        hidden_block_mode,
         startwith_bluehouse_open,
         startwith_flowergate_open,
         startwith_toybox_open,
@@ -926,6 +953,7 @@ def place_items(
     starting_partners,
     partners_always_usable:bool,
     partners_in_default_locations,
+    hidden_block_mode:int,
     keyitems_outside_dungeon:bool
 ):
     """Places items into item locations according to chosen settings."""
@@ -966,6 +994,7 @@ def place_items(
             starting_partners,
             partners_always_usable,
             partners_in_default_locations,
+            hidden_block_mode,
             keyitems_outside_dungeon
         )
 

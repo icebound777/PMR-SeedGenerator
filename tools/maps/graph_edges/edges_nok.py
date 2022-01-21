@@ -202,7 +202,7 @@ edges_nok = [
     {"from": {"map": "NOK_14", "id": "ItemE"},         "to": {"map": "NOK_14", "id": 0},               "reqs": []}, #* ItemE (Coin) -> Path to Fortress 1 Exit Left
     {"from": {"map": "NOK_14", "id": 0},               "to": {"map": "NOK_14", "id": "ItemF"},         "reqs": [require(partner="Kooper", boots=2)]}, #* Path to Fortress 1 Exit Left -> ItemF (ThunderBolt)
     {"from": {"map": "NOK_14", "id": "ItemF"},         "to": {"map": "NOK_14", "id": 0},               "reqs": []}, #* ItemF (ThunderBolt) -> Path to Fortress 1 Exit Left
-    {"from": {"map": "NOK_14", "id": 1},               "to": {"map": "NOK_14", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* Path to Fortress 1 Exit Right -> HiddenYBlockA (FireFlower)
+    {"from": {"map": "NOK_14", "id": 1},               "to": {"map": "NOK_14", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Path to Fortress 1 Exit Right -> HiddenYBlockA (FireFlower)
     {"from": {"map": "NOK_14", "id": "HiddenYBlockA"}, "to": {"map": "NOK_14", "id": 1},               "reqs": []}, #* HiddenYBlockA (FireFlower) -> Path to Fortress 1 Exit Right
 
     # NOK_15 Path to Fortress 2

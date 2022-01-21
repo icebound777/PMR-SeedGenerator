@@ -83,7 +83,7 @@ edges_sam = [
     
     {"from": {"map": "SAM_05", "id": 0},               "to": {"map": "SAM_05", "id": "ItemA"},         "reqs": []}, #* Path to Starborn Valley Exit West -> ItemA (Letter06)
     {"from": {"map": "SAM_05", "id": "ItemA"},         "to": {"map": "SAM_05", "id": 0},               "reqs": []}, #* ItemA (Letter06) -> Path to Starborn Valley Exit West
-    {"from": {"map": "SAM_05", "id": 0},               "to": {"map": "SAM_05", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* Path to Starborn Valley Exit West -> HiddenYBlockA (StopWatch)
+    {"from": {"map": "SAM_05", "id": 0},               "to": {"map": "SAM_05", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Path to Starborn Valley Exit West -> HiddenYBlockA (StopWatch)
     {"from": {"map": "SAM_05", "id": "HiddenYBlockA"}, "to": {"map": "SAM_05", "id": 0},               "reqs": []}, #* HiddenYBlockA (StopWatch) -> Path to Starborn Valley Exit West
 
     # SAM_06 Starborn Valley

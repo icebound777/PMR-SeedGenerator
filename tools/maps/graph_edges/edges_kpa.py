@@ -367,7 +367,7 @@ edges_kpa = [
     
     {"from": {"map": "KPA_111", "id": 0},               "to": {"map": "KPA_111", "id": "YBlockA"},       "reqs": []}, #* Room with Hidden Door 1 Door Left -> YBlockA (SuperShroom)
     {"from": {"map": "KPA_111", "id": "YBlockA"},       "to": {"map": "KPA_111", "id": 0},               "reqs": []}, #* YBlockA (SuperShroom) -> Room with Hidden Door 1 Door Left
-    {"from": {"map": "KPA_111", "id": 0},               "to": {"map": "KPA_111", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt")]}, #* Room with Hidden Door 1 Door Left -> HiddenYBlockA (MapleSyrup)
+    {"from": {"map": "KPA_111", "id": 0},               "to": {"map": "KPA_111", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Room with Hidden Door 1 Door Left -> HiddenYBlockA (MapleSyrup)
     {"from": {"map": "KPA_111", "id": "HiddenYBlockA"}, "to": {"map": "KPA_111", "id": 0},               "reqs": []}, #* HiddenYBlockA (MapleSyrup) -> Room with Hidden Door 1 Door Left
 
     # KPA_112 Hidden Passage 1
