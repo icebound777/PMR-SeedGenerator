@@ -4,10 +4,11 @@ SettingsName   : Default Dev Preset
 SettingsVersion: 0.1
 
 # Options
-StartingMap            : 0x00010104 # mac_00, Entry4
-ReplaceDuplicateKeys   : true
-DuplicateKeyReplacement: 194 # '.Item:Mistake'
-BlocksMatchContent     : true
+StartingMap       : 0x00010104 # mac_00, Entry4
+BlocksMatchContent: true
+AlwaysSpeedySpin  : true
+AlwaysISpy        : false
+AlwaysPeekaboo    : false
 
 InitialCoins : 50
 CapEnemyXP   : true

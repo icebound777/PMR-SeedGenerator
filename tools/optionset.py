@@ -37,6 +37,9 @@ class OptionSet:
         self.random_formations = get_option_keyvalue_dict("RandomFormations")
         self.toybox_open = get_option_keyvalue_dict("ToyboxOpen")
         self.whale_open = get_option_keyvalue_dict("WhaleOpen")
+        self.always_speedyspin = get_option_keyvalue_dict("AlwaysSpeedySpin")
+        self.always_ispy = get_option_keyvalue_dict("AlwaysISpy")
+        self.always_peekaboo = get_option_keyvalue_dict("AlwaysPeekaboo")
 
         # Starting setup
         self.starting_map = get_option_keyvalue_dict("StartingMap") # mac_00 Entry 4
@@ -180,6 +183,12 @@ class OptionSet:
             self.toybox_open = options_dict.get("ToyboxOpen")
         if "WhaleOpen" in options_dict:
             self.whale_open = options_dict.get("WhaleOpen")
+        if "AlwaysSpeedySpin" in options_dict:
+            self.always_speedyspin = get_option_keyvalue_dict("AlwaysSpeedySpin")
+        if "AlwaysISpy" in options_dict:
+            self.always_ispy = get_option_keyvalue_dict("AlwaysISpy")
+        if "AlwaysPeekaboo" in options_dict:
+            self.always_peekaboo = get_option_keyvalue_dict("AlwaysPeekaboo")
 
         # Starting setup
         if "StartingMap" in options_dict:
@@ -370,6 +379,12 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("ToyboxOpen").get("value"), bool)
     if "WhaleOpen" in options_dict:
         assert isinstance(options_dict.get("WhaleOpen").get("value"), bool)
+    if "AlwaysSpeedySpin" in options_dict:
+        assert isinstance(options_dict.get("AlwaysSpeedySpin").get("value"), bool)
+    if "AlwaysISpy" in options_dict:
+        assert isinstance(options_dict.get("AlwaysISpy").get("value"), bool)
+    if "AlwaysPeekaboo" in options_dict:
+        assert isinstance(options_dict.get("AlwaysPeekaboo").get("value"), bool)
 
     # Starting setup
     if "StartingMap" in options_dict:
