@@ -45,7 +45,8 @@ def get_shuffled_chapter_difficulty(shuffle_chapter_difficulty):
         if not shuffle_chapter_difficulty:
             all_enemy_stats[actor_name]["Promoted"] = False
         else:
-            all_enemy_stats[actor_name]["Promoted"] = (random.random() <= 0.2)
+            #all_enemy_stats[actor_name]["Promoted"] = (random.random() <= 0.2)
+            all_enemy_stats[actor_name]["Promoted"] = False
 
     for actor_name in all_enemy_stats:
         if all_enemy_stats[actor_name]["Promoted"]:
@@ -78,7 +79,7 @@ def get_shuffled_chapter_difficulty(shuffle_chapter_difficulty):
             native_chapter = all_enemy_stats[actor_name]["NativeChapter"]
             value = int(all_enemy_stats[actor_name][actor_stat_name][chapter_dict.get(native_chapter)])
             if all_enemy_stats[actor_name]["Promoted"]:
-                value += 1
+                value = int(all_enemy_stats[actor_name][actor_stat_name][chapter_dict.get(native_chapter) + 1])
 
         new_enemy_stats.append((dbkey, value))
 
