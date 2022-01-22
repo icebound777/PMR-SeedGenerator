@@ -31,6 +31,7 @@ from db.actor           import create_actors
 from db.actor_attribute import create_actor_attributes
 from db.move            import create_moves
 from db.quiz            import create_quizzes
+from rando_modules.random_partners import get_rnd_starting_partners
 
 
 VERSION = "Randomizer 0.1 for Open World Paper Mario mod 0.1"
@@ -283,6 +284,16 @@ def main_randomizer():
     #
     init_randomizer(rebuild_database=False)
 
+    # Choose random starting partners if necessary
+    if rando_settings.random_partners:
+        starting_partners = get_rnd_starting_partners(
+            num_rnd_partners_min=rando_settings.random_partners_min,
+            num_rnd_partners_max=rando_settings.random_partners_max,
+            rando_settings=rando_settings
+        )
+    else:
+        starting_partners = rando_settings.starting_partners
+
     # Item Placement
     placed_items = []
     for _, _ in place_items(item_placement=placed_items,
@@ -298,7 +309,7 @@ def main_randomizer():
                             startwith_flowergate_open=rando_settings.flowergate_open["value"],
                             startwith_toybox_open=rando_settings.toybox_open["value"],
                             startwith_whale_open=rando_settings.whale_open["value"],
-                            starting_partners=rando_settings.starting_partners,
+                            starting_partners=starting_partners,
                             partners_always_usable=rando_settings.partners_always_usable["value"],
                             partners_in_default_locations=rando_settings.partners_in_default_locations,
                             hidden_block_mode=rando_settings.hidden_block_mode["value"],

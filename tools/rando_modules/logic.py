@@ -2,6 +2,7 @@
 This modules offers the randomization logic and takes care of actually randomizing
 the game according to the settings chosen.
 """
+import imp
 import random
 from copy import deepcopy
 import logging
@@ -25,6 +26,7 @@ from metadata.itemlocation_special \
            limited_by_item_areas
 from metadata.progression_items \
     import progression_miscitems as progression_miscitems_names
+from metadata.partners_meta import all_partners as all_partners_imp
 
 
 def get_startingnode_id_from_startingmap_id(starting_map_id):
@@ -444,16 +446,7 @@ def _get_limit_items_to_dungeons(
         "KPA": "KPA_60/4",
     }
 
-    all_partners = [
-        "Goombario",
-        "Kooper",
-        "Bombette",
-        "Parakarry",
-        "Bow",
-        "Watt",
-        "Sushie",
-        "Lakilester"
-    ]
+    all_partners = all_partners_imp.copy()
 
     # If partners are forced into their default locations, then we have to
     # place key items with those partners considered unavailable

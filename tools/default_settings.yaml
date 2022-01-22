@@ -70,9 +70,9 @@ SkipQuiz  : false
 # Randomization: Partner
 PartnersInDefaultLocations: true
 PartnersAlwaysUsable      : true
-StartWithRandomPartners   : false # NYI
-RandomPartnersMin         : 1     # NYI
-RandomPartnersMax         : 8     # NYI
+StartWithRandomPartners   : false
+RandomPartnersMin         : 1 # 1-8
+RandomPartnersMax         : 8 # 1-8
 StartWithPartners: { # ignored if StartWithRandomPartners true
     Goombario : true,
     Kooper    : false,
