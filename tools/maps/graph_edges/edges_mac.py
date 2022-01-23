@@ -140,8 +140,8 @@ edges_mac = [
     {"from": {"map": "MAC_03", "id": 1}, "to": {"map": "IWA_11", "id": 1}, "reqs": []}, # Station District Train -> Train Ride Scene Exit Left
     {"from": {"map": "MAC_03", "id": 2}, "to": {"map": "MGM_00", "id": 0}, "reqs": []}, # Station District Minigame Pipe -> Playroom Lobby Exit Pipe
     
-    {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 1}, "reqs": [require(partner="Bombette")]}, #? Station District Exit Top -> Station District Train
-    {"from": {"map": "MAC_03", "id": 1}, "to": {"map": "MAC_03", "id": 0}, "reqs": []}, #? Station District Train -> Station District Exit Top
+    {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 1}, "reqs": [require(flag="GF_MAC03_BombedRock")]}, #? Station District Exit Top -> Station District Train
+    {"from": {"map": "MAC_03", "id": 1}, "to": {"map": "MAC_03", "id": 0}, "reqs": [], "pseudoitems": ["GF_MAC03_BombedRock"]}, #? Station District Train -> Station District Exit Top
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 2}, "reqs": [can_shake_trees]}, #? Station District Exit Top -> Station District Minigame Pipe
     {"from": {"map": "MAC_03", "id": 2}, "to": {"map": "MAC_03", "id": 0}, "reqs": []}, #? Station District Minigame Pipe -> Station District Exit Top
     
@@ -151,6 +151,8 @@ edges_mac = [
     {"from": {"map": "MAC_03", "id": "GiftB"},       "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* GiftB (Letter23) -> Station District Exit Top
     {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Station District Exit Top -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_03", "id": "HiddenPanel"}, "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Station District Exit Top
+
+    {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 0}, "reqs": [require(partner="Bombette")], "pseudoitems": ["GF_MAC03_BombedRock"]}, #+ Station District Explode the rock
 
     # MAC_04 Residental District
     {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": []}, # Residental District Exit Right -> Southern District Exit Left
