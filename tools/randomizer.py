@@ -347,7 +347,14 @@ def main_randomizer():
         )
 
     # Build item hint db
-    itemhints = get_itemhints(placed_items)
+    itemhints = get_itemhints(
+            placed_items,
+            rando_settings.include_shops["value"],
+            rando_settings.include_panels["value"],
+            rando_settings.include_favors,
+            rando_settings.include_letterchain,
+            rando_settings.keyitems_outside_dungeon
+        )
 
     # Randomize sprite palettes
     coin_palette_data = []
