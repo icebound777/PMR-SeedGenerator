@@ -99,14 +99,14 @@ progression_items = {
     0x017A : "BowserCastleKeyC",
     0x017B : "BowserCastleKeyD",
     0x017C : "BowserCastleKeyE",
-    0x01C1 : "Goombario",
-    0x01C2 : "Kooper",
-    0x01C3 : "Bombette",
-    0x01C4 : "Parakarry",
-    0x01C6 : "Watt",
-    0x01C7 : "Sushie",
-    0x01C8 : "Lakilester",
-    0x01C9 : "Bow",
+    0x01C6 : "Goombario",
+    0x01C7 : "Kooper",
+    0x01C8 : "Bombette",
+    0x01C9 : "Parakarry",
+    0x01CB : "Watt",
+    0x01CC : "Sushie",
+    0x01CD : "Lakilester",
+    0x01CE : "Bow",
 }
     # 0x0030 calculator
     # 0x0078 ??
