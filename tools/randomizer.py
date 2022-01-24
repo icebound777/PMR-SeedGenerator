@@ -221,8 +221,6 @@ def main_randomizer():
     spoilerlog_file_path = ""
     rando_outputfile = ""
 
-    rando_settings = OptionSet()
-
     # Get arguments from cmd
     argv = sys.argv[1:]
     try:
@@ -254,6 +252,7 @@ def main_randomizer():
                         data = json.load(file)
                     elif arg[arg.rfind(".") + 1:] == "yaml":
                         data = yaml.load(file, Loader=SafeLoader)
+                rando_settings = OptionSet()
                 populate_keys(data)
                 rando_settings.update_options(data)
 
@@ -273,6 +272,9 @@ def main_randomizer():
     except getopt.GetoptError:
         print_usage()
         raise
+
+    if rando_settings is None:
+        rando_settings = OptionSet()
 
     # DEFAULTS: Set targetmod if none provided
     if not target_modfile:

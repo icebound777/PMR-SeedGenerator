@@ -41,6 +41,7 @@ class OptionSet:
         self.always_ispy = get_option_keyvalue_dict("AlwaysISpy")
         self.always_peekaboo = get_option_keyvalue_dict("AlwaysPeekaboo")
         self.hidden_block_mode = get_option_keyvalue_dict("HiddenBlockMode")
+        self.allow_physics_glitches = get_option_keyvalue_dict("AllowPhysicsGlitches")
 
         # Starting setup
         self.starting_map = get_option_keyvalue_dict("StartingMap") # mac_00 Entry 4
@@ -192,6 +193,8 @@ class OptionSet:
             self.always_peekaboo = options_dict.get("AlwaysPeekaboo")
         if "HiddenBlockMode" in options_dict:
             self.hidden_block_mode = options_dict.get("HiddenBlockMode")
+        if "AllowPhysicsGlitches" in options_dict:
+            self.allow_physics_glitches = options_dict.get("AllowPhysicsGlitches")
 
         # Starting setup
         if "StartingMap" in options_dict:
@@ -391,6 +394,8 @@ def validate_options(options_dict):
     if "HiddenBlockMode" in options_dict:
         assert (    isinstance(options_dict.get("HiddenBlockMode").get("value"), int)
                 and 0 <= options_dict.get("HiddenBlockMode").get("value") <= 3)
+    if "AllowPhysicsGlitches" in options_dict:
+        assert isinstance(options_dict.get("AllowPhysicsGlitches").get("value"), bool)
 
     # Starting setup
     if "StartingMap" in options_dict:
