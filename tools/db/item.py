@@ -6,6 +6,7 @@ from playhouse.sqlite_ext import JSONField
 
 from db.db import db
 from metadata.progression_items import progression_items
+from metadata.item_exclusion import taycet_items
 from enums import Enums
 from parse import get_default_table
 from utility import get_files
@@ -86,6 +87,11 @@ def create_items():
     for _,data in item_keys.items():
 
         unique_itemvalues[item_values[data["map_name"]][data["name"]]] = ""
+
+    # Tayce T. items are never placed in the game anywhere, so the parsed data
+    # does not include them. Add them manually here
+    for item_value in taycet_items:
+        unique_itemvalues[item_value] = ""
 
     for value in unique_itemvalues.keys():
         try:

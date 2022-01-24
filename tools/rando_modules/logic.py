@@ -26,6 +26,7 @@ from metadata.itemlocation_special \
            limited_by_item_areas
 from metadata.progression_items \
     import progression_miscitems as progression_miscitems_names
+from metadata.item_exclusion import items_to_exclude, taycet_items
 from metadata.partners_meta import all_partners as all_partners_imp
 
 
@@ -585,9 +586,14 @@ def _generate_item_pools(
     do_randomize_panels:bool,
     do_randomize_koopakoot:bool,
     do_randomize_letterchain:bool,
+    startwith_bluehouse_open:bool,
+    startwith_flowergate_open:bool,
     keyitems_outside_dungeon:bool,
     partners_always_usable:bool,
     partners_in_default_locations:bool,
+    always_speedyspin,
+    always_ispy,
+    always_peekaboo,
     hidden_block_mode:int,
     starting_partners:list
 ):
@@ -701,6 +707,35 @@ def _generate_item_pools(
                 else:
                     pool_other_items.append(current_node.vanilla_item)
     
+    # Adjust item pools based on settings
+    goal_size_item_pool = len(pool_progression_items)      \
+                        + len(pool_misc_progression_items) \
+                        + len(pool_other_items)
+
+    if startwith_bluehouse_open:
+        for item_name in items_to_exclude.get("startwith_bluehouse_open"):
+            item = Item.get(Item.item_name == item_name)
+            items_to_remove_from_pools.append(item)
+    if startwith_flowergate_open:
+        for item_name in items_to_exclude.get("startwith_flowergate_open"):
+            item = Item.get(Item.item_name == item_name)
+            items_to_remove_from_pools.append(item)
+    if always_speedyspin:
+        for item_name in items_to_exclude.get("always_speedyspin"):
+            item = Item.get(Item.item_name == item_name)
+            items_to_remove_from_pools.append(item)
+    if always_ispy:
+        for item_name in items_to_exclude.get("always_ispy"):
+            item = Item.get(Item.item_name == item_name)
+            items_to_remove_from_pools.append(item)
+    if always_peekaboo:
+        for item in items_to_exclude.get("always_peekaboo"):
+            item = Item.get(Item.item_name == item_name)
+            items_to_remove_from_pools.append(item)
+    for item_name in items_to_exclude.get("misc"):
+        item = Item.get(Item.item_name == item_name)
+        items_to_remove_from_pools.append(item)
+
     for item in items_to_add_to_pools:
         if item.progression:
             pool_progression_items.append(item)
@@ -726,6 +761,18 @@ def _generate_item_pools(
             pool_other_items.remove(item)
             continue
         raise KeyError
+
+    # If the item pool is too small now, fill it back up
+    cur_size_item_pool = len(pool_progression_items)      \
+                       + len(pool_misc_progression_items) \
+                       + len(pool_other_items)
+    while goal_size_item_pool > cur_size_item_pool:
+        random_taycet_item_value = random.choice(taycet_items)
+        random_taycet_item = Item.get(Item.value == random_taycet_item_value)
+        pool_other_items.append(random_taycet_item)
+        cur_size_item_pool = len(pool_progression_items)      \
+                           + len(pool_misc_progression_items) \
+                           + len(pool_other_items)
 
 
 def place_progression_items(
@@ -807,6 +854,9 @@ def _algo_forward_fill(
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
+    speedyspin,
+    ispy,
+    peekaboo,
     partners_always_usable,
     partners_in_default_locations,
     hidden_block_mode:int,
@@ -841,9 +891,14 @@ def _algo_forward_fill(
         do_randomize_panels,
         do_randomize_koopakoot,
         do_randomize_letterchain,
+        startwith_bluehouse_open,
+        startwith_flowergate_open,
         keyitems_outside_dungeon,
         partners_always_usable,
         partners_in_default_locations,
+        speedyspin,
+        ispy,
+        peekaboo,
         hidden_block_mode,
         starting_partners
     )
@@ -944,6 +999,9 @@ def place_items(
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
+    speedyspin,
+    ispy,
+    peekaboo,
     partners_always_usable:bool,
     partners_in_default_locations,
     hidden_block_mode:int,
@@ -985,6 +1043,9 @@ def place_items(
             startwith_toybox_open,
             startwith_whale_open,
             starting_partners,
+            speedyspin,
+            ispy,
+            peekaboo,
             partners_always_usable,
             partners_in_default_locations,
             hidden_block_mode,
