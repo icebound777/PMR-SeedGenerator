@@ -310,7 +310,22 @@ def get_random_formations(chapter_changes:dict):
                         # weird
                         current_enemylist.append(front_row_enemy)
                     else:
-                        current_enemylist.append(random.choice(available_enemies))
+                        while True:
+                            new_enemy = random.choice(available_enemies)
+                            # In case of bat, check if battle stage has ceiling.
+                            # If not, pick other enemy
+                            if "Swoop" in new_enemy:
+                                for stage in battlestage_ceiling_formations.keys():
+                                    if battle in battlestage_ceiling_formations.get(stage):
+                                        current_enemylist.append(new_enemy)
+                                        print(f"{battle} alt not needed")
+                                        break
+                                else:
+                                    continue
+                                break
+                            else:
+                                current_enemylist.append(new_enemy)
+                                break
                 
                 # Build new formation for current battle with chosen enemies
                 new_formation = _get_new_formation(

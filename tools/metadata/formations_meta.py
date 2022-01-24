@@ -39,6 +39,14 @@ dont_randomize_formations = [
     "1B-XX", # Bloopers
     "1E-00", # Monstar
     "20-XX", # CrystalKing
+    "21-0C", # unused
+    "21-0D", # unused
+    "21-0E", # unused
+    "21-0F", # unused
+    "21-10", # unused
+    "21-11", # unused
+    "21-12", # unused
+    "21-13", # unused
     "23-XX", # Bowser
     "24-00", # AntiGuy x3, duplighosts
     "25-05", # unused
