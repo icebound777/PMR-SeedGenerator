@@ -70,6 +70,7 @@ class OptionSet:
         # Item related
         self.include_favors = False
         self.include_letterchain = False
+        self.include_dojo = False
         self.placement_algorithm = "ForwardFill"
         self.placement_logic = "NoGlitches"
         self.keyitems_outside_dungeon = True # False -> NYI
@@ -246,6 +247,8 @@ class OptionSet:
             self.include_favors = options_dict.get("IncludeFavors").get("value")
         if "IncludeLetterChain" in options_dict:
             self.include_letterchain = options_dict.get("IncludeLetterChain").get("value")
+        if "IncludeDojo" in options_dict:
+            self.include_dojo = options_dict.get("IncludeDojo").get("value")
         if "PlacementAlgorithm" in options_dict:
             self.placement_algorithm = options_dict.get("PlacementAlgorithm").get("value")
         if "PlacementLogic" in options_dict:
@@ -447,6 +450,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("IncludeFavors").get("value"), bool)
     if "IncludeLetterChain" in options_dict:
         assert isinstance(options_dict.get("IncludeLetterChain").get("value"), bool)
+    if "IncludeDojo" in options_dict:
+        assert isinstance(options_dict.get("IncludeDojo").get("value"), bool)
     if "PlacementAlgorithm" in options_dict:
         assert (isinstance(options_dict.get("PlacementAlgorithm").get("value"), str)
             and options_dict.get("PlacementAlgorithm").get("value") in [

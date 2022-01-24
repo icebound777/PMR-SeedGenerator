@@ -48,6 +48,14 @@ chainletter_giver_locations = [
     "MAC_03/GiftB",
 ]
 
+dojo_locations = [
+    "MAC_00/DojoA",
+    "MAC_00/DojoB",
+    "MAC_00/DojoC",
+    "MAC_00/DojoD",
+    "MAC_00/DojoE",
+]
+
 # Areas that are considered 'limited by item'.
 # 'Limited by item' areas are only allowed to hold a subset of specific
 # randomized items, instead of every item available in the pool.

@@ -306,6 +306,7 @@ def main_randomizer():
                             do_randomize_panels=rando_settings.include_panels["value"],
                             do_randomize_koopakoot=rando_settings.include_favors,
                             do_randomize_letterchain=rando_settings.include_letterchain,
+                            do_randomize_dojo=rando_settings.include_dojo,
                             starting_map_id=rando_settings.starting_map["value"],
                             startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
                             startwith_flowergate_open=rando_settings.flowergate_open["value"],

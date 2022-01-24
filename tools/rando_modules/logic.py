@@ -23,6 +23,7 @@ from metadata.itemlocation_replenish import replenishing_itemlocations
 from metadata.itemlocation_special \
     import kootfavors_locations,\
            chainletter_giver_locations,\
+           dojo_locations,\
            limited_by_item_areas
 from metadata.progression_items \
     import progression_miscitems as progression_miscitems_names
@@ -586,6 +587,7 @@ def _generate_item_pools(
     do_randomize_panels:bool,
     do_randomize_koopakoot:bool,
     do_randomize_letterchain:bool,
+    do_randomize_dojo:bool,
     startwith_bluehouse_open:bool,
     startwith_flowergate_open:bool,
     keyitems_outside_dungeon:bool,
@@ -645,6 +647,13 @@ def _generate_item_pools(
 
             if (    get_node_identifier(current_node) in chainletter_giver_locations
                 and not do_randomize_letterchain
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (   get_node_identifier(current_node) in dojo_locations
+                and not do_randomize_dojo
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -848,6 +857,7 @@ def _algo_forward_fill(
     do_randomize_panels,
     do_randomize_koopakoot,
     do_randomize_letterchain,
+    do_randomize_dojo,
     starting_map_id,
     startwith_bluehouse_open,
     startwith_flowergate_open,
@@ -891,6 +901,7 @@ def _algo_forward_fill(
         do_randomize_panels,
         do_randomize_koopakoot,
         do_randomize_letterchain,
+        do_randomize_dojo,
         startwith_bluehouse_open,
         startwith_flowergate_open,
         keyitems_outside_dungeon,
@@ -993,6 +1004,7 @@ def place_items(
     do_randomize_panels,
     do_randomize_koopakoot,
     do_randomize_letterchain,
+    do_randomize_dojo,
     starting_map_id,
     startwith_bluehouse_open,
     startwith_flowergate_open,
@@ -1037,6 +1049,7 @@ def place_items(
             do_randomize_panels,
             do_randomize_koopakoot,
             do_randomize_letterchain,
+            do_randomize_dojo,
             starting_map_id,
             startwith_bluehouse_open,
             startwith_flowergate_open,

@@ -318,7 +318,6 @@ def get_random_formations(chapter_changes:dict):
                                 for stage in battlestage_ceiling_formations.keys():
                                     if battle in battlestage_ceiling_formations.get(stage):
                                         current_enemylist.append(new_enemy)
-                                        print(f"{battle} alt not needed")
                                         break
                                 else:
                                     continue
