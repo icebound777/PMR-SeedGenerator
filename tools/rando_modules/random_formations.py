@@ -218,6 +218,7 @@ def _get_new_special_formation(
     area_id:str,
     formation_id:str,
     chapter_difficulty:int,
+    do_progressive_scaling:bool,
     available_enemies:list
 ):
     special_formation = []
@@ -253,7 +254,12 @@ def _get_new_special_formation(
 
     base_number_of_enemies = len(cur_enemylist)
     while True:
-        rnd_number_of_enemies = _get_random_formationsize(chapter_difficulty)
+        if battle_id == "18-1C":
+            rnd_number_of_enemies = 2
+        rnd_number_of_enemies = _get_random_formationsize(
+            chapter_difficulty,
+            do_progressive_scaling
+        )
         if rnd_number_of_enemies >= base_number_of_enemies:
             break
     if rnd_number_of_enemies > max_number_of_enemies:
@@ -372,6 +378,7 @@ def get_random_formations(
                     area_id,
                     formation_id,
                     chapter_difficulty,
+                    do_progressive_scaling,
                     available_enemies
                 )
 
