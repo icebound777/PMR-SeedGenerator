@@ -17,7 +17,10 @@ from metadata.formations_meta import (
 )
 
 
-def _get_random_formationsize(chapter_difficulty:int):
+def _get_random_formationsize(
+    chapter_difficulty:int,
+    do_progressive_scaling:bool
+):
     """
     Choose the size of the formation from 1-4. This is a function of
     chapter difficulty, with later chapters having a higher likelihood for
@@ -37,17 +40,32 @@ def _get_random_formationsize(chapter_difficulty:int):
     # chapter  6        0%      25%     45%     30%
     # chapter  7        0%      15%     55%     30%
     # chapter  8        0%      10%     50%     40%
-    size_chances = {
-        0: [25, 60, 15,  0],
-        1: [15, 55, 20, 10],
-        2: [10, 45, 30, 15],
-        3: [10, 35, 35, 20],
-        4: [ 5, 35, 35, 25],
-        5: [ 0, 35, 40, 25],
-        6: [ 0, 25, 45, 30],
-        7: [ 0, 15, 55, 30],
-        8: [ 0, 10, 50, 40],
-    }
+    if do_progressive_scaling:
+        # during prog scaling always do 3/4 enemies, since the rom itself
+        # deletes an enemy if scale is low, resulting in 2/3
+        size_chances = {
+            0: [ 0, 0, 60, 40],
+            1: [ 0, 0, 60, 40],
+            2: [ 0, 0, 60, 40],
+            3: [ 0, 0, 60, 40],
+            4: [ 0, 0, 60, 40],
+            5: [ 0, 0, 60, 40],
+            6: [ 0, 0, 60, 40],
+            7: [ 0, 0, 60, 40],
+            8: [ 0, 0, 60, 40],
+        }
+    else:
+        size_chances = {
+            0: [25, 60, 15,  0],
+            1: [15, 55, 20, 10],
+            2: [10, 45, 30, 15],
+            3: [10, 35, 35, 20],
+            4: [ 5, 35, 35, 25],
+            5: [ 0, 35, 40, 25],
+            6: [ 0, 25, 45, 30],
+            7: [ 0, 15, 55, 30],
+            8: [ 0, 10, 50, 40],
+        }
 
     rnd_value = random.random() * 100
     probability_count = 0
@@ -253,7 +271,10 @@ def _get_new_special_formation(
     return special_formation
 
 
-def get_random_formations(chapter_changes:dict):
+def get_random_formations(
+    chapter_changes:dict,
+    do_progressive_scaling:bool
+):
     battle_formations = []
 
     # Fetch dict of actors and their ROM pointers from SQL
@@ -294,7 +315,10 @@ def get_random_formations(chapter_changes:dict):
                         battle_homechapter = cur_chapter
                     break
             chapter_difficulty = chapter_changes.get(battle_homechapter)
-            rnd_number_of_enemies = _get_random_formationsize(chapter_difficulty)
+            rnd_number_of_enemies = _get_random_formationsize(
+                chapter_difficulty,
+                do_progressive_scaling
+            )
 
             available_enemies = [enemy for enemy in actor_areas.get(area_id) if enemy not in dont_randomize_enemies]
 

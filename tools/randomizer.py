@@ -334,8 +334,11 @@ def main_randomizer():
 
     # Randomize enemy battle formations
     battle_formations = []
-    if rando_settings.random_formations:
-        battle_formations = get_random_formations(chapter_changes)
+    if rando_settings.random_formations or rando_settings.progressive_scaling:
+        battle_formations = get_random_formations(
+            chapter_changes,
+            rando_settings.progressive_scaling
+        )
 
     # Randomize move costs (FP/BP) if needed
     move_costs = []

@@ -3,7 +3,9 @@ import random
 
 from db.actor_attribute import ActorAttribute
 
-def get_shuffled_chapter_difficulty(shuffle_chapter_difficulty):
+def get_shuffled_chapter_difficulty(
+    shuffle_chapter_difficulty:bool
+):
     # Load enemy stats csv
     ENEMY_STATS_CSV_PATH = '../res/actor_params.csv'
 

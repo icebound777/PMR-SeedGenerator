@@ -38,6 +38,7 @@ PlacementLogic: NoGlitches
 
 # Randomization: Difficulty
 ShuffleChapterDifficulty: false
+ProgressiveScaling      : false
 RandomFormations        : false
 
 # Randomization: Items

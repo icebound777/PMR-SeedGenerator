@@ -34,6 +34,7 @@ class OptionSet:
         # General
         self.random_quiz = get_option_keyvalue_dict("RandomQuiz")
         self.shuffle_chapter_difficulty = False
+        self.progressive_scaling = get_option_keyvalue_dict("ProgressiveScaling")
         self.random_formations = get_option_keyvalue_dict("RandomFormations")
         self.toybox_open = get_option_keyvalue_dict("ToyboxOpen")
         self.whale_open = get_option_keyvalue_dict("WhaleOpen")
@@ -180,6 +181,8 @@ class OptionSet:
             self.random_quiz = options_dict.get("RandomQuiz")
         if "ShuffleChapterDifficulty" in options_dict:
             self.shuffle_chapter_difficulty = options_dict.get("ShuffleChapterDifficulty").get("value")
+        if "ProgressiveScaling" in options_dict:
+            self.progressive_scaling = options_dict.get("ProgressiveScaling")
         if "RandomFormations" in options_dict:
             self.random_formations = options_dict.get("RandomFormations")
         if "ToyboxOpen" in options_dict:
@@ -384,6 +387,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("ShuffleChapterDifficulty").get("value"), bool)
     if "RandomFormations" in options_dict:
         assert isinstance(options_dict.get("RandomFormations").get("value"), bool)
+    if "ProgressiveScaling" in options_dict:
+        assert isinstance(options_dict.get("ProgressiveScaling").get("value"), bool)
     if "ToyboxOpen" in options_dict:
         assert isinstance(options_dict.get("ToyboxOpen").get("value"), bool)
     if "WhaleOpen" in options_dict:
