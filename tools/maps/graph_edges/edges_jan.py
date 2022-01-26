@@ -84,22 +84,24 @@ edges_jan = [
     {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_03", "id": 3}, "reqs": [require(flag="GF_TIK08_WarpPipe")]}, #? Village Buildings Exit Left -> Village Buildings Blue Warp Pipe
     {"from": {"map": "JAN_03", "id": 3}, "to": {"map": "JAN_03", "id": 0}, "reqs": []}, #? Village Buildings Blue Warp Pipe -> Village Buildings Exit Left
 
-    {"from": {"map": "JAN_03", "id": 0},           "to": {"map": "JAN_03", "id": "GiftA"},     "reqs": [saved_all_yoshikids,require(item="VolcanoVase"),require(flag="MF_Ch5_RescuedStarSpirit")]}, #* Village Buildings Exit Left -> GiftA (MagicalSeed4)
-    {"from": {"map": "JAN_03", "id": "GiftA"},     "to": {"map": "JAN_03", "id": 0},           "reqs": []}, #* GiftA (MagicalSeed4) -> Village Buildings Exit Left
-    {"from": {"map": "JAN_03", "id": 0},           "to": {"map": "JAN_03", "id": "GiftB"},     "reqs": [require(flag="RF_CanVisitTayceT")]}, #* Village Buildings Exit Left -> GiftB (Melon)
-    {"from": {"map": "JAN_03", "id": "GiftB"},     "to": {"map": "JAN_03", "id": 0},           "reqs": []}, #* GiftB (Melon) -> Village Buildings Exit Left
-    {"from": {"map": "JAN_03", "id": 0},           "to": {"map": "JAN_03", "id": "ShopItemA"}, "reqs": []}, #* Village Buildings Exit Left -> ShopItemA (SnowmanDoll)
-    {"from": {"map": "JAN_03", "id": "ShopItemA"}, "to": {"map": "JAN_03", "id": 0},           "reqs": []}, #* ShopItemA (SnowmanDoll) -> Village Buildings Exit Left
-    {"from": {"map": "JAN_03", "id": 0},           "to": {"map": "JAN_03", "id": "ShopItemB"}, "reqs": []}, #* Village Buildings Exit Left -> ShopItemB (ThunderRage)
-    {"from": {"map": "JAN_03", "id": "ShopItemB"}, "to": {"map": "JAN_03", "id": 0},           "reqs": []}, #* ShopItemB (ThunderRage) -> Village Buildings Exit Left
-    {"from": {"map": "JAN_03", "id": 0},           "to": {"map": "JAN_03", "id": "ShopItemC"}, "reqs": []}, #* Village Buildings Exit Left -> ShopItemC (FireFlower)
-    {"from": {"map": "JAN_03", "id": "ShopItemC"}, "to": {"map": "JAN_03", "id": 0},           "reqs": []}, #* ShopItemC (FireFlower) -> Village Buildings Exit Left
-    {"from": {"map": "JAN_03", "id": 0},           "to": {"map": "JAN_03", "id": "ShopItemD"}, "reqs": []}, #* Village Buildings Exit Left -> ShopItemD (TastyTonic)
-    {"from": {"map": "JAN_03", "id": "ShopItemD"}, "to": {"map": "JAN_03", "id": 0},           "reqs": []}, #* ShopItemD (TastyTonic) -> Village Buildings Exit Left
-    {"from": {"map": "JAN_03", "id": 0},           "to": {"map": "JAN_03", "id": "ShopItemE"}, "reqs": []}, #* Village Buildings Exit Left -> ShopItemE (HoneySyrup)
-    {"from": {"map": "JAN_03", "id": "ShopItemE"}, "to": {"map": "JAN_03", "id": 0},           "reqs": []}, #* ShopItemE (HoneySyrup) -> Village Buildings Exit Left
-    {"from": {"map": "JAN_03", "id": 0},           "to": {"map": "JAN_03", "id": "ShopItemF"}, "reqs": []}, #* Village Buildings Exit Left -> ShopItemF (SuperShroom)
-    {"from": {"map": "JAN_03", "id": "ShopItemF"}, "to": {"map": "JAN_03", "id": 0},           "reqs": []}, #* ShopItemF (SuperShroom) -> Village Buildings Exit Left
+    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "GiftA"},       "reqs": [saved_all_yoshikids,require(item="VolcanoVase"),require(flag="MF_Ch5_RescuedStarSpirit")]}, #* Village Buildings Exit Left -> GiftA (MagicalSeed4)
+    {"from": {"map": "JAN_03", "id": "GiftA"},       "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* GiftA (MagicalSeed4) -> Village Buildings Exit Left
+    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "GiftB"},       "reqs": [require(flag="RF_CanVisitTayceT")]}, #* Village Buildings Exit Left -> GiftB (Melon)
+    {"from": {"map": "JAN_03", "id": "GiftB"},       "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* GiftB (Melon) -> Village Buildings Exit Left
+    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "Tree1_Drop1A"},"reqs": [can_shake_trees]}, #* Village Buildings Exit Left -> Tree1_Drop1A (Coconut)
+    {"from": {"map": "JAN_03", "id": "Tree1_Drop1A"},"to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* Tree1_Drop1A (Coconut) -> Village Buildings Exit Left
+    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "ShopItemA"},   "reqs": []}, #* Village Buildings Exit Left -> ShopItemA (SnowmanDoll)
+    {"from": {"map": "JAN_03", "id": "ShopItemA"},   "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* ShopItemA (SnowmanDoll) -> Village Buildings Exit Left
+    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "ShopItemB"},   "reqs": []}, #* Village Buildings Exit Left -> ShopItemB (ThunderRage)
+    {"from": {"map": "JAN_03", "id": "ShopItemB"},   "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* ShopItemB (ThunderRage) -> Village Buildings Exit Left
+    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "ShopItemC"},   "reqs": []}, #* Village Buildings Exit Left -> ShopItemC (FireFlower)
+    {"from": {"map": "JAN_03", "id": "ShopItemC"},   "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* ShopItemC (FireFlower) -> Village Buildings Exit Left
+    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "ShopItemD"},   "reqs": []}, #* Village Buildings Exit Left -> ShopItemD (TastyTonic)
+    {"from": {"map": "JAN_03", "id": "ShopItemD"},   "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* ShopItemD (TastyTonic) -> Village Buildings Exit Left
+    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "ShopItemE"},   "reqs": []}, #* Village Buildings Exit Left -> ShopItemE (HoneySyrup)
+    {"from": {"map": "JAN_03", "id": "ShopItemE"},   "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* ShopItemE (HoneySyrup) -> Village Buildings Exit Left
+    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "ShopItemF"},   "reqs": []}, #* Village Buildings Exit Left -> ShopItemF (SuperShroom)
+    {"from": {"map": "JAN_03", "id": "ShopItemF"},   "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* ShopItemF (SuperShroom) -> Village Buildings Exit Left
 
     {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_03", "id": 0}, "reqs": [], "pseudoitems": ["RF_YoshiKidsMissing"]}, #+ Village visited -> Yoshi Kids Missing
 

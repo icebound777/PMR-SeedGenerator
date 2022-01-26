@@ -485,6 +485,7 @@ item_source_types = {
                "Tree3_Drop1A": SRC_HIDDENINTREE,},
     "JAN_03": {"GiftA": SRC_GIVENBYNPC,
                "GiftB": SRC_GIVENBYNPC,
+               "Tree1_Drop1A": SRC_HIDDENINTREE,
                "ShopItemA": SRC_SOLDBYNPC,
                "ShopItemB": SRC_SOLDBYNPC,
                "ShopItemC": SRC_SOLDBYNPC,

@@ -468,6 +468,7 @@ verbose_item_locations = {
                "Tree3_Drop1A": "In Palm Tree Right",},
     "JAN_03": {"GiftA": "Kolorado Volcano Vase Reward",
                "GiftB": "Cooked Goods Fan Yoshi",
+               "Tree1_Drop1A": "In Palm Tree",
                "ShopItemA": "Shop Item 1",
                "ShopItemB": "Shop Item 2",
                "ShopItemC": "Shop Item 3",
