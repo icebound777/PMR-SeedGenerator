@@ -33,6 +33,7 @@ class OptionSet:
         # Settings unavailable in the GUI
         # General
         self.random_quiz = get_option_keyvalue_dict("RandomQuiz")
+        self.quizmo_always_appears = get_option_keyvalue_dict("QuizmoAlwaysAppears")
         self.shuffle_chapter_difficulty = False
         self.progressive_scaling = get_option_keyvalue_dict("ProgressiveScaling")
         self.random_formations = get_option_keyvalue_dict("RandomFormations")
@@ -110,6 +111,7 @@ class OptionSet:
         # Cosmetics
         self.color_a = 0xEBE677FF # Box5ColorA
         self.color_b = 0x8E5A25FF # Box5ColorB
+        self.roman_numerals = get_option_keyvalue_dict("RomanNumerals")
         self.random_coin_palette = False
 
         # Audio
@@ -179,6 +181,8 @@ class OptionSet:
         # General
         if "RandomQuiz" in options_dict:
             self.random_quiz = options_dict.get("RandomQuiz")
+        if "QuizmoAlwaysAppears" in options_dict:
+            self.quizmo_always_appears = options_dict.get("QuizmoAlwaysAppears")
         if "ShuffleChapterDifficulty" in options_dict:
             self.shuffle_chapter_difficulty = options_dict.get("ShuffleChapterDifficulty").get("value")
         if "ProgressiveScaling" in options_dict:
@@ -317,6 +321,8 @@ class OptionSet:
             self.pretty_spoilerlog = options_dict.get("PrettySpoilerlog").get("value")
 
         # Cosmetics / Palettes
+        if "RomanNumerals" in options_dict:
+            self.roman_numerals = options_dict.get("RomanNumerals")
         if "RandomCoinPalette" in options_dict:
             self.random_coin_palette = options_dict.get("RandomCoinPalette").get("value")
 
@@ -383,6 +389,8 @@ def validate_options(options_dict):
     # General
     if "RandomQuiz" in options_dict:
         assert isinstance(options_dict.get("RandomQuiz").get("value"), bool)
+    if "QuizmoAlwaysAppears" in options_dict:
+        assert isinstance(options_dict.get("QuizmoAlwaysAppears").get("value"), bool)
     if "ShuffleChapterDifficulty" in options_dict:
         assert isinstance(options_dict.get("ShuffleChapterDifficulty").get("value"), bool)
     if "RandomFormations" in options_dict:
@@ -539,11 +547,13 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("PrettySpoilerlog").get("value"), bool)
 
     # Cosmetics / Palettes
+    if "RomanNumerals" in options_dict:
+        assert isinstance(options_dict.get("RomanNumerals").get("value"), bool)
     if "RandomCoinPalette" in options_dict:
         assert isinstance(options_dict.get("RandomCoinPalette").get("value"), bool)
 
     # Audio
-    if "TurnOffAudio" in options_dict:
+    if "TurnOffMusic" in options_dict:
         assert isinstance(options_dict.get("TurnOffMusic").get("value"), bool)
 
 

@@ -67,8 +67,9 @@ RandomizeOnewayEntrances: false # NYI
 UnpairedEntrances       : false # NYI
 
 # Randomization: Quizzes
-RandomQuiz: true
-SkipQuiz  : false
+RandomQuiz         : true
+SkipQuiz           : false
+QuizmoAlwaysAppears: false
 
 # Randomization: Partner
 PartnersInDefaultLocations: true
@@ -92,9 +93,10 @@ WriteSpoilerLog : true
 PrettySpoilerlog: true
 
 # Cosmetics / Palettes
-ColorA: 0xEBE677FF # Box5ColorA
-ColorB: 0x8E5A25FF # Box5ColorB
+ColorA           : 0xEBE677FF # Box5ColorA
+ColorB           : 0x8E5A25FF # Box5ColorB
 RandomCoinPalette: true
+RomanNumerals    : false
 
 # Audio
 TurnOffMusic: false
