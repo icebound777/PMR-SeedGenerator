@@ -22,6 +22,9 @@ items_to_exclude = {
     "always_peekaboo": [
         "Peekaboo",
     ],
+    "start_with_kooper": [
+        "KooperShell"
+    ],
     "misc": [
         "Calculator", # check not implemented
     ]
