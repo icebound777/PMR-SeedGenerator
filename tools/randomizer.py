@@ -98,6 +98,7 @@ def write_data_to_rom(
     itemhints:list,
     coin_palette_data:list,
     coin_palette_targets:list,
+    coin_palette_crcs:list,
     music_list:list,
     seed=int(hashlib.md5().hexdigest()[0:8], 16),
     edit_seed="0x0123456789ABCDEF"
@@ -196,7 +197,7 @@ def write_data_to_rom(
                     file.write(palette_byte.to_bytes(4, byteorder="big"))
 
     if changed_coin_palette:
-        recalculate_crcs(target_modfile)
+        recalculate_crcs(target_modfile, coin_palette_crcs)
 
                 #if enum_type := pair.get("enum_type"):
                 #    if enum_type == "Item":
@@ -371,8 +372,9 @@ def main_randomizer():
     # Randomize sprite palettes
     coin_palette_data = []
     coin_palette_targets = []
+    coin_palette_crcs = []
     if rando_settings.random_coin_palette:
-        coin_palette_data, coin_palette_targets = get_randomized_coinpalette()
+        coin_palette_data, coin_palette_targets, coin_palette_crcs = get_randomized_coinpalette()
 
     # Music settings
     music_list = []
@@ -390,6 +392,7 @@ def main_randomizer():
         itemhints=itemhints,
         coin_palette_data=coin_palette_data,
         coin_palette_targets=coin_palette_targets,
+        coin_palette_crcs=coin_palette_crcs,
         music_list=music_list
     )
 

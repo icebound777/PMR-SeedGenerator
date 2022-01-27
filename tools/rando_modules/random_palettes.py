@@ -95,9 +95,34 @@ def get_randomized_coinpalette():
         0x00010001
     ]
 
+    all_coin_palette_crcs = {
+        "palette_coin_gold": [
+            0xD4C3F881,
+            0xCB3B5A00
+        ],
+        "palette_coin_red": [
+            0x2BCD223A,
+            0x3CC7D7D5
+        ],
+        "palette_coin_blue": [
+            0xEE094F68,
+            0x421628A3
+        ],
+        "palette_coin_purple": [
+            0xB99EDAC8,
+            0x7E0C334A
+        ],
+        "palette_coin_silver": [
+            0x82A4AB59,
+            0xBF600802
+        ]
+    }
+
     # Choose random coin palette
     coin_palette_keys = [palette for palette in all_coin_palettes.keys()]
     random_palette = random.choice(coin_palette_keys)
     print(random_palette)
 
-    return all_coin_palettes.get(random_palette), target_rom_locations
+    return all_coin_palettes.get(random_palette), \
+           target_rom_locations, \
+           all_coin_palette_crcs.get(random_palette)
