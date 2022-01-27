@@ -2,10 +2,12 @@ from metadata.verbose_area_names import verbose_area_names
 from metadata.verbose_item_names import verbose_item_names
 from metadata.verbose_item_locations import verbose_item_locations
 
+from optionset import OptionSet
+
 def write_spoiler_log(
     placed_items:list,
     random_chapter_difficulty:dict=None,
-    do_pretty:bool=False,
+    settings:OptionSet=False,
     spoilerlog_file:str=None
 ):
     """
@@ -19,8 +21,15 @@ def write_spoiler_log(
     sorted_by_map =  sorted(sorted_by_key, key=lambda node: node.map_area.map_id)
     sorted_by_area = sorted(sorted_by_map, key=lambda node: node.map_area.area_id)
     with open(spoilerlog_file, "w", encoding="utf-8") as file:
+        # Print chapter difficulties
+        if random_chapter_difficulty and not settings.progressive_scaling:
+            file.write("Modified Chapter Difficulty:")
+            for old_chapter, new_chapter in random_chapter_difficulty.items():
+                file.write(f"\nChapter {old_chapter} -> Chapter {new_chapter}")
+            file.write("\n\n")
+
         # Print item locations
-        if do_pretty:
+        if settings.pretty_spoilerlog:
             current_area_name = None
             for node in sorted_by_area:
                 new_area_name = verbose_area_names.get(node.map_area.name[:3])
@@ -49,9 +58,3 @@ def write_spoiler_log(
             for node in sorted_by_area:
                 file.write(f"[{node.map_area.name}] {node.key_name_item} - "
                            f"{node.current_item.item_name}\n")
-        
-        # Print chapter difficulties
-        if random_chapter_difficulty:
-            file.write("\n\nModified Chapter Difficulty:")
-            for old_chapter, new_chapter in random_chapter_difficulty.items():
-                file.write(f"\nChapter {old_chapter} -> Chapter {new_chapter}")
