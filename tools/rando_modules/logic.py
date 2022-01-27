@@ -715,7 +715,7 @@ def _generate_item_pools(
                     pool_misc_progression_items.append(current_node.vanilla_item)
                 else:
                     pool_other_items.append(current_node.vanilla_item)
-    
+
     # Adjust item pools based on settings
     goal_size_item_pool = len(pool_progression_items)      \
                         + len(pool_misc_progression_items) \
@@ -733,12 +733,12 @@ def _generate_item_pools(
         for item_name in items_to_exclude.get("always_speedyspin"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
-    if always_ispy:
-        for item_name in items_to_exclude.get("always_ispy"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
+    #if always_ispy:
+    #    for item_name in items_to_exclude.get("always_ispy"):
+    #        item = Item.get(Item.item_name == item_name)
+    #        items_to_remove_from_pools.append(item)
     if always_peekaboo:
-        for item in items_to_exclude.get("always_peekaboo"):
+        for item_name in items_to_exclude.get("always_peekaboo"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
     for item_name in items_to_exclude.get("misc"):
