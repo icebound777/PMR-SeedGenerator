@@ -101,7 +101,7 @@ def create_items():
                         item_type = Item.get_type(value),
                         value = value,
                         item_name = Enums.get("Item")[value],
-                        base_price = int(item["Sell Value"], 16) if item["Sell Value"] != "FFFF" else 50,
+                        base_price = int(item["Sell Value"], 10) if item["Sell Value"] != "FFFF" else 50,
                         progression = (Item.get_type(value) in ["KEYITEM","PARTNER"] and value in progression_items.keys())
                     )
                     break
