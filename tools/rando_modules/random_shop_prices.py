@@ -45,7 +45,7 @@ def get_alpha_prices(
                         buy_price = random.choice([10,15,20,25,30])
 
                     elif item_type == "COIN":
-                        buy_price = 0
+                        buy_price = 1
 
                     elif item_type == "STARPIECE":
                         buy_price = random.choice([2,4,6,8,10])
