@@ -12,7 +12,7 @@ AlwaysPeekaboo      : false
 HiddenBlockMode     : 1
 AllowPhysicsGlitches: false
 
-InitialCoins : 50
+StartingCoins: 50
 CapEnemyXP   : true
 NoXP         : false
 2xDamage     : false
