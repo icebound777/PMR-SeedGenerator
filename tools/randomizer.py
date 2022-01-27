@@ -18,6 +18,7 @@ from optionset import OptionSet, populate_keys
 from rando_modules.logic import place_items
 from itemhints import get_itemhints
 from spoilerlog import write_spoiler_log
+from rando_modules.random_shop_prices import get_alpha_prices
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
@@ -323,7 +324,9 @@ def main_randomizer():
         pass
 
     # Make everything inexpensive
-    set_cheap_shopitems(placed_items)
+    #set_cheap_shopitems(placed_items)
+
+    placed_items = get_alpha_prices(placed_items)
 
     # Randomize chapter difficulty / enemy stats if needed
     enemy_stats = []
@@ -395,7 +398,7 @@ def main_randomizer():
         write_spoiler_log(
             placed_items,
             random_chapter_difficulty=chapter_changes,
-            do_pretty=rando_settings.pretty_spoilerlog,
+            settings=rando_settings,
             spoilerlog_file=spoilerlog_file_path
         )
 
