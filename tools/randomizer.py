@@ -4,6 +4,7 @@ import sys
 import getopt
 import hashlib
 import time
+import random
 import json
 import yaml
 from yaml.loader import SafeLoader
@@ -393,7 +394,8 @@ def main_randomizer():
         coin_palette_data=coin_palette_data,
         coin_palette_targets=coin_palette_targets,
         coin_palette_crcs=coin_palette_crcs,
-        music_list=music_list
+        music_list=music_list,
+        seed=random.randint(0, 0xFFFFFFFF)
     )
 
     # Write sorted spoiler log
