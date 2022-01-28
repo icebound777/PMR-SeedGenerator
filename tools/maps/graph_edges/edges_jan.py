@@ -86,7 +86,7 @@ edges_jan = [
 
     {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "GiftA"},       "reqs": [saved_all_yoshikids,require(item="VolcanoVase"),require(flag="MF_Ch5_RescuedStarSpirit")]}, #* Village Buildings Exit Left -> GiftA (MagicalSeed4)
     {"from": {"map": "JAN_03", "id": "GiftA"},       "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* GiftA (MagicalSeed4) -> Village Buildings Exit Left
-    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "GiftB"},       "reqs": [require(flag="RF_CanVisitTayceT")]}, #* Village Buildings Exit Left -> GiftB (Melon)
+    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "GiftB"},       "reqs": [saved_all_yoshikids,require(flag="RF_CanVisitTayceT")]}, #* Village Buildings Exit Left -> GiftB (Melon)
     {"from": {"map": "JAN_03", "id": "GiftB"},       "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* GiftB (Melon) -> Village Buildings Exit Left
     {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "Tree1_Drop1A"},"reqs": [can_shake_trees]}, #* Village Buildings Exit Left -> Tree1_Drop1A (Coconut)
     {"from": {"map": "JAN_03", "id": "Tree1_Drop1A"},"to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* Tree1_Drop1A (Coconut) -> Village Buildings Exit Left
