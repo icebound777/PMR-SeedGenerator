@@ -125,4 +125,4 @@ def get_randomized_coinpalette():
 
     return all_coin_palettes.get(random_palette), \
            target_rom_locations, \
-           all_coin_palette_crcs.get(random_palette)
+           None
