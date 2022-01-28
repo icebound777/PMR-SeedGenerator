@@ -24,9 +24,6 @@ items_to_exclude = {
     ],
     "start_with_kooper": [
         "KooperShell"
-    ],
-    "misc": [
-        "Calculator", # check not implemented
     ]
 }
 

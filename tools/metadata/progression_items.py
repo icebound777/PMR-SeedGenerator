@@ -32,6 +32,7 @@ progression_items = {
     0x002C : "MagicalSeed2",
     0x002D : "MagicalSeed3",
     0x002E : "MagicalSeed4",
+    0x0030 : "Calculator",
     0x0031 : "SnowmanBucket",
     0x0032 : "SnowmanScarf",
     0x0033 : "RedKey",
@@ -108,7 +109,6 @@ progression_items = {
     0x01CD : "Lakilester",
     0x01CE : "Bow",
 }
-    # 0x0030 calculator
     # 0x0078 ??
 
 progression_miscitems = [

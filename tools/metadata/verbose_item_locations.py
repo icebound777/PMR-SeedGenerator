@@ -44,6 +44,7 @@ verbose_item_locations = {
                "DojoD": "Dojo: Master 2",
                "DojoE": "Dojo: Master 3",},
     "MAC_01": {"ItemA": "Merlon House Stomping",
+               "GiftA": "Rowf's Calculator Reward",
                "Tree1_Drop1A": "In Tree",
                "ShopBadgeA": "Rowf's Shop Set 1",
                "ShopBadgeB": "Rowf's Shop Set 1",

@@ -746,9 +746,6 @@ def _generate_item_pools(
         for item_name in items_to_exclude.get("start_with_kooper"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
-    for item_name in items_to_exclude.get("misc"):
-        item = Item.get(Item.item_name == item_name)
-        items_to_remove_from_pools.append(item)
 
     for item in items_to_add_to_pools:
         if item.progression:

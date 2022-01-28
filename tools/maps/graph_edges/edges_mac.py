@@ -68,6 +68,8 @@ edges_mac = [
     
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ItemA"},        "reqs": [require(boots=1)]}, #* Plaza District Exit Left -> ItemA (QuickChange)
     {"from": {"map": "MAC_01", "id": "ItemA"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ItemA (QuickChange) -> Plaza District Exit Left
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "GiftA"},        "reqs": [require(item="Calculator")]}, #* Plaza District Exit Left -> GiftA (ISpy)
+    {"from": {"map": "MAC_01", "id": "GiftA"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* GiftA (ISpy) -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "Tree1_Drop1A"}, "reqs": [can_shake_trees]}, #* Plaza District Exit Left -> Tree1_Drop1A (StarPiece)
     {"from": {"map": "MAC_01", "id": "Tree1_Drop1A"}, "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* Tree1_Drop1A (StarPiece) -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeA"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeA (SpeedySpin)

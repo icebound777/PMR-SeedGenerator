@@ -61,6 +61,7 @@ item_source_types = {
                "DojoD": SRC_GIVENBYNPC,
                "DojoE": SRC_GIVENBYNPC},
     "MAC_01": {"ItemA": SRC_GROUNDPOUND,
+               "GiftA": SRC_GIVENBYNPC,
                "Tree1_Drop1A": SRC_HIDDENINTREE,
                "ShopBadgeA": SRC_SOLDBYNPC,
                "ShopBadgeB": SRC_SOLDBYNPC,
