@@ -1,5 +1,8 @@
 import random
 
+from models.CoinPalette import CoinPalette
+
+
 """Module for modifying sprite palettes"""
 
 def get_randomized_coinpalette():
@@ -123,6 +126,6 @@ def get_randomized_coinpalette():
     random_palette = random.choice(coin_palette_keys)
     print(random_palette)
 
-    return all_coin_palettes.get(random_palette), \
+    return CoinPalette(all_coin_palettes.get(random_palette), \
            target_rom_locations, \
-           None
+           None)

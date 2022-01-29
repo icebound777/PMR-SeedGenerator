@@ -5,28 +5,19 @@ import sys
 import getopt
 import hashlib
 import time
-import random
 import json
 import yaml
 from yaml.loader import SafeLoader
 
 from enums import create_enums
+from random_seed import RandomSeed
 from table import Table
 from parse import gather_keys, gather_values
 from calculate_crc import recalculate_crcs
 
 from optionset import OptionSet, populate_keys
 
-from rando_modules.logic import place_items
-from itemhints import get_itemhints
 from spoilerlog import write_spoiler_log
-from rando_modules.random_shop_prices import get_alpha_prices
-from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
-from rando_modules.random_formations import get_random_formations
-from rando_modules.random_movecosts import get_randomized_moves
-from rando_modules.random_palettes import get_randomized_coinpalette
-from rando_modules.random_audio import get_turned_off_music
-
 from db.option          import create_options
 from db.item            import create_items
 from db.node            import create_nodes
@@ -214,6 +205,31 @@ def write_data_to_rom(
                 #            pass #print(pair)
 
 
+def web_randomizer(jsonSettings):
+    timer_start = time.perf_counter()
+
+    data = json.load(jsonSettings)
+
+    rando_settings = OptionSet()
+    populate_keys(data)
+    rando_settings.update_options(data)
+
+    init_randomizer(rebuild_database=False)
+
+    random_seed = RandomSeed(rando_settings)
+    random_seed.generate()
+
+    # Write data to ROM
+    #TODO
+
+    # Write sorted spoiler log
+    #TODO
+
+    timer_end = time.perf_counter()
+    print(f'Seed generated in {round(timer_end - timer_start, 2)}s')
+    
+
+
 def main_randomizer(args):
     """
     Main randomizer module, used for controlling the randomizer from the
@@ -296,120 +312,30 @@ def main_randomizer(args):
     #
     init_randomizer(rebuild_database=False)
 
-    # Choose random starting partners if necessary
-    if rando_settings.random_partners:
-        starting_partners = get_rnd_starting_partners(
-            num_rnd_partners_min=rando_settings.random_partners_min,
-            num_rnd_partners_max=rando_settings.random_partners_max,
-            rando_settings=rando_settings
-        )
-    else:
-        starting_partners = rando_settings.starting_partners
-
-    # Item Placement
-    placed_items = []
-    for _, _ in place_items(item_placement=placed_items,
-                            algorithm=rando_settings.placement_algorithm,
-                            do_shuffle_items=rando_settings.shuffle_items["value"],
-                            do_randomize_coins=rando_settings.include_coins["value"],
-                            do_randomize_shops=rando_settings.include_shops["value"],
-                            do_randomize_panels=rando_settings.include_panels["value"],
-                            do_randomize_koopakoot=rando_settings.include_favors,
-                            do_randomize_letterchain=rando_settings.include_letterchain,
-                            do_randomize_dojo=rando_settings.include_dojo,
-                            starting_map_id=rando_settings.starting_map["value"],
-                            startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
-                            startwith_flowergate_open=rando_settings.flowergate_open["value"],
-                            startwith_toybox_open=rando_settings.toybox_open["value"],
-                            startwith_whale_open=rando_settings.whale_open["value"],
-                            starting_partners=starting_partners,
-                            speedyspin=rando_settings.always_speedyspin["value"],
-                            ispy=rando_settings.always_ispy["value"],
-                            peekaboo=rando_settings.always_peekaboo["value"],
-                            partners_always_usable=rando_settings.partners_always_usable["value"],
-                            partners_in_default_locations=rando_settings.partners_in_default_locations,
-                            hidden_block_mode=rando_settings.hidden_block_mode["value"],
-                            keyitems_outside_dungeon=rando_settings.keyitems_outside_dungeon):
-        pass
-
-    # Make everything inexpensive
-    #set_cheap_shopitems(placed_items)
-
-    placed_items = get_alpha_prices(placed_items)
-
-    # Randomize chapter difficulty / enemy stats if needed
-    enemy_stats = []
-    chapter_changes = {}
-    enemy_stats, chapter_changes = get_shuffled_chapter_difficulty(
-        rando_settings.shuffle_chapter_difficulty
-    )
-
-    # Randomize enemy battle formations
-    battle_formations = []
-    if rando_settings.random_formations or rando_settings.progressive_scaling:
-        battle_formations = get_random_formations(
-            chapter_changes,
-            rando_settings.progressive_scaling
-        )
-
-    # Randomize move costs (FP/BP) if needed
-    move_costs = []
-    if (
-           rando_settings.shuffle_badges_bp
-        or rando_settings.shuffle_badges_fp
-        or rando_settings.shuffle_partner_fp
-        or rando_settings.shuffle_starpower_sp
-    ):
-        move_costs = get_randomized_moves(
-            rando_settings.shuffle_badges_bp,
-            rando_settings.shuffle_badges_fp,
-            rando_settings.shuffle_partner_fp,
-            rando_settings.shuffle_starpower_sp
-        )
-
-    # Build item hint db
-    itemhints = get_itemhints(
-            placed_items,
-            rando_settings.include_shops["value"],
-            rando_settings.include_panels["value"],
-            rando_settings.include_favors,
-            rando_settings.include_letterchain,
-            rando_settings.keyitems_outside_dungeon
-        )
-
-    # Randomize sprite palettes
-    coin_palette_data = []
-    coin_palette_targets = []
-    coin_palette_crcs = []
-    if rando_settings.random_coin_palette:
-        coin_palette_data, coin_palette_targets, coin_palette_crcs = get_randomized_coinpalette()
-
-    # Music settings
-    music_list = []
-    if rando_settings.turn_off_music:
-        music_list = get_turned_off_music()
+    random_seed = RandomSeed(rando_settings)
+    random_seed.generate()
 
     # Write data to ROM
     write_data_to_rom(
         target_modfile=target_modfile,
         options=rando_settings,
-        placed_items=placed_items,
-        enemy_stats=enemy_stats,
-        battle_formations=battle_formations,
-        move_costs=move_costs,
-        itemhints=itemhints,
-        coin_palette_data=coin_palette_data,
-        coin_palette_targets=coin_palette_targets,
-        coin_palette_crcs=coin_palette_crcs,
-        music_list=music_list,
-        seed=random.randint(0, 0xFFFFFFFF)
+        placed_items=random_seed.placed_items,
+        enemy_stats=random_seed.enemy_stats,
+        battle_formations=random_seed.battle_formations,
+        move_costs=random_seed.move_costs,
+        itemhints=random_seed.itemhints,
+        coin_palette_data=random_seed.coin_palette.data,
+        coin_palette_targets=random_seed.coin_palette.targets,
+        coin_palette_crcs=random_seed.coin_palette.crcs,
+        music_list=random_seed.music_list,
+        seed=random_seed.seedID
     )
 
     # Write sorted spoiler log
     if rando_settings.write_spoilerlog:
         write_spoiler_log(
-            placed_items,
-            random_chapter_difficulty=chapter_changes,
+            random_seed.placed_items,
+            random_chapter_difficulty=random_seed.chapter_changes,
             settings=rando_settings,
             spoilerlog_file=spoilerlog_file_path
         )
