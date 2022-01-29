@@ -48,10 +48,10 @@ class Enums:
                     return k
 
 def create_enums():
-    for name in os.listdir("../globals/enum/"):
+    for name in os.listdir(os.path.abspath(__file__ + "/../../globals/enum/")):
         name = name.split(".")[0]
-        Enums(f"../globals/enum/{name}.enum")
-    Enums("../globals/Items.xml")
+        Enums(f"{os.path.abspath(__file__)}/../../globals/enum/{name}.enum")
+    Enums(os.path.abspath(__file__ + "/../../globals/Items.xml"))
 
 def enum_int(enum:str) -> (int, str):
     enum_type,enum_value = enum[1:].split(":")

@@ -1,3 +1,4 @@
+import os
 import re
 import json
 
@@ -154,7 +155,7 @@ def gather_values():
         "options": {},
         "quizzes": {},
     }
-    with open("../globals/patch/DatabaseDefaults.patch", "r", encoding="utf-8") as file:
+    with open(os.path.abspath(__file__ + "/../../../globals/patch/DatabaseDefaults.patch"), "r", encoding="utf-8") as file:
         for line in file:
             if match := re.match(r"\s*.DBKey:(\S*)\s*(\S*)", line):
                 key_info = match.group(1)
@@ -210,7 +211,7 @@ def gather_values():
 def get_default_table():
     # Get general data
     db = {}
-    with open("../globals/patch/DatabaseDefaults.patch", "r", encoding="utf-8") as file:
+    with open(os.path.abspath(__file__ + "/../../globals/patch/DatabaseDefaults.patch"), "r", encoding="utf-8") as file:
         db_found = False
         while not db_found:
             if match := re.match(r"#export:Data\s*\$DefaultDatabase", next(file)):
@@ -247,7 +248,7 @@ def get_default_table():
 
     # Get entrance data
     db["Entrance"] = {}
-    with open("../globals/patch/RandomEntrances.patch", "r", encoding="utf-8") as file:
+    with open(os.path.abspath(__file__ + "/../../globals/patch/RandomEntrances.patch"), "r", encoding="utf-8") as file:
         for line in file:
             if match := re.match(r"#export\s*.DBKey:Entrance:(\S*):(\S*)\s*(\S*)", line):
                 map_name = match.group(1)
@@ -280,7 +281,7 @@ def get_table_info():
         "formations_offset": 0,
         "itemhints_offset": 0,
     }
-    with open("../globals/patch/Database.patch", "r", encoding="utf-8") as file:
+    with open(os.path.abspath(__file__ + "/../../globals/patch/Database.patch"), "r", encoding="utf-8") as file:
         for line in file:
             if match := re.match(r"#define\s*.Table:RomOffset\s*(\S*)", line):
                 table_info["address"] = int(match.group(1), 16)
@@ -318,8 +319,8 @@ def create_table(default_table):
                             }.get((key & 0xFF000000) >> 24)
                         }
     db = {}
-    get_keys(db, "../globals/patch/DatabaseKeys.patch")
-    get_keys(db, "../globals/patch/generated/keys.patch")
+    get_keys(db, os.path.abspath(__file__ + "/../../globals/patch/DatabaseKeys.patch"))
+    get_keys(db, os.path.abspath(__file__ + "/../../globals/patch/generated/keys.patch"))
 
     db["Entrance"] = {}
     for map_name,entrance_data in default_table["Entrance"].items():

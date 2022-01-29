@@ -1,4 +1,5 @@
 import csv
+import os
 import random
 
 from db.actor_attribute import ActorAttribute
@@ -7,7 +8,7 @@ def get_shuffled_chapter_difficulty(
     shuffle_chapter_difficulty:bool
 ):
     # Load enemy stats csv
-    ENEMY_STATS_CSV_PATH = '../res/actor_params.csv'
+    ENEMY_STATS_CSV_PATH = os.path.abspath(__file__ + "/../../../res/actor_params.csv")
 
     with open(ENEMY_STATS_CSV_PATH, mode="r", encoding="utf-8") as csv_file:
         file_lines = []

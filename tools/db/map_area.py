@@ -1,3 +1,4 @@
+import os
 import xml.etree.ElementTree as ET
 
 from peewee import *
@@ -7,7 +8,7 @@ from db.db import db, migrator
 
 # Generate a dictionary: {"MAP_XX": "Pretty Map Name"}
 pretty_names = {}
-xml_tree = ET.parse("../map/MapTable.xml")
+xml_tree = ET.parse(os.path.abspath(__file__ + "/../../../map/MapTable.xml"))
 root = xml_tree.getroot()
 done = False
 for child in root.iter():

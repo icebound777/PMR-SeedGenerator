@@ -1,4 +1,5 @@
 """General setup and supportive functionalities for the randomizer."""
+import os
 import shutil
 import sys
 import getopt
@@ -140,7 +141,7 @@ def write_data_to_rom(
                                           + (len_battle_formations * 4))
 
     # Write data to log file
-    with open("./debug/log.txt", "w", encoding="utf-8") as log:
+    with open(os.path.abspath(__file__ + "/../debug/log.txt"), "w", encoding="utf-8") as log:
         log.write("OPTIONS:\n\n")
         log.write(f"Seed: 0x{seed:0X} \"{edit_seed}\"\n")
         for name,data in rom_table["Options"].items():
@@ -161,7 +162,7 @@ def write_data_to_rom(
 
         # Write table data and generate log file
         file.seek(rom_table.info["address"] + rom_table.info["header_size"])
-        with open("./debug/log.txt", "a", encoding="utf-8") as log:
+        with open(os.path.abspath(__file__ + "/../debug/log.txt"), "a", encoding="utf-8") as log:
             #log.write("ITEM CHANGES:\n\n")
 
             for _,pair in enumerate(table_data):
@@ -213,7 +214,7 @@ def write_data_to_rom(
                 #            pass #print(pair)
 
 
-def main_randomizer():
+def main_randomizer(args):
     """
     Main randomizer module, used for controlling the randomizer from the
     commandline. Calling this forgoes using the GUI.
@@ -223,6 +224,8 @@ def main_randomizer():
     target_modfile = ""
     spoilerlog_file_path = ""
     rando_outputfile = ""
+
+    rando_settings = None
 
     # Get arguments from cmd
     argv = sys.argv[1:]
@@ -277,11 +280,15 @@ def main_randomizer():
         raise
 
     if rando_settings is None:
-        rando_settings = OptionSet()
+        with open(os.path.abspath(__file__ + "/../default_settings.yaml"), "r", encoding="utf-8") as file:
+            data = yaml.load(file, Loader=SafeLoader)
+            rando_settings = OptionSet()
+            populate_keys(data)
+            rando_settings.update_options(data)
 
     # DEFAULTS: Set targetmod if none provided
     if not target_modfile:
-        target_modfile = "../out/PM64.z64"
+        target_modfile = os.path.abspath(__file__ + "/../../out/PM64.z64")
     # DEFAULTS: Set randomized output file if none provided
     if not rando_outputfile:
         rando_outputfile = "../out/PM64.z64"
@@ -412,4 +419,4 @@ def main_randomizer():
 
 
 if __name__ == "__main__":
-    main_randomizer()
+    main_randomizer(sys.argv[1:])
