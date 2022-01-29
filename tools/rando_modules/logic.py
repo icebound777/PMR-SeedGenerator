@@ -734,10 +734,10 @@ def _generate_item_pools(
         for item_name in items_to_exclude.get("always_speedyspin"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
-    #if always_ispy:
-    #    for item_name in items_to_exclude.get("always_ispy"):
-    #        item = Item.get(Item.item_name == item_name)
-    #        items_to_remove_from_pools.append(item)
+    if always_ispy:
+        for item_name in items_to_exclude.get("always_ispy"):
+            item = Item.get(Item.item_name == item_name)
+            items_to_remove_from_pools.append(item)
     if always_peekaboo:
         for item_name in items_to_exclude.get("always_peekaboo"):
             item = Item.get(Item.item_name == item_name)
