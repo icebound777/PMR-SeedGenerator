@@ -267,8 +267,7 @@ def write_data_to_array(
     # Write the db header
     patchOperations +=((0).to_bytes(1, byteorder="big"))
     patchOperations += (rom_table.info["address"].to_bytes(4, byteorder = "big"))
-    print((rom_table.info["address"].to_bytes(4, byteorder = "big")))
-    print((rom_table.info["address"]))
+    
     patchOperations += ((1).to_bytes(1, byteorder="big"))
     patchOperations += (rom_table.info["magic_value"].to_bytes(4, byteorder="big"))
 
@@ -287,53 +286,45 @@ def write_data_to_array(
     patchOperations += ((1).to_bytes(1, byteorder="big"))
     patchOperations += (rom_table.info["itemhints_offset"].to_bytes(4, byteorder="big"))
 
+    # Random Coin Palette
+    if coin_palette_data and coin_palette_targets:
+        for target_rom_location in coin_palette_targets:
+           patchOperations += ((0).to_bytes(1, byteorder="big"))
+           patchOperations += (target_rom_location.to_bytes(4, byteorder="big"))
+           for palette_byte in coin_palette_data:               
+                patchOperations += ((1).to_bytes(1, byteorder="big"))
+                patchOperations += (palette_byte.to_bytes(4, byteorder="big"))
+
     # Write table data and generate log file
-    patchOperations += ((0).to_bytes(1, byteorder="big"))
+    patchOperations += ((2).to_bytes(1, byteorder="big")) # 2 means final seek, no more FILE SEEK (0) after this point
     patchOperations += (rom_table.info["address"] + rom_table.info["header_size"]).to_bytes(4, byteorder="big")
 
     for _,pair in enumerate(table_data):
         key_int = pair["key"].to_bytes(4, byteorder="big")
         value_int = pair["value"].to_bytes(4, byteorder="big")
         
-        patchOperations += ((1).to_bytes(1, byteorder="big"))
         patchOperations += (key_int)
-
-        patchOperations += ((1).to_bytes(1, byteorder="big"))
         patchOperations += (value_int)
-        print(key_int)
 
         log += (f'{hex(pair["key"])}: {hex(pair["value"])}\n')
 
     for formation in battle_formations:
-        for formation_hex_word in formation:
-            patchOperations += ((1).to_bytes(1, byteorder="big"))                
+        for formation_hex_word in formation:              
             patchOperations += (formation_hex_word.to_bytes(4, byteorder="big"))
 
         # Write end of formations table
-        patchOperations += ((1).to_bytes(1, byteorder="big"))
         patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
 
         # Write itemhint table
         for itemhint in itemhints:
             for itemhint_hex in itemhint:
-                patchOperations += ((1).to_bytes(1, byteorder="big"))
                 patchOperations += (itemhint_hex.to_bytes(4, byteorder="big"))
 
         # Write end of item hints table
-        patchOperations += ((1).to_bytes(1, byteorder="big"))
         patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
         # Write end of db padding
         for _ in range(1, 5):
-            patchOperations += ((1).to_bytes(1, byteorder="big"))
             patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
-
-    # Special solution for random coin palettes. Not supported for now because of CRC
-    #if coin_palette_data and coin_palette_targets:
-        #changed_coin_palette = True
-        #for target_rom_location in coin_palette_targets:
-            #patchOperations.append({0, target_rom_location})
-            #for palette_byte in coin_palette_data:
-                #patchOperations.append({1, palette_byte.to_bytes(4, byteorder="big")})
 
 
     return patchOperations
