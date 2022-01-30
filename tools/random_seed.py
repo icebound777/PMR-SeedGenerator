@@ -21,7 +21,7 @@ class RandomSeed:
         self.chapter_changes = {}
         self.battle_formations = []
         self.move_costs = []
-        self.coin_palette:CoinPalette = None        
+        self.coin_palette:CoinPalette = CoinPalette()        
         self.music_list = []
         self.seedID =  random.randint(0, 0xFFFFFFFF)    
 

@@ -204,11 +204,145 @@ def write_data_to_rom(
                 #        if enum_type == "Entrance":
                 #            pass #print(pair)
 
+def write_data_to_array(
+    options:OptionSet,
+    placed_items:list,
+    enemy_stats:list,
+    battle_formations:list,
+    move_costs:list,
+    itemhints:list,
+    coin_palette_data:list,
+    coin_palette_targets:list,
+    coin_palette_crcs:list,
+    music_list:list,
+    seed=int(hashlib.md5().hexdigest()[0:8], 16),
+    edit_seed="0x0123456789ABCDEF"
+):
+    """
+    Generates key:value pairs of locations and items from a randomized item set
+    and writes these pairs in a dictionary meant to be returned by the server
+    """
+    # Create the ROM table
+    rom_table = Table()
+    rom_table.create()
+    patchOperations = bytearray()
+    # Create a sorted list of key:value pairs to be written into the ROM
+    table_data = rom_table.generate_pairs(
+        options=options,
+        items=placed_items,
+        actor_data=enemy_stats,
+        move_costs=move_costs,
+        music_list=music_list
+    )
+
+    # Update table info with variable data
+    end_of_content_marker = 0x4 # end of table FFFFFFFF
+    end_padding = 0x10 # 4x FFFFFFFF
+    len_battle_formations = sum([len(formation) for formation in battle_formations])
+    len_itemhints = sum([len(itemhint_word) for itemhint_word in itemhints])
+
+    rom_table.info["db_size"] = (  rom_table.info["header_size"]
+                                 + (len(table_data) * 8)
+                                 + (len_battle_formations * 4)
+                                 + end_of_content_marker
+                                 + (len_itemhints * 4)
+                                 + end_of_content_marker
+                                 + end_padding)
+    rom_table.info["seed"] = seed
+    rom_table.info["formations_offset"] = len(table_data) * 8
+    rom_table.info["itemhints_offset"] = (  rom_table.info["formations_offset"]
+                                          + end_of_content_marker
+                                          + (len_battle_formations * 4))
+
+    # Write data to log string
+    log = "OPTIONS:\n\n"
+    log += (f"Seed: 0x{seed:0X} \"{edit_seed}\"\n")
+    for name,data in rom_table["Options"].items():
+        log += (f"{name:20}: {data['value']}\n")
+    log += ("\n")
+
+    # Write the operations to key value dict
+    changed_coin_palette = False
+
+    # Write the db header
+    patchOperations +=((0).to_bytes(1, byteorder="big"))
+    patchOperations += (rom_table.info["address"].to_bytes(4, byteorder = "big"))
+    print((rom_table.info["address"].to_bytes(4, byteorder = "big")))
+    print((rom_table.info["address"]))
+    patchOperations += ((1).to_bytes(1, byteorder="big"))
+    patchOperations += (rom_table.info["magic_value"].to_bytes(4, byteorder="big"))
+
+    patchOperations += ((1).to_bytes(1, byteorder="big"))
+    patchOperations += (rom_table.info["header_size"].to_bytes(4, byteorder="big"))
+
+    patchOperations += ((1).to_bytes(1, byteorder="big"))
+    patchOperations += (rom_table.info["db_size"].to_bytes(4, byteorder="big"))
+
+    patchOperations += ((1).to_bytes(1, byteorder="big"))
+    patchOperations += (rom_table.info["seed"].to_bytes(4, byteorder="big"))
+
+    patchOperations += ((1).to_bytes(1, byteorder="big"))
+    patchOperations += (rom_table.info["formations_offset"].to_bytes(4, byteorder="big"))
+
+    patchOperations += ((1).to_bytes(1, byteorder="big"))
+    patchOperations += (rom_table.info["itemhints_offset"].to_bytes(4, byteorder="big"))
+
+    # Write table data and generate log file
+    patchOperations += ((0).to_bytes(1, byteorder="big"))
+    patchOperations += (rom_table.info["address"] + rom_table.info["header_size"]).to_bytes(4, byteorder="big")
+
+    for _,pair in enumerate(table_data):
+        key_int = pair["key"].to_bytes(4, byteorder="big")
+        value_int = pair["value"].to_bytes(4, byteorder="big")
+        
+        patchOperations += ((1).to_bytes(1, byteorder="big"))
+        patchOperations += (key_int)
+
+        patchOperations += ((1).to_bytes(1, byteorder="big"))
+        patchOperations += (value_int)
+        print(key_int)
+
+        log += (f'{hex(pair["key"])}: {hex(pair["value"])}\n')
+
+    for formation in battle_formations:
+        for formation_hex_word in formation:
+            patchOperations += ((1).to_bytes(1, byteorder="big"))                
+            patchOperations += (formation_hex_word.to_bytes(4, byteorder="big"))
+
+        # Write end of formations table
+        patchOperations += ((1).to_bytes(1, byteorder="big"))
+        patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
+
+        # Write itemhint table
+        for itemhint in itemhints:
+            for itemhint_hex in itemhint:
+                patchOperations += ((1).to_bytes(1, byteorder="big"))
+                patchOperations += (itemhint_hex.to_bytes(4, byteorder="big"))
+
+        # Write end of item hints table
+        patchOperations += ((1).to_bytes(1, byteorder="big"))
+        patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
+        # Write end of db padding
+        for _ in range(1, 5):
+            patchOperations += ((1).to_bytes(1, byteorder="big"))
+            patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
+
+    # Special solution for random coin palettes. Not supported for now because of CRC
+    #if coin_palette_data and coin_palette_targets:
+        #changed_coin_palette = True
+        #for target_rom_location in coin_palette_targets:
+            #patchOperations.append({0, target_rom_location})
+            #for palette_byte in coin_palette_data:
+                #patchOperations.append({1, palette_byte.to_bytes(4, byteorder="big")})
+
+
+    return patchOperations
+
 
 def web_randomizer(jsonSettings):
     timer_start = time.perf_counter()
 
-    data = json.load(jsonSettings)
+    data = json.loads(jsonSettings)
 
     rando_settings = OptionSet()
     populate_keys(data)
@@ -220,13 +354,42 @@ def web_randomizer(jsonSettings):
     random_seed.generate()
 
     # Write data to ROM
-    #TODO
+    operations = write_data_to_array(
+        options=rando_settings,
+        placed_items=random_seed.placed_items,
+        enemy_stats=random_seed.enemy_stats,
+        battle_formations=random_seed.battle_formations,
+        move_costs=random_seed.move_costs,
+        itemhints=random_seed.itemhints,
+        coin_palette_data=random_seed.coin_palette.data,
+        coin_palette_targets=random_seed.coin_palette.targets,
+        coin_palette_crcs=random_seed.coin_palette.crcs,
+        music_list=random_seed.music_list,
+        seed=random_seed.seedID
+    )
+
+    # Write data to ROM
+    write_data_to_rom(
+        target_modfile = os.path.abspath(__file__ + "/../../out/PM64.z64"),
+        options=rando_settings,
+        placed_items=random_seed.placed_items,
+        enemy_stats=random_seed.enemy_stats,
+        battle_formations=random_seed.battle_formations,
+        move_costs=random_seed.move_costs,
+        itemhints=random_seed.itemhints,
+        coin_palette_data=random_seed.coin_palette.data,
+        coin_palette_targets=random_seed.coin_palette.targets,
+        coin_palette_crcs=random_seed.coin_palette.crcs,
+        music_list=random_seed.music_list,
+        seed=random_seed.seedID
+    )
 
     # Write sorted spoiler log
     #TODO
 
     timer_end = time.perf_counter()
     print(f'Seed generated in {round(timer_end - timer_start, 2)}s')
+    return operations
     
 
 
