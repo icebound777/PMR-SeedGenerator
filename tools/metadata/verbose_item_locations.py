@@ -572,7 +572,7 @@ verbose_item_locations = {
                "ShopItemF": "Shop Item 6",},
     "SAM_04": {"HiddenPanel": "Hidden Panel",
                "ItemA": "In Tree Left",
-               "ItemB": "In Tree Right",},
+               "ItemB": "Behind Tree Right",},
     "SAM_05": {"HiddenPanel": "Hidden Panel",
                "ItemA": "Behind Icicle",
                "HiddenYBlockA": "Hidden Block"},
