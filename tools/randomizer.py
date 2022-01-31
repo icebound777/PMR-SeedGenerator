@@ -359,8 +359,8 @@ def web_randomizer(jsonSettings):
         seed=random_seed.seedID
     )
 
-    # Write data to ROM
-    write_data_to_rom(
+    # Write data to ROM (debug purposes)
+    """ write_data_to_rom(
         target_modfile = os.path.abspath(__file__ + "/../../out/PM64.z64"),
         options=rando_settings,
         placed_items=random_seed.placed_items,
@@ -373,7 +373,7 @@ def web_randomizer(jsonSettings):
         coin_palette_crcs=random_seed.coin_palette.crcs,
         music_list=random_seed.music_list,
         seed=random_seed.seedID
-    )
+    ) """
 
     # Write sorted spoiler log
     #TODO
