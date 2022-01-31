@@ -1,6 +1,7 @@
 import re
-import os
 import xml.dom.minidom
+from pathlib import Path
+
 
 
 
@@ -9,7 +10,7 @@ class Enums:
 
     def __init__(self, filepath):
         self.data = {}
-        if ("Items.xml" not in filepath):
+        if (str(filepath).find("Items.xml") == -1):
             with open(filepath, "r") as file:
                 self.namespace, self.library, self.reversed = [next(file).split("%")[0].strip() for i in range(3)]
                 self.reversed = True if self.reversed == "true" else False
@@ -25,7 +26,7 @@ class Enums:
                         value = int(value, 16)
                         self.data[key] = value
         else:
-            items_doc = xml.dom.minidom.parse(filepath)
+            items_doc = xml.dom.minidom.parse(str(filepath))
             self.namespace = "Item"
             self.library = "itemID"
             self.reversed = True
@@ -48,10 +49,10 @@ class Enums:
                     return k
 
 def create_enums():
-    for name in os.listdir(os.path.abspath(__file__ + "/../../globals/enum/")):
-        name = name.split(".")[0]
-        Enums(f"{os.path.abspath(__file__)}/../../globals/enum/{name}.enum")
-    Enums(os.path.abspath(__file__ + "/../../globals/Items.xml"))
+    enumDir = Path(__file__).parent.parent / 'globals' / 'enum'
+    for name in enumDir.iterdir():
+        Enums(enumDir / name )
+    Enums(Path(__file__).parent.parent / 'globals' / 'Items.xml')
 
 def enum_int(enum:str) -> (int, str):
     enum_type,enum_value = enum[1:].split(":")
