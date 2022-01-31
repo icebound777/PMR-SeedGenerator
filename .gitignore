@@ -1,0 +1,10 @@
+# Debug
+/debug
+
+# Generated custom seed file & modified settings files
+/custom_seed.json
+/*.yaml
+!/default_settings.yaml
+
+# Python
+*.pyc
