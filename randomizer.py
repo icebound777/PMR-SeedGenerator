@@ -37,11 +37,11 @@ VERSION = "Randomizer 0.1 for Open World Paper Mario mod 0.1"
 
 def init_randomizer(rebuild_database=False):
     """Deals with the initialization of data required for the randomizer to work."""
-    # Create enums from ./globals/enum/
-    create_enums()
-
+    
     # Build database from scratch if needed
     if rebuild_database:
+        # Create enums from ./globals/enum/
+        create_enums()
         gather_keys()
         gather_values()
         create_options()
