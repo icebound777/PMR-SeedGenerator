@@ -1,4 +1,5 @@
 """General setup and supportive functionalities for the randomizer."""
+import io
 import os
 import shutil
 import sys
@@ -359,6 +360,7 @@ def web_randomizer(seedID, jsonSettings):
         music_list=random_seed.music_list,
         seed=random_seed.seedID
     )
+    patch_file = io.BytesIO(operations)
 
     # Write data to ROM (debug purposes)
     """ write_data_to_rom(
@@ -377,11 +379,18 @@ def web_randomizer(seedID, jsonSettings):
     ) """
 
     # Write sorted spoiler log
-    #TODO
+    spoiler_log_file = None
+    if rando_settings.write_spoilerlog:
+        spoiler_log_file = write_spoiler_log(
+            random_seed.placed_items,
+            random_chapter_difficulty=random_seed.chapter_changes,
+            settings=rando_settings,
+            is_web_spoiler_log=True
+        )
 
     timer_end = time.perf_counter()
     print(f'Seed generated in {round(timer_end - timer_start, 2)}s')
-    return WebSeedResponse(random_seed.seedID, operations)
+    return WebSeedResponse(random_seed.seedID, patch_file, spoiler_log_file)
     
 
 
