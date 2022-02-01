@@ -10,6 +10,7 @@ import yaml
 from yaml.loader import SafeLoader
 
 from enums import create_enums
+from models.WebSeedResponse import WebSeedResponse
 from random_seed import RandomSeed
 from table import Table
 from parse import gather_keys, gather_values
@@ -330,7 +331,7 @@ def write_data_to_array(
     return patchOperations
 
 
-def web_randomizer(jsonSettings):
+def web_randomizer(seedID, jsonSettings):
     timer_start = time.perf_counter()
 
     data = json.loads(jsonSettings)
@@ -341,7 +342,7 @@ def web_randomizer(jsonSettings):
 
     init_randomizer(rebuild_database=False)
 
-    random_seed = RandomSeed(rando_settings)
+    random_seed = RandomSeed(rando_settings, seedID)
     random_seed.generate()
 
     # Write data to ROM
@@ -380,7 +381,7 @@ def web_randomizer(jsonSettings):
 
     timer_end = time.perf_counter()
     print(f'Seed generated in {round(timer_end - timer_start, 2)}s')
-    return operations
+    return WebSeedResponse(random_seed.seedID, operations)
     
 
 

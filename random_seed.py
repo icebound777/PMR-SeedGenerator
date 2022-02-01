@@ -12,7 +12,7 @@ from rando_modules.random_partners import get_rnd_starting_partners
 from rando_modules.random_shop_prices import get_alpha_prices
 
 class RandomSeed:
-    def __init__(self, rando_settings: OptionSet) -> None:
+    def __init__(self, rando_settings: OptionSet, seedID = None) -> None:
 
         self.rando_settings = rando_settings
         self.starting_partners = []
@@ -23,7 +23,11 @@ class RandomSeed:
         self.move_costs = []
         self.coin_palette:CoinPalette = CoinPalette()        
         self.music_list = []
-        self.seedID =  random.randint(0, 0xFFFFFFFF)    
+
+        if seedID is None:
+            self.seedID =  random.randint(0, 0xFFFFFFFF)
+        else:
+            self.seedID = seedID    
 
 
     def generate(self):
