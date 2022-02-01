@@ -19,7 +19,7 @@ def gather_keys():
     AA = RESERVED (see table.py unique itemID)
     AF = Quizzes
     """
-    files = get_files("../globals/patch")
+    files = get_files("../../globals/patch")
     keys = {
         "items": {},
         "item_prices": {},
@@ -195,7 +195,7 @@ def gather_values():
                         values["actors"][actor] = {}
                     values["actors"][actor][attribute] = value
 
-    with open("../globals/patch/Actors.patch", "r", encoding="utf-8") as file:
+    with open("../../globals/patch/Actors.patch", "r", encoding="utf-8") as file:
         for line in file:
             if match := re.match(r"#export\s*.ActorPtr:", line):
                 data = line[match.end():]
@@ -281,12 +281,7 @@ def get_table_info():
         "formations_offset": 0,
         "itemhints_offset": 0,
     }
-    with open(os.path.abspath(__file__ + "/../../globals/patch/Database.patch"), "r", encoding="utf-8") as file:
-        for line in file:
-            if match := re.match(r"#define\s*.Table:RomOffset\s*(\S*)", line):
-                table_info["address"] = int(match.group(1), 16)
-            elif match := re.match(r"#define\s*.Table:Header:MagicValue\s*(\S*)", line):
-                table_info["magic_value"] = int(match.group(1), 16)
+
     return table_info
 
 

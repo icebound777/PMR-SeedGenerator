@@ -66,7 +66,7 @@ def create_items():
     with open("./debug/values.json", "r") as file:
         item_values = json.load(file)["items"]
 
-    items_doc = xml.dom.minidom.parse("../globals/Items.xml")
+    items_doc = xml.dom.minidom.parse("../../globals/Items.xml")
     # need index (itemid), sell value
     item_data = []
     for item in items_doc.getElementsByTagName("Item"):

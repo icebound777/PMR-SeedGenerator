@@ -49,10 +49,10 @@ class Enums:
                     return k
 
 def create_enums():
-    enumDir = Path(__file__).parent.parent / 'globals' / 'enum'
+    enumDir = Path(__file__).parent.parent.parent / 'globals' / 'enum'
     for name in enumDir.iterdir():
         Enums(enumDir / name )
-    Enums(Path(__file__).parent.parent / 'globals' / 'Items.xml')
+    Enums(Path(__file__).parent.parent.parent / 'globals' / 'Items.xml')
 
 def enum_int(enum:str) -> (int, str):
     enum_type,enum_value = enum[1:].split(":")

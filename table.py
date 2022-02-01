@@ -103,9 +103,4 @@ class Table:
         return table_data
 
     def create(self):
-        self.default_db = get_default_table()
-        self.db = create_table(self.default_db)
         self.info = get_table_info()
-
-    def items(self):
-        return self.db.items()
