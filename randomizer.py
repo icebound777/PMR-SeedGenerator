@@ -257,14 +257,12 @@ def write_data_to_array(
                                           + (len_battle_formations * 4))
 
     # Write data to log string
-    log = "OPTIONS:\n\n"
-    log += (f"Seed: 0x{seed:0X} \"{edit_seed}\"\n")
-    for name,data in rom_table["Options"].items():
-        log += (f"{name:20}: {data['value']}\n")
-    log += ("\n")
+    #log = "OPTIONS:\n\n"
+    #log += (f"Seed: 0x{seed:0X} \"{edit_seed}\"\n")
+    #for name,data in rom_table["Options"].items():
+        #log += (f"{name:20}: {data['value']}\n")
+    #log += ("\n")
 
-    # Write the operations to key value dict
-    changed_coin_palette = False
 
     # Write the db header
     patchOperations +=((0).to_bytes(1, byteorder="big"))
@@ -308,7 +306,7 @@ def write_data_to_array(
         patchOperations += (key_int)
         patchOperations += (value_int)
 
-        log += (f'{hex(pair["key"])}: {hex(pair["value"])}\n')
+        #log += (f'{hex(pair["key"])}: {hex(pair["value"])}\n')
 
     for formation in battle_formations:
         for formation_hex_word in formation:              
