@@ -144,4 +144,7 @@ def get_itemhints(
 
             itemhints.append([hint_word_1, hint_word_2])
 
+    # Terminate hint table
+    itemhints.append([0x00000000, 0xFFFFFFFF])
+
     return itemhints
