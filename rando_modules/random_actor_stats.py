@@ -3,20 +3,12 @@ import os
 import random
 
 from db.actor_attribute import ActorAttribute
+from db.actor_params import ActorParam
 
 def get_shuffled_chapter_difficulty(
     shuffle_chapter_difficulty:bool
 ):
-    # Load enemy stats csv
-    ENEMY_STATS_CSV_PATH = os.path.abspath(__file__ + "/../../../res/actor_params.csv")
-
-    with open(ENEMY_STATS_CSV_PATH, mode="r", encoding="utf-8") as csv_file:
-        file_lines = []
-        csv_reader = csv.reader(csv_file)
-        for row in csv_reader:
-            file_lines.append(row)
-
-    # Reorganize loaded data into different format
+    # Load and reorganize actor param data into different format
     # format example:
     # "00_Goomba": {
     #     "Level": [3,5,8,10,13,15,18,20,23],
@@ -24,23 +16,28 @@ def get_shuffled_chapter_difficulty(
     #     "DamageA": [1,1,2,2,3,3,4,4,5]
     #     "NativeChapter": 1
     # }
-    KEY_CSV_ID = 0
-    CH0_CSV_ID = 3
-    NATIVE_CH_CSV_ID = 1
-
     all_enemy_stats = {}
 
-    for row in file_lines[1:]:
-        dbkey_name = row[KEY_CSV_ID]
-        actor_name = dbkey_name[dbkey_name.index(":")+1:dbkey_name.rindex(":")]
-        actor_native_chapter = row[NATIVE_CH_CSV_ID]
-        actor_stat_name = dbkey_name[dbkey_name.rindex(":")+1:]
+    for actor_param in ActorParam.select():
+        actor_name = actor_param.actor_name
+        actor_native_chapter = actor_param.native_chapter
+        actor_stat_name = actor_param.actor_stat_name
         # starting with ch0 here, so the list index equals chapter number later
-        actor_stat_values = row[CH0_CSV_ID:]
+        actor_stat_values = [
+            actor_param.chapter_0,
+            actor_param.chapter_1,
+            actor_param.chapter_2,
+            actor_param.chapter_3,
+            actor_param.chapter_4,
+            actor_param.chapter_5,
+            actor_param.chapter_6,
+            actor_param.chapter_7,
+            actor_param.chapter_8,
+        ]
 
         if not actor_name in all_enemy_stats:
             all_enemy_stats[actor_name] = {}
-        all_enemy_stats[actor_name]["NativeChapter"] = int(actor_native_chapter)
+        all_enemy_stats[actor_name]["NativeChapter"] = actor_native_chapter
         all_enemy_stats[actor_name][actor_stat_name] = actor_stat_values
 
     # Random chance for enemy promotion: 20%

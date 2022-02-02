@@ -21,9 +21,11 @@ from optionset import OptionSet, populate_keys
 
 from spoilerlog import write_spoiler_log
 from db.option          import create_options
+from db.map_meta        import create_mapmeta
 from db.item            import create_items
 from db.node            import create_nodes
 from db.actor           import create_actors
+from db.actor_params    import create_actor_params
 from db.actor_attribute import create_actor_attributes
 from db.move            import create_moves
 from db.quiz            import create_quizzes
@@ -35,24 +37,22 @@ VERSION = "Randomizer 0.1 for Open World Paper Mario mod 0.1"
 
 def init_randomizer(rebuild_database=False):
     """Deals with the initialization of data required for the randomizer to work."""
-    # Create enums from ./globals/enum/
-    create_enums()
-
+    
     # Build database from scratch if needed
     if rebuild_database:
-        work_db_name = "db.sqlite"
-        default_db_name = "default_db.sqlite"
-
+        # Create enums from ./globals/enum/
+        create_enums()
         gather_keys()
         gather_values()
         create_options()
+        create_mapmeta()
         create_items()
         create_nodes()
         create_actors()
+        create_actor_params()
         create_actor_attributes()
         create_moves()
         create_quizzes()
-        shutil.copy(work_db_name, default_db_name)
 
 
 def set_cheap_shopitems(placed_items):
@@ -134,12 +134,12 @@ def write_data_to_rom(
                                           + (len_battle_formations * 4))
 
     # Write data to log file
-    with open(os.path.abspath(__file__ + "/../debug/log.txt"), "w", encoding="utf-8") as log:
-        log.write("OPTIONS:\n\n")
-        log.write(f"Seed: 0x{seed:0X} \"{edit_seed}\"\n")
-        for name,data in rom_table["Options"].items():
-            log.write(f"{name:20}: {data['value']}\n")
-        log.write("\n")
+    #with open(os.path.abspath(__file__ + "/../debug/log.txt"), "w", encoding="utf-8") as log:
+    #    log.write("OPTIONS:\n\n")
+    #    log.write(f"Seed: 0x{seed:0X} \"{edit_seed}\"\n")
+    #    for name,data in rom_table["Options"].items():
+    #        log.write(f"{name:20}: {data['value']}\n")
+    #    log.write("\n")
 
     # Modify the table data in the ROM
     changed_coin_palette = False
@@ -257,14 +257,12 @@ def write_data_to_array(
                                           + (len_battle_formations * 4))
 
     # Write data to log string
-    log = "OPTIONS:\n\n"
-    log += (f"Seed: 0x{seed:0X} \"{edit_seed}\"\n")
-    for name,data in rom_table["Options"].items():
-        log += (f"{name:20}: {data['value']}\n")
-    log += ("\n")
+    #log = "OPTIONS:\n\n"
+    #log += (f"Seed: 0x{seed:0X} \"{edit_seed}\"\n")
+    #for name,data in rom_table["Options"].items():
+        #log += (f"{name:20}: {data['value']}\n")
+    #log += ("\n")
 
-    # Write the operations to key value dict
-    changed_coin_palette = False
 
     # Write the db header
     patchOperations +=((0).to_bytes(1, byteorder="big"))
@@ -308,7 +306,7 @@ def write_data_to_array(
         patchOperations += (key_int)
         patchOperations += (value_int)
 
-        log += (f'{hex(pair["key"])}: {hex(pair["value"])}\n')
+        #log += (f'{hex(pair["key"])}: {hex(pair["value"])}\n')
 
     for formation in battle_formations:
         for formation_hex_word in formation:              
@@ -468,7 +466,7 @@ def main_randomizer(args):
 
     # DEFAULTS: Set targetmod if none provided
     if not target_modfile:
-        target_modfile = os.path.abspath(__file__ + "/../../out/PM64.z64")
+        target_modfile = os.path.abspath(__file__ + "/../../../out/PM64.z64")
     # DEFAULTS: Set randomized output file if none provided
     if not rando_outputfile:
         rando_outputfile = "../out/PM64.z64"
