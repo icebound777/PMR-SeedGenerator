@@ -376,15 +376,14 @@ def web_randomizer(seedID, jsonSettings):
         seed=random_seed.seedID
     ) """
 
-    # Write sorted spoiler log
+    # Write sorted spoiler log. Always write it for web, we want to preserve for debug purposes and will hide it to users
     spoiler_log_file = None
-    if rando_settings.write_spoilerlog:
-        spoiler_log_file = write_spoiler_log(
-            random_seed.placed_items,
-            random_chapter_difficulty=random_seed.chapter_changes,
-            settings=rando_settings,
-            is_web_spoiler_log=True
-        )
+    spoiler_log_file = write_spoiler_log(
+        random_seed.placed_items,
+        random_chapter_difficulty=random_seed.chapter_changes,
+        settings=rando_settings,
+        is_web_spoiler_log=True
+    )
 
     timer_end = time.perf_counter()
     print(f'Seed generated in {round(timer_end - timer_start, 2)}s')
