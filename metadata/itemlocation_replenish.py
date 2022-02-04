@@ -19,7 +19,7 @@ replenishing_itemlocations = [
     "JAN_00/Tree1_Drop1A",
     "JAN_01/ItemD","JAN_01/ItemE","JAN_01/ItemF","JAN_01/ItemG","JAN_01/ItemH","JAN_01/ItemJ",
     "JAN_02/Tree2_Drop1A","JAN_02/Tree3_Drop1A",
-    "JAN_03/GiftB","JAN_03/ShopItemA","JAN_03/ShopItemB","JAN_03/ShopItemC","JAN_03/ShopItemD","JAN_03/ShopItemE","JAN_03/ShopItemF",
+    "JAN_03/ShopItemA","JAN_03/ShopItemB","JAN_03/ShopItemC","JAN_03/ShopItemD","JAN_03/ShopItemE","JAN_03/ShopItemF",
     "KMR_02/Tree1_Drop1A",
     "KPA_96/ShopItemA","KPA_96/ShopItemB","KPA_96/ShopItemC","KPA_96/ShopItemD","KPA_96/ShopItemE","KPA_96/ShopItemF",
     "MAC_00/ShopItemA","MAC_00/ShopItemB","MAC_00/ShopItemC","MAC_00/ShopItemD","MAC_00/ShopItemE","MAC_00/ShopItemF",
@@ -32,5 +32,4 @@ replenishing_itemlocations = [
     "OMO_01/ItemB","OMO_01/ItemC","OMO_01/ItemD","OMO_01/ItemE","OMO_01/ItemF",
     "SAM_02/ItemA","SAM_02/ShopItemA","SAM_02/ShopItemB","SAM_02/ShopItemC","SAM_02/ShopItemD","SAM_02/ShopItemE","SAM_02/ShopItemF",
     "SBK_56/Tree1_Drop1A","SBK_56/Tree2_Drop1A",
-    "TIK_15/GiftH",
 ]
