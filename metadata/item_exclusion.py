@@ -24,7 +24,10 @@ items_to_exclude = {
     ],
     "start_with_kooper": [
         "KooperShell"
-    ]
+    ],
+    "start_with_bow": [
+        "BooPortrait"
+    ],
 }
 
 taycet_items = [

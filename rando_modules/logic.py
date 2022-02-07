@@ -594,6 +594,7 @@ def _generate_item_pools(
     partners_always_usable:bool,
     partners_in_default_locations:bool,
     start_with_kooper:bool,
+    start_with_bow:bool,
     always_speedyspin,
     always_ispy,
     always_peekaboo,
@@ -744,6 +745,10 @@ def _generate_item_pools(
             items_to_remove_from_pools.append(item)
     if start_with_kooper:
         for item_name in items_to_exclude.get("start_with_kooper"):
+            item = Item.get(Item.item_name == item_name)
+            items_to_remove_from_pools.append(item)
+    if start_with_bow:
+        for item_name in items_to_exclude.get("start_with_bow"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
 
@@ -910,6 +915,7 @@ def _algo_forward_fill(
         partners_always_usable,
         partners_in_default_locations,
         ("Kooper" in starting_partners),
+        ("Bow" in starting_partners),
         speedyspin,
         ispy,
         peekaboo,
