@@ -85,6 +85,7 @@ class OptionSet:
         self.shuffle_starpower_sp = False
 
         # Entrance related
+        self.shorten_bowsers_castle = False
         self.random_oneway_entrances = False # NYI
         self.unpaired_entrances = False # NYI
 
@@ -276,6 +277,8 @@ class OptionSet:
             self.shuffle_starpower_sp = options_dict.get("ShuffleStarpowerSP").get("value")
 
         # Entrance related
+        if "ShortenBowsersCastle" in options_dict:
+            self.shorten_bowsers_castle = options_dict.get("ShortenBowsersCastle").get("value")
         if "RandomizeOnewayEntrances" in options_dict:
             self.random_oneway_entrances = options_dict.get("RandomizeOnewayEntrances").get("value")
         if "UnpairedEntrances" in options_dict:
@@ -498,6 +501,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("ShuffleStarpowerSP").get("value"), bool)
 
     # Entrance related
+    if "ShortenBowsersCastle" in options_dict:
+        assert isinstance(options_dict.get("ShortenBowsersCastle").get("value"), bool)
     if "RandomizeOnewayEntrances" in options_dict:
         assert isinstance(options_dict.get("RandomizeOnewayEntrances").get("value"), bool)
     if "UnpairedEntrances" in options_dict:

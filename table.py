@@ -75,6 +75,14 @@ class Table:
                     "value": node.current_item.base_price
                 })
 
+        # Entrances
+        entrances = kwargs.get("entrances")
+        for key, value in entrances:
+            table_data.append({
+                "key": key,
+                "value": value
+            })
+
         # Actor Attributes
         actor_attributes = kwargs.get("actor_data")
         for key, value in actor_attributes:

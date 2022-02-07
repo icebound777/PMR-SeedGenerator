@@ -87,6 +87,7 @@ def write_data_to_rom(
     target_modfile:str,
     options:OptionSet,
     placed_items:list,
+    entrance_list:list,
     enemy_stats:list,
     battle_formations:list,
     move_costs:list,
@@ -109,6 +110,7 @@ def write_data_to_rom(
     table_data = rom_table.generate_pairs(
         options=options,
         items=placed_items,
+        entrances=entrance_list,
         actor_data=enemy_stats,
         move_costs=move_costs,
         music_list=music_list
@@ -481,6 +483,7 @@ def main_randomizer(args):
         target_modfile=target_modfile,
         options=rando_settings,
         placed_items=random_seed.placed_items,
+        entrance_list=random_seed.entrance_list,
         enemy_stats=random_seed.enemy_stats,
         battle_formations=random_seed.battle_formations,
         move_costs=random_seed.move_costs,

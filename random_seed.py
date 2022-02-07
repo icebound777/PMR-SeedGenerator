@@ -5,6 +5,7 @@ from optionset import OptionSet
 from rando_modules.logic import place_items
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.random_audio import get_turned_off_music
+from rando_modules.modify_entrances import get_shorter_bowsercastle
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_palettes import get_randomized_coinpalette
@@ -16,23 +17,25 @@ class RandomSeed:
 
         self.rando_settings = rando_settings
         self.starting_partners = []
-        self.placed_items = []        
+        self.placed_items = []
+        self.entrance_list = []
         self.enemy_stats = []
         self.chapter_changes = {}
         self.battle_formations = []
         self.move_costs = []
-        self.coin_palette:CoinPalette = CoinPalette()        
+        self.coin_palette:CoinPalette = CoinPalette()
         self.music_list = []
 
         if seedID is None:
             self.seedID =  random.randint(0, 0xFFFFFFFF)
         else:
-            self.seedID = seedID    
+            self.seedID = seedID
 
 
     def generate(self):
 
         self.init_starting_partners(self.rando_settings)
+
         # Item Placement
         for _, _ in place_items(item_placement= self.placed_items,
                             algorithm=self.rando_settings.placement_algorithm,
@@ -62,20 +65,23 @@ class RandomSeed:
         #set_cheap_shopitems(placed_items)
         self.placed_items = get_alpha_prices(self.placed_items)
 
+        # Modify entrances if needed
+        if self.rando_settings.shorten_bowsers_castle:
+            self.entrance_list = get_shorter_bowsercastle()
+
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(
             self.rando_settings.shuffle_chapter_difficulty
         )
 
-        # Randomize enemy battle formations        
+        # Randomize enemy battle formations
         if self.rando_settings.random_formations or self.rando_settings.progressive_scaling:
             self.battle_formations = get_random_formations(
                 self.chapter_changes,
                 self.rando_settings.progressive_scaling
             )
 
-            # Randomize move costs (FP/BP) if needed
-        
+        # Randomize move costs (FP/BP) if needed
         if (
             self.rando_settings.shuffle_badges_bp
             or self.rando_settings.shuffle_badges_fp
@@ -99,11 +105,11 @@ class RandomSeed:
                 self.rando_settings.keyitems_outside_dungeon
             )
 
-        # Randomize sprite palettes        
+        # Randomize sprite palettes
         if self.rando_settings.random_coin_palette:
             self.coin_palette = get_randomized_coinpalette()
 
-        # Music settings        
+        # Music settings
         if self.rando_settings.turn_off_music:
             self.music_list = get_turned_off_music()
 
