@@ -65,7 +65,7 @@ ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI
 RandomizeOnewayEntrances: false # NYI
 UnpairedEntrances       : false # NYI
-ShortenBowsersCastle    : true
+ShortenBowsersCastle    : false
 
 # Randomization: Quizzes
 RandomQuiz         : true
