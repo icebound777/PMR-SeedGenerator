@@ -283,6 +283,12 @@ def get_random_formations(
 ):
     battle_formations = []
 
+    unused_mediguys = [
+        "14_MediGuy",
+        "16_MediGuy",
+        "18_MediGuy",
+    ]
+
     # Fetch dict of actors and their ROM pointers from SQL
     actor_pointers = {}
     actor_areas = {}
@@ -294,7 +300,12 @@ def get_random_formations(
         if not area_id in actor_areas:
             actor_areas[area_id] = []
         if not actor.actor_name in actor_areas[area_id]:
-            actor_areas[area_id].append(actor.actor_name)
+            # Only allow unused MediGuys during ProgressiveScaling
+            if (   do_progressive_scaling
+                or not actor.actor_name in unused_mediguys
+            ):
+                actor_areas[area_id].append(actor.actor_name)
+                print(actor.actor_name)
 
     # Loop over all battle formation to be randomized
     for battle, front_row_enemy in front_row_enemies.items():

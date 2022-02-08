@@ -75,10 +75,12 @@ class RandomSeed:
         )
 
         # Randomize enemy battle formations
-        if self.rando_settings.random_formations or self.rando_settings.progressive_scaling:
+        if (   self.rando_settings.random_formations["value"]
+            or self.rando_settings.progressive_scaling["value"]
+        ):
             self.battle_formations = get_random_formations(
                 self.chapter_changes,
-                self.rando_settings.progressive_scaling
+                self.rando_settings.progressive_scaling["value"]
             )
 
         # Randomize move costs (FP/BP) if needed
@@ -97,13 +99,13 @@ class RandomSeed:
 
         # Build item hint db
         self.itemhints = get_itemhints(
-                self.placed_items,
-                self.rando_settings.include_shops["value"],
-                self.rando_settings.include_panels["value"],
-                self.rando_settings.include_favors,
-                self.rando_settings.include_letterchain,
-                self.rando_settings.keyitems_outside_dungeon
-            )
+            self.placed_items,
+            self.rando_settings.include_shops["value"],
+            self.rando_settings.include_panels["value"],
+            self.rando_settings.include_favors,
+            self.rando_settings.include_letterchain,
+            self.rando_settings.keyitems_outside_dungeon
+        )
 
         # Randomize sprite palettes
         if self.rando_settings.random_coin_palette:
