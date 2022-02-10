@@ -316,19 +316,19 @@ def write_data_to_array(
         for formation_hex_word in formation:              
             patchOperations += (formation_hex_word.to_bytes(4, byteorder="big"))
 
-        # Write end of formations table
-        patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
+    # Write end of formations table
+    patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
 
-        # Write itemhint table
-        for itemhint in itemhints:
-            for itemhint_hex in itemhint:
-                patchOperations += (itemhint_hex.to_bytes(4, byteorder="big"))
+    # Write itemhint table
+    for itemhint in itemhints:
+        for itemhint_hex in itemhint:
+            patchOperations += (itemhint_hex.to_bytes(4, byteorder="big"))
 
-        # Write end of item hints table
+    # Write end of item hints table
+    patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
+    # Write end of db padding
+    for _ in range(1, 5):
         patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
-        # Write end of db padding
-        for _ in range(1, 5):
-            patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
 
 
     return patchOperations
@@ -370,6 +370,7 @@ def web_randomizer(seedID, jsonSettings):
         target_modfile = os.path.abspath(__file__ + "/../../out/PM64.z64"),
         options=rando_settings,
         placed_items=random_seed.placed_items,
+        entrance_list=random_seed.entrance_list,
         enemy_stats=random_seed.enemy_stats,
         battle_formations=random_seed.battle_formations,
         move_costs=random_seed.move_costs,
