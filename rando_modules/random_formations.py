@@ -393,11 +393,6 @@ def get_random_formations(
                     available_enemies
                 )
 
-                if not battle_formations:
-                    # Crash prevention: duplicate very first enemy entry in
-                    # formation db, since that entry is, for some reason,
-                    # ignored by the db
-                    battle_formations.append(new_special_formation[0:4])
                 battle_formations.append(new_special_formation)
 
     # Write test formation
