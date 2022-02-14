@@ -776,7 +776,8 @@ def _generate_item_pools(
         if item in pool_other_items:
             pool_other_items.remove(item)
             continue
-        raise KeyError
+        logging.info(f"Attempted to remove {item} from item pools, but no pool"\
+                      " holds such item.")
 
     # If the item pool is too small now, fill it back up
     cur_size_item_pool = len(pool_progression_items)      \
