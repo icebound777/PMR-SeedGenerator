@@ -30,7 +30,7 @@ def write_spoiler_log(
     else:
         file = open(spoilerlog_file, "w", encoding="utf-8")
     # Print chapter difficulties
-    if random_chapter_difficulty and not settings.progressive_scaling:
+    if random_chapter_difficulty and not settings.progressive_scaling["value"]:
         file.write("Modified Chapter Difficulty:")
         for old_chapter, new_chapter in random_chapter_difficulty.items():
             file.write(f"\nChapter {old_chapter} -> Chapter {new_chapter}")
