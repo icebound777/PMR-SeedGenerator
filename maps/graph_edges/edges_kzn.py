@@ -142,7 +142,7 @@ edges_kzn = [
     {"from": {"map": "KZN_20", "id": 0}, "to": {"map": "KZN_19", "id": 2}, "reqs": []}, # Rising Lava 1 Exit West -> Boss Room Exit East
     {"from": {"map": "KZN_20", "id": 1}, "to": {"map": "KZN_22", "id": 0}, "reqs": []}, # Rising Lava 1 Bombable Wall -> Rising Lava 2 Bombable Wall (non-bomb side)
     
-    {"from": {"map": "KZN_20", "id": 0}, "to": {"map": "KZN_20", "id": 1}, "reqs": [require(partner="Bombette")]}, #? Rising Lava 1 Exit West -> Rising Lava 1 Bombable Wall
+    {"from": {"map": "KZN_20", "id": 0}, "to": {"map": "KZN_20", "id": 1}, "reqs": []}, #? Rising Lava 1 Exit West -> Rising Lava 1 Bombable Wall
     {"from": {"map": "KZN_20", "id": 1}, "to": {"map": "KZN_20", "id": 0}, "reqs": []}, #? Rising Lava 1 Bombable Wall -> Rising Lava 1 Exit West
 
     # KZN_22 Rising Lava 2
