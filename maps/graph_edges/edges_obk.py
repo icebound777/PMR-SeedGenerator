@@ -88,7 +88,7 @@ edges_obk = [
     {"from": {"map": "OBK_05", "id": 0}, "to": {"map": "OBK_01", "id": 2}, "reqs": []}, # Pot Room Door South -> Foyer Lower Door
     {"from": {"map": "OBK_05", "id": 1}, "to": {"map": "OBK_06", "id": 0}, "reqs": []}, # Pot Room Hole Under Planks -> Library Fall From Ceiling
     
-    {"from": {"map": "OBK_05", "id": 0}, "to": {"map": "OBK_05", "id": 1}, "reqs": [require(boots=1)]}, #? Pot Room Door South -> Pot Room Hole Under Planks
+    {"from": {"map": "OBK_05", "id": 0}, "to": {"map": "OBK_05", "id": 1}, "reqs": [require(boots=1), require(partner="Bombette")]}, #? Pot Room Door South -> Pot Room Hole Under Planks
     {"from": {"map": "OBK_05", "id": 1}, "to": {"map": "OBK_05", "id": 0}, "reqs": []}, #? Pot Room Hole Under Planks -> Pot Room Door South
     
     {"from": {"map": "OBK_05", "id": 0},        "to": {"map": "OBK_05", "id": "CrateA"}, "reqs": [require(boots=1)]}, #* Pot Room Door South -> CrateA (Apple)
