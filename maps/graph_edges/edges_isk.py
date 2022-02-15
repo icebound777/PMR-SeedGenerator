@@ -132,10 +132,10 @@ edges_isk = [
     {"from": {"map": "ISK_12", "id": 2}, "to": {"map": "ISK_18", "id": 1}, "reqs": []}, # Sand Drainage Room 3 Exit Bottom Left -> Deep Tunnel Exit Right
     {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_13", "id": 0}, "reqs": []}, # Sand Drainage Room 3 Exit Top Right -> Lunar Stone Room Exit Left
     
-    {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 2}, "reqs": []}, #? Sand Drainage Room 3 Exit Top Left -> Sand Drainage Room 3 Exit Bottom Left
+    {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 2}, "reqs": [require(partner="Bombette")]}, #? Sand Drainage Room 3 Exit Top Left -> Sand Drainage Room 3 Exit Bottom Left
     {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 3}, "reqs": [require(flag="MF_ISK12_DrainedThirdSandRoom")]}, #? Sand Drainage Room 3 Exit Top Left -> Sand Drainage Room 3 Exit Top Right
     {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 1}, "reqs": [require(flag="MF_ISK12_DrainedThirdSandRoom")]}, #? Sand Drainage Room 3 Exit Top Right -> Sand Drainage Room 3 Exit Top Left
-    {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 2}, "reqs": []}, #? Sand Drainage Room 3 Exit Top Right -> Sand Drainage Room 3 Exit Bottom Left
+    {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 2}, "reqs": [require(partner="Bombette")]}, #? Sand Drainage Room 3 Exit Top Right -> Sand Drainage Room 3 Exit Bottom Left
     
     {"from": {"map": "ISK_12", "id": 0}, "to": {"map": "ISK_12", "id": 0}, "reqs": [], "pseudoitems": ["MF_ISK12_DrainedThirdSandRoom"]}, #+ Sand Drainage Room 3 Exit Upper Room Left
     
