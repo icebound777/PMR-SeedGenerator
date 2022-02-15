@@ -10,6 +10,7 @@ from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_palettes import get_randomized_coinpalette
 from rando_modules.random_partners import get_rnd_starting_partners
+from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.random_shop_prices import get_alpha_prices
 
 class RandomSeed:
@@ -24,6 +25,7 @@ class RandomSeed:
         self.battle_formations = []
         self.move_costs = []
         self.coin_palette:CoinPalette = CoinPalette()
+        self.quiz_list = []
         self.music_list = []
 
         if seedID is None:
@@ -106,6 +108,10 @@ class RandomSeed:
             self.rando_settings.include_letterchain,
             self.rando_settings.keyitems_outside_dungeon
         )
+
+        # Random quiz
+        if self.rando_settings.random_quiz["value"]:
+            self.quiz_list = get_randomized_quizzes()
 
         # Randomize sprite palettes
         if self.rando_settings.random_coin_palette:

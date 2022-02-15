@@ -40,10 +40,12 @@ class Table:
         })
 
         # Quizzes
-        for quiz in Quiz.select():
+        quizzes = kwargs.get("quiz_data")
+
+        for key, value in quizzes:
             table_data.append({
-                "key": quiz.get_key(),
-                "value": quiz.value,
+                "key": key,
+                "value": value
             })
 
         # Items

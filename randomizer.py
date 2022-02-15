@@ -95,6 +95,7 @@ def write_data_to_rom(
     coin_palette_data:list,
     coin_palette_targets:list,
     coin_palette_crcs:list,
+    quiz_data:list,
     music_list:list,
     seed=int(hashlib.md5().hexdigest()[0:8], 16),
     edit_seed="0x0123456789ABCDEF"
@@ -113,6 +114,7 @@ def write_data_to_rom(
         entrances=entrance_list,
         actor_data=enemy_stats,
         move_costs=move_costs,
+        quiz_data=quiz_data,
         music_list=music_list
     )
 
@@ -219,6 +221,7 @@ def write_data_to_array(
     coin_palette_data:list,
     coin_palette_targets:list,
     coin_palette_crcs:list,
+    quiz_data:list,
     music_list:list,
     seed=int(hashlib.md5().hexdigest()[0:8], 16),
     edit_seed="0x0123456789ABCDEF"
@@ -238,6 +241,7 @@ def write_data_to_array(
         entrances = entrance_list,
         actor_data=enemy_stats,
         move_costs=move_costs,
+        quiz_data=quiz_data,
         music_list=music_list
     )
 
@@ -360,6 +364,7 @@ def web_randomizer(seedID, jsonSettings):
         coin_palette_data=random_seed.coin_palette.data,
         coin_palette_targets=random_seed.coin_palette.targets,
         coin_palette_crcs=random_seed.coin_palette.crcs,
+        quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
         seed=random_seed.seedID
     )
@@ -495,6 +500,7 @@ def main_randomizer(args):
         coin_palette_data=random_seed.coin_palette.data,
         coin_palette_targets=random_seed.coin_palette.targets,
         coin_palette_crcs=random_seed.coin_palette.crcs,
+        quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
         seed=random_seed.seedID
     )
