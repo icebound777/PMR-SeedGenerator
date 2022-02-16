@@ -17,7 +17,6 @@ class ActorParam(Model):
     actor_stat_name = CharField(null=False)
     default_value = IntegerField(null=False)
     native_chapter = IntegerField(null=False)
-    chapter_0 = IntegerField(null=False)
     chapter_1 = IntegerField(null=False)
     chapter_2 = IntegerField(null=False)
     chapter_3 = IntegerField(null=False)
@@ -47,15 +46,14 @@ def create_actor_params():
     CSV_ID_KEY = 0
     CSV_ID_NATIVE_CH = 1
     CSV_ID_DEFAULT_VAL = 2
-    CSV_ID_CH0 = 3
-    CSV_ID_CH1 = 4
-    CSV_ID_CH2 = 5
-    CSV_ID_CH3 = 6
-    CSV_ID_CH4 = 7
-    CSV_ID_CH5 = 8
-    CSV_ID_CH6 = 9
-    CSV_ID_CH7 = 10
-    CSV_ID_CH8 = 11
+    CSV_ID_CH1 = 3
+    CSV_ID_CH2 = 4
+    CSV_ID_CH3 = 5
+    CSV_ID_CH4 = 6
+    CSV_ID_CH5 = 7
+    CSV_ID_CH6 = 8
+    CSV_ID_CH7 = 9
+    CSV_ID_CH8 = 10
 
 
     for row in file_lines[1:]:
@@ -71,7 +69,6 @@ def create_actor_params():
             actor_stat_name = actor_stat_name,
             default_value = actor_stat_default_val,
             native_chapter = actor_native_chapter,
-            chapter_0 = row[CSV_ID_CH0],
             chapter_1 = row[CSV_ID_CH1],
             chapter_2 = row[CSV_ID_CH2],
             chapter_3 = row[CSV_ID_CH3],

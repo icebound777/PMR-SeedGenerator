@@ -11,9 +11,9 @@ def get_shuffled_chapter_difficulty(
     # Load and reorganize actor param data into different format
     # format example:
     # "00_Goomba": {
-    #     "Level": [3,5,8,10,13,15,18,20,23],
-    #     "HP": [1,2,3,4,5,6,7,8],
-    #     "DamageA": [1,1,2,2,3,3,4,4,5]
+    #     "Level": [5,8,10,13,15,18,20,23],
+    #     "HP": [2,3,4,5,6,7,8],
+    #     "DamageA": [1,2,2,3,3,4,4,5]
     #     "NativeChapter": 1
     # }
     all_enemy_stats = {}
@@ -22,9 +22,7 @@ def get_shuffled_chapter_difficulty(
         actor_name = actor_param.actor_name
         actor_native_chapter = actor_param.native_chapter
         actor_stat_name = actor_param.actor_stat_name
-        # starting with ch0 here, so the list index equals chapter number later
         actor_stat_values = [
-            actor_param.chapter_0,
             actor_param.chapter_1,
             actor_param.chapter_2,
             actor_param.chapter_3,
@@ -77,7 +75,7 @@ def get_shuffled_chapter_difficulty(
             value = actor_attribute.value
         else:
             native_chapter = all_enemy_stats[actor_name]["NativeChapter"]
-            value = int(all_enemy_stats[actor_name][actor_stat_name][chapter_dict.get(native_chapter)])
+            value = int(all_enemy_stats[actor_name][actor_stat_name][chapter_dict.get(native_chapter) - 1])
             if all_enemy_stats[actor_name]["Promoted"]:
                 value = int(all_enemy_stats[actor_name][actor_stat_name][chapter_dict.get(native_chapter) + 1])
 
