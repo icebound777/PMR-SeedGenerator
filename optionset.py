@@ -110,8 +110,8 @@ class OptionSet:
         self.pretty_spoilerlog = True
 
         # Cosmetics
-        self.color_a = 0xEBE677FF # Box5ColorA
-        self.color_b = 0x8E5A25FF # Box5ColorB
+        self.color_a = get_option_keyvalue_dict("Box5ColorA")
+        self.color_b = get_option_keyvalue_dict("Box5ColorB")
         self.roman_numerals = get_option_keyvalue_dict("RomanNumerals")
         self.random_coin_palette = False
 
