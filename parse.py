@@ -30,6 +30,7 @@ def gather_keys():
         "options": {},
         "quizzes": {},
     }
+    sprite_palette_counts = {}
     for filepath in files:
         with open(filepath, "r", encoding="utf-8") as file:
             for line in file:
@@ -86,6 +87,11 @@ def gather_keys():
                             "map_id": map_id,
                             "value_id": value_id,
                         }
+                    elif byte_id == 0xA4:
+                        sprite = key_info.split(":")[-1]
+                        keys["palettes"][key] = {
+                            "name": sprite
+                        }
                     elif byte_id == 0xA6:
                         cost_type,move = key_info.split(":")
                         keys["move_costs"][key] = {
@@ -114,6 +120,16 @@ def gather_keys():
                                 "map_id": map_id,
                                 "value_id": value_id,
                             }
+                elif match := re.match(r"#export\s*.PalCount:", line):
+                    # Palette count per Sprite
+                    data = line[match.end():]
+                    match = re.match(r"(\S*)\s*(\S*)", data)
+                    sprite, palette_count = match.group(1), match.group(2)
+                    sprite_palette_counts[sprite] = palette_count
+    for sprite, palette_count in sprite_palette_counts.items():
+        for dbkey, sprite_dict in keys["palettes"].items():
+            if sprite_dict["name"] == sprite:
+                keys["palettes"][dbkey]["palette_count"] = palette_count
     with open("./debug/keys.json", "w", encoding="utf-8") as file:
         json.dump(keys, file, indent=4)
 
@@ -155,7 +171,8 @@ def gather_values():
         "options": {},
         "quizzes": {},
     }
-    with open(os.path.abspath(__file__ + "/../../../globals/patch/DatabaseDefaults.patch"), "r", encoding="utf-8") as file:
+    file_path = "/../../../globals/patch/DatabaseDefaults.patch"
+    with open(os.path.abspath(__file__ + file_path), "r", encoding="utf-8") as file:
         for line in file:
             if match := re.match(r"\s*.DBKey:(\S*)\s*(\S*)", line):
                 key_info = match.group(1)
@@ -195,7 +212,8 @@ def gather_values():
                         values["actors"][actor] = {}
                     values["actors"][actor][attribute] = value
 
-    with open("../../globals/patch/Actors.patch", "r", encoding="utf-8") as file:
+    file_path = "../../globals/patch/Actors.patch"
+    with open(file_path, "r", encoding="utf-8") as file:
         for line in file:
             if match := re.match(r"#export\s*.ActorPtr:", line):
                 data = line[match.end():]

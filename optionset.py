@@ -115,6 +115,8 @@ class OptionSet:
         self.roman_numerals = get_option_keyvalue_dict("RomanNumerals")
         self.random_coin_palette = False
 
+        self.palette_settings = PaletteOptionSet()
+
         # Audio
         self.turn_off_music = False
 
@@ -332,6 +334,47 @@ class OptionSet:
             self.color_a = options_dict.get("Box5ColorA")
         if "Box5ColorB" in options_dict:
             self.color_b = options_dict.get("Box5ColorB")
+
+        if "MarioSetting" in options_dict:
+            self.palette_settings.mario_setting = options_dict.get("MarioSetting").get("value")
+        if "MarioSprite" in options_dict:
+            self.palette_settings.mario_sprite = options_dict.get("MarioSprite")
+        if "GoombarioSetting" in options_dict:
+            self.palette_settings.goombario_setting = options_dict.get("GoombarioSetting").get("value")
+        if "GoombarioSprite" in options_dict:
+            self.palette_settings.goombario_sprite = options_dict.get("GoombarioSprite")
+        if "KooperSetting" in options_dict:
+            self.palette_settings.kooper_setting = options_dict.get("KooperSetting").get("value")
+        if "KooperSprite" in options_dict:
+            self.palette_settings.kooper_sprite = options_dict.get("KooperSprite")
+        #if "BombetteSetting" in options_dict:
+        #    self.palette_settings.bombette_setting = options_dict.get("BombetteSetting").get("value")
+        #if "BombetteSprite" in options_dict:
+        #    self.palette_settings.bombette_sprite = options_dict.get("BombetteSprite")
+        #if "ParakarrySetting" in options_dict:
+        #    self.palette_settings.parakarry_setting = options_dict.get("ParakarrySetting").get("value")
+        #if "ParakarrySprite" in options_dict:
+        #    self.palette_settings.parakarry_sprite = options_dict.get("ParakarrySprite")
+        if "BowSetting" in options_dict:
+            self.palette_settings.bow_setting = options_dict.get("BowSetting").get("value")
+        if "BowSprite" in options_dict:
+            self.palette_settings.bow_sprite = options_dict.get("BowSprite")
+        #if "WattSetting" in options_dict:
+        #    self.palette_settings.watt_setting = options_dict.get("WattSetting").get("value")
+        #if "WattSprite" in options_dict:
+        #    self.palette_settings.watt_sprite = options_dict.get("WattSprite")
+        #if "SushieSetting" in options_dict:
+        #    self.palette_settings.sushie_setting = options_dict.get("SushieSetting").get("value")
+        #if "SushieSprite" in options_dict:
+        #    self.palette_settings.sushie_sprite = options_dict.get("SushieSprite")
+        #if "LakilesterSetting" in options_dict:
+        #    self.palette_settings.lakilester_setting = options_dict.get("LakilesterSetting").get("value")
+        #if "LakilesterSprite" in options_dict:
+        #    self.palette_settings.lakilester_sprite = options_dict.get("LakilesterSprite")
+        if "BossesSetting" in options_dict:
+            self.palette_settings.bosses_setting = options_dict.get("BossesSetting").get("value")
+        if "NPCSetting" in options_dict:
+            self.palette_settings.npc_setting = options_dict.get("NPCSetting").get("value")
 
         # Audio
         if "TurnOffMusic" in options_dict:
@@ -569,6 +612,47 @@ def validate_options(options_dict):
             and 0 <= options_dict.get("Box5ColorB").get("value") <= 0xFFFFFFFF
         )
 
+    if "MarioSetting" in options_dict:
+        assert isinstance(options_dict.get("MarioSetting").get("value"), int)
+    if "MarioSprite" in options_dict:
+        assert isinstance(options_dict.get("MarioSprite").get("value"), int)
+    if "GoombarioSetting" in options_dict:
+        assert isinstance(options_dict.get("GoombarioSetting").get("value"), int)
+    if "GoombarioSprite" in options_dict:
+        assert isinstance(options_dict.get("GoombarioSprite").get("value"), int)
+    if "KooperSetting" in options_dict:
+        assert isinstance(options_dict.get("KooperSetting").get("value"), int)
+    if "KooperSprite" in options_dict:
+        assert isinstance(options_dict.get("KooperSprite").get("value"), int)
+    #if "BombetteSetting" in options_dict:
+    #    assert isinstance(options_dict.get("BombetteSetting").get("value"), int)
+    #if "BombetteSprite" in options_dict:
+    #    assert isinstance(options_dict.get("BombetteSprite").get("value"), int)
+    #if "ParakarrySetting" in options_dict:
+    #    assert isinstance(options_dict.get("ParakarrySetting").get("value"), int)
+    #if "ParakarrySprite" in options_dict:
+    #    assert isinstance(options_dict.get("ParakarrySprite").get("value"), int)
+    if "BowSetting" in options_dict:
+        assert isinstance(options_dict.get("BowSetting").get("value"), int)
+    if "BowSprite" in options_dict:
+        assert isinstance(options_dict.get("BowSprite").get("value"), int)
+    #if "WattSetting" in options_dict:
+    #    assert isinstance(options_dict.get("WattSetting").get("value"), int)
+    #if "WattSprite" in options_dict:
+    #    assert isinstance(options_dict.get("WattSprite").get("value"), int)
+    #if "SushieSetting" in options_dict:
+    #    assert isinstance(options_dict.get("SushieSetting").get("value"), int)
+    #if "SushieSprite" in options_dict:
+    #    assert isinstance(options_dict.get("SushieSprite").get("value"), int)
+    #if "LakilesterSetting" in options_dict:
+    #    assert isinstance(options_dict.get("LakilesterSetting").get("value"), int)
+    #if "LakilesterSprite" in options_dict:
+    #    assert isinstance(options_dict.get("LakilesterSprite").get("value"), int)
+    if "BossesSetting" in options_dict:
+        assert isinstance(options_dict.get("BossesSetting").get("value"), int)
+    if "NPCSetting" in options_dict:
+        assert isinstance(options_dict.get("NPCSetting").get("value"), int)
+
     # Audio
     if "TurnOffMusic" in options_dict:
         assert isinstance(options_dict.get("TurnOffMusic").get("value"), bool)
@@ -591,3 +675,28 @@ def populate_keys(data:dict):
             }
         else:
             data[option_str] = {"value": data[option_str]}
+
+class PaletteOptionSet():
+    def __init__(self):
+        DEFAULT_PALETTE = 0
+
+        self.mario_setting = DEFAULT_PALETTE
+        self.mario_sprite = get_option_keyvalue_dict("MarioSprite")
+        self.goombario_setting = DEFAULT_PALETTE
+        self.goombario_sprite = get_option_keyvalue_dict("GoombarioSprite")
+        self.kooper_setting = DEFAULT_PALETTE
+        self.kooper_sprite = get_option_keyvalue_dict("KooperSprite")
+        #self.bombette_setting = get_option_keyvalue_dict("BombetteSetting")
+        #self.bombette_sprite = DEFAULT_PALETTE
+        #self.parakarry_setting = get_option_keyvalue_dict("ParakarrySetting")
+        #self.parakarry_sprite = DEFAULT_PALETTE
+        self.bow_setting = get_option_keyvalue_dict("BowSetting")
+        self.bow_sprite = DEFAULT_PALETTE
+        #self.watt_setting = get_option_keyvalue_dict("WattSetting")
+        #self.watt_sprite = DEFAULT_PALETTE
+        #self.sushie_setting = get_option_keyvalue_dict("SushieSetting")
+        #self.sushie_sprite = DEFAULT_PALETTE
+        #self.lakilester_setting = get_option_keyvalue_dict("LakilesterSetting")
+        #self.lakilester_sprite = DEFAULT_PALETTE
+        self.bosses_setting = get_option_keyvalue_dict("BossesSetting")
+        self.npc_setting = get_option_keyvalue_dict("NPCSetting")

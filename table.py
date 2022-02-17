@@ -93,6 +93,13 @@ class Table:
                 "value": value
             })
 
+        palettes = kwargs.get("palettes")
+        for key, value in palettes:
+            table_data.append({
+                "key": key,
+                "value": value
+            })
+
         # Move Costs
         move_costs = kwargs.get("move_costs")
         for key, value in move_costs:

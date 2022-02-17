@@ -8,7 +8,9 @@ from rando_modules.random_audio import get_turned_off_music
 from rando_modules.modify_entrances import get_shorter_bowsercastle
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
-from rando_modules.random_palettes import get_randomized_coinpalette
+from rando_modules.random_palettes     \
+    import get_randomized_coinpalette, \
+           get_randomized_palettes
 from rando_modules.random_partners import get_rnd_starting_partners
 from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.random_shop_prices import get_alpha_prices
@@ -25,6 +27,7 @@ class RandomSeed:
         self.battle_formations = []
         self.move_costs = []
         self.coin_palette:CoinPalette = CoinPalette()
+        self.palette_data = []
         self.quiz_list = []
         self.music_list = []
 
@@ -116,6 +119,9 @@ class RandomSeed:
         # Randomize sprite palettes
         if self.rando_settings.random_coin_palette:
             self.coin_palette = get_randomized_coinpalette()
+        self.palette_data = get_randomized_palettes(
+            self.rando_settings.palette_settings
+        )
 
         # Music settings
         if self.rando_settings.turn_off_music:

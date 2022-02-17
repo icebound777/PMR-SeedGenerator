@@ -1,9 +1,14 @@
+"""Module for modifying sprite palettes"""
 import random
 
 from models.CoinPalette import CoinPalette
+from db.palette import Palette
 
+from optionset import PaletteOptionSet
+from metadata.palettes_meta              \
+    import mario_n_partner_sprite_names, \
+           boss_sprite_names
 
-"""Module for modifying sprite palettes"""
 
 def get_randomized_coinpalette():
     """
@@ -129,3 +134,68 @@ def get_randomized_coinpalette():
     return CoinPalette(all_coin_palettes.get(random_palette), \
            target_rom_locations, \
            None)
+
+
+def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
+    DEFAULT_PALETTE = 0
+    SELECT_PALETTE = 1
+    RANDOM_PICK = 2
+    ALWAYS_RANDOM = 3
+
+    palettes_data = []
+    all_palettes = []
+    all_palettes.append(("Mario", palette_settings.mario_setting, palette_settings.mario_sprite))
+    all_palettes.append(("01_0_Goombario", palette_settings.goombario_setting, palette_settings.goombario_sprite))
+    all_palettes.append(("02_0_Kooper", palette_settings.kooper_setting, palette_settings.kooper_sprite))
+    #all_palettes.append(("03_0_Bombette", palette_settings.bombette_setting, palette_settings.bombette_sprite))
+    #all_palettes.append(("04_0_Parakarry", palette_settings.parakarry_setting, palette_settings.parakarry_sprite))
+    all_palettes.append(("05_0_Bow", palette_settings.bow_setting, palette_settings.bow_sprite))
+    #all_palettes.append(("06_0_Watt", palette_settings.watt_setting, palette_settings.watt_sprite))
+    #all_palettes.append(("07_0_Sushie", palette_settings.sushie_setting, palette_settings.sushie_sprite))
+    #all_palettes.append(("08_0_Lakilester", palette_settings.lakilester_setting, palette_settings.lakilester_sprite))
+
+    # Selectable palettes
+    for palette_tuple in all_palettes:
+        palette_info = Palette.get(Palette.sprite == palette_tuple[0])
+        cur_setting = palette_tuple[1]
+        cur_sprite = palette_tuple[2]
+        palette_count = palette_info.palette_count
+
+        if (cur_setting == SELECT_PALETTE
+        and 0 <= cur_sprite <= palette_count
+        ):
+            chosen_palette = cur_sprite
+        elif cur_setting == RANDOM_PICK:
+            chosen_palette = random.randrange(0, palette_count + 1)
+        elif cur_setting == ALWAYS_RANDOM:
+            chosen_palette = -1
+        else:
+            cur_setting = DEFAULT_PALETTE
+
+        palettes_data.append((palette_info.dbkey, chosen_palette))
+
+    # Bosses and general NPC palettes
+    for palette_info in Palette.select():
+        if palette_info.sprite in mario_n_partner_sprite_names:
+            continue
+
+        if palette_info.sprite in boss_sprite_names:
+            if palette_settings.bosses_setting == RANDOM_PICK:
+                palette_count = palette_info.palette_count
+                chosen_palette = random.randrange(0, palette_count + 1)
+            elif palette_settings.bosses_setting == ALWAYS_RANDOM:
+                chosen_palette = -1
+            else:
+                chosen_palette = DEFAULT_PALETTE
+            palettes_data.append((palette_info.dbkey, chosen_palette))
+        else:
+            if palette_settings.npc_setting == RANDOM_PICK:
+                palette_count = palette_info.palette_count
+                chosen_palette = random.randrange(0, palette_count + 1)
+            elif palette_settings.npc_setting == ALWAYS_RANDOM:
+                chosen_palette = -1
+            else:
+                chosen_palette = DEFAULT_PALETTE
+            palettes_data.append((palette_info.dbkey, chosen_palette))
+
+    return palettes_data
