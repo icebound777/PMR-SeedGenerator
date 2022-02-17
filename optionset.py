@@ -328,6 +328,10 @@ class OptionSet:
             self.roman_numerals = options_dict.get("RomanNumerals")
         if "RandomCoinPalette" in options_dict:
             self.random_coin_palette = options_dict.get("RandomCoinPalette").get("value")
+        if "Box5ColorA" in options_dict:
+            self.color_a = options_dict.get("Box5ColorA")
+        if "Box5ColorB" in options_dict:
+            self.color_b = options_dict.get("Box5ColorB")
 
         # Audio
         if "TurnOffMusic" in options_dict:
@@ -556,6 +560,14 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("RomanNumerals").get("value"), bool)
     if "RandomCoinPalette" in options_dict:
         assert isinstance(options_dict.get("RandomCoinPalette").get("value"), bool)
+    if "Box5ColorA" in options_dict:
+        assert (isinstance(options_dict.get("Box5ColorA").get("value"), int)
+            and 0 <= options_dict.get("Box5ColorA").get("value") <= 0xFFFFFFFF
+        )
+    if "Box5ColorB" in options_dict:
+        assert (isinstance(options_dict.get("Box5ColorB").get("value"), int)
+            and 0 <= options_dict.get("Box5ColorB").get("value") <= 0xFFFFFFFF
+        )
 
     # Audio
     if "TurnOffMusic" in options_dict:

@@ -94,8 +94,8 @@ WriteSpoilerLog : true
 PrettySpoilerlog: true
 
 # Cosmetics / Palettes
-ColorA           : 0xEBE677FF # Box5ColorA
-ColorB           : 0x8E5A25FF # Box5ColorB
+Box5ColorA       : 0xEBE676FF # Status Bar Color A (main)
+Box5ColorB       : 0x8E5A24FF # Status Bar Color B (shadow)
 RandomCoinPalette: true
 RomanNumerals    : false
 
