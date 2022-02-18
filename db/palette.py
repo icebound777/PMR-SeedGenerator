@@ -17,7 +17,7 @@ class Palette(Model):
         return (self.dbkey)
 
     class Meta:
-        database: db
+        database = db
         key_type = 0xA4
 
 

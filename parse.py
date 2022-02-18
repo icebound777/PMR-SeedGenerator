@@ -90,7 +90,7 @@ def gather_keys():
                     elif byte_id == 0xA4:
                         sprite = key_info.split(":")[-1]
                         keys["palettes"][key] = {
-                            "name": sprite
+                            "sprite": sprite
                         }
                     elif byte_id == 0xA6:
                         cost_type,move = key_info.split(":")
@@ -128,8 +128,8 @@ def gather_keys():
                     sprite_palette_counts[sprite] = palette_count
     for sprite, palette_count in sprite_palette_counts.items():
         for dbkey, sprite_dict in keys["palettes"].items():
-            if sprite_dict["name"] == sprite:
-                keys["palettes"][dbkey]["palette_count"] = palette_count
+            if sprite_dict["sprite"] == sprite:
+                keys["palettes"][dbkey]["palette_count"] = int(palette_count.replace("`", ""))
     with open("./debug/keys.json", "w", encoding="utf-8") as file:
         json.dump(keys, file, indent=4)
 

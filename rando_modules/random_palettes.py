@@ -168,9 +168,9 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
         elif cur_setting == RANDOM_PICK:
             chosen_palette = random.randrange(0, palette_count + 1)
         elif cur_setting == ALWAYS_RANDOM:
-            chosen_palette = -1
+            chosen_palette = 0xFFFFFFFF
         else:
-            cur_setting = DEFAULT_PALETTE
+            chosen_palette = DEFAULT_PALETTE
 
         palettes_data.append((palette_info.dbkey, chosen_palette))
 
@@ -184,7 +184,7 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
                 palette_count = palette_info.palette_count
                 chosen_palette = random.randrange(0, palette_count + 1)
             elif palette_settings.bosses_setting == ALWAYS_RANDOM:
-                chosen_palette = -1
+                chosen_palette = 0xFFFFFFFF
             else:
                 chosen_palette = DEFAULT_PALETTE
             palettes_data.append((palette_info.dbkey, chosen_palette))
@@ -193,7 +193,7 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
                 palette_count = palette_info.palette_count
                 chosen_palette = random.randrange(0, palette_count + 1)
             elif palette_settings.npc_setting == ALWAYS_RANDOM:
-                chosen_palette = -1
+                chosen_palette = 0xFFFFFFFF
             else:
                 chosen_palette = DEFAULT_PALETTE
             palettes_data.append((palette_info.dbkey, chosen_palette))

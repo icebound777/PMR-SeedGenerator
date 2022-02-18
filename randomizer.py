@@ -29,6 +29,7 @@ from db.actor_params    import create_actor_params
 from db.actor_attribute import create_actor_attributes
 from db.move            import create_moves
 from db.quiz            import create_quizzes
+from db.palette         import create_palettes
 from rando_modules.random_partners import get_rnd_starting_partners
 
 
@@ -51,6 +52,7 @@ def init_randomizer(rebuild_database=False):
         create_actors()
         create_actor_params()
         create_actor_attributes()
+        create_palettes()
         create_moves()
         create_quizzes()
 
