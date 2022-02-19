@@ -1,15 +1,15 @@
 ---
-# OPEN WORLD PM64 SETTINGS
-SettingsName   : Default Dev Preset
-SettingsVersion: 0.1
+# PAPER MARIO RANDOMIZER SETTINGS
+SettingsName   : Default Preset
+SettingsVersion: 1
 
 # Options
-StartingMap         : 0x00010104 # mac_00, Entry4
 BlocksMatchContent  : true
 AlwaysSpeedySpin    : true
 AlwaysISpy          : false
-AlwaysPeekaboo      : false
+AlwaysPeekaboo      : true
 HiddenBlockMode     : 1
+ShortenCutscenes    : true
 AllowPhysicsGlitches: false
 
 StartingCoins: 50
@@ -20,6 +20,30 @@ NoXP         : false
 OHKO         : false
 NoSaveBlocks : false
 NoHeartBlocks: false
+
+# Starting setup
+StartingMap  : 0x00010104 # mac_00, Entry4 / Toad Town Gate District
+StartingLevel: 1
+StartingMaxHP: 10
+StartingMaxFP: 5
+StartingMaxBP: 3
+
+StartingItem0: 0x008 # HomewardShroom
+StartingItem1: 0x000 # Nothing
+StartingItem2: 0x000 # Nothing
+StartingItem3: 0x000 # Nothing
+StartingItem4: 0x000 # Nothing
+StartingItem5: 0x000 # Nothing
+StartingItem6: 0x000 # Nothing
+StartingItem7: 0x000 # Nothing
+StartingItem8: 0x000 # Nothing
+StartingItem9: 0x000 # Nothing
+StartingItemA: 0x000 # Nothing
+StartingItemB: 0x000 # Nothing
+StartingItemC: 0x000 # Nothing
+StartingItemD: 0x000 # Nothing
+StartingItemE: 0x000 # Nothing
+StartingItemF: 0x000 # Nothing
 
 # Pre-opened areas
 FlowerGateOpen: false
@@ -38,12 +62,12 @@ PlacementLogic: NoGlitches
 
 # Randomization: Difficulty
 ShuffleChapterDifficulty: false
-ProgressiveScaling      : false
-RandomFormations        : false
+ProgressiveScaling      : true
+RandomFormations        : true
 
 # Randomization: Items
 ShuffleItems          : true
-IncludeCoins          : false
+IncludeCoins          : true
 IncludeShops          : true
 IncludePanels         : true
 IncludeDojo           : false
