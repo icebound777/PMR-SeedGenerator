@@ -31,6 +31,10 @@ class Node(Model):
     # reference to item placed here during randomization
     current_item = ForeignKeyField(Item, null = True)
 
+    # vanilla item price if shop
+    vanilla_price = IntegerField(null = True)
+
+    # index bytes of the DBKey
     item_index = IntegerField(null = True)
     price_index = IntegerField(null = True)
 
@@ -73,6 +77,7 @@ def create_nodes():
 
     with open("./debug/values.json", "r") as file:
         item_values = json.load(file)["items"]
+        price_values = json.load(file)["item_prices"]
 
     entrance_links = {}
     for child in Path("./maps/links").iterdir():
@@ -81,7 +86,7 @@ def create_nodes():
                 entrance_links |= json.load(file)
 
     # Create item only nodes
-    for key, data in item_keys.items():
+    for _, data in item_keys.items():
         map_area, created = MapArea.get_or_create(
             area_id = data["area_id"],
             map_id = data["map_id"],
@@ -95,6 +100,7 @@ def create_nodes():
 
         price_index = None
         key_name_price = None
+        vanilla_price = None
         if data["name"].startswith("ShopItem") or data["name"].startswith("ShopBadge"):
             # Search for corresponding item_price and set index & key_name_price
             for price_id, price_data in price_keys.items():
@@ -102,6 +108,7 @@ def create_nodes():
                 if price_data["map_name"] == data["map_name"] and price_data["name"][-1] == data["name"][-1]:
                     price_index = price_data["value_id"]
                     key_name_price = price_data["name"]
+                    vanilla_price = price_values[price_data["map_name"]][price_data["name"]]
 
         print(f"map_name={data['map_name']}, name={data['name']}")
         try:
@@ -119,6 +126,7 @@ def create_nodes():
             item_source_type = item_source_type,
             vanilla_item = vanilla_item,
             current_item = None,
+            vanilla_price = vanilla_price,
             item_index = data["value_id"],
             price_index = price_index if price_index else None
         )
