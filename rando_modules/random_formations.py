@@ -305,7 +305,6 @@ def get_random_formations(
                 or not actor.actor_name in unused_mediguys
             ):
                 actor_areas[area_id].append(actor.actor_name)
-                print(actor.actor_name)
 
     # Loop over all battle formation to be randomized
     for battle, front_row_enemy in front_row_enemies.items():
