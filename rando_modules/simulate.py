@@ -14,10 +14,12 @@ class Mario:
         self.boots = kwargs.get("boots", 0)
         self.hammer = kwargs.get("hammer", -1)
         self.items = kwargs.get("items", [])
+        self.starpieces = kwargs.get("starpieces", [])
         self.partners = kwargs.get("partners", [])
         self.favors = kwargs.get("favors", []) # https://www.mariowiki.com/Koopa_Koot%27s_favors
         self.flags = kwargs.get("flags", [])
         self.starspirits = kwargs.get("starspirits", [])
+        self.item_history = []
 
 
 def add_to_inventory(item_object):
@@ -29,18 +31,25 @@ def add_to_inventory(item_object):
     if isinstance(item_object, str):
         is_new_pseudoitem = False
     
-        if (  item_object.startswith("GF")
+        if (   item_object.startswith("GF")
             or item_object.startswith("MF")
             or item_object.startswith("MB")
             or item_object.startswith("RF")):
             mario.flags.append(item_object)
             is_new_pseudoitem = True
-        elif item_object in all_partners and item_object not in mario.partners:
-            mario.partners.append(item_object)
-            is_new_pseudoitem = True
-        elif item_object.startswith("FAVOR") and item_object not in mario.favors:
-            mario.favors.append(item_object)
-            is_new_pseudoitem = True
+        elif item_object in all_partners:
+            if item_object not in mario.partners:
+                mario.partners.append(item_object)
+                mario.item_history.append(item_object)
+                is_new_pseudoitem = True
+        elif item_object.find("StarPiece") != -1:
+            if item_object not in mario.starpieces:
+                mario.starpieces.append(item_object)
+                mario.item_history.append(item_object)
+        elif item_object.startswith("FAVOR"):
+            if item_object not in mario.favors:
+                mario.favors.append(item_object)
+                is_new_pseudoitem = True
         elif item_object.startswith("EQUIPMENT"):
             if item_object == "EQUIPMENT_Boots_Progressive":
                 mario.boots = mario.boots + 1 if mario.boots < 2 else mario.boots
@@ -51,9 +60,11 @@ def add_to_inventory(item_object):
                 mario.starspirits.append(item_object)
             is_new_pseudoitem = True
         else:
-            mario.items.append(item_object)
+            if item_object not in mario.items:
+                mario.items.append(item_object)
+                mario.item_history.append(item_object)
         
-#        print(f"New item: {item_object}")
+        print(f"New item: {item_object}")
 
         return is_new_pseudoitem
     # Overload: List of items -> Call function per item
@@ -74,6 +85,12 @@ def clear_inventory():
     """Completely clear Mario's inventory."""
     global mario
     mario = Mario()
+
+
+def get_item_history():
+    """"""
+    global mario
+    return mario.item_history
 
 
 def can_flip_panels():
@@ -120,9 +137,20 @@ def has_parakarry_3_letters():
     return False
 
 
+def get_starpiece_count() -> int:
+    global mario
+    sp_count = 0
+    for starpiece_item in mario.starpieces:
+        if starpiece_item.startswith("Three"):
+            sp_count = sp_count + 3
+        else:
+            sp_count = sp_count + 1
+    return sp_count
+
+
 def saved_all_yoshikids():
     """Checks if Mario has saved all 5 of the Yoshi Kids"""
-    global Mario
+    global mario
     count = 0
     for flag_str in mario.flags:
         if flag_str == "RF_SavedYoshiKid":
@@ -137,7 +165,16 @@ def require(**kwargs):
         global mario
         # Sanity-checking kwargs
         for key in kwargs.keys():
-            if key not in ["partner","item","hammer","boots","favor","flag","starspirits"]:
+            if key not in [
+                "partner",
+                "item",
+                "starpieces",
+                "hammer",
+                "boots",
+                "favor",
+                "flag",
+                "starspirits"
+            ]:
                 raise KeyError('Requirement kwargs is not valid', key)
 
         # Partners
@@ -161,6 +198,10 @@ def require(**kwargs):
                     return True
             if item in mario.items:
                 return True
+        # StarPieces
+        starpieces = kwargs.get("starpieces")
+        if starpieces is not None and get_starpiece_count() >= starpieces:
+            return True
         # Hammer
         hammer = kwargs.get("hammer")
         if hammer is not None and mario.hammer >= hammer:

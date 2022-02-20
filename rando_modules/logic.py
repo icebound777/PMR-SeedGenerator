@@ -16,7 +16,15 @@ from worldgraph \
            get_node_identifier,\
            get_area_nodes,\
            get_area_edges
-from rando_modules.simulate import add_to_inventory, clear_inventory, has_item, require
+from rando_modules.random_shop_prices import get_shop_price
+from rando_modules.simulate        \
+    import add_to_inventory,       \
+           clear_inventory,        \
+           has_item,               \
+           require,                \
+           get_item_history,       \
+           has_parakarry_3_letters,\
+           get_starpiece_count
 from custom_seed import validate_seed
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
@@ -25,8 +33,9 @@ from metadata.itemlocation_special \
            chainletter_giver_locations,\
            dojo_locations,\
            limited_by_item_areas
-from metadata.progression_items \
-    import progression_miscitems as progression_miscitems_names
+from metadata.progression_items                                  \
+    import progression_miscitems as progression_miscitems_names, \
+           progression_items as progression_items_names
 from metadata.item_exclusion import items_to_exclude, taycet_items
 from metadata.partners_meta import all_partners as all_partners_imp
 
@@ -557,6 +566,7 @@ def _get_limit_items_to_dungeons(
                 cur_items_overwritten = place_progression_items(
                     pool_progression_items_try,
                     pool_misc_progression_items_try,
+                    None,
                     False,
                     reachable_node_ids_try,
                     reachable_item_nodes_try,
@@ -711,7 +721,9 @@ def _generate_item_pools(
                 continue
 
             # Item shall be randomized: Add it to the correct item pool
-            if current_node.vanilla_item.progression:
+            if (current_node.vanilla_item.progression
+            or (do_randomize_shops and "StarPiece" in current_node.vanilla_item.item_name)
+            ):
                 pool_progression_items.append(current_node.vanilla_item)
             else:
                 if (    current_node.vanilla_item.item_name in progression_miscitems_names
@@ -800,6 +812,7 @@ def _generate_item_pools(
 def place_progression_items(
     pool_progression_items,
     pool_misc_progression_items,
+    pool_other_items,
     do_randomize_shops,
     reachable_node_ids,
     reachable_item_nodes,
@@ -809,6 +822,8 @@ def place_progression_items(
 ):
     items_placed = []
     items_overwritten = []
+    if pool_other_items is None:
+        pool_other_items = []
 
     while pool_progression_items or pool_misc_progression_items:
         # Pick random reachable item node
@@ -847,6 +862,32 @@ def place_progression_items(
         if "Shop" in node_identifier:
             random_node.current_item.base_price = get_shop_price(random_node, do_randomize_shops)
         filled_item_nodes.append(random_node)
+
+        # Adjust item pools if necessary: Letters
+        if (has_parakarry_3_letters()
+        and any(item.item_name.find("Letter") != -1 for item in pool_progression_items)
+        ):
+            print("Removing Letters from progressive pool ...")
+            transfer_letters = []
+            for item in pool_progression_items:
+                if item.item_name.find("Letter") != -1:
+                    transfer_letters.append(item)
+            for item in transfer_letters:
+                pool_progression_items.remove(item)
+                pool_other_items.append(item)
+
+        # Adjust item pools if necessary: StarPieces
+        if (get_starpiece_count() >= 60
+        and any(item.item_name.find("StarPiece") != -1 for item in pool_progression_items)
+        ):
+            print("Removing StarPieces from progressive pool ...")
+            transfer_starpieces = []
+            for item in pool_progression_items:
+                if item.item_name.find("StarPiece") != -1:
+                    transfer_starpieces.append(item)
+            for item in transfer_starpieces:
+                pool_progression_items.remove(item)
+                pool_other_items.append(item)
 
         pool_misc_progression_items, \
         reachable_node_ids, \
@@ -970,6 +1011,7 @@ def _algo_forward_fill(
     filled_item_nodes, _, _ = place_progression_items(
         pool_progression_items,
         pool_misc_progression_items,
+        pool_other_items,
         do_randomize_shops,
         reachable_node_ids,
         reachable_item_nodes,
@@ -1086,5 +1128,13 @@ def place_items(
             hidden_block_mode,
             keyitems_outside_dungeon
         )
+
+    print("Mario check:")
+    for item in get_item_history():
+        if (    item in progression_items_names.values()
+            and not item.startswith("Letter")
+        ):
+            print(item)
+
 
     yield ("Generating Log", int(100 * 1))
