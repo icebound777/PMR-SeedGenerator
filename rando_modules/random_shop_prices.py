@@ -6,7 +6,7 @@ from worldgraph import get_node_identifier
 
 
 def get_shop_price(node:Node, do_randomize_shops:bool) -> int:
-    item_type = Item.get_type(node.current_item.base_price)
+    item_type = node.current_item.item_type
     node_id = get_node_identifier(node)
 
     if do_randomize_shops:
@@ -57,7 +57,7 @@ def get_shop_price(node:Node, do_randomize_shops:bool) -> int:
         # Set vanilla prices
         buy_price = node.vanilla_price
 
-    print(f"Set price {node_id}: {buy_price}")
+    #print(f"Set price {node_id}({node.current_item}): {buy_price}")
 
     return buy_price
 

@@ -64,7 +64,7 @@ def add_to_inventory(item_object):
                 mario.items.append(item_object)
                 mario.item_history.append(item_object)
         
-        print(f"New item: {item_object}")
+        #print(f"New item: {item_object}")
 
         return is_new_pseudoitem
     # Overload: List of items -> Call function per item

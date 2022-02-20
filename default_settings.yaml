@@ -10,7 +10,7 @@ AlwaysISpy          : false
 AlwaysPeekaboo      : true
 HiddenBlockMode     : 1
 ShortenCutscenes    : true
-SkipEpilogue        : true
+SkipEpilogue        : false
 AllowPhysicsGlitches: false
 
 StartingCoins: 50

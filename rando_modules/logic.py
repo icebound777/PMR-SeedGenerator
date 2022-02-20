@@ -567,7 +567,7 @@ def _get_limit_items_to_dungeons(
                     pool_progression_items_try,
                     pool_misc_progression_items_try,
                     None,
-                    False,
+                    True,
                     reachable_node_ids_try,
                     reachable_item_nodes_try,
                     limited_filled_item_nodes_try,
@@ -1089,8 +1089,8 @@ def place_items(
     logging.basicConfig(level=level, format=fmt)
 
     cur_seed = random.random()
-    if level == logging.DEBUG:
-        print(f"{cur_seed}")
+    if level == logging.INFO:
+        print(f"Seed: {cur_seed}")
     random.seed(cur_seed)
 
     if algorithm == "CustomSeed":
@@ -1128,13 +1128,5 @@ def place_items(
             hidden_block_mode,
             keyitems_outside_dungeon
         )
-
-    print("Mario check:")
-    for item in get_item_history():
-        if (    item in progression_items_names.values()
-            and not item.startswith("Letter")
-        ):
-            print(item)
-
 
     yield ("Generating Log", int(100 * 1))

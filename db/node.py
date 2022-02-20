@@ -76,8 +76,9 @@ def create_nodes():
         entrance_keys = keys_dict["entrances"]
 
     with open("./debug/values.json", "r") as file:
-        item_values = json.load(file)["items"]
-        price_values = json.load(file)["item_prices"]
+        values_dict = json.load(file)
+        item_values = values_dict["items"]
+        price_values = values_dict["item_prices"]
 
     entrance_links = {}
     for child in Path("./maps/links").iterdir():
