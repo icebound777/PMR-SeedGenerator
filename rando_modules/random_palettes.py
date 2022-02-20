@@ -156,17 +156,25 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
 
     # Selectable palettes
     for palette_tuple in all_palettes:
-        palette_info = Palette.get(Palette.sprite == palette_tuple[0])
+        cur_sprite_name = palette_tuple[0]
         cur_setting = palette_tuple[1]
         cur_sprite = palette_tuple[2]
+        palette_info = Palette.get(Palette.sprite == cur_sprite_name)
         palette_count = palette_info.palette_count
 
         if (cur_setting == SELECT_PALETTE
-        and 0 <= cur_sprite <= palette_count
+        and ((    cur_sprite_name == "Mario" # Player sprite special case, see *
+              and 0 <= cur_sprite < palette_count)
+          or (    cur_sprite_name != "Mario"
+              and 0 <= cur_sprite <= palette_count))
         ):
             chosen_palette = cur_sprite
         elif cur_setting == RANDOM_PICK:
-            chosen_palette = random.randrange(0, palette_count + 1)
+            if cur_sprite_name == "Mario":
+                # Player sprite special case, see *
+                chosen_palette = random.randrange(0, palette_count)
+            else:
+                chosen_palette = random.randrange(0, palette_count + 1)
         elif cur_setting == ALWAYS_RANDOM:
             chosen_palette = 0xFFFFFFFF
         else:
@@ -191,11 +199,24 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
         else:
             if palette_settings.npc_setting == RANDOM_PICK:
                 palette_count = palette_info.palette_count
-                chosen_palette = random.randrange(0, palette_count + 1)
+                if cur_sprite_name == "Peach":
+                    # Player sprite special case, see *
+                    chosen_palette = random.randrange(0, palette_count)
+                else:
+                    chosen_palette = random.randrange(0, palette_count + 1)
             elif palette_settings.npc_setting == ALWAYS_RANDOM:
                 chosen_palette = 0xFFFFFFFF
             else:
                 chosen_palette = DEFAULT_PALETTE
             palettes_data.append((palette_info.dbkey, chosen_palette))
+
+    # * For technical reasons, the palette_count of player sprites, that is
+    #   Mario and Peach, is off by one. This is due to our coding for player
+    #   sprites making the default palette for player sprites unusable, so
+    #   palette #0 (normally the default) for those is technically counted as
+    #   custom palette.
+    #   This is not the case for any other sprite, where a palette count of,
+    #   say, 3 means 3 additional palettes in addition to the default sprite.
+    #   The palette count for player sprites includes the default palette.
 
     return palettes_data
