@@ -557,6 +557,7 @@ def _get_limit_items_to_dungeons(
                 cur_items_overwritten = place_progression_items(
                     pool_progression_items_try,
                     pool_misc_progression_items_try,
+                    False,
                     reachable_node_ids_try,
                     reachable_item_nodes_try,
                     limited_filled_item_nodes_try,
@@ -630,6 +631,10 @@ def _generate_item_pools(
                 and not do_randomize_shops
             ):
                 current_node.current_item = current_node.vanilla_item
+                current_node.current_item.base_price = get_shop_price(
+                    current_node,
+                    do_randomize_shops
+                )
                 all_item_nodes.append(current_node)
                 continue
 
@@ -795,6 +800,7 @@ def _generate_item_pools(
 def place_progression_items(
     pool_progression_items,
     pool_misc_progression_items,
+    do_randomize_shops,
     reachable_node_ids,
     reachable_item_nodes,
     filled_item_nodes,
@@ -837,6 +843,9 @@ def place_progression_items(
         add_to_inventory(random_item.item_name)
         items_placed.append(random_item)
         items_overwritten.append(random_node.vanilla_item)
+        node_identifier = get_node_identifier(random_node)
+        if "Shop" in node_identifier:
+            random_node.current_item.base_price = get_shop_price(random_node, do_randomize_shops)
         filled_item_nodes.append(random_node)
 
         pool_misc_progression_items, \
@@ -961,6 +970,7 @@ def _algo_forward_fill(
     filled_item_nodes, _, _ = place_progression_items(
         pool_progression_items,
         pool_misc_progression_items,
+        do_randomize_shops,
         reachable_node_ids,
         reachable_item_nodes,
         filled_item_nodes,
@@ -985,8 +995,10 @@ def _algo_forward_fill(
                 random_item_id = random.randint(0, len(pool_other_items) - 1)
                 random_item = pool_other_items.pop(random_item_id)
                 item_node.current_item = random_item
+                if "Shop" in item_node_id:
+                    item_node.current_item.base_price = get_shop_price(item_node, do_randomize_shops)
                 filled_item_nodes.append(item_node)
-                logging.debug(f"{get_node_identifier(item_node)}: {random_item.item_name}")
+                logging.debug(f"{item_node_id}: {random_item.item_name}")
             except ValueError as err:
                 logging.debug(f"filled_item_nodes size: {len(filled_item_nodes)}")
                 logging.debug(f"pool_other_items size: {len(pool_other_items)}")

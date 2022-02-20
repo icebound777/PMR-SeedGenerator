@@ -68,7 +68,7 @@ class RandomSeed:
 
         # Make everything inexpensive
         #set_cheap_shopitems(placed_items)
-        self.placed_items = get_alpha_prices(self.placed_items)
+        #self.placed_items = get_alpha_prices(self.placed_items)
 
         # Modify entrances if needed
         if self.rando_settings.shorten_bowsers_castle:
