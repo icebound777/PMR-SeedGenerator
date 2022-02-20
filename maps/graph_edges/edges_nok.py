@@ -36,6 +36,15 @@ edges_nok = [
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "ShopItemF"},     "reqs": []}, #* Koopa Village 1 Exit Left -> ShopItemF (Mushroom)
     {"from": {"map": "NOK_01", "id": "ShopItemF"},     "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* ShopItemF (Mushroom) -> Koopa Village 1 Exit Left
 
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_NOK_1",
+                                                                                                                     "StarPiece_NOK_2",
+                                                                                                                     "StarPiece_NOK_3",
+                                                                                                                     "StarPiece_NOK_4",
+                                                                                                                     "StarPiece_NOK_5",
+                                                                                                                     "StarPiece_NOK_6",
+                                                                                                                     "StarPiece_NOK_7",
+                                                                                                                     "StarPiece_NOK_8"]}, #+ Quizmo StarPieces
+
     # NOK_02 Koopa Village 2
     {"from": {"map": "NOK_02", "id": 0}, "to": {"map": "NOK_01", "id": 1}, "reqs": []}, # Koopa Village 2 Exit Left -> Koopa Village 1 Exit Right
     {"from": {"map": "NOK_02", "id": 1}, "to": {"map": "NOK_03", "id": 0}, "reqs": []}, # Koopa Village 2 Exit Top -> Behind Koopa Village Exit Left
@@ -114,6 +123,15 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [require(favor="FAVOR_5_01_done"), require(starspirits=4)], "pseudoitems": ["FAVOR_5_02_active"]}, #+ Get KootOldPhoto from Bruce
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [require(favor="FAVOR_5_03_done"), require(starspirits=5)], "pseudoitems": ["FAVOR_6_01_active"]}, #+ Get KootOldPhoto from Bruce
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [require(favor="FAVOR_6_03_done"), require(starspirits=6)], "pseudoitems": ["FAVOR_7_01_active"]}, #+ Get KootOldPhoto from Bruce
+
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_NOK_1",
+                                                                                                                   "StarPiece_NOK_2",
+                                                                                                                   "StarPiece_NOK_3",
+                                                                                                                   "StarPiece_NOK_4",
+                                                                                                                   "StarPiece_NOK_5",
+                                                                                                                   "StarPiece_NOK_6",
+                                                                                                                   "StarPiece_NOK_7",
+                                                                                                                   "StarPiece_NOK_8"]}, #+ Quizmo StarPieces
 
     # NOK_03 Behind Koopa Village
     {"from": {"map": "NOK_03", "id": 0}, "to": {"map": "NOK_02", "id": 1}, "reqs": []}, # Behind Koopa Village Exit Left -> Koopa Village 2 Exit Top
