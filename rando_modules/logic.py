@@ -180,6 +180,7 @@ def _depth_first_search(
 
 def _find_new_nodes_and_edges(
     pool_misc_progression_items:list,
+    pool_other_items:list,
     world_graph:dict,
     reachable_node_ids:list,
     reachable_item_nodes:dict,
@@ -242,6 +243,7 @@ def _find_new_nodes_and_edges(
                     and current_item in pool_misc_progression_items
                 ):
                     pool_misc_progression_items.remove(current_item)
+                    pool_other_items.append(current_item)
 
                 filled_item_nodes.append(item_node)
                 logging.debug(f"Pre-filled: {node_id}: {current_item.item_name}")
@@ -252,7 +254,7 @@ def _find_new_nodes_and_edges(
             break
     logging.debug(f"non_traversable_edges after after {non_traversable_edges}")
     logging.debug("---- _find_new_nodes_and_edges end")
-    return pool_misc_progression_items, reachable_node_ids, reachable_item_nodes, non_traversable_edges, filled_item_nodes
+    return pool_misc_progression_items, pool_other_items, reachable_node_ids, reachable_item_nodes, non_traversable_edges, filled_item_nodes
 
 
 
@@ -458,6 +460,8 @@ def _get_limit_items_to_dungeons(
         "FLO": "Lakilester"
     }
 
+    limited_filled_item_nodes = deepcopy(all_item_nodes)
+
     for area_name in areas_to_limit:
         # Build small world graph only encompassing the current area
         area_nodes = get_area_nodes(area_name)
@@ -478,7 +482,6 @@ def _get_limit_items_to_dungeons(
         # Prepare data structures
         pool_progression_items = []
         pool_misc_progression_items = []
-        limited_filled_item_nodes = deepcopy(all_item_nodes)
         reachable_node_ids = []
         reachable_item_nodes = {}
         non_traversable_edges = []
@@ -531,11 +534,13 @@ def _get_limit_items_to_dungeons(
 
         # Find initially reachable nodes
         pool_misc_progression_items,    \
+            _,                          \
             reachable_node_ids,         \
             reachable_item_nodes,       \
             non_traversable_edges,      \
             limited_filled_item_nodes = \
             _find_new_nodes_and_edges(pool_misc_progression_items,
+                                      None,
                                       cur_area_graph,
                                       reachable_node_ids,
                                       reachable_item_nodes,
@@ -557,6 +562,7 @@ def _get_limit_items_to_dungeons(
                 cur_items_overwritten = place_progression_items(
                     pool_progression_items_try,
                     pool_misc_progression_items_try,
+                    None,
                     reachable_node_ids_try,
                     reachable_item_nodes_try,
                     limited_filled_item_nodes_try,
@@ -564,7 +570,7 @@ def _get_limit_items_to_dungeons(
                     cur_area_graph_try
                 )
                 successfully_placed = True
-                modified_nodes.extend(limited_filled_item_nodes_try)
+                limited_filled_item_nodes = limited_filled_item_nodes_try.copy()
             except IndexError:
                 # Items were placed in a way that makes the seed unbeatable,
                 # so we have to clear the lists and retry
@@ -573,6 +579,10 @@ def _get_limit_items_to_dungeons(
 
         items_placed.extend(cur_items_placed)
         items_overwritten.extend(cur_items_overwritten)
+
+    all_item_node_ids = [get_node_identifier(node) for node in all_item_nodes]
+    modified_nodes = [node for node in limited_filled_item_nodes if get_node_identifier(node) not in all_item_node_ids]
+
     return modified_nodes, items_placed, items_overwritten
 
 
@@ -678,10 +688,10 @@ def _generate_item_pools(
     # Pre-fill 'dungeon' nodes if keyitems are limited to there
     items_to_remove_from_pools = []
     items_to_add_to_pools = []
-    pre_filled_nodes = []
+    pre_filled_dungeon_nodes = []
     pre_filled_node_ids = []
     if not keyitems_outside_dungeon:
-        pre_filled_nodes,\
+        pre_filled_dungeon_nodes,\
             items_to_remove_from_pools,\
             items_to_add_to_pools = _get_limit_items_to_dungeons(
                     all_item_nodes,
@@ -689,7 +699,7 @@ def _generate_item_pools(
                     partners_in_default_locations,
                     hidden_block_mode
                 )
-        for node in pre_filled_nodes:
+        for node in pre_filled_dungeon_nodes:
             pre_filled_node_ids.append(get_node_identifier(node))
 
     # Check all remaining nodes for items to add to the pools
@@ -702,7 +712,7 @@ def _generate_item_pools(
             # Set current item to the one set during dungeon pre-fill
             if node_id in pre_filled_node_ids:
                 node_index = pre_filled_node_ids.index(node_id)
-                current_node.current_item = pre_filled_nodes[node_index].current_item
+                current_node.current_item = pre_filled_dungeon_nodes[node_index].current_item
                 continue
 
             # Item shall be randomized: Add it to the correct item pool
@@ -795,12 +805,15 @@ def _generate_item_pools(
 def place_progression_items(
     pool_progression_items,
     pool_misc_progression_items,
+    pool_other_items,
     reachable_node_ids,
     reachable_item_nodes,
     filled_item_nodes,
     non_traversable_edges,
     world_graph
 ):
+    if pool_other_items is None:
+        pool_other_items = []
     items_placed = []
     items_overwritten = []
 
@@ -840,11 +853,13 @@ def place_progression_items(
         filled_item_nodes.append(random_node)
 
         pool_misc_progression_items, \
+        pool_other_items, \
         reachable_node_ids, \
         reachable_item_nodes, \
         non_traversable_edges, \
         filled_item_nodes = \
         _find_new_nodes_and_edges(pool_misc_progression_items,
+                                  pool_other_items,
                                   world_graph,
                                   reachable_node_ids,
                                   reachable_item_nodes,
@@ -944,11 +959,13 @@ def _algo_forward_fill(
         non_traversable_edges.append(edge)
     reachable_node_ids.append(starting_node_id)
     pool_misc_progression_items, \
+    pool_other_items, \
     reachable_node_ids, \
     reachable_item_nodes, \
     non_traversable_edges, \
     filled_item_nodes = \
     _find_new_nodes_and_edges(pool_misc_progression_items,
+                              pool_other_items,
                               world_graph,
                               reachable_node_ids,
                               reachable_item_nodes,
@@ -961,6 +978,7 @@ def _algo_forward_fill(
     filled_item_nodes, _, _ = place_progression_items(
         pool_progression_items,
         pool_misc_progression_items,
+        pool_other_items,
         reachable_node_ids,
         reachable_item_nodes,
         filled_item_nodes,
@@ -972,7 +990,6 @@ def _algo_forward_fill(
     for item_node in all_item_nodes:
         if item_node.current_item and item_node not in filled_item_nodes:
             filled_item_nodes.append(item_node)
-            logging.debug(f"Pre-filled and unreachable: {get_node_identifier(item_node)}: {item_node.current_item.item_name}")
 
     # Place all remaining items into still empty item nodes
     print("Placing Miscellaneous Items ...")
@@ -988,12 +1005,12 @@ def _algo_forward_fill(
                 filled_item_nodes.append(item_node)
                 logging.debug(f"{get_node_identifier(item_node)}: {random_item.item_name}")
             except ValueError as err:
-                logging.debug(f"filled_item_nodes size: {len(filled_item_nodes)}")
-                logging.debug(f"pool_other_items size: {len(pool_other_items)}")
-                logging.debug(f"nodes left: {len([item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]])}")
+                logging.warning(f"filled_item_nodes size: {len(filled_item_nodes)}")
+                logging.warning(f"pool_other_items size: {len(pool_other_items)}")
+                logging.warning(f"nodes left: {len([item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]])}")
                 #raise
                 item_node.current_item = item_node.vanilla_item
-                logging.debug(f"{item_node_id}")
+                logging.warning(f"{item_node_id}")
 
     if has_item("YOUWIN"):
         print("Seed verification: Beatable! Yay!")
@@ -1035,8 +1052,7 @@ def place_items(
     logging.basicConfig(level=level, format=fmt)
 
     cur_seed = random.random()
-    if level == logging.DEBUG:
-        print(f"{cur_seed}")
+    print(f"Seed: {cur_seed}")
     random.seed(cur_seed)
 
     if algorithm == "CustomSeed":
