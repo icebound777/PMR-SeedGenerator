@@ -64,7 +64,17 @@ def get_node_identifier(node):
 def get_all_nodes():
     """Returns a list of all item and entrance nodes"""
     all_nodes = []
-    for node in Node.select():
+    for node in (Node
+                .select(
+                    Node.map_area, Node.entrance_id, Node.entrance_type,
+                    Node.entrance_name, Node.key_name_item,
+                    Node.key_name_price, Node.item_source_type,
+                    Node.vanilla_item, Node.current_item, Node.item_index,
+                    Node.price_index
+                )
+                .join(MapArea)
+                .order_by(MapArea.area_id, MapArea.map_id)
+    ):
         all_nodes.append(node)
     return all_nodes
 
@@ -150,6 +160,7 @@ def generate(node_list, edge_list):
         world_graph[node_id]["node"] = node
         world_graph[node_id]["edge_list"] = []
 
+        edge_list_cpy = edge_list.copy()
         for edge in edge_list:
             if edge.get("from").get("map") == node.map_area.name:
                 if edge.get("to").get("map") is None:
@@ -158,6 +169,10 @@ def generate(node_list, edge_list):
                 elif (   edge.get("from").get("id") == node.entrance_id
                       or edge.get("from").get("id") == node.key_name_item):
                     world_graph[node_id]["edge_list"].append(edge)
+                    if not node.map_area.name.startswith("PRA_02"):
+                        edge_list_cpy.remove(edge)
+        edge_list = edge_list_cpy
+
     return world_graph
 
 
