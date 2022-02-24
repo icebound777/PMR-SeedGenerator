@@ -63,7 +63,8 @@ class RandomSeed:
                             partners_always_usable=self.rando_settings.partners_always_usable["value"],
                             partners_in_default_locations=self.rando_settings.partners_in_default_locations,
                             hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
-                            keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon):
+                            keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
+                            starting_items=self.rando_settings.get_startitem_list()):
             pass
 
         # Make everything inexpensive

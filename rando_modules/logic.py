@@ -260,6 +260,7 @@ def _find_new_nodes_and_edges(
 
 def _init_mario_inventory(
     starting_partners:list,
+    starting_items:list,
     partners_always_usable:bool,
     hidden_block_mode:int,
     startwith_bluehouse_open:bool,
@@ -299,6 +300,9 @@ def _init_mario_inventory(
 
     add_to_inventory("EQUIPMENT_Hammer_Progressive")
 
+    for item in starting_items:
+        add_to_inventory(item.item_name)
+
     if hidden_block_mode == 3:
         # hidden blocks always visible
         add_to_inventory("RF_HiddenBlocksVisible")
@@ -317,6 +321,7 @@ def _get_limit_items_to_dungeons(
     all_item_nodes,
     partners_always_usable:bool,
     partners_in_default_locations,
+    starting_items:list,
     hidden_block_mode:int
 ):
     """
@@ -497,7 +502,13 @@ def _get_limit_items_to_dungeons(
             if item_type == "misc":
                 for item in limited_by_item_areas.get(area_name).get(item_type):
                     pool_misc_progression_items.append(Item.get(Item.item_name == item))
-            
+
+        # Remove items Mario starts with from the progression key items.
+        # Don't touch misc progression items, as Mario might waste those.
+        for item in starting_items:
+            if item in pool_progression_items:
+                pool_progression_items.remove(item)
+
         # Set node to start graph traversal from
         starting_node_id = starting_node_ids.get(area_name)
 
@@ -510,6 +521,7 @@ def _get_limit_items_to_dungeons(
             almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name)]
             _init_mario_inventory(
                 almost_all_partners,
+                starting_items,
                 partners_always_usable,
                 hidden_block_mode,
                 False,
@@ -520,6 +532,7 @@ def _get_limit_items_to_dungeons(
         else:
             _init_mario_inventory(
                 all_partners,
+                starting_items,
                 partners_always_usable,
                 hidden_block_mode,
                 False,
@@ -609,7 +622,8 @@ def _generate_item_pools(
     always_ispy,
     always_peekaboo,
     hidden_block_mode:int,
-    starting_partners:list
+    starting_partners:list,
+    starting_items:list
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -697,6 +711,7 @@ def _generate_item_pools(
                     all_item_nodes,
                     partners_always_usable,
                     partners_in_default_locations,
+                    starting_items,
                     hidden_block_mode
                 )
         for node in pre_filled_dungeon_nodes:
@@ -761,6 +776,7 @@ def _generate_item_pools(
         for item_name in items_to_exclude.get("start_with_bow"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
+    items_to_remove_from_pools.extend(starting_items)
 
     for item in items_to_add_to_pools:
         if item.progression:
@@ -893,7 +909,8 @@ def _algo_forward_fill(
     partners_always_usable,
     partners_in_default_locations,
     hidden_block_mode:int,
-    keyitems_outside_dungeon:bool
+    keyitems_outside_dungeon:bool,
+    starting_items:list
 ):
     # Prepare world graph
     print("Generating World Graph ...")
@@ -936,12 +953,14 @@ def _algo_forward_fill(
         ispy,
         peekaboo,
         hidden_block_mode,
-        starting_partners
+        starting_partners,
+        starting_items
     )
 
     print("Initialize Mario's starting inventory...")
     _init_mario_inventory(
         starting_partners,
+        starting_items,
         partners_always_usable,
         hidden_block_mode,
         startwith_bluehouse_open,
@@ -1044,7 +1063,8 @@ def place_items(
     partners_always_usable:bool,
     partners_in_default_locations,
     hidden_block_mode:int,
-    keyitems_outside_dungeon:bool
+    keyitems_outside_dungeon:bool,
+    starting_items:list
 ):
     """Places items into item locations according to chosen settings."""
     level = logging.INFO
@@ -1088,7 +1108,8 @@ def place_items(
             partners_always_usable,
             partners_in_default_locations,
             hidden_block_mode,
-            keyitems_outside_dungeon
+            keyitems_outside_dungeon,
+            starting_items
         )
 
     yield ("Generating Log", int(100 * 1))

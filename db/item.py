@@ -93,6 +93,12 @@ def create_items():
     for item_value in taycet_items:
         unique_itemvalues[item_value] = ""
 
+    # Add specific item data that is not part of the export, as those items
+    # don't come up as vanilla items placed ingame either.
+    unique_itemvalues[  0x8] = "" # keyitem: HomewardShroom
+    unique_itemvalues[ 0x91] = "" # consumable: HustleDrink
+    unique_itemvalues[0x101] = "" # badge: Berserker
+
     for value in unique_itemvalues.keys():
         try:
             for item in item_data:

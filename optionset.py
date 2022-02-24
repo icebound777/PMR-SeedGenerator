@@ -1,3 +1,4 @@
+from db.item import Item
 from db.option import Option
 from db.palette import Palette
 
@@ -121,6 +122,26 @@ class OptionSet:
 
         # Audio
         self.turn_off_music = False
+
+
+    def get_startitem_list(self) -> list:
+        """Returns this OptionSet's starting items as list of Item objects."""
+        starting_items = []
+
+        for self_key, self_value in self.__dict__.items():
+            if self_key.startswith("starting_item"):
+                item_id = self_value.get("value")
+                if item_id != 0:
+                    item_obj = Item.get_or_none(Item.value == item_id)
+                    if item_obj is not None:
+                        # No double uniques
+                        if (item_obj.item_type in ["BADGE", "KEYITEM", "STARPIECE"]
+                        and item_obj in starting_items
+                        ):
+                            continue
+                        starting_items.append(Item.get(Item.value == item_id))
+
+        return starting_items
 
 
     def update_options(self, options_dict=None):
