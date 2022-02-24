@@ -54,6 +54,15 @@ edges_hos = [
     {"from": {"map": "HOS_03", "id": 0},           "to": {"map": "HOS_03", "id": "ShopItemF"}, "reqs": []}, #* Star Haven Exit Bottom Left -> ShopItemF (SuperShroom)
     {"from": {"map": "HOS_03", "id": "ShopItemF"}, "to": {"map": "HOS_03", "id": 0},           "reqs": []}, #* ShopItemF (SuperShroom) -> Star Haven Exit Bottom Left
 
+    {"from": {"map": "HOS_03", "id": 0}, "to": {"map": "HOS_03", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_HOS_1",
+                                                                                                       "StarPiece_HOS_2",
+                                                                                                       "StarPiece_HOS_3",
+                                                                                                       "StarPiece_HOS_4",
+                                                                                                       "StarPiece_HOS_5",
+                                                                                                       "StarPiece_HOS_6",
+                                                                                                       "StarPiece_HOS_7",
+                                                                                                       "StarPiece_HOS_8"]}, #+ Quizmo StarPieces
+
     # HOS_04 Outside the Sanctuary
     {"from": {"map": "HOS_04", "id": 0}, "to": {"map": "HOS_03", "id": 1}, "reqs": []}, # Outside the Sanctuary Exit Left -> Star Haven Exit Top Right
     {"from": {"map": "HOS_04", "id": 1}, "to": {"map": "HOS_05", "id": 0}, "reqs": []}, # Outside the Sanctuary Exit Right -> Star Sanctuary Exit Left
@@ -76,35 +85,35 @@ edges_hos = [
     {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "GiftA"},       "reqs": [require(favor="FAVOR_3_03_active"), require(item="CrystalBall")]}, #* Merluvlee's House Exit Left -> GiftA (KootMerluvleeAutograph)
     {"from": {"map": "HOS_06", "id": "GiftA"},       "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* GiftA (KootMerluvleeAutograph) -> Merluvlee's House Exit Left
     
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeA"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeA (AttackFXA)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeA"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeA (AttackFXA)
     {"from": {"map": "HOS_06", "id": "ShopBadgeA"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeA (AttackFXA) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeB"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeB (PayOff)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeB"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeB (PayOff)
     {"from": {"map": "HOS_06", "id": "ShopBadgeB"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeB (PayOff) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeC"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeC (ChillOut)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeC"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeC (ChillOut)
     {"from": {"map": "HOS_06", "id": "ShopBadgeC"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeC (ChillOut) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeD"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeD (PrettyLucky)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeD"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeD (PrettyLucky)
     {"from": {"map": "HOS_06", "id": "ShopBadgeD"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeD (PrettyLucky) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeE"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeE (FeelingFine)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeE"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeE (FeelingFine)
     {"from": {"map": "HOS_06", "id": "ShopBadgeE"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeE (FeelingFine) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeF"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeF (HappyHeartA)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeF"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeF (HappyHeartA)
     {"from": {"map": "HOS_06", "id": "ShopBadgeF"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeF (HappyHeartA) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeG"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeG (HappyFlowerA)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeG"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeG (HappyFlowerA)
     {"from": {"map": "HOS_06", "id": "ShopBadgeG"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeG (HappyFlowerA) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeH"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeH (Peekaboo)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeH"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeH (Peekaboo)
     {"from": {"map": "HOS_06", "id": "ShopBadgeH"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeH (Peekaboo) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeI"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeI (ZapTap)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeI"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeI (ZapTap)
     {"from": {"map": "HOS_06", "id": "ShopBadgeI"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeI (ZapTap) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeJ"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeJ (HeartFinder)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeJ"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeJ (HeartFinder)
     {"from": {"map": "HOS_06", "id": "ShopBadgeJ"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeJ (HeartFinder) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeK"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeK (FlowerFinder)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeK"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeK (FlowerFinder)
     {"from": {"map": "HOS_06", "id": "ShopBadgeK"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeK (FlowerFinder) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeL"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeL (HPDrain)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeL"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeL (HPDrain)
     {"from": {"map": "HOS_06", "id": "ShopBadgeL"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeL (HPDrain) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeM"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeM (MoneyMoney)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeM"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeM (MoneyMoney)
     {"from": {"map": "HOS_06", "id": "ShopBadgeM"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeM (MoneyMoney) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeN"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeN (FlowerSaverA)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeN"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeN (FlowerSaverA)
     {"from": {"map": "HOS_06", "id": "ShopBadgeN"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeN (FlowerSaverA) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeO"},  "reqs": []}, #* Merluvlee's House Exit Left -> ShopBadgeO (PowerPlusA)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeO"},  "reqs": [require(starpieces=60)]}, #* Merluvlee's House Exit Left -> ShopBadgeO (PowerPlusA)
     {"from": {"map": "HOS_06", "id": "ShopBadgeO"},  "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* ShopBadgeO (PowerPlusA) -> Merluvlee's House Exit Left
 
     {"from": {"map": "HOS_06", "id": 0}, "to": {"map": "HOS_06", "id": 0}, "reqs": [require(favor="FAVOR_3_03_active")], "pseudoitems": ["GF_HOS06_MerluvleeRequestedCrystalBall"]}, #+ Merluvlee's House Exit Left

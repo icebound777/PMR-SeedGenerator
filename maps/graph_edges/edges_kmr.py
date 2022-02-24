@@ -32,6 +32,15 @@ edges_kmr  = [
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "Partner"     },  "reqs": [require(flag="RF_CanGetGoombario")]}, #* Goomba Village Exit Left -> Partner (Goombario)
     {"from": {"map": "KMR_02", "id": "Partner"     },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* Partner (Goombario) -> Goomba Village Exit Left
 
+    {"from": {"map": "KMR_02", "id": 1},               "to": {"map": "KMR_02", "id": 1}, "reqs": [], "pseudoitems": ["StarPiece_KMR_1",
+                                                                                                                     "StarPiece_KMR_2",
+                                                                                                                     "StarPiece_KMR_3",
+                                                                                                                     "StarPiece_KMR_4",
+                                                                                                                     "StarPiece_KMR_5",
+                                                                                                                     "StarPiece_KMR_6",
+                                                                                                                     "StarPiece_KMR_7",
+                                                                                                                     "StarPiece_KMR_8"]}, #+ Quizmo StarPieces
+
     # KMR_05 Behind the Village
     {"from": {"map": "KMR_05", "id": 0},               "to": {"map": "KMR_03", "id": 1},               "reqs": []}, # Behind the Village Exit Left -> Bottom of the Cliff Exit Right
     {"from": {"map": "KMR_05", "id": 1},               "to": {"map": "KMR_02", "id": 2},               "reqs": []}, # Behind the Village Exit Right -> Goomba Village Exit Top Left

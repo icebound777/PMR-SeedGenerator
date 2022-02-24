@@ -15,6 +15,15 @@ edges_sam = [
     {"from": {"map": "SAM_01", "id": 0},             "to": {"map": "SAM_01", "id": "ChestA"},      "reqs": []}, #* Shiver City Mayor Area Exit East -> ChestA (AttackFXE)
     {"from": {"map": "SAM_01", "id": "ChestA"},      "to": {"map": "SAM_01", "id": 0},             "reqs": []}, #* ChestA (AttackFXE) -> Shiver City Mayor Area Exit East
 
+    {"from": {"map": "SAM_01", "id": 0}, "to": {"map": "SAM_01", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_SAM_1",
+                                                                                                       "StarPiece_SAM_2",
+                                                                                                       "StarPiece_SAM_3",
+                                                                                                       "StarPiece_SAM_4",
+                                                                                                       "StarPiece_SAM_5",
+                                                                                                       "StarPiece_SAM_6",
+                                                                                                       "StarPiece_SAM_7",
+                                                                                                       "StarPiece_SAM_8"]}, #+ Quizmo StarPieces
+
     # SAM_02 Shiver City Center
     {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_01", "id": 0}, "reqs": []}, # Shiver City Center Exit West -> Shiver City Mayor Area Exit East
     {"from": {"map": "SAM_02", "id": 1}, "to": {"map": "SAM_11", "id": 0}, "reqs": []}, # Shiver City Center Exit East -> Shiver City Pond Area Exit West
@@ -49,6 +58,15 @@ edges_sam = [
     {"from": {"map": "SAM_02", "id": "ShopItemE"}, "to": {"map": "SAM_02", "id": 0},           "reqs": []}, #* ShopItemE (LifeShroom) -> Shiver City Center Exit West
     {"from": {"map": "SAM_02", "id": 0},           "to": {"map": "SAM_02", "id": "ShopItemF"}, "reqs": [require(flag="RF_Ch7_MurderMysterySolved")]}, #* Shiver City Center Exit West -> ShopItemF (SuperShroom)
     {"from": {"map": "SAM_02", "id": "ShopItemF"}, "to": {"map": "SAM_02", "id": 0},           "reqs": []}, #* ShopItemF (SuperShroom) -> Shiver City Center Exit West
+
+    {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_SAM_1",
+                                                                                                       "StarPiece_SAM_2",
+                                                                                                       "StarPiece_SAM_3",
+                                                                                                       "StarPiece_SAM_4",
+                                                                                                       "StarPiece_SAM_5",
+                                                                                                       "StarPiece_SAM_6",
+                                                                                                       "StarPiece_SAM_7",
+                                                                                                       "StarPiece_SAM_8"]}, #+ Quizmo StarPieces
 
     # SAM_03 Road to Shiver Snowfield
     {"from": {"map": "SAM_03", "id": 0}, "to": {"map": "SAM_11", "id": 1}, "reqs": []}, # Road to Shiver Snowfield Exit West -> Shiver City Pond Area Exit East
@@ -155,6 +173,15 @@ edges_sam = [
     
     {"from": {"map": "SAM_11", "id": 0},       "to": {"map": "SAM_11", "id": "ItemA"}, "reqs": [require(partner="Bombette",boots=1), require(partner="Sushie"), require(flag="RF_Ch7_MurderMysteryStarted")]}, #* Shiver City Pond Area Exit West -> ItemA (WarehouseKey)
     {"from": {"map": "SAM_11", "id": "ItemA"}, "to": {"map": "SAM_11", "id": 0},       "reqs": []}, #* ItemA (WarehouseKey) -> Shiver City Pond Area Exit West
+
+    {"from": {"map": "SAM_11", "id": 0}, "to": {"map": "SAM_11", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_SAM_1",
+                                                                                                       "StarPiece_SAM_2",
+                                                                                                       "StarPiece_SAM_3",
+                                                                                                       "StarPiece_SAM_4",
+                                                                                                       "StarPiece_SAM_5",
+                                                                                                       "StarPiece_SAM_6",
+                                                                                                       "StarPiece_SAM_7",
+                                                                                                       "StarPiece_SAM_8"]}, #+ Quizmo StarPieces
 
     # SAM_12 Merlar's Sanctuary
     {"from": {"map": "SAM_12", "id": 0}, "to": {"map": "SAM_10", "id": 2}, "reqs": []}, # Merlar's Sanctuary Bombable Wall -> Shiver Mountain Peaks Bombable Wall

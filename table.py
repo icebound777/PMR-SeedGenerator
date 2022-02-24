@@ -71,7 +71,6 @@ class Table:
 
             # Item Prices
             if node.key_name_price is not None and node.key_name_price.startswith("ShopPrice"):
-                # TODO: Modify price value based on the item its tied to
                 table_data.append({
                     "key": node.get_price_key(),
                     "value": node.current_item.base_price

@@ -71,6 +71,15 @@ edges_jan = [
 
     {"from": {"map": "JAN_02", "id": 0}, "to": {"map": "JAN_02", "id": 0}, "reqs": [], "pseudoitems": ["RF_YoshiKidsMissing"]}, #+ Village visited -> Yoshi Kids Missing
 
+    {"from": {"map": "JAN_02", "id": 0}, "to": {"map": "JAN_02", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_JAN_1",
+                                                                                                       "StarPiece_JAN_2",
+                                                                                                       "StarPiece_JAN_3",
+                                                                                                       "StarPiece_JAN_4",
+                                                                                                       "StarPiece_JAN_5",
+                                                                                                       "StarPiece_JAN_6",
+                                                                                                       "StarPiece_JAN_7",
+                                                                                                       "StarPiece_JAN_8"]}, #+ Quizmo StarPieces
+
     # JAN_03 Village Buildings
     {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_02", "id": 1}, "reqs": []}, # Village Buildings Exit Left -> Village Cove Exit Right
     {"from": {"map": "JAN_03", "id": 1}, "to": {"map": "JAN_05", "id": 0}, "reqs": []}, # Village Buildings Exit Top Left -> SE Jungle (Quake Hammer) Exit Bottom Right
@@ -104,6 +113,15 @@ edges_jan = [
     {"from": {"map": "JAN_03", "id": "ShopItemF"},   "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* ShopItemF (SuperShroom) -> Village Buildings Exit Left
 
     {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_03", "id": 0}, "reqs": [], "pseudoitems": ["RF_YoshiKidsMissing"]}, #+ Village visited -> Yoshi Kids Missing
+
+    {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_03", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_JAN_1",
+                                                                                                       "StarPiece_JAN_2",
+                                                                                                       "StarPiece_JAN_3",
+                                                                                                       "StarPiece_JAN_4",
+                                                                                                       "StarPiece_JAN_5",
+                                                                                                       "StarPiece_JAN_6",
+                                                                                                       "StarPiece_JAN_7",
+                                                                                                       "StarPiece_JAN_8"]}, #+ Quizmo StarPieces
 
     # JAN_04 Sushi Tree
     {"from": {"map": "JAN_04", "id": 0}, "to": {"map": "JAN_05", "id": 2}, "reqs": []}, # Sushi Tree Exit Left -> SE Jungle (Quake Hammer) Exit Right
