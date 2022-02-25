@@ -69,8 +69,8 @@ def get_all_nodes():
                     Node.map_area, Node.entrance_id, Node.entrance_type,
                     Node.entrance_name, Node.key_name_item,
                     Node.key_name_price, Node.item_source_type,
-                    Node.vanilla_item, Node.current_item, Node.item_index,
-                    Node.price_index
+                    Node.vanilla_item, Node.current_item,
+                    Node.vanilla_price, Node.item_index, Node.price_index
                 )
                 .join(MapArea)
                 .order_by(MapArea.area_id, MapArea.map_id)
@@ -89,8 +89,8 @@ def get_area_nodes(area_shorthand:str):
                          Node.map_area, Node.entrance_id, Node.entrance_type,
                          Node.entrance_name, Node.key_name_item,
                          Node.key_name_price, Node.item_source_type,
-                         Node.vanilla_item, Node.current_item, Node.item_index,
-                         Node.price_index
+                         Node.vanilla_item, Node.current_item,
+                         Node.vanilla_price, Node.item_index, Node.price_index
                      )
                      .join(MapArea)
                      .where(MapArea.area_id == cur_area_id)):
