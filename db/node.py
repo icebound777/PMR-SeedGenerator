@@ -95,8 +95,8 @@ def create_nodes():
             verbose_name = MapArea.get_verbose_name(data["map_name"])
         )
 
-        vanilla_item, created = Item.get_or_create(
-            value = item_values[data["map_name"]][data["name"]]
+        vanilla_item = Item.get(
+            Item.value == item_values[data["map_name"]][data["name"]]
         )
 
         price_index = None
@@ -158,6 +158,3 @@ def create_nodes():
                     entrance_name = entrance_data["verbose_name"]
                 )
                 print(node, created)
-    
-    # Create item + entrance nodes:
-    #TODO ? Might be worth a manual setup to save on graph complexity

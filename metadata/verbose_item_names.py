@@ -1,4 +1,5 @@
 verbose_item_names = {
+    "JellyShroom1": "JellyShroom",
     "Letter01": "Letter (To Merlon)",
     "Letter02": "Letter (To Goompa)",
     "Letter03": "Letter (To Mort T.)",

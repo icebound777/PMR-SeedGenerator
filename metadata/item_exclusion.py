@@ -72,4 +72,5 @@ taycet_items = [
     0x0D7, # "MapleShroom",
     0x0D8, # "BoiledEgg",
     0x0D9, # "YoshiCookie",
+    0x0DA, # JellyShroom1
 ]

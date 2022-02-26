@@ -51,6 +51,7 @@ class RandomSeed:
                             do_randomize_koopakoot=self.rando_settings.include_favors,
                             do_randomize_letterchain=self.rando_settings.include_letterchain,
                             do_randomize_dojo=self.rando_settings.include_dojo,
+                            item_scarcity=self.rando_settings.item_scarcity,
                             starting_map_id=self.rando_settings.starting_map["value"],
                             startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
                             startwith_flowergate_open=self.rando_settings.flowergate_open["value"],

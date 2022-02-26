@@ -1,15 +1,10 @@
-import json
 import xml.dom.minidom
 
 from peewee import *
-from playhouse.sqlite_ext import JSONField
 
 from db.db import db
 from metadata.progression_items import progression_items
-from metadata.item_exclusion import taycet_items
 from enums import Enums
-from parse import get_default_table
-from utility import get_files
 
 
 class Item(Model):
@@ -60,12 +55,6 @@ def create_items():
     db.drop_tables([Item])
     db.create_tables([Item])
 
-    with open("./debug/keys.json", "r") as file:
-        item_keys = json.load(file)["items"]
-
-    with open("./debug/values.json", "r") as file:
-        item_values = json.load(file)["items"]
-
     items_doc = xml.dom.minidom.parse("../../globals/Items.xml")
     # need index (itemid), sell value
     item_data = []
@@ -81,36 +70,15 @@ def create_items():
             }
         )
 
-    # abuse dict as list of unique entries
-    unique_itemvalues = {}
-
-    for _,data in item_keys.items():
-
-        unique_itemvalues[item_values[data["map_name"]][data["name"]]] = ""
-
-    # Tayce T. items are never placed in the game anywhere, so the parsed data
-    # does not include them. Add them manually here
-    for item_value in taycet_items:
-        unique_itemvalues[item_value] = ""
-
-    # Add specific item data that is not part of the export, as those items
-    # don't come up as vanilla items placed ingame either.
-    unique_itemvalues[  0x8] = "" # keyitem: HomewardShroom
-    unique_itemvalues[ 0x91] = "" # consumable: HustleDrink
-    unique_itemvalues[0x101] = "" # badge: Berserker
-
-    for value in unique_itemvalues.keys():
-        try:
-            for item in item_data:
-                if int(item["Index"], 16) == value:
-                    item,created = Item.get_or_create(
-                        item_type = Item.get_type(value),
-                        value = value,
-                        item_name = Enums.get("Item")[value],
-                        base_price = int(item["Sell Value"], 10) if item["Sell Value"] != "FFFF" else 50,
-                        progression = (Item.get_type(value) in ["KEYITEM","PARTNER"] and value in progression_items.keys())
-                    )
-                    break
-        except ValueError as err:
-            print(f"{err.args}: {value}")
-            raise
+    for item in item_data:
+        item_id = int(item["Index"], 16)
+        if item_id == 0x18:
+            # Ignore fake Volcano Vase
+            continue
+        item,_ = Item.get_or_create(
+            item_type = Item.get_type(item_id),
+            value = item_id,
+            item_name = Enums.get("Item")[item_id],
+            base_price = int(item["Sell Value"], 10) if item["Sell Value"] != "FFFF" else 50,
+            progression = (Item.get_type(item_id) in ["KEYITEM","PARTNER"] and item_id in progression_items.keys())
+        )
