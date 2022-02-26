@@ -837,6 +837,8 @@ def _generate_item_pools(
 
     pool_other_items = get_scarcitied_itempool(pool_other_items, item_scarcity)
 
+    return pool_other_items
+
 
 def place_progression_items(
     pool_progression_items,
@@ -983,7 +985,7 @@ def _algo_forward_fill(
 
     # Generate item pool
     print("Generating item pool...")
-    _generate_item_pools(
+    pool_other_items = _generate_item_pools(
         world_graph,
         pool_progression_items,
         pool_misc_progression_items,
