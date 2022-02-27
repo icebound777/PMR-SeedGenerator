@@ -29,11 +29,12 @@ from rando_modules.item_scarcity import get_scarcitied_itempool
 from custom_seed import validate_seed
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
-from metadata.itemlocation_special \
-    import kootfavors_locations,\
+from metadata.itemlocation_special     \
+    import kootfavors_locations,       \
            chainletter_giver_locations,\
-           dojo_locations,\
-           limited_by_item_areas
+           dojo_locations,             \
+           limited_by_item_areas,      \
+           bush_tree_coin_locations
 from metadata.progression_items                                  \
     import progression_miscitems as progression_miscitems_names, \
            progression_items as progression_items_names
@@ -652,6 +653,16 @@ def _generate_item_pools(
         is_item_node = current_node.key_name_item
         if is_item_node: # and current_node not in all_item_nodes:
 
+            current_node_id = get_node_identifier(current_node)
+
+            # temp. don't rando coins in trees or bushes
+            if (    current_node.vanilla_item.item_name == "Coin"
+                and current_node_id in bush_tree_coin_locations
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
             # Check the randomization settings. If something is not supposed
             # to be randomized, mark location as filled by setting its
             # current_item value
@@ -680,21 +691,21 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    get_node_identifier(current_node) in kootfavors_locations
+            if (    current_node_id in kootfavors_locations
                 and not do_randomize_koopakoot
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    get_node_identifier(current_node) in chainletter_giver_locations
+            if (    current_node_id in chainletter_giver_locations
                 and not do_randomize_letterchain
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
-            if (   get_node_identifier(current_node) in dojo_locations
+            if (   current_node_id in dojo_locations
                 and not do_randomize_dojo
             ):
                 current_node.current_item = current_node.vanilla_item

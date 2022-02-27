@@ -56,6 +56,18 @@ dojo_locations = [
     "MAC_00/DojoE",
 ]
 
+bush_tree_coin_locations =[
+    "KMR_05/ItemB",
+    "NOK_01/Bush1_Drop1A",
+    "NOK_01/Bush5_Drop1A",
+    "IWA_10/ItemA",
+    "IWA_10/ItemB",
+    "IWA_10/ItemC",
+    "JAN_09/ItemA",
+    "JAN_09/ItemB",
+    "JAN_09/ItemC",
+]
+
 # Areas that are considered 'limited by item'.
 # 'Limited by item' areas are only allowed to hold a subset of specific
 # randomized items, instead of every item available in the pool.
