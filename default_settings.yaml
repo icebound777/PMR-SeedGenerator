@@ -10,8 +10,9 @@ AlwaysISpy          : false
 AlwaysPeekaboo      : true
 HiddenBlockMode     : 1
 ShortenCutscenes    : true
-SkipEpilogue        : false
 AllowPhysicsGlitches: false
+SkipEpilogue        : false
+StarWaySpiritsNeeded: 7
 
 StartingCoins: 50
 CapEnemyXP   : true
@@ -23,11 +24,12 @@ NoSaveBlocks : false
 NoHeartBlocks: false
 
 # Starting setup
-StartingMap  : 0x00010104 # mac_00, Entry4 / Toad Town Gate District
-StartingLevel: 1
-StartingMaxHP: 10
-StartingMaxFP: 5
-StartingMaxBP: 3
+StartingMap      : 0x00010104 # mac_00, Entry4 / Toad Town Gate District
+StartingLevel    : 1
+StartingMaxHP    : 10
+StartingMaxFP    : 5
+StartingMaxBP    : 3
+StartingStarPower: 0
 
 StartingItem0: 0x008 # HomewardShroom
 StartingItem1: 0x000 # Nothing

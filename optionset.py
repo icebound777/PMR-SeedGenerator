@@ -47,6 +47,7 @@ class OptionSet:
         self.hidden_block_mode = get_option_keyvalue_dict("HiddenBlockMode")
         self.skip_epilogue = get_option_keyvalue_dict("SkipEpilogue")
         self.allow_physics_glitches = get_option_keyvalue_dict("AllowPhysicsGlitches")
+        self.starway_spirits_needed = get_option_keyvalue_dict("StarWaySpiritsNeeded")
 
         # Starting setup
         self.starting_map = get_option_keyvalue_dict("StartingMap") # mac_00 Entry 4
@@ -54,6 +55,7 @@ class OptionSet:
         self.starting_maxhp = get_option_keyvalue_dict("StartingMaxHP")
         self.starting_maxfp = get_option_keyvalue_dict("StartingMaxFP")
         self.starting_maxbp = get_option_keyvalue_dict("StartingMaxBP")
+        self.starting_starpower = get_option_keyvalue_dict("StartingStarPower")
 
         self.starting_item_0 = get_option_keyvalue_dict("StartingItem0")
         self.starting_item_1 = get_option_keyvalue_dict("StartingItem1")
@@ -232,6 +234,8 @@ class OptionSet:
             self.skip_epilogue = options_dict.get("SkipEpilogue")
         if "AllowPhysicsGlitches" in options_dict:
             self.allow_physics_glitches = options_dict.get("AllowPhysicsGlitches")
+        if "StarWaySpiritsNeeded" in options_dict:
+            self.starway_spirits_needed = options_dict.get("StarWaySpiritsNeeded")
 
         # Starting setup
         if "StartingMap" in options_dict:
@@ -244,6 +248,8 @@ class OptionSet:
             self.starting_maxfp = options_dict.get("StartingMaxFP")
         if "StartingMaxBP" in options_dict:
             self.starting_maxbp = options_dict.get("StartingMaxBP")
+        if "StartingStarPower" in options_dict:
+            self.starting_starpower = options_dict.get("StartingStarPower")
 
         if "StartingItem0" in options_dict:
             self.starting_item_0 = options_dict.get("StartingItem0")
@@ -492,6 +498,9 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("AllowPhysicsGlitches").get("value"), bool)
     if "SkipEpilogue" in options_dict:
         assert isinstance(options_dict.get("SkipEpilogue").get("value"), bool)
+    if "StarWaySpiritsNeeded" in options_dict:
+        assert (    isinstance(options_dict.get("StarWaySpiritsNeeded").get("value"), int)
+                and 0 <= options_dict.get("StarWaySpiritsNeeded").get("value") <= 7)
 
     # Starting setup
     if "StartingMap" in options_dict:
@@ -504,6 +513,9 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("StartingMaxFP").get("value"), int)
     if "StartingMaxBP" in options_dict:
         assert isinstance(options_dict.get("StartingMaxBP").get("value"), int)
+    if "StartingStarPower" in options_dict:
+        assert (    isinstance(options_dict.get("StartingStarPower").get("value"), int)
+                and 0 <= options_dict.get("StartingStarPower").get("value") <= 7)
 
     if "StartingItem0" in options_dict:
         assert isinstance(options_dict.get("StartingItem0").get("value"), int)
