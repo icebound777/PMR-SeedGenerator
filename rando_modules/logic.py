@@ -26,7 +26,6 @@ from rando_modules.simulate        \
            has_parakarry_3_letters,\
            get_starpiece_count
 from rando_modules.item_scarcity import get_scarcitied_itempool
-from custom_seed import validate_seed
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
 from metadata.itemlocation_special     \
@@ -77,30 +76,6 @@ def is_itemlocation_replenishable(item_node):
     """
     node_id = get_node_identifier(item_node)
     return (node_id in replenishing_itemlocations)
-
-
-def _algo_custom_seed(item_placement):
-    """
-    Places items into item_placement dict according to provided custom_seed
-    file.
-    """
-    try:
-        #TODO: seed_path as function argument
-        seed_path = "./custom_seed.json"
-        is_valid = validate_seed(seed_path)
-        if is_valid:
-            with open(seed_path, "r", encoding="utf-8") as custom_seed_file:
-                custom_items = json.load(custom_seed_file)
-        #TODO: handle invalid seed: GUI message?
-    except FileNotFoundError as err:
-        print(f"{err.args}: Custom Seed file \'{seed_path}\' cannot be read.")
-        raise
-
-    for node in Node.select().where(Node.key_name_item.is_null(False)):
-        new_item = Item.get(Item.item_name == \
-                            custom_items.get(node.map_area.name).get(node.key_name_item))
-        node.current_item = new_item
-        item_placement.append(node)
 
 
 def _depth_first_search(
@@ -1181,11 +1156,7 @@ def place_items(
     print(f"Seed: {cur_seed}")
     random.seed(cur_seed)
 
-    if algorithm == "CustomSeed":
-        # Place items according to custom seed
-        _algo_custom_seed(item_placement)
-
-    elif not do_shuffle_items:
+    if not do_shuffle_items:
         # Place items in their vanilla locations
         for node in Node.select().where(Node.key_name_item.is_null(False)):
             node.current_item = node.vanilla_item
