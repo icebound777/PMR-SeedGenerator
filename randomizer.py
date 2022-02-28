@@ -481,7 +481,9 @@ def main_randomizer(args):
             if opt in ["-t", "--targetmod"]:
                 target_modfile = arg
                 if not is_rom_basemod(target_modfile):
-                    print(f"Provided ROM is not the required {BASE_MOD_VERSION} base mod!\nAborting...")
+                    print(f"Provided ROM is not the required v.{BASE_MOD_VERSION} base mod!\n"
+                          f"Expected base mod md5 checksum: {BASE_MOD_MD5}\n"
+                           "Aborting...")
                     exit()
 
             # Spoilerlog output file

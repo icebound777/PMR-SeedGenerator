@@ -1,15 +1,55 @@
-Important Files and General Structure:
-* The `/db` folder contains all the database models
-	* For each model file, there are additional functions for generating a fresh table from the StarRod outputs  in the `/globals` directory of the root folder for this repo
-* The `/debug` folder contains some log files, but also some important .json files used by the database generation functions in the `/db` folder. Namely, `keys.json` and `values.json`, which can be generated with `gather_keys()` and `gather_values()` in `parse.py`, respectively.
-* The `/progression` folder contains .csv files also used for generating the `Node` table in the database. These files are manually created.
-* `logic.py` and `simulate.py` are currently where most of the higher-level randomization logic happens
-* `parse.py` is for functions used that parse through files created by StarRod
-* `utility.py` is for any functions that provide general utility
+# Paper Mario Randomizer - Seed Generator
 
-Currently, the system works as follows:
-* Using the command-line interface, tell StarRod to dump, copy, and compile a mod into an output ROM.
-* With the database (that is auto-generated) and other logical datastructures, randomize various elements.
-* Then, generate the list of key-value pairs to be written into the output ROM.
+This python project is the seed generator for the Open World Paper Mario Randomizer mod  
+for Paper Mario 64.  
+This generator runs in the backend of the web generator, but can also be used locally,  
+although we do not offer support for that.
 
-The major hurdles on the Python side are currently creating and expanding the .csvs in the `/progression` folder, and working on the key item placement logic. Once we have a fully complete Node table, however, it will be easier to do work on the item logic, so the priority right now is to finish compiling that.
+## Related repositories
+
+Web generator repo: https://github.com/Pronyo-Chan/paper-mario-randomizer  
+Base mod repo: (currently private)
+
+## Requirements
+
+This project requires python 3.9 with a handful of additional dependencies.  
+Furthermore a base-modded US-ROM of Paper Mario 64 is required and has to be  
+provided by the user; automatically patching the base mod is not part of the generator.  
+For this purpose the patch file for turning the vanilla US ROM into the base mod is  
+provided within the project's /res folder.
+
+## Running from the command line
+
+First, install dependencies (or run the project inside of a virtual environment  
+like pipenv).  
+Then, to generate a game with default settings:  
+`py randomizer.py -t PATH_TO_PREMODDED_ROM`  
+To generate a game with custom settings, create or modify a settings yaml file and then:  
+`py randomizer.py -c PATH_TO_SETTINGS_YAML -t PATH_TO_PREMODDED_ROM`
+
+## Code of interest
+
+For curious users, this project can show the internal workings of the generator.  
+A few interesting files and directories are:  
+* /maps/graph_edges/  
+  The files in here define the item location requirements, as well as requirements  
+  for traversing the ingame world.
+* /default_settings.yaml  
+  All options, toggles and their default values that the generator can use  
+  can be found here.
+* /rando_modules/logic.py  
+  This file handles the item placement logic (graph based using DFS).
+
+## Credits
+
+The Paper Mario Randomizer as a whole was built by
+* clover
+* Icebound777
+* Pronyo  
+
+with assistance and contributions by  
+* Jdog
+* Quackles
+* Rain
+* Jdaster64
+* MrN829
