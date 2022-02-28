@@ -34,8 +34,8 @@ from rando_modules.random_partners import get_rnd_starting_partners
 
 
 BASE_MOD_VERSION = "1.0.0"
-BASE_MOD_MD5 = "220dc17b65c3eb869546dd3f08a4f623"
-VERSION_STRING = f"Randomizer 0.1 for Open World Paper Mario mod {BASE_MOD_VERSION}"
+BASE_MOD_MD5 = "5fa89470cd3a25287c203acb344d358d"
+VERSION_STRING = f"Seed Generator 1.0 for Paper Mario 64 Randomizer mod {BASE_MOD_VERSION}"
 
 
 def init_randomizer(rebuild_database=False):
