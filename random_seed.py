@@ -73,7 +73,7 @@ class RandomSeed:
         #self.placed_items = get_alpha_prices(self.placed_items)
 
         # Modify entrances if needed
-        if self.rando_settings.shorten_bowsers_castle:
+        if self.rando_settings.shorten_bowsers_castle["value"]:
             self.entrance_list = get_shorter_bowsercastle()
 
         # Randomize chapter difficulty / enemy stats if needed

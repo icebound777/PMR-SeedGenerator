@@ -91,7 +91,7 @@ class OptionSet:
         self.shuffle_starpower_sp = False
 
         # Entrance related
-        self.shorten_bowsers_castle = False
+        self.shorten_bowsers_castle = get_option_keyvalue_dict("ShortenBowsersCastle")
         self.random_oneway_entrances = False # NYI
         self.unpaired_entrances = False # NYI
 
@@ -314,7 +314,7 @@ class OptionSet:
 
         # Entrance related
         if "ShortenBowsersCastle" in options_dict:
-            self.shorten_bowsers_castle = options_dict.get("ShortenBowsersCastle").get("value")
+            self.shorten_bowsers_castle = options_dict.get("ShortenBowsersCastle")
         if "RandomizeOnewayEntrances" in options_dict:
             self.random_oneway_entrances = options_dict.get("RandomizeOnewayEntrances").get("value")
         if "UnpairedEntrances" in options_dict:
