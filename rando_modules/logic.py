@@ -869,6 +869,16 @@ def place_progression_items(
     if pool_other_items is None:
         pool_other_items = []
 
+    starpieces = []
+    if any(["StarPiece" in x.item_name for x in pool_progression_items]):
+        print(f"Removing StarPieces temporarily ...")
+        for item in [x for x in pool_progression_items if "StarPiece" in x.item_name]:
+            starpieces.append(item)
+        for item in starpieces:
+            pool_progression_items.remove(item)
+
+    size_prog_items = len(pool_progression_items)
+
     while pool_progression_items or pool_misc_progression_items:
         # Pick random reachable item node
         while True:
@@ -921,6 +931,13 @@ def place_progression_items(
                 pool_other_items.append(item)
 
         # Adjust item pools if necessary: StarPieces
+        if (len(starpieces) > 0
+        and size_prog_items / (len(pool_progression_items) + 1) > 1.5
+        ):
+            print(f"Adding removed StarPieces back ...")
+            pool_progression_items.extend(starpieces)
+            starpieces.clear()
+
         if (get_starpiece_count() >= 60
         and any(item.item_name.find("StarPiece") != -1 for item in pool_progression_items)
         ):
