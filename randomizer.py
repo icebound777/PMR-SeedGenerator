@@ -33,7 +33,9 @@ from db.palette         import create_palettes
 from rando_modules.random_partners import get_rnd_starting_partners
 
 
-VERSION = "Randomizer 0.1 for Open World Paper Mario mod 0.1"
+BASE_MOD_VERSION = "1.0.0"
+BASE_MOD_MD5 = "220dc17b65c3eb869546dd3f08a4f623"
+VERSION_STRING = f"Randomizer 0.1 for Open World Paper Mario mod {BASE_MOD_VERSION}"
 
 
 def init_randomizer(rebuild_database=False):
@@ -82,7 +84,23 @@ def print_usage():
 
 def print_version():
     """Prints version."""
-    print(VERSION)
+    print(VERSION_STRING)
+
+
+def is_rom_basemod(target_modfile:str) -> bool:
+    """
+    Checks the md5 hash of a provided target ROM and compares it against the
+    version of the base modded Rando ROM that is ascociated with it.
+    Returns True if matching.
+    """
+    basemod_md5_hash = BASE_MOD_MD5
+
+    hash_md5 = hashlib.md5()
+    with open(file=target_modfile, mode="rb") as in_file:
+        for chunk in iter(lambda: in_file.read(4096), b""):
+            hash_md5.update(chunk)
+
+    return hash_md5.hexdigest() == basemod_md5_hash
 
 
 def write_data_to_rom(
@@ -462,6 +480,9 @@ def main_randomizer(args):
             # Pre-modded Open World PM64 ROM
             if opt in ["-t", "--targetmod"]:
                 target_modfile = arg
+                if not is_rom_basemod(target_modfile):
+                    print(f"Provided ROM is not the required {BASE_MOD_VERSION} base mod!\nAborting...")
+                    exit()
 
             # Spoilerlog output file
             if opt in ["-s", "--spoilerlog"]:
