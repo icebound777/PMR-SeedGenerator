@@ -241,7 +241,7 @@ def _find_new_nodes_and_edges(
         # If this is the case add item to inventory and remove node
         for node_id, item_node in reachable_item_nodes.items():
             current_item = item_node.current_item
-            if current_item and item_node not in filled_item_nodes:
+            if current_item and get_node_identifier(item_node) not in [get_node_identifier(x) for x in filled_item_nodes]:
                 current_item_name = current_item.item_name
                 add_to_inventory(current_item_name)
                 found_new_items = True
@@ -1061,17 +1061,35 @@ def _algo_forward_fill(
     # Place items influencing progression, giving misc. items priority for
     # repleneshing item locations
     print("Placing Progression Items ...")
-    filled_item_nodes, _, _ = place_progression_items(
-        pool_progression_items,
-        pool_misc_progression_items,
-        pool_other_items,
-        do_randomize_shops,
-        reachable_node_ids,
-        reachable_item_nodes,
-        filled_item_nodes,
-        non_traversable_edges,
-        world_graph
-    )
+    successfully_placed = False
+    while not successfully_placed:
+        try:
+            pool_progression_items_try = pool_progression_items.copy()
+            pool_misc_progression_items_try = pool_misc_progression_items.copy()
+            pool_other_items_try = pool_other_items.copy()
+            reachable_node_ids_try = reachable_node_ids.copy()
+            reachable_item_nodes_try = deepcopy(reachable_item_nodes)
+            filled_item_nodes_try = filled_item_nodes.copy()
+            non_traversable_edges_try = non_traversable_edges.copy()
+            non_traversable_edges_try, _, _ = place_progression_items(
+                pool_progression_items_try,
+                pool_misc_progression_items_try,
+                pool_other_items_try,
+                do_randomize_shops,
+                reachable_node_ids_try,
+                reachable_item_nodes_try,
+                filled_item_nodes_try,
+                non_traversable_edges_try,
+                world_graph
+            )
+            successfully_placed = True
+            pool_other_items = pool_other_items_try.copy()
+            filled_item_nodes = filled_item_nodes_try.copy()
+
+        except IndexError:
+            # Items were placed in a way that makes the seed unbeatable,
+            # so we have to clear the lists and retry
+            logging.info(f"Progression placement fail, retrying ...")
 
     # Mark all unreachable nodes, which hold pre-filled items, as filled
     for item_node in all_item_nodes:
