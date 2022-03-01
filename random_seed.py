@@ -119,8 +119,12 @@ class RandomSeed:
             self.quiz_list = get_randomized_quizzes()
 
         # Randomize sprite palettes
-        if self.rando_settings.random_coin_palette:
-            self.coin_palette = get_randomized_coinpalette()
+        (self.coin_palette,
+         self.rando_settings.coin_color["value"]
+        ) = get_randomized_coinpalette(
+            color_id = self.rando_settings.coin_color["value"],
+            should_randomize_color = self.rando_settings.random_coin_color
+        )
         self.palette_data = get_randomized_palettes(
             self.rando_settings.palette_settings
         )

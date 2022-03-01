@@ -10,13 +10,87 @@ from metadata.palettes_meta              \
            boss_sprite_names
 
 
-def get_randomized_coinpalette():
+def get_randomized_coinpalette(color_id:int, should_randomize_color:bool):
     """
-    Choose and return a random color palette for coin sprites, and all locations
-    in ROM where the palette needs to be written to.
+    Choose and return a color palette for coin sprites in accordance to chosen
+    settings, as well as all locations in ROM where the palette needs to be
+    written to.
     We do it this way, because
-    "swapping these coin palettes at runtime is pretty ugly" -clover
+    "swapping these coin palettes at runtime is pretty ugly" (-clover)
     """
+    COIN_COLOR_GOLD   = 0
+    COIN_COLOR_RED    = 1
+    COIN_COLOR_BLUE   = 2
+    COIN_COLOR_PURPLE = 3
+    COIN_COLOR_SILVER = 4
+
+    # byte data for gold palette (default)
+    palette_coin_gold = [
+        0x294AE739,
+        0xEED5E64F,
+        0xE5CDDD49,
+        0xBC49AB87,
+        0x92C76A09,
+        0xC4CB8289,
+        0x00010001,
+        0x00010001
+    ]
+
+    # byte data for red palette
+    palette_coin_red = [
+        0x294AE739,
+        0xEB15E24F,
+        0xE18DD90B,
+        0xB90DA8CD,
+        0x90CF610F,
+        0xC14D810F,
+        0x00010001,
+        0x00010001
+    ]
+
+    # byte data for blue palette
+    palette_coin_blue = [
+        0x294AE739,
+        0x653F4C7D,
+        0x43BD32FB,
+        0x327121AD,
+        0x21252119,
+        0x3AF3215D,
+        0x00010001,
+        0x00010001
+    ]
+
+    # byte data for purple palette
+    palette_coin_purple = [
+        0x294AE739,
+        0xCC75C2F5,
+        0xAA739933,
+        0x792B60E7,
+        0x50E138D7,
+        0x916D491D,
+        0x00010001,
+        0x00010001
+    ]
+
+    # byte data for silver palette
+    palette_coin_silver = [
+        0x294AE739,
+        0xC5F1B5AF,
+        0xA52B9CA9,
+        0x7BA3631B,
+        0x5257294B,
+        0x94654211,
+        0x00010001,
+        0x00010001
+    ]
+
+    coin_color_palettes = {
+        COIN_COLOR_GOLD  : palette_coin_gold,
+        COIN_COLOR_RED   : palette_coin_red,
+        COIN_COLOR_BLUE  : palette_coin_blue,
+        COIN_COLOR_PURPLE: palette_coin_purple,
+        COIN_COLOR_SILVER: palette_coin_silver,
+    }
 
     target_rom_locations = [
         0x09A030,
@@ -41,99 +115,43 @@ def get_randomized_coinpalette():
         0x1FC530
     ]
 
-    all_coin_palettes = {}
-
-    # byte data for gold palette (default)
-    all_coin_palettes["palette_coin_gold"] = [
-        0x294AE739,
-        0xEED5E64F,
-        0xE5CDDD49,
-        0xBC49AB87,
-        0x92C76A09,
-        0xC4CB8289,
-        0x00010001,
-        0x00010001
-    ]
-
-    # byte data for red palette
-    all_coin_palettes["palette_coin_red"] = [
-        0x294AE739,
-        0xEB15E24F,
-        0xE18DD90B,
-        0xB90DA8CD,
-        0x90CF610F,
-        0xC14D810F,
-        0x00010001,
-        0x00010001
-    ]
-
-    # byte data for blue palette
-    all_coin_palettes["palette_coin_blue"] = [
-        0x294AE739,
-        0x653F4C7D,
-        0x43BD32FB,
-        0x327121AD,
-        0x21252119,
-        0x3AF3215D,
-        0x00010001,
-        0x00010001
-    ]
-
-    # byte data for purple palette
-    all_coin_palettes["palette_coin_purple"] = [
-        0x294AE739,
-        0xCC75C2F5,
-        0xAA739933,
-        0x792B60E7,
-        0x50E138D7,
-        0x916D491D,
-        0x00010001,
-        0x00010001
-    ]
-
-    # byte data for silver palette
-    all_coin_palettes["palette_coin_silver"] = [
-        0x294AE739,
-        0xC5F1B5AF,
-        0xA52B9CA9,
-        0x7BA3631B,
-        0x5257294B,
-        0x94654211,
-        0x00010001,
-        0x00010001
-    ]
-
+    # temp. unused
     all_coin_palette_crcs = {
-        "palette_coin_gold": [
+        COIN_COLOR_GOLD: [
             0xD4C3F881,
             0xCB3B5A00
         ],
-        "palette_coin_red": [
+        COIN_COLOR_RED: [
             0x2BCD223A,
             0x3CC7D7D5
         ],
-        "palette_coin_blue": [
+        COIN_COLOR_BLUE: [
             0xEE094F68,
             0x421628A3
         ],
-        "palette_coin_purple": [
+        COIN_COLOR_PURPLE: [
             0xB99EDAC8,
             0x7E0C334A
         ],
-        "palette_coin_silver": [
+        COIN_COLOR_SILVER: [
             0x82A4AB59,
             0xBF600802
         ]
     }
 
-    # Choose random coin palette
-    coin_palette_keys = [palette for palette in all_coin_palettes.keys()]
-    random_palette = random.choice(coin_palette_keys)
-    print(random_palette)
+    if should_randomize_color:
+        # Choose random coin palette, ignoring given color id
+        coin_color_keys = [color_id for color_id in coin_color_palettes.keys()]
+        chosen_color_id = random.choice(coin_color_keys)
+    else:
+        chosen_color_id = color_id
 
-    return CoinPalette(all_coin_palettes.get(random_palette), \
-           target_rom_locations, \
-           None)
+    return CoinPalette(
+        coin_color_palettes.get(chosen_color_id),
+        target_rom_locations,
+        None
+    ), \
+    chosen_color_id
 
 
 def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:

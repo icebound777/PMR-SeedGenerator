@@ -119,7 +119,8 @@ class OptionSet:
         self.color_a = get_option_keyvalue_dict("Box5ColorA")
         self.color_b = get_option_keyvalue_dict("Box5ColorB")
         self.roman_numerals = get_option_keyvalue_dict("RomanNumerals")
-        self.random_coin_palette = False
+        self.coin_color = get_option_keyvalue_dict("CoinColor")
+        self.random_coin_color = False
 
         self.palette_settings = PaletteOptionSet()
 
@@ -362,8 +363,10 @@ class OptionSet:
         # Cosmetics / Palettes
         if "RomanNumerals" in options_dict:
             self.roman_numerals = options_dict.get("RomanNumerals")
-        if "RandomCoinPalette" in options_dict:
-            self.random_coin_palette = options_dict.get("RandomCoinPalette").get("value")
+        if "CoinColor" in options_dict:
+            self.coin_color = options_dict.get("CoinColor")
+        if "RandomCoinColor" in options_dict:
+            self.random_coin_color = options_dict.get("RandomCoinColor").get("value")
         if "Box5ColorA" in options_dict:
             self.color_a = options_dict.get("Box5ColorA")
         if "Box5ColorB" in options_dict:
@@ -647,8 +650,12 @@ def validate_options(options_dict):
     # Cosmetics / Palettes
     if "RomanNumerals" in options_dict:
         assert isinstance(options_dict.get("RomanNumerals").get("value"), bool)
-    if "RandomCoinPalette" in options_dict:
-        assert isinstance(options_dict.get("RandomCoinPalette").get("value"), bool)
+    if "CoinColor" in options_dict:
+        assert (isinstance(options_dict.get("CoinColor").get("value"), int)
+            and 0 <= options_dict.get("CoinColor").get("value") <= 4
+        )
+    if "RandomCoinColor" in options_dict:
+        assert isinstance(options_dict.get("RandomCoinColor").get("value"), bool)
     if "Box5ColorA" in options_dict:
         assert (isinstance(options_dict.get("Box5ColorA").get("value"), int)
             and 0 <= options_dict.get("Box5ColorA").get("value") <= 0xFFFFFFFF
