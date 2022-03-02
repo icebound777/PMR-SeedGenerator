@@ -57,11 +57,10 @@ WhaleOpen     : false
 # Randomization: Logic
 PlacementAlgorithm: ForwardFill
 #PlacementAlgorithm: WeightedForwardFill # NYI
-#PlacementAlgorithm: AssumedFill # NYI
-#PlacementAlgorithm: CustomSeed
+#PlacementAlgorithm: CustomSeed # NYI
 PlacementLogic: NoGlitches
 #PlacementLogic: Glitches # NYI
-#PlacementLogic: NoLogic
+#PlacementLogic: NoLogic # NYI
 
 # Randomization: Difficulty
 ShuffleChapterDifficulty: false
@@ -139,18 +138,18 @@ GoombarioSetting : 0
 GoombarioSprite  : 0
 KooperSetting    : 0
 KooperSprite     : 0
-#BombetteSetting  : 0
-#BombetteSprite   : 0
-#ParakarrySetting : 0
-#ParakarrySprite  : 0
+#BombetteSetting  : 0 # NYI
+#BombetteSprite   : 0 # NYI
+#ParakarrySetting : 0 # NYI
+#ParakarrySprite  : 0 # NYI
 BowSetting       : 0
 BowSprite        : 0
-#WattSetting      : 0
-#WattSprite       : 0
-#SushieSetting    : 0
-#SushieSprite     : 0
-#LakilesterSetting: 0
-#LakilesterSprite : 0
+#WattSetting      : 0 # NYI
+#WattSprite       : 0 # NYI
+#SushieSetting    : 0 # NYI
+#SushieSprite     : 0 # NYI
+#LakilesterSetting: 0 # NYI
+#LakilesterSprite : 0 # NYI
 BossesSetting    : 0
 NPCSetting       : 0
 

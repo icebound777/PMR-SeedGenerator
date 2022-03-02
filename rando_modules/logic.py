@@ -2,11 +2,9 @@
 This modules offers the randomization logic and takes care of actually randomizing
 the game according to the settings chosen.
 """
-import imp
 import random
 from copy import deepcopy
 import logging
-import json
 
 from db.node import Node
 from db.item import Item
@@ -22,7 +20,6 @@ from rando_modules.simulate        \
            clear_inventory,        \
            has_item,               \
            require,                \
-           get_item_history,       \
            has_parakarry_3_letters,\
            get_starpiece_count
 from rando_modules.item_scarcity import get_scarcitied_itempool
@@ -34,10 +31,11 @@ from metadata.itemlocation_special     \
            dojo_locations,             \
            limited_by_item_areas,      \
            bush_tree_coin_locations
-from metadata.progression_items                                  \
-    import progression_miscitems as progression_miscitems_names, \
-           progression_items as progression_items_names
-from metadata.item_exclusion import items_to_exclude, taycet_items
+from metadata.progression_items                                 \
+    import progression_miscitems as progression_miscitems_names
+from metadata.item_exclusion \
+    import exclude_due_to_settings, exclude_from_taycet_placement
+from metadata.item_general import taycet_items
 from metadata.partners_meta import all_partners as all_partners_imp
 
 
@@ -753,31 +751,31 @@ def _generate_item_pools(
                         + len(pool_other_items)
 
     if startwith_bluehouse_open:
-        for item_name in items_to_exclude.get("startwith_bluehouse_open"):
+        for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
     if startwith_flowergate_open:
-        for item_name in items_to_exclude.get("startwith_flowergate_open"):
+        for item_name in exclude_due_to_settings.get("startwith_flowergate_open"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
     if always_speedyspin:
-        for item_name in items_to_exclude.get("always_speedyspin"):
+        for item_name in exclude_due_to_settings.get("always_speedyspin"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
     if always_ispy:
-        for item_name in items_to_exclude.get("always_ispy"):
+        for item_name in exclude_due_to_settings.get("always_ispy"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
     if always_peekaboo:
-        for item_name in items_to_exclude.get("always_peekaboo"):
+        for item_name in exclude_due_to_settings.get("always_peekaboo"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
     if start_with_kooper:
-        for item_name in items_to_exclude.get("start_with_kooper"):
+        for item_name in exclude_due_to_settings.get("start_with_kooper"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
     if start_with_bow:
-        for item_name in items_to_exclude.get("start_with_bow"):
+        for item_name in exclude_due_to_settings.get("start_with_bow"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
     items_to_remove_from_pools.extend(starting_items)
@@ -814,7 +812,7 @@ def _generate_item_pools(
                        + len(pool_misc_progression_items) \
                        + len(pool_other_items)
     while goal_size_item_pool > cur_size_item_pool:
-        random_taycet_item_value = random.choice(taycet_items)
+        random_taycet_item_value = random.choice([x for x in taycet_items if x not in exclude_from_taycet_placement])
         random_taycet_item = Item.get(Item.value == random_taycet_item_value)
         pool_other_items.append(random_taycet_item)
         cur_size_item_pool = len(pool_progression_items)      \
