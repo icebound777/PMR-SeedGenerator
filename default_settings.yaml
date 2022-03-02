@@ -4,15 +4,16 @@ SettingsName   : Default Preset
 SettingsVersion: 1
 
 # Options
-BlocksMatchContent  : true
-AlwaysSpeedySpin    : true
-AlwaysISpy          : false
-AlwaysPeekaboo      : true
-HiddenBlockMode     : 1
-ShortenCutscenes    : true
-AllowPhysicsGlitches: false
-SkipEpilogue        : false
-StarWaySpiritsNeeded: 7
+BlocksMatchContent   : true
+AlwaysSpeedySpin     : true
+AlwaysISpy           : false
+AlwaysPeekaboo       : true
+HiddenBlockMode      : 1
+ShortenCutscenes     : true
+AllowPhysicsGlitches : false
+SkipEpilogue         : false
+StarWaySpiritsNeeded : 7
+PeachCastleReturnPipe: true # false locks the pipe
 
 StartingCoins: 50
 CapEnemyXP   : true

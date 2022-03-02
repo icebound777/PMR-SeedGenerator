@@ -48,6 +48,7 @@ class OptionSet:
         self.skip_epilogue = get_option_keyvalue_dict("SkipEpilogue")
         self.allow_physics_glitches = get_option_keyvalue_dict("AllowPhysicsGlitches")
         self.starway_spirits_needed = get_option_keyvalue_dict("StarWaySpiritsNeeded")
+        self.peachcastle_return_pipe = get_option_keyvalue_dict("PeachCastleReturnPipe")
 
         # Starting setup
         self.starting_map = get_option_keyvalue_dict("StartingMap") # mac_00 Entry 4
@@ -237,6 +238,8 @@ class OptionSet:
             self.allow_physics_glitches = options_dict.get("AllowPhysicsGlitches")
         if "StarWaySpiritsNeeded" in options_dict:
             self.starway_spirits_needed = options_dict.get("StarWaySpiritsNeeded")
+        if "PeachCastleReturnPipe" in options_dict:
+            self.peachcastle_return_pipe = options_dict.get("PeachCastleReturnPipe")
 
         # Starting setup
         if "StartingMap" in options_dict:
@@ -504,6 +507,8 @@ def validate_options(options_dict):
     if "StarWaySpiritsNeeded" in options_dict:
         assert (    isinstance(options_dict.get("StarWaySpiritsNeeded").get("value"), int)
                 and 0 <= options_dict.get("StarWaySpiritsNeeded").get("value") <= 7)
+    if "PeachCastleReturnPipe" in options_dict:
+        assert isinstance(options_dict.get("PeachCastleReturnPipe").get("value"), bool)
 
     # Starting setup
     if "StartingMap" in options_dict:
