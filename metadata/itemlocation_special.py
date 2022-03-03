@@ -46,6 +46,7 @@ kootfavors_locations = [
 chainletter_giver_locations = [
     "MAC_03/GiftA",
     "MAC_03/GiftB",
+    "DRO_02/ItemA",
 ]
 
 dojo_locations = [
