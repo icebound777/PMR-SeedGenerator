@@ -15,14 +15,14 @@ SkipEpilogue         : false
 StarWaySpiritsNeeded : 7
 PeachCastleReturnPipe: true # false locks the pipe
 
-StartingCoins: 50
-CapEnemyXP   : true
-NoXP         : false
-DoubleDamage     : false
-QuadrupleDamage     : false
-OHKO         : false
-NoSaveBlocks : false
-NoHeartBlocks: false
+StartingCoins  : 50
+CapEnemyXP     : true
+NoXP           : false
+DoubleDamage   : false
+QuadrupleDamage: false
+OHKO           : false
+NoSaveBlocks   : false
+NoHeartBlocks  : false
 
 # Starting setup
 StartingMap      : 0x00010104 # mac_00, Entry4 / Toad Town Gate District
