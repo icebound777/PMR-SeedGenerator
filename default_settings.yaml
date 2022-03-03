@@ -18,8 +18,8 @@ PeachCastleReturnPipe: true # false locks the pipe
 StartingCoins: 50
 CapEnemyXP   : true
 NoXP         : false
-2xDamage     : false
-4xDamage     : false
+DoubleDamage     : false
+QuadrupleDamage     : false
 OHKO         : false
 NoSaveBlocks : false
 NoHeartBlocks: false
