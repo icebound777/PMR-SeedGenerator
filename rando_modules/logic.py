@@ -43,9 +43,9 @@ def get_startingnode_id_from_startingmap_id(starting_map_id):
     """Returns the starting node id (e.g. "MAC_00/4") for a given map id."""
     # Extract entrance, map and area from map-hex
     starting_map_hex = hex(starting_map_id)[2:]
-    starting_map_entrance_id = starting_map_hex[-1:]
-    starting_map_map_id = starting_map_hex[-4:-2] if starting_map_hex[-4:-2] != "" else 0
-    starting_map_area_id = starting_map_hex[-6:-4] if starting_map_hex[-6:-4] != "" else 0
+    starting_map_entrance_id = int(starting_map_hex[-1:], 16)
+    starting_map_map_id = int(starting_map_hex[-4:-2], 16) if starting_map_hex[-4:-2] != "" else 0
+    starting_map_area_id = int(starting_map_hex[-6:-4], 16) if starting_map_hex[-6:-4] != "" else 0
 
     # Get maparea from db
     starting_maparea = MapArea.get(  (MapArea.area_id == starting_map_area_id)
