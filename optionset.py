@@ -12,6 +12,7 @@ class OptionSet:
         self.bluehouse_open = get_option_keyvalue_dict("BlueHouseOpen")
         self.blocks_match_content = get_option_keyvalue_dict("BlocksMatchContent")
         self.skip_quiz = get_option_keyvalue_dict("SkipQuiz")
+        self.challenge_mode = get_option_keyvalue_dict("ChallengeMode")
         self.cap_enemy_xp = get_option_keyvalue_dict("CapEnemyXP")
         self.no_xp = get_option_keyvalue_dict("NoXP")
         self.damage_x2 = get_option_keyvalue_dict("DoubleDamage")
@@ -173,6 +174,8 @@ class OptionSet:
             self.blocks_match_content = options_dict.get("BlocksMatchContent")
         if "SkipQuiz" in options_dict:
             self.skip_quiz = options_dict.get("SkipQuiz")
+        if "ChallengeMode" in options_dict:
+            self.challenge_mode = options_dict.get("ChallengeMode")
         if "CapEnemyXP" in options_dict:
             self.cap_enemy_xp = options_dict.get("CapEnemyXP")
         if "NoXP" in options_dict:
@@ -440,6 +443,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BlocksMatchContent").get("value"), bool)
     if "SkipQuiz" in options_dict:
         assert isinstance(options_dict.get("SkipQuiz").get("value"), bool)
+    if "ChallengeMode" in options_dict:
+        assert isinstance(options_dict.get("ChallengeMode").get("value"), bool)
     if "CapEnemyXP" in options_dict:
         assert isinstance(options_dict.get("CapEnemyXP").get("value"), bool)
     if "NoXP" in options_dict:
