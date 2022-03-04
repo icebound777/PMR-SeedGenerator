@@ -16,7 +16,7 @@ StarWaySpiritsNeeded : 7
 PeachCastleReturnPipe: true # false locks the pipe
 
 StartingCoins  : 50
-ChallengeMode  : true
+ChallengeMode  : false
 CapEnemyXP     : true
 NoXP           : false
 DoubleDamage   : false
