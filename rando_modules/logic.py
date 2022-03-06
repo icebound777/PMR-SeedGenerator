@@ -576,6 +576,30 @@ def _get_limit_items_to_dungeons(
                 # so we have to clear the lists and retry
                 cur_items_placed = []
                 cur_items_overwritten = []
+                # Reset Mario's inventory
+                if partners_in_default_locations:
+                    almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name)]
+                    _init_mario_inventory(
+                        almost_all_partners,
+                        starting_items,
+                        partners_always_usable,
+                        hidden_block_mode,
+                        False,
+                        False,
+                        False,
+                        False
+                    )
+                else:
+                    _init_mario_inventory(
+                        all_partners,
+                        starting_items,
+                        partners_always_usable,
+                        hidden_block_mode,
+                        False,
+                        False,
+                        False,
+                        False
+                    )
 
         items_placed.extend(cur_items_placed)
         items_overwritten.extend(cur_items_overwritten)
