@@ -1,0 +1,2 @@
+class UnbeatableSeedError(Exception):
+    pass

@@ -24,6 +24,8 @@ from rando_modules.simulate        \
            get_starpiece_count
 from rando_modules.item_scarcity import get_scarcitied_itempool
 
+from rando_modules.unbeatable_seed_error import UnbeatableSeedError
+
 from metadata.itemlocation_replenish import replenishing_itemlocations
 from metadata.itemlocation_special     \
     import kootfavors_locations,       \
@@ -1112,7 +1114,7 @@ def _algo_forward_fill(
     if has_item("YOUWIN"):
         print("Seed verification: Beatable! Yay!")
     else:
-        print("Seed verification: Not beatable! Booo!")
+        raise UnbeatableSeedError("Seed verification: Not beatable! Booo!")
 
     # "Return" list of modified item nodes
     item_placement.extend(filled_item_nodes)
