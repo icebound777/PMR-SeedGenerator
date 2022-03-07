@@ -362,7 +362,7 @@ def write_data_to_array(
     return patchOperations
 
 
-def web_randomizer(seedID, jsonSettings):
+def web_randomizer(seedID, jsonSettings, world_graph):
     timer_start = time.perf_counter()
 
     data = json.loads(jsonSettings)
@@ -374,7 +374,7 @@ def web_randomizer(seedID, jsonSettings):
     init_randomizer(rebuild_database=False)
 
     random_seed = RandomSeed(rando_settings, seedID)
-    random_seed.generate()
+    random_seed.generate(world_graph)
 
     # Write data to ROM
     operations = write_data_to_array(

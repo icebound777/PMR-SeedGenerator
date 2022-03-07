@@ -37,7 +37,7 @@ class RandomSeed:
             self.seedID = seedID
 
 
-    def generate(self):
+    def generate(self, world_graph = None):
 
         self.init_starting_partners(self.rando_settings)
 
@@ -65,7 +65,8 @@ class RandomSeed:
                             partners_in_default_locations=self.rando_settings.partners_in_default_locations,
                             hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
                             keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
-                            starting_items=self.rando_settings.get_startitem_list()):
+                            starting_items=self.rando_settings.get_startitem_list(),
+                            world_graph= world_graph):
             pass
 
         # Make everything inexpensive
