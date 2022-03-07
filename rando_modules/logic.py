@@ -469,6 +469,14 @@ def _get_limit_items_to_dungeons(
             for node_id in cur_area_graph:
                 if cur_area_graph.get(node_id).get("node").key_name_item == "Partner":
                     cur_area_graph[node_id]["node"].current_item = cur_area_graph[node_id]["node"].vanilla_item
+                    list_index = -1
+                    for filled_node in limited_filled_item_nodes:
+                        if node_id == get_node_identifier(filled_node):
+                            list_index = limited_filled_item_nodes.index(filled_node)
+                    if list_index == -1:
+                        raise ValueError
+                    limited_filled_item_nodes.pop(list_index)
+
 
         # Prepare data structures
         pool_progression_items = []
