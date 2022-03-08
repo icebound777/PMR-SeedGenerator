@@ -39,7 +39,7 @@ class RandomSeed:
 
     def generate(self, world_graph = None):
 
-        cur_seed = random.random()
+        cur_seed = self.seedID
         print(f"Seed: {cur_seed}")
         random.seed(cur_seed)
         
