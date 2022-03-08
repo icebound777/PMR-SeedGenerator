@@ -39,6 +39,10 @@ class RandomSeed:
 
     def generate(self, world_graph = None):
 
+        cur_seed = random.random()
+        print(f"Seed: {cur_seed}")
+        random.seed(cur_seed)
+        
         self.init_starting_partners(self.rando_settings)
 
         # Item Placement

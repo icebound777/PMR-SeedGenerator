@@ -1187,10 +1187,6 @@ def place_items(
     fmt = '[%(levelname)s] %(asctime)s - %(message)s'
     logging.basicConfig(level=level, format=fmt)
 
-    cur_seed = random.random()
-    print(f"Seed: {cur_seed}")
-    random.seed(cur_seed)
-
     if not do_shuffle_items:
         # Place items in their vanilla locations
         for node in Node.select().where(Node.key_name_item.is_null(False)):
