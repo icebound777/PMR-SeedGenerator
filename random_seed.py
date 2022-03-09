@@ -69,7 +69,7 @@ class RandomSeed:
                             hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
                             keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
                             starting_items=self.rando_settings.get_startitem_list(),
-                            world_graph= world_graph):
+                            world_graph=world_graph):
             pass
 
         # Make everything inexpensive
