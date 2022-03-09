@@ -106,7 +106,7 @@ PartnersInDefaultLocations: true
 PartnersAlwaysUsable      : true
 StartWithRandomPartners   : false
 RandomPartnersMin         : 1 # 1-8
-RandomPartnersMax         : 8 # 1-8
+RandomPartnersMax         : 1 # 1-8
 StartWithPartners: { # ignored if StartWithRandomPartners true
     Goombario : true,
     Kooper    : false,
