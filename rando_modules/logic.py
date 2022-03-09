@@ -1000,11 +1000,13 @@ def _algo_forward_fill(
     partners_in_default_locations,
     hidden_block_mode:int,
     keyitems_outside_dungeon:bool,
-    starting_items:list
+    starting_items:list,
+    world_graph = None
 ):
-    # Prepare world graph
-    print("Generating World Graph ...")
-    world_graph = generate_world_graph(None, None)
+    # Prepare world graph if not provided
+    if world_graph is None:
+        print("Generating World Graph ...")
+        world_graph = generate_world_graph(None, None)
 
     # Declare and init additional data structures
     ## Data structures for graph traversal
@@ -1177,16 +1179,13 @@ def place_items(
     partners_in_default_locations,
     hidden_block_mode:int,
     keyitems_outside_dungeon:bool,
-    starting_items:list
+    starting_items:list,
+    world_graph = None
 ):
     """Places items into item locations according to chosen settings."""
     level = logging.INFO
     fmt = '[%(levelname)s] %(asctime)s - %(message)s'
     logging.basicConfig(level=level, format=fmt)
-
-    cur_seed = random.random()
-    print(f"Seed: {cur_seed}")
-    random.seed(cur_seed)
 
     if not do_shuffle_items:
         # Place items in their vanilla locations
@@ -1219,7 +1218,8 @@ def place_items(
             partners_in_default_locations,
             hidden_block_mode,
             keyitems_outside_dungeon,
-            starting_items
+            starting_items,
+            world_graph
         )
 
     yield ("Generating Log", int(100 * 1))

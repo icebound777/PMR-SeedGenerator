@@ -16,7 +16,7 @@ from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.random_shop_prices import get_alpha_prices
 
 class RandomSeed:
-    def __init__(self, rando_settings: OptionSet, seedID = None) -> None:
+    def __init__(self, rando_settings: OptionSet, seed_value = None) -> None:
 
         self.rando_settings = rando_settings
         self.starting_partners = []
@@ -31,14 +31,17 @@ class RandomSeed:
         self.quiz_list = []
         self.music_list = []
 
-        if seedID is None:
-            self.seedID =  random.randint(0, 0xFFFFFFFF)
+        if seed_value is None:
+            self.seed_value =  random.randint(0, 0xFFFFFFFF)
         else:
-            self.seedID = seedID
+            self.seed_value = seed_value
 
 
-    def generate(self):
+    def generate(self, world_graph = None):
 
+        print(f"Seed: {self.seed_value}")
+        random.seed(self.seed_value)
+        
         self.init_starting_partners(self.rando_settings)
 
         # Item Placement
@@ -65,7 +68,8 @@ class RandomSeed:
                             partners_in_default_locations=self.rando_settings.partners_in_default_locations,
                             hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
                             keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
-                            starting_items=self.rando_settings.get_startitem_list()):
+                            starting_items=self.rando_settings.get_startitem_list(),
+                            world_graph=world_graph):
             pass
 
         # Make everything inexpensive

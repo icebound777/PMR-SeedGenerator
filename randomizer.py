@@ -362,7 +362,7 @@ def write_data_to_array(
     return patchOperations
 
 
-def web_randomizer(seedID, jsonSettings):
+def web_randomizer(jsonSettings, world_graph):
     timer_start = time.perf_counter()
 
     data = json.loads(jsonSettings)
@@ -373,8 +373,8 @@ def web_randomizer(seedID, jsonSettings):
 
     init_randomizer(rebuild_database=False)
 
-    random_seed = RandomSeed(rando_settings, seedID)
-    random_seed.generate()
+    random_seed = RandomSeed(rando_settings)
+    random_seed.generate(world_graph)
 
     # Write data to ROM
     operations = write_data_to_array(
@@ -391,7 +391,7 @@ def web_randomizer(seedID, jsonSettings):
         palette_data=random_seed.palette_data,
         quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
-        seed=random_seed.seedID
+        seed=random_seed.seed_value
     )
     patch_file = io.BytesIO(operations)
 
@@ -425,7 +425,7 @@ def web_randomizer(seedID, jsonSettings):
 
     timer_end = time.perf_counter()
     print(f'Seed generated in {round(timer_end - timer_start, 2)}s')
-    return WebSeedResponse(random_seed.seedID, patch_file, spoiler_log_file)
+    return WebSeedResponse(random_seed.seed_value, patch_file, spoiler_log_file)
     
 
 
@@ -535,7 +535,7 @@ def main_randomizer(args):
         palette_data=random_seed.palette_data,
         quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
-        seed=random_seed.seedID
+        seed=random_seed.seed_value
     )
 
     # Write sorted spoiler log
