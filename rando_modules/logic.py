@@ -1097,6 +1097,8 @@ def _algo_forward_fill(
             reachable_item_nodes_try = deepcopy(reachable_item_nodes)
             filled_item_nodes_try = filled_item_nodes.copy()
             non_traversable_edges_try = non_traversable_edges.copy()
+            world_graph_try = deepcopy(world_graph)
+
             non_traversable_edges_try, _, _ = place_progression_items(
                 pool_progression_items_try,
                 pool_misc_progression_items_try,
@@ -1106,20 +1108,31 @@ def _algo_forward_fill(
                 reachable_item_nodes_try,
                 filled_item_nodes_try,
                 non_traversable_edges_try,
-                world_graph
+                world_graph_try
             )
             successfully_placed = True
             pool_other_items = pool_other_items_try.copy()
             filled_item_nodes = filled_item_nodes_try.copy()
+            world_graph = world_graph_try.copy()
 
         except IndexError:
             # Items were placed in a way that makes the seed unbeatable,
             # so we have to clear the lists and retry
+            _init_mario_inventory(
+                starting_partners,
+                starting_items,
+                partners_always_usable,
+                hidden_block_mode,
+                startwith_bluehouse_open,
+                startwith_flowergate_open,
+                startwith_toybox_open,
+                startwith_whale_open
+            )
             logging.info(f"Progression placement fail, retrying ...")
 
     # Mark all unreachable nodes, which hold pre-filled items, as filled
     for item_node in all_item_nodes:
-        if item_node.current_item and item_node not in filled_item_nodes:
+        if item_node.current_item and get_node_identifier(item_node) not in [get_node_identifier(x) for x in filled_item_nodes]:
             filled_item_nodes.append(item_node)
 
     # Place all remaining items into still empty item nodes
