@@ -1118,6 +1118,16 @@ def _algo_forward_fill(
         except IndexError:
             # Items were placed in a way that makes the seed unbeatable,
             # so we have to clear the lists and retry
+            _init_mario_inventory(
+                starting_partners,
+                starting_items,
+                partners_always_usable,
+                hidden_block_mode,
+                startwith_bluehouse_open,
+                startwith_flowergate_open,
+                startwith_toybox_open,
+                startwith_whale_open
+            )
             logging.info(f"Progression placement fail, retrying ...")
 
     # Mark all unreachable nodes, which hold pre-filled items, as filled
