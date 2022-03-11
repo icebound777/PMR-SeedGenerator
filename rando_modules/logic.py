@@ -1122,7 +1122,7 @@ def _algo_forward_fill(
 
     # Mark all unreachable nodes, which hold pre-filled items, as filled
     for item_node in all_item_nodes:
-        if item_node.current_item and item_node not in filled_item_nodes:
+        if item_node.current_item and get_node_identifier(item_node) not in [get_node_identifier(x) for x in filled_item_nodes]:
             filled_item_nodes.append(item_node)
 
     # Place all remaining items into still empty item nodes
