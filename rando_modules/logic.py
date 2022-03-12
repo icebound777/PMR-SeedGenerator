@@ -2,9 +2,11 @@
 This modules offers the randomization logic and takes care of actually randomizing
 the game according to the settings chosen.
 """
+import os
 import random
 from copy import deepcopy
 import logging
+import dill
 
 from db.node import Node
 from db.item import Item
@@ -1007,6 +1009,8 @@ def _algo_forward_fill(
     if world_graph is None:
         print("Generating World Graph ...")
         world_graph = generate_world_graph(None, None)
+        with open(os.path.abspath(__file__ + "/../../world_graph.bin"), "wb") as dill_file:
+            dill.dump(world_graph, dill_file)
 
     # Declare and init additional data structures
     ## Data structures for graph traversal

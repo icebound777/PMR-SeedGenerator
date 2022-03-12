@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 peewee = "==3.14.4"
 pyyaml = "*"
+dill = "==0.3.4"
 
 [dev-packages]
 
