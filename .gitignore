@@ -3,7 +3,7 @@
 /out
 
 # Generated custom seed file & modified settings files
-/custom_seed.json
+/*.json
 /*.yaml
 !/default_settings.yaml
 
