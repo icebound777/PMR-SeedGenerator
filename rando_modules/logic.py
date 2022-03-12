@@ -786,6 +786,10 @@ def _generate_item_pools(
                         + len(pool_misc_progression_items) \
                         + len(pool_other_items)
 
+    if do_randomize_dojo:
+        for item_name in exclude_due_to_settings.get("do_randomize_dojo"):
+            item = Item.get(Item.item_name == item_name)
+            items_to_remove_from_pools.append(item)
     if startwith_bluehouse_open:
         for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
             item = Item.get(Item.item_name == item_name)
