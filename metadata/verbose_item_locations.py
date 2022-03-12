@@ -18,7 +18,7 @@ verbose_item_locations = {
     "KMR_04": {"ItemA": "In Tree",},
     "KMR_05": {"ItemA": "On Ledge",
                "ItemB": "In Tree"},
-    "KMR_06": {"ItemA": "Upper Ledge",
+    "KMR_06": {"ItemA": "On the Sign",
                "RBlockA": "Red Block",},
     "KMR_09": {"YBlockA": "Yellow Block Left",
                "YBlockB": "Yellow Block Right",},

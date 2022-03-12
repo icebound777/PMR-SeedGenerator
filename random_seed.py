@@ -32,7 +32,7 @@ class RandomSeed:
         self.music_list = []
 
         if seed_value is None:
-            self.seed_value =  random.randint(0, 0xFFFFFFFF)
+            self.seed_value = random.randint(0, 0xFFFFFFFF)
         else:
             self.seed_value = seed_value
 
