@@ -217,7 +217,7 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
         else:
             if palette_settings.npc_setting == RANDOM_PICK:
                 palette_count = palette_info.palette_count
-                if cur_sprite_name == "Peach":
+                if palette_info.sprite == "Peach":
                     # Player sprite special case, see *
                     chosen_palette = random.randrange(0, palette_count)
                 else:
