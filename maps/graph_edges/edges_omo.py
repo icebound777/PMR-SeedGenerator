@@ -243,7 +243,7 @@ edges_omo = [
     # OMO_12 RED Lantern Ghost
     {"from": {"map": "OMO_12", "id": 0}, "to": {"map": "OMO_11", "id": 0}, "reqs": []}, # RED Lantern Ghost Exit East -> RED Moving Platforms Exit West
 
-    {"from": {"map": "OMO_12", "id": 0},         "to": {"map": "OMO_12", "id": "Partner"}, "reqs": [require(flag="RF_CanGetWatt")]}, #* RED Lantern Ghost Exit East -> Partner (Watt)
+    {"from": {"map": "OMO_12", "id": 0},         "to": {"map": "OMO_12", "id": "Partner"}, "reqs": [require(flag="RF_CanGetWatt"),require(hammer=0,partner=["Kooper","Bombette"])]}, #* RED Lantern Ghost Exit East -> Partner (Watt)
     {"from": {"map": "OMO_12", "id": "Partner"}, "to": {"map": "OMO_12", "id": 0},         "reqs": []}, #* Partner (Watt) -> RED Lantern Ghost Exit East
 
     # OMO_13 BLU Anti-Guy Hall
