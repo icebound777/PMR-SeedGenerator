@@ -57,15 +57,15 @@ dojo_locations = [
 ]
 
 bush_tree_coin_locations =[
-    "KMR_05/ItemB",
+    "KMR_05/Tree1_Drop1A",
     "NOK_01/Bush1_Drop1A",
     "NOK_01/Bush5_Drop1A",
-    "IWA_10/ItemA",
-    "IWA_10/ItemB",
-    "IWA_10/ItemC",
-    "JAN_09/ItemA",
-    "JAN_09/ItemB",
-    "JAN_09/ItemC",
+    "IWA_10/Bush1_Drop1",
+    "IWA_10/Bush2_Drop1",
+    "IWA_10/Bush3_Drop1",
+    "JAN_09/Bush1_Drop1",
+    "JAN_09/Bush6_Drop1",
+    "JAN_09/Tree2_Drop1",
 ]
 
 # Areas that are considered 'limited by item'.

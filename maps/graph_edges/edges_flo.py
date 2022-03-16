@@ -66,10 +66,10 @@ edges_flo = [
     {"from": {"map": "FLO_09", "id": 0}, "to": {"map": "FLO_09", "id": 1}, "reqs": []}, #? (East) Triple Tree Path Exit Left -> (East) Triple Tree Path Exit Right
     {"from": {"map": "FLO_09", "id": 1}, "to": {"map": "FLO_09", "id": 0}, "reqs": []}, #? (East) Triple Tree Path Exit Right -> (East) Triple Tree Path Exit Left
     
-    {"from": {"map": "FLO_09", "id": 0},       "to": {"map": "FLO_09", "id": "ItemA"}, "reqs": [can_shake_trees]}, #* (East) Triple Tree Path Exit Left -> ItemA (HappyFlowerB)
-    {"from": {"map": "FLO_09", "id": "ItemA"}, "to": {"map": "FLO_09", "id": 0},       "reqs": []}, #* ItemA (HappyFlowerB) -> (East) Triple Tree Path Exit Left
-    {"from": {"map": "FLO_09", "id": 0},       "to": {"map": "FLO_09", "id": "ItemB"}, "reqs": []}, #* (East) Triple Tree Path Exit Left -> ItemA (StinkyHerb)
-    {"from": {"map": "FLO_09", "id": "ItemB"}, "to": {"map": "FLO_09", "id": 0},       "reqs": []}, #* ItemA (StinkyHerb) -> (East) Triple Tree Path Exit Left
+    {"from": {"map": "FLO_09", "id": 0},             "to": {"map": "FLO_09", "id": "Tree1_Drop1"}, "reqs": [can_shake_trees]}, #* (East) Triple Tree Path Exit Left -> Tree1_Drop1 (HappyFlowerB)
+    {"from": {"map": "FLO_09", "id": "Tree1_Drop1"}, "to": {"map": "FLO_09", "id": 0},             "reqs": []}, #* Tree1_Drop1 (HappyFlowerB) -> (East) Triple Tree Path Exit Left
+    {"from": {"map": "FLO_09", "id": 0},             "to": {"map": "FLO_09", "id": "ItemA"},       "reqs": []}, #* (East) Triple Tree Path Exit Left -> ItemA (StinkyHerb)
+    {"from": {"map": "FLO_09", "id": "ItemA"},       "to": {"map": "FLO_09", "id": 0},             "reqs": []}, #* ItemA (StinkyHerb) -> (East) Triple Tree Path Exit Left
 
     # FLO_03 (East) Petunia's Field
     {"from": {"map": "FLO_03", "id": 0}, "to": {"map": "FLO_09", "id": 1}, "reqs": []}, # (East) Petunia's Field Exit Left -> (East) Triple Tree Path Exit Right

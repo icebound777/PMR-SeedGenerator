@@ -41,7 +41,7 @@ class Item(Model):
             }.get(item_id)
         elif 0x185 <= item_id <= 0x1CB:
             return "STARPIECE"
-        elif 0x1CC <= item_id <= 0x1D4:
+        elif 0x1D1 <= item_id <= 0x1D9:
             return "PARTNER"
         else:
             return "OTHER"

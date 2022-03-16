@@ -14,6 +14,7 @@ AllowPhysicsGlitches : false
 SkipEpilogue         : false
 StarWaySpiritsNeeded : 7
 PeachCastleReturnPipe: true # false locks the pipe
+FoliageItemHints     : true
 
 StartingCoins  : 50
 ChallengeMode  : false
@@ -128,6 +129,7 @@ Box5ColorB     : 0x8E5A24FF # Status Bar Color B (shadow)
 CoinColor      : 0 # 0 gold, 1 red, 2 blue, 3 purple, 4 silver
 RandomCoinColor: true # if true: overrules CoinColor
 RomanNumerals  : false
+RandomText     : false
 
 # "*Setting" values explanation:
 # DEFAULT_PALETTE = 0

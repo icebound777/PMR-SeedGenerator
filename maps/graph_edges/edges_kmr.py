@@ -50,8 +50,8 @@ edges_kmr  = [
     
     {"from": {"map": "KMR_05", "id": 1      },         "to": {"map": "KMR_05", "id": "ItemA"},         "reqs": []}, #* Behind the Village Exit Right -> ItemA (StarPiece)
     {"from": {"map": "KMR_05", "id": "ItemA"},         "to": {"map": "KMR_05", "id": 1      },         "reqs": []}, #* ItemA (StarPiece) -> Behind the Village Exit Right
-    {"from": {"map": "KMR_05", "id": 1      },         "to": {"map": "KMR_05", "id": "ItemB"},         "reqs": [can_shake_trees]}, #* Behind the Village Exit Right -> ItemB (Coin)
-    {"from": {"map": "KMR_05", "id": "ItemB"},         "to": {"map": "KMR_05", "id": 1      },         "reqs": []}, #* ItemB (Coin) -> Behind the Village Exit Right
+    {"from": {"map": "KMR_05", "id": 1      },         "to": {"map": "KMR_05", "id": "Tree1_Drop1A"},  "reqs": [can_shake_trees]}, #* Behind the Village Exit Right -> Tree1_Drop1A (Coin)
+    {"from": {"map": "KMR_05", "id": "Tree1_Drop1A"},  "to": {"map": "KMR_05", "id": 1      },         "reqs": []}, #* Tree1_Drop1A (Coin) -> Behind the Village Exit Right
 
     # KMR_03 Bottom of the Cliff
     {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_04", "id": 0}, "reqs": []}, # Bottom of the Cliff Exit Left -> Jr. Troopa's Playground Exit Right
@@ -62,8 +62,8 @@ edges_kmr  = [
     
     {"from": {"map": "KMR_03", "id": 0},               "to": {"map": "KMR_03", "id": "YBlockA"},       "reqs": [require(hammer=0)]}, #* Bottom of the Cliff Exit Left -> YBlockA (Coin)
     {"from": {"map": "KMR_03", "id": "YBlockA"},       "to": {"map": "KMR_03", "id": 0},               "reqs": []}, #* YBlockA (Coin) -> Bottom of the Cliff Exit Left
-    {"from": {"map": "KMR_03", "id": 0},               "to": {"map": "KMR_03", "id": "ItemF"},         "reqs": [can_shake_trees]}, #* Bottom of the Cliff Exit Left -> ItemF (Mushroom)
-    {"from": {"map": "KMR_03", "id": "ItemF"},         "to": {"map": "KMR_03", "id": 0},               "reqs": []}, #* ItemF (Mushroom) -> Bottom of the Cliff Exit Left
+    {"from": {"map": "KMR_03", "id": 0},               "to": {"map": "KMR_03", "id": "Tree1_Drop1A"},  "reqs": [can_shake_trees]}, #* Bottom of the Cliff Exit Left -> Tree1_Drop1A (Mushroom)
+    {"from": {"map": "KMR_03", "id": "Tree1_Drop1A"},  "to": {"map": "KMR_03", "id": 0},               "reqs": []}, #* Tree1_Drop1A (Mushroom) -> Bottom of the Cliff Exit Left
     {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "HiddenPanel"},   "reqs": [can_flip_panels]}, #* Bottom of the Cliff Exit Right -> HiddenPanel (StarPiece)
     {"from": {"map": "KMR_03", "id": "HiddenPanel"},   "to": {"map": "KMR_03", "id": 1},               "reqs": []}, #* HiddenPanel (StarPiece) -> Bottom of the Cliff Exit Right
     {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "HiddenYBlockA"}, "reqs": [require(hammer=1), require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Bottom of the Cliff Exit Right -> HiddenYBlockA (RepelGel)
@@ -82,8 +82,8 @@ edges_kmr  = [
     # KMR_04 Jr. Troopa's Playground
     {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_03", "id": 0}, "reqs": []}, # Jr. Troopa's Playground Exit Right -> Bottom of the Cliff Exit Left
 
-    {"from": {"map": "KMR_04", "id": 0},       "to": {"map": "KMR_04", "id": "ItemA"}, "reqs": [can_shake_trees]}, #* Jr. Troopa's Playground Exit Right -> ItemA (Dolly)
-    {"from": {"map": "KMR_04", "id": "ItemA"}, "to": {"map": "KMR_04", "id": 0},       "reqs": []}, #* ItemA (Dolly) -> Jr. Troopa's Playground Exit Right
+    {"from": {"map": "KMR_04", "id": 0},              "to": {"map": "KMR_04", "id": "Tree3_Drop1A"}, "reqs": [can_shake_trees]}, #* Jr. Troopa's Playground Exit Right -> Tree3_Drop1A (Dolly)
+    {"from": {"map": "KMR_04", "id": "Tree3_Drop1A"}, "to": {"map": "KMR_04", "id": 0},              "reqs": []}, #* Tree3_Drop1A (Dolly) -> Jr. Troopa's Playground Exit Right
 
     # KMR_09 Goomba Road 1
     {"from": {"map": "KMR_09", "id": 0}, "to": {"map": "KMR_02", "id": 0}, "reqs": []}, # Goomba Road 1 Exit Left -> Goomba Village Exit Right

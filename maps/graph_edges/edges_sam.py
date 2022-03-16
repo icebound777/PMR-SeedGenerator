@@ -87,10 +87,10 @@ edges_sam = [
     
     {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Shiver Snowfield Exit West -> HiddenPanel (StarPiece)
     {"from": {"map": "SAM_04", "id": "HiddenPanel"}, "to": {"map": "SAM_04", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Shiver Snowfield Exit West
-    {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "ItemA"},       "reqs": [require(hammer=0)]}, #* Shiver Snowfield Exit West -> ItemA (Letter05)
-    {"from": {"map": "SAM_04", "id": "ItemA"},       "to": {"map": "SAM_04", "id": 0},             "reqs": []}, #* ItemA (Letter05) -> Shiver Snowfield Exit West
-    {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "ItemB"},       "reqs": []}, #* Shiver Snowfield Exit West -> ItemB (RepelGel)
-    {"from": {"map": "SAM_04", "id": "ItemB"},       "to": {"map": "SAM_04", "id": 0},             "reqs": []}, #* ItemB (RepelGel) -> Shiver Snowfield Exit West
+    {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "Tree2_Drop1"}, "reqs": [require(hammer=0)]}, #* Shiver Snowfield Exit West -> Tree2_Drop1 (Letter05)
+    {"from": {"map": "SAM_04", "id": "Tree2_Drop1"}, "to": {"map": "SAM_04", "id": 0},             "reqs": []}, #* Tree2_Drop1 (Letter05) -> Shiver Snowfield Exit West
+    {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "ItemA"},       "reqs": []}, #* Shiver Snowfield Exit West -> ItemA (RepelGel)
+    {"from": {"map": "SAM_04", "id": "ItemA"},       "to": {"map": "SAM_04", "id": 0},             "reqs": []}, #* ItemA (RepelGel) -> Shiver Snowfield Exit West
 
     # SAM_05 Path to Starborn Valley
     {"from": {"map": "SAM_05", "id": 0}, "to": {"map": "SAM_04", "id": 1}, "reqs": []}, # Path to Starborn Valley Exit West -> Shiver Snowfield Exit East

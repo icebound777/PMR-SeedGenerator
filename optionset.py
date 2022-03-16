@@ -50,6 +50,7 @@ class OptionSet:
         self.allow_physics_glitches = get_option_keyvalue_dict("AllowPhysicsGlitches")
         self.starway_spirits_needed = get_option_keyvalue_dict("StarWaySpiritsNeeded")
         self.peachcastle_return_pipe = get_option_keyvalue_dict("PeachCastleReturnPipe")
+        self.foliage_item_hints = get_option_keyvalue_dict("FoliageItemHints")
 
         # Starting setup
         self.starting_map = get_option_keyvalue_dict("StartingMap") # mac_00 Entry 4
@@ -121,6 +122,7 @@ class OptionSet:
         self.color_a = get_option_keyvalue_dict("Box5ColorA")
         self.color_b = get_option_keyvalue_dict("Box5ColorB")
         self.roman_numerals = get_option_keyvalue_dict("RomanNumerals")
+        self.random_text = get_option_keyvalue_dict("RandomText")
         self.coin_color = get_option_keyvalue_dict("CoinColor")
         self.random_coin_color = False
 
@@ -243,6 +245,8 @@ class OptionSet:
             self.starway_spirits_needed = options_dict.get("StarWaySpiritsNeeded")
         if "PeachCastleReturnPipe" in options_dict:
             self.peachcastle_return_pipe = options_dict.get("PeachCastleReturnPipe")
+        if "FoliageItemHints" in options_dict:
+            self.foliage_item_hints = options_dict.get("FoliageItemHints")
 
         # Starting setup
         if "StartingMap" in options_dict:
@@ -369,6 +373,8 @@ class OptionSet:
         # Cosmetics / Palettes
         if "RomanNumerals" in options_dict:
             self.roman_numerals = options_dict.get("RomanNumerals")
+        if "RandomText" in options_dict:
+            self.random_text = get_option_keyvalue_dict("RandomText")
         if "CoinColor" in options_dict:
             self.coin_color = options_dict.get("CoinColor")
         if "RandomCoinColor" in options_dict:
@@ -514,6 +520,8 @@ def validate_options(options_dict):
                 and 0 <= options_dict.get("StarWaySpiritsNeeded").get("value") <= 7)
     if "PeachCastleReturnPipe" in options_dict:
         assert isinstance(options_dict.get("PeachCastleReturnPipe").get("value"), bool)
+    if "FoliageItemHints" in options_dict:
+        assert isinstance(options_dict.get("FoliageItemHints").get("value"), bool)
 
     # Starting setup
     if "StartingMap" in options_dict:
@@ -660,6 +668,8 @@ def validate_options(options_dict):
     # Cosmetics / Palettes
     if "RomanNumerals" in options_dict:
         assert isinstance(options_dict.get("RomanNumerals").get("value"), bool)
+    if "RandomText" in options_dict:
+        assert isinstance(options_dict.get("RandomText").get("value"), bool)
     if "CoinColor" in options_dict:
         assert (isinstance(options_dict.get("CoinColor").get("value"), int)
             and 0 <= options_dict.get("CoinColor").get("value") <= 4

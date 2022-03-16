@@ -75,6 +75,9 @@ def get_shuffled_chapter_difficulty(
             value = actor_attribute.value
         else:
             native_chapter = all_enemy_stats[actor_name]["NativeChapter"]
+            if native_chapter == -1:
+                # Special case for Dojo / Kent
+                native_chapter = 1
             value = int(all_enemy_stats[actor_name][actor_stat_name][chapter_dict.get(native_chapter) - 1])
             if all_enemy_stats[actor_name]["Promoted"]:
                 value = int(all_enemy_stats[actor_name][actor_stat_name][chapter_dict.get(native_chapter) + 1])
