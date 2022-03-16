@@ -164,7 +164,7 @@ edges_omo = [
     {"from": {"map": "OMO_08", "id": 0},               "to": {"map": "OMO_08", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* GRN Station Exit East -> HiddenYBlockA (FireFlower)
     {"from": {"map": "OMO_08", "id": "HiddenYBlockA"}, "to": {"map": "OMO_08", "id": 0},               "reqs": []}, #* HiddenYBlockA (FireFlower) -> GRN Station Exit East
 
-    {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_08", "id": 0}, "reqs": [require(flag="RF_CanSolveColorPuzzle")], "pseudoitems": ["MF_Ch4_SolvedColorPuzzle"]}, #+ Solve Color Puzzle
+    {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_08", "id": 0}, "reqs": [require(flag="RF_CanSolveColorPuzzle"),require(hammer=0)], "pseudoitems": ["MF_Ch4_SolvedColorPuzzle"]}, #+ Solve Color Puzzle
 
     # OMO_09 GRN Treadmills/Slot Machine
     {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_08", "id": 0}, "reqs": []}, # GRN Treadmills/Slot Machine Exit West -> GRN Station Exit East
