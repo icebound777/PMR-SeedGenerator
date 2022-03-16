@@ -87,7 +87,7 @@ edges_sam = [
     
     {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Shiver Snowfield Exit West -> HiddenPanel (StarPiece)
     {"from": {"map": "SAM_04", "id": "HiddenPanel"}, "to": {"map": "SAM_04", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Shiver Snowfield Exit West
-    {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "ItemA"},       "reqs": [can_shake_trees]}, #* Shiver Snowfield Exit West -> ItemA (Letter05)
+    {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "ItemA"},       "reqs": [require(hammer=0)]}, #* Shiver Snowfield Exit West -> ItemA (Letter05)
     {"from": {"map": "SAM_04", "id": "ItemA"},       "to": {"map": "SAM_04", "id": 0},             "reqs": []}, #* ItemA (Letter05) -> Shiver Snowfield Exit West
     {"from": {"map": "SAM_04", "id": 0},             "to": {"map": "SAM_04", "id": "ItemB"},       "reqs": []}, #* Shiver Snowfield Exit West -> ItemB (RepelGel)
     {"from": {"map": "SAM_04", "id": "ItemB"},       "to": {"map": "SAM_04", "id": 0},             "reqs": []}, #* ItemB (RepelGel) -> Shiver Snowfield Exit West
