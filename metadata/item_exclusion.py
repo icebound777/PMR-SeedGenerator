@@ -28,6 +28,13 @@ exclude_due_to_settings = {
     "start_with_bow": [
         "BooPortrait"
     ],
+    "do_randomize_dojo": [
+        "FirstDegreeCard",
+        "SecondDegreeCard",
+        "ThirdDegreeCard",
+        "FourthDegreeCard",
+        "Diploma",
+    ],
 }
 
 exclude_from_taycet_placement = [

@@ -10,6 +10,8 @@ from worldgraph import get_node_identifier
 
 def get_itemhints(
     placed_items:list,
+    starting_partners:list,
+    partners_in_default_locations:bool,
     do_randomize_shops:bool,
     do_randomize_panels:bool,
     do_randomize_koopakoot:bool,
@@ -89,11 +91,22 @@ def get_itemhints(
         "DamageDodgeB",
         "AttackFXC", # :D
     ]
+    
+    all_partners = [
+        "Goombario",
+        "Kooper",
+        "Bombette",
+        "Parakarry",
+        "Bow",
+        "Watt",
+        "Sushie",
+        "Lakilester",
+    ]
 
     # The hints table is build by pairing an item id with a word describing
     # a map and a item source type (like 'given by npc' or 'in block')
     for item_node in placed_items:
-        if item_node.current_item.item_type in ["KEYITEM","BADGE","STARPIECE"]:
+        if item_node.current_item.item_type in ["KEYITEM","BADGE","STARPIECE","PARTNER"]:
             # Skip current item hint if not randomized
             if (    item_node.key_name_item.startswith("Shop")
                 and not do_randomize_shops
@@ -115,8 +128,14 @@ def get_itemhints(
                 and not keyitems_outside_dungeon
             ):
                 continue
+            # Skip partner if default location or starting partner
+            if (    item_node.current_item.item_name in all_partners
+                and (   item_node.current_item.item_name in starting_partners
+                     or partners_in_default_locations)
+            ):
+                continue
 
-            # Skip current item unless it is interesting in any way
+            # Skip current non-partner item unless it is interesting in any way
             if (    item_node.current_item.item_type in ["KEYITEM","BADGE"]
                 and item_node.current_item.item_name not in interesting_keyitems
                 and item_node.current_item.item_name not in interesting_badges

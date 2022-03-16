@@ -15,6 +15,7 @@ from worldgraph \
            get_area_nodes,\
            get_area_edges
 from rando_modules.random_shop_prices import get_shop_price
+
 from rando_modules.simulate        \
     import add_to_inventory,       \
            clear_inventory,        \
@@ -22,6 +23,7 @@ from rando_modules.simulate        \
            require,                \
            has_parakarry_3_letters,\
            get_starpiece_count
+
 from rando_modules.item_scarcity import get_scarcitied_itempool
 
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
@@ -784,6 +786,10 @@ def _generate_item_pools(
                         + len(pool_misc_progression_items) \
                         + len(pool_other_items)
 
+    if do_randomize_dojo:
+        for item_name in exclude_due_to_settings.get("do_randomize_dojo"):
+            item = Item.get(Item.item_name == item_name)
+            items_to_remove_from_pools.append(item)
     if startwith_bluehouse_open:
         for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
             item = Item.get(Item.item_name == item_name)
@@ -1137,8 +1143,29 @@ def _algo_forward_fill(
 
     # Place all remaining items into still empty item nodes
     print("Placing Miscellaneous Items ...")
+    random.shuffle(pool_other_items)
     for item_node in all_item_nodes:
         item_node_id = get_node_identifier(item_node)
+
+        if (item_node_id == "KMR_06/ItemA"
+        and do_randomize_coins
+        and item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]
+        ):
+            # Do not put coin on the Goomba Road sign due to glitchy graphics
+            item_index = -1
+            for i_item, item in enumerate(pool_other_items):
+                if item.item_name != "Coin":
+                    item_index = i_item
+            if item_index == -1:
+                # No non-coin item in item-pool: Just place a Mushroom
+                pool_other_items.pop()
+                random_item = Item.get(Item.item_name == "Mushroom")
+            else:
+                random_item = pool_other_items.pop(item_index)
+            item_node.current_item = random_item
+            filled_item_nodes.append(item_node)
+            logging.debug(f"{item_node_id}: {random_item.item_name}")
+            continue
 
         if item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]:
             # Place random remaining item here

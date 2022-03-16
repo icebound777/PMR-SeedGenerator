@@ -341,6 +341,7 @@ def get_random_formations(
             if battle not in special_random_formations:
                 # Select an enemy at random for each occupied file
                 current_enemylist = []
+                placed_healer = False
 
                 for i in range(1, rnd_number_of_enemies + 1):
                     force_matching_firstfile = True
@@ -363,6 +364,17 @@ def get_random_formations(
                                     continue
                                 break
                             else:
+                                if (("WMagikoopa" in new_enemy
+                                  or "MediGuy" in new_enemy)
+                                and placed_healer
+                                ):
+                                    # We do not want more than one healing
+                                    # enemy in a formation
+                                    continue
+                                if ("WMagikoopa" in new_enemy
+                                 or "MediGuy" in new_enemy
+                                ):
+                                    placed_healer = True
                                 current_enemylist.append(new_enemy)
                                 break
                 

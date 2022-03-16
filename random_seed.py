@@ -32,7 +32,7 @@ class RandomSeed:
         self.music_list = []
 
         if seed_value is None:
-            self.seed_value =  random.randint(0, 0xFFFFFFFF)
+            self.seed_value = random.randint(0, 0xFFFFFFFF)
         else:
             self.seed_value = seed_value
 
@@ -111,6 +111,8 @@ class RandomSeed:
         # Build item hint db
         self.itemhints = get_itemhints(
             self.placed_items,
+            self.starting_partners,
+            self.rando_settings.partners_in_default_locations,
             self.rando_settings.include_shops["value"],
             self.rando_settings.include_panels["value"],
             self.rando_settings.include_favors,
@@ -136,6 +138,7 @@ class RandomSeed:
         # Music settings
         if self.rando_settings.turn_off_music:
             self.music_list = get_turned_off_music()
+
 
     def init_starting_partners(self,rando_settings):
         # Choose random starting partners if necessary

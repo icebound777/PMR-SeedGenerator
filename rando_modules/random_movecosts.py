@@ -32,6 +32,36 @@ def _get_shuffled_costs(movetype, costtype):
     return shuffled_costs
 
 
+def _get_rnd_bp_costs() -> list:
+    """
+    Returns a list of tuples where the first value holds the dbkey for a badge
+    BP cost and the second value holds its randomized BP cost.
+    """
+    random_costs = []
+
+    for move in Move \
+                .select() \
+                .where(Move.move_type == "BADGE") \
+                .where(Move.cost_type == "BP"):
+        default_cost = move.cost_value
+
+        # 10% Chance to pick randomly between 1 and 8, else randomly choose
+        # from -2 to +2, clamping to 1-8
+        if random.randint(1, 10) == 10:
+            new_cost = random.randint(1, 8)
+        else:
+            new_cost = default_cost + random.choice([-2, -1, 0, 1, 2])
+            if new_cost < 1:
+                new_cost = 1
+            if new_cost > 8:
+                new_cost = 8
+
+        random_costs.append((move.get_key(), new_cost))
+        print(f"BP: {move.move_name}: {new_cost}")
+
+    return random_costs
+
+
 def get_randomized_moves(
     shuffle_badges_bp:bool,
     shuffle_badges_fp:bool,
@@ -45,7 +75,7 @@ def get_randomized_moves(
     move_costs = []
 
     if shuffle_badges_bp:
-        move_costs.extend(_get_shuffled_costs("BADGE", "BP"))
+        move_costs.extend(_get_rnd_bp_costs())
 
     if shuffle_badges_fp:
         move_costs.extend(_get_shuffled_costs("BADGE", "FP"))
