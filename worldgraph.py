@@ -47,12 +47,14 @@ def print_node_info(node):
 
 def get_node_identifier(node):
     """Returns a string representation of uniquely identifying data within a node"""
-    if   (    node.entrance_id is not None
-          and node.key_name_item is None):
-        node_data_id = str(node.entrance_id)
-    elif (    node.entrance_id is None
+    if (    node.entrance_id is None
           and node.key_name_item is not None):
         node_data_id = node.key_name_item
+
+    elif   (    node.entrance_id is not None
+          and node.key_name_item is None):
+        node_data_id = str(node.entrance_id)
+
     else:
         raise ValueError('Node argument has invalid entrance_id/item_id state',
                          str(node.entrance_id),
