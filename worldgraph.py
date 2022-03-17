@@ -47,6 +47,9 @@ def print_node_info(node):
 
 def get_node_identifier(node):
     """Returns a string representation of uniquely identifying data within a node"""
+    if(node.identifier):
+        return node.identifier
+
     if (    node.entrance_id is None
           and node.key_name_item is not None):
         node_data_id = node.key_name_item
@@ -60,7 +63,9 @@ def get_node_identifier(node):
                          str(node.entrance_id),
                          node.key_name_item,
                          node)
-    return node.map_area.name + "/" + node_data_id
+    node.identifier = f'{node.map_area.name}/{node_data_id}'
+
+    return node.identifier
 
 
 def get_all_nodes():

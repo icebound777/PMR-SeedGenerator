@@ -38,6 +38,8 @@ class Node(Model):
     item_index = IntegerField(null = True)
     price_index = IntegerField(null = True)
 
+    identifier = TextField(null = True)
+
     def __str__(self):
         """Return string representation of current node"""
         entrance = ("[" + format(self.entrance_id) + "] ") if self.entrance_id else ''
