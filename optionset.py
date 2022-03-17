@@ -374,7 +374,7 @@ class OptionSet:
         if "RomanNumerals" in options_dict:
             self.roman_numerals = options_dict.get("RomanNumerals")
         if "RandomText" in options_dict:
-            self.random_text = get_option_keyvalue_dict("RandomText")
+            self.random_text = options_dict.get("RandomText")
         if "CoinColor" in options_dict:
             self.coin_color = options_dict.get("CoinColor")
         if "RandomCoinColor" in options_dict:
