@@ -129,7 +129,6 @@ class OptionSet:
         self.palette_settings = PaletteOptionSet()
 
         # Audio
-        self.turn_off_music = False
 
 
     def get_startitem_list(self) -> list:
@@ -426,8 +425,6 @@ class OptionSet:
             self.palette_settings.npc_setting = options_dict.get("NPCSetting").get("value")
 
         # Audio
-        if "TurnOffMusic" in options_dict:
-            self.turn_off_music = options_dict.get("TurnOffMusic").get("value")
 
 
 def validate_options(options_dict):
@@ -727,8 +724,6 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("NPCSetting").get("value"), int)
 
     # Audio
-    if "TurnOffMusic" in options_dict:
-        assert isinstance(options_dict.get("TurnOffMusic").get("value"), bool)
 
 
 def get_option_keyvalue_dict(option_str):

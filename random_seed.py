@@ -136,8 +136,6 @@ class RandomSeed:
         )
 
         # Music settings
-        if self.rando_settings.turn_off_music:
-            self.music_list = get_turned_off_music()
 
 
     def init_starting_partners(self,rando_settings):
