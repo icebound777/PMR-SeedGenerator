@@ -118,7 +118,7 @@ edges_trd = [
     {"from": {"map": "TRD_06", "id": 1}, "to": {"map": "TRD_06", "id": 0}, "reqs": [require(partner="Bombette")]}, #? Jail Exit Left -> Jail Fall From Ceiling
     {"from": {"map": "TRD_06", "id": 0}, "to": {"map": "TRD_06", "id": 1}, "reqs": [require(partner="Bombette")]}, #? Jail Fall From Ceiling -> Jail Exit Left
     
-    {"from": {"map": "TRD_06", "id": 0},         "to": {"map": "TRD_06", "id": "Partner"}, "reqs": [require(flag="RF_CanGetBombette")]}, #* Jail Fall From Ceiling -> Partner (Bombette)
+    {"from": {"map": "TRD_06", "id": 0},         "to": {"map": "TRD_06", "id": "Partner"}, "reqs": []}, #* Jail Fall From Ceiling -> Partner (Bombette)
     {"from": {"map": "TRD_06", "id": "Partner"}, "to": {"map": "TRD_06", "id": 0},         "reqs": []}, #* Partner (Bombette) -> Jail Fall From Ceiling
 
     # TRD_07 Dungeon Trap

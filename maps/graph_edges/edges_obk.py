@@ -128,8 +128,8 @@ edges_obk = [
     {"from": {"map": "OBK_09", "id": 0}, "to": {"map": "OBK_09", "id": 1}, "reqs": []}, #? Lady Bow's Room Door South West -> Lady Bow's Room Door South East
     {"from": {"map": "OBK_09", "id": 1}, "to": {"map": "OBK_09", "id": 0}, "reqs": []}, #? Lady Bow's Room Door South East -> Lady Bow's Room Door South West
 
-    {"from": {"map": "OBK_09", "id": 0},         "to": {"map": "OBK_09", "id": "Partner"}, "reqs": [require(flag="RF_CanGetBow")]}, #* Lady Bow's Room Door South West -> Partner (Bow)
+    {"from": {"map": "OBK_09", "id": 0},         "to": {"map": "OBK_09", "id": "Partner"}, "reqs": []}, #* Lady Bow's Room Door South West -> Partner (Bow)
     {"from": {"map": "OBK_09", "id": "Partner"}, "to": {"map": "OBK_09", "id": 0},         "reqs": []}, #* Partner (Bow) -> Lady Bow's Room Door South West
 
-    {"from": {"map": "OBK_09", "id": 0},         "to": {"map": "OBK_09", "id": 0}, "reqs": [require(flag="RF_CanGetBow")], "pseudoitems": ["RF_OpenedGustyGulch"]}, #+ Lady Bow's Room Door South West
+    {"from": {"map": "OBK_09", "id": 0},         "to": {"map": "OBK_09", "id": 0}, "reqs": [], "pseudoitems": ["RF_OpenedGustyGulch"]}, #+ Lady Bow's Room Door South West
 ]

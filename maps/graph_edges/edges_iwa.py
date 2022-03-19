@@ -110,8 +110,8 @@ edges_iwa = [
     {"from": {"map": "IWA_10", "id": "Bush3_Drop1"}, "to": {"map": "IWA_10", "id": 1},             "reqs": []}, #* Bush3_Drop1 (Coin) Left Bush -> Train Station Exit Top Right
     {"from": {"map": "IWA_10", "id": 1},             "to": {"map": "IWA_10", "id": "Bush4_Drop1"}, "reqs": []}, #* Train Station Exit Top Right -> Bush4_Drop1 (Egg2) Top Bush
     {"from": {"map": "IWA_10", "id": "Bush4_Drop1"}, "to": {"map": "IWA_10", "id": 1},             "reqs": []}, #* Bush4_Drop1 (Egg2) Top Bush -> Train Station Exit Top Right
-    {"from": {"map": "IWA_10", "id": 1},         "to": {"map": "IWA_10", "id": "Partner"}, "reqs": [has_parakarry_3_letters,require(flag="RF_CanGetParakarry")]}, #* Train Station Exit Top Right -> Partner (Parakarry)
-    {"from": {"map": "IWA_10", "id": "Partner"}, "to": {"map": "IWA_10", "id": 1},         "reqs": []}, #* Partner (Parakarry) -> Train Station Exit Top Right
+    {"from": {"map": "IWA_10", "id": 1},             "to": {"map": "IWA_10", "id": "Partner"},     "reqs": [has_parakarry_3_letters]}, #* Train Station Exit Top Right -> Partner (Parakarry)
+    {"from": {"map": "IWA_10", "id": "Partner"},     "to": {"map": "IWA_10", "id": 1},             "reqs": []}, #* Partner (Parakarry) -> Train Station Exit Top Right
 
     # IWA_11 Train Ride Scene
     {"from": {"map": "IWA_11", "id": 0}, "to": {"map": "MAC_03", "id": 1}, "reqs": []}, # Train Ride Scene Exit Left -> Station District Train

@@ -214,7 +214,7 @@ edges_flo = [
     {"from": {"map": "FLO_13", "id": "ItemA"},   "to": {"map": "FLO_13", "id": 0},         "reqs": []}, #* ItemA (MegaSmash) -> (NW) Lakilester Exit Right
     {"from": {"map": "FLO_13", "id": 0},         "to": {"map": "FLO_13", "id": "ItemB"},   "reqs": []}, #* (NW) Lakilester Exit Right -> ItemB (ShootingStar)
     {"from": {"map": "FLO_13", "id": "ItemB"},   "to": {"map": "FLO_13", "id": 0},         "reqs": []}, #* ItemB (ShootingStar) -> (NW) Lakilester Exit Right
-    {"from": {"map": "FLO_13", "id": 0},         "to": {"map": "FLO_13", "id": "Partner"}, "reqs": [require(flag="RF_Ch6_SpokeWithTheSun"),require(flag="RF_CanGetLakilester")]}, #* (NW) Lakilester Exit Right -> Partner (Lakilester)
+    {"from": {"map": "FLO_13", "id": 0},         "to": {"map": "FLO_13", "id": "Partner"}, "reqs": [require(flag="RF_Ch6_SpokeWithTheSun")]}, #* (NW) Lakilester Exit Right -> Partner (Lakilester)
     {"from": {"map": "FLO_13", "id": "Partner"}, "to": {"map": "FLO_13", "id": 0},         "reqs": []}, #* Partner (Lakilester) -> (NW) Lakilester Exit Right
 
     # FLO_15 (NW) Sun Tower

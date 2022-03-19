@@ -132,7 +132,7 @@ edges_jan = [
     {"from": {"map": "JAN_04", "id": "ItemA"},        "to": {"map": "JAN_04", "id": 0},              "reqs": []}, #* ItemA (StarPiece) -> Sushi Tree Exit Left
     {"from": {"map": "JAN_04", "id": 0},              "to": {"map": "JAN_04", "id": "Tree2_Drop1A"}, "reqs": [require(partner="Sushie"),can_shake_trees]}, #* Sushi Tree Exit Left -> Tree2_Drop1A (Letter04)
     {"from": {"map": "JAN_04", "id": "Tree2_Drop1A"}, "to": {"map": "JAN_04", "id": 0},              "reqs": []}, #* Tree2_Drop1A (Letter04) -> Sushi Tree Exit Left
-    {"from": {"map": "JAN_04", "id": 0},              "to": {"map": "JAN_04", "id": "Partner"},      "reqs": [can_shake_trees,require(flag="RF_CanGetSushie")]}, #* Sushi Tree Exit Left -> Partner (Sushie)
+    {"from": {"map": "JAN_04", "id": 0},              "to": {"map": "JAN_04", "id": "Partner"},      "reqs": [can_shake_trees]}, #* Sushi Tree Exit Left -> Partner (Sushie)
     {"from": {"map": "JAN_04", "id": "Partner"},      "to": {"map": "JAN_04", "id": 0},              "reqs": []}, #* Partner (Sushie) -> Sushi Tree Exit Left
 
     # JAN_05 SE Jungle (Quake Hammer)
