@@ -22,7 +22,8 @@ from rando_modules.simulate        \
            has_item,               \
            require,                \
            has_parakarry_3_letters,\
-           get_starpiece_count
+           get_starpiece_count, \
+           get_item_history
 
 from rando_modules.item_scarcity import get_scarcitied_itempool
 
@@ -36,12 +37,16 @@ from metadata.itemlocation_special     \
            limited_by_item_areas,      \
            bush_tree_coin_locations
 from metadata.progression_items                                 \
-    import progression_miscitems as progression_miscitems_names
+    import progression_miscitems as progression_miscitems_names, \
+           progression_items
 from metadata.item_exclusion \
     import exclude_due_to_settings, exclude_from_taycet_placement
 from metadata.item_general import taycet_items
 from metadata.partners_meta import all_partners as all_partners_imp
 
+from metadata.verbose_area_names import verbose_area_names
+from metadata.verbose_item_names import verbose_item_names
+from metadata.verbose_item_locations import verbose_item_locations
 
 def get_startingnode_id_from_startingmap_id(starting_map_id):
     """Returns the starting node id (e.g. "MAC_00/4") for a given map id."""
@@ -1007,12 +1012,8 @@ def _algo_forward_fill(
     hidden_block_mode:int,
     keyitems_outside_dungeon:bool,
     starting_items:list,
-    world_graph = None
+    world_graph
 ):
-    # Prepare world graph if not provided
-    if world_graph is None:
-        print("Generating World Graph ...")
-        world_graph = generate_world_graph(None, None)
 
     # Declare and init additional data structures
     ## Data structures for graph traversal
@@ -1193,6 +1194,99 @@ def _algo_forward_fill(
     # "Return" list of modified item nodes
     item_placement.extend(filled_item_nodes)
     
+def get_item_spheres(
+    item_placement,
+    starting_map_id,
+    startwith_bluehouse_open,
+    startwith_flowergate_open,
+    startwith_toybox_open,
+    startwith_whale_open,
+    starting_partners,
+    partners_always_usable,
+    hidden_block_mode:int,
+    starting_items:list,
+    world_graph
+):
+
+    # Declare and init additional data structures
+    ## Data structures for graph traversal
+    reachable_node_ids = []
+    reachable_item_nodes = {}
+    non_traversable_edges = []
+    ## Data structures for item pool
+    pool_other_items = []
+    pool_misc_progression_items = []
+    filled_item_nodes = []
+
+    print("Writing Item Spheres")
+
+    _init_mario_inventory(
+        starting_partners,
+        starting_items,
+        partners_always_usable,
+        hidden_block_mode,
+        startwith_bluehouse_open,
+        startwith_flowergate_open,
+        startwith_toybox_open,
+        startwith_whale_open
+    )
+
+    # Set node to start graph traversal from
+    starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
+
+    # Find initially reachable nodes within the world graph
+    for edge in world_graph.get(starting_node_id).get("edge_list"):
+        non_traversable_edges.append(edge)
+    reachable_node_ids.append(starting_node_id)
+
+    item_spheres_text = ""
+    item_placement_map = {}
+    mario_item_history = get_item_history()
+
+    for n in item_placement:
+        item_placement_map[get_node_identifier(n)] = n
+    already_logged_items = set()
+    item_spheres_text += 'Sphere -1:\n'
+    for item in mario_item_history:
+        if item not in already_logged_items:
+            item_spheres_text += f'    - {item}\n'
+            already_logged_items.add(item)
+    sphere = 0
+    while True:
+        pool_misc_progression_items, \
+        pool_other_items, \
+        reachable_node_ids, \
+        reachable_item_nodes, \
+        non_traversable_edges, \
+        filled_item_nodes = \
+        _find_new_nodes_and_edges(pool_misc_progression_items,
+                                  pool_other_items,
+                                  world_graph,
+                                  reachable_node_ids,
+                                  reachable_item_nodes,
+                                  non_traversable_edges,
+                                  filled_item_nodes)
+
+        if not reachable_item_nodes:
+            break
+
+        item_spheres_text += '\n'
+        item_spheres_text += f'Sphere {sphere}:\n'        
+
+        while reachable_item_nodes:
+            node = reachable_item_nodes.pop(next(iter(reachable_item_nodes)))
+            item = item_placement_map[get_node_identifier(node)].current_item
+            node_long_name = f'({verbose_area_names[node.map_area.name[:3]]}) {node.map_area.verbose_name} - {verbose_item_locations[node.map_area.name][node.key_name_item]}'
+
+            item_suffix = ""
+            if item.item_name in progression_items.values() or item.item_name in progression_miscitems_names:
+                item_suffix = "*"
+            item_spheres_text += f'    ({node_long_name}): {item.item_name}{item_suffix}\n'
+            add_to_inventory(item.item_name)
+            already_logged_items.add(item.item_name)
+        sphere += 1
+
+    return item_spheres_text
 
 
 def place_items(

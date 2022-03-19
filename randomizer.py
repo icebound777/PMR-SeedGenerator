@@ -420,7 +420,8 @@ def web_randomizer(jsonSettings, world_graph):
         random_seed.placed_items,
         random_chapter_difficulty=random_seed.chapter_changes,
         settings=rando_settings,
-        is_web_spoiler_log=True
+        is_web_spoiler_log=True,
+        spheres_text=random_seed.item_spheres_text
     )
 
     timer_end = time.perf_counter()
@@ -544,7 +545,8 @@ def main_randomizer(args):
             random_seed.placed_items,
             random_chapter_difficulty=random_seed.chapter_changes,
             settings=rando_settings,
-            spoilerlog_file=spoilerlog_file_path
+            spoilerlog_file=spoilerlog_file_path,
+            spheres_text=random_seed.item_spheres_text
         )
 
     timer_end = time.perf_counter()
