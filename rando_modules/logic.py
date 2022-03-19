@@ -1245,12 +1245,12 @@ def get_item_spheres(
 
     for n in item_placement:
         item_placement_map[get_node_identifier(n)] = n
-    already_logged_items = set()
-    item_spheres_text += 'Sphere -1:\n'
+    item_spheres_text += 'Starting Items:\n'
     for item in mario_item_history:
-        if item not in already_logged_items:
-            item_spheres_text += f'    - {item}\n'
-            already_logged_items.add(item)
+        item_suffix = ""
+        if item in progression_items.values() or item in progression_miscitems_names:
+            item_suffix = "*"
+        item_spheres_text += f'    ((Start) Mario\'s inventory): {item}{item_suffix}\n'
     sphere = 0
     while True:
         pool_misc_progression_items, \
@@ -1279,13 +1279,11 @@ def get_item_spheres(
             node_long_name = f'({verbose_area_names[node.map_area.name[:3]]}) {node.map_area.verbose_name} - {verbose_item_locations[node.map_area.name][node.key_name_item]}'
 
             item_suffix = ""
-            if item.item_name in progression_items.values() or item.item_name in progression_miscitems_names:
+            if item.item_name not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
                 item_suffix = "*"
             item_spheres_text += f'    ({node_long_name}): {item.item_name}{item_suffix}\n'
             add_to_inventory(item.item_name)
-            already_logged_items.add(item.item_name)
         sphere += 1
-
     return item_spheres_text
 
 
