@@ -2,7 +2,7 @@ import random
 from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
 from optionset import OptionSet
-from rando_modules.logic import place_items
+from rando_modules.logic import place_items, get_item_spheres
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.random_audio import get_turned_off_music
 from rando_modules.modify_entrances import get_shorter_bowsercastle
@@ -14,6 +14,7 @@ from rando_modules.random_palettes     \
 from rando_modules.random_partners import get_rnd_starting_partners
 from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.random_shop_prices import get_alpha_prices
+from worldgraph import generate as generate_world_graph
 
 class RandomSeed:
     def __init__(self, rando_settings: OptionSet, seed_value = None) -> None:
@@ -41,6 +42,11 @@ class RandomSeed:
 
         print(f"Seed: {self.seed_value}")
         random.seed(self.seed_value)
+
+        # Prepare world graph if not provided
+        if world_graph is None:
+            print("Generating World Graph ...")
+            world_graph = generate_world_graph(None, None)
         
         self.init_starting_partners(self.rando_settings)
 
@@ -137,6 +143,18 @@ class RandomSeed:
 
         # Music settings
 
+        self.item_spheres_text = get_item_spheres(item_placement= self.placed_items,
+                    starting_map_id=self.rando_settings.starting_map["value"],
+                    startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
+                    startwith_flowergate_open=self.rando_settings.flowergate_open["value"],
+                    startwith_toybox_open=self.rando_settings.toybox_open["value"],
+                    startwith_whale_open=self.rando_settings.whale_open["value"],
+                    starting_partners=self.starting_partners,
+                    partners_always_usable=self.rando_settings.partners_always_usable["value"],
+                    hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
+                    starting_items=self.rando_settings.get_startitem_list(),
+                    world_graph=world_graph
+        )
 
     def init_starting_partners(self,rando_settings):
         # Choose random starting partners if necessary
