@@ -20,6 +20,7 @@ class OptionSet:
         self.ohko = get_option_keyvalue_dict("OHKO")
         self.no_save_blocks = get_option_keyvalue_dict("NoSaveBlocks")
         self.no_heart_blocks = get_option_keyvalue_dict("NoHeartBlocks")
+        self.no_healing_items = get_option_keyvalue_dict("NoHealingItems")
 
         # Item related
         self.shuffle_items = get_option_keyvalue_dict("ShuffleItems")
@@ -191,6 +192,8 @@ class OptionSet:
             self.no_save_blocks = options_dict.get("NoSaveBlocks")
         if "NoHeartBlocks" in options_dict:
             self.no_heart_blocks = options_dict.get("NoHeartBlocks")
+        if "NoHealingItems" in options_dict:
+            self.no_healing_items = options_dict.get("NoHealingItems")
 
         # Item related
         if "ShuffleItems" in options_dict:
@@ -462,6 +465,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("NoSaveBlocks").get("value"), bool)
     if "NoHeartBlocks" in options_dict:
         assert isinstance(options_dict.get("NoHeartBlocks").get("value"), bool)
+    if "NoHealingItems" in options_dict:
+        assert isinstance(options_dict.get("NoHealingItems").get("value"), bool)
 
     # Item related
     if "ShuffleItems" in options_dict:

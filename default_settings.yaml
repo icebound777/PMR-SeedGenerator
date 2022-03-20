@@ -25,6 +25,7 @@ QuadrupleDamage: false
 OHKO           : false
 NoSaveBlocks   : false
 NoHeartBlocks  : false
+NoHealingItems : false
 
 # Starting setup
 StartingMap      : 0x00010104 # mac_00, Entry4 / Toad Town Gate District
