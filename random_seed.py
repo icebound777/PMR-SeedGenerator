@@ -88,7 +88,8 @@ class RandomSeed:
 
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(
-            self.rando_settings.shuffle_chapter_difficulty
+            self.rando_settings.shuffle_chapter_difficulty,
+            self.rando_settings.progressive_scaling.get("value")
         )
 
         # Randomize enemy battle formations

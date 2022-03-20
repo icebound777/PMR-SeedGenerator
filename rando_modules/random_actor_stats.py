@@ -6,7 +6,8 @@ from db.actor_attribute import ActorAttribute
 from db.actor_params import ActorParam
 
 def get_shuffled_chapter_difficulty(
-    shuffle_chapter_difficulty:bool
+    shuffle_chapter_difficulty:bool,
+    progressive_scaling:bool
 ):
     # Load and reorganize actor param data into different format
     # format example:
@@ -70,6 +71,7 @@ def get_shuffled_chapter_difficulty(
         if (
                actor_name not in all_enemy_stats
             or actor_stat_name not in all_enemy_stats[actor_name]
+            or (not progressive_scaling and not shuffle_chapter_difficulty)
         ):
             # not supposed to be random, so write defaults
             value = actor_attribute.value
