@@ -140,7 +140,7 @@ edges_mac = [
     {"from": {"map": "MAC_02", "id": 3}, "to": {"map": "MAC_02", "id": 2}, "reqs": []}, #? Southern District Exit Bottom -> Southern District Exit Top
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": 4}, "reqs": []}, #? Southern District Exit Top -> Southern District Open Pipe
     {"from": {"map": "MAC_02", "id": 4}, "to": {"map": "MAC_02", "id": 2}, "reqs": []}, #? Southern District Open Pipe -> Southern District Exit Top
-    {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": 5}, "reqs": [require(flag="GF_MAC02_UnlockedHouse")]}, #? Southern District Exit Top -> Southern District Blue House Pipe
+    {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": 5}, "reqs": [require(item="OddKey",flag="GF_MAC02_UnlockedHouse")], "pseudoitems": ["GF_MAC02_UnlockedHouse"]}, #? Southern District Exit Top -> Southern District Blue House Pipe
     {"from": {"map": "MAC_02", "id": 5}, "to": {"map": "MAC_02", "id": 2}, "reqs": [require(item="OddKey",flag="GF_MAC02_UnlockedHouse")], "pseudoitems": ["GF_MAC02_UnlockedHouse"]}, #? Southern District Blue House Pipe -> Southern District Exit Top
     
     {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftA"},       "reqs": []}, #* Southern District Exit Top -> GiftA (MagicalSeed1)
