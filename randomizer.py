@@ -442,6 +442,7 @@ def main_randomizer(args):
     rando_outputfile = ""
 
     rando_settings = None
+    rando_seed = None
 
     # Get arguments from cmd
     argv = sys.argv[1:]
@@ -475,6 +476,8 @@ def main_randomizer(args):
                     elif arg[arg.rfind(".") + 1:] == "yaml":
                         data = yaml.load(file, Loader=SafeLoader)
                 rando_settings = OptionSet()
+                if "SeedValue" in data:
+                    rando_seed = data.get("SeedValue")
                 populate_keys(data)
                 rando_settings.update_options(data)
 
@@ -517,7 +520,7 @@ def main_randomizer(args):
     #
     init_randomizer(rebuild_database=False)
 
-    random_seed = RandomSeed(rando_settings)
+    random_seed = RandomSeed(rando_settings, rando_seed)
     random_seed.generate()
 
     # Write data to ROM
