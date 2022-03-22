@@ -57,7 +57,7 @@ edges_flo = [
     # FLO_18 (NE) Puff Puff Machine
     {"from": {"map": "FLO_18", "id": 0}, "to": {"map": "FLO_17", "id": 1}, "reqs": []}, # (NE) Puff Puff Machine Exit Left -> (NE) Fallen Logs Exit Right
 
-    {"from": {"map": "FLO_18", "id": 0}, "to": {"map": "FLO_18", "id": 0}, "reqs": [require(hammer=0)], "pseudoitems": ["RF_Ch6_DestroyedPuffPuffMachine"]}, #+ (NE) Puff Puff Machine Exit Left
+    {"from": {"map": "FLO_18", "id": 0}, "to": {"map": "FLO_18", "id": 0}, "reqs": [require(hammer=0, partner="Bombette")], "pseudoitems": ["RF_Ch6_DestroyedPuffPuffMachine"]}, #+ (NE) Puff Puff Machine Exit Left
 
     # FLO_09 (East) Triple Tree Path
     {"from": {"map": "FLO_09", "id": 0}, "to": {"map": "FLO_00", "id": 5}, "reqs": []}, # (East) Triple Tree Path Exit Left -> Center Exit Right
