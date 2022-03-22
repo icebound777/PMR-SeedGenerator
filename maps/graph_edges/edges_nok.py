@@ -193,7 +193,7 @@ edges_nok = [
     {"from": {"map": "NOK_13", "id": "HiddenPanel"}, "to": {"map": "NOK_13", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Pleasant Crossroads Exit Left
     {"from": {"map": "NOK_13", "id": 0},             "to": {"map": "NOK_13", "id": "ItemA"},       "reqs": []}, #* Pleasant Crossroads Exit Left -> ItemA (HoneySyrup)
     {"from": {"map": "NOK_13", "id": "ItemA"},       "to": {"map": "NOK_13", "id": 0},             "reqs": []}, #* ItemA (HoneySyrup) -> Pleasant Crossroads Exit Left
-    {"from": {"map": "NOK_13", "id": 0},             "to": {"map": "NOK_13", "id": "RBlockA"},     "reqs": [require(hammer=0)]}, #* Pleasant Crossroads Exit Left -> RBlockA (AttackFXB)
+    {"from": {"map": "NOK_13", "id": 0},             "to": {"map": "NOK_13", "id": "RBlockA"},     "reqs": [require(hammer=0, boots=1, partner=["Kooper","Parakarry"])]}, #* Pleasant Crossroads Exit Left -> RBlockA (AttackFXB)
     {"from": {"map": "NOK_13", "id": "RBlockA"},     "to": {"map": "NOK_13", "id": 0},             "reqs": []}, #* RBlockA (AttackFXB) -> Pleasant Crossroads Exit Left
 
     # NOK_14 Path to Fortress 1
