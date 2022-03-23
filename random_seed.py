@@ -15,6 +15,7 @@ from rando_modules.random_partners import get_rnd_starting_partners
 from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.random_shop_prices import get_alpha_prices
 from worldgraph import generate as generate_world_graph
+from metadata.starting_maps import starting_maps
 
 class RandomSeed:
     def __init__(self, rando_settings: OptionSet, seed_value = None) -> None:
@@ -49,6 +50,7 @@ class RandomSeed:
             world_graph = generate_world_graph(None, None)
         
         self.init_starting_partners(self.rando_settings)
+        self.init_starting_map(self.rando_settings)
 
         # Item Placement
         for _, _ in place_items(item_placement= self.placed_items,
@@ -167,3 +169,8 @@ class RandomSeed:
             )
         else:
             self.starting_partners = rando_settings.starting_partners
+
+    def init_starting_map(self, rando_settings):
+        #Choose random starting map if necessary
+        if rando_settings.starting_map["value"] == 0xFFFFFFFF:
+            self.rando_settings.starting_map["value"] = random.choice(starting_maps)
