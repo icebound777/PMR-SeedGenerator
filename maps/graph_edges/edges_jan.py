@@ -151,7 +151,7 @@ edges_jan = [
     {"from": {"map": "JAN_05", "id": 2},         "to": {"map": "JAN_05", "id": "RBlockA"}, "reqs": [require(partner="Sushie")]}, #* SE Jungle (Quake Hammer) Exit Right-> RBlockA (PowerQuake)
     {"from": {"map": "JAN_05", "id": "RBlockA"}, "to": {"map": "JAN_05", "id": 2},         "reqs": [require(partner="Sushie")]}, #* RBlockA (PowerQuake) -> SE Jungle (Quake Hammer) Exit Right
 
-    {"from": {"map": "JAN_05", "id": 3}, "to": {"map": "JAN_05", "id": 3}, "reqs": [require(flag="RF_YoshiKidsMissing"),can_shake_trees], "pseudoitems": ["RF_SavedYoshiKid"]}, #+ Save Yoshi Kid
+    {"from": {"map": "JAN_05", "id": 3}, "to": {"map": "JAN_05", "id": 3}, "reqs": [require(flag="RF_YoshiKidsMissing"),can_shake_trees], "pseudoitems": ["RF_SavedYoshiKid_1"]}, #+ Save Yoshi Kid
 
     # JAN_06 NE Jungle (Raven Statue)
     {"from": {"map": "JAN_06", "id": 0}, "to": {"map": "JAN_05", "id": 3}, "reqs": []}, # NE Jungle (Raven Statue) Exit Bottom -> SE Jungle (Quake Hammer) Exit Top
@@ -172,7 +172,7 @@ edges_jan = [
     # JAN_07 Small Jungle Ledge
     {"from": {"map": "JAN_07", "id": 0}, "to": {"map": "JAN_06", "id": 1}, "reqs": []}, # Small Jungle Ledge Exit Left -> NE Jungle (Raven Statue) Exit Right
 
-    {"from": {"map": "JAN_07", "id": 0}, "to": {"map": "JAN_07", "id": 0}, "reqs": [require(flag="RF_YoshiKidsMissing")], "pseudoitems": ["RF_SavedYoshiKid"]}, #+ Save Yoshi Kid
+    {"from": {"map": "JAN_07", "id": 0}, "to": {"map": "JAN_07", "id": 0}, "reqs": [require(flag="RF_YoshiKidsMissing")], "pseudoitems": ["RF_SavedYoshiKid_2"]}, #+ Save Yoshi Kid
 
     # JAN_08 SW Jungle (Super Block)
     {"from": {"map": "JAN_08", "id": 0}, "to": {"map": "JAN_00", "id": 2}, "reqs": []}, # SW Jungle (Super Block) Exit Bottom Left -> Whale Cove Exit Top Right
@@ -193,7 +193,7 @@ edges_jan = [
     {"from": {"map": "JAN_08", "id": 2},               "to": {"map": "JAN_08", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* SW Jungle (Super Block) Exit Top -> HiddenYBlockA (ThunderRage)
     {"from": {"map": "JAN_08", "id": "HiddenYBlockA"}, "to": {"map": "JAN_08", "id": 2},               "reqs": []}, #* HiddenYBlockA (ThunderRage) -> SW Jungle (Super Block) Exit Top
 
-    {"from": {"map": "JAN_08", "id": 0}, "to": {"map": "JAN_08", "id": 0}, "reqs": [require(flag="RF_YoshiKidsMissing")], "pseudoitems": ["RF_SavedYoshiKid"]}, #+ Save Yoshi Kid
+    {"from": {"map": "JAN_08", "id": 0}, "to": {"map": "JAN_08", "id": 0}, "reqs": [require(flag="RF_YoshiKidsMissing")], "pseudoitems": ["RF_SavedYoshiKid_3"]}, #+ Save Yoshi Kid
 
     # JAN_09 NW Jungle (Large Ledge)
     {"from": {"map": "JAN_09", "id": 0}, "to": {"map": "JAN_08", "id": 2}, "reqs": []}, # NW Jungle (Large Ledge) Exit Bottom -> SW Jungle (Super Block) Exit Top
@@ -223,12 +223,12 @@ edges_jan = [
     {"from": {"map": "JAN_10", "id": 0},       "to": {"map": "JAN_10", "id": "ItemA"}, "reqs": [require(partner="Sushie")]}, #* Western Dead End Exit Right -> ItemA (StarPiece)
     {"from": {"map": "JAN_10", "id": "ItemA"}, "to": {"map": "JAN_10", "id": 0},       "reqs": []}, #* ItemA (StarPiece) -> Western Dead End Exit Right
 
-    {"from": {"map": "JAN_10", "id": 0}, "to": {"map": "JAN_10", "id": 0}, "reqs": [require(flag="RF_YoshiKidsMissing"), require(partner="Sushie"), require(hammer=0)], "pseudoitems": ["RF_SavedYoshiKid"]}, #+ Save Yoshi Kid
+    {"from": {"map": "JAN_10", "id": 0}, "to": {"map": "JAN_10", "id": 0}, "reqs": [require(flag="RF_YoshiKidsMissing"), require(partner="Sushie"), require(hammer=0)], "pseudoitems": ["RF_SavedYoshiKid_4"]}, #+ Save Yoshi Kid
 
     # JAN_11 Root Cavern
     {"from": {"map": "JAN_11", "id": 0}, "to": {"map": "JAN_09", "id": 3}, "reqs": []}, # Root Cavern Pipe Left -> NW Jungle (Large Ledge) Pipe On Hill
 
-    {"from": {"map": "JAN_11", "id": 0}, "to": {"map": "JAN_11", "id": 0}, "reqs": [require(flag="RF_YoshiKidsMissing"), require(partner="Watt")], "pseudoitems": ["RF_SavedYoshiKid"]}, #+ Save Yoshi Kid
+    {"from": {"map": "JAN_11", "id": 0}, "to": {"map": "JAN_11", "id": 0}, "reqs": [require(flag="RF_YoshiKidsMissing"), require(partner="Watt")], "pseudoitems": ["RF_SavedYoshiKid_5"]}, #+ Save Yoshi Kid
 
     # JAN_12 Deep Jungle 1
     {"from": {"map": "JAN_12", "id": 0}, "to": {"map": "JAN_06", "id": 2}, "reqs": []}, # Deep Jungle 1 Exit Bottom Left -> NE Jungle (Raven Statue) Exit Top

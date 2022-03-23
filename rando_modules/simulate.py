@@ -35,7 +35,8 @@ def add_to_inventory(item_object):
             or item_object.startswith("MF")
             or item_object.startswith("MB")
             or item_object.startswith("RF")):
-            mario.flags.append(item_object)
+            if item_object not in mario.flags:
+                mario.flags.append(item_object)
             is_new_pseudoitem = True
         elif item_object in all_partners:
             if item_object not in mario.partners:
@@ -153,7 +154,7 @@ def saved_all_yoshikids():
     global mario
     count = 0
     for flag_str in mario.flags:
-        if flag_str == "RF_SavedYoshiKid":
+        if flag_str.startswith("RF_SavedYoshiKid"):
             count += 1
             if count >= 5:
                 return True
