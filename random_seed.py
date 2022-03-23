@@ -1,4 +1,5 @@
 import random
+
 from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
 from optionset import OptionSet
@@ -16,6 +17,8 @@ from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.random_shop_prices import get_alpha_prices
 from worldgraph import generate as generate_world_graph
 from metadata.starting_maps import starting_maps
+from metadata.starting_items import allowed_starting_badges, allowed_starting_items, allowed_starting_key_items
+from db.item import Item
 
 class RandomSeed:
     def __init__(self, rando_settings: OptionSet, seed_value = None) -> None:
@@ -51,6 +54,7 @@ class RandomSeed:
         
         self.init_starting_partners(self.rando_settings)
         self.init_starting_map(self.rando_settings)
+        self.init_starting_items(self.rando_settings)
 
         # Item Placement
         for _, _ in place_items(item_placement= self.placed_items,
@@ -76,7 +80,7 @@ class RandomSeed:
                             partners_in_default_locations=self.rando_settings.partners_in_default_locations,
                             hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
                             keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
-                            starting_items=self.rando_settings.get_startitem_list(),
+                            starting_items=self.starting_items,
                             world_graph=world_graph):
             pass
 
@@ -155,7 +159,7 @@ class RandomSeed:
                     starting_partners=self.starting_partners,
                     partners_always_usable=self.rando_settings.partners_always_usable["value"],
                     hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
-                    starting_items=self.rando_settings.get_startitem_list(),
+                    starting_items=self.starting_items,
                     world_graph=world_graph
         )
 
@@ -174,3 +178,46 @@ class RandomSeed:
         #Choose random starting map if necessary
         if rando_settings.starting_map["value"] == 0xFFFFFFFF:
             self.rando_settings.starting_map["value"] = random.choice(starting_maps)
+
+    def init_starting_items(self, rando_settings):
+        starting_item_options = [
+            rando_settings.starting_item_0,
+            rando_settings.starting_item_1,
+            rando_settings.starting_item_2,
+            rando_settings.starting_item_3,
+            rando_settings.starting_item_4,
+            rando_settings.starting_item_5,
+            rando_settings.starting_item_6,
+            rando_settings.starting_item_7,
+            rando_settings.starting_item_8,
+            rando_settings.starting_item_9,
+            rando_settings.starting_item_A,
+            rando_settings.starting_item_B,
+            rando_settings.starting_item_C,
+            rando_settings.starting_item_D,
+            rando_settings.starting_item_E,
+            rando_settings.starting_item_F
+        ]
+
+        if rando_settings.random_starting_items:
+            all_allowed_starting_items = allowed_starting_badges + allowed_starting_items + allowed_starting_key_items
+
+            starting_items_amount = random.randint(rando_settings.random_starting_items_min, rando_settings.random_starting_items_max)
+            self.starting_items = []
+
+            for i in range(starting_items_amount):
+                random_item_id = random.choice(all_allowed_starting_items)
+                random_item_obj = Item.get_or_none(Item.value == random_item_id)
+                if random_item_obj is not None:
+                    # No double uniques
+                    if (random_item_obj.item_type in ["BADGE", "KEYITEM", "STARPIECE"] and random_item_obj in self.starting_items):
+                        continue
+
+                    self.starting_items.append(random_item_obj)
+                    starting_item_options[i]["value"] = random_item_id
+
+            if(rando_settings.starting_item_F == 0x008):
+                self.starting_items.append(Item.get_or_none(Item.value == 0x008)) # Add Homeward Shroom if it was in starting items
+
+        else:
+            self.starting_items = self.rando_settings.get_startitem_list()

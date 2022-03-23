@@ -264,6 +264,12 @@ class OptionSet:
         if "StartingStarPower" in options_dict:
             self.starting_starpower = options_dict.get("StartingStarPower")
 
+        if "StartWithRandomItems" in options_dict:
+            self.random_starting_items = options_dict.get("StartWithRandomItems").get("value")
+        if "RandomItemsMin" in options_dict:
+            self.random_starting_items_min = options_dict.get("RandomItemsMin").get("value")
+        if "RandomItemsMax" in options_dict:
+            self.random_starting_items_max = options_dict.get("RandomItemsMax").get("value")
         if "StartingItem0" in options_dict:
             self.starting_item_0 = options_dict.get("StartingItem0")
         if "StartingItem1" in options_dict:
@@ -540,6 +546,22 @@ def validate_options(options_dict):
         assert (    isinstance(options_dict.get("StartingStarPower").get("value"), int)
                 and 0 <= options_dict.get("StartingStarPower").get("value") <= 7)
 
+    if "StartWithRandomItems" in options_dict:
+        assert isinstance(options_dict.get("StartWithRandomItems").get("value"), bool)
+    if "RandomItemsMin" in options_dict:
+        assert (isinstance(options_dict.get("RandomItemsMin").get("value"), int)
+            and 0 <= options_dict.get("RandomItemsMin").get("value") <= 15
+            and ("RandomItemsMax" not in options_dict
+              or options_dict.get("RandomItemsMin").get("value") <= 
+                 options_dict.get("RandomItemsMax").get("value"))
+        )
+    if "RandomItemsMax" in options_dict:
+        assert (isinstance(options_dict.get("RandomItemsMax").get("value"), int)
+            and 0 <= options_dict.get("RandomItemsMax").get("value") <= 15
+            and ("RandomItemsMin" not in options_dict
+              or options_dict.get("RandomItemsMax").get("value") <= 
+                 options_dict.get("RandomItemsMax").get("value"))
+        )
     if "StartingItem0" in options_dict:
         assert isinstance(options_dict.get("StartingItem0").get("value"), int)
     if "StartingItem1" in options_dict:
