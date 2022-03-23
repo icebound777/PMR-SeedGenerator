@@ -107,7 +107,7 @@ def can_flip_panels():
     * UltraHammer
     """
     global mario
-    return len(mario.hammer) == 2 or len(mario.boots) >= 1
+    return len(mario.hammer) == 3 or len(mario.boots) >= 2
 
 
 def can_shake_trees():
@@ -117,7 +117,7 @@ def can_shake_trees():
     * Bombette
     """
     global mario
-    return len(mario.hammer) >= 0 or "Bombette" in mario.partners
+    return len(mario.hammer) >= 1 or "Bombette" in mario.partners
 
 
 def has_item(item_str):
