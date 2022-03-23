@@ -130,9 +130,9 @@ edges_kpa = [
     {"from": {"map": "KPA_17",  "id": 0}, "to": {"map": "KPA_17",  "id": 1}, "reqs": [require(partner="Bombette")]}, #? Lower Jail Fall From Ceiling -> Lower Jail Cracked Wall Right
     {"from": {"map": "KPA_17",  "id": 1}, "to": {"map": "KPA_17",  "id": 0}, "reqs": []}, #? Lower Jail Cracked Wall Right -> Lower Jail Fall From Ceiling
     
-    {"from": {"map": "KPA_17",  "id": 0},        "to": {"map": "KPA_17",  "id": "CrateA"}, "reqs": [require(boots=1)]}, #* Lower Jail Fall From Ceiling -> CrateA (TastyTonic)
+    {"from": {"map": "KPA_17",  "id": 0},        "to": {"map": "KPA_17",  "id": "CrateA"}, "reqs": [require(boots=2)]}, #* Lower Jail Fall From Ceiling -> CrateA (TastyTonic)
     {"from": {"map": "KPA_17",  "id": "CrateA"}, "to": {"map": "KPA_17",  "id": 0},        "reqs": []}, #* CrateA (TastyTonic) -> Lower Jail Fall From Ceiling
-    {"from": {"map": "KPA_17",  "id": 0},        "to": {"map": "KPA_17",  "id": "CrateB"}, "reqs": [require(boots=1)]}, #* Lower Jail Fall From Ceiling -> CrateB (LifeShroom)
+    {"from": {"map": "KPA_17",  "id": 0},        "to": {"map": "KPA_17",  "id": "CrateB"}, "reqs": [require(boots=2)]}, #* Lower Jail Fall From Ceiling -> CrateB (LifeShroom)
     {"from": {"map": "KPA_17",  "id": "CrateB"}, "to": {"map": "KPA_17",  "id": 0},        "reqs": []}, #* CrateB (LifeShroom) -> Lower Jail Fall From Ceiling
 
     # KPA_32 Lower Grand Hall
@@ -468,6 +468,6 @@ edges_kpa = [
     {"from": {"map": "KPA_134", "id": 0}, "to": {"map": "KPA_134", "id": 2}, "reqs": [require(partner="Sushie")]}, #? Right Water Puzzle Door Bottom Left -> Right Water Puzzle Door Bottom Left Upper Half
     {"from": {"map": "KPA_134", "id": 2}, "to": {"map": "KPA_134", "id": 0}, "reqs": [require(partner="Sushie")]}, #? Right Water Puzzle Door Bottom Left Upper Half -> Right Water Puzzle Door Bottom Left
     
-    {"from": {"map": "KPA_134", "id": 3},               "to": {"map": "KPA_134", "id": "HiddenYBlockA"}, "reqs": [require(boots=2)]}, #* Right Water Puzzle Bombable Wall -> HiddenYBlockA (MapleSyrup)
+    {"from": {"map": "KPA_134", "id": 3},               "to": {"map": "KPA_134", "id": "HiddenYBlockA"}, "reqs": [require(boots=3)]}, #* Right Water Puzzle Bombable Wall -> HiddenYBlockA (MapleSyrup)
     {"from": {"map": "KPA_134", "id": "HiddenYBlockA"}, "to": {"map": "KPA_134", "id": 3},               "reqs": []}, #* HiddenYBlockA (MapleSyrup) -> Right Water Puzzle Bombable Wall
 ]

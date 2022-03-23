@@ -69,7 +69,7 @@ edges_arn = [
     {"from": {"map": "ARN_08", "id": 0}, "to": {"map": "ARN_07", "id": 0}, "reqs": []}, # Windmill Interior Exit Windmill -> Windmill Exterior Enter Windmill
     {"from": {"map": "ARN_08", "id": 1}, "to": {"map": "ARN_09", "id": 1}, "reqs": []}, # Windmill Interior Into Well -> Windmill Tunnel Entry Spring Exit
     
-    {"from": {"map": "ARN_08", "id": 0}, "to": {"map": "ARN_08", "id": 1}, "reqs": [require(boots=1)]}, #? Windmill Interior Exit Windmill -> Windmill Interior Into Well
+    {"from": {"map": "ARN_08", "id": 0}, "to": {"map": "ARN_08", "id": 1}, "reqs": [require(boots=2)]}, #? Windmill Interior Exit Windmill -> Windmill Interior Into Well
     {"from": {"map": "ARN_08", "id": 1}, "to": {"map": "ARN_08", "id": 0}, "reqs": []}, #? Windmill Interior Into Well -> Windmill Interior Exit Windmill
 
     # ARN_09 Windmill Tunnel Entry

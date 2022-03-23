@@ -34,10 +34,10 @@ edges_flo = [
     {"from": {"map": "FLO_16", "id": 0}, "to": {"map": "FLO_00", "id": 4}, "reqs": []}, # (NE) Elevators Exit Left -> Center Exit Top Right
     {"from": {"map": "FLO_16", "id": 1}, "to": {"map": "FLO_17", "id": 0}, "reqs": []}, # (NE) Elevators Exit Right -> (NE) Fallen Logs Exit Left
     
-    {"from": {"map": "FLO_16", "id": 0}, "to": {"map": "FLO_16", "id": 1}, "reqs": [require(boots=1), require(partner="Lakilester")]}, #? (NE) Elevators Exit Left -> (NE) Elevators Exit Right
+    {"from": {"map": "FLO_16", "id": 0}, "to": {"map": "FLO_16", "id": 1}, "reqs": [require(boots=2), require(partner="Lakilester")]}, #? (NE) Elevators Exit Left -> (NE) Elevators Exit Right
     {"from": {"map": "FLO_16", "id": 1}, "to": {"map": "FLO_16", "id": 0}, "reqs": [require(partner="Lakilester")]}, #? (NE) Elevators Exit Right -> (NE) Elevators Exit Left
     
-    {"from": {"map": "FLO_16", "id": 1},       "to": {"map": "FLO_16", "id": "ItemA"}, "reqs": [require(boots=1)]}, #* (NE) Elevators Exit Right -> ItemA (StarPiece)
+    {"from": {"map": "FLO_16", "id": 1},       "to": {"map": "FLO_16", "id": "ItemA"}, "reqs": [require(boots=2)]}, #* (NE) Elevators Exit Right -> ItemA (StarPiece)
     {"from": {"map": "FLO_16", "id": "ItemA"}, "to": {"map": "FLO_16", "id": 1},       "reqs": []}, #* ItemA (StarPiece) -> (NE) Elevators Exit Right
     {"from": {"map": "FLO_16", "id": 0},       "to": {"map": "FLO_16", "id": "ItemB"}, "reqs": []}, #* (NE) Elevators Exit Left -> ItemB (StinkyHerb)
     {"from": {"map": "FLO_16", "id": "ItemB"}, "to": {"map": "FLO_16", "id": 0},       "reqs": []}, #* ItemB (StinkyHerb) -> (NE) Elevators Exit Left
@@ -57,7 +57,7 @@ edges_flo = [
     # FLO_18 (NE) Puff Puff Machine
     {"from": {"map": "FLO_18", "id": 0}, "to": {"map": "FLO_17", "id": 1}, "reqs": []}, # (NE) Puff Puff Machine Exit Left -> (NE) Fallen Logs Exit Right
 
-    {"from": {"map": "FLO_18", "id": 0}, "to": {"map": "FLO_18", "id": 0}, "reqs": [require(hammer=0, partner="Bombette")], "pseudoitems": ["RF_Ch6_DestroyedPuffPuffMachine"]}, #+ (NE) Puff Puff Machine Exit Left
+    {"from": {"map": "FLO_18", "id": 0}, "to": {"map": "FLO_18", "id": 0}, "reqs": [require(hammer=1, partner="Bombette")], "pseudoitems": ["RF_Ch6_DestroyedPuffPuffMachine"]}, #+ (NE) Puff Puff Machine Exit Left
 
     # FLO_09 (East) Triple Tree Path
     {"from": {"map": "FLO_09", "id": 0}, "to": {"map": "FLO_00", "id": 5}, "reqs": []}, # (East) Triple Tree Path Exit Left -> Center Exit Right

@@ -61,35 +61,35 @@ edges_omo = [
     # OMO_04 BLU Block City
     {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_03", "id": 1}, "reqs": []}, # BLU Block City Exit West -> BLU Station Exit East
     
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemA"},   "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> ItemA (Mushroom)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemA"},   "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> ItemA (Mushroom)
     {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* ItemA (Mushroom) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ChestA"},  "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> ChestA (StoreroomKey)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ChestA"},  "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> ChestA (StoreroomKey)
     {"from": {"map": "OMO_04", "id": "ChestA"},  "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* ChestA (StoreroomKey) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "YBlockA"}, "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> YBlockA (Coin)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "YBlockA"}, "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> YBlockA (Coin)
     {"from": {"map": "OMO_04", "id": "YBlockA"}, "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* YBlockA (Coin) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "YBlockB"}, "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> YBlockB (Coin)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "YBlockB"}, "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> YBlockB (Coin)
     {"from": {"map": "OMO_04", "id": "YBlockB"}, "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* YBlockB (Coin) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "YBlockC"}, "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> YBlockC (ThunderBolt)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "YBlockC"}, "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> YBlockC (ThunderBolt)
     {"from": {"map": "OMO_04", "id": "YBlockC"}, "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* YBlockC (ThunderBolt) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemB"},   "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> ItemB (Coin)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemB"},   "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> ItemB (Coin)
     {"from": {"map": "OMO_04", "id": "ItemB"},   "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* ItemB (Coin) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemC"},   "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> ItemC (Coin)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemC"},   "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> ItemC (Coin)
     {"from": {"map": "OMO_04", "id": "ItemC"},   "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* ItemC (Coin) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemD"},   "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> ItemD (Coin)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemD"},   "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> ItemD (Coin)
     {"from": {"map": "OMO_04", "id": "ItemD"},   "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* ItemD (Coin) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemE"},   "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> ItemE (Coin)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemE"},   "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> ItemE (Coin)
     {"from": {"map": "OMO_04", "id": "ItemE"},   "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* ItemE (Coin) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemF"},   "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> ItemF (Coin)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemF"},   "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> ItemF (Coin)
     {"from": {"map": "OMO_04", "id": "ItemF"},   "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* ItemF (Coin) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemG"},   "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> ItemG (Coin)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemG"},   "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> ItemG (Coin)
     {"from": {"map": "OMO_04", "id": "ItemG"},   "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* ItemG (Coin) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemH"},   "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> ItemH (Coin)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemH"},   "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> ItemH (Coin)
     {"from": {"map": "OMO_04", "id": "ItemH"},   "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* ItemH (Coin) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemI"},   "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> ItemI (Coin)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemI"},   "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> ItemI (Coin)
     {"from": {"map": "OMO_04", "id": "ItemI"},   "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* ItemI (Coin) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemJ"},   "reqs": [require(hammer=0,boots=1),require(partner="Parakarry")]}, #* BLU Block City Exit West -> ItemJ (StarPiece) on building
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemJ"},   "reqs": [require(hammer=1,boots=2),require(partner="Parakarry")]}, #* BLU Block City Exit West -> ItemJ (StarPiece) on building
     {"from": {"map": "OMO_04", "id": "ItemJ"},   "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* ItemJ (StarPiece) on building -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemK"},   "reqs": [require(hammer=0,boots=1)]}, #* BLU Block City Exit West -> ItemK (StarPiece)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemK"},   "reqs": [require(hammer=1,boots=2)]}, #* BLU Block City Exit West -> ItemK (StarPiece)
     {"from": {"map": "OMO_04", "id": "ItemK"},   "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* ItemK (StarPiece) -> BLU Block City Exit West
 
     # OMO_05 PNK Gourmet Guy Crossing
@@ -138,15 +138,15 @@ edges_omo = [
     # OMO_07 PNK Playhouse
     {"from": {"map": "OMO_07", "id": 0}, "to": {"map": "OMO_06", "id": 4}, "reqs": []}, # PNK Playhouse Exit West -> PNK Station Exit East
     
-    {"from": {"map": "OMO_07", "id": 0},         "to": {"map": "OMO_07", "id": "ItemA"},   "reqs": [require(hammer=0,boots=1)]}, #* PNK Playhouse Exit West -> ItemA (ThunderRage)
+    {"from": {"map": "OMO_07", "id": 0},         "to": {"map": "OMO_07", "id": "ItemA"},   "reqs": [require(hammer=1,boots=2)]}, #* PNK Playhouse Exit West -> ItemA (ThunderRage)
     {"from": {"map": "OMO_07", "id": "ItemA"},   "to": {"map": "OMO_07", "id": 0},         "reqs": []}, #* ItemA (ThunderRage) -> PNK Playhouse Exit West
-    {"from": {"map": "OMO_07", "id": 0},         "to": {"map": "OMO_07", "id": "ChestA"},  "reqs": [require(hammer=0,boots=1)]}, #* PNK Playhouse Exit West -> ChestA (FryingPan)
+    {"from": {"map": "OMO_07", "id": 0},         "to": {"map": "OMO_07", "id": "ChestA"},  "reqs": [require(hammer=1,boots=2)]}, #* PNK Playhouse Exit West -> ChestA (FryingPan)
     {"from": {"map": "OMO_07", "id": "ChestA"},  "to": {"map": "OMO_07", "id": 0},         "reqs": []}, #* ChestA (FryingPan) -> PNK Playhouse Exit West
-    {"from": {"map": "OMO_07", "id": 0},         "to": {"map": "OMO_07", "id": "ChestB"},  "reqs": [require(hammer=0,boots=1)]}, #* PNK Playhouse Exit West -> ChestB (DefendPlusA)
+    {"from": {"map": "OMO_07", "id": 0},         "to": {"map": "OMO_07", "id": "ChestB"},  "reqs": [require(hammer=1,boots=2)]}, #* PNK Playhouse Exit West -> ChestB (DefendPlusA)
     {"from": {"map": "OMO_07", "id": "ChestB"},  "to": {"map": "OMO_07", "id": 0},         "reqs": []}, #* ChestB (DefendPlusA) -> PNK Playhouse Exit West
-    {"from": {"map": "OMO_07", "id": 0},         "to": {"map": "OMO_07", "id": "ChestC"},  "reqs": [require(hammer=0,boots=1)]}, #* PNK Playhouse Exit West -> ChestC (IcePower)
+    {"from": {"map": "OMO_07", "id": 0},         "to": {"map": "OMO_07", "id": "ChestC"},  "reqs": [require(hammer=1,boots=2)]}, #* PNK Playhouse Exit West -> ChestC (IcePower)
     {"from": {"map": "OMO_07", "id": "ChestC"},  "to": {"map": "OMO_07", "id": 0},         "reqs": []}, #* ChestC (IcePower) -> PNK Playhouse Exit West
-    {"from": {"map": "OMO_07", "id": 0},         "to": {"map": "OMO_07", "id": "YBlockA"}, "reqs": [require(hammer=0,boots=1)]}, #* PNK Playhouse Exit West -> YBlockA (Coin)
+    {"from": {"map": "OMO_07", "id": 0},         "to": {"map": "OMO_07", "id": "YBlockA"}, "reqs": [require(hammer=1,boots=2)]}, #* PNK Playhouse Exit West -> YBlockA (Coin)
     {"from": {"map": "OMO_07", "id": "YBlockA"}, "to": {"map": "OMO_07", "id": 0},         "reqs": []}, #* YBlockA (Coin) -> PNK Playhouse Exit West
 
     # OMO_08 GRN Station
@@ -164,7 +164,7 @@ edges_omo = [
     {"from": {"map": "OMO_08", "id": 0},               "to": {"map": "OMO_08", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* GRN Station Exit East -> HiddenYBlockA (FireFlower)
     {"from": {"map": "OMO_08", "id": "HiddenYBlockA"}, "to": {"map": "OMO_08", "id": 0},               "reqs": []}, #* HiddenYBlockA (FireFlower) -> GRN Station Exit East
 
-    {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_08", "id": 0}, "reqs": [require(flag="RF_CanSolveColorPuzzle"),require(hammer=0)], "pseudoitems": ["MF_Ch4_SolvedColorPuzzle"]}, #+ Solve Color Puzzle
+    {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_08", "id": 0}, "reqs": [require(flag="RF_CanSolveColorPuzzle"),require(hammer=1)], "pseudoitems": ["MF_Ch4_SolvedColorPuzzle"]}, #+ Solve Color Puzzle
 
     # OMO_09 GRN Treadmills/Slot Machine
     {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_08", "id": 0}, "reqs": []}, # GRN Treadmills/Slot Machine Exit West -> GRN Station Exit East
@@ -243,7 +243,7 @@ edges_omo = [
     # OMO_12 RED Lantern Ghost
     {"from": {"map": "OMO_12", "id": 0}, "to": {"map": "OMO_11", "id": 0}, "reqs": []}, # RED Lantern Ghost Exit East -> RED Moving Platforms Exit West
 
-    {"from": {"map": "OMO_12", "id": 0},         "to": {"map": "OMO_12", "id": "Partner"}, "reqs": [require(hammer=0,partner=["Kooper","Bombette"])]}, #* RED Lantern Ghost Exit East -> Partner (Watt)
+    {"from": {"map": "OMO_12", "id": 0},         "to": {"map": "OMO_12", "id": "Partner"}, "reqs": [require(hammer=1,partner=["Kooper","Bombette"])]}, #* RED Lantern Ghost Exit East -> Partner (Watt)
     {"from": {"map": "OMO_12", "id": "Partner"}, "to": {"map": "OMO_12", "id": 0},         "reqs": []}, #* Partner (Watt) -> RED Lantern Ghost Exit East
 
     # OMO_13 BLU Anti-Guy Hall

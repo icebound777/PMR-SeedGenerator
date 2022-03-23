@@ -16,9 +16,9 @@ edges_pra = [
     # PRA_02 Entry Hall
     {"from": {"map": "PRA_02", "id": 0}, "to": {"map": "PRA_01", "id": 1}, "reqs": []}, # Entry Hall Entrance Door -> Entrance Front Door
     {"from": {"map": "PRA_02", "id": 1}, "to": {"map": "PRA_03", "id": 0}, "reqs": []}, # Entry Hall Hallway Door -> Save Room Door West
-    {"from": {"map": "PRA_02", "id": 2}, "to": {"map": "PRA_13", "id": 0}, "reqs": [require(item="BlueKey", boots=1)]}, # Entry Hall Blue/Red Door -> Blue Mirror Hall 1 Door West
+    {"from": {"map": "PRA_02", "id": 2}, "to": {"map": "PRA_13", "id": 0}, "reqs": [require(item="BlueKey", boots=2)]}, # Entry Hall Blue/Red Door -> Blue Mirror Hall 1 Door West
     {"from": {"map": "PRA_02", "id": 2}, "to": {"map": "PRA_16", "id": 0}, "reqs": [require(item="RedKey")]}, # Entry Hall Blue/Red Door -> Red Mirror Hall Door West
-    {"from": {"map": "PRA_02", "id": 3}, "to": {"map": "PRA_13", "id": 3}, "reqs": [require(item="BlueKey", boots=1)]}, # Entry Hall Blue/Red Door (Mirror Side) -> Blue Mirror Hall 1 Door West (Mirror Side)
+    {"from": {"map": "PRA_02", "id": 3}, "to": {"map": "PRA_13", "id": 3}, "reqs": [require(item="BlueKey", boots=2)]}, # Entry Hall Blue/Red Door (Mirror Side) -> Blue Mirror Hall 1 Door West (Mirror Side)
     {"from": {"map": "PRA_02", "id": 3}, "to": {"map": "PRA_16", "id": 3}, "reqs": [require(item="RedKey")]}, # Entry Hall Blue/Red Door (Mirror Side) -> Red Mirror Hall Door West (Mirror Side)
     {"from": {"map": "PRA_02", "id": 4}, "to": {"map": "PRA_04", "id": 0}, "reqs": []}, # Entry Hall Hallway Door (Mirror Side) -> Reflected Save Room Door West
     {"from": {"map": "PRA_02", "id": 5}, "to": {"map": "PRA_01", "id": 2}, "reqs": []}, # Entry Hall Entrance Door (Mirror Side) -> Entrance Front Door (Mirror Side)
@@ -49,7 +49,7 @@ edges_pra = [
     
     {"from": {"map": "PRA_04", "id": 0}, "to": {"map": "PRA_04", "id": 1}, "reqs": []}, #? Reflected Save Room Door West -> Reflected Save Room Door East
     {"from": {"map": "PRA_04", "id": 1}, "to": {"map": "PRA_04", "id": 0}, "reqs": []}, #? Reflected Save Room Door East -> Reflected Save Room Door West
-    {"from": {"map": "PRA_04", "id": 0}, "to": {"map": "PRA_04", "id": 2}, "reqs": [require(boots=1)], "pseudoitems": ["GF_PRA04_BoardedFloor"]}, #? Reflected Save Room Door West -> Reflected Save Room Basement Door
+    {"from": {"map": "PRA_04", "id": 0}, "to": {"map": "PRA_04", "id": 2}, "reqs": [require(boots=2)], "pseudoitems": ["GF_PRA04_BoardedFloor"]}, #? Reflected Save Room Door West -> Reflected Save Room Basement Door
     {"from": {"map": "PRA_04", "id": 2}, "to": {"map": "PRA_04", "id": 0}, "reqs": []}, #? Reflected Save Room Basement Door -> Reflected Save Room Door West
     
     {"from": {"map": "PRA_04", "id": 0},         "to": {"map": "PRA_04", "id": "YBlockA"}, "reqs": []}, #* Reflected Save Room Door West -> YBlockA (SuperShroom)

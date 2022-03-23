@@ -285,7 +285,8 @@ def _init_mario_inventory(
     else:
         add_to_inventory(starting_partners)
 
-    add_to_inventory("EQUIPMENT_Hammer_Progressive")
+    add_to_inventory("EQUIPMENT_Hammer_Progressive_1")
+    add_to_inventory("EQUIPMENT_Boots_Progressive_1")
 
     for item in starting_items:
         add_to_inventory(item.item_name)

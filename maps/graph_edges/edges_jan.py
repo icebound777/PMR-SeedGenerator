@@ -146,7 +146,7 @@ edges_jan = [
     {"from": {"map": "JAN_05", "id": 0}, "to": {"map": "JAN_05", "id": 2}, "reqs": []}, #? SE Jungle (Quake Hammer) Exit Bottom Right -> SE Jungle (Quake Hammer) Exit Right
     {"from": {"map": "JAN_05", "id": 2}, "to": {"map": "JAN_05", "id": 0}, "reqs": []}, #? SE Jungle (Quake Hammer) Exit Right-> SE Jungle (Quake Hammer) Exit Bottom Right
     {"from": {"map": "JAN_05", "id": 0}, "to": {"map": "JAN_05", "id": 3}, "reqs": [require(flag="GF_JAN05_CreateLogBridge")]}, #? SE Jungle (Quake Hammer) Exit Bottom Right -> SE Jungle (Quake Hammer) Exit Top
-    {"from": {"map": "JAN_05", "id": 3}, "to": {"map": "JAN_05", "id": 0}, "reqs": [require(hammer=0)], "pseudoitems": ["GF_JAN05_CreateLogBridge"]}, #? SE Jungle (Quake Hammer) Exit Top-> SE Jungle (Quake Hammer) Exit Bottom Right
+    {"from": {"map": "JAN_05", "id": 3}, "to": {"map": "JAN_05", "id": 0}, "reqs": [require(hammer=1)], "pseudoitems": ["GF_JAN05_CreateLogBridge"]}, #? SE Jungle (Quake Hammer) Exit Top-> SE Jungle (Quake Hammer) Exit Bottom Right
 
     {"from": {"map": "JAN_05", "id": 2},         "to": {"map": "JAN_05", "id": "RBlockA"}, "reqs": [require(partner="Sushie")]}, #* SE Jungle (Quake Hammer) Exit Right-> RBlockA (PowerQuake)
     {"from": {"map": "JAN_05", "id": "RBlockA"}, "to": {"map": "JAN_05", "id": 2},         "reqs": [require(partner="Sushie")]}, #* RBlockA (PowerQuake) -> SE Jungle (Quake Hammer) Exit Right
@@ -164,7 +164,7 @@ edges_jan = [
     {"from": {"map": "JAN_06", "id": 0}, "to": {"map": "JAN_06", "id": 2}, "reqs": [require(partner="Sushie"),require(item="JadeRaven")]}, #? NE Jungle (Raven Statue) Exit Bottom -> NE Jungle (Raven Statue) Exit Top
     {"from": {"map": "JAN_06", "id": 2}, "to": {"map": "JAN_06", "id": 0}, "reqs": [require(partner="Sushie")]}, #? NE Jungle (Raven Statue) Exit Top -> NE Jungle (Raven Statue) Exit Bottom
     {"from": {"map": "JAN_06", "id": 1}, "to": {"map": "JAN_06", "id": 3}, "reqs": [require(flag="GF_JAN06_CreateLogBridge")]}, #? NE Jungle (Raven Statue) Exit Right -> NE Jungle (Raven Statue) Exit Left
-    {"from": {"map": "JAN_06", "id": 3}, "to": {"map": "JAN_06", "id": 1}, "reqs": [require(hammer=0)], "pseudoitems": ["GF_JAN06_CreateLogBridge"]}, #? NE Jungle (Raven Statue) Exit Left -> NE Jungle (Raven Statue) Exit Right
+    {"from": {"map": "JAN_06", "id": 3}, "to": {"map": "JAN_06", "id": 1}, "reqs": [require(hammer=1)], "pseudoitems": ["GF_JAN06_CreateLogBridge"]}, #? NE Jungle (Raven Statue) Exit Left -> NE Jungle (Raven Statue) Exit Right
 
     {"from": {"map": "JAN_06", "id": 0},       "to": {"map": "JAN_06", "id": "ItemA"}, "reqs": [require(partner="Sushie")]}, #* NE Jungle (Raven Statue) Exit Bottom -> ItemA (Coin)
     {"from": {"map": "JAN_06", "id": "ItemA"}, "to": {"map": "JAN_06", "id": 0},       "reqs": [require(partner="Sushie")]}, #* ItemA (Coin) -> NE Jungle (Raven Statue) Exit Bottom
@@ -223,7 +223,7 @@ edges_jan = [
     {"from": {"map": "JAN_10", "id": 0},       "to": {"map": "JAN_10", "id": "ItemA"}, "reqs": [require(partner="Sushie")]}, #* Western Dead End Exit Right -> ItemA (StarPiece)
     {"from": {"map": "JAN_10", "id": "ItemA"}, "to": {"map": "JAN_10", "id": 0},       "reqs": []}, #* ItemA (StarPiece) -> Western Dead End Exit Right
 
-    {"from": {"map": "JAN_10", "id": 0}, "to": {"map": "JAN_10", "id": 0}, "reqs": [require(flag="RF_YoshiKidsMissing"), require(partner="Sushie"), require(hammer=0)], "pseudoitems": ["RF_SavedYoshiKid_4"]}, #+ Save Yoshi Kid
+    {"from": {"map": "JAN_10", "id": 0}, "to": {"map": "JAN_10", "id": 0}, "reqs": [require(flag="RF_YoshiKidsMissing"), require(partner="Sushie"), require(hammer=1)], "pseudoitems": ["RF_SavedYoshiKid_4"]}, #+ Save Yoshi Kid
 
     # JAN_11 Root Cavern
     {"from": {"map": "JAN_11", "id": 0}, "to": {"map": "JAN_09", "id": 3}, "reqs": []}, # Root Cavern Pipe Left -> NW Jungle (Large Ledge) Pipe On Hill
