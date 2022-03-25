@@ -86,7 +86,7 @@
             "dest_map": "TIK_06",
             "dest_entry": 3,
             "type": "pipe",
-            "verbose_name": "Pipe to Sewers (Rip Cheato)"
+            "verbose_name": "Pipe to Sewers (Main Entry)"
         },
         "5": {
             "dest_map": "TIK_15",
