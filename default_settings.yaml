@@ -37,7 +37,7 @@ StartingStarPower: 0
 
 StartWithRandomItems: false
 RandomItemsMin: 0
-RandomItemsMax: 15
+RandomItemsMax: 16
 StartingItem0: 0x000 # Nothing
 StartingItem1: 0x000 # Nothing
 StartingItem2: 0x000 # Nothing
@@ -53,7 +53,7 @@ StartingItemB: 0x000 # Nothing
 StartingItemC: 0x000 # Nothing
 StartingItemD: 0x000 # Nothing
 StartingItemE: 0x000 # Nothing
-StartingItemF: 0x008 # Homeward Shroom
+StartingItemF: 0x000 # Nothing
 
 # Pre-opened areas
 FlowerGateOpen: false

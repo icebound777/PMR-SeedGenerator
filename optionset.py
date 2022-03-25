@@ -61,6 +61,9 @@ class OptionSet:
         self.starting_maxbp = get_option_keyvalue_dict("StartingMaxBP")
         self.starting_starpower = get_option_keyvalue_dict("StartingStarPower")
 
+        self.random_starting_items = False
+        self.random_starting_items_min = 0
+        self.random_starting_items_max = 16
         self.starting_item_0 = get_option_keyvalue_dict("StartingItem0")
         self.starting_item_1 = get_option_keyvalue_dict("StartingItem1")
         self.starting_item_2 = get_option_keyvalue_dict("StartingItem2")
@@ -550,14 +553,14 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("StartWithRandomItems").get("value"), bool)
     if "RandomItemsMin" in options_dict:
         assert (isinstance(options_dict.get("RandomItemsMin").get("value"), int)
-            and 0 <= options_dict.get("RandomItemsMin").get("value") <= 15
+            and 0 <= options_dict.get("RandomItemsMin").get("value") <= 16
             and ("RandomItemsMax" not in options_dict
               or options_dict.get("RandomItemsMin").get("value") <= 
                  options_dict.get("RandomItemsMax").get("value"))
         )
     if "RandomItemsMax" in options_dict:
         assert (isinstance(options_dict.get("RandomItemsMax").get("value"), int)
-            and 0 <= options_dict.get("RandomItemsMax").get("value") <= 15
+            and 0 <= options_dict.get("RandomItemsMax").get("value") <= 16
             and ("RandomItemsMin" not in options_dict
               or options_dict.get("RandomItemsMax").get("value") <= 
                  options_dict.get("RandomItemsMax").get("value"))

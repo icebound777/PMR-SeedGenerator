@@ -215,9 +215,5 @@ class RandomSeed:
 
                     self.starting_items.append(random_item_obj)
                     starting_item_options[i]["value"] = random_item_id
-
-            if(rando_settings.starting_item_F == 0x008):
-                self.starting_items.append(Item.get_or_none(Item.value == 0x008)) # Add Homeward Shroom if it was in starting items
-
         else:
             self.starting_items = self.rando_settings.get_startitem_list()
