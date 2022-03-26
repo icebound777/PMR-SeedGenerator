@@ -81,6 +81,7 @@ class RandomSeed:
                             hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
                             keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
                             starting_items=self.starting_items,
+                            add_item_pouches=self.rando_settings.add_item_pouches,
                             world_graph=world_graph):
             pass
 

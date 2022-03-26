@@ -86,6 +86,7 @@ class OptionSet:
         self.include_letterchain = False
         self.include_dojo = False
         self.item_scarcity = 0
+        self.add_item_pouches = False
         self.placement_algorithm = "ForwardFill"
         self.placement_logic = "NoGlitches"
         self.keyitems_outside_dungeon = True # False -> NYI
@@ -315,6 +316,8 @@ class OptionSet:
             self.include_dojo = options_dict.get("IncludeDojo").get("value")
         if "ItemScarcity" in options_dict:
             self.item_scarcity = options_dict.get("ItemScarcity").get("value")
+        if "AddItemPouches" in options_dict:
+            self.add_item_pouches = options_dict.get("AddItemPouches").get("value")
         if "PlacementAlgorithm" in options_dict:
             self.placement_algorithm = options_dict.get("PlacementAlgorithm").get("value")
         if "PlacementLogic" in options_dict:
@@ -609,6 +612,8 @@ def validate_options(options_dict):
         assert (isinstance(options_dict.get("ItemScarcity").get("value"), int)
             and 0 <= options_dict.get("ItemScarcity").get("value") <= 5
         )
+    if "AddItemPouches" in options_dict:
+        assert isinstance(options_dict.get("AddItemPouches").get("value"), bool)
     if "PlacementAlgorithm" in options_dict:
         assert (isinstance(options_dict.get("PlacementAlgorithm").get("value"), str)
             and options_dict.get("PlacementAlgorithm").get("value") in [

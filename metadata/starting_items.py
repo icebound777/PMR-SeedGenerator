@@ -1,4 +1,5 @@
-# Currently does not include Koot or letters since they arent relevent in randomizer for now
+# Currently does not include Koot or letters since they arent relevent in
+# randomizer for now
 allowed_starting_key_items = [
     0x00F, # Ultra Stone
     0x012, # Pulse Stone
@@ -16,7 +17,6 @@ allowed_starting_key_items = [
     0x023, # Frying Pan
     0x024, # Dictionary
     0x025, # Mystery Note
-    0x027, # Crystal Ball
     0x029, # Cookbook
     0x02A, # Jade Raven
     0x02B, # Magical Seed 1
@@ -28,7 +28,7 @@ allowed_starting_key_items = [
     0x032, # Snowman Scarf
     0x033, # Red Key
     0x034, # Blue Key
-    0x053, # Artefact
+    0x053, # Artifact
     0x056, # Dolly
     0x057, # Water Stone
     0x058, # Magical Bean
@@ -61,11 +61,6 @@ allowed_starting_key_items = [
     0x17C, # Bowser Castle Key 5
     0x17D, # Prison Key 1
     0x17E, # Prison Key 2
-    0x1CC, # Pouch 1
-    0x1CD, # Pouch 2
-    0x1CE, # Pouch 3
-    0x1CF, # Pouch 4
-    0x1D0, # Pouch 5
 ]
 
 allowed_starting_items = [
@@ -116,7 +111,7 @@ allowed_starting_items = [
 	0x0AE, # StinkyHerb
 	0x0AF, # IcedPotato
 	0x0B0, # SpicySoup
-	0x0B1, #  ApplePie
+	0x0B1, # ApplePie
 	0x0B2, # HoneyUltra
 	0x0B3, # MapleUltra
 	0x0B4, # JellyUltra
@@ -157,7 +152,7 @@ allowed_starting_items = [
 	0x0D7, # MapleShroom
 	0x0D8, # BoiledEgg
 	0x0D9, # YoshiCookie
-	0x0DA # JellyShroom
+	0x0DA, # JellyShroom
 ]
 
 allowed_starting_badges = [

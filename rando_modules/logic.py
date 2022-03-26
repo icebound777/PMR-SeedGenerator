@@ -647,7 +647,8 @@ def _generate_item_pools(
     always_peekaboo,
     hidden_block_mode:int,
     starting_partners:list,
-    starting_items:list
+    starting_items:list,
+    add_item_pouches:bool
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -851,6 +852,28 @@ def _generate_item_pools(
                            + len(pool_misc_progression_items) \
                            + len(pool_other_items)
 
+    # Swap random consumables for strange pouches if needed
+    if add_item_pouches:
+        pouch_items = [
+            Item.get(Item.item_name == "PouchA"),
+            Item.get(Item.item_name == "PouchB"),
+            Item.get(Item.item_name == "PouchC"),
+            Item.get(Item.item_name == "PouchD"),
+            Item.get(Item.item_name == "PouchE"),
+        ]
+
+        cnt_items_removed = 0
+        while True:
+            rnd_index = random.randint(0, len(pool_other_items) - 1)
+            rnd_item = pool_other_items.pop(rnd_index)
+            if rnd_item.item_type == "ITEM":
+                cnt_items_removed += 1
+            else:
+                pool_other_items.append(rnd_item)
+            if cnt_items_removed == 5:
+                break
+        pool_other_items.extend(pouch_items)
+
     pool_other_items = get_scarcitied_itempool(pool_other_items, item_scarcity)
 
     return pool_other_items
@@ -999,6 +1022,7 @@ def _algo_forward_fill(
     hidden_block_mode:int,
     keyitems_outside_dungeon:bool,
     starting_items:list,
+    add_item_pouches:bool,
     world_graph
 ):
 
@@ -1039,7 +1063,8 @@ def _algo_forward_fill(
         peekaboo,
         hidden_block_mode,
         starting_partners,
-        starting_items
+        starting_items,
+        add_item_pouches
     )
 
     print("Initialize Mario's starting inventory...")
@@ -1297,6 +1322,7 @@ def place_items(
     hidden_block_mode:int,
     keyitems_outside_dungeon:bool,
     starting_items:list,
+    add_item_pouches:list,
     world_graph = None
 ):
     """Places items into item locations according to chosen settings."""
@@ -1336,6 +1362,7 @@ def place_items(
             hidden_block_mode,
             keyitems_outside_dungeon,
             starting_items,
+            add_item_pouches,
             world_graph
         )
 
