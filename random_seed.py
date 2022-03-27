@@ -5,7 +5,6 @@ from models.CoinPalette import CoinPalette
 from optionset import OptionSet
 from rando_modules.logic import place_items, get_item_spheres
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
-from rando_modules.random_audio import get_turned_off_music
 from rando_modules.modify_entrances import get_shorter_bowsercastle
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
@@ -14,7 +13,6 @@ from rando_modules.random_palettes     \
            get_randomized_palettes
 from rando_modules.random_partners import get_rnd_starting_partners
 from rando_modules.random_quizzes import get_randomized_quizzes
-from rando_modules.random_shop_prices import get_alpha_prices
 from worldgraph import generate as generate_world_graph
 from metadata.starting_maps import starting_maps
 from metadata.starting_items import allowed_starting_badges, allowed_starting_items, allowed_starting_key_items
@@ -109,18 +107,12 @@ class RandomSeed:
             )
 
         # Randomize move costs (FP/BP) if needed
-        if (
-            self.rando_settings.shuffle_badges_bp
-            or self.rando_settings.shuffle_badges_fp
-            or self.rando_settings.shuffle_partner_fp
-            or self.rando_settings.shuffle_starpower_sp
-        ):
-            self.move_costs = get_randomized_moves(
-                self.rando_settings.shuffle_badges_bp,
-                self.rando_settings.shuffle_badges_fp,
-                self.rando_settings.shuffle_partner_fp,
-                self.rando_settings.shuffle_starpower_sp
-            )
+        self.move_costs = get_randomized_moves(
+            self.rando_settings.random_badges_bp,
+            self.rando_settings.random_badges_fp,
+            self.rando_settings.random_partner_fp,
+            self.rando_settings.random_starpower_sp
+        )
 
         # Build item hint db
         self.itemhints = get_itemhints(

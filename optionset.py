@@ -93,10 +93,10 @@ class OptionSet:
         self.keyitems_outside_chapter = True # "Keysanity" # false -> NYI
 
         # Moves and Badges
-        self.shuffle_badges_bp = False
-        self.shuffle_badges_fp = False
-        self.shuffle_partner_fp = False
-        self.shuffle_starpower_sp = False
+        self.random_badges_bp = 0
+        self.random_badges_fp = 0
+        self.random_partner_fp = 0
+        self.random_starpower_sp = 0
 
         # Entrance related
         self.shorten_bowsers_castle = get_option_keyvalue_dict("ShortenBowsersCastle")
@@ -328,14 +328,14 @@ class OptionSet:
             self.keyitems_outside_chapter = options_dict.get("KeyitemsOutsideChapter").get("value")
 
         # Moves and Badges
-        if "ShuffleBadgesBP" in options_dict:
-            self.shuffle_badges_bp = options_dict.get("ShuffleBadgesBP").get("value")
-        if "ShuffleBadgesFP" in options_dict:
-            self.shuffle_badges_fp = options_dict.get("ShuffleBadgesFP").get("value")
-        if "ShufflePartnerFP" in options_dict:
-            self.shuffle_partner_fp = options_dict.get("ShufflePartnerFP").get("value")
-        if "ShuffleStarpowerSP" in options_dict:
-            self.shuffle_starpower_sp = options_dict.get("ShuffleStarpowerSP").get("value")
+        if "RandomBadgesBP" in options_dict:
+            self.random_badges_bp = options_dict.get("RandomBadgesBP").get("value")
+        if "RandomBadgesFP" in options_dict:
+            self.random_badges_fp = options_dict.get("RandomBadgesFP").get("value")
+        if "RandomPartnerFP" in options_dict:
+            self.random_partner_fp = options_dict.get("RandomPartnerFP").get("value")
+        if "RandomStarpowerSP" in options_dict:
+            self.random_starpower_sp = options_dict.get("RandomStarpowerSP").get("value")
 
         # Entrance related
         if "ShortenBowsersCastle" in options_dict:
@@ -637,14 +637,14 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("KeyitemsOutsideChapter").get("value"), bool)
 
     # Moves and Badges
-    if "ShuffleBadgesBP" in options_dict:
-        assert isinstance(options_dict.get("ShuffleBadgesBP").get("value"), bool)
-    if "ShuffleBadgesFP" in options_dict:
-        assert isinstance(options_dict.get("ShuffleBadgesFP").get("value"), bool)
-    if "ShufflePartnerFP" in options_dict:
-        assert isinstance(options_dict.get("ShufflePartnerFP").get("value"), bool)
-    if "ShuffleStarpowerSP" in options_dict:
-        assert isinstance(options_dict.get("ShuffleStarpowerSP").get("value"), bool)
+    if "RandomBadgesBP" in options_dict:
+        assert isinstance(options_dict.get("RandomBadgesBP").get("value"), int)
+    if "RandomBadgesFP" in options_dict:
+        assert isinstance(options_dict.get("RandomBadgesFP").get("value"), int)
+    if "RandomPartnerFP" in options_dict:
+        assert isinstance(options_dict.get("RandomPartnerFP").get("value"), int)
+    if "RandomStarpowerSP" in options_dict:
+        assert isinstance(options_dict.get("RandomStarpowerSP").get("value"), int)
 
     # Entrance related
     if "ShortenBowsersCastle" in options_dict:

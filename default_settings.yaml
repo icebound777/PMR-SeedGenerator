@@ -88,10 +88,11 @@ KeyitemsOutsideDungeon: false
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
 # Randomization: Moves and Badges
-ShuffleBadgesBP   : false
-ShuffleBadgesFP   : false
-ShufflePartnerFP  : false
-ShuffleStarpowerSP: false
+# 0: vanilla, 1: balanced random, 2: shuffled, 3: fully random
+RandomBadgesBP   : 0
+RandomBadgesFP   : 0
+RandomPartnerFP  : 0
+RandomStarpowerSP: 0
 
 # Randomization: Entrances
 ShuffleEntrances        : true  # NYI
