@@ -141,28 +141,28 @@ edges_tik = [
     {"from": {"map": "TIK_15", "id": 0}, "to": {"map": "TIK_15", "id": 1}, "reqs": []}, #? Rip Cheato's Home (B3) Bomb Wall Left -> Rip Cheato's Home (B3) Green Pipe Right
     {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": 0}, "reqs": [require(partner="Bombette")]}, #? Rip Cheato's Home (B3) Green Pipe Right -> Rip Cheato's Home (B3) Bomb Wall Left
 
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftA"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftA (StarPiece3F)
-    {"from": {"map": "TIK_15", "id": "GiftA"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftA (StarPiece3F) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftB"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftB (LifeShroom)
-    {"from": {"map": "TIK_15", "id": "GiftB"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftB (LifeShroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftC"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftC (BumpAttack)
-    {"from": {"map": "TIK_15", "id": "GiftC"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftC (BumpAttack) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftD"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftD (RepelGel)
-    {"from": {"map": "TIK_15", "id": "GiftD"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftD (RepelGel) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftE"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftE (StarPiece40)
-    {"from": {"map": "TIK_15", "id": "GiftE"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftE (StarPiece40) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftF"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftF (SuperShroom)
-    {"from": {"map": "TIK_15", "id": "GiftF"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftF (SuperShroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftG"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftG (Mushroom)
-    {"from": {"map": "TIK_15", "id": "GiftG"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftG (Mushroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftH"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftH (DriedShroom)
-    {"from": {"map": "TIK_15", "id": "GiftH"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftH (DriedShroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftI"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftI (DriedShroom)
-    {"from": {"map": "TIK_15", "id": "GiftI"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftI (DriedShroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftJ"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftI (StarPiece41)
-    {"from": {"map": "TIK_15", "id": "GiftJ"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftI (StarPiece41) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftK"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftK (DriedShroom)
-    {"from": {"map": "TIK_15", "id": "GiftK"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftK (DriedShroom) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftA"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftA (StarPiece3F 2 coins)
+    {"from": {"map": "TIK_15", "id": "GiftA"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftA (StarPiece3F 2 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftB"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftB (LifeShroom 2 coins)
+    {"from": {"map": "TIK_15", "id": "GiftB"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftB (LifeShroom 2 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftC"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftC (BumpAttack 4 coins)
+    {"from": {"map": "TIK_15", "id": "GiftC"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftC (BumpAttack 4 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftD"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftD (RepelGel 4 coins)
+    {"from": {"map": "TIK_15", "id": "GiftD"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftD (RepelGel 4 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftE"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftE (StarPiece40 8 coins)
+    {"from": {"map": "TIK_15", "id": "GiftE"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftE (StarPiece40 8 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftF"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftF (SuperShroom 8 coins)
+    {"from": {"map": "TIK_15", "id": "GiftF"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftF (SuperShroom 8 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftG"}, "reqs": [require(flag="RF_OutOfLogic")]}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftG (Mushroom 16 coins)
+    {"from": {"map": "TIK_15", "id": "GiftG"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftG (Mushroom 16 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftH"}, "reqs": [require(flag="RF_OutOfLogic")]}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftH (DriedShroom 16 coins)
+    {"from": {"map": "TIK_15", "id": "GiftH"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftH (DriedShroom 16 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftI"}, "reqs": [require(flag="RF_OutOfLogic")]}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftI (DriedShroom 32 coins)
+    {"from": {"map": "TIK_15", "id": "GiftI"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftI (DriedShroom 32 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftJ"}, "reqs": [require(flag="RF_OutOfLogic")]}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftI (StarPiece41 32 coins)
+    {"from": {"map": "TIK_15", "id": "GiftJ"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftI (StarPiece41 32 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftK"}, "reqs": [require(flag="RF_OutOfLogic")]}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftK (DriedShroom 64 coins)
+    {"from": {"map": "TIK_15", "id": "GiftK"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftK (DriedShroom 64 coins) -> Rip Cheato's Home (B3) Green Pipe Right
 
     # TIK_17 Frozen Room (B3)
     {"from": {"map": "TIK_17", "id": 0}, "to": {"map": "TIK_22", "id": 1}, "reqs": []}, # Frozen Room (B3) Green Pipe Left -> Path to Shiver City (B2) Green Pipe
