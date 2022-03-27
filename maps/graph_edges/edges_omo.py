@@ -34,7 +34,7 @@ edges_omo = [
     {"from": {"map": "OMO_02", "id": "YBlockA"},       "to": {"map": "OMO_02", "id": 1},               "reqs": []}, #* YBlockA (SleepySheep) -> RED Boss Barricade Exit East
     {"from": {"map": "OMO_02", "id": 1},               "to": {"map": "OMO_02", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* RED Boss Barricade Exit East -> HiddenYBlockA (Coin)
     {"from": {"map": "OMO_02", "id": "HiddenYBlockA"}, "to": {"map": "OMO_02", "id": 1},               "reqs": []}, #* HiddenYBlockA (Coin) -> RED Boss Barricade Exit East
-    {"from": {"map": "OMO_02", "id": 1},               "to": {"map": "OMO_02", "id": "ItemA"},         "reqs": [require(parter="Kooper",boots=3),require(hammer=1,boots=2),require(partner="Watt",flag="RF_HiddenBlocksVisible",boots=3)]}, #* RED Boss Barricade Exit East -> ItemA (ShootingStar)
+    {"from": {"map": "OMO_02", "id": 1},               "to": {"map": "OMO_02", "id": "ItemA"},         "reqs": [require(partner="Kooper",boots=3),require(hammer=1,boots=2),require(partner="Watt",flag="RF_HiddenBlocksVisible",boots=3)]}, #* RED Boss Barricade Exit East -> ItemA (ShootingStar)
     {"from": {"map": "OMO_02", "id": "ItemA"},         "to": {"map": "OMO_02", "id": 1},               "reqs": []}, #* ItemA (ShootingStar) -> RED Boss Barricade Exit East
 
     # OMO_03 BLU Station
