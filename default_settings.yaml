@@ -86,6 +86,17 @@ ItemScarcity          : 0
 AddItemPouches        : false
 KeyitemsOutsideDungeon: false
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
+# Mystery? item options
+RandomChoice     : true
+MysteryRandomPick: true
+# Below are never used, they get hardcoded overwritten, just for doc purposes
+ItemChoiceA      : 0x08A # Mushroom
+ItemChoiceB      : 0x08C # SuperShroom
+ItemChoiceC      : 0x080 # FireFlower
+ItemChoiceD      : 0x088 # StoneCap
+ItemChoiceE      : 0x09A # DizzyDial
+ItemChoiceF      : 0x082 # ThunderRage
+ItemChoiceG      : 0x085 # Pebble
 
 # Randomization: Moves and Badges
 # 0: vanilla, 1: balanced random, 2: shuffled, 3: fully random

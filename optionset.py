@@ -91,6 +91,8 @@ class OptionSet:
         self.placement_logic = "NoGlitches"
         self.keyitems_outside_dungeon = True # False -> NYI
         self.keyitems_outside_chapter = True # "Keysanity" # false -> NYI
+        # Mystery? item options
+        self.mystery_settings = MysteryOptionSet()
 
         # Moves and Badges
         self.random_badges_bp = 0
@@ -326,6 +328,25 @@ class OptionSet:
             self.keyitems_outside_dungeon = options_dict.get("KeyitemsOutsideDungeon").get("value")
         if "KeyitemsOutsideChapter" in options_dict:
             self.keyitems_outside_chapter = options_dict.get("KeyitemsOutsideChapter").get("value")
+        # Mystery? item options
+        if "RandomChoice" in options_dict:
+            self.mystery_settings.mystery_random_choice = options_dict.get("RandomChoice")
+        if "MysteryRandomPick" in options_dict:
+            self.mystery_settings.mystery_random_pick = options_dict.get("MysteryRandomPick").get("value")
+        if "ItemChoiceA" in options_dict:
+            self.mystery_settings.mystery_itemA = options_dict.get("ItemChoiceA")
+        if "ItemChoiceB" in options_dict:
+            self.mystery_settings.mystery_itemB = options_dict.get("ItemChoiceB")
+        if "ItemChoiceC" in options_dict:
+            self.mystery_settings.mystery_itemC = options_dict.get("ItemChoiceC")
+        if "ItemChoiceD" in options_dict:
+            self.mystery_settings.mystery_itemD = options_dict.get("ItemChoiceD")
+        if "ItemChoiceE" in options_dict:
+            self.mystery_settings.mystery_itemE = options_dict.get("ItemChoiceE")
+        if "ItemChoiceF" in options_dict:
+            self.mystery_settings.mystery_itemF = options_dict.get("ItemChoiceF")
+        if "ItemChoiceG" in options_dict:
+            self.mystery_settings.mystery_itemG = options_dict.get("ItemChoiceG")
 
         # Moves and Badges
         if "RandomBadgesBP" in options_dict:
@@ -635,6 +656,39 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("KeyitemsOutsideDungeon").get("value"), bool)
     if "KeyitemsOutsideChapter" in options_dict:
         assert isinstance(options_dict.get("KeyitemsOutsideChapter").get("value"), bool)
+    # Mystery? item options
+    if "RandomChoice" in options_dict:
+        assert isinstance(options_dict.get("RandomChoice").get("value"), bool)
+    if "MysteryRandomPick" in options_dict:
+        assert isinstance(options_dict.get("MysteryRandomPick").get("value"), bool)
+    if "ItemChoiceA" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceA").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceA").get("value") <= 0xDA
+        )
+    if "ItemChoiceB" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceB").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceB").get("value") <= 0xDA
+        )
+    if "ItemChoiceC" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceC").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceC").get("value") <= 0xDA
+        )
+    if "ItemChoiceD" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceD").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceD").get("value") <= 0xDA
+        )
+    if "ItemChoiceE" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceE").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceE").get("value") <= 0xDA
+        )
+    if "ItemChoiceF" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceF").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceF").get("value") <= 0xDA
+        )
+    if "ItemChoiceG" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceG").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceG").get("value") <= 0xDA
+        )
 
     # Moves and Badges
     if "RandomBadgesBP" in options_dict:
@@ -803,3 +857,16 @@ class PaletteOptionSet():
         #self.lakilester_sprite = DEFAULT_PALETTE
         self.bosses_setting = DEFAULT_PALETTE
         self.npc_setting = DEFAULT_PALETTE
+
+
+class MysteryOptionSet():
+    def __init__(self):
+        self.mystery_random_choice = get_option_keyvalue_dict("RandomChoice")
+        self.mystery_random_pick = False
+        self.mystery_itemA = get_option_keyvalue_dict("ItemChoiceA")
+        self.mystery_itemB = get_option_keyvalue_dict("ItemChoiceB")
+        self.mystery_itemC = get_option_keyvalue_dict("ItemChoiceC")
+        self.mystery_itemD = get_option_keyvalue_dict("ItemChoiceD")
+        self.mystery_itemE = get_option_keyvalue_dict("ItemChoiceE")
+        self.mystery_itemF = get_option_keyvalue_dict("ItemChoiceF")
+        self.mystery_itemG = get_option_keyvalue_dict("ItemChoiceG")

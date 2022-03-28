@@ -8,6 +8,7 @@ from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.modify_entrances import get_shorter_bowsercastle
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
+from rando_modules.random_mystery import get_random_mystery
 from rando_modules.random_palettes     \
     import get_randomized_coinpalette, \
            get_randomized_palettes
@@ -82,6 +83,9 @@ class RandomSeed:
                             add_item_pouches=self.rando_settings.add_item_pouches,
                             world_graph=world_graph):
             pass
+
+        # Modify Mystery? item
+        self.rando_settings.mystery_settings = get_random_mystery(self.rando_settings.mystery_settings)
 
         # Make everything inexpensive
         #set_cheap_shopitems(placed_items)
