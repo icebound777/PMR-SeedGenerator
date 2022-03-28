@@ -19,6 +19,8 @@ edges_mac = [
     {"from": {"map": "MAC_00", "id": "HiddenPanel"}, "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "ItemA"},       "reqs": [require(partner="Sushie")]}, #* Gate District Exit Left -> ItemA (StarPiece)
     {"from": {"map": "MAC_00", "id": "ItemA"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ItemA (StarPiece) -> Gate District Exit Left
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "GiftA"},       "reqs": [require(item="Dictionary")]}, #* Gate District Exit Left -> GiftA (StarPiece)
+    {"from": {"map": "MAC_00", "id": "GiftA"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* GiftA (StarPiece) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "ShopItemA"},   "reqs": []}, #* Gate District Exit Left -> ShopItemA (FrightJar)
     {"from": {"map": "MAC_00", "id": "ShopItemA"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemA (FrightJar) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "ShopItemB"},   "reqs": []}, #* Gate District Exit Left -> ShopItemB (SleepySheep)
@@ -70,6 +72,8 @@ edges_mac = [
     {"from": {"map": "MAC_01", "id": "ItemA"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ItemA (QuickChange) -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "GiftA"},        "reqs": [require(item="Calculator")]}, #* Plaza District Exit Left -> GiftA (ISpy)
     {"from": {"map": "MAC_01", "id": "GiftA"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* GiftA (ISpy) -> Plaza District Exit Left
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "GiftB"},        "reqs": [require(item="MailBag")]}, #* Plaza District Exit Left -> GiftB (StarPiece)
+    {"from": {"map": "MAC_01", "id": "GiftB"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* GiftB (StarPiece) -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "Tree1_Drop1A"}, "reqs": [can_shake_trees]}, #* Plaza District Exit Left -> Tree1_Drop1A (StarPiece)
     {"from": {"map": "MAC_01", "id": "Tree1_Drop1A"}, "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* Tree1_Drop1A (StarPiece) -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ShopBadgeA"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeA (SpeedySpin)

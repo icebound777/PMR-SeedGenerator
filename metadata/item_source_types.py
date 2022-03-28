@@ -20,6 +20,7 @@ item_source_types = {
     "KMR_00": {"HiddenPanel": SRC_HIDDENTILE,},
     "KMR_02": {"GiftA": SRC_GIVENBYNPC,
                "GiftB": SRC_GIVENBYNPC,
+               "GiftC": SRC_GIVENBYNPC,
                "ItemA": SRC_LAYINGAROUND,
                "Tree1_Drop1A": SRC_HIDDENINTREE,
                "Partner": SRC_GIVENBYNPC},
@@ -48,6 +49,7 @@ item_source_types = {
 
 # Toad Town
     "MAC_00": {"ItemA": SRC_LAYINGAROUND,
+               "GiftA": SRC_GIVENBYNPC,
                "HiddenPanel": SRC_HIDDENTILE,
                "ShopItemA": SRC_SOLDBYNPC,
                "ShopItemB": SRC_SOLDBYNPC,
@@ -62,6 +64,7 @@ item_source_types = {
                "DojoE": SRC_GIVENBYNPC},
     "MAC_01": {"ItemA": SRC_GROUNDPOUND,
                "GiftA": SRC_GIVENBYNPC,
+               "GiftB": SRC_GIVENBYNPC,
                "Tree1_Drop1A": SRC_HIDDENINTREE,
                "ShopBadgeA": SRC_SOLDBYNPC,
                "ShopBadgeB": SRC_SOLDBYNPC,
@@ -189,6 +192,7 @@ item_source_types = {
                "GiftA": SRC_GIVENBYNPC,
                "GiftB": SRC_GIVENBYNPC,
                "GiftC": SRC_GIVENBYNPC,
+               "GiftD": SRC_GIVENBYNPC,
                "ItemA": SRC_LAYINGAROUND,
                "Partner": SRC_GIVENBYNPC,
                "KootGift00": SRC_GIVENBYNPC,

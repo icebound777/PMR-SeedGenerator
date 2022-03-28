@@ -25,8 +25,10 @@ edges_kmr  = [
     {"from": {"map": "KMR_02", "id": "ItemA"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* ItemA (ShootingStar) -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftA"       },  "reqs": [require(favor="FAVOR_2_01_active")]}, #* Goomba Village Exit Left -> GiftA (KootTheTape)
     {"from": {"map": "KMR_02", "id": "GiftA"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftA (KootTheTape) -> Goomba Village Exit Left
-    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftB"       },  "reqs": []}, #* Goomba Village Exit Left -> GiftA (PowerJump)
-    {"from": {"map": "KMR_02", "id": "GiftB"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftA (PowerJump) -> Goomba Village Exit Left
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftB"       },  "reqs": []}, #* Goomba Village Exit Left -> GiftB (PowerJump)
+    {"from": {"map": "KMR_02", "id": "GiftB"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftB (PowerJump) -> Goomba Village Exit Left
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftC"       },  "reqs": [require(item="Dolly")]}, #* Goomba Village Exit Left -> GiftC (StarPiece)
+    {"from": {"map": "KMR_02", "id": "GiftC"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftC (StarPiece) -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "Tree1_Drop1A"},  "reqs": [can_shake_trees]}, #* Goomba Village Exit Left -> Tree1_Drop1A (Goomnut)
     {"from": {"map": "KMR_02", "id": "Tree1_Drop1A"},  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* Tree1_Drop1A (Goomnut) -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "Partner"     },  "reqs": []}, #* Goomba Village Exit Left -> Partner (Goombario)

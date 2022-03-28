@@ -39,9 +39,9 @@ class Item(Model):
                 0x15B: "FLOWER",
                 0x15C: "STARPIECE",
             }.get(item_id)
-        elif 0x185 <= item_id <= 0x1CB:
+        elif 0x185 <= item_id <= 0x1CF:
             return "STARPIECE"
-        elif 0x1D1 <= item_id <= 0x1D9:
+        elif 0x1D5 <= item_id <= 0x1DD:
             return "PARTNER"
         else:
             return "OTHER"

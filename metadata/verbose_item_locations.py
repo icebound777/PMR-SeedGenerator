@@ -3,6 +3,7 @@ verbose_item_locations = {
     "KMR_00": {"HiddenPanel": "Hidden Panel",},
     "KMR_02": {"GiftA": "Goompa Koopa Koot Favor",
                "GiftB": "Goompa Gift",
+               "GiftC": "Goombaria Dolly Reward",
                "ItemA": "On The Balcony",
                "Tree1_Drop1A": "Goomnut Tree",
                "Partner": "Goombario Partner"},
@@ -31,6 +32,7 @@ verbose_item_locations = {
 
 # Toad Town
     "MAC_00": {"ItemA": "Sushie Island",
+               "GiftA": "Russ T. Dictionary Reward",
                "HiddenPanel": "Hidden Panel",
                "ShopItemA": "Shop Item 1",
                "ShopItemB": "Shop Item 2",
@@ -45,6 +47,7 @@ verbose_item_locations = {
                "DojoE": "Dojo: Master 3",},
     "MAC_01": {"ItemA": "Merlon House Stomping",
                "GiftA": "Rowf's Calculator Reward",
+               "GiftB": "Postmaster MailBag Reward",
                "Tree1_Drop1A": "In Tree",
                "ShopBadgeA": "Rowf's Shop Set 1",
                "ShopBadgeB": "Rowf's Shop Set 1",
@@ -172,6 +175,7 @@ verbose_item_locations = {
                "GiftA": "Kolorado's Wife (Koopa Koot Favor)",
                "GiftB": "Koopa Koot Silver Credit",
                "GiftC": "Koopa Koot Gold Credit",
+               "GiftD": "Kolorado Artifact Reward",
                "ItemA": "Push Block Puzzle",
                "Partner": "Kooper Partner",
                "KootGift00": "Koopa Koot Reward 1",
