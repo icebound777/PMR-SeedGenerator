@@ -103,7 +103,7 @@ verbose_item_locations = {
                "GiftH": "Rip Cheato Offer 8",
                "GiftI": "Rip Cheato Offer 9",
                "GiftJ": "Rip Cheato Offer 10",
-               "GiftK": "Rip Cheato Infinite Offer",},
+               "GiftK": "Rip Cheato Offer 11",},
     "TIK_18": {"HiddenYBlockA": "Hidden Block"},
     "TIK_20": {"YBlockA": "Yellow Block"},
     "TIK_21": {"YBlockA": "Yellow Block 1",
