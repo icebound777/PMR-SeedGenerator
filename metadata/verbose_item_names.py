@@ -53,6 +53,7 @@ verbose_item_names = {
     "FlowerSaverB": "FlowerSaver",
     "FPPlusA": "FPPlus",
     "FPPlusB": "FPPlus",
+    "FPPlusC": "FPPlus",
     "HappyFlowerA": "HappyFlower",
     "HappyFlowerB": "HappyFlower",
     "HappyHeartA": "HappyHeart",
