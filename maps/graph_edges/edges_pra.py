@@ -170,7 +170,7 @@ edges_pra = [
     
     {"from": {"map": "PRA_21", "id": 0},             "to": {"map": "PRA_21", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Huge Statue Room Door West -> HiddenPanel (StarPiece)
     {"from": {"map": "PRA_21", "id": "HiddenPanel"}, "to": {"map": "PRA_21", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Huge Statue Room Door West
-    {"from": {"map": "PRA_21", "id": 0},             "to": {"map": "PRA_21", "id": "YBlockA"},     "reqs": []}, #* Huge Statue Room Door West -> YBlockA (MapleSyrup)
+    {"from": {"map": "PRA_21", "id": 0},             "to": {"map": "PRA_21", "id": "YBlockA"},     "reqs": [require(boots=3)]}, #* Huge Statue Room Door West -> YBlockA (MapleSyrup)
     {"from": {"map": "PRA_21", "id": "YBlockA"},     "to": {"map": "PRA_21", "id": 0},             "reqs": []}, #* YBlockA (MapleSyrup) -> Huge Statue Room Door West
 
     # PRA_22 Small Statue Room
@@ -184,7 +184,7 @@ edges_pra = [
     
     {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenPanel"},   "reqs": [can_flip_panels]}, #* Small Statue Room Door West -> HiddenPanel (StarPiece)
     {"from": {"map": "PRA_22", "id": "HiddenPanel"},   "to": {"map": "PRA_22", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> Small Statue Room Door West
-    {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Small Statue Room Door West -> HiddenYBlockA (JamminJelly)
+    {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenYBlockA"}, "reqs": [require(boots=3),require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Small Statue Room Door West -> HiddenYBlockA (JamminJelly)
     {"from": {"map": "PRA_22", "id": "HiddenYBlockA"}, "to": {"map": "PRA_22", "id": 0},               "reqs": []}, #* HiddenYBlockA (JamminJelly) -> Small Statue Room Door West
 
     # PRA_27 Palace Key Room
