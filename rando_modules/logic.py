@@ -350,6 +350,50 @@ def _get_limit_items_to_dungeons(
                 "reqs": []
             }
         ],
+        "OMO": [
+            # BLU Station Spring to Toad Town
+            # -> ItemA (SnowmanDoll)
+            {
+                "from": {"map": "OMO_03", "id": 4},
+                "to":   {"map": "MAC_04", "id": "ItemA"},
+                "reqs": [require(item="StoreroomKey")]
+            },
+            # BLU Station Spring to Toad Town
+            # -> ItemB (VoltShroom)
+            {
+                "from": {"map": "OMO_03", "id": 4},
+                "to":   {"map": "MAC_04", "id": "ItemB"},
+                "reqs": [require(item="StoreroomKey")]
+            },
+            # BLU Station Spring to Toad Town
+            # -> ItemC (ToyTrain)
+            {
+                "from": {"map": "OMO_03", "id": 4},
+                "to":   {"map": "MAC_04", "id": "ItemC"},
+                "reqs": [require(item="StoreroomKey")]
+            },
+            # BLU Station Spring to Toad Town
+            # -> ItemD (DizzyDial)
+            {
+                "from": {"map": "OMO_03", "id": 4},
+                "to":   {"map": "MAC_04", "id": "ItemD"},
+                "reqs": [require(item="StoreroomKey")]
+            },
+            # Toybox: Throw in ToyTrain
+            {
+                "from": {"map": "OMO_03", "id": 4},
+                "to":   {"map": "OMO_03", "id": 4},
+                "reqs": [require(item="ToyTrain")],
+                "pseudoitems": ["MF_Ch4_ReturnedToyTrain"],
+            },
+            # Decipher MysteryNote
+            {
+                "from": {"map": "OMO_03", "id": 4},
+                "to":   {"map": "OMO_03", "id": 4},
+                "reqs": [require(item="MysteryNote"), require(item="Dictionary")],
+                "pseudoitems": ["RF_CanSolveColorPuzzle"],
+            },
+        ],
     }
 
     remove_edges = {
@@ -444,6 +488,13 @@ def _get_limit_items_to_dungeons(
         "KPA": "KPA_60/4",
     }
 
+    additional_starting_items = {
+        "DGB": ["EQUIPMENT_Boots_Progressive_2"], # Assume basement chest is reachable
+        "OMO": ["RF_CanVisitTayceT"], # Assume we can cook Cake and Lemon Candy
+        "FLO": ["EQUIPMENT_Boots_Progressive_2"], # Assume cloud machine can be reached
+        "PRA": ["EQUIPMENT_Boots_Progressive_2"], # Assume spin jump can be used to progress
+    }
+
     all_partners = all_partners_imp.copy()
 
     # If partners are forced into their default locations, then we have to
@@ -458,7 +509,10 @@ def _get_limit_items_to_dungeons(
 
     for area_name in areas_to_limit:
         # Build small world graph only encompassing the current area
-        area_nodes = get_area_nodes(area_name)
+        if area_name == "OMO":
+            area_nodes = get_area_nodes("OMO") + get_area_nodes("MAC")
+        else:
+            area_nodes = get_area_nodes(area_name)
         area_edges = get_area_edges(area_name)
         if area_name in additional_edges:
             area_edges.extend(additional_edges.get(area_name))
@@ -540,10 +594,9 @@ def _get_limit_items_to_dungeons(
                 False,
                 False
             )
-        add_to_inventory([
-            "CrystalBerry",
-            "WaterStone"
-        ])
+        if area_name in additional_starting_items:
+            for item in additional_starting_items[area_name]:
+                add_to_inventory(item)
 
         # Find initially reachable nodes
         pool_misc_progression_items,    \
@@ -617,6 +670,20 @@ def _get_limit_items_to_dungeons(
 
         items_placed.extend(cur_items_placed)
         items_overwritten.extend(cur_items_overwritten)
+
+        area_goals = {
+            "TRD": [require(starspirits=1)],
+            "ISK": [require(starspirits=1)],
+            "DGB": [require(item="MysticalKey")],
+            "OMO": [require(starspirits=1)],
+            "KZN": [require(starspirits=1)],
+            "FLO": [require(starspirits=1)],
+            "PRA": [require(starspirits=1)],
+            "KPA": [lambda: "KPA_121/1" in reachable_node_ids_try],
+        }
+
+        for area_goal in area_goals[area_name]:
+            assert area_goal()
 
     all_item_node_ids = [get_node_identifier(node) for node in all_item_nodes]
     modified_nodes = [node for node in limited_filled_item_nodes if get_node_identifier(node) not in all_item_node_ids]

@@ -110,7 +110,7 @@ edges_omo = [
     {"from": {"map": "OMO_05", "id": 1},               "to": {"map": "OMO_05", "id": "HiddenYBlockB"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* PNK Gourmet Guy Crossing Exit East (North) -> HiddenYBlockB (SuperSoda)
     {"from": {"map": "OMO_05", "id": "HiddenYBlockB"}, "to": {"map": "OMO_05", "id": 1},               "reqs": []}, #* HiddenYBlockB (SuperSoda) -> PNK Gourmet Guy Crossing Exit East (North)
 
-    {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": [require(item="Cake")], "pseudoitems": ["MF_Ch4_GaveCakeToGourmetGuy"]}, #+ Give Cake to Gourmet Guy
+    {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": [require(flag="RF_CanVisitTayceT"),require(item="CakeMix")], "pseudoitems": ["MF_Ch4_GaveCakeToGourmetGuy"]}, #+ Give Cake to Gourmet Guy
 
     # OMO_06 PNK Station
     {"from": {"map": "OMO_06", "id": 0}, "to": {"map": "OMO_17", "id": 2}, "reqs": []}, # PNK Station Exit West -> PNK Tracks Hallway Exit East (South)
