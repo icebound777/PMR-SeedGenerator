@@ -83,7 +83,7 @@ IncludeDojo           : false
 IncludeFavors         : false # Koopa Koot Favors
 IncludeLetterChain    : false # true -> NYI
 ItemScarcity          : 0
-ItemTrapMode          : 2
+ItemTrapMode          : 0
 AddItemPouches        : false
 KeyitemsOutsideDungeon: false
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
