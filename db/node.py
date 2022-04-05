@@ -61,6 +61,10 @@ class Node(Model):
             return None
         return (self._meta.key_type << 24) | (self.map_area.area_id << 16) | (self.map_area.map_id << 8) | self.price_index
 
+    def is_shop(self):
+        """Return whether this location is a shop or not."""
+        return self.key_name_price is not None
+
     class Meta:
         database = db
         key_type = 0xA1

@@ -4,6 +4,7 @@ from peewee import *
 
 from db.db import db
 from metadata.progression_items import progression_items
+from metadata.item_general import unused_items, unplaceable_items
 from enums import Enums
 
 
@@ -18,10 +19,19 @@ class Item(Model):
     base_price = IntegerField()
     # True if item can be required to reach locations
     progression = BooleanField(default=False)
+    # Is the item unused in the vanilla game, but functional
+    unused = BooleanField(default=False)
+    # Is the item unintended to be placed in the world and could break things,
+    # or is unused but non-functional
+    unplaceable = BooleanField(default=False)
 
     def __str__(self):
         return f"{self.item_name} ({self.item_type})[{hex(self.value)}]"
-    
+
+    def is_trapped(self):
+        trap_flag = 0x2000
+        return self.value & trap_flag == trap_flag
+
     @classmethod
     def get_type(cls, item_id:int):
         if item_id <= 0x7F or (0x16D <= item_id <= 0x17E):
@@ -48,8 +58,8 @@ class Item(Model):
 
     class Meta:
         database = db
-            
-            
+
+
 # Run this to create all items in Item table
 def create_items():
     db.drop_tables([Item])
@@ -75,10 +85,13 @@ def create_items():
         if item_id == 0x18:
             # Ignore fake Volcano Vase
             continue
+        item_name = Enums.get("Item")[item_id]
         item,_ = Item.get_or_create(
             item_type = Item.get_type(item_id),
             value = item_id,
-            item_name = Enums.get("Item")[item_id],
+            item_name = item_name,
             base_price = int(item["Sell Value"], 10) if item["Sell Value"] != "FFFF" else 50,
-            progression = (Item.get_type(item_id) in ["KEYITEM","PARTNER"] and item_id in progression_items.keys())
+            progression = (Item.get_type(item_id) in ["KEYITEM","PARTNER"] and item_id in progression_items.keys()),
+            unused = item_name in unused_items,
+            unplaceable = item_name in unplaceable_items
         )

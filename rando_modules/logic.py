@@ -25,7 +25,9 @@ from rando_modules.simulate        \
            get_starpiece_count, \
            get_item_history
 
-from rando_modules.item_scarcity import get_scarcitied_itempool
+from rando_modules.modify_itempool \
+    import get_scarcitied_itempool,\
+           get_trapped_itempool
 
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
 
@@ -637,6 +639,7 @@ def _generate_item_pools(
     do_randomize_letterchain:bool,
     do_randomize_dojo:bool,
     item_scarcity:int,
+    itemtrap_mode:int,
     startwith_bluehouse_open:bool,
     startwith_flowergate_open:bool,
     keyitems_outside_dungeon:bool,
@@ -876,6 +879,13 @@ def _generate_item_pools(
 
     pool_other_items = get_scarcitied_itempool(pool_other_items, item_scarcity)
 
+    pool_other_items = get_trapped_itempool(
+        pool_other_items,
+        itemtrap_mode,
+        do_randomize_koopakoot,
+        do_randomize_dojo
+    )
+
     return pool_other_items
 
 
@@ -1008,6 +1018,7 @@ def _algo_forward_fill(
     do_randomize_letterchain,
     do_randomize_dojo,
     item_scarcity,
+    itemtrap_mode,
     starting_map_id,
     startwith_bluehouse_open,
     startwith_flowergate_open,
@@ -1053,6 +1064,7 @@ def _algo_forward_fill(
         do_randomize_letterchain,
         do_randomize_dojo,
         item_scarcity,
+        itemtrap_mode,
         startwith_bluehouse_open,
         startwith_flowergate_open,
         keyitems_outside_dungeon,
@@ -1155,6 +1167,11 @@ def _algo_forward_fill(
     # Place all remaining items into still empty item nodes
     print("Placing Miscellaneous Items ...")
     random.shuffle(pool_other_items)
+
+    # Sort so shop nodes are in front to make sure those are filled with
+    # non-traps
+    all_item_nodes.sort(key=lambda x: x.is_shop(), reverse=True)
+
     for item_node in all_item_nodes:
         item_node_id = get_node_identifier(item_node)
 
@@ -1183,6 +1200,14 @@ def _algo_forward_fill(
             try:
                 random_item_id = random.randint(0, len(pool_other_items) - 1)
                 random_item = pool_other_items.pop(random_item_id)
+
+                if "Shop" in item_node_id:
+                    # Do not put item traps into shops -> it breaks otherwise!
+                    while random_item.is_trapped():
+                        pool_other_items.append(random_item)
+                        random_item_id = random.randint(0, len(pool_other_items) - 1)
+                        random_item = pool_other_items.pop(random_item_id)
+
                 item_node.current_item = random_item
                 if "Shop" in item_node_id:
                     item_node.current_item.base_price = get_shop_price(item_node, do_randomize_shops)
@@ -1308,6 +1333,7 @@ def place_items(
     do_randomize_letterchain,
     do_randomize_dojo,
     item_scarcity,
+    itemtrap_mode,
     starting_map_id,
     startwith_bluehouse_open,
     startwith_flowergate_open,
@@ -1348,6 +1374,7 @@ def place_items(
             do_randomize_letterchain,
             do_randomize_dojo,
             item_scarcity,
+            itemtrap_mode,
             starting_map_id,
             startwith_bluehouse_open,
             startwith_flowergate_open,

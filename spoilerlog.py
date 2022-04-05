@@ -61,7 +61,10 @@ def write_spoiler_log(
             else:
                 item_location = f"{map_verbose_name} - {node.key_name_item}"
 
-            file.write(f"    ({item_location}): {current_item_name}\n")
+            if node.current_item.is_trapped():
+                file.write(f"    ({item_location}): TRAP ({current_item_name})\n")
+            else:
+                file.write(f"    ({item_location}): {current_item_name}\n")
             current_area_name = verbose_area_names.get(node.map_area.name[:3])
     else:
         for node in sorted_by_area:
