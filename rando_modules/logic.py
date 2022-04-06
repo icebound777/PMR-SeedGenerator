@@ -572,7 +572,7 @@ def _get_limit_items_to_dungeons(
 
         # Reset Mario's inventory
         if partners_in_default_locations:
-            almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name)]
+            almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name) or x in starting_partners]
             _init_mario_inventory(
                 almost_all_partners,
                 starting_items,
@@ -645,7 +645,7 @@ def _get_limit_items_to_dungeons(
                 cur_items_overwritten = []
                 # Reset Mario's inventory
                 if partners_in_default_locations:
-                    almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name)]
+                    almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name) or x in starting_partners]
                     _init_mario_inventory(
                         almost_all_partners,
                         starting_items,
