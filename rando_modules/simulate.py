@@ -192,19 +192,22 @@ def require(**kwargs):
             if partner in mario.partners:
                 return True
         # Items
-        if item := kwargs.get("item"):
-            if item in multiuse_progression_items:
-                have_any_req_item = True in (multi_item in mario.items
-                                             for multi_item in multiuse_progression_items.get(item))
-                if have_any_req_item:
-                    # remove single multiuse item #TODO very janky, pls rework
-                    for multi_item in multiuse_progression_items.get(item):
-                        if multi_item in mario.items:
-                            mario.items.remove(multi_item)
-                            break
+        if items := kwargs.get("item"):
+            if type(items) is not list:
+                items = [items]
+            for item in items:
+                if item in multiuse_progression_items:
+                    have_any_req_item = True in (multi_item in mario.items
+                                                 for multi_item in multiuse_progression_items.get(item))
+                    if have_any_req_item:
+                        # remove single multiuse item #TODO very janky, pls rework
+                        for multi_item in multiuse_progression_items.get(item):
+                            if multi_item in mario.items:
+                                mario.items.remove(multi_item)
+                                break
+                        return True
+                if item in mario.items:
                     return True
-            if item in mario.items:
-                return True
         # StarPieces
         starpieces = kwargs.get("starpieces")
         if starpieces is not None and get_starpiece_count() >= starpieces:
