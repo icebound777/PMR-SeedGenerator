@@ -44,7 +44,7 @@ edges_mac = [
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoE"},       "reqs": [require(starspirits=5)]}, #* Gate District Exit Left -> Dojo Fight E (Diploma)
     {"from": {"map": "MAC_00", "id": "DojoE"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* Dojo Fight E (Diploma) -> Gate District Exit Left
 
-    {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 0}, "reqs": [require(item="MysteryNote"), require(item="Dictionary")], "pseudoitems": ["RF_CanSolveColorPuzzle"]}, #+ Decipher MysteryNote
+    {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanVisitRussT"]}, #+ Can decipher MysteryNote
 
     # MAC_01 Plaza District
     {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_00", "id": 1}, "reqs": []}, # Plaza District Exit Left -> Gate District Exit Right
@@ -187,7 +187,7 @@ edges_mac = [
     {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 2}, "reqs": [require(partner="Bow",flag="RF_ToyboxOpen")]}, #? Residental District Exit Right -> Residental District Toybox Spring    
     {"from": {"map": "MAC_04", "id": 2}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #? Residental District Toybox Spring -> Residental District Exit Right
 
-    {"from": {"map": "MAC_04", "id": 2}, "to": {"map": "MAC_04", "id": 2}, "reqs": [require(item="ToyTrain")], "pseudoitems": ["MF_Ch4_ReturnedToyTrain"]}, #+ Toybox: Throw in ToyTrain
+    {"from": {"map": "MAC_04", "id": 2}, "to": {"map": "MAC_04", "id": 2}, "reqs": [], "pseudoitems": ["MF_Ch4_CanThrowInTrain"]}, #+ Toybox: Can throw in ToyTrain
     
     {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ItemA"},     "reqs": [require(item="StoreroomKey")]}, #* Residental District Exit Right -> ItemA (SnowmanDoll)
     {"from": {"map": "MAC_04", "id": "ItemA"},     "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ItemA (SnowmanDoll) -> Residental District Exit Right

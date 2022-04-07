@@ -48,9 +48,9 @@ edges_omo = [
     {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 4}, "reqs": []}, #? BLU Station Exit West -> BLU Station Spring to Toad Town
     {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": 1}, "reqs": []}, #? BLU Station Spring to Toad Town -> BLU Station Exit East
     {"from": {"map": "OMO_03", "id": 1}, "to": {"map": "OMO_03", "id": 4}, "reqs": []}, #? BLU Station Exit East -> BLU Station Spring to Toad Town
-    {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": 2}, "reqs": [require(flag="MF_Ch4_ReturnedToyTrain"),require(flag="RF_BlueSwitchPulled")]}, #? BLU Station Spring to Toad Town -> BLU Station Ride Train West
+    {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": 2}, "reqs": [require(flag="MF_Ch4_CanThrowInTrain"),require(item="ToyTrain"),require(flag="RF_BlueSwitchPulled")]}, #? BLU Station Spring to Toad Town -> BLU Station Ride Train West
     {"from": {"map": "OMO_03", "id": 2}, "to": {"map": "OMO_03", "id": 4}, "reqs": [], "pseudoitems": ["RF_BlueSwitchPulled"]}, #? BLU Station Ride Train West -> BLU Station Spring to Toad Town
-    {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": 3}, "reqs": [require(flag="MF_Ch4_ReturnedToyTrain")]}, #? BLU Station Spring to Toad Town -> BLU Station Ride Train East
+    {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": 3}, "reqs": [require(flag="MF_Ch4_CanThrowInTrain"),require(item="ToyTrain")]}, #? BLU Station Spring to Toad Town -> BLU Station Ride Train East
     {"from": {"map": "OMO_03", "id": 3}, "to": {"map": "OMO_03", "id": 4}, "reqs": []}, #? BLU Station Ride Train East -> BLU Station Spring to Toad Town
     
     {"from": {"map": "OMO_03", "id": 4},               "to": {"map": "OMO_03", "id": "HiddenPanel"},   "reqs": [can_flip_panels]}, #* BLU Station Spring to Toad Town -> HiddenPanel (StarPiece)
@@ -110,7 +110,8 @@ edges_omo = [
     {"from": {"map": "OMO_05", "id": 1},               "to": {"map": "OMO_05", "id": "HiddenYBlockB"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* PNK Gourmet Guy Crossing Exit East (North) -> HiddenYBlockB (SuperSoda)
     {"from": {"map": "OMO_05", "id": "HiddenYBlockB"}, "to": {"map": "OMO_05", "id": 1},               "reqs": []}, #* HiddenYBlockB (SuperSoda) -> PNK Gourmet Guy Crossing Exit East (North)
 
-    {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": [require(flag="RF_CanVisitTayceT"),require(item="CakeMix")], "pseudoitems": ["MF_Ch4_GaveCakeToGourmetGuy"]}, #+ Give Cake to Gourmet Guy
+    {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": [require(item="Cake")], "pseudoitems": ["MF_Ch4_GaveCakeToGourmetGuy"]}, #+ Give Cake to Gourmet Guy
+    {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": [require(item="CakeMix"),require(flag="RF_CanVisitTayceT")], "pseudoitems": ["MF_Ch4_GaveCakeToGourmetGuy"]}, #+ Give Cake to Gourmet Guy
 
     # OMO_06 PNK Station
     {"from": {"map": "OMO_06", "id": 0}, "to": {"map": "OMO_17", "id": 2}, "reqs": []}, # PNK Station Exit West -> PNK Tracks Hallway Exit East (South)
@@ -164,7 +165,7 @@ edges_omo = [
     {"from": {"map": "OMO_08", "id": 0},               "to": {"map": "OMO_08", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* GRN Station Exit East -> HiddenYBlockA (FireFlower)
     {"from": {"map": "OMO_08", "id": "HiddenYBlockA"}, "to": {"map": "OMO_08", "id": 0},               "reqs": []}, #* HiddenYBlockA (FireFlower) -> GRN Station Exit East
 
-    {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_08", "id": 0}, "reqs": [require(flag="RF_CanSolveColorPuzzle"),require(hammer=1)], "pseudoitems": ["MF_Ch4_SolvedColorPuzzle"]}, #+ Solve Color Puzzle
+    {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_08", "id": 0}, "reqs": [require(flag="RF_CanVisitRussT"),require(item="MysteryNote"),require(item="Dictionary"),require(hammer=1)], "pseudoitems": ["MF_Ch4_SolvedColorPuzzle"]}, #+ Solve Color Puzzle
 
     # OMO_09 GRN Treadmills/Slot Machine
     {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_08", "id": 0}, "reqs": []}, # GRN Treadmills/Slot Machine Exit West -> GRN Station Exit East

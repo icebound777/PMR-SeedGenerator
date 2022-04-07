@@ -350,50 +350,6 @@ def _get_limit_items_to_dungeons(
                 "reqs": []
             }
         ],
-        "OMO": [
-            # BLU Station Spring to Toad Town
-            # -> ItemA (SnowmanDoll)
-            {
-                "from": {"map": "OMO_03", "id": 4},
-                "to":   {"map": "MAC_04", "id": "ItemA"},
-                "reqs": [require(item="StoreroomKey")]
-            },
-            # BLU Station Spring to Toad Town
-            # -> ItemB (VoltShroom)
-            {
-                "from": {"map": "OMO_03", "id": 4},
-                "to":   {"map": "MAC_04", "id": "ItemB"},
-                "reqs": [require(item="StoreroomKey")]
-            },
-            # BLU Station Spring to Toad Town
-            # -> ItemC (ToyTrain)
-            {
-                "from": {"map": "OMO_03", "id": 4},
-                "to":   {"map": "MAC_04", "id": "ItemC"},
-                "reqs": [require(item="StoreroomKey")]
-            },
-            # BLU Station Spring to Toad Town
-            # -> ItemD (DizzyDial)
-            {
-                "from": {"map": "OMO_03", "id": 4},
-                "to":   {"map": "MAC_04", "id": "ItemD"},
-                "reqs": [require(item="StoreroomKey")]
-            },
-            # Toybox: Throw in ToyTrain
-            {
-                "from": {"map": "OMO_03", "id": 4},
-                "to":   {"map": "OMO_03", "id": 4},
-                "reqs": [require(item="ToyTrain")],
-                "pseudoitems": ["MF_Ch4_ReturnedToyTrain"],
-            },
-            # Decipher MysteryNote
-            {
-                "from": {"map": "OMO_03", "id": 4},
-                "to":   {"map": "OMO_03", "id": 4},
-                "reqs": [require(item="MysteryNote"), require(item="Dictionary")],
-                "pseudoitems": ["RF_CanSolveColorPuzzle"],
-            },
-        ],
     }
 
     remove_edges = {
@@ -489,10 +445,10 @@ def _get_limit_items_to_dungeons(
     }
 
     additional_starting_items = {
-        "DGB": ["EQUIPMENT_Boots_Progressive_2"], # Assume basement chest is reachable
-        "OMO": ["RF_CanVisitTayceT"], # Assume we can cook Cake and Lemon Candy
-        "FLO": ["EQUIPMENT_Boots_Progressive_2"], # Assume cloud machine can be reached
-        "PRA": ["EQUIPMENT_Boots_Progressive_2"], # Assume spin jump can be used to progress
+        "DGB": ["EQUIPMENT_Boots_Progressive_2"],
+        "OMO": ["MF_Ch4_CanThrowInTrain", "RF_CanVisitTayceT", "RF_CanVisitRussT"],
+        "FLO": ["EQUIPMENT_Boots_Progressive_2"],
+        "PRA": ["EQUIPMENT_Boots_Progressive_2"],
     }
 
     all_partners = all_partners_imp.copy()
@@ -509,10 +465,7 @@ def _get_limit_items_to_dungeons(
 
     for area_name in areas_to_limit:
         # Build small world graph only encompassing the current area
-        if area_name == "OMO":
-            area_nodes = get_area_nodes("OMO") + get_area_nodes("MAC")
-        else:
-            area_nodes = get_area_nodes(area_name)
+        area_nodes = get_area_nodes(area_name)
         area_edges = get_area_edges(area_name)
         if area_name in additional_edges:
             area_edges.extend(additional_edges.get(area_name))
