@@ -186,14 +186,14 @@ def require(**kwargs):
 
         # Partners
         partners = kwargs.get("partner")
-        if type(partners) is not list:
+        if not isinstance(partners, list):
             partners = [partners]
         for partner in partners:
             if partner in mario.partners:
                 return True
         # Items
         if items := kwargs.get("item"):
-            if type(items) is not list:
+            if not isinstance(items, list):
                 items = [items]
             for item in items:
                 if item in multiuse_progression_items:
