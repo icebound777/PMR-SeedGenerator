@@ -15,7 +15,7 @@ edges_iwa = [
     {"from": {"map": "IWA_00", "id": "ItemB"},   "to": {"map": "IWA_00", "id": 0},         "reqs": []}, #* ItemB (Coin) -> Mt Rugged 1 Exit Left
     {"from": {"map": "IWA_00", "id": 0},         "to": {"map": "IWA_00", "id": "ItemC"},   "reqs": []}, #* Mt Rugged 1 Exit Left -> ItemC (Coin)
     {"from": {"map": "IWA_00", "id": "ItemC"},   "to": {"map": "IWA_00", "id": 0},         "reqs": []}, #* ItemC (Coin) -> Mt Rugged 1 Exit Left
-    {"from": {"map": "IWA_00", "id": 0},         "to": {"map": "IWA_00", "id": "ItemD"},   "reqs": [require(hammer=1,partner=["Kooper","Bombette"]),require(flag="RF_Missable")]}, #* Mt Rugged 1 Exit Left -> ItemD (WhackasBump)
+    {"from": {"map": "IWA_00", "id": 0},         "to": {"map": "IWA_00", "id": "ItemD"},   "reqs": [require(hammer=1),require(flag="RF_Missable")]}, #* Mt Rugged 1 Exit Left -> ItemD (WhackasBump)
     {"from": {"map": "IWA_00", "id": "ItemD"},   "to": {"map": "IWA_00", "id": 0},         "reqs": []}, #* ItemD (WhackasBump) -> Mt Rugged 1 Exit Left
     {"from": {"map": "IWA_00", "id": 0},         "to": {"map": "IWA_00", "id": "YBlockA"}, "reqs": []}, #* Mt Rugged 1 Exit Left -> YBlockA (SleepySheep)
     {"from": {"map": "IWA_00", "id": "YBlockA"}, "to": {"map": "IWA_00", "id": 0},         "reqs": []}, #* YBlockA (SleepySheep) -> Mt Rugged 1 Exit Left
