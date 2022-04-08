@@ -367,7 +367,7 @@ def get_trapped_itempool(
 
     # Bias towards placing UltraStone traps, as requested by clover
     item_ultrastone = Item.get(Item.item_name == 'UltraStone')
-    fakeable_items.extend([item_ultrastone] * 15)
+    fakeable_items.extend([item_ultrastone] * 9)
 
     cnt_traps = 0
     shuffled_pool = itempool.copy()
