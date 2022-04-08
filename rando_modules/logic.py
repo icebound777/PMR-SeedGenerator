@@ -548,8 +548,7 @@ def _get_limit_items_to_dungeons(
                 False
             )
         if area_name in additional_starting_items:
-            for item in additional_starting_items[area_name]:
-                add_to_inventory(item)
+            add_to_inventory(additional_starting_items[area_name])
 
         # Find initially reachable nodes
         pool_misc_progression_items,    \
