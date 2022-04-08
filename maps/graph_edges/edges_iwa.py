@@ -78,11 +78,11 @@ edges_iwa = [
     {"from": {"map": "IWA_03", "id": "ItemI"},   "to": {"map": "IWA_03", "id": 0},         "reqs": []}, #* ItemI (Coin) -> Mt Rugged 4 Exit Bottom Right
     {"from": {"map": "IWA_03", "id": 0},         "to": {"map": "IWA_03", "id": "ItemJ"},   "reqs": []}, #* Mt Rugged 4 Exit Bottom Right -> ItemJ (Coin) (bottom2)
     {"from": {"map": "IWA_03", "id": "ItemJ"},   "to": {"map": "IWA_03", "id": 0},         "reqs": []}, #* ItemJ (Coin) -> Mt Rugged 4 Exit Bottom Right
-    {"from": {"map": "IWA_03", "id": 0},         "to": {"map": "IWA_03", "id": "YBlockA"}, "reqs": [require(hammer=1)]}, #* Mt Rugged 4 Exit Bottom Right -> YBlockA (Coin)
+    {"from": {"map": "IWA_03", "id": 0},         "to": {"map": "IWA_03", "id": "YBlockA"}, "reqs": [require(hammer=1,boots=2,partner=["Kooper","Bombette"])]}, #* Mt Rugged 4 Exit Bottom Right -> YBlockA (Coin)
     {"from": {"map": "IWA_03", "id": "YBlockA"}, "to": {"map": "IWA_03", "id": 0},         "reqs": []}, #* YBlockA (Coin) -> Mt Rugged 4 Exit Bottom Right
     {"from": {"map": "IWA_03", "id": 0},         "to": {"map": "IWA_03", "id": "YBlockB"}, "reqs": []}, #* Mt Rugged 4 Exit Bottom Right -> YBlockB (Mushroom)
     {"from": {"map": "IWA_03", "id": "YBlockB"}, "to": {"map": "IWA_03", "id": 0},         "reqs": []}, #* YBlockB (Mushroom) -> Mt Rugged 4 Exit Bottom Right
-    {"from": {"map": "IWA_03", "id": 0},         "to": {"map": "IWA_03", "id": "YBlockC"}, "reqs": [require(hammer=1)]}, #* Mt Rugged 4 Exit Bottom Right -> YBlockC (HoneySyrup)
+    {"from": {"map": "IWA_03", "id": 0},         "to": {"map": "IWA_03", "id": "YBlockC"}, "reqs": [require(hammer=1,boots=2,partner=["Kooper","Bombette"])]}, #* Mt Rugged 4 Exit Bottom Right -> YBlockC (HoneySyrup)
     {"from": {"map": "IWA_03", "id": "YBlockC"}, "to": {"map": "IWA_03", "id": 0},         "reqs": []}, #* YBlockC (HoneySyrup) -> Mt Rugged 4 Exit Bottom Right
 
     # IWA_04 Suspension Bridge

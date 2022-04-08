@@ -151,7 +151,7 @@ edges_jan = [
     {"from": {"map": "JAN_05", "id": 2},         "to": {"map": "JAN_05", "id": "RBlockA"}, "reqs": [require(partner="Sushie")]}, #* SE Jungle (Quake Hammer) Exit Right-> RBlockA (PowerQuake)
     {"from": {"map": "JAN_05", "id": "RBlockA"}, "to": {"map": "JAN_05", "id": 2},         "reqs": [require(partner="Sushie")]}, #* RBlockA (PowerQuake) -> SE Jungle (Quake Hammer) Exit Right
 
-    {"from": {"map": "JAN_05", "id": 3}, "to": {"map": "JAN_05", "id": 3}, "reqs": [require(flag="RF_YoshiKidsMissing"),can_shake_trees], "pseudoitems": ["RF_SavedYoshiKid_1"]}, #+ Save Yoshi Kid
+    {"from": {"map": "JAN_05", "id": 3}, "to": {"map": "JAN_05", "id": 3}, "reqs": [require(flag="RF_YoshiKidsMissing"),require(hammer=1)], "pseudoitems": ["RF_SavedYoshiKid_1"]}, #+ Save Yoshi Kid
 
     # JAN_06 NE Jungle (Raven Statue)
     {"from": {"map": "JAN_06", "id": 0}, "to": {"map": "JAN_05", "id": 3}, "reqs": []}, # NE Jungle (Raven Statue) Exit Bottom -> SE Jungle (Quake Hammer) Exit Top
