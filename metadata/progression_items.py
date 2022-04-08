@@ -26,6 +26,7 @@ progression_items = {
     0x0024 : "Dictionary",
     0x0025 : "MysteryNote",
     0x0027 : "CrystalBall",
+    0x0029 : "Cookbook",
     0x002A : "JadeRaven",
     0x002B : "MagicalSeed1",
     0x002C : "MagicalSeed2",
@@ -123,7 +124,7 @@ progression_miscitems = [
     "Goomnut",     # 0x00A5 (Koopa Koot: NuttyCake from Tayce T.)
     "KoopaLeaf",   # 0x00A6 (Koopa Koot: KoopaTea from Tayce T.)
     "DriedPasta",  # 0x00A7 (Koopa Koot: +KoopaLeaf -> Koopasta from Tayce T.)
-    "CakeMix",     # 0x00AA (Koopa Koot: +KoopaLeaf -> KookyCookie from Tayce T.)
+    "CakeMix",     # 0x00AA (Koopa Koot: +KoopaLeaf -> KookyCookie; LemonCandy for AntiGuy; Cake for Gourmet Guy)
     "Coconut",     # 0x00AC (Koopa Koot)
     "Cake",        # 0x00C1 (Gourmet Guy)
 ]

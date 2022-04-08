@@ -446,6 +446,13 @@ def _get_limit_items_to_dungeons(
         "KPA": "KPA_60/4",
     }
 
+    additional_starting_items = {
+        "DGB": ["EQUIPMENT_Boots_Progressive_2"],
+        "OMO": ["MF_Ch4_CanThrowInTrain", "RF_CanVisitTayceT", "RF_CanVisitRussT"],
+        "FLO": ["EQUIPMENT_Boots_Progressive_2"],
+        "PRA": ["EQUIPMENT_Boots_Progressive_2"],
+    }
+
     all_partners = all_partners_imp.copy()
 
     # If partners are forced into their default locations, then we have to
@@ -520,7 +527,7 @@ def _get_limit_items_to_dungeons(
 
         # Reset Mario's inventory
         if partners_in_default_locations:
-            almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name)]
+            almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name) or x in starting_partners]
             _init_mario_inventory(
                 almost_all_partners,
                 starting_items,
@@ -542,10 +549,8 @@ def _get_limit_items_to_dungeons(
                 False,
                 False
             )
-        add_to_inventory([
-            "CrystalBerry",
-            "WaterStone"
-        ])
+        if area_name in additional_starting_items:
+            add_to_inventory(additional_starting_items[area_name])
 
         # Find initially reachable nodes
         pool_misc_progression_items,    \
@@ -594,7 +599,7 @@ def _get_limit_items_to_dungeons(
                 cur_items_overwritten = []
                 # Reset Mario's inventory
                 if partners_in_default_locations:
-                    almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name)]
+                    almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name) or x in starting_partners]
                     _init_mario_inventory(
                         almost_all_partners,
                         starting_items,
@@ -619,6 +624,20 @@ def _get_limit_items_to_dungeons(
 
         items_placed.extend(cur_items_placed)
         items_overwritten.extend(cur_items_overwritten)
+
+        area_goals = {
+            "TRD": [require(starspirits=1)],
+            "ISK": [require(starspirits=1)],
+            "DGB": [require(item="MysticalKey")],
+            "OMO": [require(starspirits=1)],
+            "KZN": [require(starspirits=1)],
+            "FLO": [require(starspirits=1)],
+            "PRA": [require(starspirits=1)],
+            "KPA": [lambda: "KPA_121/1" in reachable_node_ids_try],
+        }
+
+        for area_goal in area_goals[area_name]:
+            assert area_goal()
 
     all_item_node_ids = [get_node_identifier(node) for node in all_item_nodes]
     modified_nodes = [node for node in limited_filled_item_nodes if get_node_identifier(node) not in all_item_node_ids]

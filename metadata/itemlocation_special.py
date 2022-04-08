@@ -122,6 +122,8 @@ limited_by_item_areas = {
             "MagicalBean",
             "FertileSoil",
             "MiracleWater",
+            "CrystalBerry",
+            "WaterStone",
         ],
         "misc": [
             "BubbleBerry",
