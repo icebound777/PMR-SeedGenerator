@@ -62,7 +62,7 @@ edges_kmr  = [
     {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_03", "id": 1}, "reqs": []}, #? Bottom of the Cliff Exit Left -> Bottom of the Cliff Exit Right
     {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": 0}, "reqs": []}, #? Bottom of the Cliff Exit Right -> Bottom of the Cliff Exit Left
     
-    {"from": {"map": "KMR_03", "id": 0},               "to": {"map": "KMR_03", "id": "YBlockA"},       "reqs": [require(hammer=1)]}, #* Bottom of the Cliff Exit Left -> YBlockA (Coin)
+    {"from": {"map": "KMR_03", "id": 0},               "to": {"map": "KMR_03", "id": "YBlockA"},       "reqs": [require(hammer=1,boots=2,partner=["Kooper","Bombette"])]}, #* Bottom of the Cliff Exit Left -> YBlockA (Coin)
     {"from": {"map": "KMR_03", "id": "YBlockA"},       "to": {"map": "KMR_03", "id": 0},               "reqs": []}, #* YBlockA (Coin) -> Bottom of the Cliff Exit Left
     {"from": {"map": "KMR_03", "id": 0},               "to": {"map": "KMR_03", "id": "Tree1_Drop1A"},  "reqs": [can_shake_trees]}, #* Bottom of the Cliff Exit Left -> Tree1_Drop1A (Mushroom)
     {"from": {"map": "KMR_03", "id": "Tree1_Drop1A"},  "to": {"map": "KMR_03", "id": 0},               "reqs": []}, #* Tree1_Drop1A (Mushroom) -> Bottom of the Cliff Exit Left
@@ -138,7 +138,7 @@ edges_kmr  = [
     {"from": {"map": "KMR_11", "id": "Tree1_Drop1A"}, "to": {"map": "KMR_11", "id": 0},              "reqs": []}, #* Tree1_Drop1A (StarPiece) -> Goomba King's Castle Exit Left
     {"from": {"map": "KMR_11", "id": 1},              "to": {"map": "KMR_11", "id": "HiddenPanel"},  "reqs": [can_flip_panels]}, #* Goomba King's Castle Exit Right -> HiddenPanel (StarPiece)
     {"from": {"map": "KMR_11", "id": "HiddenPanel"},  "to": {"map": "KMR_11", "id": 1},              "reqs": []}, #* HiddenPanel (StarPiece) -> Goomba King's Castle Exit Right
-    {"from": {"map": "KMR_11", "id": 1},              "to": {"map": "KMR_11", "id": "YBlockA"},      "reqs": [require(hammer=1)]}, #* Goomba King's Castle Exit Right -> YBlockA (SuperShroom)
+    {"from": {"map": "KMR_11", "id": 1},              "to": {"map": "KMR_11", "id": "YBlockA"},      "reqs": [require(hammer=1,boots=2,partner=["Kooper","Bombette"])]}, #* Goomba King's Castle Exit Right -> YBlockA (SuperShroom)
     {"from": {"map": "KMR_11", "id": "YBlockA"},      "to": {"map": "KMR_11", "id": 1},              "reqs": []}, #* YBlockA (SuperShroom) -> Goomba King's Castle Exit Right
 
     # KMR_10 Toad Town Entrance

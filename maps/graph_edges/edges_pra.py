@@ -71,7 +71,7 @@ edges_pra = [
     {"from": {"map": "PRA_09", "id": 0}, "to": {"map": "PRA_03", "id": 2}, "reqs": []}, # Red Key Hall Door West -> Save Room Basement Door
     {"from": {"map": "PRA_09", "id": 1}, "to": {"map": "PRA_11", "id": 0}, "reqs": []}, # Red Key Hall Bombable Wall -> Red Key Room Bombable Wall
     
-    {"from": {"map": "PRA_09", "id": 0}, "to": {"map": "PRA_09", "id": 1}, "reqs": [require(partner="Bombette")]}, #? Red Key Hall Door West -> Red Key Hall Bombable Wall
+    {"from": {"map": "PRA_09", "id": 0}, "to": {"map": "PRA_09", "id": 1}, "reqs": [require(partner="Bombette"),require(hammer=1)]}, #? Red Key Hall Door West -> Red Key Hall Bombable Wall
     {"from": {"map": "PRA_09", "id": 1}, "to": {"map": "PRA_09", "id": 0}, "reqs": []}, #? Red Key Hall Bombable Wall -> Red Key Hall Door West
 
     # PRA_10 P-Down, D-Up Hall
@@ -144,7 +144,7 @@ edges_pra = [
     {"from": {"map": "PRA_19", "id": 0}, "to": {"map": "PRA_35", "id": 1}, "reqs": []}, # Reflection Mimic Room Door West -> Triple Dip Room Door East
     {"from": {"map": "PRA_19", "id": 1}, "to": {"map": "PRA_20", "id": 0}, "reqs": []}, # Reflection Mimic Room Bombable Wall -> Mirrored Door Room Bombable Wall
     
-    {"from": {"map": "PRA_19", "id": 0}, "to": {"map": "PRA_19", "id": 1}, "reqs": [require(partner="Kooper")]}, #? Reflection Mimic Room Door West -> Reflection Mimic Room Bombable Wall
+    {"from": {"map": "PRA_19", "id": 0}, "to": {"map": "PRA_19", "id": 1}, "reqs": [require(partner="Kooper"),require(hammer=1)]}, #? Reflection Mimic Room Door West -> Reflection Mimic Room Bombable Wall
     {"from": {"map": "PRA_19", "id": 1}, "to": {"map": "PRA_19", "id": 0}, "reqs": []}, #? Reflection Mimic Room Bombable Wall -> Reflection Mimic Room Door West
 
     # PRA_20 Mirrored Door Room
