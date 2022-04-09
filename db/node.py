@@ -74,6 +74,8 @@ def create_nodes():
     """Rebuild Node table and add nodes"""
     db.drop_tables([Node])
     db.create_tables([Node])
+    db.drop_tables([MapArea])
+    db.create_tables([MapArea])
 
     with open("./debug/keys.json", "r") as file:
         keys_dict = json.load(file)

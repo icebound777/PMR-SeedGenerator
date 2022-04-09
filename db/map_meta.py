@@ -6,6 +6,7 @@ from peewee import *
 from playhouse.migrate import *
 from db.db import db
 
+from metadata.verbose_map_names import map_name_corrections
 
 class MapMeta(Model):
     name = CharField(null=False)
@@ -27,7 +28,10 @@ def create_mapmeta():
         if child.tag == "Area":
             for sub_child in child:
                 if "nickname" in sub_child.attrib:
+                    verbose_name = sub_child.attrib["nickname"]
+                    if verbose_name in map_name_corrections:
+                        verbose_name = map_name_corrections.get(verbose_name)
                     MapMeta.get_or_create(
                         name = sub_child.attrib["name"].upper(),
-                        verbose_name = sub_child.attrib["nickname"]
+                        verbose_name = verbose_name
                     )

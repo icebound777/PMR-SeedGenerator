@@ -1,4 +1,3 @@
-import os
 import xml.etree.ElementTree as ET
 
 from peewee import *
@@ -24,5 +23,3 @@ class MapArea(Model):
 
     class Meta:
         database = db
-
-db.create_tables([MapArea])
