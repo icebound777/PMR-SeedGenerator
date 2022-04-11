@@ -87,6 +87,7 @@ ItemTrapMode          : 0
 AddItemPouches        : false
 KeyitemsOutsideDungeon: false
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
+AllowItemHints        : true
 # Mystery? item options
 RandomChoice     : true
 MysteryRandomPick: true

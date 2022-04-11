@@ -91,6 +91,7 @@ class OptionSet:
         self.placement_logic = "NoGlitches"
         self.keyitems_outside_dungeon = True # False -> NYI
         self.keyitems_outside_chapter = True # "Keysanity" # false -> NYI
+        self.allow_itemhints = True
         self.itemtrap_mode = 0
         # Mystery? item options
         self.mystery_settings = MysteryOptionSet()
@@ -329,6 +330,8 @@ class OptionSet:
             self.keyitems_outside_dungeon = options_dict.get("KeyitemsOutsideDungeon").get("value")
         if "KeyitemsOutsideChapter" in options_dict:
             self.keyitems_outside_chapter = options_dict.get("KeyitemsOutsideChapter").get("value")
+        if "AllowItemHints" in options_dict:
+            self.allow_itemhints = options_dict.get("AllowItemHints").get("value")
         if "ItemTrapMode" in options_dict:
             self.itemtrap_mode = options_dict.get("ItemTrapMode").get("value")
         # Mystery? item options
@@ -659,6 +662,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("KeyitemsOutsideDungeon").get("value"), bool)
     if "KeyitemsOutsideChapter" in options_dict:
         assert isinstance(options_dict.get("KeyitemsOutsideChapter").get("value"), bool)
+    if "AllowItemHints" in options_dict:
+        assert isinstance(options_dict.get("AllowItemHints").get("value"), bool)
     if "ItemTrapMode" in options_dict:
         assert isinstance(options_dict.get("ItemTrapMode").get("value"), int)
     # Mystery? item options

@@ -9,6 +9,7 @@ from worldgraph import get_node_identifier
 
 
 def get_itemhints(
+    allow_itemhints:bool,
     placed_items:list,
     starting_partners:list,
     partners_in_default_locations:bool,
@@ -23,6 +24,9 @@ def get_itemhints(
     Each item hint list contains the item id and a reference word describing
     the area, map and item source type.
     """
+    if not allow_itemhints:
+        return [[0x00000000, 0xFFFFFFFF]]
+
     itemhints = []
     limited_keyitems = []
     for area in limited_by_item_areas:

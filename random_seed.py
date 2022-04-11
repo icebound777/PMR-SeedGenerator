@@ -121,6 +121,7 @@ class RandomSeed:
 
         # Build item hint db
         self.itemhints = get_itemhints(
+            self.rando_settings.allow_itemhints,
             self.placed_items,
             self.starting_partners,
             self.rando_settings.partners_in_default_locations,
