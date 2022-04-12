@@ -136,6 +136,11 @@ def _depth_first_search(
         outgoing_edges = [edge for edge in non_traversable_edges
                                if get_edge_origin_node_id(edge) == node_id]
     logging.debug(f"DFS outgoing_edges {outgoing_edges}")
+
+    # Prevent this node's edges from being double processed by the recursive calls
+    non_traversable_edges[:] = [edge for edge in non_traversable_edges
+                               if get_edge_origin_node_id(edge) != node_id]
+
     for edge in outgoing_edges:
         # Check if all requirements for edge traversal are fulfilled
         if all([r() for r in edge.get("reqs")]):
