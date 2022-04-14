@@ -167,10 +167,10 @@ KooperSprite     : 0
 #ParakarrySprite  : 0 # NYI
 BowSetting       : 0
 BowSprite        : 0
-#WattSetting      : 0 # NYI
-#WattSprite       : 0 # NYI
-#SushieSetting    : 0 # NYI
-#SushieSprite     : 0 # NYI
+WattSetting      : 0
+WattSprite       : 0
+SushieSetting    : 0
+SushieSprite     : 0
 #LakilesterSetting: 0 # NYI
 #LakilesterSprite : 0 # NYI
 BossesSetting    : 0

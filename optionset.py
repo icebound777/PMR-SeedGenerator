@@ -449,14 +449,14 @@ class OptionSet:
             self.palette_settings.bow_setting = options_dict.get("BowSetting").get("value")
         if "BowSprite" in options_dict:
             self.palette_settings.bow_sprite = options_dict.get("BowSprite").get("value")
-        #if "WattSetting" in options_dict:
-        #    self.palette_settings.watt_setting = options_dict.get("WattSetting").get("value")
-        #if "WattSprite" in options_dict:
-        #    self.palette_settings.watt_sprite = options_dict.get("WattSprite").get("value")
-        #if "SushieSetting" in options_dict:
-        #    self.palette_settings.sushie_setting = options_dict.get("SushieSetting").get("value")
-        #if "SushieSprite" in options_dict:
-        #    self.palette_settings.sushie_sprite = options_dict.get("SushieSprite").get("value")
+        if "WattSetting" in options_dict:
+            self.palette_settings.watt_setting = options_dict.get("WattSetting").get("value")
+        if "WattSprite" in options_dict:
+            self.palette_settings.watt_sprite = options_dict.get("WattSprite").get("value")
+        if "SushieSetting" in options_dict:
+            self.palette_settings.sushie_setting = options_dict.get("SushieSetting").get("value")
+        if "SushieSprite" in options_dict:
+            self.palette_settings.sushie_sprite = options_dict.get("SushieSprite").get("value")
         #if "LakilesterSetting" in options_dict:
         #    self.palette_settings.lakilester_setting = options_dict.get("LakilesterSetting").get("value")
         #if "LakilesterSprite" in options_dict:
@@ -859,10 +859,10 @@ class PaletteOptionSet():
         #self.parakarry_sprite = DEFAULT_PALETTE
         self.bow_setting = DEFAULT_PALETTE
         self.bow_sprite = DEFAULT_PALETTE
-        #self.watt_setting = DEFAULT_PALETTE
-        #self.watt_sprite = DEFAULT_PALETTE
-        #self.sushie_setting = DEFAULT_PALETTE
-        #self.sushie_sprite = DEFAULT_PALETTE
+        self.watt_setting = DEFAULT_PALETTE
+        self.watt_sprite = DEFAULT_PALETTE
+        self.sushie_setting = DEFAULT_PALETTE
+        self.sushie_sprite = DEFAULT_PALETTE
         #self.lakilester_setting = DEFAULT_PALETTE
         #self.lakilester_sprite = DEFAULT_PALETTE
         self.bosses_setting = DEFAULT_PALETTE
