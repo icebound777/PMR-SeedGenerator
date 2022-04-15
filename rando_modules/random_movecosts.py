@@ -94,7 +94,7 @@ def _get_fully_random_costs(movetype:str, costtype:str) -> list:
                 .where(Move.cost_type == costtype):
         new_cost = random.randint(min_value, max_value)
         fully_random_costs.append((move.get_key(), new_cost))
-        print(f"{move.move_name}: {move.cost_value} -> {new_cost}")
+        #print(f"{move.move_name}: {move.cost_value} -> {new_cost}")
 
     return fully_random_costs
 
