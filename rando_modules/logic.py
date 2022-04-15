@@ -45,6 +45,7 @@ from metadata.item_exclusion \
     import exclude_due_to_settings, exclude_from_taycet_placement
 from metadata.item_general import taycet_items
 from metadata.partners_meta import all_partners as all_partners_imp
+from metadata.node_exclusion import exclude_from_trap_placement
 
 from metadata.verbose_area_names import verbose_area_names
 from metadata.verbose_item_names import verbose_item_names
@@ -1220,8 +1221,8 @@ def _algo_forward_fill(
                 random_item_id = random.randint(0, len(pool_other_items) - 1)
                 random_item = pool_other_items.pop(random_item_id)
 
-                if "Shop" in item_node_id:
-                    # Do not put item traps into shops -> it breaks otherwise!
+                if "Shop" in item_node_id or item_node_id in exclude_from_trap_placement:
+                    # Do not put item traps into shops or underwater -> it breaks otherwise!
                     while random_item.is_trapped():
                         pool_other_items.append(random_item)
                         random_item_id = random.randint(0, len(pool_other_items) - 1)
