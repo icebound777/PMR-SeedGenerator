@@ -1244,7 +1244,7 @@ def _algo_forward_fill(
     if has_item("YOUWIN"):
         print("Seed verification: Beatable! Yay!")
     else:
-        pass #raise UnbeatableSeedError("Seed verification: Not beatable! Booo!")
+        raise UnbeatableSeedError("Seed verification: Not beatable! Booo!")
 
     # "Return" list of modified item nodes
     item_placement.extend(filled_item_nodes)
