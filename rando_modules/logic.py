@@ -22,9 +22,12 @@ from rando_modules.simulate        \
            has_item,               \
            require,                \
            has_parakarry_3_letters,\
-           get_starpiece_count
+           get_starpiece_count, \
+           get_item_history
 
-from rando_modules.item_scarcity import get_scarcitied_itempool
+from rando_modules.modify_itempool \
+    import get_scarcitied_itempool,\
+           get_trapped_itempool
 
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
 
@@ -36,12 +39,17 @@ from metadata.itemlocation_special     \
            limited_by_item_areas,      \
            bush_tree_coin_locations
 from metadata.progression_items                                 \
-    import progression_miscitems as progression_miscitems_names
+    import progression_miscitems as progression_miscitems_names, \
+           progression_items
 from metadata.item_exclusion \
     import exclude_due_to_settings, exclude_from_taycet_placement
 from metadata.item_general import taycet_items
 from metadata.partners_meta import all_partners as all_partners_imp
+from metadata.node_exclusion import exclude_from_trap_placement
 
+from metadata.verbose_area_names import verbose_area_names
+from metadata.verbose_item_names import verbose_item_names
+from metadata.verbose_item_locations import verbose_item_locations
 
 def get_startingnode_id_from_startingmap_id(starting_map_id):
     """Returns the starting node id (e.g. "MAC_00/4") for a given map id."""
@@ -265,28 +273,23 @@ def _init_mario_inventory(
     starting coins) is ignored.
     """
     clear_inventory()
-    partner_gettable_flags = {
-        "Goombario": "RF_CanGetGoombario",
-        "Kooper": "RF_CanGetKooper",
-        "Bombette": "RF_CanGetBombette",
-        "Parakarry": "RF_CanGetParakarry",
-        "Bow": "RF_CanGetBow",
-        "Watt": "RF_CanGetWatt",
-        "Sushie": "RF_CanGetSushie",
-        "Lakilester": "RF_CanGetLakilester",
-    }
 
     if partners_always_usable:
-        for partner in partner_gettable_flags.keys():
-            add_to_inventory(partner)
+        add_to_inventory([
+            "Goombario",
+            "Kooper",
+            "Bombette",
+            "Parakarry",
+            "Bow",
+            "Watt",
+            "Sushie",
+            "Lakilester",
+        ])
     else:
         add_to_inventory(starting_partners)
-    for partner in [x for x in partner_gettable_flags if x not in starting_partners]:
-        add_to_inventory(partner_gettable_flags.get(partner))
-    if "Bow" in starting_partners:
-        add_to_inventory("RF_OpenedGustyGulch")
 
-    add_to_inventory("EQUIPMENT_Hammer_Progressive")
+    add_to_inventory("EQUIPMENT_Hammer_Progressive_1")
+    add_to_inventory("EQUIPMENT_Boots_Progressive_1")
 
     for item in starting_items:
         add_to_inventory(item.item_name)
@@ -310,6 +313,7 @@ def _get_limit_items_to_dungeons(
     partners_always_usable:bool,
     partners_in_default_locations,
     starting_items:list,
+    starting_partners:list,
     hidden_block_mode:int
 ):
     """
@@ -443,6 +447,13 @@ def _get_limit_items_to_dungeons(
         "KPA": "KPA_60/4",
     }
 
+    additional_starting_items = {
+        "DGB": ["EQUIPMENT_Boots_Progressive_2"],
+        "OMO": ["MF_Ch4_CanThrowInTrain", "RF_CanVisitTayceT", "RF_CanVisitRussT"],
+        "FLO": ["EQUIPMENT_Boots_Progressive_2"],
+        "PRA": ["EQUIPMENT_Boots_Progressive_2"],
+    }
+
     all_partners = all_partners_imp.copy()
 
     # If partners are forced into their default locations, then we have to
@@ -465,7 +476,10 @@ def _get_limit_items_to_dungeons(
             cleaned_area_edges = [x for x in area_edges if x not in remove_edges.get(area_name)]
             area_edges = cleaned_area_edges
         cur_area_graph = generate_world_graph(area_nodes,area_edges)
-        if partners_in_default_locations and area_name in exclude_starting_partners:
+        if (partners_in_default_locations
+        and area_name in exclude_starting_partners
+        and exclude_starting_partners.get(area_name) not in starting_partners
+        ):
             # place partners manually into their nodes, so they can be found
             # by the _find_new_nodes_and_edges call and added to inventory
             for node_id in cur_area_graph:
@@ -514,7 +528,7 @@ def _get_limit_items_to_dungeons(
 
         # Reset Mario's inventory
         if partners_in_default_locations:
-            almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name)]
+            almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name) or x in starting_partners]
             _init_mario_inventory(
                 almost_all_partners,
                 starting_items,
@@ -536,10 +550,8 @@ def _get_limit_items_to_dungeons(
                 False,
                 False
             )
-        add_to_inventory([
-            "CrystalBerry",
-            "WaterStone"
-        ])
+        if area_name in additional_starting_items:
+            add_to_inventory(additional_starting_items[area_name])
 
         # Find initially reachable nodes
         pool_misc_progression_items,    \
@@ -588,7 +600,7 @@ def _get_limit_items_to_dungeons(
                 cur_items_overwritten = []
                 # Reset Mario's inventory
                 if partners_in_default_locations:
-                    almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name)]
+                    almost_all_partners = [x for x in all_partners if x != exclude_starting_partners.get(area_name) or x in starting_partners]
                     _init_mario_inventory(
                         almost_all_partners,
                         starting_items,
@@ -614,6 +626,20 @@ def _get_limit_items_to_dungeons(
         items_placed.extend(cur_items_placed)
         items_overwritten.extend(cur_items_overwritten)
 
+        area_goals = {
+            "TRD": [require(starspirits=1)],
+            "ISK": [require(starspirits=1)],
+            "DGB": [require(item="MysticalKey")],
+            "OMO": [require(starspirits=1)],
+            "KZN": [require(starspirits=1)],
+            "FLO": [require(starspirits=1)],
+            "PRA": [require(starspirits=1)],
+            "KPA": [lambda: "KPA_121/1" in reachable_node_ids_try],
+        }
+
+        for area_goal in area_goals[area_name]:
+            assert area_goal()
+
     all_item_node_ids = [get_node_identifier(node) for node in all_item_nodes]
     modified_nodes = [node for node in limited_filled_item_nodes if get_node_identifier(node) not in all_item_node_ids]
 
@@ -633,19 +659,19 @@ def _generate_item_pools(
     do_randomize_letterchain:bool,
     do_randomize_dojo:bool,
     item_scarcity:int,
+    itemtrap_mode:int,
     startwith_bluehouse_open:bool,
     startwith_flowergate_open:bool,
     keyitems_outside_dungeon:bool,
     partners_always_usable:bool,
     partners_in_default_locations:bool,
-    start_with_kooper:bool,
-    start_with_bow:bool,
     always_speedyspin,
     always_ispy,
     always_peekaboo,
     hidden_block_mode:int,
     starting_partners:list,
-    starting_items:list
+    starting_items:list,
+    add_item_pouches:bool
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -723,13 +749,7 @@ def _generate_item_pools(
 
             if (    current_node.key_name_item == "Partner"
                 and partners_in_default_locations
-            ):
-                current_node.current_item = current_node.vanilla_item
-                all_item_nodes.append(current_node)
-                continue
-
-            if (    current_node.key_name_item == "Partner"
-                and current_node.vanilla_item.item_name in starting_partners
+                and current_node.vanilla_item.item_name not in starting_partners
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -748,6 +768,7 @@ def _generate_item_pools(
                     partners_always_usable,
                     partners_in_default_locations,
                     starting_items,
+                    starting_partners,
                     hidden_block_mode
                 )
         for node in pre_filled_dungeon_nodes:
@@ -790,6 +811,9 @@ def _generate_item_pools(
         for item_name in exclude_due_to_settings.get("do_randomize_dojo"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
+    for partner_string in starting_partners:
+        partner_item = Item.get(Item.item_name == partner_string)
+        items_to_remove_from_pools.append(partner_item)
     if startwith_bluehouse_open:
         for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
             item = Item.get(Item.item_name == item_name)
@@ -808,14 +832,6 @@ def _generate_item_pools(
             items_to_remove_from_pools.append(item)
     if always_peekaboo:
         for item_name in exclude_due_to_settings.get("always_peekaboo"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
-    if start_with_kooper:
-        for item_name in exclude_due_to_settings.get("start_with_kooper"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
-    if start_with_bow:
-        for item_name in exclude_due_to_settings.get("start_with_bow"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
     items_to_remove_from_pools.extend(starting_items)
@@ -859,7 +875,36 @@ def _generate_item_pools(
                            + len(pool_misc_progression_items) \
                            + len(pool_other_items)
 
+    # Swap random consumables for strange pouches if needed
+    if add_item_pouches:
+        pouch_items = [
+            Item.get(Item.item_name == "PouchA"),
+            Item.get(Item.item_name == "PouchB"),
+            Item.get(Item.item_name == "PouchC"),
+            Item.get(Item.item_name == "PouchD"),
+            Item.get(Item.item_name == "PouchE"),
+        ]
+
+        cnt_items_removed = 0
+        while True:
+            rnd_index = random.randint(0, len(pool_other_items) - 1)
+            rnd_item = pool_other_items.pop(rnd_index)
+            if rnd_item.item_type == "ITEM":
+                cnt_items_removed += 1
+            else:
+                pool_other_items.append(rnd_item)
+            if cnt_items_removed == 5:
+                break
+        pool_other_items.extend(pouch_items)
+
     pool_other_items = get_scarcitied_itempool(pool_other_items, item_scarcity)
+
+    pool_other_items = get_trapped_itempool(
+        pool_other_items,
+        itemtrap_mode,
+        do_randomize_koopakoot,
+        do_randomize_dojo
+    )
 
     return pool_other_items
 
@@ -993,6 +1038,7 @@ def _algo_forward_fill(
     do_randomize_letterchain,
     do_randomize_dojo,
     item_scarcity,
+    itemtrap_mode,
     starting_map_id,
     startwith_bluehouse_open,
     startwith_flowergate_open,
@@ -1007,12 +1053,9 @@ def _algo_forward_fill(
     hidden_block_mode:int,
     keyitems_outside_dungeon:bool,
     starting_items:list,
-    world_graph = None
+    add_item_pouches:bool,
+    world_graph
 ):
-    # Prepare world graph if not provided
-    if world_graph is None:
-        print("Generating World Graph ...")
-        world_graph = generate_world_graph(None, None)
 
     # Declare and init additional data structures
     ## Data structures for graph traversal
@@ -1041,19 +1084,19 @@ def _algo_forward_fill(
         do_randomize_letterchain,
         do_randomize_dojo,
         item_scarcity,
+        itemtrap_mode,
         startwith_bluehouse_open,
         startwith_flowergate_open,
         keyitems_outside_dungeon,
         partners_always_usable,
         partners_in_default_locations,
-        ("Kooper" in starting_partners),
-        ("Bow" in starting_partners),
         speedyspin,
         ispy,
         peekaboo,
         hidden_block_mode,
         starting_partners,
-        starting_items
+        starting_items,
+        add_item_pouches
     )
 
     print("Initialize Mario's starting inventory...")
@@ -1144,6 +1187,11 @@ def _algo_forward_fill(
     # Place all remaining items into still empty item nodes
     print("Placing Miscellaneous Items ...")
     random.shuffle(pool_other_items)
+
+    # Sort so shop nodes are in front to make sure those are filled with
+    # non-traps
+    all_item_nodes.sort(key=lambda x: x.is_shop(), reverse=True)
+
     for item_node in all_item_nodes:
         item_node_id = get_node_identifier(item_node)
 
@@ -1172,6 +1220,14 @@ def _algo_forward_fill(
             try:
                 random_item_id = random.randint(0, len(pool_other_items) - 1)
                 random_item = pool_other_items.pop(random_item_id)
+
+                if "Shop" in item_node_id or item_node_id in exclude_from_trap_placement:
+                    # Do not put item traps into shops or underwater -> it breaks otherwise!
+                    while random_item.is_trapped():
+                        pool_other_items.append(random_item)
+                        random_item_id = random.randint(0, len(pool_other_items) - 1)
+                        random_item = pool_other_items.pop(random_item_id)
+
                 item_node.current_item = random_item
                 if "Shop" in item_node_id:
                     item_node.current_item.base_price = get_shop_price(item_node, do_randomize_shops)
@@ -1193,6 +1249,97 @@ def _algo_forward_fill(
     # "Return" list of modified item nodes
     item_placement.extend(filled_item_nodes)
     
+def get_item_spheres(
+    item_placement,
+    starting_map_id,
+    startwith_bluehouse_open,
+    startwith_flowergate_open,
+    startwith_toybox_open,
+    startwith_whale_open,
+    starting_partners,
+    partners_always_usable,
+    hidden_block_mode:int,
+    starting_items:list,
+    world_graph
+):
+
+    # Declare and init additional data structures
+    ## Data structures for graph traversal
+    reachable_node_ids = []
+    reachable_item_nodes = {}
+    non_traversable_edges = []
+    ## Data structures for item pool
+    pool_other_items = []
+    pool_misc_progression_items = []
+    filled_item_nodes = []
+
+    print("Writing Item Spheres")
+
+    _init_mario_inventory(
+        starting_partners,
+        starting_items,
+        partners_always_usable,
+        hidden_block_mode,
+        startwith_bluehouse_open,
+        startwith_flowergate_open,
+        startwith_toybox_open,
+        startwith_whale_open
+    )
+
+    # Set node to start graph traversal from
+    starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
+
+    # Find initially reachable nodes within the world graph
+    for edge in world_graph.get(starting_node_id).get("edge_list"):
+        non_traversable_edges.append(edge)
+    reachable_node_ids.append(starting_node_id)
+
+    item_spheres_text = ""
+    item_placement_map = {}
+    mario_item_history = get_item_history()
+
+    for n in item_placement:
+        item_placement_map[get_node_identifier(n)] = n
+    item_spheres_text += 'Starting Items:\n'
+    for item in mario_item_history:
+        item_suffix = ""
+        if item in progression_items.values() or item in progression_miscitems_names:
+            item_suffix = "*"
+        item_spheres_text += f'    ((Start) Mario\'s inventory): {item}{item_suffix}\n'
+    sphere = 0
+    while True:
+        pool_misc_progression_items, \
+        pool_other_items, \
+        reachable_node_ids, \
+        reachable_item_nodes, \
+        non_traversable_edges, \
+        filled_item_nodes = \
+        _find_new_nodes_and_edges(pool_misc_progression_items,
+                                  pool_other_items,
+                                  world_graph,
+                                  reachable_node_ids,
+                                  reachable_item_nodes,
+                                  non_traversable_edges,
+                                  filled_item_nodes)
+
+        if not reachable_item_nodes:
+            break
+
+        item_spheres_text += '\n'
+        item_spheres_text += f'Sphere {sphere}:\n'        
+
+        while reachable_item_nodes:
+            node = reachable_item_nodes.pop(next(iter(reachable_item_nodes)))
+            item = item_placement_map[get_node_identifier(node)].current_item
+            node_long_name = f'({verbose_area_names[node.map_area.name[:3]]}) {node.map_area.verbose_name} - {verbose_item_locations[node.map_area.name][node.key_name_item]}'
+
+            item_suffix = ""
+            if item.item_name not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
+                item_suffix = "*"
+            item_spheres_text += f'    ({node_long_name}): {item.item_name}{item_suffix}\n'
+            add_to_inventory(item.item_name)
+        sphere += 1
+    return item_spheres_text
 
 
 def place_items(
@@ -1206,6 +1353,7 @@ def place_items(
     do_randomize_letterchain,
     do_randomize_dojo,
     item_scarcity,
+    itemtrap_mode,
     starting_map_id,
     startwith_bluehouse_open,
     startwith_flowergate_open,
@@ -1220,6 +1368,7 @@ def place_items(
     hidden_block_mode:int,
     keyitems_outside_dungeon:bool,
     starting_items:list,
+    add_item_pouches:list,
     world_graph = None
 ):
     """Places items into item locations according to chosen settings."""
@@ -1245,6 +1394,7 @@ def place_items(
             do_randomize_letterchain,
             do_randomize_dojo,
             item_scarcity,
+            itemtrap_mode,
             starting_map_id,
             startwith_bluehouse_open,
             startwith_flowergate_open,
@@ -1259,6 +1409,7 @@ def place_items(
             hidden_block_mode,
             keyitems_outside_dungeon,
             starting_items,
+            add_item_pouches,
             world_graph
         )
 

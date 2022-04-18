@@ -38,6 +38,8 @@ class Node(Model):
     item_index = IntegerField(null = True)
     price_index = IntegerField(null = True)
 
+    identifier = TextField(null = True)
+
     def __str__(self):
         """Return string representation of current node"""
         entrance = ("[" + format(self.entrance_id) + "] ") if self.entrance_id else ''
@@ -59,6 +61,10 @@ class Node(Model):
             return None
         return (self._meta.key_type << 24) | (self.map_area.area_id << 16) | (self.map_area.map_id << 8) | self.price_index
 
+    def is_shop(self):
+        """Return whether this location is a shop or not."""
+        return self.key_name_price is not None
+
     class Meta:
         database = db
         key_type = 0xA1
@@ -68,6 +74,8 @@ def create_nodes():
     """Rebuild Node table and add nodes"""
     db.drop_tables([Node])
     db.create_tables([Node])
+    db.drop_tables([MapArea])
+    db.create_tables([MapArea])
 
     with open("./debug/keys.json", "r") as file:
         keys_dict = json.load(file)

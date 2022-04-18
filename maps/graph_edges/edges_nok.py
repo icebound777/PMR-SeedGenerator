@@ -57,12 +57,14 @@ edges_nok = [
     
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "GiftA"},       "reqs": [require(favor="FAVOR_1_01_active")]}, #* Koopa Village 2 Exit Left -> GiftA (KootKoopaLegends)
     {"from": {"map": "NOK_02", "id": "GiftA"},       "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* GiftA (KootKoopaLegends) -> Koopa Village 2 Exit Left
-    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "ItemA"},       "reqs": []}, #* Koopa Village 2 Exit Left -> ItemA (StarPiece)
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "ItemA"},       "reqs": [require(flag="RF_Ch1_Fuzzies_Banished")]}, #* Koopa Village 2 Exit Left -> ItemA (StarPiece)
     {"from": {"map": "NOK_02", "id": "ItemA"},       "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* ItemA (StarPiece) -> Koopa Village 2 Exit Left
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "Bush1_Drop1"}, "reqs": []}, #* Koopa Village 2 Exit Left -> Bush1_Drop1 (KoopaLeaf)
     {"from": {"map": "NOK_02", "id": "Bush1_Drop1"}, "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* Bush1_Drop1 (KoopaLeaf) -> Koopa Village 2 Exit Left
-    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "Partner"},     "reqs": [require(item="KooperShell"),require(flag="RF_CanGetKooper")]}, #* Koopa Village 2 Exit Left -> Partner (Kooper)
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "Partner"},     "reqs": [require(item="KooperShell")]}, #* Koopa Village 2 Exit Left -> Partner (Kooper)
     {"from": {"map": "NOK_02", "id": "Partner"},     "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* Partner (Kooper) -> Koopa Village 2 Exit Left
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "GiftD"},       "reqs": [require(item="Artifact"),require(flag="RF_Ch1_Fuzzies_Banished"),require(flag="RF_Ch2_SavedStarSpirit")]}, #* Koopa Village 2 Exit Left -> GiftD (StarPiece)
+    {"from": {"map": "NOK_02", "id": "GiftD"},       "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* GiftD (StarPiece) -> Koopa Village 2 Exit Left
     # Koopa Koot Initial Favors (*MB_SpiritsRescued < 1)
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift00"},  "reqs": [require(item="KootKoopaLegends"),require(flag="RF_Ch1_Fuzzies_Banished")], "pseudoitems": ["FAVOR_1_01_done"]}, #* Koopa Village 2 Exit Left -> KootGift00 (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift00"},  "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* KootGift00 (Coin) -> Koopa Village 2 Exit Left
@@ -140,13 +142,13 @@ edges_nok = [
     {"from": {"map": "NOK_03", "id": 0}, "to": {"map": "NOK_03", "id": 1}, "reqs": []}, #? Behind Koopa Village Exit Left -> Behind Koopa Village Exit Right
     {"from": {"map": "NOK_03", "id": 1}, "to": {"map": "NOK_03", "id": 0}, "reqs": []}, #? Behind Koopa Village Exit Right -> Behind Koopa Village Exit Left
     
-    {"from": {"map": "NOK_03", "id": 0},       "to": {"map": "NOK_03", "id": "ItemA"}, "reqs": [require(partner="Kooper")]}, #* Behind Koopa Village Exit Left -> ItemA (HPPlusB)
+    {"from": {"map": "NOK_03", "id": 0},       "to": {"map": "NOK_03", "id": "ItemA"}, "reqs": [require(partner=["Kooper","Parakarry"])]}, #* Behind Koopa Village Exit Left -> ItemA (HPPlusB)
     {"from": {"map": "NOK_03", "id": "ItemA"}, "to": {"map": "NOK_03", "id": 0},       "reqs": []}, #* ItemA (HPPlusB) -> Behind Koopa Village Exit Left
 
     # NOK_04 Fuzzy Forest
     {"from": {"map": "NOK_04", "id": 0}, "to": {"map": "NOK_03", "id": 1}, "reqs": []}, # Fuzzy Forest Exit Left -> Behind Koopa Village Exit Right
     
-    {"from": {"map": "NOK_04", "id": 0},       "to": {"map": "NOK_04", "id": "GiftA"}, "reqs": [can_shake_trees], "pseudoitems": ["RF_Ch1_Fuzzies_Banished"]}, #* Fuzzy Forest Exit Left -> GiftA (KooperShell)
+    {"from": {"map": "NOK_04", "id": 0},       "to": {"map": "NOK_04", "id": "GiftA"}, "reqs": [require(hammer=1)], "pseudoitems": ["RF_Ch1_Fuzzies_Banished"]}, #* Fuzzy Forest Exit Left -> GiftA (KooperShell)
     {"from": {"map": "NOK_04", "id": "GiftA"}, "to": {"map": "NOK_04", "id": 0},       "reqs": []}, #* GiftA (KooperShell) -> Fuzzy Forest Exit Left
 
     # NOK_11 Pleasant Path Entry
@@ -193,7 +195,7 @@ edges_nok = [
     {"from": {"map": "NOK_13", "id": "HiddenPanel"}, "to": {"map": "NOK_13", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Pleasant Crossroads Exit Left
     {"from": {"map": "NOK_13", "id": 0},             "to": {"map": "NOK_13", "id": "ItemA"},       "reqs": []}, #* Pleasant Crossroads Exit Left -> ItemA (HoneySyrup)
     {"from": {"map": "NOK_13", "id": "ItemA"},       "to": {"map": "NOK_13", "id": 0},             "reqs": []}, #* ItemA (HoneySyrup) -> Pleasant Crossroads Exit Left
-    {"from": {"map": "NOK_13", "id": 0},             "to": {"map": "NOK_13", "id": "RBlockA"},     "reqs": [require(hammer=0)]}, #* Pleasant Crossroads Exit Left -> RBlockA (AttackFXB)
+    {"from": {"map": "NOK_13", "id": 0},             "to": {"map": "NOK_13", "id": "RBlockA"},     "reqs": [require(hammer=1, boots=2, partner=["Kooper","Bombette"])]}, #* Pleasant Crossroads Exit Left -> RBlockA (AttackFXB)
     {"from": {"map": "NOK_13", "id": "RBlockA"},     "to": {"map": "NOK_13", "id": 0},             "reqs": []}, #* RBlockA (AttackFXB) -> Pleasant Crossroads Exit Left
 
     # NOK_14 Path to Fortress 1
@@ -218,7 +220,7 @@ edges_nok = [
     {"from": {"map": "NOK_14", "id": "ItemD"},         "to": {"map": "NOK_14", "id": 0},               "reqs": []}, #* ItemD (Coin) -> Path to Fortress 1 Exit Left
     {"from": {"map": "NOK_14", "id": 0},               "to": {"map": "NOK_14", "id": "ItemE"},         "reqs": []}, #* Path to Fortress 1 Exit Left -> ItemE (Coin)
     {"from": {"map": "NOK_14", "id": "ItemE"},         "to": {"map": "NOK_14", "id": 0},               "reqs": []}, #* ItemE (Coin) -> Path to Fortress 1 Exit Left
-    {"from": {"map": "NOK_14", "id": 0},               "to": {"map": "NOK_14", "id": "ItemF"},         "reqs": [require(partner="Kooper", boots=2)]}, #* Path to Fortress 1 Exit Left -> ItemF (ThunderBolt)
+    {"from": {"map": "NOK_14", "id": 0},               "to": {"map": "NOK_14", "id": "ItemF"},         "reqs": [require(partner="Kooper", boots=3)]}, #* Path to Fortress 1 Exit Left -> ItemF (ThunderBolt)
     {"from": {"map": "NOK_14", "id": "ItemF"},         "to": {"map": "NOK_14", "id": 0},               "reqs": []}, #* ItemF (ThunderBolt) -> Path to Fortress 1 Exit Left
     {"from": {"map": "NOK_14", "id": 1},               "to": {"map": "NOK_14", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Path to Fortress 1 Exit Right -> HiddenYBlockA (FireFlower)
     {"from": {"map": "NOK_14", "id": "HiddenYBlockA"}, "to": {"map": "NOK_14", "id": 1},               "reqs": []}, #* HiddenYBlockA (FireFlower) -> Path to Fortress 1 Exit Right

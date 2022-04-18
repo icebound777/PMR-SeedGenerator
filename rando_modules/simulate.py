@@ -11,8 +11,8 @@ class Mario:
     things that influence progression.
     """
     def __init__(self, **kwargs):
-        self.boots = kwargs.get("boots", 0)
-        self.hammer = kwargs.get("hammer", -1)
+        self.boots = kwargs.get("boots", [])
+        self.hammer = kwargs.get("hammer", [])
         self.items = kwargs.get("items", [])
         self.starpieces = kwargs.get("starpieces", [])
         self.partners = kwargs.get("partners", [])
@@ -35,7 +35,8 @@ def add_to_inventory(item_object):
             or item_object.startswith("MF")
             or item_object.startswith("MB")
             or item_object.startswith("RF")):
-            mario.flags.append(item_object)
+            if item_object not in mario.flags:
+                mario.flags.append(item_object)
             is_new_pseudoitem = True
         elif item_object in all_partners:
             if item_object not in mario.partners:
@@ -51,10 +52,16 @@ def add_to_inventory(item_object):
                 mario.favors.append(item_object)
                 is_new_pseudoitem = True
         elif item_object.startswith("EQUIPMENT"):
-            if item_object == "EQUIPMENT_Boots_Progressive":
-                mario.boots = mario.boots + 1 if mario.boots < 2 else mario.boots
-            if item_object == "EQUIPMENT_Hammer_Progressive":
-                mario.hammer = mario.hammer + 1 if mario.hammer < 2 else mario.hammer
+            if (item_object.startswith("EQUIPMENT_Boots_Progressive")
+            and item_object not in mario.boots
+            ):
+                mario.boots.append(item_object)
+                is_new_pseudoitem = True
+            if (item_object.startswith("EQUIPMENT_Hammer_Progressive")
+            and item_object not in mario.hammer
+            ):
+                mario.hammer.append(item_object)
+                is_new_pseudoitem = True
         elif item_object.startswith("STARSPIRIT"):
             if item_object not in mario.starspirits:
                 mario.starspirits.append(item_object)
@@ -100,7 +107,7 @@ def can_flip_panels():
     * UltraHammer
     """
     global mario
-    return mario.hammer == 2 or mario.boots >= 1
+    return len(mario.hammer) == 3 or len(mario.boots) >= 2
 
 
 def can_shake_trees():
@@ -110,7 +117,7 @@ def can_shake_trees():
     * Bombette
     """
     global mario
-    return mario.hammer >= 0 or "Bombette" in mario.partners
+    return len(mario.hammer) >= 1 or "Bombette" in mario.partners
 
 
 def has_item(item_str):
@@ -153,7 +160,7 @@ def saved_all_yoshikids():
     global mario
     count = 0
     for flag_str in mario.flags:
-        if flag_str == "RF_SavedYoshiKid":
+        if flag_str.startswith("RF_SavedYoshiKid"):
             count += 1
             if count >= 5:
                 return True
@@ -179,36 +186,39 @@ def require(**kwargs):
 
         # Partners
         partners = kwargs.get("partner")
-        if type(partners) is not list:
+        if not isinstance(partners, list):
             partners = [partners]
         for partner in partners:
             if partner in mario.partners:
                 return True
         # Items
-        if item := kwargs.get("item"):
-            if item in multiuse_progression_items:
-                have_any_req_item = True in (multi_item in mario.items
-                                             for multi_item in multiuse_progression_items.get(item))
-                if have_any_req_item:
-                    # remove single multiuse item #TODO very janky, pls rework
-                    for multi_item in multiuse_progression_items.get(item):
-                        if multi_item in mario.items:
-                            mario.items.remove(multi_item)
-                            break
+        if items := kwargs.get("item"):
+            if not isinstance(items, list):
+                items = [items]
+            for item in items:
+                if item in multiuse_progression_items:
+                    have_any_req_item = True in (multi_item in mario.items
+                                                 for multi_item in multiuse_progression_items.get(item))
+                    if have_any_req_item:
+                        # remove single multiuse item #TODO very janky, pls rework
+                        for multi_item in multiuse_progression_items.get(item):
+                            if multi_item in mario.items:
+                                mario.items.remove(multi_item)
+                                break
+                        return True
+                if item in mario.items:
                     return True
-            if item in mario.items:
-                return True
         # StarPieces
         starpieces = kwargs.get("starpieces")
         if starpieces is not None and get_starpiece_count() >= starpieces:
             return True
         # Hammer
         hammer = kwargs.get("hammer")
-        if hammer is not None and mario.hammer >= hammer:
+        if hammer is not None and len(mario.hammer) >= hammer:
             return True
         # Boots
         if boots := kwargs.get("boots"):
-            if mario.boots >= boots:
+            if len(mario.boots) >= boots:
                 return True
         # Koopa Koot Favors
         if favor := kwargs.get("favor"):

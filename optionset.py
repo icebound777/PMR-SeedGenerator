@@ -20,6 +20,7 @@ class OptionSet:
         self.ohko = get_option_keyvalue_dict("OHKO")
         self.no_save_blocks = get_option_keyvalue_dict("NoSaveBlocks")
         self.no_heart_blocks = get_option_keyvalue_dict("NoHeartBlocks")
+        self.no_healing_items = get_option_keyvalue_dict("NoHealingItems")
 
         # Item related
         self.shuffle_items = get_option_keyvalue_dict("ShuffleItems")
@@ -50,6 +51,7 @@ class OptionSet:
         self.allow_physics_glitches = get_option_keyvalue_dict("AllowPhysicsGlitches")
         self.starway_spirits_needed = get_option_keyvalue_dict("StarWaySpiritsNeeded")
         self.peachcastle_return_pipe = get_option_keyvalue_dict("PeachCastleReturnPipe")
+        self.foliage_item_hints = get_option_keyvalue_dict("FoliageItemHints")
 
         # Starting setup
         self.starting_map = get_option_keyvalue_dict("StartingMap") # mac_00 Entry 4
@@ -59,6 +61,9 @@ class OptionSet:
         self.starting_maxbp = get_option_keyvalue_dict("StartingMaxBP")
         self.starting_starpower = get_option_keyvalue_dict("StartingStarPower")
 
+        self.random_starting_items = False
+        self.random_starting_items_min = 0
+        self.random_starting_items_max = 16
         self.starting_item_0 = get_option_keyvalue_dict("StartingItem0")
         self.starting_item_1 = get_option_keyvalue_dict("StartingItem1")
         self.starting_item_2 = get_option_keyvalue_dict("StartingItem2")
@@ -81,16 +86,21 @@ class OptionSet:
         self.include_letterchain = False
         self.include_dojo = False
         self.item_scarcity = 0
+        self.add_item_pouches = False
         self.placement_algorithm = "ForwardFill"
         self.placement_logic = "NoGlitches"
         self.keyitems_outside_dungeon = True # False -> NYI
         self.keyitems_outside_chapter = True # "Keysanity" # false -> NYI
+        self.allow_itemhints = True
+        self.itemtrap_mode = 0
+        # Mystery? item options
+        self.mystery_settings = MysteryOptionSet()
 
         # Moves and Badges
-        self.shuffle_badges_bp = False
-        self.shuffle_badges_fp = False
-        self.shuffle_partner_fp = False
-        self.shuffle_starpower_sp = False
+        self.random_badges_bp = 0
+        self.random_badges_fp = 0
+        self.random_partner_fp = 0
+        self.random_starpower_sp = 0
 
         # Entrance related
         self.shorten_bowsers_castle = get_option_keyvalue_dict("ShortenBowsersCastle")
@@ -121,13 +131,13 @@ class OptionSet:
         self.color_a = get_option_keyvalue_dict("Box5ColorA")
         self.color_b = get_option_keyvalue_dict("Box5ColorB")
         self.roman_numerals = get_option_keyvalue_dict("RomanNumerals")
+        self.random_text = get_option_keyvalue_dict("RandomText")
         self.coin_color = get_option_keyvalue_dict("CoinColor")
         self.random_coin_color = False
 
         self.palette_settings = PaletteOptionSet()
 
         # Audio
-        self.turn_off_music = False
 
 
     def get_startitem_list(self) -> list:
@@ -190,6 +200,8 @@ class OptionSet:
             self.no_save_blocks = options_dict.get("NoSaveBlocks")
         if "NoHeartBlocks" in options_dict:
             self.no_heart_blocks = options_dict.get("NoHeartBlocks")
+        if "NoHealingItems" in options_dict:
+            self.no_healing_items = options_dict.get("NoHealingItems")
 
         # Item related
         if "ShuffleItems" in options_dict:
@@ -243,6 +255,8 @@ class OptionSet:
             self.starway_spirits_needed = options_dict.get("StarWaySpiritsNeeded")
         if "PeachCastleReturnPipe" in options_dict:
             self.peachcastle_return_pipe = options_dict.get("PeachCastleReturnPipe")
+        if "FoliageItemHints" in options_dict:
+            self.foliage_item_hints = options_dict.get("FoliageItemHints")
 
         # Starting setup
         if "StartingMap" in options_dict:
@@ -258,6 +272,12 @@ class OptionSet:
         if "StartingStarPower" in options_dict:
             self.starting_starpower = options_dict.get("StartingStarPower")
 
+        if "StartWithRandomItems" in options_dict:
+            self.random_starting_items = options_dict.get("StartWithRandomItems").get("value")
+        if "RandomItemsMin" in options_dict:
+            self.random_starting_items_min = options_dict.get("RandomItemsMin").get("value")
+        if "RandomItemsMax" in options_dict:
+            self.random_starting_items_max = options_dict.get("RandomItemsMax").get("value")
         if "StartingItem0" in options_dict:
             self.starting_item_0 = options_dict.get("StartingItem0")
         if "StartingItem1" in options_dict:
@@ -300,6 +320,8 @@ class OptionSet:
             self.include_dojo = options_dict.get("IncludeDojo").get("value")
         if "ItemScarcity" in options_dict:
             self.item_scarcity = options_dict.get("ItemScarcity").get("value")
+        if "AddItemPouches" in options_dict:
+            self.add_item_pouches = options_dict.get("AddItemPouches").get("value")
         if "PlacementAlgorithm" in options_dict:
             self.placement_algorithm = options_dict.get("PlacementAlgorithm").get("value")
         if "PlacementLogic" in options_dict:
@@ -308,16 +330,39 @@ class OptionSet:
             self.keyitems_outside_dungeon = options_dict.get("KeyitemsOutsideDungeon").get("value")
         if "KeyitemsOutsideChapter" in options_dict:
             self.keyitems_outside_chapter = options_dict.get("KeyitemsOutsideChapter").get("value")
+        if "AllowItemHints" in options_dict:
+            self.allow_itemhints = options_dict.get("AllowItemHints").get("value")
+        if "ItemTrapMode" in options_dict:
+            self.itemtrap_mode = options_dict.get("ItemTrapMode").get("value")
+        # Mystery? item options
+        if "RandomChoice" in options_dict:
+            self.mystery_settings.mystery_random_choice = options_dict.get("RandomChoice")
+        if "MysteryRandomPick" in options_dict:
+            self.mystery_settings.mystery_random_pick = options_dict.get("MysteryRandomPick").get("value")
+        if "ItemChoiceA" in options_dict:
+            self.mystery_settings.mystery_itemA = options_dict.get("ItemChoiceA")
+        if "ItemChoiceB" in options_dict:
+            self.mystery_settings.mystery_itemB = options_dict.get("ItemChoiceB")
+        if "ItemChoiceC" in options_dict:
+            self.mystery_settings.mystery_itemC = options_dict.get("ItemChoiceC")
+        if "ItemChoiceD" in options_dict:
+            self.mystery_settings.mystery_itemD = options_dict.get("ItemChoiceD")
+        if "ItemChoiceE" in options_dict:
+            self.mystery_settings.mystery_itemE = options_dict.get("ItemChoiceE")
+        if "ItemChoiceF" in options_dict:
+            self.mystery_settings.mystery_itemF = options_dict.get("ItemChoiceF")
+        if "ItemChoiceG" in options_dict:
+            self.mystery_settings.mystery_itemG = options_dict.get("ItemChoiceG")
 
         # Moves and Badges
-        if "ShuffleBadgesBP" in options_dict:
-            self.shuffle_badges_bp = options_dict.get("ShuffleBadgesBP").get("value")
-        if "ShuffleBadgesFP" in options_dict:
-            self.shuffle_badges_fp = options_dict.get("ShuffleBadgesFP").get("value")
-        if "ShufflePartnerFP" in options_dict:
-            self.shuffle_partner_fp = options_dict.get("ShufflePartnerFP").get("value")
-        if "ShuffleStarpowerSP" in options_dict:
-            self.shuffle_starpower_sp = options_dict.get("ShuffleStarpowerSP").get("value")
+        if "RandomBadgesBP" in options_dict:
+            self.random_badges_bp = options_dict.get("RandomBadgesBP").get("value")
+        if "RandomBadgesFP" in options_dict:
+            self.random_badges_fp = options_dict.get("RandomBadgesFP").get("value")
+        if "RandomPartnerFP" in options_dict:
+            self.random_partner_fp = options_dict.get("RandomPartnerFP").get("value")
+        if "RandomStarpowerSP" in options_dict:
+            self.random_starpower_sp = options_dict.get("RandomStarpowerSP").get("value")
 
         # Entrance related
         if "ShortenBowsersCastle" in options_dict:
@@ -369,6 +414,8 @@ class OptionSet:
         # Cosmetics / Palettes
         if "RomanNumerals" in options_dict:
             self.roman_numerals = options_dict.get("RomanNumerals")
+        if "RandomText" in options_dict:
+            self.random_text = options_dict.get("RandomText")
         if "CoinColor" in options_dict:
             self.coin_color = options_dict.get("CoinColor")
         if "RandomCoinColor" in options_dict:
@@ -402,14 +449,14 @@ class OptionSet:
             self.palette_settings.bow_setting = options_dict.get("BowSetting").get("value")
         if "BowSprite" in options_dict:
             self.palette_settings.bow_sprite = options_dict.get("BowSprite").get("value")
-        #if "WattSetting" in options_dict:
-        #    self.palette_settings.watt_setting = options_dict.get("WattSetting").get("value")
-        #if "WattSprite" in options_dict:
-        #    self.palette_settings.watt_sprite = options_dict.get("WattSprite").get("value")
-        #if "SushieSetting" in options_dict:
-        #    self.palette_settings.sushie_setting = options_dict.get("SushieSetting").get("value")
-        #if "SushieSprite" in options_dict:
-        #    self.palette_settings.sushie_sprite = options_dict.get("SushieSprite").get("value")
+        if "WattSetting" in options_dict:
+            self.palette_settings.watt_setting = options_dict.get("WattSetting").get("value")
+        if "WattSprite" in options_dict:
+            self.palette_settings.watt_sprite = options_dict.get("WattSprite").get("value")
+        if "SushieSetting" in options_dict:
+            self.palette_settings.sushie_setting = options_dict.get("SushieSetting").get("value")
+        if "SushieSprite" in options_dict:
+            self.palette_settings.sushie_sprite = options_dict.get("SushieSprite").get("value")
         #if "LakilesterSetting" in options_dict:
         #    self.palette_settings.lakilester_setting = options_dict.get("LakilesterSetting").get("value")
         #if "LakilesterSprite" in options_dict:
@@ -420,8 +467,6 @@ class OptionSet:
             self.palette_settings.npc_setting = options_dict.get("NPCSetting").get("value")
 
         # Audio
-        if "TurnOffMusic" in options_dict:
-            self.turn_off_music = options_dict.get("TurnOffMusic").get("value")
 
 
 def validate_options(options_dict):
@@ -459,6 +504,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("NoSaveBlocks").get("value"), bool)
     if "NoHeartBlocks" in options_dict:
         assert isinstance(options_dict.get("NoHeartBlocks").get("value"), bool)
+    if "NoHealingItems" in options_dict:
+        assert isinstance(options_dict.get("NoHealingItems").get("value"), bool)
 
     # Item related
     if "ShuffleItems" in options_dict:
@@ -514,6 +561,8 @@ def validate_options(options_dict):
                 and 0 <= options_dict.get("StarWaySpiritsNeeded").get("value") <= 7)
     if "PeachCastleReturnPipe" in options_dict:
         assert isinstance(options_dict.get("PeachCastleReturnPipe").get("value"), bool)
+    if "FoliageItemHints" in options_dict:
+        assert isinstance(options_dict.get("FoliageItemHints").get("value"), bool)
 
     # Starting setup
     if "StartingMap" in options_dict:
@@ -530,6 +579,22 @@ def validate_options(options_dict):
         assert (    isinstance(options_dict.get("StartingStarPower").get("value"), int)
                 and 0 <= options_dict.get("StartingStarPower").get("value") <= 7)
 
+    if "StartWithRandomItems" in options_dict:
+        assert isinstance(options_dict.get("StartWithRandomItems").get("value"), bool)
+    if "RandomItemsMin" in options_dict:
+        assert (isinstance(options_dict.get("RandomItemsMin").get("value"), int)
+            and 0 <= options_dict.get("RandomItemsMin").get("value") <= 16
+            and ("RandomItemsMax" not in options_dict
+              or options_dict.get("RandomItemsMin").get("value") <= 
+                 options_dict.get("RandomItemsMax").get("value"))
+        )
+    if "RandomItemsMax" in options_dict:
+        assert (isinstance(options_dict.get("RandomItemsMax").get("value"), int)
+            and 0 <= options_dict.get("RandomItemsMax").get("value") <= 16
+            and ("RandomItemsMin" not in options_dict
+              or options_dict.get("RandomItemsMax").get("value") <= 
+                 options_dict.get("RandomItemsMax").get("value"))
+        )
     if "StartingItem0" in options_dict:
         assert isinstance(options_dict.get("StartingItem0").get("value"), int)
     if "StartingItem1" in options_dict:
@@ -574,6 +639,8 @@ def validate_options(options_dict):
         assert (isinstance(options_dict.get("ItemScarcity").get("value"), int)
             and 0 <= options_dict.get("ItemScarcity").get("value") <= 5
         )
+    if "AddItemPouches" in options_dict:
+        assert isinstance(options_dict.get("AddItemPouches").get("value"), bool)
     if "PlacementAlgorithm" in options_dict:
         assert (isinstance(options_dict.get("PlacementAlgorithm").get("value"), str)
             and options_dict.get("PlacementAlgorithm").get("value") in [
@@ -595,16 +662,53 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("KeyitemsOutsideDungeon").get("value"), bool)
     if "KeyitemsOutsideChapter" in options_dict:
         assert isinstance(options_dict.get("KeyitemsOutsideChapter").get("value"), bool)
+    if "AllowItemHints" in options_dict:
+        assert isinstance(options_dict.get("AllowItemHints").get("value"), bool)
+    if "ItemTrapMode" in options_dict:
+        assert isinstance(options_dict.get("ItemTrapMode").get("value"), int)
+    # Mystery? item options
+    if "RandomChoice" in options_dict:
+        assert isinstance(options_dict.get("RandomChoice").get("value"), bool)
+    if "MysteryRandomPick" in options_dict:
+        assert isinstance(options_dict.get("MysteryRandomPick").get("value"), bool)
+    if "ItemChoiceA" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceA").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceA").get("value") <= 0xDA
+        )
+    if "ItemChoiceB" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceB").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceB").get("value") <= 0xDA
+        )
+    if "ItemChoiceC" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceC").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceC").get("value") <= 0xDA
+        )
+    if "ItemChoiceD" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceD").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceD").get("value") <= 0xDA
+        )
+    if "ItemChoiceE" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceE").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceE").get("value") <= 0xDA
+        )
+    if "ItemChoiceF" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceF").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceF").get("value") <= 0xDA
+        )
+    if "ItemChoiceG" in options_dict:
+        assert (isinstance(options_dict.get("ItemChoiceG").get("value"), int)
+            and 0x80 <= options_dict.get("ItemChoiceG").get("value") <= 0xDA
+        )
 
     # Moves and Badges
-    if "ShuffleBadgesBP" in options_dict:
-        assert isinstance(options_dict.get("ShuffleBadgesBP").get("value"), bool)
-    if "ShuffleBadgesFP" in options_dict:
-        assert isinstance(options_dict.get("ShuffleBadgesFP").get("value"), bool)
-    if "ShufflePartnerFP" in options_dict:
-        assert isinstance(options_dict.get("ShufflePartnerFP").get("value"), bool)
-    if "ShuffleStarpowerSP" in options_dict:
-        assert isinstance(options_dict.get("ShuffleStarpowerSP").get("value"), bool)
+    if "RandomBadgesBP" in options_dict:
+        assert isinstance(options_dict.get("RandomBadgesBP").get("value"), int)
+    if "RandomBadgesFP" in options_dict:
+        assert isinstance(options_dict.get("RandomBadgesFP").get("value"), int)
+    if "RandomPartnerFP" in options_dict:
+        assert isinstance(options_dict.get("RandomPartnerFP").get("value"), int)
+    if "RandomStarpowerSP" in options_dict:
+        assert isinstance(options_dict.get("RandomStarpowerSP").get("value"), int)
 
     # Entrance related
     if "ShortenBowsersCastle" in options_dict:
@@ -660,6 +764,8 @@ def validate_options(options_dict):
     # Cosmetics / Palettes
     if "RomanNumerals" in options_dict:
         assert isinstance(options_dict.get("RomanNumerals").get("value"), bool)
+    if "RandomText" in options_dict:
+        assert isinstance(options_dict.get("RandomText").get("value"), bool)
     if "CoinColor" in options_dict:
         assert (isinstance(options_dict.get("CoinColor").get("value"), int)
             and 0 <= options_dict.get("CoinColor").get("value") <= 4
@@ -717,8 +823,6 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("NPCSetting").get("value"), int)
 
     # Audio
-    if "TurnOffMusic" in options_dict:
-        assert isinstance(options_dict.get("TurnOffMusic").get("value"), bool)
 
 
 def get_option_keyvalue_dict(option_str):
@@ -755,11 +859,24 @@ class PaletteOptionSet():
         #self.parakarry_sprite = DEFAULT_PALETTE
         self.bow_setting = DEFAULT_PALETTE
         self.bow_sprite = DEFAULT_PALETTE
-        #self.watt_setting = DEFAULT_PALETTE
-        #self.watt_sprite = DEFAULT_PALETTE
-        #self.sushie_setting = DEFAULT_PALETTE
-        #self.sushie_sprite = DEFAULT_PALETTE
+        self.watt_setting = DEFAULT_PALETTE
+        self.watt_sprite = DEFAULT_PALETTE
+        self.sushie_setting = DEFAULT_PALETTE
+        self.sushie_sprite = DEFAULT_PALETTE
         #self.lakilester_setting = DEFAULT_PALETTE
         #self.lakilester_sprite = DEFAULT_PALETTE
         self.bosses_setting = DEFAULT_PALETTE
         self.npc_setting = DEFAULT_PALETTE
+
+
+class MysteryOptionSet():
+    def __init__(self):
+        self.mystery_random_choice = get_option_keyvalue_dict("RandomChoice")
+        self.mystery_random_pick = False
+        self.mystery_itemA = get_option_keyvalue_dict("ItemChoiceA")
+        self.mystery_itemB = get_option_keyvalue_dict("ItemChoiceB")
+        self.mystery_itemC = get_option_keyvalue_dict("ItemChoiceC")
+        self.mystery_itemD = get_option_keyvalue_dict("ItemChoiceD")
+        self.mystery_itemE = get_option_keyvalue_dict("ItemChoiceE")
+        self.mystery_itemF = get_option_keyvalue_dict("ItemChoiceF")
+        self.mystery_itemG = get_option_keyvalue_dict("ItemChoiceG")

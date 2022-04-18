@@ -2,8 +2,18 @@ import random
 from math import ceil
 
 from db.item import Item
+from db.node import Node
+from worldgraph import get_node_identifier
+
+from metadata.item_exclusion import exclude_due_to_settings
+from metadata.itemlocation_special import kootfavors_locations
 
 def get_scarcitied_itempool(itempool:list, scarcity:int) -> list:
+    """
+    Modifies and returns a given item pool for scarcity of consumables.
+    This swaps out items with weaker ones, according to the chosen scarcity
+    intensity.
+    """
     TYPE_BATTLEITEM = 0
     TYPE_HEALINGITEM = 1
     TYPE_TAYCETITEM = 2
@@ -297,5 +307,79 @@ def get_scarcitied_itempool(itempool:list, scarcity:int) -> list:
             new_itempool.append(new_item)
 
             #print(f"Changed {item_obj} to {new_item}")
+
+    return new_itempool
+
+
+def get_trapped_itempool(
+    itempool:list,
+    trap_mode:int,
+    do_randomize_koopakoot:bool,
+    do_randomize_dojo:bool
+) -> list:
+    """
+    Modifies and returns a given item pool after placing trap items.
+    This swaps out consumable items with trap items, which do not actually give
+    the item to Mario, and instead damage him and make him drop coins.
+    The items need not necessarily look like consumables, and can use the
+    sprites of badges, key items and others instead.
+    """
+    # Trap mode:
+    # 0: no traps
+    # 1: sparce
+    # 2: moderate
+    # 3: plenty
+
+    if trap_mode == 0:
+        return itempool
+
+    if trap_mode == 1:
+        max_traps = 15
+    elif trap_mode == 2:
+        max_traps = 35
+    else:
+        max_traps = 80
+
+    koot_items = []
+    for item_node in Node.select().where(Node.vanilla_item.is_null(False)):
+        if get_node_identifier(item_node) in kootfavors_locations:
+            koot_items.append(item_node.vanilla_item.item_name)
+
+    trap_flag = 0x2000
+    new_itempool = []
+    fakeable_items = []
+    for item in (Item
+                 .select()
+                 .where(Item.item_type.in_(["KEYITEM","PARTNER","BADGE"]))
+    ):
+        if item.unused or item.unplaceable:
+            continue
+        if (not do_randomize_dojo
+        and item.item_name in exclude_due_to_settings.get("do_randomize_dojo")
+        ):
+            continue
+        if (not do_randomize_koopakoot
+        and item.item_name in koot_items
+        ):
+            continue
+
+        fakeable_items.append(item)
+
+    # Bias towards placing UltraStone traps, as requested by clover
+    item_ultrastone = Item.get(Item.item_name == 'UltraStone')
+    fakeable_items.extend([item_ultrastone] * 9)
+
+    cnt_traps = 0
+    shuffled_pool = itempool.copy()
+    random.shuffle(shuffled_pool)
+
+    for item_obj in shuffled_pool:
+        if item_obj.item_type != "ITEM" or cnt_traps >= max_traps:
+            new_itempool.append(item_obj)
+        else:
+            new_trapitem = random.choice(fakeable_items)
+            new_trapitem.value = new_trapitem.value | trap_flag
+            new_itempool.append(new_trapitem)
+            cnt_traps += 1
 
     return new_itempool

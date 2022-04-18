@@ -34,7 +34,7 @@ edges_kzn = [
     
     {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "ItemA"},   "reqs": []}, #* Central Cavern Exit West Upper -> ItemA (FireShield)
     {"from": {"map": "KZN_03", "id": "ItemA"},   "to": {"map": "KZN_03", "id": 0},         "reqs": []}, #* ItemA (FireShield) -> Central Cavern Exit West Upper
-    {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "ItemB"},   "reqs": [require(boots=2,partner="Kooper")]}, #* Central Cavern Exit West Upper -> ItemB (POWBlock)
+    {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "ItemB"},   "reqs": [require(boots=3,partner="Kooper")]}, #* Central Cavern Exit West Upper -> ItemB (POWBlock)
     {"from": {"map": "KZN_03", "id": "ItemB"},   "to": {"map": "KZN_03", "id": 0},         "reqs": []}, #* ItemB (POWBlock) -> Central Cavern Exit West Upper
     {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "YBlockA"}, "reqs": []}, #* Central Cavern Exit West Upper -> YBlockA (Coin)
     {"from": {"map": "KZN_03", "id": "YBlockA"}, "to": {"map": "KZN_03", "id": 0},         "reqs": []}, #* YBlockA (Coin) -> Central Cavern Exit West Upper
@@ -71,7 +71,7 @@ edges_kzn = [
     # KZN_07 Ultra Hammer Room
     {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_06", "id": 1}, "reqs": []}, # Ultra Hammer Room Exit East -> Flowing Lava Puzzle Exit West
 
-    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": 0}, "reqs": [require(partner=["Parakarry","Lakilester"])], "pseudoitems": ["EQUIPMENT_Hammer_Progressive","RF_KZN07_OpenedHammerChest"]}, #+ Open Ultra Hammer Chest
+    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": 0}, "reqs": [require(partner=["Parakarry","Lakilester"])], "pseudoitems": ["EQUIPMENT_Hammer_Progressive_3","RF_KZN07_OpenedHammerChest"]}, #+ Open Ultra Hammer Chest
 
     # KZN_08 Dizzy Stomp Room
     {"from": {"map": "KZN_08", "id": 0}, "to": {"map": "KZN_06", "id": 2}, "reqs": []}, # Dizzy Stomp Room Exit West -> Flowing Lava Puzzle Exit East Lower

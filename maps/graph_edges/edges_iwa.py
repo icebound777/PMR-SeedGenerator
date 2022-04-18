@@ -15,7 +15,7 @@ edges_iwa = [
     {"from": {"map": "IWA_00", "id": "ItemB"},   "to": {"map": "IWA_00", "id": 0},         "reqs": []}, #* ItemB (Coin) -> Mt Rugged 1 Exit Left
     {"from": {"map": "IWA_00", "id": 0},         "to": {"map": "IWA_00", "id": "ItemC"},   "reqs": []}, #* Mt Rugged 1 Exit Left -> ItemC (Coin)
     {"from": {"map": "IWA_00", "id": "ItemC"},   "to": {"map": "IWA_00", "id": 0},         "reqs": []}, #* ItemC (Coin) -> Mt Rugged 1 Exit Left
-    {"from": {"map": "IWA_00", "id": 0},         "to": {"map": "IWA_00", "id": "ItemD"},   "reqs": [require(hammer=0),require(flag="RF_Missable")]}, #* Mt Rugged 1 Exit Left -> ItemD (WhackasBump)
+    {"from": {"map": "IWA_00", "id": 0},         "to": {"map": "IWA_00", "id": "ItemD"},   "reqs": [require(hammer=1),require(flag="RF_Missable")]}, #* Mt Rugged 1 Exit Left -> ItemD (WhackasBump)
     {"from": {"map": "IWA_00", "id": "ItemD"},   "to": {"map": "IWA_00", "id": 0},         "reqs": []}, #* ItemD (WhackasBump) -> Mt Rugged 1 Exit Left
     {"from": {"map": "IWA_00", "id": 0},         "to": {"map": "IWA_00", "id": "YBlockA"}, "reqs": []}, #* Mt Rugged 1 Exit Left -> YBlockA (SleepySheep)
     {"from": {"map": "IWA_00", "id": "YBlockA"}, "to": {"map": "IWA_00", "id": 0},         "reqs": []}, #* YBlockA (SleepySheep) -> Mt Rugged 1 Exit Left
@@ -78,11 +78,11 @@ edges_iwa = [
     {"from": {"map": "IWA_03", "id": "ItemI"},   "to": {"map": "IWA_03", "id": 0},         "reqs": []}, #* ItemI (Coin) -> Mt Rugged 4 Exit Bottom Right
     {"from": {"map": "IWA_03", "id": 0},         "to": {"map": "IWA_03", "id": "ItemJ"},   "reqs": []}, #* Mt Rugged 4 Exit Bottom Right -> ItemJ (Coin) (bottom2)
     {"from": {"map": "IWA_03", "id": "ItemJ"},   "to": {"map": "IWA_03", "id": 0},         "reqs": []}, #* ItemJ (Coin) -> Mt Rugged 4 Exit Bottom Right
-    {"from": {"map": "IWA_03", "id": 0},         "to": {"map": "IWA_03", "id": "YBlockA"}, "reqs": [require(hammer=0)]}, #* Mt Rugged 4 Exit Bottom Right -> YBlockA (Coin)
+    {"from": {"map": "IWA_03", "id": 0},         "to": {"map": "IWA_03", "id": "YBlockA"}, "reqs": [require(hammer=1,boots=2,partner=["Kooper","Bombette"])]}, #* Mt Rugged 4 Exit Bottom Right -> YBlockA (Coin)
     {"from": {"map": "IWA_03", "id": "YBlockA"}, "to": {"map": "IWA_03", "id": 0},         "reqs": []}, #* YBlockA (Coin) -> Mt Rugged 4 Exit Bottom Right
     {"from": {"map": "IWA_03", "id": 0},         "to": {"map": "IWA_03", "id": "YBlockB"}, "reqs": []}, #* Mt Rugged 4 Exit Bottom Right -> YBlockB (Mushroom)
     {"from": {"map": "IWA_03", "id": "YBlockB"}, "to": {"map": "IWA_03", "id": 0},         "reqs": []}, #* YBlockB (Mushroom) -> Mt Rugged 4 Exit Bottom Right
-    {"from": {"map": "IWA_03", "id": 0},         "to": {"map": "IWA_03", "id": "YBlockC"}, "reqs": [require(hammer=0)]}, #* Mt Rugged 4 Exit Bottom Right -> YBlockC (HoneySyrup)
+    {"from": {"map": "IWA_03", "id": 0},         "to": {"map": "IWA_03", "id": "YBlockC"}, "reqs": [require(hammer=1,boots=2,partner=["Kooper","Bombette"])]}, #* Mt Rugged 4 Exit Bottom Right -> YBlockC (HoneySyrup)
     {"from": {"map": "IWA_03", "id": "YBlockC"}, "to": {"map": "IWA_03", "id": 0},         "reqs": []}, #* YBlockC (HoneySyrup) -> Mt Rugged 4 Exit Bottom Right
 
     # IWA_04 Suspension Bridge
@@ -102,16 +102,16 @@ edges_iwa = [
     {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": 1}, "reqs": []}, #? Train Station Ride The Train -> Train Station Exit Top Right
     {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": 0}, "reqs": []}, #? Train Station Exit Top Right -> Train Station Ride The Train
     
-    {"from": {"map": "IWA_10", "id": 1},         "to": {"map": "IWA_10", "id": "ItemA"},   "reqs": []}, #* Train Station Exit Top Right -> ItemA (Coin) Bottom Bush
-    {"from": {"map": "IWA_10", "id": "ItemA"},   "to": {"map": "IWA_10", "id": 1},         "reqs": []}, #* ItemA (Coin) Bottom Bush -> Train Station Exit Top Right
-    {"from": {"map": "IWA_10", "id": 1},         "to": {"map": "IWA_10", "id": "ItemB"},   "reqs": []}, #* Train Station Exit Top Right -> ItemB (Coin) Right Bush
-    {"from": {"map": "IWA_10", "id": "ItemB"},   "to": {"map": "IWA_10", "id": 1},         "reqs": []}, #* ItemB (Coin) Right Bush -> Train Station Exit Top Right
-    {"from": {"map": "IWA_10", "id": 1},         "to": {"map": "IWA_10", "id": "ItemC"},   "reqs": []}, #* Train Station Exit Top Right -> ItemC (Coin) Left Bush
-    {"from": {"map": "IWA_10", "id": "ItemC"},   "to": {"map": "IWA_10", "id": 1},         "reqs": []}, #* ItemC (Coin) Left Bush -> Train Station Exit Top Right
-    {"from": {"map": "IWA_10", "id": 1},         "to": {"map": "IWA_10", "id": "ItemD"},   "reqs": []}, #* Train Station Exit Top Right -> ItemD (Egg2) Top Bush
-    {"from": {"map": "IWA_10", "id": "ItemD"},   "to": {"map": "IWA_10", "id": 1},         "reqs": []}, #* ItemD (Egg2) Top Bush -> Train Station Exit Top Right
-    {"from": {"map": "IWA_10", "id": 1},         "to": {"map": "IWA_10", "id": "Partner"}, "reqs": [has_parakarry_3_letters,require(flag="RF_CanGetParakarry")]}, #* Train Station Exit Top Right -> Partner (Parakarry)
-    {"from": {"map": "IWA_10", "id": "Partner"}, "to": {"map": "IWA_10", "id": 1},         "reqs": []}, #* Partner (Parakarry) -> Train Station Exit Top Right
+    {"from": {"map": "IWA_10", "id": 1},             "to": {"map": "IWA_10", "id": "Bush1_Drop1"}, "reqs": []}, #* Train Station Exit Top Right -> Bush1_Drop1 (Coin) Bottom Bush
+    {"from": {"map": "IWA_10", "id": "Bush1_Drop1"}, "to": {"map": "IWA_10", "id": 1},             "reqs": []}, #* Bush1_Drop1 (Coin) Bottom Bush -> Train Station Exit Top Right
+    {"from": {"map": "IWA_10", "id": 1},             "to": {"map": "IWA_10", "id": "Bush2_Drop1"}, "reqs": []}, #* Train Station Exit Top Right -> Bush2_Drop1 (Coin) Right Bush
+    {"from": {"map": "IWA_10", "id": "Bush2_Drop1"}, "to": {"map": "IWA_10", "id": 1},             "reqs": []}, #* Bush2_Drop1 (Coin) Right Bush -> Train Station Exit Top Right
+    {"from": {"map": "IWA_10", "id": 1},             "to": {"map": "IWA_10", "id": "Bush3_Drop1"}, "reqs": []}, #* Train Station Exit Top Right -> Bush3_Drop1 (Coin) Left Bush
+    {"from": {"map": "IWA_10", "id": "Bush3_Drop1"}, "to": {"map": "IWA_10", "id": 1},             "reqs": []}, #* Bush3_Drop1 (Coin) Left Bush -> Train Station Exit Top Right
+    {"from": {"map": "IWA_10", "id": 1},             "to": {"map": "IWA_10", "id": "Bush4_Drop1"}, "reqs": []}, #* Train Station Exit Top Right -> Bush4_Drop1 (Egg2) Top Bush
+    {"from": {"map": "IWA_10", "id": "Bush4_Drop1"}, "to": {"map": "IWA_10", "id": 1},             "reqs": []}, #* Bush4_Drop1 (Egg2) Top Bush -> Train Station Exit Top Right
+    {"from": {"map": "IWA_10", "id": 1},             "to": {"map": "IWA_10", "id": "Partner"},     "reqs": [has_parakarry_3_letters]}, #* Train Station Exit Top Right -> Partner (Parakarry)
+    {"from": {"map": "IWA_10", "id": "Partner"},     "to": {"map": "IWA_10", "id": 1},             "reqs": []}, #* Partner (Parakarry) -> Train Station Exit Top Right
 
     # IWA_11 Train Ride Scene
     {"from": {"map": "IWA_11", "id": 0}, "to": {"map": "MAC_03", "id": 1}, "reqs": []}, # Train Ride Scene Exit Left -> Station District Train

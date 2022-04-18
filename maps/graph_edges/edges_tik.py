@@ -66,11 +66,11 @@ edges_tik = [
     {"from": {"map": "TIK_06", "id": 3}, "to": {"map": "MAC_02", "id": 4}, "reqs": []}, # Sewer Entrance (B1) Green Pipe Up -> Southern District Open Pipe
     {"from": {"map": "TIK_06", "id": 4}, "to": {"map": "TIK_08", "id": 2}, "reqs": []}, # Sewer Entrance (B1) Hole In Ground -> Second Level Entry (B2) Hole In Ceiling
 
-    {"from": {"map": "TIK_06", "id": 3}, "to": {"map": "TIK_06", "id": 0}, "reqs": [require(hammer=1)]}, #? Sewer Entrance (B1) Green Pipe Up -> Sewer Entrance (B1) Exit Left
+    {"from": {"map": "TIK_06", "id": 3}, "to": {"map": "TIK_06", "id": 0}, "reqs": [require(hammer=2)]}, #? Sewer Entrance (B1) Green Pipe Up -> Sewer Entrance (B1) Exit Left
     {"from": {"map": "TIK_06", "id": 0}, "to": {"map": "TIK_06", "id": 3}, "reqs": []}, #? Sewer Entrance (B1) Exit Left -> Sewer Entrance (B1) Green Pipe Up
-    {"from": {"map": "TIK_06", "id": 3}, "to": {"map": "TIK_06", "id": 1}, "reqs": [require(hammer=0)]}, #? Sewer Entrance (B1) Green Pipe Up -> Sewer Entrance (B1) Exit Right
+    {"from": {"map": "TIK_06", "id": 3}, "to": {"map": "TIK_06", "id": 1}, "reqs": [require(hammer=1)]}, #? Sewer Entrance (B1) Green Pipe Up -> Sewer Entrance (B1) Exit Right
     {"from": {"map": "TIK_06", "id": 1}, "to": {"map": "TIK_06", "id": 3}, "reqs": []}, #? Sewer Entrance (B1) Exit Right -> Sewer Entrance (B1) Green Pipe Up
-    {"from": {"map": "TIK_06", "id": 3}, "to": {"map": "TIK_06", "id": 4}, "reqs": [require(boots=1)]}, #? Sewer Entrance (B1) Green Pipe Up -> Sewer Entrance (B1) Hole In Ground
+    {"from": {"map": "TIK_06", "id": 3}, "to": {"map": "TIK_06", "id": 4}, "reqs": [require(boots=2)]}, #? Sewer Entrance (B1) Green Pipe Up -> Sewer Entrance (B1) Hole In Ground
     {"from": {"map": "TIK_06", "id": 4}, "to": {"map": "TIK_06", "id": 3}, "reqs": []}, #? Sewer Entrance (B1) Hole In Ground -> Sewer Entrance (B1) Green Pipe Up
     {"from": {"map": "TIK_06", "id": 2}, "to": {"map": "TIK_06", "id": 3}, "reqs": []}, #? Sewer Entrance (B1) Green Pipe Left -> Sewer Entrance (B1) Green Pipe Up
 
@@ -141,28 +141,28 @@ edges_tik = [
     {"from": {"map": "TIK_15", "id": 0}, "to": {"map": "TIK_15", "id": 1}, "reqs": []}, #? Rip Cheato's Home (B3) Bomb Wall Left -> Rip Cheato's Home (B3) Green Pipe Right
     {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": 0}, "reqs": [require(partner="Bombette")]}, #? Rip Cheato's Home (B3) Green Pipe Right -> Rip Cheato's Home (B3) Bomb Wall Left
 
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftA"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftA (StarPiece3F)
-    {"from": {"map": "TIK_15", "id": "GiftA"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftA (StarPiece3F) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftB"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftB (LifeShroom)
-    {"from": {"map": "TIK_15", "id": "GiftB"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftB (LifeShroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftC"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftC (BumpAttack)
-    {"from": {"map": "TIK_15", "id": "GiftC"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftC (BumpAttack) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftD"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftD (RepelGel)
-    {"from": {"map": "TIK_15", "id": "GiftD"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftD (RepelGel) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftE"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftE (StarPiece40)
-    {"from": {"map": "TIK_15", "id": "GiftE"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftE (StarPiece40) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftF"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftF (SuperShroom)
-    {"from": {"map": "TIK_15", "id": "GiftF"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftF (SuperShroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftG"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftG (Mushroom)
-    {"from": {"map": "TIK_15", "id": "GiftG"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftG (Mushroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftH"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftH (DriedShroom)
-    {"from": {"map": "TIK_15", "id": "GiftH"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftH (DriedShroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftI"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftI (DriedShroom)
-    {"from": {"map": "TIK_15", "id": "GiftI"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftI (DriedShroom) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftJ"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftI (StarPiece41)
-    {"from": {"map": "TIK_15", "id": "GiftJ"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftI (StarPiece41) -> Rip Cheato's Home (B3) Green Pipe Right
-    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftK"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftK (DriedShroom)
-    {"from": {"map": "TIK_15", "id": "GiftK"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftK (DriedShroom) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftA"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftA (StarPiece3F 2 coins)
+    {"from": {"map": "TIK_15", "id": "GiftA"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftA (StarPiece3F 2 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftB"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftB (LifeShroom 2 coins)
+    {"from": {"map": "TIK_15", "id": "GiftB"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftB (LifeShroom 2 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftC"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftC (BumpAttack 4 coins)
+    {"from": {"map": "TIK_15", "id": "GiftC"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftC (BumpAttack 4 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftD"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftD (RepelGel 4 coins)
+    {"from": {"map": "TIK_15", "id": "GiftD"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftD (RepelGel 4 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftE"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftE (StarPiece40 8 coins)
+    {"from": {"map": "TIK_15", "id": "GiftE"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftE (StarPiece40 8 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftF"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftF (SuperShroom 8 coins)
+    {"from": {"map": "TIK_15", "id": "GiftF"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftF (SuperShroom 8 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftG"}, "reqs": [require(flag="RF_OutOfLogic")]}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftG (Mushroom 16 coins)
+    {"from": {"map": "TIK_15", "id": "GiftG"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftG (Mushroom 16 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftH"}, "reqs": [require(flag="RF_OutOfLogic")]}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftH (DriedShroom 16 coins)
+    {"from": {"map": "TIK_15", "id": "GiftH"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftH (DriedShroom 16 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftI"}, "reqs": [require(flag="RF_OutOfLogic")]}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftI (DriedShroom 32 coins)
+    {"from": {"map": "TIK_15", "id": "GiftI"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftI (DriedShroom 32 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftJ"}, "reqs": [require(flag="RF_OutOfLogic")]}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftI (StarPiece41 32 coins)
+    {"from": {"map": "TIK_15", "id": "GiftJ"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftI (StarPiece41 32 coins) -> Rip Cheato's Home (B3) Green Pipe Right
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftK"}, "reqs": [require(flag="RF_OutOfLogic")]}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftK (DriedShroom 64 coins)
+    {"from": {"map": "TIK_15", "id": "GiftK"}, "to": {"map": "TIK_15", "id": 1},       "reqs": []}, #* GiftK (DriedShroom 64 coins) -> Rip Cheato's Home (B3) Green Pipe Right
 
     # TIK_17 Frozen Room (B3)
     {"from": {"map": "TIK_17", "id": 0}, "to": {"map": "TIK_22", "id": 1}, "reqs": []}, # Frozen Room (B3) Green Pipe Left -> Path to Shiver City (B2) Green Pipe
@@ -194,7 +194,7 @@ edges_tik = [
     {"from": {"map": "TIK_20", "id": 0}, "to": {"map": "TIK_20", "id": 2}, "reqs": [require(partner="Lakilester")]}, #? Room with Spikes (B2) Exit Left -> Room with Spikes (B2) Green Pipe Center
     {"from": {"map": "TIK_20", "id": 2}, "to": {"map": "TIK_20", "id": 0}, "reqs": [require(partner="Lakilester")]}, #? Room with Spikes (B2) Green Pipe Center -> Room with Spikes (B2) Exit Left
     
-    {"from": {"map": "TIK_20", "id": 1},         "to": {"map": "TIK_20", "id": "YBlockA"}, "reqs": [require(boots=2)]}, #* Room with Spikes (B2) Exit Right -> YBlockA (ShootingStar)
+    {"from": {"map": "TIK_20", "id": 1},         "to": {"map": "TIK_20", "id": "YBlockA"}, "reqs": [require(boots=3)]}, #* Room with Spikes (B2) Exit Right -> YBlockA (ShootingStar)
     {"from": {"map": "TIK_20", "id": "YBlockA"}, "to": {"map": "TIK_20", "id": 1},         "reqs": []}, #* YBlockA (ShootingStar) -> Room with Spikes (B2) Exit Right
 
     # TIK_21 Hidden Blocks Room (B2)
@@ -207,15 +207,15 @@ edges_tik = [
     {"from": {"map": "TIK_21", "id": 0}, "to": {"map": "TIK_21", "id": 2}, "reqs": []}, #? Hidden Blocks Room (B2) Exit Left -> Hidden Blocks Room (B2) Green Pipe BottomRight
     {"from": {"map": "TIK_21", "id": 2}, "to": {"map": "TIK_21", "id": 0}, "reqs": []}, #? Hidden Blocks Room (B2) Green Pipe BottomRight -> Hidden Blocks Room (B2) Exit Left
     
-    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockA"}, "reqs": [require(boots=1)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockA (Coin)
+    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockA"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockA (Coin)
     {"from": {"map": "TIK_21", "id": "YBlockA"}, "to": {"map": "TIK_21", "id": 0},         "reqs": []}, #* YBlockA (Coin) -> Hidden Blocks Room (B2) Exit Left
-    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockB"}, "reqs": [require(boots=1)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockB (Coin)
+    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockB"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockB (Coin)
     {"from": {"map": "TIK_21", "id": "YBlockB"}, "to": {"map": "TIK_21", "id": 0},         "reqs": []}, #* YBlockB (Coin) -> Hidden Blocks Room (B2) Exit Left
-    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockC"}, "reqs": [require(boots=1)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockC (Coin)
+    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockC"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockC (Coin)
     {"from": {"map": "TIK_21", "id": "YBlockC"}, "to": {"map": "TIK_21", "id": 0},         "reqs": []}, #* YBlockC (Coin) -> Hidden Blocks Room (B2) Exit Left
-    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockD"}, "reqs": [require(boots=1)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockD (Coin)
+    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockD"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockD (Coin)
     {"from": {"map": "TIK_21", "id": "YBlockD"}, "to": {"map": "TIK_21", "id": 0},         "reqs": []}, #* YBlockD (Coin) -> Hidden Blocks Room (B2) Exit Left
-    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockE"}, "reqs": [require(boots=1)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockE (Coin)
+    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockE"}, "reqs": [require(boots=2)]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockE (Coin)
     {"from": {"map": "TIK_21", "id": "YBlockE"}, "to": {"map": "TIK_21", "id": 0},         "reqs": []}, #* YBlockE (Coin) -> Hidden Blocks Room (B2) Exit Left
 
     # TIK_22 Path to Shiver City (B2)
@@ -230,7 +230,7 @@ edges_tik = [
     {"from": {"map": "TIK_23", "id": 1}, "to": {"map": "TIK_20", "id": 2}, "reqs": []}, # Windy Path (B3) Green Pipe -> Room with Spikes (B2) Green Pipe Center
     
     {"from": {"map": "TIK_23", "id": 0}, "to": {"map": "TIK_23", "id": 1}, "reqs": []}, #? Windy Path (B3) Exit Left -> Windy Path (B3) Green Pipe
-    {"from": {"map": "TIK_23", "id": 1}, "to": {"map": "TIK_23", "id": 0}, "reqs": [require(hammer=1)]}, #? Windy Path (B3) Green Pipe -> Windy Path (B3) Exit Left
+    {"from": {"map": "TIK_23", "id": 1}, "to": {"map": "TIK_23", "id": 0}, "reqs": [require(hammer=2)]}, #? Windy Path (B3) Green Pipe -> Windy Path (B3) Exit Left
     
     {"from": {"map": "TIK_23", "id": 1},               "to": {"map": "TIK_23", "id": "HiddenYBlockA"}, "reqs": [require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Windy Path (B3) Green Pipe -> HiddenYBlockA (MapleSyrup)
     {"from": {"map": "TIK_23", "id": "HiddenYBlockA"}, "to": {"map": "TIK_23", "id": 1},               "reqs": []}, #* HiddenYBlockA (MapleSyrup) -> Windy Path (B3) Green Pipe
@@ -246,17 +246,17 @@ edges_tik = [
     {"from": {"map": "TIK_24", "id": 1}, "to": {"map": "TIK_23", "id": 0}, "reqs": []}, # Hall to Ultra Boots (B3) Exit Right -> Windy Path (B3) Exit Left
     
     {"from": {"map": "TIK_24", "id": 0}, "to": {"map": "TIK_24", "id": 1}, "reqs": []}, #? Hall to Ultra Boots (B3) Exit Left -> Hall to Ultra Boots (B3) Exit Right
-    {"from": {"map": "TIK_24", "id": 1}, "to": {"map": "TIK_24", "id": 0}, "reqs": [require(hammer=2)]}, #? Hall to Ultra Boots (B3) Exit Right -> Hall to Ultra Boots (B3) Exit Left
+    {"from": {"map": "TIK_24", "id": 1}, "to": {"map": "TIK_24", "id": 0}, "reqs": [require(hammer=3)]}, #? Hall to Ultra Boots (B3) Exit Right -> Hall to Ultra Boots (B3) Exit Left
     
-    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "HiddenYBlockA"}, "reqs": [require(boots=2),require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Hall to Ultra Boots (B3) Exit Right -> HiddenYBlockA (LifeShroom)
+    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "HiddenYBlockA"}, "reqs": [require(boots=3),require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Hall to Ultra Boots (B3) Exit Right -> HiddenYBlockA (LifeShroom)
     {"from": {"map": "TIK_24", "id": "HiddenYBlockA"}, "to": {"map": "TIK_24", "id": 1},               "reqs": []}, #* HiddenYBlockA (LifeShroom) -> Hall to Ultra Boots (B3) Exit Right
-    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "YBlockA"},       "reqs": [require(boots=2)]}, #* Hall to Ultra Boots (B3) Exit Right -> YBlockA (Coin)
+    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "YBlockA"},       "reqs": [require(boots=3)]}, #* Hall to Ultra Boots (B3) Exit Right -> YBlockA (Coin)
     {"from": {"map": "TIK_24", "id": "YBlockA"},       "to": {"map": "TIK_24", "id": 1},               "reqs": []}, #* YBlockA (Coin) -> Hall to Ultra Boots (B3) Exit Right
-    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "YBlockB"},       "reqs": [require(boots=2)]}, #* Hall to Ultra Boots (B3) Exit Right -> YBlockB (Coin)
+    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "YBlockB"},       "reqs": [require(boots=3)]}, #* Hall to Ultra Boots (B3) Exit Right -> YBlockB (Coin)
     {"from": {"map": "TIK_24", "id": "YBlockB"},       "to": {"map": "TIK_24", "id": 1},               "reqs": []}, #* YBlockB (Coin) -> Hall to Ultra Boots (B3) Exit Right
 
     # TIK_25 Ultra Boots Room (B3)
     {"from": {"map": "TIK_25", "id": 0}, "to": {"map": "TIK_24", "id": 0}, "reqs": []}, # Ultra Boots Room (B3) Exit Right -> Hall to Ultra Boots (B3) Exit Left
 
-    {"from": {"map": "TIK_25", "id": 0}, "to": {"map": "TIK_25", "id": 0}, "reqs": [], "pseudoitems": ["EQUIPMENT_Boots_Progressive"]}, #+ Ultra Boots Room (B3) Exit Right
+    {"from": {"map": "TIK_25", "id": 0}, "to": {"map": "TIK_25", "id": 0}, "reqs": [], "pseudoitems": ["EQUIPMENT_Boots_Progressive_3"]}, #+ Ultra Boots Room (B3) Exit Right
 ]

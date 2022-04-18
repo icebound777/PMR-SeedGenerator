@@ -3,6 +3,7 @@ from parse import get_default_table, create_table, get_table_info
 from db.option import Option
 from db.actor_attribute import ActorAttribute
 from db.quiz import Quiz
+from optionset import MysteryOptionSet
 
 
 class Table:
@@ -26,12 +27,19 @@ class Table:
         # Options
         options = kwargs.get("options")
 
-        for keyvaluepair in options.__dict__.values():
-            if isinstance(keyvaluepair, dict) and "key" in keyvaluepair:
+        for option_data in options.__dict__.values():
+            if isinstance(option_data, dict) and "key" in option_data:
                 table_data.append({
-                    "key": keyvaluepair.get("key"),
-                    "value": keyvaluepair.get("value"),
+                    "key": option_data.get("key"),
+                    "value": option_data.get("value"),
                 })
+            if isinstance(option_data, MysteryOptionSet):
+                for mystery_option in option_data.__dict__.values():
+                    if isinstance(mystery_option, dict) and "key" in mystery_option:
+                        table_data.append({
+                            "key": mystery_option.get("key"),
+                            "value": mystery_option.get("value"),
+                        })
 
         # temp fix for multiworld
         table_data.append({

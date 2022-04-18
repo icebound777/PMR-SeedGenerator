@@ -34,10 +34,10 @@ edges_flo = [
     {"from": {"map": "FLO_16", "id": 0}, "to": {"map": "FLO_00", "id": 4}, "reqs": []}, # (NE) Elevators Exit Left -> Center Exit Top Right
     {"from": {"map": "FLO_16", "id": 1}, "to": {"map": "FLO_17", "id": 0}, "reqs": []}, # (NE) Elevators Exit Right -> (NE) Fallen Logs Exit Left
     
-    {"from": {"map": "FLO_16", "id": 0}, "to": {"map": "FLO_16", "id": 1}, "reqs": [require(boots=1), require(partner="Lakilester")]}, #? (NE) Elevators Exit Left -> (NE) Elevators Exit Right
+    {"from": {"map": "FLO_16", "id": 0}, "to": {"map": "FLO_16", "id": 1}, "reqs": [require(boots=2), require(partner="Lakilester")]}, #? (NE) Elevators Exit Left -> (NE) Elevators Exit Right
     {"from": {"map": "FLO_16", "id": 1}, "to": {"map": "FLO_16", "id": 0}, "reqs": [require(partner="Lakilester")]}, #? (NE) Elevators Exit Right -> (NE) Elevators Exit Left
     
-    {"from": {"map": "FLO_16", "id": 1},       "to": {"map": "FLO_16", "id": "ItemA"}, "reqs": [require(boots=1)]}, #* (NE) Elevators Exit Right -> ItemA (StarPiece)
+    {"from": {"map": "FLO_16", "id": 1},       "to": {"map": "FLO_16", "id": "ItemA"}, "reqs": [require(boots=2)]}, #* (NE) Elevators Exit Right -> ItemA (StarPiece)
     {"from": {"map": "FLO_16", "id": "ItemA"}, "to": {"map": "FLO_16", "id": 1},       "reqs": []}, #* ItemA (StarPiece) -> (NE) Elevators Exit Right
     {"from": {"map": "FLO_16", "id": 0},       "to": {"map": "FLO_16", "id": "ItemB"}, "reqs": []}, #* (NE) Elevators Exit Left -> ItemB (StinkyHerb)
     {"from": {"map": "FLO_16", "id": "ItemB"}, "to": {"map": "FLO_16", "id": 0},       "reqs": []}, #* ItemB (StinkyHerb) -> (NE) Elevators Exit Left
@@ -57,7 +57,7 @@ edges_flo = [
     # FLO_18 (NE) Puff Puff Machine
     {"from": {"map": "FLO_18", "id": 0}, "to": {"map": "FLO_17", "id": 1}, "reqs": []}, # (NE) Puff Puff Machine Exit Left -> (NE) Fallen Logs Exit Right
 
-    {"from": {"map": "FLO_18", "id": 0}, "to": {"map": "FLO_18", "id": 0}, "reqs": [require(hammer=0)], "pseudoitems": ["RF_Ch6_DestroyedPuffPuffMachine"]}, #+ (NE) Puff Puff Machine Exit Left
+    {"from": {"map": "FLO_18", "id": 0}, "to": {"map": "FLO_18", "id": 0}, "reqs": [require(hammer=1, partner="Bombette")], "pseudoitems": ["RF_Ch6_DestroyedPuffPuffMachine"]}, #+ (NE) Puff Puff Machine Exit Left
 
     # FLO_09 (East) Triple Tree Path
     {"from": {"map": "FLO_09", "id": 0}, "to": {"map": "FLO_00", "id": 5}, "reqs": []}, # (East) Triple Tree Path Exit Left -> Center Exit Right
@@ -66,10 +66,10 @@ edges_flo = [
     {"from": {"map": "FLO_09", "id": 0}, "to": {"map": "FLO_09", "id": 1}, "reqs": []}, #? (East) Triple Tree Path Exit Left -> (East) Triple Tree Path Exit Right
     {"from": {"map": "FLO_09", "id": 1}, "to": {"map": "FLO_09", "id": 0}, "reqs": []}, #? (East) Triple Tree Path Exit Right -> (East) Triple Tree Path Exit Left
     
-    {"from": {"map": "FLO_09", "id": 0},       "to": {"map": "FLO_09", "id": "ItemA"}, "reqs": [can_shake_trees]}, #* (East) Triple Tree Path Exit Left -> ItemA (HappyFlowerB)
-    {"from": {"map": "FLO_09", "id": "ItemA"}, "to": {"map": "FLO_09", "id": 0},       "reqs": []}, #* ItemA (HappyFlowerB) -> (East) Triple Tree Path Exit Left
-    {"from": {"map": "FLO_09", "id": 0},       "to": {"map": "FLO_09", "id": "ItemB"}, "reqs": []}, #* (East) Triple Tree Path Exit Left -> ItemA (StinkyHerb)
-    {"from": {"map": "FLO_09", "id": "ItemB"}, "to": {"map": "FLO_09", "id": 0},       "reqs": []}, #* ItemA (StinkyHerb) -> (East) Triple Tree Path Exit Left
+    {"from": {"map": "FLO_09", "id": 0},             "to": {"map": "FLO_09", "id": "Tree1_Drop1"}, "reqs": [can_shake_trees]}, #* (East) Triple Tree Path Exit Left -> Tree1_Drop1 (HappyFlowerB)
+    {"from": {"map": "FLO_09", "id": "Tree1_Drop1"}, "to": {"map": "FLO_09", "id": 0},             "reqs": []}, #* Tree1_Drop1 (HappyFlowerB) -> (East) Triple Tree Path Exit Left
+    {"from": {"map": "FLO_09", "id": 0},             "to": {"map": "FLO_09", "id": "ItemA"},       "reqs": []}, #* (East) Triple Tree Path Exit Left -> ItemA (StinkyHerb)
+    {"from": {"map": "FLO_09", "id": "ItemA"},       "to": {"map": "FLO_09", "id": 0},             "reqs": []}, #* ItemA (StinkyHerb) -> (East) Triple Tree Path Exit Left
 
     # FLO_03 (East) Petunia's Field
     {"from": {"map": "FLO_03", "id": 0}, "to": {"map": "FLO_09", "id": 1}, "reqs": []}, # (East) Petunia's Field Exit Left -> (East) Triple Tree Path Exit Right
@@ -214,7 +214,7 @@ edges_flo = [
     {"from": {"map": "FLO_13", "id": "ItemA"},   "to": {"map": "FLO_13", "id": 0},         "reqs": []}, #* ItemA (MegaSmash) -> (NW) Lakilester Exit Right
     {"from": {"map": "FLO_13", "id": 0},         "to": {"map": "FLO_13", "id": "ItemB"},   "reqs": []}, #* (NW) Lakilester Exit Right -> ItemB (ShootingStar)
     {"from": {"map": "FLO_13", "id": "ItemB"},   "to": {"map": "FLO_13", "id": 0},         "reqs": []}, #* ItemB (ShootingStar) -> (NW) Lakilester Exit Right
-    {"from": {"map": "FLO_13", "id": 0},         "to": {"map": "FLO_13", "id": "Partner"}, "reqs": [require(flag="RF_Ch6_SpokeWithTheSun"),require(flag="RF_CanGetLakilester")]}, #* (NW) Lakilester Exit Right -> Partner (Lakilester)
+    {"from": {"map": "FLO_13", "id": 0},         "to": {"map": "FLO_13", "id": "Partner"}, "reqs": [require(flag="RF_Ch6_SpokeWithTheSun")]}, #* (NW) Lakilester Exit Right -> Partner (Lakilester)
     {"from": {"map": "FLO_13", "id": "Partner"}, "to": {"map": "FLO_13", "id": 0},         "reqs": []}, #* Partner (Lakilester) -> (NW) Lakilester Exit Right
 
     # FLO_15 (NW) Sun Tower

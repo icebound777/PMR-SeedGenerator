@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 peewee = "==3.14.4"
 pyyaml = "*"
+firebase-admin = "==5.2.0"
 
 [dev-packages]
 

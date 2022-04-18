@@ -11,7 +11,8 @@ def write_spoiler_log(
     random_chapter_difficulty:dict=None,
     settings:OptionSet=False,
     spoilerlog_file:str=None,
-    is_web_spoiler_log = False
+    is_web_spoiler_log=False,
+    spheres_text = None
 ):
     """
     Outputs a log file listing the final locations of all items
@@ -60,12 +61,17 @@ def write_spoiler_log(
             else:
                 item_location = f"{map_verbose_name} - {node.key_name_item}"
 
-            file.write(f"    ({item_location}): {current_item_name}\n")
+            if node.current_item.is_trapped():
+                file.write(f"    ({item_location}): TRAP ({current_item_name})\n")
+            else:
+                file.write(f"    ({item_location}): {current_item_name}\n")
             current_area_name = verbose_area_names.get(node.map_area.name[:3])
     else:
         for node in sorted_by_area:
             file.write(f"[{node.map_area.name}] {node.key_name_item} - "
                         f"{node.current_item.item_name}\n")
+    if(spheres_text):
+        file.write(f'\n{spheres_text}')
 
     if is_web_spoiler_log:
         file.seek(0)

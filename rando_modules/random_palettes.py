@@ -168,8 +168,8 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
     #all_palettes.append(("03_0_Bombette", palette_settings.bombette_setting, palette_settings.bombette_sprite))
     #all_palettes.append(("04_0_Parakarry", palette_settings.parakarry_setting, palette_settings.parakarry_sprite))
     all_palettes.append(("05_0_Bow", palette_settings.bow_setting, palette_settings.bow_sprite))
-    #all_palettes.append(("06_0_Watt", palette_settings.watt_setting, palette_settings.watt_sprite))
-    #all_palettes.append(("07_0_Sushie", palette_settings.sushie_setting, palette_settings.sushie_sprite))
+    all_palettes.append(("06_0_Watt", palette_settings.watt_setting, palette_settings.watt_sprite))
+    all_palettes.append(("07_0_Sushie", palette_settings.sushie_setting, palette_settings.sushie_sprite))
     #all_palettes.append(("08_0_Lakilester", palette_settings.lakilester_setting, palette_settings.lakilester_sprite))
 
     # Selectable palettes

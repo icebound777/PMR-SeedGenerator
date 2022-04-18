@@ -14,6 +14,7 @@ AllowPhysicsGlitches : false
 SkipEpilogue         : false
 StarWaySpiritsNeeded : 7
 PeachCastleReturnPipe: true # false locks the pipe
+FoliageItemHints     : true
 
 StartingCoins  : 50
 ChallengeMode  : false
@@ -24,6 +25,7 @@ QuadrupleDamage: false
 OHKO           : false
 NoSaveBlocks   : false
 NoHeartBlocks  : false
+NoHealingItems : false
 
 # Starting setup
 StartingMap      : 0x00010104 # mac_00, Entry4 / Toad Town Gate District
@@ -33,7 +35,10 @@ StartingMaxFP    : 5
 StartingMaxBP    : 3
 StartingStarPower: 0
 
-StartingItem0: 0x008 # HomewardShroom
+StartWithRandomItems: false
+RandomItemsMin: 0
+RandomItemsMax: 16
+StartingItem0: 0x000 # Nothing
 StartingItem1: 0x000 # Nothing
 StartingItem2: 0x000 # Nothing
 StartingItem3: 0x000 # Nothing
@@ -78,14 +83,29 @@ IncludeDojo           : false
 IncludeFavors         : false # Koopa Koot Favors
 IncludeLetterChain    : false # true -> NYI
 ItemScarcity          : 0
+ItemTrapMode          : 0
+AddItemPouches        : false
 KeyitemsOutsideDungeon: false
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
+AllowItemHints        : true
+# Mystery? item options
+RandomChoice     : true
+MysteryRandomPick: true
+# Below are never used, they get hardcoded overwritten, just for doc purposes
+ItemChoiceA      : 0x08A # Mushroom
+ItemChoiceB      : 0x08C # SuperShroom
+ItemChoiceC      : 0x080 # FireFlower
+ItemChoiceD      : 0x088 # StoneCap
+ItemChoiceE      : 0x09A # DizzyDial
+ItemChoiceF      : 0x082 # ThunderRage
+ItemChoiceG      : 0x085 # Pebble
 
 # Randomization: Moves and Badges
-ShuffleBadgesBP   : false
-ShuffleBadgesFP   : false
-ShufflePartnerFP  : false
-ShuffleStarpowerSP: false
+# 0: vanilla, 1: balanced random, 2: shuffled, 3: fully random
+RandomBadgesBP   : 0
+RandomBadgesFP   : 0
+RandomPartnerFP  : 0
+RandomStarpowerSP: 0
 
 # Randomization: Entrances
 ShuffleEntrances        : true  # NYI
@@ -128,6 +148,7 @@ Box5ColorB     : 0x8E5A24FF # Status Bar Color B (shadow)
 CoinColor      : 0 # 0 gold, 1 red, 2 blue, 3 purple, 4 silver
 RandomCoinColor: true # if true: overrules CoinColor
 RomanNumerals  : false
+RandomText     : false
 
 # "*Setting" values explanation:
 # DEFAULT_PALETTE = 0
@@ -146,14 +167,13 @@ KooperSprite     : 0
 #ParakarrySprite  : 0 # NYI
 BowSetting       : 0
 BowSprite        : 0
-#WattSetting      : 0 # NYI
-#WattSprite       : 0 # NYI
-#SushieSetting    : 0 # NYI
-#SushieSprite     : 0 # NYI
+WattSetting      : 0
+WattSprite       : 0
+SushieSetting    : 0
+SushieSprite     : 0
 #LakilesterSetting: 0 # NYI
 #LakilesterSprite : 0 # NYI
 BossesSetting    : 0
 NPCSetting       : 0
 
 # Audio
-TurnOffMusic: false

@@ -26,6 +26,7 @@ progression_items = {
     0x0024 : "Dictionary",
     0x0025 : "MysteryNote",
     0x0027 : "CrystalBall",
+    0x0029 : "Cookbook",
     0x002A : "JadeRaven",
     0x002B : "MagicalSeed1",
     0x002C : "MagicalSeed2",
@@ -60,7 +61,7 @@ progression_items = {
     0x0050 : "Letter22",
     0x0051 : "Letter23",
     0x0052 : "Letter24",
-    #0x0053 : "Artifact",
+    0x0053 : "Artifact",
     0x0054 : "Letter25",
     0x0056 : "Dolly",
     0x0057 : "WaterStone",
@@ -71,7 +72,7 @@ progression_items = {
     0x005C : "KootTheTape",
     0x0067 : "Lyrics",
     0x0068 : "Melody",
-    #0x0069 : "Mailbag",
+    0x0069 : "Mailbag",
     0x006B : "OddKey",
     0x006C : "StarStone",
     0x006E : "KootKoopaLegends",
@@ -99,14 +100,14 @@ progression_items = {
     0x017A : "BowserCastleKeyC",
     0x017B : "BowserCastleKeyD",
     0x017C : "BowserCastleKeyE",
-    #0x01C6 : "Goombario",
-    0x01CD : "Kooper",
-    0x01CE : "Bombette",
-    0x01CF : "Parakarry",
-    0x01D1 : "Watt",
-    0x01D2 : "Sushie",
-    0x01D3 : "Lakilester",
-    0x01D4 : "Bow",
+    #0x01D1 : "Goombario",
+    0x01D6 : "Kooper",
+    0x01D7 : "Bombette",
+    0x01D8 : "Parakarry",
+    0x01DA : "Watt",
+    0x01DB : "Sushie",
+    0x01DC : "Lakilester",
+    0x01DD : "Bow",
 }
     # 0x0078 ??
 
@@ -123,7 +124,7 @@ progression_miscitems = [
     "Goomnut",     # 0x00A5 (Koopa Koot: NuttyCake from Tayce T.)
     "KoopaLeaf",   # 0x00A6 (Koopa Koot: KoopaTea from Tayce T.)
     "DriedPasta",  # 0x00A7 (Koopa Koot: +KoopaLeaf -> Koopasta from Tayce T.)
-    "CakeMix",     # 0x00AA (Koopa Koot: +KoopaLeaf -> KookyCookie from Tayce T.)
+    "CakeMix",     # 0x00AA (Koopa Koot: +KoopaLeaf -> KookyCookie; LemonCandy for AntiGuy; Cake for Gourmet Guy)
     "Coconut",     # 0x00AC (Koopa Koot)
     "Cake",        # 0x00C1 (Gourmet Guy)
 ]

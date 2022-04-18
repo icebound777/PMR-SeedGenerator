@@ -14,8 +14,8 @@ edges_kmr  = [
     {"from": {"map": "KMR_02", "id": 2             },  "to": {"map": "KMR_05", "id": 1             },  "reqs": []}, # Goomba Village Exit Top Left -> Behind the Village Exit Right
     {"from": {"map": "KMR_02", "id": 3             },  "to": {"map": "TIK_01", "id": 2             },  "reqs": []}, # Goomba Village Blue Warp Pipe -> Warp Zone 1 (B1) Blue Pipe (Right)
 
-    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": 0             },  "reqs": [require(hammer=0)]}, #? Goomba Village Exit Left -> Goomba Village Exit Right
-    {"from": {"map": "KMR_02", "id": 0             },  "to": {"map": "KMR_02", "id": 1             },  "reqs": [require(hammer=0)]}, #? Goomba Village Exit Right -> Goomba Village Exit Left
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": 0             },  "reqs": [require(hammer=1)]}, #? Goomba Village Exit Left -> Goomba Village Exit Right
+    {"from": {"map": "KMR_02", "id": 0             },  "to": {"map": "KMR_02", "id": 1             },  "reqs": [require(hammer=1)]}, #? Goomba Village Exit Right -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": 2             },  "reqs": []}, #? Goomba Village Exit Left -> Goomba Village Exit Top Left
     {"from": {"map": "KMR_02", "id": 2             },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #? Goomba Village Exit Top Left -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": 3             },  "reqs": [require(flag="GF_TIK01_WarpPipes")]}, #? Goomba Village Exit Left -> Goomba Village Blue Warp Pipe
@@ -25,11 +25,13 @@ edges_kmr  = [
     {"from": {"map": "KMR_02", "id": "ItemA"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* ItemA (ShootingStar) -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftA"       },  "reqs": [require(favor="FAVOR_2_01_active")]}, #* Goomba Village Exit Left -> GiftA (KootTheTape)
     {"from": {"map": "KMR_02", "id": "GiftA"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftA (KootTheTape) -> Goomba Village Exit Left
-    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftB"       },  "reqs": []}, #* Goomba Village Exit Left -> GiftA (PowerJump)
-    {"from": {"map": "KMR_02", "id": "GiftB"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftA (PowerJump) -> Goomba Village Exit Left
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftB"       },  "reqs": []}, #* Goomba Village Exit Left -> GiftB (PowerJump)
+    {"from": {"map": "KMR_02", "id": "GiftB"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftB (PowerJump) -> Goomba Village Exit Left
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftC"       },  "reqs": [require(item="Dolly")]}, #* Goomba Village Exit Left -> GiftC (StarPiece)
+    {"from": {"map": "KMR_02", "id": "GiftC"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftC (StarPiece) -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "Tree1_Drop1A"},  "reqs": [can_shake_trees]}, #* Goomba Village Exit Left -> Tree1_Drop1A (Goomnut)
     {"from": {"map": "KMR_02", "id": "Tree1_Drop1A"},  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* Tree1_Drop1A (Goomnut) -> Goomba Village Exit Left
-    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "Partner"     },  "reqs": [require(flag="RF_CanGetGoombario")]}, #* Goomba Village Exit Left -> Partner (Goombario)
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "Partner"     },  "reqs": []}, #* Goomba Village Exit Left -> Partner (Goombario)
     {"from": {"map": "KMR_02", "id": "Partner"     },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* Partner (Goombario) -> Goomba Village Exit Left
 
     {"from": {"map": "KMR_02", "id": 1},               "to": {"map": "KMR_02", "id": 1}, "reqs": [], "pseudoitems": ["StarPiece_KMR_1",
@@ -50,8 +52,8 @@ edges_kmr  = [
     
     {"from": {"map": "KMR_05", "id": 1      },         "to": {"map": "KMR_05", "id": "ItemA"},         "reqs": []}, #* Behind the Village Exit Right -> ItemA (StarPiece)
     {"from": {"map": "KMR_05", "id": "ItemA"},         "to": {"map": "KMR_05", "id": 1      },         "reqs": []}, #* ItemA (StarPiece) -> Behind the Village Exit Right
-    {"from": {"map": "KMR_05", "id": 1      },         "to": {"map": "KMR_05", "id": "ItemB"},         "reqs": [can_shake_trees]}, #* Behind the Village Exit Right -> ItemB (Coin)
-    {"from": {"map": "KMR_05", "id": "ItemB"},         "to": {"map": "KMR_05", "id": 1      },         "reqs": []}, #* ItemB (Coin) -> Behind the Village Exit Right
+    {"from": {"map": "KMR_05", "id": 1      },         "to": {"map": "KMR_05", "id": "Tree1_Drop1A"},  "reqs": [can_shake_trees]}, #* Behind the Village Exit Right -> Tree1_Drop1A (Coin)
+    {"from": {"map": "KMR_05", "id": "Tree1_Drop1A"},  "to": {"map": "KMR_05", "id": 1      },         "reqs": []}, #* Tree1_Drop1A (Coin) -> Behind the Village Exit Right
 
     # KMR_03 Bottom of the Cliff
     {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_04", "id": 0}, "reqs": []}, # Bottom of the Cliff Exit Left -> Jr. Troopa's Playground Exit Right
@@ -60,13 +62,13 @@ edges_kmr  = [
     {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_03", "id": 1}, "reqs": []}, #? Bottom of the Cliff Exit Left -> Bottom of the Cliff Exit Right
     {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": 0}, "reqs": []}, #? Bottom of the Cliff Exit Right -> Bottom of the Cliff Exit Left
     
-    {"from": {"map": "KMR_03", "id": 0},               "to": {"map": "KMR_03", "id": "YBlockA"},       "reqs": [require(hammer=0)]}, #* Bottom of the Cliff Exit Left -> YBlockA (Coin)
+    {"from": {"map": "KMR_03", "id": 0},               "to": {"map": "KMR_03", "id": "YBlockA"},       "reqs": [require(hammer=1,boots=2,partner=["Kooper","Bombette"])]}, #* Bottom of the Cliff Exit Left -> YBlockA (Coin)
     {"from": {"map": "KMR_03", "id": "YBlockA"},       "to": {"map": "KMR_03", "id": 0},               "reqs": []}, #* YBlockA (Coin) -> Bottom of the Cliff Exit Left
-    {"from": {"map": "KMR_03", "id": 0},               "to": {"map": "KMR_03", "id": "ItemF"},         "reqs": [can_shake_trees]}, #* Bottom of the Cliff Exit Left -> ItemF (Mushroom)
-    {"from": {"map": "KMR_03", "id": "ItemF"},         "to": {"map": "KMR_03", "id": 0},               "reqs": []}, #* ItemF (Mushroom) -> Bottom of the Cliff Exit Left
+    {"from": {"map": "KMR_03", "id": 0},               "to": {"map": "KMR_03", "id": "Tree1_Drop1A"},  "reqs": [can_shake_trees]}, #* Bottom of the Cliff Exit Left -> Tree1_Drop1A (Mushroom)
+    {"from": {"map": "KMR_03", "id": "Tree1_Drop1A"},  "to": {"map": "KMR_03", "id": 0},               "reqs": []}, #* Tree1_Drop1A (Mushroom) -> Bottom of the Cliff Exit Left
     {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "HiddenPanel"},   "reqs": [can_flip_panels]}, #* Bottom of the Cliff Exit Right -> HiddenPanel (StarPiece)
     {"from": {"map": "KMR_03", "id": "HiddenPanel"},   "to": {"map": "KMR_03", "id": 1},               "reqs": []}, #* HiddenPanel (StarPiece) -> Bottom of the Cliff Exit Right
-    {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "HiddenYBlockA"}, "reqs": [require(hammer=1), require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Bottom of the Cliff Exit Right -> HiddenYBlockA (RepelGel)
+    {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "HiddenYBlockA"}, "reqs": [require(hammer=2), require(partner="Watt",flag="RF_HiddenBlocksVisible")]}, #* Bottom of the Cliff Exit Right -> HiddenYBlockA (RepelGel)
     {"from": {"map": "KMR_03", "id": "HiddenYBlockA"}, "to": {"map": "KMR_03", "id": 1},               "reqs": []}, #* HiddenYBlockA (RepelGel) -> Bottom of the Cliff Exit Right
     {"from": {"map": "KMR_03", "id": 1},               "to": {"map": "KMR_03", "id": "ItemA"},         "reqs": []}, #* Bottom of the Cliff Exit Right -> ItemA (Coin)
     {"from": {"map": "KMR_03", "id": "ItemA"},         "to": {"map": "KMR_03", "id": 1},               "reqs": []}, #* ItemA (Coin) -> Bottom of the Cliff Exit Right
@@ -82,8 +84,8 @@ edges_kmr  = [
     # KMR_04 Jr. Troopa's Playground
     {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_03", "id": 0}, "reqs": []}, # Jr. Troopa's Playground Exit Right -> Bottom of the Cliff Exit Left
 
-    {"from": {"map": "KMR_04", "id": 0},       "to": {"map": "KMR_04", "id": "ItemA"}, "reqs": [can_shake_trees]}, #* Jr. Troopa's Playground Exit Right -> ItemA (Dolly)
-    {"from": {"map": "KMR_04", "id": "ItemA"}, "to": {"map": "KMR_04", "id": 0},       "reqs": []}, #* ItemA (Dolly) -> Jr. Troopa's Playground Exit Right
+    {"from": {"map": "KMR_04", "id": 0},              "to": {"map": "KMR_04", "id": "Tree3_Drop1A"}, "reqs": [can_shake_trees]}, #* Jr. Troopa's Playground Exit Right -> Tree3_Drop1A (Dolly)
+    {"from": {"map": "KMR_04", "id": "Tree3_Drop1A"}, "to": {"map": "KMR_04", "id": 0},              "reqs": []}, #* Tree3_Drop1A (Dolly) -> Jr. Troopa's Playground Exit Right
 
     # KMR_09 Goomba Road 1
     {"from": {"map": "KMR_09", "id": 0}, "to": {"map": "KMR_02", "id": 0}, "reqs": []}, # Goomba Road 1 Exit Left -> Goomba Village Exit Right
@@ -136,7 +138,7 @@ edges_kmr  = [
     {"from": {"map": "KMR_11", "id": "Tree1_Drop1A"}, "to": {"map": "KMR_11", "id": 0},              "reqs": []}, #* Tree1_Drop1A (StarPiece) -> Goomba King's Castle Exit Left
     {"from": {"map": "KMR_11", "id": 1},              "to": {"map": "KMR_11", "id": "HiddenPanel"},  "reqs": [can_flip_panels]}, #* Goomba King's Castle Exit Right -> HiddenPanel (StarPiece)
     {"from": {"map": "KMR_11", "id": "HiddenPanel"},  "to": {"map": "KMR_11", "id": 1},              "reqs": []}, #* HiddenPanel (StarPiece) -> Goomba King's Castle Exit Right
-    {"from": {"map": "KMR_11", "id": 1},              "to": {"map": "KMR_11", "id": "YBlockA"},      "reqs": [require(hammer=0)]}, #* Goomba King's Castle Exit Right -> YBlockA (SuperShroom)
+    {"from": {"map": "KMR_11", "id": 1},              "to": {"map": "KMR_11", "id": "YBlockA"},      "reqs": [require(hammer=1,boots=2,partner=["Kooper","Bombette"])]}, #* Goomba King's Castle Exit Right -> YBlockA (SuperShroom)
     {"from": {"map": "KMR_11", "id": "YBlockA"},      "to": {"map": "KMR_11", "id": 1},              "reqs": []}, #* YBlockA (SuperShroom) -> Goomba King's Castle Exit Right
 
     # KMR_10 Toad Town Entrance

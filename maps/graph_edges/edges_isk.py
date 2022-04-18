@@ -101,7 +101,7 @@ edges_isk = [
     {"from": {"map": "ISK_09", "id": 0},        "to": {"map": "ISK_09", "id": "ChestA"}, "reqs": []}, #* Super Hammer Room Exit Right -> ChestA (SlowGo)
     {"from": {"map": "ISK_09", "id": "ChestA"}, "to": {"map": "ISK_09", "id": 0},        "reqs": []}, #* ChestA (SlowGo) -> Super Hammer Room Exit Right
     
-    {"from": {"map": "ISK_09", "id": 0}, "to": {"map": "ISK_08", "id": 0}, "reqs": [], "pseudoitems": ["EQUIPMENT_Hammer_Progressive","RF_ISK09_OpenedHammerChest"]}, #+ Super Hammer Room Exit Right
+    {"from": {"map": "ISK_09", "id": 0}, "to": {"map": "ISK_08", "id": 0}, "reqs": [], "pseudoitems": ["EQUIPMENT_Hammer_Progressive_2","RF_ISK09_OpenedHammerChest"]}, #+ Super Hammer Room Exit Right
 
     # ISK_10 Vertical Shaft
     {"from": {"map": "ISK_10", "id": 0}, "to": {"map": "ISK_08", "id": 1}, "reqs": []}, # Vertical Shaft Exit Top Right -> Descending Stairs 2 Exit Bottom Left Cracked Wall

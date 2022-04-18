@@ -22,12 +22,6 @@ exclude_due_to_settings = {
     "always_peekaboo": [
         "Peekaboo",
     ],
-    "start_with_kooper": [
-        "KooperShell"
-    ],
-    "start_with_bow": [
-        "BooPortrait"
-    ],
     "do_randomize_dojo": [
         "FirstDegreeCard",
         "SecondDegreeCard",

@@ -53,7 +53,7 @@ edges_obk = [
     {"from": {"map": "OBK_03", "id": 0}, "to": {"map": "OBK_03", "id": 2}, "reqs": [require(flag="MF_OBK03_HitHugeBlueSwitch")]}, #? Basement Upper Door North -> Basement Fall From Ceiling
     {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": 0}, "reqs": [require(flag="MF_OBK03_HitHugeBlueSwitch")]}, #? Basement Fall From Ceiling -> Basement Upper Door North
     
-    {"from": {"map": "OBK_03", "id": 0},           "to": {"map": "OBK_03", "id": "CrateA"},    "reqs": [require(boots=1)]}, #* Basement Upper Door North -> CrateA (SuperShroom)
+    {"from": {"map": "OBK_03", "id": 0},           "to": {"map": "OBK_03", "id": "CrateA"},    "reqs": [require(boots=2)]}, #* Basement Upper Door North -> CrateA (SuperShroom)
     {"from": {"map": "OBK_03", "id": "CrateA"},    "to": {"map": "OBK_03", "id": 0},           "reqs": []}, #* CrateA (SuperShroom) -> Basement Upper Door North
     {"from": {"map": "OBK_03", "id": 2},           "to": {"map": "OBK_03", "id": "ShopItemA"}, "reqs": [require(flag="RF_OpenedGustyGulch")]}, #* Basement Fall From Ceiling -> ShopItemA (Mystery)
     {"from": {"map": "OBK_03", "id": "ShopItemA"}, "to": {"map": "OBK_03", "id": 2},           "reqs": []}, #* ShopItemA (Mystery) -> Basement Fall From Ceiling
@@ -68,18 +68,18 @@ edges_obk = [
     {"from": {"map": "OBK_03", "id": 2},           "to": {"map": "OBK_03", "id": "ShopItemF"}, "reqs": [require(flag="RF_OpenedGustyGulch")]}, #* Basement Fall From Ceiling -> ShopItemF (SuperShroom)
     {"from": {"map": "OBK_03", "id": "ShopItemF"}, "to": {"map": "OBK_03", "id": 2},           "reqs": []}, #* ShopItemF (SuperShroom) -> Basement Fall From Ceiling
     
-    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": 2}, "reqs": [require(boots=1)], "pseudoitems": ["MF_OBK03_HitHugeBlueSwitch"]}, #+ Basement Fall From Ceiling
+    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": 2}, "reqs": [require(boots=2)], "pseudoitems": ["MF_OBK03_HitHugeBlueSwitch"]}, #+ Basement Fall From Ceiling
 
     # OBK_04 Super Boots Room
     {"from": {"map": "OBK_04", "id": 0}, "to": {"map": None, "id": None},  "reqs": []}, # Super Boots Room Vanishing Door
     {"from": {"map": "OBK_04", "id": 1}, "to": {"map": "OBK_03", "id": 2}, "reqs": []}, # Super Boots Room Hole Under Planks -> Basement Fall From Ceiling
     
-    {"from": {"map": "OBK_04", "id": 0}, "to": {"map": "OBK_04", "id": 1}, "reqs": [require(boots=1)]}, #? Super Boots Room Vanishing Door -> Super Boots Room Hole Under Planks
+    {"from": {"map": "OBK_04", "id": 0}, "to": {"map": "OBK_04", "id": 1}, "reqs": [require(boots=2)]}, #? Super Boots Room Vanishing Door -> Super Boots Room Hole Under Planks
     {"from": {"map": "OBK_04", "id": 1}, "to": {"map": "OBK_04", "id": 0}, "reqs": []}, #? Super Boots Room Hole Under Planks -> Super Boots Room Vanishing Door
     
-    {"from": {"map": "OBK_04", "id": 0}, "to": {"map": "OBK_04", "id": 0}, "reqs": [], "pseudoitems": ["EQUIPMENT_Boots_Progressive"]}, #+ Super Boots Room Vanishing Door
+    {"from": {"map": "OBK_04", "id": 0}, "to": {"map": "OBK_04", "id": 0}, "reqs": [], "pseudoitems": ["EQUIPMENT_Boots_Progressive_2"]}, #+ Super Boots Room Vanishing Door
     
-    {"from": {"map": "OBK_04", "id": 0},             "to": {"map": "OBK_04", "id": "CrateA"},      "reqs": [require(boots=1)]}, #* Super Boots Room Vanishing Door -> CrateA (MapleSyrup)
+    {"from": {"map": "OBK_04", "id": 0},             "to": {"map": "OBK_04", "id": "CrateA"},      "reqs": [require(boots=2)]}, #* Super Boots Room Vanishing Door -> CrateA (MapleSyrup)
     {"from": {"map": "OBK_04", "id": "CrateA"},      "to": {"map": "OBK_04", "id": 0},             "reqs": []}, #* CrateA (MapleSyrup) -> Super Boots Room Vanishing Door
     {"from": {"map": "OBK_04", "id": 0},             "to": {"map": "OBK_04", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Super Boots Room Vanishing Door -> HiddenPanel (StarPiece)
     {"from": {"map": "OBK_04", "id": "HiddenPanel"}, "to": {"map": "OBK_04", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Super Boots Room Vanishing Door
@@ -88,12 +88,12 @@ edges_obk = [
     {"from": {"map": "OBK_05", "id": 0}, "to": {"map": "OBK_01", "id": 2}, "reqs": []}, # Pot Room Door South -> Foyer Lower Door
     {"from": {"map": "OBK_05", "id": 1}, "to": {"map": "OBK_06", "id": 0}, "reqs": []}, # Pot Room Hole Under Planks -> Library Fall From Ceiling
     
-    {"from": {"map": "OBK_05", "id": 0}, "to": {"map": "OBK_05", "id": 1}, "reqs": [require(boots=1), require(partner="Bombette")]}, #? Pot Room Door South -> Pot Room Hole Under Planks
+    {"from": {"map": "OBK_05", "id": 0}, "to": {"map": "OBK_05", "id": 1}, "reqs": [require(boots=2), require(partner="Bombette")]}, #? Pot Room Door South -> Pot Room Hole Under Planks
     {"from": {"map": "OBK_05", "id": 1}, "to": {"map": "OBK_05", "id": 0}, "reqs": []}, #? Pot Room Hole Under Planks -> Pot Room Door South
     
-    {"from": {"map": "OBK_05", "id": 0},        "to": {"map": "OBK_05", "id": "CrateA"}, "reqs": [require(boots=1)]}, #* Pot Room Door South -> CrateA (Apple)
+    {"from": {"map": "OBK_05", "id": 0},        "to": {"map": "OBK_05", "id": "CrateA"}, "reqs": [require(boots=2)]}, #* Pot Room Door South -> CrateA (Apple)
     {"from": {"map": "OBK_05", "id": "CrateA"}, "to": {"map": "OBK_05", "id": 0},        "reqs": []}, #* CrateA (Apple) -> Pot Room Door South
-    {"from": {"map": "OBK_05", "id": 0},        "to": {"map": "OBK_05", "id": "CrateB"}, "reqs": [require(boots=1)]}, #* Pot Room Door South -> CrateB (Apple)
+    {"from": {"map": "OBK_05", "id": 0},        "to": {"map": "OBK_05", "id": "CrateB"}, "reqs": [require(boots=2)]}, #* Pot Room Door South -> CrateB (Apple)
     {"from": {"map": "OBK_05", "id": "CrateB"}, "to": {"map": "OBK_05", "id": 0},        "reqs": []}, #* CrateB (Apple) -> Pot Room Door South
 
     # OBK_06 Library
@@ -102,7 +102,7 @@ edges_obk = [
     
     {"from": {"map": "OBK_06", "id": 0}, "to": {"map": "OBK_06", "id": 1}, "reqs": [require(partner="Bombette")]}, #? Library Fall From Ceiling -> Library Bombable Wall
     
-    {"from": {"map": "OBK_06", "id": 0},        "to": {"map": "OBK_06", "id": "CrateA"}, "reqs": [require(boots=1)]}, #* Library Fall From Ceiling -> CrateA (StarPiece)
+    {"from": {"map": "OBK_06", "id": 0},        "to": {"map": "OBK_06", "id": "CrateA"}, "reqs": [require(boots=2)]}, #* Library Fall From Ceiling -> CrateA (StarPiece)
     {"from": {"map": "OBK_06", "id": "CrateA"}, "to": {"map": "OBK_06", "id": 1},        "reqs": [require(partner="Bombette")]}, #* CrateA (StarPiece) -> Library Bombable Wall
     {"from": {"map": "OBK_06", "id": 0},        "to": {"map": "OBK_06", "id": "ItemA"},  "reqs": [require(partner="Parakarry")]}, #* Library Fall From Ceiling -> ItemA (BooPortrait)
     {"from": {"map": "OBK_06", "id": "ItemA"},  "to": {"map": "OBK_06", "id": 0},        "reqs": [require(partner="Parakarry")]}, #* ItemA (BooPortrait) -> Library Fall From Ceiling
@@ -128,8 +128,8 @@ edges_obk = [
     {"from": {"map": "OBK_09", "id": 0}, "to": {"map": "OBK_09", "id": 1}, "reqs": []}, #? Lady Bow's Room Door South West -> Lady Bow's Room Door South East
     {"from": {"map": "OBK_09", "id": 1}, "to": {"map": "OBK_09", "id": 0}, "reqs": []}, #? Lady Bow's Room Door South East -> Lady Bow's Room Door South West
 
-    {"from": {"map": "OBK_09", "id": 0},         "to": {"map": "OBK_09", "id": "Partner"}, "reqs": [require(flag="RF_CanGetBow")]}, #* Lady Bow's Room Door South West -> Partner (Bow)
+    {"from": {"map": "OBK_09", "id": 0},         "to": {"map": "OBK_09", "id": "Partner"}, "reqs": []}, #* Lady Bow's Room Door South West -> Partner (Bow)
     {"from": {"map": "OBK_09", "id": "Partner"}, "to": {"map": "OBK_09", "id": 0},         "reqs": []}, #* Partner (Bow) -> Lady Bow's Room Door South West
 
-    {"from": {"map": "OBK_09", "id": 0},         "to": {"map": "OBK_09", "id": 0}, "reqs": [require(flag="RF_CanGetBow")], "pseudoitems": ["RF_OpenedGustyGulch"]}, #+ Lady Bow's Room Door South West
+    {"from": {"map": "OBK_09", "id": 0},         "to": {"map": "OBK_09", "id": 0}, "reqs": [], "pseudoitems": ["RF_OpenedGustyGulch"]}, #+ Lady Bow's Room Door South West
 ]
