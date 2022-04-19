@@ -1,3 +1,4 @@
+from copy import deepcopy
 import random
 
 from itemhints import get_itemhints
@@ -56,6 +57,7 @@ class RandomSeed:
         self.init_starting_items(self.rando_settings)
 
         # Item Placement
+        world_graph_copy = deepcopy(world_graph)
         for _, _ in place_items(item_placement= self.placed_items,
                             algorithm=self.rando_settings.placement_algorithm,
                             do_shuffle_items=self.rando_settings.shuffle_items["value"],
@@ -82,7 +84,7 @@ class RandomSeed:
                             keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
                             starting_items=self.starting_items,
                             add_item_pouches=self.rando_settings.add_item_pouches,
-                            world_graph=world_graph):
+                            world_graph=world_graph_copy):
             pass
 
         # Modify Mystery? item
