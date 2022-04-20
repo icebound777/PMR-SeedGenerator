@@ -10,15 +10,15 @@ AlwaysISpy           : false
 AlwaysPeekaboo       : true
 HiddenBlockMode      : 1
 ShortenCutscenes     : true
-AllowPhysicsGlitches : false
-SkipEpilogue         : false
+AllowPhysicsGlitches : true
+SkipEpilogue         : true
 StarWaySpiritsNeeded : 7
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : true
 
-StartingCoins  : 50
+StartingCoins  : 100
 ChallengeMode  : false
-CapEnemyXP     : true
+CapEnemyXP     : false
 NoXP           : false
 DoubleDamage   : false
 QuadrupleDamage: false
@@ -62,7 +62,7 @@ ToyboxOpen    : false
 WhaleOpen     : false
 
 # Randomization: Logic
-PlacementAlgorithm: ForwardFill
+PlacementAlgorithm: AssumedFill
 #PlacementAlgorithm: WeightedForwardFill # NYI
 #PlacementAlgorithm: CustomSeed # NYI
 PlacementLogic: NoGlitches
@@ -70,27 +70,27 @@ PlacementLogic: NoGlitches
 #PlacementLogic: NoLogic # NYI
 
 # Randomization: Difficulty
-ShuffleChapterDifficulty: false
-ProgressiveScaling      : true
+ShuffleChapterDifficulty: true
+ProgressiveScaling      : false
 RandomFormations        : true
 
 # Randomization: Items
 ShuffleItems          : true
-IncludeCoins          : true
+IncludeCoins          : false
 IncludeShops          : true
-IncludePanels         : true
+IncludePanels         : false
 IncludeDojo           : false
 IncludeFavors         : false # Koopa Koot Favors
 IncludeLetterChain    : false # true -> NYI
 ItemScarcity          : 0
 ItemTrapMode          : 0
 AddItemPouches        : false
-KeyitemsOutsideDungeon: false
+KeyitemsOutsideDungeon: true
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
-AllowItemHints        : true
+AllowItemHints        : false
 # Mystery? item options
-RandomChoice     : true
-MysteryRandomPick: true
+RandomChoice     : false
+MysteryRandomPick: false
 # Below are never used, they get hardcoded overwritten, just for doc purposes
 ItemChoiceA      : 0x08A # Mushroom
 ItemChoiceB      : 0x08C # SuperShroom
@@ -108,23 +108,23 @@ RandomPartnerFP  : 0
 RandomStarpowerSP: 0
 
 # Randomization: Entrances
-ShuffleEntrances        : true  # NYI
-ShuffleEntrancesByArea  : true  # NYI
+ShuffleEntrances        : false  # NYI
+ShuffleEntrancesByArea  : false # NYI
 ShuffleEntrancesByAll   : false # NYI
-MatchEntranceTypes      : true  # NYI
+MatchEntranceTypes      : false # NYI
 RandomizeOnewayEntrances: false # NYI
 UnpairedEntrances       : false # NYI
-ShortenBowsersCastle    : false
+ShortenBowsersCastle    : true
 
 # Randomization: Quizzes
 RandomQuiz         : true
-SkipQuiz           : false
+SkipQuiz           : true
 QuizmoAlwaysAppears: false
 
 # Randomization: Partner
-PartnersInDefaultLocations: true
-PartnersAlwaysUsable      : true
-StartWithRandomPartners   : false
+PartnersInDefaultLocations: false
+PartnersAlwaysUsable      : false
+StartWithRandomPartners   : true
 RandomPartnersMin         : 1 # 1-8
 RandomPartnersMax         : 1 # 1-8
 StartWithPartners: { # ignored if StartWithRandomPartners true
