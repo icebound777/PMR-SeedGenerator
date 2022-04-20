@@ -36,6 +36,10 @@ from maps.graph_edges.edges_tik import edges_tik
 from maps.graph_edges.edges_trd import edges_trd
 
 
+class hashabledict(dict):
+    def __hash__(self):
+        return hash(str(self))
+
 def print_node_info(node):
     """Print a node's map name and its entrance_id or item key, depending on the node"""
     entrancenode_string = str(node.entrance_id) + "/" \
@@ -136,7 +140,7 @@ def get_all_edges():
     all_edges.extend(edges_sbk)
     all_edges.extend(edges_tik)
     all_edges.extend(edges_trd)
-    return all_edges
+    return [hashabledict(d) for d in all_edges]
 
 
 def get_area_edges(area_shorthand:str):
@@ -147,7 +151,7 @@ def get_area_edges(area_shorthand:str):
     else:
         raise KeyError
 
-    return area_edges
+    return [hashabledict(d) for d in area_edges]
 
 
 def generate(node_list, edge_list):
