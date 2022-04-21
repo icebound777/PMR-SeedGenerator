@@ -11,15 +11,16 @@ class Mario:
     things that influence progression.
     """
     def __init__(self, **kwargs):
-        self.boots = kwargs.get("boots", [])
-        self.hammer = kwargs.get("hammer", [])
-        self.items = kwargs.get("items", [])
-        self.starpieces = kwargs.get("starpieces", [])
-        self.partners = kwargs.get("partners", [])
-        self.favors = kwargs.get("favors", []) # https://www.mariowiki.com/Koopa_Koot%27s_favors
-        self.flags = kwargs.get("flags", [])
-        self.starspirits = kwargs.get("starspirits", [])
+        self.boots = kwargs.get("boots", set())
+        self.hammer = kwargs.get("hammer", set())
+        self.items = kwargs.get("items", set())
+        self.starpieces = kwargs.get("starpieces", set())
+        self.partners = kwargs.get("partners", set())
+        self.favors = kwargs.get("favors", set()) # https://www.mariowiki.com/Koopa_Koot%27s_favors
+        self.flags = kwargs.get("flags", set())
+        self.starspirits = kwargs.get("starspirits", set())
         self.item_history = []
+        self.starpiece_count = 0
 
 
 def add_to_inventory(item_object):
@@ -36,39 +37,43 @@ def add_to_inventory(item_object):
             or item_object.startswith("MB")
             or item_object.startswith("RF")):
             if item_object not in mario.flags:
-                mario.flags.append(item_object)
+                mario.flags.add(item_object)
             is_new_pseudoitem = True
         elif item_object in all_partners:
             if item_object not in mario.partners:
-                mario.partners.append(item_object)
+                mario.partners.add(item_object)
                 mario.item_history.append(item_object)
                 is_new_pseudoitem = True
         elif item_object.find("StarPiece") != -1:
             if item_object not in mario.starpieces:
-                mario.starpieces.append(item_object)
+                mario.starpieces.add(item_object)
                 mario.item_history.append(item_object)
+                if item_object.startswith("Three"):
+                    mario.starpiece_count += 3
+                else:
+                    mario.starpiece_count += 1
         elif item_object.startswith("FAVOR"):
             if item_object not in mario.favors:
-                mario.favors.append(item_object)
+                mario.favors.add(item_object)
                 is_new_pseudoitem = True
         elif item_object.startswith("EQUIPMENT"):
             if (item_object.startswith("EQUIPMENT_Boots_Progressive")
             and item_object not in mario.boots
             ):
-                mario.boots.append(item_object)
+                mario.boots.add(item_object)
                 is_new_pseudoitem = True
             if (item_object.startswith("EQUIPMENT_Hammer_Progressive")
             and item_object not in mario.hammer
             ):
-                mario.hammer.append(item_object)
+                mario.hammer.add(item_object)
                 is_new_pseudoitem = True
         elif item_object.startswith("STARSPIRIT"):
             if item_object not in mario.starspirits:
-                mario.starspirits.append(item_object)
+                mario.starspirits.add(item_object)
             is_new_pseudoitem = True
         else:
             if item_object not in mario.items:
-                mario.items.append(item_object)
+                mario.items.add(item_object)
                 mario.item_history.append(item_object)
         
         #print(f"New item: {item_object}")
@@ -146,13 +151,7 @@ def has_parakarry_3_letters():
 
 def get_starpiece_count() -> int:
     global mario
-    sp_count = 0
-    for starpiece_item in mario.starpieces:
-        if starpiece_item.startswith("Three"):
-            sp_count = sp_count + 3
-        else:
-            sp_count = sp_count + 1
-    return sp_count
+    return mario.starpiece_count
 
 
 def saved_all_yoshikids():
@@ -168,68 +167,72 @@ def saved_all_yoshikids():
 
 
 def require(**kwargs):
+    # Sanity-checking kwargs
+    for key in kwargs.keys():
+        if key not in [
+            "partner",
+            "item",
+            "starpieces",
+            "hammer",
+            "boots",
+            "favor",
+            "flag",
+            "starspirits"
+        ]:
+            raise KeyError('Requirement kwargs is not valid', key)
     def func(kwargs=kwargs):
         global mario
-        # Sanity-checking kwargs
-        for key in kwargs.keys():
-            if key not in [
-                "partner",
-                "item",
-                "starpieces",
-                "hammer",
-                "boots",
-                "favor",
-                "flag",
-                "starspirits"
-            ]:
-                raise KeyError('Requirement kwargs is not valid', key)
 
         # Partners
-        partners = kwargs.get("partner")
-        if not isinstance(partners, list):
-            partners = [partners]
-        for partner in partners:
-            if partner in mario.partners:
-                return True
+        if "partner" in kwargs:
+            partners = kwargs["partner"]
+            if not isinstance(partners, list):
+                partners = [partners]
+            for partner in partners:
+                if partner in mario.partners:
+                    return True
         # Items
-        if items := kwargs.get("item"):
+        if "item" in kwargs:
+            items = kwargs["item"]
             if not isinstance(items, list):
                 items = [items]
             for item in items:
                 if item in multiuse_progression_items:
-                    have_any_req_item = True in (multi_item in mario.items
-                                                 for multi_item in multiuse_progression_items.get(item))
-                    if have_any_req_item:
-                        # remove single multiuse item #TODO very janky, pls rework
-                        for multi_item in multiuse_progression_items.get(item):
-                            if multi_item in mario.items:
-                                mario.items.remove(multi_item)
-                                break
-                        return True
-                if item in mario.items:
+                    # remove single multiuse item #TODO very janky, pls rework
+                    for multi_item in multiuse_progression_items[item]:
+                        if multi_item in mario.items:
+                            mario.items.remove(multi_item)
+                            return True
+                elif item in mario.items:
                     return True
         # StarPieces
-        starpieces = kwargs.get("starpieces")
-        if starpieces is not None and get_starpiece_count() >= starpieces:
-            return True
+        if "starpieces" in kwargs:
+            starpieces = kwargs["starpieces"]
+            if mario.starpiece_count >= starpieces:
+                return True
         # Hammer
-        hammer = kwargs.get("hammer")
-        if hammer is not None and len(mario.hammer) >= hammer:
-            return True
+        if "hammer" in kwargs:
+            hammer = kwargs["hammer"]
+            if len(mario.hammer) >= hammer:
+                return True
         # Boots
-        if boots := kwargs.get("boots"):
+        if "boots" in kwargs:
+            boots = kwargs["boots"]
             if len(mario.boots) >= boots:
                 return True
         # Koopa Koot Favors
-        if favor := kwargs.get("favor"):
+        if "favor" in kwargs:
+            favor = kwargs["favor"]
             if favor in mario.favors:
                 return True
         # Flags
-        if flag := kwargs.get("flag"):
+        if "flag" in kwargs:
+            flag = kwargs["flag"]
             if flag in mario.flags:
                 return True
         # Star Spirits
-        if starspirits := kwargs.get("starspirits"):
+        if "starspirits" in kwargs:
+            starspirits = kwargs["starspirits"]
             if len(mario.starspirits) >= starspirits:
                 return True
                 

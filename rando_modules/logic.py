@@ -73,12 +73,16 @@ def get_startingnode_id_from_startingmap_id(starting_map_id):
 
 def get_edge_target_node_id(edge):
     """Returns the node_id of a given edge's target node in string format"""
-    return f'{edge["to"]["map"]}/{edge["to"]["id"]}'
+    if "target_node_id" not in edge:
+        edge["target_node_id"] = f'{edge["to"]["map"]}/{edge["to"]["id"]}'
+    return edge["target_node_id"]
 
 
 def get_edge_origin_node_id(edge):
     """Returns the node_id of a given edge's origin node in string format"""
-    return f'{edge["from"]["map"]}/{edge["from"]["id"]}'
+    if "origin_node_id" not in edge:
+        edge["origin_node_id"] = f'{edge["from"]["map"]}/{edge["from"]["id"]}'
+    return edge["origin_node_id"]
 
 
 def is_itemlocation_replenishable(item_node):
@@ -149,8 +153,8 @@ def _depth_first_search(
         if all_reqs_fulfilled:
             #logging.debug(f"DFS edge requirements fullfilled {edge}")
             # Add all pseudoitems provided by this edge to the inventory
-            if edge.get("pseudoitems") is not None:
-                add_to_inventory(edge.get("pseudoitems"))
+            if "pseudoitems" in edge:
+                add_to_inventory(edge["pseudoitems"])
                 found_new_pseudoitems = True
 
             while edge in non_traversable_edges[node_id]:
@@ -173,12 +177,8 @@ def _depth_first_search(
                                                             reachable_item_nodes,
                                                             non_traversable_edges)
                                      or found_new_pseudoitems)
-        elif edge not in non_traversable_edges[node_id]:
-            #logging.debug(f"DFS edge requirements not fullfilled {edge}")
-            non_traversable_edges[node_id].add(edge)
         else:
-            pass
-            #logging.debug(f"DFS edge requirements not fullfilled but already in non_traversable_edges {edge}")
+            non_traversable_edges[node_id].add(edge)
     return found_new_pseudoitems
 
 
@@ -1292,20 +1292,11 @@ def find_empty_reachable_nodes(
     while True:
         found_new_items = False
 
-        # We require a copy here since we cannot iterate over a list and
-        # at the same time possibly delete entries from it (see DFS)
-        non_traversable_edges_cpy = non_traversable_edges.copy()
-        logging.debug(f"non_traversable_edges_cpy before {non_traversable_edges_cpy}")
-
         # Re-traverse already found edges which could not be traversed before.
         node_ids_to_check = set()
-        for edges in non_traversable_edges.values():
-            for edge in edges:
-                # Generate list of unique node_ids to check to avoid multiple
-                # checks of the same node
-                from_node_id = get_edge_origin_node_id(edge)
-                if from_node_id not in node_ids_to_check:
-                    node_ids_to_check.add(from_node_id)
+        for from_node_id, edges in non_traversable_edges.items():
+            if edges:
+                node_ids_to_check.add(from_node_id)
 
         logging.debug(node_ids_to_check)
         for from_node_id in node_ids_to_check:
@@ -1313,9 +1304,8 @@ def find_empty_reachable_nodes(
                                                       world_graph,
                                                       reachable_node_ids,
                                                       reachable_item_nodes,
-                                                      non_traversable_edges_cpy)
+                                                      non_traversable_edges)
                                or found_new_items)
-        non_traversable_edges = non_traversable_edges_cpy.copy()
 
         # Check if an item node is reachable which already has an item placed.
         for node_id in (reachable_item_nodes.keys() - filled_item_nodes):
@@ -1369,7 +1359,7 @@ def _algo_assumed_fill(
     pool_progression_items = []
     pool_other_items = []
     pool_misc_progression_items = []
-    filled_item_nodes = []
+    filled_item_node_ids = set()
 
     # Generate item pool
     print("Generating item pool...")
@@ -1509,8 +1499,8 @@ def _algo_assumed_fill(
 
     # Mark all unreachable nodes, which hold pre-filled items, as filled
     for item_node in all_item_nodes:
-        if item_node.current_item and get_node_identifier(item_node) not in [get_node_identifier(x) for x in filled_item_nodes]:
-            filled_item_nodes.append(item_node)
+        if item_node.current_item:
+            filled_item_node_ids.add(get_node_identifier(item_node))
 
     # Place all remaining items into still empty item nodes
     print("Placing Miscellaneous Items ...")
@@ -1525,7 +1515,7 @@ def _algo_assumed_fill(
 
         if (item_node_id == "KMR_06/ItemA"
         and do_randomize_coins
-        and item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]
+        and item_node_id not in filled_item_node_ids
         ):
             # Do not put coin on the Goomba Road sign due to glitchy graphics
             item_index = -1
@@ -1539,11 +1529,11 @@ def _algo_assumed_fill(
             else:
                 random_item = pool_other_items.pop(item_index)
             item_node.current_item = random_item
-            filled_item_nodes.append(item_node)
+            filled_item_node_ids.add(item_node_id)
             logging.debug(f"{item_node_id}: {random_item.item_name}")
             continue
 
-        if item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]:
+        if item_node_id not in filled_item_node_ids:
             # Place random remaining item here
             try:
                 random_item_id = random.randint(0, len(pool_other_items) - 1)
@@ -1559,18 +1549,18 @@ def _algo_assumed_fill(
                 item_node.current_item = random_item
                 if "Shop" in item_node_id:
                     item_node.current_item.base_price = get_shop_price(item_node, do_randomize_shops)
-                filled_item_nodes.append(item_node)
+                filled_item_node_ids.add(item_node_id)
                 logging.debug(f"{item_node_id}: {random_item.item_name}")
             except ValueError as err:
-                logging.warning(f"filled_item_nodes size: {len(filled_item_nodes)}")
+                logging.warning(f"filled_item_node_ids size: {len(filled_item_node_ids)}")
                 logging.warning(f"pool_other_items size: {len(pool_other_items)}")
-                logging.warning(f"nodes left: {len([item_node_id not in [get_node_identifier(node) for node in filled_item_nodes]])}")
+                logging.warning(f"nodes left: {len([item_node_id not in filled_item_node_ids])}")
                 #raise
                 item_node.current_item = item_node.vanilla_item
                 logging.warning(f"{item_node_id}")
 
     # "Return" list of modified item nodes
-    item_placement.extend(filled_item_nodes)
+    item_placement.extend([node for node in all_item_nodes if node.current_item])
     
 def get_item_spheres(
     item_placement,
