@@ -1266,7 +1266,7 @@ def find_available_nodes(
     reachable_node_ids = set()
     reachable_item_nodes = {}
     non_traversable_edges = defaultdict(set)
-    filled_item_nodes = set()
+    filled_item_node_ids = set()
     reachable_node_ids.add(starting_node_id)
     for edge in world_graph[starting_node_id]["edge_list"]:
         non_traversable_edges[starting_node_id].add(edge)
@@ -1274,7 +1274,7 @@ def find_available_nodes(
                                    reachable_node_ids,
                                    reachable_item_nodes,
                                    non_traversable_edges,
-                                   filled_item_nodes))
+                                   filled_item_node_ids))
 
 
 def find_empty_reachable_nodes(
@@ -1282,7 +1282,7 @@ def find_empty_reachable_nodes(
     reachable_node_ids:set,
     reachable_item_nodes:dict,
     non_traversable_edges:set,
-    filled_item_nodes:set,
+    filled_item_node_ids:set,
 ):
     """
     Try to traverse already found edges which could not be traversed before.
@@ -1291,6 +1291,7 @@ def find_empty_reachable_nodes(
     """
     logging.debug("++++ _find_new_nodes_and_edges called")
     empty_item_nodes = []
+    checked_item_node_ids = set()
     while True:
         found_new_items = False
 
@@ -1310,19 +1311,20 @@ def find_empty_reachable_nodes(
                                or found_new_items)
 
         # Check if an item node is reachable which already has an item placed.
-        for node_id in (reachable_item_nodes.keys() - filled_item_nodes):
+        for node_id in (reachable_item_nodes.keys() - checked_item_node_ids):
             item_node = reachable_item_nodes[node_id]
             current_item = item_node.current_item
             if current_item:
                 add_to_inventory(current_item.item_name)
                 found_new_items = True
-                filled_item_nodes.add(node_id)
+                filled_item_node_ids.add(node_id)
+            checked_item_node_ids.add(node_id)
         # Keep searching for new edges and nodes until we don't find any new
         # items which might open up even more edges and nodes
         if not found_new_items:
             break
     for node_id, item_node in reachable_item_nodes.items():
-        if node_id not in filled_item_nodes:
+        if node_id not in filled_item_node_ids:
             empty_item_nodes.append(item_node)
     return empty_item_nodes
 
