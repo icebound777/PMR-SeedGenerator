@@ -492,7 +492,7 @@ def _get_limit_items_to_dungeons(
             # place partners manually into their nodes, so they can be found
             # by the _find_new_nodes_and_edges call and added to inventory
             for node_id in cur_area_graph:
-                if cur_area_graph.get(node_id).get("node").key_name_item == "Partner":
+                if cur_area_graph[node_id]["node"].key_name_item == "Partner":
                     cur_area_graph[node_id]["node"].current_item = cur_area_graph[node_id]["node"].vanilla_item
                     list_index = -1
                     for filled_node in limited_filled_item_nodes:
@@ -693,7 +693,7 @@ def _generate_item_pools(
 
     # Pre-fill nodes that are not to be randomized
     for node_id in world_graph.keys():
-        current_node = world_graph.get(node_id).get("node")
+        current_node = world_graph[node_id]["node"]
         is_item_node = current_node.key_name_item
         if is_item_node: # and current_node not in all_item_nodes:
 
@@ -785,7 +785,7 @@ def _generate_item_pools(
 
     # Check all remaining nodes for items to add to the pools
     for node_id in world_graph.keys():
-        current_node = world_graph.get(node_id).get("node")
+        current_node = world_graph[node_id]["node"]
         is_item_node = current_node.key_name_item
         if is_item_node and current_node not in all_item_nodes:
             all_item_nodes.append(current_node)

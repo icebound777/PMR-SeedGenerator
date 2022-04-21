@@ -13,7 +13,7 @@ from metadata.item_source_types import item_source_types
 class Node(Model):
 
     # MapArea this node is found in
-    map_area = ForeignKeyField(MapArea, backref = "nodes")
+    map_area = ForeignKeyField(MapArea, backref = "nodes", lazy_load=False)
 
     # Entrance data of the Map if this note represents an entrance
     entrance_id = IntegerField(null = True)
@@ -26,10 +26,10 @@ class Node(Model):
     item_source_type = IntegerField(null = True)
 
     # reference to item placed here in the unmodified game
-    vanilla_item = ForeignKeyField(Item, null = True)
+    vanilla_item = ForeignKeyField(Item, null = True, lazy_load=False)
 
     # reference to item placed here during randomization
-    current_item = ForeignKeyField(Item, null = True)
+    current_item = ForeignKeyField(Item, null = True, lazy_load=False)
 
     # vanilla item price if shop
     vanilla_price = IntegerField(null = True)

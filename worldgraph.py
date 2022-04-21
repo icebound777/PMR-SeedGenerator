@@ -2,12 +2,13 @@
 This module represents a world graph. This graph maps item locations and the
 connections between them to allow simulated traversal of the in-game world.
 """
-#from peewee import *
+from peewee import *
 
 from metadata.area_name_mappings import area_name_id_map, area_name_edges_map
 
 from db.node import Node
 from db.map_area import MapArea
+from db.item import Item
 
 from maps.graph_edges.edges_arn import edges_arn
 from maps.graph_edges.edges_dgb import edges_dgb
@@ -81,16 +82,15 @@ def get_all_nodes():
     all_nodes = []
     for node in (Node
                 .select(
-                    Node.map_area, Node.entrance_id, Node.entrance_type,
-                    Node.entrance_name, Node.key_name_item,
-                    Node.key_name_price, Node.item_source_type,
-                    Node.vanilla_item, Node.current_item,
-                    Node.vanilla_price, Node.item_index, Node.price_index
+                    Node, Item, MapArea
                 )
+                .join(Item, JOIN.LEFT_OUTER, on=Node.vanilla_item)
+                .switch(Node)
                 .join(MapArea)
                 .order_by(MapArea.area_id, MapArea.map_id)
     ):
         all_nodes.append(node)
+
     return all_nodes
 
 
@@ -101,12 +101,10 @@ def get_area_nodes(area_shorthand:str):
         cur_area_id = area_name_id_map.get(area_shorthand)
         for node in (Node
                      .select(
-                         Node.map_area, Node.entrance_id, Node.entrance_type,
-                         Node.entrance_name, Node.key_name_item,
-                         Node.key_name_price, Node.item_source_type,
-                         Node.vanilla_item, Node.current_item,
-                         Node.vanilla_price, Node.item_index, Node.price_index
+                         Node, Item, MapArea
                      )
+                     .join(Item, JOIN.LEFT_OUTER, on=Node.vanilla_item)
+                     .switch(Node)
                      .join(MapArea)
                      .where(MapArea.area_id == cur_area_id)):
             area_nodes.append(node)
