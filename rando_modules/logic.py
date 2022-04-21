@@ -784,11 +784,13 @@ def _generate_item_pools(
             pre_filled_node_ids.append(get_node_identifier(node))
 
     # Check all remaining nodes for items to add to the pools
+    all_item_nodes_ids = {get_node_identifier(node) for node in all_item_nodes}
     for node_id in world_graph.keys():
         current_node = world_graph[node_id]["node"]
         is_item_node = current_node.key_name_item
-        if is_item_node and current_node not in all_item_nodes:
+        if is_item_node and node_id not in all_item_nodes_ids:
             all_item_nodes.append(current_node)
+            all_item_nodes_ids.add(node_id)
 
             # Set current item to the one set during dungeon pre-fill
             if node_id in pre_filled_node_ids:
