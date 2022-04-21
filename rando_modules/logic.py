@@ -14,7 +14,8 @@ from worldgraph \
     import generate as generate_world_graph,\
            get_node_identifier,\
            get_area_nodes,\
-           get_area_edges
+           get_area_edges,\
+           hashabledict
 from rando_modules.random_shop_prices import get_shop_price
 
 from rando_modules.simulate        \
@@ -479,7 +480,7 @@ def _get_limit_items_to_dungeons(
         area_nodes = get_area_nodes(area_name)
         area_edges = get_area_edges(area_name)
         if area_name in additional_edges:
-            area_edges.extend(additional_edges.get(area_name))
+            area_edges.extend([hashabledict(x) for x in additional_edges.get(area_name)])
         if area_name in remove_edges:
             cleaned_area_edges = [x for x in area_edges if x not in remove_edges.get(area_name)]
             area_edges = cleaned_area_edges
@@ -505,9 +506,9 @@ def _get_limit_items_to_dungeons(
         # Prepare data structures
         pool_progression_items = []
         pool_misc_progression_items = []
-        reachable_node_ids = []
+        reachable_node_ids = set()
         reachable_item_nodes = {}
-        non_traversable_edges = []
+        non_traversable_edges = defaultdict(set)
 
         cur_items_placed = []
         cur_items_overwritten = []
@@ -532,7 +533,7 @@ def _get_limit_items_to_dungeons(
 
         # Find initially reachable nodes within the world graph
         for edge in cur_area_graph.get(starting_node_id).get("edge_list"):
-            non_traversable_edges.append(edge)
+            non_traversable_edges[starting_node_id].add(edge)
 
         # Reset Mario's inventory
         if partners_in_default_locations:
@@ -1067,9 +1068,9 @@ def _algo_forward_fill(
     # Declare and init additional data structures
     ## Data structures for graph traversal
     all_item_nodes = []
-    reachable_node_ids = []
+    reachable_node_ids = set()
     reachable_item_nodes = {}
-    non_traversable_edges = []
+    non_traversable_edges = defaultdict(set)
     ## Data structures for item pool
     pool_progression_items = []
     pool_other_items = []
@@ -1124,8 +1125,8 @@ def _algo_forward_fill(
 
     # Find initially reachable nodes within the world graph
     for edge in world_graph.get(starting_node_id).get("edge_list"):
-        non_traversable_edges.append(edge)
-    reachable_node_ids.append(starting_node_id)
+        non_traversable_edges[starting_node_id].add(edge)
+    reachable_node_ids.add(starting_node_id)
     pool_misc_progression_items, \
     pool_other_items, \
     reachable_node_ids, \
