@@ -1324,7 +1324,6 @@ def find_empty_reachable_nodes(
         if not found_new_items:
             break
     for node_id, item_node in sorted(reachable_item_nodes.items()):
-        print(node_id)
         if node_id not in filled_item_node_ids:
             empty_item_nodes.append(item_node)
     return empty_item_nodes
