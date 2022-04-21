@@ -37,8 +37,12 @@ from maps.graph_edges.edges_trd import edges_trd
 
 
 class hashabledict(dict):
+    def __init__(self, d):
+        super().__init__(d)
+        self._hash = hash(str(self))
+
     def __hash__(self):
-        return hash(str(self))
+        return hash(self._hash)
 
 def print_node_info(node):
     """Print a node's map name and its entrance_id or item key, depending on the node"""
