@@ -1428,6 +1428,7 @@ def _algo_assumed_fill(
     print('----- 1 -----')
 
     #Place other major progression items
+    random.shuffle(pool_progression_items)
     while pool_progression_items:
         item = pool_progression_items.pop()
         _init_mario_inventory(
