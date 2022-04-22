@@ -1427,25 +1427,6 @@ def _algo_assumed_fill(
 
     print('----- 1 -----')
 
-    #Divide progression item pool into two parts to reduce seed generation time
-    #This is removing Star Pieces and all but three letters.
-    #Star Pieces will be placed semi-smart later. Extra letters are treated as junk.
-
-    secondary_progression_items = []
-    random.shuffle(pool_progression_items)
-    if any(["StarPiece" in x.item_name for x in pool_progression_items]):
-        secondary_progression_items = [x for x in pool_progression_items if "StarPiece" in x.item_name]
-        pool_progression_items = [x for x in pool_progression_items if "StarPiece" not in x.item_name]
-    count = 0
-    extra_letters = set()
-    for item in pool_progression_items:
-        if item.item_name.find("Letter") != -1:
-            count += 1
-            if count > 3:
-                extra_letters.add(item.item_name)
-                pool_other_items.append(item)
-    pool_progression_items = [x for x in pool_progression_items if x.item_name not in extra_letters]
-
     #Place other major progression items
     while pool_progression_items:
         item = pool_progression_items.pop()
@@ -1459,8 +1440,6 @@ def _algo_assumed_fill(
             startwith_toybox_open,
             startwith_whale_open
         )
-        for item_ in secondary_progression_items:
-            add_to_inventory(item_.item_name)
         for item_ in pool_progression_items:
             add_to_inventory(item_.item_name)
         candidate_locations = find_available_nodes(world_graph, starting_node_id)
@@ -1473,31 +1452,6 @@ def _algo_assumed_fill(
         clear_inventory()
 
     print('----- 2 -----')
-
-    #Place Star Pieces
-    _init_mario_inventory(
-            starting_partners,
-            starting_items,
-            partners_always_usable,
-            hidden_block_mode,
-            startwith_bluehouse_open,
-            startwith_flowergate_open,
-            startwith_toybox_open,
-            startwith_whale_open
-        )
-    candidate_locations = find_available_nodes(world_graph, starting_node_id)
-    random.shuffle(secondary_progression_items)
-    random.shuffle(candidate_locations)
-    for item in secondary_progression_items:
-        if get_starpiece_count() < 60:
-            placement_location = candidate_locations.pop()
-            placement_location.current_item = item
-            node_identifier = placement_location.identifier
-            if "Shop" in node_identifier:
-                placement_location.current_item.base_price = get_shop_price(placement_location, do_randomize_shops)
-            print(placement_location)
-        else:
-            pool_other_items.append(item)
 
 
     # Mark all unreachable nodes, which hold pre-filled items, as filled
