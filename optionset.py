@@ -441,10 +441,10 @@ class OptionSet:
         #    self.palette_settings.bombette_setting = options_dict.get("BombetteSetting").get("value")
         #if "BombetteSprite" in options_dict:
         #    self.palette_settings.bombette_sprite = options_dict.get("BombetteSprite").get("value")
-        #if "ParakarrySetting" in options_dict:
-        #    self.palette_settings.parakarry_setting = options_dict.get("ParakarrySetting").get("value")
-        #if "ParakarrySprite" in options_dict:
-        #    self.palette_settings.parakarry_sprite = options_dict.get("ParakarrySprite").get("value")
+        if "ParakarrySetting" in options_dict:
+            self.palette_settings.parakarry_setting = options_dict.get("ParakarrySetting").get("value")
+        if "ParakarrySprite" in options_dict:
+            self.palette_settings.parakarry_sprite = options_dict.get("ParakarrySprite").get("value")
         if "BowSetting" in options_dict:
             self.palette_settings.bow_setting = options_dict.get("BowSetting").get("value")
         if "BowSprite" in options_dict:
@@ -855,8 +855,8 @@ class PaletteOptionSet():
         self.kooper_sprite = DEFAULT_PALETTE
         #self.bombette_setting = DEFAULT_PALETTE
         #self.bombette_sprite = DEFAULT_PALETTE
-        #self.parakarry_setting = DEFAULT_PALETTE
-        #self.parakarry_sprite = DEFAULT_PALETTE
+        self.parakarry_setting = DEFAULT_PALETTE
+        self.parakarry_sprite = DEFAULT_PALETTE
         self.bow_setting = DEFAULT_PALETTE
         self.bow_sprite = DEFAULT_PALETTE
         self.watt_setting = DEFAULT_PALETTE
