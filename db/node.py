@@ -38,7 +38,7 @@ class Node(Model):
     item_index = IntegerField(null = True)
     price_index = IntegerField(null = True)
 
-    identifier = TextField(null = True)
+    identifier = CharField(null = True)
 
     def __str__(self):
         """Return string representation of current node"""
@@ -137,7 +137,8 @@ def create_nodes():
             current_item = None,
             vanilla_price = vanilla_price,
             item_index = data["value_id"],
-            price_index = price_index if price_index else None
+            price_index = price_index if price_index else None,
+            identifier = f'{map_area.name}/{data["name"]}'
         )
         print(node, created)
 
@@ -163,6 +164,7 @@ def create_nodes():
                     map_area = map_area,
                     entrance_id = entrance_id,
                     entrance_type = entrance_data["type"],
-                    entrance_name = entrance_data["verbose_name"]
+                    entrance_name = entrance_data["verbose_name"],
+                    identifier = f'{map_area.name}/{str(entrance_id)}'
                 )
                 print(node, created)

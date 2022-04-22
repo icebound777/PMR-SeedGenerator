@@ -53,30 +53,6 @@ def print_node_info(node):
                     + node.vanilla_item.item_name if node.key_name_item else ''
     print(f"{node.map_area.name} - {entrancenode_string}{itemnode_string}")
 
-
-def get_node_identifier(node):
-    """Returns a string representation of uniquely identifying data within a node"""
-    if(node.identifier):
-        return node.identifier
-
-    if (    node.entrance_id is None
-          and node.key_name_item is not None):
-        node_data_id = node.key_name_item
-
-    elif   (    node.entrance_id is not None
-          and node.key_name_item is None):
-        node_data_id = str(node.entrance_id)
-
-    else:
-        raise ValueError('Node argument has invalid entrance_id/item_id state',
-                         str(node.entrance_id),
-                         node.key_name_item,
-                         node)
-    node.identifier = f'{node.map_area.name}/{node_data_id}'
-
-    return node.identifier
-
-
 def get_all_nodes():
     """Returns a list of all item and entrance nodes"""
     all_nodes = []
@@ -168,10 +144,9 @@ def generate(node_list, edge_list):
     world_graph = {}
 
     for node in node_list:
-        node_id = get_node_identifier(node)
-        world_graph[node_id] = {}
-        world_graph[node_id]["node"] = node
-        world_graph[node_id]["edge_list"] = []
+        world_graph[node.identifier] = {}
+        world_graph[node.identifier]["node"] = node
+        world_graph[node.identifier]["edge_list"] = []
 
         edge_list_cpy = edge_list.copy()
         for edge in edge_list:
@@ -181,7 +156,7 @@ def generate(node_list, edge_list):
                     pass
                 elif (   edge.get("from").get("id") == node.entrance_id
                       or edge.get("from").get("id") == node.key_name_item):
-                    world_graph[node_id]["edge_list"].append(edge)
+                    world_graph[node.identifier]["edge_list"].append(edge)
                     if not node.map_area.name.startswith("PRA_02"):
                         edge_list_cpy.remove(edge)
         edge_list = edge_list_cpy

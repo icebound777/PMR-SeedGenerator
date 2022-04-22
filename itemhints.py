@@ -5,9 +5,6 @@ from metadata.itemlocation_special \
            chainletter_giver_locations,\
            limited_by_item_areas
 
-from worldgraph import get_node_identifier
-
-
 def get_itemhints(
     allow_itemhints:bool,
     placed_items:list,
@@ -120,11 +117,11 @@ def get_itemhints(
                 and not do_randomize_panels
             ):
                 continue
-            if (    get_node_identifier(item_node) in kootfavors_locations
+            if (    item_node.identifier in kootfavors_locations
                 and not do_randomize_koopakoot
             ):
                 continue
-            if (    get_node_identifier(item_node) in chainletter_giver_locations
+            if (    item_node.identifier in chainletter_giver_locations
                 and not do_randomize_letterchain
             ):
                 continue
