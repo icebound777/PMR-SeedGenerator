@@ -225,9 +225,12 @@ def require(**kwargs):
             if favor in mario.favors:
                 return True
         # Flags
-        if flag := kwargs.get("flag"):
-            if flag in mario.flags:
-                return True
+        if flags := kwargs.get("flag"):
+            if not isinstance(flags, list):
+                flags = [flags]
+            for flag in flags:
+                if flag in mario.flags:
+                    return True
         # Star Spirits
         if starspirits := kwargs.get("starspirits"):
             if len(mario.starspirits) >= starspirits:
