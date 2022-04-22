@@ -1609,6 +1609,8 @@ def get_item_spheres(
             item_spheres_text += f'    ({node_long_name}): {item.item_name}{item_suffix}\n'
             add_to_inventory(item.item_name)
         sphere += 1
+
+    assert has_item("YOUWIN")
     return item_spheres_text
 
 
