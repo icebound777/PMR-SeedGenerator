@@ -227,9 +227,12 @@ def require(**kwargs):
                 return True
         # Flags
         if "flag" in kwargs:
-            flag = kwargs["flag"]
-            if flag in mario.flags:
-                return True
+            flags = kwargs["flag"]
+            if not isinstance(flags, list):
+                flags = [flags]
+            for flag in flags:
+                if flag in mario.flags:
+                    return True
         # Star Spirits
         if "starspirits" in kwargs:
             starspirits = kwargs["starspirits"]

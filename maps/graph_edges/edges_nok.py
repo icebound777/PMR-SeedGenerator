@@ -63,7 +63,7 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": "Bush1_Drop1"}, "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* Bush1_Drop1 (KoopaLeaf) -> Koopa Village 2 Exit Left
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "Partner"},     "reqs": [require(item="KooperShell")]}, #* Koopa Village 2 Exit Left -> Partner (Kooper)
     {"from": {"map": "NOK_02", "id": "Partner"},     "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* Partner (Kooper) -> Koopa Village 2 Exit Left
-    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "GiftD"},       "reqs": [require(item="Artifact"),require(flag="RF_Ch1_Fuzzies_Banished"),require(flag="RF_Ch2_SavedStarSpirit")]}, #* Koopa Village 2 Exit Left -> GiftD (StarPiece)
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "GiftD"},       "reqs": [require(item="Artifact"),require(flag="RF_Ch1_Fuzzies_Banished"),require(flag=["RF_CanVisitDesertCamp","RF_Ch2_SavedStarSpirit"])]}, #* Koopa Village 2 Exit Left -> GiftD (StarPiece)
     {"from": {"map": "NOK_02", "id": "GiftD"},       "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* GiftD (StarPiece) -> Koopa Village 2 Exit Left
     # Koopa Koot Initial Favors (*MB_SpiritsRescued < 1)
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift00"},  "reqs": [require(item="KootKoopaLegends"),require(flag="RF_Ch1_Fuzzies_Banished")], "pseudoitems": ["FAVOR_1_01_done"]}, #* Koopa Village 2 Exit Left -> KootGift00 (Coin)
