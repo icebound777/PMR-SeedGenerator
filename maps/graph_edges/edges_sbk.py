@@ -304,6 +304,8 @@ edges_sbk = [
     {"from": {"map": "SBK_30", "id": 0},              "to": {"map": "SBK_30", "id": "Tree2_Drop1A"}, "reqs": [require(flag="RF_Ch2_SavedStarSpirit"), can_shake_trees]}, #* W3 Kolorado's Camp Exit West -> Tree2_Drop1A (Letter02)
     {"from": {"map": "SBK_30", "id": "Tree2_Drop1A"}, "to": {"map": "SBK_30", "id": 0},              "reqs": []}, #* Tree2_Drop1A (Letter02) -> W3 Kolorado's Camp Exit West
 
+    {"from": {"map": "SBK_30", "id": 0}, "to": {"map": "SBK_30", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanVisitDesertCamp"]}, #+ Can trade Artifact in camp
+
     # SBK_31 W2
     {"from": {"map": "SBK_31", "id": 0}, "to": {"map": "SBK_30", "id": 1}, "reqs": []}, # W2 Exit West -> W3 Kolorado's Camp Exit East
     {"from": {"map": "SBK_31", "id": 1}, "to": {"map": "SBK_32", "id": 0}, "reqs": []}, # W2 Exit East -> W1 Exit West
