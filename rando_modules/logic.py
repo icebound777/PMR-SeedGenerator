@@ -1397,10 +1397,11 @@ def _algo_assumed_fill(
     starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
 
     print("Placing progression items...")
-    #Place replenishable progression items
-    random.shuffle(pool_misc_progression_items)
-    while pool_misc_progression_items:
-        item = pool_misc_progression_items.pop()
+    #Place progression items, both key and replenishable
+    pool_combined_progression_items = pool_progression_items + pool_misc_progression_items
+    random.shuffle(pool_combined_progression_items)
+    while pool_combined_progression_items:
+        item = pool_combined_progression_items.pop()
         _init_mario_inventory(
             starting_partners,
             starting_items,
@@ -1411,12 +1412,11 @@ def _algo_assumed_fill(
             startwith_toybox_open,
             startwith_whale_open
         )
-        for item_ in pool_progression_items:
-            add_to_inventory(item_.item_name)
-        for item_ in pool_misc_progression_items:
+        for item_ in pool_combined_progression_items:
             add_to_inventory(item_.item_name)
         candidate_locations = find_available_nodes(world_graph, starting_node_id)
-        candidate_locations = [node for node in candidate_locations if is_itemlocation_replenishable(node)]
+        if item.item_name in progression_miscitems_names:
+            candidate_locations = [node for node in candidate_locations if is_itemlocation_replenishable(node)]
         placement_location = random.choice(candidate_locations)
         placement_location.current_item = item
         node_identifier = placement_location.identifier
@@ -1424,35 +1424,6 @@ def _algo_assumed_fill(
             placement_location.current_item.base_price = get_shop_price(placement_location, do_randomize_shops)
         print(placement_location)
         clear_inventory()
-
-    print('----- 1 -----')
-
-    #Place other major progression items
-    random.shuffle(pool_progression_items)
-    while pool_progression_items:
-        item = pool_progression_items.pop()
-        _init_mario_inventory(
-            starting_partners,
-            starting_items,
-            partners_always_usable,
-            hidden_block_mode,
-            startwith_bluehouse_open,
-            startwith_flowergate_open,
-            startwith_toybox_open,
-            startwith_whale_open
-        )
-        for item_ in pool_progression_items:
-            add_to_inventory(item_.item_name)
-        candidate_locations = find_available_nodes(world_graph, starting_node_id)
-        placement_location = random.choice(candidate_locations)
-        placement_location.current_item = item
-        node_identifier = placement_location.identifier
-        if "Shop" in node_identifier:
-            placement_location.current_item.base_price = get_shop_price(placement_location, do_randomize_shops)
-        print(placement_location)
-        clear_inventory()
-
-    print('----- 2 -----')
 
 
     # Mark all unreachable nodes, which hold pre-filled items, as filled
