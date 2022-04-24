@@ -34,14 +34,15 @@ class Mario:
             if (   item_object.startswith("GF")
                 or item_object.startswith("MF")
                 or item_object.startswith("MB")
-                or item_object.startswith("RF")):
+                or item_object.startswith("RF")
+            ):
                 if item_object not in self.flags:
                     self.flags.append(item_object)
                 is_new_pseudoitem = True
             elif item_object in all_partners:
                 if item_object not in self.partners:
                     self.partners.append(item_object)
-                    self.item_history.append(item_object)
+                    self.item_history.append(f"+{item_object}")
                     is_new_pseudoitem = True
             elif item_object.find("StarPiece") != -1:
                 if item_object not in self.starpieces:
@@ -50,7 +51,7 @@ class Mario:
                     else:
                         self.starpiece_count += 1
                     self.starpieces.append(item_object)
-                    self.item_history.append(item_object)
+                    self.item_history.append(f"+{item_object}")
             elif item_object.startswith("FAVOR"):
                 if item_object not in self.favors:
                     self.favors.append(item_object)
@@ -73,7 +74,7 @@ class Mario:
             else:
                 if item_object not in self.items:
                     self.items.append(item_object)
-                    self.item_history.append(item_object)
+                    self.item_history.append(f"+{item_object}")
 
             #print(f"New item: {item_object}")
 
@@ -86,6 +87,54 @@ class Mario:
                 if is_new_pseudoitem:
                     has_new_pseudoitem = True
             return has_new_pseudoitem
+
+        raise TypeError('item_object argument is not of type str or list',
+                        type(item_object),
+                        item_object)
+
+
+    def remove_from_inventory(self, item_object):
+        """Remove something from Mario's inventory."""
+        all_partners = ["Goombario", "Kooper", "Bombette", "Parakarry",
+                        "Bow", "Watt", "Sushie", "Lakilester"]
+        # Overload: Single item -> Remove item
+        if isinstance(item_object, str):
+
+            if (   item_object.startswith("GF")
+                or item_object.startswith("MF")
+                or item_object.startswith("MB")
+                or item_object.startswith("RF")
+            ):
+                self.flags.remove(item_object)
+            elif item_object in all_partners:
+                self.partners.remove(item_object)
+                self.item_history.append(f"-{item_object}")
+            elif item_object.find("StarPiece") != -1:
+                if item_object.startswith("Three"):
+                    self.starpiece_count -= 3
+                else:
+                    self.starpiece_count -= 1
+                self.starpieces.remove(item_object)
+                self.item_history.append(f"-{item_object}")
+            elif item_object.startswith("FAVOR"):
+                self.favors.remove(item_object)
+            elif item_object.startswith("EQUIPMENT"):
+                if (item_object.startswith("EQUIPMENT_Boots_Progressive")):
+                    self.boots.remove(item_object)
+                if (item_object.startswith("EQUIPMENT_Hammer_Progressive")):
+                    self.hammer.remove(item_object)
+            elif item_object.startswith("STARSPIRIT"):
+                self.starspirits.remove(item_object)
+            else:
+                self.items.remove(item_object)
+                self.item_history.append(f"-{item_object}")
+            return
+
+        # Overload: List of items -> Call function per item
+        if isinstance(item_object, list):
+            for singular_item in item_object:
+                self.remove_from_inventory(singular_item)
+            return
 
         raise TypeError('item_object argument is not of type str or list',
                         type(item_object),
@@ -230,8 +279,6 @@ class Mario:
                             break
                     # Check panel flipping
                     if req == "can_flip_panels":
-                        print(req)
-                        print(self.can_flip_panels())
                         if self.can_flip_panels():
                             group_fulfilled = True
                             break
@@ -270,77 +317,3 @@ class Mario:
                 break
 
         return fulfilled
-
-
-#def require(**kwargs):
-#    def func(kwargs=kwargs):
-#        global mario
-#        # Sanity-checking kwargs
-#        for key in kwargs.keys():
-#            if key not in [
-#                "partner",
-#                "item",
-#                "starpieces",
-#                "hammer",
-#                "boots",
-#                "favor",
-#                "flag",
-#                "starspirits"
-#            ]:
-#                raise KeyError('Requirement kwargs is not valid', key)
-#
-#        # Partners
-#        partners = kwargs.get("partner")
-#        if not isinstance(partners, list):
-#            partners = [partners]
-#        for partner in partners:
-#            if partner in mario.partners:
-#                return True
-#        # Items
-#        if items := kwargs.get("item"):
-#            if not isinstance(items, list):
-#                items = [items]
-#            for item in items:
-#                if item in multiuse_progression_items:
-#                    have_any_req_item = True in (multi_item in mario.items
-#                                                 for multi_item in multiuse_progression_items.get(item))
-#                    if have_any_req_item:
-#                        # remove single multiuse item #TODO very janky, pls rework
-#                        for multi_item in multiuse_progression_items.get(item):
-#                            if multi_item in mario.items:
-#                                mario.items.remove(multi_item)
-#                                break
-#                        return True
-#                if item in mario.items:
-#                    return True
-#        # StarPieces
-#        starpieces = kwargs.get("starpieces")
-#        if starpieces is not None and get_starpiece_count() >= starpieces:
-#            return True
-#        # Hammer
-#        hammer = kwargs.get("hammer")
-#        if hammer is not None and len(mario.hammer) >= hammer:
-#            return True
-#        # Boots
-#        if boots := kwargs.get("boots"):
-#            if len(mario.boots) >= boots:
-#                return True
-#        # Koopa Koot Favors
-#        if favor := kwargs.get("favor"):
-#            if favor in mario.favors:
-#                return True
-#        # Flags
-#        if flags := kwargs.get("flag"):
-#            if not isinstance(flags, list):
-#                flags = [flags]
-#            for flag in flags:
-#                if flag in mario.flags:
-#                    return True
-#        # Star Spirits
-#        if starspirits := kwargs.get("starspirits"):
-#            if len(mario.starspirits) >= starspirits:
-#                return True
-#                
-#
-#        return False
-#    return func
