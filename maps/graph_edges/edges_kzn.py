@@ -32,7 +32,7 @@ edges_kzn = [
     
     {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "ItemA"},   "reqs": []}, #* Central Cavern Exit West Upper -> ItemA (FireShield)
     {"from": {"map": "KZN_03", "id": "ItemA"},   "to": {"map": "KZN_03", "id": 0},         "reqs": []}, #* ItemA (FireShield) -> Central Cavern Exit West Upper
-    {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "ItemB"},   "reqs": [["Kooper","UltraHammer"]]}, #* Central Cavern Exit West Upper -> ItemB (POWBlock)
+    {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "ItemB"},   "reqs": [["Kooper","UltraBoots"]]}, #* Central Cavern Exit West Upper -> ItemB (POWBlock)
     {"from": {"map": "KZN_03", "id": "ItemB"},   "to": {"map": "KZN_03", "id": 0},         "reqs": []}, #* ItemB (POWBlock) -> Central Cavern Exit West Upper
     {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "YBlockA"}, "reqs": []}, #* Central Cavern Exit West Upper -> YBlockA (Coin)
     {"from": {"map": "KZN_03", "id": "YBlockA"}, "to": {"map": "KZN_03", "id": 0},         "reqs": []}, #* YBlockA (Coin) -> Central Cavern Exit West Upper

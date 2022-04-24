@@ -32,9 +32,9 @@ edges_jan = [
     {"from": {"map": "JAN_01", "id": "ItemB"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemB (Coin) -> Beach Exit Left
     {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "ItemC"},         "reqs": []}, #* Beach Exit Left -> ItemC (Coin)
     {"from": {"map": "JAN_01", "id": "ItemC"},         "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* ItemC (Coin) -> Beach Exit Left
-    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "HiddenYBlockA"}, "reqs": [["Watt","RF_HiddenBlocksVisible"]]}, #* Beach Exit Left -> HiddenYBlockA (RepelGel)
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #* Beach Exit Left -> HiddenYBlockA (RepelGel)
     {"from": {"map": "JAN_01", "id": "HiddenYBlockA"}, "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* HiddenYBlockA (RepelGel) -> Beach Exit Left
-    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "HiddenYBlockB"}, "reqs": [["Watt","RF_HiddenBlocksVisible"]]}, #* Beach Exit Left -> HiddenYBlockB (Mystery)
+    {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "HiddenYBlockB"}, "reqs": [["can_see_hidden_blocks"]]}, #* Beach Exit Left -> HiddenYBlockB (Mystery)
     {"from": {"map": "JAN_01", "id": "HiddenYBlockB"}, "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* HiddenYBlockB (Mystery) -> Beach Exit Left
     {"from": {"map": "JAN_01", "id": 0},               "to": {"map": "JAN_01", "id": "Tree2_Drop1"},   "reqs": [["can_shake_trees"]]}, #* Beach Exit Left -> Tree2_Drop1 (Coconut)
     {"from": {"map": "JAN_01", "id": "Tree2_Drop1"},   "to": {"map": "JAN_01", "id": 0},               "reqs": []}, #* Tree2_Drop1 (Coconut) -> Beach Exit Left
@@ -188,7 +188,7 @@ edges_jan = [
     {"from": {"map": "JAN_08", "id": "ItemB"},         "to": {"map": "JAN_08", "id": 0},               "reqs": []}, #* ItemB (Coin) -> SW Jungle (Super Block) Exit Bottom Left
     {"from": {"map": "JAN_08", "id": 0},               "to": {"map": "JAN_08", "id": "ItemC"},         "reqs": [["Sushie"]]}, #* SW Jungle (Super Block) Exit Bottom Left -> ItemC (Coin)
     {"from": {"map": "JAN_08", "id": "ItemC"},         "to": {"map": "JAN_08", "id": 0},               "reqs": []}, #* ItemC (Coin) -> SW Jungle (Super Block) Exit Bottom Left
-    {"from": {"map": "JAN_08", "id": 2},               "to": {"map": "JAN_08", "id": "HiddenYBlockA"}, "reqs": [["Watt","RF_HiddenBlocksVisible"]]}, #* SW Jungle (Super Block) Exit Top -> HiddenYBlockA (ThunderRage)
+    {"from": {"map": "JAN_08", "id": 2},               "to": {"map": "JAN_08", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #* SW Jungle (Super Block) Exit Top -> HiddenYBlockA (ThunderRage)
     {"from": {"map": "JAN_08", "id": "HiddenYBlockA"}, "to": {"map": "JAN_08", "id": 2},               "reqs": []}, #* HiddenYBlockA (ThunderRage) -> SW Jungle (Super Block) Exit Top
 
     {"from": {"map": "JAN_08", "id": 0}, "to": {"map": "JAN_08", "id": 0}, "reqs": [["RF_YoshiKidsMissing"]], "pseudoitems": ["RF_SavedYoshiKid_3"]}, #+ Save Yoshi Kid
@@ -237,7 +237,7 @@ edges_jan = [
 
     {"from": {"map": "JAN_12", "id": 0},               "to": {"map": "JAN_12", "id": "Tree1_Drop1"},   "reqs": []}, #* Deep Jungle 1 Exit Bottom Left -> Tree1_Drop1 (Egg)
     {"from": {"map": "JAN_12", "id": "Tree1_Drop1"},   "to": {"map": "JAN_12", "id": 0},               "reqs": []}, #* Tree1_Drop1 (Egg) -> Deep Jungle 1 Exit Bottom Left
-    {"from": {"map": "JAN_12", "id": 0},               "to": {"map": "JAN_12", "id": "HiddenYBlockA"}, "reqs": [["Watt","RF_HiddenBlocksVisible"]]}, #* Deep Jungle 1 Exit Bottom Left -> HiddenYBlockA (StoneCap)
+    {"from": {"map": "JAN_12", "id": 0},               "to": {"map": "JAN_12", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #* Deep Jungle 1 Exit Bottom Left -> HiddenYBlockA (StoneCap)
     {"from": {"map": "JAN_12", "id": "HiddenYBlockA"}, "to": {"map": "JAN_12", "id": 0},               "reqs": []}, #* HiddenYBlockA (StoneCap) -> Deep Jungle 1 Exit Bottom Left
 
     # JAN_13 Deep Jungle 2 (Block Puzzle)
@@ -247,7 +247,7 @@ edges_jan = [
     {"from": {"map": "JAN_13", "id": 0}, "to": {"map": "JAN_13", "id": 1}, "reqs": []}, #? Deep Jungle 2 (Block Puzzle) Exit Bottom Left -> Deep Jungle 2 (Block Puzzle) Exit Top Right
     {"from": {"map": "JAN_13", "id": 1}, "to": {"map": "JAN_13", "id": 0}, "reqs": []}, #? Deep Jungle 2 (Block Puzzle) Exit Top Right -> Deep Jungle 2 (Block Puzzle) Exit Bottom Left
 
-    {"from": {"map": "JAN_13", "id": 0},               "to": {"map": "JAN_13", "id": "HiddenYBlockA"}, "reqs": [["Watt","RF_HiddenBlocksVisible"]]}, #* Deep Jungle 2 (Block Puzzle) Exit Bottom Left -> HiddenYBlockA (VoltShroom)
+    {"from": {"map": "JAN_13", "id": 0},               "to": {"map": "JAN_13", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #* Deep Jungle 2 (Block Puzzle) Exit Bottom Left -> HiddenYBlockA (VoltShroom)
     {"from": {"map": "JAN_13", "id": "HiddenYBlockA"}, "to": {"map": "JAN_13", "id": 0},               "reqs": []}, #* HiddenYBlockA (VoltShroom) -> Deep Jungle 2 (Block Puzzle) Exit Bottom Left
 
     # JAN_14 Deep Jungle 3
