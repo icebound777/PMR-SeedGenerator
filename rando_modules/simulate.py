@@ -98,7 +98,7 @@ class Mario:
         * Superboots or better, or
         * UltraHammer
         """
-        return len(self.hammer) == 3 or len(self.boots) >= 2
+        return ((len(self.hammer) - 1) >= 2 or len(self.boots) - 1 >= 1)
 
 
     def can_shake_trees(self):
@@ -114,7 +114,7 @@ class Mario:
         """Check if Mario is able to hit a block placed on the ground."""
         return (
             len(self.hammer) - 1 >= 0
-         or len(self.boots) >= 1
+         or len(self.boots) - 1 >= 1
          or "Kooper" in self.partners
          or "Bombette" in self.partners
         )
@@ -189,11 +189,11 @@ class Mario:
                     # Check boots
                     if req.endswith("Boots"):
                         if req == "UltraBoots":
-                            if len(self.boots) >= 2:
+                            if len(self.boots) - 1 >= 2:
                                 group_fulfilled = True
                                 break
                         elif req == "SuperBoots":
-                            if len(self.boots) >= 1:
+                            if len(self.boots) - 1 >= 1:
                                 group_fulfilled = True
                                 break
                     # Check hammer
@@ -230,6 +230,8 @@ class Mario:
                             break
                     # Check panel flipping
                     if req == "can_flip_panels":
+                        print(req)
+                        print(self.can_flip_panels())
                         if self.can_flip_panels():
                             group_fulfilled = True
                             break

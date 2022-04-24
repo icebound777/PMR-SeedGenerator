@@ -66,7 +66,7 @@ edges_mac = [
                                                                                     ["MagicalSeed4"]],
                                                                            "pseudoitems": ["RF_Ch6_FlowerGateOpen"]}, #+ Plaza District Exit Left
     
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ItemA"},        "reqs": [["SuperHammer"]]}, #* Plaza District Exit Left -> ItemA (QuickChange)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ItemA"},        "reqs": [["SuperBoots"]]}, #* Plaza District Exit Left -> ItemA (QuickChange)
     {"from": {"map": "MAC_01", "id": "ItemA"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ItemA (QuickChange) -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "GiftA"},        "reqs": [["Calculator"]]}, #* Plaza District Exit Left -> GiftA (ISpy)
     {"from": {"map": "MAC_01", "id": "GiftA"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* GiftA (ISpy) -> Plaza District Exit Left
