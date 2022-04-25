@@ -1382,7 +1382,7 @@ def _algo_assumed_fill(
         itemtrap_mode,
         startwith_bluehouse_open,
         startwith_flowergate_open,
-        keyitems_outside_dungeon,
+        True,#keyitems_outside_dungeon,
         partners_always_usable,
         partners_in_default_locations,
         speedyspin,
@@ -1400,6 +1400,15 @@ def _algo_assumed_fill(
     #Place progression items, both key and replenishable
     pool_combined_progression_items = pool_progression_items + pool_misc_progression_items
     random.shuffle(pool_combined_progression_items)
+
+    dungeon_restricted_items = {}
+    if not keyitems_outside_dungeon:
+        for dungeon in limited_by_item_areas:
+            for itemlist in limited_by_item_areas[dungeon].values():
+                for item in itemlist:
+                    assert item not in dungeon_restricted_items
+                    dungeon_restricted_items[item] = dungeon
+
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()
         _init_mario_inventory(
@@ -1415,8 +1424,14 @@ def _algo_assumed_fill(
         for item_ in pool_combined_progression_items:
             add_to_inventory(item_.item_name)
         candidate_locations = find_available_nodes(world_graph, starting_node_id)
+
         if item.item_name in progression_miscitems_names:
             candidate_locations = [node for node in candidate_locations if is_itemlocation_replenishable(node)]
+        if item.item_name in dungeon_restricted_items:
+            dungeon = dungeon_restricted_items[item.item_name]
+            candidate_locations = [node for node in candidate_locations if node.map_area.name[:3] == dungeon]
+            dungeon_restricted_items.pop(item.item_name)
+
         placement_location = random.choice(candidate_locations)
         placement_location.current_item = item
         node_identifier = placement_location.identifier
