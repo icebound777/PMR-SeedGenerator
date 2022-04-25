@@ -246,11 +246,11 @@ edges_tik = [
     {"from": {"map": "TIK_24", "id": 0}, "to": {"map": "TIK_24", "id": 1}, "reqs": []}, #? Hall to Ultra Boots (B3) Exit Left -> Hall to Ultra Boots (B3) Exit Right
     {"from": {"map": "TIK_24", "id": 1}, "to": {"map": "TIK_24", "id": 0}, "reqs": [["UltraHammer"]]}, #? Hall to Ultra Boots (B3) Exit Right -> Hall to Ultra Boots (B3) Exit Left
     
-    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "HiddenYBlockA"}, "reqs": [["UltraHammer"],["can_see_hidden_blocks"]]}, #* Hall to Ultra Boots (B3) Exit Right -> HiddenYBlockA (LifeShroom)
+    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "HiddenYBlockA"}, "reqs": [["UltraBoots"],["can_see_hidden_blocks"]]}, #* Hall to Ultra Boots (B3) Exit Right -> HiddenYBlockA (LifeShroom)
     {"from": {"map": "TIK_24", "id": "HiddenYBlockA"}, "to": {"map": "TIK_24", "id": 1},               "reqs": []}, #* HiddenYBlockA (LifeShroom) -> Hall to Ultra Boots (B3) Exit Right
-    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "YBlockA"},       "reqs": [["UltraHammer"]]}, #* Hall to Ultra Boots (B3) Exit Right -> YBlockA (Coin)
+    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "YBlockA"},       "reqs": [["UltraBoots"]]}, #* Hall to Ultra Boots (B3) Exit Right -> YBlockA (Coin)
     {"from": {"map": "TIK_24", "id": "YBlockA"},       "to": {"map": "TIK_24", "id": 1},               "reqs": []}, #* YBlockA (Coin) -> Hall to Ultra Boots (B3) Exit Right
-    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "YBlockB"},       "reqs": [["UltraHammer"]]}, #* Hall to Ultra Boots (B3) Exit Right -> YBlockB (Coin)
+    {"from": {"map": "TIK_24", "id": 1},               "to": {"map": "TIK_24", "id": "YBlockB"},       "reqs": [["UltraBoots"]]}, #* Hall to Ultra Boots (B3) Exit Right -> YBlockB (Coin)
     {"from": {"map": "TIK_24", "id": "YBlockB"},       "to": {"map": "TIK_24", "id": 1},               "reqs": []}, #* YBlockB (Coin) -> Hall to Ultra Boots (B3) Exit Right
 
     # TIK_25 Ultra Boots Room (B3)
