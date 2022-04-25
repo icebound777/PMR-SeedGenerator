@@ -1,5 +1,3 @@
-from rando_modules.simulate import *
-
 """This file represents all edges of the world graph that have origin-nodes in the ISK (Dry Dry Ruins) area."""
 # Note: Instead of checking for hammer-levels, these edges check for a custom RandomizerFlag "RF_ISK09_OpenedHammerChest".
 #       This is because the hammer blocks in here change depending on wether or not the hammer chest in Mt. Lavalava was opened beforehand.
@@ -16,7 +14,7 @@ edges_isk = [
     {"from": {"map": "ISK_02", "id": 1}, "to": {"map": "ISK_03", "id": 0}, "reqs": []}, # Sarcophagus Hall 1 Exit Top Right -> Sand Drainage Room 1 Exit Upper Room Left
     {"from": {"map": "ISK_02", "id": 2}, "to": {"map": "ISK_03", "id": 1}, "reqs": []}, # Sarcophagus Hall 1 Exit Bottom Right -> Sand Drainage Room 1 Exit Lower Room Left
     
-    {"from": {"map": "ISK_02", "id": 0}, "to": {"map": "ISK_02", "id": 1}, "reqs": [require(item="RuinsKey")]}, #? Sarcophagus Hall 1 Exit Left -> Sarcophagus Hall 1 Exit Top Right
+    {"from": {"map": "ISK_02", "id": 0}, "to": {"map": "ISK_02", "id": 1}, "reqs": [[{"RuinsKey": 1}]]}, #? Sarcophagus Hall 1 Exit Left -> Sarcophagus Hall 1 Exit Top Right
     {"from": {"map": "ISK_02", "id": 1}, "to": {"map": "ISK_02", "id": 0}, "reqs": []}, #? Sarcophagus Hall 1 Exit Top Right -> Sarcophagus Hall 1 Exit Left
     {"from": {"map": "ISK_02", "id": 0}, "to": {"map": "ISK_02", "id": 2}, "reqs": []}, #? Sarcophagus Hall 1 Exit Left -> Sarcophagus Hall 1 Exit Bottom Right
     {"from": {"map": "ISK_02", "id": 2}, "to": {"map": "ISK_02", "id": 0}, "reqs": []}, #? Sarcophagus Hall 1 Exit Bottom Right -> Sarcophagus Hall 1 Exit Top Right
@@ -29,7 +27,7 @@ edges_isk = [
     {"from": {"map": "ISK_03", "id": 1}, "to": {"map": "ISK_02", "id": 2}, "reqs": []}, # Sand Drainage Room 1 Exit Lower Room Left -> Sarcophagus Hall 1 Exit Bottom Right
     {"from": {"map": "ISK_03", "id": 2}, "to": {"map": "ISK_04", "id": 0}, "reqs": []}, # Sand Drainage Room 1 Exit Lower Room Right -> Descending Stairs 1 Exit Middle Left
     
-    {"from": {"map": "ISK_03", "id": 1}, "to": {"map": "ISK_03", "id": 2}, "reqs": [require(flag="MF_ISK03_DrainedFirstSandRoom")]}, #? Sand Drainage Room 1 Exit Lower Room Left -> Sand Drainage Room 1 Exit Lower Room Right
+    {"from": {"map": "ISK_03", "id": 1}, "to": {"map": "ISK_03", "id": 2}, "reqs": [["MF_ISK03_DrainedFirstSandRoom"]]}, #? Sand Drainage Room 1 Exit Lower Room Left -> Sand Drainage Room 1 Exit Lower Room Right
     {"from": {"map": "ISK_03", "id": 2}, "to": {"map": "ISK_03", "id": 1}, "reqs": []}, #? Sand Drainage Room 1 Exit Lower Room Right -> Sand Drainage Room 1 Exit Lower Room Left
     
     {"from": {"map": "ISK_03", "id": 0}, "to": {"map": "ISK_03", "id": 0}, "reqs": [], "pseudoitems": ["MF_ISK03_DrainedFirstSandRoom"]}, #+ Sand Drainage Room 1 Exit Upper Room Left
@@ -44,9 +42,9 @@ edges_isk = [
     {"from": {"map": "ISK_04", "id": 3}, "to": {"map": "ISK_06", "id": 1}, "reqs": []}, # Descending Stairs 1 Exit Middle Right -> Sand Drainage Room 2 Exit Lower Room Left
     {"from": {"map": "ISK_04", "id": 4}, "to": {"map": "ISK_05", "id": 0}, "reqs": []}, # Descending Stairs 1 Exit Bottom Right -> Pyramid Stone Room Exit Left
     
-    {"from": {"map": "ISK_04", "id": 0}, "to": {"map": "ISK_04", "id": 1}, "reqs": [require(item="RuinsKey")]}, #? Descending Stairs 1 Exit Middle Left -> Descending Stairs 1 Exit Bottom Left
+    {"from": {"map": "ISK_04", "id": 0}, "to": {"map": "ISK_04", "id": 1}, "reqs": [[{"RuinsKey": 2}]]}, #? Descending Stairs 1 Exit Middle Left -> Descending Stairs 1 Exit Bottom Left
     {"from": {"map": "ISK_04", "id": 1}, "to": {"map": "ISK_04", "id": 0}, "reqs": []}, #? Descending Stairs 1 Exit Bottom Left -> Descending Stairs 1 Exit Middle Left
-    {"from": {"map": "ISK_04", "id": 0}, "to": {"map": "ISK_04", "id": 2}, "reqs": [require(partner="Parakarry"), require(partner="Bombette")]}, #? Descending Stairs 1 Exit Middle Left -> Descending Stairs 1 Exit Top Right Cracked Wall
+    {"from": {"map": "ISK_04", "id": 0}, "to": {"map": "ISK_04", "id": 2}, "reqs": [["Parakarry"], ["Bombette"]]}, #? Descending Stairs 1 Exit Middle Left -> Descending Stairs 1 Exit Top Right Cracked Wall
     {"from": {"map": "ISK_04", "id": 2}, "to": {"map": "ISK_04", "id": 0}, "reqs": []}, #? Descending Stairs 1 Exit Top Right Cracked Wall -> Descending Stairs 1 Exit Middle Left
     {"from": {"map": "ISK_04", "id": 0}, "to": {"map": "ISK_04", "id": 3}, "reqs": []}, #? Descending Stairs 1 Exit Middle Left -> Descending Stairs 1 Exit Middle Right
     {"from": {"map": "ISK_04", "id": 3}, "to": {"map": "ISK_04", "id": 0}, "reqs": []}, #? Descending Stairs 1 Exit Middle Right -> Descending Stairs 1 Exit Middle Left
@@ -56,16 +54,16 @@ edges_isk = [
     # ISK_05 Pyramid Stone Room
     {"from": {"map": "ISK_05", "id": 0}, "to": {"map": "ISK_04", "id": 4}, "reqs": []}, # Pyramid Stone Room Exit Left -> Descending Stairs 1 Exit Bottom Right
     
-    {"from": {"map": "ISK_05", "id": 0},       "to": {"map": "ISK_05", "id": "ItemA"}, "reqs": [require(flag="RF_ISK09_OpenedHammerChest")]}, #* Pyramid Stone Room Exit Left -> ItemA (PyramidStone)
+    {"from": {"map": "ISK_05", "id": 0},       "to": {"map": "ISK_05", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"]]}, #* Pyramid Stone Room Exit Left -> ItemA (PyramidStone)
     {"from": {"map": "ISK_05", "id": "ItemA"}, "to": {"map": "ISK_05", "id": 0},       "reqs": []}, #* ItemA (PyramidStone) -> Pyramid Stone Room Exit Left
 
     # ISK_06 Sand Drainage Room 2
     {"from": {"map": "ISK_06", "id": 0}, "to": {"map": "ISK_04", "id": 2}, "reqs": []}, # Sand Drainage Room 2 Exit Upper Room Left -> Descending Stairs 1 Exit Top Right Cracked Wall
     {"from": {"map": "ISK_06", "id": 1}, "to": {"map": "ISK_04", "id": 3}, "reqs": []}, # Sand Drainage Room 2 Exit Lower Room Left -> Descending Stairs 1 Exit Middle Right
 
-    {"from": {"map": "ISK_06", "id": 0},       "to": {"map": "ISK_06", "id": "ItemA"}, "reqs": [require(flag="MF_ISK06_DrainedSecondSandRoom")]}, #* Sand Drainage Room 2 Exit Upper Room Left -> ItemA (StarPiece)
+    {"from": {"map": "ISK_06", "id": 0},       "to": {"map": "ISK_06", "id": "ItemA"}, "reqs": [["MF_ISK06_DrainedSecondSandRoom"]]}, #* Sand Drainage Room 2 Exit Upper Room Left -> ItemA (StarPiece)
     {"from": {"map": "ISK_06", "id": "ItemA"}, "to": {"map": "ISK_06", "id": 0},       "reqs": []}, #* ItemA (StarPiece) -> Sand Drainage Room 2 Exit Upper Room Left
-    {"from": {"map": "ISK_06", "id": 1},       "to": {"map": "ISK_06", "id": "ItemB"}, "reqs": [require(flag="MF_ISK06_DrainedSecondSandRoom")]}, #* Sand Drainage Room 2 Exit Lower Room Left -> ItemB (RuinsKey)
+    {"from": {"map": "ISK_06", "id": 1},       "to": {"map": "ISK_06", "id": "ItemB"}, "reqs": [["MF_ISK06_DrainedSecondSandRoom"]]}, #* Sand Drainage Room 2 Exit Lower Room Left -> ItemB (RuinsKey)
     {"from": {"map": "ISK_06", "id": "ItemB"}, "to": {"map": "ISK_06", "id": 1},       "reqs": []}, #* ItemB (RuinsKey) -> Sand Drainage Room 2 Exit Lower Room Left
     
     {"from": {"map": "ISK_06", "id": 0}, "to": {"map": "ISK_06", "id": 0}, "reqs": [], "pseudoitems": ["MF_ISK06_DrainedSecondSandRoom"]}, #+ Sand Drainage Room 2 Exit Upper Room Left
@@ -75,11 +73,11 @@ edges_isk = [
     {"from": {"map": "ISK_07", "id": 1}, "to": {"map": "ISK_04", "id": 1}, "reqs": []}, # Sarcophagus Hall 2 Exit Right -> Descending Stairs 1 Exit Bottom Left
     
     {"from": {"map": "ISK_07", "id": 0}, "to": {"map": "ISK_07", "id": 1}, "reqs": []}, #? Sarcophagus Hall 2 Exit Left -> Sarcophagus Hall 2 Exit Right
-    {"from": {"map": "ISK_07", "id": 1}, "to": {"map": "ISK_07", "id": 0}, "reqs": [require(item="RuinsKey")]}, #? Sarcophagus Hall 2 Exit Right -> Sarcophagus Hall 2 Exit Left
+    {"from": {"map": "ISK_07", "id": 1}, "to": {"map": "ISK_07", "id": 0}, "reqs": [[{"RuinsKey": 3}]]}, #? Sarcophagus Hall 2 Exit Right -> Sarcophagus Hall 2 Exit Left
     
     {"from": {"map": "ISK_07", "id": 1},       "to": {"map": "ISK_07", "id": "ItemA"}, "reqs": []}, #* Sarcophagus Hall 2 Exit Right -> ItemA (RuinsKey)
     {"from": {"map": "ISK_07", "id": "ItemA"}, "to": {"map": "ISK_07", "id": 1},       "reqs": []}, #* ItemA (RuinsKey) -> Sarcophagus Hall 2 Exit Right
-    {"from": {"map": "ISK_07", "id": 1},       "to": {"map": "ISK_07", "id": "ItemB"}, "reqs": [require(flag="RF_ISK09_OpenedHammerChest")]}, #* Sarcophagus Hall 2 Exit Right -> ItemB (Artifact)
+    {"from": {"map": "ISK_07", "id": 1},       "to": {"map": "ISK_07", "id": "ItemB"}, "reqs": [["RF_ISK09_OpenedHammerChest"]]}, #* Sarcophagus Hall 2 Exit Right -> ItemB (Artifact)
     {"from": {"map": "ISK_07", "id": "ItemB"}, "to": {"map": "ISK_07", "id": 1},       "reqs": []}, #* ItemB (Artifact) -> Sarcophagus Hall 2 Exit Right
 
     # ISK_08 Descending Stairs 2
@@ -88,9 +86,9 @@ edges_isk = [
     {"from": {"map": "ISK_08", "id": 2}, "to": {"map": "ISK_07", "id": 0}, "reqs": []}, # Descending Stairs 2 Exit Top Right -> Sarcophagus Hall 2 Exit Left
     {"from": {"map": "ISK_08", "id": 3}, "to": {"map": "ISK_11", "id": 0}, "reqs": []}, # Descending Stairs 2 Exit Bottom Right -> Stone Puzzle Room Exit Left
     
-    {"from": {"map": "ISK_08", "id": 2}, "to": {"map": "ISK_08", "id": 0}, "reqs": [require(partner="Parakarry")]}, #? Descending Stairs 2 Exit Top Right -> Descending Stairs 2 Exit Top Left
+    {"from": {"map": "ISK_08", "id": 2}, "to": {"map": "ISK_08", "id": 0}, "reqs": [["Parakarry"]]}, #? Descending Stairs 2 Exit Top Right -> Descending Stairs 2 Exit Top Left
     {"from": {"map": "ISK_08", "id": 0}, "to": {"map": "ISK_08", "id": 2}, "reqs": []}, #? Descending Stairs 2 Exit Top Left -> Descending Stairs 2 Exit Top Right
-    {"from": {"map": "ISK_08", "id": 2}, "to": {"map": "ISK_08", "id": 1}, "reqs": [require(partner="Bombette")]}, #? Descending Stairs 2 Exit Top Right -> Descending Stairs 2 Exit Bottom Left Cracked Wall
+    {"from": {"map": "ISK_08", "id": 2}, "to": {"map": "ISK_08", "id": 1}, "reqs": [["Bombette"]]}, #? Descending Stairs 2 Exit Top Right -> Descending Stairs 2 Exit Bottom Left Cracked Wall
     {"from": {"map": "ISK_08", "id": 1}, "to": {"map": "ISK_08", "id": 2}, "reqs": []}, #? Descending Stairs 2 Exit Bottom Left Cracked Wall -> Descending Stairs 2 Exit Top Right
     {"from": {"map": "ISK_08", "id": 2}, "to": {"map": "ISK_08", "id": 3}, "reqs": []}, #? Descending Stairs 2 Exit Top Right -> Descending Stairs 2 Exit Bottom Right
     {"from": {"map": "ISK_08", "id": 3}, "to": {"map": "ISK_08", "id": 2}, "reqs": []}, #? Descending Stairs 2 Exit Bottom Right -> Descending Stairs 2 Exit Top Right
@@ -108,10 +106,10 @@ edges_isk = [
     {"from": {"map": "ISK_10", "id": 1}, "to": {"map": "ISK_14", "id": 0}, "reqs": []}, # Vertical Shaft Exit Bottom Left -> Diamond Stone Room Exit Right
     {"from": {"map": "ISK_10", "id": 2}, "to": {"map": "ISK_18", "id": 0}, "reqs": []}, # Vertical Shaft Exit Bottom Right -> Deep Tunnel Exit Left
     
-    {"from": {"map": "ISK_10", "id": 0}, "to": {"map": "ISK_10", "id": 1}, "reqs": [require(partner="Bombette")]}, #? Vertical Shaft Exit Top Right -> Vertical Shaft Exit Bottom Left
-    {"from": {"map": "ISK_10", "id": 1}, "to": {"map": "ISK_10", "id": 0}, "reqs": [require(partner="Bombette")]}, #? Vertical Shaft Exit Bottom Left -> Vertical Shaft Exit Top Right
+    {"from": {"map": "ISK_10", "id": 0}, "to": {"map": "ISK_10", "id": 1}, "reqs": [["Bombette"]]}, #? Vertical Shaft Exit Top Right -> Vertical Shaft Exit Bottom Left
+    {"from": {"map": "ISK_10", "id": 1}, "to": {"map": "ISK_10", "id": 0}, "reqs": [["Bombette"]]}, #? Vertical Shaft Exit Bottom Left -> Vertical Shaft Exit Top Right
     {"from": {"map": "ISK_10", "id": 0}, "to": {"map": "ISK_10", "id": 2}, "reqs": []}, #? Vertical Shaft Exit Top Right -> Vertical Shaft Exit Bottom Right
-    {"from": {"map": "ISK_10", "id": 2}, "to": {"map": "ISK_10", "id": 0}, "reqs": [require(partner="Bombette")]}, #? Vertical Shaft Exit Bottom Right -> Vertical Shaft Exit Top Right
+    {"from": {"map": "ISK_10", "id": 2}, "to": {"map": "ISK_10", "id": 0}, "reqs": [["Bombette"]]}, #? Vertical Shaft Exit Bottom Right -> Vertical Shaft Exit Top Right
 
     # ISK_11 Stone Puzzle Room
     {"from": {"map": "ISK_11", "id": 0}, "to": {"map": "ISK_08", "id": 3}, "reqs": []}, # Stone Puzzle Room Exit Left -> Descending Stairs 2 Exit Bottom Right
@@ -119,12 +117,12 @@ edges_isk = [
     {"from": {"map": "ISK_11", "id": 2}, "to": {"map": "ISK_12", "id": 1}, "reqs": []}, # Stone Puzzle Room Exit Bottom Right -> Sand Drainage Room 3 Exit Top Left
     {"from": {"map": "ISK_11", "id": 3}, "to": {"map": "ISK_19", "id": 0}, "reqs": []}, # Stone Puzzle Room Exit Hidden Stairway -> Boss Antechamber Exit Left
     
-    {"from": {"map": "ISK_11", "id": 0}, "to": {"map": "ISK_11", "id": 1}, "reqs": [require(item="RuinsKey")]}, #? Stone Puzzle Room Exit Left -> Stone Puzzle Room Exit Top Right
+    {"from": {"map": "ISK_11", "id": 0}, "to": {"map": "ISK_11", "id": 1}, "reqs": [[{"RuinsKey": 4}]]}, #? Stone Puzzle Room Exit Left -> Stone Puzzle Room Exit Top Right
     {"from": {"map": "ISK_11", "id": 1}, "to": {"map": "ISK_11", "id": 0}, "reqs": []}, #? Stone Puzzle Room Exit Top Right -> Stone Puzzle Room Exit Left
     {"from": {"map": "ISK_11", "id": 0}, "to": {"map": "ISK_11", "id": 2}, "reqs": []}, #? Stone Puzzle Room Exit Left -> Stone Puzzle Room Exit Bottom Right
     {"from": {"map": "ISK_11", "id": 2}, "to": {"map": "ISK_11", "id": 0}, "reqs": []}, #? Stone Puzzle Room Exit Bottom Right -> Stone Puzzle Room Exit Left
-    {"from": {"map": "ISK_11", "id": 0}, "to": {"map": "ISK_11", "id": 3}, "reqs": [require(item="PyramidStone"), require(item="DiamondStone"), require(item="LunarStone")], "pseudoitems": ["MB_Ch2_Spirit_ISK11_SolvedArtifactPuzzle"]}, #? Stone Puzzle Room Exit Left -> Stone Puzzle Room Exit Hidden Stairway
-    {"from": {"map": "ISK_11", "id": 3}, "to": {"map": "ISK_11", "id": 0}, "reqs": [require(flag="MB_Ch2_Spirit_ISK11_SolvedArtifactPuzzle")]}, #? Stone Puzzle Room Exit Hidden Stairway -> Stone Puzzle Room Exit Left
+    {"from": {"map": "ISK_11", "id": 0}, "to": {"map": "ISK_11", "id": 3}, "reqs": [["PyramidStone"], ["DiamondStone"], ["LunarStone"]], "pseudoitems": ["MB_Ch2_Spirit_ISK11_SolvedArtifactPuzzle"]}, #? Stone Puzzle Room Exit Left -> Stone Puzzle Room Exit Hidden Stairway
+    {"from": {"map": "ISK_11", "id": 3}, "to": {"map": "ISK_11", "id": 0}, "reqs": [["MB_Ch2_Spirit_ISK11_SolvedArtifactPuzzle"]]}, #? Stone Puzzle Room Exit Hidden Stairway -> Stone Puzzle Room Exit Left
 
     # ISK_12 Sand Drainage Room 3
     {"from": {"map": "ISK_12", "id": 0}, "to": {"map": "ISK_11", "id": 1}, "reqs": []}, # Sand Drainage Room 3 Exit Upper Room Left -> Stone Puzzle Room Exit Top Right
@@ -132,34 +130,34 @@ edges_isk = [
     {"from": {"map": "ISK_12", "id": 2}, "to": {"map": "ISK_18", "id": 1}, "reqs": []}, # Sand Drainage Room 3 Exit Bottom Left -> Deep Tunnel Exit Right
     {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_13", "id": 0}, "reqs": []}, # Sand Drainage Room 3 Exit Top Right -> Lunar Stone Room Exit Left
     
-    {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 2}, "reqs": [require(partner="Bombette")]}, #? Sand Drainage Room 3 Exit Top Left -> Sand Drainage Room 3 Exit Bottom Left
-    {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 3}, "reqs": [require(flag="MF_ISK12_DrainedThirdSandRoom")]}, #? Sand Drainage Room 3 Exit Top Left -> Sand Drainage Room 3 Exit Top Right
-    {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 1}, "reqs": [require(flag="MF_ISK12_DrainedThirdSandRoom")]}, #? Sand Drainage Room 3 Exit Top Right -> Sand Drainage Room 3 Exit Top Left
-    {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 2}, "reqs": [require(partner="Bombette")]}, #? Sand Drainage Room 3 Exit Top Right -> Sand Drainage Room 3 Exit Bottom Left
+    {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 2}, "reqs": [["Bombette"]]}, #? Sand Drainage Room 3 Exit Top Left -> Sand Drainage Room 3 Exit Bottom Left
+    {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 3}, "reqs": [["MF_ISK12_DrainedThirdSandRoom"]]}, #? Sand Drainage Room 3 Exit Top Left -> Sand Drainage Room 3 Exit Top Right
+    {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 1}, "reqs": [["MF_ISK12_DrainedThirdSandRoom"]]}, #? Sand Drainage Room 3 Exit Top Right -> Sand Drainage Room 3 Exit Top Left
+    {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 2}, "reqs": [["Bombette"]]}, #? Sand Drainage Room 3 Exit Top Right -> Sand Drainage Room 3 Exit Bottom Left
     
     {"from": {"map": "ISK_12", "id": 0}, "to": {"map": "ISK_12", "id": 0}, "reqs": [], "pseudoitems": ["MF_ISK12_DrainedThirdSandRoom"]}, #+ Sand Drainage Room 3 Exit Upper Room Left
     
-    {"from": {"map": "ISK_12", "id": 2},       "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": [require(flag="RF_ISK09_OpenedHammerChest")]}, #* Sand Drainage Room 3 Exit Bottom Left -> ItemA (RuinsKey)
+    {"from": {"map": "ISK_12", "id": 2},       "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"]]}, #* Sand Drainage Room 3 Exit Bottom Left -> ItemA (RuinsKey)
     {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 2},       "reqs": []}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Bottom Left
     {"from": {"map": "ISK_12", "id": 3},       "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": []}, #* Sand Drainage Room 3 Exit Top Right -> ItemA (RuinsKey)
-    {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 3},       "reqs": [require(flag="MF_ISK12_DrainedThirdSandRoom")]}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Top Right
+    {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 3},       "reqs": [["MF_ISK12_DrainedThirdSandRoom"]]}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Top Right
 
     # ISK_13 Lunar Stone Room
     {"from": {"map": "ISK_13", "id": 0}, "to": {"map": "ISK_12", "id": 3}, "reqs": []}, # Lunar Stone Room Exit Left -> Sand Drainage Room 3 Exit Top Right
 
-    {"from": {"map": "ISK_13", "id": 0},       "to": {"map": "ISK_13", "id": "ItemA"}, "reqs": [require(flag="RF_ISK09_OpenedHammerChest")]}, #* Lunar Stone Room Exit Left -> ItemA (LunarStone)
+    {"from": {"map": "ISK_13", "id": 0},       "to": {"map": "ISK_13", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"]]}, #* Lunar Stone Room Exit Left -> ItemA (LunarStone)
     {"from": {"map": "ISK_13", "id": "ItemA"}, "to": {"map": "ISK_13", "id": 0},       "reqs": []}, #* ItemA (LunarStone) -> Lunar Stone Room Exit Left
 
     # ISK_14 Diamond Stone Room
     {"from": {"map": "ISK_14", "id": 0}, "to": {"map": "ISK_10", "id": 1}, "reqs": []}, # Diamond Stone Room Exit Right -> Vertical Shaft Exit Bottom Left
     
-    {"from": {"map": "ISK_14", "id": 0},       "to": {"map": "ISK_14", "id": "ItemA"}, "reqs": [require(flag="RF_ISK09_OpenedHammerChest")]}, #* Diamond Stone Room Exit Right -> ItemA (DiamondStone)
+    {"from": {"map": "ISK_14", "id": 0},       "to": {"map": "ISK_14", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"]]}, #* Diamond Stone Room Exit Right -> ItemA (DiamondStone)
     {"from": {"map": "ISK_14", "id": "ItemA"}, "to": {"map": "ISK_14", "id": 0},       "reqs": []}, #* ItemA (DiamondStone) -> Diamond Stone Room Exit Right
 
     # ISK_16 Tutankoopa Room
     {"from": {"map": "ISK_16", "id": 0}, "to": {"map": "ISK_19", "id": 1}, "reqs": []}, # Tutankoopa Room Exit Left -> Boss Antechamber Exit Right
     
-    {"from": {"map": "ISK_16", "id": 0}, "to": {"map": "ISK_16", "id": 0}, "reqs": [require(flag="MB_Ch2_Spirit_ISK11_SolvedArtifactPuzzle")], "pseudoitems": ["STARSPIRIT_2", "RF_Ch2_SavedStarSpirit"]}, #+ Tutankoopa Room Exit Left
+    {"from": {"map": "ISK_16", "id": 0}, "to": {"map": "ISK_16", "id": 0}, "reqs": [["MB_Ch2_Spirit_ISK11_SolvedArtifactPuzzle"]], "pseudoitems": ["STARSPIRIT_2", "RF_Ch2_SavedStarSpirit"]}, #+ Tutankoopa Room Exit Left
 
     # ISK_18 Deep Tunnel
     {"from": {"map": "ISK_18", "id": 0}, "to": {"map": "ISK_10", "id": 2}, "reqs": []}, # Deep Tunnel Exit Left -> Vertical Shaft Exit Bottom Right

@@ -1,6 +1,4 @@
 """This file represents all edges of the world graph that have origin-nodes in the KGR (Inside the Whale) area."""
-from rando_modules.simulate import *
-
 edges_kgr = [
     # KGR_01 Whale Mouth
     {"from": {"map": "KGR_01", "id": 0}, "to": {"map": "MAC_05", "id": 3}, "reqs": []}, # Whale Mouth Exit West -> Port District Enter Whale
@@ -11,5 +9,5 @@ edges_kgr = [
     
     # KGR_02 Whale Stomach
     {"from": {"map": "KGR_02", "id": 0}, "to": {"map": "KGR_01", "id": 1}, "reqs": []}, # Whale Stomach Exit West -> Whale Mouth Exit East
-    {"from": {"map": "KGR_02", "id": 0}, "to": {"map": "KGR_02", "id": 0}, "reqs": [require(partner="Watt")], "pseudoitems":["RF_CanRideWhale"]}, #+ Defeat Fuzzipede
+    {"from": {"map": "KGR_02", "id": 0}, "to": {"map": "KGR_02", "id": 0}, "reqs": [["Watt"]], "pseudoitems":["RF_CanRideWhale"]}, #+ Defeat Fuzzipede
 ]
