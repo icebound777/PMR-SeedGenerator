@@ -18,8 +18,8 @@ edges_dgb = [
     
     {"from": {"map": "DGB_01", "id": 0}, "to": {"map": "DGB_01", "id": 1}, "reqs": [["Bow"]]}, #? Great Hall Door 1F Bottom -> Great Hall Door Door 1F Left
     {"from": {"map": "DGB_01", "id": 1}, "to": {"map": "DGB_01", "id": 0}, "reqs": []}, #? Great Hall Door Door 1F Left -> Great Hall Door 1F Bottom
-    {"from": {"map": "DGB_01", "id": 0}, "to": {"map": "DGB_01", "id": 2}, "reqs": [[{"TubbaCastleKey": 1}]]}, #? Great Hall Door 1F Bottom -> Great Hall Door Door 1F Right
-    #! , require(partner="Bow") ^ 
+    {"from": {"map": "DGB_01", "id": 0}, "to": {"map": "DGB_01", "id": 2}, "reqs": [[{"TubbaCastleKey": 1}], ["Bow"]]}, #? Great Hall Door 1F Bottom -> Great Hall Door Door 1F Right
+
     {"from": {"map": "DGB_01", "id": 2}, "to": {"map": "DGB_01", "id": 0}, "reqs": []}, #? Great Hall Door Door 1F Right -> Great Hall Door 1F Bottom
     {"from": {"map": "DGB_01", "id": 3}, "to": {"map": "DGB_01", "id": 4}, "reqs": []}, #? Great Hall Door Door 2F Left -> Great Hall Door Door 2F Right
     {"from": {"map": "DGB_01", "id": 4}, "to": {"map": "DGB_01", "id": 3}, "reqs": []}, #? Great Hall Door Door 2F Right -> Great Hall Door Door 2F Left
@@ -141,7 +141,7 @@ edges_dgb = [
     # DGB_12 Spike Trap Room (2F)
     {"from": {"map": "DGB_12", "id": 0}, "to": {"map": "DGB_09", "id": 2}, "reqs": []}, # Spike Trap Room (2F) Door Bottom Left -> West Hall (2F) Door Top Left
     
-    {"from": {"map": "DGB_12", "id": 0},        "to": {"map": "DGB_12", "id": "ChestA"}, "reqs": [["Bow"]]}, #* Spike Trap Room (2F) Door Bottom Left -> ChestA (CastleKey1)
+    {"from": {"map": "DGB_12", "id": 0},        "to": {"map": "DGB_12", "id": "ChestA"}, "reqs": [["Bow","Lakilester"]]}, #* Spike Trap Room (2F) Door Bottom Left -> ChestA (CastleKey1)
     {"from": {"map": "DGB_12", "id": "ChestA"}, "to": {"map": "DGB_12", "id": 0},        "reqs": []}, #* ChestA (CastleKey1) -> Spike Trap Room (2F) Door Bottom Left
 
     # DGB_13 Hidden Bedroom (2F)
