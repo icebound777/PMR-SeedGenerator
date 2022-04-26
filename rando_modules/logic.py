@@ -1409,6 +1409,8 @@ def _algo_assumed_fill(
                     assert item not in dungeon_restricted_items
                     dungeon_restricted_items[item] = dungeon
 
+    pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
+
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()
         _init_mario_inventory(
@@ -1432,6 +1434,8 @@ def _algo_assumed_fill(
             candidate_locations = [node for node in candidate_locations if node.map_area.name[:3] == dungeon]
             dungeon_restricted_items.pop(item.item_name)
 
+        if len(candidate_locations) == 0:
+            raise UnbeatableSeedError("Failed to generate a beatable seed")
         placement_location = random.choice(candidate_locations)
         placement_location.current_item = item
         node_identifier = placement_location.identifier

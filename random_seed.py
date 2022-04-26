@@ -15,6 +15,7 @@ from rando_modules.random_palettes     \
            get_randomized_palettes
 from rando_modules.random_partners import get_rnd_starting_partners
 from rando_modules.random_quizzes import get_randomized_quizzes
+from rando_modules.unbeatable_seed_error import UnbeatableSeedError
 from worldgraph import generate as generate_world_graph
 from metadata.starting_maps import starting_maps
 from metadata.starting_items import allowed_starting_badges, allowed_starting_items, allowed_starting_key_items
@@ -57,35 +58,41 @@ class RandomSeed:
         self.init_starting_items(self.rando_settings)
 
         # Item Placement
-        world_graph_copy = deepcopy(world_graph)
-        for _, _ in place_items(item_placement= self.placed_items,
-                            algorithm=self.rando_settings.placement_algorithm,
-                            do_shuffle_items=self.rando_settings.shuffle_items["value"],
-                            do_randomize_coins=self.rando_settings.include_coins["value"],
-                            do_randomize_shops=self.rando_settings.include_shops["value"],
-                            do_randomize_panels=self.rando_settings.include_panels["value"],
-                            do_randomize_koopakoot=self.rando_settings.include_favors,
-                            do_randomize_letterchain=self.rando_settings.include_letterchain,
-                            do_randomize_dojo=self.rando_settings.include_dojo,
-                            item_scarcity=self.rando_settings.item_scarcity,
-                            itemtrap_mode=self.rando_settings.itemtrap_mode,
-                            starting_map_id=self.rando_settings.starting_map["value"],
-                            startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
-                            startwith_flowergate_open=self.rando_settings.flowergate_open["value"],
-                            startwith_toybox_open=self.rando_settings.toybox_open["value"],
-                            startwith_whale_open=self.rando_settings.whale_open["value"],
-                            starting_partners=self.starting_partners,
-                            speedyspin=self.rando_settings.always_speedyspin["value"],
-                            ispy=self.rando_settings.always_ispy["value"],
-                            peekaboo=self.rando_settings.always_peekaboo["value"],
-                            partners_always_usable=self.rando_settings.partners_always_usable["value"],
-                            partners_in_default_locations=self.rando_settings.partners_in_default_locations,
-                            hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
-                            keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
-                            starting_items=self.starting_items,
-                            add_item_pouches=self.rando_settings.add_item_pouches,
-                            world_graph=world_graph_copy):
-            pass
+        for x in range(0, 5):  # try 5 times
+            try:
+                world_graph_copy = deepcopy(world_graph)
+                for _, _ in place_items(item_placement= self.placed_items,
+                                    algorithm=self.rando_settings.placement_algorithm,
+                                    do_shuffle_items=self.rando_settings.shuffle_items["value"],
+                                    do_randomize_coins=self.rando_settings.include_coins["value"],
+                                    do_randomize_shops=self.rando_settings.include_shops["value"],
+                                    do_randomize_panels=self.rando_settings.include_panels["value"],
+                                    do_randomize_koopakoot=self.rando_settings.include_favors,
+                                    do_randomize_letterchain=self.rando_settings.include_letterchain,
+                                    do_randomize_dojo=self.rando_settings.include_dojo,
+                                    item_scarcity=self.rando_settings.item_scarcity,
+                                    itemtrap_mode=self.rando_settings.itemtrap_mode,
+                                    starting_map_id=self.rando_settings.starting_map["value"],
+                                    startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
+                                    startwith_flowergate_open=self.rando_settings.flowergate_open["value"],
+                                    startwith_toybox_open=self.rando_settings.toybox_open["value"],
+                                    startwith_whale_open=self.rando_settings.whale_open["value"],
+                                    starting_partners=self.starting_partners,
+                                    speedyspin=self.rando_settings.always_speedyspin["value"],
+                                    ispy=self.rando_settings.always_ispy["value"],
+                                    peekaboo=self.rando_settings.always_peekaboo["value"],
+                                    partners_always_usable=self.rando_settings.partners_always_usable["value"],
+                                    partners_in_default_locations=self.rando_settings.partners_in_default_locations,
+                                    hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
+                                    keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
+                                    starting_items=self.starting_items,
+                                    add_item_pouches=self.rando_settings.add_item_pouches,
+                                    world_graph=world_graph_copy):
+                    pass
+                break
+
+            except UnbeatableSeedError as err:
+                print(f"Failed to place items! Fail count: {x+1}")
 
         # Modify Mystery? item
         self.rando_settings.mystery_settings = get_random_mystery(self.rando_settings.mystery_settings)
