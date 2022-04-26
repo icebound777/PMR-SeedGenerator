@@ -645,9 +645,8 @@ def validate_options(options_dict):
         assert (isinstance(options_dict.get("PlacementAlgorithm").get("value"), str)
             and options_dict.get("PlacementAlgorithm").get("value") in [
                 "ForwardFill",
-                "AssumedFill",
                 #"WeightedForwardFill", # NYI
-                #"AssumedFill", # NYI
+                "AssumedFill",
                 "CustomSeed"
             ]
         )
