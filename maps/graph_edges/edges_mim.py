@@ -1,5 +1,3 @@
-from rando_modules.simulate import *
-
 """This file represents all edges of the world graph that have origin-nodes in the MIM (Forever Forest) area."""
 edges_mim = [
     # MIM_01 Flower Sounds
@@ -145,7 +143,7 @@ edges_mim = [
     {"from": {"map": "MIM_11", "id": 1}, "to": {"map": "MIM_11", "id": 0}, "reqs": []}, #? Outside Boo's Mansion Entrance to Wasteland -> Outside Boo's Mansion Forever Forest Entrance
     {"from": {"map": "MIM_11", "id": 0}, "to": {"map": "MIM_11", "id": 2}, "reqs": []}, #? Outside Boo's Mansion Forever Forest Entrance -> Outside Boo's Mansion Front Door
     {"from": {"map": "MIM_11", "id": 2}, "to": {"map": "MIM_11", "id": 0}, "reqs": []}, #? Outside Boo's Mansion Front Door -> Outside Boo's Mansion Forever Forest Entrance
-    {"from": {"map": "MIM_11", "id": 0}, "to": {"map": "MIM_11", "id": 3}, "reqs": [require(flag="GF_TIK09_WarpPipe")]}, #? Outside Boo's Mansion Forever Forest Entrance -> Outside Boo's Mansion Blue Warp Pipe
+    {"from": {"map": "MIM_11", "id": 0}, "to": {"map": "MIM_11", "id": 3}, "reqs": [["GF_TIK09_WarpPipe"]]}, #? Outside Boo's Mansion Forever Forest Entrance -> Outside Boo's Mansion Blue Warp Pipe
     {"from": {"map": "MIM_11", "id": 3}, "to": {"map": "MIM_11", "id": 0}, "reqs": []}, #? Outside Boo's Mansion Blue Warp Pipe -> Outside Boo's Mansion Forever Forest Entrance
     
     {"from": {"map": "MIM_11", "id": 0},             "to": {"map": "MIM_11", "id": "YBlockA"},     "reqs": []}, #* Outside Boo's Mansion Forever Forest Entrance -> YBlockA (VoltShroom)
@@ -157,9 +155,9 @@ edges_mim = [
     {"from": {"map": "MIM_12", "id": 0}, "to": {"map": "MIM_11", "id": 1}, "reqs": []}, # Exit to Gusty Gulch Exit West -> Outside Boo's Mansion Entrance to Wasteland
     {"from": {"map": "MIM_12", "id": 1}, "to": {"map": "ARN_07", "id": 2}, "reqs": []}, # Exit to Gusty Gulch Exit East -> Windmill Exterior Exit Left
     
-    {"from": {"map": "MIM_12", "id": 0}, "to": {"map": "MIM_12", "id": 1}, "reqs": [require(flag="RF_OpenedGustyGulch")]}, #? Exit to Gusty Gulch Exit West -> Exit to Gusty Gulch Exit East
-    {"from": {"map": "MIM_12", "id": 1}, "to": {"map": "MIM_12", "id": 0}, "reqs": [require(flag="RF_OpenedGustyGulch")]}, #? Exit to Gusty Gulch Exit East -> Exit to Gusty Gulch Exit West
+    {"from": {"map": "MIM_12", "id": 0}, "to": {"map": "MIM_12", "id": 1}, "reqs": [["RF_OpenedGustyGulch"]]}, #? Exit to Gusty Gulch Exit West -> Exit to Gusty Gulch Exit East
+    {"from": {"map": "MIM_12", "id": 1}, "to": {"map": "MIM_12", "id": 0}, "reqs": [["RF_OpenedGustyGulch"]]}, #? Exit to Gusty Gulch Exit East -> Exit to Gusty Gulch Exit West
     
-    {"from": {"map": "MIM_12", "id": 1},             "to": {"map": "MIM_12", "id": "HiddenPanel"}, "reqs": [can_flip_panels]}, #* Exit to Gusty Gulch Exit East -> HiddenPanel (StarPiece)
+    {"from": {"map": "MIM_12", "id": 1},             "to": {"map": "MIM_12", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Exit to Gusty Gulch Exit East -> HiddenPanel (StarPiece)
     {"from": {"map": "MIM_12", "id": "HiddenPanel"}, "to": {"map": "MIM_12", "id": 1},             "reqs": []}, #* HiddenPanel (StarPiece) -> Exit to Gusty Gulch Exit East
 ]
