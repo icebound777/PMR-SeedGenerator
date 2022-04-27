@@ -1625,7 +1625,7 @@ def get_item_spheres(
             node_long_name = f'({verbose_area_names[node.map_area.name[:3]]}) {node.map_area.verbose_name} - {verbose_item_locations[node.map_area.name][node.key_name_item]}'
 
             item_suffix = ""
-            if item.item_name not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
+            if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
                 item_suffix = "*"
 
             item_spheres_text += f'    ({node_long_name}): {item.item_name}{item_suffix}\n'
