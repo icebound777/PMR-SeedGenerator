@@ -1276,9 +1276,11 @@ def find_available_nodes(
     reachable_item_nodes = {}
     non_traversable_edges = defaultdict(set)
     filled_item_node_ids = set()
+
     reachable_node_ids.add(starting_node_id)
     for edge in world_graph[starting_node_id]["edge_list"]:
         non_traversable_edges[starting_node_id].add(edge)
+
     return(find_empty_reachable_nodes(world_graph,
                                    reachable_node_ids,
                                    reachable_item_nodes,
@@ -1330,14 +1332,18 @@ def find_empty_reachable_nodes(
                 mario.add_to_inventory(current_item.item_name)
                 found_new_items = True
                 filled_item_node_ids.add(node_id)
+
             checked_item_node_ids.add(node_id)
+
         # Keep searching for new edges and nodes until we don't find any new
         # items which might open up even more edges and nodes
         if not found_new_items:
             break
+
     for node_id, item_node in sorted(reachable_item_nodes.items()):
         if node_id not in filled_item_node_ids:
             empty_item_nodes.append(item_node)
+
     return empty_item_nodes
 
 def _algo_assumed_fill(
@@ -1436,12 +1442,14 @@ def _algo_assumed_fill(
             startwith_toybox_open,
             startwith_whale_open
         )
+
         for item_ in pool_combined_progression_items:
             mario.add_to_inventory(item_.item_name)
 
         candidate_locations = find_available_nodes(world_graph, starting_node_id, mario)
         if item.item_name in progression_miscitems_names:
             candidate_locations = [node for node in candidate_locations if is_itemlocation_replenishable(node)]
+
         if item.item_name in dungeon_restricted_items:
             dungeon = dungeon_restricted_items[item.item_name]
             candidate_locations = [node for node in candidate_locations if node.map_area.name[:3] == dungeon]
@@ -1449,13 +1457,13 @@ def _algo_assumed_fill(
 
         if len(candidate_locations) == 0:
             raise UnbeatableSeedError("Failed to generate a beatable seed")
+
         placement_location = random.choice(candidate_locations)
         placement_location.current_item = item
         node_identifier = placement_location.identifier
+
         if "Shop" in node_identifier:
             placement_location.current_item.base_price = get_shop_price(placement_location, do_randomize_shops)
-        print(placement_location)
-
 
     # Mark all unreachable nodes, which hold pre-filled items, as filled
     for item_node in all_item_nodes:
@@ -1482,12 +1490,14 @@ def _algo_assumed_fill(
             for i_item, item in enumerate(pool_other_items):
                 if item.item_name != "Coin":
                     item_index = i_item
+
             if item_index == -1:
                 # No non-coin item in item-pool: Just place a Mushroom
                 pool_other_items.pop()
                 random_item = Item.get(Item.item_name == "Mushroom")
             else:
                 random_item = pool_other_items.pop(item_index)
+
             item_node.current_item = random_item
             filled_item_node_ids.add(item_node_id)
             logging.debug(f"{item_node_id}: {random_item.item_name}")
@@ -1507,10 +1517,13 @@ def _algo_assumed_fill(
                         random_item = pool_other_items.pop(random_item_id)
 
                 item_node.current_item = random_item
+
                 if "Shop" in item_node_id:
                     item_node.current_item.base_price = get_shop_price(item_node, do_randomize_shops)
+
                 filled_item_node_ids.add(item_node_id)
                 logging.debug(f"{item_node_id}: {random_item.item_name}")
+
             except ValueError as err:
                 logging.warning(f"filled_item_node_ids size: {len(filled_item_node_ids)}")
                 logging.warning(f"pool_other_items size: {len(pool_other_items)}")
@@ -1565,20 +1578,23 @@ def get_item_spheres(
     # Find initially reachable nodes within the world graph
     for edge in world_graph.get(starting_node_id).get("edge_list"):
         non_traversable_edges[starting_node_id].add(edge)
+
     reachable_node_ids.add(starting_node_id)
 
-    item_spheres_text = ""
+    item_spheres_text = "Starting Items:\n"
     item_placement_map = {}
     mario_item_history = mario.item_history
 
     for n in item_placement:
         item_placement_map[n.identifier] = n
-    item_spheres_text += 'Starting Items:\n'
+
     for item in mario_item_history:
         item_suffix = ""
         if item in progression_items.values() or item in progression_miscitems_names:
             item_suffix = "*"
+
         item_spheres_text += f'    ((Start) Mario\'s inventory): {item}{item_suffix}\n'
+
     sphere = 0
     while True:
         pool_misc_progression_items, \
@@ -1611,6 +1627,7 @@ def get_item_spheres(
             item_suffix = ""
             if item.item_name not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
                 item_suffix = "*"
+
             item_spheres_text += f'    ({node_long_name}): {item.item_name}{item_suffix}\n'
             mario.add_to_inventory(item.item_name)
         sphere += 1
