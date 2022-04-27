@@ -1590,6 +1590,7 @@ def get_item_spheres(
 
     for item in mario_item_history:
         item_suffix = ""
+        item = item[1:] # Remove the trailing + from items in initial mario history
         if item in progression_items.values() or item in progression_miscitems_names:
             item_suffix = "*"
 
