@@ -1281,12 +1281,16 @@ def find_available_nodes(
     for edge in world_graph[starting_node_id]["edge_list"]:
         non_traversable_edges[starting_node_id].add(edge)
 
-    return(find_empty_reachable_nodes(world_graph,
-                                   reachable_node_ids,
-                                   reachable_item_nodes,
-                                   non_traversable_edges,
-                                   filled_item_node_ids,
-                                   mario))
+    empty_reachables, mario = find_empty_reachable_nodes(
+        world_graph,
+        reachable_node_ids,
+        reachable_item_nodes,
+        non_traversable_edges,
+        filled_item_node_ids,
+        mario
+    )
+
+    return empty_reachables, mario
 
 
 def find_empty_reachable_nodes(
@@ -1316,13 +1320,15 @@ def find_empty_reachable_nodes(
 
         logging.debug(node_ids_to_check)
         for from_node_id in node_ids_to_check:
-            found_new_items, mario = (   _depth_first_search(from_node_id,
-                                                      world_graph,
-                                                      reachable_node_ids,
-                                                      reachable_item_nodes,
-                                                      non_traversable_edges,
-                                                      mario)
-                               or found_new_items)
+            found_additional_items, mario = _depth_first_search(
+                from_node_id,
+                world_graph,
+                reachable_node_ids,
+                reachable_item_nodes,
+                non_traversable_edges,
+                mario
+            )
+            found_new_items = found_new_items or found_additional_items
 
         # Check if an item node is reachable which already has an item placed.
         for node_id in (reachable_item_nodes.keys() - checked_item_node_ids):
@@ -1344,7 +1350,7 @@ def find_empty_reachable_nodes(
         if node_id not in filled_item_node_ids:
             empty_item_nodes.append(item_node)
 
-    return empty_item_nodes
+    return empty_item_nodes, mario
 
 def _algo_assumed_fill(
     item_placement,
@@ -1446,7 +1452,11 @@ def _algo_assumed_fill(
         for item_ in pool_combined_progression_items:
             mario.add_to_inventory(item_.item_name)
 
-        candidate_locations = find_available_nodes(world_graph, starting_node_id, mario)
+        candidate_locations, mario = find_available_nodes(
+            world_graph,
+            starting_node_id,
+            mario
+        )
         if item.item_name in progression_miscitems_names:
             candidate_locations = [node for node in candidate_locations if is_itemlocation_replenishable(node)]
 
