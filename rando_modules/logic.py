@@ -91,7 +91,7 @@ def _depth_first_search(
     world_graph:dict,
     reachable_node_ids:set,
     reachable_item_nodes:dict,
-    non_traversable_edges:set,
+    non_traversable_edges:defaultdict, #(set)
     mario:Mario
 ):
     """
@@ -187,7 +187,7 @@ def _find_new_nodes_and_edges(
     world_graph:dict,
     reachable_node_ids:set,
     reachable_item_nodes:dict,
-    non_traversable_edges:list,
+    non_traversable_edges:defaultdict, #(set)
     filled_item_nodes:list,
     mario:Mario
 ):
@@ -954,7 +954,7 @@ def place_progression_items(
     reachable_node_ids,
     reachable_item_nodes,
     filled_item_nodes,
-    non_traversable_edges,
+    non_traversable_edges:defaultdict, #(set)
     world_graph
 ):
     if pool_other_items is None:
@@ -1342,9 +1342,9 @@ def find_empty_reachable_nodes(
     world_graph:dict,
     reachable_node_ids:set,
     reachable_item_nodes:dict,
-    non_traversable_edges:set,
+    non_traversable_edges:defaultdict,
     filled_item_node_ids:set,
-    mario
+    mario:Mario
 ):
     """
     Try to traverse already found edges which could not be traversed before.
