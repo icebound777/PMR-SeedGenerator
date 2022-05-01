@@ -646,7 +646,7 @@ def validate_options(options_dict):
             and options_dict.get("PlacementAlgorithm").get("value") in [
                 "ForwardFill",
                 #"WeightedForwardFill", # NYI
-                #"AssumedFill", # NYI
+                "AssumedFill",
                 "CustomSeed"
             ]
         )

@@ -11,14 +11,14 @@ class Mario:
     things that influence progression.
     """
     def __init__(self, **kwargs):
-        self.boots = kwargs.get("boots", [])
-        self.hammer = kwargs.get("hammer", [])
-        self.items = kwargs.get("items", [])
-        self.starpieces = kwargs.get("starpieces", [])
-        self.partners = kwargs.get("partners", [])
-        self.favors = kwargs.get("favors", []) # https://www.mariowiki.com/Koopa_Koot%27s_favors
-        self.flags = kwargs.get("flags", [])
-        self.starspirits = kwargs.get("starspirits", [])
+        self.boots = kwargs.get("boots", set())
+        self.hammer = kwargs.get("hammer", set())
+        self.items = kwargs.get("items", set())
+        self.starpieces = kwargs.get("starpieces", set())
+        self.partners = kwargs.get("partners", set())
+        self.favors = kwargs.get("favors", set()) # https://www.mariowiki.com/Koopa_Koot%27s_favors
+        self.flags = kwargs.get("flags", set())
+        self.starspirits = kwargs.get("starspirits", set())
         self.item_history = []
         self.starpiece_count = 0
 
@@ -37,11 +37,11 @@ class Mario:
                 or item_object.startswith("RF")
             ):
                 if item_object not in self.flags:
-                    self.flags.append(item_object)
+                    self.flags.add(item_object)
                 is_new_pseudoitem = True
             elif item_object in all_partners:
                 if item_object not in self.partners:
-                    self.partners.append(item_object)
+                    self.partners.add(item_object)
                     self.item_history.append(f"+{item_object}")
                     is_new_pseudoitem = True
             elif item_object.find("StarPiece") != -1:
@@ -50,30 +50,30 @@ class Mario:
                         self.starpiece_count += 3
                     else:
                         self.starpiece_count += 1
-                    self.starpieces.append(item_object)
+                    self.starpieces.add(item_object)
                     self.item_history.append(f"+{item_object}")
             elif item_object.startswith("FAVOR"):
                 if item_object not in self.favors:
-                    self.favors.append(item_object)
+                    self.favors.add(item_object)
                     is_new_pseudoitem = True
             elif item_object.startswith("EQUIPMENT"):
                 if (item_object.startswith("EQUIPMENT_Boots_Progressive")
                 and item_object not in self.boots
                 ):
-                    self.boots.append(item_object)
+                    self.boots.add(item_object)
                     is_new_pseudoitem = True
                 if (item_object.startswith("EQUIPMENT_Hammer_Progressive")
                 and item_object not in self.hammer
                 ):
-                    self.hammer.append(item_object)
+                    self.hammer.add(item_object)
                     is_new_pseudoitem = True
             elif item_object.startswith("STARSPIRIT"):
                 if item_object not in self.starspirits:
-                    self.starspirits.append(item_object)
+                    self.starspirits.add(item_object)
                 is_new_pseudoitem = True
             else:
                 if item_object not in self.items:
-                    self.items.append(item_object)
+                    self.items.add(item_object)
                     self.item_history.append(f"+{item_object}")
 
             #print(f"New item: {item_object}")
