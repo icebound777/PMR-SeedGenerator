@@ -1698,11 +1698,14 @@ def get_item_spheres(
             node_long_name = f'({verbose_area_names[node.map_area.name[:3]]}) {node.map_area.verbose_name} - {verbose_item_locations[node.map_area.name][node.key_name_item]}'
 
             item_suffix = ""
-            if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
-                item_suffix = "*"
+            if item.is_trapped():
+                item_spheres_text += f'    ({node_long_name}): TRAP ({item.item_name})\n'
+            else:
+                if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
+                    item_suffix = "*"
 
-            item_spheres_text += f'    ({node_long_name}): {item.item_name}{item_suffix}\n'
-            mario.add_to_inventory(item.item_name)
+                item_spheres_text += f'    ({node_long_name}): {item.item_name}{item_suffix}\n'
+                mario.add_to_inventory(item.item_name)
         sphere += 1
 
     assert "YOUWIN" in mario.items
