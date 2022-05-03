@@ -138,7 +138,7 @@ def create_nodes():
             vanilla_price = vanilla_price,
             item_index = data["value_id"],
             price_index = price_index if price_index else None,
-            identifier = f'{map_area.name}/{data["name"]}'
+            identifier = f"{map_area.name}/{data['name']}"
         )
         print(node, created)
 
@@ -165,6 +165,6 @@ def create_nodes():
                     entrance_id = entrance_id,
                     entrance_type = entrance_data["type"],
                     entrance_name = entrance_data["verbose_name"],
-                    identifier = f'{map_area.name}/{str(entrance_id)}'
+                    identifier = f"{map_area.name}/{str(entrance_id)}"
                 )
                 print(node, created)

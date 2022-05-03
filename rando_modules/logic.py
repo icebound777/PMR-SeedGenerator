@@ -150,12 +150,6 @@ def _depth_first_search(
                 non_traversable_edges[node_id].remove(edge)
                 #logging.debug("non_traversable_edges[node_id] after %s", non_traversable_edges[node_id])
 
-
-            # If edge requires multiuse item, remove one applicable item from
-            # our inventory
-            ## handled as part of simulate.require, which is very janky and
-            ## should be reworked
-
             # DFS from newly reachable node
             edge_target_node_id = get_edge_target_node_id(edge)
             found_additional_pseudoitems, mario = _depth_first_search(
