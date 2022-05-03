@@ -687,7 +687,8 @@ def _generate_item_pools(
     hidden_block_mode:int,
     starting_partners:list,
     starting_items:list,
-    add_item_pouches:bool
+    add_item_pouches:bool,
+    algorithm
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -776,7 +777,7 @@ def _generate_item_pools(
     items_to_add_to_pools = []
     pre_filled_dungeon_nodes = []
     pre_filled_node_ids = []
-    if not keyitems_outside_dungeon:
+    if not keyitems_outside_dungeon and algorithm == "ForwardFill":
         pre_filled_dungeon_nodes,\
             items_to_remove_from_pools,\
             items_to_add_to_pools = _get_limit_items_to_dungeons(
@@ -924,7 +925,8 @@ def _generate_item_pools(
         pool_other_items,
         itemtrap_mode,
         do_randomize_koopakoot,
-        do_randomize_dojo
+        do_randomize_dojo,
+        keyitems_outside_dungeon
     )
 
     return pool_other_items
@@ -1082,7 +1084,8 @@ def _algo_forward_fill(
     keyitems_outside_dungeon:bool,
     starting_items:list,
     add_item_pouches:bool,
-    world_graph
+    world_graph,
+    algorithm
 ):
 
     # Declare and init additional data structures
@@ -1124,7 +1127,8 @@ def _algo_forward_fill(
         hidden_block_mode,
         starting_partners,
         starting_items,
-        add_item_pouches
+        add_item_pouches,
+        algorithm
     )
 
     print("Initialize Mario's starting inventory...")
@@ -1407,7 +1411,8 @@ def _algo_assumed_fill(
     keyitems_outside_dungeon:bool,
     starting_items:list,
     add_item_pouches:bool,
-    world_graph
+    world_graph,
+    algorithm
 ):
 
     # Declare and init additional data structures
@@ -1437,7 +1442,7 @@ def _algo_assumed_fill(
         itemtrap_mode,
         startwith_bluehouse_open,
         startwith_flowergate_open,
-        True,#keyitems_outside_dungeon,
+        keyitems_outside_dungeon,
         partners_always_usable,
         partners_in_default_locations,
         speedyspin,
@@ -1446,7 +1451,8 @@ def _algo_assumed_fill(
         hidden_block_mode,
         starting_partners,
         starting_items,
-        add_item_pouches
+        add_item_pouches,
+        algorithm
     )
 
     starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
@@ -1765,7 +1771,8 @@ def place_items(
             keyitems_outside_dungeon,
             starting_items,
             add_item_pouches,
-            world_graph
+            world_graph,
+            algorithm
         )
     elif algorithm == "AssumedFill":
         # Place items in a backward fill, ensuring a maximally deep fill.
@@ -1794,5 +1801,6 @@ def place_items(
             keyitems_outside_dungeon,
             starting_items,
             add_item_pouches,
-            world_graph
+            world_graph,
+            algorithm
         )
