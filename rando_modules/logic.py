@@ -107,7 +107,7 @@ def _depth_first_search(
     Returns whether or not one or more pseudoitems have been found during
     graph traversal.
     """
-    logging.debug("> DFS node %s", node_id)
+    #logging.debug("> DFS node %s", node_id)
     found_new_pseudoitems = False
 
     # Node already visited? -> Return!
@@ -119,7 +119,7 @@ def _depth_first_search(
             return found_new_pseudoitems, mario
     else:
         reachable_node_ids.add(node_id)
-    logging.debug("DFS node_checked_earlier %s", node_checked_earlier)
+    #logging.debug("DFS node_checked_earlier %s", node_checked_earlier)
 
     # If the current node is an item node and thus not an entrance node,
     # add it to the list of reachable item nodes for later item placement
@@ -133,31 +133,22 @@ def _depth_first_search(
     else:
         # Get all formerly untraversable edges
         outgoing_edges = non_traversable_edges.pop(node_id)
-    logging.debug("DFS outgoing_edges %s", outgoing_edges)
+    #logging.debug("DFS outgoing_edges %s", outgoing_edges)
 
     for edge in outgoing_edges:
         # Check if all requirements for edge traversal are fulfilled
         if mario.requirements_fulfilled(edge.get("reqs")):
-            logging.debug("DFS edge requirements fullfilled %s", edge)
+            #logging.debug("DFS edge requirements fullfilled %s", edge)
             # Add all pseudoitems provided by this edge to the inventory
             if edge.get("pseudoitems") is not None:
                 mario.add_to_inventory(edge.get("pseudoitems"))
                 found_new_pseudoitems = True
 
             while edge in non_traversable_edges[node_id]:
-                logging.debug(
-                    "DFS remove edge from non_traversable_edges %s",
-                    edge
-                )
-                logging.debug(
-                    "non_traversable_edges[node_id] before %s",
-                    non_traversable_edges[node_id]
-                )
+                #logging.debug("DFS remove edge from non_traversable_edges %s",edge)
+                #logging.debug("non_traversable_edges[node_id] before %s", non_traversable_edges[node_id])
                 non_traversable_edges[node_id].remove(edge)
-                logging.debug(
-                    "non_traversable_edges[node_id] after %s",
-                    non_traversable_edges[node_id]
-                )
+                #logging.debug("non_traversable_edges[node_id] after %s", non_traversable_edges[node_id])
 
 
             # If edge requires multiuse item, remove one applicable item from
