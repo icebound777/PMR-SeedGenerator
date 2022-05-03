@@ -33,8 +33,9 @@ from db.palette         import create_palettes
 from rando_modules.random_partners import get_rnd_starting_partners
 
 
-BASE_MOD_VERSION = "0.9.0 (beta)"
-BASE_MOD_MD5 = "574dff98e1efb43e768d044266b009ce"
+BASE_MOD_VERSION = "0.10.0 (beta)"
+BASE_MOD_MD5 = "10785ABD05C36F4C6EEF27A80AE03642"
+BASE_MOD_DEBUG_MD5 = "C053A221D28ABE44C7919C580887D8F2"
 VERSION_STRING = f"Seed Generator for Paper Mario 64 Randomizer mod {BASE_MOD_VERSION}"
 
 
