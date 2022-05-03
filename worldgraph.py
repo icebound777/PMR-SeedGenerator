@@ -36,6 +36,14 @@ from maps.graph_edges.edges_tik import edges_tik
 from maps.graph_edges.edges_trd import edges_trd
 
 
+class hashabledict(dict):
+    def __init__(self, d):
+        super().__init__(d)
+        self._hash = hash(str(self))
+
+    def __hash__(self):
+        return self._hash
+
 def print_node_info(node):
     """Print a node's map name and its entrance_id or item key, depending on the node"""
     entrancenode_string = str(node.entrance_id) + "/" \
@@ -43,30 +51,6 @@ def print_node_info(node):
     itemnode_string = node.key_name_item + "/" \
                     + node.vanilla_item.item_name if node.key_name_item else ''
     print(f"{node.map_area.name} - {entrancenode_string}{itemnode_string}")
-
-
-def get_node_identifier(node):
-    """Returns a string representation of uniquely identifying data within a node"""
-    if(node.identifier):
-        return node.identifier
-
-    if (    node.entrance_id is None
-          and node.key_name_item is not None):
-        node_data_id = node.key_name_item
-
-    elif   (    node.entrance_id is not None
-          and node.key_name_item is None):
-        node_data_id = str(node.entrance_id)
-
-    else:
-        raise ValueError('Node argument has invalid entrance_id/item_id state',
-                         str(node.entrance_id),
-                         node.key_name_item,
-                         node)
-    node.identifier = f'{node.map_area.name}/{node_data_id}'
-
-    return node.identifier
-
 
 def get_all_nodes():
     """Returns a list of all item and entrance nodes"""
@@ -77,7 +61,8 @@ def get_all_nodes():
                     Node.entrance_name, Node.key_name_item,
                     Node.key_name_price, Node.item_source_type,
                     Node.vanilla_item, Node.current_item,
-                    Node.vanilla_price, Node.item_index, Node.price_index
+                    Node.vanilla_price, Node.item_index, Node.price_index,
+                    Node.identifier
                 )
                 .join(MapArea)
                 .order_by(MapArea.area_id, MapArea.map_id)
@@ -97,7 +82,8 @@ def get_area_nodes(area_shorthand:str):
                          Node.entrance_name, Node.key_name_item,
                          Node.key_name_price, Node.item_source_type,
                          Node.vanilla_item, Node.current_item,
-                         Node.vanilla_price, Node.item_index, Node.price_index
+                         Node.vanilla_price, Node.item_index, Node.price_index,
+                         Node.identifier
                      )
                      .join(MapArea)
                      .where(MapArea.area_id == cur_area_id)):
@@ -136,7 +122,7 @@ def get_all_edges():
     all_edges.extend(edges_sbk)
     all_edges.extend(edges_tik)
     all_edges.extend(edges_trd)
-    return all_edges
+    return [hashabledict(d) for d in all_edges]
 
 
 def get_area_edges(area_shorthand:str):
@@ -147,7 +133,7 @@ def get_area_edges(area_shorthand:str):
     else:
         raise KeyError
 
-    return area_edges
+    return [hashabledict(d) for d in area_edges]
 
 
 def generate(node_list, edge_list):
@@ -162,10 +148,9 @@ def generate(node_list, edge_list):
     world_graph = {}
 
     for node in node_list:
-        node_id = get_node_identifier(node)
-        world_graph[node_id] = {}
-        world_graph[node_id]["node"] = node
-        world_graph[node_id]["edge_list"] = []
+        world_graph[node.identifier] = {}
+        world_graph[node.identifier]["node"] = node
+        world_graph[node.identifier]["edge_list"] = []
 
         edge_list_cpy = edge_list.copy()
         for edge in edge_list:
@@ -175,7 +160,7 @@ def generate(node_list, edge_list):
                     pass
                 elif (   edge.get("from").get("id") == node.entrance_id
                       or edge.get("from").get("id") == node.key_name_item):
-                    world_graph[node_id]["edge_list"].append(edge)
+                    world_graph[node.identifier]["edge_list"].append(edge)
                     if not node.map_area.name.startswith("PRA_02"):
                         edge_list_cpy.remove(edge)
         edge_list = edge_list_cpy

@@ -62,7 +62,8 @@ ToyboxOpen    : false
 WhaleOpen     : false
 
 # Randomization: Logic
-PlacementAlgorithm: ForwardFill
+#PlacementAlgorithm: ForwardFill
+PlacementAlgorithm: AssumedFill
 #PlacementAlgorithm: WeightedForwardFill # NYI
 #PlacementAlgorithm: CustomSeed # NYI
 PlacementLogic: NoGlitches
@@ -163,8 +164,8 @@ KooperSetting    : 0
 KooperSprite     : 0
 #BombetteSetting  : 0 # NYI
 #BombetteSprite   : 0 # NYI
-#ParakarrySetting : 0 # NYI
-#ParakarrySprite  : 0 # NYI
+ParakarrySetting : 0
+ParakarrySprite  : 0
 BowSetting       : 0
 BowSprite        : 0
 WattSetting      : 0

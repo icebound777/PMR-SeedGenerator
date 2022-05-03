@@ -33,8 +33,9 @@ from db.palette         import create_palettes
 from rando_modules.random_partners import get_rnd_starting_partners
 
 
-BASE_MOD_VERSION = "0.8.0 (beta)"
-BASE_MOD_MD5 = "d7f95cd3da33d78e2d88a4412d98bf7e"
+BASE_MOD_VERSION = "0.10.0 (beta)"
+BASE_MOD_MD5 = "10785ABD05C36F4C6EEF27A80AE03642"
+BASE_MOD_DEBUG_MD5 = "C053A221D28ABE44C7919C580887D8F2"
 VERSION_STRING = f"Seed Generator for Paper Mario 64 Randomizer mod {BASE_MOD_VERSION}"
 
 
@@ -100,7 +101,11 @@ def is_rom_basemod(target_modfile:str) -> bool:
         for chunk in iter(lambda: in_file.read(4096), b""):
             hash_md5.update(chunk)
 
-    return hash_md5.hexdigest() == basemod_md5_hash
+    #return hash_md5.hexdigest() == basemod_md5_hash
+    #I killed this check because currently the randomizer destructively
+    #writes to the ROM. It isn't good to remove a safety check, but the
+    #CLI is frankly not reasonably usable without this hack in place for now.
+    return True
 
 
 def write_data_to_rom(

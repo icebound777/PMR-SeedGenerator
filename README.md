@@ -53,3 +53,5 @@ with assistance and contributions by
 * Rain
 * Jdaster64
 * MrN829
+* MrCheeze
+* AmazingAmpharos

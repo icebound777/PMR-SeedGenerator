@@ -21,7 +21,7 @@ def recalculate_crcs(target_modfile, coin_palette_crcs:list):
             t6 = 0xA3886759 # 6103 only
 
             file.seek(0x1000)
-            while file.tell() < 0x101000:
+            for i in range(0x100000//4):
                 d = int.from_bytes(file.read(4), "big") & 0xFFFFFFFF
                 if ((t6 + d) & 0xFFFFFFFF) < (t6 & 0xFFFFFFFF):
                     t4 += 1

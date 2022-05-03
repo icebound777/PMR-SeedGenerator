@@ -3,7 +3,6 @@ from math import ceil
 
 from db.item import Item
 from db.node import Node
-from worldgraph import get_node_identifier
 
 from metadata.item_exclusion import exclude_due_to_settings
 from metadata.itemlocation_special import kootfavors_locations
@@ -342,7 +341,7 @@ def get_trapped_itempool(
 
     koot_items = []
     for item_node in Node.select().where(Node.vanilla_item.is_null(False)):
-        if get_node_identifier(item_node) in kootfavors_locations:
+        if item_node.identifier in kootfavors_locations:
             koot_items.append(item_node.vanilla_item.item_name)
 
     trap_flag = 0x2000
