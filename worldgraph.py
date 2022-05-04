@@ -2,8 +2,6 @@
 This module represents a world graph. This graph maps item locations and the
 connections between them to allow simulated traversal of the in-game world.
 """
-#from peewee import *
-
 from metadata.area_name_mappings import area_name_id_map, area_name_edges_map
 
 from db.node import Node
@@ -191,7 +189,9 @@ def check_graph():
     check_nullnode_reference(all_nodes, all_edges)
 
     # Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe)
-    check_unreachable_from_start(all_nodes, all_edges)
+    print("Generating world graph from nodes and edges ...")
+    graph = generate(all_nodes, all_edges)
+    check_unreachable_from_start(graph, True)
 
     print("Done.")
 
@@ -295,13 +295,11 @@ def check_nullnode_reference(all_nodes, all_edges):
     print()
 
 
-def check_unreachable_from_start(all_nodes, all_edges):
+def check_unreachable_from_start(world_graph:dict, do_print:bool) -> list:
     """Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe)"""
-    print("Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe) ...")
-
     # build world graph
-    print("Generating world graph from nodes and edges ...")
-    world_graph = generate(all_nodes, all_edges)
+    if do_print:
+        print("Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe) ...")
 
     # prepare datastructures for world graph traversal
     visited_node_ids = []
@@ -316,21 +314,26 @@ def check_unreachable_from_start(all_nodes, all_edges):
             for edge in outgoing_edges:
                 depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
         except AttributeError as err:
-            print(f"{err.args}: Cannot find edges of {node_id}!")
+            if do_print:
+                print(f"{err.args}: Cannot find edges of {node_id}!")
             raise
 
     # traverse world graph
-    print("Checking node reachability in world graph ...")
+    if do_print:
+        print("Checking node reachability in world graph ...")
     depth_first_search("KMR_20/4")
 
     not_visited_node_ids = [id for id in world_graph.keys() if id not in visited_node_ids]
 
-    if len(not_visited_node_ids) == 0:
-        print("No unreachable nodes from KMR_20/4 found.")
-    else:
-        print(str(len(not_visited_node_ids)) + " unreachable nodes:")
-        for node_id in not_visited_node_ids:
-            print(node_id)
+    if do_print:
+        if len(not_visited_node_ids) == 0:
+            print("No unreachable nodes from KMR_20/4 found.")
+        else:
+            print(str(len(not_visited_node_ids)) + " unreachable nodes:")
+            for node_id in not_visited_node_ids:
+                print(node_id)
+
+    return not_visited_node_ids
 
 
 if __name__ == "__main__":
