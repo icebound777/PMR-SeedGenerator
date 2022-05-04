@@ -13,6 +13,13 @@ exclude_due_to_settings = {
         "MagicalSeed3",
         "MagicalSeed4",
     ],
+    "shorten_bowsers_castle": [
+        "BowserCastleKeyA",
+        "BowserCastleKeyB",
+        "BowserCastleKeyC",
+        "BowserCastleKeyD",
+        "BowserCastleKeyE",
+    ],
     "always_speedyspin": [
         "SpeedySpin",
     ],

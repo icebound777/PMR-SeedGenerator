@@ -325,7 +325,8 @@ def _get_limit_items_to_dungeons(
     partners_in_default_locations,
     starting_items:list,
     starting_partners:list,
-    hidden_block_mode:int
+    hidden_block_mode:int,
+    shorten_bowsers_castle:bool
 ):
     """
     Logically places progression items into their 'dungeons', then returns a
@@ -344,8 +345,10 @@ def _get_limit_items_to_dungeons(
         #"KZN",
         "FLO",
         "PRA",
-        "KPA",
     ]
+
+    if not shorten_bowsers_castle:
+        areas_to_limit.append("KPA")
 
     additional_edges = {
         "TRD": [ 
@@ -688,6 +691,7 @@ def _generate_item_pools(
     starting_partners:list,
     starting_items:list,
     add_item_pouches:bool,
+    shorten_bowsers_castle,
     algorithm
 ):
     """
@@ -786,7 +790,8 @@ def _generate_item_pools(
                     partners_in_default_locations,
                     starting_items,
                     starting_partners,
-                    hidden_block_mode
+                    hidden_block_mode,
+                    shorten_bowsers_castle
                 )
         for node in pre_filled_dungeon_nodes:
             pre_filled_node_ids.append(node.identifier)
@@ -839,6 +844,10 @@ def _generate_item_pools(
             items_to_remove_from_pools.append(item)
     if startwith_flowergate_open:
         for item_name in exclude_due_to_settings.get("startwith_flowergate_open"):
+            item = Item.get(Item.item_name == item_name)
+            items_to_remove_from_pools.append(item)
+    if shorten_bowsers_castle:
+        for item_name in exclude_due_to_settings.get("shorten_bowsers_castle"):
             item = Item.get(Item.item_name == item_name)
             items_to_remove_from_pools.append(item)
     if always_speedyspin:
@@ -1084,6 +1093,7 @@ def _algo_forward_fill(
     keyitems_outside_dungeon:bool,
     starting_items:list,
     add_item_pouches:bool,
+    shorten_bowsers_castle,
     world_graph,
     algorithm
 ):
@@ -1128,6 +1138,7 @@ def _algo_forward_fill(
         starting_partners,
         starting_items,
         add_item_pouches,
+        shorten_bowsers_castle,
         algorithm
     )
 
@@ -1411,6 +1422,7 @@ def _algo_assumed_fill(
     keyitems_outside_dungeon:bool,
     starting_items:list,
     add_item_pouches:bool,
+    shorten_bowsers_castle,
     world_graph,
     algorithm
 ):
@@ -1452,6 +1464,7 @@ def _algo_assumed_fill(
         starting_partners,
         starting_items,
         add_item_pouches,
+        shorten_bowsers_castle,
         algorithm
     )
 
@@ -1730,6 +1743,7 @@ def place_items(
     keyitems_outside_dungeon:bool,
     starting_items:list,
     add_item_pouches:list,
+    shorten_bowsers_castle:bool,
     world_graph = None
 ):
     """Places items into item locations according to chosen settings."""
@@ -1771,6 +1785,7 @@ def place_items(
             keyitems_outside_dungeon,
             starting_items,
             add_item_pouches,
+            shorten_bowsers_castle,
             world_graph,
             algorithm
         )
@@ -1801,6 +1816,7 @@ def place_items(
             keyitems_outside_dungeon,
             starting_items,
             add_item_pouches,
+            shorten_bowsers_castle,
             world_graph,
             algorithm
         )
