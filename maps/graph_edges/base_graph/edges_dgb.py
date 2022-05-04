@@ -18,7 +18,7 @@ edges_dgb = [
     
     {"from": {"map": "DGB_01", "id": 0}, "to": {"map": "DGB_01", "id": 1}, "reqs": [["Bow"]]}, #? Great Hall Door 1F Bottom -> Great Hall Door Door 1F Left
     {"from": {"map": "DGB_01", "id": 1}, "to": {"map": "DGB_01", "id": 0}, "reqs": []}, #? Great Hall Door Door 1F Left -> Great Hall Door 1F Bottom
-    {"from": {"map": "DGB_01", "id": 0}, "to": {"map": "DGB_01", "id": 2}, "reqs": [[{"TubbaCastleKey": 1}],["Bow"]]}, #? Great Hall Door 1F Bottom -> Great Hall Door Door 1F Right
+    {"from": {"map": "DGB_01", "id": 0}, "to": {"map": "DGB_01", "id": 2}, "reqs": [[{"TubbaCastleKey": 1}], ["Bow"]]}, #? Great Hall Door 1F Bottom -> Great Hall Door Door 1F Right
 
     {"from": {"map": "DGB_01", "id": 2}, "to": {"map": "DGB_01", "id": 0}, "reqs": []}, #? Great Hall Door Door 1F Right -> Great Hall Door 1F Bottom
     {"from": {"map": "DGB_01", "id": 3}, "to": {"map": "DGB_01", "id": 4}, "reqs": []}, #? Great Hall Door Door 2F Left -> Great Hall Door Door 2F Right
