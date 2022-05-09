@@ -140,6 +140,7 @@ def get_itemhints(
             if (    item_node.current_item.item_type in ["KEYITEM","BADGE"]
                 and item_node.current_item.item_name not in interesting_keyitems
                 and item_node.current_item.item_name not in interesting_badges
+                or item_node.current_item.is_trapped()
             ):
                 continue
 
