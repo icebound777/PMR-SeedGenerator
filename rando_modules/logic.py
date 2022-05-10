@@ -665,6 +665,57 @@ def _get_limit_items_to_dungeons(
     return modified_nodes, items_placed, items_overwritten
 
 
+def get_items_to_exclude(
+    do_randomize_dojo:bool,
+    starting_partners:list,
+    startwith_bluehouse_open:bool,
+    startwith_flowergate_open:bool,
+    shorten_bowsers_castle:bool,
+    always_speedyspin:bool,
+    always_ispy:bool,
+    always_peekaboo:bool,
+) -> list:
+    """
+    Returns a list of items that should not be placed or given to Mario at the
+    start.
+    """
+    excluded_items = []
+
+    if do_randomize_dojo:
+        for item_name in exclude_due_to_settings.get("do_randomize_dojo"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    for partner_string in starting_partners:
+        partner_item = Item.get(Item.item_name == partner_string)
+        excluded_items.append(partner_item)
+    if startwith_bluehouse_open:
+        for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    if startwith_flowergate_open:
+        for item_name in exclude_due_to_settings.get("startwith_flowergate_open"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    if shorten_bowsers_castle:
+        for item_name in exclude_due_to_settings.get("shorten_bowsers_castle"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    if always_speedyspin:
+        for item_name in exclude_due_to_settings.get("always_speedyspin"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    if always_ispy:
+        for item_name in exclude_due_to_settings.get("always_ispy"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    if always_peekaboo:
+        for item_name in exclude_due_to_settings.get("always_peekaboo"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+
+    return excluded_items
+
+
 def _generate_item_pools(
     world_graph,
     pool_progression_items:list,
@@ -831,37 +882,17 @@ def _generate_item_pools(
                         + len(pool_misc_progression_items) \
                         + len(pool_other_items)
 
-    if do_randomize_dojo:
-        for item_name in exclude_due_to_settings.get("do_randomize_dojo"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
-    for partner_string in starting_partners:
-        partner_item = Item.get(Item.item_name == partner_string)
-        items_to_remove_from_pools.append(partner_item)
-    if startwith_bluehouse_open:
-        for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
-    if startwith_flowergate_open:
-        for item_name in exclude_due_to_settings.get("startwith_flowergate_open"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
-    if shorten_bowsers_castle:
-        for item_name in exclude_due_to_settings.get("shorten_bowsers_castle"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
-    if always_speedyspin:
-        for item_name in exclude_due_to_settings.get("always_speedyspin"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
-    if always_ispy:
-        for item_name in exclude_due_to_settings.get("always_ispy"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
-    if always_peekaboo:
-        for item_name in exclude_due_to_settings.get("always_peekaboo"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
+    items_to_remove_from_pools.extend(
+        get_items_to_exclude(
+            do_randomize_dojo,
+            starting_partners,
+            startwith_bluehouse_open,
+            startwith_flowergate_open,
+            shorten_bowsers_castle,
+            always_speedyspin,
+            always_ispy,
+            always_peekaboo,
+    ))
     items_to_remove_from_pools.extend(starting_items)
 
     for item in items_to_add_to_pools:

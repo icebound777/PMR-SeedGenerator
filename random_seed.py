@@ -4,7 +4,7 @@ import random
 from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
 from optionset import OptionSet
-from rando_modules.logic import place_items, get_item_spheres
+from rando_modules.logic import place_items, get_item_spheres, get_items_to_exclude
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.modify_entrances import get_shorter_bowsercastle
 from rando_modules.random_formations import get_random_formations
@@ -26,6 +26,7 @@ class RandomSeed:
 
         self.rando_settings = rando_settings
         self.starting_partners = []
+        self.starting_items = []
         self.placed_items = []
         self.entrance_list = []
         self.enemy_stats = []
@@ -180,6 +181,7 @@ class RandomSeed:
             world_graph=world_graph
         )
 
+
     def init_starting_partners(self,rando_settings):
         # Choose random starting partners if necessary
         if rando_settings.random_partners:
@@ -215,38 +217,65 @@ class RandomSeed:
         return start_chapter
 
 
-    def init_starting_items(self, rando_settings):
-        starting_item_options = [
-            rando_settings.starting_item_0,
-            rando_settings.starting_item_1,
-            rando_settings.starting_item_2,
-            rando_settings.starting_item_3,
-            rando_settings.starting_item_4,
-            rando_settings.starting_item_5,
-            rando_settings.starting_item_6,
-            rando_settings.starting_item_7,
-            rando_settings.starting_item_8,
-            rando_settings.starting_item_9,
-            rando_settings.starting_item_A,
-            rando_settings.starting_item_B,
-            rando_settings.starting_item_C,
-            rando_settings.starting_item_D,
-            rando_settings.starting_item_E,
-            rando_settings.starting_item_F
-        ]
 
+    def init_starting_items(self, rando_settings:OptionSet):
+        """
+        Initialize the starting items from either the chosen starting items or
+        pick them randomly.
+        """
         if rando_settings.random_starting_items:
-            all_allowed_starting_items = allowed_starting_badges + allowed_starting_items + allowed_starting_key_items
+            starting_item_options = [
+                rando_settings.starting_item_0,
+                rando_settings.starting_item_1,
+                rando_settings.starting_item_2,
+                rando_settings.starting_item_3,
+                rando_settings.starting_item_4,
+                rando_settings.starting_item_5,
+                rando_settings.starting_item_6,
+                rando_settings.starting_item_7,
+                rando_settings.starting_item_8,
+                rando_settings.starting_item_9,
+                rando_settings.starting_item_A,
+                rando_settings.starting_item_B,
+                rando_settings.starting_item_C,
+                rando_settings.starting_item_D,
+                rando_settings.starting_item_E,
+                rando_settings.starting_item_F
+            ]
 
-            starting_items_amount = random.randint(rando_settings.random_starting_items_min, rando_settings.random_starting_items_max)
-            self.starting_items = []
+            # Set up allowed items
+            all_allowed_starting_items = (
+                allowed_starting_badges
+              + allowed_starting_items
+              + allowed_starting_key_items
+            )
+            excluded_items = get_items_to_exclude(
+                do_randomize_dojo=rando_settings.include_dojo,
+                starting_partners=self.starting_partners,
+                startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
+                startwith_flowergate_open=rando_settings.flowergate_open["value"],
+                shorten_bowsers_castle=rando_settings.shorten_bowsers_castle["value"],
+                always_speedyspin=rando_settings.always_speedyspin["value"],
+                always_ispy=rando_settings.always_ispy["value"],
+                always_peekaboo=rando_settings.always_peekaboo["value"],
+            )
+            for item_obj in excluded_items:
+                if item_obj.value in all_allowed_starting_items:
+                    all_allowed_starting_items.remove(item_obj.value)
+
+            starting_items_amount = random.randint(
+                rando_settings.random_starting_items_min,
+                rando_settings.random_starting_items_max
+            )
 
             for i in range(starting_items_amount):
                 random_item_id = random.choice(all_allowed_starting_items)
                 random_item_obj = Item.get_or_none(Item.value == random_item_id)
                 if random_item_obj is not None:
                     # No double uniques
-                    if (random_item_obj.item_type in ["BADGE", "KEYITEM", "STARPIECE"] and random_item_obj in self.starting_items):
+                    if (random_item_obj.item_type in ["BADGE", "KEYITEM", "STARPIECE"]
+                    and random_item_obj in self.starting_items
+                    ):
                         continue
 
                     self.starting_items.append(random_item_obj)
