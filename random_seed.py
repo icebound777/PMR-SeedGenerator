@@ -58,8 +58,8 @@ class RandomSeed:
         if self.rando_settings.shorten_bowsers_castle["value"]:
             self.entrance_list, world_graph = get_shorter_bowsercastle(world_graph)
         
+        starting_chapter = self.init_starting_map(self.rando_settings)
         self.init_starting_partners(self.rando_settings)
-        self.init_starting_map(self.rando_settings)
         self.init_starting_items(self.rando_settings)
 
         # Item Placement
@@ -114,7 +114,8 @@ class RandomSeed:
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(
             self.rando_settings.shuffle_chapter_difficulty,
-            self.rando_settings.progressive_scaling.get("value")
+            self.rando_settings.progressive_scaling.get("value"),
+            starting_chapter
         )
 
         # Randomize enemy battle formations
@@ -190,10 +191,29 @@ class RandomSeed:
         else:
             self.starting_partners = rando_settings.starting_partners
 
+
     def init_starting_map(self, rando_settings):
-        #Choose random starting map if necessary
-        if rando_settings.starting_map["value"] == 0xFFFFFFFF:
-            self.rando_settings.starting_map["value"] = random.choice(starting_maps)
+        """
+        Initializes the starting map and returns its chapter number. If the
+        starting map is to be chosen at random, pick from curated list.
+        """
+        starting_map_value = rando_settings.starting_map["value"]
+        start_chapter = None
+        if starting_map_value == 0xFFFFFFFF:
+            # Pick random starting location
+            start_chapter = random.choice(list(starting_maps.keys()))
+            self.rando_settings.starting_map["value"] = starting_maps[start_chapter]
+        else:
+            # Attempt to detect starting chapter value
+            for chapter_number, start_location in starting_maps.items():
+                if starting_map_value == start_location:
+                    start_chapter = chapter_number
+                    break
+            else:
+                start_chapter = 0
+        
+        return start_chapter
+
 
     def init_starting_items(self, rando_settings):
         starting_item_options = [

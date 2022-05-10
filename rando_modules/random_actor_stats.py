@@ -1,5 +1,3 @@
-import csv
-import os
 import random
 
 from db.actor_attribute import ActorAttribute
@@ -7,7 +5,8 @@ from db.actor_params import ActorParam
 
 def get_shuffled_chapter_difficulty(
     shuffle_chapter_difficulty:bool,
-    progressive_scaling:bool
+    progressive_scaling:bool,
+    starting_chapter:int
 ):
     # Load and reorganize actor param data into different format
     # format example:
@@ -61,6 +60,17 @@ def get_shuffled_chapter_difficulty(
         chapter_dict[old_chapter_number + 1] = new_chapter_number
     # Chapter 8 is never shuffled
     chapter_dict[8] = 8
+
+    if starting_chapter != 0 and chapter_dict[starting_chapter] > 3:
+        # Chapter we are starting in is too high of a level: adjust it
+        original_chapters = list(chapter_dict.keys())
+        random.shuffle(original_chapters)
+        for original_chapter in original_chapters:
+            if chapter_dict[original_chapter] <= 3:
+                swap_chapter = chapter_dict[starting_chapter]
+                chapter_dict[starting_chapter] = chapter_dict[original_chapter]
+                chapter_dict[original_chapter] = swap_chapter
+                break
 
     new_enemy_stats = []
 
