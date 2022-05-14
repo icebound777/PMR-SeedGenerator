@@ -3,8 +3,6 @@ This module represents Mario as an abstract object for simulating world traversa
 This is required for checking randomization logic.
 """
 
-from metadata.multiuse_progression_items import multiuse_progression_items
-
 class Mario:
     """
     Represents a state of Mario, including items, partners and more abstract
