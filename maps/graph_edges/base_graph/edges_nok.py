@@ -23,9 +23,9 @@ edges_nok = [
     {"from": {"map": "NOK_01", "id": "HiddenPanel"},   "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "GiftA"},         "reqs": [["Letter03"]]}, #* Koopa Village 1 Exit Left -> GiftA (StarPiece)
     {"from": {"map": "NOK_01", "id": "GiftA"},         "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* GiftA (StarPiece) -> Koopa Village 1 Exit Left
-    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "GiftB"},         "reqs": [["Letter14"]]}, #* Koopa Village 1 Exit Left -> GiftB (Letter15)
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "GiftB"},         "reqs": [["RF_Ch1_Fuzzies_Banished"],["Letter14"]]}, #* Koopa Village 1 Exit Left -> GiftB (Letter15)
     {"from": {"map": "NOK_01", "id": "GiftB"},         "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* GiftB (Letter15) -> Koopa Village 1 Exit Left
-    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "GiftC"},         "reqs": [["Letter16"]]}, #* Koopa Village 1 Exit Left -> GiftC (Letter17)
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "GiftC"},         "reqs": [["RF_Ch1_Fuzzies_Banished"],["Letter16"]]}, #* Koopa Village 1 Exit Left -> GiftC (Letter17)
     {"from": {"map": "NOK_01", "id": "GiftC"},         "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* GiftC (Letter17) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "ShopItemA"},     "reqs": []}, #* Koopa Village 1 Exit Left -> ShopItemA (DizzyDial)
     {"from": {"map": "NOK_01", "id": "ShopItemA"},     "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* ShopItemA (DizzyDial) -> Koopa Village 1 Exit Left
