@@ -101,13 +101,13 @@ progression_items = {
     0x017B : "BowserCastleKeyD",
     0x017C : "BowserCastleKeyE",
     #0x01D1 : "Goombario",
-    0x01D6 : "Kooper",
-    0x01D7 : "Bombette",
-    0x01D8 : "Parakarry",
-    0x01DA : "Watt",
-    0x01DB : "Sushie",
-    0x01DC : "Lakilester",
-    0x01DD : "Bow",
+    0x01E2 : "Kooper",
+    0x01E3 : "Bombette",
+    0x01E4 : "Parakarry",
+    0x01E6 : "Watt",
+    0x01E7 : "Sushie",
+    0x01E8 : "Lakilester",
+    0x01E9 : "Bow",
 }
     # 0x0078 ??
 
