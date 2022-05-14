@@ -3,6 +3,7 @@ from metadata.item_source_types import item_source_types as source_types
 from metadata.itemlocation_special \
     import kootfavors_locations,\
            chainletter_giver_locations,\
+           chainletter_final_reward_location,\
            limited_by_item_areas
 
 def get_itemhints(
@@ -13,7 +14,7 @@ def get_itemhints(
     do_randomize_shops:bool,
     do_randomize_panels:bool,
     do_randomize_koopakoot:bool,
-    do_randomize_letterchain:bool,
+    randomize_letters_mode:int,
     keyitems_outside_dungeon:bool
 ):
     """
@@ -122,7 +123,11 @@ def get_itemhints(
             ):
                 continue
             if (    item_node.identifier in chainletter_giver_locations
-                and not do_randomize_letterchain
+                and randomize_letters_mode < 3
+            ):
+                continue
+            if (    item_node.identifier == chainletter_final_reward_location
+                and randomize_letters_mode < 2
             ):
                 continue
             if (    item_node.current_item.item_name in limited_keyitems

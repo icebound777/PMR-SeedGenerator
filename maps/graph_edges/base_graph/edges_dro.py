@@ -16,6 +16,8 @@ edges_dro = [
     {"from": {"map": "DRO_01", "id": "GiftA"},     "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* GiftA (Melody) -> Outpost 1 Exit West
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "GiftB"},     "reqs": [["RF_MouserReturned"]]}, #* Outpost 1 Exit West -> GiftB (KootRedJar)
     {"from": {"map": "DRO_01", "id": "GiftB"},     "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* GiftB (KootRedJar) -> Outpost 1 Exit West
+    {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "GiftC"},     "reqs": [["RF_MouserReturned"],["Letter19"]]}, #* Outpost 1 Exit West -> GiftC (Letter12)
+    {"from": {"map": "DRO_01", "id": "GiftC"},     "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* GiftC (Letter12) -> Outpost 1 Exit West
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemA"}, "reqs": [["RF_MouserReturned"]]}, #* Outpost 1 Exit West -> ShopItemA (ThunderBolt)
     {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* ShopItemA (ThunderBolt) -> Outpost 1 Exit West
     # {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemB"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemB (DustyHammer)
@@ -48,6 +50,8 @@ edges_dro = [
     {"from": {"map": "DRO_02", "id": "GiftA"},       "to": {"map": "DRO_02", "id": 0},             "reqs": []}, #* GiftA (CrystalBall) -> Outpost 2 Exit West
     {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "GiftB"},       "reqs": [["RF_CanMeetMoustafa"]]}, #* Outpost 2 Exit West -> GiftB (PulseStone)
     {"from": {"map": "DRO_02", "id": "GiftB"},       "to": {"map": "DRO_02", "id": 0},             "reqs": []}, #* GiftB (PulseStone) -> Outpost 2 Exit West
+    {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "GiftC"},       "reqs": [["Letter17"]]}, #* Outpost 2 Exit West -> GiftC (Letter18)
+    {"from": {"map": "DRO_02", "id": "GiftC"},       "to": {"map": "DRO_02", "id": 0},             "reqs": []}, #* GiftC (Letter18) -> Outpost 2 Exit West
     {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Outpost 2 Exit West -> HiddenPanel (StarPiece)
     {"from": {"map": "DRO_02", "id": "HiddenPanel"}, "to": {"map": "DRO_02", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Outpost 2 Exit West
     {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "ItemA"},       "reqs": []}, #* Outpost 2 Exit West -> ItemA (Letter08)

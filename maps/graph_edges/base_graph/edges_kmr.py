@@ -27,6 +27,12 @@ edges_kmr  = [
     {"from": {"map": "KMR_02", "id": "GiftB"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftB (PowerJump) -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftC"       },  "reqs": [["Dolly"]]}, #* Goomba Village Exit Left -> GiftC (StarPiece)
     {"from": {"map": "KMR_02", "id": "GiftC"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftC (StarPiece) -> Goomba Village Exit Left
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftD"       },  "reqs": [["Letter02"]]}, #* Goomba Village Exit Left -> GiftD (StarPiece)
+    {"from": {"map": "KMR_02", "id": "GiftD"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftD (StarPiece) -> Goomba Village Exit Left
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftE"       },  "reqs": [["Letter10"]]}, #* Goomba Village Exit Left -> GiftE (Letter13)
+    {"from": {"map": "KMR_02", "id": "GiftE"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftE (Letter13) -> Goomba Village Exit Left
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "GiftF"       },  "reqs": [["Letter24"]]}, #* Goomba Village Exit Left -> GiftE (LuckyDay)
+    {"from": {"map": "KMR_02", "id": "GiftF"       },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* GiftE (LuckyDay) -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "Tree1_Drop1A"},  "reqs": [["can_shake_trees"]]}, #* Goomba Village Exit Left -> Tree1_Drop1A (Goomnut)
     {"from": {"map": "KMR_02", "id": "Tree1_Drop1A"},  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* Tree1_Drop1A (Goomnut) -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": "Partner"     },  "reqs": []}, #* Goomba Village Exit Left -> Partner (Goombario)

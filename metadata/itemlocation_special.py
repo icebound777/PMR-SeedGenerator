@@ -44,8 +44,34 @@ kootfavors_locations = [
 # This quest is started by giving Goompapa in Goomba Village a specific letter
 # and sends Mario around the world to acquire the Lucky Day badge in the end.
 chainletter_giver_locations = [
-    "MAC_03/GiftA",
-    "MAC_03/GiftB",
+    "KMR_02/GiftE", # Goompapa 1
+    "OSR_01/GiftA", # Muss T.
+    "NOK_01/GiftB", # Koover 1
+    "MAC_05/GiftC", # Fishmael
+    "NOK_01/GiftC", # Koover 2
+    "DRO_02/GiftC", # Mr. E.
+    "MAC_00/GiftC", # Miss T.
+    "DRO_01/GiftC", # Little Mouser
+    "OBK_01/GiftB", # Franky
+    "MAC_03/GiftA", # Dane T. 1
+    "JAN_03/GiftC", # Red Yoshi Kid
+    "MAC_03/GiftB", # Dane T. 2
+    "SAM_06/GiftB", # Frost T.
+]
+chainletter_final_reward_location = "KMR_02/GiftF" # Goompapa 2
+
+simpleletter_locations = [
+    "KMR_02/GiftD", # Goompa
+    "MAC_00/GiftB", # Russ T.
+    "MAC_01/GiftC", # Merlon
+    "MAC_01/GiftD", # Minh T.
+    "MAC_02/GiftC", # Fice T.
+    "HOS_06/GiftB", # Merlow
+    "NOK_01/GiftA", # Mort T.
+    "NOK_02/GiftE", # Kolorado
+    "SBK_34/GiftA", # Nomadimouse
+    "OBK_03/GiftA", # Igor
+    "SAM_01/GiftB", # Mayor Penguin
 ]
 
 dojo_locations = [

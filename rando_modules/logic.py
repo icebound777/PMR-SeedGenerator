@@ -29,6 +29,8 @@ from metadata.itemlocation_replenish import replenishing_itemlocations
 from metadata.itemlocation_special     \
     import kootfavors_locations,       \
            chainletter_giver_locations,\
+           chainletter_final_reward_location,\
+           simpleletter_locations,\
            dojo_locations,             \
            limited_by_item_areas,      \
            bush_tree_coin_locations
@@ -726,7 +728,7 @@ def _generate_item_pools(
     do_randomize_shops:bool,
     do_randomize_panels:bool,
     do_randomize_koopakoot:bool,
-    do_randomize_letterchain:bool,
+    randomize_letters_mode:int,
     do_randomize_dojo:bool,
     item_scarcity:int,
     itemtrap_mode:int,
@@ -806,7 +808,21 @@ def _generate_item_pools(
                 continue
 
             if (    current_node_id in chainletter_giver_locations
-                and not do_randomize_letterchain
+                and randomize_letters_mode < 3
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    current_node_id == chainletter_final_reward_location
+                and randomize_letters_mode < 2
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    current_node_id in simpleletter_locations
+                and randomize_letters_mode < 1
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -1105,7 +1121,7 @@ def _algo_forward_fill(
     do_randomize_shops,
     do_randomize_panels,
     do_randomize_koopakoot,
-    do_randomize_letterchain,
+    randomize_letters_mode:int,
     do_randomize_dojo,
     item_scarcity,
     itemtrap_mode,
@@ -1153,7 +1169,7 @@ def _algo_forward_fill(
         do_randomize_shops,
         do_randomize_panels,
         do_randomize_koopakoot,
-        do_randomize_letterchain,
+        randomize_letters_mode,
         do_randomize_dojo,
         item_scarcity,
         itemtrap_mode,
@@ -1434,7 +1450,7 @@ def _algo_assumed_fill(
     do_randomize_shops,
     do_randomize_panels,
     do_randomize_koopakoot,
-    do_randomize_letterchain,
+    randomize_letters_mode:int,
     do_randomize_dojo,
     item_scarcity,
     itemtrap_mode,
@@ -1479,7 +1495,7 @@ def _algo_assumed_fill(
         do_randomize_shops,
         do_randomize_panels,
         do_randomize_koopakoot,
-        do_randomize_letterchain,
+        randomize_letters_mode,
         do_randomize_dojo,
         item_scarcity,
         itemtrap_mode,
@@ -1755,7 +1771,7 @@ def place_items(
     do_randomize_shops,
     do_randomize_panels,
     do_randomize_koopakoot,
-    do_randomize_letterchain,
+    randomize_letters_mode:int,
     do_randomize_dojo,
     item_scarcity,
     itemtrap_mode,
@@ -1797,7 +1813,7 @@ def place_items(
             do_randomize_shops,
             do_randomize_panels,
             do_randomize_koopakoot,
-            do_randomize_letterchain,
+            randomize_letters_mode,
             do_randomize_dojo,
             item_scarcity,
             itemtrap_mode,
@@ -1828,7 +1844,7 @@ def place_items(
             do_randomize_shops,
             do_randomize_panels,
             do_randomize_koopakoot,
-            do_randomize_letterchain,
+            randomize_letters_mode,
             do_randomize_dojo,
             item_scarcity,
             itemtrap_mode,

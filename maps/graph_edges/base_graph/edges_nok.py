@@ -21,6 +21,12 @@ edges_nok = [
     {"from": {"map": "NOK_01", "id": "Bush7A_Drop1A"}, "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush7A_Drop1A (KootEmptyWallet) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "HiddenPanel"},   "reqs": [["can_flip_panels"]]}, #* Koopa Village 1 Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "NOK_01", "id": "HiddenPanel"},   "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> Koopa Village 1 Exit Left
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "GiftA"},         "reqs": [["Letter03"]]}, #* Koopa Village 1 Exit Left -> GiftA (StarPiece)
+    {"from": {"map": "NOK_01", "id": "GiftA"},         "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* GiftA (StarPiece) -> Koopa Village 1 Exit Left
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "GiftB"},         "reqs": [["Letter14"]]}, #* Koopa Village 1 Exit Left -> GiftB (Letter15)
+    {"from": {"map": "NOK_01", "id": "GiftB"},         "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* GiftB (Letter15) -> Koopa Village 1 Exit Left
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "GiftC"},         "reqs": [["Letter16"]]}, #* Koopa Village 1 Exit Left -> GiftC (Letter17)
+    {"from": {"map": "NOK_01", "id": "GiftC"},         "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* GiftC (Letter17) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "ShopItemA"},     "reqs": []}, #* Koopa Village 1 Exit Left -> ShopItemA (DizzyDial)
     {"from": {"map": "NOK_01", "id": "ShopItemA"},     "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* ShopItemA (DizzyDial) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "ShopItemB"},     "reqs": []}, #* Koopa Village 1 Exit Left -> ShopItemB (POWBlock)
@@ -63,6 +69,8 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": "Partner"},     "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* Partner (Kooper) -> Koopa Village 2 Exit Left
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "GiftD"},       "reqs": [["Artifact"],["RF_Ch1_Fuzzies_Banished"],["RF_CanVisitDesertCamp","RF_Ch2_SavedStarSpirit"]]}, #* Koopa Village 2 Exit Left -> GiftD (StarPiece)
     {"from": {"map": "NOK_02", "id": "GiftD"},       "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* GiftD (StarPiece) -> Koopa Village 2 Exit Left
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "GiftE"},       "reqs": [["Letter25"],["RF_Ch1_Fuzzies_Banished"],["RF_CanVisitDesertCamp","RF_Ch2_SavedStarSpirit"]]}, #* Koopa Village 2 Exit Left -> GiftE (StarPiece)
+    {"from": {"map": "NOK_02", "id": "GiftE"},       "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* GiftE (StarPiece) -> Koopa Village 2 Exit Left
     # Koopa Koot Initial Favors (*MB_SpiritsRescued < 1)
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift00"},  "reqs": [["KootKoopaLegends"],["RF_Ch1_Fuzzies_Banished"]], "pseudoitems": ["FAVOR_1_01_done"]}, #* Koopa Village 2 Exit Left -> KootGift00 (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift00"},  "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* KootGift00 (Coin) -> Koopa Village 2 Exit Left

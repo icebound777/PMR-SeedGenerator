@@ -75,7 +75,7 @@ class RandomSeed:
                     do_randomize_shops=self.rando_settings.include_shops["value"],
                     do_randomize_panels=self.rando_settings.include_panels["value"],
                     do_randomize_koopakoot=self.rando_settings.include_favors,
-                    do_randomize_letterchain=self.rando_settings.include_letterchain,
+                    randomize_letters_mode=self.rando_settings.include_letters_mode,
                     do_randomize_dojo=self.rando_settings.include_dojo,
                     item_scarcity=self.rando_settings.item_scarcity,
                     itemtrap_mode=self.rando_settings.itemtrap_mode,
@@ -145,7 +145,7 @@ class RandomSeed:
             self.rando_settings.include_shops["value"],
             self.rando_settings.include_panels["value"],
             self.rando_settings.include_favors,
-            self.rando_settings.include_letterchain,
+            self.rando_settings.include_letters_mode,
             self.rando_settings.keyitems_outside_dungeon
         )
 

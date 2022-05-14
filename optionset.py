@@ -83,7 +83,7 @@ class OptionSet:
 
         # Item related
         self.include_favors = False
-        self.include_letterchain = False
+        self.include_letters_mode = 0
         self.include_dojo = False
         self.item_scarcity = 0
         self.add_item_pouches = False
@@ -314,8 +314,8 @@ class OptionSet:
         # Item related
         if "IncludeFavors" in options_dict:
             self.include_favors = options_dict.get("IncludeFavors").get("value")
-        if "IncludeLetterChain" in options_dict:
-            self.include_letterchain = options_dict.get("IncludeLetterChain").get("value")
+        if "IncludeLettersMode" in options_dict:
+            self.include_letters_mode = options_dict.get("IncludeLettersMode").get("value")
         if "IncludeDojo" in options_dict:
             self.include_dojo = options_dict.get("IncludeDojo").get("value")
         if "ItemScarcity" in options_dict:
@@ -631,8 +631,8 @@ def validate_options(options_dict):
     # Item related
     if "IncludeFavors" in options_dict:
         assert isinstance(options_dict.get("IncludeFavors").get("value"), bool)
-    if "IncludeLetterChain" in options_dict:
-        assert isinstance(options_dict.get("IncludeLetterChain").get("value"), bool)
+    if "IncludeLettersMode" in options_dict:
+        assert isinstance(options_dict.get("IncludeLettersMode").get("value"), int)
     if "IncludeDojo" in options_dict:
         assert isinstance(options_dict.get("IncludeDojo").get("value"), bool)
     if "ItemScarcity" in options_dict:
