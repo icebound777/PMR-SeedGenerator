@@ -27,7 +27,8 @@ from rando_modules.unbeatable_seed_error import UnbeatableSeedError
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
 from metadata.itemlocation_special     \
-    import kootfavors_locations,       \
+    import kootfavors_reward_locations,       \
+           kootfavors_keyitem_locations,\
            chainletter_giver_locations,\
            chainletter_final_reward_location,\
            simpleletter_locations,\
@@ -718,7 +719,7 @@ def _generate_item_pools(
     do_randomize_coins:bool,
     do_randomize_shops:bool,
     do_randomize_panels:bool,
-    do_randomize_koopakoot:bool,
+    randomize_favors_mode:int,
     randomize_letters_mode:int,
     do_randomize_dojo:bool,
     item_scarcity:int,
@@ -791,8 +792,15 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    current_node_id in kootfavors_locations
-                and not do_randomize_koopakoot
+            if (    current_node_id in kootfavors_reward_locations
+                and randomize_favors_mode < 1
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    current_node_id in kootfavors_keyitem_locations
+                and randomize_favors_mode < 2
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -971,7 +979,7 @@ def _generate_item_pools(
     pool_other_items = get_trapped_itempool(
         pool_other_items,
         itemtrap_mode,
-        do_randomize_koopakoot,
+        randomize_favors_mode,
         do_randomize_dojo,
         keyitems_outside_dungeon
     )
@@ -1111,7 +1119,7 @@ def _algo_forward_fill(
     do_randomize_coins,
     do_randomize_shops,
     do_randomize_panels,
-    do_randomize_koopakoot,
+    randomize_favors_mode:int,
     randomize_letters_mode:int,
     do_randomize_dojo,
     item_scarcity,
@@ -1159,7 +1167,7 @@ def _algo_forward_fill(
         do_randomize_coins,
         do_randomize_shops,
         do_randomize_panels,
-        do_randomize_koopakoot,
+        randomize_favors_mode,
         randomize_letters_mode,
         do_randomize_dojo,
         item_scarcity,
@@ -1440,7 +1448,7 @@ def _algo_assumed_fill(
     do_randomize_coins,
     do_randomize_shops,
     do_randomize_panels,
-    do_randomize_koopakoot,
+    randomize_favors_mode:int,
     randomize_letters_mode:int,
     do_randomize_dojo,
     item_scarcity,
@@ -1485,7 +1493,7 @@ def _algo_assumed_fill(
         do_randomize_coins,
         do_randomize_shops,
         do_randomize_panels,
-        do_randomize_koopakoot,
+        randomize_favors_mode,
         randomize_letters_mode,
         do_randomize_dojo,
         item_scarcity,
@@ -1761,7 +1769,7 @@ def place_items(
     do_randomize_coins,
     do_randomize_shops,
     do_randomize_panels,
-    do_randomize_koopakoot,
+    randomize_favors_mode:int,
     randomize_letters_mode:int,
     do_randomize_dojo,
     item_scarcity,
@@ -1803,7 +1811,7 @@ def place_items(
             do_randomize_coins,
             do_randomize_shops,
             do_randomize_panels,
-            do_randomize_koopakoot,
+            randomize_favors_mode,
             randomize_letters_mode,
             do_randomize_dojo,
             item_scarcity,
@@ -1834,7 +1842,7 @@ def place_items(
             do_randomize_coins,
             do_randomize_shops,
             do_randomize_panels,
-            do_randomize_koopakoot,
+            randomize_favors_mode,
             randomize_letters_mode,
             do_randomize_dojo,
             item_scarcity,

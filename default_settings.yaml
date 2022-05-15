@@ -81,8 +81,8 @@ IncludeCoins          : true
 IncludeShops          : true
 IncludePanels         : true
 IncludeDojo           : false
-IncludeFavors         : false # Koopa Koot Favors
-IncludeLettersMode    : 0 # 1=simpleLetters,2=vanillaChainRndChainReward,3=fullshuffle
+IncludeFavorsMode     : 0 # 1=RndRewardsVanillaKeyitems, 2=FullShuffle
+IncludeLettersMode    : 0 # 1=simpleLetters,2=vanillaChainRndChainReward,3=FullShuffle
 ItemScarcity          : 0
 ItemTrapMode          : 0
 AddItemPouches        : false

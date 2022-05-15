@@ -1,7 +1,8 @@
 """This module handles creation of item hints for Merluvlee to offer Mario."""
 from metadata.item_source_types import item_source_types as source_types
 from metadata.itemlocation_special \
-    import kootfavors_locations,\
+    import kootfavors_reward_locations,\
+           kootfavors_keyitem_locations,\
            chainletter_giver_locations,\
            chainletter_final_reward_location,\
            simpleletter_locations,\
@@ -15,7 +16,7 @@ def get_itemhints(
     partners_in_default_locations:bool,
     do_randomize_shops:bool,
     do_randomize_panels:bool,
-    do_randomize_koopakoot:bool,
+    favors_mode:int,
     randomize_letters_mode:int,
     keyitems_outside_dungeon:bool
 ):
@@ -79,8 +80,12 @@ def get_itemhints(
                 and not do_randomize_panels
             ):
                 continue
-            if (    item_node.identifier in kootfavors_locations
-                and not do_randomize_koopakoot
+            if (    item_node.identifier in kootfavors_reward_locations
+                and favors_mode < 1
+            ):
+                continue
+            if (    item_node.identifier in kootfavors_keyitem_locations
+                and favors_mode < 2
             ):
                 continue
             if (    item_node.identifier in chainletter_giver_locations

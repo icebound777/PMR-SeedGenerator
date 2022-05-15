@@ -5,10 +5,7 @@ in special ways.
 
 # Item locations that are associated with Koopa Koot's favors.
 # These may be excluded from randomization.
-kootfavors_locations = [
-    "NOK_01/Bush6A_Drop1A", # KootGlasses
-    "NOK_01/Bush7A_Drop1A", # KootEmptyWallet
-    "NOK_02/GiftA", # KoopaLegends
+kootfavors_reward_locations = [
     "NOK_02/GiftB", # Koopa Koot Reward SilverCredit
     "NOK_02/GiftC", # Koopa Koot Reward GoldCredit
     "NOK_02/KootGift00", # Koopa Koot Reward Coin
@@ -31,6 +28,11 @@ kootfavors_locations = [
     "NOK_02/KootGift11", # Koopa Koot Reward Coin
     "NOK_02/KootGift12", # Koopa Koot Reward Coin
     "NOK_02/KootGift13", # Koopa Koot Reward StarPiecex3
+]
+kootfavors_keyitem_locations = [
+    "NOK_01/Bush6A_Drop1A", # KootGlasses
+    "NOK_01/Bush7A_Drop1A", # KootEmptyWallet
+    "NOK_02/GiftA", # KoopaLegends
     "HOS_06/GiftA", # KootMerluvleeAutograph
     "OBK_01/GiftA", # KootOldPhoto
     "KMR_20/GiftA", # KootLuigiAutograph

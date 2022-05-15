@@ -102,7 +102,7 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0A"},  "reqs": [["Goomnut"],["RF_CanVisitTayceT"],["FAVOR_4_02_done"],[{"starspirits": 3}]], "pseudoitems": ["FAVOR_4_03_done"]}, #* Koopa Village 2 Exit Left -> KootGift0A (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift0A"},  "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* KootGift0A (Coin) -> Koopa Village 2 Exit Left
     # Koopa Koot Favors (*MB_SpiritsRescued < 5)
-    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0B"},  "reqs": [["FAVOR_4_03_done"],[{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_01_done"]}, #* Koopa Village 2 Exit Left -> KootGift0B (StarPiece)
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0B"},  "reqs": [["FAVOR_4_03_done"],["MF_Ch1_RescuedStarSpirit"],[{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_01_done"]}, #* Koopa Village 2 Exit Left -> KootGift0B (StarPiece)
     {"from": {"map": "NOK_02", "id": "KootGift0B"},  "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* KootGift0B (StarPiece) -> Koopa Village 2 Exit Left
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0C"},  "reqs": [["KootOldPhoto"],["FAVOR_5_01_done"],[{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_02_done"]}, #* Koopa Village 2 Exit Left -> KootGift0C (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift0C"},  "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* KootGift0C (Coin) -> Koopa Village 2 Exit Left
@@ -128,9 +128,9 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_2_02_done"], [{"starspirits": 1}]], "pseudoitems": ["FAVOR_2_03_active"]}, #+ Get KootLuigiAutgraph from Luigi
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_2_03_done"], [{"starspirits": 2}]], "pseudoitems": ["FAVOR_3_01_active"]}, #+ Get KootEmptyWallet from Bush
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_3_02_done"], [{"starspirits": 2}]], "pseudoitems": ["FAVOR_3_03_active"]}, #+ Get KootMerluvleeAutograph from Merluvlee
-    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_5_01_done"], [{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_02_active"]}, #+ Get KootOldPhoto from Bruce
-    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_5_03_done"], [{"starspirits": 5}]], "pseudoitems": ["FAVOR_6_01_active"]}, #+ Get KootOldPhoto from Bruce
-    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_6_03_done"], [{"starspirits": 6}]], "pseudoitems": ["FAVOR_7_01_active"]}, #+ Get KootOldPhoto from Bruce
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_5_01_done"], [{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_02_active"]}, #+ Get KootOldPhoto from Franky
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_5_03_done"], [{"starspirits": 5}]], "pseudoitems": ["FAVOR_6_01_active"]}, #+ Get KootGlasses from Bush
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_6_03_done"], [{"starspirits": 6}]], "pseudoitems": ["FAVOR_7_01_active"]}, #+ Get KootPackage from Gusty Gulch Boo
 
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_NOK_1",
                                                                                                                    "StarPiece_NOK_2",

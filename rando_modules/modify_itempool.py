@@ -5,7 +5,10 @@ from db.item import Item
 from db.node import Node
 
 from metadata.item_exclusion import exclude_due_to_settings
-from metadata.itemlocation_special import kootfavors_locations, limited_by_item_areas
+from metadata.itemlocation_special import \
+    kootfavors_reward_locations, \
+    kootfavors_keyitem_locations, \
+    limited_by_item_areas
 
 def get_scarcitied_itempool(itempool:list, scarcity:int) -> list:
     """
@@ -313,7 +316,7 @@ def get_scarcitied_itempool(itempool:list, scarcity:int) -> list:
 def get_trapped_itempool(
     itempool:list,
     trap_mode:int,
-    do_randomize_koopakoot:bool,
+    randomize_favors_mode:int,
     do_randomize_dojo:bool,
     keyitems_outside_dungeon:bool
 ) -> list:
@@ -340,10 +343,12 @@ def get_trapped_itempool(
     else:
         max_traps = 80
 
-    koot_items = []
+    koot_items = {"rewards": [], "keyitems": []}
     for item_node in Node.select().where(Node.vanilla_item.is_null(False)):
-        if item_node.identifier in kootfavors_locations:
-            koot_items.append(item_node.vanilla_item.item_name)
+        if item_node.identifier in kootfavors_reward_locations:
+            koot_items["rewards"].append(item_node.vanilla_item.item_name)
+        if item_node.identifier in kootfavors_keyitem_locations:
+            koot_items["keyitems"].append(item_node.vanilla_item.item_name)
 
     trap_flag = 0x2000
     new_itempool = []
@@ -359,8 +364,12 @@ def get_trapped_itempool(
         and item.item_name in exclude_due_to_settings.get("do_randomize_dojo")
         ):
             continue
-        if (not do_randomize_koopakoot
-        and item.item_name in koot_items
+        if (    randomize_favors_mode < 1
+            and item.item_name in koot_items["rewards"]
+        ):
+            continue
+        if (    randomize_favors_mode < 2
+            and item.item_name in koot_items["keyitems"]
         ):
             continue
         if not keyitems_outside_dungeon:
