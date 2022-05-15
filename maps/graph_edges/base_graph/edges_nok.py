@@ -106,7 +106,7 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": "KootGift0B"},  "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* KootGift0B (StarPiece) -> Koopa Village 2 Exit Left
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0C"},  "reqs": [["KootOldPhoto"],["FAVOR_5_01_done"],[{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_02_done"]}, #* Koopa Village 2 Exit Left -> KootGift0C (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift0C"},  "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* KootGift0C (Coin) -> Koopa Village 2 Exit Left
-    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0D"},  "reqs": [["DriedPasta"],["RF_CanVisitTayceT"],["FAVOR_5_02_done"],[{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_03_done"]}, #* Koopa Village 2 Exit Left -> KootGift0D (Coin)
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0D"},  "reqs": [["DriedPasta"],["Cookbook"],["RF_CanVisitTayceT"],["FAVOR_5_02_done"],[{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_03_done"]}, #* Koopa Village 2 Exit Left -> KootGift0D (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift0D"},  "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* KootGift0D (Coin) -> Koopa Village 2 Exit Left
     # Koopa Koot Favors (*MB_SpiritsRescued < 6)
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0E"},  "reqs": [["KootGlasses"],["FAVOR_5_03_done"],[{"starspirits": 5}]], "pseudoitems": ["FAVOR_6_01_done"]}, #* Koopa Village 2 Exit Left -> KootGift0E (Coin)
