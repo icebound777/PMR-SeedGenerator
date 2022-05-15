@@ -92,7 +92,7 @@ class RandomSeed:
                     partners_in_default_locations=self.rando_settings.partners_in_default_locations,
                     hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
                     keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
-                    starting_items=self.starting_items,
+                    starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
                     add_item_pouches=self.rando_settings.add_item_pouches,
                     shorten_bowsers_castle=self.rando_settings.shorten_bowsers_castle["value"],
                     world_graph=world_graph_copy
@@ -177,7 +177,7 @@ class RandomSeed:
             starting_partners=self.starting_partners,
             partners_always_usable=self.rando_settings.partners_always_usable["value"],
             hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
-            starting_items=self.starting_items,
+            starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
             world_graph=world_graph
         )
 
