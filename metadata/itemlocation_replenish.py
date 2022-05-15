@@ -5,7 +5,7 @@ Thusly this list includes items sold by shops, items found in certain trees,
 bushes and crates, as well as the item traded by the hungry Yoshi and the final
 trade item from Rip Cheato.
 """
-replenishing_itemlocations = [
+replenishing_itemlocations = {
     "DRO_01/ShopItemA","DRO_01/ShopItemC","DRO_01/ShopItemF",
     "FLO_16/ItemB",
     "FLO_09/ItemA",
@@ -32,4 +32,4 @@ replenishing_itemlocations = [
     "OMO_01/ItemB","OMO_01/ItemC","OMO_01/ItemD","OMO_01/ItemE","OMO_01/ItemF",
     "SAM_02/ItemA","SAM_02/ShopItemA","SAM_02/ShopItemB","SAM_02/ShopItemC","SAM_02/ShopItemD","SAM_02/ShopItemE","SAM_02/ShopItemF",
     "SBK_56/Tree1_Drop1A","SBK_56/Tree2_Drop1A",
-]
+}

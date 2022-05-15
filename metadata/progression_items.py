@@ -111,7 +111,7 @@ progression_items = {
 }
     # 0x0078 ??
 
-progression_miscitems = [
+progression_miscitems = {
     "TastyTonic",  # 0x0089 (Koopa Koot) alternative: Lime,Lemon;BubbleBerry,Coconut
     "SleepySheep", # 0x008F (Koopa Koot)
     "LifeShroom",  # 0x0095 (Koopa Koot)
@@ -127,4 +127,4 @@ progression_miscitems = [
     "CakeMix",     # 0x00AA (Koopa Koot: +KoopaLeaf -> KookyCookie; LemonCandy for AntiGuy; Cake for Gourmet Guy)
     "Coconut",     # 0x00AC (Koopa Koot)
     "Cake",        # 0x00C1 (Gourmet Guy)
-]
+}

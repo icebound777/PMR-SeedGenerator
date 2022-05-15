@@ -144,7 +144,7 @@ def _depth_first_search(
             #logging.debug("DFS edge requirements fullfilled %s", edge)
             # Add all pseudoitems provided by this edge to the inventory
             if edge.get("pseudoitems") is not None:
-                mario.add_to_inventory(edge.get("pseudoitems"))
+                mario.add_to_inventory(edge.get("pseudoitems"), True)
                 found_new_pseudoitems = True
 
             while edge in non_traversable_edges[node_id]:
@@ -237,7 +237,7 @@ def _find_new_nodes_and_edges(
             current_item = item_node.current_item
             if current_item and item_node.identifier not in [x.identifier for x in filled_item_nodes]:
                 current_item_name = current_item.item_name
-                mario.add_to_inventory(current_item_name)
+                mario.add_to_inventory(current_item_name, is_itemlocation_replenishable(item_node))
                 found_new_items = True
 
                 # Special case: Item location is replenishable, holds a misc.
@@ -287,28 +287,28 @@ def _init_mario_inventory(
     """
     mario = Mario()
     if partners_always_usable:
-        mario.add_to_inventory(all_partners_imp)
+        mario.add_to_inventory(all_partners_imp, False)
     else:
-        mario.add_to_inventory(starting_partners)
+        mario.add_to_inventory(starting_partners, False)
 
-    mario.add_to_inventory("EQUIPMENT_Hammer_Progressive_1")
-    mario.add_to_inventory("EQUIPMENT_Boots_Progressive_1")
+    mario.add_to_inventory("EQUIPMENT_Hammer_Progressive_1", False)
+    mario.add_to_inventory("EQUIPMENT_Boots_Progressive_1", False)
 
     for item in starting_items:
-        mario.add_to_inventory(item.item_name)
+        mario.add_to_inventory(item.item_name, False)
 
     if hidden_block_mode == 3:
         # hidden blocks always visible
-        mario.add_to_inventory("RF_HiddenBlocksVisible")
+        mario.add_to_inventory("RF_HiddenBlocksVisible", False)
 
     if startwith_bluehouse_open:
-        mario.add_to_inventory("GF_MAC02_UnlockedHouse")
+        mario.add_to_inventory("GF_MAC02_UnlockedHouse", False)
     if startwith_flowergate_open:
-        mario.add_to_inventory("RF_Ch6_FlowerGateOpen")
+        mario.add_to_inventory("RF_Ch6_FlowerGateOpen", False)
     if startwith_toybox_open:
-        mario.add_to_inventory("RF_ToyboxOpen")
+        mario.add_to_inventory("RF_ToyboxOpen", False)
     if startwith_whale_open:
-        mario.add_to_inventory("RF_CanRideWhale")
+        mario.add_to_inventory("RF_CanRideWhale", False)
 
     return mario
 
@@ -559,7 +559,7 @@ def _get_limit_items_to_dungeons(
                 False
             )
         if area_name in additional_starting_items:
-            mario.add_to_inventory(additional_starting_items[area_name])
+            mario.add_to_inventory(additional_starting_items[area_name], False)
 
         # Find initially reachable nodes
         pool_misc_progression_items,    \
@@ -908,7 +908,7 @@ def _generate_item_pools(
             always_ispy,
             always_peekaboo,
     ))
-    items_to_remove_from_pools.extend(starting_items)
+    starting_items_to_remove_from_pools = starting_items[:]
 
     for item in items_to_add_to_pools:
         if item.progression:
@@ -933,6 +933,26 @@ def _generate_item_pools(
             continue
         if item in pool_other_items:
             pool_other_items.remove(item)
+            continue
+        logging.info(
+            "Attempted to remove %s from item pools, but no pool"\
+            " holds such item.",
+            item
+        )
+
+    while starting_items_to_remove_from_pools: # Same logic as above, except don't remove the last copy of a misc progression item.
+        item = starting_items_to_remove_from_pools.pop()
+        if item in pool_progression_items:
+            pool_progression_items.remove(item)
+            continue
+        if item in pool_other_items:
+            pool_other_items.remove(item)
+            continue
+        if item in pool_misc_progression_items:
+            logging.info(
+                "Did not remove %s from item pools, because it is the last replenishable one.",
+                item
+            )
             continue
         logging.info(
             "Attempted to remove %s from item pools, but no pool"\
@@ -1046,7 +1066,7 @@ def place_progression_items(
         # Put chosen item into the randomly chosen item node, add item to
         # inventory, then check for newly reachable item nodes
         random_node.current_item = random_item
-        mario.add_to_inventory(random_item.item_name)
+        mario.add_to_inventory(random_item.item_name, is_itemlocation_replenishable(random_node))
         items_placed.append(random_item)
         items_overwritten.append(random_node.vanilla_item)
         node_identifier = random_node.identifier
@@ -1426,7 +1446,7 @@ def find_empty_reachable_nodes(
             item_node = reachable_item_nodes[node_id]
             current_item = item_node.current_item
             if current_item:
-                mario.add_to_inventory(current_item.item_name)
+                mario.add_to_inventory(current_item.item_name, is_itemlocation_replenishable(item_node))
                 found_new_items = True
                 filled_item_node_ids.add(node_id)
 
@@ -1545,7 +1565,7 @@ def _algo_assumed_fill(
         )
 
         for item_ in pool_combined_progression_items:
-            mario.add_to_inventory(item_.item_name)
+            mario.add_to_inventory(item_.item_name, True)
 
         candidate_locations, mario = find_available_nodes(
             world_graph,
@@ -1713,7 +1733,7 @@ def get_item_spheres(
     for item in mario_item_history:
         item_suffix = ""
         item = item[1:] # Remove the trailing + from items in initial mario history
-        if item in progression_items.values() or item in progression_miscitems_names:
+        if item in progression_items.values():
             item_suffix = "*"
 
         item_spheres_text += f'    ((Start) Mario\'s inventory): {item}{item_suffix}\n'
@@ -1751,11 +1771,12 @@ def get_item_spheres(
             if item.is_trapped():
                 item_spheres_text += f'    ({node_long_name}): TRAP ({item.item_name})\n'
             else:
-                if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
+                is_replenishable = is_itemlocation_replenishable(node)
+                if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or (item.item_name in progression_miscitems_names and is_replenishable)):
                     item_suffix = "*"
 
                 item_spheres_text += f'    ({node_long_name}): {item.item_name}{item_suffix}\n'
-                mario.add_to_inventory(item.item_name)
+                mario.add_to_inventory(item.item_name, is_replenishable)
         sphere += 1
 
     assert "YOUWIN" in mario.items

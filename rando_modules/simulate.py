@@ -4,6 +4,7 @@ This is required for checking randomization logic.
 """
 
 from metadata.partners_meta import all_partners
+from metadata.progression_items import progression_miscitems
 
 class Mario:
     """
@@ -23,7 +24,7 @@ class Mario:
         self.starpiece_count = 0
 
 
-    def add_to_inventory(self, item_object):
+    def add_to_inventory(self, item_object, is_replenishable):
         """Add something to Mario's inventory."""
         # Overload: Single item -> Add item
         if isinstance(item_object, str):
@@ -71,8 +72,9 @@ class Mario:
                 is_new_pseudoitem = True
             else:
                 if item_object not in self.items:
-                    self.items.add(item_object)
-                    self.item_history.append(f"+{item_object}")
+                    if is_replenishable or item_object not in progression_miscitems:
+                        self.items.add(item_object)
+                        self.item_history.append(f"+{item_object}")
 
             #print(f"New item: {item_object}")
 
@@ -81,7 +83,7 @@ class Mario:
         if isinstance(item_object, list):
             has_new_pseudoitem = False
             for singular_item in item_object:
-                is_new_pseudoitem = self.add_to_inventory(singular_item)
+                is_new_pseudoitem = self.add_to_inventory(singular_item, is_replenishable)
                 if is_new_pseudoitem:
                     has_new_pseudoitem = True
             return has_new_pseudoitem
