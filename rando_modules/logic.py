@@ -1742,21 +1742,22 @@ def get_item_spheres(
         item_spheres_text += '\n'
         item_spheres_text += f'Sphere {sphere}:\n'        
 
-        while reachable_item_nodes:
-            node = reachable_item_nodes.pop(next(iter(reachable_item_nodes)))
+        for node_id, node in sorted(reachable_item_nodes.items()):
             item = item_placement_map[node.identifier].current_item
             node_long_name = f'({verbose_area_names[node.map_area.name[:3]]}) {node.map_area.verbose_name} - {verbose_item_locations[node.map_area.name][node.key_name_item]}'
+            item_verbose_name = verbose_item_names[item.item_name] if item.item_name in verbose_item_names else item.item_name
 
             item_suffix = ""
             if item.is_trapped():
-                item_spheres_text += f'    ({node_long_name}): TRAP ({item.item_name})\n'
+                item_spheres_text += f'    ({node_long_name}): TRAP ({item_verbose_name})\n'
             else:
                 if item.item_type != "ITEM" or is_itemlocation_replenishable(node):
                     if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
                         item_suffix = "*"
                     mario.add_to_inventory(item.item_name)
 
-                item_spheres_text += f'    ({node_long_name}): {item.item_name}{item_suffix}\n'
+                item_spheres_text += f'    ({node_long_name}): {item_verbose_name}{item_suffix}\n'
+        reachable_item_nodes.clear()
         sphere += 1
 
     assert "YOUWIN" in mario.items
