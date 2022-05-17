@@ -41,7 +41,7 @@ class RandomSeed:
         self.item_spheres_text = None
 
         if seed_value is None:
-            self.seed_value = 2917874726 #random.randint(0, 0xFFFFFFFF)
+            self.seed_value = random.randint(0, 0xFFFFFFFF)
         else:
             self.seed_value = seed_value
 
