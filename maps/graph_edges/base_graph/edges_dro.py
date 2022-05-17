@@ -14,7 +14,7 @@ edges_dro = [
     
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "GiftA"},     "reqs": [["Lyrics"]]}, #* Outpost 1 Exit West -> GiftA (Melody)
     {"from": {"map": "DRO_01", "id": "GiftA"},     "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* GiftA (Melody) -> Outpost 1 Exit West
-    {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "GiftB"},     "reqs": [["RF_MouserReturned"]]}, #* Outpost 1 Exit West -> GiftB (KootRedJar)
+    {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "GiftB"},     "reqs": [["RF_MouserReturned"],["FAVOR_7_02_done"]]}, #* Outpost 1 Exit West -> GiftB (KootRedJar)
     {"from": {"map": "DRO_01", "id": "GiftB"},     "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* GiftB (KootRedJar) -> Outpost 1 Exit West
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "GiftC"},     "reqs": [["RF_MouserReturned"],["Letter19"]]}, #* Outpost 1 Exit West -> GiftC (Letter12)
     {"from": {"map": "DRO_01", "id": "GiftC"},     "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* GiftC (Letter12) -> Outpost 1 Exit West
