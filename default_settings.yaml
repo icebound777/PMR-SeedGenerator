@@ -115,7 +115,7 @@ ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI
 RandomizeOnewayEntrances: false # NYI
 UnpairedEntrances       : false # NYI
-ShortenBowsersCastle    : false
+BowsersCastleMode       : 2 # 0=Off;1=NoPartnersKeys(Shorten);2=BossRush
 
 # Randomization: Quizzes
 RandomQuiz         : true

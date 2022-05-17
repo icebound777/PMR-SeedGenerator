@@ -6,7 +6,8 @@ from models.CoinPalette import CoinPalette
 from optionset import OptionSet
 from rando_modules.logic import place_items, get_item_spheres, get_items_to_exclude
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
-from rando_modules.modify_entrances import get_shorter_bowsercastle
+from rando_modules.modify_entrances import \
+    get_shorter_bowsercastle, get_bowsercastle_bossrush
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
@@ -40,7 +41,7 @@ class RandomSeed:
         self.item_spheres_text = None
 
         if seed_value is None:
-            self.seed_value = random.randint(0, 0xFFFFFFFF)
+            self.seed_value = 2917874726 #random.randint(0, 0xFFFFFFFF)
         else:
             self.seed_value = seed_value
 
@@ -56,8 +57,10 @@ class RandomSeed:
             world_graph = generate_world_graph(None, None)
 
         # Modify entrances if needed
-        if self.rando_settings.shorten_bowsers_castle["value"]:
+        if self.rando_settings.bowsers_castle_mode["value"] == 1:
             self.entrance_list, world_graph = get_shorter_bowsercastle(world_graph)
+        elif self.rando_settings.bowsers_castle_mode["value"] == 2:
+            self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
         
         starting_chapter = self.init_starting_map(self.rando_settings)
         self.init_starting_partners(self.rando_settings)
@@ -94,7 +97,7 @@ class RandomSeed:
                     keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
                     add_item_pouches=self.rando_settings.add_item_pouches,
-                    shorten_bowsers_castle=self.rando_settings.shorten_bowsers_castle["value"],
+                    bowsers_castle_mode=self.rando_settings.bowsers_castle_mode["value"],
                     world_graph=world_graph_copy
                 )
                 break
@@ -254,7 +257,7 @@ class RandomSeed:
                 starting_partners=self.starting_partners,
                 startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
                 startwith_flowergate_open=rando_settings.flowergate_open["value"],
-                shorten_bowsers_castle=rando_settings.shorten_bowsers_castle["value"],
+                bowsers_castle_mode=rando_settings.bowsers_castle_mode["value"],
                 always_speedyspin=rando_settings.always_speedyspin["value"],
                 always_ispy=rando_settings.always_ispy["value"],
                 always_peekaboo=rando_settings.always_peekaboo["value"],
