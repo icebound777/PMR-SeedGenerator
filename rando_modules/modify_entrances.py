@@ -3,7 +3,7 @@ This module is used to modify entrances / loading zones. Depending on chosen
 settings it can set pre-determined paths or randomize them.
 """
 
-from maps.graph_edges.shorten_bc.edges_kpa \
+from maps.graph_edges.bc_shorten.edges_kpa \
     import edges_kpa_add, edges_kpa_remove
 from worldgraph import adjust, check_unreachable_from_start
 
