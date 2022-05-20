@@ -121,7 +121,7 @@ edges_isk = [
     {"from": {"map": "ISK_11", "id": 1}, "to": {"map": "ISK_11", "id": 0}, "reqs": []}, #? Stone Puzzle Room Exit Top Right -> Stone Puzzle Room Exit Left
     {"from": {"map": "ISK_11", "id": 0}, "to": {"map": "ISK_11", "id": 2}, "reqs": []}, #? Stone Puzzle Room Exit Left -> Stone Puzzle Room Exit Bottom Right
     {"from": {"map": "ISK_11", "id": 2}, "to": {"map": "ISK_11", "id": 0}, "reqs": []}, #? Stone Puzzle Room Exit Bottom Right -> Stone Puzzle Room Exit Left
-    {"from": {"map": "ISK_11", "id": 0}, "to": {"map": "ISK_11", "id": 3}, "reqs": [["PyramidStone"], ["DiamondStone"], ["LunarStone"]], "pseudoitems": ["MB_Ch2_Spirit_ISK11_SolvedArtifactPuzzle"]}, #? Stone Puzzle Room Exit Left -> Stone Puzzle Room Exit Hidden Stairway
+    {"from": {"map": "ISK_11", "id": 0}, "to": {"map": "ISK_11", "id": 3}, "reqs": [["PyramidStone"],["DiamondStone"],["LunarStone"],["RF_DrainedThirdSandRoomAndCanSolvePuzzle"]], "pseudoitems": ["MB_Ch2_Spirit_ISK11_SolvedArtifactPuzzle"]}, #? Stone Puzzle Room Exit Left -> Stone Puzzle Room Exit Hidden Stairway
     {"from": {"map": "ISK_11", "id": 3}, "to": {"map": "ISK_11", "id": 0}, "reqs": [["MB_Ch2_Spirit_ISK11_SolvedArtifactPuzzle"]]}, #? Stone Puzzle Room Exit Hidden Stairway -> Stone Puzzle Room Exit Left
 
     # ISK_12 Sand Drainage Room 3
@@ -131,16 +131,16 @@ edges_isk = [
     {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_13", "id": 0}, "reqs": []}, # Sand Drainage Room 3 Exit Top Right -> Lunar Stone Room Exit Left
     
     {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 2}, "reqs": [["Bombette"]]}, #? Sand Drainage Room 3 Exit Top Left -> Sand Drainage Room 3 Exit Bottom Left
-    {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 3}, "reqs": [["MF_ISK12_DrainedThirdSandRoom"]]}, #? Sand Drainage Room 3 Exit Top Left -> Sand Drainage Room 3 Exit Top Right
-    {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 1}, "reqs": [["MF_ISK12_DrainedThirdSandRoom"]]}, #? Sand Drainage Room 3 Exit Top Right -> Sand Drainage Room 3 Exit Top Left
+    {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 3}, "reqs": [["RF_DrainedThirdSandRoomAndCanSolvePuzzle"]]}, #? Sand Drainage Room 3 Exit Top Left -> Sand Drainage Room 3 Exit Top Right
+    {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 1}, "reqs": [["RF_DrainedThirdSandRoomAndCanSolvePuzzle"]]}, #? Sand Drainage Room 3 Exit Top Right -> Sand Drainage Room 3 Exit Top Left
     {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 2}, "reqs": [["Bombette"]]}, #? Sand Drainage Room 3 Exit Top Right -> Sand Drainage Room 3 Exit Bottom Left
     
-    {"from": {"map": "ISK_12", "id": 0}, "to": {"map": "ISK_12", "id": 0}, "reqs": [], "pseudoitems": ["MF_ISK12_DrainedThirdSandRoom"]}, #+ Sand Drainage Room 3 Exit Upper Room Left
+    {"from": {"map": "ISK_12", "id": 0}, "to": {"map": "ISK_12", "id": 0}, "reqs": [], "pseudoitems": ["RF_DrainedThirdSandRoomAndCanSolvePuzzle"]}, #+ Sand Drainage Room 3 Exit Upper Room Left
     
     {"from": {"map": "ISK_12", "id": 2},       "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"]]}, #* Sand Drainage Room 3 Exit Bottom Left -> ItemA (RuinsKey)
     {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 2},       "reqs": []}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Bottom Left
     {"from": {"map": "ISK_12", "id": 3},       "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": []}, #* Sand Drainage Room 3 Exit Top Right -> ItemA (RuinsKey)
-    {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 3},       "reqs": [["MF_ISK12_DrainedThirdSandRoom"]]}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Top Right
+    {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 3},       "reqs": [["RF_DrainedThirdSandRoomAndCanSolvePuzzle"]]}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Top Right
 
     # ISK_13 Lunar Stone Room
     {"from": {"map": "ISK_13", "id": 0}, "to": {"map": "ISK_12", "id": 3}, "reqs": []}, # Lunar Stone Room Exit Left -> Sand Drainage Room 3 Exit Top Right

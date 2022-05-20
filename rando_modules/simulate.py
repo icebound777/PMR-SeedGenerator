@@ -3,7 +3,7 @@ This module represents Mario as an abstract object for simulating world traversa
 This is required for checking randomization logic.
 """
 
-from metadata.multiuse_progression_items import multiuse_progression_items
+from metadata.partners_meta import all_partners
 
 class Mario:
     """
@@ -25,8 +25,6 @@ class Mario:
 
     def add_to_inventory(self, item_object):
         """Add something to Mario's inventory."""
-        all_partners = ["Goombario", "Kooper", "Bombette", "Parakarry",
-                        "Bow", "Watt", "Sushie", "Lakilester"]
         # Overload: Single item -> Add item
         if isinstance(item_object, str):
             is_new_pseudoitem = False
@@ -95,8 +93,6 @@ class Mario:
 
     def remove_from_inventory(self, item_object):
         """Remove something from Mario's inventory."""
-        all_partners = ["Goombario", "Kooper", "Bombette", "Parakarry",
-                        "Bow", "Watt", "Sushie", "Lakilester"]
         # Overload: Single item -> Remove item
         if isinstance(item_object, str):
 
@@ -200,8 +196,6 @@ class Mario:
 
 
     def requirements_fulfilled(self, all_reqs:list):
-        all_partners = ["Goombario", "Kooper", "Bombette", "Parakarry",
-                        "Bow", "Watt", "Sushie", "Lakilester"]
         fulfilled = True
         # For the requirements to be fulfilled, all requirement groups have
         # to be met. Each requirement group has to have at least one of its

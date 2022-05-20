@@ -7,6 +7,9 @@ edges_osr = [
     {"from": {"map": "OSR_01", "id": 0}, "to": {"map": "OSR_01",  "id": 1}, "reqs": []}, #? Ruined Castle Grounds Exit South -> Ruined Castle Grounds Exit East
     {"from": {"map": "OSR_01", "id": 1}, "to": {"map": "OSR_01",  "id": 0}, "reqs": []}, #? Ruined Castle Grounds Exit East -> Ruined Castle Grounds Exit South
 
+    {"from": {"map": "OSR_01", "id": 0},       "to": {"map": "OSR_01",  "id": "GiftA"}, "reqs": [["Letter13"]]}, #* Ruined Castle Grounds Exit South -> GiftA (Letter14)
+    {"from": {"map": "OSR_01", "id": "GiftA"}, "to": {"map": "OSR_01",  "id": 0},       "reqs": []}, #* GiftA (Letter14) -> Ruined Castle Grounds Exit South
+
     # OSR_02 Hijacked Castle Entrance
     {"from": {"map": "OSR_02", "id": 0}, "to": {"map": "KPA_121", "id": 1}, "reqs": []}, # Hijacked Castle Entrance Door West -> Exit to Peach's Castle Exit East
     {"from": {"map": "OSR_02", "id": 1}, "to": {"map": "KKJ_10",  "id": 0}, "reqs": []}, # Hijacked Castle Entrance Door North -> Entry Hall (1F) Exit South

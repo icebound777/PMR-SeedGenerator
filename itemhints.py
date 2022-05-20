@@ -1,9 +1,13 @@
 """This module handles creation of item hints for Merluvlee to offer Mario."""
 from metadata.item_source_types import item_source_types as source_types
 from metadata.itemlocation_special \
-    import kootfavors_locations,\
+    import kootfavors_reward_locations,\
+           kootfavors_keyitem_locations,\
            chainletter_giver_locations,\
+           chainletter_final_reward_location,\
+           simpleletter_locations,\
            limited_by_item_areas
+from metadata.partners_meta import all_partners
 
 def get_itemhints(
     allow_itemhints:bool,
@@ -12,8 +16,8 @@ def get_itemhints(
     partners_in_default_locations:bool,
     do_randomize_shops:bool,
     do_randomize_panels:bool,
-    do_randomize_koopakoot:bool,
-    do_randomize_letterchain:bool,
+    favors_mode:int,
+    randomize_letters_mode:int,
     keyitems_outside_dungeon:bool
 ):
     """
@@ -29,47 +33,17 @@ def get_itemhints(
     for area in limited_by_item_areas:
         for item_type in limited_by_item_areas.get(area):
             limited_keyitems.extend(limited_by_item_areas[area][item_type])
-    interesting_keyitems = [
-        "UltraStone",
-        "PulseStone",
-        "CrystalPalaceKey",
-        "RedKey",
-        "BlueKey",
-        "LunarStone",
-        "PyramidStone",
-        "DiamondStone",
-        "BooWeight",
-        "BooPortrait",
-        "ToyTrain",
-        "StoreroomKey",
-        "JadeRaven",
-        "MagicalSeed1",
-        "MagicalSeed2",
-        "MagicalSeed3",
-        "MagicalSeed4",
-        "MagicalBean",
-        "FertileSoil",
-        "MiracleWater",
-        "WarehouseKey",
-        "SnowmanBucket",
-        "SnowmanScarf",
-        "StarStone",
-        "KoopaFortressKeyA",
-        "KoopaFortressKeyB",
-        "KoopaFortressKeyC",
-        "KoopaFortressKeyD",
-        "RuinsKeyA",
-        "RuinsKeyB",
-        "RuinsKeyC",
-        "RuinsKeyD",
-        "TubbaCastleKeyA",
-        "TubbaCastleKeyB",
-        "TubbaCastleKeyC",
-        "BowserCastleKeyA",
-        "BowserCastleKeyB",
-        "BowserCastleKeyC",
-        "BowserCastleKeyD",
-        "BowserCastleKeyE",
+    uninteresting_keyitems = [
+        "PrisonKeyA",
+        "PrisonKeyB",
+        "FirstDegreeCard",
+        "SecondDegreeCard",
+        "ThirdDegreeCard",
+        "FourthDegreeCard",
+        "Diploma",
+        "MysteryNote",
+        "SilverCredit",
+        "GoldCredit",
     ]
 
     interesting_badges = [
@@ -92,17 +66,6 @@ def get_itemhints(
         "DamageDodgeB",
         "AttackFXC", # :D
     ]
-    
-    all_partners = [
-        "Goombario",
-        "Kooper",
-        "Bombette",
-        "Parakarry",
-        "Bow",
-        "Watt",
-        "Sushie",
-        "Lakilester",
-    ]
 
     # The hints table is build by pairing an item id with a word describing
     # a map and a item source type (like 'given by npc' or 'in block')
@@ -117,12 +80,24 @@ def get_itemhints(
                 and not do_randomize_panels
             ):
                 continue
-            if (    item_node.identifier in kootfavors_locations
-                and not do_randomize_koopakoot
+            if (    item_node.identifier in kootfavors_reward_locations
+                and favors_mode < 1
+            ):
+                continue
+            if (    item_node.identifier in kootfavors_keyitem_locations
+                and favors_mode < 2
             ):
                 continue
             if (    item_node.identifier in chainletter_giver_locations
-                and not do_randomize_letterchain
+                and randomize_letters_mode < 3
+            ):
+                continue
+            if (    item_node.identifier == chainletter_final_reward_location
+                and randomize_letters_mode < 2
+            ):
+                continue
+            if (    item_node.identifier in simpleletter_locations
+                and randomize_letters_mode < 1
             ):
                 continue
             if (    item_node.current_item.item_name in limited_keyitems
@@ -137,9 +112,11 @@ def get_itemhints(
                 continue
 
             # Skip current non-partner item unless it is interesting in any way
-            if (    item_node.current_item.item_type in ["KEYITEM","BADGE"]
-                and item_node.current_item.item_name not in interesting_keyitems
-                and item_node.current_item.item_name not in interesting_badges
+            if (   (    item_node.current_item.item_type == "BADGE"
+                    and item_node.current_item.item_name not in interesting_badges)
+                or (    item_node.current_item.item_type == "KEYITEM"
+                    and item_node.current_item.item_name in uninteresting_keyitems)
+                or item_node.current_item.is_trapped()
             ):
                 continue
 

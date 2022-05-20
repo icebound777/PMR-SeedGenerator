@@ -82,8 +82,8 @@ class OptionSet:
         self.starting_item_F = get_option_keyvalue_dict("StartingItemF")
 
         # Item related
-        self.include_favors = False
-        self.include_letterchain = False
+        self.include_favors_mode = 0
+        self.include_letters_mode = 0
         self.include_dojo = False
         self.item_scarcity = 0
         self.add_item_pouches = False
@@ -103,7 +103,7 @@ class OptionSet:
         self.random_starpower_sp = 0
 
         # Entrance related
-        self.shorten_bowsers_castle = get_option_keyvalue_dict("ShortenBowsersCastle")
+        self.bowsers_castle_mode = get_option_keyvalue_dict("BowsersCastleMode")
         self.random_oneway_entrances = False # NYI
         self.unpaired_entrances = False # NYI
 
@@ -312,10 +312,10 @@ class OptionSet:
             self.starting_item_F = options_dict.get("StartingItemF")
 
         # Item related
-        if "IncludeFavors" in options_dict:
-            self.include_favors = options_dict.get("IncludeFavors").get("value")
-        if "IncludeLetterChain" in options_dict:
-            self.include_letterchain = options_dict.get("IncludeLetterChain").get("value")
+        if "IncludeFavorsMode" in options_dict:
+            self.include_favors_mode = options_dict.get("IncludeFavorsMode").get("value")
+        if "IncludeLettersMode" in options_dict:
+            self.include_letters_mode = options_dict.get("IncludeLettersMode").get("value")
         if "IncludeDojo" in options_dict:
             self.include_dojo = options_dict.get("IncludeDojo").get("value")
         if "ItemScarcity" in options_dict:
@@ -365,8 +365,8 @@ class OptionSet:
             self.random_starpower_sp = options_dict.get("RandomStarpowerSP").get("value")
 
         # Entrance related
-        if "ShortenBowsersCastle" in options_dict:
-            self.shorten_bowsers_castle = options_dict.get("ShortenBowsersCastle")
+        if "BowsersCastleMode" in options_dict:
+            self.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
         if "RandomizeOnewayEntrances" in options_dict:
             self.random_oneway_entrances = options_dict.get("RandomizeOnewayEntrances").get("value")
         if "UnpairedEntrances" in options_dict:
@@ -629,10 +629,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("StartingItemF").get("value"), int)
 
     # Item related
-    if "IncludeFavors" in options_dict:
-        assert isinstance(options_dict.get("IncludeFavors").get("value"), bool)
-    if "IncludeLetterChain" in options_dict:
-        assert isinstance(options_dict.get("IncludeLetterChain").get("value"), bool)
+    if "IncludeFavorsMode" in options_dict:
+        assert isinstance(options_dict.get("IncludeFavorsMode").get("value"), int)
+    if "IncludeLettersMode" in options_dict:
+        assert isinstance(options_dict.get("IncludeLettersMode").get("value"), int)
     if "IncludeDojo" in options_dict:
         assert isinstance(options_dict.get("IncludeDojo").get("value"), bool)
     if "ItemScarcity" in options_dict:
@@ -711,8 +711,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("RandomStarpowerSP").get("value"), int)
 
     # Entrance related
-    if "ShortenBowsersCastle" in options_dict:
-        assert isinstance(options_dict.get("ShortenBowsersCastle").get("value"), bool)
+    if "BowsersCastleMode" in options_dict:
+        assert isinstance(options_dict.get("BowsersCastleMode").get("value"), int)
     if "RandomizeOnewayEntrances" in options_dict:
         assert isinstance(options_dict.get("RandomizeOnewayEntrances").get("value"), bool)
     if "UnpairedEntrances" in options_dict:

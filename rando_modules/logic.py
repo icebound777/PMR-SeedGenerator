@@ -27,8 +27,11 @@ from rando_modules.unbeatable_seed_error import UnbeatableSeedError
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
 from metadata.itemlocation_special     \
-    import kootfavors_locations,       \
+    import kootfavors_reward_locations,       \
+           kootfavors_keyitem_locations,\
            chainletter_giver_locations,\
+           chainletter_final_reward_location,\
+           simpleletter_locations,\
            dojo_locations,             \
            limited_by_item_areas,      \
            bush_tree_coin_locations
@@ -284,16 +287,7 @@ def _init_mario_inventory(
     """
     mario = Mario()
     if partners_always_usable:
-        mario.add_to_inventory([
-            "Goombario",
-            "Kooper",
-            "Bombette",
-            "Parakarry",
-            "Bow",
-            "Watt",
-            "Sushie",
-            "Lakilester",
-        ])
+        mario.add_to_inventory(all_partners_imp)
     else:
         mario.add_to_inventory(starting_partners)
 
@@ -325,7 +319,8 @@ def _get_limit_items_to_dungeons(
     partners_in_default_locations,
     starting_items:list,
     starting_partners:list,
-    hidden_block_mode:int
+    hidden_block_mode:int,
+    bowsers_castle_mode:int
 ):
     """
     Logically places progression items into their 'dungeons', then returns a
@@ -344,8 +339,10 @@ def _get_limit_items_to_dungeons(
         #"KZN",
         "FLO",
         "PRA",
-        "KPA",
     ]
+
+    if bowsers_castle_mode == 0:
+        areas_to_limit.append("KPA")
 
     additional_edges = {
         "TRD": [ 
@@ -662,6 +659,57 @@ def _get_limit_items_to_dungeons(
     return modified_nodes, items_placed, items_overwritten
 
 
+def get_items_to_exclude(
+    do_randomize_dojo:bool,
+    starting_partners:list,
+    startwith_bluehouse_open:bool,
+    startwith_flowergate_open:bool,
+    bowsers_castle_mode:int,
+    always_speedyspin:bool,
+    always_ispy:bool,
+    always_peekaboo:bool,
+) -> list:
+    """
+    Returns a list of items that should not be placed or given to Mario at the
+    start.
+    """
+    excluded_items = []
+
+    if do_randomize_dojo:
+        for item_name in exclude_due_to_settings.get("do_randomize_dojo"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    for partner_string in starting_partners:
+        partner_item = Item.get(Item.item_name == partner_string)
+        excluded_items.append(partner_item)
+    if startwith_bluehouse_open:
+        for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    if startwith_flowergate_open:
+        for item_name in exclude_due_to_settings.get("startwith_flowergate_open"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    if bowsers_castle_mode > 0:
+        for item_name in exclude_due_to_settings.get("shorten_bowsers_castle"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    if always_speedyspin:
+        for item_name in exclude_due_to_settings.get("always_speedyspin"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    if always_ispy:
+        for item_name in exclude_due_to_settings.get("always_ispy"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    if always_peekaboo:
+        for item_name in exclude_due_to_settings.get("always_peekaboo"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+
+    return excluded_items
+
+
 def _generate_item_pools(
     world_graph,
     pool_progression_items:list,
@@ -671,8 +719,8 @@ def _generate_item_pools(
     do_randomize_coins:bool,
     do_randomize_shops:bool,
     do_randomize_panels:bool,
-    do_randomize_koopakoot:bool,
-    do_randomize_letterchain:bool,
+    randomize_favors_mode:int,
+    randomize_letters_mode:int,
     do_randomize_dojo:bool,
     item_scarcity:int,
     itemtrap_mode:int,
@@ -687,7 +735,9 @@ def _generate_item_pools(
     hidden_block_mode:int,
     starting_partners:list,
     starting_items:list,
-    add_item_pouches:bool
+    add_item_pouches:bool,
+    bowsers_castle_mode:int,
+    algorithm
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -742,15 +792,36 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    current_node_id in kootfavors_locations
-                and not do_randomize_koopakoot
+            if (    current_node_id in kootfavors_reward_locations
+                and randomize_favors_mode < 1
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    current_node_id in kootfavors_keyitem_locations
+                and randomize_favors_mode < 2
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id in chainletter_giver_locations
-                and not do_randomize_letterchain
+                and randomize_letters_mode < 3
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    current_node_id == chainletter_final_reward_location
+                and randomize_letters_mode < 2
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    current_node_id in simpleletter_locations
+                and randomize_letters_mode < 1
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -776,7 +847,7 @@ def _generate_item_pools(
     items_to_add_to_pools = []
     pre_filled_dungeon_nodes = []
     pre_filled_node_ids = []
-    if not keyitems_outside_dungeon:
+    if not keyitems_outside_dungeon and algorithm == "ForwardFill":
         pre_filled_dungeon_nodes,\
             items_to_remove_from_pools,\
             items_to_add_to_pools = _get_limit_items_to_dungeons(
@@ -785,7 +856,8 @@ def _generate_item_pools(
                     partners_in_default_locations,
                     starting_items,
                     starting_partners,
-                    hidden_block_mode
+                    hidden_block_mode,
+                    bowsers_castle_mode
                 )
         for node in pre_filled_dungeon_nodes:
             pre_filled_node_ids.append(node.identifier)
@@ -825,33 +897,17 @@ def _generate_item_pools(
                         + len(pool_misc_progression_items) \
                         + len(pool_other_items)
 
-    if do_randomize_dojo:
-        for item_name in exclude_due_to_settings.get("do_randomize_dojo"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
-    for partner_string in starting_partners:
-        partner_item = Item.get(Item.item_name == partner_string)
-        items_to_remove_from_pools.append(partner_item)
-    if startwith_bluehouse_open:
-        for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
-    if startwith_flowergate_open:
-        for item_name in exclude_due_to_settings.get("startwith_flowergate_open"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
-    if always_speedyspin:
-        for item_name in exclude_due_to_settings.get("always_speedyspin"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
-    if always_ispy:
-        for item_name in exclude_due_to_settings.get("always_ispy"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
-    if always_peekaboo:
-        for item_name in exclude_due_to_settings.get("always_peekaboo"):
-            item = Item.get(Item.item_name == item_name)
-            items_to_remove_from_pools.append(item)
+    items_to_remove_from_pools.extend(
+        get_items_to_exclude(
+            do_randomize_dojo,
+            starting_partners,
+            startwith_bluehouse_open,
+            startwith_flowergate_open,
+            bowsers_castle_mode,
+            always_speedyspin,
+            always_ispy,
+            always_peekaboo,
+    ))
     items_to_remove_from_pools.extend(starting_items)
 
     for item in items_to_add_to_pools:
@@ -923,8 +979,9 @@ def _generate_item_pools(
     pool_other_items = get_trapped_itempool(
         pool_other_items,
         itemtrap_mode,
-        do_randomize_koopakoot,
-        do_randomize_dojo
+        randomize_favors_mode,
+        do_randomize_dojo,
+        keyitems_outside_dungeon
     )
 
     return pool_other_items
@@ -1062,8 +1119,8 @@ def _algo_forward_fill(
     do_randomize_coins,
     do_randomize_shops,
     do_randomize_panels,
-    do_randomize_koopakoot,
-    do_randomize_letterchain,
+    randomize_favors_mode:int,
+    randomize_letters_mode:int,
     do_randomize_dojo,
     item_scarcity,
     itemtrap_mode,
@@ -1082,7 +1139,9 @@ def _algo_forward_fill(
     keyitems_outside_dungeon:bool,
     starting_items:list,
     add_item_pouches:bool,
-    world_graph
+    bowsers_castle_mode:int,
+    world_graph,
+    algorithm
 ):
 
     # Declare and init additional data structures
@@ -1108,8 +1167,8 @@ def _algo_forward_fill(
         do_randomize_coins,
         do_randomize_shops,
         do_randomize_panels,
-        do_randomize_koopakoot,
-        do_randomize_letterchain,
+        randomize_favors_mode,
+        randomize_letters_mode,
         do_randomize_dojo,
         item_scarcity,
         itemtrap_mode,
@@ -1124,7 +1183,9 @@ def _algo_forward_fill(
         hidden_block_mode,
         starting_partners,
         starting_items,
-        add_item_pouches
+        add_item_pouches,
+        bowsers_castle_mode,
+        algorithm
     )
 
     print("Initialize Mario's starting inventory...")
@@ -1387,8 +1448,8 @@ def _algo_assumed_fill(
     do_randomize_coins,
     do_randomize_shops,
     do_randomize_panels,
-    do_randomize_koopakoot,
-    do_randomize_letterchain,
+    randomize_favors_mode:int,
+    randomize_letters_mode:int,
     do_randomize_dojo,
     item_scarcity,
     itemtrap_mode,
@@ -1407,7 +1468,9 @@ def _algo_assumed_fill(
     keyitems_outside_dungeon:bool,
     starting_items:list,
     add_item_pouches:bool,
-    world_graph
+    bowsers_castle_mode:int,
+    world_graph,
+    algorithm
 ):
 
     # Declare and init additional data structures
@@ -1430,14 +1493,14 @@ def _algo_assumed_fill(
         do_randomize_coins,
         do_randomize_shops,
         do_randomize_panels,
-        do_randomize_koopakoot,
-        do_randomize_letterchain,
+        randomize_favors_mode,
+        randomize_letters_mode,
         do_randomize_dojo,
         item_scarcity,
         itemtrap_mode,
         startwith_bluehouse_open,
         startwith_flowergate_open,
-        True,#keyitems_outside_dungeon,
+        keyitems_outside_dungeon,
         partners_always_usable,
         partners_in_default_locations,
         speedyspin,
@@ -1446,7 +1509,9 @@ def _algo_assumed_fill(
         hidden_block_mode,
         starting_partners,
         starting_items,
-        add_item_pouches
+        add_item_pouches,
+        bowsers_castle_mode,
+        algorithm
     )
 
     starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
@@ -1677,20 +1742,22 @@ def get_item_spheres(
         item_spheres_text += '\n'
         item_spheres_text += f'Sphere {sphere}:\n'        
 
-        while reachable_item_nodes:
-            node = reachable_item_nodes.pop(next(iter(reachable_item_nodes)))
+        for node_id, node in sorted(reachable_item_nodes.items()):
             item = item_placement_map[node.identifier].current_item
             node_long_name = f'({verbose_area_names[node.map_area.name[:3]]}) {node.map_area.verbose_name} - {verbose_item_locations[node.map_area.name][node.key_name_item]}'
+            item_verbose_name = verbose_item_names[item.item_name] if item.item_name in verbose_item_names else item.item_name
 
             item_suffix = ""
             if item.is_trapped():
-                item_spheres_text += f'    ({node_long_name}): TRAP ({item.item_name})\n'
+                item_spheres_text += f'    ({node_long_name}): TRAP ({item_verbose_name})\n'
             else:
-                if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
-                    item_suffix = "*"
+                if item.item_type != "ITEM" or is_itemlocation_replenishable(node):
+                    if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
+                        item_suffix = "*"
+                    mario.add_to_inventory(item.item_name)
 
-                item_spheres_text += f'    ({node_long_name}): {item.item_name}{item_suffix}\n'
-                mario.add_to_inventory(item.item_name)
+                item_spheres_text += f'    ({node_long_name}): {item_verbose_name}{item_suffix}\n'
+        reachable_item_nodes.clear()
         sphere += 1
 
     assert "YOUWIN" in mario.items
@@ -1704,8 +1771,8 @@ def place_items(
     do_randomize_coins,
     do_randomize_shops,
     do_randomize_panels,
-    do_randomize_koopakoot,
-    do_randomize_letterchain,
+    randomize_favors_mode:int,
+    randomize_letters_mode:int,
     do_randomize_dojo,
     item_scarcity,
     itemtrap_mode,
@@ -1724,6 +1791,7 @@ def place_items(
     keyitems_outside_dungeon:bool,
     starting_items:list,
     add_item_pouches:list,
+    bowsers_castle_mode:int,
     world_graph = None
 ):
     """Places items into item locations according to chosen settings."""
@@ -1745,8 +1813,8 @@ def place_items(
             do_randomize_coins,
             do_randomize_shops,
             do_randomize_panels,
-            do_randomize_koopakoot,
-            do_randomize_letterchain,
+            randomize_favors_mode,
+            randomize_letters_mode,
             do_randomize_dojo,
             item_scarcity,
             itemtrap_mode,
@@ -1765,7 +1833,9 @@ def place_items(
             keyitems_outside_dungeon,
             starting_items,
             add_item_pouches,
-            world_graph
+            bowsers_castle_mode,
+            world_graph,
+            algorithm
         )
     elif algorithm == "AssumedFill":
         # Place items in a backward fill, ensuring a maximally deep fill.
@@ -1774,8 +1844,8 @@ def place_items(
             do_randomize_coins,
             do_randomize_shops,
             do_randomize_panels,
-            do_randomize_koopakoot,
-            do_randomize_letterchain,
+            randomize_favors_mode,
+            randomize_letters_mode,
             do_randomize_dojo,
             item_scarcity,
             itemtrap_mode,
@@ -1794,5 +1864,7 @@ def place_items(
             keyitems_outside_dungeon,
             starting_items,
             add_item_pouches,
-            world_graph
+            bowsers_castle_mode,
+            world_graph,
+            algorithm
         )

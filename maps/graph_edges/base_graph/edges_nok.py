@@ -21,6 +21,12 @@ edges_nok = [
     {"from": {"map": "NOK_01", "id": "Bush7A_Drop1A"}, "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* Bush7A_Drop1A (KootEmptyWallet) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "HiddenPanel"},   "reqs": [["can_flip_panels"]]}, #* Koopa Village 1 Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "NOK_01", "id": "HiddenPanel"},   "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> Koopa Village 1 Exit Left
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "GiftA"},         "reqs": [["Letter03"]]}, #* Koopa Village 1 Exit Left -> GiftA (StarPiece)
+    {"from": {"map": "NOK_01", "id": "GiftA"},         "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* GiftA (StarPiece) -> Koopa Village 1 Exit Left
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "GiftB"},         "reqs": [["RF_Ch1_Fuzzies_Banished"],["Letter14"]]}, #* Koopa Village 1 Exit Left -> GiftB (Letter15)
+    {"from": {"map": "NOK_01", "id": "GiftB"},         "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* GiftB (Letter15) -> Koopa Village 1 Exit Left
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "GiftC"},         "reqs": [["RF_Ch1_Fuzzies_Banished"],["Letter16"]]}, #* Koopa Village 1 Exit Left -> GiftC (Letter17)
+    {"from": {"map": "NOK_01", "id": "GiftC"},         "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* GiftC (Letter17) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "ShopItemA"},     "reqs": []}, #* Koopa Village 1 Exit Left -> ShopItemA (DizzyDial)
     {"from": {"map": "NOK_01", "id": "ShopItemA"},     "to": {"map": "NOK_01", "id": 0},               "reqs": []}, #* ShopItemA (DizzyDial) -> Koopa Village 1 Exit Left
     {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": "ShopItemB"},     "reqs": []}, #* Koopa Village 1 Exit Left -> ShopItemB (POWBlock)
@@ -63,6 +69,8 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": "Partner"},     "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* Partner (Kooper) -> Koopa Village 2 Exit Left
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "GiftD"},       "reqs": [["Artifact"],["RF_Ch1_Fuzzies_Banished"],["RF_CanVisitDesertCamp","RF_Ch2_SavedStarSpirit"]]}, #* Koopa Village 2 Exit Left -> GiftD (StarPiece)
     {"from": {"map": "NOK_02", "id": "GiftD"},       "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* GiftD (StarPiece) -> Koopa Village 2 Exit Left
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "GiftE"},       "reqs": [["Letter25"],["RF_Ch1_Fuzzies_Banished"],["RF_CanVisitDesertCamp","RF_Ch2_SavedStarSpirit"]]}, #* Koopa Village 2 Exit Left -> GiftE (StarPiece)
+    {"from": {"map": "NOK_02", "id": "GiftE"},       "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* GiftE (StarPiece) -> Koopa Village 2 Exit Left
     # Koopa Koot Initial Favors (*MB_SpiritsRescued < 1)
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift00"},  "reqs": [["KootKoopaLegends"],["RF_Ch1_Fuzzies_Banished"]], "pseudoitems": ["FAVOR_1_01_done"]}, #* Koopa Village 2 Exit Left -> KootGift00 (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift00"},  "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* KootGift00 (Coin) -> Koopa Village 2 Exit Left
@@ -94,11 +102,11 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0A"},  "reqs": [["Goomnut"],["RF_CanVisitTayceT"],["FAVOR_4_02_done"],[{"starspirits": 3}]], "pseudoitems": ["FAVOR_4_03_done"]}, #* Koopa Village 2 Exit Left -> KootGift0A (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift0A"},  "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* KootGift0A (Coin) -> Koopa Village 2 Exit Left
     # Koopa Koot Favors (*MB_SpiritsRescued < 5)
-    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0B"},  "reqs": [["FAVOR_4_03_done"],[{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_01_done"]}, #* Koopa Village 2 Exit Left -> KootGift0B (StarPiece)
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0B"},  "reqs": [["FAVOR_4_03_done"],["MF_Ch1_RescuedStarSpirit"],[{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_01_done"]}, #* Koopa Village 2 Exit Left -> KootGift0B (StarPiece)
     {"from": {"map": "NOK_02", "id": "KootGift0B"},  "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* KootGift0B (StarPiece) -> Koopa Village 2 Exit Left
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0C"},  "reqs": [["KootOldPhoto"],["FAVOR_5_01_done"],[{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_02_done"]}, #* Koopa Village 2 Exit Left -> KootGift0C (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift0C"},  "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* KootGift0C (Coin) -> Koopa Village 2 Exit Left
-    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0D"},  "reqs": [["DriedPasta"],["RF_CanVisitTayceT"],["FAVOR_5_02_done"],[{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_03_done"]}, #* Koopa Village 2 Exit Left -> KootGift0D (Coin)
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0D"},  "reqs": [["DriedPasta"],["Cookbook"],["RF_CanVisitTayceT"],["FAVOR_5_02_done"],[{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_03_done"]}, #* Koopa Village 2 Exit Left -> KootGift0D (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift0D"},  "to": {"map": "NOK_02", "id": 0},             "reqs": []}, #* KootGift0D (Coin) -> Koopa Village 2 Exit Left
     # Koopa Koot Favors (*MB_SpiritsRescued < 6)
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": "KootGift0E"},  "reqs": [["KootGlasses"],["FAVOR_5_03_done"],[{"starspirits": 5}]], "pseudoitems": ["FAVOR_6_01_done"]}, #* Koopa Village 2 Exit Left -> KootGift0E (Coin)
@@ -120,9 +128,9 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_2_02_done"], [{"starspirits": 1}]], "pseudoitems": ["FAVOR_2_03_active"]}, #+ Get KootLuigiAutgraph from Luigi
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_2_03_done"], [{"starspirits": 2}]], "pseudoitems": ["FAVOR_3_01_active"]}, #+ Get KootEmptyWallet from Bush
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_3_02_done"], [{"starspirits": 2}]], "pseudoitems": ["FAVOR_3_03_active"]}, #+ Get KootMerluvleeAutograph from Merluvlee
-    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_5_01_done"], [{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_02_active"]}, #+ Get KootOldPhoto from Bruce
-    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_5_03_done"], [{"starspirits": 5}]], "pseudoitems": ["FAVOR_6_01_active"]}, #+ Get KootOldPhoto from Bruce
-    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_6_03_done"], [{"starspirits": 6}]], "pseudoitems": ["FAVOR_7_01_active"]}, #+ Get KootOldPhoto from Bruce
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_5_01_done"], [{"starspirits": 4}]], "pseudoitems": ["FAVOR_5_02_active"]}, #+ Get KootOldPhoto from Franky
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_5_03_done"], [{"starspirits": 5}]], "pseudoitems": ["FAVOR_6_01_active"]}, #+ Get KootGlasses from Bush
+    {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0},             "reqs": [["FAVOR_6_03_done"], [{"starspirits": 6}]], "pseudoitems": ["FAVOR_7_01_active"]}, #+ Get KootPackage from Gusty Gulch Boo
 
     {"from": {"map": "NOK_02", "id": 0},             "to": {"map": "NOK_02", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_NOK_1",
                                                                                                                    "StarPiece_NOK_2",

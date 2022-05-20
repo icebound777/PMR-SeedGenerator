@@ -4,9 +4,10 @@ import random
 from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
 from optionset import OptionSet
-from rando_modules.logic import place_items, get_item_spheres
+from rando_modules.logic import place_items, get_item_spheres, get_items_to_exclude
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
-from rando_modules.modify_entrances import get_shorter_bowsercastle
+from rando_modules.modify_entrances import \
+    get_shorter_bowsercastle, get_bowsercastle_bossrush
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
@@ -26,6 +27,7 @@ class RandomSeed:
 
         self.rando_settings = rando_settings
         self.starting_partners = []
+        self.starting_items = []
         self.placed_items = []
         self.entrance_list = []
         self.enemy_stats = []
@@ -53,9 +55,15 @@ class RandomSeed:
         if world_graph is None:
             print("Generating World Graph ...")
             world_graph = generate_world_graph(None, None)
+
+        # Modify entrances if needed
+        if self.rando_settings.bowsers_castle_mode["value"] == 1:
+            self.entrance_list, world_graph = get_shorter_bowsercastle(world_graph)
+        elif self.rando_settings.bowsers_castle_mode["value"] == 2:
+            self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
         
+        starting_chapter = self.init_starting_map(self.rando_settings)
         self.init_starting_partners(self.rando_settings)
-        self.init_starting_map(self.rando_settings)
         self.init_starting_items(self.rando_settings)
 
         # Item Placement
@@ -69,8 +77,8 @@ class RandomSeed:
                     do_randomize_coins=self.rando_settings.include_coins["value"],
                     do_randomize_shops=self.rando_settings.include_shops["value"],
                     do_randomize_panels=self.rando_settings.include_panels["value"],
-                    do_randomize_koopakoot=self.rando_settings.include_favors,
-                    do_randomize_letterchain=self.rando_settings.include_letterchain,
+                    randomize_favors_mode=self.rando_settings.include_favors_mode,
+                    randomize_letters_mode=self.rando_settings.include_letters_mode,
                     do_randomize_dojo=self.rando_settings.include_dojo,
                     item_scarcity=self.rando_settings.item_scarcity,
                     itemtrap_mode=self.rando_settings.itemtrap_mode,
@@ -87,8 +95,9 @@ class RandomSeed:
                     partners_in_default_locations=self.rando_settings.partners_in_default_locations,
                     hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
                     keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
-                    starting_items=self.starting_items,
+                    starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
                     add_item_pouches=self.rando_settings.add_item_pouches,
+                    bowsers_castle_mode=self.rando_settings.bowsers_castle_mode["value"],
                     world_graph=world_graph_copy
                 )
                 break
@@ -106,14 +115,11 @@ class RandomSeed:
         #set_cheap_shopitems(placed_items)
         #self.placed_items = get_alpha_prices(self.placed_items)
 
-        # Modify entrances if needed
-        if self.rando_settings.shorten_bowsers_castle["value"]:
-            self.entrance_list = get_shorter_bowsercastle()
-
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(
             self.rando_settings.shuffle_chapter_difficulty,
-            self.rando_settings.progressive_scaling.get("value")
+            self.rando_settings.progressive_scaling.get("value"),
+            starting_chapter
         )
 
         # Randomize enemy battle formations
@@ -141,8 +147,8 @@ class RandomSeed:
             self.rando_settings.partners_in_default_locations,
             self.rando_settings.include_shops["value"],
             self.rando_settings.include_panels["value"],
-            self.rando_settings.include_favors,
-            self.rando_settings.include_letterchain,
+            self.rando_settings.include_favors_mode,
+            self.rando_settings.include_letters_mode,
             self.rando_settings.keyitems_outside_dungeon
         )
 
@@ -174,9 +180,10 @@ class RandomSeed:
             starting_partners=self.starting_partners,
             partners_always_usable=self.rando_settings.partners_always_usable["value"],
             hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
-            starting_items=self.starting_items,
+            starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
             world_graph=world_graph
         )
+
 
     def init_starting_partners(self,rando_settings):
         # Choose random starting partners if necessary
@@ -189,43 +196,89 @@ class RandomSeed:
         else:
             self.starting_partners = rando_settings.starting_partners
 
+
     def init_starting_map(self, rando_settings):
-        #Choose random starting map if necessary
-        if rando_settings.starting_map["value"] == 0xFFFFFFFF:
-            self.rando_settings.starting_map["value"] = random.choice(starting_maps)
+        """
+        Initializes the starting map and returns its chapter number. If the
+        starting map is to be chosen at random, pick from curated list.
+        """
+        starting_map_value = rando_settings.starting_map["value"]
+        start_chapter = None
+        if starting_map_value == 0xFFFFFFFF:
+            # Pick random starting location
+            start_chapter = random.choice(list(starting_maps.keys()))
+            self.rando_settings.starting_map["value"] = starting_maps[start_chapter]
+        else:
+            # Attempt to detect starting chapter value
+            for chapter_number, start_location in starting_maps.items():
+                if starting_map_value == start_location:
+                    start_chapter = chapter_number
+                    break
+            else:
+                start_chapter = 0
+        
+        return start_chapter
 
-    def init_starting_items(self, rando_settings):
-        starting_item_options = [
-            rando_settings.starting_item_0,
-            rando_settings.starting_item_1,
-            rando_settings.starting_item_2,
-            rando_settings.starting_item_3,
-            rando_settings.starting_item_4,
-            rando_settings.starting_item_5,
-            rando_settings.starting_item_6,
-            rando_settings.starting_item_7,
-            rando_settings.starting_item_8,
-            rando_settings.starting_item_9,
-            rando_settings.starting_item_A,
-            rando_settings.starting_item_B,
-            rando_settings.starting_item_C,
-            rando_settings.starting_item_D,
-            rando_settings.starting_item_E,
-            rando_settings.starting_item_F
-        ]
 
+
+    def init_starting_items(self, rando_settings:OptionSet):
+        """
+        Initialize the starting items from either the chosen starting items or
+        pick them randomly.
+        """
         if rando_settings.random_starting_items:
-            all_allowed_starting_items = allowed_starting_badges + allowed_starting_items + allowed_starting_key_items
+            starting_item_options = [
+                rando_settings.starting_item_0,
+                rando_settings.starting_item_1,
+                rando_settings.starting_item_2,
+                rando_settings.starting_item_3,
+                rando_settings.starting_item_4,
+                rando_settings.starting_item_5,
+                rando_settings.starting_item_6,
+                rando_settings.starting_item_7,
+                rando_settings.starting_item_8,
+                rando_settings.starting_item_9,
+                rando_settings.starting_item_A,
+                rando_settings.starting_item_B,
+                rando_settings.starting_item_C,
+                rando_settings.starting_item_D,
+                rando_settings.starting_item_E,
+                rando_settings.starting_item_F
+            ]
 
-            starting_items_amount = random.randint(rando_settings.random_starting_items_min, rando_settings.random_starting_items_max)
-            self.starting_items = []
+            # Set up allowed items
+            all_allowed_starting_items = (
+                allowed_starting_badges
+              + allowed_starting_items
+              + allowed_starting_key_items
+            )
+            excluded_items = get_items_to_exclude(
+                do_randomize_dojo=rando_settings.include_dojo,
+                starting_partners=self.starting_partners,
+                startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
+                startwith_flowergate_open=rando_settings.flowergate_open["value"],
+                bowsers_castle_mode=rando_settings.bowsers_castle_mode["value"],
+                always_speedyspin=rando_settings.always_speedyspin["value"],
+                always_ispy=rando_settings.always_ispy["value"],
+                always_peekaboo=rando_settings.always_peekaboo["value"],
+            )
+            for item_obj in excluded_items:
+                if item_obj.value in all_allowed_starting_items:
+                    all_allowed_starting_items.remove(item_obj.value)
+
+            starting_items_amount = random.randint(
+                rando_settings.random_starting_items_min,
+                rando_settings.random_starting_items_max
+            )
 
             for i in range(starting_items_amount):
                 random_item_id = random.choice(all_allowed_starting_items)
                 random_item_obj = Item.get_or_none(Item.value == random_item_id)
                 if random_item_obj is not None:
                     # No double uniques
-                    if (random_item_obj.item_type in ["BADGE", "KEYITEM", "STARPIECE"] and random_item_obj in self.starting_items):
+                    if (random_item_obj.item_type in ["BADGE", "KEYITEM", "STARPIECE"]
+                    and random_item_obj in self.starting_items
+                    ):
                         continue
 
                     self.starting_items.append(random_item_obj)

@@ -81,8 +81,8 @@ IncludeCoins          : true
 IncludeShops          : true
 IncludePanels         : true
 IncludeDojo           : false
-IncludeFavors         : false # Koopa Koot Favors
-IncludeLetterChain    : false # true -> NYI
+IncludeFavorsMode     : 0 # 1=RndRewardsVanillaKeyitems, 2=FullShuffle
+IncludeLettersMode    : 0 # 1=simpleLetters,2=vanillaChainRndChainReward,3=FullShuffle
 ItemScarcity          : 0
 ItemTrapMode          : 0
 AddItemPouches        : false
@@ -115,7 +115,7 @@ ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI
 RandomizeOnewayEntrances: false # NYI
 UnpairedEntrances       : false # NYI
-ShortenBowsersCastle    : false
+BowsersCastleMode       : 0 # 0=Off;1=NoPartnersKeys(Shorten);2=BossRush
 
 # Randomization: Quizzes
 RandomQuiz         : true

@@ -1,5 +1,3 @@
-from rando_modules.simulate import *
-
 """This file represents all edges of the world graph that have origin-nodes in the KPA (Bowser's Castle) area."""
 edges_kpa = [
     # KPA_01 Dark Cave 1

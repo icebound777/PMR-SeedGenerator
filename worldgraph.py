@@ -2,38 +2,36 @@
 This module represents a world graph. This graph maps item locations and the
 connections between them to allow simulated traversal of the in-game world.
 """
-#from peewee import *
-
 from metadata.area_name_mappings import area_name_id_map, area_name_edges_map
 
 from db.node import Node
 from db.map_area import MapArea
 
-from maps.graph_edges.edges_arn import edges_arn
-from maps.graph_edges.edges_dgb import edges_dgb
-from maps.graph_edges.edges_dro import edges_dro
-from maps.graph_edges.edges_flo import edges_flo
-from maps.graph_edges.edges_hos import edges_hos
-from maps.graph_edges.edges_isk import edges_isk
-from maps.graph_edges.edges_iwa import edges_iwa
-from maps.graph_edges.edges_jan import edges_jan
-from maps.graph_edges.edges_kgr import edges_kgr
-from maps.graph_edges.edges_kkj import edges_kkj
-from maps.graph_edges.edges_kmr import edges_kmr
-from maps.graph_edges.edges_kpa import edges_kpa
-from maps.graph_edges.edges_kzn import edges_kzn
-from maps.graph_edges.edges_mac import edges_mac
-from maps.graph_edges.edges_mgm import edges_mgm
-from maps.graph_edges.edges_mim import edges_mim
-from maps.graph_edges.edges_nok import edges_nok
-from maps.graph_edges.edges_obk import edges_obk
-from maps.graph_edges.edges_omo import edges_omo
-from maps.graph_edges.edges_osr import edges_osr
-from maps.graph_edges.edges_pra import edges_pra
-from maps.graph_edges.edges_sam import edges_sam
-from maps.graph_edges.edges_sbk import edges_sbk
-from maps.graph_edges.edges_tik import edges_tik
-from maps.graph_edges.edges_trd import edges_trd
+from maps.graph_edges.base_graph.edges_arn import edges_arn
+from maps.graph_edges.base_graph.edges_dgb import edges_dgb
+from maps.graph_edges.base_graph.edges_dro import edges_dro
+from maps.graph_edges.base_graph.edges_flo import edges_flo
+from maps.graph_edges.base_graph.edges_hos import edges_hos
+from maps.graph_edges.base_graph.edges_isk import edges_isk
+from maps.graph_edges.base_graph.edges_iwa import edges_iwa
+from maps.graph_edges.base_graph.edges_jan import edges_jan
+from maps.graph_edges.base_graph.edges_kgr import edges_kgr
+from maps.graph_edges.base_graph.edges_kkj import edges_kkj
+from maps.graph_edges.base_graph.edges_kmr import edges_kmr
+from maps.graph_edges.base_graph.edges_kpa import edges_kpa
+from maps.graph_edges.base_graph.edges_kzn import edges_kzn
+from maps.graph_edges.base_graph.edges_mac import edges_mac
+from maps.graph_edges.base_graph.edges_mgm import edges_mgm
+from maps.graph_edges.base_graph.edges_mim import edges_mim
+from maps.graph_edges.base_graph.edges_nok import edges_nok
+from maps.graph_edges.base_graph.edges_obk import edges_obk
+from maps.graph_edges.base_graph.edges_omo import edges_omo
+from maps.graph_edges.base_graph.edges_osr import edges_osr
+from maps.graph_edges.base_graph.edges_pra import edges_pra
+from maps.graph_edges.base_graph.edges_sam import edges_sam
+from maps.graph_edges.base_graph.edges_sbk import edges_sbk
+from maps.graph_edges.base_graph.edges_tik import edges_tik
+from maps.graph_edges.base_graph.edges_trd import edges_trd
 
 
 class hashabledict(dict):
@@ -122,7 +120,13 @@ def get_all_edges():
     all_edges.extend(edges_sbk)
     all_edges.extend(edges_tik)
     all_edges.extend(edges_trd)
-    return [hashabledict(d) for d in all_edges]
+
+    hashabledicts = []
+    for d in all_edges:
+        d["mapchange"] = d["from"]["map"] != d["to"]["map"]
+        hashabledicts.append(hashabledict(d))
+
+    return hashabledicts
 
 
 def get_area_edges(area_shorthand:str):
@@ -133,7 +137,12 @@ def get_area_edges(area_shorthand:str):
     else:
         raise KeyError
 
-    return [hashabledict(d) for d in area_edges]
+    hashabledicts = []
+    for d in area_edges:
+        d["mapchange"] = d["from"]["map"] != d["to"]["map"]
+        hashabledicts.append(hashabledict(d))
+
+    return hashabledicts
 
 
 def generate(node_list, edge_list):
@@ -168,6 +177,104 @@ def generate(node_list, edge_list):
     return world_graph
 
 
+def adjust(world_graph, new_edges=None, edges_to_remove=None):
+    """
+    Adjusts and returns a modified world graph depending on given edge list
+    parameters.
+    """
+    if new_edges is None:
+        new_edges = []
+    if edges_to_remove is None:
+        edges_to_remove = []
+
+    edge_adjustments = {}
+    db_data = []
+    db_data_dict = {}
+
+    # Add new edges to graph nodes
+    for new_edge in [hashabledict(x) for x in new_edges]:
+        origin_map_name = new_edge["from"]["map"]
+        origin_entrance_id = new_edge["from"]["id"]
+        destination_map_name = new_edge["to"]["map"]
+        destination_entrance_id = new_edge["to"]["id"]
+
+        node_id = f"{origin_map_name}/{origin_entrance_id}"
+        if node_id not in edge_adjustments:
+            edge_adjustments[node_id] = []
+        edge_adjustments[node_id].append(new_edge)
+
+        # Map changes are implicitly True unless specified otherwise
+        is_mapchange = new_edge.get("mapchange")
+        if is_mapchange is None:
+            is_mapchange = True
+
+        # If the edge symbolizes a map change, gather ROM db data to write
+        if (isinstance(origin_entrance_id, int)
+        and isinstance(destination_entrance_id, int)
+        and is_mapchange
+        ):
+            for old_edge in world_graph[node_id]["edge_list"]:
+                if (
+                    old_edge["from"]["map"] == origin_map_name
+                and old_edge["from"]["id"]  == origin_entrance_id
+                ):
+                    old_target_map_info = old_edge["to"]
+                    break
+            old_target_map_data = (
+                MapArea.select(MapArea.area_id,
+                               MapArea.map_id,
+                               Node.entrance_id)
+                       .join(Node)
+                       .where(MapArea.name == old_target_map_info["map"])
+                       .where(Node.entrance_id == old_target_map_info["id"])
+                       .objects()
+                       .get()
+            )
+            db_key = (0xA3 << 24) \
+                   | (old_target_map_data.area_id << 16) \
+                   | (old_target_map_data.map_id  <<  8) \
+                   |  old_target_map_data.entrance_id
+
+            new_target_map_data = (
+                MapArea.select(MapArea.area_id,
+                               MapArea.map_id,
+                               Node.entrance_id)
+                       .join(Node)
+                       .where(MapArea.name == destination_map_name)
+                       .where(Node.entrance_id == destination_entrance_id)
+                       .objects()
+                       .get()
+            )
+            db_value = (new_target_map_data.area_id << 16) \
+                     | (new_target_map_data.map_id  <<  8) \
+                     |  new_target_map_data.entrance_id
+
+            db_data_dict[db_key]= db_value
+
+    # Remove old edges from graph nodes
+    for old_edge in [hashabledict(x) for x in edges_to_remove]:
+        node_id = f"{old_edge['from']['map']}/{old_edge['from']['id']}"
+        stripped_edge_list = world_graph[node_id]["edge_list"]
+        for i, strip_edge in enumerate(stripped_edge_list):
+            if (
+                strip_edge["from"] == old_edge["from"]
+            and strip_edge["to"] == old_edge["to"]
+            ):
+                stripped_edge_list.pop(i)
+                break
+        world_graph[node_id]["edge_list"] = stripped_edge_list
+
+    # Add new edges to graph nodes
+    for node_id, adjustment_list in edge_adjustments.items():
+        world_graph[node_id]["edge_list"].extend(adjustment_list)
+
+    # Prepare tuples for entrance rando db-entries
+    for dbkey, dbvalue in db_data_dict.items():
+        db_data.append((dbkey, dbvalue))
+
+    return world_graph, db_data
+
+
 def check_graph():
     """
     Generate world graph from default entrance links and edges, then run a few validation checks
@@ -191,7 +298,9 @@ def check_graph():
     check_nullnode_reference(all_nodes, all_edges)
 
     # Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe)
-    check_unreachable_from_start(all_nodes, all_edges)
+    print("Generating world graph from nodes and edges ...")
+    graph = generate(all_nodes, all_edges)
+    check_unreachable_from_start(graph, True)
 
     print("Done.")
 
@@ -295,13 +404,11 @@ def check_nullnode_reference(all_nodes, all_edges):
     print()
 
 
-def check_unreachable_from_start(all_nodes, all_edges):
+def check_unreachable_from_start(world_graph:dict, do_print:bool) -> list:
     """Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe)"""
-    print("Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe) ...")
-
     # build world graph
-    print("Generating world graph from nodes and edges ...")
-    world_graph = generate(all_nodes, all_edges)
+    if do_print:
+        print("Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe) ...")
 
     # prepare datastructures for world graph traversal
     visited_node_ids = []
@@ -316,21 +423,26 @@ def check_unreachable_from_start(all_nodes, all_edges):
             for edge in outgoing_edges:
                 depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
         except AttributeError as err:
-            print(f"{err.args}: Cannot find edges of {node_id}!")
+            if do_print:
+                print(f"{err.args}: Cannot find edges of {node_id}!")
             raise
 
     # traverse world graph
-    print("Checking node reachability in world graph ...")
+    if do_print:
+        print("Checking node reachability in world graph ...")
     depth_first_search("KMR_20/4")
 
     not_visited_node_ids = [id for id in world_graph.keys() if id not in visited_node_ids]
 
-    if len(not_visited_node_ids) == 0:
-        print("No unreachable nodes from KMR_20/4 found.")
-    else:
-        print(str(len(not_visited_node_ids)) + " unreachable nodes:")
-        for node_id in not_visited_node_ids:
-            print(node_id)
+    if do_print:
+        if len(not_visited_node_ids) == 0:
+            print("No unreachable nodes from KMR_20/4 found.")
+        else:
+            print(str(len(not_visited_node_ids)) + " unreachable nodes:")
+            for node_id in not_visited_node_ids:
+                print(node_id)
+
+    return not_visited_node_ids
 
 
 if __name__ == "__main__":

@@ -78,6 +78,7 @@ def print_usage():
     print("                      the current randomization, overwriting defaults")
     print("  -t, --targetmod   set path to pre-modded PM64 ROM to randomize")
     print("  -s, --spoilerlog  set path to output spoilerlog file")
+    print("  -S, --seed        set the generation seed")
     print("  -r, --rebuild-db  rebuild database from mod files and exit")
     print("  -h, --help        display this help and exit")
     print("  -v, --version     display version information and exit")
@@ -454,8 +455,8 @@ def main_randomizer(args):
     try:
         opts, args = getopt.gnu_getopt(
             argv,
-            'hc:t:s:rv',
-            ['help', 'config-file=', 'targetmod=', 'spoilerlog=', 'rebuild-db', 'version']
+            'hc:t:s:S:rv',
+            ['help', 'config-file=', 'targetmod=', 'spoilerlog=', 'seed=', 'rebuild-db', 'version']
         )
         for opt, arg in opts:
             # Print usage
@@ -481,7 +482,7 @@ def main_randomizer(args):
                     elif arg[arg.rfind(".") + 1:] == "yaml":
                         data = yaml.load(file, Loader=SafeLoader)
                 rando_settings = OptionSet()
-                if "SeedValue" in data:
+                if "SeedValue" in data and rando_seed is None:
                     rando_seed = data.get("SeedValue")
                 populate_keys(data)
                 rando_settings.update_options(data)
@@ -498,6 +499,10 @@ def main_randomizer(args):
             # Spoilerlog output file
             if opt in ["-s", "--spoilerlog"]:
                 spoilerlog_file_path = arg
+
+            # Choose the random seed
+            if opt in ["-S", "--seed"]:
+                rando_seed = int(arg)
 
         for arg in args:
             # Output modded and randomized file
