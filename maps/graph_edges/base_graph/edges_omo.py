@@ -107,7 +107,7 @@ edges_omo = [
     {"from": {"map": "OMO_05", "id": 1},               "to": {"map": "OMO_05", "id": "HiddenYBlockB"}, "reqs": [["can_see_hidden_blocks"]]}, #* PNK Gourmet Guy Crossing Exit East (North) -> HiddenYBlockB (SuperSoda)
     {"from": {"map": "OMO_05", "id": "HiddenYBlockB"}, "to": {"map": "OMO_05", "id": 1},               "reqs": []}, #* HiddenYBlockB (SuperSoda) -> PNK Gourmet Guy Crossing Exit East (North)
 
-    {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": [["Cake","CakeMix"],["RF_CanVisitTayceT","Cake"]], "pseudoitems": ["MF_Ch4_GaveCakeToGourmetGuy"]}, #+ Give Cake to Gourmet Guy
+    {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": [["Cake"]], "pseudoitems": ["MF_Ch4_GaveCakeToGourmetGuy"]}, #+ Give Cake to Gourmet Guy
 
     # OMO_06 PNK Station
     {"from": {"map": "OMO_06", "id": 0}, "to": {"map": "OMO_17", "id": 2}, "reqs": []}, # PNK Station Exit West -> PNK Tracks Hallway Exit East (South)
@@ -250,7 +250,7 @@ edges_omo = [
     {"from": {"map": "OMO_13", "id": 0}, "to": {"map": "OMO_13", "id": 1}, "reqs": []}, #? BLU Anti-Guy Hall Exit West -> BLU Anti-Guy Hall Exit East
     {"from": {"map": "OMO_13", "id": 1}, "to": {"map": "OMO_13", "id": 0}, "reqs": []}, #? BLU Anti-Guy Hall Exit East -> BLU Anti-Guy Hall Exit West
     
-    {"from": {"map": "OMO_13", "id": 0},               "to": {"map": "OMO_13", "id": "ChestA"},        "reqs": [["RF_CanVisitTayceT"],["Lemon"],["Cookbook"],["CakeMix"]]}, #* BLU Anti-Guy Hall Exit West -> ChestA (PowerPlusB)
+    {"from": {"map": "OMO_13", "id": 0},               "to": {"map": "OMO_13", "id": "ChestA"},        "reqs": [["LemonCandy"]]}, #* BLU Anti-Guy Hall Exit West -> ChestA (PowerPlusB)
     {"from": {"map": "OMO_13", "id": "ChestA"},        "to": {"map": "OMO_13", "id": 0},               "reqs": []}, #* ChestA (PowerPlusB) -> BLU Anti-Guy Hall Exit West
     {"from": {"map": "OMO_13", "id": 0},               "to": {"map": "OMO_13", "id": "YBlockA"},       "reqs": []}, #* BLU Anti-Guy Hall Exit West -> YBlockA (Coin)
     {"from": {"map": "OMO_13", "id": "YBlockA"},       "to": {"map": "OMO_13", "id": 0},               "reqs": []}, #* YBlockA (Coin) -> BLU Anti-Guy Hall Exit West

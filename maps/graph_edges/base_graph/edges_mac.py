@@ -164,7 +164,14 @@ edges_mac = [
     {"from": {"map": "MAC_02", "id": 5},             "to": {"map": "MAC_02", "id": "ItemA"},       "reqs": []}, #* Southern District Blue House Pipe -> ItemA (OddKey)
     {"from": {"map": "MAC_02", "id": "ItemA"},       "to": {"map": "MAC_02", "id": 5},             "reqs": []}, #* ItemA (OddKey) -> Southern District Blue House Pipe
 
+    # Tayce T. related
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanVisitTayceT"]}, #+ Can visit Tayce T. for cooking
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["KoopaLeaf"]], "pseudoitems": ["KoopaTea"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["Goomnut"]], "pseudoitems": ["NuttyCake"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["CakeMix"]], "pseudoitems": ["Cake"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["CakeMix"],["Lemon"],["Cookbook"]], "pseudoitems": ["LemonCandy"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["KoopaLeaf"],["DriedPasta"],["Cookbook"]], "pseudoitems": ["Koopasta"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["KoopaLeaf"],["CakeMix"],["Cookbook"]], "pseudoitems": ["KookyCookie"]},
 
     # MAC_03 Station District
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_02", "id": 3}, "reqs": []}, # Station District Exit Top -> Southern District Exit Bottom
