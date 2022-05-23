@@ -1,7 +1,6 @@
 """General setup and supportive functionalities for the randomizer."""
 import io
 import os
-import shutil
 import sys
 import getopt
 import hashlib
@@ -17,10 +16,10 @@ from table import Table
 from parse import gather_keys, gather_values
 from calculate_crc import recalculate_crcs
 
-from optionset import OptionSet, populate_keys
+from optionset import OptionSet, PaletteOptionSet, populate_keys
 
 from spoilerlog import write_spoiler_log
-from db.option          import create_options
+from db.option          import Option, create_options
 from db.map_meta        import create_mapmeta
 from db.item            import create_items
 from db.node            import create_nodes
@@ -29,8 +28,10 @@ from db.actor_params    import create_actor_params
 from db.actor_attribute import create_actor_attributes
 from db.move            import create_moves
 from db.quiz            import create_quizzes
-from db.palette         import create_palettes
-from rando_modules.random_partners import get_rnd_starting_partners
+from db.palette         import Palette, create_palettes
+from rando_modules.random_palettes     \
+    import get_randomized_coinpalette, \
+           get_randomized_palettes
 
 
 BASE_MOD_VERSION = "0.10.0 (beta)"
@@ -326,6 +327,9 @@ def write_data_to_array(
     patchOperations += db_offset.to_bytes(4, byteorder="big")
 
     palette_offset = 0
+    cosmetics_offset = 0
+    first_palette_db_key = Palette.get(Palette.sprite == "Mario").get_key()
+    first_cosmetics_db_key = Option.get(Option.name == "Box5ColorA").get_key()
 
     for _,pair in enumerate(table_data):
         key_int = pair["key"].to_bytes(4, byteorder="big")
@@ -334,8 +338,11 @@ def write_data_to_array(
         patchOperations += (key_int)
         patchOperations += (value_int)
 
-        if pair["key"] == 0xA4000001: # When finding 1st palette key, save that offset as palette_offset to be used for future rewrite
+        if pair["key"] == first_palette_db_key: # When finding 1st palette key, save that offset as palette_offset to be used for future rewrite
             palette_offset = db_offset
+
+        elif pair["key"] == first_cosmetics_db_key: # When finding 1st palette key, save that offset as palette_offset to be used for future rewrite
+            cosmetics_offset = db_offset
 
         db_offset += 0x00000008 # Keep track of the current db offset at every iteration
 
@@ -358,7 +365,7 @@ def write_data_to_array(
         patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
 
 
-    return patchOperations, palette_offset
+    return patchOperations, palette_offset, cosmetics_offset
 
 def write_palette_data_to_array(
     coin_palette_data:list,
@@ -421,7 +428,7 @@ def web_randomizer(jsonSettings, world_graph):
     random_seed.generate(world_graph)
 
     # Write data to ROM
-    operations, palette_offset = write_data_to_array(
+    operations, palette_offset, cosmetics_offset = write_data_to_array(
         options=rando_settings,
         placed_items=random_seed.placed_items,
         entrance_list=random_seed.entrance_list,
@@ -467,7 +474,7 @@ def web_randomizer(jsonSettings, world_graph):
 
     timer_end = time.perf_counter()
     print(f'Seed generated in {round(timer_end - timer_start, 2)}s')
-    return WebSeedResponse(random_seed.seed_value, patch_file, spoiler_log_file, palette_offset)
+    return WebSeedResponse(random_seed.seed_value, patch_file, spoiler_log_file, palette_offset, cosmetics_offset)
     
 
 
