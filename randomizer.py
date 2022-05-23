@@ -246,14 +246,10 @@ def write_data_to_array(
     battle_formations:list,
     move_costs:list,
     itemhints:list,
-    coin_palette_data:list,
-    coin_palette_targets:list,
-    coin_palette_crcs:list,
     palette_data:list,
     quiz_data:list,
     music_list:list,
-    seed=int(hashlib.md5().hexdigest()[0:8], 16),
-    edit_seed="0x0123456789ABCDEF"
+    seed=int(hashlib.md5().hexdigest()[0:8], 16)
 ):
     """
     Generates key:value pairs of locations and items from a randomized item set
@@ -324,6 +320,62 @@ def write_data_to_array(
     patchOperations += ((1).to_bytes(1, byteorder="big"))
     patchOperations += (rom_table.info["itemhints_offset"].to_bytes(4, byteorder="big"))
 
+    # Write table data and generate log file
+    db_offset = rom_table.info["address"] + rom_table.info["header_size"]
+    patchOperations += ((2).to_bytes(1, byteorder="big")) # 2 means final seek, no more FILE SEEK (0) after this point
+    patchOperations += db_offset.to_bytes(4, byteorder="big")
+
+    palette_offset = 0
+
+    for _,pair in enumerate(table_data):
+        key_int = pair["key"].to_bytes(4, byteorder="big")
+        value_int = pair["value"].to_bytes(4, byteorder="big")
+        
+        patchOperations += (key_int)
+        patchOperations += (value_int)
+
+        if pair["key"] == 0xA4000001: # When finding 1st palette key, save that offset as palette_offset to be used for future rewrite
+            palette_offset = db_offset
+
+        db_offset += 0x00000008 # Keep track of the current db offset at every iteration
+
+    for formation in battle_formations:
+        for formation_hex_word in formation:              
+            patchOperations += (formation_hex_word.to_bytes(4, byteorder="big"))
+
+    # Write end of formations table
+    patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
+
+    # Write itemhint table
+    for itemhint in itemhints:
+        for itemhint_hex in itemhint:
+            patchOperations += (itemhint_hex.to_bytes(4, byteorder="big"))
+
+    # Write end of item hints table
+    patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
+    # Write end of db padding
+    for _ in range(1, 5):
+        patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
+
+
+    return patchOperations, palette_offset
+
+def write_palette_data_to_array(
+    coin_palette_data:list,
+    coin_palette_targets:list,
+    palette_data:list
+):
+    """
+    Generates key:value pairs of locations and items from a randomized item set
+    and writes these pairs in a dictionary meant to be returned by the server
+    """
+    # Create the ROM table
+    rom_table = Table()
+    rom_table.create()
+    patchOperations = bytearray()
+    # Create a sorted list of key:value pairs to be written into the ROM
+    table_data = rom_table.generate_palette_pairs(palettes=palette_data)
+
     # Random Coin Palette
     if coin_palette_data and coin_palette_targets:
         for target_rom_location in coin_palette_targets:
@@ -343,20 +395,6 @@ def write_data_to_array(
         
         patchOperations += (key_int)
         patchOperations += (value_int)
-
-        #log += (f'{hex(pair["key"])}: {hex(pair["value"])}\n')
-
-    for formation in battle_formations:
-        for formation_hex_word in formation:              
-            patchOperations += (formation_hex_word.to_bytes(4, byteorder="big"))
-
-    # Write end of formations table
-    patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
-
-    # Write itemhint table
-    for itemhint in itemhints:
-        for itemhint_hex in itemhint:
-            patchOperations += (itemhint_hex.to_bytes(4, byteorder="big"))
 
     # Write end of item hints table
     patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
@@ -383,7 +421,7 @@ def web_randomizer(jsonSettings, world_graph):
     random_seed.generate(world_graph)
 
     # Write data to ROM
-    operations = write_data_to_array(
+    operations, palette_offset = write_data_to_array(
         options=rando_settings,
         placed_items=random_seed.placed_items,
         entrance_list=random_seed.entrance_list,
@@ -391,9 +429,6 @@ def web_randomizer(jsonSettings, world_graph):
         battle_formations=random_seed.battle_formations,
         move_costs=random_seed.move_costs,
         itemhints=random_seed.itemhints,
-        coin_palette_data=random_seed.coin_palette.data,
-        coin_palette_targets=random_seed.coin_palette.targets,
-        coin_palette_crcs=random_seed.coin_palette.crcs,
         palette_data=random_seed.palette_data,
         quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
@@ -432,7 +467,7 @@ def web_randomizer(jsonSettings, world_graph):
 
     timer_end = time.perf_counter()
     print(f'Seed generated in {round(timer_end - timer_start, 2)}s')
-    return WebSeedResponse(random_seed.seed_value, patch_file, spoiler_log_file)
+    return WebSeedResponse(random_seed.seed_value, patch_file, spoiler_log_file, palette_offset)
     
 
 
