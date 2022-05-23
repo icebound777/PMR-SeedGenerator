@@ -26,15 +26,16 @@ from rando_modules.modify_itempool \
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
-from metadata.itemlocation_special     \
-    import kootfavors_reward_locations,       \
-           kootfavors_keyitem_locations,\
-           chainletter_giver_locations,\
-           chainletter_final_reward_location,\
-           simpleletter_locations,\
-           dojo_locations,             \
-           limited_by_item_areas,      \
-           bush_tree_coin_locations
+from metadata.itemlocation_special import \
+    kootfavors_reward_locations,          \
+    kootfavors_keyitem_locations,         \
+    chainletter_giver_locations,          \
+    chainletter_final_reward_location,    \
+    simpleletter_locations,               \
+    radio_trade_event_locations,          \
+    dojo_locations,                       \
+    limited_by_item_areas,                \
+    bush_tree_coin_locations
 from metadata.progression_items                                 \
     import progression_miscitems as progression_miscitems_names, \
            progression_items
@@ -721,6 +722,7 @@ def _generate_item_pools(
     do_randomize_panels:bool,
     randomize_favors_mode:int,
     randomize_letters_mode:int,
+    do_randomize_radiotrade:bool,
     do_randomize_dojo:bool,
     item_scarcity:int,
     itemtrap_mode:int,
@@ -822,6 +824,13 @@ def _generate_item_pools(
 
             if (    current_node_id in simpleletter_locations
                 and randomize_letters_mode < 1
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    not do_randomize_radiotrade
+                and current_node_id in radio_trade_event_locations
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -1121,6 +1130,7 @@ def _algo_forward_fill(
     do_randomize_panels,
     randomize_favors_mode:int,
     randomize_letters_mode:int,
+    do_randomize_radiotrade:bool,
     do_randomize_dojo,
     item_scarcity,
     itemtrap_mode,
@@ -1169,6 +1179,7 @@ def _algo_forward_fill(
         do_randomize_panels,
         randomize_favors_mode,
         randomize_letters_mode,
+        do_randomize_radiotrade,
         do_randomize_dojo,
         item_scarcity,
         itemtrap_mode,
@@ -1450,6 +1461,7 @@ def _algo_assumed_fill(
     do_randomize_panels,
     randomize_favors_mode:int,
     randomize_letters_mode:int,
+    do_randomize_radiotrade:bool,
     do_randomize_dojo,
     item_scarcity,
     itemtrap_mode,
@@ -1495,6 +1507,7 @@ def _algo_assumed_fill(
         do_randomize_panels,
         randomize_favors_mode,
         randomize_letters_mode,
+        do_randomize_radiotrade,
         do_randomize_dojo,
         item_scarcity,
         itemtrap_mode,
@@ -1773,6 +1786,7 @@ def place_items(
     do_randomize_panels,
     randomize_favors_mode:int,
     randomize_letters_mode:int,
+    do_randomize_radiotrade:bool,
     do_randomize_dojo,
     item_scarcity,
     itemtrap_mode,
@@ -1815,6 +1829,7 @@ def place_items(
             do_randomize_panels,
             randomize_favors_mode,
             randomize_letters_mode,
+            do_randomize_radiotrade,
             do_randomize_dojo,
             item_scarcity,
             itemtrap_mode,
@@ -1846,6 +1861,7 @@ def place_items(
             do_randomize_panels,
             randomize_favors_mode,
             randomize_letters_mode,
+            do_randomize_radiotrade,
             do_randomize_dojo,
             item_scarcity,
             itemtrap_mode,

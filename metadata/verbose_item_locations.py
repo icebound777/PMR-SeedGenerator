@@ -38,6 +38,7 @@ verbose_item_locations = {
                "GiftA": "Russ T. Dictionary Reward",
                "GiftB": "Russ T. Letter Reward",
                "GiftC": "Miss T. Letter Reward",
+               "GiftD": "Radio Trade Event 1 Reward",
                "HiddenPanel": "Hidden Panel",
                "ShopItemA": "Shop Item 1",
                "ShopItemB": "Shop Item 2",
@@ -93,6 +94,7 @@ verbose_item_locations = {
     "MAC_05": {"GiftA": "Poet Gift",
                "GiftB": "Poet Melody Reward",
                "GiftC": "Fishmael Letter Reward",
+               "GiftD": "Radio Trade Event 3 Reward",
                "HiddenPanel": "Hidden Panel",},
 
 # Toad Town Tunnels
@@ -293,6 +295,7 @@ verbose_item_locations = {
 # Dry Dry Desert
     "SBK_00": {"YBlockA": "Yellow Block Left",
                "YBlockB": "Yellow Block Right",},
+    "SBK_02": {"GiftA": "Radio Trade Event 2 Reward",},
     "SBK_05": {"ItemA": "Behind Cactus",},
     "SBK_10": {"HiddenYBlockA": "Hidden Block",},
     "SBK_14": {"YBlockA": "Yellow Block Left",

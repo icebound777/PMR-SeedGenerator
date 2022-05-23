@@ -48,6 +48,9 @@ edges_nok = [
                                                                                                                      "StarPiece_NOK_6",
                                                                                                                      "StarPiece_NOK_7",
                                                                                                                      "StarPiece_NOK_8"]}, #+ Quizmo StarPieces
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": 0}, "reqs": [[{"starspirits": 1}],["RF_Ch1_Fuzzies_Banished"]], "pseudoitems": ["RF_RadioTradeEvt1"]}, #+ Radio Trade Event 1
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": 0}, "reqs": [[{"starspirits": 3}],["RF_RadioTradeEvt1Done"]], "pseudoitems": ["RF_RadioTradeEvt2"]}, #+ Radio Trade Event 2
+    {"from": {"map": "NOK_01", "id": 0},               "to": {"map": "NOK_01", "id": 0}, "reqs": [[{"starspirits": 5}],["RF_RadioTradeEvt2Done"]], "pseudoitems": ["RF_RadioTradeEvt3"]}, #+ Radio Trade Event 3
 
     # NOK_02 Koopa Village 2
     {"from": {"map": "NOK_02", "id": 0}, "to": {"map": "NOK_01", "id": 1}, "reqs": []}, # Koopa Village 2 Exit Left -> Koopa Village 1 Exit Right

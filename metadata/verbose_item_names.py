@@ -98,6 +98,7 @@ verbose_item_names = {
     "StarPiece1E": "Starpiece",
     "StarPiece1F": "Starpiece",
     "StarPiece20": "Starpiece",
+    "StarPiece21": "Starpiece",
     "StarPiece22": "Starpiece",
     "StarPiece23": "Starpiece",
     "StarPiece24": "Starpiece",
