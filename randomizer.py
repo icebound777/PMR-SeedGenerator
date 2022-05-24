@@ -431,7 +431,7 @@ def web_apply_cosmetic_options(cosmetic_settings, palette_offset, cosmetics_offs
     palette_options.mario_setting = cosmetic_settings["MarioSetting"]
     palette_options.mario_sprite = cosmetic_settings["MarioSprite"]
     palette_options.goombario_setting = cosmetic_settings["GoombarioSetting"]
-    palette_options.goombario_sprite = cosmetic_settings["GoombarioSetting"]
+    palette_options.goombario_sprite = cosmetic_settings["GoombarioSprite"]
     palette_options.kooper_setting = cosmetic_settings["KooperSetting"]
     palette_options.kooper_sprite = cosmetic_settings["KooperSprite"]
     #self.bombette_setting = cosmetic_settings["BombetteSetting"]
