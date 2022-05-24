@@ -388,8 +388,8 @@ def write_cosmetics_data_to_array(
     cosmetics_offset: int
 ):
     """
-    Generates key:value pairs of locations and items from a randomized item set
-    and writes these pairs in a dictionary meant to be returned by the server
+    Generates key:value pairs for cosmetic options only and writes these pairs in a dictionary
+    meant to be returned by the server to overwrite cosmetics settings
     """
     # Create the ROM table
     rom_table = Table()
@@ -474,7 +474,7 @@ def web_apply_cosmetic_options(cosmetic_settings, palette_offset, cosmetics_offs
         "Box5ColorA": cosmetic_settings["Box5ColorA"],
         "Box5ColorB": cosmetic_settings["Box5ColorB"],
         "RandomText": cosmetic_settings["RandomText"],
-        "RomanNumerals": cosmetic_settings["RandomText"],
+        "RomanNumerals": cosmetic_settings["RomanNumerals"],
         "CoinColor": chosen_color_id,
     }
 
@@ -503,7 +503,7 @@ def web_randomizer(jsonSettings, world_graph):
     random_seed = RandomSeed(rando_settings)
     random_seed.generate(world_graph)
 
-    # Write data to ROM
+    # Write data to byte array
     operations, palette_offset, cosmetics_offset = write_data_to_array(
         options=rando_settings,
         placed_items=random_seed.placed_items,
