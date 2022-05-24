@@ -247,6 +247,9 @@ def write_data_to_array(
     battle_formations:list,
     move_costs:list,
     itemhints:list,
+    coin_palette_data:list,
+    coin_palette_targets:list,
+    coin_palette_crcs:list,
     palette_data:list,
     quiz_data:list,
     music_list:list,
@@ -320,6 +323,15 @@ def write_data_to_array(
 
     patchOperations += ((1).to_bytes(1, byteorder="big"))
     patchOperations += (rom_table.info["itemhints_offset"].to_bytes(4, byteorder="big"))
+
+    # Random Coin Palette
+    if coin_palette_data and coin_palette_targets:
+        for target_rom_location in coin_palette_targets:
+           patchOperations += ((0).to_bytes(1, byteorder="big"))
+           patchOperations += (target_rom_location.to_bytes(4, byteorder="big"))
+           for palette_byte in coin_palette_data:               
+                patchOperations += ((1).to_bytes(1, byteorder="big"))
+                patchOperations += (palette_byte.to_bytes(4, byteorder="big"))
 
     # Write table data and generate log file
     db_offset = rom_table.info["address"] + rom_table.info["header_size"]
@@ -500,6 +512,9 @@ def web_randomizer(jsonSettings, world_graph):
         battle_formations=random_seed.battle_formations,
         move_costs=random_seed.move_costs,
         itemhints=random_seed.itemhints,
+        coin_palette_data=random_seed.coin_palette.data,
+        coin_palette_targets=random_seed.coin_palette.targets,
+        coin_palette_crcs=random_seed.coin_palette.crcs,
         palette_data=random_seed.palette_data,
         quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
