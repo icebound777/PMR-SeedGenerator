@@ -353,7 +353,7 @@ def write_data_to_array(
         if pair["key"] == first_palette_db_key: # When finding 1st palette key, save that offset as palette_offset to be used for future rewrite
             palette_offset = db_offset
 
-        elif pair["key"] == first_cosmetics_db_key: # When finding 1st palette key, save that offset as palette_offset to be used for future rewrite
+        elif pair["key"] == first_cosmetics_db_key: # Save 1st cosmetics option key in the same manner
             cosmetics_offset = db_offset
 
         db_offset += 0x00000008 # Keep track of the current db offset at every iteration
@@ -446,8 +446,8 @@ def web_apply_cosmetic_options(cosmetic_settings, palette_offset, cosmetics_offs
     palette_options.goombario_sprite = cosmetic_settings["GoombarioSprite"]
     palette_options.kooper_setting = cosmetic_settings["KooperSetting"]
     palette_options.kooper_sprite = cosmetic_settings["KooperSprite"]
-    #self.bombette_setting = cosmetic_settings["BombetteSetting"]
-    #self.bombette_sprite = cosmetic_settings["BombetteSprite"]
+    #palette_options.bombette_setting = cosmetic_settings["BombetteSetting"]
+    #palette_options.bombette_sprite = cosmetic_settings["BombetteSprite"]
     palette_options.parakarry_setting = cosmetic_settings["ParakarrySetting"]
     palette_options.parakarry_sprite = cosmetic_settings["ParakarrySprite"]
     palette_options.bow_setting = cosmetic_settings["BowSetting"]
@@ -456,8 +456,8 @@ def web_apply_cosmetic_options(cosmetic_settings, palette_offset, cosmetics_offs
     palette_options.watt_sprite = cosmetic_settings["WattSprite"]
     palette_options.sushie_setting = cosmetic_settings["SushieSetting"]
     palette_options.sushie_sprite = cosmetic_settings["SushieSprite"]
-    #self.lakilester_setting = cosmetic_settings["LakilesterSetting"]
-    #self.lakilester_sprite = cosmetic_settings["LakilesterSprite"]
+    #palette_options.lakilester_setting = cosmetic_settings["LakilesterSetting"]
+    #palette_options.lakilester_sprite = cosmetic_settings["LakilesterSprite"]
     palette_options.bosses_setting = cosmetic_settings["BossesSetting"]
     palette_options.npc_setting = cosmetic_settings["NPCSetting"]
         
