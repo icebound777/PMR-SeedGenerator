@@ -126,5 +126,32 @@ class Table:
         table_data.sort(key=lambda pair: pair["key"])
         return table_data
 
+    def generate_palettes_pairs(self, **kwargs):
+        table_data = []
+
+        palettes = kwargs.get("palettes")
+        for key, value in palettes:
+            table_data.append({
+                "key": key,
+                "value": value
+            })
+
+        table_data.sort(key=lambda pair: pair["key"])
+        return table_data
+
+    def generate_cosmetics_pairs(self, **kwargs):
+        table_data = []
+
+        cosmetic_options = kwargs.get("cosmetics")
+        for option in cosmetic_options:
+            table_data.append({
+                "key": Option.get(Option.name == option).get_key(),
+                "value": cosmetic_options[option]
+            })
+
+        table_data.sort(key=lambda pair: pair["key"])
+        return table_data
+
+
     def create(self):
         self.info = get_table_info()
