@@ -66,7 +66,7 @@ edges_omo = [
     {"from": {"map": "OMO_04", "id": "YBlockA"}, "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* YBlockA (Coin) -> BLU Block City Exit West
     {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "YBlockB"}, "reqs": [["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> YBlockB (Coin)
     {"from": {"map": "OMO_04", "id": "YBlockB"}, "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* YBlockB (Coin) -> BLU Block City Exit West
-    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "YBlockC"}, "reqs": [["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> YBlockC (ThunderBolt)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "YBlockC"}, "reqs": [["Hammer","SuperBoots"],["Parakarry"]]}, #* BLU Block City Exit West -> YBlockC (ThunderBolt)
     {"from": {"map": "OMO_04", "id": "YBlockC"}, "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* YBlockC (ThunderBolt) -> BLU Block City Exit West
     {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemB"},   "reqs": [["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemB (Coin)
     {"from": {"map": "OMO_04", "id": "ItemB"},   "to": {"map": "OMO_04", "id": 0},         "reqs": []}, #* ItemB (Coin) -> BLU Block City Exit West
