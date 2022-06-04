@@ -50,8 +50,6 @@ def write_spoiler_log(
             current_item_name = node.current_item.item_name
             map_verbose_name = node.map_area.verbose_name
 
-            if "de Lower Jail" in map_verbose_name: # map name fix
-                map_verbose_name = "Outside Lower Jail"
             if current_item_name in verbose_item_names:
                 current_item_name = verbose_item_names.get(current_item_name)
             if (    node.map_area.name in verbose_item_locations
