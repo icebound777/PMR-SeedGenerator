@@ -55,6 +55,7 @@ item_source_types = {
                "GiftA": SRC_GIVENBYNPC,
                "GiftB": SRC_GIVENBYNPC,
                "GiftC": SRC_GIVENBYNPC,
+               "GiftD": SRC_GIVENBYNPC,
                "HiddenPanel": SRC_HIDDENTILE,
                "ShopItemA": SRC_SOLDBYNPC,
                "ShopItemB": SRC_SOLDBYNPC,
@@ -110,6 +111,7 @@ item_source_types = {
     "MAC_05": {"GiftA": SRC_GIVENBYNPC,
                "GiftB": SRC_GIVENBYNPC,
                "GiftC": SRC_GIVENBYNPC,
+               "GiftD": SRC_GIVENBYNPC,
                "HiddenPanel": SRC_HIDDENTILE,},
 
 # Toad Town Tunnels
@@ -310,6 +312,7 @@ item_source_types = {
 # Dry Dry Desert
     "SBK_00": {"YBlockA": SRC_ITEMBLOCK,
                "YBlockB": SRC_ITEMBLOCK,},
+    "SBK_02": {"GiftA": SRC_GIVENBYNPC,},
     "SBK_05": {"ItemA": SRC_LAYINGAROUND,},
     "SBK_10": {"HiddenYBlockA": SRC_HIDDENBLOCK,},
     "SBK_14": {"YBlockA": SRC_ITEMBLOCK,

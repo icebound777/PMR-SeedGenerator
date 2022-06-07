@@ -83,6 +83,7 @@ IncludePanels         : true
 IncludeDojo           : false
 IncludeFavorsMode     : 0 # 1=RndRewardsVanillaKeyitems, 2=FullShuffle
 IncludeLettersMode    : 0 # 1=simpleLetters,2=vanillaChainRndChainReward,3=FullShuffle
+IncludeRadioTradeEvent: false
 ItemScarcity          : 0
 ItemTrapMode          : 0
 AddItemPouches        : false

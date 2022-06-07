@@ -23,6 +23,8 @@ edges_mac = [
     {"from": {"map": "MAC_00", "id": "GiftB"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* GiftB (StarPiece) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "GiftC"},       "reqs": [["Letter18"]]}, #* Gate District Exit Left -> GiftC (Letter19)
     {"from": {"map": "MAC_00", "id": "GiftC"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* GiftC (Letter19) -> Gate District Exit Left
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "GiftD"},       "reqs": [["RF_RadioTradeEvt1"],["KoopaLeaf"]], "pseudoitems": ["RF_RadioTradeEvt1Done"]}, #* Gate District Exit Left -> Giftd (MapleSyrup)
+    {"from": {"map": "MAC_00", "id": "GiftD"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* GiftD (MapleSyrup) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "ShopItemA"},   "reqs": []}, #* Gate District Exit Left -> ShopItemA (FrightJar)
     {"from": {"map": "MAC_00", "id": "ShopItemA"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemA (FrightJar) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "ShopItemB"},   "reqs": []}, #* Gate District Exit Left -> ShopItemB (SleepySheep)
@@ -164,7 +166,14 @@ edges_mac = [
     {"from": {"map": "MAC_02", "id": 5},             "to": {"map": "MAC_02", "id": "ItemA"},       "reqs": []}, #* Southern District Blue House Pipe -> ItemA (OddKey)
     {"from": {"map": "MAC_02", "id": "ItemA"},       "to": {"map": "MAC_02", "id": 5},             "reqs": []}, #* ItemA (OddKey) -> Southern District Blue House Pipe
 
+    # Tayce T. related
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanVisitTayceT"]}, #+ Can visit Tayce T. for cooking
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["KoopaLeaf"]], "pseudoitems": ["KoopaTea"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["Goomnut"]], "pseudoitems": ["NuttyCake"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["CakeMix"]], "pseudoitems": ["Cake"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["CakeMix"],["Lemon"],["Cookbook"]], "pseudoitems": ["LemonCandy"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["KoopaLeaf"],["DriedPasta"],["Cookbook"]], "pseudoitems": ["Koopasta"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["KoopaLeaf"],["CakeMix"],["Cookbook"]], "pseudoitems": ["KookyCookie"]},
 
     # MAC_03 Station District
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_02", "id": 3}, "reqs": []}, # Station District Exit Top -> Southern District Exit Bottom
@@ -251,6 +260,8 @@ edges_mac = [
     {"from": {"map": "MAC_05", "id": "GiftB"},       "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* GiftB (AttackFXD) -> Port District Exit Right
     {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftC"},       "reqs": [["Letter15"]]}, #* Port District Exit Right -> GiftC (Letter16)
     {"from": {"map": "MAC_05", "id": "GiftC"},       "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* GiftC (Letter16) -> Port District Exit Right
+    {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftD"},       "reqs": [["RF_RadioTradeEvt3"],["Coconut"]], "pseudoitems": ["RF_RadioTradeEvt3Done"]}, #* Port District Exit Right -> GiftD (YummyMeal)
+    {"from": {"map": "MAC_05", "id": "GiftD"},       "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* GiftD (YummyMeal) -> Port District Exit Right
     {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Port District Exit Right -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_05", "id": "HiddenPanel"}, "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Port District Exit Right
 

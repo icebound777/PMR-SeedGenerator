@@ -1,7 +1,6 @@
 """General setup and supportive functionalities for the randomizer."""
 import io
 import os
-import shutil
 import sys
 import getopt
 import hashlib
@@ -17,10 +16,10 @@ from table import Table
 from parse import gather_keys, gather_values
 from calculate_crc import recalculate_crcs
 
-from optionset import OptionSet, populate_keys
+from optionset import OptionSet, PaletteOptionSet, populate_keys
 
 from spoilerlog import write_spoiler_log
-from db.option          import create_options
+from db.option          import Option, create_options
 from db.map_meta        import create_mapmeta
 from db.item            import create_items
 from db.node            import create_nodes
@@ -29,8 +28,10 @@ from db.actor_params    import create_actor_params
 from db.actor_attribute import create_actor_attributes
 from db.move            import create_moves
 from db.quiz            import create_quizzes
-from db.palette         import create_palettes
-from rando_modules.random_partners import get_rnd_starting_partners
+from db.palette         import Palette, create_palettes
+from rando_modules.random_palettes     \
+    import get_randomized_coinpalette, \
+           get_randomized_palettes
 
 
 BASE_MOD_VERSION = "0.10.0 (beta)"
@@ -252,8 +253,7 @@ def write_data_to_array(
     palette_data:list,
     quiz_data:list,
     music_list:list,
-    seed=int(hashlib.md5().hexdigest()[0:8], 16),
-    edit_seed="0x0123456789ABCDEF"
+    seed=int(hashlib.md5().hexdigest()[0:8], 16)
 ):
     """
     Generates key:value pairs of locations and items from a randomized item set
@@ -334,8 +334,14 @@ def write_data_to_array(
                 patchOperations += (palette_byte.to_bytes(4, byteorder="big"))
 
     # Write table data and generate log file
+    db_offset = rom_table.info["address"] + rom_table.info["header_size"]
     patchOperations += ((2).to_bytes(1, byteorder="big")) # 2 means final seek, no more FILE SEEK (0) after this point
-    patchOperations += (rom_table.info["address"] + rom_table.info["header_size"]).to_bytes(4, byteorder="big")
+    patchOperations += db_offset.to_bytes(4, byteorder="big")
+
+    palette_offset = 0
+    cosmetics_offset = 0
+    first_palette_db_key = Palette.get(Palette.sprite == "Mario").get_key()
+    first_cosmetics_db_key = Option.get(Option.name == "Box5ColorA").get_key()
 
     for _,pair in enumerate(table_data):
         key_int = pair["key"].to_bytes(4, byteorder="big")
@@ -344,7 +350,13 @@ def write_data_to_array(
         patchOperations += (key_int)
         patchOperations += (value_int)
 
-        #log += (f'{hex(pair["key"])}: {hex(pair["value"])}\n')
+        if pair["key"] == first_palette_db_key: # When finding 1st palette key, save that offset as palette_offset to be used for future rewrite
+            palette_offset = db_offset
+
+        elif pair["key"] == first_cosmetics_db_key: # Save 1st cosmetics option key in the same manner
+            cosmetics_offset = db_offset
+
+        db_offset += 0x00000008 # Keep track of the current db offset at every iteration
 
     for formation in battle_formations:
         for formation_hex_word in formation:              
@@ -365,8 +377,117 @@ def write_data_to_array(
         patchOperations += (0xFFFFFFFF.to_bytes(4, byteorder="big"))
 
 
+    return patchOperations, palette_offset, cosmetics_offset
+
+def write_cosmetics_data_to_array(
+    coin_palette_data:list,
+    coin_palette_targets:list,
+    palette_data:list,
+    cosmetic_options: dict,
+    palette_offset: int,
+    cosmetics_offset: int
+):
+    """
+    Generates key:value pairs for cosmetic options only and writes these pairs in a dictionary
+    meant to be returned by the server to overwrite cosmetics settings
+    """
+    # Create the ROM table
+    rom_table = Table()
+    rom_table.create()
+    patchOperations = bytearray()
+    # Create a sorted list of key:value pairs to be written into the ROM
+    palette_table_data = rom_table.generate_palettes_pairs(palettes=palette_data)
+    cosmetics_table_data = rom_table.generate_cosmetics_pairs(cosmetics=cosmetic_options)
+
+    # Random Coin Palette
+    if coin_palette_data and coin_palette_targets:
+        for target_rom_location in coin_palette_targets:
+           patchOperations += ((0).to_bytes(1, byteorder="big"))
+           patchOperations += (target_rom_location.to_bytes(4, byteorder="big"))
+           for palette_byte in coin_palette_data:               
+                patchOperations += ((1).to_bytes(1, byteorder="big"))
+                patchOperations += (palette_byte.to_bytes(4, byteorder="big"))
+
+
+    # Write cosmetic options table data
+    patchOperations += ((0).to_bytes(1, byteorder="big"))
+    patchOperations += ((cosmetics_offset).to_bytes(4, byteorder="big")) # seek the adress where cosmetic settings start
+
+    for _,pair in enumerate(cosmetics_table_data):
+        key_int = pair["key"].to_bytes(4, byteorder="big")
+        value_int = pair["value"].to_bytes(4, byteorder="big")
+        
+        patchOperations += ((1).to_bytes(1, byteorder="big"))
+        patchOperations += (key_int)
+
+        patchOperations += ((1).to_bytes(1, byteorder="big"))
+        patchOperations += (value_int)
+
+    # Write palette table data
+    patchOperations += ((2).to_bytes(1, byteorder="big")) # 2 means final seek, no more FILE SEEK (0) after this point
+    patchOperations += (palette_offset).to_bytes(4, byteorder="big")
+
+    for _,pair in enumerate(palette_table_data):
+        key_int = pair["key"].to_bytes(4, byteorder="big")
+        value_int = pair["value"].to_bytes(4, byteorder="big")
+        
+        patchOperations += (key_int)
+        patchOperations += (value_int)
+
     return patchOperations
 
+def web_apply_cosmetic_options(cosmetic_settings, palette_offset, cosmetics_offset):
+
+    palette_options = PaletteOptionSet()
+
+    palette_options.mario_setting = cosmetic_settings["MarioSetting"]
+    palette_options.mario_sprite = cosmetic_settings["MarioSprite"]
+    palette_options.goombario_setting = cosmetic_settings["GoombarioSetting"]
+    palette_options.goombario_sprite = cosmetic_settings["GoombarioSprite"]
+    palette_options.kooper_setting = cosmetic_settings["KooperSetting"]
+    palette_options.kooper_sprite = cosmetic_settings["KooperSprite"]
+    #palette_options.bombette_setting = cosmetic_settings["BombetteSetting"]
+    #palette_options.bombette_sprite = cosmetic_settings["BombetteSprite"]
+    palette_options.parakarry_setting = cosmetic_settings["ParakarrySetting"]
+    palette_options.parakarry_sprite = cosmetic_settings["ParakarrySprite"]
+    palette_options.bow_setting = cosmetic_settings["BowSetting"]
+    palette_options.bow_sprite = cosmetic_settings["BowSprite"]
+    palette_options.watt_setting = cosmetic_settings["WattSetting"]
+    palette_options.watt_sprite = cosmetic_settings["WattSprite"]
+    palette_options.sushie_setting = cosmetic_settings["SushieSetting"]
+    palette_options.sushie_sprite = cosmetic_settings["SushieSprite"]
+    #palette_options.lakilester_setting = cosmetic_settings["LakilesterSetting"]
+    #palette_options.lakilester_sprite = cosmetic_settings["LakilesterSprite"]
+    palette_options.bosses_setting = cosmetic_settings["BossesSetting"]
+    palette_options.npc_setting = cosmetic_settings["NPCSetting"]
+        
+    # Randomize sprite palettes
+    coin_palette, chosen_color_id= get_randomized_coinpalette(
+        color_id = cosmetic_settings["CoinColor"],
+        should_randomize_color = cosmetic_settings["RandomCoinColor"]
+    )
+    palette_data = get_randomized_palettes(
+        palette_options
+    )
+
+    cosmetic_options = {
+        "Box5ColorA": cosmetic_settings["Box5ColorA"],
+        "Box5ColorB": cosmetic_settings["Box5ColorB"],
+        "RandomText": cosmetic_settings["RandomText"],
+        "RomanNumerals": cosmetic_settings["RomanNumerals"],
+        "CoinColor": chosen_color_id,
+    }
+
+    operations = write_cosmetics_data_to_array(
+        coin_palette_data= coin_palette.data,
+        coin_palette_targets=coin_palette.targets,
+        palette_data=palette_data,
+        cosmetic_options=cosmetic_options,
+        palette_offset=palette_offset,
+        cosmetics_offset=cosmetics_offset
+    )
+    patch_file = io.BytesIO(operations)
+    return patch_file
 
 def web_randomizer(jsonSettings, world_graph):
     timer_start = time.perf_counter()
@@ -382,8 +503,8 @@ def web_randomizer(jsonSettings, world_graph):
     random_seed = RandomSeed(rando_settings)
     random_seed.generate(world_graph)
 
-    # Write data to ROM
-    operations = write_data_to_array(
+    # Write data to byte array
+    operations, palette_offset, cosmetics_offset = write_data_to_array(
         options=rando_settings,
         placed_items=random_seed.placed_items,
         entrance_list=random_seed.entrance_list,
@@ -432,7 +553,7 @@ def web_randomizer(jsonSettings, world_graph):
 
     timer_end = time.perf_counter()
     print(f'Seed generated in {round(timer_end - timer_start, 2)}s')
-    return WebSeedResponse(random_seed.seed_value, patch_file, spoiler_log_file)
+    return WebSeedResponse(random_seed.seed_value, patch_file, spoiler_log_file, palette_offset, cosmetics_offset)
     
 
 

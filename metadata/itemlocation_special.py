@@ -84,7 +84,7 @@ dojo_locations = [
     "MAC_00/DojoE",
 ]
 
-bush_tree_coin_locations =[
+bush_tree_coin_locations = [
     "KMR_05/Tree1_Drop1A",
     "NOK_01/Bush1_Drop1A",
     "NOK_01/Bush5_Drop1A",
@@ -94,6 +94,12 @@ bush_tree_coin_locations =[
     "JAN_09/Bush1_Drop1",
     "JAN_09/Bush6_Drop1",
     "JAN_09/Tree2_Drop1",
+]
+
+radio_trade_event_locations = [
+    "MAC_00/GiftD",
+    "SBK_02/GiftA",
+    "MAC_05/GiftD",
 ]
 
 # Areas that are considered 'limited by item'.

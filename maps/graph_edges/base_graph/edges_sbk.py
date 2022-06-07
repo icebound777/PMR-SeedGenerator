@@ -35,6 +35,9 @@ edges_sbk = [
     {"from": {"map": "SBK_02", "id": 0}, "to": {"map": "SBK_02", "id": 4}, "reqs": [["PulseStone"]]}, #? N3W1 Ruins Entrance Exit West -> N3W1 Ruins Entrance Enter Ruins
     {"from": {"map": "SBK_02", "id": 4}, "to": {"map": "SBK_02", "id": 0}, "reqs": []}, #? N3W1 Ruins Entrance Enter Ruins -> N3W1 Ruins Entrance Exit West
 
+    {"from": {"map": "SBK_02", "id": 0},       "to": {"map": "SBK_02", "id": "GiftA"}, "reqs": [["RF_RadioTradeEvt2"],["NuttyCake"]], "pseudoitems": ["RF_RadioTradeEvt2Done"]}, #* N3W1 Ruins Entrance Exit West -> GiftA (MapleSuper)
+    {"from": {"map": "SBK_02", "id": "GiftA"}, "to": {"map": "SBK_02", "id": 0},       "reqs": []}, #* GiftA (MapleSuper) -> N3W1 Ruins Entrance Exit West
+
     # SBK_03 N3
     {"from": {"map": "SBK_03", "id": 0}, "to": {"map": "SBK_02", "id": 1}, "reqs": []}, # N3 Exit West -> N3W1 Ruins Entrance Exit East
     {"from": {"map": "SBK_03", "id": 1}, "to": {"map": "SBK_04", "id": 0}, "reqs": []}, # N3 Exit East -> N3E1 Exit West
