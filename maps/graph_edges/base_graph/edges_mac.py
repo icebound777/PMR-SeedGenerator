@@ -19,9 +19,9 @@ edges_mac = [
     {"from": {"map": "MAC_00", "id": "ItemA"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ItemA (StarPiece) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "GiftA"},       "reqs": [["Dictionary"]]}, #* Gate District Exit Left -> GiftA (StarPiece)
     {"from": {"map": "MAC_00", "id": "GiftA"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* GiftA (StarPiece) -> Gate District Exit Left
-    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "GiftB"},       "reqs": [["Letter04"]]}, #* Gate District Exit Left -> GiftB (StarPiece)
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "GiftB"},       "reqs": [["Parakarry"],["Letter04"]]}, #* Gate District Exit Left -> GiftB (StarPiece)
     {"from": {"map": "MAC_00", "id": "GiftB"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* GiftB (StarPiece) -> Gate District Exit Left
-    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "GiftC"},       "reqs": [["Letter18"]]}, #* Gate District Exit Left -> GiftC (Letter19)
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "GiftC"},       "reqs": [["Parakarry"],["Letter18"]]}, #* Gate District Exit Left -> GiftC (Letter19)
     {"from": {"map": "MAC_00", "id": "GiftC"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* GiftC (Letter19) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "GiftD"},       "reqs": [["RF_RadioTradeEvt1"],["KoopaLeaf"]], "pseudoitems": ["RF_RadioTradeEvt1Done"]}, #* Gate District Exit Left -> Giftd (MapleSyrup)
     {"from": {"map": "MAC_00", "id": "GiftD"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* GiftD (MapleSyrup) -> Gate District Exit Left
@@ -78,9 +78,9 @@ edges_mac = [
     {"from": {"map": "MAC_01", "id": "GiftA"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* GiftA (ISpy) -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "GiftB"},        "reqs": [["Mailbag"]]}, #* Plaza District Exit Left -> GiftB (StarPiece)
     {"from": {"map": "MAC_01", "id": "GiftB"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* GiftB (StarPiece) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "GiftC"},        "reqs": [["Letter01"]]}, #* Plaza District Exit Left -> GiftC (StarPiece)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "GiftC"},        "reqs": [["Parakarry"],["Letter01"]]}, #* Plaza District Exit Left -> GiftC (StarPiece)
     {"from": {"map": "MAC_01", "id": "GiftC"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* GiftC (StarPiece) -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "GiftD"},        "reqs": [["Letter09"]]}, #* Plaza District Exit Left -> GiftD (StarPiece)
+    {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "GiftD"},        "reqs": [["Parakarry"],["Letter09"]]}, #* Plaza District Exit Left -> GiftD (StarPiece)
     {"from": {"map": "MAC_01", "id": "GiftD"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* GiftD (StarPiece) -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "Tree1_Drop1A"}, "reqs": [["can_shake_trees"]]}, #* Plaza District Exit Left -> Tree1_Drop1A (StarPiece)
     {"from": {"map": "MAC_01", "id": "Tree1_Drop1A"}, "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* Tree1_Drop1A (StarPiece) -> Plaza District Exit Left
@@ -159,7 +159,7 @@ edges_mac = [
     {"from": {"map": "MAC_02", "id": "GiftA"},       "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* GiftA (MagicalSeed1) -> Southern District Exit Top
     {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftB"},       "reqs": [["FryingPan"]]}, #* Southern District Exit Top -> GiftB (Cake)
     {"from": {"map": "MAC_02", "id": "GiftB"},       "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* GiftB (Cake) -> Southern District Exit Top
-    {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftC"},       "reqs": [["Letter07"]]}, #* Southern District Exit Top -> GiftC (StarPiece)
+    {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftC"},       "reqs": [["Parakarry"],["Letter07"]]}, #* Southern District Exit Top -> GiftC (StarPiece)
     {"from": {"map": "MAC_02", "id": "GiftC"},       "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* GiftC (StarPiece) -> Southern District Exit Top
     {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Southern District Exit Top -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_02", "id": "HiddenPanel"}, "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* HiddenPanel (StarPiece) -> Southern District Exit Top
@@ -185,9 +185,9 @@ edges_mac = [
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 2}, "reqs": [["can_shake_trees"]]}, #? Station District Exit Top -> Station District Minigame Pipe
     {"from": {"map": "MAC_03", "id": 2}, "to": {"map": "MAC_03", "id": 0}, "reqs": []}, #? Station District Minigame Pipe -> Station District Exit Top
     
-    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "GiftA"},       "reqs": [["Letter20"]]}, #* Station District Exit Top -> GiftA (Letter21)
+    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "GiftA"},       "reqs": [["Parakarry"],["Letter20"]]}, #* Station District Exit Top -> GiftA (Letter21)
     {"from": {"map": "MAC_03", "id": "GiftA"},       "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* GiftA (Letter21) -> Station District Exit Top
-    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "GiftB"},       "reqs": [["Letter22"]]}, #* Station District Exit Top -> GiftB (Letter23)
+    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "GiftB"},       "reqs": [["Parakarry"],["Letter22"]]}, #* Station District Exit Top -> GiftB (Letter23)
     {"from": {"map": "MAC_03", "id": "GiftB"},       "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* GiftB (Letter23) -> Station District Exit Top
     {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Station District Exit Top -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_03", "id": "HiddenPanel"}, "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Station District Exit Top
@@ -258,7 +258,7 @@ edges_mac = [
     {"from": {"map": "MAC_05", "id": "GiftA"},       "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* GiftA (Lyrics) -> Port District Exit Right
     {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftB"},       "reqs": [["Melody"]]}, #* Port District Exit Right -> GiftB (AttackFXD)
     {"from": {"map": "MAC_05", "id": "GiftB"},       "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* GiftB (AttackFXD) -> Port District Exit Right
-    {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftC"},       "reqs": [["Letter15"]]}, #* Port District Exit Right -> GiftC (Letter16)
+    {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftC"},       "reqs": [["Parakarry"],["Letter15"]]}, #* Port District Exit Right -> GiftC (Letter16)
     {"from": {"map": "MAC_05", "id": "GiftC"},       "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* GiftC (Letter16) -> Port District Exit Right
     {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftD"},       "reqs": [["RF_RadioTradeEvt3"],["Coconut"]], "pseudoitems": ["RF_RadioTradeEvt3Done"]}, #* Port District Exit Right -> GiftD (YummyMeal)
     {"from": {"map": "MAC_05", "id": "GiftD"},       "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* GiftD (YummyMeal) -> Port District Exit Right

@@ -82,7 +82,7 @@ edges_hos = [
     {"from": {"map": "HOS_06", "id": "HiddenPanel"}, "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Merluvlee's House Exit Left
     {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "GiftA"},       "reqs": [["FAVOR_3_03_active"], ["CrystalBall"]]}, #* Merluvlee's House Exit Left -> GiftA (KootMerluvleeAutograph)
     {"from": {"map": "HOS_06", "id": "GiftA"},       "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* GiftA (KootMerluvleeAutograph) -> Merluvlee's House Exit Left
-    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "GiftB"},       "reqs": [["Letter06"]]}, #* Merluvlee's House Exit Left -> GiftB (StarPiece)
+    {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "GiftB"},       "reqs": [["Parakarry"],["Letter06"]]}, #* Merluvlee's House Exit Left -> GiftB (StarPiece)
     {"from": {"map": "HOS_06", "id": "GiftB"},       "to": {"map": "HOS_06", "id": 0},             "reqs": []}, #* GiftB (StarPiece) -> Merluvlee's House Exit Left
     
     {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopBadgeA"},  "reqs": [[{"starpieces": 60}]]}, #* Merluvlee's House Exit Left -> ShopBadgeA (AttackFXA)

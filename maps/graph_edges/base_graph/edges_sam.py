@@ -10,7 +10,7 @@ edges_sam = [
     {"from": {"map": "SAM_01", "id": "HiddenPanel"}, "to": {"map": "SAM_01", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Shiver City Mayor Area Exit East
     {"from": {"map": "SAM_01", "id": 0},             "to": {"map": "SAM_01", "id": "GiftA"},       "reqs": [["RF_Ch7_MurderMysterySolved"],["RF_Ch7_GotSnowmanScarf"]]}, #* Shiver City Mayor Area Exit East -> GiftA (SnowmanBucket)
     {"from": {"map": "SAM_01", "id": "GiftA"},       "to": {"map": "SAM_01", "id": 0},             "reqs": []}, #* GiftA (SnowmanBucket) -> Shiver City Mayor Area Exit East
-    {"from": {"map": "SAM_01", "id": 0},             "to": {"map": "SAM_01", "id": "GiftB"},       "reqs": [["Letter05"]]}, #* Shiver City Mayor Area Exit East -> GiftB (StarPiece)
+    {"from": {"map": "SAM_01", "id": 0},             "to": {"map": "SAM_01", "id": "GiftB"},       "reqs": [["Parakarry"],["Letter05"]]}, #* Shiver City Mayor Area Exit East -> GiftB (StarPiece)
     {"from": {"map": "SAM_01", "id": "GiftB"},       "to": {"map": "SAM_01", "id": 0},             "reqs": []}, #* GiftB (StarPiece) -> Shiver City Mayor Area Exit East
     {"from": {"map": "SAM_01", "id": 0},             "to": {"map": "SAM_01", "id": "ChestA"},      "reqs": []}, #* Shiver City Mayor Area Exit East -> ChestA (AttackFXE)
     {"from": {"map": "SAM_01", "id": "ChestA"},      "to": {"map": "SAM_01", "id": 0},             "reqs": []}, #* ChestA (AttackFXE) -> Shiver City Mayor Area Exit East
@@ -109,7 +109,7 @@ edges_sam = [
     
     {"from": {"map": "SAM_06", "id": 0},       "to": {"map": "SAM_06", "id": "GiftA"}, "reqs": [], "pseudoitems": ["RF_Ch7_GotSnowmanScarf"]}, #* Starborn Valley Town Entrance -> GiftA (SnowmanScarf)
     {"from": {"map": "SAM_06", "id": "GiftA"}, "to": {"map": "SAM_06", "id": 0},       "reqs": []}, #* GiftA (SnowmanScarf) -> Starborn Valley Town Entrance
-    {"from": {"map": "SAM_06", "id": 0},       "to": {"map": "SAM_06", "id": "GiftB"}, "reqs": [["Letter23"]]}, #* Starborn Valley Town Entrance -> GiftB (Letter24)
+    {"from": {"map": "SAM_06", "id": 0},       "to": {"map": "SAM_06", "id": "GiftB"}, "reqs": [["Parakarry"],["Letter23"]]}, #* Starborn Valley Town Entrance -> GiftB (Letter24)
     {"from": {"map": "SAM_06", "id": "GiftB"}, "to": {"map": "SAM_06", "id": 0},       "reqs": []}, #* GiftB (Letter24) -> Starborn Valley Town Entrance
 
     # SAM_07 Shiver Mountain Passage

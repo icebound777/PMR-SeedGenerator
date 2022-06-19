@@ -24,7 +24,7 @@ edges_obk = [
     
     {"from": {"map": "OBK_01", "id": 0},             "to": {"map": "OBK_01", "id": "GiftA"},       "reqs": [["RF_OpenedGustyGulch"],["FAVOR_5_02_active"]]}, #* Foyer Front Door -> GiftA (KootOldPhoto)
     {"from": {"map": "OBK_01", "id": "GiftA"},       "to": {"map": "OBK_01", "id": 0},             "reqs": []}, #* GiftA (KootOldPhoto) -> Foyer Front Door
-    {"from": {"map": "OBK_01", "id": 0},             "to": {"map": "OBK_01", "id": "GiftB"},       "reqs": [["RF_OpenedGustyGulch"],["Letter12"]]}, #* Foyer Front Door -> GiftB (Letter20)
+    {"from": {"map": "OBK_01", "id": 0},             "to": {"map": "OBK_01", "id": "GiftB"},       "reqs": [["RF_OpenedGustyGulch"],["Parakarry"],["Letter12"]]}, #* Foyer Front Door -> GiftB (Letter20)
     {"from": {"map": "OBK_01", "id": "GiftB"},       "to": {"map": "OBK_01", "id": 0},             "reqs": []}, #* GiftB (Letter20) -> Foyer Front Door
     {"from": {"map": "OBK_01", "id": 0},             "to": {"map": "OBK_01", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Foyer Front Door -> HiddenPanel (StarPiece)
     {"from": {"map": "OBK_01", "id": "HiddenPanel"}, "to": {"map": "OBK_01", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Foyer Front Door
@@ -54,7 +54,7 @@ edges_obk = [
     
     {"from": {"map": "OBK_03", "id": 0},           "to": {"map": "OBK_03", "id": "CrateA"},    "reqs": [["SuperBoots"]]}, #* Basement Upper Door North -> CrateA (SuperShroom)
     {"from": {"map": "OBK_03", "id": "CrateA"},    "to": {"map": "OBK_03", "id": 0},           "reqs": []}, #* CrateA (SuperShroom) -> Basement Upper Door North
-    {"from": {"map": "OBK_03", "id": 0},           "to": {"map": "OBK_03", "id": "GiftA"},     "reqs": [["Letter11"]]}, #* Basement Upper Door North -> GiftA (StarPiece)
+    {"from": {"map": "OBK_03", "id": 0},           "to": {"map": "OBK_03", "id": "GiftA"},     "reqs": [["Parakarry"],["Letter11"]]}, #* Basement Upper Door North -> GiftA (StarPiece)
     {"from": {"map": "OBK_03", "id": "GiftA"},     "to": {"map": "OBK_03", "id": 0},           "reqs": []}, #* GiftA (StarPiece) -> Basement Upper Door North
     {"from": {"map": "OBK_03", "id": 2},           "to": {"map": "OBK_03", "id": "ShopItemA"}, "reqs": [["RF_OpenedGustyGulch"]]}, #* Basement Fall From Ceiling -> ShopItemA (Mystery)
     {"from": {"map": "OBK_03", "id": "ShopItemA"}, "to": {"map": "OBK_03", "id": 2},           "reqs": []}, #* ShopItemA (Mystery) -> Basement Fall From Ceiling
