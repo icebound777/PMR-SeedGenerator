@@ -20,7 +20,7 @@ edges_kpa_add = [
 
     #? KPA_62 Front Door Exterior Hangar Door Bottom Left -> Front Door Exterior Front Door
     # This removes the key requirement
-    {"from": {"map": "KPA_62",  "id": 3}, "to": {"map": "KPA_62",  "id": 0}, "reqs": []},
+    {"from": {"map": "KPA_62",  "id": 3}, "to": {"map": "KPA_62",  "id": 0}, "reqs": [], "mapchange": False},
 
     # KPA_82 Guard Door 2 Door Left -> Hall to Guard Door 1 Door Right
     {"from": {"map": "KPA_82",  "id": 0}, "to": {"map": "KPA_50",  "id": 1}, "reqs": []},

@@ -368,7 +368,7 @@ edges_sbk = [
     {"from": {"map": "SBK_34", "id": 0}, "to": {"map": "SBK_34", "id": 3}, "reqs": []}, #? E1 Nomadimouse Exit West -> E1 Nomadimouse Exit South
     {"from": {"map": "SBK_34", "id": 3}, "to": {"map": "SBK_34", "id": 0}, "reqs": []}, #? E1 Nomadimouse Exit South -> E1 Nomadimouse Exit West
 
-    {"from": {"map": "SBK_34", "id": 0},       "to": {"map": "SBK_34", "id": "GiftA"}, "reqs": [["Letter08"]]}, #* E1 Nomadimouse Exit West -> GiftA (StarPiece)
+    {"from": {"map": "SBK_34", "id": 0},       "to": {"map": "SBK_34", "id": "GiftA"}, "reqs": [["Parakarry"],["Letter08"]]}, #* E1 Nomadimouse Exit West -> GiftA (StarPiece)
     {"from": {"map": "SBK_34", "id": "GiftA"}, "to": {"map": "SBK_34", "id": 0},       "reqs": []}, #* GiftA (StarPiece) -> E1 Nomadimouse Exit West
 
     # SBK_35 E2
