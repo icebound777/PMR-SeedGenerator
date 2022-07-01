@@ -119,7 +119,7 @@ edges_sam = [
     {"from": {"map": "SAM_07", "id": 0}, "to": {"map": "SAM_07", "id": 1}, "reqs": [["SuperBoots"]]}, #? Shiver Mountain Passage Mountain Entrance -> Shiver Mountain Passage Exit East
     {"from": {"map": "SAM_07", "id": 1}, "to": {"map": "SAM_07", "id": 0}, "reqs": [["SuperBoots"]]}, #? Shiver Mountain Passage Exit East -> Shiver Mountain Passage Mountain Entrance
     
-    {"from": {"map": "SAM_07", "id": 1},               "to": {"map": "SAM_07", "id": "HiddenYBlockA"}, "reqs": [["UltraBoots"]]}, #* Shiver Mountain Passage Exit East -> HiddenYBlockA (UltraShroom)
+    {"from": {"map": "SAM_07", "id": 1},               "to": {"map": "SAM_07", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["UltraBoots"]]}, #* Shiver Mountain Passage Exit East -> HiddenYBlockA (UltraShroom)
     {"from": {"map": "SAM_07", "id": "HiddenYBlockA"}, "to": {"map": "SAM_07", "id": 1},               "reqs": []}, #* HiddenYBlockA (UltraShroom) -> Shiver Mountain Passage Exit East
 
     # SAM_08 Shiver Mountain Hills
