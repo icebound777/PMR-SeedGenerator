@@ -60,6 +60,8 @@ class OptionSet:
         self.starting_maxfp = get_option_keyvalue_dict("StartingMaxFP")
         self.starting_maxbp = get_option_keyvalue_dict("StartingMaxBP")
         self.starting_starpower = get_option_keyvalue_dict("StartingStarPower")
+        self.starting_boots = get_option_keyvalue_dict("StartingBoots")
+        self.starting_hammer = get_option_keyvalue_dict("StartingHammer")
 
         self.random_starting_items = False
         self.random_starting_items_min = 0
@@ -272,6 +274,10 @@ class OptionSet:
             self.starting_maxbp = options_dict.get("StartingMaxBP")
         if "StartingStarPower" in options_dict:
             self.starting_starpower = options_dict.get("StartingStarPower")
+        if "StartingBoots" in options_dict:
+            self.starting_boots = options_dict.get("StartingBoots")
+        if "StartingHammer" in options_dict:
+            self.starting_hammer = options_dict.get("StartingHammer")
 
         if "StartWithRandomItems" in options_dict:
             self.random_starting_items = options_dict.get("StartWithRandomItems").get("value")
@@ -581,6 +587,12 @@ def validate_options(options_dict):
     if "StartingStarPower" in options_dict:
         assert (    isinstance(options_dict.get("StartingStarPower").get("value"), int)
                 and 0 <= options_dict.get("StartingStarPower").get("value") <= 7)
+    if "StartingBoots" in options_dict:
+        assert (    isinstance(options_dict.get("StartingBoots").get("value"), int)
+                and 0 <= options_dict.get("StartingBoots").get("value") <= 2)
+    if "StartingHammer" in options_dict:
+        assert (    isinstance(options_dict.get("StartingHammer").get("value"), int)
+                and 0 <= options_dict.get("StartingHammer").get("value") <= 2)
 
     if "StartWithRandomItems" in options_dict:
         assert isinstance(options_dict.get("StartWithRandomItems").get("value"), bool)

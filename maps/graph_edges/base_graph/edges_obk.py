@@ -78,7 +78,7 @@ edges_obk = [
     {"from": {"map": "OBK_04", "id": 0}, "to": {"map": "OBK_04", "id": 1}, "reqs": [["SuperBoots"]]}, #? Super Boots Room Vanishing Door -> Super Boots Room Hole Under Planks
     {"from": {"map": "OBK_04", "id": 1}, "to": {"map": "OBK_04", "id": 0}, "reqs": []}, #? Super Boots Room Hole Under Planks -> Super Boots Room Vanishing Door
     
-    {"from": {"map": "OBK_04", "id": 0}, "to": {"map": "OBK_04", "id": 0}, "reqs": [], "pseudoitems": ["EQUIPMENT_Boots_Progressive_2"]}, #+ Super Boots Room Vanishing Door
+    {"from": {"map": "OBK_04", "id": 0}, "to": {"map": "OBK_04", "id": 0}, "reqs": [], "pseudoitems": ["EQUIPMENT_Boots_Progressive_1"]}, #+ Super Boots Room Vanishing Door
     
     {"from": {"map": "OBK_04", "id": 0},             "to": {"map": "OBK_04", "id": "CrateA"},      "reqs": [["SuperBoots"]]}, #* Super Boots Room Vanishing Door -> CrateA (MapleSyrup)
     {"from": {"map": "OBK_04", "id": "CrateA"},      "to": {"map": "OBK_04", "id": 0},             "reqs": []}, #* CrateA (MapleSyrup) -> Super Boots Room Vanishing Door

@@ -271,6 +271,8 @@ def _find_new_nodes_and_edges(
 def _init_mario_inventory(
     starting_partners:list,
     starting_items:list,
+    starting_boots:int,
+    starting_hammer:int,
     partners_always_usable:bool,
     hidden_block_mode:int,
     startwith_bluehouse_open:bool,
@@ -292,8 +294,21 @@ def _init_mario_inventory(
     else:
         mario.add_to_inventory(starting_partners)
 
-    mario.add_to_inventory("EQUIPMENT_Hammer_Progressive_1")
-    mario.add_to_inventory("EQUIPMENT_Boots_Progressive_1")
+    if starting_boots == 2:
+        mario.add_to_inventory("EQUIPMENT_Boots_Progressive_C")
+    if starting_boots >= 1:
+        mario.add_to_inventory("EQUIPMENT_Boots_Progressive_B")
+    #* Commented out, as -1 boots never affect logic
+    #if starting_boots >= 0:
+    #    mario.add_to_inventory("EQUIPMENT_Boots_Progressive_A")
+    mario.add_to_inventory("EQUIPMENT_Boots_Progressive_A")
+    if starting_hammer == 2:
+        mario.add_to_inventory("EQUIPMENT_Hammer_Progressive_C")
+    if starting_hammer >= 1:
+        mario.add_to_inventory("EQUIPMENT_Hammer_Progressive_B")
+    if starting_hammer >= 0:
+        mario.add_to_inventory("EQUIPMENT_Hammer_Progressive_A")
+    
 
     for item in starting_items:
         mario.add_to_inventory(item.item_name)
@@ -319,6 +334,8 @@ def _get_limit_items_to_dungeons(
     partners_always_usable:bool,
     partners_in_default_locations,
     starting_items:list,
+    starting_boots:int,
+    starting_hammer:int,
     starting_partners:list,
     hidden_block_mode:int,
     bowsers_castle_mode:int
@@ -541,6 +558,8 @@ def _get_limit_items_to_dungeons(
             mario = _init_mario_inventory(
                 almost_all_partners,
                 starting_items,
+                starting_boots,
+                starting_hammer,
                 partners_always_usable,
                 hidden_block_mode,
                 False,
@@ -552,6 +571,8 @@ def _get_limit_items_to_dungeons(
             mario = _init_mario_inventory(
                 all_partners,
                 starting_items,
+                starting_boots,
+                starting_hammer,
                 partners_always_usable,
                 hidden_block_mode,
                 False,
@@ -616,6 +637,8 @@ def _get_limit_items_to_dungeons(
                     mario = _init_mario_inventory(
                         almost_all_partners,
                         starting_items,
+                        starting_boots,
+                        starting_hammer,
                         partners_always_usable,
                         hidden_block_mode,
                         False,
@@ -627,6 +650,8 @@ def _get_limit_items_to_dungeons(
                     mario = _init_mario_inventory(
                         all_partners,
                         starting_items,
+                        starting_boots,
+                        starting_hammer,
                         partners_always_usable,
                         hidden_block_mode,
                         False,
@@ -737,6 +762,8 @@ def _generate_item_pools(
     hidden_block_mode:int,
     starting_partners:list,
     starting_items:list,
+    starting_boots:int,
+    starting_hammer:int,
     add_item_pouches:bool,
     bowsers_castle_mode:int,
     algorithm
@@ -864,6 +891,8 @@ def _generate_item_pools(
                     partners_always_usable,
                     partners_in_default_locations,
                     starting_items,
+                    starting_boots,
+                    starting_hammer,
                     starting_partners,
                     hidden_block_mode,
                     bowsers_castle_mode
@@ -1140,6 +1169,8 @@ def _algo_forward_fill(
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
+    starting_boots,
+    starting_hammer,
     speedyspin,
     ispy,
     peekaboo,
@@ -1194,6 +1225,8 @@ def _algo_forward_fill(
         hidden_block_mode,
         starting_partners,
         starting_items,
+        starting_boots,
+        starting_hammer,
         add_item_pouches,
         bowsers_castle_mode,
         algorithm
@@ -1203,6 +1236,8 @@ def _algo_forward_fill(
     mario = _init_mario_inventory(
         starting_partners,
         starting_items,
+        starting_boots,
+        starting_hammer,
         partners_always_usable,
         hidden_block_mode,
         startwith_bluehouse_open,
@@ -1273,6 +1308,8 @@ def _algo_forward_fill(
             mario = _init_mario_inventory(
                 starting_partners,
                 starting_items,
+                starting_boots,
+                starting_hammer,
                 partners_always_usable,
                 hidden_block_mode,
                 startwith_bluehouse_open,
@@ -1471,6 +1508,8 @@ def _algo_assumed_fill(
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
+    starting_boots,
+    starting_hammer,
     speedyspin,
     ispy,
     peekaboo,
@@ -1522,6 +1561,8 @@ def _algo_assumed_fill(
         hidden_block_mode,
         starting_partners,
         starting_items,
+        starting_boots,
+        starting_hammer,
         add_item_pouches,
         bowsers_castle_mode,
         algorithm
@@ -1549,6 +1590,8 @@ def _algo_assumed_fill(
         mario = _init_mario_inventory(
             starting_partners,
             starting_items,
+            starting_boots,
+            starting_hammer,
             partners_always_usable,
             hidden_block_mode,
             startwith_bluehouse_open,
@@ -1678,6 +1721,8 @@ def get_item_spheres(
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
+    starting_boots,
+    starting_hammer,
     partners_always_usable,
     hidden_block_mode:int,
     starting_items:list,
@@ -1699,6 +1744,8 @@ def get_item_spheres(
     mario = _init_mario_inventory(
         starting_partners,
         starting_items,
+        starting_boots,
+        starting_hammer,
         partners_always_usable,
         hidden_block_mode,
         startwith_bluehouse_open,
@@ -1796,6 +1843,8 @@ def place_items(
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
+    starting_boots,
+    starting_hammer,
     speedyspin,
     ispy,
     peekaboo,
@@ -1839,6 +1888,8 @@ def place_items(
             startwith_toybox_open,
             startwith_whale_open,
             starting_partners,
+            starting_boots,
+            starting_hammer,
             speedyspin,
             ispy,
             peekaboo,
@@ -1871,6 +1922,8 @@ def place_items(
             startwith_toybox_open,
             startwith_whale_open,
             starting_partners,
+            starting_boots,
+            starting_hammer,
             speedyspin,
             ispy,
             peekaboo,

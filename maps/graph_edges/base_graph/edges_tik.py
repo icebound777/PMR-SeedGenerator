@@ -256,5 +256,5 @@ edges_tik = [
     # TIK_25 Ultra Boots Room (B3)
     {"from": {"map": "TIK_25", "id": 0}, "to": {"map": "TIK_24", "id": 0}, "reqs": []}, # Ultra Boots Room (B3) Exit Right -> Hall to Ultra Boots (B3) Exit Left
 
-    {"from": {"map": "TIK_25", "id": 0}, "to": {"map": "TIK_25", "id": 0}, "reqs": [], "pseudoitems": ["EQUIPMENT_Boots_Progressive_3"]}, #+ Ultra Boots Room (B3) Exit Right
+    {"from": {"map": "TIK_25", "id": 0}, "to": {"map": "TIK_25", "id": 0}, "reqs": [], "pseudoitems": ["EQUIPMENT_Boots_Progressive_2"]}, #+ Ultra Boots Room (B3) Exit Right
 ]
