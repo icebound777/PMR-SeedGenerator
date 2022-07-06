@@ -90,6 +90,7 @@ edges_kmr  = [
 
     {"from": {"map": "KMR_04", "id": 0},              "to": {"map": "KMR_04", "id": "Tree3_Drop1A"}, "reqs": [["can_shake_trees"]]}, #* Jr. Troopa's Playground Exit Right -> Tree3_Drop1A (Dolly)
     {"from": {"map": "KMR_04", "id": "Tree3_Drop1A"}, "to": {"map": "KMR_04", "id": 0},              "reqs": []}, #* Tree3_Drop1A (Dolly) -> Jr. Troopa's Playground Exit Right
+    {"from": {"map": "KMR_04", "id": 0},              "to": {"map": "KMR_04", "id": 0},              "reqs": [["MF_HammerlessStart"]], "pseudoitems": ["EQUIPMENT_Hammer_Progressive_0"]}, #+ Jr. Troopa's Playground Hammer Bush
 
     # KMR_09 Goomba Road 1
     {"from": {"map": "KMR_09", "id": 0}, "to": {"map": "KMR_02", "id": 0}, "reqs": []}, # Goomba Road 1 Exit Left -> Goomba Village Exit Right

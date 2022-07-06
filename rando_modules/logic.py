@@ -304,11 +304,12 @@ def _init_mario_inventory(
     mario.add_to_inventory("EQUIPMENT_Boots_Progressive_A")
     if starting_hammer == 2:
         mario.add_to_inventory("EQUIPMENT_Hammer_Progressive_C")
-    if starting_hammer >= 1:
+    if starting_hammer in [1,2]:
         mario.add_to_inventory("EQUIPMENT_Hammer_Progressive_B")
-    if starting_hammer >= 0:
+    if starting_hammer in [0,1,2]:
         mario.add_to_inventory("EQUIPMENT_Hammer_Progressive_A")
-    
+    if starting_hammer == 0xFF:
+        mario.add_to_inventory("MF_HammerlessStart")
 
     for item in starting_items:
         mario.add_to_inventory(item.item_name)

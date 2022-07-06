@@ -278,6 +278,8 @@ class OptionSet:
             self.starting_boots = options_dict.get("StartingBoots")
         if "StartingHammer" in options_dict:
             self.starting_hammer = options_dict.get("StartingHammer")
+            if self.starting_hammer.get("value") == -1:
+                self.starting_hammer["value"] = 0xFF
 
         if "StartWithRandomItems" in options_dict:
             self.random_starting_items = options_dict.get("StartWithRandomItems").get("value")
@@ -592,7 +594,7 @@ def validate_options(options_dict):
                 and 0 <= options_dict.get("StartingBoots").get("value") <= 2)
     if "StartingHammer" in options_dict:
         assert (    isinstance(options_dict.get("StartingHammer").get("value"), int)
-                and 0 <= options_dict.get("StartingHammer").get("value") <= 2)
+                and -1 <= options_dict.get("StartingHammer").get("value") <= 2)
 
     if "StartWithRandomItems" in options_dict:
         assert isinstance(options_dict.get("StartWithRandomItems").get("value"), bool)
