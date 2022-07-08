@@ -180,4 +180,8 @@ SushieSprite     : 0
 BossesSetting    : 0
 NPCSetting       : 0
 
+# Glitched Logic
+RuinsEarlyLaki      : false
+RuinsEarlyUltraBoots: false
+
 # Audio

@@ -140,6 +140,9 @@ class OptionSet:
 
         self.palette_settings = PaletteOptionSet()
 
+        # Glitched logic options
+        self.glitch_settings = GlitchOptionSet()
+
         # Audio
 
 
@@ -476,6 +479,12 @@ class OptionSet:
             self.palette_settings.bosses_setting = options_dict.get("BossesSetting").get("value")
         if "NPCSetting" in options_dict:
             self.palette_settings.npc_setting = options_dict.get("NPCSetting").get("value")
+
+        # Glitched Logic
+        if "RuinsEarlyLaki" in options_dict:
+            self.glitch_settings.early_ruins_laki = options_dict.get("RuinsEarlyLaki")
+        if "RuinsEarlyUltraBoots" in options_dict:
+            self.glitch_settings.early_ruins_ultraboots = options_dict.get("RuinsEarlyUltraBoots")
 
         # Audio
 
@@ -841,6 +850,12 @@ def validate_options(options_dict):
     if "NPCSetting" in options_dict:
         assert isinstance(options_dict.get("NPCSetting").get("value"), int)
 
+    # Glitched Logic
+    if "RuinsEarlyLaki" in options_dict:
+        assert isinstance(options_dict.get("RuinsEarlyLaki").get("value"), bool)
+    if "RuinsEarlyUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("RuinsEarlyUltraBoots").get("value"), bool)
+
     # Audio
 
 
@@ -899,3 +914,9 @@ class MysteryOptionSet():
         self.mystery_itemE = get_option_keyvalue_dict("ItemChoiceE")
         self.mystery_itemF = get_option_keyvalue_dict("ItemChoiceF")
         self.mystery_itemG = get_option_keyvalue_dict("ItemChoiceG")
+
+class GlitchOptionSet():
+    def __init__(self):
+        # Early Ruins: Enter Dry Dry Ruins without Pulse Stone
+        self.early_ruins_laki = False
+        self.early_ruins_ultraboots = False

@@ -7,7 +7,7 @@ from optionset import OptionSet
 from rando_modules.logic import place_items, get_item_spheres, get_items_to_exclude
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.modify_entrances import \
-    get_shorter_bowsercastle, get_bowsercastle_bossrush
+    get_shorter_bowsercastle, get_bowsercastle_bossrush, get_glitched_logic
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
@@ -61,6 +61,9 @@ class RandomSeed:
             self.entrance_list, world_graph = get_shorter_bowsercastle(world_graph)
         elif self.rando_settings.bowsers_castle_mode["value"] == 2:
             self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
+        
+        # Adjust graph logic if needed
+        world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings)
         
         starting_chapter = self.init_starting_map(self.rando_settings)
         self.init_starting_partners(self.rando_settings)
