@@ -2,7 +2,9 @@
 This module is used to modify entrances / loading zones. Depending on chosen
 settings it can set pre-determined paths or randomize them.
 """
+from worldgraph import adjust, check_unreachable_from_start
 
+# Imports: Modify Bowser's Castle
 from maps.graph_edges.bc_shorten.edges_kpa import \
     edges_kpa_add, edges_kpa_remove
 from maps.graph_edges.bc_bossrush.edges_hos import \
@@ -10,7 +12,11 @@ from maps.graph_edges.bc_bossrush.edges_hos import \
 from maps.graph_edges.bc_bossrush.edges_kpa import \
     edges_kpa_add    as edges_kpa_bossrush_add, \
     edges_kpa_remove as edges_kpa_bossrus_remove
-from worldgraph import adjust, check_unreachable_from_start
+
+# Imports: Glitched logic
+from optionset import GlitchOptionSet
+from maps.graph_edges.glitched_logic.early_ruins import \
+    edges_sbk_add_laki, edges_sbk_add_ultraboots
 
 
 def get_shorter_bowsercastle(world_graph: dict):
@@ -66,3 +72,29 @@ def get_bowsercastle_bossrush(world_graph: dict):
         world_graph.pop(node_id)
 
     return all_entrance_modifications, world_graph
+
+
+def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet):
+    """
+    Returns the modified world graph itself for glitched logic, depending
+    on settings chosen.
+    """
+    all_new_edges = []
+    all_edges_to_remove = []
+
+    # Early Ruins: Enter Dry Dry Ruins without Pulse Stone
+    if glitch_settings.early_ruins_laki["value"]:
+        all_new_edges.extend(edges_sbk_add_laki)
+    if glitch_settings.early_ruins_ultraboots["value"]:
+        all_new_edges.extend(edges_sbk_add_ultraboots)
+    print(all_new_edges)
+
+    # Modify graph with all pending changes, if any
+    if all_new_edges or all_edges_to_remove:
+        world_graph, _ = adjust(
+            world_graph,
+            new_edges=all_new_edges,
+            edges_to_remove=all_edges_to_remove
+        )
+
+    return world_graph
