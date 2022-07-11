@@ -14,7 +14,7 @@ edges_kzn_add = [
     {"from": {"map": "KZN_06", "id": 0}, "to": {"map": "KZN_06", "id": 2}, "reqs": [["UltraBoots"]], "mapchange": False},
 
     # KZN_07 Ultra Hammer Room Exit East -> BigChest (UltraHammer)
-    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": "BigChest"}, "reqs": [["Parakarry","Lakilester"]], "mapchange": False},
+    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": "BigChest"}, "reqs": [["Parakarry","Lakilester","UltraHammer"]], "mapchange": False},
 
     # KZN_17 Spike Roller Trap Exit West -> Spike Roller Trap Exit East
     {"from": {"map": "KZN_17", "id": 0}, "to": {"map": "KZN_17", "id": 1}, "reqs": [["UltraBoots"]], "mapchange": False},
