@@ -295,21 +295,21 @@ def _init_mario_inventory(
         mario.add_to_inventory(starting_partners)
 
     if starting_boots == 2:
-        mario.add_to_inventory("EQUIPMENT_Boots_Progressive_C")
+        mario.add_to_inventory("TornadoJump")
     if starting_boots >= 1:
-        mario.add_to_inventory("EQUIPMENT_Boots_Progressive_B")
+        mario.add_to_inventory("SpinJump")
     #* Commented out, as -1 boots never affect logic
     #if starting_boots >= 0:
-    #    mario.add_to_inventory("EQUIPMENT_Boots_Progressive_A")
-    mario.add_to_inventory("EQUIPMENT_Boots_Progressive_A")
+    #    mario.add_to_inventory("Jump")
+    mario.add_to_inventory("Jump")
     if starting_hammer == 2:
-        mario.add_to_inventory("EQUIPMENT_Hammer_Progressive_C")
+        mario.add_to_inventory("UltraHammer")
     if starting_hammer in [1,2]:
-        mario.add_to_inventory("EQUIPMENT_Hammer_Progressive_B")
+        mario.add_to_inventory("SuperHammer")
     if starting_hammer in [0,1,2]:
-        mario.add_to_inventory("EQUIPMENT_Hammer_Progressive_A")
+        mario.add_to_inventory("Hammer")
     if starting_hammer == 0xFF:
-        mario.add_to_inventory("MF_HammerlessStart")
+        mario.add_to_inventory("RF_HammerlessStart")
 
     for item in starting_items:
         mario.add_to_inventory(item.item_name)
@@ -695,6 +695,9 @@ def get_items_to_exclude(
     always_speedyspin:bool,
     always_ispy:bool,
     always_peekaboo:bool,
+    do_big_chest_shuffle:bool,
+    starting_hammer:int,
+    starting_boots:int
 ) -> list:
     """
     Returns a list of items that should not be placed or given to Mario at the
@@ -733,6 +736,22 @@ def get_items_to_exclude(
         for item_name in exclude_due_to_settings.get("always_peekaboo"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
+    if do_big_chest_shuffle:
+        if starting_hammer == 2:
+            item = Item.get(Item.item_name == "UltraHammer")
+            excluded_items.append(item)
+        if starting_hammer in [1,2]:
+            item = Item.get(Item.item_name == "SuperHammer")
+            excluded_items.append(item)
+        if starting_hammer in [0,1,2]:
+            item = Item.get(Item.item_name == "Hammer")
+            excluded_items.append(item)
+        if starting_boots == 2:
+            item = Item.get(Item.item_name == "TornadoJump")
+            excluded_items.append(item)
+        if starting_boots in [1,2]:
+            item = Item.get(Item.item_name == "SpinJump")
+            excluded_items.append(item)
 
     return excluded_items
 
@@ -750,6 +769,7 @@ def _generate_item_pools(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo:bool,
+    do_big_chest_shuffle:bool,
     item_scarcity:int,
     itemtrap_mode:int,
     startwith_bluehouse_open:bool,
@@ -879,6 +899,20 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
+            if (    not do_big_chest_shuffle
+                and current_node.vanilla_item.item_type == "GEAR"
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    starting_hammer != 0xFF
+                and current_node.identifier == "KMR_04/Bush7_Drop1"
+            ):
+                current_node.current_item = Item.get(Item.item_name == "Nothing")
+                all_item_nodes.append(current_node)
+                continue
+
     # Pre-fill 'dungeon' nodes if keyitems are limited to there
     items_to_remove_from_pools = []
     items_to_add_to_pools = []
@@ -919,6 +953,7 @@ def _generate_item_pools(
             # Item shall be randomized: Add it to the correct item pool
             if (current_node.vanilla_item.progression
             or (do_randomize_shops and "StarPiece" in current_node.vanilla_item.item_name)
+            or current_node.vanilla_item.item_type == "GEAR"
             ):
                 pool_progression_items.append(current_node.vanilla_item)
             else:
@@ -968,6 +1003,9 @@ def _generate_item_pools(
             always_speedyspin,
             always_ispy,
             always_peekaboo,
+            do_big_chest_shuffle,
+            starting_hammer,
+            starting_boots
     ))
     items_to_remove_from_pools.extend(starting_items)
 
@@ -1162,6 +1200,7 @@ def _algo_forward_fill(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
+    do_big_chest_shuffle,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
@@ -1213,6 +1252,7 @@ def _algo_forward_fill(
         randomize_letters_mode,
         do_randomize_radiotrade,
         do_randomize_dojo,
+        do_big_chest_shuffle,
         item_scarcity,
         itemtrap_mode,
         startwith_bluehouse_open,
@@ -1501,6 +1541,7 @@ def _algo_assumed_fill(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
+    do_big_chest_shuffle:bool,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
@@ -1549,6 +1590,7 @@ def _algo_assumed_fill(
         randomize_letters_mode,
         do_randomize_radiotrade,
         do_randomize_dojo,
+        do_big_chest_shuffle,
         item_scarcity,
         itemtrap_mode,
         startwith_bluehouse_open,
@@ -1584,6 +1626,7 @@ def _algo_assumed_fill(
                     assert item not in dungeon_restricted_items
                     dungeon_restricted_items[item] = dungeon
 
+    pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
     pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 
     while pool_combined_progression_items:
@@ -1616,6 +1659,9 @@ def _algo_assumed_fill(
             dungeon = dungeon_restricted_items[item.item_name]
             candidate_locations = [node for node in candidate_locations if node.map_area.name[:3] == dungeon]
             dungeon_restricted_items.pop(item.item_name)
+
+        if item.item_type == "GEAR":
+            candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
 
         if len(candidate_locations) == 0:
             raise UnbeatableSeedError("Failed to generate a beatable seed")
@@ -1836,6 +1882,7 @@ def place_items(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
+    do_big_chest_shuffle:bool,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
@@ -1881,6 +1928,7 @@ def place_items(
             randomize_letters_mode,
             do_randomize_radiotrade,
             do_randomize_dojo,
+            do_big_chest_shuffle,
             item_scarcity,
             itemtrap_mode,
             starting_map_id,
@@ -1915,6 +1963,7 @@ def place_items(
             randomize_letters_mode,
             do_randomize_radiotrade,
             do_randomize_dojo,
+            do_big_chest_shuffle,
             item_scarcity,
             itemtrap_mode,
             starting_map_id,

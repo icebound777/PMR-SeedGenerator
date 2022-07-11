@@ -75,13 +75,13 @@ edges_obk = [
     {"from": {"map": "OBK_04", "id": 0}, "to": {"map": None, "id": None},  "reqs": []}, # Super Boots Room Vanishing Door
     {"from": {"map": "OBK_04", "id": 1}, "to": {"map": "OBK_03", "id": 2}, "reqs": []}, # Super Boots Room Hole Under Planks -> Basement Fall From Ceiling
     
-    {"from": {"map": "OBK_04", "id": 0}, "to": {"map": "OBK_04", "id": 1}, "reqs": [["SuperBoots"]]}, #? Super Boots Room Vanishing Door -> Super Boots Room Hole Under Planks
+    {"from": {"map": "OBK_04", "id": 0}, "to": {"map": "OBK_04", "id": 1}, "reqs": []}, #? Super Boots Room Vanishing Door -> Super Boots Room Hole Under Planks
     {"from": {"map": "OBK_04", "id": 1}, "to": {"map": "OBK_04", "id": 0}, "reqs": []}, #? Super Boots Room Hole Under Planks -> Super Boots Room Vanishing Door
-    
-    {"from": {"map": "OBK_04", "id": 0}, "to": {"map": "OBK_04", "id": 0}, "reqs": [], "pseudoitems": ["EQUIPMENT_Boots_Progressive_1"]}, #+ Super Boots Room Vanishing Door
     
     {"from": {"map": "OBK_04", "id": 0},             "to": {"map": "OBK_04", "id": "CrateA"},      "reqs": [["SuperBoots"]]}, #* Super Boots Room Vanishing Door -> CrateA (MapleSyrup)
     {"from": {"map": "OBK_04", "id": "CrateA"},      "to": {"map": "OBK_04", "id": 0},             "reqs": []}, #* CrateA (MapleSyrup) -> Super Boots Room Vanishing Door
+    {"from": {"map": "OBK_04", "id": 0},             "to": {"map": "OBK_04", "id": "BigChest"},    "reqs": []}, #* Super Boots Room Vanishing Door -> BigChest (SuperBoots)
+    {"from": {"map": "OBK_04", "id": "BigChest"},    "to": {"map": "OBK_04", "id": 0},             "reqs": []}, #* BigChest (SuperBoots) -> Super Boots Room Vanishing Door
     {"from": {"map": "OBK_04", "id": 0},             "to": {"map": "OBK_04", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Super Boots Room Vanishing Door -> HiddenPanel (StarPiece)
     {"from": {"map": "OBK_04", "id": "HiddenPanel"}, "to": {"map": "OBK_04", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Super Boots Room Vanishing Door
 

@@ -23,7 +23,7 @@ edges_kzn = [
     
     {"from": {"map": "KZN_03", "id": 0}, "to": {"map": "KZN_03", "id": 1}, "reqs": []}, #? Central Cavern Exit West Upper -> Central Cavern Exit East Upper
     {"from": {"map": "KZN_03", "id": 1}, "to": {"map": "KZN_03", "id": 0}, "reqs": []}, #? Central Cavern Exit East Upper -> Central Cavern Exit West Upper
-    {"from": {"map": "KZN_03", "id": 0}, "to": {"map": "KZN_03", "id": 2}, "reqs": [["UltraHammer","RF_KZN07_OpenedHammerChest"]]}, #? Central Cavern Exit West Upper -> Central Cavern Exit East Lower 1 (Ultra Block)
+    {"from": {"map": "KZN_03", "id": 0}, "to": {"map": "KZN_03", "id": 2}, "reqs": [["RF_KZN07_OpenedHammerChest"]]}, #? Central Cavern Exit West Upper -> Central Cavern Exit East Lower 1 (Ultra Block)
     {"from": {"map": "KZN_03", "id": 2}, "to": {"map": "KZN_03", "id": 0}, "reqs": []}, #? Central Cavern Exit East Lower 1 (Ultra Block) -> Central Cavern Exit West Upper
     {"from": {"map": "KZN_03", "id": 0}, "to": {"map": "KZN_03", "id": 3}, "reqs": []}, #? Central Cavern Exit West Upper -> Central Cavern Exit West Lower
     {"from": {"map": "KZN_03", "id": 3}, "to": {"map": "KZN_03", "id": 0}, "reqs": []}, #? Central Cavern Exit West Lower -> Central Cavern Exit West Upper
@@ -60,7 +60,7 @@ edges_kzn = [
     
     {"from": {"map": "KZN_06", "id": 0}, "to": {"map": "KZN_06", "id": 1}, "reqs": [["Parakarry","Lakilester"]]}, #? Flowing Lava Puzzle Exit East Upper -> Flowing Lava Puzzle Exit West
     {"from": {"map": "KZN_06", "id": 1}, "to": {"map": "KZN_06", "id": 0}, "reqs": [["Parakarry","Lakilester"]]}, #? Flowing Lava Puzzle Exit West -> Flowing Lava Puzzle Exit East Upper
-    {"from": {"map": "KZN_06", "id": 0}, "to": {"map": "KZN_06", "id": 2}, "reqs": [["UltraHammer","RF_KZN07_OpenedHammerChest"]]}, #? Flowing Lava Puzzle Exit East Upper -> Flowing Lava Puzzle Exit East Lower
+    {"from": {"map": "KZN_06", "id": 0}, "to": {"map": "KZN_06", "id": 2}, "reqs": [["RF_KZN07_OpenedHammerChest"]]}, #? Flowing Lava Puzzle Exit East Upper -> Flowing Lava Puzzle Exit East Lower
     {"from": {"map": "KZN_06", "id": 2}, "to": {"map": "KZN_06", "id": 0}, "reqs": []}, #? Flowing Lava Puzzle Exit East Lower -> Flowing Lava Puzzle Exit East Upper
     
     {"from": {"map": "KZN_06", "id": 0},               "to": {"map": "KZN_06", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #* Flowing Lava Puzzle Exit East Upper -> HiddenYBlockA (LifeShroom)
@@ -69,7 +69,8 @@ edges_kzn = [
     # KZN_07 Ultra Hammer Room
     {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_06", "id": 1}, "reqs": []}, # Ultra Hammer Room Exit East -> Flowing Lava Puzzle Exit West
 
-    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": 0}, "reqs": [["Parakarry","Lakilester","UltraHammer"]], "pseudoitems": ["EQUIPMENT_Hammer_Progressive_2","RF_KZN07_OpenedHammerChest"]}, #+ Open Ultra Hammer Chest
+    {"from": {"map": "KZN_07", "id": 0},          "to": {"map": "KZN_07", "id": "BigChest"}, "reqs": [["Parakarry","Lakilester"]], "pseudoitems": ["RF_KZN07_OpenedHammerChest"]}, #? Ultra Hammer Room Exit East -> BigChest (UltraHammer)
+    {"from": {"map": "KZN_07", "id": "BigChest"}, "to": {"map": "KZN_07", "id": 0},          "reqs": []}, #? BigChest (UltraHammer) -> Ultra Hammer Room Exit East
 
     # KZN_08 Dizzy Stomp Room
     {"from": {"map": "KZN_08", "id": 0}, "to": {"map": "KZN_06", "id": 2}, "reqs": []}, # Dizzy Stomp Room Exit West -> Flowing Lava Puzzle Exit East Lower
@@ -107,7 +108,7 @@ edges_kzn = [
     {"from": {"map": "KZN_17", "id": 0}, "to": {"map": "KZN_11", "id": 1}, "reqs": []}, # Spike Roller Trap Exit West -> Second Lava Lake Exit East
     {"from": {"map": "KZN_17", "id": 1}, "to": {"map": "KZN_18", "id": 0}, "reqs": []}, # Spike Roller Trap Exit East -> Boss Antechamber Exit West
     
-    {"from": {"map": "KZN_17", "id": 0}, "to": {"map": "KZN_17", "id": 1}, "reqs": [["UltraHammer","RF_KZN07_OpenedHammerChest"]]}, #? Spike Roller Trap Exit West -> Spike Roller Trap Exit East
+    {"from": {"map": "KZN_17", "id": 0}, "to": {"map": "KZN_17", "id": 1}, "reqs": [["RF_KZN07_OpenedHammerChest"]]}, #? Spike Roller Trap Exit West -> Spike Roller Trap Exit East
     {"from": {"map": "KZN_17", "id": 1}, "to": {"map": "KZN_17", "id": 0}, "reqs": []}, #? Spike Roller Trap Exit East -> Spike Roller Trap Exit West
 
     # KZN_18 Boss Antechamber
