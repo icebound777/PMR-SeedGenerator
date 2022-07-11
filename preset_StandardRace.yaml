@@ -180,8 +180,104 @@ SushieSprite     : 0
 BossesSetting    : 2
 NPCSetting       : 2
 
-# Glitched Logic
-RuinsEarlyLaki      : false
-RuinsEarlyUltraBoots: false
-
 # Audio
+
+# Glitched Logic
+PrologueGelEarly                                : false
+
+OddKeyEarly                                     : false
+BlueHouseSkip                                   : false
+BowlessToyBox                                   : false
+EarlyStoreroomParakarry                         : false
+EarlyStoreroomHammer                            : false
+WhaleEarly                                      : false
+SushielessToadTownStarPiece                     : false
+
+ClippyBootsStoneBlockSkip                       : false
+ClippyBootsMetalBlockSkip                       : false
+IslandPipeBlooperSkip                           : false
+ParakarrylessSewerStarPiece                     : false
+SewerBlocksWithoutUltraBoots                    : false
+
+KooperlessPleasantPathStarPiece: false
+InvisibleBridgeClipLzs                          : false
+InvisibleBridgeClipLaki                         : false
+KooperlessPleasantPathThunderBolt               : false
+
+BombettelessKbfFpPlusLZS                        : false
+BombettelessKbfFpPlusLaki                       : false
+LakiJailbreak                                   : false
+BombettelessRightFortressJailKey                : false
+WaterStaircaseSkip                              : false
+
+MtRuggedQuakeHammerAndLetterWithLaki            : false
+ParakarrylessMtRuggedSeed                       : false
+BuzzarGapSkipClippy                             : false
+ParakarrylessMtRuggedStarPieceClippy            : false
+
+DesertBrickBlockItemWithParakarry               : false
+EarlyRuinsLakiJump                              : false
+EarlyRuinsUltraBoots                            : false
+
+ArtifactJump                                    : false
+RuinsKeyLakiJump                                : false
+ParakarylessSecondSandRoomUltraBoots            : false
+ParakarylessSecondSandRoomSuperBoots            : false
+ParakarylessSecondSandRoomNormalBoots           : false
+ParakarylessSuperHammerRoomUltraBoots           : false
+ParakarylessSuperHammerRoomNormalBoots          : false
+RuinsLocksSkipClippy                            : false
+
+RecordSkipNoBombettePush                        : false
+RecordSkipBombettePush                          : false
+BoosPortraitWithKooper                          : false
+BoosPortraitWithLaki                            : false
+
+GustyGulchGateSkipLZS                           : false
+KooperlessGustyGulchDizzyDialJump               : false
+KooperlessGustyGulchDizzyDialLaki               : false
+KooperlessGustyGulchDizzyDialParakarry          : false
+GustyGulchGapSkip                               : false
+
+BowlessTubbasCastle                             : false
+TubbasTableLakiJump                             : false
+TubbasCastleSuperBootsSkip                      : false
+ParakarrylessMegaRush                           : false
+
+ParakarrylessBlueBuildingStarPiece              : false
+GourmetGuySkipJump                              : false
+GourmetGuySkipLaki                              : false
+BowlessGreenStation                             : false
+KooperlessRedStationShootingStar                : false
+
+RaphSkipEnglish                                 : false
+
+KooperlessLavalavaPowBlock                      : false
+UltraHammerSkip                                 : false
+Flarakarry                                      : false
+ParakarrylessFlarakarryBombette                 : false
+ParakarrylessFlarakarryLaki                     : false
+
+EarlyLakiLZS                                    : false
+EarlyLakiBombettePush                           : false
+BombettelessMegaSmash                           : false
+SunTowerSkip                                    : false
+YellowBerryGateSkipLZS                          : false
+YellowBerryGateSkipLaki                         : false
+YellowBerryGateSkipBombettePush                 : false
+RedBerryGateSkipBombettePush                    : false
+RedBerryGateSkipLaki                            : false
+BlueBerryGateSkipBombettePush                   : false
+BlueBerryGateSkipLaki                           : false
+BubbleBerryTreeLakiJump                         : false
+
+MurderSolvedEarlyLaki                           : false
+MurderSolvedEarlyBombettePush                   : false
+Ch7SushieGlitch                                 : false
+ShiverMountainHiddenBlockWithoutUltraBootsLaki  : false
+ShiverMountainHiddenBlockWithoutUltraBootsNoLaki: false
+
+MirrorClip                                      : false
+
+BowlessBowsersCastleBasement                    : false
+FastFloodRoom                                   : false

@@ -83,9 +83,9 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet):
     all_edges_to_remove = []
 
     # Early Ruins: Enter Dry Dry Ruins without Pulse Stone
-    if glitch_settings.early_ruins_laki["value"]:
+    if glitch_settings.early_ruins_laki_jump["value"]:
         all_new_edges.extend(edges_sbk_add_laki)
-    if glitch_settings.early_ruins_ultraboots["value"]:
+    if glitch_settings.early_ruins_ultra_boots["value"]:
         all_new_edges.extend(edges_sbk_add_ultraboots)
     print(all_new_edges)
 
