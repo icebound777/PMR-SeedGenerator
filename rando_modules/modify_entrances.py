@@ -17,6 +17,28 @@ from maps.graph_edges.bc_bossrush.edges_kpa import \
 from optionset import GlitchOptionSet
 from maps.graph_edges.glitched_logic.early_ruins import \
     edges_sbk_add_laki, edges_sbk_add_ultraboots
+from maps.graph_edges.glitched_logic.prologue_gel_early import \
+    edges_kmr_add_prologue_gel_early
+from maps.graph_edges.glitched_logic.odd_key_early import \
+    edges_mac_odd_key_early
+from maps.graph_edges.glitched_logic.blue_house_skip import \
+    edges_mac_add_bhs
+from maps.graph_edges.glitched_logic.bowless_toy_box import \
+    edges_mac_add_bowless_toybox
+from maps.graph_edges.glitched_logic.clippy_boots import \
+    edges_tik_add_clippy_boots_metal_block_skip, edges_tik_add_clippy_boots_stone_block_skip
+from maps.graph_edges.glitched_logic.enter_storeroom_without_key import \
+    edges_mac_add_storeroom_without_key_hammer, edges_mac_add_storeroom_without_key_parakarry
+from maps.graph_edges.glitched_logic.island_pipe_blooper_skip import \
+    edges_tik_add_island_pipe_blooper_skip
+from maps.graph_edges.glitched_logic.parakaryless_sewer_star_piece import \
+    edges_tik_add_parakarryless_sewer_star_piece
+from maps.graph_edges.glitched_logic.sushieless_toad_town_star_piece import \
+    edges_mac_add_sushieless_starpiece
+from maps.graph_edges.glitched_logic.whale_early import \
+    edges_mac_add_whale_early_lzs
+from maps.graph_edges.glitched_logic.sewer_blocks_without_ultra_boots import \
+    edges_tik_add_sewer_blocks_without_ultra_boots
 
 
 def get_shorter_bowsercastle(world_graph: dict):
@@ -87,6 +109,38 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet):
         all_new_edges.extend(edges_sbk_add_laki)
     if glitch_settings.early_ruins_ultra_boots["value"]:
         all_new_edges.extend(edges_sbk_add_ultraboots)
+
+    # Goomba Region
+    if glitch_settings.prologue_gel_early["value"]:
+        all_new_edges.extend(edges_kmr_add_prologue_gel_early)
+
+    # Toad Town
+    if glitch_settings.odd_key_early["value"]:
+        all_new_edges.extend(edges_mac_odd_key_early)
+    if glitch_settings.blue_house_skip["value"]:
+        all_new_edges.extend(edges_mac_add_bhs)
+    if glitch_settings.bowless_toy_box["value"]:
+        all_new_edges.extend(edges_mac_add_bowless_toybox)
+    if glitch_settings.early_storeroom_parakarry["value"]:
+        all_new_edges.extend(edges_mac_add_storeroom_without_key_parakarry)
+    if glitch_settings.early_storeroom_hammer["value"]:
+        all_new_edges.extend(edges_mac_add_storeroom_without_key_hammer)
+    if glitch_settings.whale_early["value"]:
+        all_new_edges.extend(edges_mac_add_whale_early_lzs)
+    if glitch_settings.sushiesless_toad_town_star_piece["value"]:
+        all_new_edges.extend(edges_mac_add_sushieless_starpiece)
+    
+    # Toad Town Tunnels
+    if glitch_settings.clippy_boots_stone_block_skip["value"]:
+        all_new_edges.extend(edges_tik_add_clippy_boots_stone_block_skip)
+    if glitch_settings.clippy_boots_metal_block_skip["value"]:
+        all_new_edges.extend(edges_tik_add_clippy_boots_metal_block_skip)
+    if glitch_settings.island_pipe_blooper_skip["value"]:
+        all_new_edges.extend(edges_tik_add_island_pipe_blooper_skip)
+    if glitch_settings.parakarryless_sewer_star_piece["value"]:
+        all_new_edges.extend(edges_tik_add_parakarryless_sewer_star_piece)
+    if glitch_settings.sewer_blocks_without_ultra_boots["value"]:
+        all_new_edges.extend(edges_tik_add_sewer_blocks_without_ultra_boots)
     print(all_new_edges)
 
     # Modify graph with all pending changes, if any
