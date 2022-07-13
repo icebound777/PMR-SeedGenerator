@@ -54,9 +54,9 @@ from maps.graph_edges.glitched_logic.kooperless_pleasant_path_thunderbolt import
 from maps.graph_edges.glitched_logic.bombetteless_kbf_fp_plus import \
     edges_nok_add_bombetteless_fp_plus_laki, edges_nok_add_bombetteless_fp_plus_lzs
 from maps.graph_edges.glitched_logic.laki_jailbreak import \
-    edges_trd_laki_jailbreak
+    edges_trd_add_laki_jailbreak
 from maps.graph_edges.glitched_logic.bombetteless_right_fortress_jail_key import \
-    edges_trd_bombetteless_right_key
+    edges_trd_add_bombetteless_right_key
 
 
 def get_shorter_bowsercastle(world_graph: dict):
@@ -176,9 +176,9 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet):
     if glitch_settings.bombetteless_kbf_fp_plus_lzs["value"]:
         all_new_edges.extend(edges_nok_add_bombetteless_fp_plus_lzs)
     if glitch_settings.laki_jailbreak["value"]:
-        all_new_edges.extend(edges_trd_laki_jailbreak)
+        all_new_edges.extend(edges_trd_add_laki_jailbreak)
     if glitch_settings.bombetteless_right_fortress_jail_key["value"]:
-        all_new_edges.extend(edges_trd_bombetteless_right_key)
+        all_new_edges.extend(edges_trd_add_bombetteless_right_key)
     print(all_new_edges)
 
     # Modify graph with all pending changes, if any
