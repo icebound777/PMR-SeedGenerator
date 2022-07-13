@@ -527,8 +527,6 @@ class OptionSet:
             self.glitch_settings.laki_jailbreak = options_dict.get("LakiJailbreak")
         if "BombettelessRightFortressJailKey" in options_dict:
             self.glitch_settings.bombetteless_right_fortress_jail_key = options_dict.get("BombettelessRightFortressJailKey")
-        if "WaterStaircaseSkip" in options_dict:
-            self.glitch_settings.water_staircase_skip = options_dict.get("WaterStaircaseSkip")
 
         if "MtRuggedQuakeHammerAndLetterWithLaki" in options_dict:
             self.glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki = options_dict.get("MtRuggedQuakeHammerAndLetterWithLaki")
@@ -536,8 +534,8 @@ class OptionSet:
             self.glitch_settings.parakarryless_mt_rugged_seed = options_dict.get("ParakarrylessMtRuggedSeed")
         if "BuzzarGapSkipClippy" in options_dict:
             self.glitch_settings.buzzar_gap_skip_clippy = options_dict.get("BuzzarGapSkipClippy")
-        if "ParakarrylessMtRuggedStarPieceClippy" in options_dict:
-            self.glitch_settings.parakarryless_mt_rugged_star_piece_clippy = options_dict.get("ParakarrylessMtRuggedStarPieceClippy")
+        if "ParakarrylessMtRuggedStarPiece" in options_dict:
+            self.glitch_settings.parakarryless_mt_rugged_star_piece_clippy = options_dict.get("ParakarrylessMtRuggedStarPiece")
 
         if "DesertBrickBlockItemWithParakarry" in options_dict:
             self.glitch_settings.desert_brick_block_item_with_parakarry = options_dict.get("DesertBrickBlockItemWithParakarry")

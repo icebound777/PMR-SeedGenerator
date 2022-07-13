@@ -208,12 +208,11 @@ BombettelessKbfFpPlusLZS                        : false
 BombettelessKbfFpPlusLaki                       : false
 LakiJailbreak                                   : false
 BombettelessRightFortressJailKey                : false
-WaterStaircaseSkip                              : false
 
 MtRuggedQuakeHammerAndLetterWithLaki            : false
 ParakarrylessMtRuggedSeed                       : false
 BuzzarGapSkipClippy                             : false
-ParakarrylessMtRuggedStarPieceClippy            : false
+ParakarrylessMtRuggedStarPiece            : false
 
 DesertBrickBlockItemWithParakarry               : false
 EarlyRuinsLakiJump                              : false
