@@ -1,0 +1,11 @@
+"""
+This file represents edges of the world graph that have to be added
+for Glitched Logic: Bombette-less KBF FP Plus.
+"""
+edges_nok_add_bombetteless_fp_plus_lzs = [
+    {"from": {"map": "NOK_15", "id": 1}, "to": {"map": "NOK_15", "id": 4}, "reqs": [], "mapchange": False}, #? Path to Fortress 2 Exit Bottom Right -> Path to Fortress 2 Top Pipe
+]
+
+edges_nok_add_bombetteless_fp_plus_laki = [
+    {"from": {"map": "NOK_15", "id": 1}, "to": {"map": "NOK_15", "id": 4}, "reqs": [["Lakilester"]], "mapchange": False}, #? Path to Fortress 2 Exit Bottom Right -> Path to Fortress 2 Top Pipe
+]
