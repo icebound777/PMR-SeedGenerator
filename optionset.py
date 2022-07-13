@@ -535,7 +535,7 @@ class OptionSet:
         if "BuzzarGapSkipClippy" in options_dict:
             self.glitch_settings.buzzar_gap_skip_clippy = options_dict.get("BuzzarGapSkipClippy")
         if "ParakarrylessMtRuggedStarPiece" in options_dict:
-            self.glitch_settings.parakarryless_mt_rugged_star_piece_clippy = options_dict.get("ParakarrylessMtRuggedStarPiece")
+            self.glitch_settings.parakarryless_mt_rugged_star_piece = options_dict.get("ParakarrylessMtRuggedStarPiece")
 
         if "DesertBrickBlockItemWithParakarry" in options_dict:
             self.glitch_settings.desert_brick_block_item_with_parakarry = options_dict.get("DesertBrickBlockItemWithParakarry")
@@ -1120,7 +1120,7 @@ class GlitchOptionSet():
             self.mt_rugged_quake_hammer_and_letter_with_laki = False
             self.parakarryless_mt_rugged_seed = False
             self.buzzar_gap_skip_clippy = False
-            self.parakarryless_mt_rugged_star_piece_clippy = False
+            self.parakarryless_mt_rugged_star_piece = False
             self.desert_brick_block_item_with_parakarry = False
             self.early_ruins_laki_jump = False
             self.early_ruins_ultra_boots = False

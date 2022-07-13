@@ -87,7 +87,7 @@ IncludeFavorsMode     : 0 # 1=RndRewardsVanillaKeyitems, 2=FullShuffle
 IncludeLettersMode    : 0 # 1=simpleLetters,2=vanillaChainRndChainReward,3=FullShuffle
 IncludeRadioTradeEvent: false
 ItemScarcity          : 0
-ItemTrapMode          : 0
+ItemTrapMode          : 3
 AddItemPouches        : false
 KeyitemsOutsideDungeon: false
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
@@ -183,49 +183,49 @@ NPCSetting       : 0
 # Audio
 
 # Glitched Logic
-PrologueGelEarly                                : false
+PrologueGelEarly                                : true
 
-OddKeyEarly                                     : false
-BlueHouseSkip                                   : false
-BowlessToyBox                                   : false
-EarlyStoreroomParakarry                         : false
-EarlyStoreroomHammer                            : false
-WhaleEarly                                      : false
-SushielessToadTownStarPiece                     : false
+OddKeyEarly                                     : true
+BlueHouseSkip                                   : true
+BowlessToyBox                                   : true
+EarlyStoreroomParakarry                         : true
+EarlyStoreroomHammer                            : true
+WhaleEarly                                      : true
+SushielessToadTownStarPiece                     : true
 
-ClippyBootsStoneBlockSkip                       : false
-ClippyBootsMetalBlockSkip                       : false
-IslandPipeBlooperSkip                           : false
-ParakarrylessSewerStarPiece                     : false
-SewerBlocksWithoutUltraBoots                    : false
+ClippyBootsStoneBlockSkip                       : true
+ClippyBootsMetalBlockSkip                       : true
+IslandPipeBlooperSkip                           : true
+ParakarrylessSewerStarPiece                     : true
+SewerBlocksWithoutUltraBoots                    : true
 
-KooperlessPleasantPathStarPiece: false
-InvisibleBridgeClipLzs                          : false
-InvisibleBridgeClipLaki                         : false
-KooperlessPleasantPathThunderBolt               : false
+KooperlessPleasantPathStarPiece                 : true
+InvisibleBridgeClipLzs                          : true
+InvisibleBridgeClipLaki                         : true
+KooperlessPleasantPathThunderBolt               : true
 
-BombettelessKbfFpPlusLZS                        : false
-BombettelessKbfFpPlusLaki                       : false
-LakiJailbreak                                   : false
-BombettelessRightFortressJailKey                : false
+BombettelessKbfFpPlusLZS                        : true
+BombettelessKbfFpPlusLaki                       : true
+LakiJailbreak                                   : true
+BombettelessRightFortressJailKey                : true
 
-MtRuggedQuakeHammerAndLetterWithLaki            : false
-ParakarrylessMtRuggedSeed                       : false
-BuzzarGapSkipClippy                             : false
-ParakarrylessMtRuggedStarPiece            : false
+MtRuggedQuakeHammerAndLetterWithLaki            : true
+ParakarrylessMtRuggedSeed                       : true
+BuzzarGapSkipClippy                             : true
+ParakarrylessMtRuggedStarPiece                  : true
 
-DesertBrickBlockItemWithParakarry               : false
-EarlyRuinsLakiJump                              : false
-EarlyRuinsUltraBoots                            : false
+DesertBrickBlockItemWithParakarry               : true
+EarlyRuinsLakiJump                              : true
+EarlyRuinsUltraBoots                            : true
 
-ArtifactJump                                    : false
-RuinsKeyLakiJump                                : false
-ParakarylessSecondSandRoomUltraBoots            : false
-ParakarylessSecondSandRoomSuperBoots            : false
-ParakarylessSecondSandRoomNormalBoots           : false
-ParakarylessSuperHammerRoomUltraBoots           : false
-ParakarylessSuperHammerRoomNormalBoots          : false
-RuinsLocksSkipClippy                            : false
+ArtifactJump                                    : true
+RuinsKeyLakiJump                                : true
+ParakarylessSecondSandRoomUltraBoots            : true
+ParakarylessSecondSandRoomSuperBoots            : true
+ParakarylessSecondSandRoomNormalBoots           : true
+ParakarylessSuperHammerRoomUltraBoots           : true
+ParakarylessSuperHammerRoomNormalBoots          : true
+RuinsLocksSkipClippy                            : true
 
 RecordSkipNoBombettePush                        : false
 RecordSkipBombettePush                          : false
