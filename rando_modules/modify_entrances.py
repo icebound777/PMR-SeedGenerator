@@ -114,6 +114,28 @@ from maps.graph_edges.glitched_logic.tubba_castle_super_boots_skip import \
 from maps.graph_edges.glitched_logic.parakaryless_mega_rush import \
     edges_dgb_add_parakaryless_mega_rush
 
+# Glitched Logic - Toy Box
+from maps.graph_edges.glitched_logic.gourmet_guy_skip import \
+    edges_omo_add_gourmet_guy_skip_jump, edges_omo_add_gourmet_guy_skip_laki
+from maps.graph_edges.glitched_logic.parakaryless_blue_station_star_piece import \
+    edges_omo_add_parakaryless_blue_station_star_piece
+from maps.graph_edges.glitched_logic.bowless_green_station import \
+    edges_omo_add_bowless_green_station_laki
+from maps.graph_edges.glitched_logic.kooperless_red_station_shooting_star import \
+    edges_omo_add_red_station_shooting_star_parakarry
+
+# Glitched Logic - Jade Jungle
+from maps.graph_edges.glitched_logic.raph_skip_english import \
+    edges_jan_add_raph_skip_english
+
+# Glitched Logic - Mt. Lavalava
+from maps.graph_edges.glitched_logic.kooperless_lavalava_pow_block import \
+    edges_kzn_add_kooperless_pow_block_parakarry
+from maps.graph_edges.glitched_logic.ulta_hammer_skip import \
+    edges_kzn_add_ultra_hammer_skip
+from maps.graph_edges.glitched_logic.flarakarry import \
+    edges_kzn_add_flarakarry_bombette, edges_kzn_add_flarakarry_laki, edges_kzn_add_flarakarry_parakarry
+
 def get_shorter_bowsercastle(world_graph: dict):
     """
     Returns a list of db data tuples representing modified entrances in Bowser's
@@ -244,6 +266,7 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet):
         all_new_edges.extend(edges_iwa_add_parkaryless_star_piece_laki)
     if glitch_settings.buzzar_gap_skip_clippy["value"]:
         all_new_edges.extend(edges_iwa_add_buzzar_gap_skip_clippy)
+
     # Dry Dry Desert
     if glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki["value"]:
         all_new_edges.extend(edges_iwa_add_quake_hammer_and_letter_laki)
@@ -303,6 +326,34 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet):
         all_new_edges.extend(edges_dgb_add_tubbas_castle_super_boots_skip_laki)
     if glitch_settings.parakarryless_mega_rush["value"]:
         all_new_edges.extend(edges_dgb_add_parakaryless_mega_rush)
+
+    # Toy Box
+    if glitch_settings.parakarryless_blue_building_star_piece["value"]:
+        all_new_edges.extend(edges_omo_add_parakaryless_blue_station_star_piece)
+    if glitch_settings.gourmet_guy_skip_jump["value"]:
+        all_new_edges.extend(edges_omo_add_gourmet_guy_skip_jump)
+    if glitch_settings.gourmet_guy_skip_laki["value"]:
+        all_new_edges.extend(edges_omo_add_gourmet_guy_skip_laki)
+    if glitch_settings.bowless_green_station["value"]:
+        all_new_edges.extend(edges_omo_add_bowless_green_station_laki)
+    if glitch_settings.kooperless_red_station_shooting_star["value"]:
+        all_new_edges.extend(edges_omo_add_red_station_shooting_star_parakarry)
+
+    # Jade Jungle
+    if glitch_settings.raph_skip_english["value"]:
+        all_new_edges.extend(edges_jan_add_raph_skip_english)
+
+    # Mt. Lavalava
+    if glitch_settings.kooperless_lavalava_pow_block["value"]:
+        all_new_edges.extend(edges_kzn_add_kooperless_pow_block_parakarry)
+    if glitch_settings.ultra_hammer_skip["value"]:
+        all_new_edges.extend(edges_kzn_add_ultra_hammer_skip)
+    if glitch_settings.flarakarry["value"]:
+        all_new_edges.extend(edges_kzn_add_flarakarry_parakarry)
+    if glitch_settings.parakaryless_flarakarry_bombette["value"]:
+        all_new_edges.extend(edges_kzn_add_flarakarry_bombette)
+    if glitch_settings.parakaryless_flarakarry_laki["value"]:
+        all_new_edges.extend(edges_kzn_add_flarakarry_laki)
 
     print(all_new_edges)
 
