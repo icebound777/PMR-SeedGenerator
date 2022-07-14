@@ -136,6 +136,22 @@ from maps.graph_edges.glitched_logic.ulta_hammer_skip import \
 from maps.graph_edges.glitched_logic.flarakarry import \
     edges_kzn_add_flarakarry_bombette, edges_kzn_add_flarakarry_laki, edges_kzn_add_flarakarry_parakarry
 
+# Glitched Logic - Flower Fields
+from maps.graph_edges.glitched_logic.early_lakilester import \
+    edges_flo_add_early_lakilester_bombette_push, edges_flo_add_early_lakilester_without_bombette
+from maps.graph_edges.glitched_logic.bombetteless_mega_smash import \
+    edges_flo_add_bombetteless_mega_smash
+from maps.graph_edges.glitched_logic.sun_tower_skip import \
+    edges_flo_add_sun_tower_skip_lzs
+from maps.graph_edges.glitched_logic.yellow_berry_gate_skip import \
+    edges_flo_add_yellow_berry_gate_skip_bombette_push, edges_flo_add_yellow_berry_gate_skip_laki, edges_flo_add_yellow_berry_gate_skip_lzs
+from maps.graph_edges.glitched_logic.red_berry_gate_skip import \
+    edges_flo_add_red_berry_gate_skip_bombette_push, edges_flo_add_red_berry_gate_skip_laki
+from maps.graph_edges.glitched_logic.blue_berry_gate_skip import \
+    edges_flo_add_blue_berry_gate_skip_bombette_push, edges_flo_add_blue_berry_gate_skip_laki
+from maps.graph_edges.glitched_logic.bubble_berry_tree_laki_jump import \
+    edges_flo_add_bubble_berry_tree_laki
+
 def get_shorter_bowsercastle(world_graph: dict):
     """
     Returns a list of db data tuples representing modified entrances in Bowser's
@@ -198,12 +214,6 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet):
     """
     all_new_edges = []
     all_edges_to_remove = []
-
-    # Early Ruins: Enter Dry Dry Ruins without Pulse Stone
-    if glitch_settings.early_ruins_laki_jump["value"]:
-        all_new_edges.extend(edges_sbk_add_laki)
-    if glitch_settings.early_ruins_ultra_boots["value"]:
-        all_new_edges.extend(edges_sbk_add_ultraboots)
 
     # Goomba Region
     if glitch_settings.prologue_gel_early["value"]:
@@ -268,14 +278,12 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet):
         all_new_edges.extend(edges_iwa_add_buzzar_gap_skip_clippy)
 
     # Dry Dry Desert
-    if glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki["value"]:
-        all_new_edges.extend(edges_iwa_add_quake_hammer_and_letter_laki)
-    if glitch_settings.parakarryless_mt_rugged_seed["value"]:
-        all_new_edges.extend(edges_iwa_add_parakaryless_mt_rugged_seed)
-    if glitch_settings.parakarryless_mt_rugged_star_piece["value"]:
-        all_new_edges.extend(edges_iwa_add_parkaryless_star_piece_laki)
-    if glitch_settings.buzzar_gap_skip_clippy["value"]:
-        all_new_edges.extend(edges_iwa_add_buzzar_gap_skip_clippy)
+    if glitch_settings.early_ruins_laki_jump["value"]:
+        all_new_edges.extend(edges_sbk_add_laki)
+    if glitch_settings.early_ruins_ultra_boots["value"]:
+        all_new_edges.extend(edges_sbk_add_ultraboots)
+    if glitch_settings.desert_brick_block_item_with_parakarry["value"]:
+        all_new_edges.extend(edges_sbk_add_desert_brick_block_item_parakarry)
 
     # Dry Dry Ruins
     if glitch_settings.artifact_jump["value"]:
@@ -354,6 +362,32 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet):
         all_new_edges.extend(edges_kzn_add_flarakarry_bombette)
     if glitch_settings.parakaryless_flarakarry_laki["value"]:
         all_new_edges.extend(edges_kzn_add_flarakarry_laki)
+
+    # Flower Fields
+    if glitch_settings.early_laki_lzs["value"]:
+        all_new_edges.extend(edges_flo_add_early_lakilester_without_bombette)
+    if glitch_settings.early_laki_bombette_push["value"]:
+        all_new_edges.extend(edges_flo_add_early_lakilester_bombette_push)
+    if glitch_settings.bombetteless_mega_smash["value"]:
+        all_new_edges.extend(edges_flo_add_bombetteless_mega_smash)
+    if glitch_settings.sun_tower_skip["value"]:
+        all_new_edges.extend(edges_flo_add_sun_tower_skip_lzs)
+    if glitch_settings.yellow_berry_gate_skip_bombette_push["value"]:
+        all_new_edges.extend(edges_flo_add_yellow_berry_gate_skip_bombette_push)
+    if glitch_settings.yellow_berry_gate_skip_laki["value"]:
+        all_new_edges.extend(edges_flo_add_yellow_berry_gate_skip_laki)
+    if glitch_settings.yellow_berry_gate_skip_lzs["value"]:
+        all_new_edges.extend(edges_flo_add_yellow_berry_gate_skip_lzs)
+    if glitch_settings.red_berry_gate_skip_bombette_push["value"]:
+        all_new_edges.extend(edges_flo_add_red_berry_gate_skip_bombette_push)
+    if glitch_settings.red_berry_gate_skip_laki["value"]:
+        all_new_edges.extend(edges_flo_add_red_berry_gate_skip_laki)
+    if glitch_settings.blue_berry_gate_skip_bombette_push["value"]:
+        all_new_edges.extend(edges_flo_add_blue_berry_gate_skip_bombette_push)
+    if glitch_settings.blue_berry_gate_skip_laki["value"]:
+        all_new_edges.extend(edges_flo_add_blue_berry_gate_skip_laki)
+    if glitch_settings.bubble_berry_tree_laki_jump["value"]:
+        all_new_edges.extend(edges_flo_add_bubble_berry_tree_laki)
 
     print(all_new_edges)
 

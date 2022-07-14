@@ -616,7 +616,7 @@ class OptionSet:
             self.glitch_settings.parakaryless_flarakarry_laki = options_dict.get("ParakarrylessFlarakarryLaki")
 
         if "EarlyLakiLZS" in options_dict:
-            self.glitch_settings.earl_laki_lzs = options_dict.get("EarlyLakiLZS")
+            self.glitch_settings.early_laki_lzs = options_dict.get("EarlyLakiLZS")
         if "EarlyLakiBombettePush" in options_dict:
             self.glitch_settings.early_laki_bombette_push = options_dict.get("EarlyLakiBombettePush")
         if "BombettelessMegaSmash" in options_dict:
@@ -1163,7 +1163,7 @@ class GlitchOptionSet():
             self.parakaryless_flarakarry_bombette = False
             self.parakaryless_flarakarry_laki = False
 
-            self.earl_laki_lzs = False
+            self.early_laki_lzs = False
             self.early_laki_bombette_push = False
             self.bombetteless_mega_smash = False
             self.sun_tower_skip = False
