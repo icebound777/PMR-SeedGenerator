@@ -90,6 +90,29 @@ from maps.graph_edges.glitched_logic.parakaryless_super_hammer_room import \
 from maps.graph_edges.glitched_logic.ruins_locks_skip import \
     edges_isk_add_ruins_locks_skip_clippy
 
+# Glitched Logic - Boo's Mansion
+from maps.graph_edges.glitched_logic.record_skip import \
+    edges_obk_add_record_skip_bombette_push, edges_obk_add_record_skip_spin_jump
+from maps.graph_edges.glitched_logic.parakaryless_boos_portrait import \
+    edges_obk_add_boo_portrait_kooper, edges_obk_add_boo_portrait_laki
+    
+# Glitched Logic - Gusty Gulch
+from maps.graph_edges.glitched_logic.gusty_gulch_gate_skip import \
+    edges_mim_add_gusty_gulch_gate_skip_lzs
+from maps.graph_edges.glitched_logic.gusty_gulch_gap_skip import \
+    edges_arn_add_gusty_gulch_gap_skip_jump
+from maps.graph_edges.glitched_logic.kooperless_gusty_gulch_dizzy_dial import \
+    edges_arn_add_gusty_gulch_dizzy_dial_jump, edges_arn_add_gusty_gulch_dizzy_dial_laki, edges_arn_add_gusty_gulch_dizzy_dial_parakarry
+
+# Glitched Logic - Tubba's Castle
+from maps.graph_edges.glitched_logic.bowless_tubbas_castle import \
+    edges_dgb_add_bowless_tubbas_castle
+from maps.graph_edges.glitched_logic.tubbas_table_laki_jump import \
+    edges_dgb_add_tubbas_table_laki_jump
+from maps.graph_edges.glitched_logic.tubba_castle_super_boots_skip import \
+    edges_dgb_add_tubbas_castle_super_boots_skip_laki
+from maps.graph_edges.glitched_logic.parakaryless_mega_rush import \
+    edges_dgb_add_parakaryless_mega_rush
 
 def get_shorter_bowsercastle(world_graph: dict):
     """
@@ -248,6 +271,38 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet):
         all_new_edges.extend(edges_isk_add_ruins_key_laki_jump)
     if glitch_settings.ruins_locks_skip_clippy["value"]:
         all_new_edges.extend(edges_isk_add_ruins_locks_skip_clippy)
+
+    # Boo's Mansion
+    if glitch_settings.record_skip_bombette_push["value"]:
+        all_new_edges.extend(edges_obk_add_record_skip_bombette_push)
+    if glitch_settings.record_skip_no_bombette_push["value"]:
+        all_new_edges.extend(edges_obk_add_record_skip_spin_jump)
+    if glitch_settings.boos_portrait_with_kooper["value"]:
+        all_new_edges.extend(edges_obk_add_boo_portrait_kooper)
+    if glitch_settings.boos_portrait_with_laki["value"]:
+        all_new_edges.extend(edges_obk_add_boo_portrait_laki)
+
+    # Gusty Gulch
+    if glitch_settings.gusty_gulch_gate_skip_lzs["value"]:
+        all_new_edges.extend(edges_mim_add_gusty_gulch_gate_skip_lzs)
+    if glitch_settings.kooperless_gusty_gulch_dizzy_dial_jump["value"]:
+        all_new_edges.extend(edges_arn_add_gusty_gulch_dizzy_dial_jump)
+    if glitch_settings.kooperless_gusty_gulch_dizzy_dial_laki["value"]:
+        all_new_edges.extend(edges_arn_add_gusty_gulch_dizzy_dial_laki)
+    if glitch_settings.kooperless_gusty_gulch_dizzy_dial_parakarry["value"]:
+        all_new_edges.extend(edges_arn_add_gusty_gulch_dizzy_dial_parakarry)
+    if glitch_settings.gusty_gulch_gap_skip["value"]:
+        all_new_edges.extend(edges_arn_add_gusty_gulch_gap_skip_jump)
+
+    # Tubba's Castle
+    if glitch_settings.bowless_tubbas_castle["value"]:
+        all_new_edges.extend(edges_dgb_add_bowless_tubbas_castle)
+    if glitch_settings.tubbas_table_laki_jump["value"]:
+        all_new_edges.extend(edges_dgb_add_tubbas_table_laki_jump)
+    if glitch_settings.tubbas_castle_super_boots_skip["value"]:
+        all_new_edges.extend(edges_dgb_add_tubbas_castle_super_boots_skip_laki)
+    if glitch_settings.parakarryless_mega_rush["value"]:
+        all_new_edges.extend(edges_dgb_add_parakaryless_mega_rush)
 
     print(all_new_edges)
 
