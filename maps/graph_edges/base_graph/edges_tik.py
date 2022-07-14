@@ -134,7 +134,7 @@ edges_tik = [
 
     # TIK_15 Rip Cheato's Home (B3)
     {"from": {"map": "TIK_15", "id": 0}, "to": {"map": "TIK_14", "id": 1}, "reqs": []}, # Rip Cheato's Home (B3) Bomb Wall Left -> Rip Cheato Antechamber (B3) Bomb Wall Right
-    {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "MAC_02", "id": 5}, "reqs": []}, # Rip Cheato's Home (B3) Green Pipe Right -> Southern District Blue House Pipe
+    {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "MAC_02", "id": 5}, "reqs": [], "pseudoitems": ["RF_CanGetInsideBlueHouse"]}, # Rip Cheato's Home (B3) Green Pipe Right -> Southern District Blue House Pipe
     
     {"from": {"map": "TIK_15", "id": 0}, "to": {"map": "TIK_15", "id": 1}, "reqs": []}, #? Rip Cheato's Home (B3) Bomb Wall Left -> Rip Cheato's Home (B3) Green Pipe Right
     {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": 0}, "reqs": [["Bombette"]]}, #? Rip Cheato's Home (B3) Green Pipe Right -> Rip Cheato's Home (B3) Bomb Wall Left
