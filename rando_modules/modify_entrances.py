@@ -226,7 +226,7 @@ def get_bowsercastle_bossrush(world_graph: dict):
     return all_entrance_modifications, world_graph
 
 
-def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet):
+def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bowsers_castle_mode: int):
     """
     Returns the modified world graph itself for glitched logic, depending
     on settings chosen.
@@ -425,12 +425,13 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet):
         all_new_edges.extend(edges_pra_add_mirror_clip_laki)
 
     # Bowser's Castle
-    if glitch_settings.bowless_bowsers_castle_basement["value"]:
-        all_new_edges.extend(edges_kpa_add_bowless_bowsers_castle_basement_laki)
-    if glitch_settings.fast_flood_room_kooper["value"]:
-        all_new_edges.extend(edges_kpa_add_fast_flood_room_kooper)
-    if glitch_settings.fast_flood_room_bombette_ultra_boots["value"]:
-        all_new_edges.extend(edges_kpa_add_fast_flood_room_bombette_ultra_boots)
+    if bowsers_castle_mode == 0: # Only modify kpa graph if vanilla castle
+        if glitch_settings.bowless_bowsers_castle_basement["value"]:
+            all_new_edges.extend(edges_kpa_add_bowless_bowsers_castle_basement_laki)
+        if glitch_settings.fast_flood_room_kooper["value"]:
+            all_new_edges.extend(edges_kpa_add_fast_flood_room_kooper)
+        if glitch_settings.fast_flood_room_bombette_ultra_boots["value"]:
+            all_new_edges.extend(edges_kpa_add_fast_flood_room_bombette_ultra_boots)
 
     print(all_new_edges)
 

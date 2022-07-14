@@ -63,7 +63,7 @@ class RandomSeed:
             self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
         
         # Adjust graph logic if needed
-        world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings)
+        world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings, self.rando_settings.bowsers_castle_mode)
         
         starting_chapter = self.init_starting_map(self.rando_settings)
         self.init_starting_partners(self.rando_settings)
