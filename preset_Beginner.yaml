@@ -283,4 +283,5 @@ ShiverMountainHiddenBlockWithoutUltraBootsNoLaki: false
 MirrorClip                                      : false
 
 BowlessBowsersCastleBasement                    : false
-FastFloodRoom                                   : false
+FastFloodRoomKooper                             : false
+FastFloodRoomBombetteUltraBoots                 : false

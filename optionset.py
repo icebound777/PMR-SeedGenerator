@@ -656,8 +656,10 @@ class OptionSet:
 
         if "BowlessBowsersCastleBasement" in options_dict:
             self.glitch_settings.bowless_bowsers_castle_basement = options_dict.get("BowlessBowsersCastleBasement")
-        if "FastFloodRoom" in options_dict:
-            self.glitch_settings.fast_flood_room = options_dict.get("FastFloodRoom")
+        if "FastFloodRoomKooper" in options_dict:
+            self.glitch_settings.fast_flood_room_kooper = options_dict.get("FastFloodRoomKooper")
+        if "FastFloodRoomBombetteUltraBoots" in options_dict:
+            self.glitch_settings.fast_flood_room_bombette_ultra_boots = options_dict.get("FastFloodRoomBombetteUltraBoots")
               
 
         # Audio
@@ -1185,4 +1187,5 @@ class GlitchOptionSet():
             self.mirror_clip = False
 
             self.bowless_bowsers_castle_basement = False
-            self.fast_flood_room = False
+            self.fast_flood_room_kooper = False
+            self.fast_flood_room_bombette_ultra_boots = False

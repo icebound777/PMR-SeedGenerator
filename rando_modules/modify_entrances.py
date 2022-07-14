@@ -152,6 +152,25 @@ from maps.graph_edges.glitched_logic.blue_berry_gate_skip import \
 from maps.graph_edges.glitched_logic.bubble_berry_tree_laki_jump import \
     edges_flo_add_bubble_berry_tree_laki
 
+# Glitched Logic - Shiver Region
+from maps.graph_edges.glitched_logic.murder_solved_early import \
+    edges_sam_add_murder_solved_early_laki, edges_sam_add_murder_solved_early_bombette_push
+from maps.graph_edges.glitched_logic.ch7_sushie_glitch import \
+    edges_sam_add_ch7_sushie_glitch
+from maps.graph_edges.glitched_logic.shiver_mtn_hidden_block_without_ultra_boots import \
+    edges_sam_add_shiver_mountain_hidden_block_normal_throw, edges_sam_add_shiver_mountain_hidden_block_laki_throw
+
+# Glitched Logic - Crystal Palace
+from maps.graph_edges.glitched_logic.mirror_clip import \
+    edges_pra_add_mirror_clip_laki
+
+# Glitched Logic - Bowser's Castle
+from maps.graph_edges.glitched_logic.bowless_bowsers_castle_basement import \
+    edges_kpa_add_bowless_bowsers_castle_basement_laki
+from maps.graph_edges.glitched_logic.fast_flood_room import \
+    edges_kpa_add_fast_flood_room_bombette_ultra_boots, edges_kpa_add_fast_flood_room_kooper
+
+
 def get_shorter_bowsercastle(world_graph: dict):
     """
     Returns a list of db data tuples representing modified entrances in Bowser's
@@ -388,6 +407,30 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet):
         all_new_edges.extend(edges_flo_add_blue_berry_gate_skip_laki)
     if glitch_settings.bubble_berry_tree_laki_jump["value"]:
         all_new_edges.extend(edges_flo_add_bubble_berry_tree_laki)
+
+    # Shiver Region
+    if glitch_settings.murder_solved_early_bombette_push["value"]:
+        all_new_edges.extend(edges_sam_add_murder_solved_early_bombette_push)
+    if glitch_settings.murder_solved_early_laki["value"]:
+        all_new_edges.extend(edges_sam_add_murder_solved_early_laki)
+    if glitch_settings.ch7_sushie_glitch["value"]:
+        all_new_edges.extend(edges_sam_add_ch7_sushie_glitch)
+    if glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_laki["value"]:
+        all_new_edges.extend(edges_sam_add_shiver_mountain_hidden_block_laki_throw)
+    if glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_no_laki["value"]:
+        all_new_edges.extend(edges_sam_add_shiver_mountain_hidden_block_normal_throw)
+
+    # Crystal Palace
+    if glitch_settings.mirror_clip["value"]:
+        all_new_edges.extend(edges_pra_add_mirror_clip_laki)
+
+    # Bowser's Castle
+    if glitch_settings.bowless_bowsers_castle_basement["value"]:
+        all_new_edges.extend(edges_kpa_add_bowless_bowsers_castle_basement_laki)
+    if glitch_settings.fast_flood_room_kooper["value"]:
+        all_new_edges.extend(edges_kpa_add_fast_flood_room_kooper)
+    if glitch_settings.fast_flood_room_bombette_ultra_boots["value"]:
+        all_new_edges.extend(edges_kpa_add_fast_flood_room_bombette_ultra_boots)
 
     print(all_new_edges)
 
