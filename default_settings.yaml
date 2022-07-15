@@ -183,101 +183,100 @@ NPCSetting       : 0
 # Audio
 
 # Glitched Logic
-PrologueGelEarly                                : true
+PrologueGelEarly                                : false
 
-OddKeyEarly                                     : true
-BlueHouseSkip                                   : true
-BowlessToyBox                                   : true
-EarlyStoreroomParakarry                         : true
-EarlyStoreroomHammer                            : true
-WhaleEarly                                      : true
-SushielessToadTownStarPiece                     : true
+OddKeyEarly                                     : false
+BlueHouseSkip                                   : false
+BowlessToyBox                                   : false
+EarlyStoreroomParakarry                         : false
+EarlyStoreroomHammer                            : false
+WhaleEarly                                      : false
+SushielessToadTownStarPiece                     : false
 
-ClippyBootsStoneBlockSkip                       : true
-ClippyBootsMetalBlockSkip                       : true
-IslandPipeBlooperSkip                           : true
-ParakarrylessSewerStarPiece                     : true
-SewerBlocksWithoutUltraBoots                    : true
+ClippyBootsStoneBlockSkip                       : false
+ClippyBootsMetalBlockSkip                       : false
+IslandPipeBlooperSkip                           : false
+ParakarrylessSewerStarPiece                     : false
+SewerBlocksWithoutUltraBoots                    : false
 
-KooperlessPleasantPathStarPiece                 : true
-InvisibleBridgeClipLzs                          : true
-InvisibleBridgeClipLaki                         : true
-KooperlessPleasantPathThunderBolt               : true
+KooperlessPleasantPathStarPiece                 : false
+InvisibleBridgeClipLzs                          : false
+InvisibleBridgeClipLaki                         : false
+KooperlessPleasantPathThunderBolt               : false
 
-BombettelessKbfFpPlusLZS                        : true
-BombettelessKbfFpPlusLaki                       : true
-LakiJailbreak                                   : true
-BombettelessRightFortressJailKey                : true
+BombettelessKbfFpPlusLZS                        : false
+BombettelessKbfFpPlusLaki                       : false
+LakiJailbreak                                   : false
+BombettelessRightFortressJailKey                : false
 
-MtRuggedQuakeHammerAndLetterWithLaki            : true
-ParakarrylessMtRuggedSeed                       : true
-BuzzarGapSkipClippy                             : true
-ParakarrylessMtRuggedStarPiece                  : true
+MtRuggedQuakeHammerAndLetterWithLaki            : false
+ParakarrylessMtRuggedSeed                       : false
+BuzzarGapSkipClippy                             : false
+ParakarrylessMtRuggedStarPiece                  : false
 
-DesertBrickBlockItemWithParakarry               : true
-EarlyRuinsLakiJump                              : true
-EarlyRuinsUltraBoots                            : true
+DesertBrickBlockItemWithParakarry               : false
+EarlyRuinsLakiJump                              : false
+EarlyRuinsUltraBoots                            : false
 
-ArtifactJump                                    : true
-RuinsKeyLakiJump                                : true
-ParakarylessSecondSandRoomUltraBoots            : true
-ParakarylessSecondSandRoomSuperBoots            : true
-ParakarylessSecondSandRoomNormalBoots           : true
-ParakarylessSuperHammerRoomUltraBoots           : true
-ParakarylessSuperHammerRoomNormalBoots          : true
-RuinsLocksSkipClippy                            : true
+ArtifactJump                                    : false
+RuinsKeyLakiJump                                : false
+ParakarylessSecondSandRoomUltraBoots            : false
+ParakarylessSecondSandRoomNormalBoots           : false
+ParakarylessSuperHammerRoomUltraBoots           : false
+ParakarylessSuperHammerRoomNormalBoots          : false
+RuinsLocksSkipClippy                            : false
 
-RecordSkipNoBombettePush                        : true
-RecordSkipBombettePush                          : true
-BoosPortraitWithKooper                          : true
-BoosPortraitWithLaki                            : true
+RecordSkipNoBombettePush                        : false
+RecordSkipBombettePush                          : false
+BoosPortraitWithKooper                          : false
+BoosPortraitWithLaki                            : false
 
-GustyGulchGateSkipLZS                           : true
-KooperlessGustyGulchDizzyDialJump               : true
-KooperlessGustyGulchDizzyDialLaki               : true
-KooperlessGustyGulchDizzyDialParakarry          : true
-GustyGulchGapSkip                               : true
+GustyGulchGateSkipLZS                           : false
+KooperlessGustyGulchDizzyDialJump               : false
+KooperlessGustyGulchDizzyDialLaki               : false
+KooperlessGustyGulchDizzyDialParakarry          : false
+GustyGulchGapSkip                               : false
 
-BowlessTubbasCastle                             : true
-TubbasTableLakiJump                             : true
-TubbasCastleSuperBootsSkip                      : true
-ParakarrylessMegaRush                           : true
+BowlessTubbasCastle                             : false
+TubbasTableLakiJump                             : false
+TubbasCastleSuperBootsSkip                      : false
+ParakarrylessMegaRush                           : false
 
-ParakarrylessBlueBuildingStarPiece              : true
-GourmetGuySkipJump                              : true
-GourmetGuySkipLaki                              : true
-BowlessGreenStation                             : true
-KooperlessRedStationShootingStar                : true
+ParakarrylessBlueBuildingStarPiece              : false
+GourmetGuySkipJump                              : false
+GourmetGuySkipLaki                              : false
+BowlessGreenStation                             : false
+KooperlessRedStationShootingStar                : false
 
-RaphSkipEnglish                                 : true
+RaphSkipEnglish                                 : false
 
-KooperlessLavalavaPowBlock                      : true
-UltraHammerSkip                                 : true
-Flarakarry                                      : true
-ParakarrylessFlarakarryBombette                 : true
-ParakarrylessFlarakarryLaki                     : true
+KooperlessLavalavaPowBlock                      : false
+UltraHammerSkip                                 : false
+Flarakarry                                      : false
+ParakarrylessFlarakarryBombette                 : false
+ParakarrylessFlarakarryLaki                     : false
 
-EarlyLakiLZS                                    : true
-EarlyLakiBombettePush                           : true
-BombettelessMegaSmash                           : true
-SunTowerSkip                                    : true
-YellowBerryGateSkipLZS                          : true
-YellowBerryGateSkipLaki                         : true
-YellowBerryGateSkipBombettePush                 : true
-RedBerryGateSkipBombettePush                    : true
-RedBerryGateSkipLaki                            : true
-BlueBerryGateSkipBombettePush                   : true
-BlueBerryGateSkipLaki                           : true
-BubbleBerryTreeLakiJump                         : true
+EarlyLakiLZS                                    : false
+EarlyLakiBombettePush                           : false
+BombettelessMegaSmash                           : false
+SunTowerSkip                                    : false
+YellowBerryGateSkipLZS                          : false
+YellowBerryGateSkipLaki                         : false
+YellowBerryGateSkipBombettePush                 : false
+RedBerryGateSkipBombettePush                    : false
+RedBerryGateSkipLaki                            : false
+BlueBerryGateSkipBombettePush                   : false
+BlueBerryGateSkipLaki                           : false
+BubbleBerryTreeLakiJump                         : false
 
-MurderSolvedEarlyLaki                           : true
-MurderSolvedEarlyBombettePush                   : true
-Ch7SushieGlitch                                 : true
-ShiverMountainHiddenBlockWithoutUltraBootsLaki  : true
-ShiverMountainHiddenBlockWithoutUltraBootsNoLaki: true
+MurderSolvedEarlyLaki                           : false
+MurderSolvedEarlyBombettePush                   : false
+Ch7SushieGlitch                                 : false
+ShiverMountainHiddenBlockWithoutUltraBootsLaki  : false
+ShiverMountainHiddenBlockWithoutUltraBootsNoLaki: false
 
-MirrorClip                                      : true
+MirrorClip                                      : false
 
-BowlessBowsersCastleBasement                    : true
-FastFloodRoomKooper                             : true
-FastFloodRoomBombetteUltraBoots                 : true
+BowlessBowsersCastleBasement                    : false
+FastFloodRoomKooper                             : false
+FastFloodRoomBombetteUltraBoots                 : false

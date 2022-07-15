@@ -309,8 +309,6 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_isk_add_artifact_jump_laki)
     if glitch_settings.parakarryless_second_sand_room_normal_boots["value"]:
         all_new_edges.extend(edges_isk_add_parakaryless_second_sand_room_normal_boots)
-    if glitch_settings.parakarryless_second_sand_room_super_boots["value"]:
-        all_new_edges.extend(edges_isk_add_parakaryless_second_sand_room_super_boots)
     if glitch_settings.parakarryless_second_sand_room_ultra_boots["value"]:
         all_new_edges.extend(edges_isk_add_parakaryless_second_sand_room_ultra_boots)
     if glitch_settings.parakarryless_super_hammer_room_normal_boots["value"]:

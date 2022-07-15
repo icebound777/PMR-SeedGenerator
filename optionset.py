@@ -550,8 +550,6 @@ class OptionSet:
             self.glitch_settings.ruins_key_laki_jump = options_dict.get("RuinsKeyLakiJump")
         if "ParakarylessSecondSandRoomUltraBoots" in options_dict:
             self.glitch_settings.parakarryless_second_sand_room_ultra_boots = options_dict.get("ParakarylessSecondSandRoomUltraBoots")
-        if "ParakarylessSecondSandRoomSuperBoots" in options_dict:
-            self.glitch_settings.parakarryless_second_sand_room_super_boots = options_dict.get("ParakarylessSecondSandRoomSuperBoots")
         if "ParakarylessSecondSandRoomNormalBoots" in options_dict:
             self.glitch_settings.parakarryless_second_sand_room_normal_boots = options_dict.get("ParakarylessSecondSandRoomNormalBoots")
         if "ParakarylessSuperHammerRoomUltraBoots" in options_dict:
@@ -1130,7 +1128,6 @@ class GlitchOptionSet():
             self.artifact_jump = False
             self.ruins_key_laki_jump = False
             self.parakarryless_second_sand_room_ultra_boots = False
-            self.parakarryless_second_sand_room_super_boots = False
             self.parakarryless_second_sand_room_normal_boots = False
             self.parakarryless_super_hammer_room_ultra_boots = False
             self.parakarryless_super_hammer_room_normal_boots = False
