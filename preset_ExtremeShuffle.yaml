@@ -156,7 +156,7 @@ RandomText     : false
 
 # "*Setting" values explanation:
 # DEFAULT_PALETTE = 0
-# SELECT_PALETTE  = 1 (not for bosses or npcs)
+# SELECT_PALETTE  = 1 (only Mario and partners)
 # RANDOM_PICK     = 2
 # ALWAYS_RANDOM   = 3
 MarioSetting     : 0
@@ -178,6 +178,7 @@ SushieSprite     : 0
 #LakilesterSetting: 0 # NYI
 #LakilesterSprite : 0 # NYI
 BossesSetting    : 0
+EnemiesSetting   : 0
 NPCSetting       : 0
 
 # Audio

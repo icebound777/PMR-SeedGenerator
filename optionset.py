@@ -474,6 +474,8 @@ class OptionSet:
         #    self.palette_settings.lakilester_sprite = options_dict.get("LakilesterSprite").get("value")
         if "BossesSetting" in options_dict:
             self.palette_settings.bosses_setting = options_dict.get("BossesSetting").get("value")
+        if "EnemiesSetting" in options_dict:
+            self.palette_settings.enemies_setting = options_dict.get("EnemiesSetting").get("value")
         if "NPCSetting" in options_dict:
             self.palette_settings.npc_setting = options_dict.get("NPCSetting").get("value")
 
@@ -838,6 +840,8 @@ def validate_options(options_dict):
     #    assert isinstance(options_dict.get("LakilesterSprite").get("value"), int)
     if "BossesSetting" in options_dict:
         assert isinstance(options_dict.get("BossesSetting").get("value"), int)
+    if "EnemiesSetting" in options_dict:
+        assert isinstance(options_dict.get("EnemiesSetting").get("value"), int)
     if "NPCSetting" in options_dict:
         assert isinstance(options_dict.get("NPCSetting").get("value"), int)
 
@@ -885,6 +889,7 @@ class PaletteOptionSet():
         #self.lakilester_setting = DEFAULT_PALETTE
         #self.lakilester_sprite = DEFAULT_PALETTE
         self.bosses_setting = DEFAULT_PALETTE
+        self.enemies_setting = DEFAULT_PALETTE
         self.npc_setting = DEFAULT_PALETTE
 
 

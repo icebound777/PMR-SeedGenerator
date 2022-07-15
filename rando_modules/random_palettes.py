@@ -5,9 +5,11 @@ from models.CoinPalette import CoinPalette
 from db.palette import Palette
 
 from optionset import PaletteOptionSet
-from metadata.palettes_meta              \
-    import mario_n_partner_sprite_names, \
-           boss_sprite_names
+from metadata.palettes_meta import \
+    mario_n_partner_sprite_names, \
+    boss_sprite_names, \
+    enemy_sprite_names
+
 
 
 def get_randomized_coinpalette(color_id:int, should_randomize_color:bool):
@@ -159,6 +161,7 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
     SELECT_PALETTE = 1
     RANDOM_PICK = 2
     ALWAYS_RANDOM = 3
+    PALETTEVALUE_ALWAYS_RANDOM = 0xFFFFFFFF
 
     palettes_data = []
     all_palettes = []
@@ -194,13 +197,13 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
             else:
                 chosen_palette = random.randrange(0, palette_count + 1)
         elif cur_setting == ALWAYS_RANDOM:
-            chosen_palette = 0xFFFFFFFF
+            chosen_palette = PALETTEVALUE_ALWAYS_RANDOM
         else:
             chosen_palette = DEFAULT_PALETTE
 
         palettes_data.append((palette_info.dbkey, chosen_palette))
 
-    # Bosses and general NPC palettes
+    # Bosses, enemies and general NPC palettes
     for palette_info in Palette.select():
         if palette_info.sprite in mario_n_partner_sprite_names:
             continue
@@ -210,7 +213,16 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
                 palette_count = palette_info.palette_count
                 chosen_palette = random.randrange(0, palette_count + 1)
             elif palette_settings.bosses_setting == ALWAYS_RANDOM:
-                chosen_palette = 0xFFFFFFFF
+                chosen_palette = PALETTEVALUE_ALWAYS_RANDOM
+            else:
+                chosen_palette = DEFAULT_PALETTE
+            palettes_data.append((palette_info.dbkey, chosen_palette))
+        elif palette_info.sprite in enemy_sprite_names:
+            if palette_settings.enemies_setting == RANDOM_PICK:
+                palette_count = palette_info.palette_count
+                chosen_palette = random.randrange(0, palette_count + 1)
+            elif palette_settings.enemies_setting == ALWAYS_RANDOM:
+                chosen_palette = PALETTEVALUE_ALWAYS_RANDOM
             else:
                 chosen_palette = DEFAULT_PALETTE
             palettes_data.append((palette_info.dbkey, chosen_palette))
@@ -223,7 +235,7 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
                 else:
                     chosen_palette = random.randrange(0, palette_count + 1)
             elif palette_settings.npc_setting == ALWAYS_RANDOM:
-                chosen_palette = 0xFFFFFFFF
+                chosen_palette = PALETTEVALUE_ALWAYS_RANDOM
             else:
                 chosen_palette = DEFAULT_PALETTE
             palettes_data.append((palette_info.dbkey, chosen_palette))
