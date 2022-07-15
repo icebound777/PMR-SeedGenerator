@@ -73,6 +73,7 @@ unused_items = [
     "FPPlusX",
     "FPPlusY",
     "HealthyHealthy",
+    "ShrinkSmash"
 ]
 
 unplaceable_items = [
