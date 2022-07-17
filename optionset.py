@@ -1029,10 +1029,188 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("NPCSetting").get("value"), int)
 
     # Glitched Logic
+    if "PrologueGelEarly" in options_dict:
+        assert isinstance(options_dict.get("PrologueGelEarly").get("value"), bool)
+
+    if "OddKeyEarly" in options_dict:
+        assert isinstance(options_dict.get("OddKeyEarly").get("value"), bool)
+    if "BlueHouseSkip" in options_dict:
+        assert isinstance(options_dict.get("BlueHouseSkip").get("value"), bool)
+    if "BowlessToyBox" in options_dict:
+        assert isinstance(options_dict.get("BowlessToyBox").get("value"), bool)
+    if "EarlyStoreroomParakarry" in options_dict:
+        assert isinstance(options_dict.get("EarlyStoreroomParakarry").get("value"), bool)
+    if "EarlyStoreroomHammer" in options_dict:
+        assert isinstance(options_dict.get("EarlyStoreroomHammer").get("value"), bool)
+    if "WhaleEarly" in options_dict:
+        assert isinstance(options_dict.get("WhaleEarly").get("value"), bool)
+    if "SushielessToadTownStarPiece" in options_dict:
+        assert isinstance(options_dict.get("SushielessToadTownStarPiece").get("value"), bool)
+
+    if "ClippyBootsStoneBlockSkip" in options_dict:
+        assert isinstance(options_dict.get("ClippyBootsStoneBlockSkip").get("value"), bool)
+    if "ClippyBootsMetalBlockSkip" in options_dict:
+        assert isinstance(options_dict.get("ClippyBootsMetalBlockSkip").get("value"), bool)
+    if "IslandPipeBlooperSkip" in options_dict:
+        assert isinstance(options_dict.get("IslandPipeBlooperSkip").get("value"), bool)
+    if "ParakarrylessSewerStarPiece" in options_dict:
+        assert isinstance(options_dict.get("ParakarrylessSewerStarPiece").get("value"), bool)
+    if "SewerBlocksWithoutUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("SewerBlocksWithoutUltraBoots").get("value"), bool)
+
+    if "KooperlessPleasantPathStarPiece" in options_dict:
+        assert isinstance(options_dict.get("KooperlessPleasantPathStarPiece").get("value"), bool)
+    if "InvisibleBridgeClipLzs" in options_dict:
+        assert isinstance(options_dict.get("InvisibleBridgeClipLzs").get("value"), bool)
+    if "InvisibleBridgeClipLaki" in options_dict:
+        assert isinstance(options_dict.get("InvisibleBridgeClipLaki").get("value"), bool)
+    if "KooperlessPleasantPathThunderBolt" in options_dict:
+        assert isinstance(options_dict.get("KooperlessPleasantPathThunderBolt").get("value"), bool)
+
+    if "BombettelessKbfFpPlusLZS" in options_dict:
+        assert isinstance(options_dict.get("BombettelessKbfFpPlusLZS").get("value"), bool)
+    if "BombettelessKbfFpPlusLaki" in options_dict:
+        assert isinstance(options_dict.get("BombettelessKbfFpPlusLaki").get("value"), bool)
+    if "LakiJailbreak" in options_dict:
+        assert isinstance(options_dict.get("LakiJailbreak").get("value"), bool)
+    if "BombettelessRightFortressJailKey" in options_dict:
+        assert isinstance(options_dict.get("BombettelessRightFortressJailKey").get("value"), bool)
+
+    if "MtRuggedQuakeHammerAndLetterWithLaki" in options_dict:
+        assert isinstance(options_dict.get("MtRuggedQuakeHammerAndLetterWithLaki").get("value"), bool)
+    if "ParakarrylessMtRuggedSeed" in options_dict:
+        assert isinstance(options_dict.get("ParakarrylessMtRuggedSeed").get("value"), bool)
+    if "BuzzarGapSkipClippy" in options_dict:
+        assert isinstance(options_dict.get("BuzzarGapSkipClippy").get("value"), bool)
+    if "ParakarrylessMtRuggedStarPiece" in options_dict:
+       assert isinstance(options_dict.get("ParakarrylessMtRuggedStarPiece").get("value"), bool)
+
+    if "DesertBrickBlockItemWithParakarry" in options_dict:
+        assert isinstance(options_dict.get("DesertBrickBlockItemWithParakarry").get("value"), bool)
     if "EarlyRuinsLakiJump" in options_dict:
         assert isinstance(options_dict.get("EarlyRuinsLakiJump").get("value"), bool)
     if "EarlyRuinsUltraBoots" in options_dict:
         assert isinstance(options_dict.get("EarlyRuinsUltraBoots").get("value"), bool)
+
+    if "ArtifactJump" in options_dict:
+        assert isinstance(options_dict.get("ArtifactJump").get("value"), bool)
+    if "RuinsKeyLakiJump" in options_dict:
+        assert isinstance(options_dict.get("RuinsKeyLakiJump").get("value"), bool)
+    if "ParakarylessSecondSandRoomUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("ParakarylessSecondSandRoomUltraBoots").get("value"), bool)
+    if "ParakarylessSecondSandRoomNormalBoots" in options_dict:
+        assert isinstance(options_dict.get("ParakarylessSecondSandRoomNormalBoots").get("value"), bool)
+    if "ParakarylessSuperHammerRoomUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("ParakarylessSuperHammerRoomUltraBoots").get("value"), bool)
+    if "ParakarylessSuperHammerRoomNormalBoots" in options_dict:
+        assert isinstance(options_dict.get("ParakarylessSuperHammerRoomNormalBoots").get("value"), bool)
+    if "RuinsLocksSkipClippy" in options_dict:
+        assert isinstance(options_dict.get("RuinsLocksSkipClippy").get("value"), bool)
+
+    if "RecordSkipNoBombettePush" in options_dict:
+        assert isinstance(options_dict.get("RecordSkipNoBombettePush").get("value"), bool)
+    if "RecordSkipBombettePush" in options_dict:
+        assert isinstance(options_dict.get("RecordSkipBombettePush").get("value"), bool)
+    if "BoosPortraitWithKooper" in options_dict:
+        assert isinstance(options_dict.get("BoosPortraitWithKooper").get("value"), bool)
+    if "BoosPortraitWithLaki" in options_dict:
+        assert isinstance(options_dict.get("BoosPortraitWithLaki").get("value"), bool)
+        
+    if "GustyGulchGateSkipLZS" in options_dict:
+        assert isinstance(options_dict.get("GustyGulchGateSkipLZS").get("value"), bool)
+    if "KooperlessGustyGulchDizzyDialJump" in options_dict:
+        assert isinstance(options_dict.get("KooperlessGustyGulchDizzyDialJump").get("value"), bool)
+    if "KooperlessGustyGulchDizzyDialLaki" in options_dict:
+        assert isinstance(options_dict.get("KooperlessGustyGulchDizzyDialLaki").get("value"), bool)
+    if "KooperlessGustyGulchDizzyDialParakarry" in options_dict:
+        assert isinstance(options_dict.get("KooperlessGustyGulchDizzyDialParakarry").get("value"), bool)
+    if "GustyGulchGapSkip" in options_dict:
+        assert isinstance(options_dict.get("GustyGulchGapSkip").get("value"), bool)
+
+    if "BowlessTubbasCastle" in options_dict:
+        assert isinstance(options_dict.get("BowlessTubbasCastle").get("value"), bool)
+    if "TubbasTableLakiJump" in options_dict:
+        assert isinstance(options_dict.get("TubbasTableLakiJump").get("value"), bool)
+    if "TubbasCastleSuperBootsSkip" in options_dict:
+        assert isinstance(options_dict.get("TubbasCastleSuperBootsSkip").get("value"), bool)
+    if "ParakarrylessMegaRush" in options_dict:
+        assert isinstance(options_dict.get("ParakarrylessMegaRush").get("value"), bool)
+
+    if "ParakarrylessBlueBuildingStarPiece" in options_dict:
+        assert isinstance(options_dict.get("ParakarrylessBlueBuildingStarPiece").get("value"), bool)
+    if "GourmetGuySkipJump" in options_dict:
+        assert isinstance(options_dict.get("GourmetGuySkipJump").get("value"), bool)
+    if "GourmetGuySkipLaki" in options_dict:
+        assert isinstance(options_dict.get("GourmetGuySkipLaki").get("value"), bool)
+    if "BowlessGreenStation" in options_dict:
+        assert isinstance(options_dict.get("BowlessGreenStation").get("value"), bool)
+    if "KooperlessRedStationShootingStar" in options_dict:
+        assert isinstance(options_dict.get("KooperlessRedStationShootingStar").get("value"), bool)
+
+    if "RaphSkipEnglish" in options_dict:
+        assert isinstance(options_dict.get("RaphSkipEnglish").get("value"), bool)
+
+    if "KooperlessLavalavaPowBlock" in options_dict:
+        assert isinstance(options_dict.get("KooperlessLavalavaPowBlock").get("value"), bool)
+    if "UltraHammerSkip" in options_dict:
+        assert isinstance(options_dict.get("UltraHammerSkip").get("value"), bool)
+    if "Flarakarry" in options_dict:
+        assert isinstance(options_dict.get("Flarakarry").get("value"), bool)
+    if "ParakarrylessFlarakarryBombette" in options_dict:
+        assert isinstance(options_dict.get("ParakarrylessFlarakarryBombette").get("value"), bool)
+    if "ParakarrylessFlarakarryLaki" in options_dict:
+        assert isinstance(options_dict.get("ParakarrylessFlarakarryLaki").get("value"), bool)
+
+    if "EarlyLakiLZS" in options_dict:
+        assert isinstance(options_dict.get("EarlyLakiLZS").get("value"), bool)
+    if "EarlyLakiBombettePush" in options_dict:
+        assert isinstance(options_dict.get("EarlyLakiBombettePush").get("value"), bool)
+    if "BombettelessMegaSmash" in options_dict:
+        assert isinstance(options_dict.get("BombettelessMegaSmash").get("value"), bool)
+    if "SunTowerSkip" in options_dict:
+        assert isinstance(options_dict.get("SunTowerSkip").get("value"), bool)
+    if "YellowBerryGateSkipLZS" in options_dict:
+        assert isinstance(options_dict.get("YellowBerryGateSkipLZS").get("value"), bool)
+    if "YellowBerryGateSkipLaki" in options_dict:
+        assert isinstance(options_dict.get("YellowBerryGateSkipLaki").get("value"), bool)
+    if "YellowBerryGateSkipBombettePush" in options_dict:
+        assert isinstance(options_dict.get("YellowBerryGateSkipBombettePush").get("value"), bool)
+    if "RedBerryGateSkipBombettePush" in options_dict:
+        assert isinstance(options_dict.get("RedBerryGateSkipBombettePush").get("value"), bool)
+    if "RedBerryGateSkipLaki" in options_dict:
+        assert isinstance(options_dict.get("RedBerryGateSkipLaki").get("value"), bool)
+    if "BlueBerryGateSkipBombettePush" in options_dict:
+        assert isinstance(options_dict.get("BlueBerryGateSkipBombettePush").get("value"), bool)
+    if "BlueBerryGateSkipLaki" in options_dict:
+        assert isinstance(options_dict.get("BlueBerryGateSkipLaki").get("value"), bool)
+    if "BubbleBerryTreeLakiJump" in options_dict:
+        assert isinstance(options_dict.get("BubbleBerryTreeLakiJump").get("value"), bool)
+
+    if "MurderSolvedEarlyLaki" in options_dict:
+        assert isinstance(options_dict.get("MurderSolvedEarlyLaki").get("value"), bool)
+    if "MurderSolvedEarlyBombettePush" in options_dict:
+        assert isinstance(options_dict.get("MurderSolvedEarlyBombettePush").get("value"), bool)
+    if "Ch7SushieGlitch" in options_dict:
+        assert isinstance(options_dict.get("Ch7SushieGlitch").get("value"), bool)
+    if "ShiverMountainHiddenBlockWithoutUltraBootsLaki" in options_dict:
+        assert isinstance(options_dict.get("ShiverMountainHiddenBlockWithoutUltraBootsLaki").get("value"), bool)
+    if "ShiverMountainHiddenBlockWithoutUltraBootsNoLaki" in options_dict:
+        assert isinstance(options_dict.get("ShiverMountainHiddenBlockWithoutUltraBootsNoLaki").get("value"), bool)
+
+    if "MirrorClip" in options_dict:
+        assert isinstance(options_dict.get("MirrorClip").get("value"), bool)
+
+    if "BowlessBowsersCastleBasement" in options_dict:
+        assert isinstance(options_dict.get("BowlessBowsersCastleBasement").get("value"), bool)
+    if "FastFloodRoomKooper" in options_dict:
+        assert isinstance(options_dict.get("FastFloodRoomKooper").get("value"), bool)
+    if "FastFloodRoomBombetteUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("FastFloodRoomBombetteUltraBoots").get("value"), bool)
+
+    if "BreakMetalBlocksWithUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("BreakMetalBlocksWithUltraBoots").get("value"), bool)
+    if "BreakYellowBlocksWithBombette" in options_dict:
+        assert isinstance(options_dict.get("BreakYellowBlocksWithBombette").get("value"), bool)
 
     # Audio
 
