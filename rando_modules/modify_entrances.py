@@ -82,7 +82,6 @@ from maps.graph_edges.glitched_logic.artifact_jump import \
 from maps.graph_edges.glitched_logic.ruins_key_laki_jump import \
     edges_isk_add_ruins_key_laki_jump
 from maps.graph_edges.glitched_logic.parakaryless_second_sand_room import \
-    edges_isk_add_parakaryless_second_sand_room_super_boots, \
     edges_isk_add_parakaryless_second_sand_room_normal_boots, \
     edges_isk_add_parakaryless_second_sand_room_ultra_boots
 from maps.graph_edges.glitched_logic.parakaryless_super_hammer_room import \
