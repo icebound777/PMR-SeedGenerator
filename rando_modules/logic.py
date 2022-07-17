@@ -278,7 +278,8 @@ def _init_mario_inventory(
     startwith_bluehouse_open:bool,
     startwith_flowergate_open:bool,
     startwith_toybox_open:bool,
-    startwith_whale_open:bool
+    startwith_whale_open:bool,
+    startwith_speedyspin: bool
 ) -> Mario:
     """
     Initializes Mario's starting inventory.
@@ -327,6 +328,9 @@ def _init_mario_inventory(
     if startwith_whale_open:
         mario.add_to_inventory("RF_CanRideWhale")
 
+    if startwith_speedyspin:
+        mario.add_to_inventory("SpeedySpin")
+
     return mario
 
 
@@ -339,7 +343,8 @@ def _get_limit_items_to_dungeons(
     starting_hammer:int,
     starting_partners:list,
     hidden_block_mode:int,
-    bowsers_castle_mode:int
+    bowsers_castle_mode:int,
+    start_with_speedyspin: bool
 ):
     """
     Logically places progression items into their 'dungeons', then returns a
@@ -566,7 +571,8 @@ def _get_limit_items_to_dungeons(
                 False,
                 False,
                 False,
-                False
+                False,
+                start_with_speedyspin
             )
         else:
             mario = _init_mario_inventory(
@@ -579,7 +585,8 @@ def _get_limit_items_to_dungeons(
                 False,
                 False,
                 False,
-                False
+                False,
+                start_with_speedyspin
             )
         if area_name in additional_starting_items:
             mario.add_to_inventory(additional_starting_items[area_name])
@@ -645,7 +652,8 @@ def _get_limit_items_to_dungeons(
                         False,
                         False,
                         False,
-                        False
+                        False,
+                        start_with_speedyspin
                     )
                 else:
                     mario = _init_mario_inventory(
@@ -658,7 +666,8 @@ def _get_limit_items_to_dungeons(
                         False,
                         False,
                         False,
-                        False
+                        False,
+                        start_with_speedyspin
                     )
 
         items_placed.extend(cur_items_placed)
@@ -1244,7 +1253,8 @@ def _algo_forward_fill(
         startwith_bluehouse_open,
         startwith_flowergate_open,
         startwith_toybox_open,
-        startwith_whale_open
+        startwith_whale_open,
+        speedyspin
     )
 
     # Set node to start graph traversal from
@@ -1316,7 +1326,8 @@ def _algo_forward_fill(
                 startwith_bluehouse_open,
                 startwith_flowergate_open,
                 startwith_toybox_open,
-                startwith_whale_open
+                startwith_whale_open,
+                speedyspin
             )
             logging.info("Progression placement fail, retrying ...")
 
@@ -1598,7 +1609,8 @@ def _algo_assumed_fill(
             startwith_bluehouse_open,
             startwith_flowergate_open,
             startwith_toybox_open,
-            startwith_whale_open
+            startwith_whale_open,
+            speedyspin
         )
 
         for item_ in pool_combined_progression_items:
@@ -1727,6 +1739,7 @@ def get_item_spheres(
     partners_always_usable,
     hidden_block_mode:int,
     starting_items:list,
+    startwith_speedyspin,
     world_graph
 ):
 
@@ -1752,7 +1765,8 @@ def get_item_spheres(
         startwith_bluehouse_open,
         startwith_flowergate_open,
         startwith_toybox_open,
-        startwith_whale_open
+        startwith_whale_open,
+        startwith_speedyspin
     )
 
     # Set node to start graph traversal from

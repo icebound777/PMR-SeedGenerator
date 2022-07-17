@@ -189,6 +189,7 @@ class RandomSeed:
             partners_always_usable=self.rando_settings.partners_always_usable["value"],
             hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
             starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
+            startwith_speedyspin=self.rando_settings.always_speedyspin["value"],
             world_graph=world_graph
         )
 
