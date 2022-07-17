@@ -658,8 +658,12 @@ class OptionSet:
             self.glitch_settings.fast_flood_room_kooper = options_dict.get("FastFloodRoomKooper")
         if "FastFloodRoomBombetteUltraBoots" in options_dict:
             self.glitch_settings.fast_flood_room_bombette_ultra_boots = options_dict.get("FastFloodRoomBombetteUltraBoots")
-              
 
+        if "BreakMetalBlocksWithUltraBoots" in options_dict:
+            self.glitch_settings.break_metal_blocks_with_ultra_boots = options_dict.get("BreakMetalBlocksWithUltraBoots")
+        if "BreakYellowBlocksWithBombette" in options_dict:
+            self.glitch_settings.break_yellow_blocks_with_bombette = options_dict.get("BreakYellowBlocksWithBombette")
+              
         # Audio
 
 
@@ -1186,3 +1190,6 @@ class GlitchOptionSet():
             self.bowless_bowsers_castle_basement = False
             self.fast_flood_room_kooper = False
             self.fast_flood_room_bombette_ultra_boots = False
+
+            self.break_metal_blocks_with_ultra_boots = False
+            self.break_yellow_blocks_with_bombette = False

@@ -170,6 +170,11 @@ from maps.graph_edges.glitched_logic.bowless_bowsers_castle_basement import \
 from maps.graph_edges.glitched_logic.fast_flood_room import \
     edges_kpa_add_fast_flood_room_bombette_ultra_boots, edges_kpa_add_fast_flood_room_kooper
 
+# Glitched Logic - Global
+from maps.graph_edges.glitched_logic.break_stone_blocks_with_ultra_boots import \
+    edges_kmr_tik_add_break_stone_blocks_ultra_boots
+from maps.graph_edges.glitched_logic.break_yellow_blocks_with_bombette import \
+    edges_kmr_tik_add_break_yellow_blocks_bombette
 
 def get_shorter_bowsercastle(world_graph: dict):
     """
@@ -430,6 +435,12 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
             all_new_edges.extend(edges_kpa_add_fast_flood_room_kooper)
         if glitch_settings.fast_flood_room_bombette_ultra_boots["value"]:
             all_new_edges.extend(edges_kpa_add_fast_flood_room_bombette_ultra_boots)
+
+    # Global
+    if glitch_settings.break_metal_blocks_with_ultra_boots["value"]:
+        all_new_edges.extend(edges_kmr_tik_add_break_stone_blocks_ultra_boots)
+    if glitch_settings.break_yellow_blocks_with_bombette["value"]:
+        all_new_edges.extend(edges_kmr_tik_add_break_yellow_blocks_bombette)
 
     print(all_new_edges)
 
