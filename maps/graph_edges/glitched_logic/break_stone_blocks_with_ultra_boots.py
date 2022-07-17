@@ -4,6 +4,6 @@ for Glitched Logic: Break Stone Blocks With Ultra Boots.
 """
 edges_kmr_tik_add_break_stone_blocks_ultra_boots= [
     {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": "HiddenYBlockA"}, "reqs": [["UltraBoots"]], "mapchange": False}, #* Bottom of the Cliff Exit Right -> HiddenYBlockA (RepelGel)
-    {"from": {"map": "TIK_06", "id": 3}, "to": {"map": "TIK_06", "id": 2}, "reqs": [["UltraBoots"]], "mapchange": False}, #? Sewer Entrance (B1) Green Pipe Left -> Sewer Entrance (B1) Exit Left
+    {"from": {"map": "TIK_06", "id": 2}, "to": {"map": "TIK_06", "id": 0}, "reqs": [["UltraBoots"]], "mapchange": False}, #? Sewer Entrance (B1) Green Pipe Left -> Sewer Entrance (B1) Exit Left
 ]
 
