@@ -58,10 +58,10 @@ StartingItemE: 0x000 # Nothing
 StartingItemF: 0x000 # Nothing
 
 # Pre-opened areas
-FlowerGateOpen: false
-BlueHouseOpen : false
-ToyboxOpen    : false
-WhaleOpen     : false
+MagicalSeedsRequired: 4 # 5 = random
+BlueHouseOpen       : false
+ToyboxOpen          : false
+WhaleOpen           : false
 
 # Randomization: Logic
 #PlacementAlgorithm: ForwardFill

@@ -276,7 +276,7 @@ def _init_mario_inventory(
     partners_always_usable:bool,
     hidden_block_mode:int,
     startwith_bluehouse_open:bool,
-    startwith_flowergate_open:bool,
+    magical_seeds_required:int,
     startwith_toybox_open:bool,
     startwith_whale_open:bool
 ) -> Mario:
@@ -320,12 +320,18 @@ def _init_mario_inventory(
 
     if startwith_bluehouse_open:
         mario.add_to_inventory("GF_MAC02_UnlockedHouse")
-    if startwith_flowergate_open:
-        mario.add_to_inventory("RF_Ch6_FlowerGateOpen")
     if startwith_toybox_open:
         mario.add_to_inventory("RF_ToyboxOpen")
     if startwith_whale_open:
         mario.add_to_inventory("RF_CanRideWhale")
+    if magical_seeds_required == 3:
+        mario.add_to_inventory("RF_MagicalSeed1")
+    elif magical_seeds_required == 2:
+        mario.add_to_inventory(["RF_MagicalSeed1", "RF_MagicalSeed2"])
+    elif magical_seeds_required == 1:
+        mario.add_to_inventory(["RF_MagicalSeed1", "RF_MagicalSeed2", "RF_MagicalSeed3"])
+    elif magical_seeds_required == 0:
+        mario.add_to_inventory(["RF_MagicalSeed1", "RF_MagicalSeed2", "RF_MagicalSeed3", "RF_MagicalSeed4"])
 
     return mario
 
@@ -690,7 +696,7 @@ def get_items_to_exclude(
     do_randomize_dojo:bool,
     starting_partners:list,
     startwith_bluehouse_open:bool,
-    startwith_flowergate_open:bool,
+    magical_seeds_required:int,
     bowsers_castle_mode:int,
     always_speedyspin:bool,
     always_ispy:bool,
@@ -713,8 +719,8 @@ def get_items_to_exclude(
         for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if startwith_flowergate_open:
-        for item_name in exclude_due_to_settings.get("startwith_flowergate_open"):
+    if magical_seeds_required < 4:
+        for item_name in exclude_due_to_settings.get("magical_seeds_required").get(magical_seeds_required):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
     if bowsers_castle_mode > 0:
@@ -753,7 +759,7 @@ def _generate_item_pools(
     item_scarcity:int,
     itemtrap_mode:int,
     startwith_bluehouse_open:bool,
-    startwith_flowergate_open:bool,
+    magical_seeds_required:int,
     keyitems_outside_dungeon:bool,
     partners_always_usable:bool,
     partners_in_default_locations:bool,
@@ -963,7 +969,7 @@ def _generate_item_pools(
             do_randomize_dojo,
             starting_partners,
             startwith_bluehouse_open,
-            startwith_flowergate_open,
+            magical_seeds_required,
             bowsers_castle_mode,
             always_speedyspin,
             always_ispy,
@@ -1166,7 +1172,7 @@ def _algo_forward_fill(
     itemtrap_mode,
     starting_map_id,
     startwith_bluehouse_open,
-    startwith_flowergate_open,
+    magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
@@ -1216,7 +1222,7 @@ def _algo_forward_fill(
         item_scarcity,
         itemtrap_mode,
         startwith_bluehouse_open,
-        startwith_flowergate_open,
+        magical_seeds_required,
         keyitems_outside_dungeon,
         partners_always_usable,
         partners_in_default_locations,
@@ -1242,7 +1248,7 @@ def _algo_forward_fill(
         partners_always_usable,
         hidden_block_mode,
         startwith_bluehouse_open,
-        startwith_flowergate_open,
+        magical_seeds_required,
         startwith_toybox_open,
         startwith_whale_open
     )
@@ -1314,7 +1320,7 @@ def _algo_forward_fill(
                 partners_always_usable,
                 hidden_block_mode,
                 startwith_bluehouse_open,
-                startwith_flowergate_open,
+                magical_seeds_required,
                 startwith_toybox_open,
                 startwith_whale_open
             )
@@ -1505,7 +1511,7 @@ def _algo_assumed_fill(
     itemtrap_mode,
     starting_map_id,
     startwith_bluehouse_open,
-    startwith_flowergate_open,
+    magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
@@ -1552,7 +1558,7 @@ def _algo_assumed_fill(
         item_scarcity,
         itemtrap_mode,
         startwith_bluehouse_open,
-        startwith_flowergate_open,
+        magical_seeds_required,
         keyitems_outside_dungeon,
         partners_always_usable,
         partners_in_default_locations,
@@ -1596,7 +1602,7 @@ def _algo_assumed_fill(
             partners_always_usable,
             hidden_block_mode,
             startwith_bluehouse_open,
-            startwith_flowergate_open,
+            magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open
         )
@@ -1713,12 +1719,13 @@ def _algo_assumed_fill(
 
     # "Return" list of modified item nodes
     item_placement.extend([node for node in all_item_nodes if node.current_item])
-    
+
+
 def get_item_spheres(
     item_placement,
     starting_map_id,
     startwith_bluehouse_open,
-    startwith_flowergate_open,
+    magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
@@ -1750,7 +1757,7 @@ def get_item_spheres(
         partners_always_usable,
         hidden_block_mode,
         startwith_bluehouse_open,
-        startwith_flowergate_open,
+        magical_seeds_required,
         startwith_toybox_open,
         startwith_whale_open
     )
@@ -1803,7 +1810,7 @@ def get_item_spheres(
         item_spheres_text += '\n'
         item_spheres_text += f'Sphere {sphere}:\n'        
 
-        for node_id, node in sorted(reachable_item_nodes.items()):
+        for _, node in sorted(reachable_item_nodes.items()):
             item = item_placement_map[node.identifier].current_item
             node_long_name = f'({verbose_area_names[node.map_area.name[:3]]}) {node.map_area.verbose_name} - {verbose_item_locations[node.map_area.name][node.key_name_item]}'
             item_verbose_name = verbose_item_names[item.item_name] if item.item_name in verbose_item_names else item.item_name
@@ -1840,7 +1847,7 @@ def place_items(
     itemtrap_mode,
     starting_map_id,
     startwith_bluehouse_open,
-    startwith_flowergate_open,
+    magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
@@ -1885,7 +1892,7 @@ def place_items(
             itemtrap_mode,
             starting_map_id,
             startwith_bluehouse_open,
-            startwith_flowergate_open,
+            magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,
             starting_partners,
@@ -1919,7 +1926,7 @@ def place_items(
             itemtrap_mode,
             starting_map_id,
             startwith_bluehouse_open,
-            startwith_flowergate_open,
+            magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,
             starting_partners,

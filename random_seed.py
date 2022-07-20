@@ -66,6 +66,10 @@ class RandomSeed:
         self.init_starting_partners(self.rando_settings)
         self.init_starting_items(self.rando_settings)
 
+        # Pick seeds required for flower gate, if random
+        if self.rando_settings.magical_seeds_required["value"] == 5:
+            self.rando_settings.magical_seeds_required["value"] = random.randint(0, 4)
+
         # Item Placement
         for placement_attempt in range(1, 6):  # try 5 times
             try:
@@ -85,7 +89,7 @@ class RandomSeed:
                     itemtrap_mode=self.rando_settings.itemtrap_mode,
                     starting_map_id=self.rando_settings.starting_map["value"],
                     startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
-                    startwith_flowergate_open=self.rando_settings.flowergate_open["value"],
+                    magical_seeds_required=self.rando_settings.magical_seeds_required["value"],
                     startwith_toybox_open=self.rando_settings.toybox_open["value"],
                     startwith_whale_open=self.rando_settings.whale_open["value"],
                     starting_partners=self.starting_partners,
@@ -177,7 +181,7 @@ class RandomSeed:
             item_placement= self.placed_items,
             starting_map_id=self.rando_settings.starting_map["value"],
             startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
-            startwith_flowergate_open=self.rando_settings.flowergate_open["value"],
+            magical_seeds_required=self.rando_settings.magical_seeds_required["value"],
             startwith_toybox_open=self.rando_settings.toybox_open["value"],
             startwith_whale_open=self.rando_settings.whale_open["value"],
             starting_partners=self.starting_partners,
@@ -261,7 +265,7 @@ class RandomSeed:
                 do_randomize_dojo=rando_settings.include_dojo,
                 starting_partners=self.starting_partners,
                 startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
-                startwith_flowergate_open=rando_settings.flowergate_open["value"],
+                magical_seeds_required=rando_settings.magical_seeds_required["value"],
                 bowsers_castle_mode=rando_settings.bowsers_castle_mode["value"],
                 always_speedyspin=rando_settings.always_speedyspin["value"],
                 always_ispy=rando_settings.always_ispy["value"],

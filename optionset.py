@@ -8,7 +8,7 @@ class OptionSet:
         # General
         self.starting_coins = get_option_keyvalue_dict("StartingCoins")
         self.shorten_cutscenes = get_option_keyvalue_dict("ShortenCutscenes")
-        self.flowergate_open = get_option_keyvalue_dict("FlowerGateOpen")
+        self.magical_seeds_required = get_option_keyvalue_dict("MagicalSeedsRequired")
         self.bluehouse_open = get_option_keyvalue_dict("BlueHouseOpen")
         self.blocks_match_content = get_option_keyvalue_dict("BlocksMatchContent")
         self.skip_quiz = get_option_keyvalue_dict("SkipQuiz")
@@ -179,8 +179,8 @@ class OptionSet:
             self.starting_coins = options_dict.get("StartingCoins")
         if "ShortenCutscenes" in options_dict:
             self.shorten_cutscenes = options_dict.get("ShortenCutscenes")
-        if "FlowerGateOpen" in options_dict:
-            self.flowergate_open = options_dict.get("FlowerGateOpen")
+        if "MagicalSeedsRequired" in options_dict:
+            self.magical_seeds_required = options_dict.get("MagicalSeedsRequired")
         if "BlueHouseOpen" in options_dict:
             self.bluehouse_open = options_dict.get("BlueHouseOpen")
         if "BlocksMatchContent" in options_dict:
@@ -493,8 +493,8 @@ def validate_options(options_dict):
         )
     if "ShortenCutscenes" in options_dict:
         assert isinstance(options_dict.get("ShortenCutscenes").get("value"), bool)
-    if "FlowerGateOpen" in options_dict:
-        assert isinstance(options_dict.get("FlowerGateOpen").get("value"), bool)
+    if "MagicalSeedsRequired" in options_dict:
+        assert isinstance(options_dict.get("MagicalSeedsRequired").get("value"), int)
     if "BlueHouseOpen" in options_dict:
         assert isinstance(options_dict.get("BlueHouseOpen").get("value"), bool)
     if "BlocksMatchContent" in options_dict:
