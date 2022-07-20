@@ -84,6 +84,14 @@ class Table:
                     "value": node.current_item.base_price
                 })
 
+        # Blocks
+        placed_blocks = kwargs.get("blocks")
+        for key, value in placed_blocks:
+            table_data.append({
+                "key": key,
+                "value": value
+            })
+
         # Entrances
         entrances = kwargs.get("entrances")
         for key, value in entrances:

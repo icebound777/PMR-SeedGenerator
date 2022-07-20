@@ -5,6 +5,7 @@ from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
 from optionset import OptionSet
 from rando_modules.logic import place_items, get_item_spheres, get_items_to_exclude
+from rando_modules.random_blocks import get_block_placement
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.modify_entrances import \
     get_shorter_bowsercastle, get_bowsercastle_bossrush
@@ -29,6 +30,7 @@ class RandomSeed:
         self.starting_partners = []
         self.starting_items = []
         self.placed_items = []
+        self.placed_blocks = []
         self.entrance_list = []
         self.enemy_stats = []
         self.chapter_changes = {}
@@ -121,6 +123,9 @@ class RandomSeed:
         # Make everything inexpensive
         #set_cheap_shopitems(placed_items)
         #self.placed_items = get_alpha_prices(self.placed_items)
+
+        # Randomize blocks if needed
+        self.placed_blocks = get_block_placement(self.rando_settings.shuffle_blocks["value"])
 
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(

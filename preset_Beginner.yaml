@@ -104,6 +104,9 @@ ItemChoiceE      : 0x09A # DizzyDial
 ItemChoiceF      : 0x082 # ThunderRage
 ItemChoiceG      : 0x085 # Pebble
 
+# Randomization: Blocks
+ShuffleBlocks: false
+
 # Randomization: Moves and Badges
 # 0: vanilla, 1: balanced random, 2: shuffled, 3: fully random
 RandomBadgesBP   : 0

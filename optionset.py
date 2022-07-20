@@ -99,6 +99,9 @@ class OptionSet:
         # Mystery? item options
         self.mystery_settings = MysteryOptionSet()
 
+        # Blocks related
+        self.shuffle_blocks = False
+
         # Moves and Badges
         self.random_badges_bp = 0
         self.random_badges_fp = 0
@@ -364,6 +367,10 @@ class OptionSet:
             self.mystery_settings.mystery_itemF = options_dict.get("ItemChoiceF")
         if "ItemChoiceG" in options_dict:
             self.mystery_settings.mystery_itemG = options_dict.get("ItemChoiceG")
+
+        # Blocks related
+        if "ShuffleBlocks" in options_dict:
+            self.shuffle_blocks = options_dict.get("ShuffleBlocks")
 
         # Moves and Badges
         if "RandomBadgesBP" in options_dict:
@@ -720,6 +727,10 @@ def validate_options(options_dict):
         assert (isinstance(options_dict.get("ItemChoiceG").get("value"), int)
             and 0x80 <= options_dict.get("ItemChoiceG").get("value") <= 0xDA
         )
+
+    # Blocks related
+    if "ShuffleBlocks" in options_dict:
+        assert isinstance(options_dict.get("ShuffleBlocks").get("value"), bool)
 
     # Moves and Badges
     if "RandomBadgesBP" in options_dict:
