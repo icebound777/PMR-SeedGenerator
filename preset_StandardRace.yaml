@@ -185,3 +185,4 @@ EnemiesSetting   : 2
 NPCSetting       : 2
 
 # Audio
+RandomPitch: false
