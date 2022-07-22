@@ -49,8 +49,8 @@ edges_obk = [
     
     {"from": {"map": "OBK_03", "id": 0}, "to": {"map": "OBK_03", "id": 1}, "reqs": []}, #? Basement Upper Door North -> Basement Upper Door East
     {"from": {"map": "OBK_03", "id": 1}, "to": {"map": "OBK_03", "id": 0}, "reqs": []}, #? Basement Upper Door East -> Basement Upper Door North
-    {"from": {"map": "OBK_03", "id": 0}, "to": {"map": "OBK_03", "id": 2}, "reqs": [["MF_OBK03_HitHugeBlueSwitch"]]}, #? Basement Upper Door North -> Basement Fall From Ceiling
-    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": 0}, "reqs": [["MF_OBK03_HitHugeBlueSwitch"]]}, #? Basement Fall From Ceiling -> Basement Upper Door North
+    {"from": {"map": "OBK_03", "id": 0}, "to": {"map": "OBK_03", "id": 2}, "reqs": []}, #? Basement Upper Door North -> Basement Fall From Ceiling
+    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": 0}, "reqs": []}, #? Basement Fall From Ceiling -> Basement Upper Door North
     
     {"from": {"map": "OBK_03", "id": 0},           "to": {"map": "OBK_03", "id": "CrateA"},    "reqs": [["SuperBoots"]]}, #* Basement Upper Door North -> CrateA (SuperShroom)
     {"from": {"map": "OBK_03", "id": "CrateA"},    "to": {"map": "OBK_03", "id": 0},           "reqs": []}, #* CrateA (SuperShroom) -> Basement Upper Door North
@@ -69,8 +69,6 @@ edges_obk = [
     {"from": {"map": "OBK_03", "id": 2},           "to": {"map": "OBK_03", "id": "ShopItemF"}, "reqs": [["RF_OpenedGustyGulch"]]}, #* Basement Fall From Ceiling -> ShopItemF (SuperShroom)
     {"from": {"map": "OBK_03", "id": "ShopItemF"}, "to": {"map": "OBK_03", "id": 2},           "reqs": []}, #* ShopItemF (SuperShroom) -> Basement Fall From Ceiling
     
-    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": 2}, "reqs": [["SuperBoots"]], "pseudoitems": ["MF_OBK03_HitHugeBlueSwitch"]}, #+ Basement Fall From Ceiling
-
     # OBK_04 Super Boots Room
     {"from": {"map": "OBK_04", "id": 0}, "to": {"map": None, "id": None},  "reqs": []}, # Super Boots Room Vanishing Door
     {"from": {"map": "OBK_04", "id": 1}, "to": {"map": "OBK_03", "id": 2}, "reqs": []}, # Super Boots Room Hole Under Planks -> Basement Fall From Ceiling
