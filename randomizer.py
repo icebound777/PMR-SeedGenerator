@@ -642,7 +642,7 @@ def main_randomizer(args):
         raise
 
     if rando_settings is None:
-        with open(os.path.abspath(__file__ + "/../default_settings.yaml"), "r", encoding="utf-8") as file:
+        with open(os.path.abspath(__file__ + "/../presets/default_settings.yaml"), "r", encoding="utf-8") as file:
             data = yaml.load(file, Loader=SafeLoader)
             rando_settings = OptionSet()
             populate_keys(data)
