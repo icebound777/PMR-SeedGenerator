@@ -1874,6 +1874,10 @@ def place_items(
         # Place items in their vanilla locations
         for node in Node.select().where(Node.key_name_item.is_null(False)):
             node.current_item = node.vanilla_item
+            node.current_item.base_price = get_shop_price(
+                node,
+                do_randomize_shops=False
+            )
             item_placement.append(node)
 
     elif algorithm == "ForwardFill":
