@@ -10,6 +10,15 @@ from maps.graph_edges.bc_bossrush.edges_hos import \
 from maps.graph_edges.bc_bossrush.edges_kpa import \
     edges_kpa_add    as edges_kpa_bossrush_add, \
     edges_kpa_remove as edges_kpa_bossrus_remove
+from maps.graph_edges.big_chest_shuffle.edges_isk import \
+    edges_isk_add    as edges_isk_bcs_add, \
+    edges_isk_remove as edges_isk_bcs_remove
+from maps.graph_edges.big_chest_shuffle.edges_kzn import \
+    edges_kzn_add    as edges_kzn_bcs_add, \
+    edges_kzn_remove as edges_kzn_bcs_remove
+from maps.graph_edges.big_chest_shuffle.edges_tik import \
+    edges_tik_add    as edges_tik_bcs_add, \
+    edges_tik_remove as edges_tik_bcs_remove
 from worldgraph import adjust, check_unreachable_from_start
 
 
@@ -66,3 +75,26 @@ def get_bowsercastle_bossrush(world_graph: dict):
         world_graph.pop(node_id)
 
     return all_entrance_modifications, world_graph
+
+def get_big_chest_shuffle(world_graph: dict):
+    """
+    Returns the modified world graph itself for Big Chest Shuffle, which
+    removes dynamic hammer block logic.
+    """
+    all_new_edges = []
+    all_edges_to_remove = []
+
+    all_new_edges.extend(edges_isk_bcs_add)
+    all_new_edges.extend(edges_kzn_bcs_add)
+    all_new_edges.extend(edges_tik_bcs_add)
+    all_edges_to_remove.extend(edges_isk_bcs_remove)
+    all_edges_to_remove.extend(edges_kzn_bcs_remove)
+    all_edges_to_remove.extend(edges_tik_bcs_remove)
+
+    world_graph, _ = adjust(
+        world_graph,
+        new_edges=all_new_edges,
+        edges_to_remove=all_edges_to_remove
+    )
+
+    return world_graph
