@@ -489,6 +489,7 @@ def web_apply_cosmetic_options(cosmetic_settings, palette_offset, cosmetics_offs
     #palette_options.lakilester_sprite = cosmetic_settings["LakilesterSprite"]
     palette_options.bosses_setting = cosmetic_settings["BossesSetting"]
     palette_options.npc_setting = cosmetic_settings["NPCSetting"]
+    palette_options.enemies_setting = cosmetic_settings["EnemiesSetting"]
         
     # Randomize sprite palettes
     coin_palette, chosen_color_id= get_randomized_coinpalette(
