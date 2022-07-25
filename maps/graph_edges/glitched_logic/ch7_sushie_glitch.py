@@ -1,6 +1,8 @@
 """
 This file represents edges of the world graph that have to be added
-for Glitched Logic: Chapter 7 Sushie Glitch. An additional partner is required to switch in battle and exit the sushie glitch state.
+for Glitched Logic: Chapter 7 Sushie Glitch.
+An additional partner is required to switch in battle and exit the sushie glitch
+state.
 """
 edges_sam_add_ch7_sushie_glitch = [
     #? Shiver City Pond Area Exit West -> Shiver City Pond Area Exit East
