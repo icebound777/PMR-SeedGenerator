@@ -374,7 +374,7 @@ class OptionSet:
 
         # Blocks related
         if "ShuffleBlocks" in options_dict:
-            self.shuffle_blocks = options_dict.get("ShuffleBlocks")
+            self.shuffle_blocks = options_dict.get("ShuffleBlocks").get("value")
 
         # Moves and Badges
         if "RandomBadgesBP" in options_dict:

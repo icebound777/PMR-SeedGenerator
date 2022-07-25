@@ -128,7 +128,7 @@ class RandomSeed:
         #self.placed_items = get_alpha_prices(self.placed_items)
 
         # Randomize blocks if needed
-        self.placed_blocks = get_block_placement(self.rando_settings.shuffle_blocks["value"])
+        self.placed_blocks = get_block_placement(self.rando_settings.shuffle_blocks)
 
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(
