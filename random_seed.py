@@ -65,18 +65,18 @@ class RandomSeed:
             self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
         if self.rando_settings.big_chest_shuffle["value"]:
             world_graph = get_big_chest_shuffle(world_graph)
-        
-        starting_chapter = self.init_starting_map(self.rando_settings)
-        self.init_starting_partners(self.rando_settings)
-        self.init_starting_items(self.rando_settings)
-
-        # Pick seeds required for flower gate, if random
-        if self.rando_settings.magical_seeds_required["value"] == 5:
-            self.rando_settings.magical_seeds_required["value"] = random.randint(0, 4)
 
         # Item Placement
         for placement_attempt in range(1, 6):  # try 5 times
             try:
+                starting_chapter, starting_map_value = self.init_starting_map(self.rando_settings)
+                self.init_starting_partners(self.rando_settings)
+                self.init_starting_items(self.rando_settings)
+
+                # Pick seeds required for flower gate, if random
+                if self.rando_settings.magical_seeds_required["value"] == 5:
+                    self.rando_settings.magical_seeds_required["value"] = random.randint(0, 4)
+
                 world_graph_copy = deepcopy(world_graph)
                 place_items(
                     item_placement= self.placed_items,
@@ -92,7 +92,7 @@ class RandomSeed:
                     do_big_chest_shuffle=self.rando_settings.big_chest_shuffle["value"],
                     item_scarcity=self.rando_settings.item_scarcity,
                     itemtrap_mode=self.rando_settings.itemtrap_mode,
-                    starting_map_id=self.rando_settings.starting_map["value"],
+                    starting_map_id=starting_map_value,
                     startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
                     magical_seeds_required=self.rando_settings.magical_seeds_required["value"],
                     startwith_toybox_open=self.rando_settings.toybox_open["value"],
@@ -112,6 +112,8 @@ class RandomSeed:
                     bowsers_castle_mode=self.rando_settings.bowsers_castle_mode["value"],
                     world_graph=world_graph_copy
                 )
+
+                self.rando_settings.starting_map["value"] = starting_map_value # Overwrite starting map in case it was random at first
                 break
 
             except UnbeatableSeedError as err:
@@ -224,7 +226,7 @@ class RandomSeed:
         if starting_map_value == 0xFFFFFFFF:
             # Pick random starting location
             start_chapter = random.choice(list(starting_maps.keys()))
-            self.rando_settings.starting_map["value"] = starting_maps[start_chapter]
+            starting_map_value = starting_maps[start_chapter]
         else:
             # Attempt to detect starting chapter value
             for chapter_number, start_location in starting_maps.items():
@@ -234,7 +236,7 @@ class RandomSeed:
             else:
                 start_chapter = 0
         
-        return start_chapter
+        return start_chapter, starting_map_value
 
 
 
