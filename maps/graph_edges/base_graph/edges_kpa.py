@@ -466,6 +466,6 @@ edges_kpa = [
     {"from": {"map": "KPA_134", "id": 0}, "to": {"map": "KPA_134", "id": 2}, "reqs": [["Sushie"]]}, #? Right Water Puzzle Door Bottom Left -> Right Water Puzzle Door Bottom Left Upper Half
     {"from": {"map": "KPA_134", "id": 2}, "to": {"map": "KPA_134", "id": 0}, "reqs": [["Sushie"]]}, #? Right Water Puzzle Door Bottom Left Upper Half -> Right Water Puzzle Door Bottom Left
     
-    {"from": {"map": "KPA_134", "id": 3},               "to": {"map": "KPA_134", "id": "HiddenYBlockA"}, "reqs": [["UltraBoots"]]}, #* Right Water Puzzle Bombable Wall -> HiddenYBlockA (MapleSyrup)
+    {"from": {"map": "KPA_134", "id": 3},               "to": {"map": "KPA_134", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["UltraBoots"]]}, #* Right Water Puzzle Bombable Wall -> HiddenYBlockA (MapleSyrup)
     {"from": {"map": "KPA_134", "id": "HiddenYBlockA"}, "to": {"map": "KPA_134", "id": 3},               "reqs": []}, #* HiddenYBlockA (MapleSyrup) -> Right Water Puzzle Bombable Wall
 ]

@@ -84,6 +84,14 @@ class Table:
                     "value": node.current_item.base_price
                 })
 
+        # Blocks
+        placed_blocks = kwargs.get("blocks")
+        for key, value in placed_blocks:
+            table_data.append({
+                "key": key,
+                "value": value
+            })
+
         # Entrances
         entrances = kwargs.get("entrances")
         for key, value in entrances:
@@ -143,6 +151,19 @@ class Table:
         table_data = []
 
         cosmetic_options = kwargs.get("cosmetics")
+        for option in cosmetic_options:
+            table_data.append({
+                "key": Option.get(Option.name == option).get_key(),
+                "value": cosmetic_options[option]
+            })
+
+        table_data.sort(key=lambda pair: pair["key"])
+        return table_data
+    
+    def generate_audio_option_pairs(self, **kwargs):
+        table_data = []
+
+        cosmetic_options = kwargs.get("audio_options")
         for option in cosmetic_options:
             table_data.append({
                 "key": Option.get(Option.name == option).get_key(),

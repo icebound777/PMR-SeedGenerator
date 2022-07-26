@@ -7,12 +7,26 @@ exclude_due_to_settings = {
     "startwith_bluehouse_open": [
         "OddKey"
     ],
-    "startwith_flowergate_open": [
-        "MagicalSeed1",
-        "MagicalSeed2",
-        "MagicalSeed3",
-        "MagicalSeed4",
-    ],
+    "magical_seeds_required": {
+        0: [
+            "MagicalSeed1",
+            "MagicalSeed2",
+            "MagicalSeed3",
+            "MagicalSeed4",
+        ],
+        1: [
+            "MagicalSeed1",
+            "MagicalSeed2",
+            "MagicalSeed3",
+        ],
+        2: [
+            "MagicalSeed1",
+            "MagicalSeed2",
+        ],
+        3: [
+            "MagicalSeed1",
+        ],
+    },
     "shorten_bowsers_castle": [
         "BowserCastleKeyA",
         "BowserCastleKeyB",

@@ -6,6 +6,7 @@
 /*.json
 /*.yaml
 !/default_settings.yaml
+!/preset*
 
 # Python
 *.pyc

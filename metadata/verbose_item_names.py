@@ -1,4 +1,10 @@
 verbose_item_names = {
+    "Jump": "ProgressiveBoots",
+    "SpinJump": "ProgressiveBoots",
+    "TornadoJump": "ProgressiveBoots",
+    "Hammer": "ProgressiveHammer",
+    "SuperHammer": "ProgressiveHammer",
+    "UltraHammer": "ProgressiveHammer",
     "JellyShroom1": "JellyShroom",
     "Letter01": "Letter (To Merlon)",
     "Letter02": "Letter (To Goompa)",

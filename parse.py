@@ -23,6 +23,7 @@ def gather_keys():
     keys = {
         "items": {},
         "item_prices": {},
+        "blocks": {},
         "move_costs": {},
         "actors": {},
         "entrances": {},
@@ -45,7 +46,17 @@ def gather_keys():
                     value_id =  int(number[6:8], 16)
                     key = (byte_id << 24) | (area_id << 16) | (map_id << 8) | value_id
 
-                    if byte_id == 0xA1:
+                    if byte_id == 0xA1 and 0x40 <= value_id <= 0x4F:
+                        name = key_info.split(":")[-1]
+                        keys["blocks"][key] = {
+                            "name": name,
+                            "map_name": key_info.split(":")[0],
+                            "byte_id": byte_id,
+                            "area_id": area_id,
+                            "map_id": map_id,
+                            "value_id": value_id,
+                        }
+                    elif byte_id == 0xA1:
                         name = key_info.split(":")[-1]
                         if "ShopPrice" in name:
                             keys["item_prices"][key] = {
@@ -157,6 +168,17 @@ def gather_values():
             value = Enums.get("Item")[item]
             return value
 
+        # Blocks
+        if value.startswith(".BlockType"):
+            # As per definition in RandomSuperBlocks.patch in base mod
+            if "Multi" in value:
+                value = 0
+            elif "Super" in value:
+                value = 1
+            else:
+                raise ValueError
+            return value
+
         return None
 
     create_enums()
@@ -164,6 +186,7 @@ def gather_values():
     values = {
         "items": {},
         "item_prices": {},
+        "blocks": {},
         "move_costs": {},
         "actors": {},
         "entrances": {},
@@ -189,11 +212,15 @@ def gather_values():
                     if name not in values["move_costs"]:
                         values["move_costs"][name] = {}
                     values["move_costs"][name][cost_type] = get_value(value)
-                # Check for map name (which means it's an item or item price)
+                # Check for map name (which means it's an item, item price or block)
                 elif match := re.match(r"([A-Z]{2,5}_\d+):(\S*)", key_info):
                     map_name = match.group(1)
                     key_name = match.group(2)
-                    if "ShopPrice" in key_name:
+                    if "RandomBlock" in key_info:
+                        if map_name not in values["blocks"]:
+                            values["blocks"][map_name] = {}
+                        values["blocks"][map_name][key_name] = get_value(value)
+                    elif "ShopPrice" in key_name:
                         if map_name not in values["item_prices"]:
                             values["item_prices"][map_name] = {}
                         values["item_prices"][map_name][key_name] = get_value(value)

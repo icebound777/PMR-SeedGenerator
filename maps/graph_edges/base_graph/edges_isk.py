@@ -96,11 +96,11 @@ edges_isk = [
     # ISK_09 Super Hammer Room
     {"from": {"map": "ISK_09", "id": 0}, "to": {"map": "ISK_08", "id": 0}, "reqs": []}, # Super Hammer Room Exit Right -> Descending Stairs 2 Exit Top Left
     
-    {"from": {"map": "ISK_09", "id": 0},        "to": {"map": "ISK_09", "id": "ChestA"}, "reqs": []}, #* Super Hammer Room Exit Right -> ChestA (SlowGo)
-    {"from": {"map": "ISK_09", "id": "ChestA"}, "to": {"map": "ISK_09", "id": 0},        "reqs": []}, #* ChestA (SlowGo) -> Super Hammer Room Exit Right
+    {"from": {"map": "ISK_09", "id": 0},          "to": {"map": "ISK_09", "id": "ChestA"},   "reqs": []}, #* Super Hammer Room Exit Right -> ChestA (SlowGo)
+    {"from": {"map": "ISK_09", "id": "ChestA"},   "to": {"map": "ISK_09", "id": 0},          "reqs": []}, #* ChestA (SlowGo) -> Super Hammer Room Exit Right
+    {"from": {"map": "ISK_09", "id": 0},          "to": {"map": "ISK_09", "id": "BigChest"}, "reqs": [], "pseudoitems": ["RF_ISK09_OpenedHammerChest"]}, #* Super Hammer Room Exit Right -> BigChest (SuperHammer)
+    {"from": {"map": "ISK_09", "id": "BigChest"}, "to": {"map": "ISK_09", "id": 0},          "reqs": []}, #* BigChest (SuperHammer) -> Super Hammer Room Exit Right
     
-    {"from": {"map": "ISK_09", "id": 0}, "to": {"map": "ISK_08", "id": 0}, "reqs": [], "pseudoitems": ["EQUIPMENT_Hammer_Progressive_2","RF_ISK09_OpenedHammerChest"]}, #+ Super Hammer Room Exit Right
-
     # ISK_10 Vertical Shaft
     {"from": {"map": "ISK_10", "id": 0}, "to": {"map": "ISK_08", "id": 1}, "reqs": []}, # Vertical Shaft Exit Top Right -> Descending Stairs 2 Exit Bottom Left Cracked Wall
     {"from": {"map": "ISK_10", "id": 1}, "to": {"map": "ISK_14", "id": 0}, "reqs": []}, # Vertical Shaft Exit Bottom Left -> Diamond Stone Room Exit Right

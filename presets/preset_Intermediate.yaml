@@ -1,6 +1,6 @@
 ---
 # PAPER MARIO RANDOMIZER SETTINGS
-SettingsName   : Default Preset
+SettingsName   : Intermediate Preset
 SettingsVersion: 1
 
 # Options
@@ -8,15 +8,15 @@ BlocksMatchContent   : true
 AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
-HiddenBlockMode      : 1
+HiddenBlockMode      : 2
 ShortenCutscenes     : true
-AllowPhysicsGlitches : false
-SkipEpilogue         : false
+AllowPhysicsGlitches : true
+SkipEpilogue         : true
 StarWaySpiritsNeeded : 7
 PeachCastleReturnPipe: true # false locks the pipe
-FoliageItemHints     : true
+FoliageItemHints     : false
 
-StartingCoins  : 50
+StartingCoins  : 100
 ChallengeMode  : false
 CapEnemyXP     : true
 NoXP           : false
@@ -34,6 +34,8 @@ StartingMaxHP    : 10
 StartingMaxFP    : 5
 StartingMaxBP    : 3
 StartingStarPower: 0
+StartingBoots    : 0 # 1 Super, 2 Ultra
+StartingHammer   : 0 # -1 Hammerless, 0 Hammer, 1 Super, 2 Ultra
 
 StartWithRandomItems: false
 RandomItemsMin: 0
@@ -56,10 +58,10 @@ StartingItemE: 0x000 # Nothing
 StartingItemF: 0x000 # Nothing
 
 # Pre-opened areas
-FlowerGateOpen: false
-BlueHouseOpen : false
-ToyboxOpen    : false
-WhaleOpen     : false
+MagicalSeedsRequired: 4 # 5 = random
+BlueHouseOpen       : false
+ToyboxOpen          : false
+WhaleOpen           : false
 
 # Randomization: Logic
 #PlacementAlgorithm: ForwardFill
@@ -77,22 +79,23 @@ RandomFormations        : true
 
 # Randomization: Items
 ShuffleItems          : true
-IncludeCoins          : true
+IncludeCoins          : false
 IncludeShops          : true
 IncludePanels         : true
 IncludeDojo           : false
-IncludeFavorsMode     : 0 # 1=RndRewardsVanillaKeyitems, 2=FullShuffle
-IncludeLettersMode    : 0 # 1=simpleLetters,2=vanillaChainRndChainReward,3=FullShuffle
+IncludeFavorsMode     : 1 # 1=RndRewardsVanillaKeyitems, 2=FullShuffle
+IncludeLettersMode    : 1 # 1=simpleLetters,2=vanillaChainRndChainReward,3=FullShuffle
 IncludeRadioTradeEvent: false
 ItemScarcity          : 0
-ItemTrapMode          : 0
-AddItemPouches        : false
-KeyitemsOutsideDungeon: false
+ItemTrapMode          : 1
+BigChestShuffle       : true
+AddItemPouches        : true
+KeyitemsOutsideDungeon: true
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 AllowItemHints        : true
 # Mystery? item options
-RandomChoice     : true
-MysteryRandomPick: true
+RandomChoice     : false
+MysteryRandomPick: false
 # Below are never used, they get hardcoded overwritten, just for doc purposes
 ItemChoiceA      : 0x08A # Mushroom
 ItemChoiceB      : 0x08C # SuperShroom
@@ -101,6 +104,9 @@ ItemChoiceD      : 0x088 # StoneCap
 ItemChoiceE      : 0x09A # DizzyDial
 ItemChoiceF      : 0x082 # ThunderRage
 ItemChoiceG      : 0x085 # Pebble
+
+# Randomization: Blocks
+ShuffleBlocks: false
 
 # Randomization: Moves and Badges
 # 0: vanilla, 1: balanced random, 2: shuffled, 3: fully random
@@ -116,7 +122,7 @@ ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI
 RandomizeOnewayEntrances: false # NYI
 UnpairedEntrances       : false # NYI
-BowsersCastleMode       : 0 # 0=Off;1=NoPartnersKeys(Shorten);2=BossRush
+BowsersCastleMode       : 1 # 0=Off;1=NoPartnersKeys(Shorten);2=BossRush
 
 # Randomization: Quizzes
 RandomQuiz         : true
@@ -124,9 +130,9 @@ SkipQuiz           : false
 QuizmoAlwaysAppears: false
 
 # Randomization: Partner
-PartnersInDefaultLocations: true
-PartnersAlwaysUsable      : true
-StartWithRandomPartners   : false
+PartnersInDefaultLocations: false
+PartnersAlwaysUsable      : false
+StartWithRandomPartners   : true
 RandomPartnersMin         : 1 # 1-8
 RandomPartnersMax         : 1 # 1-8
 StartWithPartners: { # ignored if StartWithRandomPartners true
@@ -154,7 +160,7 @@ RandomText     : false
 
 # "*Setting" values explanation:
 # DEFAULT_PALETTE = 0
-# SELECT_PALETTE  = 1 (not for bosses or npcs)
+# SELECT_PALETTE  = 1 (only Mario and partners)
 # RANDOM_PICK     = 2
 # ALWAYS_RANDOM   = 3
 MarioSetting     : 0
@@ -176,6 +182,8 @@ SushieSprite     : 0
 #LakilesterSetting: 0 # NYI
 #LakilesterSprite : 0 # NYI
 BossesSetting    : 0
+EnemiesSetting   : 0
 NPCSetting       : 0
 
 # Audio
+RandomPitch: false

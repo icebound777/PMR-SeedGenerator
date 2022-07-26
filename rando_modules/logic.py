@@ -271,10 +271,12 @@ def _find_new_nodes_and_edges(
 def _init_mario_inventory(
     starting_partners:list,
     starting_items:list,
+    starting_boots:int,
+    starting_hammer:int,
     partners_always_usable:bool,
     hidden_block_mode:int,
     startwith_bluehouse_open:bool,
-    startwith_flowergate_open:bool,
+    magical_seeds_required:int,
     startwith_toybox_open:bool,
     startwith_whale_open:bool
 ) -> Mario:
@@ -292,8 +294,22 @@ def _init_mario_inventory(
     else:
         mario.add_to_inventory(starting_partners)
 
-    mario.add_to_inventory("EQUIPMENT_Hammer_Progressive_1")
-    mario.add_to_inventory("EQUIPMENT_Boots_Progressive_1")
+    if starting_boots == 2:
+        mario.add_to_inventory("TornadoJump")
+    if starting_boots >= 1:
+        mario.add_to_inventory("SpinJump")
+    #* Commented out, as -1 boots never affect logic
+    #if starting_boots >= 0:
+    #    mario.add_to_inventory("Jump")
+    mario.add_to_inventory("Jump")
+    if starting_hammer == 2:
+        mario.add_to_inventory("UltraHammer")
+    if starting_hammer in [1,2]:
+        mario.add_to_inventory("SuperHammer")
+    if starting_hammer in [0,1,2]:
+        mario.add_to_inventory("Hammer")
+    if starting_hammer == 0xFF:
+        mario.add_to_inventory("RF_HammerlessStart")
 
     for item in starting_items:
         mario.add_to_inventory(item.item_name)
@@ -304,12 +320,18 @@ def _init_mario_inventory(
 
     if startwith_bluehouse_open:
         mario.add_to_inventory("GF_MAC02_UnlockedHouse")
-    if startwith_flowergate_open:
-        mario.add_to_inventory("RF_Ch6_FlowerGateOpen")
     if startwith_toybox_open:
         mario.add_to_inventory("RF_ToyboxOpen")
     if startwith_whale_open:
         mario.add_to_inventory("RF_CanRideWhale")
+    if magical_seeds_required == 3:
+        mario.add_to_inventory("RF_MagicalSeed1")
+    elif magical_seeds_required == 2:
+        mario.add_to_inventory(["RF_MagicalSeed1", "RF_MagicalSeed2"])
+    elif magical_seeds_required == 1:
+        mario.add_to_inventory(["RF_MagicalSeed1", "RF_MagicalSeed2", "RF_MagicalSeed3"])
+    elif magical_seeds_required == 0:
+        mario.add_to_inventory(["RF_MagicalSeed1", "RF_MagicalSeed2", "RF_MagicalSeed3", "RF_MagicalSeed4"])
 
     return mario
 
@@ -319,6 +341,8 @@ def _get_limit_items_to_dungeons(
     partners_always_usable:bool,
     partners_in_default_locations,
     starting_items:list,
+    starting_boots:int,
+    starting_hammer:int,
     starting_partners:list,
     hidden_block_mode:int,
     bowsers_castle_mode:int
@@ -541,6 +565,8 @@ def _get_limit_items_to_dungeons(
             mario = _init_mario_inventory(
                 almost_all_partners,
                 starting_items,
+                starting_boots,
+                starting_hammer,
                 partners_always_usable,
                 hidden_block_mode,
                 False,
@@ -552,6 +578,8 @@ def _get_limit_items_to_dungeons(
             mario = _init_mario_inventory(
                 all_partners,
                 starting_items,
+                starting_boots,
+                starting_hammer,
                 partners_always_usable,
                 hidden_block_mode,
                 False,
@@ -616,6 +644,8 @@ def _get_limit_items_to_dungeons(
                     mario = _init_mario_inventory(
                         almost_all_partners,
                         starting_items,
+                        starting_boots,
+                        starting_hammer,
                         partners_always_usable,
                         hidden_block_mode,
                         False,
@@ -627,6 +657,8 @@ def _get_limit_items_to_dungeons(
                     mario = _init_mario_inventory(
                         all_partners,
                         starting_items,
+                        starting_boots,
+                        starting_hammer,
                         partners_always_usable,
                         hidden_block_mode,
                         False,
@@ -664,11 +696,14 @@ def get_items_to_exclude(
     do_randomize_dojo:bool,
     starting_partners:list,
     startwith_bluehouse_open:bool,
-    startwith_flowergate_open:bool,
+    magical_seeds_required:int,
     bowsers_castle_mode:int,
     always_speedyspin:bool,
     always_ispy:bool,
     always_peekaboo:bool,
+    do_big_chest_shuffle:bool,
+    starting_hammer:int,
+    starting_boots:int
 ) -> list:
     """
     Returns a list of items that should not be placed or given to Mario at the
@@ -687,8 +722,8 @@ def get_items_to_exclude(
         for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if startwith_flowergate_open:
-        for item_name in exclude_due_to_settings.get("startwith_flowergate_open"):
+    if magical_seeds_required < 4:
+        for item_name in exclude_due_to_settings.get("magical_seeds_required").get(magical_seeds_required):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
     if bowsers_castle_mode > 0:
@@ -707,6 +742,22 @@ def get_items_to_exclude(
         for item_name in exclude_due_to_settings.get("always_peekaboo"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
+    if do_big_chest_shuffle:
+        if starting_hammer == 2:
+            item = Item.get(Item.item_name == "UltraHammer")
+            excluded_items.append(item)
+        if starting_hammer in [1,2]:
+            item = Item.get(Item.item_name == "SuperHammer")
+            excluded_items.append(item)
+        if starting_hammer in [0,1,2]:
+            item = Item.get(Item.item_name == "Hammer")
+            excluded_items.append(item)
+        if starting_boots == 2:
+            item = Item.get(Item.item_name == "TornadoJump")
+            excluded_items.append(item)
+        if starting_boots in [1,2]:
+            item = Item.get(Item.item_name == "SpinJump")
+            excluded_items.append(item)
 
     return excluded_items
 
@@ -724,10 +775,11 @@ def _generate_item_pools(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo:bool,
+    do_big_chest_shuffle:bool,
     item_scarcity:int,
     itemtrap_mode:int,
     startwith_bluehouse_open:bool,
-    startwith_flowergate_open:bool,
+    magical_seeds_required:int,
     keyitems_outside_dungeon:bool,
     partners_always_usable:bool,
     partners_in_default_locations:bool,
@@ -737,6 +789,8 @@ def _generate_item_pools(
     hidden_block_mode:int,
     starting_partners:list,
     starting_items:list,
+    starting_boots:int,
+    starting_hammer:int,
     add_item_pouches:bool,
     bowsers_castle_mode:int,
     algorithm
@@ -851,6 +905,20 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
+            if (    starting_hammer != 0xFF
+                and current_node.identifier == "KMR_04/Bush7_Drop1"
+            ):
+                current_node.current_item = Item.get(Item.item_name == "Nothing")
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    not do_big_chest_shuffle
+                and current_node.vanilla_item.item_type == "GEAR"
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
     # Pre-fill 'dungeon' nodes if keyitems are limited to there
     items_to_remove_from_pools = []
     items_to_add_to_pools = []
@@ -864,6 +932,8 @@ def _generate_item_pools(
                     partners_always_usable,
                     partners_in_default_locations,
                     starting_items,
+                    starting_boots,
+                    starting_hammer,
                     starting_partners,
                     hidden_block_mode,
                     bowsers_castle_mode
@@ -889,6 +959,7 @@ def _generate_item_pools(
             # Item shall be randomized: Add it to the correct item pool
             if (current_node.vanilla_item.progression
             or (do_randomize_shops and "StarPiece" in current_node.vanilla_item.item_name)
+            or current_node.vanilla_item.item_type == "GEAR"
             ):
                 pool_progression_items.append(current_node.vanilla_item)
             else:
@@ -933,11 +1004,14 @@ def _generate_item_pools(
             do_randomize_dojo,
             starting_partners,
             startwith_bluehouse_open,
-            startwith_flowergate_open,
+            magical_seeds_required,
             bowsers_castle_mode,
             always_speedyspin,
             always_ispy,
             always_peekaboo,
+            do_big_chest_shuffle,
+            starting_hammer,
+            starting_boots
     ))
     items_to_remove_from_pools.extend(starting_items)
 
@@ -1132,14 +1206,17 @@ def _algo_forward_fill(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
+    do_big_chest_shuffle,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
     startwith_bluehouse_open,
-    startwith_flowergate_open,
+    magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
+    starting_boots,
+    starting_hammer,
     speedyspin,
     ispy,
     peekaboo,
@@ -1181,10 +1258,11 @@ def _algo_forward_fill(
         randomize_letters_mode,
         do_randomize_radiotrade,
         do_randomize_dojo,
+        do_big_chest_shuffle,
         item_scarcity,
         itemtrap_mode,
         startwith_bluehouse_open,
-        startwith_flowergate_open,
+        magical_seeds_required,
         keyitems_outside_dungeon,
         partners_always_usable,
         partners_in_default_locations,
@@ -1194,6 +1272,8 @@ def _algo_forward_fill(
         hidden_block_mode,
         starting_partners,
         starting_items,
+        starting_boots,
+        starting_hammer,
         add_item_pouches,
         bowsers_castle_mode,
         algorithm
@@ -1203,10 +1283,12 @@ def _algo_forward_fill(
     mario = _init_mario_inventory(
         starting_partners,
         starting_items,
+        starting_boots,
+        starting_hammer,
         partners_always_usable,
         hidden_block_mode,
         startwith_bluehouse_open,
-        startwith_flowergate_open,
+        magical_seeds_required,
         startwith_toybox_open,
         startwith_whale_open
     )
@@ -1273,10 +1355,12 @@ def _algo_forward_fill(
             mario = _init_mario_inventory(
                 starting_partners,
                 starting_items,
+                starting_boots,
+                starting_hammer,
                 partners_always_usable,
                 hidden_block_mode,
                 startwith_bluehouse_open,
-                startwith_flowergate_open,
+                magical_seeds_required,
                 startwith_toybox_open,
                 startwith_whale_open
             )
@@ -1463,14 +1547,17 @@ def _algo_assumed_fill(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
+    do_big_chest_shuffle:bool,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
     startwith_bluehouse_open,
-    startwith_flowergate_open,
+    magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
+    starting_boots,
+    starting_hammer,
     speedyspin,
     ispy,
     peekaboo,
@@ -1509,10 +1596,11 @@ def _algo_assumed_fill(
         randomize_letters_mode,
         do_randomize_radiotrade,
         do_randomize_dojo,
+        do_big_chest_shuffle,
         item_scarcity,
         itemtrap_mode,
         startwith_bluehouse_open,
-        startwith_flowergate_open,
+        magical_seeds_required,
         keyitems_outside_dungeon,
         partners_always_usable,
         partners_in_default_locations,
@@ -1522,6 +1610,8 @@ def _algo_assumed_fill(
         hidden_block_mode,
         starting_partners,
         starting_items,
+        starting_boots,
+        starting_hammer,
         add_item_pouches,
         bowsers_castle_mode,
         algorithm
@@ -1542,6 +1632,7 @@ def _algo_assumed_fill(
                     assert item not in dungeon_restricted_items
                     dungeon_restricted_items[item] = dungeon
 
+    pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
     pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 
     while pool_combined_progression_items:
@@ -1549,10 +1640,12 @@ def _algo_assumed_fill(
         mario = _init_mario_inventory(
             starting_partners,
             starting_items,
+            starting_boots,
+            starting_hammer,
             partners_always_usable,
             hidden_block_mode,
             startwith_bluehouse_open,
-            startwith_flowergate_open,
+            magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open
         )
@@ -1572,6 +1665,9 @@ def _algo_assumed_fill(
             dungeon = dungeon_restricted_items[item.item_name]
             candidate_locations = [node for node in candidate_locations if node.map_area.name[:3] == dungeon]
             dungeon_restricted_items.pop(item.item_name)
+
+        if item.item_type == "GEAR":
+            candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
 
         if len(candidate_locations) == 0:
             raise UnbeatableSeedError("Failed to generate a beatable seed")
@@ -1669,15 +1765,18 @@ def _algo_assumed_fill(
 
     # "Return" list of modified item nodes
     item_placement.extend([node for node in all_item_nodes if node.current_item])
-    
+
+
 def get_item_spheres(
     item_placement,
     starting_map_id,
     startwith_bluehouse_open,
-    startwith_flowergate_open,
+    magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
+    starting_boots,
+    starting_hammer,
     partners_always_usable,
     hidden_block_mode:int,
     starting_items:list,
@@ -1699,10 +1798,12 @@ def get_item_spheres(
     mario = _init_mario_inventory(
         starting_partners,
         starting_items,
+        starting_boots,
+        starting_hammer,
         partners_always_usable,
         hidden_block_mode,
         startwith_bluehouse_open,
-        startwith_flowergate_open,
+        magical_seeds_required,
         startwith_toybox_open,
         startwith_whale_open
     )
@@ -1755,7 +1856,7 @@ def get_item_spheres(
         item_spheres_text += '\n'
         item_spheres_text += f'Sphere {sphere}:\n'        
 
-        for node_id, node in sorted(reachable_item_nodes.items()):
+        for _, node in sorted(reachable_item_nodes.items()):
             item = item_placement_map[node.identifier].current_item
             node_long_name = f'({verbose_area_names[node.map_area.name[:3]]}) {node.map_area.verbose_name} - {verbose_item_locations[node.map_area.name][node.key_name_item]}'
             item_verbose_name = verbose_item_names[item.item_name] if item.item_name in verbose_item_names else item.item_name
@@ -1788,14 +1889,17 @@ def place_items(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
+    do_big_chest_shuffle:bool,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
     startwith_bluehouse_open,
-    startwith_flowergate_open,
+    magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
     starting_partners,
+    starting_boots,
+    starting_hammer,
     speedyspin,
     ispy,
     peekaboo,
@@ -1817,6 +1921,10 @@ def place_items(
         # Place items in their vanilla locations
         for node in Node.select().where(Node.key_name_item.is_null(False)):
             node.current_item = node.vanilla_item
+            node.current_item.base_price = get_shop_price(
+                node,
+                do_randomize_shops=False
+            )
             item_placement.append(node)
 
     elif algorithm == "ForwardFill":
@@ -1831,14 +1939,17 @@ def place_items(
             randomize_letters_mode,
             do_randomize_radiotrade,
             do_randomize_dojo,
+            do_big_chest_shuffle,
             item_scarcity,
             itemtrap_mode,
             starting_map_id,
             startwith_bluehouse_open,
-            startwith_flowergate_open,
+            magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,
             starting_partners,
+            starting_boots,
+            starting_hammer,
             speedyspin,
             ispy,
             peekaboo,
@@ -1863,14 +1974,17 @@ def place_items(
             randomize_letters_mode,
             do_randomize_radiotrade,
             do_randomize_dojo,
+            do_big_chest_shuffle,
             item_scarcity,
             itemtrap_mode,
             starting_map_id,
             startwith_bluehouse_open,
-            startwith_flowergate_open,
+            magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,
             starting_partners,
+            starting_boots,
+            starting_hammer,
             speedyspin,
             ispy,
             peekaboo,
