@@ -245,6 +245,7 @@ class RandomSeed:
         Initialize the starting items from either the chosen starting items or
         pick them randomly.
         """
+        self.starting_items = []
         if rando_settings.random_starting_items:
             starting_item_options = [
                 rando_settings.starting_item_0,
