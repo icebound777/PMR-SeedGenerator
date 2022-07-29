@@ -52,9 +52,9 @@ edges_dro = [
     {"from": {"map": "DRO_02", "id": "GiftB"},       "to": {"map": "DRO_02", "id": 0},             "reqs": []}, #* GiftB (PulseStone) -> Outpost 2 Exit West
     {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "GiftC"},       "reqs": [["Parakarry"],["Letter17"]]}, #* Outpost 2 Exit West -> GiftC (Letter18)
     {"from": {"map": "DRO_02", "id": "GiftC"},       "to": {"map": "DRO_02", "id": 0},             "reqs": []}, #* GiftC (Letter18) -> Outpost 2 Exit West
-    {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Outpost 2 Exit West -> HiddenPanel (StarPiece)
+    {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"],["RF_CanMeetMoustafa"]]}, #* Outpost 2 Exit West -> HiddenPanel (StarPiece)
     {"from": {"map": "DRO_02", "id": "HiddenPanel"}, "to": {"map": "DRO_02", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Outpost 2 Exit West
-    {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "ItemA"},       "reqs": []}, #* Outpost 2 Exit West -> ItemA (Letter08)
+    {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": "ItemA"},       "reqs": [["RF_CanMeetMoustafa"]]}, #* Outpost 2 Exit West -> ItemA (Letter08)
     {"from": {"map": "DRO_02", "id": "ItemA"},       "to": {"map": "DRO_02", "id": 0},             "reqs": []}, #* ItemA (Letter08) -> Outpost 2 Exit West
  
     {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": 0}, "reqs": [["RF_MouserLeftShop"]], "pseudoitems": ["RF_MouserReturned"]}, #+ Chapter Progress
