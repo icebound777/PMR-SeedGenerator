@@ -75,7 +75,9 @@ class RandomSeed:
 
                 # Pick seeds required for flower gate, if random
                 if self.rando_settings.magical_seeds_required["value"] == 5:
-                    self.rando_settings.magical_seeds_required["value"] = random.randint(0, 4)
+                    magical_seeds_required = random.randint(0, 4)
+                else:
+                    magical_seeds_required = self.rando_settings.magical_seeds_required["value"]
 
                 world_graph_copy = deepcopy(world_graph)
                 place_items(
@@ -94,7 +96,7 @@ class RandomSeed:
                     itemtrap_mode=self.rando_settings.itemtrap_mode,
                     starting_map_id=starting_map_value,
                     startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
-                    magical_seeds_required=self.rando_settings.magical_seeds_required["value"],
+                    magical_seeds_required=magical_seeds_required,
                     startwith_toybox_open=self.rando_settings.toybox_open["value"],
                     startwith_whale_open=self.rando_settings.whale_open["value"],
                     starting_partners=self.starting_partners,
@@ -114,6 +116,7 @@ class RandomSeed:
                 )
 
                 self.rando_settings.starting_map["value"] = starting_map_value # Overwrite starting map in case it was random at first
+                self.rando_settings.magical_seeds_required["value"] = magical_seeds_required
                 break
 
             except UnbeatableSeedError as err:
@@ -245,6 +248,7 @@ class RandomSeed:
         Initialize the starting items from either the chosen starting items or
         pick them randomly.
         """
+        self.starting_items = []
         if rando_settings.random_starting_items:
             starting_item_options = [
                 rando_settings.starting_item_0,
