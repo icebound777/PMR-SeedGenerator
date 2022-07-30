@@ -5,9 +5,10 @@ from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
 from optionset import OptionSet
 from rando_modules.logic import place_items, get_item_spheres, get_items_to_exclude
+from rando_modules.random_blocks import get_block_placement
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.modify_entrances import \
-    get_shorter_bowsercastle, get_bowsercastle_bossrush, get_glitched_logic
+    get_shorter_bowsercastle, get_bowsercastle_bossrush, get_big_chest_shuffle, get_glitched_logic
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
@@ -29,6 +30,7 @@ class RandomSeed:
         self.starting_partners = []
         self.starting_items = []
         self.placed_items = []
+        self.placed_blocks = []
         self.entrance_list = []
         self.enemy_stats = []
         self.chapter_changes = {}
@@ -61,6 +63,8 @@ class RandomSeed:
             self.entrance_list, world_graph = get_shorter_bowsercastle(world_graph)
         elif self.rando_settings.bowsers_castle_mode["value"] == 2:
             self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
+        if self.rando_settings.big_chest_shuffle["value"]:
+            world_graph = get_big_chest_shuffle(world_graph)
         
         # Adjust graph logic if needed
         world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings, self.rando_settings.bowsers_castle_mode)
@@ -72,6 +76,16 @@ class RandomSeed:
         # Item Placement
         for placement_attempt in range(1, 6):  # try 5 times
             try:
+                starting_chapter, starting_map_value = self.init_starting_map(self.rando_settings)
+                self.init_starting_partners(self.rando_settings)
+                self.init_starting_items(self.rando_settings)
+
+                # Pick seeds required for flower gate, if random
+                if self.rando_settings.magical_seeds_required["value"] == 5:
+                    magical_seeds_required = random.randint(0, 4)
+                else:
+                    magical_seeds_required = self.rando_settings.magical_seeds_required["value"]
+
                 world_graph_copy = deepcopy(world_graph)
                 place_items(
                     item_placement= self.placed_items,
@@ -84,11 +98,12 @@ class RandomSeed:
                     randomize_letters_mode=self.rando_settings.include_letters_mode,
                     do_randomize_radiotrade=self.rando_settings.include_radiotradeevent,
                     do_randomize_dojo=self.rando_settings.include_dojo,
+                    do_big_chest_shuffle=self.rando_settings.big_chest_shuffle["value"],
                     item_scarcity=self.rando_settings.item_scarcity,
                     itemtrap_mode=self.rando_settings.itemtrap_mode,
-                    starting_map_id=self.rando_settings.starting_map["value"],
+                    starting_map_id=starting_map_value,
                     startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
-                    startwith_flowergate_open=self.rando_settings.flowergate_open["value"],
+                    magical_seeds_required=magical_seeds_required,
                     startwith_toybox_open=self.rando_settings.toybox_open["value"],
                     startwith_whale_open=self.rando_settings.whale_open["value"],
                     starting_partners=self.starting_partners,
@@ -106,6 +121,9 @@ class RandomSeed:
                     bowsers_castle_mode=self.rando_settings.bowsers_castle_mode["value"],
                     world_graph=world_graph_copy
                 )
+
+                self.rando_settings.starting_map["value"] = starting_map_value # Overwrite starting map in case it was random at first
+                self.rando_settings.magical_seeds_required["value"] = magical_seeds_required
                 break
 
             except UnbeatableSeedError as err:
@@ -120,6 +138,9 @@ class RandomSeed:
         # Make everything inexpensive
         #set_cheap_shopitems(placed_items)
         #self.placed_items = get_alpha_prices(self.placed_items)
+
+        # Randomize blocks if needed
+        self.placed_blocks = get_block_placement(self.rando_settings.shuffle_blocks)
 
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(
@@ -180,7 +201,7 @@ class RandomSeed:
             item_placement= self.placed_items,
             starting_map_id=self.rando_settings.starting_map["value"],
             startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
-            startwith_flowergate_open=self.rando_settings.flowergate_open["value"],
+            magical_seeds_required=self.rando_settings.magical_seeds_required["value"],
             startwith_toybox_open=self.rando_settings.toybox_open["value"],
             startwith_whale_open=self.rando_settings.whale_open["value"],
             starting_partners=self.starting_partners,
@@ -216,7 +237,7 @@ class RandomSeed:
         if starting_map_value == 0xFFFFFFFF:
             # Pick random starting location
             start_chapter = random.choice(list(starting_maps.keys()))
-            self.rando_settings.starting_map["value"] = starting_maps[start_chapter]
+            starting_map_value = starting_maps[start_chapter]
         else:
             # Attempt to detect starting chapter value
             for chapter_number, start_location in starting_maps.items():
@@ -226,7 +247,7 @@ class RandomSeed:
             else:
                 start_chapter = 0
         
-        return start_chapter
+        return start_chapter, starting_map_value
 
 
 
@@ -235,6 +256,7 @@ class RandomSeed:
         Initialize the starting items from either the chosen starting items or
         pick them randomly.
         """
+        self.starting_items = []
         if rando_settings.random_starting_items:
             starting_item_options = [
                 rando_settings.starting_item_0,
@@ -265,11 +287,14 @@ class RandomSeed:
                 do_randomize_dojo=rando_settings.include_dojo,
                 starting_partners=self.starting_partners,
                 startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
-                startwith_flowergate_open=rando_settings.flowergate_open["value"],
+                magical_seeds_required=rando_settings.magical_seeds_required["value"],
                 bowsers_castle_mode=rando_settings.bowsers_castle_mode["value"],
                 always_speedyspin=rando_settings.always_speedyspin["value"],
                 always_ispy=rando_settings.always_ispy["value"],
                 always_peekaboo=rando_settings.always_peekaboo["value"],
+                do_big_chest_shuffle=False,
+                starting_hammer=None,
+                starting_boots=None
             )
             for item_obj in excluded_items:
                 if item_obj.value in all_allowed_starting_items:

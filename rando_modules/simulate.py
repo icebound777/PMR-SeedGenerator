@@ -54,17 +54,16 @@ class Mario:
                 if item_object not in self.favors:
                     self.favors.add(item_object)
                     is_new_pseudoitem = True
-            elif item_object.startswith("EQUIPMENT"):
-                if (item_object.startswith("EQUIPMENT_Boots_Progressive")
-                and item_object not in self.boots
-                ):
-                    self.boots.add(item_object)
-                    is_new_pseudoitem = True
-                if (item_object.startswith("EQUIPMENT_Hammer_Progressive")
-                and item_object not in self.hammer
-                ):
-                    self.hammer.add(item_object)
-                    is_new_pseudoitem = True
+            elif (    item_object in ["Jump","SpinJump","TornadoJump"]
+                  and item_object not in self.boots
+            ):
+                self.boots.add(item_object)
+                is_new_pseudoitem = True
+            elif (    item_object in ["Hammer","SuperHammer","UltraHammer"]
+                  and item_object not in self.hammer
+            ):
+                self.hammer.add(item_object)
+                is_new_pseudoitem = True
             elif item_object.startswith("STARSPIRIT"):
                 if item_object not in self.starspirits:
                     self.starspirits.add(item_object)
@@ -114,11 +113,10 @@ class Mario:
                 self.item_history.append(f"-{item_object}")
             elif item_object.startswith("FAVOR"):
                 self.favors.remove(item_object)
-            elif item_object.startswith("EQUIPMENT"):
-                if (item_object.startswith("EQUIPMENT_Boots_Progressive")):
-                    self.boots.remove(item_object)
-                if (item_object.startswith("EQUIPMENT_Hammer_Progressive")):
-                    self.hammer.remove(item_object)
+            elif (item_object in ["Jump","SpinJump","TornadoJump"]):
+                self.boots.remove(item_object)
+            elif (item_object in ["Hammer","SuperHammer","UltraHammer"]):
+                self.hammer.remove(item_object)
             elif item_object.startswith("STARSPIRIT"):
                 self.starspirits.remove(item_object)
             else:

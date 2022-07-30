@@ -73,16 +73,10 @@ unused_items = [
     "FPPlusX",
     "FPPlusY",
     "HealthyHealthy",
+    "ShrinkSmash"
 ]
 
 unplaceable_items = [
-    "Nothing",
-    "Jump",
-    "SpinJump",
-    "TornadoJump",
-    "Hammer",
-    "SuperHammer",
-    "UltraHammer",
     "LuckyStar",
     "HomewardShroom",
     "BigMap",

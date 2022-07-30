@@ -1,6 +1,6 @@
 ---
 # PAPER MARIO RANDOMIZER SETTINGS
-SettingsName   : Default Preset
+SettingsName   : Extreme Shuffle Preset
 SettingsVersion: 1
 
 # Options
@@ -8,17 +8,17 @@ BlocksMatchContent   : true
 AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
-HiddenBlockMode      : 1
+HiddenBlockMode      : 0
 ShortenCutscenes     : true
-AllowPhysicsGlitches : false
-SkipEpilogue         : false
+AllowPhysicsGlitches : true
+SkipEpilogue         : true
 StarWaySpiritsNeeded : 7
 PeachCastleReturnPipe: true # false locks the pipe
-FoliageItemHints     : true
+FoliageItemHints     : false
 
-StartingCoins  : 50
+StartingCoins  : 100
 ChallengeMode  : false
-CapEnemyXP     : true
+CapEnemyXP     : false
 NoXP           : false
 DoubleDamage   : false
 QuadrupleDamage: false
@@ -58,10 +58,10 @@ StartingItemE: 0x000 # Nothing
 StartingItemF: 0x000 # Nothing
 
 # Pre-opened areas
-FlowerGateOpen: false
-BlueHouseOpen : false
-ToyboxOpen    : false
-WhaleOpen     : false
+MagicalSeedsRequired: 4 # 5 = random
+BlueHouseOpen       : false
+ToyboxOpen          : false
+WhaleOpen           : false
 
 # Randomization: Logic
 #PlacementAlgorithm: ForwardFill
@@ -73,8 +73,8 @@ PlacementLogic: NoGlitches
 #PlacementLogic: NoLogic # NYI
 
 # Randomization: Difficulty
-ShuffleChapterDifficulty: false
-ProgressiveScaling      : true
+ShuffleChapterDifficulty: true
+ProgressiveScaling      : false
 RandomFormations        : true
 
 # Randomization: Items
@@ -82,19 +82,20 @@ ShuffleItems          : true
 IncludeCoins          : true
 IncludeShops          : true
 IncludePanels         : true
-IncludeDojo           : false
-IncludeFavorsMode     : 0 # 1=RndRewardsVanillaKeyitems, 2=FullShuffle
-IncludeLettersMode    : 0 # 1=simpleLetters,2=vanillaChainRndChainReward,3=FullShuffle
-IncludeRadioTradeEvent: false
+IncludeDojo           : true
+IncludeFavorsMode     : 2 # 1=RndRewardsVanillaKeyitems, 2=FullShuffle
+IncludeLettersMode    : 3 # 1=simpleLetters,2=vanillaChainRndChainReward,3=FullShuffle
+IncludeRadioTradeEvent: true
 ItemScarcity          : 0
-ItemTrapMode          : 0
+ItemTrapMode          : 3
+BigChestShuffle       : true
 AddItemPouches        : false
-KeyitemsOutsideDungeon: false
+KeyitemsOutsideDungeon: true
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
-AllowItemHints        : true
+AllowItemHints        : false
 # Mystery? item options
 RandomChoice     : true
-MysteryRandomPick: true
+MysteryRandomPick: false
 # Below are never used, they get hardcoded overwritten, just for doc purposes
 ItemChoiceA      : 0x08A # Mushroom
 ItemChoiceB      : 0x08C # SuperShroom
@@ -104,12 +105,15 @@ ItemChoiceE      : 0x09A # DizzyDial
 ItemChoiceF      : 0x082 # ThunderRage
 ItemChoiceG      : 0x085 # Pebble
 
+# Randomization: Blocks
+ShuffleBlocks: true
+
 # Randomization: Moves and Badges
 # 0: vanilla, 1: balanced random, 2: shuffled, 3: fully random
-RandomBadgesBP   : 0
-RandomBadgesFP   : 0
-RandomPartnerFP  : 0
-RandomStarpowerSP: 0
+RandomBadgesBP   : 3
+RandomBadgesFP   : 3
+RandomPartnerFP  : 3
+RandomStarpowerSP: 3
 
 # Randomization: Entrances
 ShuffleEntrances        : true  # NYI
@@ -126,9 +130,9 @@ SkipQuiz           : false
 QuizmoAlwaysAppears: false
 
 # Randomization: Partner
-PartnersInDefaultLocations: true
-PartnersAlwaysUsable      : true
-StartWithRandomPartners   : false
+PartnersInDefaultLocations: false
+PartnersAlwaysUsable      : false
+StartWithRandomPartners   : true
 RandomPartnersMin         : 1 # 1-8
 RandomPartnersMax         : 1 # 1-8
 StartWithPartners: { # ignored if StartWithRandomPartners true
@@ -156,7 +160,7 @@ RandomText     : false
 
 # "*Setting" values explanation:
 # DEFAULT_PALETTE = 0
-# SELECT_PALETTE  = 1 (not for bosses or npcs)
+# SELECT_PALETTE  = 1 (only Mario and partners)
 # RANDOM_PICK     = 2
 # ALWAYS_RANDOM   = 3
 MarioSetting     : 0
@@ -178,9 +182,11 @@ SushieSprite     : 0
 #LakilesterSetting: 0 # NYI
 #LakilesterSprite : 0 # NYI
 BossesSetting    : 0
+EnemiesSetting   : 0
 NPCSetting       : 0
 
 # Audio
+RandomPitch: false
 
 # Glitched Logic
 PrologueGelEarly                                : false

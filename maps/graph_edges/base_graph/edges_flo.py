@@ -119,7 +119,7 @@ edges_flo = [
     
     {"from": {"map": "FLO_24", "id": 0},               "to": {"map": "FLO_24", "id": "YBlockA"},       "reqs": []}, #* (SE) Water Level Room Exit Left -> YBlockA (DizzyDial)
     {"from": {"map": "FLO_24", "id": "YBlockA"},       "to": {"map": "FLO_24", "id": 0},               "reqs": []}, #* YBlockA (DizzyDial) -> (SE) Water Level Room Exit Left
-    {"from": {"map": "FLO_24", "id": 1},               "to": {"map": "FLO_24", "id": "HiddenPanel"},   "reqs": []}, #* (SE) Water Level Room Exit Right -> HiddenPanel (StarPiece)
+    {"from": {"map": "FLO_24", "id": 1},               "to": {"map": "FLO_24", "id": "HiddenPanel"},   "reqs": [["can_flip_panels"]]}, #* (SE) Water Level Room Exit Right -> HiddenPanel (StarPiece)
     {"from": {"map": "FLO_24", "id": "HiddenPanel"},   "to": {"map": "FLO_24", "id": 1},               "reqs": []}, #* HiddenPanel (StarPiece) -> (SE) Water Level Room Exit Right
     {"from": {"map": "FLO_24", "id": 1},               "to": {"map": "FLO_24", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #* (SE) Water Level Room Exit Right -> HiddenYBlockA (MapleSyrup)
     {"from": {"map": "FLO_24", "id": "HiddenYBlockA"}, "to": {"map": "FLO_24", "id": 1},               "reqs": []}, #* HiddenYBlockA (MapleSyrup) -> (SE) Water Level Room Exit Right

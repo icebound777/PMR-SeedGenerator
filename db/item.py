@@ -34,7 +34,11 @@ class Item(Model):
 
     @classmethod
     def get_type(cls, item_id:int):
-        if item_id <= 0x7F or (0x16D <= item_id <= 0x17E):
+        if 0x00 == item_id:
+            return "NOTHING"
+        if 0x01 <= item_id <= 0x06:
+            return "GEAR"
+        if 0x07 <= item_id <= 0x7F or (0x16D <= item_id <= 0x17E):
             return "KEYITEM"
         elif 0x7F < item_id <= 0xDF:
             return "ITEM"

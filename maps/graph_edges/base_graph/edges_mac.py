@@ -63,14 +63,11 @@ edges_mac = [
     {"from": {"map": "MAC_01", "id": 2}, "to": {"map": "MAC_01", "id": 0}, "reqs": []}, #? Plaza District Exit Top -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 3}, "reqs": []}, #? Plaza District Exit Left -> Plaza District Exit Bottom
     {"from": {"map": "MAC_01", "id": 3}, "to": {"map": "MAC_01", "id": 0}, "reqs": []}, #? Plaza District Exit Bottom -> Plaza District Exit Left
-    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 5}, "reqs": [["RF_Ch6_FlowerGateOpen"]]}, #? Plaza District Exit Left -> Plaza District Flower Door
+    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 5}, "reqs": [["MagicalSeed1", "RF_MagicalSeed1"],
+                                                                                    ["MagicalSeed2", "RF_MagicalSeed2"],
+                                                                                    ["MagicalSeed3", "RF_MagicalSeed3"],
+                                                                                    ["MagicalSeed4", "RF_MagicalSeed4"]]}, #? Plaza District Exit Left -> Plaza District Flower Door
     {"from": {"map": "MAC_01", "id": 5}, "to": {"map": "MAC_01", "id": 0}, "reqs": []}, #? Plaza District Flower Door -> Plaza District Exit Left
-
-    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 0}, "reqs": [["MagicalSeed1"],
-                                                                                    ["MagicalSeed2"],
-                                                                                    ["MagicalSeed3"],
-                                                                                    ["MagicalSeed4"]],
-                                                                           "pseudoitems": ["RF_Ch6_FlowerGateOpen"]}, #+ Plaza District Exit Left
     
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ItemA"},        "reqs": [["SuperBoots"]]}, #* Plaza District Exit Left -> ItemA (QuickChange)
     {"from": {"map": "MAC_01", "id": "ItemA"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ItemA (QuickChange) -> Plaza District Exit Left

@@ -54,7 +54,7 @@ edges_isk = [
     # ISK_05 Pyramid Stone Room
     {"from": {"map": "ISK_05", "id": 0}, "to": {"map": "ISK_04", "id": 4}, "reqs": []}, # Pyramid Stone Room Exit Left -> Descending Stairs 1 Exit Bottom Right
     
-    {"from": {"map": "ISK_05", "id": 0},       "to": {"map": "ISK_05", "id": "ItemA"}, "reqs": [["UltraHammer","RF_ISK09_OpenedHammerChest"]]}, #* Pyramid Stone Room Exit Left -> ItemA (PyramidStone)
+    {"from": {"map": "ISK_05", "id": 0},       "to": {"map": "ISK_05", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"]]}, #* Pyramid Stone Room Exit Left -> ItemA (PyramidStone)
     {"from": {"map": "ISK_05", "id": "ItemA"}, "to": {"map": "ISK_05", "id": 0},       "reqs": []}, #* ItemA (PyramidStone) -> Pyramid Stone Room Exit Left
 
     # ISK_06 Sand Drainage Room 2
@@ -77,7 +77,7 @@ edges_isk = [
     
     {"from": {"map": "ISK_07", "id": 1},       "to": {"map": "ISK_07", "id": "ItemA"}, "reqs": []}, #* Sarcophagus Hall 2 Exit Right -> ItemA (RuinsKey)
     {"from": {"map": "ISK_07", "id": "ItemA"}, "to": {"map": "ISK_07", "id": 1},       "reqs": []}, #* ItemA (RuinsKey) -> Sarcophagus Hall 2 Exit Right
-    {"from": {"map": "ISK_07", "id": 1},       "to": {"map": "ISK_07", "id": "ItemB"}, "reqs": [["UltraHammer","RF_ISK09_OpenedHammerChest"]]}, #* Sarcophagus Hall 2 Exit Right -> ItemB (Artifact)
+    {"from": {"map": "ISK_07", "id": 1},       "to": {"map": "ISK_07", "id": "ItemB"}, "reqs": [["RF_ISK09_OpenedHammerChest"]]}, #* Sarcophagus Hall 2 Exit Right -> ItemB (Artifact)
     {"from": {"map": "ISK_07", "id": "ItemB"}, "to": {"map": "ISK_07", "id": 1},       "reqs": []}, #* ItemB (Artifact) -> Sarcophagus Hall 2 Exit Right
 
     # ISK_08 Descending Stairs 2
@@ -96,11 +96,11 @@ edges_isk = [
     # ISK_09 Super Hammer Room
     {"from": {"map": "ISK_09", "id": 0}, "to": {"map": "ISK_08", "id": 0}, "reqs": []}, # Super Hammer Room Exit Right -> Descending Stairs 2 Exit Top Left
     
-    {"from": {"map": "ISK_09", "id": 0},        "to": {"map": "ISK_09", "id": "ChestA"}, "reqs": []}, #* Super Hammer Room Exit Right -> ChestA (SlowGo)
-    {"from": {"map": "ISK_09", "id": "ChestA"}, "to": {"map": "ISK_09", "id": 0},        "reqs": []}, #* ChestA (SlowGo) -> Super Hammer Room Exit Right
+    {"from": {"map": "ISK_09", "id": 0},          "to": {"map": "ISK_09", "id": "ChestA"},   "reqs": []}, #* Super Hammer Room Exit Right -> ChestA (SlowGo)
+    {"from": {"map": "ISK_09", "id": "ChestA"},   "to": {"map": "ISK_09", "id": 0},          "reqs": []}, #* ChestA (SlowGo) -> Super Hammer Room Exit Right
+    {"from": {"map": "ISK_09", "id": 0},          "to": {"map": "ISK_09", "id": "BigChest"}, "reqs": [], "pseudoitems": ["RF_ISK09_OpenedHammerChest"]}, #* Super Hammer Room Exit Right -> BigChest (SuperHammer)
+    {"from": {"map": "ISK_09", "id": "BigChest"}, "to": {"map": "ISK_09", "id": 0},          "reqs": []}, #* BigChest (SuperHammer) -> Super Hammer Room Exit Right
     
-    {"from": {"map": "ISK_09", "id": 0}, "to": {"map": "ISK_08", "id": 0}, "reqs": [], "pseudoitems": ["EQUIPMENT_Hammer_Progressive_1","RF_ISK09_OpenedHammerChest"]}, #+ Super Hammer Room Exit Right
-
     # ISK_10 Vertical Shaft
     {"from": {"map": "ISK_10", "id": 0}, "to": {"map": "ISK_08", "id": 1}, "reqs": []}, # Vertical Shaft Exit Top Right -> Descending Stairs 2 Exit Bottom Left Cracked Wall
     {"from": {"map": "ISK_10", "id": 1}, "to": {"map": "ISK_14", "id": 0}, "reqs": []}, # Vertical Shaft Exit Bottom Left -> Diamond Stone Room Exit Right
@@ -137,7 +137,7 @@ edges_isk = [
     
     {"from": {"map": "ISK_12", "id": 0}, "to": {"map": "ISK_12", "id": 0}, "reqs": [], "pseudoitems": ["RF_DrainedThirdSandRoomAndCanSolvePuzzle"]}, #+ Sand Drainage Room 3 Exit Upper Room Left
     
-    {"from": {"map": "ISK_12", "id": 2},       "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": [["UltraHammer","RF_ISK09_OpenedHammerChest"]]}, #* Sand Drainage Room 3 Exit Bottom Left -> ItemA (RuinsKey)
+    {"from": {"map": "ISK_12", "id": 2},       "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"]]}, #* Sand Drainage Room 3 Exit Bottom Left -> ItemA (RuinsKey)
     {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 2},       "reqs": []}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Bottom Left
     {"from": {"map": "ISK_12", "id": 3},       "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": []}, #* Sand Drainage Room 3 Exit Top Right -> ItemA (RuinsKey)
     {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 3},       "reqs": [["RF_DrainedThirdSandRoomAndCanSolvePuzzle"]]}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Top Right
@@ -145,13 +145,13 @@ edges_isk = [
     # ISK_13 Lunar Stone Room
     {"from": {"map": "ISK_13", "id": 0}, "to": {"map": "ISK_12", "id": 3}, "reqs": []}, # Lunar Stone Room Exit Left -> Sand Drainage Room 3 Exit Top Right
 
-    {"from": {"map": "ISK_13", "id": 0},       "to": {"map": "ISK_13", "id": "ItemA"}, "reqs": [["UltraHammer","RF_ISK09_OpenedHammerChest"]]}, #* Lunar Stone Room Exit Left -> ItemA (LunarStone)
+    {"from": {"map": "ISK_13", "id": 0},       "to": {"map": "ISK_13", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"]]}, #* Lunar Stone Room Exit Left -> ItemA (LunarStone)
     {"from": {"map": "ISK_13", "id": "ItemA"}, "to": {"map": "ISK_13", "id": 0},       "reqs": []}, #* ItemA (LunarStone) -> Lunar Stone Room Exit Left
 
     # ISK_14 Diamond Stone Room
     {"from": {"map": "ISK_14", "id": 0}, "to": {"map": "ISK_10", "id": 1}, "reqs": []}, # Diamond Stone Room Exit Right -> Vertical Shaft Exit Bottom Left
     
-    {"from": {"map": "ISK_14", "id": 0},       "to": {"map": "ISK_14", "id": "ItemA"}, "reqs": [["UltraHammer","RF_ISK09_OpenedHammerChest"]]}, #* Diamond Stone Room Exit Right -> ItemA (DiamondStone)
+    {"from": {"map": "ISK_14", "id": 0},       "to": {"map": "ISK_14", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"]]}, #* Diamond Stone Room Exit Right -> ItemA (DiamondStone)
     {"from": {"map": "ISK_14", "id": "ItemA"}, "to": {"map": "ISK_14", "id": 0},       "reqs": []}, #* ItemA (DiamondStone) -> Diamond Stone Room Exit Right
 
     # ISK_16 Tutankoopa Room
