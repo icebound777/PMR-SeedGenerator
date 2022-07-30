@@ -287,5 +287,6 @@ BowlessBowsersCastleBasement                    : false
 FastFloodRoomKooper                             : false
 FastFloodRoomBombetteUltraBoots                 : false
 
+BreakYellowBlocksWithSuperBoots                 : false
 BreakMetalBlocksWithUltraBoots                  : false
 BreakYellowBlocksWithBombette                   : false

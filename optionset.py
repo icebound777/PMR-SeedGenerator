@@ -672,6 +672,8 @@ class OptionSet:
         if "FastFloodRoomBombetteUltraBoots" in options_dict:
             self.glitch_settings.fast_flood_room_bombette_ultra_boots = options_dict.get("FastFloodRoomBombetteUltraBoots")
 
+        if "BreakYellowBlocksWithSuperBoots" in options_dict:
+            self.glitch_settings.break_yellow_blocks_with_super_boots = options_dict.get("BreakYellowBlocksWithSuperBoots")
         if "BreakMetalBlocksWithUltraBoots" in options_dict:
             self.glitch_settings.break_metal_blocks_with_ultra_boots = options_dict.get("BreakMetalBlocksWithUltraBoots")
         if "BreakYellowBlocksWithBombette" in options_dict:
@@ -1230,6 +1232,8 @@ def validate_options(options_dict):
     if "FastFloodRoomBombetteUltraBoots" in options_dict:
         assert isinstance(options_dict.get("FastFloodRoomBombetteUltraBoots").get("value"), bool)
 
+    if "BreakYellowBlocksWithSuperBoots" in options_dict:
+        assert isinstance(options_dict.get("BreakYellowBlocksWithSuperBoots").get("value"), bool)
     if "BreakMetalBlocksWithUltraBoots" in options_dict:
         assert isinstance(options_dict.get("BreakMetalBlocksWithUltraBoots").get("value"), bool)
     if "BreakYellowBlocksWithBombette" in options_dict:
@@ -1395,5 +1399,6 @@ class GlitchOptionSet():
             self.fast_flood_room_kooper = False
             self.fast_flood_room_bombette_ultra_boots = False
 
+            self.break_yellow_blocks_with_super_boots = False
             self.break_metal_blocks_with_ultra_boots = False
             self.break_yellow_blocks_with_bombette = False
