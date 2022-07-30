@@ -181,7 +181,7 @@ from maps.graph_edges.glitched_logic.fast_flood_room import \
 
 # Glitched Logic - Global
 from maps.graph_edges.glitched_logic.break_stone_blocks_with_ultra_boots import \
-    edges_kmr_tik_add_break_stone_blocks_ultra_boots
+    edges_kmr_tik_isk_add_break_stone_blocks_ultra_boots
 from maps.graph_edges.glitched_logic.break_yellow_blocks_with_bombette import \
     edges_kmr_tik_add_break_yellow_blocks_bombette
 
@@ -470,7 +470,7 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
 
     # Global
     if glitch_settings.break_metal_blocks_with_ultra_boots["value"]:
-        all_new_edges.extend(edges_kmr_tik_add_break_stone_blocks_ultra_boots)
+        all_new_edges.extend(edges_kmr_tik_isk_add_break_stone_blocks_ultra_boots)
     if glitch_settings.break_yellow_blocks_with_bombette["value"]:
         all_new_edges.extend(edges_kmr_tik_add_break_yellow_blocks_bombette)
 
