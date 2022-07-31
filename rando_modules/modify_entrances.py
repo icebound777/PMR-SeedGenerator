@@ -125,7 +125,7 @@ from maps.graph_edges.glitched_logic.parakaryless_mega_rush import \
 
 # Glitched Logic - Toy Box
 from maps.graph_edges.glitched_logic.gourmet_guy_skip import \
-    edges_omo_add_gourmet_guy_skip_jump, edges_omo_add_gourmet_guy_skip_laki
+    edges_omo_add_gourmet_guy_skip_jump, edges_omo_add_gourmet_guy_skip_laki, edges_omo_add_gourmet_guy_skip_parakarry
 from maps.graph_edges.glitched_logic.parakaryless_blue_station_star_piece import \
     edges_omo_add_parakaryless_blue_station_star_piece
 from maps.graph_edges.glitched_logic.bowless_green_station import \
@@ -398,6 +398,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_omo_add_gourmet_guy_skip_jump)
     if glitch_settings.gourmet_guy_skip_laki["value"]:
         all_new_edges.extend(edges_omo_add_gourmet_guy_skip_laki)
+    if glitch_settings.gourmet_guy_skip_parakarry["value"]:
+        all_new_edges.extend(edges_omo_add_gourmet_guy_skip_parakarry)
     if glitch_settings.bowless_green_station["value"]:
         all_new_edges.extend(edges_omo_add_bowless_green_station_laki)
     if glitch_settings.kooperless_red_station_shooting_star["value"]:

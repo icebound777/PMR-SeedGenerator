@@ -251,6 +251,7 @@ ParakarrylessMegaRush                           : false
 ParakarrylessBlueBuildingStarPiece              : false
 GourmetGuySkipJump                              : false
 GourmetGuySkipLaki                              : false
+GourmetGuySkipParakarry                         : false
 BowlessGreenStation                             : false
 KooperlessRedStationShootingStar                : false
 
