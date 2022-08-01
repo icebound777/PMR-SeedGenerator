@@ -73,6 +73,10 @@ class RandomSeed:
         self.init_starting_partners(self.rando_settings)
         self.init_starting_items(self.rando_settings)
 
+        hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
+        if self.rando_settings.glitch_settings.knows_hidden_blocks["value"]:
+            hidden_block_mode = 3 # Having this trick enabled is equivalent to mode 3, logic wise
+
         # Item Placement
         for placement_attempt in range(1, 6):  # try 5 times
             try:
@@ -114,7 +118,7 @@ class RandomSeed:
                     peekaboo=self.rando_settings.always_peekaboo["value"],
                     partners_always_usable=self.rando_settings.partners_always_usable["value"],
                     partners_in_default_locations=self.rando_settings.partners_in_default_locations,
-                    hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
+                    hidden_block_mode=hidden_block_mode,
                     keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
                     add_item_pouches=self.rando_settings.add_item_pouches,

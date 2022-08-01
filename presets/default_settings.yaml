@@ -291,3 +291,4 @@ FastFloodRoomBombetteUltraBoots                 : false
 BreakYellowBlocksWithSuperBoots                 : false
 BreakMetalBlocksWithUltraBoots                  : false
 BreakYellowBlocksWithBombette                   : false
+KnowsHiddenBlocks                               : false
