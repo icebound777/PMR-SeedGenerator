@@ -16,6 +16,6 @@ edges_obk_add_boo_portrait_laki = [
     {"from": {"map": "OBK_06", "id": "ItemA"},  "to": {"map": "OBK_06", "id": 0}, "reqs": [["Lakilester"]], "mapchange": False},
     #* Library Bombable Wall -> Library Fall From Ceiling
     {"from": {"map": "OBK_06", "id": 1}, "to": {"map": "OBK_06", "id": 0}, "reqs": [["Lakilester"]], "mapchange": False},
-    # Library Fall From Ceiling -> Pot Room Hole Under Planks
-    {"from": {"map": "OBK_06", "id": 0}, "to": {"map": "OBK_05", "id": 1},  "reqs": [["Lakilester"]], "mapchange": False},
+    #? Library Fall From Ceiling -> Library Bombable Wall
+    {"from": {"map": "OBK_06", "id": 0}, "to": {"map": "OBK_06", "id": 1}, "reqs": [["Lakilester"]]}, 
 ]

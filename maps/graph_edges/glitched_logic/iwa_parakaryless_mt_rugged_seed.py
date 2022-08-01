@@ -1,6 +1,6 @@
 """
 This file represents edges of the world graph that have to be added
-for Glitched Logic: Mt. Rugged Quake Hammer + Letter with Laki.
+for Glitched Logic: Parakarry-less Mt. Rugged Seed.
 """
 edges_iwa_add_parakaryless_mt_rugged_seed = [
     #* Mt Rugged 3 Exit Bottom Left -> GiftA (MagicalSeed2)
