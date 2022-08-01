@@ -293,3 +293,4 @@ FastFloodRoomBombetteUltraBoots                 : false
 BreakYellowBlocksWithSuperBoots                 : false
 BreakMetalBlocksWithUltraBoots                  : false
 KnowsHiddenBlocks                               : false
+KnowsPuzzleSolutions                            : true

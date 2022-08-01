@@ -184,6 +184,8 @@ from maps.graph_edges.glitched_logic.global_break_stone_blocks_with_ultra_boots 
     edges_kmr_tik_isk_add_break_stone_blocks_ultra_boots
 from maps.graph_edges.glitched_logic.kmr_break_yellow_blocks_with_super_boots import \
     edges_kmr_add_break_yellow_blocks_super_boots
+from maps.graph_edges.glitched_logic.global_knows_puzzle_solutions import \
+    edges_global_knows_puzzle_solutions
 
 def get_shorter_bowsercastle(world_graph: dict):
     """
@@ -479,6 +481,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_kmr_tik_isk_add_break_stone_blocks_ultra_boots)
     if glitch_settings.break_yellow_blocks_with_super_boots["value"]:
         all_new_edges.extend(edges_kmr_add_break_yellow_blocks_super_boots)
+    if glitch_settings.knows_puzzle_solutions["value"]:
+        all_new_edges.extend(edges_global_knows_puzzle_solutions)
 
     print(all_new_edges)
 
