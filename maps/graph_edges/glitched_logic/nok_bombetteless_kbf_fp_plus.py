@@ -4,10 +4,10 @@ for Glitched Logic: Bombette-less KBF FP Plus.
 """
 edges_nok_add_bombetteless_fp_plus_lzs = [
     #? Path to Fortress 2 Exit Bottom Right -> Path to Fortress 2 Top Pipe
-    {"from": {"map": "NOK_15", "id": 1}, "to": {"map": "NOK_15", "id": 4}, "reqs": [], "mapchange": False},
+    {"from": {"map": "NOK_15", "id": 1}, "to": {"map": "NOK_15", "id": 2}, "reqs": [], "mapchange": False},
 ]
 
 edges_nok_add_bombetteless_fp_plus_laki = [
     #? Path to Fortress 2 Exit Bottom Right -> Path to Fortress 2 Top Pipe
-    {"from": {"map": "NOK_15", "id": 1}, "to": {"map": "NOK_15", "id": 4}, "reqs": [["Lakilester"]], "mapchange": False},
+    {"from": {"map": "NOK_15", "id": 1}, "to": {"map": "NOK_15", "id": 2}, "reqs": [["Lakilester"]], "mapchange": False},
 ]
