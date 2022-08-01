@@ -620,6 +620,8 @@ class OptionSet:
 
         if "RaphSkipEnglish" in options_dict:
             self.glitch_settings.raph_skip_english = options_dict.get("RaphSkipEnglish")
+        if "Ch5SushieGlitch" in options_dict:
+            self.glitch_settings.ch5_sushie_glitch = options_dict.get("Ch5SushieGlitch")
 
         if "KooperlessLavalavaPowBlock" in options_dict:
             self.glitch_settings.kooperless_lavalava_pow_block = options_dict.get("KooperlessLavalavaPowBlock")
@@ -1188,6 +1190,8 @@ def validate_options(options_dict):
 
     if "RaphSkipEnglish" in options_dict:
         assert isinstance(options_dict.get("RaphSkipEnglish").get("value"), bool)
+    if "Ch5SushieGlitch" in options_dict:
+        assert isinstance(options_dict.get("Ch5SushieGlitch").get("value"), bool)
 
     if "KooperlessLavalavaPowBlock" in options_dict:
         assert isinstance(options_dict.get("KooperlessLavalavaPowBlock").get("value"), bool)
@@ -1387,6 +1391,7 @@ class GlitchOptionSet():
             self.kooperless_red_station_shooting_star = False
 
             self.raph_skip_english = False
+            self.ch5_sushie_glitch = False
             self.kooperless_lavalava_pow_block = False
             self.ultra_hammer_skip = False
             self.flarakarry = False

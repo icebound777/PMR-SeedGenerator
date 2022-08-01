@@ -258,6 +258,7 @@ BowlessGreenStation                             : false
 KooperlessRedStationShootingStar                : false
 
 RaphSkipEnglish                                 : false
+Ch5SushieGlitch                                 : true
 
 KooperlessLavalavaPowBlock                      : false
 UltraHammerSkip                                 : false
@@ -293,4 +294,4 @@ FastFloodRoomBombetteUltraBoots                 : false
 BreakYellowBlocksWithSuperBoots                 : false
 BreakMetalBlocksWithUltraBoots                  : false
 KnowsHiddenBlocks                               : false
-KnowsPuzzleSolutions                            : true
+KnowsPuzzleSolutions                            : false

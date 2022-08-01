@@ -136,6 +136,8 @@ from maps.graph_edges.glitched_logic.omo_kooperless_red_station_shooting_star im
 # Glitched Logic - Jade Jungle
 from maps.graph_edges.glitched_logic.jan_raph_skip_english import \
     edges_jan_add_raph_skip_english
+from maps.graph_edges.glitched_logic.jan_kzn_ch5_sushie_glitch import \
+    edges_jan_kzn_add_ch5_sushie_glitch
 
 # Glitched Logic - Mt. Lavalava
 from maps.graph_edges.glitched_logic.kzn_kooperless_lavalava_pow_block import \
@@ -412,6 +414,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     # Jade Jungle
     if glitch_settings.raph_skip_english["value"]:
         all_new_edges.extend(edges_jan_add_raph_skip_english)
+    if glitch_settings.ch5_sushie_glitch["value"]:
+        all_new_edges.extend(edges_jan_kzn_add_ch5_sushie_glitch)
 
     # Mt. Lavalava
     if glitch_settings.kooperless_lavalava_pow_block["value"]:
