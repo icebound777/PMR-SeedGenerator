@@ -193,6 +193,8 @@ PrologueGelEarly                                : false
 
 OddKeyEarly                                     : false
 BlueHouseSkip                                   : false
+BlueHouseSkipLaki                               : false
+BlueHouseSkipToadLure                           : false
 BowlessToyBox                                   : false
 EarlyStoreroomParakarry                         : false
 EarlyStoreroomHammer                            : false

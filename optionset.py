@@ -501,6 +501,10 @@ class OptionSet:
             self.glitch_settings.odd_key_early = options_dict.get("OddKeyEarly")
         if "BlueHouseSkip" in options_dict:
             self.glitch_settings.blue_house_skip = options_dict.get("BlueHouseSkip")
+        if "BlueHouseSkipLaki" in options_dict:
+            self.glitch_settings.blue_house_skip_laki = options_dict.get("BlueHouseSkipLaki")
+        if "BlueHouseSkipToadLure" in options_dict:
+            self.glitch_settings.blue_house_skip_toad_lure = options_dict.get("BlueHouseSkipToadLure")
         if "BowlessToyBox" in options_dict:
             self.glitch_settings.bowless_toy_box = options_dict.get("BowlessToyBox")
         if "EarlyStoreroomParakarry" in options_dict:
@@ -1065,6 +1069,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("OddKeyEarly").get("value"), bool)
     if "BlueHouseSkip" in options_dict:
         assert isinstance(options_dict.get("BlueHouseSkip").get("value"), bool)
+    if "BlueHouseSkipLaki" in options_dict:
+        assert isinstance(options_dict.get("BlueHouseSkipLaki").get("value"), bool)
+    if "BlueHouseSkipToadLure" in options_dict:
+        assert isinstance(options_dict.get("BlueHouseSkipToadLure").get("value"), bool)
     if "BowlessToyBox" in options_dict:
         assert isinstance(options_dict.get("BowlessToyBox").get("value"), bool)
     if "EarlyStoreroomParakarry" in options_dict:
@@ -1314,6 +1322,8 @@ class GlitchOptionSet():
             self.prologue_gel_early = False
             self.odd_key_early = False
             self.blue_house_skip = False
+            self.blue_house_skip_laki = False
+            self.blue_house_skip_toad_lure = False
             self.bowless_toy_box = False
             self.early_storeroom_parakarry = False
             self.early_storeroom_hammer = False

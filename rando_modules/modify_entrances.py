@@ -34,7 +34,7 @@ from maps.graph_edges.glitched_logic.kmr_prologue_gel_early import \
 from maps.graph_edges.glitched_logic.mac_odd_key_early import \
     edges_mac_odd_key_early
 from maps.graph_edges.glitched_logic.mac_blue_house_skip import \
-    edges_mac_add_bhs
+    edges_mac_add_bhs_jump, edges_mac_add_bhs_laki, edges_mac_add_bhs_toad_lure
 from maps.graph_edges.glitched_logic.mac_bowless_toy_box import \
     edges_mac_add_bowless_toybox
 from maps.graph_edges.glitched_logic.mac_enter_storeroom_without_key import \
@@ -281,7 +281,11 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     if glitch_settings.odd_key_early["value"]:
         all_new_edges.extend(edges_mac_odd_key_early)
     if glitch_settings.blue_house_skip["value"]:
-        all_new_edges.extend(edges_mac_add_bhs)
+        all_new_edges.extend(edges_mac_add_bhs_jump)
+    if glitch_settings.blue_house_skip_laki["value"]:
+        all_new_edges.extend(edges_mac_add_bhs_laki)
+    if glitch_settings.blue_house_skip_toad_lure["value"]:
+        all_new_edges.extend(edges_mac_add_bhs_toad_lure)
     if glitch_settings.bowless_toy_box["value"]:
         all_new_edges.extend(edges_mac_add_bowless_toybox)
     if glitch_settings.early_storeroom_parakarry["value"]:
