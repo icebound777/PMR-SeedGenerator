@@ -6,7 +6,7 @@ state.
 """
 edges_sam_add_ch7_sushie_glitch = [
     #? Shiver City Pond Area Exit West -> Shiver City Pond Area Exit East
-    {"from": {"map": "SAM_11", "id": 0}, "to": {"map": "SAM_11", "id": 1}, "reqs": [["RF_Ch7_MurderMysterySolved"], ["Sushie"], ["Bombette", "SuperBoots"], ["Goombario", "Kooper", "Bombette", "Parakarry", "Bow", "Watt", "Lakilester"]], "pseudoitems": ["RF_Ch7SushieGlitch"], "mapchange": False}, 
+    {"from": {"map": "SAM_11", "id": 0}, "to": {"map": "SAM_11", "id": 1}, "reqs": [["RF_Ch7_MurderMysterySolved"], ["Sushie"], ["Bombette", "SuperBoots"], ["can_end_sushie_glitch"]], "pseudoitems": ["RF_Ch7SushieGlitch"], "mapchange": False}, 
     
     #? Shiver Snowfield Exit West -> Shiver Snowfield Mountain Entrance
     {"from": {"map": "SAM_04", "id": 0}, "to": {"map": "SAM_04", "id": 2}, "reqs": [["RF_Ch7SushieGlitch"]], "mapchange": False},
