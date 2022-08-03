@@ -15,6 +15,7 @@ SkipEpilogue         : false
 StarWaySpiritsNeeded : 7
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : true
+HiddenPanelVisibility: 0 # 0 = vanilla, 1 = texture-edit
 
 StartingCoins  : 50
 ChallengeMode  : false

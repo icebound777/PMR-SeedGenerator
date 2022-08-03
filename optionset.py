@@ -52,6 +52,7 @@ class OptionSet:
         self.starway_spirits_needed = get_option_keyvalue_dict("StarWaySpiritsNeeded")
         self.peachcastle_return_pipe = get_option_keyvalue_dict("PeachCastleReturnPipe")
         self.foliage_item_hints = get_option_keyvalue_dict("FoliageItemHints")
+        self.hiddenpanel_visibility = get_option_keyvalue_dict("HiddenPanelVisibility")
 
         # Starting setup
         self.starting_map = get_option_keyvalue_dict("StartingMap") # mac_00 Entry 4
@@ -265,6 +266,8 @@ class OptionSet:
             self.peachcastle_return_pipe = options_dict.get("PeachCastleReturnPipe")
         if "FoliageItemHints" in options_dict:
             self.foliage_item_hints = options_dict.get("FoliageItemHints")
+        if "HiddenPanelVisibility" in options_dict:
+            self.hiddenpanel_visibility = options_dict.get("HiddenPanelVisibility")
 
         # Starting setup
         if "StartingMap" in options_dict:
@@ -589,6 +592,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("PeachCastleReturnPipe").get("value"), bool)
     if "FoliageItemHints" in options_dict:
         assert isinstance(options_dict.get("FoliageItemHints").get("value"), bool)
+    if "HiddenPanelVisibility" in options_dict:
+        assert isinstance(options_dict.get("HiddenPanelVisibility").get("value"), int)
 
     # Starting setup
     if "StartingMap" in options_dict:
