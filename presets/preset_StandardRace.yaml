@@ -170,8 +170,8 @@ GoombarioSetting : 2
 GoombarioSprite  : 0
 KooperSetting    : 2
 KooperSprite     : 0
-#BombetteSetting  : 2 # NYI
-#BombetteSprite   : 0 # NYI
+BombetteSetting  : 2
+BombetteSprite   : 0
 ParakarrySetting : 2
 ParakarrySprite  : 0
 BowSetting       : 2

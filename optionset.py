@@ -462,10 +462,10 @@ class OptionSet:
             self.palette_settings.kooper_setting = options_dict.get("KooperSetting").get("value")
         if "KooperSprite" in options_dict:
             self.palette_settings.kooper_sprite = options_dict.get("KooperSprite").get("value")
-        #if "BombetteSetting" in options_dict:
-        #    self.palette_settings.bombette_setting = options_dict.get("BombetteSetting").get("value")
-        #if "BombetteSprite" in options_dict:
-        #    self.palette_settings.bombette_sprite = options_dict.get("BombetteSprite").get("value")
+        if "BombetteSetting" in options_dict:
+            self.palette_settings.bombette_setting = options_dict.get("BombetteSetting").get("value")
+        if "BombetteSprite" in options_dict:
+            self.palette_settings.bombette_sprite = options_dict.get("BombetteSprite").get("value")
         if "ParakarrySetting" in options_dict:
             self.palette_settings.parakarry_setting = options_dict.get("ParakarrySetting").get("value")
         if "ParakarrySprite" in options_dict:
@@ -838,10 +838,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("KooperSetting").get("value"), int)
     if "KooperSprite" in options_dict:
         assert isinstance(options_dict.get("KooperSprite").get("value"), int)
-    #if "BombetteSetting" in options_dict:
-    #    assert isinstance(options_dict.get("BombetteSetting").get("value"), int)
-    #if "BombetteSprite" in options_dict:
-    #    assert isinstance(options_dict.get("BombetteSprite").get("value"), int)
+    if "BombetteSetting" in options_dict:
+        assert isinstance(options_dict.get("BombetteSetting").get("value"), int)
+    if "BombetteSprite" in options_dict:
+        assert isinstance(options_dict.get("BombetteSprite").get("value"), int)
     #if "ParakarrySetting" in options_dict:
     #    assert isinstance(options_dict.get("ParakarrySetting").get("value"), int)
     #if "ParakarrySprite" in options_dict:
@@ -902,8 +902,8 @@ class PaletteOptionSet():
         self.goombario_sprite = DEFAULT_PALETTE
         self.kooper_setting = DEFAULT_PALETTE
         self.kooper_sprite = DEFAULT_PALETTE
-        #self.bombette_setting = DEFAULT_PALETTE
-        #self.bombette_sprite = DEFAULT_PALETTE
+        self.bombette_setting = DEFAULT_PALETTE
+        self.bombette_sprite = DEFAULT_PALETTE
         self.parakarry_setting = DEFAULT_PALETTE
         self.parakarry_sprite = DEFAULT_PALETTE
         self.bow_setting = DEFAULT_PALETTE
