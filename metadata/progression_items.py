@@ -84,6 +84,7 @@ progression_items = {
     0x0076 : "KootPackage",
     0x0077 : "KootRedJar",
     0x0079 : "WarehouseKey",
+    0x011F : "SpeedySpin",
     0x016D : "KoopaFortressKeyA",
     0x016E : "KoopaFortressKeyB",
     0x016F : "KoopaFortressKeyC",
