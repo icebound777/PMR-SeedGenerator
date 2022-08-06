@@ -8,7 +8,7 @@ from rando_modules.logic import place_items, get_item_spheres, get_items_to_excl
 from rando_modules.random_blocks import get_block_placement
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.modify_entrances import \
-    get_shorter_bowsercastle, get_bowsercastle_bossrush, get_big_chest_shuffle
+    get_shorter_bowsercastle, get_bowsercastle_bossrush, get_big_chest_shuffle, get_glitched_logic
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
@@ -65,6 +65,13 @@ class RandomSeed:
             self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
         if self.rando_settings.big_chest_shuffle["value"]:
             world_graph = get_big_chest_shuffle(world_graph)
+        
+        # Adjust graph logic if needed
+        world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings, self.rando_settings.bowsers_castle_mode)
+
+        hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
+        if self.rando_settings.glitch_settings.knows_hidden_blocks["value"]:
+            hidden_block_mode = 3 # Having this trick enabled is equivalent to mode 3, logic wise
 
         # Item Placement
         for placement_attempt in range(1, 6):  # try 5 times
@@ -107,7 +114,7 @@ class RandomSeed:
                     peekaboo=self.rando_settings.always_peekaboo["value"],
                     partners_always_usable=self.rando_settings.partners_always_usable["value"],
                     partners_in_default_locations=self.rando_settings.partners_in_default_locations,
-                    hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
+                    hidden_block_mode=hidden_block_mode,
                     keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
                     add_item_pouches=self.rando_settings.add_item_pouches,
@@ -203,6 +210,7 @@ class RandomSeed:
             partners_always_usable=self.rando_settings.partners_always_usable["value"],
             hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
             starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
+            startwith_speedyspin=self.rando_settings.always_speedyspin["value"],
             world_graph=world_graph
         )
 
