@@ -488,8 +488,6 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     if glitch_settings.knows_puzzle_solutions["value"]:
         all_new_edges.extend(edges_global_knows_puzzle_solutions)
 
-    print(all_new_edges)
-
     # Modify graph with all pending changes, if any
     if all_new_edges or all_edges_to_remove:
         world_graph, _ = adjust(
