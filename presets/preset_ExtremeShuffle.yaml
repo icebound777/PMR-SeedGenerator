@@ -89,7 +89,7 @@ IncludeLettersMode    : 3 # 1=simpleLetters,2=vanillaChainRndChainReward,3=FullS
 IncludeRadioTradeEvent: true
 ItemScarcity          : 0
 ItemTrapMode          : 3
-BigChestShuffle       : true
+GearShuffleMode       : 2 # 0 = vanilla, 1 = location shuffle, 2 = full shuffle
 AddItemPouches        : false
 KeyitemsOutsideDungeon: true
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI

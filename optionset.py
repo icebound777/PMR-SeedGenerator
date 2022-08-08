@@ -89,7 +89,7 @@ class OptionSet:
         self.include_letters_mode = 0
         self.include_radiotradeevent = False
         self.include_dojo = False
-        self.big_chest_shuffle = get_option_keyvalue_dict("BigChestShuffle")
+        self.gear_shuffle_mode = get_option_keyvalue_dict("GearShuffleMode")
         self.item_scarcity = 0
         self.add_item_pouches = False
         self.placement_algorithm = "ForwardFill"
@@ -337,8 +337,8 @@ class OptionSet:
             self.include_radiotradeevent = options_dict.get("IncludeRadioTradeEvent").get("value")
         if "IncludeDojo" in options_dict:
             self.include_dojo = options_dict.get("IncludeDojo").get("value")
-        if "BigChestShuffle" in options_dict:
-            self.big_chest_shuffle = options_dict.get("BigChestShuffle")
+        if "GearShuffleMode" in options_dict:
+            self.gear_shuffle_mode = options_dict.get("GearShuffleMode")
         if "ItemScarcity" in options_dict:
             self.item_scarcity = options_dict.get("ItemScarcity").get("value")
         if "AddItemPouches" in options_dict:
@@ -674,8 +674,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("IncludeRadioTradeEvent").get("value"), bool)
     if "IncludeDojo" in options_dict:
         assert isinstance(options_dict.get("IncludeDojo").get("value"), bool)
-    if "BigChestShuffle" in options_dict:
-        assert isinstance(options_dict.get("BigChestShuffle").get("value"), bool)
+    if "GearShuffleMode" in options_dict:
+        assert isinstance(options_dict.get("GearShuffleMode").get("value"), int)
     if "ItemScarcity" in options_dict:
         assert (isinstance(options_dict.get("ItemScarcity").get("value"), int)
             and 0 <= options_dict.get("ItemScarcity").get("value") <= 5

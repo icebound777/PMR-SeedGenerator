@@ -94,6 +94,9 @@ def create_nodes():
             with open(child, "r") as file:
                 entrance_links |= json.load(file)
 
+    boots_found = 0
+    hammers_found = 0
+
     # Create item only nodes
     for _, data in item_keys.items():
         map_area, created = MapArea.get_or_create(
@@ -103,9 +106,35 @@ def create_nodes():
             verbose_name = MapArea.get_verbose_name(data["map_name"])
         )
 
-        vanilla_item = Item.get(
-            Item.value == item_values[data["map_name"]][data["name"]]
-        )
+        # Base mod doesn't treat the hammers and boots as unique items, but we 
+        # have to in the generator, so yay ugly workarounds
+        gear_rename = {
+            0x1: {
+                0: "BootsA",
+                1: "BootsB",
+                2: "BootsC",
+            },
+            0x4: {
+                0: "HammerA",
+                1: "HammerB",
+                2: "HammerC",
+            }
+        }
+        item_id = item_values[data["map_name"]][data["name"]]
+        if item_id == 0x1:
+            vanilla_item = Item.get(
+                Item.item_name == gear_rename[0x1][boots_found]
+            )
+            boots_found = boots_found + 1
+        elif item_id == 0x4:
+            vanilla_item = Item.get(
+                Item.item_name == gear_rename[0x4][hammers_found]
+            )
+            hammers_found = hammers_found + 1
+        else:
+            vanilla_item = Item.get(
+                Item.value == item_id
+            )
 
         price_index = None
         key_name_price = None

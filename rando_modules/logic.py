@@ -90,6 +90,16 @@ def is_itemlocation_replenishable(item_node):
     return (node_id in replenishing_itemlocations)
 
 
+def _get_random_taycet_item():
+    """
+    Randomly pick a Tayce T. item objects chosen out of all allowed Tayce T.
+    items.
+    """
+    random_taycet_item_value = random.choice([x for x in taycet_items if x not in exclude_from_taycet_placement])
+    random_taycet_item = Item.get(Item.value == random_taycet_item_value)
+    return random_taycet_item
+
+
 def _depth_first_search(
     node_id:str,
     world_graph:dict,
@@ -295,19 +305,19 @@ def _init_mario_inventory(
         mario.add_to_inventory(starting_partners)
 
     if starting_boots == 2:
-        mario.add_to_inventory("TornadoJump")
+        mario.add_to_inventory("BootsB")
     if starting_boots >= 1:
-        mario.add_to_inventory("SpinJump")
+        mario.add_to_inventory("BootsA")
     #* Commented out, as -1 boots never affect logic
     #if starting_boots >= 0:
-    #    mario.add_to_inventory("Jump")
-    mario.add_to_inventory("Jump")
+    #    mario.add_to_inventory("BootsC")
+    mario.add_to_inventory("BootsC")
     if starting_hammer == 2:
-        mario.add_to_inventory("UltraHammer")
+        mario.add_to_inventory("HammerC")
     if starting_hammer in [1,2]:
-        mario.add_to_inventory("SuperHammer")
+        mario.add_to_inventory("HammerB")
     if starting_hammer in [0,1,2]:
-        mario.add_to_inventory("Hammer")
+        mario.add_to_inventory("HammerA")
     if starting_hammer == 0xFF:
         mario.add_to_inventory("RF_HammerlessStart")
 
@@ -701,7 +711,7 @@ def get_items_to_exclude(
     always_speedyspin:bool,
     always_ispy:bool,
     always_peekaboo:bool,
-    do_big_chest_shuffle:bool,
+    gear_shuffle_mode:int,
     starting_hammer:int,
     starting_boots:int
 ) -> list:
@@ -742,21 +752,21 @@ def get_items_to_exclude(
         for item_name in exclude_due_to_settings.get("always_peekaboo"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if do_big_chest_shuffle:
+    if gear_shuffle_mode >= 1:
         if starting_hammer == 2:
-            item = Item.get(Item.item_name == "UltraHammer")
+            item = Item.get(Item.item_name == "HammerC")
             excluded_items.append(item)
         if starting_hammer in [1,2]:
-            item = Item.get(Item.item_name == "SuperHammer")
+            item = Item.get(Item.item_name == "HammerB")
             excluded_items.append(item)
         if starting_hammer in [0,1,2]:
-            item = Item.get(Item.item_name == "Hammer")
+            item = Item.get(Item.item_name == "HammerA")
             excluded_items.append(item)
         if starting_boots == 2:
-            item = Item.get(Item.item_name == "TornadoJump")
+            item = Item.get(Item.item_name == "BootsB")
             excluded_items.append(item)
         if starting_boots in [1,2]:
-            item = Item.get(Item.item_name == "SpinJump")
+            item = Item.get(Item.item_name == "BootsA")
             excluded_items.append(item)
 
     return excluded_items
@@ -775,7 +785,7 @@ def _generate_item_pools(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo:bool,
-    do_big_chest_shuffle:bool,
+    gear_shuffle_mode:int,
     item_scarcity:int,
     itemtrap_mode:int,
     startwith_bluehouse_open:bool,
@@ -905,19 +915,23 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    starting_hammer != 0xFF
-                and current_node.identifier == "KMR_04/Bush7_Drop1"
-            ):
-                current_node.current_item = Item.get(Item.item_name == "Nothing")
-                all_item_nodes.append(current_node)
-                continue
-
-            if (    not do_big_chest_shuffle
+            if (    gear_shuffle_mode not in [1,2]
                 and current_node.vanilla_item.item_type == "GEAR"
+                and current_node.identifier != "KMR_04/Bush7_Drop1"
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
+
+            if (    gear_shuffle_mode not in [1,2]
+                and current_node.identifier == "KMR_04/Bush7_Drop1"
+            ):
+                # special casing so the hammer bush is never empty but also
+                # never holds required items or badges
+                current_node.current_item = _get_random_taycet_item()
+                all_item_nodes.append(current_node)
+                continue
+
 
     # Pre-fill 'dungeon' nodes if keyitems are limited to there
     items_to_remove_from_pools = []
@@ -954,6 +968,17 @@ def _generate_item_pools(
             if node_id in pre_filled_node_ids:
                 node_index = pre_filled_node_ids.index(node_id)
                 current_node.current_item = pre_filled_dungeon_nodes[node_index].current_item
+                continue
+
+            # Special casing for hammer bush during gear location shuffle w/o
+            # hammerless: add modified "gear" Tayce T item to gear locations
+            if (    current_node.identifier == "KMR_04/Bush7_Drop1"
+                and starting_hammer != 0xFF
+                and gear_shuffle_mode == 1
+            ):
+                modified_taycet = _get_random_taycet_item()
+                modified_taycet.item_type = "GEAR"
+                pool_progression_items.append(modified_taycet)
                 continue
 
             # Item shall be randomized: Add it to the correct item pool
@@ -1009,7 +1034,7 @@ def _generate_item_pools(
             always_speedyspin,
             always_ispy,
             always_peekaboo,
-            do_big_chest_shuffle,
+            gear_shuffle_mode,
             starting_hammer,
             starting_boots
     ))
@@ -1050,9 +1075,7 @@ def _generate_item_pools(
                        + len(pool_misc_progression_items) \
                        + len(pool_other_items)
     while goal_size_item_pool > cur_size_item_pool:
-        random_taycet_item_value = random.choice([x for x in taycet_items if x not in exclude_from_taycet_placement])
-        random_taycet_item = Item.get(Item.value == random_taycet_item_value)
-        pool_other_items.append(random_taycet_item)
+        pool_other_items.append(_get_random_taycet_item())
         cur_size_item_pool = len(pool_progression_items)      \
                            + len(pool_misc_progression_items) \
                            + len(pool_other_items)
@@ -1197,6 +1220,7 @@ def place_progression_items(
     return filled_item_nodes, items_placed, items_overwritten, mario
 
 
+#@deprecated
 def _algo_forward_fill(
     item_placement,
     do_randomize_coins,
@@ -1206,7 +1230,7 @@ def _algo_forward_fill(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
-    do_big_chest_shuffle,
+    gear_shuffle_mode,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
@@ -1258,7 +1282,7 @@ def _algo_forward_fill(
         randomize_letters_mode,
         do_randomize_radiotrade,
         do_randomize_dojo,
-        do_big_chest_shuffle,
+        gear_shuffle_mode,
         item_scarcity,
         itemtrap_mode,
         startwith_bluehouse_open,
@@ -1547,7 +1571,7 @@ def _algo_assumed_fill(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
-    do_big_chest_shuffle:bool,
+    gear_shuffle_mode:int,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
@@ -1596,7 +1620,7 @@ def _algo_assumed_fill(
         randomize_letters_mode,
         do_randomize_radiotrade,
         do_randomize_dojo,
-        do_big_chest_shuffle,
+        gear_shuffle_mode,
         item_scarcity,
         itemtrap_mode,
         startwith_bluehouse_open,
@@ -1632,7 +1656,8 @@ def _algo_assumed_fill(
                     assert item not in dungeon_restricted_items
                     dungeon_restricted_items[item] = dungeon
 
-    pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
+    if gear_shuffle_mode == 1: # gear location shuffle
+        pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
     pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 
     while pool_combined_progression_items:
@@ -1666,8 +1691,12 @@ def _algo_assumed_fill(
             candidate_locations = [node for node in candidate_locations if node.map_area.name[:3] == dungeon]
             dungeon_restricted_items.pop(item.item_name)
 
-        if item.item_type == "GEAR":
+        if item.item_type == "GEAR" and gear_shuffle_mode == 1:
+            # gear location shuffle
             candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
+        elif item.item_type == "GEAR":
+            # full gear shuffle
+            candidate_locations = [node for node in candidate_locations if not node.is_shop()]
 
         if len(candidate_locations) == 0:
             raise UnbeatableSeedError("Failed to generate a beatable seed")
@@ -1889,7 +1918,7 @@ def place_items(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
-    do_big_chest_shuffle:bool,
+    gear_shuffle_mode:int,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
@@ -1939,7 +1968,7 @@ def place_items(
             randomize_letters_mode,
             do_randomize_radiotrade,
             do_randomize_dojo,
-            do_big_chest_shuffle,
+            gear_shuffle_mode,
             item_scarcity,
             itemtrap_mode,
             starting_map_id,
@@ -1974,7 +2003,7 @@ def place_items(
             randomize_letters_mode,
             do_randomize_radiotrade,
             do_randomize_dojo,
-            do_big_chest_shuffle,
+            gear_shuffle_mode,
             item_scarcity,
             itemtrap_mode,
             starting_map_id,
