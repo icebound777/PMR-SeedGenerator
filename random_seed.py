@@ -63,7 +63,7 @@ class RandomSeed:
             self.entrance_list, world_graph = get_shorter_bowsercastle(world_graph)
         elif self.rando_settings.bowsers_castle_mode["value"] == 2:
             self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
-        if self.rando_settings.big_chest_shuffle["value"]:
+        if self.rando_settings.gear_shuffle_mode["value"]:
             world_graph = get_gear_location_shuffle(world_graph)
 
         hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
