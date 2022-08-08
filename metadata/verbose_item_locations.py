@@ -102,7 +102,7 @@ verbose_item_locations = {
     "TIK_02": {"ChestA": "Blooper Fight Reward"},
     "TIK_03": {"YBlockA": "Yellow Block Center",
                "YBlockB": "Yellow Block Left",
-               "YBlockC": "Yellor Block Right",},
+               "YBlockC": "Yellow Block Right",},
     "TIK_05": {"ChestA": "Chest On Ledge"},
     "TIK_07": {"ItemA": "On Parakarry Ledge"},
     "TIK_10": {"HiddenYBlockA": "Hidden Block Left",

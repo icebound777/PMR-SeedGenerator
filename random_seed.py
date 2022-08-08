@@ -63,8 +63,13 @@ class RandomSeed:
             self.entrance_list, world_graph = get_shorter_bowsercastle(world_graph)
         elif self.rando_settings.bowsers_castle_mode["value"] == 2:
             self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
-        if self.rando_settings.gear_shuffle_mode["value"] >= 1:
+        if self.rando_settings.big_chest_shuffle["value"]:
             world_graph = get_gear_location_shuffle(world_graph)
+
+        hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
+        if self.rando_settings.glitch_settings.knows_hidden_blocks["value"]:
+            hidden_block_mode = 3 # Having this trick enabled is equivalent to mode 3, logic wise
+
 
         # Item Placement
         for placement_attempt in range(1, 6):  # try 5 times
@@ -107,7 +112,7 @@ class RandomSeed:
                     peekaboo=self.rando_settings.always_peekaboo["value"],
                     partners_always_usable=self.rando_settings.partners_always_usable["value"],
                     partners_in_default_locations=self.rando_settings.partners_in_default_locations,
-                    hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
+                    hidden_block_mode=hidden_block_mode,
                     keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
                     add_item_pouches=self.rando_settings.add_item_pouches,
@@ -201,8 +206,9 @@ class RandomSeed:
             starting_boots=self.rando_settings.starting_boots["value"],
             starting_hammer=self.rando_settings.starting_hammer["value"],
             partners_always_usable=self.rando_settings.partners_always_usable["value"],
-            hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
+            hidden_block_mode=hidden_block_mode,
             starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
+            startwith_speedyspin=self.rando_settings.always_speedyspin["value"],
             world_graph=world_graph
         )
 
