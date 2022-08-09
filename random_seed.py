@@ -8,7 +8,7 @@ from rando_modules.logic import place_items, get_item_spheres, get_items_to_excl
 from rando_modules.random_blocks import get_block_placement
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.modify_entrances import \
-    get_shorter_bowsercastle, get_bowsercastle_bossrush, get_big_chest_shuffle, get_glitched_logic
+    get_shorter_bowsercastle, get_bowsercastle_bossrush, get_gear_location_shuffle
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
@@ -63,15 +63,13 @@ class RandomSeed:
             self.entrance_list, world_graph = get_shorter_bowsercastle(world_graph)
         elif self.rando_settings.bowsers_castle_mode["value"] == 2:
             self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
-        if self.rando_settings.big_chest_shuffle["value"]:
-            world_graph = get_big_chest_shuffle(world_graph)
-        
-        # Adjust graph logic if needed
-        world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings, self.rando_settings.bowsers_castle_mode)
+        if self.rando_settings.gear_shuffle_mode["value"] != 0:
+            world_graph = get_gear_location_shuffle(world_graph)
 
         hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
         if self.rando_settings.glitch_settings.knows_hidden_blocks["value"]:
             hidden_block_mode = 3 # Having this trick enabled is equivalent to mode 3, logic wise
+
 
         # Item Placement
         for placement_attempt in range(1, 6):  # try 5 times
@@ -98,7 +96,7 @@ class RandomSeed:
                     randomize_letters_mode=self.rando_settings.include_letters_mode,
                     do_randomize_radiotrade=self.rando_settings.include_radiotradeevent,
                     do_randomize_dojo=self.rando_settings.include_dojo,
-                    do_big_chest_shuffle=self.rando_settings.big_chest_shuffle["value"],
+                    gear_shuffle_mode=self.rando_settings.gear_shuffle_mode["value"],
                     item_scarcity=self.rando_settings.item_scarcity,
                     itemtrap_mode=self.rando_settings.itemtrap_mode,
                     starting_map_id=starting_map_value,
@@ -208,7 +206,7 @@ class RandomSeed:
             starting_boots=self.rando_settings.starting_boots["value"],
             starting_hammer=self.rando_settings.starting_hammer["value"],
             partners_always_usable=self.rando_settings.partners_always_usable["value"],
-            hidden_block_mode=self.rando_settings.hidden_block_mode["value"],
+            hidden_block_mode=hidden_block_mode,
             starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
             startwith_speedyspin=self.rando_settings.always_speedyspin["value"],
             world_graph=world_graph
@@ -292,7 +290,7 @@ class RandomSeed:
                 always_speedyspin=rando_settings.always_speedyspin["value"],
                 always_ispy=rando_settings.always_ispy["value"],
                 always_peekaboo=rando_settings.always_peekaboo["value"],
-                do_big_chest_shuffle=False,
+                gear_shuffle_mode=rando_settings.gear_shuffle_mode["value"],
                 starting_hammer=None,
                 starting_boots=None
             )

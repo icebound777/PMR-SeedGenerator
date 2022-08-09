@@ -1,10 +1,10 @@
 progression_items = {
     0x0001 : "Jump",
-    0x0002 : "SpinJump",
-    0x0003 : "TornadoJump",
+  #  0x0002 : "SpinJump",
+  #  0x0003 : "TornadoJump",
     0x0004 : "Hammer",
-    0x0005 : "SuperHammer",
-    0x0006 : "UltraHammer",
+   # 0x0005 : "SuperHammer",
+   # 0x0006 : "UltraHammer",
     #0x0010 : "KoopaFortressKey", # see end of list
     #0x0011 : "RuinsKey", # see end of list
     0x0012 : "PulseStone",

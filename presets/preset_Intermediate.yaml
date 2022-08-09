@@ -15,6 +15,7 @@ SkipEpilogue         : true
 StarWaySpiritsNeeded : 7
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : false
+HiddenPanelVisibility: 0 # 0 = vanilla, 1 = texture-edit
 
 StartingCoins  : 100
 ChallengeMode  : false
@@ -88,7 +89,7 @@ IncludeLettersMode    : 1 # 1=simpleLetters,2=vanillaChainRndChainReward,3=FullS
 IncludeRadioTradeEvent: false
 ItemScarcity          : 0
 ItemTrapMode          : 1
-BigChestShuffle       : true
+GearShuffleMode       : 1 # 0 = vanilla, 1 = location shuffle, 2 = full shuffle
 AddItemPouches        : true
 KeyitemsOutsideDungeon: true
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
@@ -169,8 +170,8 @@ GoombarioSetting : 0
 GoombarioSprite  : 0
 KooperSetting    : 0
 KooperSprite     : 0
-#BombetteSetting  : 0 # NYI
-#BombetteSprite   : 0 # NYI
+BombetteSetting  : 0
+BombetteSprite   : 0
 ParakarrySetting : 0
 ParakarrySprite  : 0
 BowSetting       : 0

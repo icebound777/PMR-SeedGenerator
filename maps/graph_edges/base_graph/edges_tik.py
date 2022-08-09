@@ -66,7 +66,7 @@ edges_tik = [
 
     {"from": {"map": "TIK_06", "id": 3}, "to": {"map": "TIK_06", "id": 0}, "reqs": [["SuperHammer"]]}, #? Sewer Entrance (B1) Green Pipe Up -> Sewer Entrance (B1) Exit Left
     {"from": {"map": "TIK_06", "id": 0}, "to": {"map": "TIK_06", "id": 3}, "reqs": []}, #? Sewer Entrance (B1) Exit Left -> Sewer Entrance (B1) Green Pipe Up
-    {"from": {"map": "TIK_06", "id": 3}, "to": {"map": "TIK_06", "id": 1}, "reqs": [["Hammer", "Bombette"]]}, #? Sewer Entrance (B1) Green Pipe Up -> Sewer Entrance (B1) Exit Right
+    {"from": {"map": "TIK_06", "id": 3}, "to": {"map": "TIK_06", "id": 1}, "reqs": [["Hammer"]]}, #? Sewer Entrance (B1) Green Pipe Up -> Sewer Entrance (B1) Exit Right
     {"from": {"map": "TIK_06", "id": 1}, "to": {"map": "TIK_06", "id": 3}, "reqs": []}, #? Sewer Entrance (B1) Exit Right -> Sewer Entrance (B1) Green Pipe Up
     {"from": {"map": "TIK_06", "id": 3}, "to": {"map": "TIK_06", "id": 4}, "reqs": [["SuperBoots"]]}, #? Sewer Entrance (B1) Green Pipe Up -> Sewer Entrance (B1) Hole In Ground
     {"from": {"map": "TIK_06", "id": 4}, "to": {"map": "TIK_06", "id": 3}, "reqs": []}, #? Sewer Entrance (B1) Hole In Ground -> Sewer Entrance (B1) Green Pipe Up

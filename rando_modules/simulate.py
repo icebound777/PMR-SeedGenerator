@@ -58,12 +58,12 @@ class Mario:
                 if item_object not in self.favors:
                     self.favors.add(item_object)
                     is_new_pseudoitem = True
-            elif (    item_object in ["Jump","SpinJump","TornadoJump"]
+            elif (    item_object in ["BootsA","BootsB","BootsC"]
                   and item_object not in self.boots
             ):
                 self.boots.add(item_object)
                 is_new_pseudoitem = True
-            elif (    item_object in ["Hammer","SuperHammer","UltraHammer"]
+            elif (    item_object in ["HammerA","HammerB","HammerC"]
                   and item_object not in self.hammer
             ):
                 self.hammer.add(item_object)
@@ -117,9 +117,9 @@ class Mario:
                 self.item_history.append(f"-{item_object}")
             elif item_object.startswith("FAVOR"):
                 self.favors.remove(item_object)
-            elif (item_object in ["Jump","SpinJump","TornadoJump"]):
+            elif (item_object in ["BootsA","BootsB","BootsC"]):
                 self.boots.remove(item_object)
-            elif (item_object in ["Hammer","SuperHammer","UltraHammer"]):
+            elif (item_object in ["HammerA","HammerB","HammerC"]):
                 self.hammer.remove(item_object)
             elif item_object.startswith("STARSPIRIT"):
                 self.starspirits.remove(item_object)

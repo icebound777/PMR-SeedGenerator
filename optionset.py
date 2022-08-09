@@ -52,6 +52,7 @@ class OptionSet:
         self.starway_spirits_needed = get_option_keyvalue_dict("StarWaySpiritsNeeded")
         self.peachcastle_return_pipe = get_option_keyvalue_dict("PeachCastleReturnPipe")
         self.foliage_item_hints = get_option_keyvalue_dict("FoliageItemHints")
+        self.hiddenpanel_visibility = get_option_keyvalue_dict("HiddenPanelVisibility")
 
         # Starting setup
         self.starting_map = get_option_keyvalue_dict("StartingMap") # mac_00 Entry 4
@@ -88,7 +89,7 @@ class OptionSet:
         self.include_letters_mode = 0
         self.include_radiotradeevent = False
         self.include_dojo = False
-        self.big_chest_shuffle = get_option_keyvalue_dict("BigChestShuffle")
+        self.gear_shuffle_mode = get_option_keyvalue_dict("GearShuffleMode")
         self.item_scarcity = 0
         self.add_item_pouches = False
         self.placement_algorithm = "ForwardFill"
@@ -268,6 +269,8 @@ class OptionSet:
             self.peachcastle_return_pipe = options_dict.get("PeachCastleReturnPipe")
         if "FoliageItemHints" in options_dict:
             self.foliage_item_hints = options_dict.get("FoliageItemHints")
+        if "HiddenPanelVisibility" in options_dict:
+            self.hiddenpanel_visibility = options_dict.get("HiddenPanelVisibility")
 
         # Starting setup
         if "StartingMap" in options_dict:
@@ -337,8 +340,8 @@ class OptionSet:
             self.include_radiotradeevent = options_dict.get("IncludeRadioTradeEvent").get("value")
         if "IncludeDojo" in options_dict:
             self.include_dojo = options_dict.get("IncludeDojo").get("value")
-        if "BigChestShuffle" in options_dict:
-            self.big_chest_shuffle = options_dict.get("BigChestShuffle")
+        if "GearShuffleMode" in options_dict:
+            self.gear_shuffle_mode = options_dict.get("GearShuffleMode")
         if "ItemScarcity" in options_dict:
             self.item_scarcity = options_dict.get("ItemScarcity").get("value")
         if "AddItemPouches" in options_dict:
@@ -462,10 +465,10 @@ class OptionSet:
             self.palette_settings.kooper_setting = options_dict.get("KooperSetting").get("value")
         if "KooperSprite" in options_dict:
             self.palette_settings.kooper_sprite = options_dict.get("KooperSprite").get("value")
-        #if "BombetteSetting" in options_dict:
-        #    self.palette_settings.bombette_setting = options_dict.get("BombetteSetting").get("value")
-        #if "BombetteSprite" in options_dict:
-        #    self.palette_settings.bombette_sprite = options_dict.get("BombetteSprite").get("value")
+        if "BombetteSetting" in options_dict:
+            self.palette_settings.bombette_setting = options_dict.get("BombetteSetting").get("value")
+        if "BombetteSprite" in options_dict:
+            self.palette_settings.bombette_sprite = options_dict.get("BombetteSprite").get("value")
         if "ParakarrySetting" in options_dict:
             self.palette_settings.parakarry_setting = options_dict.get("ParakarrySetting").get("value")
         if "ParakarrySprite" in options_dict:
@@ -788,6 +791,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("PeachCastleReturnPipe").get("value"), bool)
     if "FoliageItemHints" in options_dict:
         assert isinstance(options_dict.get("FoliageItemHints").get("value"), bool)
+    if "HiddenPanelVisibility" in options_dict:
+        assert isinstance(options_dict.get("HiddenPanelVisibility").get("value"), int)
 
     # Starting setup
     if "StartingMap" in options_dict:
@@ -868,8 +873,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("IncludeRadioTradeEvent").get("value"), bool)
     if "IncludeDojo" in options_dict:
         assert isinstance(options_dict.get("IncludeDojo").get("value"), bool)
-    if "BigChestShuffle" in options_dict:
-        assert isinstance(options_dict.get("BigChestShuffle").get("value"), bool)
+    if "GearShuffleMode" in options_dict:
+        assert isinstance(options_dict.get("GearShuffleMode").get("value"), int)
     if "ItemScarcity" in options_dict:
         assert (isinstance(options_dict.get("ItemScarcity").get("value"), int)
             and 0 <= options_dict.get("ItemScarcity").get("value") <= 5
@@ -1032,10 +1037,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("KooperSetting").get("value"), int)
     if "KooperSprite" in options_dict:
         assert isinstance(options_dict.get("KooperSprite").get("value"), int)
-    #if "BombetteSetting" in options_dict:
-    #    assert isinstance(options_dict.get("BombetteSetting").get("value"), int)
-    #if "BombetteSprite" in options_dict:
-    #    assert isinstance(options_dict.get("BombetteSprite").get("value"), int)
+    if "BombetteSetting" in options_dict:
+        assert isinstance(options_dict.get("BombetteSetting").get("value"), int)
+    if "BombetteSprite" in options_dict:
+        assert isinstance(options_dict.get("BombetteSprite").get("value"), int)
     #if "ParakarrySetting" in options_dict:
     #    assert isinstance(options_dict.get("ParakarrySetting").get("value"), int)
     #if "ParakarrySprite" in options_dict:
@@ -1292,8 +1297,8 @@ class PaletteOptionSet():
         self.goombario_sprite = DEFAULT_PALETTE
         self.kooper_setting = DEFAULT_PALETTE
         self.kooper_sprite = DEFAULT_PALETTE
-        #self.bombette_setting = DEFAULT_PALETTE
-        #self.bombette_sprite = DEFAULT_PALETTE
+        self.bombette_setting = DEFAULT_PALETTE
+        self.bombette_sprite = DEFAULT_PALETTE
         self.parakarry_setting = DEFAULT_PALETTE
         self.parakarry_sprite = DEFAULT_PALETTE
         self.bow_setting = DEFAULT_PALETTE

@@ -84,12 +84,38 @@ def create_items():
             }
         )
 
+    # Base mod doesn't treat the hammers and boots as unique items, but we 
+    # have to in the generator, so yay ugly workarounds
+    boots_found = 0
+    hammers_found = 0
+    gear_rename = {
+        0x1: {
+            0: "BootsA",
+            1: "BootsB",
+            2: "BootsC",
+        },
+        0x4: {
+            0: "HammerA",
+            1: "HammerB",
+            2: "HammerC",
+        }
+    }
+
     for item in item_data:
         item_id = int(item["Index"], 16)
         if item_id == 0x18:
             # Ignore fake Volcano Vase
             continue
-        item_name = Enums.get("Item")[item_id]
+        if 0x1 <= item_id <= 0x3:
+            item_name = gear_rename[0x1][boots_found]
+            boots_found = boots_found + 1
+            item_id = 0x1
+        elif 0x4 <= item_id <= 0x6:
+            item_name = gear_rename[0x4][hammers_found]
+            hammers_found = hammers_found + 1
+            item_id = 0x4
+        else:
+            item_name = Enums.get("Item")[item_id]
         item,_ = Item.get_or_create(
             item_type = Item.get_type(item_id),
             value = item_id,
