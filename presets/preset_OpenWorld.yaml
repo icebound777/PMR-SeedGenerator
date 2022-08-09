@@ -67,11 +67,7 @@ WhaleOpen           : true
 # Randomization: Logic
 #PlacementAlgorithm: ForwardFill
 PlacementAlgorithm: AssumedFill
-#PlacementAlgorithm: WeightedForwardFill # NYI
 #PlacementAlgorithm: CustomSeed # NYI
-PlacementLogic: NoGlitches
-#PlacementLogic: Glitches # NYI
-#PlacementLogic: NoLogic # NYI
 
 # Randomization: Difficulty
 ShuffleChapterDifficulty: false
