@@ -300,11 +300,11 @@ def _init_mario_inventory(
     starting coins) is ignored.
     """
     mario = Mario()
+
+    mario.add_to_inventory(starting_partners)
     if partners_always_usable:
         mario.add_to_inventory(all_partners_imp)
         mario.add_to_inventory("RF_PartnersAlwaysUsable")
-    else:
-        mario.add_to_inventory(starting_partners)
 
     if starting_boots == 2:
         mario.add_to_inventory("BootsB")
