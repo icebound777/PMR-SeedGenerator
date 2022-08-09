@@ -169,7 +169,12 @@ verbose_item_locations = {
                "ShopBadgeM": "Merlow's Badges 13",
                "ShopBadgeN": "Merlow's Badges 14",
                "ShopBadgeO": "Merlow's Badges 15",
-               },
+               "ShopRewardA": "Merlow's Rewards 1",
+               "ShopRewardB": "Merlow's Rewards 2",
+               "ShopRewardC": "Merlow's Rewards 3",
+               "ShopRewardD": "Merlow's Rewards 4",
+               "ShopRewardE": "Merlow's Rewards 5",
+               "ShopRewardF": "Merlow's Rewards 6",},
 
 # Koopa Region
     "NOK_01": {"Bush1_Drop1A": "Coin Bush 1",

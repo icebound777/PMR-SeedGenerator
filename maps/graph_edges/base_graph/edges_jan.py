@@ -70,12 +70,12 @@ edges_jan = [
     {"from": {"map": "JAN_02", "id": 0}, "to": {"map": "JAN_02", "id": 0}, "reqs": [], "pseudoitems": ["RF_YoshiKidsMissing"]}, #+ Village visited -> Yoshi Kids Missing
 
     {"from": {"map": "JAN_02", "id": 0}, "to": {"map": "JAN_02", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_JAN_1",
-                                                                                                       "StarPiece_JAN_2",
-                                                                                                       "StarPiece_JAN_3",
-                                                                                                       "StarPiece_JAN_4",
-                                                                                                       "StarPiece_JAN_5",
-                                                                                                       "StarPiece_JAN_6",
-                                                                                                       "StarPiece_JAN_7",
+                                                                                                      # "StarPiece_JAN_2",
+                                                                                                      # "StarPiece_JAN_3",
+                                                                                                      # "StarPiece_JAN_4",
+                                                                                                      # "StarPiece_JAN_5",
+                                                                                                      # "StarPiece_JAN_6",
+                                                                                                      # "StarPiece_JAN_7",
                                                                                                        "StarPiece_JAN_8"]}, #+ Quizmo StarPieces
 
     # JAN_03 Village Buildings
@@ -115,12 +115,12 @@ edges_jan = [
     {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_03", "id": 0}, "reqs": [], "pseudoitems": ["RF_YoshiKidsMissing"]}, #+ Village visited -> Yoshi Kids Missing
 
     {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_03", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_JAN_1",
-                                                                                                       "StarPiece_JAN_2",
-                                                                                                       "StarPiece_JAN_3",
-                                                                                                       "StarPiece_JAN_4",
-                                                                                                       "StarPiece_JAN_5",
-                                                                                                       "StarPiece_JAN_6",
-                                                                                                       "StarPiece_JAN_7",
+                                                                                                     #  "StarPiece_JAN_2",
+                                                                                                     #  "StarPiece_JAN_3",
+                                                                                                     #  "StarPiece_JAN_4",
+                                                                                                     #  "StarPiece_JAN_5",
+                                                                                                     #  "StarPiece_JAN_6",
+                                                                                                     #  "StarPiece_JAN_7",
                                                                                                        "StarPiece_JAN_8"]}, #+ Quizmo StarPieces
 
     # JAN_04 Sushi Tree
