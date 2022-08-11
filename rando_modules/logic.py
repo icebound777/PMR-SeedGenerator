@@ -1095,28 +1095,6 @@ def _generate_item_pools(
     # Randomize consumables if needed
     pool_other_items = get_randomized_itempool(pool_other_items, randomize_consumable_mode)
 
-    # Swap random consumables for strange pouches if needed
-    if add_item_pouches:
-        pouch_items = [
-            Item.get(Item.item_name == "PouchA"),
-            Item.get(Item.item_name == "PouchB"),
-            Item.get(Item.item_name == "PouchC"),
-            Item.get(Item.item_name == "PouchD"),
-            Item.get(Item.item_name == "PouchE"),
-        ]
-
-        cnt_items_removed = 0
-        while True:
-            rnd_index = random.randint(0, len(pool_other_items) - 1)
-            rnd_item = pool_other_items.pop(rnd_index)
-            if rnd_item.item_type == "ITEM":
-                cnt_items_removed += 1
-            else:
-                pool_other_items.append(rnd_item)
-            if cnt_items_removed == 5:
-                break
-        pool_other_items.extend(pouch_items)
-
     pool_other_items = get_scarcitied_itempool(pool_other_items, item_scarcity)
 
     pool_other_items = get_trapped_itempool(
