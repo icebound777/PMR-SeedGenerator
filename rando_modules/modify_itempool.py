@@ -4,6 +4,10 @@ from math import ceil
 from db.item import Item
 from db.node import Node
 
+from metadata.item_general import \
+    healing_items, \
+    battle_items, \
+    taycet_items
 from metadata.item_exclusion import exclude_due_to_settings
 from metadata.itemlocation_special import \
     kootfavors_reward_locations, \
@@ -309,6 +313,76 @@ def get_scarcitied_itempool(itempool:list, scarcity:int) -> list:
             new_itempool.append(new_item)
 
             #print(f"Changed {item_obj} to {new_item}")
+
+    return new_itempool
+
+
+def get_randomized_itempool(itempool:list, consumable_mode:int) -> list:
+    """
+    Randomizes the consumable items in the item pool
+    """
+    # Consumable mode:
+    # 0: no change
+    # 1: full random consumables
+    # 2: retain item category (healing/battle/taycet)
+    # 3: healing items only
+    # 4: battle items only
+    # 5: mysteries only
+
+    if consumable_mode == 0:
+        return itempool
+
+    new_itempool = []
+    for item_obj in itempool:      
+        # Only replace consumable items, not badges
+        if item_obj.item_type != "ITEM":
+            new_itempool.append(item_obj)
+            # print(f"Kept {item_obj}")
+            continue
+
+        # full random
+        if consumable_mode == 1:
+            # Get a new random consumable to place
+            consumable_items = []
+            consumable_items.append(healing_items)
+            consumable_items.append(battle_items)
+            consumable_items.append(taycet_items)
+
+            new_item_id = random.choice(consumable_items)
+            new_item = Item.get(Item.value == new_item_id)
+
+        # retain item category
+        if consumable_mode == 2:
+            item_id = item_obj.value
+            if item_id in healing_items:
+                new_item_id = random.choice(healing_items)
+            elif item_id in battle_items:
+                new_item_id = random.choice(battle_items)
+            elif item_id in taycet_items:
+                new_item_id = random.choice(taycet_items)
+            else:
+                new_itempool.append(item_obj) #Not randomized
+                # print(f"Kept {item_obj}")
+                continue
+            
+            new_item = Item.get(Item.value == new_item_id)
+
+        # healing only
+        if consumable_mode == 3:
+            new_item_id = random.choice(healing_items)
+            new_item = Item.get(Item.value == new_item_id)
+
+        # battle only
+        if consumable_mode == 4:
+            new_item_id = random.choice(battle_items)
+            new_item = Item.get(Item.value == new_item_id)
+
+        # mystery only
+        elif consumable_mode == 5:
+            new_item = Item.get(Item.item_name == "Mystery")
+
+        new_itempool.append(new_item)
+        # print(f"Changed {item_obj} to {new_item}")
 
     return new_itempool
 

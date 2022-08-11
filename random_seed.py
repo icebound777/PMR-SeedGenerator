@@ -100,6 +100,7 @@ class RandomSeed:
                     do_randomize_radiotrade=self.rando_settings.include_radiotradeevent,
                     do_randomize_dojo=self.rando_settings.include_dojo,
                     gear_shuffle_mode=self.rando_settings.gear_shuffle_mode["value"],
+                    randomize_consumable_mode=self.rando_settings.randomize_consumable_mode,
                     item_scarcity=self.rando_settings.item_scarcity,
                     itemtrap_mode=self.rando_settings.itemtrap_mode,
                     starting_map_id=starting_map_value,

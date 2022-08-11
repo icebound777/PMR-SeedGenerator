@@ -83,6 +83,7 @@ IncludeDojo           : false
 IncludeFavorsMode     : 0 # 1=RndRewardsVanillaKeyitems, 2=FullShuffle
 IncludeLettersMode    : 0 # 1=simpleLetters,2=vanillaChainRndChainReward,3=FullShuffle
 IncludeRadioTradeEvent: false
+RandomConsumableMode  : 0 # 0 = vanilla, 1 = full random, 2 = balanced random, 3 = heal only, 4 = battle only, 5 = mystery only
 ItemScarcity          : 0
 ItemTrapMode          : 0
 GearShuffleMode       : 0 # 0 = vanilla, 1 = location shuffle, 2 = full shuffle

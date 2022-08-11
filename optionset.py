@@ -90,6 +90,7 @@ class OptionSet:
         self.include_radiotradeevent = False
         self.include_dojo = False
         self.gear_shuffle_mode = get_option_keyvalue_dict("GearShuffleMode")
+        self.randomize_consumable_mode = 0
         self.item_scarcity = 0
         self.add_item_pouches = False
         self.placement_algorithm = "ForwardFill"
@@ -342,6 +343,8 @@ class OptionSet:
             self.include_dojo = options_dict.get("IncludeDojo").get("value")
         if "GearShuffleMode" in options_dict:
             self.gear_shuffle_mode = options_dict.get("GearShuffleMode")
+        if "RandomConsumableMode" in options_dict:
+            self.randomize_consumable_mode = options_dict.get("RandomConsumableMode").get("value")
         if "ItemScarcity" in options_dict:
             self.item_scarcity = options_dict.get("ItemScarcity").get("value")
         if "AddItemPouches" in options_dict:
@@ -875,6 +878,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("IncludeDojo").get("value"), bool)
     if "GearShuffleMode" in options_dict:
         assert isinstance(options_dict.get("GearShuffleMode").get("value"), int)
+    if "RandomConsumableMode" in options_dict:
+        assert (isinstance(options_dict.get("RandomConsumableMode").get("value"), int)
+            and 0 <= options_dict.get("RandomConsumableMode").get("value") <= 5
+        )
     if "ItemScarcity" in options_dict:
         assert (isinstance(options_dict.get("ItemScarcity").get("value"), int)
             and 0 <= options_dict.get("ItemScarcity").get("value") <= 5

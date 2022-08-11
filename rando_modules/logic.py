@@ -21,7 +21,8 @@ from rando_modules.simulate import Mario
 
 from rando_modules.modify_itempool \
     import get_scarcitied_itempool,\
-           get_trapped_itempool
+           get_trapped_itempool,   \
+           get_randomized_itempool
 
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
 
@@ -796,6 +797,7 @@ def _generate_item_pools(
     do_randomize_radiotrade:bool,
     do_randomize_dojo:bool,
     gear_shuffle_mode:int,
+    randomize_consumable_mode:int,
     item_scarcity:int,
     itemtrap_mode:int,
     startwith_bluehouse_open:bool,
@@ -1090,6 +1092,31 @@ def _generate_item_pools(
                            + len(pool_misc_progression_items) \
                            + len(pool_other_items)
 
+    # Randomize consumables if needed
+    pool_other_items = get_randomized_itempool(pool_other_items, randomize_consumable_mode)
+
+    # Swap random consumables for strange pouches if needed
+    if add_item_pouches:
+        pouch_items = [
+            Item.get(Item.item_name == "PouchA"),
+            Item.get(Item.item_name == "PouchB"),
+            Item.get(Item.item_name == "PouchC"),
+            Item.get(Item.item_name == "PouchD"),
+            Item.get(Item.item_name == "PouchE"),
+        ]
+
+        cnt_items_removed = 0
+        while True:
+            rnd_index = random.randint(0, len(pool_other_items) - 1)
+            rnd_item = pool_other_items.pop(rnd_index)
+            if rnd_item.item_type == "ITEM":
+                cnt_items_removed += 1
+            else:
+                pool_other_items.append(rnd_item)
+            if cnt_items_removed == 5:
+                break
+        pool_other_items.extend(pouch_items)
+
     pool_other_items = get_scarcitied_itempool(pool_other_items, item_scarcity)
 
     pool_other_items = get_trapped_itempool(
@@ -1241,6 +1268,7 @@ def _algo_forward_fill(
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
     gear_shuffle_mode,
+    randomize_consumable_mode:int,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
@@ -1293,6 +1321,7 @@ def _algo_forward_fill(
         do_randomize_radiotrade,
         do_randomize_dojo,
         gear_shuffle_mode,
+        randomize_consumable_mode,
         item_scarcity,
         itemtrap_mode,
         startwith_bluehouse_open,
@@ -1584,6 +1613,7 @@ def _algo_assumed_fill(
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
     gear_shuffle_mode:int,
+    randomize_consumable_mode:int,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
@@ -1633,6 +1663,7 @@ def _algo_assumed_fill(
         do_randomize_radiotrade,
         do_randomize_dojo,
         gear_shuffle_mode,
+        randomize_consumable_mode,
         item_scarcity,
         itemtrap_mode,
         startwith_bluehouse_open,
@@ -1934,6 +1965,7 @@ def place_items(
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
     gear_shuffle_mode:int,
+    randomize_consumable_mode:int,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
@@ -1984,6 +2016,7 @@ def place_items(
             do_randomize_radiotrade,
             do_randomize_dojo,
             gear_shuffle_mode,
+            randomize_consumable_mode,
             item_scarcity,
             itemtrap_mode,
             starting_map_id,
@@ -2019,6 +2052,7 @@ def place_items(
             do_randomize_radiotrade,
             do_randomize_dojo,
             gear_shuffle_mode,
+            randomize_consumable_mode,
             item_scarcity,
             itemtrap_mode,
             starting_map_id,

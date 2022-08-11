@@ -1,3 +1,57 @@
+healing_items = [
+    0x089, # TastyTonic
+    0x08A, # Mushroom
+    0x08C, # SuperShroom
+    0x08D, # DriedShroom
+    0x08E, # UltraShroom
+    0x093, # WhackasBump
+    0x094, # Apple
+    0x095, # LifeShroom
+    0x09B, # SuperSoda
+    0x09C, # Lemon
+    0x09D, # Lime
+    0x09E, # BlueBerry
+    0x09F, # RedBerry
+    0x0A0, # YellowBerry
+    0x0A1, # BubbleBerry
+    0x0A2, # JamminJelly
+    0x0A3, # MapleSyrup
+    0x0A4, # HoneySyrup
+    0x0A5, # Goomnut
+    0x0A6, # KoopaLeaf
+    0x0A7, # DriedPasta
+    0x0A8, # DriedFruit
+    0x0A9, # StrangeLeaf
+    0x0AA, # CakeMix
+    0x0AB, # Egg
+    0x0AD, # Melon
+    0x0AE, # StinkyHerb
+    0x0AF, # IcedPotato
+    0x0CA, # HoneyShroom
+]
+
+battle_items = [
+    0x085, # Pebble
+    0x086, # DustyHammer
+    0x0AC, # Coconut
+    0x090, # POWBlock
+    0x08B, # VoltShroom
+    0x096, # Mystery
+    0x080, # FireFlower
+    0x084, # ThunderBolt
+    0x081, # SnowmanDoll
+    0x08F, # SleepySheep
+    0x0C8, # EggMissile
+    0x082, # ThunderRage
+    0x091, # HustleDrink
+    0x098, # FrightJar
+    0x09A, # DizzyDial
+    0x088, # StoneCap
+    0x092, # StopWatch
+    0x083, # ShootingStar
+    0x097, # RepelGel
+]
+
 taycet_items = [
     0x0B0, # "SpicySoup",
     0x0B1, # "ApplePie",
