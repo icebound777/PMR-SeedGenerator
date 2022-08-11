@@ -344,9 +344,9 @@ def get_randomized_itempool(itempool:list, consumable_mode:int) -> list:
         if consumable_mode == 1:
             # Get a new random consumable to place
             consumable_items = []
-            consumable_items.append(healing_items)
-            consumable_items.append(battle_items)
-            consumable_items.append(taycet_items)
+            consumable_items += healing_items
+            consumable_items += battle_items
+            consumable_items += taycet_items
 
             new_item_id = random.choice(consumable_items)
             new_item = Item.get(Item.value == new_item_id)
@@ -382,7 +382,7 @@ def get_randomized_itempool(itempool:list, consumable_mode:int) -> list:
             new_item = Item.get(Item.item_name == "Mystery")
 
         new_itempool.append(new_item)
-        # print(f"Changed {item_obj} to {new_item}")
+        print(f"Changed {item_obj} to {new_item}")
 
     return new_itempool
 
