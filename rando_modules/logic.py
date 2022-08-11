@@ -1910,7 +1910,7 @@ def get_item_spheres(
                 item_spheres_text += f'    ({node_long_name}): TRAP ({item_verbose_name})\n'
             else:
                 if item.item_type != "ITEM" or is_itemlocation_replenishable(node):
-                    if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
+                    if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names or item.item_type == 'GEAR'):
                         item_suffix = "*"
                     mario.add_to_inventory(item.item_name)
 
