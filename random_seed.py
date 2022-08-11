@@ -75,7 +75,7 @@ class RandomSeed:
 
 
         # Item Placement
-        for placement_attempt in range(1, 6):  # try 5 times
+        for placement_attempt in range(1, 11):  # try 10 times
             try:
                 starting_chapter, starting_map_value = self.init_starting_map(self.rando_settings)
                 self.init_starting_partners(self.rando_settings)
