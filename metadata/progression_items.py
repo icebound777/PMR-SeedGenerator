@@ -114,8 +114,11 @@ progression_items = {
 
 progression_miscitems = [
     "TastyTonic",  # 0x0089 (Koopa Koot) alternative: Lime,Lemon;BubbleBerry,Coconut
+    "HoneySyrup",  # 0x00A4 (as ingredient for above)
     "SleepySheep", # 0x008F (Koopa Koot)
-    "LifeShroom",  # 0x0095 (Koopa Koot)
+    "StrangeLeaf", # 0x00A9 (as ingredient for cooking SleepySheep)
+    #"LifeShroom", # 0x0095 (Koopa Koot) > LimitedItem, better go cook it
+    "SuperShroom", # 0x008C (as ingredient for above)
     "Lemon",       # 0x009C (LemonCandy for AntiGuy)
     "Lime",        # 0x009D (Koopa Koot)
     "BlueBerry",   # 0x009E (Blue Flower Guard / Flower Fields Well)
