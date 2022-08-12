@@ -176,12 +176,10 @@ edges_mac = [
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["StrangeLeaf"],["BlueBerry"],["Cookbook"]], "pseudoitems": ["SleepySheep"]},
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["StrangeLeaf"],["YellowBerry"],["Cookbook"]], "pseudoitems": ["SleepySheep"]},
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["StrangeLeaf"],["RedBerry"],["Cookbook"]], "pseudoitems": ["SleepySheep"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["HoneySyrup"],["RedBerry"],["Cookbook"]], "pseudoitems": ["TastyTonic"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["HoneySyrup"],["YellowBerry"],["Cookbook"]], "pseudoitems": ["TastyTonic"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["HoneySyrup"],["BlueBerry"],["Cookbook"]], "pseudoitems": ["TastyTonic"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["HoneySyrup"],["Lemon"],["Cookbook"]], "pseudoitems": ["TastyTonic"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["HoneySyrup"],["Lime"],["Cookbook"]], "pseudoitems": ["TastyTonic"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["HoneySyrup"],["Coconut"],["Cookbook"]], "pseudoitems": ["TastyTonic"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["Lemon"]], "pseudoitems": ["TastyTonic"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["Lime"]], "pseudoitems": ["TastyTonic"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["BubbleBerry"],["Cookbook"]], "pseudoitems": ["TastyTonic"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["Coconut"]], "pseudoitems": ["TastyTonic"]},
 
     # MAC_03 Station District
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_02", "id": 3}, "reqs": []}, # Station District Exit Top -> Southern District Exit Bottom
