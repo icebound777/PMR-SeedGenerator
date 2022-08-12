@@ -91,7 +91,7 @@ class OptionSet:
         self.include_dojo = False
         self.gear_shuffle_mode = get_option_keyvalue_dict("GearShuffleMode")
         self.randomize_consumable_mode = 0
-        self.item_scarcity = 0
+        self.item_scarcity = 100
         self.add_item_pouches = False
         self.placement_algorithm = "ForwardFill"
         self.placement_logic = "NoGlitches"
@@ -884,7 +884,7 @@ def validate_options(options_dict):
         )
     if "ItemScarcity" in options_dict:
         assert (isinstance(options_dict.get("ItemScarcity").get("value"), int)
-            and 0 <= options_dict.get("ItemScarcity").get("value") <= 5
+            and 0 <= options_dict.get("ItemScarcity").get("value") <= 200
         )
     if "AddItemPouches" in options_dict:
         assert isinstance(options_dict.get("AddItemPouches").get("value"), bool)

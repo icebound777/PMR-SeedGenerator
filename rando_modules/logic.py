@@ -20,9 +20,8 @@ from rando_modules.random_shop_prices import get_shop_price
 from rando_modules.simulate import Mario
 
 from rando_modules.modify_itempool \
-    import get_scarcitied_itempool,\
-           get_trapped_itempool,   \
-           get_randomized_itempool
+    import get_randomized_itempool,\
+           get_trapped_itempool
 
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
 
@@ -1093,9 +1092,7 @@ def _generate_item_pools(
                            + len(pool_other_items)
 
     # Randomize consumables if needed
-    pool_other_items = get_randomized_itempool(pool_other_items, randomize_consumable_mode)
-
-    pool_other_items = get_scarcitied_itempool(pool_other_items, item_scarcity)
+    pool_other_items = get_randomized_itempool(pool_other_items, randomize_consumable_mode, item_scarcity)
 
     pool_other_items = get_trapped_itempool(
         pool_other_items,

@@ -1,5 +1,5 @@
 import random
-from math import ceil
+from math import ceil, floor
 
 from db.item import Item
 from db.node import Node
@@ -14,378 +14,384 @@ from metadata.itemlocation_special import \
     kootfavors_keyitem_locations, \
     limited_by_item_areas
 
-def get_scarcitied_itempool(itempool:list, scarcity:int) -> list:
+TYPE_BATTLEITEM = 0
+TYPE_HEALINGITEM = 1
+TYPE_TAYCETITEM = 2
+
+item_tiers = {
+    0: 0x157, # Coin
+    1: {
+        TYPE_BATTLEITEM: [
+            0x085, # Pebble
+            0x086, # DustyHammer
+        ],
+        TYPE_HEALINGITEM: [
+            0x089, # TastyTonic
+            0x08D, # DriedShroom
+        ],
+        TYPE_TAYCETITEM: [
+            0x0C2, # Mistake
+        ]
+    },
+    2: {
+        TYPE_BATTLEITEM: [
+            0x0AC, # Coconut
+        ],
+        TYPE_HEALINGITEM: [
+            0x09C, # Lemon
+            0x09D, # Lime
+            0x0A6, # KoopaLeaf
+            0x0AE, # StinkyHerb
+            0x0A5, # Goomnut
+            # 0x0A0, # YellowBerry
+            0x08A, # Mushroom
+            0x094, # Apple
+            # 0x09E, # BlueBerry
+            # 0x09F, # RedBerry
+            0x09B, # SuperSoda
+            # 0x0A1, # BubbleBerry
+            0x0A4, # HoneySyrup
+        ],
+        TYPE_TAYCETITEM: [
+            0x0B6, # FriedShroom
+        ],
+    },
+    3: {
+        TYPE_BATTLEITEM: [
+            0x090, # POWBlock
+            0x08B, # VoltShroom
+        ],
+        TYPE_HEALINGITEM: [
+            0x0AB, # Egg
+            0x0A7, # DriedPasta
+            0x0AF, # IcedPotato
+        ],
+        TYPE_TAYCETITEM: [
+            0x0C3, # KoopaTea
+            0x0B0, # SpicySoup
+        ],
+    },
+    4: {
+        TYPE_BATTLEITEM: [
+            0x096, # Mystery
+            0x080, # FireFlower
+            0x084, # ThunderBolt
+        ],
+        TYPE_HEALINGITEM: [
+            # 0x0AA, # CakeMix
+            0x08C, # SuperShroom
+            0x0CA, # HoneyShroom
+            0x0A3, # MapleSyrup
+        ],
+        TYPE_TAYCETITEM: [
+            0x0D5, # PotatoSalad
+            0x0D6, # NuttyCake
+            0x0C7, # Spaghetti
+            0x0C9, # FriedEgg
+            0x0B5, # Koopasta
+            0x0D8, # BoiledEgg
+            0x0D2, # StrangeCake
+        ],
+    },
+    5: {
+        TYPE_BATTLEITEM: [
+            0x081, # SnowmanDoll
+            0x08F, # SleepySheep
+            0x0C8, # EggMissile
+        ],
+        TYPE_HEALINGITEM: [
+            0x0A9, # StrangeLeaf
+            0x0A8, # DriedFruit
+            0x0AD, # Melon
+        ],
+        TYPE_TAYCETITEM: [
+            0x0BD, # BlandMeal
+            # 0x0C1, # Cake
+            0x0CF, # CocoPop
+            0x0D4, # FrozenFries
+            0x0C4, # HoneySuper
+            0x0B7, # ShroomCake
+            0x0CD, # FirePop
+            0x0D7, # MapleShroom
+            0x0C5, # MapleSuper
+        ],
+    },
+    6: {
+        TYPE_BATTLEITEM: [
+            0x082, # ThunderRage
+            0x091, # HustleDrink
+            0x098, # FrightJar
+            0x09A, # DizzyDial
+        ],
+        TYPE_HEALINGITEM: [
+
+        ],
+        TYPE_TAYCETITEM: [
+            0x0B1, # ApplePie
+            0x0D3, # KookyCookie
+            0x0B9, # HotShroom
+            0x0D0, # LemonCandy
+            0x0CB, # HoneyCandy
+            0x0CE, # LimeCandy
+            0x0BB, # YummyMeal
+            0x0D9, # YoshiCookie
+            0x0CC, # ElectroPop
+            0x0B8, # ShroomSteak
+        ],
+    },
+    7: {
+        TYPE_BATTLEITEM: [
+            0x088, # StoneCap
+        ],
+        TYPE_HEALINGITEM: [
+            0x095, # LifeShroom
+            0x093, # WhackasBump
+        ],
+        TYPE_TAYCETITEM: [
+            0x0BF, # SpecialShake
+            0x0C0, # BigCookie
+            0x0BC, # HealthyJuice
+            0x0BA, # SweetShroom
+        ],
+    },
+    8: {
+        TYPE_BATTLEITEM: [
+            0x092, # StopWatch
+            0x083, # ShootingStar
+        ],
+        TYPE_HEALINGITEM: [
+            0x08E, # UltraShroom
+            0x0A2, # JamminJelly
+        ],
+        TYPE_TAYCETITEM: [
+            0x0B2, # HoneyUltra
+            0x0DA, # JellyShroom1
+        ],
+    },
+    9: {
+        TYPE_BATTLEITEM: [
+
+        ],
+        TYPE_HEALINGITEM: [
+
+        ],
+        TYPE_TAYCETITEM: [
+            0x0B3, # MapleUltra
+            0x0C6, # JellySuper
+            0x0D1, # JellyPop
+        ],
+    },
+    10: {
+        TYPE_BATTLEITEM: [
+            0x097, # RepelGel
+        ],
+        TYPE_HEALINGITEM: [
+
+        ],
+        TYPE_TAYCETITEM: [
+            0x0B4, # JellyUltra
+            0x0BE, # DeluxeFeast
+        ],
+    },
+}
+
+def get_item_tier(item_id:int) -> int:
     """
-    Modifies and returns a given item pool for scarcity of consumables.
-    This swaps out items with weaker ones, according to the chosen scarcity
-    intensity.
+    Gets the tier of an item by its id, or -1 if not assigned one
     """
-    TYPE_BATTLEITEM = 0
-    TYPE_HEALINGITEM = 1
-    TYPE_TAYCETITEM = 2
+    item_tier = -1
 
-    scarcity_tiers = {
-        0: 0x157, # Coin
-        1: {
-            TYPE_BATTLEITEM: [
-                0x085, # Pebble
-                0x086, # DustyHammer
-            ],
-            TYPE_HEALINGITEM: [
-                0x089, # TastyTonic
-                0x08D, # DriedShroom
-            ],
-            TYPE_TAYCETITEM: [
-                0x0C2, # Mistake
-            ]
-        },
-        2: {
-            TYPE_BATTLEITEM: [
-                0x0AC, # Coconut
-            ],
-            TYPE_HEALINGITEM: [
-                0x09C, # Lemon
-                0x09D, # Lime
-                0x0A6, # KoopaLeaf
-                0x0AE, # StinkyHerb
-                0x0A5, # Goomnut
-                0x0A0, # YellowBerry
-                0x08A, # Mushroom
-                0x094, # Apple
-                0x09E, # BlueBerry
-                0x09F, # RedBerry
-                0x09B, # SuperSoda
-                0x0A1, # BubbleBerry
-                0x0A4, # HoneySyrup
-            ],
-            TYPE_TAYCETITEM: [
-                0x0B6, # FriedShroom
-            ],
-        },
-        3: {
-            TYPE_BATTLEITEM: [
-                0x090, # POWBlock
-                0x08B, # VoltShroom
-            ],
-            TYPE_HEALINGITEM: [
-                0x0AB, # Egg
-                0x0A7, # DriedPasta
-                0x0AF, # IcedPotato
-            ],
-            TYPE_TAYCETITEM: [
-                0x0C3, # KoopaTea
-                0x0B0, # SpicySoup
-            ],
-        },
-        4: {
-            TYPE_BATTLEITEM: [
-                0x096, # Mystery
-                0x080, # FireFlower
-                0x084, # ThunderBolt
-            ],
-            TYPE_HEALINGITEM: [
-                0x0AA, # CakeMix
-                0x08C, # SuperShroom
-                0x0CA, # HoneyShroom
-                0x0A3, # MapleSyrup
-            ],
-            TYPE_TAYCETITEM: [
-                0x0D5, # PotatoSalad
-                0x0D6, # NuttyCake
-                0x0C7, # Spaghetti
-                0x0C9, # FriedEgg
-                0x0B5, # Koopasta
-                0x0D8, # BoiledEgg
-                0x0D2, # StrangeCake
-            ],
-        },
-        5: {
-            TYPE_BATTLEITEM: [
-                0x081, # SnowmanDoll
-                0x08F, # SleepySheep
-                0x0C8, # EggMissile
-            ],
-            TYPE_HEALINGITEM: [
-                0x0A9, # StrangeLeaf
-                0x0A8, # DriedFruit
-                0x0AD, # Melon
-            ],
-            TYPE_TAYCETITEM: [
-                0x0BD, # BlandMeal
-                0x0C1, # Cake
-                0x0CF, # CocoPop
-                0x0D4, # FrozenFries
-                0x0C4, # HoneySuper
-                0x0B7, # ShroomCake
-                0x0CD, # FirePop
-                0x0D7, # MapleShroom
-                0x0C5, # MapleSuper
-            ],
-        },
-        6: {
-            TYPE_BATTLEITEM: [
-                0x082, # ThunderRage
-                0x091, # HustleDrink
-                0x098, # FrightJar
-                0x09A, # DizzyDial
-            ],
-            TYPE_HEALINGITEM: [
-
-            ],
-            TYPE_TAYCETITEM: [
-                0x0B1, # ApplePie
-                0x0D3, # KookyCookie
-                0x0B9, # HotShroom
-                0x0D0, # LemonCandy
-                0x0CB, # HoneyCandy
-                0x0CE, # LimeCandy
-                0x0BB, # YummyMeal
-                0x0D9, # YoshiCookie
-                0x0CC, # ElectroPop
-                0x0B8, # ShroomSteak
-            ],
-        },
-        7: {
-            TYPE_BATTLEITEM: [
-                0x088, # StoneCap
-            ],
-            TYPE_HEALINGITEM: [
-                0x095, # LifeShroom
-                0x093, # WhackasBump
-            ],
-            TYPE_TAYCETITEM: [
-                0x0BF, # SpecialShake
-                0x0C0, # BigCookie
-                0x0BC, # HealthyJuice
-                0x0BA, # SweetShroom
-            ],
-        },
-        8: {
-            TYPE_BATTLEITEM: [
-                0x092, # StopWatch
-                0x083, # ShootingStar
-            ],
-            TYPE_HEALINGITEM: [
-                0x08E, # UltraShroom
-                0x0A2, # JamminJelly
-            ],
-            TYPE_TAYCETITEM: [
-                0x0B2, # HoneyUltra
-                0x0DA, # JellyShroom1
-            ],
-        },
-        9: {
-            TYPE_BATTLEITEM: [
-
-            ],
-            TYPE_HEALINGITEM: [
-
-            ],
-            TYPE_TAYCETITEM: [
-                0x0B3, # MapleUltra
-                0x0C6, # JellySuper
-                0x0D1, # JellyPop
-            ],
-        },
-        10: {
-            TYPE_BATTLEITEM: [
-                0x097, # RepelGel
-            ],
-            TYPE_HEALINGITEM: [
-
-            ],
-            TYPE_TAYCETITEM: [
-                0x0B4, # JellyUltra
-                0x0BE, # DeluxeFeast
-            ],
-        },
-    }
-
-    # item scarcity:
-    # when placing a non-essential item, have a chance to replace the item with
-    # another from a lower item tier according to...
-    #
-    # 0    vanilla
-    # 1    30% chance to divide tier by 2
-    # 2    40% chance to divide tier by 2, 10% chance to divide tier by 3
-    # 3    50% chance to divide tier by 2, 20% chance to divide tier by 3
-    # 4    60% chance to divide tier by 2, 40% chance to divide tier by 3
-    # 5    100% chance to divide tier by 3
-    #
-    # Also choose an item by type:
-    # battle items    40% chance
-    # healing items   35% chance
-    # Tayce T. items  25% chance
-    #
-    # If no item of the chosen type exists in the chosen tier, retry with lower
-    # tier. If tier 0 is reached this way, pick randomly
-
-    # setting: {chance in %: divider}
-    scarcity_factors = {
-        0: {100: 1},
-        1: { 70: 1,
-             30: 2},
-        2: { 50: 1,
-             40: 2,
-             10: 3},
-        3: { 30: 1,
-             50: 2,
-             20: 3},
-        4: { 60: 2,
-             40: 3},
-        5: {100: 3}
-    }
-
-    # item type: {chance in %}
-    itemtype_chances = {
-        TYPE_BATTLEITEM: 40,
-        TYPE_HEALINGITEM: 35,
-        TYPE_TAYCETITEM: 25
-    }
-
-    new_itempool = []
-
-    for item_obj in itempool:
-        item_id = item_obj.value
-        scarcity_tier = -1
-
-        # Fetch scarcity tier of current item
-        for tier, type_dict in scarcity_tiers.items():
-            if isinstance(type_dict, int) and tier == 0 and item_id == type_dict:
-                scarcity_tier = tier
-                break
-            if isinstance(type_dict, dict):
-                for item_list in type_dict.values():
-                    if item_id in item_list:
-                        scarcity_tier = tier
-                        break
-
-        # If current item is not in scarcity list, or we're doing vanilla
-        # scarcity, skip replacing it
-        if scarcity_tier == -1 or scarcity == 0:
-            new_itempool.append(item_obj)
-            #print(f"Kept {item_obj}")
-            continue
-
-        # Choose random new scarcity tier for current item
-        rnd_value = random.random() * 100
-        probability_count = 0
-        for chance, divider in scarcity_factors.get(scarcity).items():
-            probability_count += chance
-            if rnd_value <= probability_count:
-                tier_divider = divider
-                break
-        new_scarcity_tier = ceil(scarcity_tier / tier_divider)
-
-        # Get new item if scarcity changed
-        if scarcity_tier == new_scarcity_tier:
-            new_itempool.append(item_obj)
-            #print(f"Kept {item_obj}")
-        else:
-            # Determine item type to pick
-            rnd_value = random.random() * 100
-            probability_count = 0
-            chosen_type = TYPE_BATTLEITEM # default
-            for item_type, chance in itemtype_chances.items():
-                probability_count += chance
-                if rnd_value <= probability_count:
-                    chosen_type = item_type
+    # Fetch item tier of current item
+    for tier, type_dict in item_tiers.items():
+        if isinstance(type_dict, int) and tier == 0 and item_id == type_dict:
+            item_tier = tier
+            break
+        if isinstance(type_dict, dict):
+            for item_list in type_dict.values():
+                if item_id in item_list:
+                    item_tier = tier
                     break
 
-            # Search for lower tier item of the chosen item type
-            item_found = False
-            new_item_id = 0
-            while not item_found:
-                if (new_scarcity_tier >= 1
-                and scarcity_tiers.get(new_scarcity_tier).get(chosen_type)
-                ):
-                    new_item_id = random.choice(scarcity_tiers.get(new_scarcity_tier).get(chosen_type))
-                    item_found = True
-                elif new_scarcity_tier >= 1:
-                    new_scarcity_tier = new_scarcity_tier - 1
-                else:
-                    # Reached tier 0: Coin only
-                    new_item_id = scarcity_tiers.get(new_scarcity_tier)
-                    item_found = True
-
-            # Add item
-            new_item = Item.get(Item.value == new_item_id)
-            new_itempool.append(new_item)
-
-            #print(f"Changed {item_obj} to {new_item}")
-
-    return new_itempool
+    return item_tier
 
 
-def get_randomized_itempool(itempool:list, consumable_mode:int) -> list:
+def get_random_item_by_tier(item_tier:int, item_type:int) -> int:
     """
-    Randomizes the consumable items in the item pool
+    Returns the id of an item with the given tier and type, or of
+    a lower tier if no item of that tier and type exists
+    """
+    new_item_id = 0
+    # Search for item of given tier, or lower tier if none exists
+    item_found = False
+    while not item_found:
+        if (item_tier >= 1
+            and item_tiers.get(item_tier).get(item_type)
+        ):
+            new_item_id = random.choice(item_tiers.get(item_tier).get(item_type))
+            item_found = True
+        elif item_tier >= 1:
+            item_tier = item_tier - 1
+        else:
+            # Reached tier 0: Coin only
+            new_item_id = item_tiers.get(item_tier)
+            item_found = True
+    
+    return new_item_id
+
+
+def randomize_value_list(value_list:list, scarcity:int) -> list:
+    """
+    When given a list of number of items at each tier, returns a new list
+    with the a value of the value of the original list, multiplied by the scarcity
+    """
+    # Prime numbers used as tier scores to try and force more interesting combinations
+    tier_scores = [0, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+    list_score = sum([tier_scores[i] * num for (i, num) in enumerate(value_list)])
+    target_score = floor(list_score * scarcity / 100)
+    # print(f'Input Score: {list_score} Target Score: {target_score}')
+
+    new_value_list = value_list.copy()
+    # Special case: scarcity too low, must add in coins to make up difference
+    if target_score < sum(new_value_list) * tier_scores[1]:
+        n = sum(value_list)
+        new_value_list = [0] * 11
+        list_score = 0
+        # Add random items until exceeded score
+        while list_score < target_score:
+            a = random.randrange(10) + 1
+            new_value_list[a] += 1
+            list_score += tier_scores[a]
+        # Fill the rest with coins (tier 0 item)
+        new_value_list[0] = n - sum(new_value_list)
+        return new_value_list
+
+    # Special case: scarcity too high, fill with top tier items
+    # This should never happen...
+    if target_score > sum(new_value_list) * tier_scores[10]:
+        n = sum(new_value_list)
+        new_value_list = [0] * 11
+        new_value_list[10] = n
+        return new_value_list
+
+    i = 0
+    # Run at least 25 times to fuzz initial state
+    while i < 25 or list_score != target_score:
+        i += 1
+        # Generate two random tiers
+        a = random.randrange(10) + 1
+        b = random.randrange(10) + 1
+        if a == b:
+            continue
+        elif a > b:
+            higher, lower = a, b
+        else:
+            higher, lower = b, a
+
+        # If the score is too high,
+        # add to the lower tier and subtract from the higher tier
+        if list_score > target_score and new_value_list[higher] > 0:
+            new_value_list[lower] += 1
+            new_value_list[higher] -= 1
+            list_score += tier_scores[lower] - tier_scores[higher]
+        # If the score is too low,
+        # add the to higher tier and subtract from the lower tier
+        elif list_score <= target_score and new_value_list[lower] > 0:
+            new_value_list[higher] += 1
+            new_value_list[lower] -= 1
+            list_score += tier_scores[higher] - tier_scores[lower]
+
+    return new_value_list
+
+
+def get_randomized_itempool(itempool:list, consumable_mode:int, scarcity:int) -> list:
+    """
+    Returns a randomized general item pool according to consumable mode
+    Balanced random mode creates an item pool that has a value equal
+    to the input pool's value, multiplied by the scarcity percentage
     """
     # Consumable mode:
-    # 0: no change
-    # 1: full random consumables
-    # 2: retain item category (healing/battle/taycet)
-    # 3: healing items only
-    # 4: battle items only
-    # 5: mysteries only
+    # 0: vanilla (no scarcity)
+    # 1: balanced random (scarcity applies)
+    # 2: full random (no scarcity)
+    # 3: mystery only (no scarcity)
 
     if consumable_mode == 0:
+        # vanilla
         return itempool
+    elif consumable_mode == 1:
+        # construct a new lists of item tier counts for balanced random
+        # Handle battle and healing items seperately 
+        base_battle_counts = [0] * 11
+        base_healing_counts = [0] * 11
+        for item_obj in itempool:
+            item_id = item_obj.value
+            item_tier = get_item_tier(item_id)
+            # Only counting tiered items
+            if item_tier > 0:
+                if item_id in battle_items:
+                    base_battle_counts[item_tier] += 1
+                else:
+                    base_healing_counts[item_tier] += 1
 
+        target_battle_counts = randomize_value_list(base_battle_counts, scarcity)
+        target_healing_counts = randomize_value_list(base_healing_counts, scarcity)
+        # print(f"Scarcity: {scarcity}")
+        # print(f"Battle Base:\t{base_battle_counts}")
+        # print(f"Battle Target:\t{target_battle_counts}")
+        # print(f"Healing Base:\t{base_healing_counts}")
+        # print(f"Healing Target:\t{target_healing_counts}")
+
+    # Construct a new item pool
     new_itempool = []
-    for item_obj in itempool:      
-        # Only replace consumable items, not badges
+    for item_obj in itempool:
+        # Only replace consumable items, not badges or anything else
         if item_obj.item_type != "ITEM":
             new_itempool.append(item_obj)
-            # print(f"Kept {item_obj}")
             continue
-
-        # full random
+        
+        # Balanced random
         if consumable_mode == 1:
-            # Get a new random consumable to place
+            new_item_id = 0
+            # handle battle items
+            if sum(target_battle_counts) > 0:
+                for tier, count in enumerate(target_battle_counts):
+                    if count <= 0:
+                        continue
+                    else:
+                        new_item_id = get_random_item_by_tier(tier, TYPE_BATTLEITEM)
+                        target_battle_counts[tier] -= 1
+                        break
+            # handle healing items
+            else:
+                # 10% chance for healing items to be tayce t item
+                new_item_type = TYPE_HEALINGITEM if random.randrange(10) != 0 else TYPE_TAYCETITEM
+                for tier, count in enumerate(target_healing_counts):
+                    if count <= 0:
+                        continue
+                    else:
+                        new_item_id = get_random_item_by_tier(tier, new_item_type)
+                        target_healing_counts[tier] -= 1
+                        break
+
+            new_item_obj = Item.get(Item.value == new_item_id)
+        # Full random
+        elif consumable_mode == 2:
             consumable_items = []
             consumable_items += healing_items
             consumable_items += battle_items
             consumable_items += taycet_items
 
             new_item_id = random.choice(consumable_items)
-            new_item = Item.get(Item.value == new_item_id)
+            new_item_obj = Item.get(Item.value == new_item_id)
+        # Mystery only
+        elif consumable_mode == 3: 
+            new_item_obj = Item.get(Item.item_name == "Mystery")
 
-        # retain item category
-        if consumable_mode == 2:
-            item_id = item_obj.value
-            if item_id in healing_items:
-                new_item_id = random.choice(healing_items)
-            elif item_id in battle_items:
-                new_item_id = random.choice(battle_items)
-            elif item_id in taycet_items:
-                new_item_id = random.choice(taycet_items)
-            else:
-                new_itempool.append(item_obj) #Not randomized
-                # print(f"Kept {item_obj}")
-                continue
-            
-            new_item = Item.get(Item.value == new_item_id)
+        # print(f"Changed {item_obj} to {new_item_obj}")
+        new_itempool.append(new_item_obj)
 
-        # healing only
-        if consumable_mode == 3:
-            new_item_id = random.choice(healing_items)
-            new_item = Item.get(Item.value == new_item_id)
-
-        # battle only
-        if consumable_mode == 4:
-            new_item_id = random.choice(battle_items)
-            new_item = Item.get(Item.value == new_item_id)
-
-        # mystery only
-        elif consumable_mode == 5:
-            new_item = Item.get(Item.item_name == "Mystery")
-
-        new_itempool.append(new_item)
-        print(f"Changed {item_obj} to {new_item}")
-
+    assert(len(itempool) == len(new_itempool))
     return new_itempool
-
 
 def get_trapped_itempool(
     itempool:list,
