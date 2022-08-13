@@ -28,6 +28,9 @@ item_tiers = {
         TYPE_HEALINGITEM: [
             0x089, # TastyTonic
             0x08D, # DriedShroom
+            0x09C, # Lemon
+            0x09D, # Lime
+            0x0A5, # Goomnut
         ],
         TYPE_TAYCETITEM: [
             0x0C2, # Mistake
@@ -35,162 +38,107 @@ item_tiers = {
     },
     2: {
         TYPE_BATTLEITEM: [
+            0x080, # FireFlower
+            0x084, # ThunderBolt
+            0x08B, # VoltShroom
+            0x090, # POWBlock
+            0x096, # Mystery
             0x0AC, # Coconut
         ],
         TYPE_HEALINGITEM: [
-            0x09C, # Lemon
-            0x09D, # Lime
-            0x0A6, # KoopaLeaf
-            0x0AE, # StinkyHerb
-            0x0A5, # Goomnut
-            # 0x0A0, # YellowBerry
             0x08A, # Mushroom
             0x094, # Apple
+            0x09B, # SuperSoda
             # 0x09E, # BlueBerry
             # 0x09F, # RedBerry
-            0x09B, # SuperSoda
+            # 0x0A0, # YellowBerry
             # 0x0A1, # BubbleBerry
             0x0A4, # HoneySyrup
-        ],
-        TYPE_TAYCETITEM: [
-            0x0B6, # FriedShroom
-        ],
-    },
-    3: {
-        TYPE_BATTLEITEM: [
-            0x090, # POWBlock
-            0x08B, # VoltShroom
-        ],
-        TYPE_HEALINGITEM: [
-            0x0AB, # Egg
+            0x0A6, # KoopaLeaf
             0x0A7, # DriedPasta
+            0x0A9, # StrangeLeaf
+            0x0AB, # Egg
+            0x0AE, # StinkyHerb
             0x0AF, # IcedPotato
         ],
         TYPE_TAYCETITEM: [
-            0x0C3, # KoopaTea
             0x0B0, # SpicySoup
+            0x0B6, # FriedShroom
+            0x0C3, # KoopaTea
         ],
     },
-    4: {
-        TYPE_BATTLEITEM: [
-            0x096, # Mystery
-            0x080, # FireFlower
-            0x084, # ThunderBolt
-        ],
-        TYPE_HEALINGITEM: [
-            # 0x0AA, # CakeMix
-            0x08C, # SuperShroom
-            0x0CA, # HoneyShroom
-            0x0A3, # MapleSyrup
-        ],
-        TYPE_TAYCETITEM: [
-            0x0D5, # PotatoSalad
-            0x0D6, # NuttyCake
-            0x0C7, # Spaghetti
-            0x0C9, # FriedEgg
-            0x0B5, # Koopasta
-            0x0D8, # BoiledEgg
-            0x0D2, # StrangeCake
-        ],
-    },
-    5: {
+    3: {
         TYPE_BATTLEITEM: [
             0x081, # SnowmanDoll
             0x08F, # SleepySheep
             0x0C8, # EggMissile
         ],
         TYPE_HEALINGITEM: [
-            0x0A9, # StrangeLeaf
+            0x08C, # SuperShroom
+            0x0A3, # MapleSyrup
             0x0A8, # DriedFruit
+            0x0AA, # CakeMix
             0x0AD, # Melon
         ],
         TYPE_TAYCETITEM: [
-            0x0BD, # BlandMeal
-            # 0x0C1, # Cake
-            0x0CF, # CocoPop
-            0x0D4, # FrozenFries
-            0x0C4, # HoneySuper
+            0x0B1, # ApplePie
+            0x0B5, # Koopasta
             0x0B7, # ShroomCake
-            0x0CD, # FirePop
-            0x0D7, # MapleShroom
+            0x0B9, # HotShroom
+            0x0BD, # BlandMeal
+            0x0C1, # Cake
+            0x0CA, # HoneyShroom
+            0x0C4, # HoneySuper
             0x0C5, # MapleSuper
+            0x0C7, # Spaghetti
+            0x0C9, # FriedEgg
+            0x0CB, # HoneyCandy
+            0x0CD, # FirePop
+            0x0CE, # LimeCandy
+            0x0CF, # CocoPop
+            0x0D0, # LemonCandy
+            0x0D2, # StrangeCake
+            0x0D3, # KookyCookie
+            0x0D4, # FrozenFries
+            0x0D5, # PotatoSalad
+            0x0D6, # NuttyCake
+            0x0D7, # MapleShroom
+            0x0D8, # BoiledEgg
         ],
     },
-    6: {
+    4: {
         TYPE_BATTLEITEM: [
             0x082, # ThunderRage
+            0x083, # ShootingStar
+            0x088, # StoneCap
             0x091, # HustleDrink
+            0x092, # StopWatch
+            0x097, # RepelGel
             0x098, # FrightJar
             0x09A, # DizzyDial
         ],
         TYPE_HEALINGITEM: [
-
-        ],
-        TYPE_TAYCETITEM: [
-            0x0B1, # ApplePie
-            0x0D3, # KookyCookie
-            0x0B9, # HotShroom
-            0x0D0, # LemonCandy
-            0x0CB, # HoneyCandy
-            0x0CE, # LimeCandy
-            0x0BB, # YummyMeal
-            0x0D9, # YoshiCookie
-            0x0CC, # ElectroPop
-            0x0B8, # ShroomSteak
-        ],
-    },
-    7: {
-        TYPE_BATTLEITEM: [
-            0x088, # StoneCap
-        ],
-        TYPE_HEALINGITEM: [
-            0x095, # LifeShroom
-            0x093, # WhackasBump
-        ],
-        TYPE_TAYCETITEM: [
-            0x0BF, # SpecialShake
-            0x0C0, # BigCookie
-            0x0BC, # HealthyJuice
-            0x0BA, # SweetShroom
-        ],
-    },
-    8: {
-        TYPE_BATTLEITEM: [
-            0x092, # StopWatch
-            0x083, # ShootingStar
-        ],
-        TYPE_HEALINGITEM: [
             0x08E, # UltraShroom
+            0x093, # WhackasBump
+            0x095, # LifeShroom
             0x0A2, # JamminJelly
         ],
         TYPE_TAYCETITEM: [
             0x0B2, # HoneyUltra
-            0x0DA, # JellyShroom1
-        ],
-    },
-    9: {
-        TYPE_BATTLEITEM: [
-
-        ],
-        TYPE_HEALINGITEM: [
-
-        ],
-        TYPE_TAYCETITEM: [
             0x0B3, # MapleUltra
-            0x0C6, # JellySuper
-            0x0D1, # JellyPop
-        ],
-    },
-    10: {
-        TYPE_BATTLEITEM: [
-            0x097, # RepelGel
-        ],
-        TYPE_HEALINGITEM: [
-
-        ],
-        TYPE_TAYCETITEM: [
             0x0B4, # JellyUltra
+            0x0B8, # ShroomSteak
+            0x0BA, # SweetShroom
+            0x0BB, # YummyMeal
+            0x0BC, # HealthyJuice
             0x0BE, # DeluxeFeast
+            0x0BF, # SpecialShake
+            0x0C0, # BigCookie
+            0x0C6, # JellySuper
+            0x0CC, # ElectroPop
+            0x0D1, # JellyPop
+            0x0D9, # YoshiCookie
+            0x0DA, # JellyShroom1
         ],
     },
 }
@@ -244,8 +192,8 @@ def randomize_value_list(value_list:list, scarcity:int) -> list:
     When given a list of number of items at each tier, returns a new list
     with the a value of the value of the original list, multiplied by the scarcity
     """
-    # Prime numbers used as tier scores to try and force more interesting combinations
-    tier_scores = [0, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+    # Score for each item tier
+    tier_scores = [0, 2, 5, 11, 15]
     list_score = sum([tier_scores[i] * num for (i, num) in enumerate(value_list)])
     target_score = floor(list_score * scarcity / 100)
     # print(f'Input Score: {list_score} Target Score: {target_score}')
@@ -254,7 +202,7 @@ def randomize_value_list(value_list:list, scarcity:int) -> list:
     # Special case: scarcity too low, must add in coins to make up difference
     if target_score < sum(new_value_list) * tier_scores[1]:
         n = sum(value_list)
-        new_value_list = [0] * 11
+        new_value_list = [0] * len(item_tiers)
         list_score = 0
         # Add random items until exceeded score
         while list_score < target_score:
@@ -267,19 +215,20 @@ def randomize_value_list(value_list:list, scarcity:int) -> list:
 
     # Special case: scarcity too high, fill with top tier items
     # This should never happen...
-    if target_score > sum(new_value_list) * tier_scores[10]:
+    if target_score > sum(new_value_list) * tier_scores[len(item_tiers) - 1]:
         n = sum(new_value_list)
-        new_value_list = [0] * 11
-        new_value_list[10] = n
+        new_value_list = [0] * len(item_tiers)
+        new_value_list[len(item_tiers) - 1] = n
         return new_value_list
 
     i = 0
     # Run at least 25 times to fuzz initial state
-    while i < 25 or list_score != target_score:
+    # If it ever takes more than 1000 iterations, cut it off
+    while i < 25 or i > 1000 or list_score != target_score:
         i += 1
         # Generate two random tiers
-        a = random.randrange(10) + 1
-        b = random.randrange(10) + 1
+        a = random.randrange(len(item_tiers) - 1) + 1
+        b = random.randrange(len(item_tiers) - 1) + 1
         if a == b:
             continue
         elif a > b:
@@ -321,8 +270,8 @@ def get_randomized_itempool(itempool:list, consumable_mode:int, scarcity:int) ->
     elif consumable_mode == 1:
         # construct a new lists of item tier counts for balanced random
         # Handle battle and healing items seperately 
-        base_battle_counts = [0] * 11
-        base_healing_counts = [0] * 11
+        base_battle_counts = [0] * len(item_tiers)
+        base_healing_counts = [0] * len(item_tiers)
         for item_obj in itempool:
             item_id = item_obj.value
             item_tier = get_item_tier(item_id)
@@ -337,9 +286,9 @@ def get_randomized_itempool(itempool:list, consumable_mode:int, scarcity:int) ->
         target_healing_counts = randomize_value_list(base_healing_counts, scarcity)
         # print(f"Scarcity: {scarcity}")
         # print(f"Battle Base:\t{base_battle_counts}")
-        # print(f"Battle Target:\t{target_battle_counts}")
+        # print(f"Battle New:\t{target_battle_counts}")
         # print(f"Healing Base:\t{base_healing_counts}")
-        # print(f"Healing Target:\t{target_healing_counts}")
+        # print(f"Healing New:\t{target_healing_counts}")
 
     # Construct a new item pool
     new_itempool = []
@@ -351,7 +300,6 @@ def get_randomized_itempool(itempool:list, consumable_mode:int, scarcity:int) ->
         
         # Balanced random
         if consumable_mode == 1:
-            new_item_id = 0
             # handle battle items
             if sum(target_battle_counts) > 0:
                 for tier, count in enumerate(target_battle_counts):
