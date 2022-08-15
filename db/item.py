@@ -90,13 +90,16 @@ def create_items():
             # Ignore fake Volcano Vase
             continue
         item_name = Enums.get("Item")[item_id]
-        if "Proxy" in item_name:
-            print(f"{item_name}: unplaceable? -> {item_name in unplaceable_items}")
+        base_price = int(item["Sell Value"], 10) if item["Sell Value"] != "FFFF" else 50
+        if "BubbleBerryProxy" in item_name:
+            base_price = 3
+        elif "BerryProxy" in item_name:
+            base_price = 2
         item,_ = Item.get_or_create(
             item_type = Item.get_type(item_id),
             value = item_id,
             item_name = item_name,
-            base_price = int(item["Sell Value"], 10) if item["Sell Value"] != "FFFF" else 50,
+            base_price = base_price,
             progression = (Item.get_type(item_id) in ["KEYITEM","PARTNER"] and item_id in progression_items.keys()),
             unused = item_name in unused_items,
             unplaceable = item_name in unplaceable_items
