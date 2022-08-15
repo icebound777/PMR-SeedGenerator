@@ -1,6 +1,7 @@
 """General setup and supportive functionalities for the randomizer."""
 import io
 import os
+import random
 import sys
 import getopt
 import hashlib
@@ -128,8 +129,7 @@ def write_data_to_rom(
     palette_data:list,
     quiz_data:list,
     music_list:list,
-    seed=int(hashlib.md5().hexdigest()[0:8], 16),
-    edit_seed="0x0123456789ABCDEF"
+    seed_id=random.randint(0, 0xFFFFFFFF)
 ):
     """
     Generates key:value pairs of locations and items from a randomized item set
@@ -164,7 +164,7 @@ def write_data_to_rom(
                                  + (len_itemhints * 4)
                                  + end_of_content_marker
                                  + end_padding)
-    rom_table.info["seed"] = seed
+    rom_table.info["seed"] = seed_id
     rom_table.info["formations_offset"] = len(table_data) * 8
     rom_table.info["itemhints_offset"] = (  rom_table.info["formations_offset"]
                                           + end_of_content_marker
@@ -258,7 +258,7 @@ def write_data_to_array(
     palette_data:list,
     quiz_data:list,
     music_list:list,
-    seed=int(hashlib.md5().hexdigest()[0:8], 16)
+    seed_id: int
 ):
     """
     Generates key:value pairs of locations and items from a randomized item set
@@ -294,7 +294,7 @@ def write_data_to_array(
                                  + (len_itemhints * 4)
                                  + end_of_content_marker
                                  + end_padding)
-    rom_table.info["seed"] = seed
+    rom_table.info["seed"] = seed_id
     rom_table.info["formations_offset"] = len(table_data) * 8
     rom_table.info["itemhints_offset"] = (  rom_table.info["formations_offset"]
                                           + end_of_content_marker
@@ -555,7 +555,7 @@ def web_randomizer(jsonSettings, world_graph):
         palette_data=random_seed.palette_data,
         quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
-        seed=random_seed.seed_value
+        seed_id=data["SeedID"]["value"]
     )
     patch_file = io.BytesIO(operations)
 
@@ -707,8 +707,7 @@ def main_randomizer(args):
         coin_palette_crcs=random_seed.coin_palette.crcs,
         palette_data=random_seed.palette_data,
         quiz_data=random_seed.quiz_list,
-        music_list=random_seed.music_list,
-        seed=random_seed.seed_value
+        music_list=random_seed.music_list
     )
 
     # Write sorted spoiler log
