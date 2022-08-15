@@ -1,10 +1,10 @@
 progression_items = {
-    0x0001 : "Jump",
-  #  0x0002 : "SpinJump",
-  #  0x0003 : "TornadoJump",
-    0x0004 : "Hammer",
-   # 0x0005 : "SuperHammer",
-   # 0x0006 : "UltraHammer",
+    #0x0001 : "Jump",
+    #0x0002 : "SpinJump",
+    #0x0003 : "TornadoJump",
+    #0x0004 : "Hammer",
+    #0x0005 : "SuperHammer",
+    #0x0006 : "UltraHammer",
     #0x0010 : "KoopaFortressKey", # see end of list
     #0x0011 : "RuinsKey", # see end of list
     0x0012 : "PulseStone",
@@ -101,14 +101,20 @@ progression_items = {
     0x017A : "BowserCastleKeyC",
     0x017B : "BowserCastleKeyD",
     0x017C : "BowserCastleKeyE",
+    0x01E5 : "BootsProxy1",
+    0x01E6 : "BootsProxy2",
+    0x01E7 : "BootsProxy3",
+    0x01E8 : "HammerProxy1",
+    0x01E9 : "HammerProxy2",
+    0x01EA : "HammerProxy3",
     #0x01D1 : "Goombario",
-    0x01E2 : "Kooper",
-    0x01E3 : "Bombette",
-    0x01E4 : "Parakarry",
-    0x01E6 : "Watt",
-    0x01E7 : "Sushie",
-    0x01E8 : "Lakilester",
-    0x01E9 : "Bow",
+    0x0200 : "Kooper",
+    0x0201 : "Bombette",
+    0x0202 : "Parakarry",
+    0x0204 : "Watt",
+    0x0205 : "Sushie",
+    0x0206 : "Lakilester",
+    0x0207 : "Bow",
 }
     # 0x0078 ??
 
@@ -120,10 +126,10 @@ progression_miscitems = [
     "SuperShroom", # 0x008C (as ingredient for above)
     "Lemon",       # 0x009C (LemonCandy for AntiGuy)
     "Lime",        # 0x009D (Koopa Koot)
-    "BlueBerry",   # 0x009E (Blue Flower Guard / Flower Fields Well)
-    "RedBerry",    # 0x009F (Red Flower Guard)
-    "YellowBerry", # 0x00A0 (Yellow Flower Guard)
-    "BubbleBerry", # 0x00A1 (BubbleFlower)
+    "BlueBerryProxy1",   # 0x009E (Blue Flower Guard / Flower Fields Well)
+    "RedBerryProxy1",    # 0x009F (Red Flower Guard)
+    "YellowBerryProxy1", # 0x00A0 (Yellow Flower Guard)
+    "BubbleBerryProxy1", # 0x00A1 (BubbleFlower)
     "Goomnut",     # 0x00A5 (Koopa Koot: NuttyCake from Tayce T.)
     "KoopaLeaf",   # 0x00A6 (Koopa Koot: KoopaTea from Tayce T.)
     "DriedPasta",  # 0x00A7 (Koopa Koot: +KoopaLeaf -> Koopasta from Tayce T.)

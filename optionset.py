@@ -287,6 +287,8 @@ class OptionSet:
             self.starting_starpower = options_dict.get("StartingStarPower")
         if "StartingBoots" in options_dict:
             self.starting_boots = options_dict.get("StartingBoots")
+            if self.starting_boots.get("value") == -1:
+                self.starting_boots["value"] = 0xFF
         if "StartingHammer" in options_dict:
             self.starting_hammer = options_dict.get("StartingHammer")
             if self.starting_hammer.get("value") == -1:
@@ -809,8 +811,12 @@ def validate_options(options_dict):
         assert (    isinstance(options_dict.get("StartingStarPower").get("value"), int)
                 and 0 <= options_dict.get("StartingStarPower").get("value") <= 7)
     if "StartingBoots" in options_dict:
-        assert (    isinstance(options_dict.get("StartingBoots").get("value"), int)
-                and 0 <= options_dict.get("StartingBoots").get("value") <= 2)
+        try:
+            assert (    isinstance(options_dict.get("StartingBoots").get("value"), int)
+                    and 0 <= options_dict.get("StartingBoots").get("value") <= 2)
+        except AssertionError:
+            print("Preset Error: Jumpless start Not Yet Implemented in logic!")
+            raise
     if "StartingHammer" in options_dict:
         assert (    isinstance(options_dict.get("StartingHammer").get("value"), int)
                 and -1 <= options_dict.get("StartingHammer").get("value") <= 2)
