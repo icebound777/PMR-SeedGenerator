@@ -39,12 +39,12 @@ edges_kmr  = [
     {"from": {"map": "KMR_02", "id": "Partner"     },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* Partner (Goombario) -> Goomba Village Exit Left
 
     {"from": {"map": "KMR_02", "id": 1},               "to": {"map": "KMR_02", "id": 1}, "reqs": [], "pseudoitems": ["StarPiece_KMR_1",
-                                                                                                                     "StarPiece_KMR_2",
-                                                                                                                     "StarPiece_KMR_3",
-                                                                                                                     "StarPiece_KMR_4",
-                                                                                                                     "StarPiece_KMR_5",
-                                                                                                                     "StarPiece_KMR_6",
-                                                                                                                     "StarPiece_KMR_7",
+                                                                                                                   #  "StarPiece_KMR_2",
+                                                                                                                   #  "StarPiece_KMR_3",
+                                                                                                                   #  "StarPiece_KMR_4",
+                                                                                                                   #  "StarPiece_KMR_5",
+                                                                                                                   #  "StarPiece_KMR_6",
+                                                                                                                   #  "StarPiece_KMR_7",
                                                                                                                      "StarPiece_KMR_8"]}, #+ Quizmo StarPieces
 
     # KMR_05 Behind the Village

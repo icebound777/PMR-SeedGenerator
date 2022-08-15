@@ -307,21 +307,17 @@ def _init_mario_inventory(
         mario.add_to_inventory("RF_PartnersAlwaysUsable")
 
     if starting_boots == 2:
-        mario.add_to_inventory("BootsB")
-    if starting_boots >= 1:
-        mario.add_to_inventory("BootsA")
-    #* Commented out, as -1 boots never affect logic
-    #if starting_boots >= 0:
-    #    mario.add_to_inventory("BootsC")
-    mario.add_to_inventory("BootsC")
+        mario.add_to_inventory("BootsProxy3")
+    if starting_boots in [1,2]:
+        mario.add_to_inventory("BootsProxy2")
+    if starting_boots in [0,1,2]:
+        mario.add_to_inventory("BootsProxy1")
     if starting_hammer == 2:
-        mario.add_to_inventory("HammerC")
+        mario.add_to_inventory("HammerProxy3")
     if starting_hammer in [1,2]:
-        mario.add_to_inventory("HammerB")
+        mario.add_to_inventory("HammerProxy2")
     if starting_hammer in [0,1,2]:
-        mario.add_to_inventory("HammerA")
-    if starting_hammer == 0xFF:
-        mario.add_to_inventory("RF_HammerlessStart")
+        mario.add_to_inventory("HammerProxy1")
 
     for item in starting_items:
         mario.add_to_inventory(item.item_name)
@@ -764,19 +760,22 @@ def get_items_to_exclude(
             excluded_items.append(item)
     if gear_shuffle_mode >= 1:
         if starting_hammer == 2:
-            item = Item.get(Item.item_name == "HammerC")
+            item = Item.get(Item.item_name == "HammerProxy3")
             excluded_items.append(item)
         if starting_hammer in [1,2]:
-            item = Item.get(Item.item_name == "HammerB")
+            item = Item.get(Item.item_name == "HammerProxy2")
             excluded_items.append(item)
         if starting_hammer in [0,1,2]:
-            item = Item.get(Item.item_name == "HammerA")
+            item = Item.get(Item.item_name == "HammerProxy1")
             excluded_items.append(item)
         if starting_boots == 2:
-            item = Item.get(Item.item_name == "BootsB")
+            item = Item.get(Item.item_name == "BootsProxy3")
             excluded_items.append(item)
         if starting_boots in [1,2]:
-            item = Item.get(Item.item_name == "BootsA")
+            item = Item.get(Item.item_name == "BootsProxy2")
+            excluded_items.append(item)
+        if starting_boots in [0,1,2]:
+            item = Item.get(Item.item_name == "BootsProxy1")
             excluded_items.append(item)
 
     return excluded_items
@@ -1029,6 +1028,19 @@ def _generate_item_pools(
             if cnt_items_removed == 5:
                 break
         pool_other_items.extend(pouch_items)
+
+    # If we start jumpless, add a progressive boots item to the item pool
+    if starting_boots == 0xFF:
+        new_boots = Item.get(Item.item_name == "BootsProxy1")
+        while True:
+            rnd_index = random.randint(0, len(pool_other_items) - 1)
+            rnd_item = pool_other_items.pop(rnd_index)
+            if rnd_item.item_type == "ITEM":
+                break
+            else:
+                pool_other_items.append(rnd_item)
+        pool_other_items.extend(new_boots)
+
 
     # Adjust item pools based on settings
     goal_size_item_pool = len(pool_progression_items)      \
@@ -1678,6 +1690,9 @@ def _algo_assumed_fill(
         pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
     pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 
+    # helper var for placing the regular boots during gear location shuffle
+    boots_placed = 0
+
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()
         mario = _init_mario_inventory(
@@ -1710,12 +1725,10 @@ def _algo_assumed_fill(
             candidate_locations = [node for node in candidate_locations if node.map_area.name[:3] == dungeon]
             dungeon_restricted_items.pop(item.item_name)
 
-        if item.item_type == "GEAR" and gear_shuffle_mode == 1:
+        if item.item_type == "GEAR" and gear_shuffle_mode == 1 and boots_placed < 2:
             # gear location shuffle
             candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
-        elif item.item_type == "GEAR":
-            # full gear shuffle
-            candidate_locations = [node for node in candidate_locations if not node.is_shop()]
+            boots_placed = boots_placed + 1
 
         if len(candidate_locations) == 0:
             raise UnbeatableSeedError("Failed to generate a beatable seed")
@@ -1916,7 +1929,7 @@ def get_item_spheres(
                 item_spheres_text += f'    ({node_long_name}): TRAP ({item_verbose_name})\n'
             else:
                 if item.item_type != "ITEM" or is_itemlocation_replenishable(node):
-                    if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
+                    if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names or item.item_type == 'GEAR'):
                         item_suffix = "*"
                     mario.add_to_inventory(item.item_name)
 

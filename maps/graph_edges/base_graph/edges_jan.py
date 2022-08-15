@@ -70,12 +70,12 @@ edges_jan = [
     {"from": {"map": "JAN_02", "id": 0}, "to": {"map": "JAN_02", "id": 0}, "reqs": [], "pseudoitems": ["RF_YoshiKidsMissing"]}, #+ Village visited -> Yoshi Kids Missing
 
     {"from": {"map": "JAN_02", "id": 0}, "to": {"map": "JAN_02", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_JAN_1",
-                                                                                                       "StarPiece_JAN_2",
-                                                                                                       "StarPiece_JAN_3",
-                                                                                                       "StarPiece_JAN_4",
-                                                                                                       "StarPiece_JAN_5",
-                                                                                                       "StarPiece_JAN_6",
-                                                                                                       "StarPiece_JAN_7",
+                                                                                                      # "StarPiece_JAN_2",
+                                                                                                      # "StarPiece_JAN_3",
+                                                                                                      # "StarPiece_JAN_4",
+                                                                                                      # "StarPiece_JAN_5",
+                                                                                                      # "StarPiece_JAN_6",
+                                                                                                      # "StarPiece_JAN_7",
                                                                                                        "StarPiece_JAN_8"]}, #+ Quizmo StarPieces
 
     # JAN_03 Village Buildings
@@ -93,7 +93,7 @@ edges_jan = [
 
     {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "GiftA"},       "reqs": [["saved_all_yoshikids"],["VolcanoVase"],["MF_Ch5_RescuedStarSpirit"]]}, #* Village Buildings Exit Left -> GiftA (MagicalSeed4)
     {"from": {"map": "JAN_03", "id": "GiftA"},       "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* GiftA (MagicalSeed4) -> Village Buildings Exit Left
-    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "GiftB"},       "reqs": [["saved_all_yoshikids"],["RF_CanVisitTayceT"]]}, #* Village Buildings Exit Left -> GiftB (Melon)
+    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "GiftB"},       "reqs": [["saved_all_yoshikids"],["RF_CanVisitTayceT"],["MF_Ch5_RescuedStarSpirit"]]}, #* Village Buildings Exit Left -> GiftB (Melon)
     {"from": {"map": "JAN_03", "id": "GiftB"},       "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* GiftB (Melon) -> Village Buildings Exit Left
     {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "GiftC"},       "reqs": [["RF_SavedYoshiKid_3"],["Parakarry"],["Letter21"]]}, #* Village Buildings Exit Left -> GiftC (Letter22)
     {"from": {"map": "JAN_03", "id": "GiftC"},       "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* GiftC (Letter22) -> Village Buildings Exit Left
@@ -115,12 +115,12 @@ edges_jan = [
     {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_03", "id": 0}, "reqs": [], "pseudoitems": ["RF_YoshiKidsMissing"]}, #+ Village visited -> Yoshi Kids Missing
 
     {"from": {"map": "JAN_03", "id": 0}, "to": {"map": "JAN_03", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_JAN_1",
-                                                                                                       "StarPiece_JAN_2",
-                                                                                                       "StarPiece_JAN_3",
-                                                                                                       "StarPiece_JAN_4",
-                                                                                                       "StarPiece_JAN_5",
-                                                                                                       "StarPiece_JAN_6",
-                                                                                                       "StarPiece_JAN_7",
+                                                                                                     #  "StarPiece_JAN_2",
+                                                                                                     #  "StarPiece_JAN_3",
+                                                                                                     #  "StarPiece_JAN_4",
+                                                                                                     #  "StarPiece_JAN_5",
+                                                                                                     #  "StarPiece_JAN_6",
+                                                                                                     #  "StarPiece_JAN_7",
                                                                                                        "StarPiece_JAN_8"]}, #+ Quizmo StarPieces
 
     # JAN_04 Sushi Tree

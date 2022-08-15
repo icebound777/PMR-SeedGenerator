@@ -384,7 +384,7 @@ def get_trapped_itempool(
     dungeon_items = []
     for item in (Item
                  .select()
-                 .where(Item.item_type.in_(["KEYITEM","PARTNER","BADGE"]))
+                 .where(Item.item_type.in_(["KEYITEM","PARTNER","BADGE","GEAR"]))
     ):
         if item.unused or item.unplaceable:
             continue

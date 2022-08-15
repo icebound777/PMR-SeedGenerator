@@ -1,21 +1,20 @@
 ---
 # PAPER MARIO RANDOMIZER SETTINGS
 SettingsName   : Beginner Preset
-SettingsVersion: 1
 
 # Options
 BlocksMatchContent   : true
 AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
-HiddenBlockMode      : 3
+HiddenBlockMode      : 3 # 0:vanilla, 1:Watt out, 2:Watt acquired, 3:always visible
 ShortenCutscenes     : true
 AllowPhysicsGlitches : true
 SkipEpilogue         : true
 StarWaySpiritsNeeded : 7
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : true
-HiddenPanelVisibility: 1 # 0 = vanilla, 1 = texture-edit
+HiddenPanelVisibility: 1 # 0:vanilla, 1:texture-edit
 
 StartingCoins  : 100
 ChallengeMode  : false
@@ -29,14 +28,14 @@ NoHeartBlocks  : false
 NoHealingItems : false
 
 # Starting setup
-StartingMap      : 0x00010104 # mac_00, Entry4 / Toad Town Gate District
+StartingMap      : 0x00010104 # 0x00010104:Toad Town Gate District, 0xFFFFFFFF:RandomFromSelection
 StartingLevel    : 1
 StartingMaxHP    : 10
 StartingMaxFP    : 5
 StartingMaxBP    : 3
 StartingStarPower: 0
-StartingBoots    : 0 # 1 Super, 2 Ultra
-StartingHammer   : 0 # -1 Hammerless, 0 Hammer, 1 Super, 2 Ultra
+StartingBoots    : 0 # 0:Boots, 1:Super, 2:Ultra
+StartingHammer   : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
 
 StartWithRandomItems: false
 RandomItemsMin: 0
@@ -59,7 +58,7 @@ StartingItemE: 0x000 # Nothing
 StartingItemF: 0x000 # Nothing
 
 # Pre-opened areas
-MagicalSeedsRequired: 4 # 5 = random
+MagicalSeedsRequired: 4 # 5:random
 BlueHouseOpen       : false
 ToyboxOpen          : false
 WhaleOpen           : false
@@ -80,13 +79,14 @@ IncludeCoins          : false
 IncludeShops          : false
 IncludePanels         : false
 IncludeDojo           : false
-IncludeFavorsMode     : 0 # 1=RndRewardsVanillaKeyitems, 2=FullShuffle
-IncludeLettersMode    : 0 # 1=simpleLetters,2=vanillaChainRndChainReward,3=FullShuffle
+IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
+IncludeLettersMode    : 0 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
 IncludeRadioTradeEvent: false
 RandomConsumableMode  : 1 # 0 = vanilla, 1 = balanced random, 2 = full random, 3 = mystery only
 ItemScarcity          : 125
-ItemTrapMode          : 0
-GearShuffleMode       : 0 # 0 = vanilla, 1 = location shuffle, 2 = full shuffle
+ItemScarcity          : 0 # 0:off, 1-5:on (higher = worse items)
+ItemTrapMode          : 0 # 0:off, 1:sparse, 2:moderate, 3:plenty
+GearShuffleMode       : 0 # 0:vanilla, 1:location shuffle, 2:full shuffle
 AddItemPouches        : true
 KeyitemsOutsideDungeon: false
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
@@ -120,7 +120,7 @@ ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI
 RandomizeOnewayEntrances: false # NYI
 UnpairedEntrances       : false # NYI
-BowsersCastleMode       : 1 # 0=Off;1=NoPartnersKeys(Shorten);2=BossRush
+BowsersCastleMode       : 1 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 
 # Randomization: Quizzes
 RandomQuiz         : true
@@ -151,16 +151,16 @@ PrettySpoilerlog: true
 # Cosmetics / Palettes
 Box5ColorA     : 0xEBE676FF # Status Bar Color A (main)
 Box5ColorB     : 0x8E5A24FF # Status Bar Color B (shadow)
-CoinColor      : 0 # 0 gold, 1 red, 2 blue, 3 purple, 4 silver
+CoinColor      : 0 # 0:gold, 1:red, 2:blue, 3:purple, 4:silver
 RandomCoinColor: true # if true: overrules CoinColor
 RomanNumerals  : false
 RandomText     : false
 
 # "*Setting" values explanation:
-# DEFAULT_PALETTE = 0
-# SELECT_PALETTE  = 1 (only Mario and partners)
-# RANDOM_PICK     = 2
-# ALWAYS_RANDOM   = 3
+# DEFAULT_PALETTE: 0
+# SELECT_PALETTE : 1 (only Mario and partners)
+# RANDOM_PICK    : 2
+# ALWAYS_RANDOM  : 3
 MarioSetting     : 0
 MarioSprite      : 0
 GoombarioSetting : 0
