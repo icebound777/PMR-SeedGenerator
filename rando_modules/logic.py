@@ -1896,7 +1896,7 @@ def get_item_spheres(
         item_spheres_text += f'    ((Start) Mario\'s inventory): {item}{item_suffix}\n'
 
     sphere = 0
-    while True:
+    while item_placement_map:
         pool_misc_progression_items, \
         pool_other_items, \
         reachable_node_ids, \
@@ -1913,14 +1913,18 @@ def get_item_spheres(
                                   filled_item_nodes,
                                   mario)
 
-        if not reachable_item_nodes:
-            break
-
         item_spheres_text += '\n'
-        item_spheres_text += f'Sphere {sphere}:\n'        
+        if reachable_item_nodes:
+            item_spheres_text += f'Sphere {sphere}:\n'
+            nodes_to_print = list(reachable_item_nodes.values())
+        else:
+            item_spheres_text += f'Unreachable In Logic:\n'
+            nodes_to_print = list(item_placement_map.values())
 
-        for _, node in sorted(reachable_item_nodes.items()):
-            item = item_placement_map[node.identifier].current_item
+        nodes_to_print.sort(key=lambda node: (node.map_area.area_id, node.map_area.map_id, node.identifier))
+
+        for node in nodes_to_print:
+            item = item_placement_map.pop(node.identifier).current_item
             node_long_name = f'({verbose_area_names[node.map_area.name[:3]]}) {node.map_area.verbose_name} - {verbose_item_locations[node.map_area.name][node.key_name_item]}'
             item_verbose_name = verbose_item_names[item.item_name] if item.item_name in verbose_item_names else item.item_name
 
