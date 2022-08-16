@@ -318,6 +318,11 @@ class Mario:
                         if self.can_end_sushie_glitch():
                             group_fulfilled = True
                             break
+                    # Check berries
+                    if req in ["BlueBerry","RedBerry","YellowBerry","BubbleBerry"]:
+                        if f"{req}Proxy1" in self.items:
+                            group_fulfilled = True
+                            break
                     # Check other items
                     if req in self.items:
                         group_fulfilled = True
