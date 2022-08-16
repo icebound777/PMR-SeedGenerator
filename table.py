@@ -70,6 +70,8 @@ class Table:
         placed_items = kwargs.get("items")
         for node in placed_items:
             if node.key_name_item is not None and node.current_item is not None:
+                assert not node.current_item.unplaceable # sanity check
+
                 table_data.append({
                     "key": node.get_item_key(),
                     "value": node.current_item.value,
