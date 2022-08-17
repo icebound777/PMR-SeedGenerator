@@ -132,6 +132,8 @@ from maps.graph_edges.glitched_logic.omo_bowless_green_station import \
     edges_omo_add_bowless_green_station_laki
 from maps.graph_edges.glitched_logic.omo_kooperless_red_station_shooting_star import \
     edges_omo_add_red_station_shooting_star_parakarry
+from maps.graph_edges.glitched_logic.omo_parakarryless_blue_block_city_gap import \
+    edges_omo_add_parakarryless_blue_block_city_gap
 
 # Glitched Logic - Jade Jungle
 from maps.graph_edges.glitched_logic.jan_raph_skip_english import \
@@ -417,6 +419,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_omo_add_bowless_green_station_laki)
     if glitch_settings.kooperless_red_station_shooting_star["value"]:
         all_new_edges.extend(edges_omo_add_red_station_shooting_star_parakarry)
+    if glitch_settings.parakarryless_blue_block_city_gap["value"]:
+        all_new_edges.extend(edges_omo_add_parakarryless_blue_block_city_gap)
 
     # Jade Jungle
     if glitch_settings.raph_skip_english["value"]:
