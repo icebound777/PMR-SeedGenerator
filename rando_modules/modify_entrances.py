@@ -107,7 +107,7 @@ from maps.graph_edges.glitched_logic.obk_parakarryless_boos_portrait import \
     
 # Glitched Logic - Gusty Gulch
 from maps.graph_edges.glitched_logic.mim_gusty_gulch_gate_skip import \
-    edges_mim_add_gusty_gulch_gate_skip_lzs
+    edges_mim_add_gusty_gulch_gate_skip_lzs, edges_mim_add_gusty_gulch_gate_skip_laki
 from maps.graph_edges.glitched_logic.arn_gusty_gulch_gap_skip import \
     edges_arn_add_gusty_gulch_gap_skip_jump
 from maps.graph_edges.glitched_logic.arn_kooperless_gusty_gulch_dizzy_dial import \
@@ -383,6 +383,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     # Gusty Gulch
     if glitch_settings.gusty_gulch_gate_skip_lzs["value"]:
         all_new_edges.extend(edges_mim_add_gusty_gulch_gate_skip_lzs)
+    if glitch_settings.gusty_gulch_gate_skip_laki["value"]:
+        all_new_edges.extend(edges_mim_add_gusty_gulch_gate_skip_laki)
     if glitch_settings.kooperless_gusty_gulch_dizzy_dial_jump["value"]:
         all_new_edges.extend(edges_arn_add_gusty_gulch_dizzy_dial_jump)
     if glitch_settings.kooperless_gusty_gulch_dizzy_dial_laki["value"]:

@@ -592,6 +592,8 @@ class OptionSet:
             
         if "GustyGulchGateSkipLZS" in options_dict:
             self.glitch_settings.gusty_gulch_gate_skip_lzs = options_dict.get("GustyGulchGateSkipLZS")
+        if "GustyGulchGateSkipLaki" in options_dict:
+            self.glitch_settings.gusty_gulch_gate_skip_laki = options_dict.get("GustyGulchGateSkipLaki")
         if "KooperlessGustyGulchDizzyDialJump" in options_dict:
             self.glitch_settings.kooperless_gusty_gulch_dizzy_dial_jump = options_dict.get("KooperlessGustyGulchDizzyDialJump")
         if "KooperlessGustyGulchDizzyDialLaki" in options_dict:
@@ -1170,6 +1172,8 @@ def validate_options(options_dict):
         
     if "GustyGulchGateSkipLZS" in options_dict:
         assert isinstance(options_dict.get("GustyGulchGateSkipLZS").get("value"), bool)
+    if "GustyGulchGateSkipLaki" in options_dict:
+        assert isinstance(options_dict.get("GustyGulchGateSkipLaki").get("value"), bool)
     if "KooperlessGustyGulchDizzyDialJump" in options_dict:
         assert isinstance(options_dict.get("KooperlessGustyGulchDizzyDialJump").get("value"), bool)
     if "KooperlessGustyGulchDizzyDialLaki" in options_dict:
@@ -1388,6 +1392,7 @@ class GlitchOptionSet():
             self.boos_portrait_with_laki = False
             
             self.gusty_gulch_gate_skip_lzs = False
+            self.gusty_gulch_gate_skip_laki = False
             self.kooperless_gusty_gulch_dizzy_dial_jump = False
             self.kooperless_gusty_gulch_dizzy_dial_laki = False
             self.kooperless_gusty_gulch_dizzy_dial_parakarry = False

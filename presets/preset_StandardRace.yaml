@@ -292,3 +292,4 @@ BreakMetalBlocksWithUltraBoots                  : false
 KnowsHiddenBlocks                               : false
 KnowsPuzzleSolutions                            : false
 ReachHighBlocksWithSuperBoots                   : false
+GustyGulchGateSkipLaki                          : false
