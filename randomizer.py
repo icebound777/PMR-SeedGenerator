@@ -192,7 +192,10 @@ def write_data_to_rom(
 
         # Write table data and generate log file
         file.seek(rom_table.info["address"] + rom_table.info["header_size"])
-        with open(os.path.abspath(__file__ + "/../debug/log.txt"), "a", encoding="utf-8") as log:
+
+        log_filename = f"{__file__}/../debug/log.txt"
+        os.makedirs(os.path.dirname(log_filename), exist_ok=True)
+        with open(os.path.abspath(log_filename), "a", encoding="utf-8") as log:
             #log.write("ITEM CHANGES:\n\n")
 
             for _,pair in enumerate(table_data):
