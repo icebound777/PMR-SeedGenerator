@@ -224,10 +224,10 @@ EarlyRuinsUltraBoots                            : false
 
 ArtifactJump                                    : false
 RuinsKeyLakiJump                                : false
-ParakarylessSecondSandRoomUltraBoots            : false
-ParakarylessSecondSandRoomNormalBoots           : false
-ParakarylessSuperHammerRoomUltraBoots           : false
-ParakarylessSuperHammerRoomNormalBoots          : false
+ParakarrylessSecondSandRoomUltraBoots           : false
+ParakarrylessSecondSandRoomNormalBoots          : false
+ParakarrylessSuperHammerRoomUltraBoots          : false
+ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
 
 RecordSkipNoBombettePush                        : false

@@ -1,6 +1,6 @@
 """
 This file represents edges of the world graph that have to be added
-for Glitched Logic: Parakary-less Boo's Portrait.
+for Glitched Logic: Parakarry-less Boo's Portrait.
 """
 edges_obk_add_boo_portrait_kooper = [
     #* Library Fall From Ceiling -> ItemA (BooPortrait)

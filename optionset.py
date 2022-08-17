@@ -570,14 +570,14 @@ class OptionSet:
             self.glitch_settings.artifact_jump = options_dict.get("ArtifactJump")
         if "RuinsKeyLakiJump" in options_dict:
             self.glitch_settings.ruins_key_laki_jump = options_dict.get("RuinsKeyLakiJump")
-        if "ParakarylessSecondSandRoomUltraBoots" in options_dict:
-            self.glitch_settings.parakarryless_second_sand_room_ultra_boots = options_dict.get("ParakarylessSecondSandRoomUltraBoots")
-        if "ParakarylessSecondSandRoomNormalBoots" in options_dict:
-            self.glitch_settings.parakarryless_second_sand_room_normal_boots = options_dict.get("ParakarylessSecondSandRoomNormalBoots")
-        if "ParakarylessSuperHammerRoomUltraBoots" in options_dict:
-            self.glitch_settings.parakarryless_super_hammer_room_ultra_boots = options_dict.get("ParakarylessSuperHammerRoomUltraBoots")
-        if "ParakarylessSuperHammerRoomNormalBoots" in options_dict:
-            self.glitch_settings.parakarryless_super_hammer_room_normal_boots = options_dict.get("ParakarylessSuperHammerRoomNormalBoots")
+        if "ParakarrylessSecondSandRoomUltraBoots" in options_dict:
+            self.glitch_settings.parakarryless_second_sand_room_ultra_boots = options_dict.get("ParakarrylessSecondSandRoomUltraBoots")
+        if "ParakarrylessSecondSandRoomNormalBoots" in options_dict:
+            self.glitch_settings.parakarryless_second_sand_room_normal_boots = options_dict.get("ParakarrylessSecondSandRoomNormalBoots")
+        if "ParakarrylessSuperHammerRoomUltraBoots" in options_dict:
+            self.glitch_settings.parakarryless_super_hammer_room_ultra_boots = options_dict.get("ParakarrylessSuperHammerRoomUltraBoots")
+        if "ParakarrylessSuperHammerRoomNormalBoots" in options_dict:
+            self.glitch_settings.parakarryless_super_hammer_room_normal_boots = options_dict.get("ParakarrylessSuperHammerRoomNormalBoots")
         if "RuinsLocksSkipClippy" in options_dict:
             self.glitch_settings.ruins_locks_skip_clippy = options_dict.get("RuinsLocksSkipClippy")
 
@@ -635,9 +635,9 @@ class OptionSet:
         if "Flarakarry" in options_dict:
             self.glitch_settings.flarakarry = options_dict.get("Flarakarry")
         if "ParakarrylessFlarakarryBombette" in options_dict:
-            self.glitch_settings.parakaryless_flarakarry_bombette = options_dict.get("ParakarrylessFlarakarryBombette")
+            self.glitch_settings.parakarryless_flarakarry_bombette = options_dict.get("ParakarrylessFlarakarryBombette")
         if "ParakarrylessFlarakarryLaki" in options_dict:
-            self.glitch_settings.parakaryless_flarakarry_laki = options_dict.get("ParakarrylessFlarakarryLaki")
+            self.glitch_settings.parakarryless_flarakarry_laki = options_dict.get("ParakarrylessFlarakarryLaki")
 
         if "EarlyLakiLZS" in options_dict:
             self.glitch_settings.early_laki_lzs = options_dict.get("EarlyLakiLZS")
@@ -1146,14 +1146,14 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("ArtifactJump").get("value"), bool)
     if "RuinsKeyLakiJump" in options_dict:
         assert isinstance(options_dict.get("RuinsKeyLakiJump").get("value"), bool)
-    if "ParakarylessSecondSandRoomUltraBoots" in options_dict:
-        assert isinstance(options_dict.get("ParakarylessSecondSandRoomUltraBoots").get("value"), bool)
-    if "ParakarylessSecondSandRoomNormalBoots" in options_dict:
-        assert isinstance(options_dict.get("ParakarylessSecondSandRoomNormalBoots").get("value"), bool)
-    if "ParakarylessSuperHammerRoomUltraBoots" in options_dict:
-        assert isinstance(options_dict.get("ParakarylessSuperHammerRoomUltraBoots").get("value"), bool)
-    if "ParakarylessSuperHammerRoomNormalBoots" in options_dict:
-        assert isinstance(options_dict.get("ParakarylessSuperHammerRoomNormalBoots").get("value"), bool)
+    if "ParakarrylessSecondSandRoomUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("ParakarrylessSecondSandRoomUltraBoots").get("value"), bool)
+    if "ParakarrylessSecondSandRoomNormalBoots" in options_dict:
+        assert isinstance(options_dict.get("ParakarrylessSecondSandRoomNormalBoots").get("value"), bool)
+    if "ParakarrylessSuperHammerRoomUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("ParakarrylessSuperHammerRoomUltraBoots").get("value"), bool)
+    if "ParakarrylessSuperHammerRoomNormalBoots" in options_dict:
+        assert isinstance(options_dict.get("ParakarrylessSuperHammerRoomNormalBoots").get("value"), bool)
     if "RuinsLocksSkipClippy" in options_dict:
         assert isinstance(options_dict.get("RuinsLocksSkipClippy").get("value"), bool)
 
@@ -1406,8 +1406,8 @@ class GlitchOptionSet():
             self.kooperless_lavalava_pow_block = False
             self.ultra_hammer_skip = False
             self.flarakarry = False
-            self.parakaryless_flarakarry_bombette = False
-            self.parakaryless_flarakarry_laki = False
+            self.parakarryless_flarakarry_bombette = False
+            self.parakarryless_flarakarry_laki = False
 
             self.early_laki_lzs = False
             self.early_laki_bombette_push = False
