@@ -193,35 +193,29 @@ def write_data_to_rom(
         # Write table data and generate log file
         file.seek(rom_table.info["address"] + rom_table.info["header_size"])
 
-        log_filename = f"{__file__}/../debug/log.txt"
-        os.makedirs(os.path.dirname(log_filename), exist_ok=True)
-        with open(os.path.abspath(log_filename), "a", encoding="utf-8") as log:
-            #log.write("ITEM CHANGES:\n\n")
+        for _,pair in enumerate(table_data):
+            key_int = pair["key"].to_bytes(4, byteorder="big")
+            value_int = pair["value"].to_bytes(4, byteorder="big")
+            file.write(key_int)
+            file.write(value_int)
 
-            for _,pair in enumerate(table_data):
-                key_int = pair["key"].to_bytes(4, byteorder="big")
-                value_int = pair["value"].to_bytes(4, byteorder="big")
-                file.write(key_int)
-                file.write(value_int)
-                log.write(f'{hex(pair["key"])}: {hex(pair["value"])}\n')
+        for formation in battle_formations:
+            for formation_hex_word in formation:
+                file.write(formation_hex_word.to_bytes(4, byteorder="big"))
 
-            for formation in battle_formations:
-                for formation_hex_word in formation:
-                    file.write(formation_hex_word.to_bytes(4, byteorder="big"))
+        # Write end of formations table
+        file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
 
-            # Write end of formations table
+        # Write itemhint table
+        for itemhint in itemhints:
+            for itemhint_hex in itemhint:
+                file.write(itemhint_hex.to_bytes(4, byteorder="big"))
+
+        # Write end of item hints table
+        file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
+        # Write end of db padding
+        for _ in range(1, 5):
             file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
-
-            # Write itemhint table
-            for itemhint in itemhints:
-                for itemhint_hex in itemhint:
-                    file.write(itemhint_hex.to_bytes(4, byteorder="big"))
-
-            # Write end of item hints table
-            file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
-            # Write end of db padding
-            for _ in range(1, 5):
-                file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
 
         # Special solution for random coin palettes
         if coin_palette_data and coin_palette_targets:

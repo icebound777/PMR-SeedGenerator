@@ -19,7 +19,9 @@ def write_spoiler_log(
     after randomization and randomized chapter difficulty
     """
     if not spoilerlog_file and not is_web_spoiler_log:
-        spoilerlog_file = os.path.abspath(__file__ + "/../debug/item_placement.txt")
+        spoiler_log_filename = __file__ + "/../debug/item_placement.txt"
+        os.makedirs(os.path.dirname(spoiler_log_filename), exist_ok=True)
+        spoilerlog_file = os.path.abspath(spoiler_log_filename)
         
 
     sorted_by_key =  sorted(placed_items,  key=lambda node: node.key_name_item)
