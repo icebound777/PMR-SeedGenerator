@@ -291,3 +291,4 @@ BreakYellowBlocksWithSuperBoots                 : false
 BreakMetalBlocksWithUltraBoots                  : false
 KnowsHiddenBlocks                               : false
 KnowsPuzzleSolutions                            : false
+ReachHighBlocksWithSuperBoots                   : false

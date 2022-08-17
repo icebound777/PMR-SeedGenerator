@@ -1,7 +1,6 @@
 """
 This file represents edges of the world graph that have to be added
 for Glitched Logic: Knows Puzzle Solutions
-state.
 """
 edges_global_knows_puzzle_solutions = [
     #+ ShopItemE 

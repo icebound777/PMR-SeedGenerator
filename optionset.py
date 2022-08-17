@@ -693,6 +693,8 @@ class OptionSet:
             self.glitch_settings.knows_hidden_blocks = options_dict.get("KnowsHiddenBlocks")
         if "KnowsPuzzleSolutions" in options_dict:
             self.glitch_settings.knows_puzzle_solutions = options_dict.get("KnowsPuzzleSolutions")
+        if "ReachHighBlocksWithSuperBoots" in options_dict:
+            self.glitch_settings.reach_high_blocks_with_super_boots = options_dict.get("ReachHighBlocksWithSuperBoots")
               
         # Audio
         if "RandomPitch" in options_dict:
@@ -1269,6 +1271,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("KnowsHiddenBlocks").get("value"), bool)
     if "KnowsPuzzleSolutions" in options_dict:
         assert isinstance(options_dict.get("KnowsPuzzleSolutions").get("value"), bool)
+    if "ReachHighBlocksWithSuperBoots" in options_dict:
+        assert isinstance(options_dict.get("ReachHighBlocksWithSuperBoots").get("value"), bool)
 
     # Audio
     if "RandomPitch" in options_dict:
@@ -1438,3 +1442,4 @@ class GlitchOptionSet():
             self.break_metal_blocks_with_ultra_boots = False
             self.knows_hidden_blocks = False
             self.knows_puzzle_solutions = False
+            self.reach_high_blocks_with_super_boots = False
