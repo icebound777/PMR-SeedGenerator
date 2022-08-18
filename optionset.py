@@ -7,90 +7,90 @@ class OptionSet:
     def __init__(self):
         """ Load Defaults from DB """
         # General
-        self.starting_coins = get_option_keyvalue_dict("StartingCoins")
-        self.shorten_cutscenes = get_option_keyvalue_dict("ShortenCutscenes")
-        self.magical_seeds_required = get_option_keyvalue_dict("MagicalSeedsRequired")
-        self.bluehouse_open = get_option_keyvalue_dict("BlueHouseOpen")
-        self.blocks_match_content = get_option_keyvalue_dict("BlocksMatchContent")
-        self.skip_quiz = get_option_keyvalue_dict("SkipQuiz")
-        self.challenge_mode = get_option_keyvalue_dict("ChallengeMode")
-        self.cap_enemy_xp = get_option_keyvalue_dict("CapEnemyXP")
-        self.no_xp = get_option_keyvalue_dict("NoXP")
-        self.damage_x2 = get_option_keyvalue_dict("DoubleDamage")
-        self.damage_x4 = get_option_keyvalue_dict("QuadrupleDamage")
-        self.ohko = get_option_keyvalue_dict("OHKO")
-        self.no_save_blocks = get_option_keyvalue_dict("NoSaveBlocks")
-        self.no_heart_blocks = get_option_keyvalue_dict("NoHeartBlocks")
-        self.no_healing_items = get_option_keyvalue_dict("NoHealingItems")
+        self.starting_coins = get_option_keyvalue_pair("StartingCoins")
+        self.shorten_cutscenes = get_option_keyvalue_pair("ShortenCutscenes")
+        self.magical_seeds_required = get_option_keyvalue_pair("MagicalSeedsRequired")
+        self.bluehouse_open = get_option_keyvalue_pair("BlueHouseOpen")
+        self.blocks_match_content = get_option_keyvalue_pair("BlocksMatchContent")
+        self.skip_quiz = get_option_keyvalue_pair("SkipQuiz")
+        self.challenge_mode = get_option_keyvalue_pair("ChallengeMode")
+        self.cap_enemy_xp = get_option_keyvalue_pair("CapEnemyXP")
+        self.no_xp = get_option_keyvalue_pair("NoXP")
+        self.damage_x2 = get_option_keyvalue_pair("DoubleDamage")
+        self.damage_x4 = get_option_keyvalue_pair("QuadrupleDamage")
+        self.ohko = get_option_keyvalue_pair("OHKO")
+        self.no_save_blocks = get_option_keyvalue_pair("NoSaveBlocks")
+        self.no_heart_blocks = get_option_keyvalue_pair("NoHeartBlocks")
+        self.no_healing_items = get_option_keyvalue_pair("NoHealingItems")
 
         # Item related
-        self.shuffle_items = get_option_keyvalue_dict("ShuffleItems")
-        self.include_coins = get_option_keyvalue_dict("IncludeCoins")
-        self.include_shops = get_option_keyvalue_dict("IncludeShops")
-        self.include_panels = get_option_keyvalue_dict("IncludePanels")
+        self.shuffle_items = get_option_keyvalue_pair("ShuffleItems")
+        self.include_coins = get_option_keyvalue_pair("IncludeCoins")
+        self.include_shops = get_option_keyvalue_pair("IncludeShops")
+        self.include_panels = get_option_keyvalue_pair("IncludePanels")
 
         # Entrance related
-        self.shuffle_entrances = get_option_keyvalue_dict("ShuffleEntrances")
-        self.shuffle_entrances_by_area = get_option_keyvalue_dict("ShuffleEntrancesByArea")
-        self.shuffle_entrances_by_all = get_option_keyvalue_dict("ShuffleEntrancesByAll")
-        self.match_entrance_type = get_option_keyvalue_dict("MatchEntranceTypes")
+        self.shuffle_entrances = get_option_keyvalue_pair("ShuffleEntrances")
+        self.shuffle_entrances_by_area = get_option_keyvalue_pair("ShuffleEntrancesByArea")
+        self.shuffle_entrances_by_all = get_option_keyvalue_pair("ShuffleEntrancesByAll")
+        self.match_entrance_type = get_option_keyvalue_pair("MatchEntranceTypes")
 
         # Settings unavailable in the GUI
         # General
-        self.random_quiz = get_option_keyvalue_dict("RandomQuiz")
-        self.quizmo_always_appears = get_option_keyvalue_dict("QuizmoAlwaysAppears")
+        self.random_quiz = get_option_keyvalue_pair("RandomQuiz")
+        self.quizmo_always_appears = get_option_keyvalue_pair("QuizmoAlwaysAppears")
         self.shuffle_chapter_difficulty = False
-        self.progressive_scaling = get_option_keyvalue_dict("ProgressiveScaling")
-        self.random_formations = get_option_keyvalue_dict("RandomFormations")
-        self.toybox_open = get_option_keyvalue_dict("ToyboxOpen")
-        self.whale_open = get_option_keyvalue_dict("WhaleOpen")
-        self.always_speedyspin = get_option_keyvalue_dict("AlwaysSpeedySpin")
-        self.always_ispy = get_option_keyvalue_dict("AlwaysISpy")
-        self.always_peekaboo = get_option_keyvalue_dict("AlwaysPeekaboo")
-        self.hidden_block_mode = get_option_keyvalue_dict("HiddenBlockMode")
-        self.skip_epilogue = get_option_keyvalue_dict("SkipEpilogue")
-        self.allow_physics_glitches = get_option_keyvalue_dict("AllowPhysicsGlitches")
-        self.starway_spirits_needed = get_option_keyvalue_dict("StarWaySpiritsNeeded")
-        self.peachcastle_return_pipe = get_option_keyvalue_dict("PeachCastleReturnPipe")
-        self.foliage_item_hints = get_option_keyvalue_dict("FoliageItemHints")
-        self.hiddenpanel_visibility = get_option_keyvalue_dict("HiddenPanelVisibility")
+        self.progressive_scaling = get_option_keyvalue_pair("ProgressiveScaling")
+        self.random_formations = get_option_keyvalue_pair("RandomFormations")
+        self.toybox_open = get_option_keyvalue_pair("ToyboxOpen")
+        self.whale_open = get_option_keyvalue_pair("WhaleOpen")
+        self.always_speedyspin = get_option_keyvalue_pair("AlwaysSpeedySpin")
+        self.always_ispy = get_option_keyvalue_pair("AlwaysISpy")
+        self.always_peekaboo = get_option_keyvalue_pair("AlwaysPeekaboo")
+        self.hidden_block_mode = get_option_keyvalue_pair("HiddenBlockMode")
+        self.skip_epilogue = get_option_keyvalue_pair("SkipEpilogue")
+        self.allow_physics_glitches = get_option_keyvalue_pair("AllowPhysicsGlitches")
+        self.starway_spirits_needed = get_option_keyvalue_pair("StarWaySpiritsNeeded")
+        self.peachcastle_return_pipe = get_option_keyvalue_pair("PeachCastleReturnPipe")
+        self.foliage_item_hints = get_option_keyvalue_pair("FoliageItemHints")
+        self.hiddenpanel_visibility = get_option_keyvalue_pair("HiddenPanelVisibility")
 
         # Starting setup
-        self.starting_map = get_option_keyvalue_dict("StartingMap") # mac_00 Entry 4
-        self.starting_level = get_option_keyvalue_dict("StartingLevel")
-        self.starting_maxhp = get_option_keyvalue_dict("StartingMaxHP")
-        self.starting_maxfp = get_option_keyvalue_dict("StartingMaxFP")
-        self.starting_maxbp = get_option_keyvalue_dict("StartingMaxBP")
-        self.starting_starpower = get_option_keyvalue_dict("StartingStarPower")
-        self.starting_boots = get_option_keyvalue_dict("StartingBoots")
-        self.starting_hammer = get_option_keyvalue_dict("StartingHammer")
+        self.starting_map = get_option_keyvalue_pair("StartingMap") # mac_00 Entry 4
+        self.starting_level = get_option_keyvalue_pair("StartingLevel")
+        self.starting_maxhp = get_option_keyvalue_pair("StartingMaxHP")
+        self.starting_maxfp = get_option_keyvalue_pair("StartingMaxFP")
+        self.starting_maxbp = get_option_keyvalue_pair("StartingMaxBP")
+        self.starting_starpower = get_option_keyvalue_pair("StartingStarPower")
+        self.starting_boots = get_option_keyvalue_pair("StartingBoots")
+        self.starting_hammer = get_option_keyvalue_pair("StartingHammer")
 
         self.random_starting_items = False
         self.random_starting_items_min = 0
         self.random_starting_items_max = 16
-        self.starting_item_0 = get_option_keyvalue_dict("StartingItem0")
-        self.starting_item_1 = get_option_keyvalue_dict("StartingItem1")
-        self.starting_item_2 = get_option_keyvalue_dict("StartingItem2")
-        self.starting_item_3 = get_option_keyvalue_dict("StartingItem3")
-        self.starting_item_4 = get_option_keyvalue_dict("StartingItem4")
-        self.starting_item_5 = get_option_keyvalue_dict("StartingItem5")
-        self.starting_item_6 = get_option_keyvalue_dict("StartingItem6")
-        self.starting_item_7 = get_option_keyvalue_dict("StartingItem7")
-        self.starting_item_8 = get_option_keyvalue_dict("StartingItem8")
-        self.starting_item_9 = get_option_keyvalue_dict("StartingItem9")
-        self.starting_item_A = get_option_keyvalue_dict("StartingItemA")
-        self.starting_item_B = get_option_keyvalue_dict("StartingItemB")
-        self.starting_item_C = get_option_keyvalue_dict("StartingItemC")
-        self.starting_item_D = get_option_keyvalue_dict("StartingItemD")
-        self.starting_item_E = get_option_keyvalue_dict("StartingItemE")
-        self.starting_item_F = get_option_keyvalue_dict("StartingItemF")
+        self.starting_item_0 = get_option_keyvalue_pair("StartingItem0")
+        self.starting_item_1 = get_option_keyvalue_pair("StartingItem1")
+        self.starting_item_2 = get_option_keyvalue_pair("StartingItem2")
+        self.starting_item_3 = get_option_keyvalue_pair("StartingItem3")
+        self.starting_item_4 = get_option_keyvalue_pair("StartingItem4")
+        self.starting_item_5 = get_option_keyvalue_pair("StartingItem5")
+        self.starting_item_6 = get_option_keyvalue_pair("StartingItem6")
+        self.starting_item_7 = get_option_keyvalue_pair("StartingItem7")
+        self.starting_item_8 = get_option_keyvalue_pair("StartingItem8")
+        self.starting_item_9 = get_option_keyvalue_pair("StartingItem9")
+        self.starting_item_A = get_option_keyvalue_pair("StartingItemA")
+        self.starting_item_B = get_option_keyvalue_pair("StartingItemB")
+        self.starting_item_C = get_option_keyvalue_pair("StartingItemC")
+        self.starting_item_D = get_option_keyvalue_pair("StartingItemD")
+        self.starting_item_E = get_option_keyvalue_pair("StartingItemE")
+        self.starting_item_F = get_option_keyvalue_pair("StartingItemF")
 
         # Item related
         self.include_favors_mode = 0
         self.include_letters_mode = 0
         self.include_radiotradeevent = False
         self.include_dojo = False
-        self.gear_shuffle_mode = get_option_keyvalue_dict("GearShuffleMode")
+        self.gear_shuffle_mode = get_option_keyvalue_pair("GearShuffleMode")
         self.item_scarcity = 0
         self.add_item_pouches = False
         self.placement_algorithm = "ForwardFill"
@@ -112,36 +112,36 @@ class OptionSet:
         self.random_starpower_sp = 0
 
         # Entrance related
-        self.bowsers_castle_mode = get_option_keyvalue_dict("BowsersCastleMode")
+        self.bowsers_castle_mode = get_option_keyvalue_pair("BowsersCastleMode")
         self.random_oneway_entrances = False # NYI
         self.unpaired_entrances = False # NYI
 
         # Partner related
         self.partners_in_default_locations = True
-        self.partners_always_usable = get_option_keyvalue_dict("PartnersAlwaysUsable")
+        self.partners_always_usable = get_option_keyvalue_pair("PartnersAlwaysUsable")
         self.random_partners = False
         self.random_partners_min = 1
         self.random_partners_max = 1
         self.starting_partners = ["Goombario"]
-        self.start_with_goombario = get_option_keyvalue_dict("StartWithGoombario")
-        self.start_with_kooper = get_option_keyvalue_dict("StartWithKooper")
-        self.start_with_bombette = get_option_keyvalue_dict("StartWithBombette")
-        self.start_with_parakarry = get_option_keyvalue_dict("StartWithParakarry")
-        self.start_with_bow = get_option_keyvalue_dict("StartWithBow")
-        self.start_with_watt = get_option_keyvalue_dict("StartWithWatt")
-        self.start_with_sushie = get_option_keyvalue_dict("StartWithSushie")
-        self.start_with_lakilester = get_option_keyvalue_dict("StartWithLakilester")
+        self.start_with_goombario = get_option_keyvalue_pair("StartWithGoombario")
+        self.start_with_kooper = get_option_keyvalue_pair("StartWithKooper")
+        self.start_with_bombette = get_option_keyvalue_pair("StartWithBombette")
+        self.start_with_parakarry = get_option_keyvalue_pair("StartWithParakarry")
+        self.start_with_bow = get_option_keyvalue_pair("StartWithBow")
+        self.start_with_watt = get_option_keyvalue_pair("StartWithWatt")
+        self.start_with_sushie = get_option_keyvalue_pair("StartWithSushie")
+        self.start_with_lakilester = get_option_keyvalue_pair("StartWithLakilester")
 
         # Spoilerlog
         self.write_spoilerlog = True
         self.pretty_spoilerlog = True
 
         # Cosmetics
-        self.color_a = get_option_keyvalue_dict("Box5ColorA")
-        self.color_b = get_option_keyvalue_dict("Box5ColorB")
-        self.roman_numerals = get_option_keyvalue_dict("RomanNumerals")
-        self.random_text = get_option_keyvalue_dict("RandomText")
-        self.coin_color = get_option_keyvalue_dict("CoinColor")
+        self.color_a = get_option_keyvalue_pair("Box5ColorA")
+        self.color_b = get_option_keyvalue_pair("Box5ColorB")
+        self.roman_numerals = get_option_keyvalue_pair("RomanNumerals")
+        self.random_text = get_option_keyvalue_pair("RandomText")
+        self.coin_color = get_option_keyvalue_pair("CoinColor")
         self.random_coin_color = False
 
         self.palette_settings = PaletteOptionSet()
@@ -150,7 +150,7 @@ class OptionSet:
         self.glitch_settings = GlitchOptionSet()
 
         # Audio
-        self.random_pitch = get_option_keyvalue_dict("RandomPitch")
+        self.random_pitch = get_option_keyvalue_pair("RandomPitch")
 
 
     def get_startitem_list(self) -> list:
@@ -1276,7 +1276,7 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("RandomPitch").value, bool)
 
 
-def get_option_keyvalue_dict(option_str):
+def get_option_keyvalue_pair(option_str):
     key = Option.get(Option.name == option_str).get_key()
     value = Option.get(Option.name == option_str).value
 
@@ -1323,15 +1323,15 @@ class PaletteOptionSet():
 
 class MysteryOptionSet():
     def __init__(self):
-        self.mystery_random_choice = get_option_keyvalue_dict("RandomChoice")
+        self.mystery_random_choice = get_option_keyvalue_pair("RandomChoice")
         self.mystery_random_pick = False
-        self.mystery_itemA = get_option_keyvalue_dict("ItemChoiceA")
-        self.mystery_itemB = get_option_keyvalue_dict("ItemChoiceB")
-        self.mystery_itemC = get_option_keyvalue_dict("ItemChoiceC")
-        self.mystery_itemD = get_option_keyvalue_dict("ItemChoiceD")
-        self.mystery_itemE = get_option_keyvalue_dict("ItemChoiceE")
-        self.mystery_itemF = get_option_keyvalue_dict("ItemChoiceF")
-        self.mystery_itemG = get_option_keyvalue_dict("ItemChoiceG")
+        self.mystery_itemA = get_option_keyvalue_pair("ItemChoiceA")
+        self.mystery_itemB = get_option_keyvalue_pair("ItemChoiceB")
+        self.mystery_itemC = get_option_keyvalue_pair("ItemChoiceC")
+        self.mystery_itemD = get_option_keyvalue_pair("ItemChoiceD")
+        self.mystery_itemE = get_option_keyvalue_pair("ItemChoiceE")
+        self.mystery_itemF = get_option_keyvalue_pair("ItemChoiceF")
+        self.mystery_itemG = get_option_keyvalue_pair("ItemChoiceG")
 
 class GlitchOptionSet():
     def __init__(self):
