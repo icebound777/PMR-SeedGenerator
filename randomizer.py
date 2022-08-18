@@ -9,6 +9,7 @@ import time
 import json
 import yaml
 from yaml.loader import SafeLoader
+from pathlib import Path
 
 from enums import create_enums
 from models.WebSeedResponse import WebSeedResponse
@@ -708,12 +709,14 @@ def main_randomizer(args):
     )
 
     # Write sorted spoiler log
+    target_spoilerfile = Path(target_modfile).parent / "spoiler_log.txt"
+
     if rando_settings.write_spoilerlog:
         write_spoiler_log(
             random_seed.placed_items,
             random_chapter_difficulty=random_seed.chapter_changes,
             settings=rando_settings,
-            spoilerlog_file=spoilerlog_file_path,
+            spoilerlog_file=target_spoilerfile,
             spheres_text=random_seed.item_spheres_text
         )
 
