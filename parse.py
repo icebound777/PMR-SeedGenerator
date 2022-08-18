@@ -343,7 +343,7 @@ def create_table(default_table):
                         db[table] = {}
 
                     if data := default_table.get(table, {}).get(attribute):
-                        default_value = data["value"]
+                        default_value = data.value
                         db[table][attribute] = {
                             "key": key,
                             "value": default_value,

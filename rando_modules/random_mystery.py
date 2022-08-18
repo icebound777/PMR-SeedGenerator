@@ -5,7 +5,7 @@ from optionset import MysteryOptionSet
 
 def get_random_mystery(mystery_settings:MysteryOptionSet) -> MysteryOptionSet:
     # If Random Choice is on, then none of the other settings matter
-    if mystery_settings.mystery_random_choice["value"]:
+    if mystery_settings.mystery_random_choice.value:
         return mystery_settings
 
     if mystery_settings.mystery_random_pick:
@@ -49,23 +49,23 @@ def get_random_mystery(mystery_settings:MysteryOptionSet) -> MysteryOptionSet:
             if chosen_items[0] == mystery_itemid:
                 chosen_items.pop(0)
 
-        mystery_settings.mystery_itemA["value"] = chosen_items[0]
-        mystery_settings.mystery_itemB["value"] = chosen_items[1]
-        mystery_settings.mystery_itemC["value"] = chosen_items[2]
-        mystery_settings.mystery_itemD["value"] = chosen_items[3]
-        mystery_settings.mystery_itemE["value"] = chosen_items[4]
-        mystery_settings.mystery_itemF["value"] = chosen_items[5]
-        mystery_settings.mystery_itemG["value"] = chosen_items[6]
+        mystery_settings.mystery_itemA.value = chosen_items[0]
+        mystery_settings.mystery_itemB.value = chosen_items[1]
+        mystery_settings.mystery_itemC.value = chosen_items[2]
+        mystery_settings.mystery_itemD.value = chosen_items[3]
+        mystery_settings.mystery_itemE.value = chosen_items[4]
+        mystery_settings.mystery_itemF.value = chosen_items[5]
+        mystery_settings.mystery_itemG.value = chosen_items[6]
         for itemthing in chosen_items:
             print(Item.get(Item.value == itemthing))
     else:
         # Set vanilla
-        mystery_settings.mystery_itemA["value"] = Item.get(Item.item_name == "Mushroom").value
-        mystery_settings.mystery_itemB["value"] = Item.get(Item.item_name == "SuperShroom").value
-        mystery_settings.mystery_itemC["value"] = Item.get(Item.item_name == "FireFlower").value
-        mystery_settings.mystery_itemD["value"] = Item.get(Item.item_name == "StoneCap").value
-        mystery_settings.mystery_itemE["value"] = Item.get(Item.item_name == "DizzyDial").value
-        mystery_settings.mystery_itemF["value"] = Item.get(Item.item_name == "ThunderRage").value
-        mystery_settings.mystery_itemG["value"] = Item.get(Item.item_name == "Pebble").value
+        mystery_settings.mystery_itemA.value = Item.get(Item.item_name == "Mushroom").value
+        mystery_settings.mystery_itemB.value = Item.get(Item.item_name == "SuperShroom").value
+        mystery_settings.mystery_itemC.value = Item.get(Item.item_name == "FireFlower").value
+        mystery_settings.mystery_itemD.value = Item.get(Item.item_name == "StoneCap").value
+        mystery_settings.mystery_itemE.value = Item.get(Item.item_name == "DizzyDial").value
+        mystery_settings.mystery_itemF.value = Item.get(Item.item_name == "ThunderRage").value
+        mystery_settings.mystery_itemG.value = Item.get(Item.item_name == "Pebble").value
 
     return mystery_settings

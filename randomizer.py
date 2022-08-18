@@ -194,8 +194,8 @@ def write_data_to_rom(
         file.seek(rom_table.info["address"] + rom_table.info["header_size"])
 
         for _,pair in enumerate(table_data):
-            key_int = pair["key"].to_bytes(4, byteorder="big")
-            value_int = pair["value"].to_bytes(4, byteorder="big")
+            key_int = pair.key.to_bytes(4, byteorder="big")
+            value_int = pair.value.to_bytes(4, byteorder="big")
             file.write(key_int)
             file.write(value_int)
 
@@ -232,7 +232,7 @@ def write_data_to_rom(
                 #    if enum_type == "Item":
                 #        if "ShopPrice" not in pair["attribute"]:
                 #            column_left = f"[{pair['table']}][{pair['attribute']}]"
-                #            original_item_id = rom_table.default_db[pair["table"]][pair['attribute']]["value"]
+                #            original_item_id = rom_table.default_db[pair["table"]][pair['attribute']].value
                 #            original_item = Enums.get("Item")[original_item_id]
                 #            column_right = f"{original_item} -> {Enums.get('Item')[pair['value']]}"
                 #            log_statement = f"{column_left:25} : {column_right}"
@@ -350,19 +350,19 @@ def write_data_to_array(
     first_audio_db_key = Option.get(Option.name == "RandomPitch").get_key()
 
     for _,pair in enumerate(table_data):
-        key_int = pair["key"].to_bytes(4, byteorder="big")
-        value_int = pair["value"].to_bytes(4, byteorder="big")
+        key_int = pair.key.to_bytes(4, byteorder="big")
+        value_int = pair.value.to_bytes(4, byteorder="big")
         
         patchOperations += (key_int)
         patchOperations += (value_int)
 
-        if pair["key"] == first_palette_db_key: # When finding 1st palette key, save that offset as palette_offset to be used for future rewrite
+        if pair.key == first_palette_db_key: # When finding 1st palette key, save that offset as palette_offset to be used for future rewrite
             palette_offset = db_offset
 
-        elif pair["key"] == first_cosmetics_db_key: # Save 1st cosmetics option key in the same manner
+        elif pair.key == first_cosmetics_db_key: # Save 1st cosmetics option key in the same manner
             cosmetics_offset = db_offset
 
-        elif pair["key"] == first_audio_db_key: # Save 1st cosmetics option key in the same manner
+        elif pair.key == first_audio_db_key: # Save 1st cosmetics option key in the same manner
             audio_offset = db_offset
 
         db_offset += 0x00000008 # Keep track of the current db offset at every iteration
@@ -426,8 +426,8 @@ def write_cosmetics_data_to_array(
     patchOperations += ((cosmetics_offset).to_bytes(4, byteorder="big")) # seek the adress where cosmetic settings start
 
     for _,pair in enumerate(cosmetics_table_data):
-        key_int = pair["key"].to_bytes(4, byteorder="big")
-        value_int = pair["value"].to_bytes(4, byteorder="big")
+        key_int = pair.key.to_bytes(4, byteorder="big")
+        value_int = pair.value.to_bytes(4, byteorder="big")
         
         patchOperations += ((1).to_bytes(1, byteorder="big"))
         patchOperations += (key_int)
@@ -440,8 +440,8 @@ def write_cosmetics_data_to_array(
     patchOperations += ((audio_offset).to_bytes(4, byteorder="big")) # seek the adress where cosmetic settings start
 
     for _,pair in enumerate(audio_options_table_data):
-        key_int = pair["key"].to_bytes(4, byteorder="big")
-        value_int = pair["value"].to_bytes(4, byteorder="big")
+        key_int = pair.key.to_bytes(4, byteorder="big")
+        value_int = pair.value.to_bytes(4, byteorder="big")
         
         patchOperations += ((1).to_bytes(1, byteorder="big"))
         patchOperations += (key_int)
@@ -454,8 +454,8 @@ def write_cosmetics_data_to_array(
     patchOperations += (palette_offset).to_bytes(4, byteorder="big")
 
     for _,pair in enumerate(palette_table_data):
-        key_int = pair["key"].to_bytes(4, byteorder="big")
-        value_int = pair["value"].to_bytes(4, byteorder="big")
+        key_int = pair.key.to_bytes(4, byteorder="big")
+        value_int = pair.value.to_bytes(4, byteorder="big")
         
         patchOperations += (key_int)
         patchOperations += (value_int)
@@ -552,7 +552,7 @@ def web_randomizer(jsonSettings, world_graph):
         palette_data=random_seed.palette_data,
         quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
-        seed_id=data["SeedID"]["value"]
+        seed_id=data["SeedID"].value
     )
     patch_file = io.BytesIO(operations)
 

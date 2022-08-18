@@ -31,31 +31,31 @@ def get_rnd_starting_partners(
         else:
             break
 
-    rando_settings.start_with_goombario["value"] = False
-    rando_settings.start_with_kooper["value"] = False
-    rando_settings.start_with_bombette["value"] = False
-    rando_settings.start_with_parakarry["value"] = False
-    rando_settings.start_with_bow["value"] = False
-    rando_settings.start_with_watt["value"] = False
-    rando_settings.start_with_sushie["value"] = False
-    rando_settings.start_with_lakilester["value"] = False
+    rando_settings.start_with_goombario.value = False
+    rando_settings.start_with_kooper.value = False
+    rando_settings.start_with_bombette.value = False
+    rando_settings.start_with_parakarry.value = False
+    rando_settings.start_with_bow.value = False
+    rando_settings.start_with_watt.value = False
+    rando_settings.start_with_sushie.value = False
+    rando_settings.start_with_lakilester.value = False
 
     for partner in partners:
         if partner == "Goombario":
-            rando_settings.start_with_goombario["value"] = True
+            rando_settings.start_with_goombario.value = True
         elif partner == "Kooper":
-            rando_settings.start_with_kooper["value"] = True
+            rando_settings.start_with_kooper.value = True
         elif partner == "Bombette":
-            rando_settings.start_with_bombette["value"] = True
+            rando_settings.start_with_bombette.value = True
         elif partner == "Parakarry":
-            rando_settings.start_with_parakarry["value"] = True
+            rando_settings.start_with_parakarry.value = True
         elif partner == "Bow":
-            rando_settings.start_with_bow["value"] = True
+            rando_settings.start_with_bow.value = True
         elif partner == "Watt":
-            rando_settings.start_with_watt["value"] = True
+            rando_settings.start_with_watt.value = True
         elif partner == "Sushie":
-            rando_settings.start_with_sushie["value"] = True
+            rando_settings.start_with_sushie.value = True
         elif partner == "Lakilester":
-            rando_settings.start_with_lakilester["value"] = True
+            rando_settings.start_with_lakilester.value = True
 
     return partners
