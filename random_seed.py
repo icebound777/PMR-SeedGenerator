@@ -67,7 +67,7 @@ class RandomSeed:
             world_graph = get_gear_location_shuffle(world_graph, self.rando_settings.gear_shuffle_mode["value"])
 
         # Adjust graph logic if needed
-        world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings, self.rando_settings.bowsers_castle_mode)
+        world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings, self.rando_settings.bowsers_castle_mode["value"])
 
         hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
         if self.rando_settings.glitch_settings.knows_hidden_blocks["value"]:
