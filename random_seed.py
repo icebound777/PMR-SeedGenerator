@@ -64,7 +64,7 @@ class RandomSeed:
         elif self.rando_settings.bowsers_castle_mode["value"] == 2:
             self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
         if self.rando_settings.gear_shuffle_mode["value"] != 0:
-            world_graph = get_gear_location_shuffle(world_graph)
+            world_graph = get_gear_location_shuffle(world_graph, self.rando_settings.gear_shuffle_mode["value"])
 
         # Adjust graph logic if needed
         world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings, self.rando_settings.bowsers_castle_mode)

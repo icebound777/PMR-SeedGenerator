@@ -243,20 +243,23 @@ def get_bowsercastle_bossrush(world_graph: dict):
 
     return all_entrance_modifications, world_graph
 
-def get_gear_location_shuffle(world_graph: dict):
+def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     """
-    Returns the modified world graph itself for Big Chest Shuffle, which
-    removes dynamic hammer block logic.
+    Returns the modified world graph itself for Gear Location Shuffle and Full Shuffle,
+    which removes dynamic hammer block logic.
     """
     all_new_edges = []
     all_edges_to_remove = []
 
     all_new_edges.extend(edges_isk_gls_add)
     all_new_edges.extend(edges_kzn_gls_add)
-    all_new_edges.extend(edges_tik_gls_add)
     all_edges_to_remove.extend(edges_isk_gls_remove)
     all_edges_to_remove.extend(edges_kzn_gls_remove)
-    all_edges_to_remove.extend(edges_tik_gls_remove)
+
+    # The blocks are the same for isk and kzn and all non-vanilla modes, but only GLS modifies tik
+    if gear_shuffle_mode == 1:
+        all_new_edges.extend(edges_tik_gls_add)
+        all_edges_to_remove.extend(edges_tik_gls_remove)
 
     world_graph, _ = adjust(
         world_graph,
