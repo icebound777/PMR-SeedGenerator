@@ -55,8 +55,8 @@ class Table:
         )
         table_data.append(
             KeyValuePair(
-            0xAF060505,
-            0x00000000
+                0xAF060505,
+                0x00000000
             )
         )
 

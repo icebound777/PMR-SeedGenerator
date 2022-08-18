@@ -22,6 +22,6 @@ class KeyValuePair:
       raise Exception(f"Invalid comparison of KeyValuePair was attempted between {self} and {obj}")
 
    def __bool__(self):
-      raise Exception(f"Invalid boolean evalation of KeyValuePair was attempted with {self}")
+      raise Exception(f"Invalid boolean evaluation of KeyValuePair was attempted with {self}")
       
       
