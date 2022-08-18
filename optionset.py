@@ -158,7 +158,7 @@ class OptionSet:
 
         for self_key, self_value in self.__dict__.items():
             if self_key.startswith("starting_item"):
-                item_id = self_value.get("value")
+                item_id = self_value
                 if item_id != 0:
                     item_obj = Item.get_or_none(Item.value == item_id)
                     if item_obj is not None:
