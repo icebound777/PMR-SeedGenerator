@@ -45,13 +45,13 @@ def get_scarcitied_itempool(itempool:list, scarcity:int) -> list:
                 0x0A6, # KoopaLeaf
                 0x0AE, # StinkyHerb
                 0x0A5, # Goomnut
-                0x0A0, # YellowBerry
+                0x1E1, # YellowBerry
                 0x08A, # Mushroom
                 0x094, # Apple
-                0x09E, # BlueBerry
-                0x09F, # RedBerry
+                0x1DD, # BlueBerry
+                0x1DF, # RedBerry
                 0x09B, # SuperSoda
-                0x0A1, # BubbleBerry
+                0x1E3, # BubbleBerry
                 0x0A4, # HoneySyrup
             ],
             TYPE_TAYCETITEM: [
