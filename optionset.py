@@ -558,6 +558,8 @@ class OptionSet:
             self.glitch_settings.buzzar_gap_skip_clippy = options_dict.get("BuzzarGapSkipClippy")
         if "ParakarrylessMtRuggedStarPiece" in options_dict:
             self.glitch_settings.parakarryless_mt_rugged_star_piece = options_dict.get("ParakarrylessMtRuggedStarPiece")
+        if "MtRuggedCoinsWithKooper" in options_dict:
+            self.glitch_settings.mt_rugged_coins_with_kooper = options_dict.get("MtRuggedCoinsWithKooper")
 
         if "DesertBrickBlockItemWithParakarry" in options_dict:
             self.glitch_settings.desert_brick_block_item_with_parakarry = options_dict.get("DesertBrickBlockItemWithParakarry")
@@ -1140,6 +1142,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BuzzarGapSkipClippy").get("value"), bool)
     if "ParakarrylessMtRuggedStarPiece" in options_dict:
        assert isinstance(options_dict.get("ParakarrylessMtRuggedStarPiece").get("value"), bool)
+    if "MtRuggedCoinsWithKooper" in options_dict:
+       assert isinstance(options_dict.get("MtRuggedCoinsWithKooper").get("value"), bool)
 
     if "DesertBrickBlockItemWithParakarry" in options_dict:
         assert isinstance(options_dict.get("DesertBrickBlockItemWithParakarry").get("value"), bool)
@@ -1377,6 +1381,7 @@ class GlitchOptionSet():
             self.mt_rugged_quake_hammer_and_letter_with_laki = False
             self.parakarryless_mt_rugged_seed = False
             self.buzzar_gap_skip_clippy = False
+            self.mt_rugged_coins_with_kooper = False
             self.parakarryless_mt_rugged_star_piece = False
             self.desert_brick_block_item_with_parakarry = False
             self.early_ruins_laki_jump = False

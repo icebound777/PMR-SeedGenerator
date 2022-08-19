@@ -71,7 +71,7 @@ from maps.graph_edges.glitched_logic.trd_bombetteless_right_fortress_jail_key im
     edges_trd_add_bombetteless_right_key
 
 # Glitched Logic - Mt.Rugged
-from maps.graph_edges.glitched_logic.mt_rugged_quake_hammer_and_letter_laki import \
+from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_laki import \
     edges_iwa_add_quake_hammer_and_letter_laki
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed import \
     edges_iwa_add_parakarryless_mt_rugged_seed
@@ -79,6 +79,8 @@ from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_star_piece impo
     edges_iwa_add_parakarryless_star_piece_laki
 from maps.graph_edges.glitched_logic.iwa_buzzar_gap_skip import \
     edges_iwa_add_buzzar_gap_skip_clippy
+from maps.graph_edges.glitched_logic.iwa_mt_rugged_coins_with_kooper import \
+    edges_iwa_add_mt_rugged_coins_with_kooper
 
 # Glitched Logic - Dry Dry Desert
 from maps.graph_edges.glitched_logic.sbk_desert_brick_block_item_with_parakarry import \
@@ -347,6 +349,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_iwa_add_parakarryless_star_piece_laki)
     if glitch_settings.buzzar_gap_skip_clippy["value"]:
         all_new_edges.extend(edges_iwa_add_buzzar_gap_skip_clippy)
+    if glitch_settings.mt_rugged_coins_with_kooper["value"]:
+        all_new_edges.extend(edges_iwa_add_mt_rugged_coins_with_kooper)
 
     # Dry Dry Desert
     if glitch_settings.early_ruins_laki_jump["value"]:
