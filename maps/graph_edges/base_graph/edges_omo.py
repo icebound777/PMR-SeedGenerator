@@ -94,7 +94,7 @@ edges_omo = [
     {"from": {"map": "OMO_05", "id": 1}, "to": {"map": "OMO_17", "id": 1}, "reqs": []}, # PNK Gourmet Guy Crossing Exit East (North) -> PNK Tracks Hallway Exit West (North)
     
     {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 1}, "reqs": [["MF_Ch4_GaveCakeToGourmetGuy"]]}, #? PNK Gourmet Guy Crossing Exit East (South) -> PNK Gourmet Guy Crossing Exit East (North)
-    {"from": {"map": "OMO_05", "id": 1}, "to": {"map": "OMO_05", "id": 0}, "reqs": [["MF_Ch4_GaveCakeToGourmetGuy"]]}, #? PNK Gourmet Guy Crossing Exit East (North) -> PNK Gourmet Guy Crossing Exit East (South)
+    {"from": {"map": "OMO_05", "id": 1}, "to": {"map": "OMO_05", "id": 0}, "reqs": []}, #? PNK Gourmet Guy Crossing Exit East (North) -> PNK Gourmet Guy Crossing Exit East (South)
     
     {"from": {"map": "OMO_05", "id": 0},               "to": {"map": "OMO_05", "id": "ItemA"},         "reqs": [["MF_Ch4_GaveCakeToGourmetGuy"]]}, #* PNK Gourmet Guy Crossing Exit East (South) -> ItemA (Cookbook)
     {"from": {"map": "OMO_05", "id": "ItemA"},         "to": {"map": "OMO_05", "id": 0},               "reqs": []}, #* ItemA (Cookbook) -> PNK Gourmet Guy Crossing Exit East (South)
