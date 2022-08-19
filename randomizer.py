@@ -600,7 +600,7 @@ def main_randomizer(args):
     timer_start = time.perf_counter()
 
     target_modfile = ""
-    spoilerlog_file_path = ""
+    custom_spoilerlog_file_path = ""
     rando_outputfile = ""
 
     rando_settings = None
@@ -654,7 +654,7 @@ def main_randomizer(args):
 
             # Spoilerlog output file
             if opt in ["-s", "--spoilerlog"]:
-                spoilerlog_file_path = arg
+                custom_spoilerlog_file_path = arg
 
             # Choose the random seed
             if opt in ["-S", "--seed"]:
@@ -709,7 +709,10 @@ def main_randomizer(args):
     )
 
     # Write sorted spoiler log
-    target_spoilerfile = Path(target_modfile).parent / "spoiler_log.txt"
+    if custom_spoilerlog_file_path:
+        target_spoilerfile = custom_spoilerlog_file_path
+    else:
+        target_spoilerfile = Path(target_modfile).parent / "spoiler_log.txt"
 
     if rando_settings.write_spoilerlog:
         write_spoiler_log(
