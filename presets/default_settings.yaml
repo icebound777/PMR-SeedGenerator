@@ -253,7 +253,8 @@ GourmetGuySkipLaki                              : false
 GourmetGuySkipParakarry                         : false
 BowlessGreenStation                             : false
 KooperlessRedStationShootingStar                : false
-ParakarylessBlueBlockCityGap                    : false
+ParakarrylessBlueBlockCityGap                   : false
+BlueSwitchSkip                                  : false
 
 RaphSkipEnglish                                 : false
 Ch5SushieGlitch                                 : false
