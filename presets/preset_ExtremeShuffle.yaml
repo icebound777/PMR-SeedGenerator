@@ -186,6 +186,7 @@ RandomPitch: false
 
 # Glitched Logic
 PrologueGelEarly                                : false
+ReverseGoombaKingBridge                         : false
 
 OddKeyEarly                                     : false
 BlueHouseSkip                                   : false

@@ -501,6 +501,8 @@ class OptionSet:
         # Glitched Logic
         if "PrologueGelEarly" in options_dict:
             self.glitch_settings.prologue_gel_early = options_dict.get("PrologueGelEarly")
+        if "ReverseGoombaKingBridge" in options_dict:
+            self.glitch_settings.reverse_goomba_king_bridge = options_dict.get("ReverseGoombaKingBridge")
 
         if "OddKeyEarly" in options_dict:
             self.glitch_settings.odd_key_early = options_dict.get("OddKeyEarly")
@@ -1087,6 +1089,8 @@ def validate_options(options_dict):
     # Glitched Logic
     if "PrologueGelEarly" in options_dict:
         assert isinstance(options_dict.get("PrologueGelEarly").get("value"), bool)
+    if "ReverseGoombaKingBridge" in options_dict:
+        assert isinstance(options_dict.get("ReverseGoombaKingBridge").get("value"), bool)
 
     if "OddKeyEarly" in options_dict:
         assert isinstance(options_dict.get("OddKeyEarly").get("value"), bool)
@@ -1355,6 +1359,8 @@ class MysteryOptionSet():
 class GlitchOptionSet():
     def __init__(self):
             self.prologue_gel_early = False
+            self.reverse_goomba_king_bridge = False
+
             self.odd_key_early = False
             self.blue_house_skip = False
             self.blue_house_skip_laki = False
