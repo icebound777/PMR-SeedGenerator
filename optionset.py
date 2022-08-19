@@ -51,6 +51,7 @@ class OptionSet:
         self.allow_physics_glitches = get_option_keyvalue_dict("AllowPhysicsGlitches")
         self.starway_spirits_needed = get_option_keyvalue_dict("StarWaySpiritsNeeded")
         self.peachcastle_return_pipe = get_option_keyvalue_dict("PeachCastleReturnPipe")
+        self.cook_without_fryingpan = get_option_keyvalue_dict("CookWithoutFryingPan")
         self.foliage_item_hints = get_option_keyvalue_dict("FoliageItemHints")
         self.hiddenpanel_visibility = get_option_keyvalue_dict("HiddenPanelVisibility")
 
@@ -267,6 +268,8 @@ class OptionSet:
             self.starway_spirits_needed = options_dict.get("StarWaySpiritsNeeded")
         if "PeachCastleReturnPipe" in options_dict:
             self.peachcastle_return_pipe = options_dict.get("PeachCastleReturnPipe")
+        if "CookWithoutFryingPan" in options_dict:
+            self.cook_without_fryingpan = options_dict.get("CookWithoutFryingPan")
         if "FoliageItemHints" in options_dict:
             self.foliage_item_hints = options_dict.get("FoliageItemHints")
         if "HiddenPanelVisibility" in options_dict:
@@ -791,6 +794,8 @@ def validate_options(options_dict):
                 and 0 <= options_dict.get("StarWaySpiritsNeeded").get("value") <= 7)
     if "PeachCastleReturnPipe" in options_dict:
         assert isinstance(options_dict.get("PeachCastleReturnPipe").get("value"), bool)
+    if "CookWithoutFryingPan" in options_dict:
+        assert isinstance(options_dict.get("CookWithoutFryingPan").get("value"), bool)
     if "FoliageItemHints" in options_dict:
         assert isinstance(options_dict.get("FoliageItemHints").get("value"), bool)
     if "HiddenPanelVisibility" in options_dict:

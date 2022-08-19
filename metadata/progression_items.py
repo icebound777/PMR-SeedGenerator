@@ -135,5 +135,5 @@ progression_miscitems = [
     "DriedPasta",  # 0x00A7 (Koopa Koot: +KoopaLeaf -> Koopasta from Tayce T.)
     "CakeMix",     # 0x00AA (Koopa Koot: +KoopaLeaf -> KookyCookie; LemonCandy for AntiGuy; Cake for Gourmet Guy)
     "Coconut",     # 0x00AC (Koopa Koot)
-    "Cake",        # 0x00C1 (Gourmet Guy)
+    #"Cake",        # 0x00C1 (Gourmet Guy) > cook via CakeMix
 ]

@@ -13,6 +13,7 @@ AllowPhysicsGlitches : false
 SkipEpilogue         : false
 StarWaySpiritsNeeded : 7
 PeachCastleReturnPipe: true # false locks the pipe
+CookWithoutFryingPan : false
 FoliageItemHints     : true
 HiddenPanelVisibility: 0 # 0:vanilla, 1:texture-edit
 

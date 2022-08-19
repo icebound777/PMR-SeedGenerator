@@ -289,6 +289,7 @@ def _init_mario_inventory(
     magical_seeds_required:int,
     startwith_toybox_open:bool,
     startwith_whale_open:bool,
+    cook_without_fryingpan:bool,
     startwith_speedyspin: bool
 ) -> Mario:
     """
@@ -332,6 +333,8 @@ def _init_mario_inventory(
         mario.add_to_inventory("RF_ToyboxOpen")
     if startwith_whale_open:
         mario.add_to_inventory("RF_CanRideWhale")
+    if cook_without_fryingpan:
+        mario.add_to_inventory("RF_CanCook")
     if magical_seeds_required == 3:
         mario.add_to_inventory("RF_MagicalSeed1")
     elif magical_seeds_required == 2:
@@ -1260,6 +1263,7 @@ def _algo_forward_fill(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
     starting_hammer,
@@ -1337,6 +1341,7 @@ def _algo_forward_fill(
         magical_seeds_required,
         startwith_toybox_open,
         startwith_whale_open,
+        cook_without_fryingpan,
         speedyspin
     )
 
@@ -1603,6 +1608,7 @@ def _algo_assumed_fill(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
     starting_hammer,
@@ -1700,6 +1706,7 @@ def _algo_assumed_fill(
             magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,
+            cook_without_fryingpan,
             speedyspin
         )
 
@@ -1829,6 +1836,7 @@ def get_item_spheres(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
     starting_hammer,
@@ -1862,6 +1870,7 @@ def get_item_spheres(
         magical_seeds_required,
         startwith_toybox_open,
         startwith_whale_open,
+        cook_without_fryingpan,
         startwith_speedyspin
     )
 
@@ -1958,6 +1967,7 @@ def place_items(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
     starting_hammer,
@@ -2008,6 +2018,7 @@ def place_items(
             magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,
+            cook_without_fryingpan,
             starting_partners,
             starting_boots,
             starting_hammer,
@@ -2043,6 +2054,7 @@ def place_items(
             magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,
+            cook_without_fryingpan,
             starting_partners,
             starting_boots,
             starting_hammer,
