@@ -65,7 +65,6 @@ ToyboxOpen          : false
 WhaleOpen           : false
 
 # Randomization: Logic
-#PlacementAlgorithm: ForwardFill
 PlacementAlgorithm: AssumedFill
 #PlacementAlgorithm: CustomSeed # NYI
 
