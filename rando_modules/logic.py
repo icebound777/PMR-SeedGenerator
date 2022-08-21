@@ -92,7 +92,7 @@ def is_itemlocation_replenishable(item_node):
 
 def _get_random_taycet_item():
     """
-    Randomly pick a Tayce T. item objects chosen out of all allowed Tayce T.
+    Randomly pick a Tayce T. item object chosen out of all allowed Tayce T.
     items.
     """
     random_taycet_item_value = random.choice([x for x in taycet_items if x not in exclude_from_taycet_placement])
