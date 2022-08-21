@@ -188,6 +188,7 @@ RandomPitch: false
 PrologueGelEarly                                : false
 ReverseGoombaKingBridge                         : false
 GoombaVillageEntryFenceClip                     : false
+GoombaVillageSuperBootsExit                     : false
 
 OddKeyEarly                                     : false
 BlueHouseSkip                                   : false
