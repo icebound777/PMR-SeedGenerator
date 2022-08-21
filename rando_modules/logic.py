@@ -11,7 +11,7 @@ from db.item import Item
 from db.map_area import MapArea
 from rando_modules.random_shop_prices import get_shop_price
 
-from rando_modules.simulate import Mario
+from models.MarioInventory import MarioInventory
 
 from rando_modules.modify_itempool \
     import get_scarcitied_itempool,\
@@ -100,7 +100,7 @@ def _depth_first_search(
     reachable_node_ids:set,
     reachable_item_nodes:dict,
     non_traversable_edges:defaultdict, #(set)
-    mario:Mario
+    mario:MarioInventory
 ):
     """
     Executes a DFS (depths first search) through the world graph, starting from
@@ -149,7 +149,7 @@ def _depth_first_search(
             #logging.debug("DFS edge requirements fullfilled %s", edge)
             # Add all pseudoitems provided by this edge to the inventory
             if edge.get("pseudoitems") is not None:
-                mario.add_to_inventory(edge.get("pseudoitems"))
+                mario.add(edge.get("pseudoitems"))
                 found_new_pseudoitems = True
 
             while edge in non_traversable_edges[node_id]:
@@ -182,7 +182,7 @@ def _find_new_nodes_and_edges(
     reachable_item_nodes:dict,
     non_traversable_edges:defaultdict, #(set)
     filled_item_nodes:list,
-    mario:Mario
+    mario:MarioInventory
 ):
     """
     Try to traverse already found edges which could not be traversed before.
@@ -242,7 +242,7 @@ def _find_new_nodes_and_edges(
             current_item = item_node.current_item
             if current_item and item_node.identifier not in [x.identifier for x in filled_item_nodes]:
                 current_item_name = current_item.item_name
-                mario.add_to_inventory(current_item_name)
+                mario.add(current_item_name)
                 found_new_items = True
 
                 # Special case: Item location is replenishable, holds a misc.
@@ -269,78 +269,6 @@ def _find_new_nodes_and_edges(
     logging.debug("non_traversable_edges after after %s", non_traversable_edges)
     logging.debug("---- _find_new_nodes_and_edges end")
     return pool_misc_progression_items, pool_other_items, reachable_node_ids, reachable_item_nodes, non_traversable_edges, filled_item_nodes, mario
-
-
-def _init_mario_inventory(
-    starting_partners:list,
-    starting_items:list,
-    starting_boots:int,
-    starting_hammer:int,
-    partners_always_usable:bool,
-    hidden_block_mode:int,
-    startwith_bluehouse_open:bool,
-    magical_seeds_required:int,
-    startwith_toybox_open:bool,
-    startwith_whale_open:bool,
-    cook_without_fryingpan:bool,
-    startwith_speedyspin: bool
-) -> Mario:
-    """
-    Initializes Mario's starting inventory.
-    This includes partners (for considering their overworld abilities during
-    world graph traversal), equipment, as well as additional pseudoitems
-    based on chosen settings.
-    Starting equipment irrelevant to world graph traversal (such as Lucky Star,
-    starting coins) is ignored.
-    """
-    mario = Mario()
-
-    mario.add_to_inventory(starting_partners)
-    if partners_always_usable:
-        mario.add_to_inventory(all_partners_imp)
-        mario.add_to_inventory("RF_PartnersAlwaysUsable")
-
-    if starting_boots == 2:
-        mario.add_to_inventory("BootsProxy3")
-    if starting_boots in [1,2]:
-        mario.add_to_inventory("BootsProxy2")
-    if starting_boots in [0,1,2]:
-        mario.add_to_inventory("BootsProxy1")
-    if starting_hammer == 2:
-        mario.add_to_inventory("HammerProxy3")
-    if starting_hammer in [1,2]:
-        mario.add_to_inventory("HammerProxy2")
-    if starting_hammer in [0,1,2]:
-        mario.add_to_inventory("HammerProxy1")
-
-    for item in starting_items:
-        mario.add_to_inventory(item.item_name)
-
-    if hidden_block_mode == 3:
-        # hidden blocks always visible
-        mario.add_to_inventory("RF_HiddenBlocksVisible")
-
-    if startwith_bluehouse_open:
-        mario.add_to_inventory("GF_MAC02_UnlockedHouse")
-    if startwith_toybox_open:
-        mario.add_to_inventory("RF_ToyboxOpen")
-    if startwith_whale_open:
-        mario.add_to_inventory("RF_CanRideWhale")
-    if cook_without_fryingpan:
-        mario.add_to_inventory("RF_CanCook")
-    if magical_seeds_required == 3:
-        mario.add_to_inventory("RF_MagicalSeed1")
-    elif magical_seeds_required == 2:
-        mario.add_to_inventory(["RF_MagicalSeed1", "RF_MagicalSeed2"])
-    elif magical_seeds_required == 1:
-        mario.add_to_inventory(["RF_MagicalSeed1", "RF_MagicalSeed2", "RF_MagicalSeed3"])
-    elif magical_seeds_required == 0:
-        mario.add_to_inventory(["RF_MagicalSeed1", "RF_MagicalSeed2", "RF_MagicalSeed3", "RF_MagicalSeed4"])
-
-    if startwith_speedyspin:
-        mario.add_to_inventory("SpeedySpin")
-
-    return mario
 
 
 def get_items_to_exclude(
@@ -764,7 +692,7 @@ def place_progression_items(
         # Put chosen item into the randomly chosen item node, add item to
         # inventory, then check for newly reachable item nodes
         random_node.current_item = random_item
-        mario.add_to_inventory(random_item.item_name)
+        mario.add(random_item.item_name)
         items_placed.append(random_item)
         items_overwritten.append(random_node.vanilla_item)
         node_identifier = random_node.identifier
@@ -864,7 +792,7 @@ def find_empty_reachable_nodes(
     reachable_item_nodes:dict,
     non_traversable_edges:defaultdict,
     filled_item_node_ids:set,
-    mario:Mario
+    mario:MarioInventory
 ):
     """
     Try to traverse already found edges which could not be traversed before.
@@ -900,7 +828,7 @@ def find_empty_reachable_nodes(
             item_node = reachable_item_nodes[node_id]
             current_item = item_node.current_item
             if current_item:
-                mario.add_to_inventory(current_item.item_name)
+                mario.add(current_item.item_name)
                 found_new_items = True
                 filled_item_node_ids.add(node_id)
 
@@ -1019,23 +947,23 @@ def _algo_assumed_fill(
 
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()
-        mario = _init_mario_inventory(
-            starting_partners,
-            starting_items,
+        mario = MarioInventory(
             starting_boots,
             starting_hammer,
+            starting_partners,
+            starting_items,
             partners_always_usable,
             hidden_block_mode,
-            startwith_bluehouse_open,
             magical_seeds_required,
+            startwith_bluehouse_open,
             startwith_toybox_open,
             startwith_whale_open,
-            cook_without_fryingpan,
-            speedyspin
+            speedyspin,
+            cook_without_fryingpan
         )
 
         for item_ in pool_combined_progression_items:
-            mario.add_to_inventory(item_.item_name)
+            mario.add(item_.item_name)
 
         candidate_locations, mario = find_available_nodes(
             world_graph,
@@ -1183,19 +1111,19 @@ def get_item_spheres(
 
     print("Writing Item Spheres")
 
-    mario = _init_mario_inventory(
-        starting_partners,
-        starting_items,
+    mario = MarioInventory(
         starting_boots,
         starting_hammer,
+        starting_partners,
+        starting_items,
         partners_always_usable,
         hidden_block_mode,
-        startwith_bluehouse_open,
         magical_seeds_required,
+        startwith_bluehouse_open,
         startwith_toybox_open,
         startwith_whale_open,
-        cook_without_fryingpan,
-        startwith_speedyspin
+        startwith_speedyspin,
+        cook_without_fryingpan
     )
 
     # Set node to start graph traversal from
@@ -1262,7 +1190,7 @@ def get_item_spheres(
                 if item.item_type != "ITEM" or is_itemlocation_replenishable(node):
                     if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names or item.item_type == 'GEAR'):
                         item_suffix = "*"
-                    mario.add_to_inventory(item.item_name)
+                    mario.add(item.item_name)
 
                 item_spheres_text += f'    ({node_long_name}): {item_verbose_name}{item_suffix}\n'
         reachable_item_nodes.clear()
