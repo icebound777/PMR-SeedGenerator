@@ -31,6 +31,8 @@ from maps.graph_edges.glitched_logic.kmr_prologue_gel_early import \
     edges_kmr_add_prologue_gel_early
 from maps.graph_edges.glitched_logic.kmr_reverse_goomba_king_bridge import \
     edges_kmr_add_reverse_goomba_king_bridge
+from maps.graph_edges.glitched_logic.kmr_goomba_village_entry_fence_clip import \
+    edges_kmr_add_goomba_village_entry_fence_clip
 
 # Glitched Logic - Toad Town
 from maps.graph_edges.glitched_logic.mac_odd_key_early import \
@@ -293,6 +295,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_kmr_add_prologue_gel_early)
     if glitch_settings.reverse_goomba_king_bridge["value"]:
         all_new_edges.extend(edges_kmr_add_reverse_goomba_king_bridge)
+    if glitch_settings.goomba_village_entry_fence_clip["value"]:
+        all_new_edges.extend(edges_kmr_add_goomba_village_entry_fence_clip)
 
     # Toad Town
     if glitch_settings.odd_key_early["value"]:
