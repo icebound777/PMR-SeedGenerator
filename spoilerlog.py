@@ -1,6 +1,4 @@
 import io
-import os
-from pathlib import Path
 from metadata.verbose_area_names import verbose_area_names
 from metadata.verbose_item_names import verbose_item_names
 from metadata.verbose_item_locations import verbose_item_locations
