@@ -189,6 +189,7 @@ PrologueGelEarly                                : false
 ReverseGoombaKingBridge                         : false
 GoombaVillageEntryFenceClip                     : false
 GoombaVillageSuperBootsExit                     : false
+HammerlessJrPlaygroundLaki                      : false
 
 OddKeyEarly                                     : false
 BlueHouseSkip                                   : false
@@ -293,7 +294,6 @@ BowlessBowsersCastleBasement                    : false
 FastFloodRoomKooper                             : false
 FastFloodRoomBombetteUltraBoots                 : false
 
-BreakYellowBlocksWithSuperBoots                 : false
 BreakMetalBlocksWithUltraBoots                  : false
 KnowsHiddenBlocks                               : false
 KnowsPuzzleSolutions                            : false
