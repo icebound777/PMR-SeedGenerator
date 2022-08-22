@@ -33,8 +33,8 @@ from maps.graph_edges.glitched_logic.kmr_reverse_goomba_king_bridge import \
     edges_kmr_add_reverse_goomba_king_bridge
 from maps.graph_edges.glitched_logic.kmr_goomba_village_entry_fence_clip import \
     edges_kmr_add_goomba_village_entry_fence_clip
-from maps.graph_edges.glitched_logic.kmr_goomba_village_super_boots_exit import \
-    edges_kmr_add_goomba_village_super_boots_exit
+from maps.graph_edges.glitched_logic.kmr_goomba_village_hammerless_exit import \
+    edges_kmr_add_goomba_village_hammerless_exit_super_boots, edges_kmr_add_goomba_village_hammerless_exit_laki
 from maps.graph_edges.glitched_logic.kmr_hammerless_jr_playground_laki import \
     edges_kmr_add_hammerless_jr_playground_laki
 
@@ -302,7 +302,9 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     if glitch_settings.goomba_village_entry_fence_clip["value"]:
         all_new_edges.extend(edges_kmr_add_goomba_village_entry_fence_clip)
     if glitch_settings.goomba_village_super_boots_exit["value"]:
-        all_new_edges.extend(edges_kmr_add_goomba_village_super_boots_exit)
+        all_new_edges.extend(edges_kmr_add_goomba_village_hammerless_exit_super_boots)
+    if glitch_settings.goomba_village_laki_exit["value"]:
+        all_new_edges.extend(edges_kmr_add_goomba_village_hammerless_exit_laki)
     if glitch_settings.hammerless_jr_playground_laki["value"]:
         all_new_edges.extend(edges_kmr_add_hammerless_jr_playground_laki)
 

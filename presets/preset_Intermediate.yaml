@@ -190,6 +190,7 @@ ReverseGoombaKingBridge                         : false
 GoombaVillageEntryFenceClip                     : false
 GoombaVillageSuperBootsExit                     : false
 HammerlessJrPlaygroundLaki                      : false
+GoombaVillageLakiExit                           : false
 
 OddKeyEarly                                     : false
 BlueHouseSkip                                   : false

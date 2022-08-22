@@ -509,6 +509,8 @@ class OptionSet:
             self.glitch_settings.goomba_village_super_boots_exit = options_dict.get("GoombaVillageSuperBootsExit")
         if "HammerlessJrPlaygroundLaki" in options_dict:
             self.glitch_settings.hammerless_jr_playground_laki = options_dict.get("HammerlessJrPlaygroundLaki")
+        if "GoombaVillageLakiExit" in options_dict:
+            self.glitch_settings.goomba_village_laki_exit = options_dict.get("GoombaVillageLakiExit")
 
         if "OddKeyEarly" in options_dict:
             self.glitch_settings.odd_key_early = options_dict.get("OddKeyEarly")
@@ -1103,6 +1105,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("GoombaVillageSuperBootsExit").get("value"), bool)
     if "HammerlessJrPlaygroundLaki" in options_dict:
         assert isinstance(options_dict.get("HammerlessJrPlaygroundLaki").get("value"), bool)
+    if "GoombaVillageLakiExit" in options_dict:
+        assert isinstance(options_dict.get("GoombaVillageLakiExit").get("value"), bool)
 
     if "OddKeyEarly" in options_dict:
         assert isinstance(options_dict.get("OddKeyEarly").get("value"), bool)
@@ -1375,6 +1379,7 @@ class GlitchOptionSet():
             self.goomba_village_entry_fence_clip = False
             self.goomba_village_super_boots_exit = False
             self.hammerless_jr_playground_laki = False
+            self.goomba_village_laki_exit = False
 
             self.odd_key_early = False
             self.blue_house_skip = False
