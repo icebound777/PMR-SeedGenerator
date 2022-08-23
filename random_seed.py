@@ -79,13 +79,14 @@ class RandomSeed:
             try:
                 starting_chapter, starting_map_value = self.init_starting_map(self.rando_settings)
                 self.init_starting_partners(self.rando_settings)
-                self.init_starting_items(self.rando_settings)
 
                 # Pick seeds required for flower gate, if random
                 if self.rando_settings.magical_seeds_required["value"] == 5:
                     magical_seeds_required = random.randint(0, 4)
                 else:
                     magical_seeds_required = self.rando_settings.magical_seeds_required["value"]
+
+                self.init_starting_items(self.rando_settings, magical_seeds_required)
 
                 world_graph_copy = deepcopy(world_graph)
                 place_items(
@@ -254,7 +255,7 @@ class RandomSeed:
 
 
 
-    def init_starting_items(self, rando_settings:OptionSet):
+    def init_starting_items(self, rando_settings:OptionSet, magical_seeds_needed:int):
         """
         Initialize the starting items from either the chosen starting items or
         pick them randomly.
@@ -290,7 +291,7 @@ class RandomSeed:
                 do_randomize_dojo=rando_settings.include_dojo,
                 starting_partners=self.starting_partners,
                 startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
-                magical_seeds_required=rando_settings.magical_seeds_required["value"],
+                magical_seeds_required=magical_seeds_needed,
                 bowsers_castle_mode=rando_settings.bowsers_castle_mode["value"],
                 always_speedyspin=rando_settings.always_speedyspin["value"],
                 always_ispy=rando_settings.always_ispy["value"],
