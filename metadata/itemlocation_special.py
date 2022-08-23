@@ -141,12 +141,13 @@ limited_by_item_areas = {
     # Chapter 4 Shy Guy's Toybox
     "OMO": {
         "keys": [
+            "FryingPan",
             "ToyTrain",
             "Dictionary",
             "MysteryNote"
         ],
         "misc": [
-            "Cake",
+            "CakeMix",
         ]
     },
     # Chapter 5 Mt. Lavalava
