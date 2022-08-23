@@ -168,7 +168,7 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
     all_palettes.append(("Mario", palette_settings.mario_setting, palette_settings.mario_sprite))
     all_palettes.append(("01_0_Goombario", palette_settings.goombario_setting, palette_settings.goombario_sprite))
     all_palettes.append(("02_0_Kooper", palette_settings.kooper_setting, palette_settings.kooper_sprite))
-    #all_palettes.append(("03_0_Bombette", palette_settings.bombette_setting, palette_settings.bombette_sprite))
+    all_palettes.append(("03_0_Bombette", palette_settings.bombette_setting, palette_settings.bombette_sprite))
     all_palettes.append(("04_0_Parakarry", palette_settings.parakarry_setting, palette_settings.parakarry_sprite))
     all_palettes.append(("05_0_Bow", palette_settings.bow_setting, palette_settings.bow_sprite))
     all_palettes.append(("06_0_Watt", palette_settings.watt_setting, palette_settings.watt_sprite))

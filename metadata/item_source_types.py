@@ -186,7 +186,12 @@ item_source_types = {
                "ShopBadgeM": SRC_SOLDBYNPC,
                "ShopBadgeN": SRC_SOLDBYNPC,
                "ShopBadgeO": SRC_SOLDBYNPC,
-               },
+               "ShopRewardA": SRC_GIVENBYNPC,
+               "ShopRewardB": SRC_GIVENBYNPC,
+               "ShopRewardC": SRC_GIVENBYNPC,
+               "ShopRewardD": SRC_GIVENBYNPC,
+               "ShopRewardE": SRC_GIVENBYNPC,
+               "ShopRewardF": SRC_GIVENBYNPC,},
 
 # Koopa Region
     "NOK_01": {"Bush1_Drop1A": SRC_HIDDENINBUSH,

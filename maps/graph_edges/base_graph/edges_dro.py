@@ -35,12 +35,12 @@ edges_dro = [
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": 0}, "reqs": [["RF_MouserReturned"],["RF_CanUseDROCode"]], "pseudoitems": ["RF_CanMeetMoustafa"]}, #+ ShopItemE
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": 0}, "reqs": [], "pseudoitems": ["RF_MouserLeftShop"]}, #+ ShopItemE
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_DRO_1",
-                                                                                                                 "StarPiece_DRO_2",
-                                                                                                                 "StarPiece_DRO_3",
-                                                                                                                 "StarPiece_DRO_4",
-                                                                                                                 "StarPiece_DRO_5",
-                                                                                                                 "StarPiece_DRO_6",
-                                                                                                                 "StarPiece_DRO_7",
+                                                                                                             #    "StarPiece_DRO_2",
+                                                                                                             #    "StarPiece_DRO_3",
+                                                                                                             #    "StarPiece_DRO_4",
+                                                                                                             #    "StarPiece_DRO_5",
+                                                                                                             #    "StarPiece_DRO_6",
+                                                                                                             #    "StarPiece_DRO_7",
                                                                                                                  "StarPiece_DRO_8"]}, #+ Quizmo StarPieces
 
     # DRO_02 Outpost 2
@@ -60,11 +60,11 @@ edges_dro = [
     {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": 0}, "reqs": [["RF_MouserLeftShop"]], "pseudoitems": ["RF_MouserReturned"]}, #+ Chapter Progress
     {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": 0}, "reqs": [["Lemon"]], "pseudoitems": ["RF_CanUseDROCode"]}, #+ Chapter Progress
     {"from": {"map": "DRO_02", "id": 0},             "to": {"map": "DRO_02", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_DRO_1",
-                                                                                                                   "StarPiece_DRO_2",
-                                                                                                                   "StarPiece_DRO_3",
-                                                                                                                   "StarPiece_DRO_4",
-                                                                                                                   "StarPiece_DRO_5",
-                                                                                                                   "StarPiece_DRO_6",
-                                                                                                                   "StarPiece_DRO_7",
+                                                                                                                #   "StarPiece_DRO_2",
+                                                                                                                #   "StarPiece_DRO_3",
+                                                                                                                #   "StarPiece_DRO_4",
+                                                                                                                #   "StarPiece_DRO_5",
+                                                                                                                #   "StarPiece_DRO_6",
+                                                                                                                #   "StarPiece_DRO_7",
                                                                                                                    "StarPiece_DRO_8"]}, #+ Quizmo StarPieces
 ]

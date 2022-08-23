@@ -90,6 +90,16 @@ def is_itemlocation_replenishable(item_node):
     return (node_id in replenishing_itemlocations)
 
 
+def _get_random_taycet_item():
+    """
+    Randomly pick a Tayce T. item object chosen out of all allowed Tayce T.
+    items.
+    """
+    random_taycet_item_value = random.choice([x for x in taycet_items if x not in exclude_from_taycet_placement])
+    random_taycet_item = Item.get(Item.value == random_taycet_item_value)
+    return random_taycet_item
+
+
 def _depth_first_search(
     node_id:str,
     world_graph:dict,
@@ -278,7 +288,9 @@ def _init_mario_inventory(
     startwith_bluehouse_open:bool,
     magical_seeds_required:int,
     startwith_toybox_open:bool,
-    startwith_whale_open:bool
+    startwith_whale_open:bool,
+    cook_without_fryingpan:bool,
+    startwith_speedyspin: bool
 ) -> Mario:
     """
     Initializes Mario's starting inventory.
@@ -289,27 +301,24 @@ def _init_mario_inventory(
     starting coins) is ignored.
     """
     mario = Mario()
+
+    mario.add_to_inventory(starting_partners)
     if partners_always_usable:
         mario.add_to_inventory(all_partners_imp)
-    else:
-        mario.add_to_inventory(starting_partners)
+        mario.add_to_inventory("RF_PartnersAlwaysUsable")
 
     if starting_boots == 2:
-        mario.add_to_inventory("TornadoJump")
-    if starting_boots >= 1:
-        mario.add_to_inventory("SpinJump")
-    #* Commented out, as -1 boots never affect logic
-    #if starting_boots >= 0:
-    #    mario.add_to_inventory("Jump")
-    mario.add_to_inventory("Jump")
+        mario.add_to_inventory("BootsProxy3")
+    if starting_boots in [1,2]:
+        mario.add_to_inventory("BootsProxy2")
+    if starting_boots in [0,1,2]:
+        mario.add_to_inventory("BootsProxy1")
     if starting_hammer == 2:
-        mario.add_to_inventory("UltraHammer")
+        mario.add_to_inventory("HammerProxy3")
     if starting_hammer in [1,2]:
-        mario.add_to_inventory("SuperHammer")
+        mario.add_to_inventory("HammerProxy2")
     if starting_hammer in [0,1,2]:
-        mario.add_to_inventory("Hammer")
-    if starting_hammer == 0xFF:
-        mario.add_to_inventory("RF_HammerlessStart")
+        mario.add_to_inventory("HammerProxy1")
 
     for item in starting_items:
         mario.add_to_inventory(item.item_name)
@@ -324,6 +333,8 @@ def _init_mario_inventory(
         mario.add_to_inventory("RF_ToyboxOpen")
     if startwith_whale_open:
         mario.add_to_inventory("RF_CanRideWhale")
+    if cook_without_fryingpan:
+        mario.add_to_inventory("RF_CanCook")
     if magical_seeds_required == 3:
         mario.add_to_inventory("RF_MagicalSeed1")
     elif magical_seeds_required == 2:
@@ -332,6 +343,9 @@ def _init_mario_inventory(
         mario.add_to_inventory(["RF_MagicalSeed1", "RF_MagicalSeed2", "RF_MagicalSeed3"])
     elif magical_seeds_required == 0:
         mario.add_to_inventory(["RF_MagicalSeed1", "RF_MagicalSeed2", "RF_MagicalSeed3", "RF_MagicalSeed4"])
+
+    if startwith_speedyspin:
+        mario.add_to_inventory("SpeedySpin")
 
     return mario
 
@@ -345,7 +359,8 @@ def _get_limit_items_to_dungeons(
     starting_hammer:int,
     starting_partners:list,
     hidden_block_mode:int,
-    bowsers_castle_mode:int
+    bowsers_castle_mode:int,
+    start_with_speedyspin: bool
 ):
     """
     Logically places progression items into their 'dungeons', then returns a
@@ -572,7 +587,8 @@ def _get_limit_items_to_dungeons(
                 False,
                 False,
                 False,
-                False
+                False,
+                start_with_speedyspin
             )
         else:
             mario = _init_mario_inventory(
@@ -585,7 +601,8 @@ def _get_limit_items_to_dungeons(
                 False,
                 False,
                 False,
-                False
+                False,
+                start_with_speedyspin
             )
         if area_name in additional_starting_items:
             mario.add_to_inventory(additional_starting_items[area_name])
@@ -651,7 +668,8 @@ def _get_limit_items_to_dungeons(
                         False,
                         False,
                         False,
-                        False
+                        False,
+                        start_with_speedyspin
                     )
                 else:
                     mario = _init_mario_inventory(
@@ -664,7 +682,8 @@ def _get_limit_items_to_dungeons(
                         False,
                         False,
                         False,
-                        False
+                        False,
+                        start_with_speedyspin
                     )
 
         items_placed.extend(cur_items_placed)
@@ -701,7 +720,7 @@ def get_items_to_exclude(
     always_speedyspin:bool,
     always_ispy:bool,
     always_peekaboo:bool,
-    do_big_chest_shuffle:bool,
+    gear_shuffle_mode:int,
     starting_hammer:int,
     starting_boots:int
 ) -> list:
@@ -742,21 +761,24 @@ def get_items_to_exclude(
         for item_name in exclude_due_to_settings.get("always_peekaboo"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if do_big_chest_shuffle:
+    if gear_shuffle_mode >= 1:
         if starting_hammer == 2:
-            item = Item.get(Item.item_name == "UltraHammer")
+            item = Item.get(Item.item_name == "HammerProxy3")
             excluded_items.append(item)
         if starting_hammer in [1,2]:
-            item = Item.get(Item.item_name == "SuperHammer")
+            item = Item.get(Item.item_name == "HammerProxy2")
             excluded_items.append(item)
         if starting_hammer in [0,1,2]:
-            item = Item.get(Item.item_name == "Hammer")
+            item = Item.get(Item.item_name == "HammerProxy1")
             excluded_items.append(item)
         if starting_boots == 2:
-            item = Item.get(Item.item_name == "TornadoJump")
+            item = Item.get(Item.item_name == "BootsProxy3")
             excluded_items.append(item)
         if starting_boots in [1,2]:
-            item = Item.get(Item.item_name == "SpinJump")
+            item = Item.get(Item.item_name == "BootsProxy2")
+            excluded_items.append(item)
+        if starting_boots in [0,1,2]:
+            item = Item.get(Item.item_name == "BootsProxy1")
             excluded_items.append(item)
 
     return excluded_items
@@ -775,7 +797,7 @@ def _generate_item_pools(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo:bool,
-    do_big_chest_shuffle:bool,
+    gear_shuffle_mode:int,
     item_scarcity:int,
     itemtrap_mode:int,
     startwith_bluehouse_open:bool,
@@ -905,19 +927,23 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    starting_hammer != 0xFF
-                and current_node.identifier == "KMR_04/Bush7_Drop1"
-            ):
-                current_node.current_item = Item.get(Item.item_name == "Nothing")
-                all_item_nodes.append(current_node)
-                continue
-
-            if (    not do_big_chest_shuffle
+            if (    gear_shuffle_mode not in [1,2]
                 and current_node.vanilla_item.item_type == "GEAR"
+                and current_node.identifier != "KMR_04/Bush7_Drop1"
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
+
+            if (    gear_shuffle_mode not in [1,2]
+                and current_node.identifier == "KMR_04/Bush7_Drop1"
+            ):
+                # special casing so the hammer bush is never empty but also
+                # never holds required items or badges
+                current_node.current_item = _get_random_taycet_item()
+                all_item_nodes.append(current_node)
+                continue
+
 
     # Pre-fill 'dungeon' nodes if keyitems are limited to there
     items_to_remove_from_pools = []
@@ -954,6 +980,17 @@ def _generate_item_pools(
             if node_id in pre_filled_node_ids:
                 node_index = pre_filled_node_ids.index(node_id)
                 current_node.current_item = pre_filled_dungeon_nodes[node_index].current_item
+                continue
+
+            # Special casing for hammer bush during gear location shuffle w/o
+            # hammerless: add modified "gear" Tayce T item to gear locations
+            if (    current_node.identifier == "KMR_04/Bush7_Drop1"
+                and starting_hammer != 0xFF
+                and gear_shuffle_mode == 1
+            ):
+                modified_taycet = _get_random_taycet_item()
+                modified_taycet.item_type = "GEAR"
+                pool_progression_items.append(modified_taycet)
                 continue
 
             # Item shall be randomized: Add it to the correct item pool
@@ -994,6 +1031,19 @@ def _generate_item_pools(
                 break
         pool_other_items.extend(pouch_items)
 
+    # If we start jumpless, add a progressive boots item to the item pool
+    if starting_boots == 0xFF:
+        new_boots = Item.get(Item.item_name == "BootsProxy1")
+        while True:
+            rnd_index = random.randint(0, len(pool_other_items) - 1)
+            rnd_item = pool_other_items.pop(rnd_index)
+            if rnd_item.item_type == "ITEM":
+                break
+            else:
+                pool_other_items.append(rnd_item)
+        pool_other_items.extend(new_boots)
+
+
     # Adjust item pools based on settings
     goal_size_item_pool = len(pool_progression_items)      \
                         + len(pool_misc_progression_items) \
@@ -1009,7 +1059,7 @@ def _generate_item_pools(
             always_speedyspin,
             always_ispy,
             always_peekaboo,
-            do_big_chest_shuffle,
+            gear_shuffle_mode,
             starting_hammer,
             starting_boots
     ))
@@ -1050,9 +1100,7 @@ def _generate_item_pools(
                        + len(pool_misc_progression_items) \
                        + len(pool_other_items)
     while goal_size_item_pool > cur_size_item_pool:
-        random_taycet_item_value = random.choice([x for x in taycet_items if x not in exclude_from_taycet_placement])
-        random_taycet_item = Item.get(Item.value == random_taycet_item_value)
-        pool_other_items.append(random_taycet_item)
+        pool_other_items.append(_get_random_taycet_item())
         cur_size_item_pool = len(pool_progression_items)      \
                            + len(pool_misc_progression_items) \
                            + len(pool_other_items)
@@ -1197,6 +1245,7 @@ def place_progression_items(
     return filled_item_nodes, items_placed, items_overwritten, mario
 
 
+#@deprecated
 def _algo_forward_fill(
     item_placement,
     do_randomize_coins,
@@ -1206,7 +1255,7 @@ def _algo_forward_fill(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
-    do_big_chest_shuffle,
+    gear_shuffle_mode,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
@@ -1214,6 +1263,7 @@ def _algo_forward_fill(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
     starting_hammer,
@@ -1258,7 +1308,7 @@ def _algo_forward_fill(
         randomize_letters_mode,
         do_randomize_radiotrade,
         do_randomize_dojo,
-        do_big_chest_shuffle,
+        gear_shuffle_mode,
         item_scarcity,
         itemtrap_mode,
         startwith_bluehouse_open,
@@ -1290,7 +1340,9 @@ def _algo_forward_fill(
         startwith_bluehouse_open,
         magical_seeds_required,
         startwith_toybox_open,
-        startwith_whale_open
+        startwith_whale_open,
+        cook_without_fryingpan,
+        speedyspin
     )
 
     # Set node to start graph traversal from
@@ -1362,7 +1414,8 @@ def _algo_forward_fill(
                 startwith_bluehouse_open,
                 magical_seeds_required,
                 startwith_toybox_open,
-                startwith_whale_open
+                startwith_whale_open,
+                speedyspin
             )
             logging.info("Progression placement fail, retrying ...")
 
@@ -1547,7 +1600,7 @@ def _algo_assumed_fill(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
-    do_big_chest_shuffle:bool,
+    gear_shuffle_mode:int,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
@@ -1555,6 +1608,7 @@ def _algo_assumed_fill(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
     starting_hammer,
@@ -1596,7 +1650,7 @@ def _algo_assumed_fill(
         randomize_letters_mode,
         do_randomize_radiotrade,
         do_randomize_dojo,
-        do_big_chest_shuffle,
+        gear_shuffle_mode,
         item_scarcity,
         itemtrap_mode,
         startwith_bluehouse_open,
@@ -1632,8 +1686,12 @@ def _algo_assumed_fill(
                     assert item not in dungeon_restricted_items
                     dungeon_restricted_items[item] = dungeon
 
-    pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
+    if gear_shuffle_mode == 1: # gear location shuffle
+        pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
     pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
+
+    # helper var for placing the regular boots during gear location shuffle
+    boots_placed = 0
 
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()
@@ -1647,7 +1705,9 @@ def _algo_assumed_fill(
             startwith_bluehouse_open,
             magical_seeds_required,
             startwith_toybox_open,
-            startwith_whale_open
+            startwith_whale_open,
+            cook_without_fryingpan,
+            speedyspin
         )
 
         for item_ in pool_combined_progression_items:
@@ -1666,8 +1726,10 @@ def _algo_assumed_fill(
             candidate_locations = [node for node in candidate_locations if node.map_area.name[:3] == dungeon]
             dungeon_restricted_items.pop(item.item_name)
 
-        if item.item_type == "GEAR":
+        if item.item_type == "GEAR" and gear_shuffle_mode == 1 and boots_placed < 2:
+            # gear location shuffle
             candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
+            boots_placed = boots_placed + 1
 
         if len(candidate_locations) == 0:
             raise UnbeatableSeedError("Failed to generate a beatable seed")
@@ -1774,12 +1836,14 @@ def get_item_spheres(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
     starting_hammer,
     partners_always_usable,
     hidden_block_mode:int,
     starting_items:list,
+    startwith_speedyspin,
     world_graph
 ):
 
@@ -1805,7 +1869,9 @@ def get_item_spheres(
         startwith_bluehouse_open,
         magical_seeds_required,
         startwith_toybox_open,
-        startwith_whale_open
+        startwith_whale_open,
+        cook_without_fryingpan,
+        startwith_speedyspin
     )
 
     # Set node to start graph traversal from
@@ -1833,7 +1899,7 @@ def get_item_spheres(
         item_spheres_text += f'    ((Start) Mario\'s inventory): {item}{item_suffix}\n'
 
     sphere = 0
-    while True:
+    while item_placement_map:
         pool_misc_progression_items, \
         pool_other_items, \
         reachable_node_ids, \
@@ -1850,14 +1916,18 @@ def get_item_spheres(
                                   filled_item_nodes,
                                   mario)
 
-        if not reachable_item_nodes:
-            break
-
         item_spheres_text += '\n'
-        item_spheres_text += f'Sphere {sphere}:\n'        
+        if reachable_item_nodes:
+            item_spheres_text += f'Sphere {sphere}:\n'
+            nodes_to_print = list(reachable_item_nodes.values())
+        else:
+            item_spheres_text += f'Unreachable In Logic:\n'
+            nodes_to_print = list(item_placement_map.values())
 
-        for _, node in sorted(reachable_item_nodes.items()):
-            item = item_placement_map[node.identifier].current_item
+        nodes_to_print.sort(key=lambda node: (node.map_area.area_id, node.map_area.map_id, node.identifier))
+
+        for node in nodes_to_print:
+            item = item_placement_map.pop(node.identifier).current_item
             node_long_name = f'({verbose_area_names[node.map_area.name[:3]]}) {node.map_area.verbose_name} - {verbose_item_locations[node.map_area.name][node.key_name_item]}'
             item_verbose_name = verbose_item_names[item.item_name] if item.item_name in verbose_item_names else item.item_name
 
@@ -1866,7 +1936,7 @@ def get_item_spheres(
                 item_spheres_text += f'    ({node_long_name}): TRAP ({item_verbose_name})\n'
             else:
                 if item.item_type != "ITEM" or is_itemlocation_replenishable(node):
-                    if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names):
+                    if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names or item.item_type == 'GEAR'):
                         item_suffix = "*"
                     mario.add_to_inventory(item.item_name)
 
@@ -1889,7 +1959,7 @@ def place_items(
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
     do_randomize_dojo,
-    do_big_chest_shuffle:bool,
+    gear_shuffle_mode:int,
     item_scarcity,
     itemtrap_mode,
     starting_map_id,
@@ -1897,6 +1967,7 @@ def place_items(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
     starting_hammer,
@@ -1939,7 +2010,7 @@ def place_items(
             randomize_letters_mode,
             do_randomize_radiotrade,
             do_randomize_dojo,
-            do_big_chest_shuffle,
+            gear_shuffle_mode,
             item_scarcity,
             itemtrap_mode,
             starting_map_id,
@@ -1947,6 +2018,7 @@ def place_items(
             magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,
+            cook_without_fryingpan,
             starting_partners,
             starting_boots,
             starting_hammer,
@@ -1974,7 +2046,7 @@ def place_items(
             randomize_letters_mode,
             do_randomize_radiotrade,
             do_randomize_dojo,
-            do_big_chest_shuffle,
+            gear_shuffle_mode,
             item_scarcity,
             itemtrap_mode,
             starting_map_id,
@@ -1982,6 +2054,7 @@ def place_items(
             magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,
+            cook_without_fryingpan,
             starting_partners,
             starting_boots,
             starting_hammer,

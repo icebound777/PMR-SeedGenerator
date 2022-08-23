@@ -12,8 +12,8 @@ edges_kmr  = [
     {"from": {"map": "KMR_02", "id": 2             },  "to": {"map": "KMR_05", "id": 1             },  "reqs": []}, # Goomba Village Exit Top Left -> Behind the Village Exit Right
     {"from": {"map": "KMR_02", "id": 3             },  "to": {"map": "TIK_01", "id": 2             },  "reqs": []}, # Goomba Village Blue Warp Pipe -> Warp Zone 1 (B1) Blue Pipe (Right)
 
-    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": 0             },  "reqs": [["Hammer"]]}, #? Goomba Village Exit Left -> Goomba Village Exit Right
-    {"from": {"map": "KMR_02", "id": 0             },  "to": {"map": "KMR_02", "id": 1             },  "reqs": [["Hammer"]]}, #? Goomba Village Exit Right -> Goomba Village Exit Left
+    {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": 0             },  "reqs": [["Hammer", "Bombette"]]}, #? Goomba Village Exit Left -> Goomba Village Exit Right
+    {"from": {"map": "KMR_02", "id": 0             },  "to": {"map": "KMR_02", "id": 1             },  "reqs": [["Hammer", "Bombette"]]}, #? Goomba Village Exit Right -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": 2             },  "reqs": []}, #? Goomba Village Exit Left -> Goomba Village Exit Top Left
     {"from": {"map": "KMR_02", "id": 2             },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #? Goomba Village Exit Top Left -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 1             },  "to": {"map": "KMR_02", "id": 3             },  "reqs": [["GF_TIK01_WarpPipes"]]}, #? Goomba Village Exit Left -> Goomba Village Blue Warp Pipe
@@ -39,12 +39,12 @@ edges_kmr  = [
     {"from": {"map": "KMR_02", "id": "Partner"     },  "to": {"map": "KMR_02", "id": 1             },  "reqs": []}, #* Partner (Goombario) -> Goomba Village Exit Left
 
     {"from": {"map": "KMR_02", "id": 1},               "to": {"map": "KMR_02", "id": 1}, "reqs": [], "pseudoitems": ["StarPiece_KMR_1",
-                                                                                                                     "StarPiece_KMR_2",
-                                                                                                                     "StarPiece_KMR_3",
-                                                                                                                     "StarPiece_KMR_4",
-                                                                                                                     "StarPiece_KMR_5",
-                                                                                                                     "StarPiece_KMR_6",
-                                                                                                                     "StarPiece_KMR_7",
+                                                                                                                   #  "StarPiece_KMR_2",
+                                                                                                                   #  "StarPiece_KMR_3",
+                                                                                                                   #  "StarPiece_KMR_4",
+                                                                                                                   #  "StarPiece_KMR_5",
+                                                                                                                   #  "StarPiece_KMR_6",
+                                                                                                                   #  "StarPiece_KMR_7",
                                                                                                                      "StarPiece_KMR_8"]}, #+ Quizmo StarPieces
 
     # KMR_05 Behind the Village
@@ -63,8 +63,8 @@ edges_kmr  = [
     {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_04", "id": 0}, "reqs": []}, # Bottom of the Cliff Exit Left -> Jr. Troopa's Playground Exit Right
     {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_05", "id": 0}, "reqs": []}, # Bottom of the Cliff Exit Right -> Behind the Village Exit Left
     
-    {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_03", "id": 1}, "reqs": [["Hammer"]]}, #? Bottom of the Cliff Exit Left -> Bottom of the Cliff Exit Right
-    {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": 0}, "reqs": [["Hammer"]]}, #? Bottom of the Cliff Exit Right -> Bottom of the Cliff Exit Left
+    {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_03", "id": 1}, "reqs": [["Hammer", "Bombette"]]}, #? Bottom of the Cliff Exit Left -> Bottom of the Cliff Exit Right
+    {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": 0}, "reqs": [["Hammer", "Bombette"]]}, #? Bottom of the Cliff Exit Right -> Bottom of the Cliff Exit Left
     
     {"from": {"map": "KMR_03", "id": 0},               "to": {"map": "KMR_03", "id": "YBlockA"},       "reqs": [["can_hit_grounded_blocks"]]}, #* Bottom of the Cliff Exit Left -> YBlockA (Coin)
     {"from": {"map": "KMR_03", "id": "YBlockA"},       "to": {"map": "KMR_03", "id": 0},               "reqs": []}, #* YBlockA (Coin) -> Bottom of the Cliff Exit Left
@@ -90,7 +90,7 @@ edges_kmr  = [
 
     {"from": {"map": "KMR_04", "id": 0},              "to": {"map": "KMR_04", "id": "Tree3_Drop1A"}, "reqs": [["can_shake_trees"]]}, #* Jr. Troopa's Playground Exit Right -> Tree3_Drop1A (Dolly)
     {"from": {"map": "KMR_04", "id": "Tree3_Drop1A"}, "to": {"map": "KMR_04", "id": 0},              "reqs": []}, #* Tree3_Drop1A (Dolly) -> Jr. Troopa's Playground Exit Right
-    {"from": {"map": "KMR_04", "id": 0},              "to": {"map": "KMR_04", "id": "Bush7_Drop1"},  "reqs": [["RF_HammerlessStart"]]}, #* Jr. Troopa's Playground Exit Right -> Bush7_Drop1 (Hammer)
+    {"from": {"map": "KMR_04", "id": 0},              "to": {"map": "KMR_04", "id": "Bush7_Drop1"},  "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush7_Drop1 (Hammer)
     {"from": {"map": "KMR_04", "id": "Bush7_Drop1"},  "to": {"map": "KMR_04", "id": 0},              "reqs": []}, #* Bush7_Drop1 (Hammer) -> Jr. Troopa's Playground Exit Right
 
     # KMR_09 Goomba Road 1

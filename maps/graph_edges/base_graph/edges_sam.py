@@ -16,12 +16,12 @@ edges_sam = [
     {"from": {"map": "SAM_01", "id": "ChestA"},      "to": {"map": "SAM_01", "id": 0},             "reqs": []}, #* ChestA (AttackFXE) -> Shiver City Mayor Area Exit East
 
     {"from": {"map": "SAM_01", "id": 0}, "to": {"map": "SAM_01", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_SAM_1",
-                                                                                                       "StarPiece_SAM_2",
-                                                                                                       "StarPiece_SAM_3",
-                                                                                                       "StarPiece_SAM_4",
-                                                                                                       "StarPiece_SAM_5",
-                                                                                                       "StarPiece_SAM_6",
-                                                                                                       "StarPiece_SAM_7",
+                                                                                                     #  "StarPiece_SAM_2",
+                                                                                                     #  "StarPiece_SAM_3",
+                                                                                                     #  "StarPiece_SAM_4",
+                                                                                                     #  "StarPiece_SAM_5",
+                                                                                                     #  "StarPiece_SAM_6",
+                                                                                                     #  "StarPiece_SAM_7",
                                                                                                        "StarPiece_SAM_8"]}, #+ Quizmo StarPieces
 
     # SAM_02 Shiver City Center
@@ -60,12 +60,12 @@ edges_sam = [
     {"from": {"map": "SAM_02", "id": "ShopItemF"}, "to": {"map": "SAM_02", "id": 0},           "reqs": []}, #* ShopItemF (SuperShroom) -> Shiver City Center Exit West
 
     {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_SAM_1",
-                                                                                                       "StarPiece_SAM_2",
-                                                                                                       "StarPiece_SAM_3",
-                                                                                                       "StarPiece_SAM_4",
-                                                                                                       "StarPiece_SAM_5",
-                                                                                                       "StarPiece_SAM_6",
-                                                                                                       "StarPiece_SAM_7",
+                                                                                                     #  "StarPiece_SAM_2",
+                                                                                                     #  "StarPiece_SAM_3",
+                                                                                                     #  "StarPiece_SAM_4",
+                                                                                                     #  "StarPiece_SAM_5",
+                                                                                                     #  "StarPiece_SAM_6",
+                                                                                                     #  "StarPiece_SAM_7",
                                                                                                        "StarPiece_SAM_8"]}, #+ Quizmo StarPieces
 
     # SAM_03 Road to Shiver Snowfield
@@ -177,12 +177,12 @@ edges_sam = [
     {"from": {"map": "SAM_11", "id": "ItemA"}, "to": {"map": "SAM_11", "id": 0},       "reqs": []}, #* ItemA (WarehouseKey) -> Shiver City Pond Area Exit West
 
     {"from": {"map": "SAM_11", "id": 0}, "to": {"map": "SAM_11", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_SAM_1",
-                                                                                                       "StarPiece_SAM_2",
-                                                                                                       "StarPiece_SAM_3",
-                                                                                                       "StarPiece_SAM_4",
-                                                                                                       "StarPiece_SAM_5",
-                                                                                                       "StarPiece_SAM_6",
-                                                                                                       "StarPiece_SAM_7",
+                                                                                                    #   "StarPiece_SAM_2",
+                                                                                                    #   "StarPiece_SAM_3",
+                                                                                                    #   "StarPiece_SAM_4",
+                                                                                                    #   "StarPiece_SAM_5",
+                                                                                                    #   "StarPiece_SAM_6",
+                                                                                                    #   "StarPiece_SAM_7",
                                                                                                        "StarPiece_SAM_8"]}, #+ Quizmo StarPieces
 
     # SAM_12 Merlar's Sanctuary

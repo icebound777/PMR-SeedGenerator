@@ -36,15 +36,13 @@ class Item(Model):
     def get_type(cls, item_id:int):
         if 0x00 == item_id:
             return "NOTHING"
-        if 0x01 <= item_id <= 0x06:
-            return "GEAR"
-        if 0x07 <= item_id <= 0x7F or (0x16D <= item_id <= 0x17E):
+        elif 0x07 <= item_id <= 0x7F or (0x16D <= item_id <= 0x17E):
             return "KEYITEM"
-        elif 0x7F < item_id <= 0xDF:
+        elif 0x80 <= item_id <= 0xDF or 0x1DC <= item_id <= 0x1E4:
             return "ITEM"
-        elif 0xDF < item_id <= 0x155:
+        elif 0xE0 <= item_id <= 0x155 or 0x1EB <= item_id <= 0x1F9:
             return "BADGE"
-        elif 0x155 < item_id <= 0x15C:
+        elif 0x156 <= item_id <= 0x15C:
             return {
                 0x156: "HEART",
                 0x157: "COIN",
@@ -53,9 +51,11 @@ class Item(Model):
                 0x15B: "FLOWER",
                 0x15C: "STARPIECE",
             }.get(item_id)
-        elif 0x185 <= item_id <= 0x1D8:
+        elif 0x185 <= item_id <= 0x1DB:
             return "STARPIECE"
-        elif 0x1E1 <= item_id <= 0x1E9:
+        elif 0x1E5 <= item_id <= 0x1EA:
+            return "GEAR"
+        elif 0x1FF <= item_id <= 0x207:
             return "PARTNER"
         else:
             return "OTHER"
@@ -90,11 +90,16 @@ def create_items():
             # Ignore fake Volcano Vase
             continue
         item_name = Enums.get("Item")[item_id]
+        base_price = int(item["Sell Value"], 10) if item["Sell Value"] != "FFFF" else 50
+        if "BubbleBerryProxy" in item_name:
+            base_price = 3
+        elif "BerryProxy" in item_name:
+            base_price = 2
         item,_ = Item.get_or_create(
             item_type = Item.get_type(item_id),
             value = item_id,
             item_name = item_name,
-            base_price = int(item["Sell Value"], 10) if item["Sell Value"] != "FFFF" else 50,
+            base_price = base_price,
             progression = (Item.get_type(item_id) in ["KEYITEM","PARTNER"] and item_id in progression_items.keys()),
             unused = item_name in unused_items,
             unplaceable = item_name in unplaceable_items

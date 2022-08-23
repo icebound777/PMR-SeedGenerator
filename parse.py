@@ -58,7 +58,7 @@ def gather_keys():
                         }
                     elif byte_id == 0xA1:
                         name = key_info.split(":")[-1]
-                        if "ShopPrice" in name:
+                        if "ShopPrice" in name or "RewardAmount" in name:
                             keys["item_prices"][key] = {
                                 "name": name,
                                 "map_name": key_info.split(":")[0],
@@ -220,7 +220,7 @@ def gather_values():
                         if map_name not in values["blocks"]:
                             values["blocks"][map_name] = {}
                         values["blocks"][map_name][key_name] = get_value(value)
-                    elif "ShopPrice" in key_name:
+                    elif "ShopPrice" in key_name or "RewardAmount" in key_name:
                         if map_name not in values["item_prices"]:
                             values["item_prices"][map_name] = {}
                         values["item_prices"][map_name][key_name] = get_value(value)

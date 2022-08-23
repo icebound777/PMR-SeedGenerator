@@ -39,17 +39,36 @@ def get_shop_price(node:Node, do_randomize_shops:bool) -> int:
                 buy_price = 35
 
         else:
-            # Merlow's StarPiece trade (for a total cost of 60 StarPieces)
-            if any(True for i in ["ShopBadgeA","ShopBadgeB","ShopBadgeC"] if i in node.identifier):
+            # Merlow's StarPiece trade (for a total cost of all 112 StarPieces)
+            if any(True for i in ["ShopBadgeA","ShopBadgeB"] if i in node.identifier):
+                buy_price = 1
+            elif any(True for i in ["ShopBadgeC","ShopBadgeD"] if i in node.identifier):
                 buy_price = 2
-            elif any(True for i in ["ShopBadgeD","ShopBadgeE","ShopBadgeF"] if i in node.identifier):
-                buy_price = 3
-            elif any(True for i in ["ShopBadgeG","ShopBadgeH","ShopBadgeI"] if i in node.identifier):
+            elif any(True for i in ["ShopBadgeE","ShopBadgeF"] if i in node.identifier):
                 buy_price = 4
-            elif any(True for i in ["ShopBadgeJ","ShopBadgeK","ShopBadgeL"] if i in node.identifier):
-                buy_price = 5
-            else:
+            elif any(True for i in ["ShopBadgeG","ShopBadgeH"] if i in node.identifier):
                 buy_price = 6
+            elif any(True for i in ["ShopBadgeI","ShopBadgeJ"] if i in node.identifier):
+                buy_price = 8
+            elif any(True for i in ["ShopBadgeK","ShopBadgeL"] if i in node.identifier):
+                buy_price = 10
+            elif any(True for i in ["ShopBadgeM","ShopBadgeN"] if i in node.identifier):
+                buy_price = 15
+            elif any(True for i in ["ShopBadgeO"] if i in node.identifier):
+                buy_price = 20
+            # Merlow's trade rewards
+            elif "ShopRewardA" in node.identifier:
+                buy_price = 10
+            elif "ShopRewardB" in node.identifier:
+                buy_price = 20
+            elif "ShopRewardC" in node.identifier:
+                buy_price = 30
+            elif "ShopRewardD" in node.identifier:
+                buy_price = 40
+            elif "ShopRewardE" in node.identifier:
+                buy_price = 50
+            else:
+                buy_price = 60
 
     else:
         # Set vanilla prices

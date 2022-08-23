@@ -110,16 +110,33 @@ def create_nodes():
         price_index = None
         key_name_price = None
         vanilla_price = None
-        if data["name"].startswith("ShopItem") or data["name"].startswith("ShopBadge"):
+        if (data["name"].startswith("ShopItem")
+         or data["name"].startswith("ShopBadge")
+         or data["name"].startswith("ShopReward")
+        ):
             # Search for corresponding item_price and set index & key_name_price
-            for price_id, price_data in price_keys.items():
+            for _, price_data in price_keys.items():
+                # Special case for Merlow Rewards
+                if (    data["name"].startswith("ShopReward")
+                    and price_data["name"].startswith("RewardAmount")
+                    and price_data["name"][-1] == data["name"][-1]
+                ):
+                    price_index = price_data["value_id"]
+                    key_name_price = price_data["name"]
+                    vanilla_price = price_values[price_data["map_name"]][price_data["name"]]
+                    continue
+
                 # Look for corresponding "ShopPriceX" for "ShopItemX" on same map
-                if price_data["map_name"] == data["map_name"] and price_data["name"][-1] == data["name"][-1]:
+                if (    not data["name"].startswith("ShopReward")
+                    and not price_data["name"].startswith("RewardAmount")
+                    and price_data["map_name"] == data["map_name"]
+                    and price_data["name"][-1] == data["name"][-1]
+                ):
                     price_index = price_data["value_id"]
                     key_name_price = price_data["name"]
                     vanilla_price = price_values[price_data["map_name"]][price_data["name"]]
 
-        print(f"map_name={data['map_name']}, name={data['name']}")
+        print(f"map_name={data['map_name']}, name={data['name']} {key_name_price}")
         try:
             item_source_type = item_source_types.get(data["map_name"]).get(data["name"])
             if item_source_type is None:

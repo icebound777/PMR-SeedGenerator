@@ -1,6 +1,7 @@
 """General setup and supportive functionalities for the randomizer."""
 import io
 import os
+import random
 import sys
 import getopt
 import hashlib
@@ -8,6 +9,7 @@ import time
 import json
 import yaml
 from yaml.loader import SafeLoader
+from pathlib import Path
 
 from enums import create_enums
 from models.WebSeedResponse import WebSeedResponse
@@ -128,8 +130,7 @@ def write_data_to_rom(
     palette_data:list,
     quiz_data:list,
     music_list:list,
-    seed=int(hashlib.md5().hexdigest()[0:8], 16),
-    edit_seed="0x0123456789ABCDEF"
+    seed_id=random.randint(0, 0xFFFFFFFF)
 ):
     """
     Generates key:value pairs of locations and items from a randomized item set
@@ -164,7 +165,7 @@ def write_data_to_rom(
                                  + (len_itemhints * 4)
                                  + end_of_content_marker
                                  + end_padding)
-    rom_table.info["seed"] = seed
+    rom_table.info["seed"] = seed_id
     rom_table.info["formations_offset"] = len(table_data) * 8
     rom_table.info["itemhints_offset"] = (  rom_table.info["formations_offset"]
                                           + end_of_content_marker
@@ -192,33 +193,30 @@ def write_data_to_rom(
 
         # Write table data and generate log file
         file.seek(rom_table.info["address"] + rom_table.info["header_size"])
-        with open(os.path.abspath(__file__ + "/../debug/log.txt"), "a", encoding="utf-8") as log:
-            #log.write("ITEM CHANGES:\n\n")
 
-            for _,pair in enumerate(table_data):
-                key_int = pair["key"].to_bytes(4, byteorder="big")
-                value_int = pair["value"].to_bytes(4, byteorder="big")
-                file.write(key_int)
-                file.write(value_int)
-                log.write(f'{hex(pair["key"])}: {hex(pair["value"])}\n')
+        for _,pair in enumerate(table_data):
+            key_int = pair["key"].to_bytes(4, byteorder="big")
+            value_int = pair["value"].to_bytes(4, byteorder="big")
+            file.write(key_int)
+            file.write(value_int)
 
-            for formation in battle_formations:
-                for formation_hex_word in formation:
-                    file.write(formation_hex_word.to_bytes(4, byteorder="big"))
+        for formation in battle_formations:
+            for formation_hex_word in formation:
+                file.write(formation_hex_word.to_bytes(4, byteorder="big"))
 
-            # Write end of formations table
+        # Write end of formations table
+        file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
+
+        # Write itemhint table
+        for itemhint in itemhints:
+            for itemhint_hex in itemhint:
+                file.write(itemhint_hex.to_bytes(4, byteorder="big"))
+
+        # Write end of item hints table
+        file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
+        # Write end of db padding
+        for _ in range(1, 5):
             file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
-
-            # Write itemhint table
-            for itemhint in itemhints:
-                for itemhint_hex in itemhint:
-                    file.write(itemhint_hex.to_bytes(4, byteorder="big"))
-
-            # Write end of item hints table
-            file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
-            # Write end of db padding
-            for _ in range(1, 5):
-                file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
 
         # Special solution for random coin palettes
         if coin_palette_data and coin_palette_targets:
@@ -258,7 +256,7 @@ def write_data_to_array(
     palette_data:list,
     quiz_data:list,
     music_list:list,
-    seed=int(hashlib.md5().hexdigest()[0:8], 16)
+    seed_id: int
 ):
     """
     Generates key:value pairs of locations and items from a randomized item set
@@ -294,7 +292,7 @@ def write_data_to_array(
                                  + (len_itemhints * 4)
                                  + end_of_content_marker
                                  + end_padding)
-    rom_table.info["seed"] = seed
+    rom_table.info["seed"] = seed_id
     rom_table.info["formations_offset"] = len(table_data) * 8
     rom_table.info["itemhints_offset"] = (  rom_table.info["formations_offset"]
                                           + end_of_content_marker
@@ -475,8 +473,8 @@ def web_apply_cosmetic_options(cosmetic_settings, palette_offset, cosmetics_offs
     palette_options.goombario_sprite = cosmetic_settings["GoombarioSprite"]
     palette_options.kooper_setting = cosmetic_settings["KooperSetting"]
     palette_options.kooper_sprite = cosmetic_settings["KooperSprite"]
-    #palette_options.bombette_setting = cosmetic_settings["BombetteSetting"]
-    #palette_options.bombette_sprite = cosmetic_settings["BombetteSprite"]
+    palette_options.bombette_setting = cosmetic_settings["BombetteSetting"]
+    palette_options.bombette_sprite = cosmetic_settings["BombetteSprite"]
     palette_options.parakarry_setting = cosmetic_settings["ParakarrySetting"]
     palette_options.parakarry_sprite = cosmetic_settings["ParakarrySprite"]
     palette_options.bow_setting = cosmetic_settings["BowSetting"]
@@ -555,7 +553,7 @@ def web_randomizer(jsonSettings, world_graph):
         palette_data=random_seed.palette_data,
         quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
-        seed=random_seed.seed_value
+        seed_id=data["SeedID"]["value"]
     )
     patch_file = io.BytesIO(operations)
 
@@ -602,7 +600,7 @@ def main_randomizer(args):
     timer_start = time.perf_counter()
 
     target_modfile = ""
-    spoilerlog_file_path = ""
+    custom_spoilerlog_file_path = ""
     rando_outputfile = ""
 
     rando_settings = None
@@ -656,7 +654,7 @@ def main_randomizer(args):
 
             # Spoilerlog output file
             if opt in ["-s", "--spoilerlog"]:
-                spoilerlog_file_path = arg
+                custom_spoilerlog_file_path = arg
 
             # Choose the random seed
             if opt in ["-S", "--seed"]:
@@ -707,17 +705,21 @@ def main_randomizer(args):
         coin_palette_crcs=random_seed.coin_palette.crcs,
         palette_data=random_seed.palette_data,
         quiz_data=random_seed.quiz_list,
-        music_list=random_seed.music_list,
-        seed=random_seed.seed_value
+        music_list=random_seed.music_list
     )
 
     # Write sorted spoiler log
+    if custom_spoilerlog_file_path:
+        target_spoilerfile = custom_spoilerlog_file_path
+    else:
+        target_spoilerfile = Path(target_modfile).parent / "spoiler_log.txt"
+
     if rando_settings.write_spoilerlog:
         write_spoiler_log(
             random_seed.placed_items,
             random_chapter_difficulty=random_seed.chapter_changes,
             settings=rando_settings,
-            spoilerlog_file=spoilerlog_file_path,
+            spoilerlog_file=target_spoilerfile,
             spheres_text=random_seed.item_spheres_text
         )
 

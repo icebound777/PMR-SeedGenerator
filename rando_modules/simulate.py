@@ -42,6 +42,10 @@ class Mario:
                     self.partners.add(item_object)
                     self.item_history.append(f"+{item_object}")
                     is_new_pseudoitem = True
+                else:
+                    self.partners.add(f'{item_object} (Battle)')
+                    self.item_history.append(f"+{item_object} (Battle)'")
+                    is_new_pseudoitem = True
             elif item_object.find("StarPiece") != -1:
                 if item_object not in self.starpieces:
                     if item_object.startswith("Three"):
@@ -54,12 +58,12 @@ class Mario:
                 if item_object not in self.favors:
                     self.favors.add(item_object)
                     is_new_pseudoitem = True
-            elif (    item_object in ["Jump","SpinJump","TornadoJump"]
+            elif (    item_object in ["BootsProxy1","BootsProxy2","BootsProxy3"]
                   and item_object not in self.boots
             ):
                 self.boots.add(item_object)
                 is_new_pseudoitem = True
-            elif (    item_object in ["Hammer","SuperHammer","UltraHammer"]
+            elif (    item_object in ["HammerProxy1","HammerProxy2","HammerProxy3"]
                   and item_object not in self.hammer
             ):
                 self.hammer.add(item_object)
@@ -113,9 +117,9 @@ class Mario:
                 self.item_history.append(f"-{item_object}")
             elif item_object.startswith("FAVOR"):
                 self.favors.remove(item_object)
-            elif (item_object in ["Jump","SpinJump","TornadoJump"]):
+            elif (item_object in ["BootsProxy1","BootsProxy2","BootsProxy3"]):
                 self.boots.remove(item_object)
-            elif (item_object in ["Hammer","SuperHammer","UltraHammer"]):
+            elif (item_object in ["HammerProxy1","HammerProxy2","HammerProxy3"]):
                 self.hammer.remove(item_object)
             elif item_object.startswith("STARSPIRIT"):
                 self.starspirits.remove(item_object)
@@ -190,6 +194,16 @@ class Mario:
                 count += 1
                 if count >= 5:
                     return True
+        return False
+
+    def can_end_sushie_glitch(self):
+        """Checks if Mario is able to end the sushie glitch with another battle partner"""
+        if "RF_PartnersAlwaysUsable" in self.flags:
+            if len([p for p in self.partners if "Battle" in p ]) >= 2:
+                return True
+        else:
+            if len(self.partners) >= 2:
+                return True
         return False
 
 
@@ -297,6 +311,16 @@ class Mario:
                     # Check hidden blocks
                     if req == "can_see_hidden_blocks":
                         if self.can_see_hidden_blocks():
+                            group_fulfilled = True
+                            break
+                    # Check can end sushie glitch
+                    if req == "can_end_sushie_glitch":
+                        if self.can_end_sushie_glitch():
+                            group_fulfilled = True
+                            break
+                    # Check berries
+                    if req in ["BlueBerry","RedBerry","YellowBerry","BubbleBerry"]:
+                        if f"{req}Proxy1" in self.items:
                             group_fulfilled = True
                             break
                     # Check other items

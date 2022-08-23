@@ -47,6 +47,16 @@ class Table:
             "value": 0x00000000
         })
 
+        # more temp fixes because we push half implemented features
+        table_data.append({
+            "key": 0xAF02000B,
+            "value": 0x00000000
+        })
+        table_data.append({
+            "key": 0xAF060505,
+            "value": 0x00000000
+        })
+
         # Quizzes
         quizzes = kwargs.get("quiz_data")
 
@@ -60,6 +70,8 @@ class Table:
         placed_items = kwargs.get("items")
         for node in placed_items:
             if node.key_name_item is not None and node.current_item is not None:
+                assert not node.current_item.unplaceable # sanity check
+
                 table_data.append({
                     "key": node.get_item_key(),
                     "value": node.current_item.value,
@@ -78,7 +90,11 @@ class Table:
                     })
 
             # Item Prices
-            if node.key_name_price is not None and node.key_name_price.startswith("ShopPrice"):
+            if (    node.key_name_price is not None
+                and (   node.key_name_price.startswith("ShopPrice")
+                     or node.key_name_price.startswith("RewardAmount")
+                )
+            ):
                 table_data.append({
                     "key": node.get_price_key(),
                     "value": node.current_item.base_price
