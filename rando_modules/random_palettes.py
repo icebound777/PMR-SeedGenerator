@@ -234,7 +234,7 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
                     # Player sprite special case, see *
                     chosen_palette = random.randrange(abs(RANDOM_NOT_VANILLA - palette_settings.npc_setting - 1), palette_count)
                 else:
-                    chosen_palette = random.randrange(0, palette_count + 1)
+                    chosen_palette = random.randrange(abs(RANDOM_NOT_VANILLA - palette_settings.npc_setting - 1), palette_count + 1)
             elif palette_settings.npc_setting == ALWAYS_RANDOM:
                 chosen_palette = PALETTEVALUE_ALWAYS_RANDOM
             else:
