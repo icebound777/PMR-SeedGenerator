@@ -160,7 +160,8 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
     DEFAULT_PALETTE = 0
     SELECT_PALETTE = 1
     RANDOM_PICK = 2
-    ALWAYS_RANDOM = 3
+    RANDOM_NOT_VANILLA = 3
+    ALWAYS_RANDOM = 4
     PALETTEVALUE_ALWAYS_RANDOM = 0xFFFFFFFF
 
     palettes_data = []
@@ -190,12 +191,12 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
               and 0 <= cur_sprite <= palette_count))
         ):
             chosen_palette = cur_sprite
-        elif cur_setting == RANDOM_PICK:
+        elif cur_setting == RANDOM_PICK or cur_setting == RANDOM_NOT_VANILLA:
             if cur_sprite_name == "Mario":
                 # Player sprite special case, see *
-                chosen_palette = random.randrange(0, palette_count)
+                chosen_palette = random.randrange(abs(RANDOM_NOT_VANILLA - cur_setting - 1), palette_count)
             else:
-                chosen_palette = random.randrange(0, palette_count + 1)
+                chosen_palette = random.randrange(abs(RANDOM_NOT_VANILLA - cur_setting - 1), palette_count + 1)
         elif cur_setting == ALWAYS_RANDOM:
             chosen_palette = PALETTEVALUE_ALWAYS_RANDOM
         else:
@@ -209,29 +210,29 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
             continue
 
         if palette_info.sprite in boss_sprite_names:
-            if palette_settings.bosses_setting == RANDOM_PICK:
+            if palette_settings.bosses_setting == RANDOM_PICK or palette_settings.bosses_setting == RANDOM_NOT_VANILLA:
                 palette_count = palette_info.palette_count
-                chosen_palette = random.randrange(0, palette_count + 1)
+                chosen_palette = random.randrange(abs(RANDOM_NOT_VANILLA - palette_settings.bosses_setting - 1), palette_count + 1)
             elif palette_settings.bosses_setting == ALWAYS_RANDOM:
                 chosen_palette = PALETTEVALUE_ALWAYS_RANDOM
             else:
                 chosen_palette = DEFAULT_PALETTE
             palettes_data.append((palette_info.dbkey, chosen_palette))
         elif palette_info.sprite in enemy_sprite_names:
-            if palette_settings.enemies_setting == RANDOM_PICK:
+            if palette_settings.enemies_setting == RANDOM_PICK or palette_settings.enemies_setting == RANDOM_NOT_VANILLA:
                 palette_count = palette_info.palette_count
-                chosen_palette = random.randrange(0, palette_count + 1)
+                chosen_palette = random.randrange(abs(RANDOM_NOT_VANILLA - palette_settings.enemies_setting - 1), palette_count + 1)
             elif palette_settings.enemies_setting == ALWAYS_RANDOM:
                 chosen_palette = PALETTEVALUE_ALWAYS_RANDOM
             else:
                 chosen_palette = DEFAULT_PALETTE
             palettes_data.append((palette_info.dbkey, chosen_palette))
         else:
-            if palette_settings.npc_setting == RANDOM_PICK:
+            if palette_settings.npc_setting == RANDOM_PICK or palette_settings.npc_setting == RANDOM_NOT_VANILLA:
                 palette_count = palette_info.palette_count
                 if palette_info.sprite == "Peach":
                     # Player sprite special case, see *
-                    chosen_palette = random.randrange(0, palette_count)
+                    chosen_palette = random.randrange(abs(RANDOM_NOT_VANILLA - palette_settings.npc_setting - 1), palette_count)
                 else:
                     chosen_palette = random.randrange(0, palette_count + 1)
             elif palette_settings.npc_setting == ALWAYS_RANDOM:
