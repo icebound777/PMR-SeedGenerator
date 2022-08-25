@@ -208,6 +208,7 @@ IslandPipeBlooperSkip                           : false
 ParakarrylessSewerStarPiece                     : false
 SewerBlocksWithoutUltraBoots                    : false
 FirstBlockToShiverCityWithoutSuperBoots         : false
+BlocksToShiverCityWithKooperShellItemThrow      : false
 
 KooperlessPleasantPathStarPiece                 : false
 InvisibleBridgeClipLzs                          : false

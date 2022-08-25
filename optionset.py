@@ -543,6 +543,8 @@ class OptionSet:
             self.glitch_settings.sewer_blocks_without_ultra_boots = options_dict.get("SewerBlocksWithoutUltraBoots")
         if "FirstBlockToShiverCityWithoutSuperBoots" in options_dict:
             self.glitch_settings.first_block_to_shiver_city_without_super_boots = options_dict.get("FirstBlockToShiverCityWithoutSuperBoots")
+        if "BlocksToShiverCityWithKooperShellItemThrow" in options_dict:
+            self.glitch_settings.blocks_to_shiver_city_kooper_shell_item_throw = options_dict.get("BlocksToShiverCityWithKooperShellItemThrow")
 
         if "KooperlessPleasantPathStarPiece" in options_dict:
             self.glitch_settings.kooperless_pleasant_path_star_piece = options_dict.get("KooperlessPleasantPathStarPiece")
@@ -1141,6 +1143,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("SewerBlocksWithoutUltraBoots").get("value"), bool)
     if "FirstBlockToShiverCityWithoutSuperBoots" in options_dict:
         assert isinstance(options_dict.get("FirstBlockToShiverCityWithoutSuperBoots").get("value"), bool)
+    if "BlocksToShiverCityWithKooperShellItemThrow" in options_dict:
+        assert isinstance(options_dict.get("BlocksToShiverCityWithKooperShellItemThrow").get("value"), bool)
 
     if "KooperlessPleasantPathStarPiece" in options_dict:
         assert isinstance(options_dict.get("KooperlessPleasantPathStarPiece").get("value"), bool)
@@ -1401,6 +1405,7 @@ class GlitchOptionSet():
             self.parakarryless_sewer_star_piece = False
             self.sewer_blocks_without_ultra_boots = False
             self.first_block_to_shiver_city_without_super_boots = False
+            self.blocks_to_shiver_city_kooper_shell_item_throw = False
 
             self.kooperless_pleasant_path_star_piece = False
             self.invisible_bridge_clip_lzs = False
