@@ -1723,12 +1723,12 @@ def _algo_assumed_fill(
             candidate_locations = [node for node in candidate_locations if node.map_area.name[:3] == dungeon]
             dungeon_restricted_items.pop(item.item_name)
 
-        if item.item_type == "GEAR" and gear_shuffle_mode == 1:
+        if gear_shuffle_mode == 1:
             # Gear Location Shuffle
-            candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
-        else:
-            # Vanilla and Full Shuffle
-            candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type != "GEAR"]
+            if item.item_type == "GEAR":
+                candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
+            else:
+                candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type != "GEAR"]
 
 
         if len(candidate_locations) == 0:
