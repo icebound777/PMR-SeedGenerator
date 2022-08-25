@@ -37,14 +37,14 @@ class MarioInventory:
         assert(isinstance(starting_boots, int) and starting_boots in [0,1,2,0xFF])
         assert(isinstance(starting_hammer, int) and starting_hammer in [0,1,2,0xFF])
         assert(starting_partners is None or isinstance(starting_partners, list))
-        if not starting_partners:
+        if starting_partners is None:
             starting_partners = ["Goombario"]
         assert(isinstance(partners_always_usable, bool))
         assert(starting_items is None or isinstance(starting_items, list))
-        if not starting_items:
+        if starting_items is None:
             starting_items = []
         assert(isinstance(hidden_block_mode, int))
-        assert(isinstance(magical_seeds_required, int) and magical_seeds_required in range(1,5))
+        assert(isinstance(magical_seeds_required, int) and magical_seeds_required in range(0,5))
         assert(isinstance(startwith_bluehouse_open, bool))
         assert(isinstance(startwith_toybox_open, bool))
         assert(isinstance(startwith_whale_open, bool))
