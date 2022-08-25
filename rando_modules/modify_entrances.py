@@ -61,6 +61,8 @@ from maps.graph_edges.glitched_logic.tik_sewer_blocks_without_ultra_boots import
     edges_tik_add_sewer_blocks_without_ultra_boots
 from maps.graph_edges.glitched_logic.tik_clippy_boots import \
     edges_tik_add_clippy_boots_metal_block_skip, edges_tik_add_clippy_boots_stone_block_skip
+from maps.graph_edges.glitched_logic.tik_first_block_to_shiver_city_without_super_boots import \
+    edges_tik_add_first_block_to_shiver_city_witout_super_boots
 
 # Glitched Logic - Pleasant Path
 from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_star_piece import \
@@ -339,6 +341,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_tik_add_parakarryless_sewer_star_piece)
     if glitch_settings.sewer_blocks_without_ultra_boots["value"]:
         all_new_edges.extend(edges_tik_add_sewer_blocks_without_ultra_boots)
+    if glitch_settings.first_block_to_shiver_city_without_super_boots["value"]:
+        all_new_edges.extend(edges_tik_add_first_block_to_shiver_city_witout_super_boots)
 
     # Pleasant Path
     if glitch_settings.kooperless_pleasant_path_star_piece["value"]:

@@ -207,6 +207,7 @@ ClippyBootsMetalBlockSkip                       : false
 IslandPipeBlooperSkip                           : false
 ParakarrylessSewerStarPiece                     : false
 SewerBlocksWithoutUltraBoots                    : false
+FirstBlockToShiverCityWithoutSuperBoots         : false
 
 KooperlessPleasantPathStarPiece                 : false
 InvisibleBridgeClipLzs                          : false
