@@ -265,9 +265,9 @@ random_actor_vars = {
     "0B_BuzzyBeetle": {
         "Var0": [1] # If attached to ceiling, must set Var0 to 1.
     },
-    "14_SpearGuy": {
-        "Var0": [0,1] # Spear pointing forward or upward
-    },
+    #"14_SpearGuy": {
+    #    "Var0": [0,1] # Spear pointing forward or upward
+    #},
     "18_Spiny": {
         "Var0": [0,1] #  ?
     },

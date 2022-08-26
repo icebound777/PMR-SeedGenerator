@@ -47,7 +47,7 @@ from maps.graph_edges.glitched_logic.mac_whale_early import \
 # Glitched Logic - Toad Town Tunnels
 from maps.graph_edges.glitched_logic.tik_island_pipe_blooper_skip import \
     edges_tik_add_island_pipe_blooper_skip
-from maps.graph_edges.glitched_logic.tik_parakaryless_sewer_star_piece import \
+from maps.graph_edges.glitched_logic.tik_parakarryless_sewer_star_piece import \
     edges_tik_add_parakarryless_sewer_star_piece
 from maps.graph_edges.glitched_logic.tik_sewer_blocks_without_ultra_boots import \
     edges_tik_add_sewer_blocks_without_ultra_boots
@@ -73,10 +73,10 @@ from maps.graph_edges.glitched_logic.trd_bombetteless_right_fortress_jail_key im
 # Glitched Logic - Mt.Rugged
 from maps.graph_edges.glitched_logic.mt_rugged_quake_hammer_and_letter_laki import \
     edges_iwa_add_quake_hammer_and_letter_laki
-from maps.graph_edges.glitched_logic.iwa_parakaryless_mt_rugged_seed import \
-    edges_iwa_add_parakaryless_mt_rugged_seed
-from maps.graph_edges.glitched_logic.iwa_parakaryless_mt_rugged_star_piece import \
-    edges_iwa_add_parkaryless_star_piece_laki
+from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed import \
+    edges_iwa_add_parakarryless_mt_rugged_seed
+from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_star_piece import \
+    edges_iwa_add_parakarryless_star_piece_laki
 from maps.graph_edges.glitched_logic.iwa_buzzar_gap_skip import \
     edges_iwa_add_buzzar_gap_skip_clippy
 
@@ -91,18 +91,18 @@ from maps.graph_edges.glitched_logic.isk_artifact_jump import \
     edges_isk_add_artifact_jump_laki
 from maps.graph_edges.glitched_logic.isk_ruins_key_laki_jump import \
     edges_isk_add_ruins_key_laki_jump
-from maps.graph_edges.glitched_logic.isk_parakaryless_second_sand_room import \
-    edges_isk_add_parakaryless_second_sand_room_normal_boots, \
-    edges_isk_add_parakaryless_second_sand_room_ultra_boots
-from maps.graph_edges.glitched_logic.isk_parakaryless_super_hammer_room import \
-    edges_isk_add_parakaryless_super_hammer_room_normal_boots, edges_isk_add_parakaryless_super_hammer_room_ultra_boots
+from maps.graph_edges.glitched_logic.isk_parakarryless_second_sand_room import \
+    edges_isk_add_parakarryless_second_sand_room_normal_boots, \
+    edges_isk_add_parakarryless_second_sand_room_ultra_boots
+from maps.graph_edges.glitched_logic.isk_parakarryless_super_hammer_room import \
+    edges_isk_add_parakarryless_super_hammer_room_normal_boots, edges_isk_add_parakarryless_super_hammer_room_ultra_boots
 from maps.graph_edges.glitched_logic.isk_ruins_locks_skip import \
     edges_isk_add_ruins_locks_skip_clippy
 
 # Glitched Logic - Boo's Mansion
 from maps.graph_edges.glitched_logic.obk_record_skip import \
     edges_obk_add_record_skip_bombette_push, edges_obk_add_record_skip_spin_jump
-from maps.graph_edges.glitched_logic.obk_parakaryless_boos_portrait import \
+from maps.graph_edges.glitched_logic.obk_parakarryless_boos_portrait import \
     edges_obk_add_boo_portrait_kooper, edges_obk_add_boo_portrait_laki
     
 # Glitched Logic - Gusty Gulch
@@ -120,14 +120,14 @@ from maps.graph_edges.glitched_logic.dgb_tubbas_table_laki_jump import \
     edges_dgb_add_tubbas_table_laki_jump
 from maps.graph_edges.glitched_logic.dgb_tubba_castle_super_boots_skip import \
     edges_dgb_add_tubbas_castle_super_boots_skip_laki
-from maps.graph_edges.glitched_logic.dgb_parakaryless_mega_rush import \
-    edges_dgb_add_parakaryless_mega_rush
+from maps.graph_edges.glitched_logic.dgb_parakarryless_mega_rush import \
+    edges_dgb_add_parakarryless_mega_rush
 
 # Glitched Logic - Toy Box
 from maps.graph_edges.glitched_logic.omo_gourmet_guy_skip import \
     edges_omo_add_gourmet_guy_skip_jump, edges_omo_add_gourmet_guy_skip_laki, edges_omo_add_gourmet_guy_skip_parakarry
-from maps.graph_edges.glitched_logic.omo_parakaryless_blue_station_star_piece import \
-    edges_omo_add_parakaryless_blue_station_star_piece
+from maps.graph_edges.glitched_logic.omo_parakarryless_blue_station_star_piece import \
+    edges_omo_add_parakarryless_blue_station_star_piece
 from maps.graph_edges.glitched_logic.omo_bowless_green_station import \
     edges_omo_add_bowless_green_station_laki
 from maps.graph_edges.glitched_logic.omo_kooperless_red_station_shooting_star import \
@@ -243,20 +243,23 @@ def get_bowsercastle_bossrush(world_graph: dict):
 
     return all_entrance_modifications, world_graph
 
-def get_gear_location_shuffle(world_graph: dict):
+def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     """
-    Returns the modified world graph itself for Big Chest Shuffle, which
-    removes dynamic hammer block logic.
+    Returns the modified world graph itself for Gear Location Shuffle and Full Shuffle,
+    which removes dynamic hammer block logic.
     """
     all_new_edges = []
     all_edges_to_remove = []
 
     all_new_edges.extend(edges_isk_gls_add)
     all_new_edges.extend(edges_kzn_gls_add)
-    all_new_edges.extend(edges_tik_gls_add)
     all_edges_to_remove.extend(edges_isk_gls_remove)
     all_edges_to_remove.extend(edges_kzn_gls_remove)
-    all_edges_to_remove.extend(edges_tik_gls_remove)
+
+    # The blocks are the same for isk and kzn and all non-vanilla modes, but only GLS modifies tik
+    if gear_shuffle_mode == 1:
+        all_new_edges.extend(edges_tik_gls_add)
+        all_edges_to_remove.extend(edges_tik_gls_remove)
 
     world_graph, _ = adjust(
         world_graph,
@@ -335,9 +338,9 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     if glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki["value"]:
         all_new_edges.extend(edges_iwa_add_quake_hammer_and_letter_laki)
     if glitch_settings.parakarryless_mt_rugged_seed["value"]:
-        all_new_edges.extend(edges_iwa_add_parakaryless_mt_rugged_seed)
+        all_new_edges.extend(edges_iwa_add_parakarryless_mt_rugged_seed)
     if glitch_settings.parakarryless_mt_rugged_star_piece["value"]:
-        all_new_edges.extend(edges_iwa_add_parkaryless_star_piece_laki)
+        all_new_edges.extend(edges_iwa_add_parakarryless_star_piece_laki)
     if glitch_settings.buzzar_gap_skip_clippy["value"]:
         all_new_edges.extend(edges_iwa_add_buzzar_gap_skip_clippy)
 
@@ -353,13 +356,13 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     if glitch_settings.artifact_jump["value"]:
         all_new_edges.extend(edges_isk_add_artifact_jump_laki)
     if glitch_settings.parakarryless_second_sand_room_normal_boots["value"]:
-        all_new_edges.extend(edges_isk_add_parakaryless_second_sand_room_normal_boots)
+        all_new_edges.extend(edges_isk_add_parakarryless_second_sand_room_normal_boots)
     if glitch_settings.parakarryless_second_sand_room_ultra_boots["value"]:
-        all_new_edges.extend(edges_isk_add_parakaryless_second_sand_room_ultra_boots)
+        all_new_edges.extend(edges_isk_add_parakarryless_second_sand_room_ultra_boots)
     if glitch_settings.parakarryless_super_hammer_room_normal_boots["value"]:
-        all_new_edges.extend(edges_isk_add_parakaryless_super_hammer_room_normal_boots)
+        all_new_edges.extend(edges_isk_add_parakarryless_super_hammer_room_normal_boots)
     if glitch_settings.parakarryless_super_hammer_room_ultra_boots["value"]:
-        all_new_edges.extend(edges_isk_add_parakaryless_super_hammer_room_ultra_boots)
+        all_new_edges.extend(edges_isk_add_parakarryless_super_hammer_room_ultra_boots)
     if glitch_settings.ruins_key_laki_jump["value"]:
         all_new_edges.extend(edges_isk_add_ruins_key_laki_jump)
     if glitch_settings.ruins_locks_skip_clippy["value"]:
@@ -395,11 +398,11 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     if glitch_settings.tubbas_castle_super_boots_skip["value"]:
         all_new_edges.extend(edges_dgb_add_tubbas_castle_super_boots_skip_laki)
     if glitch_settings.parakarryless_mega_rush["value"]:
-        all_new_edges.extend(edges_dgb_add_parakaryless_mega_rush)
+        all_new_edges.extend(edges_dgb_add_parakarryless_mega_rush)
 
     # Toy Box
     if glitch_settings.parakarryless_blue_building_star_piece["value"]:
-        all_new_edges.extend(edges_omo_add_parakaryless_blue_station_star_piece)
+        all_new_edges.extend(edges_omo_add_parakarryless_blue_station_star_piece)
     if glitch_settings.gourmet_guy_skip_jump["value"]:
         all_new_edges.extend(edges_omo_add_gourmet_guy_skip_jump)
     if glitch_settings.gourmet_guy_skip_laki["value"]:
@@ -424,9 +427,9 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_kzn_add_ultra_hammer_skip)
     if glitch_settings.flarakarry["value"]:
         all_new_edges.extend(edges_kzn_add_flarakarry_parakarry)
-    if glitch_settings.parakaryless_flarakarry_bombette["value"]:
+    if glitch_settings.parakarryless_flarakarry_bombette["value"]:
         all_new_edges.extend(edges_kzn_add_flarakarry_bombette)
-    if glitch_settings.parakaryless_flarakarry_laki["value"]:
+    if glitch_settings.parakarryless_flarakarry_laki["value"]:
         all_new_edges.extend(edges_kzn_add_flarakarry_laki)
 
     # Flower Fields

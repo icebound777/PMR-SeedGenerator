@@ -92,7 +92,7 @@ def is_itemlocation_replenishable(item_node):
 
 def _get_random_taycet_item():
     """
-    Randomly pick a Tayce T. item objects chosen out of all allowed Tayce T.
+    Randomly pick a Tayce T. item object chosen out of all allowed Tayce T.
     items.
     """
     random_taycet_item_value = random.choice([x for x in taycet_items if x not in exclude_from_taycet_placement])
@@ -289,6 +289,7 @@ def _init_mario_inventory(
     magical_seeds_required:int,
     startwith_toybox_open:bool,
     startwith_whale_open:bool,
+    cook_without_fryingpan:bool,
     startwith_speedyspin: bool
 ) -> Mario:
     """
@@ -332,6 +333,8 @@ def _init_mario_inventory(
         mario.add_to_inventory("RF_ToyboxOpen")
     if startwith_whale_open:
         mario.add_to_inventory("RF_CanRideWhale")
+    if cook_without_fryingpan:
+        mario.add_to_inventory("RF_CanCook")
     if magical_seeds_required == 3:
         mario.add_to_inventory("RF_MagicalSeed1")
     elif magical_seeds_required == 2:
@@ -1263,6 +1266,7 @@ def _algo_forward_fill(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
     starting_hammer,
@@ -1341,6 +1345,7 @@ def _algo_forward_fill(
         magical_seeds_required,
         startwith_toybox_open,
         startwith_whale_open,
+        cook_without_fryingpan,
         speedyspin
     )
 
@@ -1608,6 +1613,7 @@ def _algo_assumed_fill(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
     starting_hammer,
@@ -1690,9 +1696,6 @@ def _algo_assumed_fill(
         pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
     pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 
-    # helper var for placing the regular boots during gear location shuffle
-    boots_placed = 0
-
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()
         mario = _init_mario_inventory(
@@ -1706,6 +1709,7 @@ def _algo_assumed_fill(
             magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,
+            cook_without_fryingpan,
             speedyspin
         )
 
@@ -1725,10 +1729,13 @@ def _algo_assumed_fill(
             candidate_locations = [node for node in candidate_locations if node.map_area.name[:3] == dungeon]
             dungeon_restricted_items.pop(item.item_name)
 
-        if item.item_type == "GEAR" and gear_shuffle_mode == 1 and boots_placed < 2:
-            # gear location shuffle
-            candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
-            boots_placed = boots_placed + 1
+        if gear_shuffle_mode == 1:
+            # Gear Location Shuffle
+            if item.item_type == "GEAR":
+                candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
+            else:
+                candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type != "GEAR"]
+
 
         if len(candidate_locations) == 0:
             raise UnbeatableSeedError("Failed to generate a beatable seed")
@@ -1835,6 +1842,7 @@ def get_item_spheres(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
     starting_hammer,
@@ -1868,6 +1876,7 @@ def get_item_spheres(
         magical_seeds_required,
         startwith_toybox_open,
         startwith_whale_open,
+        cook_without_fryingpan,
         startwith_speedyspin
     )
 
@@ -1896,7 +1905,7 @@ def get_item_spheres(
         item_spheres_text += f'    ((Start) Mario\'s inventory): {item}{item_suffix}\n'
 
     sphere = 0
-    while True:
+    while item_placement_map:
         pool_misc_progression_items, \
         pool_other_items, \
         reachable_node_ids, \
@@ -1913,14 +1922,18 @@ def get_item_spheres(
                                   filled_item_nodes,
                                   mario)
 
-        if not reachable_item_nodes:
-            break
-
         item_spheres_text += '\n'
-        item_spheres_text += f'Sphere {sphere}:\n'        
+        if reachable_item_nodes:
+            item_spheres_text += f'Sphere {sphere}:\n'
+            nodes_to_print = list(reachable_item_nodes.values())
+        else:
+            item_spheres_text += f'Unreachable In Logic:\n'
+            nodes_to_print = list(item_placement_map.values())
 
-        for _, node in sorted(reachable_item_nodes.items()):
-            item = item_placement_map[node.identifier].current_item
+        nodes_to_print.sort(key=lambda node: (node.map_area.area_id, node.map_area.map_id, node.identifier))
+
+        for node in nodes_to_print:
+            item = item_placement_map.pop(node.identifier).current_item
             node_long_name = f'({verbose_area_names[node.map_area.name[:3]]}) {node.map_area.verbose_name} - {verbose_item_locations[node.map_area.name][node.key_name_item]}'
             item_verbose_name = verbose_item_names[item.item_name] if item.item_name in verbose_item_names else item.item_name
 
@@ -1961,6 +1974,7 @@ def place_items(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
     starting_hammer,
@@ -2012,6 +2026,7 @@ def place_items(
             magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,
+            cook_without_fryingpan,
             starting_partners,
             starting_boots,
             starting_hammer,
@@ -2048,6 +2063,7 @@ def place_items(
             magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,
+            cook_without_fryingpan,
             starting_partners,
             starting_boots,
             starting_hammer,

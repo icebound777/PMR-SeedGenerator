@@ -13,6 +13,7 @@ AllowPhysicsGlitches : true
 SkipEpilogue         : true
 StarWaySpiritsNeeded : 7
 PeachCastleReturnPipe: true # false locks the pipe
+CookWithoutFryingPan : true
 FoliageItemHints     : true
 HiddenPanelVisibility: 1 # 0:vanilla, 1:texture-edit
 
@@ -226,10 +227,10 @@ EarlyRuinsUltraBoots                            : false
 
 ArtifactJump                                    : false
 RuinsKeyLakiJump                                : false
-ParakarylessSecondSandRoomUltraBoots            : false
-ParakarylessSecondSandRoomNormalBoots           : false
-ParakarylessSuperHammerRoomUltraBoots           : false
-ParakarylessSuperHammerRoomNormalBoots          : false
+ParakarrylessSecondSandRoomUltraBoots           : false
+ParakarrylessSecondSandRoomNormalBoots          : false
+ParakarrylessSuperHammerRoomUltraBoots          : false
+ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
 
 RecordSkipNoBombettePush                        : false

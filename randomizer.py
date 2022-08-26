@@ -9,6 +9,7 @@ import time
 import json
 import yaml
 from yaml.loader import SafeLoader
+from pathlib import Path
 
 from enums import create_enums
 from models.WebSeedResponse import WebSeedResponse
@@ -192,33 +193,30 @@ def write_data_to_rom(
 
         # Write table data and generate log file
         file.seek(rom_table.info["address"] + rom_table.info["header_size"])
-        with open(os.path.abspath(__file__ + "/../debug/log.txt"), "a", encoding="utf-8") as log:
-            #log.write("ITEM CHANGES:\n\n")
 
-            for _,pair in enumerate(table_data):
-                key_int = pair["key"].to_bytes(4, byteorder="big")
-                value_int = pair["value"].to_bytes(4, byteorder="big")
-                file.write(key_int)
-                file.write(value_int)
-                log.write(f'{hex(pair["key"])}: {hex(pair["value"])}\n')
+        for _,pair in enumerate(table_data):
+            key_int = pair["key"].to_bytes(4, byteorder="big")
+            value_int = pair["value"].to_bytes(4, byteorder="big")
+            file.write(key_int)
+            file.write(value_int)
 
-            for formation in battle_formations:
-                for formation_hex_word in formation:
-                    file.write(formation_hex_word.to_bytes(4, byteorder="big"))
+        for formation in battle_formations:
+            for formation_hex_word in formation:
+                file.write(formation_hex_word.to_bytes(4, byteorder="big"))
 
-            # Write end of formations table
+        # Write end of formations table
+        file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
+
+        # Write itemhint table
+        for itemhint in itemhints:
+            for itemhint_hex in itemhint:
+                file.write(itemhint_hex.to_bytes(4, byteorder="big"))
+
+        # Write end of item hints table
+        file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
+        # Write end of db padding
+        for _ in range(1, 5):
             file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
-
-            # Write itemhint table
-            for itemhint in itemhints:
-                for itemhint_hex in itemhint:
-                    file.write(itemhint_hex.to_bytes(4, byteorder="big"))
-
-            # Write end of item hints table
-            file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
-            # Write end of db padding
-            for _ in range(1, 5):
-                file.write(0xFFFFFFFF.to_bytes(4, byteorder="big"))
 
         # Special solution for random coin palettes
         if coin_palette_data and coin_palette_targets:
@@ -602,7 +600,7 @@ def main_randomizer(args):
     timer_start = time.perf_counter()
 
     target_modfile = ""
-    spoilerlog_file_path = ""
+    custom_spoilerlog_file_path = ""
     rando_outputfile = ""
 
     rando_settings = None
@@ -656,7 +654,7 @@ def main_randomizer(args):
 
             # Spoilerlog output file
             if opt in ["-s", "--spoilerlog"]:
-                spoilerlog_file_path = arg
+                custom_spoilerlog_file_path = arg
 
             # Choose the random seed
             if opt in ["-S", "--seed"]:
@@ -711,12 +709,17 @@ def main_randomizer(args):
     )
 
     # Write sorted spoiler log
+    if custom_spoilerlog_file_path:
+        target_spoilerfile = custom_spoilerlog_file_path
+    else:
+        target_spoilerfile = Path(target_modfile).parent / "spoiler_log.txt"
+
     if rando_settings.write_spoilerlog:
         write_spoiler_log(
             random_seed.placed_items,
             random_chapter_difficulty=random_seed.chapter_changes,
             settings=rando_settings,
-            spoilerlog_file=spoilerlog_file_path,
+            spoilerlog_file=target_spoilerfile,
             spheres_text=random_seed.item_spheres_text
         )
 
