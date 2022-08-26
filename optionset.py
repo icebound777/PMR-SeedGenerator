@@ -563,6 +563,8 @@ class OptionSet:
             self.glitch_settings.laki_jailbreak = options_dict.get("LakiJailbreak")
         if "BombettelessRightFortressJailKey" in options_dict:
             self.glitch_settings.bombetteless_right_fortress_jail_key = options_dict.get("BombettelessRightFortressJailKey")
+        if "WaterStaircaseSkip" in options_dict:
+            self.glitch_settings.water_staircase_skip = options_dict.get("WaterStaircaseSkip")
 
         if "MtRuggedQuakeHammerAndLetterWithLaki" in options_dict:
             self.glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki = options_dict.get("MtRuggedQuakeHammerAndLetterWithLaki")
@@ -1163,6 +1165,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("LakiJailbreak").get("value"), bool)
     if "BombettelessRightFortressJailKey" in options_dict:
         assert isinstance(options_dict.get("BombettelessRightFortressJailKey").get("value"), bool)
+    if "WaterStaircaseSkip" in options_dict:
+        assert isinstance(options_dict.get("WaterStaircaseSkip").get("value"), bool)
 
     if "MtRuggedQuakeHammerAndLetterWithLaki" in options_dict:
         assert isinstance(options_dict.get("MtRuggedQuakeHammerAndLetterWithLaki").get("value"), bool)

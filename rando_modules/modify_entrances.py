@@ -81,6 +81,8 @@ from maps.graph_edges.glitched_logic.trd_laki_jailbreak import \
     edges_trd_add_laki_jailbreak
 from maps.graph_edges.glitched_logic.trd_bombetteless_right_fortress_jail_key import \
     edges_trd_add_bombetteless_right_key
+from maps.graph_edges.glitched_logic.trd_water_staircase_skip import \
+    edges_trd_add_water_staircase_skip
 
 # Glitched Logic - Mt.Rugged
 from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_laki import \
@@ -367,6 +369,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_trd_add_laki_jailbreak)
     if glitch_settings.bombetteless_right_fortress_jail_key["value"]:
         all_new_edges.extend(edges_trd_add_bombetteless_right_key)
+    if glitch_settings.water_staircase_skip["value"]:
+        all_new_edges.extend(edges_trd_add_water_staircase_skip)
 
     # Mt. Rugged
     if glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki["value"]:
