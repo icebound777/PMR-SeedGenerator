@@ -656,6 +656,8 @@ class OptionSet:
             self.glitch_settings.kooperless_lavalava_pow_block = options_dict.get("KooperlessLavalavaPowBlock")
         if "UltraHammerSkip" in options_dict:
             self.glitch_settings.ultra_hammer_skip = options_dict.get("UltraHammerSkip")
+        if "UltraHammerSkipLaki" in options_dict:
+            self.glitch_settings.ultra_hammer_skip_laki = options_dict.get("UltraHammerSkipLaki")
         if "Flarakarry" in options_dict:
             self.glitch_settings.flarakarry = options_dict.get("Flarakarry")
         if "ParakarrylessFlarakarryBombette" in options_dict:
@@ -1258,6 +1260,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("KooperlessLavalavaPowBlock").get("value"), bool)
     if "UltraHammerSkip" in options_dict:
         assert isinstance(options_dict.get("UltraHammerSkip").get("value"), bool)
+    if "UltraHammerSkipLaki" in options_dict:
+        assert isinstance(options_dict.get("UltraHammerSkip").get("value"), bool)
     if "Flarakarry" in options_dict:
         assert isinstance(options_dict.get("Flarakarry").get("value"), bool)
     if "ParakarrylessFlarakarryBombette" in options_dict:
@@ -1469,6 +1473,7 @@ class GlitchOptionSet():
             self.ch5_sushie_glitch = False
             self.kooperless_lavalava_pow_block = False
             self.ultra_hammer_skip = False
+            self.ultra_hammer_skip_laki = False
             self.flarakarry = False
             self.parakarryless_flarakarry_bombette = False
             self.parakarryless_flarakarry_laki = False
