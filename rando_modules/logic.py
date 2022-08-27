@@ -309,15 +309,15 @@ def _init_mario_inventory(
 
     if starting_boots == 2:
         mario.add_to_inventory("BootsProxy3")
-    if starting_boots in [1,2]:
+    if starting_boots >= 1:
         mario.add_to_inventory("BootsProxy2")
-    if starting_boots in [0,1,2]:
+    if starting_boots >= 0:
         mario.add_to_inventory("BootsProxy1")
     if starting_hammer == 2:
         mario.add_to_inventory("HammerProxy3")
-    if starting_hammer in [1,2]:
+    if starting_hammer >= 1:
         mario.add_to_inventory("HammerProxy2")
-    if starting_hammer in [0,1,2]:
+    if starting_hammer >= 0:
         mario.add_to_inventory("HammerProxy1")
 
     for item in starting_items:
@@ -765,19 +765,19 @@ def get_items_to_exclude(
         if starting_hammer == 2:
             item = Item.get(Item.item_name == "HammerProxy3")
             excluded_items.append(item)
-        if starting_hammer in [1,2]:
+        if starting_hammer >= 1:
             item = Item.get(Item.item_name == "HammerProxy2")
             excluded_items.append(item)
-        if starting_hammer in [0,1,2]:
+        if starting_hammer >= 0:
             item = Item.get(Item.item_name == "HammerProxy1")
             excluded_items.append(item)
         if starting_boots == 2:
             item = Item.get(Item.item_name == "BootsProxy3")
             excluded_items.append(item)
-        if starting_boots in [1,2]:
+        if starting_boots >= 1:
             item = Item.get(Item.item_name == "BootsProxy2")
             excluded_items.append(item)
-        if starting_boots in [0,1,2]:
+        if starting_boots >= 0:
             item = Item.get(Item.item_name == "BootsProxy1")
             excluded_items.append(item)
 
@@ -930,7 +930,7 @@ def _generate_item_pools(
             if (    gear_shuffle_mode not in [1,2]
                 and current_node.vanilla_item.item_type == "GEAR"
                 and (   current_node.identifier != "KMR_04/Bush7_Drop1"
-                     or starting_hammer == 0xFF)
+                     or starting_hammer == -1)
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -986,7 +986,7 @@ def _generate_item_pools(
             # Special casing for hammer bush during gear location shuffle w/o
             # hammerless: add modified "gear" Tayce T item to gear locations
             if (    current_node.identifier == "KMR_04/Bush7_Drop1"
-                and starting_hammer != 0xFF
+                and starting_hammer != -1
                 and gear_shuffle_mode == 1
             ):
                 modified_taycet = _get_random_taycet_item()
