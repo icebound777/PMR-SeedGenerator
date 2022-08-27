@@ -929,7 +929,8 @@ def _generate_item_pools(
 
             if (    gear_shuffle_mode not in [1,2]
                 and current_node.vanilla_item.item_type == "GEAR"
-                and current_node.identifier != "KMR_04/Bush7_Drop1"
+                and (   current_node.identifier != "KMR_04/Bush7_Drop1"
+                     or starting_hammer == 0xFF)
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
