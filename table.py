@@ -1,8 +1,6 @@
-from parse import get_default_table, create_table, get_table_info
+from parse import get_table_info
 
 from db.option import Option
-from db.actor_attribute import ActorAttribute
-from db.quiz import Quiz
 from optionset import MysteryOptionSet
 
 
