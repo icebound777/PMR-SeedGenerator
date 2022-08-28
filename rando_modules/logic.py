@@ -336,7 +336,7 @@ def get_items_to_exclude(
         if starting_hammer >= StartingHammer.SUPERHAMMER:
             item = Item.get(Item.item_name == "HammerProxy2")
             excluded_items.append(item)
-        if starting_hammer >= StartingHammer.ULTRAHAMMER:
+        if starting_hammer >= StartingHammer.HAMMER:
             item = Item.get(Item.item_name == "HammerProxy1")
             excluded_items.append(item)
         if starting_boots == StartingBoots.ULTRABOOTS:
