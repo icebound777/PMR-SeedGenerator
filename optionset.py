@@ -895,7 +895,7 @@ def validate_options(options_dict):
         )
     if "ItemScarcity" in options_dict:
         assert (isinstance(options_dict.get("ItemScarcity").get("value"), int)
-            and 0 <= options_dict.get("ItemScarcity").get("value") <= 200
+            and 50 <= options_dict.get("ItemScarcity").get("value") <= 120
         )
     if "AddItemPouches" in options_dict:
         assert isinstance(options_dict.get("AddItemPouches").get("value"), bool)
