@@ -646,6 +646,8 @@ class OptionSet:
             self.glitch_settings.parakarryless_blue_block_city_gap = options_dict.get("ParakarrylessBlueBlockCityGap")
         if "BlueSwitchSkip" in options_dict:
             self.glitch_settings.blue_switch_skip = options_dict.get("BlueSwitchSkip")
+        if "RedBarricadeSkip" in options_dict:
+            self.glitch_settings.red_barricade_skip = options_dict.get("RedBarricadeSkip")
 
         if "RaphSkipEnglish" in options_dict:
             self.glitch_settings.raph_skip_english = options_dict.get("RaphSkipEnglish")
@@ -1250,6 +1252,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("ParakarrylessBlueBlockCityGap").get("value"), bool)
     if "BlueSwitchSkip" in options_dict:
         assert isinstance(options_dict.get("BlueSwitchSkip").get("value"), bool)
+    if "RedBarricadeSkip" in options_dict:
+        assert isinstance(options_dict.get("RedBarricadeSkip").get("value"), bool)
 
     if "RaphSkipEnglish" in options_dict:
         assert isinstance(options_dict.get("RaphSkipEnglish").get("value"), bool)
@@ -1468,6 +1472,7 @@ class GlitchOptionSet():
             self.kooperless_red_station_shooting_star = False
             self.parakarryless_blue_block_city_gap = False
             self.blue_switch_skip = False
+            self.red_barricade_skip = False
 
             self.raph_skip_english = False
             self.ch5_sushie_glitch = False

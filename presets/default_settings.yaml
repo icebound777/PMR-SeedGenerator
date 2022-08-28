@@ -263,6 +263,7 @@ BowlessGreenStation                             : false
 KooperlessRedStationShootingStar                : false
 ParakarrylessBlueBlockCityGap                   : false
 BlueSwitchSkip                                  : false
+RedBarricadeSkip                                : false
 
 RaphSkipEnglish                                 : false
 Ch5SushieGlitch                                 : false
