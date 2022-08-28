@@ -189,7 +189,7 @@ from maps.graph_edges.glitched_logic.flo_bubble_berry_tree_laki_jump import \
 from maps.graph_edges.glitched_logic.sam_murder_solved_early import \
     edges_sam_add_murder_solved_early_laki, edges_sam_add_murder_solved_early_bombette_push
 from maps.graph_edges.glitched_logic.sam_ch7_sushie_glitch import \
-    edges_sam_add_ch7_sushie_glitch
+    edges_sam_add_ch7_sushie_glitch, edges_sam_add_star_stone_with_ch7_sushie_glitch
 from maps.graph_edges.glitched_logic.sam_shiver_mtn_hidden_block_without_ultra_boots import \
     edges_sam_add_shiver_mountain_hidden_block_normal_throw, edges_sam_add_shiver_mountain_hidden_block_laki_throw
 
@@ -517,6 +517,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_sam_add_murder_solved_early_laki)
     if glitch_settings.ch7_sushie_glitch["value"]:
         all_new_edges.extend(edges_sam_add_ch7_sushie_glitch)
+    if glitch_settings.star_stone_with_ch7_sushie_glitch["value"]:
+        all_new_edges.extend(edges_sam_add_star_stone_with_ch7_sushie_glitch)
     if glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_laki["value"]:
         all_new_edges.extend(edges_sam_add_shiver_mountain_hidden_block_laki_throw)
     if glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_no_laki["value"]:

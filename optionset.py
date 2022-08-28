@@ -698,6 +698,8 @@ class OptionSet:
             self.glitch_settings.murder_solved_early_bombette_push = options_dict.get("MurderSolvedEarlyBombettePush")
         if "Ch7SushieGlitch" in options_dict:
             self.glitch_settings.ch7_sushie_glitch = options_dict.get("Ch7SushieGlitch")
+        if "StarStoneWithCh7SushieGlitch" in options_dict:
+            self.glitch_settings.star_stone_with_ch7_sushie_glitch = options_dict.get("StarStoneWithCh7SushieGlitch")
         if "ShiverMountainHiddenBlockWithoutUltraBootsLaki" in options_dict:
             self.glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_laki = options_dict.get("ShiverMountainHiddenBlockWithoutUltraBootsLaki")
         if "ShiverMountainHiddenBlockWithoutUltraBootsNoLaki" in options_dict:
@@ -1304,6 +1306,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("MurderSolvedEarlyBombettePush").get("value"), bool)
     if "Ch7SushieGlitch" in options_dict:
         assert isinstance(options_dict.get("Ch7SushieGlitch").get("value"), bool)
+    if "StarStoneWithCh7SushieGlitch" in options_dict:
+        assert isinstance(options_dict.get("StarStoneWithCh7SushieGlitch").get("value"), bool)
     if "ShiverMountainHiddenBlockWithoutUltraBootsLaki" in options_dict:
         assert isinstance(options_dict.get("ShiverMountainHiddenBlockWithoutUltraBootsLaki").get("value"), bool)
     if "ShiverMountainHiddenBlockWithoutUltraBootsNoLaki" in options_dict:
@@ -1499,6 +1503,7 @@ class GlitchOptionSet():
             self.murder_solved_early_laki = False
             self.murder_solved_early_bombette_push = False
             self.ch7_sushie_glitch = False
+            self.star_stone_with_ch7_sushie_glitch = False
             self.shiver_mountain_hidden_block_without_ultra_boots_laki = False
             self.shiver_mountain_hidden_block_without_ultra_boots_no_laki = False
 
