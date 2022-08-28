@@ -46,7 +46,7 @@ from maps.graph_edges.glitched_logic.mac_blue_house_skip import \
 from maps.graph_edges.glitched_logic.mac_bowless_toy_box import \
     edges_mac_add_bowless_toybox
 from maps.graph_edges.glitched_logic.mac_enter_storeroom_without_key import \
-    edges_mac_add_storeroom_without_key_hammer, edges_mac_add_storeroom_without_key_parakarry
+    edges_mac_add_storeroom_without_key_hammer, edges_mac_add_storeroom_without_key_parakarry, edges_mac_add_storeroom_without_key_ultra_boots
 from maps.graph_edges.glitched_logic.mac_sushieless_toad_town_star_piece import \
     edges_mac_add_sushieless_starpiece
 from maps.graph_edges.glitched_logic.mac_whale_early import \
@@ -331,6 +331,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_mac_add_storeroom_without_key_parakarry)
     if glitch_settings.early_storeroom_hammer["value"]:
         all_new_edges.extend(edges_mac_add_storeroom_without_key_hammer)
+    if glitch_settings.early_storeroom_ultra_boots["value"]:
+        all_new_edges.extend(edges_mac_add_storeroom_without_key_ultra_boots)
     if glitch_settings.whale_early["value"]:
         all_new_edges.extend(edges_mac_add_whale_early_lzs)
     if glitch_settings.sushiesless_toad_town_star_piece["value"]:
