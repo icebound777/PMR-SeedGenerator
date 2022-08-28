@@ -93,8 +93,7 @@ class OptionSet:
         self.gear_shuffle_mode = get_option_keyvalue_dict("GearShuffleMode")
         self.item_scarcity = 0
         self.add_item_pouches = False
-        self.placement_algorithm = "ForwardFill"
-        self.placement_logic = "NoGlitches"
+        self.placement_algorithm = "AssumedFill"
         self.keyitems_outside_dungeon = True # False -> NYI
         self.keyitems_outside_chapter = True # "Keysanity" # false -> NYI
         self.allow_itemhints = True
@@ -349,8 +348,6 @@ class OptionSet:
             self.add_item_pouches = options_dict.get("AddItemPouches").get("value")
         if "PlacementAlgorithm" in options_dict:
             self.placement_algorithm = options_dict.get("PlacementAlgorithm").get("value")
-        if "PlacementLogic" in options_dict:
-            self.placement_logic = options_dict.get("PlacementLogic").get("value")
         if "KeyitemsOutsideDungeon" in options_dict:
             self.keyitems_outside_dungeon = options_dict.get("KeyitemsOutsideDungeon").get("value")
         if "KeyitemsOutsideChapter" in options_dict:
@@ -891,18 +888,8 @@ def validate_options(options_dict):
     if "PlacementAlgorithm" in options_dict:
         assert (isinstance(options_dict.get("PlacementAlgorithm").get("value"), str)
             and options_dict.get("PlacementAlgorithm").get("value") in [
-                "ForwardFill",
-                #"WeightedForwardFill", # NYI
                 "AssumedFill",
-                "CustomSeed"
-            ]
-        )
-    if "PlacementLogic" in options_dict:
-        assert (isinstance(options_dict.get("PlacementLogic").get("value"), str)
-            and options_dict.get("PlacementLogic").get("value") in [
-                "NoGlitches",
-                #"Glitches", # NYI
-                "NoLogic"
+                #"CustomSeed" # NYI
             ]
         )
     if "KeyitemsOutsideDungeon" in options_dict:
