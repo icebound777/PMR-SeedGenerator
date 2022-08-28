@@ -196,7 +196,9 @@ OddKeyEarly                                     : false
 BlueHouseSkip                                   : false
 BlueHouseSkipLaki                               : false
 BlueHouseSkipToadLure                           : false
-BowlessToyBox                                   : false
+BowlessToyBoxHammer                             : false
+BowlessToyBoxParakarry                          : false
+BowlessToyBoxUltraBoots                         : false
 EarlyStoreroomParakarry                         : false
 EarlyStoreroomHammer                            : false
 EarlyStoreroomUltraBoots                        : false
