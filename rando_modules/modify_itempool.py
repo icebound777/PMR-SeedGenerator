@@ -20,9 +20,9 @@ def get_random_consumables(n:int) -> list:
     Returns a list of n items, with categories similar to vanilla distribution
     """
     weights = {
-        "battle": 40,
-        "heal": 54,
-        "taycet": 6,
+        "battle": 50,
+        "heal": 45,
+        "taycet": 5,
     }
     item_weights = [weights[item["type"]] for item in item_scores]
 
