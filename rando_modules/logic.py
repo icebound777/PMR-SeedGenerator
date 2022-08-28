@@ -13,6 +13,14 @@ from rando_modules.random_shop_prices import get_shop_price
 
 from models.MarioInventory import MarioInventory
 
+from rando_enums.enum_options import \
+    BowserCastleMode,\
+    GearShuffleMode,\
+    StartingBoots,\
+    StartingHammer,\
+    IncludeFavorsMode,\
+    IncludeLettersMode
+
 from rando_modules.modify_itempool \
     import get_scarcitied_itempool,\
            get_trapped_itempool
@@ -305,7 +313,7 @@ def get_items_to_exclude(
         for item_name in exclude_due_to_settings.get("magical_seeds_required").get(magical_seeds_required):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if bowsers_castle_mode > 0:
+    if bowsers_castle_mode > BowserCastleMode.VANILLA:
         for item_name in exclude_due_to_settings.get("shorten_bowsers_castle"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
@@ -321,23 +329,23 @@ def get_items_to_exclude(
         for item_name in exclude_due_to_settings.get("always_peekaboo"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if gear_shuffle_mode >= 1:
-        if starting_hammer == 2:
+    if gear_shuffle_mode >= GearShuffleMode.GEAR_LOCATION_SHUFFLE:
+        if starting_hammer == StartingHammer.ULTRAHAMMER:
             item = Item.get(Item.item_name == "HammerProxy3")
             excluded_items.append(item)
-        if starting_hammer >= 1:
+        if starting_hammer >= StartingHammer.SUPERHAMMER:
             item = Item.get(Item.item_name == "HammerProxy2")
             excluded_items.append(item)
-        if starting_hammer >= 0:
+        if starting_hammer >= StartingHammer.HAMMER:
             item = Item.get(Item.item_name == "HammerProxy1")
             excluded_items.append(item)
-        if starting_boots == 2:
+        if starting_boots == StartingBoots.ULTRABOOTS:
             item = Item.get(Item.item_name == "BootsProxy3")
             excluded_items.append(item)
-        if starting_boots >= 1:
+        if starting_boots >= StartingBoots.SUPERBOOTS:
             item = Item.get(Item.item_name == "BootsProxy2")
             excluded_items.append(item)
-        if starting_boots >= 0:
+        if starting_boots >= StartingBoots.BOOTS:
             item = Item.get(Item.item_name == "BootsProxy1")
             excluded_items.append(item)
 
@@ -428,35 +436,35 @@ def _generate_item_pools(
                 continue
 
             if (    current_node_id in kootfavors_reward_locations
-                and randomize_favors_mode < 1
+                and randomize_favors_mode == IncludeFavorsMode.NOT_RANDOMIZED
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id in kootfavors_keyitem_locations
-                and randomize_favors_mode < 2
+                and randomize_favors_mode <= IncludeFavorsMode.RND_REWARD_VANILLA_KEYITEMS
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id in chainletter_giver_locations
-                and randomize_letters_mode < 3
+                and randomize_letters_mode < IncludeLettersMode.FULL_SHUFFLE
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id == chainletter_final_reward_location
-                and randomize_letters_mode < 2
+                and randomize_letters_mode < IncludeLettersMode.RANDOM_CHAIN_REWARD
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id in simpleletter_locations
-                and randomize_letters_mode < 1
+                and randomize_letters_mode < IncludeLettersMode.SIMPLE_LETTERS
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -484,7 +492,7 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    gear_shuffle_mode not in [1,2]
+            if (    gear_shuffle_mode == GearShuffleMode.VANILLA
                 and current_node.vanilla_item.item_type == "GEAR"
                 and (   current_node.identifier != "KMR_04/Bush7_Drop1"
                      or starting_hammer == -1)
@@ -493,7 +501,7 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    gear_shuffle_mode not in [1,2]
+            if (    gear_shuffle_mode == GearShuffleMode.VANILLA
                 and current_node.identifier == "KMR_04/Bush7_Drop1"
             ):
                 # special casing so the hammer bush is never empty but also
@@ -515,8 +523,8 @@ def _generate_item_pools(
             # Special casing for hammer bush during gear location shuffle w/o
             # hammerless: add modified "gear" Tayce T item to gear locations
             if (    current_node.identifier == "KMR_04/Bush7_Drop1"
-                and starting_hammer != -1
-                and gear_shuffle_mode == 1
+                and starting_hammer != StartingHammer.HAMMERLESS
+                and gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE
             ):
                 modified_taycet = _get_random_taycet_item()
                 modified_taycet.item_type = "GEAR"
@@ -562,7 +570,7 @@ def _generate_item_pools(
         pool_other_items.extend(pouch_items)
 
     # If we start jumpless, add a progressive boots item to the item pool
-    if starting_boots == 0xFF:
+    if starting_boots == StartingBoots.JUMPLESS:
         new_boots = Item.get(Item.item_name == "BootsProxy1")
         while True:
             rnd_index = random.randint(0, len(pool_other_items) - 1)
@@ -939,7 +947,7 @@ def _algo_assumed_fill(
                     assert item not in dungeon_restricted_items
                     dungeon_restricted_items[item] = dungeon
 
-    if gear_shuffle_mode == 1: # gear location shuffle
+    if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
         pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
     pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 

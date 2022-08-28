@@ -6,6 +6,8 @@ import random
 
 from db.move import Move
 
+from rando_enums.enum_options import RandomMoveCosts
+
 
 value_limits = {
     "BADGE":     {"BP": {"min": 1,"max": 8,}, "FP": {"min": 1,"max": 7,}},
@@ -109,15 +111,10 @@ def get_randomized_moves(
     Returns a list of tuples where the first value holds the dbkey for a move
     cost and the second value holds the shuffled FP,BP,SP cost.
     """
-    #VANILLA = 0
-    BALANCED_RANDOM = 1
-    SHUFFLED = 2
-    FULLY_RANDOM = 3
-
     rnd_cost_functions = {
-        BALANCED_RANDOM: _get_balanced_random_costs,
-        SHUFFLED: _get_shuffled_costs,
-        FULLY_RANDOM: _get_fully_random_costs,
+        RandomMoveCosts.BALANCED_RANDOM: _get_balanced_random_costs,
+        RandomMoveCosts.SHUFFLED: _get_shuffled_costs,
+        RandomMoveCosts.FULLY_RANDOM: _get_fully_random_costs,
     }
 
     move_costs = []
