@@ -297,12 +297,8 @@ class OptionSet:
             self.starting_starpower = options_dict.get("StartingStarPower")
         if "StartingBoots" in options_dict:
             self.starting_boots = options_dict.get("StartingBoots")
-            if self.starting_boots.get("value") == -1:
-                self.starting_boots["value"] = 0xFF
         if "StartingHammer" in options_dict:
             self.starting_hammer = options_dict.get("StartingHammer")
-            if self.starting_hammer.get("value") == -1:
-                self.starting_hammer["value"] = 0xFF
 
         if "StartWithRandomItems" in options_dict:
             self.random_starting_items = options_dict.get("StartWithRandomItems").get("value")

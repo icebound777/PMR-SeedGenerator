@@ -94,7 +94,7 @@ def is_itemlocation_replenishable(item_node):
 
 def _get_random_taycet_item():
     """
-    Randomly pick a Tayce T. item objects chosen out of all allowed Tayce T.
+    Randomly pick a Tayce T. item object chosen out of all allowed Tayce T.
     items.
     """
     random_taycet_item_value = random.choice([x for x in taycet_items if x not in exclude_from_taycet_placement])
@@ -494,7 +494,8 @@ def _generate_item_pools(
 
             if (    gear_shuffle_mode == GearShuffleMode.VANILLA
                 and current_node.vanilla_item.item_type == "GEAR"
-                and current_node.identifier != "KMR_04/Bush7_Drop1"
+                and (   current_node.identifier != "KMR_04/Bush7_Drop1"
+                     or starting_hammer == -1)
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -950,9 +951,6 @@ def _algo_assumed_fill(
         pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
     pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 
-    # helper var for placing the regular boots during gear location shuffle
-    boots_placed = 0
-
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()
         mario = MarioInventory(
@@ -986,10 +984,13 @@ def _algo_assumed_fill(
             candidate_locations = [node for node in candidate_locations if node.map_area.name[:3] == dungeon]
             dungeon_restricted_items.pop(item.item_name)
 
-        if item.item_type == "GEAR" and gear_shuffle_mode == 1 and boots_placed < 2:
-            # gear location shuffle
-            candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
-            boots_placed = boots_placed + 1
+        if gear_shuffle_mode == 1:
+            # Gear Location Shuffle
+            if item.item_type == "GEAR":
+                candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
+            else:
+                candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type != "GEAR"]
+
 
         if len(candidate_locations) == 0:
             raise UnbeatableSeedError("Failed to generate a beatable seed")

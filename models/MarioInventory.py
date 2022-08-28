@@ -34,8 +34,8 @@ class MarioInventory:
         Starting equipment irrelevant to world graph traversal (such as Lucky
         Star, starting coins) is ignored.
         """
-        assert(isinstance(starting_boots, int) and starting_boots in [0,1,2,0xFF])
-        assert(isinstance(starting_hammer, int) and starting_hammer in [0,1,2,0xFF])
+        assert(isinstance(starting_boots, int) and starting_boots in range(-1,3))
+        assert(isinstance(starting_hammer, int) and starting_hammer in range(-1,3))
         assert(starting_partners is None or isinstance(starting_partners, list))
         if starting_partners is None:
             starting_partners = ["Goombario"]
@@ -64,16 +64,16 @@ class MarioInventory:
 
         if starting_boots == 2:
             self.add("BootsProxy3")
-        if starting_boots in [1,2]:
+        if starting_boots >= 1:
             self.add("BootsProxy2")
-        if starting_boots in [0,1,2]:
+        if starting_boots >= 0:
             self.add("BootsProxy1")
 
         if starting_hammer == 2:
             self.add("HammerProxy3")
-        if starting_hammer in [1,2]:
+        if starting_hammer >= 1:
             self.add("HammerProxy2")
-        if starting_hammer in [0,1,2]:
+        if starting_hammer >= 0:
             self.add("HammerProxy1")
 
         self.add(starting_partners)
@@ -88,26 +88,14 @@ class MarioInventory:
             # hidden blocks always visible
             self.add("RF_HiddenBlocksVisible")
 
-        if magical_seeds_required == 3:
+        if magical_seeds_required <= 3:
             self.add("RF_MagicalSeed1")
-        elif magical_seeds_required == 2:
-            self.add([
-                "RF_MagicalSeed1",
-                "RF_MagicalSeed2"
-            ])
-        elif magical_seeds_required == 1:
-            self.add([
-                "RF_MagicalSeed1",
-                "RF_MagicalSeed2",
-                "RF_MagicalSeed3"
-            ])
-        elif magical_seeds_required == 0:
-            self.add([
-                "RF_MagicalSeed1",
-                "RF_MagicalSeed2",
-                "RF_MagicalSeed3",
-                "RF_MagicalSeed4"
-            ])
+        if magical_seeds_required <= 2:
+            self.add("RF_MagicalSeed2")
+        if magical_seeds_required <= 1:
+            self.add("RF_MagicalSeed3")
+        if magical_seeds_required == 0:
+            self.add("RF_MagicalSeed4")
 
         if startwith_bluehouse_open:
             self.add("GF_MAC02_UnlockedHouse")
