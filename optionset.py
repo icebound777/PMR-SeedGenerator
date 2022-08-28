@@ -94,8 +94,7 @@ class OptionSet:
         self.randomize_consumable_mode = 0
         self.item_scarcity = 100
         self.add_item_pouches = False
-        self.placement_algorithm = "ForwardFill"
-        self.placement_logic = "NoGlitches"
+        self.placement_algorithm = "AssumedFill"
         self.keyitems_outside_dungeon = True # False -> NYI
         self.keyitems_outside_chapter = True # "Keysanity" # false -> NYI
         self.allow_itemhints = True
@@ -291,12 +290,8 @@ class OptionSet:
             self.starting_starpower = options_dict.get("StartingStarPower")
         if "StartingBoots" in options_dict:
             self.starting_boots = options_dict.get("StartingBoots")
-            if self.starting_boots.get("value") == -1:
-                self.starting_boots["value"] = 0xFF
         if "StartingHammer" in options_dict:
             self.starting_hammer = options_dict.get("StartingHammer")
-            if self.starting_hammer.get("value") == -1:
-                self.starting_hammer["value"] = 0xFF
 
         if "StartWithRandomItems" in options_dict:
             self.random_starting_items = options_dict.get("StartWithRandomItems").get("value")
@@ -356,8 +351,6 @@ class OptionSet:
             self.add_item_pouches = options_dict.get("AddItemPouches").get("value")
         if "PlacementAlgorithm" in options_dict:
             self.placement_algorithm = options_dict.get("PlacementAlgorithm").get("value")
-        if "PlacementLogic" in options_dict:
-            self.placement_logic = options_dict.get("PlacementLogic").get("value")
         if "KeyitemsOutsideDungeon" in options_dict:
             self.keyitems_outside_dungeon = options_dict.get("KeyitemsOutsideDungeon").get("value")
         if "KeyitemsOutsideChapter" in options_dict:
@@ -902,18 +895,8 @@ def validate_options(options_dict):
     if "PlacementAlgorithm" in options_dict:
         assert (isinstance(options_dict.get("PlacementAlgorithm").get("value"), str)
             and options_dict.get("PlacementAlgorithm").get("value") in [
-                "ForwardFill",
-                #"WeightedForwardFill", # NYI
                 "AssumedFill",
-                "CustomSeed"
-            ]
-        )
-    if "PlacementLogic" in options_dict:
-        assert (isinstance(options_dict.get("PlacementLogic").get("value"), str)
-            and options_dict.get("PlacementLogic").get("value") in [
-                "NoGlitches",
-                #"Glitches", # NYI
-                "NoLogic"
+                #"CustomSeed" # NYI
             ]
         )
     if "KeyitemsOutsideDungeon" in options_dict:
