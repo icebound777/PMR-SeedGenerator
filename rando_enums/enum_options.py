@@ -41,6 +41,13 @@ class IncludeLettersMode(IntEnum):
     FULL_SHUFFLE = 3
 
 @unique
+class RandomizeConsumablesMode(IntEnum):
+    OFF = 0
+    FULL_RANDOM = 1
+    BALANCED_RANDOM = 2
+    MYSTERY_ONLY = 3
+
+@unique
 class ItemTrapMode(IntEnum):
     OFF = 0
     SPARSE = 1

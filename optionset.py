@@ -4,6 +4,7 @@ from db.option import Option
 from rando_enums.enum_options import \
     IncludeFavorsMode,\
     IncludeLettersMode,\
+    RandomizeConsumablesMode,\
     ItemTrapMode,\
     RandomMoveCosts,\
     HiddenBlockMode,\
@@ -99,7 +100,7 @@ class OptionSet:
         self.include_radiotradeevent = False
         self.include_dojo = False
         self.gear_shuffle_mode = get_option_keyvalue_dict("GearShuffleMode")
-        self.randomize_consumable_mode = 0
+        self.randomize_consumable_mode = RandomizeConsumablesMode.OFF
         self.item_scarcity = 100
         self.add_item_pouches = False
         self.placement_algorithm = "AssumedFill"

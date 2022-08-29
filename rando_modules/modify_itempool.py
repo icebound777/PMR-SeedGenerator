@@ -4,7 +4,9 @@ import random
 from db.item import Item
 from db.node import Node
 
-from rando_enums.enum_options import IncludeFavorsMode
+from rando_enums.enum_options import \
+    IncludeFavorsMode,\
+    RandomizeConsumablesMode
 
 from metadata.item_exclusion import exclude_due_to_settings
 from metadata.item_scores import item_scores
@@ -82,7 +84,7 @@ def get_randomized_itempool(itempool:list, consumable_mode:int, scarcity:int) ->
     # 3: mystery only (no scarcity)
 
     # vanilla
-    if consumable_mode == 0:
+    if consumable_mode == RandomizeConsumablesMode.OFF:
         return itempool
 
     def is_consumable(item_obj):
@@ -95,11 +97,13 @@ def get_randomized_itempool(itempool:list, consumable_mode:int, scarcity:int) ->
     target_count = len(removed_items)
 
     # Random or Balanced Random
-    if consumable_mode == 1 or consumable_mode == 2:
+    if (consumable_mode == RandomizeConsumablesMode.FULL_RANDOM
+        or consumable_mode == RandomizeConsumablesMode.BALANCED_RANDOM):
+        # Generate fully random pool
         new_items = get_random_consumables(target_count)
 
         # Balance according to scarcity factor
-        if consumable_mode == 2:
+        if consumable_mode == RandomizeConsumablesMode.BALANCED_RANDOM:
             target_score = 0
             for item_obj in removed_items:
                 target_score += next(item["score"] for item in item_scores if item["name"] == item_obj.item_name)
@@ -112,7 +116,7 @@ def get_randomized_itempool(itempool:list, consumable_mode:int, scarcity:int) ->
         new_items = [Item.get(Item.item_name == item["name"]) for item in new_items]
 
     # Mystery only
-    elif consumable_mode == 3:
+    elif consumable_mode == RandomizeConsumablesMode.MYSTERY_ONLY:
         mystery_item = Item.get(Item.item_name == "Mystery")
         new_items = [mystery_item] * target_count
 
