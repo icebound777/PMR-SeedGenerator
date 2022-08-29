@@ -192,6 +192,8 @@ from maps.graph_edges.glitched_logic.sam_ch7_sushie_glitch import \
     edges_sam_add_ch7_sushie_glitch, edges_sam_add_star_stone_with_ch7_sushie_glitch
 from maps.graph_edges.glitched_logic.sam_shiver_mtn_hidden_block_without_ultra_boots import \
     edges_sam_add_shiver_mountain_hidden_block_normal_throw, edges_sam_add_shiver_mountain_hidden_block_laki_throw
+from maps.graph_edges.glitched_logic.sam_snowmen_skip import \
+    edges_sam_add_snowmen_skip_laki
 
 # Glitched Logic - Crystal Palace
 from maps.graph_edges.glitched_logic.pra_mirror_clip import \
@@ -531,6 +533,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_sam_add_shiver_mountain_hidden_block_laki_throw)
     if glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_no_laki["value"]:
         all_new_edges.extend(edges_sam_add_shiver_mountain_hidden_block_normal_throw)
+    if glitch_settings.snowmen_skip_laki["value"]:
+        all_new_edges.extend(edges_sam_add_snowmen_skip_laki)
 
     # Crystal Palace
     if glitch_settings.mirror_clip["value"]:

@@ -712,6 +712,8 @@ class OptionSet:
             self.glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_laki = options_dict.get("ShiverMountainHiddenBlockWithoutUltraBootsLaki")
         if "ShiverMountainHiddenBlockWithoutUltraBootsNoLaki" in options_dict:
             self.glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_no_laki = options_dict.get("ShiverMountainHiddenBlockWithoutUltraBootsNoLaki")
+        if "SnowmenSkipLaki" in options_dict:
+            self.glitch_settings.snowmen_skip_laki = options_dict.get("SnowmenSkipLaki")
 
         if "MirrorClip" in options_dict:
             self.glitch_settings.mirror_clip = options_dict.get("MirrorClip")
@@ -1328,6 +1330,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("ShiverMountainHiddenBlockWithoutUltraBootsLaki").get("value"), bool)
     if "ShiverMountainHiddenBlockWithoutUltraBootsNoLaki" in options_dict:
         assert isinstance(options_dict.get("ShiverMountainHiddenBlockWithoutUltraBootsNoLaki").get("value"), bool)
+    if "SnowmenSkipLaki" in options_dict:
+        assert isinstance(options_dict.get("SnowmenSkipLaki").get("value"), bool)
 
     if "MirrorClip" in options_dict:
         assert isinstance(options_dict.get("MirrorClip").get("value"), bool)
@@ -1526,6 +1530,7 @@ class GlitchOptionSet():
             self.star_stone_with_ch7_sushie_glitch = False
             self.shiver_mountain_hidden_block_without_ultra_boots_laki = False
             self.shiver_mountain_hidden_block_without_ultra_boots_no_laki = False
+            self.snowmen_skip_laki = False
 
             self.mirror_clip = False
 
