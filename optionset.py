@@ -884,11 +884,11 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("GearShuffleMode").get("value"), int)
     if "RandomConsumableMode" in options_dict:
         assert (isinstance(options_dict.get("RandomConsumableMode").get("value"), int)
-            and 0 <= options_dict.get("RandomConsumableMode").get("value") <= 5
+            and 0 <= options_dict.get("RandomConsumableMode").get("value") <= 3
         )
     if "ItemScarcity" in options_dict:
         assert (isinstance(options_dict.get("ItemScarcity").get("value"), int)
-            and 50 <= options_dict.get("ItemScarcity").get("value") <= 120
+            and 25 <= options_dict.get("ItemScarcity").get("value") <= 125
         )
     if "AddItemPouches" in options_dict:
         assert isinstance(options_dict.get("AddItemPouches").get("value"), bool)

@@ -4,10 +4,6 @@ import random
 from db.item import Item
 from db.node import Node
 
-from metadata.item_general import \
-    healing_items, \
-    battle_items, \
-    taycet_items
 from metadata.item_exclusion import exclude_due_to_settings
 from metadata.item_scores import item_scores
 from metadata.itemlocation_special import \
