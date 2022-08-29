@@ -8,3 +8,10 @@ edges_iwa_add_quake_hammer_and_letter_laki = [
     #* Mt Rugged 2 Exit Bottom Left -> ItemB (Letter01)
     {"from": {"map": "IWA_01", "id": 0}, "to": {"map": "IWA_01", "id": "ItemB"}, "reqs": [["Lakilester"]], "mapchange": False},
 ]
+
+edges_iwa_add_quake_hammer_and_letter_no_partners = [
+    #* ItemB (Letter01) -> ItemA (QuakeHammer)
+    {"from": {"map": "IWA_01", "id": "ItemB"}, "to": {"map": "IWA_01", "id": "ItemA"}, "reqs": [], "mapchange": False},
+    #* Mt Rugged 2 Exit Bottom Left -> ItemB (Letter01)
+    {"from": {"map": "IWA_01", "id": 0}, "to": {"map": "IWA_01", "id": "ItemB"}, "reqs": [], "mapchange": False},
+]
