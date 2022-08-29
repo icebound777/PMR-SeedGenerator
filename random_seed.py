@@ -1,6 +1,8 @@
 from copy import deepcopy
 import random
 
+from rando_enums.enum_options import BowserCastleMode, GearShuffleMode
+
 from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
 from optionset import OptionSet
@@ -59,11 +61,11 @@ class RandomSeed:
             world_graph = generate_world_graph(None, None)
 
         # Modify entrances if needed
-        if self.rando_settings.bowsers_castle_mode["value"] == 1:
+        if self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.SHORTEN:
             self.entrance_list, world_graph = get_shorter_bowsercastle(world_graph)
-        elif self.rando_settings.bowsers_castle_mode["value"] == 2:
+        elif self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.BOSSRUSH:
             self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
-        if self.rando_settings.gear_shuffle_mode["value"] != 0:
+        if self.rando_settings.gear_shuffle_mode["value"] != GearShuffleMode.VANILLA:
             world_graph = get_gear_location_shuffle(world_graph, self.rando_settings.gear_shuffle_mode["value"])
 
         # Adjust graph logic if needed

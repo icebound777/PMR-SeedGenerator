@@ -4,6 +4,8 @@ import random
 from db.item import Item
 from db.node import Node
 
+from rando_enums.enum_options import IncludeFavorsMode
+
 from metadata.item_exclusion import exclude_due_to_settings
 from metadata.item_scores import item_scores
 from metadata.itemlocation_special import \
@@ -169,11 +171,11 @@ def get_trapped_itempool(
         and item.item_name in exclude_due_to_settings.get("do_randomize_dojo")
         ):
             continue
-        if (    randomize_favors_mode < 1
+        if (    randomize_favors_mode < IncludeFavorsMode.RND_REWARD_VANILLA_KEYITEMS
             and item.item_name in koot_items["rewards"]
         ):
             continue
-        if (    randomize_favors_mode < 2
+        if (    randomize_favors_mode < IncludeFavorsMode.FULL_SHUFFLE
             and item.item_name in koot_items["keyitems"]
         ):
             continue

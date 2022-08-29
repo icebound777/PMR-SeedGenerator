@@ -1,6 +1,14 @@
 from db.item import Item
 from db.option import Option
-from db.palette import Palette
+
+from rando_enums.enum_options import \
+    IncludeFavorsMode,\
+    IncludeLettersMode,\
+    ItemTrapMode,\
+    RandomMoveCosts,\
+    HiddenBlockMode,\
+    StartingBoots,\
+    StartingHammer
 
 class OptionSet:
     def __init__(self):
@@ -86,8 +94,8 @@ class OptionSet:
         self.starting_item_F = get_option_keyvalue_dict("StartingItemF")
 
         # Item related
-        self.include_favors_mode = 0
-        self.include_letters_mode = 0
+        self.include_favors_mode = IncludeFavorsMode.NOT_RANDOMIZED
+        self.include_letters_mode = IncludeLettersMode.NOT_RANDOMIZED
         self.include_radiotradeevent = False
         self.include_dojo = False
         self.gear_shuffle_mode = get_option_keyvalue_dict("GearShuffleMode")
@@ -98,7 +106,7 @@ class OptionSet:
         self.keyitems_outside_dungeon = True # False -> NYI
         self.keyitems_outside_chapter = True # "Keysanity" # false -> NYI
         self.allow_itemhints = True
-        self.itemtrap_mode = 0
+        self.itemtrap_mode = ItemTrapMode.OFF
         # Mystery? item options
         self.mystery_settings = MysteryOptionSet()
 
@@ -106,10 +114,10 @@ class OptionSet:
         self.shuffle_blocks = False
 
         # Moves and Badges
-        self.random_badges_bp = 0
-        self.random_badges_fp = 0
-        self.random_partner_fp = 0
-        self.random_starpower_sp = 0
+        self.random_badges_bp = RandomMoveCosts.VANILLA
+        self.random_badges_fp = RandomMoveCosts.VANILLA
+        self.random_partner_fp = RandomMoveCosts.VANILLA
+        self.random_starpower_sp = RandomMoveCosts.VANILLA
 
         # Entrance related
         self.bowsers_castle_mode = get_option_keyvalue_dict("BowsersCastleMode")
@@ -780,7 +788,7 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("AlwaysPeekaboo").get("value"), bool)
     if "HiddenBlockMode" in options_dict:
         assert (    isinstance(options_dict.get("HiddenBlockMode").get("value"), int)
-                and 0 <= options_dict.get("HiddenBlockMode").get("value") <= 3)
+                and HiddenBlockMode.VANILLA <= options_dict.get("HiddenBlockMode").get("value") <= HiddenBlockMode.ALWAYS_VISIBLE)
     if "AllowPhysicsGlitches" in options_dict:
         assert isinstance(options_dict.get("AllowPhysicsGlitches").get("value"), bool)
     if "SkipEpilogue" in options_dict:
@@ -814,13 +822,13 @@ def validate_options(options_dict):
     if "StartingBoots" in options_dict:
         try:
             assert (    isinstance(options_dict.get("StartingBoots").get("value"), int)
-                    and 0 <= options_dict.get("StartingBoots").get("value") <= 2)
+                    and StartingBoots.BOOTS <= options_dict.get("StartingBoots").get("value") <= StartingBoots.ULTRABOOTS)
         except AssertionError:
             print("Preset Error: Jumpless start Not Yet Implemented in logic!")
             raise
     if "StartingHammer" in options_dict:
         assert (    isinstance(options_dict.get("StartingHammer").get("value"), int)
-                and -1 <= options_dict.get("StartingHammer").get("value") <= 2)
+                and StartingHammer.HAMMERLESS <= options_dict.get("StartingHammer").get("value") <= StartingHammer.ULTRAHAMMER)
 
     if "StartWithRandomItems" in options_dict:
         assert isinstance(options_dict.get("StartWithRandomItems").get("value"), bool)

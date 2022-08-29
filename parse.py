@@ -2,7 +2,8 @@ import os
 import re
 import json
 
-from enums import Enums, enum_int, create_enums
+import xml.dom.minidom
+
 from utility import get_files
 
 
@@ -145,6 +146,13 @@ def gather_keys():
         json.dump(keys, file, indent=4)
 
 def gather_values():
+    item_list = {}
+    items_doc = xml.dom.minidom.parse("../../globals/Items.xml")
+    for item in items_doc.getElementsByTagName("Item"):
+        item_name = item.getAttribute("name")
+        item_value = int(item.getAttribute("index"), 16)
+        item_list[item_name] = item_value
+
     def get_value(value):
         # Booleans
         if value == ".True":
@@ -165,7 +173,7 @@ def gather_values():
         # Items
         if value.startswith(".Item"):
             item = value.split(":")[-1]
-            value = Enums.get("Item")[item]
+            value = item_list[item]
             return value
 
         # Blocks
@@ -181,8 +189,6 @@ def gather_values():
 
         return None
 
-    create_enums()
-
     values = {
         "items": {},
         "item_prices": {},
@@ -194,6 +200,7 @@ def gather_values():
         "options": {},
         "quizzes": {},
     }
+
     file_path = "/../../../globals/patch/DatabaseDefaults.patch"
     with open(os.path.abspath(__file__ + file_path), "r", encoding="utf-8") as file:
         for line in file:
@@ -252,67 +259,6 @@ def gather_values():
 
     with open("./debug/values.json", "w", encoding="utf-8") as file:
         json.dump(values, file, indent=4)
-
-def get_default_table():
-    # Get general data
-    db = {}
-    with open(os.path.abspath(__file__ + "/../../globals/patch/DatabaseDefaults.patch"), "r", encoding="utf-8") as file:
-        db_found = False
-        while not db_found:
-            if match := re.match(r"#export:Data\s*\$DefaultDatabase", next(file)):
-                db_found = True
-        for line in file:
-            if line.startswith("}"):
-                break
-            if match := re.match(r"\s*.DBKey:(\S*):(\S*)\s*(\S*)", line):
-                table = match.group(1)
-                attribute = match.group(2)
-                value = match.group(3)
-                enum_type = None
-
-                if value == ".True":
-                    value = True
-                elif value == ".False":
-                    value = False
-                elif value.endswith("`"): # Decimal
-                    value = int(value[:-1])
-                else:
-                    try:
-                        value = int(value, 16) # Hexadecimal
-                    except:
-                        value,enum_type = enum_int(value) # Convert enum to number
-
-                if table not in db:
-                    db[table] = {}
-                db[table][attribute] = {
-                    "value": value,
-                    "enum_type": enum_type,
-                    "attribute": attribute,
-                    "table": table,
-                }
-
-    # Get entrance data
-    db["Entrance"] = {}
-    with open(os.path.abspath(__file__ + "/../../globals/patch/RandomEntrances.patch"), "r", encoding="utf-8") as file:
-        for line in file:
-            if match := re.match(r"#export\s*.DBKey:Entrance:(\S*):(\S*)\s*(\S*)", line):
-                map_name = match.group(1)
-                map_exit = int(match.group(2), 16)
-                key = match.group(3)
-                byte_id = int(key[0:2], 16)
-                area_id = int(key[2:4], 16)
-                map_id =  int(key[4:6], 16)
-                entry_id =  int(key[6:8], 16)
-
-                if map_name not in db["Entrance"]:
-                    db["Entrance"][map_name] = {}
-                db["Entrance"][map_name][map_exit] = {
-                    "byte_id": byte_id,
-                    "area": area_id,
-                    "map": map_id,
-                    "entry": entry_id,
-                }
-    return db
 
 
 def get_table_info():

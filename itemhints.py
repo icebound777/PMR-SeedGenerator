@@ -1,4 +1,6 @@
 """This module handles creation of item hints for Merluvlee to offer Mario."""
+from rando_enums.enum_options import IncludeFavorsMode, IncludeLettersMode
+
 from metadata.item_source_types import item_source_types as source_types
 from metadata.itemlocation_special \
     import kootfavors_reward_locations,\
@@ -81,23 +83,23 @@ def get_itemhints(
             ):
                 continue
             if (    item_node.identifier in kootfavors_reward_locations
-                and favors_mode < 1
+                and favors_mode < IncludeFavorsMode.RND_REWARD_VANILLA_KEYITEMS
             ):
                 continue
             if (    item_node.identifier in kootfavors_keyitem_locations
-                and favors_mode < 2
+                and favors_mode < IncludeFavorsMode.FULL_SHUFFLE
             ):
                 continue
             if (    item_node.identifier in chainletter_giver_locations
-                and randomize_letters_mode < 3
+                and randomize_letters_mode < IncludeLettersMode.FULL_SHUFFLE
             ):
                 continue
             if (    item_node.identifier == chainletter_final_reward_location
-                and randomize_letters_mode < 2
+                and randomize_letters_mode < IncludeLettersMode.RANDOM_CHAIN_REWARD
             ):
                 continue
             if (    item_node.identifier in simpleletter_locations
-                and randomize_letters_mode < 1
+                and randomize_letters_mode < IncludeLettersMode.SIMPLE_LETTERS
             ):
                 continue
             if (    item_node.current_item.item_name in limited_keyitems

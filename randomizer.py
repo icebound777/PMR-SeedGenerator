@@ -11,7 +11,6 @@ import yaml
 from yaml.loader import SafeLoader
 from pathlib import Path
 
-from enums import create_enums
 from models.WebSeedResponse import WebSeedResponse
 from random_seed import RandomSeed
 from table import Table
@@ -49,7 +48,6 @@ def init_randomizer(rebuild_database=False):
     # Build database from scratch if needed
     if rebuild_database:
         # Create enums from ./globals/enum/
-        create_enums()
         gather_keys()
         gather_values()
         create_options()

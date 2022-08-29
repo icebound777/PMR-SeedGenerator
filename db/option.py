@@ -2,8 +2,7 @@ import json
 
 from peewee import *
 from playhouse.migrate import *
-from db.db import db, migrator
-from parse import get_default_table
+from db.db import db
 
 
 class Option(Model):

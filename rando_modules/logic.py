@@ -13,6 +13,14 @@ from rando_modules.random_shop_prices import get_shop_price
 
 from models.MarioInventory import MarioInventory
 
+from rando_enums.enum_options import \
+    BowserCastleMode,\
+    GearShuffleMode,\
+    StartingBoots,\
+    StartingHammer,\
+    IncludeFavorsMode,\
+    IncludeLettersMode
+
 from rando_modules.modify_itempool \
     import get_randomized_itempool,\
            get_trapped_itempool
@@ -305,7 +313,7 @@ def get_items_to_exclude(
         for item_name in exclude_due_to_settings.get("magical_seeds_required").get(magical_seeds_required):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if bowsers_castle_mode > 0:
+    if bowsers_castle_mode > BowserCastleMode.VANILLA:
         for item_name in exclude_due_to_settings.get("shorten_bowsers_castle"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
@@ -321,23 +329,23 @@ def get_items_to_exclude(
         for item_name in exclude_due_to_settings.get("always_peekaboo"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if gear_shuffle_mode >= 1:
-        if starting_hammer == 2:
+    if gear_shuffle_mode >= GearShuffleMode.GEAR_LOCATION_SHUFFLE:
+        if starting_hammer == StartingHammer.ULTRAHAMMER:
             item = Item.get(Item.item_name == "HammerProxy3")
             excluded_items.append(item)
-        if starting_hammer >= 1:
+        if starting_hammer >= StartingHammer.SUPERHAMMER:
             item = Item.get(Item.item_name == "HammerProxy2")
             excluded_items.append(item)
-        if starting_hammer >= 0:
+        if starting_hammer >= StartingHammer.HAMMER:
             item = Item.get(Item.item_name == "HammerProxy1")
             excluded_items.append(item)
-        if starting_boots == 2:
+        if starting_boots == StartingBoots.ULTRABOOTS:
             item = Item.get(Item.item_name == "BootsProxy3")
             excluded_items.append(item)
-        if starting_boots >= 1:
+        if starting_boots >= StartingBoots.SUPERBOOTS:
             item = Item.get(Item.item_name == "BootsProxy2")
             excluded_items.append(item)
-        if starting_boots >= 0:
+        if starting_boots >= StartingBoots.BOOTS:
             item = Item.get(Item.item_name == "BootsProxy1")
             excluded_items.append(item)
 
@@ -429,35 +437,35 @@ def _generate_item_pools(
                 continue
 
             if (    current_node_id in kootfavors_reward_locations
-                and randomize_favors_mode < 1
+                and randomize_favors_mode == IncludeFavorsMode.NOT_RANDOMIZED
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id in kootfavors_keyitem_locations
-                and randomize_favors_mode < 2
+                and randomize_favors_mode <= IncludeFavorsMode.RND_REWARD_VANILLA_KEYITEMS
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id in chainletter_giver_locations
-                and randomize_letters_mode < 3
+                and randomize_letters_mode < IncludeLettersMode.FULL_SHUFFLE
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id == chainletter_final_reward_location
-                and randomize_letters_mode < 2
+                and randomize_letters_mode < IncludeLettersMode.RANDOM_CHAIN_REWARD
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id in simpleletter_locations
-                and randomize_letters_mode < 1
+                and randomize_letters_mode < IncludeLettersMode.SIMPLE_LETTERS
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -485,7 +493,7 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    gear_shuffle_mode not in [1,2]
+            if (    gear_shuffle_mode == GearShuffleMode.VANILLA
                 and current_node.vanilla_item.item_type == "GEAR"
                 and (   current_node.identifier != "KMR_04/Bush7_Drop1"
                      or starting_hammer == -1)
@@ -494,7 +502,7 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    gear_shuffle_mode not in [1,2]
+            if (    gear_shuffle_mode == GearShuffleMode.VANILLA
                 and current_node.identifier == "KMR_04/Bush7_Drop1"
             ):
                 # special casing so the hammer bush is never empty but also
@@ -516,8 +524,8 @@ def _generate_item_pools(
             # Special casing for hammer bush during gear location shuffle w/o
             # hammerless: add modified "gear" Tayce T item to gear locations
             if (    current_node.identifier == "KMR_04/Bush7_Drop1"
-                and starting_hammer != -1
-                and gear_shuffle_mode == 1
+                and starting_hammer != StartingHammer.HAMMERLESS
+                and gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE
             ):
                 modified_taycet = _get_random_taycet_item()
                 modified_taycet.item_type = "GEAR"
@@ -563,7 +571,7 @@ def _generate_item_pools(
         pool_other_items.extend(pouch_items)
 
     # If we start jumpless, add a progressive boots item to the item pool
-    if starting_boots == 0xFF:
+    if starting_boots == StartingBoots.JUMPLESS:
         new_boots = Item.get(Item.item_name == "BootsProxy1")
         while True:
             rnd_index = random.randint(0, len(pool_other_items) - 1)
@@ -634,133 +642,6 @@ def _generate_item_pools(
     )
 
     return pool_other_items
-
-
-def place_progression_items(
-    mario,
-    pool_progression_items,
-    pool_misc_progression_items,
-    pool_other_items,
-    do_randomize_shops,
-    reachable_node_ids,
-    reachable_item_nodes,
-    filled_item_nodes,
-    non_traversable_edges:defaultdict, #(set)
-    world_graph
-):
-    if pool_other_items is None:
-        pool_other_items = []
-    items_placed = []
-    items_overwritten = []
-    if pool_other_items is None:
-        pool_other_items = []
-
-    starpieces = []
-    if any(["StarPiece" in x.item_name for x in pool_progression_items]):
-        print(f"Removing StarPieces temporarily ...")
-        for item in [x for x in pool_progression_items if "StarPiece" in x.item_name]:
-            starpieces.append(item)
-        for item in starpieces:
-            pool_progression_items.remove(item)
-
-    size_prog_items = len(pool_progression_items)
-
-    while pool_progression_items or pool_misc_progression_items:
-        # Pick random reachable item node
-        while True:
-            random_node_key = random.choice(list(reachable_item_nodes.keys()))
-            random_node = reachable_item_nodes.pop(random_node_key)
-            if random_node_key not in [x.identifier for x in filled_item_nodes]:
-                if not pool_progression_items:
-                    # All keyitems already placed, search for replenish node
-                    # for remaining misc items
-                    if is_itemlocation_replenishable(random_node):
-                        # Suitable replenishable node found
-                        break
-                else:
-                    # Suitable Node found
-                    break
-
-        # If item node is replenishable and we have misc. items still to place,
-        # then pick misc. item, otherwise any item will do
-        if (    is_itemlocation_replenishable(random_node)
-            and pool_misc_progression_items
-        ):
-            random_item_id = random.randint(0, len(pool_misc_progression_items) - 1)
-            random_item = pool_misc_progression_items.pop(random_item_id)
-        else:
-            random_item_id = random.randint(0, len(pool_progression_items) - 1)
-            random_item = pool_progression_items.pop(random_item_id)
-
-        # Put chosen item into the randomly chosen item node, add item to
-        # inventory, then check for newly reachable item nodes
-        random_node.current_item = random_item
-        mario.add(random_item.item_name)
-        items_placed.append(random_item)
-        items_overwritten.append(random_node.vanilla_item)
-        node_identifier = random_node.identifier
-        if "Shop" in node_identifier:
-            random_node.current_item.base_price = get_shop_price(random_node, do_randomize_shops)
-        filled_item_nodes.append(random_node)
-
-        # Adjust item pools if necessary: Letters
-        if (mario.has_parakarry_letters()
-        and any(item.item_name.find("Letter") != -1 for item in pool_progression_items)
-        ):
-            print("Removing Letters from progressive pool ...")
-            transfer_letters = []
-            for item in pool_progression_items:
-                if item.item_name.find("Letter") != -1:
-                    transfer_letters.append(item)
-            for item in transfer_letters:
-                pool_progression_items.remove(item)
-                pool_other_items.append(item)
-
-        # Adjust item pools if necessary: StarPieces
-        if (len(starpieces) > 0
-        and size_prog_items / (len(pool_progression_items) + 1) > 1.5
-        ):
-            print(f"Adding removed StarPieces back ...")
-            pool_progression_items.extend(starpieces)
-            starpieces.clear()
-
-        if (mario.starpiece_count >= 60
-        and any(item.item_name.find("StarPiece") != -1 for item in pool_progression_items)
-        ):
-            print("Removing StarPieces from progressive pool ...")
-            transfer_starpieces = []
-            for item in pool_progression_items:
-                if item.item_name.find("StarPiece") != -1:
-                    transfer_starpieces.append(item)
-            for item in transfer_starpieces:
-                pool_progression_items.remove(item)
-                pool_other_items.append(item)
-
-        pool_misc_progression_items, \
-        pool_other_items, \
-        reachable_node_ids, \
-        reachable_item_nodes, \
-        non_traversable_edges, \
-        filled_item_nodes, \
-        mario = \
-        _find_new_nodes_and_edges(pool_misc_progression_items,
-                                  pool_other_items,
-                                  world_graph,
-                                  reachable_node_ids,
-                                  reachable_item_nodes,
-                                  non_traversable_edges,
-                                  filled_item_nodes,
-                                  mario)
-        logging.debug(
-            "non_traversable_edges after _find_new_nodes_and_edges %s",
-            non_traversable_edges
-        )
-    logging.debug("non_traversable_edges after progression:")
-    if logging.root.level == logging.DEBUG:
-        for edge in non_traversable_edges:
-            logging.debug("%s", edge)
-
-    return filled_item_nodes, items_placed, items_overwritten, mario
 
 
 def find_available_nodes(
@@ -943,7 +824,7 @@ def _algo_assumed_fill(
                     assert item not in dungeon_restricted_items
                     dungeon_restricted_items[item] = dungeon
 
-    if gear_shuffle_mode == 1: # gear location shuffle
+    if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
         pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
     pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 
