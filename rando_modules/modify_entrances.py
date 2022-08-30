@@ -206,6 +206,8 @@ from maps.graph_edges.glitched_logic.kpa_bowless_bowsers_castle_basement import 
     edges_kpa_add_bowless_bowsers_castle_basement_laki
 from maps.graph_edges.glitched_logic.kpa_fast_flood_room import \
     edges_kpa_add_fast_flood_room_bombette_ultra_boots, edges_kpa_add_fast_flood_room_kooper
+from maps.graph_edges.glitched_logic.kpa_bombetteless_bowsers_castle_basement import \
+    edges_kpa_add_bombetteless_bowsers_castle_basement_laki
 
 # Glitched Logic - Global
 from maps.graph_edges.glitched_logic.global_break_stone_blocks_with_ultra_boots import \
@@ -554,6 +556,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
             all_new_edges.extend(edges_kpa_add_fast_flood_room_kooper)
         if glitch_settings.fast_flood_room_bombette_ultra_boots["value"]:
             all_new_edges.extend(edges_kpa_add_fast_flood_room_bombette_ultra_boots)
+        if glitch_settings.bombetteless_bowsers_castle_basement["value"]:
+            all_new_edges.extend(edges_kpa_add_bombetteless_bowsers_castle_basement_laki)
 
     # Global
     if glitch_settings.break_metal_blocks_with_ultra_boots["value"]:

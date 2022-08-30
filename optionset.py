@@ -728,6 +728,8 @@ class OptionSet:
             self.glitch_settings.fast_flood_room_kooper = options_dict.get("FastFloodRoomKooper")
         if "FastFloodRoomBombetteUltraBoots" in options_dict:
             self.glitch_settings.fast_flood_room_bombette_ultra_boots = options_dict.get("FastFloodRoomBombetteUltraBoots")
+        if "BombettelessBowsersCastleBasement" in options_dict:
+            self.glitch_settings.bombetteless_bowsers_castle_basement = options_dict.get("BombettelessBowsersCastleBasement")
 
         if "BreakYellowBlocksWithSuperBoots" in options_dict:
             self.glitch_settings.break_yellow_blocks_with_super_boots = options_dict.get("BreakYellowBlocksWithSuperBoots")
@@ -1350,6 +1352,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("FastFloodRoomKooper").get("value"), bool)
     if "FastFloodRoomBombetteUltraBoots" in options_dict:
         assert isinstance(options_dict.get("FastFloodRoomBombetteUltraBoots").get("value"), bool)
+    if "BombettelessBowsersCastleBasement" in options_dict:
+        assert isinstance(options_dict.get("BombettelessBowsersCastleBasement").get("value"), bool)
 
     if "BreakYellowBlocksWithSuperBoots" in options_dict:
         assert isinstance(options_dict.get("BreakYellowBlocksWithSuperBoots").get("value"), bool)
@@ -1547,6 +1551,7 @@ class GlitchOptionSet():
             self.bowless_bowsers_castle_basement = False
             self.fast_flood_room_kooper = False
             self.fast_flood_room_bombette_ultra_boots = False
+            self.bombetteless_bowsers_castle_basement = False
 
             self.break_yellow_blocks_with_super_boots = False
             self.break_metal_blocks_with_ultra_boots = False

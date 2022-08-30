@@ -307,6 +307,7 @@ MirrorClip                                      : false
 BowlessBowsersCastleBasement                    : false
 FastFloodRoomKooper                             : false
 FastFloodRoomBombetteUltraBoots                 : false
+BombettelessBowsersCastleBasement               : false
 
 BreakYellowBlocksWithSuperBoots                 : false
 BreakMetalBlocksWithUltraBoots                  : false
