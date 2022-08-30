@@ -592,8 +592,10 @@ class OptionSet:
         if "EarlyRuinsUltraBoots" in options_dict:
             self.glitch_settings.early_ruins_ultra_boots = options_dict.get("EarlyRuinsUltraBoots")
 
-        if "ArtifactJump" in options_dict:
-            self.glitch_settings.artifact_jump = options_dict.get("ArtifactJump")
+        if "ArtifactJumpLaki" in options_dict:
+            self.glitch_settings.artifact_jump_laki = options_dict.get("ArtifactJumpLaki")
+        if "ArtifactJumpUltraBoots" in options_dict:
+            self.glitch_settings.artifact_jump_ultra_boots = options_dict.get("ArtifactJumpUltraBoots")
         if "RuinsKeyLakiJump" in options_dict:
             self.glitch_settings.ruins_key_laki_jump = options_dict.get("RuinsKeyLakiJump")
         if "ParakarrylessSecondSandRoomUltraBoots" in options_dict:
@@ -1212,8 +1214,10 @@ def validate_options(options_dict):
     if "EarlyRuinsUltraBoots" in options_dict:
         assert isinstance(options_dict.get("EarlyRuinsUltraBoots").get("value"), bool)
 
-    if "ArtifactJump" in options_dict:
-        assert isinstance(options_dict.get("ArtifactJump").get("value"), bool)
+    if "ArtifactJumpLaki" in options_dict:
+        assert isinstance(options_dict.get("ArtifactJumpLaki").get("value"), bool)
+    if "ArtifactJumpUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("ArtifactJumpUltraBoots").get("value"), bool)
     if "RuinsKeyLakiJump" in options_dict:
         assert isinstance(options_dict.get("RuinsKeyLakiJump").get("value"), bool)
     if "ParakarrylessSecondSandRoomUltraBoots" in options_dict:
@@ -1471,7 +1475,8 @@ class GlitchOptionSet():
             self.early_ruins_laki_jump = False
             self.early_ruins_ultra_boots = False
 
-            self.artifact_jump = False
+            self.artifact_jump_laki = False
+            self.artifact_jump_ultra_boots = False
             self.ruins_key_laki_jump = False
             self.parakarryless_second_sand_room_ultra_boots = False
             self.parakarryless_second_sand_room_normal_boots = False

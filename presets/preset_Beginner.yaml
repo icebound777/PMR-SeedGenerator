@@ -235,7 +235,8 @@ DesertBrickBlockItemWithParakarry               : false
 EarlyRuinsLakiJump                              : false
 EarlyRuinsUltraBoots                            : false
 
-ArtifactJump                                    : false
+ArtifactJumpLaki                                : false
+ArtifactJumpUltraBoots                          : false
 RuinsKeyLakiJump                                : false
 ParakarrylessSecondSandRoomUltraBoots           : false
 ParakarrylessSecondSandRoomNormalBoots          : false

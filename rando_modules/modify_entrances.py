@@ -104,7 +104,7 @@ from maps.graph_edges.glitched_logic.sbk_early_ruins import \
 
 # Glitched Logic - Dry Dry Ruins
 from maps.graph_edges.glitched_logic.isk_artifact_jump import \
-    edges_isk_add_artifact_jump_laki
+    edges_isk_add_artifact_jump_laki, edges_isk_add_artifact_jump_ultra_boots
 from maps.graph_edges.glitched_logic.isk_ruins_key_laki_jump import \
     edges_isk_add_ruins_key_laki_jump
 from maps.graph_edges.glitched_logic.isk_parakarryless_second_sand_room import \
@@ -407,8 +407,10 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_sbk_add_desert_brick_block_item_parakarry)
 
     # Dry Dry Ruins
-    if glitch_settings.artifact_jump["value"]:
+    if glitch_settings.artifact_jump_laki["value"]:
         all_new_edges.extend(edges_isk_add_artifact_jump_laki)
+    if glitch_settings.artifact_jump_ultra_boots["value"]:
+        all_new_edges.extend(edges_isk_add_artifact_jump_ultra_boots)
     if glitch_settings.parakarryless_second_sand_room_normal_boots["value"]:
         all_new_edges.extend(edges_isk_add_parakarryless_second_sand_room_normal_boots)
     if glitch_settings.parakarryless_second_sand_room_ultra_boots["value"]:
