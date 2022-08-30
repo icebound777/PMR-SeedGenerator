@@ -37,6 +37,8 @@ from maps.graph_edges.glitched_logic.kmr_goomba_village_hammerless_exit import \
     edges_kmr_add_goomba_village_hammerless_exit_super_boots, edges_kmr_add_goomba_village_hammerless_exit_laki
 from maps.graph_edges.glitched_logic.kmr_hammerless_jr_playground_laki import \
     edges_kmr_add_hammerless_jr_playground_laki
+from maps.graph_edges.glitched_logic.kmr_prologue_sushie_glitch import \
+    edges_kmr_add_prologue_sushie_glitch
 
 # Glitched Logic - Toad Town
 from maps.graph_edges.glitched_logic.mac_odd_key_early import \
@@ -51,6 +53,8 @@ from maps.graph_edges.glitched_logic.mac_sushieless_toad_town_star_piece import 
     edges_mac_add_sushieless_starpiece
 from maps.graph_edges.glitched_logic.mac_whale_early import \
     edges_mac_add_whale_early_lzs
+from maps.graph_edges.glitched_logic.mac_toad_town_sushie_glitch import \
+    edges_mac_add_toad_town_sushie_glitch
 
 # Glitched Logic - Toad Town Tunnels
 from maps.graph_edges.glitched_logic.tik_island_pipe_blooper_skip import \
@@ -321,6 +325,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_kmr_add_goomba_village_hammerless_exit_laki)
     if glitch_settings.hammerless_jr_playground_laki["value"]:
         all_new_edges.extend(edges_kmr_add_hammerless_jr_playground_laki)
+    if glitch_settings.prologue_sushie_glitch["value"]:
+        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch)
 
     # Toad Town
     if glitch_settings.odd_key_early["value"]:
@@ -347,6 +353,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_mac_add_whale_early_lzs)
     if glitch_settings.sushiesless_toad_town_star_piece["value"]:
         all_new_edges.extend(edges_mac_add_sushieless_starpiece)
+    if glitch_settings.toad_town_sushie_glitch["value"]:
+        all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch)
     
     # Toad Town Tunnels
     if glitch_settings.clippy_boots_stone_block_skip["value"]:

@@ -511,6 +511,8 @@ class OptionSet:
             self.glitch_settings.hammerless_jr_playground_laki = options_dict.get("HammerlessJrPlaygroundLaki")
         if "GoombaVillageLakiExit" in options_dict:
             self.glitch_settings.goomba_village_laki_exit = options_dict.get("GoombaVillageLakiExit")
+        if "PrologueSushieGlitch" in options_dict:
+            self.glitch_settings.prologue_sushie_glitch = options_dict.get("PrologueSushieGlitch")
 
         if "OddKeyEarly" in options_dict:
             self.glitch_settings.odd_key_early = options_dict.get("OddKeyEarly")
@@ -536,6 +538,8 @@ class OptionSet:
             self.glitch_settings.whale_early = options_dict.get("WhaleEarly")
         if "SushielessToadTownStarPiece" in options_dict:
             self.glitch_settings.sushiesless_toad_town_star_piece = options_dict.get("SushielessToadTownStarPiece")
+        if "ToadTownSushieGlitch" in options_dict:
+            self.glitch_settings.toad_town_sushie_glitch = options_dict.get("ToadTownSushieGlitch")
 
         if "ClippyBootsStoneBlockSkip" in options_dict:
             self.glitch_settings.clippy_boots_stone_block_skip = options_dict.get("ClippyBootsStoneBlockSkip")
@@ -1133,6 +1137,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("GoombaVillageSuperBootsExit").get("value"), bool)
     if "HammerlessJrPlaygroundLaki" in options_dict:
         assert isinstance(options_dict.get("HammerlessJrPlaygroundLaki").get("value"), bool)
+    if "PrologueSushieGlitch" in options_dict:
+        assert isinstance(options_dict.get("PrologueSushieGlitch").get("value"), bool)
     if "GoombaVillageLakiExit" in options_dict:
         assert isinstance(options_dict.get("GoombaVillageLakiExit").get("value"), bool)
 
@@ -1160,6 +1166,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("WhaleEarly").get("value"), bool)
     if "SushielessToadTownStarPiece" in options_dict:
         assert isinstance(options_dict.get("SushielessToadTownStarPiece").get("value"), bool)
+    if "ToadTownSushieGlitch" in options_dict:
+        assert isinstance(options_dict.get("ToadTownSushieGlitch").get("value"), bool)
 
     if "ClippyBootsStoneBlockSkip" in options_dict:
         assert isinstance(options_dict.get("ClippyBootsStoneBlockSkip").get("value"), bool)
@@ -1436,6 +1444,7 @@ class GlitchOptionSet():
             self.goomba_village_super_boots_exit = False
             self.hammerless_jr_playground_laki = False
             self.goomba_village_laki_exit = False
+            self.prologue_sushie_glitch = False
 
             self.odd_key_early = False
             self.blue_house_skip = False
@@ -1449,6 +1458,7 @@ class GlitchOptionSet():
             self.early_storeroom_ultra_boots = False
             self.whale_early = False
             self.sushiesless_toad_town_star_piece = False
+            self.toad_town_sushie_glitch = False
 
             self.clippy_boots_stone_block_skip = False
             self.clippy_boots_metal_block_skip = False

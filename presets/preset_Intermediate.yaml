@@ -191,6 +191,7 @@ GoombaVillageEntryFenceClip                     : false
 GoombaVillageSuperBootsExit                     : false
 HammerlessJrPlaygroundLaki                      : false
 GoombaVillageLakiExit                           : false
+PrologueSushieGlitch                            : false
 
 OddKeyEarly                                     : false
 BlueHouseSkip                                   : false
@@ -204,6 +205,7 @@ EarlyStoreroomHammer                            : false
 EarlyStoreroomUltraBoots                        : false
 WhaleEarly                                      : false
 SushielessToadTownStarPiece                     : false
+ToadTownSushieGlitch                            : false
 
 ClippyBootsStoneBlockSkip                       : false
 ClippyBootsMetalBlockSkip                       : false
