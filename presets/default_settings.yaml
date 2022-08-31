@@ -188,7 +188,7 @@ RandomPitch: false
 PrologueGelEarly                                : false
 ReverseGoombaKingBridge                         : false
 GoombaVillageEntryFenceClip                     : false
-GoombaVillageNpcLureExit                        : true
+GoombaVillageNpcLureExit                        : false
 HammerlessJrPlaygroundLaki                      : false
 GoombaVillageLakiExit                           : false
 PrologueSushieGlitch                            : false
@@ -198,7 +198,7 @@ BlueHouseSkip                                   : false
 BlueHouseSkipLaki                               : false
 BlueHouseSkipToadLure                           : false
 BowlessToyBoxHammer                             : false
-BowlessToyBoxParakarry                          : false
+BowlessToyBoxHammerlessLure                     : false
 BowlessToyBoxUltraBoots                         : false
 EarlyStoreroomParakarry                         : false
 EarlyStoreroomHammer                            : false

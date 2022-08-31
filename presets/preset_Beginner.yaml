@@ -198,7 +198,7 @@ BlueHouseSkip                                   : false
 BlueHouseSkipLaki                               : false
 BlueHouseSkipToadLure                           : false
 BowlessToyBoxHammer                             : false
-BowlessToyBoxParakarry                          : false
+BowlessToyBoxHammerlessLure                     : false
 BowlessToyBoxUltraBoots                         : false
 EarlyStoreroomParakarry                         : false
 EarlyStoreroomHammer                            : false

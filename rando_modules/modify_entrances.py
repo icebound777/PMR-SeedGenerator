@@ -46,7 +46,7 @@ from maps.graph_edges.glitched_logic.mac_odd_key_early import \
 from maps.graph_edges.glitched_logic.mac_blue_house_skip import \
     edges_mac_add_bhs_jump, edges_mac_add_bhs_laki, edges_mac_add_bhs_toad_lure
 from maps.graph_edges.glitched_logic.mac_bowless_toy_box import \
-    edges_mac_add_bowless_toybox_hammer, edges_mac_add_bowless_toybox_parakarry, edges_mac_add_bowless_toybox_ultra_boots
+    edges_mac_add_bowless_toybox_hammer_lure, edges_mac_add_bowless_toybox_hammerless_lure, edges_mac_add_bowless_toybox_ultra_boots
 from maps.graph_edges.glitched_logic.mac_enter_storeroom_without_key import \
     edges_mac_add_storeroom_without_key_hammer, edges_mac_add_storeroom_without_key_parakarry, edges_mac_add_storeroom_without_key_ultra_boots
 from maps.graph_edges.glitched_logic.mac_sushieless_toad_town_star_piece import \
@@ -338,9 +338,9 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     if glitch_settings.blue_house_skip_toad_lure["value"]:
         all_new_edges.extend(edges_mac_add_bhs_toad_lure)
     if glitch_settings.bowless_toy_box_hammer["value"]:
-        all_new_edges.extend(edges_mac_add_bowless_toybox_hammer)
-    if glitch_settings.bowless_toy_box_parakarry["value"]:
-        all_new_edges.extend(edges_mac_add_bowless_toybox_parakarry)
+        all_new_edges.extend(edges_mac_add_bowless_toybox_hammer_lure)
+    if glitch_settings.bowless_toy_box_hammerless_lure["value"]:
+        all_new_edges.extend(edges_mac_add_bowless_toybox_hammerless_lure)
     if glitch_settings.bowless_toy_box_ultra_boots["value"]:
         all_new_edges.extend(edges_mac_add_bowless_toybox_ultra_boots)
     if glitch_settings.early_storeroom_parakarry["value"]:

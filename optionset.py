@@ -524,8 +524,8 @@ class OptionSet:
             self.glitch_settings.blue_house_skip_toad_lure = options_dict.get("BlueHouseSkipToadLure")
         if "BowlessToyBoxHammer" in options_dict:
             self.glitch_settings.bowless_toy_box_hammer = options_dict.get("BowlessToyBoxHammer")
-        if "BowlessToyBoxParakarry" in options_dict:
-            self.glitch_settings.bowless_toy_box_parakarry = options_dict.get("BowlessToyBoxParakarry")
+        if "BowlessToyBoxHammerlessLure" in options_dict:
+            self.glitch_settings.bowless_toy_box_hammerless_lure = options_dict.get("BowlessToyBoxHammerlessLure")
         if "BowlessToyBoxUltraBoots" in options_dict:
             self.glitch_settings.bowless_toy_box_ultra_boots = options_dict.get("BowlessToyBoxUltraBoots")
         if "EarlyStoreroomParakarry" in options_dict:
@@ -1152,8 +1152,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BlueHouseSkipToadLure").get("value"), bool)
     if "BowlessToyBoxHammer" in options_dict:
         assert isinstance(options_dict.get("BowlessToyBoxHammer").get("value"), bool)
-    if "BowlessToyBoxParakarry" in options_dict:
-        assert isinstance(options_dict.get("BowlessToyBoxParakarry").get("value"), bool)
+    if "BowlessToyBoxHammerlessLure" in options_dict:
+        assert isinstance(options_dict.get("BowlessToyBoxHammerlessLure").get("value"), bool)
     if "BowlessToyBoxUltraBoots" in options_dict:
         assert isinstance(options_dict.get("BowlessToyBoxUltraBoots").get("value"), bool)
     if "EarlyStoreroomParakarry" in options_dict:
@@ -1451,7 +1451,7 @@ class GlitchOptionSet():
             self.blue_house_skip_laki = False
             self.blue_house_skip_toad_lure = False
             self.bowless_toy_box_hammer = False
-            self.bowless_toy_box_parakarry = False
+            self.bowless_toy_box_hammerless_lure = False
             self.bowless_toy_box_ultra_boots = False
             self.early_storeroom_parakarry = False
             self.early_storeroom_hammer = False
