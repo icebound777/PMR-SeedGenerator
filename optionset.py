@@ -532,8 +532,8 @@ class OptionSet:
             self.glitch_settings.early_storeroom_parakarry = options_dict.get("EarlyStoreroomParakarry")
         if "EarlyStoreroomHammer" in options_dict:
             self.glitch_settings.early_storeroom_hammer = options_dict.get("EarlyStoreroomHammer")
-        if "EarlyStoreroomUltraBoots" in options_dict:
-            self.glitch_settings.early_storeroom_ultra_boots = options_dict.get("EarlyStoreroomUltraBoots")
+        if "EarlyStoreroomHammerlessLure" in options_dict:
+            self.glitch_settings.early_storeroom_hammerless_lure = options_dict.get("EarlyStoreroomHammerlessLure")
         if "WhaleEarly" in options_dict:
             self.glitch_settings.whale_early = options_dict.get("WhaleEarly")
         if "SushielessToadTownStarPiece" in options_dict:
@@ -1160,8 +1160,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("EarlyStoreroomParakarry").get("value"), bool)
     if "EarlyStoreroomHammer" in options_dict:
         assert isinstance(options_dict.get("EarlyStoreroomHammer").get("value"), bool)
-    if "EarlyStoreroomUltraBoots" in options_dict:
-        assert isinstance(options_dict.get("EarlyStoreroomUltraBoots").get("value"), bool)
+    if "EarlyStoreroomHammerlessLure" in options_dict:
+        assert isinstance(options_dict.get("EarlyStoreroomHammerlessLure").get("value"), bool)
     if "WhaleEarly" in options_dict:
         assert isinstance(options_dict.get("WhaleEarly").get("value"), bool)
     if "SushielessToadTownStarPiece" in options_dict:
@@ -1455,7 +1455,7 @@ class GlitchOptionSet():
             self.bowless_toy_box_ultra_boots = False
             self.early_storeroom_parakarry = False
             self.early_storeroom_hammer = False
-            self.early_storeroom_ultra_boots = False
+            self.early_storeroom_hammerless_lure = False
             self.whale_early = False
             self.sushiesless_toad_town_star_piece = False
             self.toad_town_sushie_glitch = False
