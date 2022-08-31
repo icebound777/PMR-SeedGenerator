@@ -163,7 +163,7 @@ from maps.graph_edges.glitched_logic.omo_red_barricade_skip import \
 from maps.graph_edges.glitched_logic.jan_raph_skip_english import \
     edges_jan_add_raph_skip_english
 from maps.graph_edges.glitched_logic.jan_kzn_ch5_sushie_glitch import \
-    edges_jan_kzn_add_ch5_sushie_glitch
+    edges_jan_kzn_add_ch5_sushie_glitch, edges_kzn_add_volcano_sushie_glitch
 
 # Glitched Logic - Mt. Lavalava
 from maps.graph_edges.glitched_logic.kzn_kooperless_lavalava_pow_block import \
@@ -507,6 +507,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_kzn_add_flarakarry_bombette)
     if glitch_settings.parakarryless_flarakarry_laki["value"]:
         all_new_edges.extend(edges_kzn_add_flarakarry_laki)
+    if glitch_settings.volcano_sushie_glitch["value"]:
+        all_new_edges.extend(edges_kzn_add_volcano_sushie_glitch)
 
     # Flower Fields
     if glitch_settings.early_laki_lzs["value"]:

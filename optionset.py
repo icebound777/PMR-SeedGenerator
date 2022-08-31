@@ -680,6 +680,8 @@ class OptionSet:
             self.glitch_settings.parakarryless_flarakarry_bombette = options_dict.get("ParakarrylessFlarakarryBombette")
         if "ParakarrylessFlarakarryLaki" in options_dict:
             self.glitch_settings.parakarryless_flarakarry_laki = options_dict.get("ParakarrylessFlarakarryLaki")
+        if "VolcanoSushieGlitch" in options_dict:
+            self.glitch_settings.volcano_sushie_glitch = options_dict.get("VolcanoSushieGlitch")
 
         if "EarlyLakiLZS" in options_dict:
             self.glitch_settings.early_laki_lzs = options_dict.get("EarlyLakiLZS")
@@ -1308,6 +1310,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("ParakarrylessFlarakarryBombette").get("value"), bool)
     if "ParakarrylessFlarakarryLaki" in options_dict:
         assert isinstance(options_dict.get("ParakarrylessFlarakarryLaki").get("value"), bool)
+    if "VolcanoSushieGlitch" in options_dict:
+        assert isinstance(options_dict.get("VolcanoSushieGlitch").get("value"), bool)
 
     if "EarlyLakiLZS" in options_dict:
         assert isinstance(options_dict.get("EarlyLakiLZS").get("value"), bool)
@@ -1533,6 +1537,7 @@ class GlitchOptionSet():
             self.flarakarry = False
             self.parakarryless_flarakarry_bombette = False
             self.parakarryless_flarakarry_laki = False
+            self.volcano_sushie_glitch = False
 
             self.early_laki_lzs = False
             self.early_laki_bombette_push = False
