@@ -505,8 +505,8 @@ class OptionSet:
             self.glitch_settings.reverse_goomba_king_bridge = options_dict.get("ReverseGoombaKingBridge")
         if "GoombaVillageEntryFenceClip" in options_dict:
             self.glitch_settings.goomba_village_entry_fence_clip = options_dict.get("GoombaVillageEntryFenceClip")
-        if "GoombaVillageSuperBootsExit" in options_dict:
-            self.glitch_settings.goomba_village_super_boots_exit = options_dict.get("GoombaVillageSuperBootsExit")
+        if "GoombaVillageNpcLureExit" in options_dict:
+            self.glitch_settings.goomba_village_npc_lure_exit = options_dict.get("GoombaVillageNpcLureExit")
         if "HammerlessJrPlaygroundLaki" in options_dict:
             self.glitch_settings.hammerless_jr_playground_laki = options_dict.get("HammerlessJrPlaygroundLaki")
         if "GoombaVillageLakiExit" in options_dict:
@@ -1133,8 +1133,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("ReverseGoombaKingBridge").get("value"), bool)
     if "GoombaVillageEntryFenceClip" in options_dict:
         assert isinstance(options_dict.get("GoombaVillageEntryFenceClip").get("value"), bool)
-    if "GoombaVillageSuperBootsExit" in options_dict:
-        assert isinstance(options_dict.get("GoombaVillageSuperBootsExit").get("value"), bool)
+    if "GoombaVillageNpcLureExit" in options_dict:
+        assert isinstance(options_dict.get("GoombaVillageNpcLureExit").get("value"), bool)
     if "HammerlessJrPlaygroundLaki" in options_dict:
         assert isinstance(options_dict.get("HammerlessJrPlaygroundLaki").get("value"), bool)
     if "PrologueSushieGlitch" in options_dict:
@@ -1441,7 +1441,7 @@ class GlitchOptionSet():
             self.prologue_gel_early = False
             self.reverse_goomba_king_bridge = False
             self.goomba_village_entry_fence_clip = False
-            self.goomba_village_super_boots_exit = False
+            self.goomba_village_npc_lure_exit = False
             self.hammerless_jr_playground_laki = False
             self.goomba_village_laki_exit = False
             self.prologue_sushie_glitch = False

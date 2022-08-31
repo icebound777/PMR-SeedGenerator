@@ -188,7 +188,7 @@ RandomPitch: false
 PrologueGelEarly                                : false
 ReverseGoombaKingBridge                         : false
 GoombaVillageEntryFenceClip                     : false
-GoombaVillageSuperBootsExit                     : false
+GoombaVillageNpcLureExit                        : true
 HammerlessJrPlaygroundLaki                      : false
 GoombaVillageLakiExit                           : false
 PrologueSushieGlitch                            : false
