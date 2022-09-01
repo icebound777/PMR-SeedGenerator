@@ -200,6 +200,8 @@ from maps.graph_edges.glitched_logic.sam_snowmen_skip import \
     edges_sam_add_snowmen_skip_laki
 from maps.graph_edges.glitched_logic.sam_shiver_mountain_switch_skip import \
     edges_sam_add_shiver_mountain_switch_skip
+from maps.graph_edges.glitched_logic.sam_sushieless_warehouse_key import \
+    edges_sam_add_sushieless_warehouse_key
 
 # Glitched Logic - Crystal Palace
 from maps.graph_edges.glitched_logic.pra_mirror_clip import \
@@ -553,6 +555,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_sam_add_snowmen_skip_laki)
     if glitch_settings.shiver_mountain_switch_skip["value"]:
         all_new_edges.extend(edges_sam_add_shiver_mountain_switch_skip)
+    if glitch_settings.sushieless_warehouse_key["value"]:
+        all_new_edges.extend(edges_sam_add_sushieless_warehouse_key)
 
     # Crystal Palace
     if glitch_settings.mirror_clip["value"]:
