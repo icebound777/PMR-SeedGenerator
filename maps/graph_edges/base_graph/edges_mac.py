@@ -158,7 +158,7 @@ edges_mac = [
     
     {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftA"},       "reqs": []}, #* Southern District Exit Top -> GiftA (MagicalSeed1)
     {"from": {"map": "MAC_02", "id": "GiftA"},       "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* GiftA (MagicalSeed1) -> Southern District Exit Top
-    {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftB"},       "reqs": [["FryingPan"]]}, #* Southern District Exit Top -> GiftB (Cake)
+    {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftB"},       "reqs": [["FryingPan"]], "pseudoitems": ["RF_CanCook"]}, #* Southern District Exit Top -> GiftB (Cake)
     {"from": {"map": "MAC_02", "id": "GiftB"},       "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* GiftB (Cake) -> Southern District Exit Top
     {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftC"},       "reqs": [["Parakarry"],["Letter07"]]}, #* Southern District Exit Top -> GiftC (StarPiece)
     {"from": {"map": "MAC_02", "id": "GiftC"},       "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* GiftC (StarPiece) -> Southern District Exit Top
@@ -169,21 +169,21 @@ edges_mac = [
 
     # Tayce T. related
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanVisitTayceT"]}, #+ Can visit Tayce T. for cooking
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["KoopaLeaf"]], "pseudoitems": ["KoopaTea"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["Goomnut"]], "pseudoitems": ["NuttyCake"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["CakeMix"]], "pseudoitems": ["Cake"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["CakeMix"],["Lemon"],["Cookbook"]], "pseudoitems": ["LemonCandy"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["KoopaLeaf"],["DriedPasta"],["Cookbook"]], "pseudoitems": ["Koopasta"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["KoopaLeaf"],["CakeMix"],["Cookbook"]], "pseudoitems": ["KookyCookie"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["KoopaLeaf"],["SuperShroom"],["Cookbook"]], "pseudoitems": ["LifeShroom"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["Goomnut"],["SuperShroom"],["Cookbook"]], "pseudoitems": ["LifeShroom"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["StrangeLeaf"],["BlueBerry"],["Cookbook"]], "pseudoitems": ["SleepySheep"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["StrangeLeaf"],["YellowBerry"],["Cookbook"]], "pseudoitems": ["SleepySheep"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["StrangeLeaf"],["RedBerry"],["Cookbook"]], "pseudoitems": ["SleepySheep"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["Lemon"]], "pseudoitems": ["TastyTonic"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["Lime"]], "pseudoitems": ["TastyTonic"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["BubbleBerry"],["Cookbook"]], "pseudoitems": ["TastyTonic"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["Coconut"]], "pseudoitems": ["TastyTonic"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["KoopaLeaf"]], "pseudoitems": ["KoopaTea"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["Goomnut"]], "pseudoitems": ["NuttyCake"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["CakeMix"]], "pseudoitems": ["Cake"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["CakeMix"],["Lemon"],["Cookbook"]], "pseudoitems": ["LemonCandy"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["KoopaLeaf"],["DriedPasta"],["Cookbook"]], "pseudoitems": ["Koopasta"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["KoopaLeaf"],["CakeMix"],["Cookbook"]], "pseudoitems": ["KookyCookie"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["KoopaLeaf"],["SuperShroom"],["Cookbook"]], "pseudoitems": ["LifeShroom"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["Goomnut"],["SuperShroom"],["Cookbook"]], "pseudoitems": ["LifeShroom"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["StrangeLeaf"],["BlueBerry"],["Cookbook"]], "pseudoitems": ["SleepySheep"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["StrangeLeaf"],["YellowBerry"],["Cookbook"]], "pseudoitems": ["SleepySheep"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["StrangeLeaf"],["RedBerry"],["Cookbook"]], "pseudoitems": ["SleepySheep"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["Lemon"]], "pseudoitems": ["TastyTonic"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["Lime"]], "pseudoitems": ["TastyTonic"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["BubbleBerry"],["Cookbook"]], "pseudoitems": ["TastyTonic"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["Coconut"]], "pseudoitems": ["TastyTonic"]},
 
     # MAC_03 Station District
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_02", "id": 3}, "reqs": []}, # Station District Exit Top -> Southern District Exit Bottom

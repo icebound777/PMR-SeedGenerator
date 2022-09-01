@@ -1,6 +1,8 @@
 from copy import deepcopy
 import random
 
+from rando_enums.enum_options import BowserCastleMode, GearShuffleMode
+
 from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
 from optionset import OptionSet
@@ -59,15 +61,15 @@ class RandomSeed:
             world_graph = generate_world_graph(None, None)
 
         # Modify entrances if needed
-        if self.rando_settings.bowsers_castle_mode["value"] == 1:
+        if self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.SHORTEN:
             self.entrance_list, world_graph = get_shorter_bowsercastle(world_graph)
-        elif self.rando_settings.bowsers_castle_mode["value"] == 2:
+        elif self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.BOSSRUSH:
             self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
-        if self.rando_settings.gear_shuffle_mode["value"] != 0:
+        if self.rando_settings.gear_shuffle_mode["value"] != GearShuffleMode.VANILLA:
             world_graph = get_gear_location_shuffle(world_graph, self.rando_settings.gear_shuffle_mode["value"])
 
         # Adjust graph logic if needed
-        world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings, self.rando_settings.bowsers_castle_mode)
+        world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings, self.rando_settings.bowsers_castle_mode["value"])
 
         hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
         if self.rando_settings.glitch_settings.knows_hidden_blocks["value"]:
@@ -79,13 +81,14 @@ class RandomSeed:
             try:
                 starting_chapter, starting_map_value = self.init_starting_map(self.rando_settings)
                 self.init_starting_partners(self.rando_settings)
-                self.init_starting_items(self.rando_settings)
 
                 # Pick seeds required for flower gate, if random
                 if self.rando_settings.magical_seeds_required["value"] == 5:
                     magical_seeds_required = random.randint(0, 4)
                 else:
                     magical_seeds_required = self.rando_settings.magical_seeds_required["value"]
+
+                self.init_starting_items(self.rando_settings, magical_seeds_required)
 
                 world_graph_copy = deepcopy(world_graph)
                 place_items(
@@ -107,6 +110,7 @@ class RandomSeed:
                     magical_seeds_required=magical_seeds_required,
                     startwith_toybox_open=self.rando_settings.toybox_open["value"],
                     startwith_whale_open=self.rando_settings.whale_open["value"],
+                    cook_without_fryingpan=self.rando_settings.cook_without_fryingpan["value"],
                     starting_partners=self.starting_partners,
                     starting_boots=self.rando_settings.starting_boots["value"],
                     starting_hammer=self.rando_settings.starting_hammer["value"],
@@ -205,6 +209,7 @@ class RandomSeed:
             magical_seeds_required=self.rando_settings.magical_seeds_required["value"],
             startwith_toybox_open=self.rando_settings.toybox_open["value"],
             startwith_whale_open=self.rando_settings.whale_open["value"],
+            cook_without_fryingpan=self.rando_settings.cook_without_fryingpan["value"],
             starting_partners=self.starting_partners,
             starting_boots=self.rando_settings.starting_boots["value"],
             starting_hammer=self.rando_settings.starting_hammer["value"],
@@ -252,7 +257,7 @@ class RandomSeed:
 
 
 
-    def init_starting_items(self, rando_settings:OptionSet):
+    def init_starting_items(self, rando_settings:OptionSet, magical_seeds_needed:int):
         """
         Initialize the starting items from either the chosen starting items or
         pick them randomly.
@@ -288,7 +293,7 @@ class RandomSeed:
                 do_randomize_dojo=rando_settings.include_dojo,
                 starting_partners=self.starting_partners,
                 startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
-                magical_seeds_required=rando_settings.magical_seeds_required["value"],
+                magical_seeds_required=magical_seeds_needed,
                 bowsers_castle_mode=rando_settings.bowsers_castle_mode["value"],
                 always_speedyspin=rando_settings.always_speedyspin["value"],
                 always_ispy=rando_settings.always_ispy["value"],

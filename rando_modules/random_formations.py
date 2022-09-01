@@ -191,6 +191,9 @@ def _get_new_formation(
                     actor_var0 = random.choice(random_actor_vars[current_enemy]["Var0"])
             if "Var1" in random_actor_vars[current_enemy]:
                 actor_var1 = random.choice(random_actor_vars[current_enemy]["Var1"])
+        elif current_enemy == "14_SpearGuy":
+            # first spearguy points spear forward, all others up
+            actor_var0 = 0 if i == 0 else 1
         formation_word_4 = (zpos << 16) | (actor_var0 << 8) | actor_var1
         formation.append(formation_word_4)
 

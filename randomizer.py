@@ -9,8 +9,8 @@ import time
 import json
 import yaml
 from yaml.loader import SafeLoader
+from pathlib import Path
 
-from enums import create_enums
 from models.WebSeedResponse import WebSeedResponse
 from random_seed import RandomSeed
 from table import Table
@@ -48,7 +48,6 @@ def init_randomizer(rebuild_database=False):
     # Build database from scratch if needed
     if rebuild_database:
         # Create enums from ./globals/enum/
-        create_enums()
         gather_keys()
         gather_values()
         create_options()
@@ -599,7 +598,7 @@ def main_randomizer(args):
     timer_start = time.perf_counter()
 
     target_modfile = ""
-    spoilerlog_file_path = ""
+    custom_spoilerlog_file_path = ""
     rando_outputfile = ""
 
     rando_settings = None
@@ -653,7 +652,7 @@ def main_randomizer(args):
 
             # Spoilerlog output file
             if opt in ["-s", "--spoilerlog"]:
-                spoilerlog_file_path = arg
+                custom_spoilerlog_file_path = arg
 
             # Choose the random seed
             if opt in ["-S", "--seed"]:
@@ -708,12 +707,17 @@ def main_randomizer(args):
     )
 
     # Write sorted spoiler log
+    if custom_spoilerlog_file_path:
+        target_spoilerfile = custom_spoilerlog_file_path
+    else:
+        target_spoilerfile = Path(target_modfile).parent / "spoiler_log.txt"
+
     if rando_settings.write_spoilerlog:
         write_spoiler_log(
             random_seed.placed_items,
             random_chapter_difficulty=random_seed.chapter_changes,
             settings=rando_settings,
-            spoilerlog_file=spoilerlog_file_path,
+            spoilerlog_file=target_spoilerfile,
             spheres_text=random_seed.item_spheres_text
         )
 

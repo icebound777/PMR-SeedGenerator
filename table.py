@@ -1,8 +1,6 @@
-from parse import get_default_table, create_table, get_table_info
+from parse import get_table_info
 
 from db.option import Option
-from db.actor_attribute import ActorAttribute
-from db.quiz import Quiz
 from optionset import MysteryOptionSet
 
 
@@ -29,9 +27,12 @@ class Table:
 
         for option_data in options.__dict__.values():
             if isinstance(option_data, dict) and "key" in option_data:
+                option_data_value = option_data.get("value")
+                if isinstance(option_data_value, int) and option_data_value < 0:
+                    option_data_value = 0x100000000 + option_data_value
                 table_data.append({
                     "key": option_data.get("key"),
-                    "value": option_data.get("value"),
+                    "value": option_data_value,
                 })
             if isinstance(option_data, MysteryOptionSet):
                 for mystery_option in option_data.__dict__.values():
@@ -70,6 +71,8 @@ class Table:
         placed_items = kwargs.get("items")
         for node in placed_items:
             if node.key_name_item is not None and node.current_item is not None:
+                assert not node.current_item.unplaceable # sanity check
+
                 table_data.append({
                     "key": node.get_item_key(),
                     "value": node.current_item.value,

@@ -93,7 +93,7 @@ edges_jan = [
 
     {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "GiftA"},       "reqs": [["saved_all_yoshikids"],["VolcanoVase"],["MF_Ch5_RescuedStarSpirit"]]}, #* Village Buildings Exit Left -> GiftA (MagicalSeed4)
     {"from": {"map": "JAN_03", "id": "GiftA"},       "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* GiftA (MagicalSeed4) -> Village Buildings Exit Left
-    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "GiftB"},       "reqs": [["saved_all_yoshikids"],["RF_CanVisitTayceT"],["MF_Ch5_RescuedStarSpirit"]]}, #* Village Buildings Exit Left -> GiftB (Melon)
+    {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "GiftB"},       "reqs": [["saved_all_yoshikids"],["RF_CanVisitTayceT"],["RF_CanCook"],["MF_Ch5_RescuedStarSpirit"]]}, #* Village Buildings Exit Left -> GiftB (Melon)
     {"from": {"map": "JAN_03", "id": "GiftB"},       "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* GiftB (Melon) -> Village Buildings Exit Left
     {"from": {"map": "JAN_03", "id": 0},             "to": {"map": "JAN_03", "id": "GiftC"},       "reqs": [["RF_SavedYoshiKid_3"],["Parakarry"],["Letter21"]]}, #* Village Buildings Exit Left -> GiftC (Letter22)
     {"from": {"map": "JAN_03", "id": "GiftC"},       "to": {"map": "JAN_03", "id": 0},             "reqs": []}, #* GiftC (Letter22) -> Village Buildings Exit Left

@@ -1,5 +1,4 @@
 import io
-import os
 from metadata.verbose_area_names import verbose_area_names
 from metadata.verbose_item_names import verbose_item_names
 from metadata.verbose_item_locations import verbose_item_locations
@@ -18,12 +17,7 @@ def write_spoiler_log(
     Outputs a log file listing the final locations of all items
     after randomization and randomized chapter difficulty
     """
-    if not spoilerlog_file and not is_web_spoiler_log:
-        spoiler_log_filename = __file__ + "/../debug/item_placement.txt"
-        os.makedirs(os.path.dirname(spoiler_log_filename), exist_ok=True)
-        spoilerlog_file = os.path.abspath(spoiler_log_filename)
-        
-
+    
     sorted_by_key =  sorted(placed_items,  key=lambda node: node.key_name_item)
     sorted_by_map =  sorted(sorted_by_key, key=lambda node: node.map_area.map_id)
     sorted_by_area = sorted(sorted_by_map, key=lambda node: node.map_area.area_id)

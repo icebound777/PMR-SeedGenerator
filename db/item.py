@@ -5,7 +5,6 @@ from peewee import *
 from db.db import db
 from metadata.progression_items import progression_items
 from metadata.item_general import unused_items, unplaceable_items
-from enums import Enums
 
 
 class Item(Model):
@@ -75,12 +74,14 @@ def create_items():
     for item in items_doc.getElementsByTagName("Item"):
         item_index = item.getAttribute("index")
         item_sell_value = item.getAttribute("sellValue")
+        item_name = item.getAttribute("name")
         if item_sell_value is None or item_sell_value == "":
             item_sell_value = "50"
         item_data.append(
             {
                 "Index": item_index,
-                "Sell Value": item_sell_value
+                "Sell Value": item_sell_value,
+                "Name": item_name
             }
         )
 
@@ -89,7 +90,7 @@ def create_items():
         if item_id == 0x18:
             # Ignore fake Volcano Vase
             continue
-        item_name = Enums.get("Item")[item_id]
+        item_name = item["Name"]
         base_price = int(item["Sell Value"], 10) if item["Sell Value"] != "FFFF" else 50
         if "BubbleBerryProxy" in item_name:
             base_price = 3

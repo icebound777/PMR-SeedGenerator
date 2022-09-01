@@ -11,6 +11,12 @@ edges_sam_add_ch7_sushie_glitch = [
     #? Shiver Snowfield Exit West -> Shiver Snowfield Mountain Entrance
     {"from": {"map": "SAM_04", "id": 0}, "to": {"map": "SAM_04", "id": 2}, "reqs": [["RF_Ch7SushieGlitch"]], "mapchange": False},
 
+    #? Shiver Mountain Passage Mountain Entrance -> Shiver Mountain Passage Exit East
+    {"from": {"map": "SAM_07", "id": 0}, "to": {"map": "SAM_07", "id": 1}, "reqs": [["RF_Ch7SushieGlitch"]], "mapchange": False},
+
+    #? Shiver Mountain Passage Exit East -> Shiver Mountain Passage Mountain Entrance
+    {"from": {"map": "SAM_07", "id": 1}, "to": {"map": "SAM_07", "id": 0}, "reqs": [["RF_Ch7SushieGlitch"]], "mapchange": False},
+
     #? Shiver Mountain Hills Exit West -> Shiver Mountain Hills Exit East 
     {"from": {"map": "SAM_08", "id": 0}, "to": {"map": "SAM_08", "id": 1}, "reqs": [["RF_Ch7SushieGlitch"]], "mapchange": False}, 
 ]

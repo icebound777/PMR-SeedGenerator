@@ -4,6 +4,10 @@ settings it can set pre-determined paths or randomize them.
 """
 from worldgraph import adjust, check_unreachable_from_start
 
+from rando_enums.enum_options import \
+    GearShuffleMode,\
+    BowserCastleMode
+
 # Imports: Modify Bowser's Castle
 from maps.graph_edges.bc_shorten.edges_kpa import \
     edges_kpa_add, edges_kpa_remove
@@ -293,7 +297,7 @@ def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     all_edges_to_remove.extend(edges_kzn_gls_remove)
 
     # The blocks are the same for isk and kzn and all non-vanilla modes, but only GLS modifies tik
-    if gear_shuffle_mode == 1:
+    if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
         all_new_edges.extend(edges_tik_gls_add)
         all_edges_to_remove.extend(edges_tik_gls_remove)
 
@@ -563,7 +567,7 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_pra_add_mirror_clip_laki)
 
     # Bowser's Castle
-    if bowsers_castle_mode == 0: # Only modify kpa graph if vanilla castle
+    if bowsers_castle_mode == BowserCastleMode.VANILLA:
         if glitch_settings.bowless_bowsers_castle_basement["value"]:
             all_new_edges.extend(edges_kpa_add_bowless_bowsers_castle_basement_laki)
         if glitch_settings.fast_flood_room_kooper["value"]:

@@ -4,6 +4,8 @@ from math import ceil
 from db.item import Item
 from db.node import Node
 
+from rando_enums.enum_options import IncludeFavorsMode
+
 from metadata.item_exclusion import exclude_due_to_settings
 from metadata.itemlocation_special import \
     kootfavors_reward_locations, \
@@ -45,13 +47,13 @@ def get_scarcitied_itempool(itempool:list, scarcity:int) -> list:
                 0x0A6, # KoopaLeaf
                 0x0AE, # StinkyHerb
                 0x0A5, # Goomnut
-                0x0A0, # YellowBerry
+                0x1E1, # YellowBerry
                 0x08A, # Mushroom
                 0x094, # Apple
-                0x09E, # BlueBerry
-                0x09F, # RedBerry
+                0x1DD, # BlueBerry
+                0x1DF, # RedBerry
                 0x09B, # SuperSoda
-                0x0A1, # BubbleBerry
+                0x1E3, # BubbleBerry
                 0x0A4, # HoneySyrup
             ],
             TYPE_TAYCETITEM: [
@@ -364,11 +366,11 @@ def get_trapped_itempool(
         and item.item_name in exclude_due_to_settings.get("do_randomize_dojo")
         ):
             continue
-        if (    randomize_favors_mode < 1
+        if (    randomize_favors_mode < IncludeFavorsMode.RND_REWARD_VANILLA_KEYITEMS
             and item.item_name in koot_items["rewards"]
         ):
             continue
-        if (    randomize_favors_mode < 2
+        if (    randomize_favors_mode < IncludeFavorsMode.FULL_SHUFFLE
             and item.item_name in koot_items["keyitems"]
         ):
             continue
