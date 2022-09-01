@@ -199,7 +199,6 @@ BlueHouseSkipLaki                               : false
 BlueHouseSkipToadLure                           : false
 BowlessToyBoxHammer                             : false
 BowlessToyBoxHammerlessLure                     : false
-BowlessToyBoxUltraBoots                         : false
 EarlyStoreroomParakarry                         : false
 EarlyStoreroomHammer                            : false
 EarlyStoreroomHammerlessLure                    : false
@@ -252,6 +251,7 @@ BoosPortraitWithKooper                          : false
 BoosPortraitWithLaki                            : false
 
 GustyGulchGateSkipLZS                           : false
+GustyGulchGateSkipLaki                          : false
 KooperlessGustyGulchDizzyDialJump               : false
 KooperlessGustyGulchDizzyDialLaki               : false
 KooperlessGustyGulchDizzyDialParakarry          : false
@@ -318,4 +318,3 @@ BreakMetalBlocksWithUltraBoots                  : false
 KnowsHiddenBlocks                               : false
 KnowsPuzzleSolutions                            : false
 ReachHighBlocksWithSuperBoots                   : false
-GustyGulchGateSkipLaki                          : false

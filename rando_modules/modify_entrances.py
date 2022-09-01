@@ -50,7 +50,7 @@ from maps.graph_edges.glitched_logic.mac_odd_key_early import \
 from maps.graph_edges.glitched_logic.mac_blue_house_skip import \
     edges_mac_add_bhs_jump, edges_mac_add_bhs_laki, edges_mac_add_bhs_toad_lure
 from maps.graph_edges.glitched_logic.mac_bowless_toy_box import \
-    edges_mac_add_bowless_toybox_hammer_lure, edges_mac_add_bowless_toybox_hammerless_lure, edges_mac_add_bowless_toybox_ultra_boots
+    edges_mac_add_bowless_toybox_hammer_lure, edges_mac_add_bowless_toybox_hammerless_lure
 from maps.graph_edges.glitched_logic.mac_enter_storeroom_without_key import \
     edges_mac_add_storeroom_without_key_hammer, edges_mac_add_storeroom_without_key_parakarry, edges_mac_add_storeroom_without_key_hammerless_lure
 from maps.graph_edges.glitched_logic.mac_sushieless_toad_town_star_piece import \
@@ -347,8 +347,6 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_mac_add_bowless_toybox_hammer_lure)
     if glitch_settings.bowless_toy_box_hammerless_lure["value"]:
         all_new_edges.extend(edges_mac_add_bowless_toybox_hammerless_lure)
-    if glitch_settings.bowless_toy_box_ultra_boots["value"]:
-        all_new_edges.extend(edges_mac_add_bowless_toybox_ultra_boots)
     if glitch_settings.early_storeroom_parakarry["value"]:
         all_new_edges.extend(edges_mac_add_storeroom_without_key_parakarry)
     if glitch_settings.early_storeroom_hammer["value"]:
@@ -553,7 +551,7 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_sam_add_star_stone_with_ch7_sushie_glitch)
     if glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_laki["value"]:
         all_new_edges.extend(edges_sam_add_shiver_mountain_hidden_block_laki_throw)
-    if glitch_settings. k_without_ultra_boots_no_laki["value"]:
+    if glitch_settings. shiver_mountain_hidden_block_without_ultra_boots_no_laki["value"]:
         all_new_edges.extend(edges_sam_add_shiver_mountain_hidden_block_normal_throw)
     if glitch_settings.snowmen_skip_laki["value"]:
         all_new_edges.extend(edges_sam_add_snowmen_skip_laki)

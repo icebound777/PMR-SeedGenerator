@@ -1,7 +1,6 @@
 """
 This file represents edges of the world graph that have to be added
 for Glitched Logic: Prologue Sushie Glitch.
-An additional partner is required to switch in battle and exit the sushie glitch
 state.
 """
 edges_kmr_add_prologue_sushie_glitch = [

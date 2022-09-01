@@ -530,8 +530,6 @@ class OptionSet:
             self.glitch_settings.bowless_toy_box_hammer = options_dict.get("BowlessToyBoxHammer")
         if "BowlessToyBoxHammerlessLure" in options_dict:
             self.glitch_settings.bowless_toy_box_hammerless_lure = options_dict.get("BowlessToyBoxHammerlessLure")
-        if "BowlessToyBoxUltraBoots" in options_dict:
-            self.glitch_settings.bowless_toy_box_ultra_boots = options_dict.get("BowlessToyBoxUltraBoots")
         if "EarlyStoreroomParakarry" in options_dict:
             self.glitch_settings.early_storeroom_parakarry = options_dict.get("EarlyStoreroomParakarry")
         if "EarlyStoreroomHammer" in options_dict:
@@ -1154,8 +1152,6 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BowlessToyBoxHammer").get("value"), bool)
     if "BowlessToyBoxHammerlessLure" in options_dict:
         assert isinstance(options_dict.get("BowlessToyBoxHammerlessLure").get("value"), bool)
-    if "BowlessToyBoxUltraBoots" in options_dict:
-        assert isinstance(options_dict.get("BowlessToyBoxUltraBoots").get("value"), bool)
     if "EarlyStoreroomParakarry" in options_dict:
         assert isinstance(options_dict.get("EarlyStoreroomParakarry").get("value"), bool)
     if "EarlyStoreroomHammer" in options_dict:
@@ -1301,7 +1297,7 @@ def validate_options(options_dict):
     if "UltraHammerSkip" in options_dict:
         assert isinstance(options_dict.get("UltraHammerSkip").get("value"), bool)
     if "UltraHammerSkipLaki" in options_dict:
-        assert isinstance(options_dict.get("UltraHammerSkip").get("value"), bool)
+        assert isinstance(options_dict.get("UltraHammerSkipLaki").get("value"), bool)
     if "Flarakarry" in options_dict:
         assert isinstance(options_dict.get("Flarakarry").get("value"), bool)
     if "ParakarrylessFlarakarryBombette" in options_dict:
