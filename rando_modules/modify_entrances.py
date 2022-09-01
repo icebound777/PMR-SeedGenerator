@@ -553,7 +553,7 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_sam_add_star_stone_with_ch7_sushie_glitch)
     if glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_laki["value"]:
         all_new_edges.extend(edges_sam_add_shiver_mountain_hidden_block_laki_throw)
-    if glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_no_laki["value"]:
+    if glitch_settings. k_without_ultra_boots_no_laki["value"]:
         all_new_edges.extend(edges_sam_add_shiver_mountain_hidden_block_normal_throw)
     if glitch_settings.snowmen_skip_laki["value"]:
         all_new_edges.extend(edges_sam_add_snowmen_skip_laki)
@@ -587,7 +587,7 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     if glitch_settings.reach_high_blocks_with_super_boots["value"]:
         all_new_edges.extend(edges_global_reach_high_blocks_with_super_boots)
 
-    print(all_new_edges)
+    #print(all_new_edges)
 
     # Modify graph with all pending changes, if any
     if all_new_edges or all_edges_to_remove:

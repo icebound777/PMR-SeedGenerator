@@ -1,6 +1,6 @@
 """
 This file represents edges of the world graph that have to be added
-for Glitched Logic: Parkarry-less Second Sand Room.
+for Glitched Logic: Parakarry-less Second Sand Room.
 """
 edges_isk_add_parakarryless_second_sand_room_ultra_boots = [
     #? Descending Stairs 1 Exit Middle Left -> Descending Stairs 1 Exit Top Right Cracked Wall
