@@ -159,7 +159,7 @@ from maps.graph_edges.glitched_logic.omo_kooperless_red_station_shooting_star im
 from maps.graph_edges.glitched_logic.omo_parakarryless_blue_block_city_gap import \
     edges_omo_add_parakarryless_blue_block_city_gap
 from maps.graph_edges.glitched_logic.omo_blue_switch_skip import \
-    edges_omo_add_blue_switch_skip_laki
+    edges_omo_add_blue_switch_skip_laki, edges_omo_add_blue_switch_skip_ultra_boots
 from maps.graph_edges.glitched_logic.omo_red_barricade_skip import \
     edges_omo_add_red_barricade_skip
 
@@ -487,8 +487,10 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_omo_add_red_station_shooting_star_parakarry)
     if glitch_settings.parakarryless_blue_block_city_gap["value"]:
         all_new_edges.extend(edges_omo_add_parakarryless_blue_block_city_gap)
-    if glitch_settings.blue_switch_skip["value"]:
+    if glitch_settings.blue_switch_skip_laki["value"]:
         all_new_edges.extend(edges_omo_add_blue_switch_skip_laki)
+    if glitch_settings.blue_switch_skip_ultra_boots["value"]:
+        all_new_edges.extend(edges_omo_add_blue_switch_skip_ultra_boots)
     if glitch_settings.red_barricade_skip["value"]:
         all_new_edges.extend(edges_omo_add_red_barricade_skip)
 
@@ -585,7 +587,7 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     if glitch_settings.reach_high_blocks_with_super_boots["value"]:
         all_new_edges.extend(edges_global_reach_high_blocks_with_super_boots)
 
-    #print(all_new_edges)
+    print(all_new_edges)
 
     # Modify graph with all pending changes, if any
     if all_new_edges or all_edges_to_remove:

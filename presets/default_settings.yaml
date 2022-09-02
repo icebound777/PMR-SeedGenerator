@@ -269,7 +269,8 @@ GourmetGuySkipParakarry                         : false
 BowlessGreenStation                             : false
 KooperlessRedStationShootingStar                : false
 ParakarrylessBlueBlockCityGap                   : false
-BlueSwitchSkip                                  : false
+BlueSwitchSkipLaki                              : false
+BlueSwitchSkipUltraBoots                        : false
 RedBarricadeSkip                                : false
 
 RaphSkipEnglish                                 : false

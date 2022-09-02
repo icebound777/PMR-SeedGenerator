@@ -660,8 +660,10 @@ class OptionSet:
             self.glitch_settings.kooperless_red_station_shooting_star = options_dict.get("KooperlessRedStationShootingStar")
         if "ParakarrylessBlueBlockCityGap" in options_dict:
             self.glitch_settings.parakarryless_blue_block_city_gap = options_dict.get("ParakarrylessBlueBlockCityGap")
-        if "BlueSwitchSkip" in options_dict:
-            self.glitch_settings.blue_switch_skip = options_dict.get("BlueSwitchSkip")
+        if "BlueSwitchSkipLaki" in options_dict:
+            self.glitch_settings.blue_switch_skip_laki = options_dict.get("BlueSwitchSkipLaki")
+        if "BlueSwitchSkipUltraBoots" in options_dict:
+            self.glitch_settings.blue_switch_skip_ultra_boots = options_dict.get("BlueSwitchSkipUltraBoots")
         if "RedBarricadeSkip" in options_dict:
             self.glitch_settings.red_barricade_skip = options_dict.get("RedBarricadeSkip")
 
@@ -1282,8 +1284,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("KooperlessRedStationShootingStar").get("value"), bool)
     if "ParakarrylessBlueBlockCityGap" in options_dict:
         assert isinstance(options_dict.get("ParakarrylessBlueBlockCityGap").get("value"), bool)
-    if "BlueSwitchSkip" in options_dict:
-        assert isinstance(options_dict.get("BlueSwitchSkip").get("value"), bool)
+    if "BlueSwitchSkipLaki" in options_dict:
+        assert isinstance(options_dict.get("BlueSwitchSkipLaki").get("value"), bool)
+    if "BlueSwitchSkipUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("BlueSwitchSkipUltraBoots").get("value"), bool)
     if "RedBarricadeSkip" in options_dict:
         assert isinstance(options_dict.get("RedBarricadeSkip").get("value"), bool)
 
@@ -1522,7 +1526,8 @@ class GlitchOptionSet():
             self.bowless_green_station = False
             self.kooperless_red_station_shooting_star = False
             self.parakarryless_blue_block_city_gap = False
-            self.blue_switch_skip = False
+            self.blue_switch_skip_laki = False
+            self.blue_switch_skip_ultra_boots = False
             self.red_barricade_skip = False
 
             self.raph_skip_english = False
