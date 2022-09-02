@@ -213,6 +213,7 @@ ParakarrylessSewerStarPiece                     : false
 SewerBlocksWithoutUltraBoots                    : false
 FirstBlockToShiverCityWithoutSuperBoots         : false
 BlocksToShiverCityWithKooperShellItemThrow      : false
+SewerYellowBlockWithUltraBoots                  : false
 
 KooperlessPleasantPathStarPiece                 : false
 InvisibleBridgeClipLzs                          : false
