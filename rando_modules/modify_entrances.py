@@ -95,8 +95,8 @@ from maps.graph_edges.glitched_logic.trd_water_staircase_skip import \
     edges_trd_add_water_staircase_skip
 
 # Glitched Logic - Mt.Rugged
-from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_no_kooper_parakarry import \
-    edges_iwa_add_quake_hammer_and_letter_laki, edges_iwa_add_quake_hammer_and_letter_no_partners
+from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_laki import \
+    edges_iwa_add_quake_hammer_and_letter_laki
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed import \
     edges_iwa_add_parakarryless_mt_rugged_seed
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_star_piece import \
@@ -405,8 +405,6 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     # Mt. Rugged
     if glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki["value"]:
         all_new_edges.extend(edges_iwa_add_quake_hammer_and_letter_laki)
-    if glitch_settings.mt_rugged_quake_hammer_and_letter_no_partners["value"]:
-        all_new_edges.extend(edges_iwa_add_quake_hammer_and_letter_no_partners)
     if glitch_settings.parakarryless_mt_rugged_seed["value"]:
         all_new_edges.extend(edges_iwa_add_parakarryless_mt_rugged_seed)
     if glitch_settings.parakarryless_mt_rugged_star_piece["value"]:

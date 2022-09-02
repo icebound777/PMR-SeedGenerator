@@ -582,8 +582,6 @@ class OptionSet:
 
         if "MtRuggedQuakeHammerAndLetterWithLaki" in options_dict:
             self.glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki = options_dict.get("MtRuggedQuakeHammerAndLetterWithLaki")
-        if "MtRuggedQuakeHammerAndLetterNoPartners" in options_dict:
-            self.glitch_settings.mt_rugged_quake_hammer_and_letter_no_partners = options_dict.get("MtRuggedQuakeHammerAndLetterNoPartners")
         if "ParakarrylessMtRuggedSeed" in options_dict:
             self.glitch_settings.parakarryless_mt_rugged_seed = options_dict.get("ParakarrylessMtRuggedSeed")
         if "BuzzarGapSkipClippy" in options_dict:
@@ -1208,8 +1206,6 @@ def validate_options(options_dict):
 
     if "MtRuggedQuakeHammerAndLetterWithLaki" in options_dict:
         assert isinstance(options_dict.get("MtRuggedQuakeHammerAndLetterWithLaki").get("value"), bool)
-    if "MtRuggedQuakeHammerAndLetterNoPartners" in options_dict:
-        assert isinstance(options_dict.get("MtRuggedQuakeHammerAndLetterNoPartners").get("value"), bool)
     if "ParakarrylessMtRuggedSeed" in options_dict:
         assert isinstance(options_dict.get("ParakarrylessMtRuggedSeed").get("value"), bool)
     if "BuzzarGapSkipClippy" in options_dict:
@@ -1489,7 +1485,6 @@ class GlitchOptionSet():
             self.water_staircase_skip = False
 
             self.mt_rugged_quake_hammer_and_letter_with_laki = False
-            self.mt_rugged_quake_hammer_and_letter_no_partners = False
             self.parakarryless_mt_rugged_seed = False
             self.buzzar_gap_skip_clippy = False
             self.mt_rugged_coins_with_kooper = False
