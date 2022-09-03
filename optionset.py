@@ -668,6 +668,8 @@ class OptionSet:
             self.glitch_settings.red_barricade_skip = options_dict.get("RedBarricadeSkip")
         if "HammerlessBlueStationLaki" in options_dict:
             self.glitch_settings.hammerless_blue_station_laki = options_dict.get("HammerlessBlueStationLaki")
+        if "HammerlessPinkStationLaki" in options_dict:
+            self.glitch_settings.hammerless_pink_station_laki = options_dict.get("HammerlessPinkStationLaki")
 
         if "RaphSkipEnglish" in options_dict:
             self.glitch_settings.raph_skip_english = options_dict.get("RaphSkipEnglish")
@@ -1294,6 +1296,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("RedBarricadeSkip").get("value"), bool)
     if "HammerlessBlueStationLaki" in options_dict:
         assert isinstance(options_dict.get("HammerlessBlueStationLaki").get("value"), bool)
+    if "HammerlessPinkStationLaki" in options_dict:
+        assert isinstance(options_dict.get("HammerlessPinkStationLaki").get("value"), bool)
 
     if "RaphSkipEnglish" in options_dict:
         assert isinstance(options_dict.get("RaphSkipEnglish").get("value"), bool)
@@ -1534,6 +1538,7 @@ class GlitchOptionSet():
             self.blue_switch_skip_ultra_boots = False
             self.red_barricade_skip = False
             self.hammerless_blue_station_laki = False
+            self.hammerless_pink_station_laki = False
 
             self.raph_skip_english = False
             self.ch5_sushie_glitch = False

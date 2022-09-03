@@ -273,6 +273,7 @@ BlueSwitchSkipLaki                              : false
 BlueSwitchSkipUltraBoots                        : false
 RedBarricadeSkip                                : false
 HammerlessBlueStationLaki                       : false
+HammerlessPinkStationLaki                       : false
 
 RaphSkipEnglish                                 : false
 Ch5SushieGlitch                                 : false
