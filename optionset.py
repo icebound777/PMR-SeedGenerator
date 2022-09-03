@@ -641,6 +641,8 @@ class OptionSet:
             self.glitch_settings.bowless_tubbas_castle = options_dict.get("BowlessTubbasCastle")
         if "TubbasTableLakiJump" in options_dict:
             self.glitch_settings.tubbas_table_laki_jump = options_dict.get("TubbasTableLakiJump")
+        if "TubbasTableUltraBoots" in options_dict:
+            self.glitch_settings.tubbas_table_ultra_boots = options_dict.get("TubbasTableUltraBoots")
         if "TubbasCastleSuperBootsSkip" in options_dict:
             self.glitch_settings.tubbas_castle_super_boots_skip = options_dict.get("TubbasCastleSuperBootsSkip")
         if "ParakarrylessMegaRush" in options_dict:
@@ -1269,6 +1271,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BowlessTubbasCastle").get("value"), bool)
     if "TubbasTableLakiJump" in options_dict:
         assert isinstance(options_dict.get("TubbasTableLakiJump").get("value"), bool)
+    if "TubbasTableUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("TubbasTableUltraBoots").get("value"), bool)
     if "TubbasCastleSuperBootsSkip" in options_dict:
         assert isinstance(options_dict.get("TubbasCastleSuperBootsSkip").get("value"), bool)
     if "ParakarrylessMegaRush" in options_dict:
@@ -1524,6 +1528,7 @@ class GlitchOptionSet():
 
             self.bowless_tubbas_castle = False
             self.tubbas_table_laki_jump = False
+            self.tubbas_table_ultra_boots = False
             self.tubbas_castle_super_boots_skip = False
             self.parakarryless_mega_rush = False
 
