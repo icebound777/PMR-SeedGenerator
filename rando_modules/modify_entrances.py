@@ -164,6 +164,8 @@ from maps.graph_edges.glitched_logic.omo_blue_switch_skip import \
     edges_omo_add_blue_switch_skip_laki, edges_omo_add_blue_switch_skip_ultra_boots
 from maps.graph_edges.glitched_logic.omo_red_barricade_skip import \
     edges_omo_add_red_barricade_skip
+from maps.graph_edges.glitched_logic.omo_hammerless_blue_station import \
+    edges_omo_add_hammerless_blue_station_laki
 
 # Glitched Logic - Jade Jungle
 from maps.graph_edges.glitched_logic.jan_raph_skip_english import \
@@ -495,6 +497,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_omo_add_blue_switch_skip_ultra_boots)
     if glitch_settings.red_barricade_skip["value"]:
         all_new_edges.extend(edges_omo_add_red_barricade_skip)
+    if glitch_settings.hammerless_blue_station_laki["value"]:
+        all_new_edges.extend(edges_omo_add_hammerless_blue_station_laki)
 
     # Jade Jungle
     if glitch_settings.raph_skip_english["value"]:
