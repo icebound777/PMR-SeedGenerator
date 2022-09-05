@@ -751,8 +751,8 @@ class OptionSet:
 
         if "BreakYellowBlocksWithSuperBoots" in options_dict:
             self.glitch_settings.break_yellow_blocks_with_super_boots = options_dict.get("BreakYellowBlocksWithSuperBoots")
-        if "BreakMetalBlocksWithUltraBoots" in options_dict:
-            self.glitch_settings.break_metal_blocks_with_ultra_boots = options_dict.get("BreakMetalBlocksWithUltraBoots")
+        if "BreakStoneBlocksWithUltraBoots" in options_dict:
+            self.glitch_settings.break_stone_blocks_with_ultra_boots = options_dict.get("BreakStoneBlocksWithUltraBoots")
         if "KnowsHiddenBlocks" in options_dict:
             self.glitch_settings.knows_hidden_blocks = options_dict.get("KnowsHiddenBlocks")
         if "KnowsPuzzleSolutions" in options_dict:
@@ -1381,8 +1381,8 @@ def validate_options(options_dict):
 
     if "BreakYellowBlocksWithSuperBoots" in options_dict:
         assert isinstance(options_dict.get("BreakYellowBlocksWithSuperBoots").get("value"), bool)
-    if "BreakMetalBlocksWithUltraBoots" in options_dict:
-        assert isinstance(options_dict.get("BreakMetalBlocksWithUltraBoots").get("value"), bool)
+    if "BreakStoneBlocksWithUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("BreakStoneBlocksWithUltraBoots").get("value"), bool)
     if "KnowsHiddenBlocks" in options_dict:
         assert isinstance(options_dict.get("KnowsHiddenBlocks").get("value"), bool)
     if "KnowsPuzzleSolutions" in options_dict:
@@ -1586,7 +1586,7 @@ class GlitchOptionSet():
             self.bombetteless_bowsers_castle_basement = False
 
             self.break_yellow_blocks_with_super_boots = False
-            self.break_metal_blocks_with_ultra_boots = False
+            self.break_stone_blocks_with_ultra_boots = False
             self.knows_hidden_blocks = False
             self.knows_puzzle_solutions = False
             self.reach_high_blocks_with_super_boots = False

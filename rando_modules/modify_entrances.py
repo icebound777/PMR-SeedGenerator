@@ -590,7 +590,7 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
             all_new_edges.extend(edges_kpa_add_bombetteless_bowsers_castle_basement_laki)
 
     # Global
-    if glitch_settings.break_metal_blocks_with_ultra_boots["value"]:
+    if glitch_settings.break_stone_blocks_with_ultra_boots["value"]:
         all_new_edges.extend(edges_kmr_tik_isk_add_break_stone_blocks_ultra_boots)
     if glitch_settings.break_yellow_blocks_with_super_boots["value"]:
         all_new_edges.extend(edges_kmr_add_break_yellow_blocks_super_boots)

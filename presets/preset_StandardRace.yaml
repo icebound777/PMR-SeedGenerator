@@ -317,7 +317,7 @@ FastFloodRoomKooper                             : false
 FastFloodRoomBombetteUltraBoots                 : false
 BombettelessBowsersCastleBasement               : false
 
-BreakMetalBlocksWithUltraBoots                  : false
+BreakStoneBlocksWithUltraBoots                  : false
 KnowsHiddenBlocks                               : false
 KnowsPuzzleSolutions                            : false
 ReachHighBlocksWithSuperBoots                   : false
