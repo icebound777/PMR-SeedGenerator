@@ -417,7 +417,7 @@ verbose_item_locations = {
                "ItemF": "Shy Guy 5",},
     "OMO_02": {"HiddenYBlockA": "Hidden Block Left",
                "ItemA": "On Brick Block",
-               "YBlockA": "Hidden Block Right",},
+               "YBlockA": "Yellow Block Right",},
     "OMO_03": {"HiddenPanel": "Hidden Panel",
                "HiddenYBlockA": "Hidden Block",},
     "OMO_04": {"ChestA": "In Chest",
