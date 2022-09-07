@@ -20,3 +20,9 @@ edges_sam_add_ch7_sushie_glitch = [
     #? Shiver Mountain Hills Exit West -> Shiver Mountain Hills Exit East 
     {"from": {"map": "SAM_08", "id": 0}, "to": {"map": "SAM_08", "id": 1}, "reqs": [["RF_Ch7SushieGlitch"]], "mapchange": False}, 
 ]
+
+# Addon to the basic sushie glitch
+edges_sam_add_star_stone_with_ch7_sushie_glitch = [
+    #? Shiver Mountain Peaks Exit West -> Shiver Mountain Peaks Bombable Wall
+    {"from": {"map": "SAM_10", "id": 0}, "to": {"map": "SAM_10", "id": 2}, "reqs": [["StarStone"],["RF_Ch7SushieGlitch"]], "mapchange": False}
+]

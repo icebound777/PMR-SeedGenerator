@@ -1,6 +1,6 @@
 """
 This file represents edges of the world graph that have to be added
-for Glitched Logic: Parkarry-less Super Hammer Room.
+for Glitched Logic: Parakarry-less Super Hammer Room.
 """
 edges_isk_add_parakarryless_super_hammer_room_ultra_boots = [
     #? Descending Stairs 2 Exit Top Right -> Descending Stairs 2 Exit Top Left
