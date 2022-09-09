@@ -599,7 +599,7 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     if glitch_settings.reach_high_blocks_with_super_boots["value"]:
         all_new_edges.extend(edges_global_reach_high_blocks_with_super_boots)
 
-    print(all_new_edges)
+    #print(all_new_edges)
 
     # Modify graph with all pending changes, if any
     if all_new_edges or all_edges_to_remove:
