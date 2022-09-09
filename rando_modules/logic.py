@@ -182,7 +182,7 @@ def _depth_first_search(
     return found_new_pseudoitems, mario
 
 
-def _find_new_nodes_and_edges(
+def find_new_nodes_and_edges(
     pool_misc_progression_items:list,
     pool_other_items:list,
     world_graph:dict,
@@ -197,7 +197,7 @@ def _find_new_nodes_and_edges(
     This re-traversing is accomplished by calling DFS on each respective edge's
     origin node ("from-node").
     """
-    logging.debug("++++ _find_new_nodes_and_edges called")
+    logging.debug("++++ find_new_nodes_and_edges called")
     while True:
         found_new_items = False
 
@@ -275,7 +275,7 @@ def _find_new_nodes_and_edges(
         if not found_new_items:
             break
     logging.debug("non_traversable_edges after after %s", non_traversable_edges)
-    logging.debug("---- _find_new_nodes_and_edges end")
+    logging.debug("---- find_new_nodes_and_edges end")
     return pool_misc_progression_items, pool_other_items, reachable_node_ids, reachable_item_nodes, non_traversable_edges, filled_item_nodes, mario
 
 
@@ -1041,7 +1041,7 @@ def get_item_spheres(
         non_traversable_edges, \
         filled_item_nodes, \
         mario = \
-        _find_new_nodes_and_edges(pool_misc_progression_items,
+        find_new_nodes_and_edges(pool_misc_progression_items,
                                   pool_other_items,
                                   world_graph,
                                   reachable_node_ids,

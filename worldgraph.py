@@ -2,6 +2,9 @@
 This module represents a world graph. This graph maps item locations and the
 connections between them to allow simulated traversal of the in-game world.
 """
+from collections import defaultdict
+from copy import deepcopy
+
 from metadata.area_name_mappings import area_name_id_map, area_name_edges_map
 
 from db.node import Node
@@ -32,6 +35,13 @@ from maps.graph_edges.base_graph.edges_sam import edges_sam
 from maps.graph_edges.base_graph.edges_sbk import edges_sbk
 from maps.graph_edges.base_graph.edges_tik import edges_tik
 from maps.graph_edges.base_graph.edges_trd import edges_trd
+
+from models.MarioInventory import MarioInventory
+
+from rando_modules.logic import \
+    get_edge_origin_node_id,\
+    get_edge_target_node_id,\
+    get_startingnode_id_from_startingmap_id
 
 
 class hashabledict(dict):
@@ -273,6 +283,251 @@ def adjust(world_graph, new_edges=None, edges_to_remove=None):
         db_data.append((dbkey, dbvalue))
 
     return world_graph, db_data
+
+
+def recalculate_multikeys(world_graph:dict, starting_map_id:int):
+    """
+    Given a starting map id within the given world graph, recalculate the keys
+    required for each path blocked by a varying amount of the same key type
+    ("multikeys").
+    Does not recalculate required star spirits or star pieces.
+    """
+    # Check if the starting node is actually part of the world graph
+    node_identifier = get_startingnode_id_from_startingmap_id(starting_map_id)
+
+    if not node_identifier in world_graph:
+        raise ValueError(
+            "Provided node is not part of the provided world graph",
+            node_identifier
+        )
+
+    # Prepare datastructures and functions for world graph traversal
+    keys_required = {}
+    inventory = MarioInventory(
+        starting_boots=2,
+        starting_hammer=2,
+        partners_always_usable=True,
+        hidden_block_mode=2,
+        startwith_bluehouse_open=True,
+        magical_seeds_required=0,
+        startwith_toybox_open=True,
+        startwith_whale_open=True,
+        startwith_speedyspin=True
+    )
+
+    def _depth_first_search(
+        node_id:str,
+        world_graph:dict,
+        reachable_node_ids:set,
+        non_traversable_edges:defaultdict, #(set)
+        mario:MarioInventory
+    ):
+        """
+        Executes a DFS (depths first search) through the world graph, starting from
+        a given node.
+        If the given node is new, attempts to traverse all outgoing edges from
+        said node.
+        If all of an edge's requirements are fulfilled, adds edge's pseudoitems to
+        Mario's inventory (if any), then attempts a recursive DFS of that edge's
+        target node to further traverse the world graph.
+        If an edge's requirements are not fulfilled, it is added to the list of
+        reachable but not yet traversable edges.
+        Returns whether or not one or more pseudoitems have been found during
+        graph traversal.
+        """
+        found_new_pseudoitems = False
+
+        # Node already visited? -> Return!
+        node_checked_earlier = False
+        if node_id in reachable_node_ids:
+            if non_traversable_edges[node_id]:
+                node_checked_earlier = True
+            else:
+                return found_new_pseudoitems, mario
+        else:
+            reachable_node_ids.add(node_id)
+
+        if not node_checked_earlier:
+            # Get all outgoing edges
+            outgoing_edges = world_graph[node_id]["edge_list"]
+        else:
+            # Get all formerly untraversable edges
+            outgoing_edges = non_traversable_edges.pop(node_id)
+
+        for edge in outgoing_edges:
+            # Check if all requirements for edge traversal are fulfilled
+            if mario.requirements_fulfilled(edge.get("reqs")):
+                # Add all pseudoitems provided by this edge to the inventory
+                if edge.get("pseudoitems") is not None:
+                    mario.add(edge.get("pseudoitems"))
+                    found_new_pseudoitems = True
+
+                while edge in non_traversable_edges[node_id]:
+                    non_traversable_edges[node_id].remove(edge)
+
+                # DFS from newly reachable node
+                edge_target_node_id = get_edge_target_node_id(edge)
+                found_additional_pseudoitems, mario = _depth_first_search(
+                    edge_target_node_id,
+                    world_graph,
+                    reachable_node_ids,
+                    non_traversable_edges,
+                    mario
+                )
+                found_new_pseudoitems = found_new_pseudoitems or found_additional_pseudoitems
+            else:
+                non_traversable_edges[node_id].add(edge)
+        return found_new_pseudoitems, mario
+
+    def _find_new_nodes_and_edges(
+        world_graph:dict,
+        reachable_node_ids:set,
+        non_traversable_edges:defaultdict, #(set)
+        local_inventory:MarioInventory
+    ):
+        """
+        Try to traverse already found edges which could not be traversed before.
+        This re-traversing is accomplished by calling DFS on each respective edge's
+        origin node ("from-node").
+        """
+        while True:
+            found_new_items = False
+
+            # We require a copy here since we cannot iterate over a list and
+            # at the same time possibly delete entries from it (see DFS)
+            non_traversable_edges_cpy = non_traversable_edges.copy()
+
+            # Re-traverse already found edges which could not be traversed before.
+            node_ids_to_check = []
+            for edges in non_traversable_edges.values():
+                for edge in edges:
+                    # Generate list of unique node_ids to check to avoid multiple
+                    # checks of the same node
+                    from_node_id = get_edge_origin_node_id(edge)
+                    if from_node_id not in node_ids_to_check:
+                        node_ids_to_check.append(from_node_id)
+
+            for from_node_id in node_ids_to_check:
+                found_additional_items, local_inventory = _depth_first_search(
+                    from_node_id,
+                    world_graph,
+                    reachable_node_ids,
+                    non_traversable_edges_cpy,
+                    local_inventory
+                )
+                found_new_items = found_new_items or found_additional_items
+            non_traversable_edges = non_traversable_edges_cpy.copy()
+
+            # Keep searching for new edges and nodes until we don't find any new
+            # items which might open up even more edges and nodes
+            if not found_new_items:
+                break
+        return reachable_node_ids, non_traversable_edges, local_inventory
+
+    # Add all items to the inventory except for the multikeys
+    key_list = ["KoopaFortress","Ruins","TubbaCastle","BowserCastle"]
+    for key in key_list:
+        keys_required[f"{key}Key"] = 0
+    for node_id in world_graph.keys():
+        node = world_graph[node_id]["node"]
+        if node.vanilla_item:
+            item = node.vanilla_item.item_name
+            if not any(item.startswith(x) for x in key_list):
+                inventory.add(item)
+
+    # Search graph without keys
+    reachable_node_ids = set()
+    reachable_node_ids.add(node_identifier)
+    non_traversable_edges = defaultdict(set)
+    non_traversable_edges[node_identifier] = set()
+    for edge in world_graph.get(node_identifier).get("edge_list"):
+        non_traversable_edges[node_identifier].add(edge)
+
+    original_edges = []
+    modified_edges = []
+    while non_traversable_edges:
+        current_key_edges = []
+
+        reachable_node_ids, non_traversable_edges, inventory = \
+        _find_new_nodes_and_edges(
+            world_graph,
+            reachable_node_ids,
+            non_traversable_edges,
+            inventory
+        )
+
+        # Check if we were blocked by one of the missing keys and note that down
+        for node, edge_set in non_traversable_edges.items():
+            for edge in edge_set:
+                found_key = False
+                for req_group in edge["reqs"]:
+                    for req in req_group:
+                        if isinstance(req, dict):
+                            for key in req.keys():
+                                if any(key.startswith(x) for x in key_list):
+                                    keys_required[key] += 1
+                                    found_key = True
+                if found_key:
+                    original_edges.append(edge)
+                    current_key_edges.append(edge)
+
+        # Add multikeys to inventory depending on number of encountered blockers
+        for key, count in keys_required.items():
+            inventory.add([f"{key}{x}" for x in range(1, count + 1)])
+            # Search encountered multikey edges and add them (modified to hold
+            # the newly calculated key count) to a new list
+            for cur_edge in current_key_edges:
+                for org_edge in original_edges:
+                    if cur_edge == org_edge:
+                        for i, cur_req_grp in enumerate(cur_edge["reqs"]):
+                            for j, cur_req in enumerate(cur_req_grp):
+                                if isinstance(cur_req, dict) and cur_req.get(key) is not None:
+                                    mod_edge = deepcopy(cur_edge)
+                                    mod_edge["reqs"][i][j][key] = count
+                                    modified_edges.append(mod_edge)
+
+        # Some clean-up of the non_traversable_edges dict
+        remove_edges = []
+        for key, value in non_traversable_edges.items():
+            # Clear out empty data
+            if not value:
+                remove_edges.append(key)
+            # Clear out edges that can never be traversed
+            elif all([any(y in [['RF_Missable'], ['RF_OutOfLogic']] for y in x["reqs"]) for x in value]):
+                remove_edges.append(key)
+        for edge in remove_edges:
+            non_traversable_edges.pop(edge)
+
+    # Remove unneeded edge data
+    for entry in original_edges:
+        if entry.get("origin_node_id") is not None:
+            entry.pop("origin_node_id")
+        if entry.get("target_node_id") is not None:
+            entry.pop("target_node_id")
+    for entry in modified_edges:
+        if entry.get("origin_node_id") is not None:
+            entry.pop("origin_node_id")
+        if entry.get("target_node_id") is not None:
+            entry.pop("target_node_id")
+
+    # Remove un-changing edges from sets
+    remove_edges = []
+    for entry in original_edges:
+        if entry in modified_edges:
+            remove_edges.append(entry)
+    for entry in remove_edges:
+        original_edges.remove(entry)
+        modified_edges.remove(entry)
+
+    # Adjust graph if needed
+    if original_edges or modified_edges:
+        world_graph, _ = adjust(
+            world_graph,
+            new_edges=modified_edges,
+            edges_to_remove=original_edges
+        )
+
+    return world_graph
 
 
 def check_graph():
