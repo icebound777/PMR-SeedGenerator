@@ -317,6 +317,10 @@ def get_items_to_exclude(
         for item_name in exclude_due_to_settings.get("shorten_bowsers_castle"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
+    if bowsers_castle_mode == BowserCastleMode.BOSSRUSH:
+        for item_name in exclude_due_to_settings.get("boss_rush"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
     if always_speedyspin:
         for item_name in exclude_due_to_settings.get("always_speedyspin"):
             item = Item.get(Item.item_name == item_name)

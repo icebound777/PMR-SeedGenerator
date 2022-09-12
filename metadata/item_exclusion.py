@@ -34,6 +34,10 @@ exclude_due_to_settings = {
         "BowserCastleKeyD",
         "BowserCastleKeyE",
     ],
+    "boss_rush": [
+        "PrisonKeyA",
+        "PrisonKeyB",
+    ],
     "always_speedyspin": [
         "SpeedySpin",
     ],
