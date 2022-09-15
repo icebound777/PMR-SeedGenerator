@@ -26,12 +26,8 @@ def get_random_consumables(n:int) -> list:
     }
     item_weights = [weights[item["type"]] for item in item_scores]
 
-    new_items = []
-    for _ in range(n):
-        item, = random.choices(item_scores, item_weights) 
-        new_items.append(item)
+    return random.choices(item_scores, item_weights, k=n)
 
-    return new_items
 
 def balance_consumables(items, target_score):
     """
@@ -51,13 +47,13 @@ def balance_consumables(items, target_score):
         if pool_score < target_score:
             # Upgrade an item
             item_weights = [highest_score - item["score"] for item in new_items]
-            i, = random.choices([i for i in range(len(new_items))], item_weights)
+            i = random.choices([i for i in range(len(new_items))], item_weights).pop()
             old_item = new_items[i]
             legal_items = [item for item in item_scores if item["score"] > old_item["score"] and item["type"] == old_item["type"]]
         else:
             # Downgrade an item
             item_weights = [item["score"] - lowest_score for item in new_items]
-            i, = random.choices([i for i in range(len(new_items))], item_weights)
+            i = random.choices([i for i in range(len(new_items))], item_weights).pop()
             old_item = new_items[i]
             legal_items = [item for item in item_scores if item["score"] < old_item["score"] and item["type"] == old_item["type"]]
 
