@@ -2,6 +2,8 @@
 This module is used to modify entrances / loading zones. Depending on chosen
 settings it can set pre-determined paths or randomize them.
 """
+from copy import deepcopy
+
 from worldgraph import adjust, check_unreachable_from_start
 
 from rando_enums.enum_options import \
@@ -607,6 +609,43 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
             world_graph,
             new_edges=all_new_edges,
             edges_to_remove=all_edges_to_remove
+        )
+
+    return world_graph
+
+
+def adjust_rip_cheato_pricing(world_graph: dict, checks_in_logic:int):
+    """
+    Returns the modified world graph itself with adjusted item check logic for
+    the 11 item checks of Rip Cheato.
+    """
+    base_cheato_edges = deepcopy([
+        edge for edge in world_graph["TIK_15/1"]["edge_list"]
+            if isinstance(edge["to"]["id"], str)
+    ])
+    # late checks first to mark out of logic from the back of Cheato's item list
+    base_cheato_edges.sort(key=lambda edge: edge["to"]["id"], reverse=True)
+
+    checks_out_of_logic = len(base_cheato_edges) - checks_in_logic
+
+    remove_cheato_edges = []
+    adjusted_cheato_edges = []
+
+    adjusted_edges_cnt = 0
+    for edge in base_cheato_edges:
+        if adjusted_edges_cnt >= checks_out_of_logic:
+            break
+        remove_cheato_edges.append(edge)
+        new_edge = deepcopy(edge)
+        new_edge["reqs"] = [["RF_OutOfLogic"]]
+        adjusted_cheato_edges.append(new_edge)
+        adjusted_edges_cnt += 1
+
+    if adjusted_cheato_edges:
+        world_graph, _ = adjust(
+            world_graph,
+            new_edges=adjusted_cheato_edges,
+            edges_to_remove=remove_cheato_edges
         )
 
     return world_graph

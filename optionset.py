@@ -96,6 +96,7 @@ class OptionSet:
 
         # Item related
         self.merlow_reward_pricing = MerlowRewardPricing.NORMAL
+        self.ripcheato_items_in_logic = 6
         self.include_favors_mode = IncludeFavorsMode.NOT_RANDOMIZED
         self.include_letters_mode = IncludeLettersMode.NOT_RANDOMIZED
         self.include_radiotradeevent = False
@@ -344,6 +345,8 @@ class OptionSet:
         # Item related
         if "MerlowRewardPricing" in options_dict:
             self.merlow_reward_pricing = options_dict.get("MerlowRewardPricing").get("value")
+        if "RipCheatoItemsInLogic" in options_dict:
+            self.ripcheato_items_in_logic = options_dict.get("RipCheatoItemsInLogic").get("value")
         if "IncludeFavorsMode" in options_dict:
             self.include_favors_mode = options_dict.get("IncludeFavorsMode").get("value")
         if "IncludeLettersMode" in options_dict:
@@ -947,6 +950,12 @@ def validate_options(options_dict):
         assert (
             isinstance(options_dict.get("MerlowRewardPricing").get("value"), int)
         and MerlowRewardPricing.has_value(options_dict.get("MerlowRewardPricing").get("value"))
+        )
+    if "RipCheatoItemsInLogic" in options_dict:
+        value = options_dict.get("RipCheatoItemsInLogic").get("value")
+        assert (
+            isinstance(value, int)
+        and 0 <= value <= 11
         )
     if "IncludeFavorsMode" in options_dict:
         assert isinstance(options_dict.get("IncludeFavorsMode").get("value"), int)

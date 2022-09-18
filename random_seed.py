@@ -10,7 +10,11 @@ from rando_modules.logic import place_items, get_item_spheres, get_items_to_excl
 from rando_modules.random_blocks import get_block_placement
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.modify_entrances import \
-    get_shorter_bowsercastle, get_bowsercastle_bossrush, get_gear_location_shuffle, get_glitched_logic
+    get_shorter_bowsercastle,\
+    get_bowsercastle_bossrush,\
+    get_gear_location_shuffle,\
+    get_glitched_logic,\
+    adjust_rip_cheato_pricing
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
@@ -69,6 +73,10 @@ class RandomSeed:
             world_graph = get_gear_location_shuffle(world_graph, self.rando_settings.gear_shuffle_mode["value"])
 
         # Adjust graph logic if needed
+        world_graph = adjust_rip_cheato_pricing(
+            world_graph,
+            self.rando_settings.ripcheato_items_in_logic
+        )
         world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings, self.rando_settings.bowsers_castle_mode["value"])
 
         hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
