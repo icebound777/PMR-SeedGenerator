@@ -97,6 +97,7 @@ class RandomSeed:
                     do_shuffle_items=self.rando_settings.shuffle_items["value"],
                     do_randomize_coins=self.rando_settings.include_coins["value"],
                     do_randomize_shops=self.rando_settings.include_shops["value"],
+                    merlow_reward_pricing=self.rando_settings.merlow_reward_pricing,
                     do_randomize_panels=self.rando_settings.include_panels["value"],
                     randomize_favors_mode=self.rando_settings.include_favors_mode,
                     randomize_letters_mode=self.rando_settings.include_letters_mode,

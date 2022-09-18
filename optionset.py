@@ -8,7 +8,8 @@ from rando_enums.enum_options import \
     RandomMoveCosts,\
     HiddenBlockMode,\
     StartingBoots,\
-    StartingHammer
+    StartingHammer,\
+    MerlowRewardPricing
 
 class OptionSet:
     def __init__(self):
@@ -94,6 +95,7 @@ class OptionSet:
         self.starting_item_F = get_option_keyvalue_dict("StartingItemF")
 
         # Item related
+        self.merlow_reward_pricing = MerlowRewardPricing.NORMAL
         self.include_favors_mode = IncludeFavorsMode.NOT_RANDOMIZED
         self.include_letters_mode = IncludeLettersMode.NOT_RANDOMIZED
         self.include_radiotradeevent = False
@@ -340,6 +342,8 @@ class OptionSet:
             self.starting_item_F = options_dict.get("StartingItemF")
 
         # Item related
+        if "MerlowRewardPricing" in options_dict:
+            self.merlow_reward_pricing = options_dict.get("MerlowRewardPricing").get("value")
         if "IncludeFavorsMode" in options_dict:
             self.include_favors_mode = options_dict.get("IncludeFavorsMode").get("value")
         if "IncludeLettersMode" in options_dict:
@@ -939,6 +943,11 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("StartingItemF").get("value"), int)
 
     # Item related
+    if "MerlowRewardPricing" in options_dict:
+        assert (
+            isinstance(options_dict.get("MerlowRewardPricing").get("value"), int)
+        and MerlowRewardPricing.has_value(options_dict.get("MerlowRewardPricing").get("value"))
+        )
     if "IncludeFavorsMode" in options_dict:
         assert isinstance(options_dict.get("IncludeFavorsMode").get("value"), int)
     if "IncludeLettersMode" in options_dict:

@@ -77,6 +77,7 @@ RandomFormations        : true
 ShuffleItems          : true
 IncludeCoins          : true
 IncludeShops          : true
+MerlowRewardPricing   : 1 # 0:Cheap (5-30), 1:Normal (10-60)
 IncludePanels         : true
 IncludeDojo           : false
 IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle

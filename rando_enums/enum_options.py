@@ -66,3 +66,12 @@ class RandomPalettes(IntEnum):
     SELECT_PALETTE = 1
     RANDOM_PICK = 2
     ALWAYS_RANDOM = 3
+
+@unique
+class MerlowRewardPricing(IntEnum):
+    CHEAP = 0
+    NORMAL = 1
+
+    @classmethod
+    def has_value(cls, value):
+        return (value in set(item.value for item in cls))

@@ -364,6 +364,7 @@ def _generate_item_pools(
     all_item_nodes:list,
     do_randomize_coins:bool,
     do_randomize_shops:bool,
+    merlow_reward_pricing:int,
     do_randomize_panels:bool,
     randomize_favors_mode:int,
     randomize_letters_mode:int,
@@ -427,7 +428,8 @@ def _generate_item_pools(
                 current_node.current_item = current_node.vanilla_item
                 current_node.current_item.base_price = get_shop_price(
                     current_node,
-                    do_randomize_shops
+                    do_randomize_shops,
+                    merlow_reward_pricing
                 )
                 all_item_nodes.append(current_node)
                 continue
@@ -736,6 +738,7 @@ def _algo_assumed_fill(
     item_placement,
     do_randomize_coins,
     do_randomize_shops,
+    merlow_reward_pricing:int,
     do_randomize_panels,
     randomize_favors_mode:int,
     randomize_letters_mode:int,
@@ -763,8 +766,7 @@ def _algo_assumed_fill(
     starting_items:list,
     add_item_pouches:bool,
     bowsers_castle_mode:int,
-    world_graph,
-    algorithm
+    world_graph
 ):
 
     # Declare and init additional data structures
@@ -786,6 +788,7 @@ def _algo_assumed_fill(
         all_item_nodes,
         do_randomize_coins,
         do_randomize_shops,
+        merlow_reward_pricing,
         do_randomize_panels,
         randomize_favors_mode,
         randomize_letters_mode,
@@ -877,7 +880,11 @@ def _algo_assumed_fill(
         node_identifier = placement_location.identifier
 
         if "Shop" in node_identifier:
-            placement_location.current_item.base_price = get_shop_price(placement_location, do_randomize_shops)
+            placement_location.current_item.base_price = get_shop_price(
+                placement_location,
+                do_randomize_shops,
+                merlow_reward_pricing
+            )
 
     # Mark all unreachable nodes, which hold pre-filled items, as filled
     for item_node in all_item_nodes:
@@ -937,7 +944,11 @@ def _algo_assumed_fill(
                 item_node.current_item = random_item
 
                 if "Shop" in item_node_id:
-                    item_node.current_item.base_price = get_shop_price(item_node, do_randomize_shops)
+                    item_node.current_item.base_price = get_shop_price(
+                        item_node,
+                        do_randomize_shops,
+                        merlow_reward_pricing
+                    )
 
                 filled_item_node_ids.add(item_node_id)
                 logging.debug(
@@ -1092,6 +1103,7 @@ def place_items(
     do_shuffle_items,
     do_randomize_coins,
     do_randomize_shops,
+    merlow_reward_pricing,
     do_randomize_panels,
     randomize_favors_mode:int,
     randomize_letters_mode:int,
@@ -1132,7 +1144,8 @@ def place_items(
             node.current_item = node.vanilla_item
             node.current_item.base_price = get_shop_price(
                 node,
-                do_randomize_shops=False
+                do_randomize_shops=False,
+                merlow_reward_pricing=merlow_reward_pricing
             )
             item_placement.append(node)
     elif algorithm == "AssumedFill":
@@ -1141,6 +1154,7 @@ def place_items(
             item_placement,
             do_randomize_coins,
             do_randomize_shops,
+            merlow_reward_pricing,
             do_randomize_panels,
             randomize_favors_mode,
             randomize_letters_mode,
@@ -1168,6 +1182,5 @@ def place_items(
             starting_items,
             add_item_pouches,
             bowsers_castle_mode,
-            world_graph,
-            algorithm
+            world_graph
         )
