@@ -191,7 +191,7 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
         elif cur_setting == RandomPalettes.RANDOM_PICK:
             if cur_sprite_name == "Mario":
                 # Player sprite special case, see *
-                chosen_palette = random.randrange(abs(RANDOM_NOT_VANILLA - cur_setting - 1), palette_count)
+                chosen_palette = random.randrange(0, palette_count)
             else:
                 chosen_palette = random.randrange(0, palette_count + 1)
         elif cur_setting == RandomPalettes.ALWAYS_RANDOM:
@@ -229,7 +229,13 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
                 palette_count = palette_info.palette_count
                 if palette_info.sprite == "Peach":
                     # Player sprite special case, see *
-                    chosen_palette = random.randrange(abs(RANDOM_NOT_VANILLA - palette_settings.npc_setting - 1), palette_count)
+                    chosen_palette = random.randrange(0, palette_count)
+                else:
+                    chosen_palette = random.randrange(0, palette_count + 1)
+            elif palette_settings.npc_setting == RANDOM_PICK_NOT_VANILLA:
+                palette_count = palette_info.palette_count
+                if palette_info.sprite == "Peach":
+                    chosen_palette = random.randrange(1, palette_count)
                 else:
                     chosen_palette = random.randrange(0, palette_count + 1)
             elif palette_settings.npc_setting == RandomPalettes.ALWAYS_RANDOM:

@@ -161,7 +161,7 @@ RandomText     : false
 # DEFAULT_PALETTE    : 0
 # SELECT_PALETTE     : 1 (only Mario and partners)
 # RANDOM_PICK        : 2
-# RANDOM_NOT_VANILLA : 3
+# RANDOM_PICK_NOT_VANILLA  : 3
 # ALWAYS_RANDOM      : 4
 MarioSetting         : 2
 MarioSprite          : 0
