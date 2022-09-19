@@ -320,6 +320,7 @@ FastFloodRoomKooper                             : false
 FastFloodRoomBombetteUltraBoots                 : false
 BombettelessBowsersCastleBasement               : false
 
+BreakYellowBlocksWithSuperBoots                 : false
 BreakStoneBlocksWithUltraBoots                  : false
 KnowsHiddenBlocks                               : false
 KnowsPuzzleSolutions                            : false
