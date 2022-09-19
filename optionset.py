@@ -51,6 +51,7 @@ class OptionSet:
         self.shuffle_chapter_difficulty = False
         self.progressive_scaling = get_option_keyvalue_dict("ProgressiveScaling")
         self.random_formations = get_option_keyvalue_dict("RandomFormations")
+        self.prologue_open = get_option_keyvalue_dict("PrologueOpen")
         self.toybox_open = get_option_keyvalue_dict("ToyboxOpen")
         self.whale_open = get_option_keyvalue_dict("WhaleOpen")
         self.always_speedyspin = get_option_keyvalue_dict("AlwaysSpeedySpin")
@@ -260,6 +261,8 @@ class OptionSet:
             self.progressive_scaling = options_dict.get("ProgressiveScaling")
         if "RandomFormations" in options_dict:
             self.random_formations = options_dict.get("RandomFormations")
+        if "PrologueOpen" in options_dict:
+            self.prologue_open = options_dict.get("PrologueOpen")
         if "ToyboxOpen" in options_dict:
             self.toybox_open = options_dict.get("ToyboxOpen")
         if "WhaleOpen" in options_dict:
@@ -846,6 +849,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("RandomFormations").get("value"), bool)
     if "ProgressiveScaling" in options_dict:
         assert isinstance(options_dict.get("ProgressiveScaling").get("value"), bool)
+    if "PrologueOpen" in options_dict:
+        assert isinstance(options_dict.get("PrologueOpen").get("value"), bool)
     if "ToyboxOpen" in options_dict:
         assert isinstance(options_dict.get("ToyboxOpen").get("value"), bool)
     if "WhaleOpen" in options_dict:

@@ -60,6 +60,7 @@ StartingItemF: 0x000 # Nothing
 
 # Pre-opened areas
 MagicalSeedsRequired: 4 # 5:random
+PrologueOpen        : false
 BlueHouseOpen       : false
 ToyboxOpen          : false
 WhaleOpen           : false

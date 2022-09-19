@@ -19,6 +19,7 @@ class MarioInventory:
         partners_always_usable:bool=True,
         hidden_block_mode:int=1,
         magical_seeds_required:int=4,
+        startwith_prologue_open:bool=False,
         startwith_bluehouse_open:bool=False,
         startwith_toybox_open:bool=False,
         startwith_whale_open:bool=False,
@@ -45,6 +46,7 @@ class MarioInventory:
             starting_items = []
         assert(isinstance(hidden_block_mode, int))
         assert(isinstance(magical_seeds_required, int) and magical_seeds_required in range(0,5))
+        assert(isinstance(startwith_prologue_open, bool))
         assert(isinstance(startwith_bluehouse_open, bool))
         assert(isinstance(startwith_toybox_open, bool))
         assert(isinstance(startwith_whale_open, bool))
@@ -97,9 +99,8 @@ class MarioInventory:
         if magical_seeds_required == 0:
             self.add("RF_MagicalSeed4")
 
-        if startwith_bluehouse_open:
-            self.add("GF_MAC02_UnlockedHouse")
-
+        if startwith_prologue_open:
+            self.add("RF_BeatGoombaKing")
         if startwith_bluehouse_open:
             self.add("GF_MAC02_UnlockedHouse")
         if startwith_toybox_open:

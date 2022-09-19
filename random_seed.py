@@ -116,6 +116,7 @@ class RandomSeed:
                     item_quality=self.rando_settings.item_quality,
                     itemtrap_mode=self.rando_settings.itemtrap_mode,
                     starting_map_id=starting_map_value,
+                    startwith_prologue_open=self.rando_settings.prologue_open["value"],
                     startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
                     magical_seeds_required=magical_seeds_required,
                     startwith_toybox_open=self.rando_settings.toybox_open["value"],
@@ -215,6 +216,7 @@ class RandomSeed:
         self.item_spheres_text = get_item_spheres(
             item_placement= self.placed_items,
             starting_map_id=self.rando_settings.starting_map["value"],
+            startwith_prologue_open=self.rando_settings.prologue_open["value"],
             startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
             magical_seeds_required=self.rando_settings.magical_seeds_required["value"],
             startwith_toybox_open=self.rando_settings.toybox_open["value"],
