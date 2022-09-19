@@ -84,7 +84,8 @@ IncludeDojo           : false
 IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
 IncludeLettersMode    : 0 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
 IncludeRadioTradeEvent: false
-ItemScarcity          : 0 # 0:off, 1-5:on (higher = worse items)
+RandomConsumableMode  : 2 # 0 = vanilla, 1 = full random, 2 = balanced random, 3 = mystery only
+ItemQuality           : 125
 ItemTrapMode          : 0 # 0:off, 1:sparse, 2:moderate, 3:plenty
 GearShuffleMode       : 0 # 0:vanilla, 1:location shuffle, 2:full shuffle
 AddItemPouches        : true
