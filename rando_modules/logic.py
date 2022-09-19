@@ -1160,7 +1160,7 @@ def place_items(
             node.current_item.base_price = get_shop_price(
                 node,
                 do_randomize_shops=False,
-                merlow_reward_pricing=merlow_reward_pricing
+                merlow_costs=merlow_reward_pricing
             )
             item_placement.append(node)
     elif algorithm == "AssumedFill":
