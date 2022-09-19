@@ -101,7 +101,7 @@ class OptionSet:
         self.include_dojo = False
         self.gear_shuffle_mode = get_option_keyvalue_dict("GearShuffleMode")
         self.randomize_consumable_mode = RandomizeConsumablesMode.OFF
-        self.item_scarcity = 100
+        self.item_quality = 100
         self.add_item_pouches = False
         self.placement_algorithm = "AssumedFill"
         self.keyitems_outside_dungeon = True # False -> NYI
@@ -354,8 +354,8 @@ class OptionSet:
             self.gear_shuffle_mode = options_dict.get("GearShuffleMode")
         if "RandomConsumableMode" in options_dict:
             self.randomize_consumable_mode = options_dict.get("RandomConsumableMode").get("value")
-        if "ItemScarcity" in options_dict:
-            self.item_scarcity = options_dict.get("ItemScarcity").get("value")
+        if "ItemQuality" in options_dict:
+            self.item_quality = options_dict.get("ItemQuality").get("value")
         if "AddItemPouches" in options_dict:
             self.add_item_pouches = options_dict.get("AddItemPouches").get("value")
         if "PlacementAlgorithm" in options_dict:
@@ -895,9 +895,9 @@ def validate_options(options_dict):
         assert (isinstance(options_dict.get("RandomConsumableMode").get("value"), int)
             and 0 <= options_dict.get("RandomConsumableMode").get("value") <= 3
         )
-    if "ItemScarcity" in options_dict:
-        assert (isinstance(options_dict.get("ItemScarcity").get("value"), int)
-            and 25 <= options_dict.get("ItemScarcity").get("value") <= 125
+    if "ItemQuality" in options_dict:
+        assert (isinstance(options_dict.get("ItemQuality").get("value"), int)
+            and 25 <= options_dict.get("ItemQuality").get("value") <= 125
         )
     if "AddItemPouches" in options_dict:
         assert isinstance(options_dict.get("AddItemPouches").get("value"), bool)

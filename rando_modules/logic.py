@@ -367,7 +367,7 @@ def _generate_item_pools(
     do_randomize_dojo:bool,
     gear_shuffle_mode:int,
     randomize_consumable_mode:int,
-    item_scarcity:int,
+    item_quality:int,
     itemtrap_mode:int,
     startwith_bluehouse_open:bool,
     magical_seeds_required:int,
@@ -631,7 +631,12 @@ def _generate_item_pools(
                            + len(pool_other_items)
 
     # Randomize consumables if needed
-    pool_other_items = get_randomized_itempool(pool_other_items, randomize_consumable_mode, item_scarcity)
+    pool_other_items = get_randomized_itempool(
+        pool_other_items,
+        randomize_consumable_mode,
+        item_quality,
+        True  # add_unused_items
+    )
 
     pool_other_items = get_trapped_itempool(
         pool_other_items,
@@ -741,7 +746,7 @@ def _algo_assumed_fill(
     do_randomize_dojo,
     gear_shuffle_mode:int,
     randomize_consumable_mode:int,
-    item_scarcity,
+    item_quality,
     itemtrap_mode,
     starting_map_id,
     startwith_bluehouse_open,
@@ -792,7 +797,7 @@ def _algo_assumed_fill(
         do_randomize_dojo,
         gear_shuffle_mode,
         randomize_consumable_mode,
-        item_scarcity,
+        item_quality,
         itemtrap_mode,
         startwith_bluehouse_open,
         magical_seeds_required,
@@ -1099,7 +1104,7 @@ def place_items(
     do_randomize_dojo,
     gear_shuffle_mode:int,
     randomize_consumable_mode:int,
-    item_scarcity,
+    item_quality,
     itemtrap_mode,
     starting_map_id,
     startwith_bluehouse_open,
@@ -1149,7 +1154,7 @@ def place_items(
             do_randomize_dojo,
             gear_shuffle_mode,
             randomize_consumable_mode,
-            item_scarcity,
+            item_quality,
             itemtrap_mode,
             starting_map_id,
             startwith_bluehouse_open,

@@ -15,7 +15,7 @@ from metadata.itemlocation_special import \
     kootfavors_keyitem_locations, \
     limited_by_item_areas
 
-def get_random_consumables(n:int) -> list:
+def _get_random_consumables(n:int, available_items:list) -> list:
     """
     Returns a list of n items, with categories similar to vanilla distribution
     """
@@ -24,12 +24,12 @@ def get_random_consumables(n:int) -> list:
         "heal": 45,
         "taycet": 5,
     }
-    item_weights = [weights[item["type"]] for item in item_scores]
+    item_weights = [weights[item["type"]] for item in available_items]
 
-    return random.choices(item_scores, item_weights, k=n)
+    return random.choices(available_items, item_weights, k=n)
 
 
-def balance_consumables(items, target_score):
+def _balance_consumables(items:list, available_items:list, target_score:int):
     """
     Modifies a list of consumables until its score is close enough to the target score
     """
@@ -49,13 +49,13 @@ def balance_consumables(items, target_score):
             item_weights = [highest_score - item["score"] for item in new_items]
             i = random.choices([i for i in range(len(new_items))], item_weights).pop()
             old_item = new_items[i]
-            legal_items = [item for item in item_scores if item["score"] > old_item["score"] and item["type"] == old_item["type"]]
+            legal_items = [item for item in available_items if item["score"] > old_item["score"] and item["type"] == old_item["type"]]
         else:
             # Downgrade an item
             item_weights = [item["score"] - lowest_score for item in new_items]
             i = random.choices([i for i in range(len(new_items))], item_weights).pop()
             old_item = new_items[i]
-            legal_items = [item for item in item_scores if item["score"] < old_item["score"] and item["type"] == old_item["type"]]
+            legal_items = [item for item in available_items if item["score"] < old_item["score"] and item["type"] == old_item["type"]]
 
         # If there's no legal items to upgrade/downgrade to, try again
         if len(legal_items) == 0:
@@ -67,17 +67,17 @@ def balance_consumables(items, target_score):
 
     return new_items
 
-def get_randomized_itempool(itempool:list, consumable_mode:int, scarcity:int) -> list:
+def get_randomized_itempool(itempool:list, consumable_mode:int, quality:int, add_unused_items:bool) -> list:
     """
     Returns a randomized general item pool according to consumable mode
     Balanced random mode creates an item pool that has a value equal
-    to the input pool's value, multiplied by the scarcity percentage
+    to the input pool's value, multiplied by the quality percentage
     """
     # Consumable mode:
-    # 0: vanilla (no scarcity)
-    # 1: full random (no scarcity)
-    # 2: balanced random (scarcity applies)
-    # 3: mystery only (no scarcity)
+    # 0: vanilla (no quality)
+    # 1: full random (no quality)
+    # 2: balanced random (quality applies)
+    # 3: mystery only (no quality)
 
     # vanilla
     if consumable_mode == RandomizeConsumablesMode.OFF:
@@ -95,18 +95,24 @@ def get_randomized_itempool(itempool:list, consumable_mode:int, scarcity:int) ->
     # Random or Balanced Random
     if (consumable_mode == RandomizeConsumablesMode.FULL_RANDOM
         or consumable_mode == RandomizeConsumablesMode.BALANCED_RANDOM):
-        # Generate fully random pool
-        new_items = get_random_consumables(target_count)
 
-        # Balance according to scarcity factor
+        if add_unused_items:
+            available_items = item_scores
+        else:
+            available_items = [item for item in item_scores if item["name"] != "HustleDrink"]
+
+        # Generate fully random pool
+        new_items = _get_random_consumables(target_count, available_items)
+
+        # Balance according to quality factor
         if consumable_mode == RandomizeConsumablesMode.BALANCED_RANDOM:
             target_score = 0
             for item_obj in removed_items:
                 target_score += next(item["score"] for item in item_scores if item["name"] == item_obj.item_name)
 
-            # Multiply score by the scarcity factor
-            target_score = math.floor(target_score * (scarcity / 100))
-            new_items = balance_consumables(new_items, target_score)
+            # Multiply score by the quality factor
+            target_score = math.floor(target_score * (quality / 100))
+            new_items = _balance_consumables(new_items, available_items, target_score)
         
         # Convert from scored dict entries to proper item_obj list
         new_items = [Item.get(Item.item_name == item["name"]) for item in new_items]

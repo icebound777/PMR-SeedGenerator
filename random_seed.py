@@ -104,7 +104,7 @@ class RandomSeed:
                     do_randomize_dojo=self.rando_settings.include_dojo,
                     gear_shuffle_mode=self.rando_settings.gear_shuffle_mode["value"],
                     randomize_consumable_mode=self.rando_settings.randomize_consumable_mode,
-                    item_scarcity=self.rando_settings.item_scarcity,
+                    item_quality=self.rando_settings.item_quality,
                     itemtrap_mode=self.rando_settings.itemtrap_mode,
                     starting_map_id=starting_map_value,
                     startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
