@@ -72,7 +72,8 @@ class RandomPalettes(IntEnum):
     DEFAULT_PALETTE = 0
     SELECT_PALETTE = 1
     RANDOM_PICK = 2
-    ALWAYS_RANDOM = 3
+    RANDOM_PICK_NOT_VANILLA = 3
+    ALWAYS_RANDOM = 4
 
 @unique
 class MerlowRewardPricing(IntEnum):
