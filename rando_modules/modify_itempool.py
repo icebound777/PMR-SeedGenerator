@@ -1,5 +1,6 @@
 import math
 import random
+from copy import deepcopy
 
 from db.item import Item
 from db.node import Node
@@ -120,7 +121,9 @@ def get_randomized_itempool(itempool:list, consumable_mode:int, quality:int, add
     # Mystery only
     elif consumable_mode == RandomizeConsumablesMode.MYSTERY_ONLY:
         mystery_item = Item.get(Item.item_name == "Mystery")
-        new_items = [mystery_item] * target_count
+        new_items = []
+        for _ in range(target_count):
+            new_items.append(deepcopy(mystery_item))
 
     new_itempool = kept_items + new_items
     assert(len(itempool) == len(new_itempool))
