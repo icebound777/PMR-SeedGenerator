@@ -94,7 +94,7 @@ def get_shop_price(node:Node, do_randomize_shops:bool, merlow_costs:int) -> int:
                 buy_price = 25
             else:
                 buy_price = 50
-        else:
+        elif "ShopRewardF" in node.identifier:
             if merlow_costs == MerlowRewardPricing.CHEAP:
                 buy_price = 30
             else:
