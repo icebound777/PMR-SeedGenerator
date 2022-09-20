@@ -57,46 +57,48 @@ def get_shop_price(node:Node, do_randomize_shops:bool, merlow_costs:int) -> int:
                 buy_price = 15
             elif any(True for i in ["ShopBadgeO"] if i in node.identifier):
                 buy_price = 20
-            # Merlow's trade rewards
-            elif "ShopRewardA" in node.identifier:
-                # If Merlow's set to "cheap", then only adjust the pricing, but
-                # not the actual star pieces required in logic. This makes it so
-                # even if an item is placed in an expensive reward slot,
-                # gathering the required star pieces becomes much easier
-                # overall.
-                if merlow_costs == MerlowRewardPricing.CHEAP:
-                    buy_price = 5
-                else:
-                    buy_price = 10
-            elif "ShopRewardB" in node.identifier:
-                if merlow_costs == MerlowRewardPricing.CHEAP:
-                    buy_price = 10
-                else:
-                    buy_price = 20
-            elif "ShopRewardC" in node.identifier:
-                if merlow_costs == MerlowRewardPricing.CHEAP:
-                    buy_price = 15
-                else:
-                    buy_price = 30
-            elif "ShopRewardD" in node.identifier:
-                if merlow_costs == MerlowRewardPricing.CHEAP:
-                    buy_price = 20
-                else:
-                    buy_price = 40
-            elif "ShopRewardE" in node.identifier:
-                if merlow_costs == MerlowRewardPricing.CHEAP:
-                    buy_price = 25
-                else:
-                    buy_price = 50
-            else:
-                if merlow_costs == MerlowRewardPricing.CHEAP:
-                    buy_price = 30
-                else:
-                    buy_price = 60
 
     else:
         # Set vanilla prices
         buy_price = node.vanilla_price
+
+    # Merlow's trade rewards
+    if "HOS_06" in node.identifier:
+        if "ShopRewardA" in node.identifier:
+            # If Merlow's set to "cheap", then only adjust the pricing, but
+            # not the actual star pieces required in logic. This makes it so
+            # even if an item is placed in an expensive reward slot,
+            # gathering the required star pieces becomes much easier
+            # overall.
+            if merlow_costs == MerlowRewardPricing.CHEAP:
+                buy_price = 5
+            else:
+                buy_price = 10
+        elif "ShopRewardB" in node.identifier:
+            if merlow_costs == MerlowRewardPricing.CHEAP:
+                buy_price = 10
+            else:
+                buy_price = 20
+        elif "ShopRewardC" in node.identifier:
+            if merlow_costs == MerlowRewardPricing.CHEAP:
+                buy_price = 15
+            else:
+                buy_price = 30
+        elif "ShopRewardD" in node.identifier:
+            if merlow_costs == MerlowRewardPricing.CHEAP:
+                buy_price = 20
+            else:
+                buy_price = 40
+        elif "ShopRewardE" in node.identifier:
+            if merlow_costs == MerlowRewardPricing.CHEAP:
+                buy_price = 25
+            else:
+                buy_price = 50
+        else:
+            if merlow_costs == MerlowRewardPricing.CHEAP:
+                buy_price = 30
+            else:
+                buy_price = 60
 
     #print(f"Set price {node_id}({node.current_item}): {buy_price}")
 
