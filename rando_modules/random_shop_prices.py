@@ -14,7 +14,7 @@ def get_shop_price(
     Return the price for an item for offer within a shop (regular or Merlow's).
     Merlow gets special pricing rules as he deals in star pieces.
     """
-    if "HOS_06" in node.identifier:
+    if "HOS_06" in node.identifier and "Shop" in node.identifier:
         # Merlow's shop
         if "ShopReward" in node.identifier:
             # Merlow's trade rewards
