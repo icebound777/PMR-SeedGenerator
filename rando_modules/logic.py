@@ -289,8 +289,8 @@ def get_items_to_exclude(
     always_ispy:bool,
     always_peekaboo:bool,
     gear_shuffle_mode:int,
-    starting_hammer:int,
-    starting_boots:int
+    starting_hammer:int=-1,
+    starting_boots:int=-1
 ) -> list:
     """
     Returns a list of items that should not be placed or given to Mario at the
