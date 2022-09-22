@@ -60,12 +60,12 @@ StartingItemF: 0x000 # Nothing
 
 # Pre-opened areas
 MagicalSeedsRequired: 4 # 5:random
+PrologueOpen        : false
 BlueHouseOpen       : false
 ToyboxOpen          : false
 WhaleOpen           : false
 
 # Randomization: Logic
-#PlacementAlgorithm: ForwardFill
 PlacementAlgorithm: AssumedFill
 #PlacementAlgorithm: CustomSeed # NYI
 
@@ -78,12 +78,15 @@ RandomFormations        : false
 ShuffleItems          : true
 IncludeCoins          : false
 IncludeShops          : false
+MerlowRewardPricing   : 0 # 0:Cheap (5-30), 1:Normal (10-60)
+RipCheatoItemsInLogic : 6 # 0-11
 IncludePanels         : false
 IncludeDojo           : false
 IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
 IncludeLettersMode    : 0 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
 IncludeRadioTradeEvent: false
-ItemScarcity          : 0 # 0:off, 1-5:on (higher = worse items)
+RandomConsumableMode  : 2 # 0 = vanilla, 1 = full random, 2 = balanced random, 3 = mystery only
+ItemQuality           : 125
 ItemTrapMode          : 0 # 0:off, 1:sparse, 2:moderate, 3:plenty
 GearShuffleMode       : 0 # 0:vanilla, 1:location shuffle, 2:full shuffle
 AddItemPouches        : true
@@ -187,22 +190,34 @@ RandomPitch: false
 
 # Glitched Logic
 PrologueGelEarly                                : false
+ReverseGoombaKingBridge                         : false
+GoombaVillageEntryFenceClip                     : false
+GoombaVillageNpcLureExit                        : false
+HammerlessJrPlaygroundLaki                      : false
+GoombaVillageLakiExit                           : false
+PrologueSushieGlitch                            : false
 
 OddKeyEarly                                     : false
 BlueHouseSkip                                   : false
 BlueHouseSkipLaki                               : false
 BlueHouseSkipToadLure                           : false
-BowlessToyBox                                   : false
+BowlessToyBoxHammer                             : false
+BowlessToyBoxHammerlessLure                     : false
 EarlyStoreroomParakarry                         : false
 EarlyStoreroomHammer                            : false
+EarlyStoreroomHammerlessLure                    : false
 WhaleEarly                                      : false
 SushielessToadTownStarPiece                     : false
+ToadTownSushieGlitch                            : false
 
 ClippyBootsStoneBlockSkip                       : false
 ClippyBootsMetalBlockSkip                       : false
 IslandPipeBlooperSkip                           : false
 ParakarrylessSewerStarPiece                     : false
 SewerBlocksWithoutUltraBoots                    : false
+FirstBlockToShiverCityWithoutSuperBoots         : false
+BlocksToShiverCityWithKooperShellItemThrow      : false
+SewerYellowBlockWithUltraBoots                  : false
 
 KooperlessPleasantPathStarPiece                 : false
 InvisibleBridgeClipLzs                          : false
@@ -213,17 +228,20 @@ BombettelessKbfFpPlusLZS                        : false
 BombettelessKbfFpPlusLaki                       : false
 LakiJailbreak                                   : false
 BombettelessRightFortressJailKey                : false
+WaterStaircaseSkip                              : false
 
 MtRuggedQuakeHammerAndLetterWithLaki            : false
 ParakarrylessMtRuggedSeed                       : false
 BuzzarGapSkipClippy                             : false
 ParakarrylessMtRuggedStarPiece                  : false
+MtRuggedCoinsWithKooper                         : false
 
 DesertBrickBlockItemWithParakarry               : false
 EarlyRuinsLakiJump                              : false
 EarlyRuinsUltraBoots                            : false
 
-ArtifactJump                                    : false
+ArtifactJumpLaki                                : false
+ArtifactJumpUltraBoots                          : false
 RuinsKeyLakiJump                                : false
 ParakarrylessSecondSandRoomUltraBoots           : false
 ParakarrylessSecondSandRoomNormalBoots          : false
@@ -237,6 +255,7 @@ BoosPortraitWithKooper                          : false
 BoosPortraitWithLaki                            : false
 
 GustyGulchGateSkipLZS                           : false
+GustyGulchGateSkipLaki                          : false
 KooperlessGustyGulchDizzyDialJump               : false
 KooperlessGustyGulchDizzyDialLaki               : false
 KooperlessGustyGulchDizzyDialParakarry          : false
@@ -244,6 +263,7 @@ GustyGulchGapSkip                               : false
 
 BowlessTubbasCastle                             : false
 TubbasTableLakiJump                             : false
+TubbasTableUltraBoots                           : false
 TubbasCastleSuperBootsSkip                      : false
 ParakarrylessMegaRush                           : false
 
@@ -253,15 +273,23 @@ GourmetGuySkipLaki                              : false
 GourmetGuySkipParakarry                         : false
 BowlessGreenStation                             : false
 KooperlessRedStationShootingStar                : false
+ParakarrylessBlueBlockCityGap                   : false
+BlueSwitchSkipLaki                              : false
+BlueSwitchSkipUltraBoots                        : false
+RedBarricadeSkip                                : false
+HammerlessBlueStationLaki                       : false
+HammerlessPinkStationLaki                       : false
 
 RaphSkipEnglish                                 : false
 Ch5SushieGlitch                                 : false
 
 KooperlessLavalavaPowBlock                      : false
 UltraHammerSkip                                 : false
+UltraHammerSkipLaki                             : false
 Flarakarry                                      : false
 ParakarrylessFlarakarryBombette                 : false
 ParakarrylessFlarakarryLaki                     : false
+VolcanoSushieGlitch                             : false
 
 EarlyLakiLZS                                    : false
 EarlyLakiBombettePush                           : false
@@ -279,16 +307,22 @@ BubbleBerryTreeLakiJump                         : false
 MurderSolvedEarlyLaki                           : false
 MurderSolvedEarlyBombettePush                   : false
 Ch7SushieGlitch                                 : false
+StarStoneWithCh7SushieGlitch                    : false
 ShiverMountainHiddenBlockWithoutUltraBootsLaki  : false
 ShiverMountainHiddenBlockWithoutUltraBootsNoLaki: false
+SnowmenSkipLaki                                 : false
+ShiverMountainSwitchSkip                        : false
+SushielessWarehouseKey                          : false
 
 MirrorClip                                      : false
 
 BowlessBowsersCastleBasement                    : false
 FastFloodRoomKooper                             : false
 FastFloodRoomBombetteUltraBoots                 : false
+BombettelessBowsersCastleBasement               : false
 
 BreakYellowBlocksWithSuperBoots                 : false
-BreakMetalBlocksWithUltraBoots                  : false
+BreakStoneBlocksWithUltraBoots                  : false
 KnowsHiddenBlocks                               : false
 KnowsPuzzleSolutions                            : false
+ReachHighBlocksWithSuperBoots                   : false

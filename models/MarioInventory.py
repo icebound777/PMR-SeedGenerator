@@ -1,30 +1,123 @@
 """
-This module represents Mario as an abstract object for simulating world traversal.
-This is required for checking randomization logic.
+This module represents Mario's inventory as an abstract object for simulating
+world traversal. This is required for checking randomization logic.
 """
 
 from metadata.partners_meta import all_partners
 
-class Mario:
+class MarioInventory:
     """
-    Represents a state of Mario, including items, partners and more abstract
-    things that influence progression.
+    Represents a state of Mario's inventory, including items, partners and more
+    abstract things that influence progression.
     """
-    def __init__(self, **kwargs):
-        self.boots = kwargs.get("boots", set())
-        self.hammer = kwargs.get("hammer", set())
-        self.items = kwargs.get("items", set())
-        self.starpieces = kwargs.get("starpieces", set())
-        self.partners = kwargs.get("partners", set())
-        self.favors = kwargs.get("favors", set()) # https://www.mariowiki.com/Koopa_Koot%27s_favors
-        self.flags = kwargs.get("flags", set())
-        self.starspirits = kwargs.get("starspirits", set())
-        self.item_history = []
+    def __init__(
+        self,
+        starting_boots:int=0,
+        starting_hammer:int=0,
+        starting_partners:list=None,
+        starting_items:list=None,
+        partners_always_usable:bool=True,
+        hidden_block_mode:int=1,
+        magical_seeds_required:int=4,
+        startwith_prologue_open:bool=False,
+        startwith_bluehouse_open:bool=False,
+        startwith_toybox_open:bool=False,
+        startwith_whale_open:bool=False,
+        startwith_speedyspin:bool=True,
+        cook_without_fryingpan:bool=True
+    ):
+        """
+        Initializes Mario's starting inventory with values depending on
+        several parameters and flags.
+        This includes partners (for considering their overworld abilities during
+        world graph traversal), equipment, as well as additional pseudoitems
+        based on chosen settings.
+        Starting equipment irrelevant to world graph traversal (such as Lucky
+        Star, starting coins) is ignored.
+        """
+        assert(isinstance(starting_boots, int) and starting_boots in range(-1,3))
+        assert(isinstance(starting_hammer, int) and starting_hammer in range(-1,3))
+        assert(starting_partners is None or isinstance(starting_partners, list))
+        if starting_partners is None:
+            starting_partners = ["Goombario"]
+        assert(isinstance(partners_always_usable, bool))
+        assert(starting_items is None or isinstance(starting_items, list))
+        if starting_items is None:
+            starting_items = []
+        assert(isinstance(hidden_block_mode, int))
+        assert(isinstance(magical_seeds_required, int) and magical_seeds_required in range(0,5))
+        assert(isinstance(startwith_prologue_open, bool))
+        assert(isinstance(startwith_bluehouse_open, bool))
+        assert(isinstance(startwith_toybox_open, bool))
+        assert(isinstance(startwith_whale_open, bool))
+        assert(isinstance(startwith_speedyspin, bool))
+        assert(isinstance(cook_without_fryingpan, bool))
+
+        self.boots = set()
+        self.hammer = set()
+        self.items = set()
+        self.starpieces = set()
         self.starpiece_count = 0
+        self.partners = set()
+        self.favors = set()
+        self.flags = set()
+        self.starspirits = set()
+        self.item_history = []
+
+        if starting_boots == 2:
+            self.add("BootsProxy3")
+        if starting_boots >= 1:
+            self.add("BootsProxy2")
+        if starting_boots >= 0:
+            self.add("BootsProxy1")
+
+        if starting_hammer == 2:
+            self.add("HammerProxy3")
+        if starting_hammer >= 1:
+            self.add("HammerProxy2")
+        if starting_hammer >= 0:
+            self.add("HammerProxy1")
+
+        self.add(starting_partners)
+        if partners_always_usable:
+            self.add(all_partners)
+            self.add("RF_PartnersAlwaysUsable")
+
+        for item in starting_items:
+            self.add(item.item_name)
+
+        if hidden_block_mode == 3:
+            # hidden blocks always visible
+            self.add("RF_HiddenBlocksVisible")
+
+        if magical_seeds_required <= 3:
+            self.add("RF_MagicalSeed1")
+        if magical_seeds_required <= 2:
+            self.add("RF_MagicalSeed2")
+        if magical_seeds_required <= 1:
+            self.add("RF_MagicalSeed3")
+        if magical_seeds_required == 0:
+            self.add("RF_MagicalSeed4")
+
+        if startwith_prologue_open:
+            self.add("RF_BeatGoombaKing")
+        if startwith_bluehouse_open:
+            self.add("GF_MAC02_UnlockedHouse")
+        if startwith_toybox_open:
+            self.add("RF_ToyboxOpen")
+        if startwith_whale_open:
+            self.add("RF_CanRideWhale")
+
+        if startwith_speedyspin:
+            self.add("SpeedySpin")
+
+        if cook_without_fryingpan:
+            self.add("RF_CanCook")
 
 
-    def add_to_inventory(self, item_object):
+    def add(self, item_object):
         """Add something to Mario's inventory."""
+
         # Overload: Single item -> Add item
         if isinstance(item_object, str):
             is_new_pseudoitem = False
@@ -77,62 +170,16 @@ class Mario:
                     self.items.add(item_object)
                     self.item_history.append(f"+{item_object}")
 
-            #print(f"New item: {item_object}")
-
             return is_new_pseudoitem
+
         # Overload: List of items -> Call function per item
         if isinstance(item_object, list):
             has_new_pseudoitem = False
             for singular_item in item_object:
-                is_new_pseudoitem = self.add_to_inventory(singular_item)
+                is_new_pseudoitem = self.add(singular_item)
                 if is_new_pseudoitem:
                     has_new_pseudoitem = True
             return has_new_pseudoitem
-
-        raise TypeError('item_object argument is not of type str or list',
-                        type(item_object),
-                        item_object)
-
-
-    def remove_from_inventory(self, item_object):
-        """Remove something from Mario's inventory."""
-        # Overload: Single item -> Remove item
-        if isinstance(item_object, str):
-
-            if (   item_object.startswith("GF")
-                or item_object.startswith("MF")
-                or item_object.startswith("MB")
-                or item_object.startswith("RF")
-            ):
-                self.flags.remove(item_object)
-            elif item_object in all_partners:
-                self.partners.remove(item_object)
-                self.item_history.append(f"-{item_object}")
-            elif item_object.find("StarPiece") != -1:
-                if item_object.startswith("Three"):
-                    self.starpiece_count -= 3
-                else:
-                    self.starpiece_count -= 1
-                self.starpieces.remove(item_object)
-                self.item_history.append(f"-{item_object}")
-            elif item_object.startswith("FAVOR"):
-                self.favors.remove(item_object)
-            elif (item_object in ["BootsProxy1","BootsProxy2","BootsProxy3"]):
-                self.boots.remove(item_object)
-            elif (item_object in ["HammerProxy1","HammerProxy2","HammerProxy3"]):
-                self.hammer.remove(item_object)
-            elif item_object.startswith("STARSPIRIT"):
-                self.starspirits.remove(item_object)
-            else:
-                self.items.remove(item_object)
-                self.item_history.append(f"-{item_object}")
-            return
-
-        # Overload: List of items -> Call function per item
-        if isinstance(item_object, list):
-            for singular_item in item_object:
-                self.remove_from_inventory(singular_item)
-            return
 
         raise TypeError('item_object argument is not of type str or list',
                         type(item_object),
