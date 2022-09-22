@@ -311,8 +311,8 @@ class RandomSeed:
                 always_ispy=rando_settings.always_ispy["value"],
                 always_peekaboo=rando_settings.always_peekaboo["value"],
                 gear_shuffle_mode=rando_settings.gear_shuffle_mode["value"],
-                starting_hammer=-1,
-                starting_boots=-1
+                starting_hammer=None,
+                starting_boots=None
             )
             for item_obj in excluded_items:
                 if item_obj.value in all_allowed_starting_items:
