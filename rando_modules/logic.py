@@ -502,7 +502,7 @@ def _generate_item_pools(
             if (    gear_shuffle_mode == GearShuffleMode.VANILLA
                 and current_node.vanilla_item.item_type == "GEAR"
                 and (   current_node.identifier != "KMR_04/Bush7_Drop1"
-                     or starting_hammer == -1)
+                     or starting_hammer == StartingHammer.HAMMERLESS)
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -586,7 +586,7 @@ def _generate_item_pools(
                 break
             else:
                 pool_other_items.append(rnd_item)
-        pool_other_items.extend(new_boots)
+        pool_progression_items.append(new_boots)
 
 
     # Adjust item pools based on settings
@@ -836,10 +836,9 @@ def _algo_assumed_fill(
                 for item in itemlist:
                     assert item not in dungeon_restricted_items
                     dungeon_restricted_items[item] = dungeon
+        pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 
-    if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
-        pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
-    pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
+    pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
 
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()

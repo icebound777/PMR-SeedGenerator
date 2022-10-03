@@ -895,11 +895,13 @@ def validate_options(options_dict):
         assert (    isinstance(options_dict.get("StartingStarPower").get("value"), int)
                 and 0 <= options_dict.get("StartingStarPower").get("value") <= 7)
     if "StartingBoots" in options_dict:
+        assert (    isinstance(options_dict.get("StartingBoots").get("value"), int)
+                and StartingBoots.JUMPLESS <= options_dict.get("StartingBoots").get("value") <= StartingBoots.ULTRABOOTS)
         try:
-            assert (    isinstance(options_dict.get("StartingBoots").get("value"), int)
-                    and StartingBoots.BOOTS <= options_dict.get("StartingBoots").get("value") <= StartingBoots.ULTRABOOTS)
+            if "ShuffleItems" in options_dict and not options_dict.get("ShuffleItems").get("value"):
+                assert (StartingBoots.BOOTS <= options_dict.get("StartingBoots").get("value"))
         except AssertionError:
-            print("Preset Error: Jumpless start Not Yet Implemented in logic!")
+            print(f"No item shuffle but jumpless start is not a valid setting-combination!")
             raise
     if "StartingHammer" in options_dict:
         assert (    isinstance(options_dict.get("StartingHammer").get("value"), int)

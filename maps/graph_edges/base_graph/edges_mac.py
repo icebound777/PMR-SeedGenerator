@@ -5,14 +5,14 @@ edges_mac = [
     {"from": {"map": "MAC_00", "id": 1}, "to": {"map": "MAC_01", "id": 0}, "reqs": []}, # Gate District Exit Right -> Plaza District Exit Left
     {"from": {"map": "MAC_00", "id": 3}, "to": {"map": "TIK_19", "id": 0}, "reqs": []}, # Gate District Island Pipe -> Under the Toad Town Pond Pipe Left
     {"from": {"map": "MAC_00", "id": 4}, "to": {"map": "KMR_20", "id": 4}, "reqs": []}, # Gate District Top Green Pipe -> Mario's House Green Pipe
-    
+
     {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 1}, "reqs": []}, #? Gate District Exit Left -> Gate District Exit Right
     {"from": {"map": "MAC_00", "id": 1}, "to": {"map": "MAC_00", "id": 0}, "reqs": []}, #? Gate District Exit Right -> Gate District Exit Left
-    {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 3}, "reqs": [["Sushie"]]}, #? Gate District Exit Left -> Gate District Island Pipe
+    {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 3}, "reqs": [["Sushie"],["can_climb_steps"]]}, #? Gate District Exit Left -> Gate District Island Pipe
     {"from": {"map": "MAC_00", "id": 3}, "to": {"map": "MAC_00", "id": 0}, "reqs": [["Sushie"]]}, #? Gate District Island Pipe -> Gate District Exit Left
-    {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 4}, "reqs": []}, #? Gate District Exit Left -> Gate District Top Green Pipe
+    {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 4}, "reqs": [["can_climb_steps"]]}, #? Gate District Exit Left -> Gate District Top Green Pipe
     {"from": {"map": "MAC_00", "id": 4}, "to": {"map": "MAC_00", "id": 0}, "reqs": []}, #? Gate District Top Green Pipe -> Gate District Exit Left
-    
+#TODO spawn on pipe logic
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Gate District Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_00", "id": "HiddenPanel"}, "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "ItemA"},       "reqs": [["Sushie"]]}, #* Gate District Exit Left -> ItemA (StarPiece)
@@ -56,7 +56,7 @@ edges_mac = [
     {"from": {"map": "MAC_01", "id": 2}, "to": {"map": "OSR_01", "id": 0}, "reqs": []}, # Plaza District Exit Top -> Peach's Castle Ground Exit Bottom
     {"from": {"map": "MAC_01", "id": 3}, "to": {"map": "MAC_02", "id": 2}, "reqs": []}, # Plaza District Exit Bottom -> Southern District Exit Top
     {"from": {"map": "MAC_01", "id": 5}, "to": {"map": "FLO_00", "id": 0}, "reqs": []}, # Plaza District Flower Door -> Flower Fields Center Tree Door
-    
+
     {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 1}, "reqs": []}, #? Plaza District Exit Left -> Plaza District Exit Right
     {"from": {"map": "MAC_01", "id": 1}, "to": {"map": "MAC_01", "id": 0}, "reqs": []}, #? Plaza District Exit Right -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 2}, "reqs": []}, #? Plaza District Exit Left -> Plaza District Exit Top
@@ -68,7 +68,7 @@ edges_mac = [
                                                                                     ["MagicalSeed3", "RF_MagicalSeed3"],
                                                                                     ["MagicalSeed4", "RF_MagicalSeed4"]]}, #? Plaza District Exit Left -> Plaza District Flower Door
     {"from": {"map": "MAC_01", "id": 5}, "to": {"map": "MAC_01", "id": 0}, "reqs": []}, #? Plaza District Flower Door -> Plaza District Exit Left
-    
+
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "ItemA"},        "reqs": [["SuperBoots"]]}, #* Plaza District Exit Left -> ItemA (QuickChange)
     {"from": {"map": "MAC_01", "id": "ItemA"},        "to": {"map": "MAC_01", "id": 0},              "reqs": []}, #* ItemA (QuickChange) -> Plaza District Exit Left
     {"from": {"map": "MAC_01", "id": 0},              "to": {"map": "MAC_01", "id": "GiftA"},        "reqs": [["Calculator"]]}, #* Plaza District Exit Left -> GiftA (ISpy)
@@ -144,19 +144,19 @@ edges_mac = [
     {"from": {"map": "MAC_02", "id": 3}, "to": {"map": "MAC_03", "id": 0}, "reqs": []}, # Southern District Exit Bottom -> Station District Exit Top
     {"from": {"map": "MAC_02", "id": 4}, "to": {"map": "TIK_06", "id": 3}, "reqs": []}, # Southern District Open Pipe -> Sewer Entrance (B1) Pipe Top
     {"from": {"map": "MAC_02", "id": 5}, "to": {"map": "TIK_15", "id": 1}, "reqs": []}, # Southern District Blue House Pipe -> Rip Cheato's Home (B3) Pipe Right
-    
+
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": 0}, "reqs": []}, #? Southern District Exit Top -> Southern District Exit Left
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 2}, "reqs": []}, #? Southern District Exit Left -> Southern District Exit Top
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": 1}, "reqs": []}, #? Southern District Exit Top -> Southern District Exit Right
     {"from": {"map": "MAC_02", "id": 1}, "to": {"map": "MAC_02", "id": 2}, "reqs": []}, #? Southern District Exit Right -> Southern District Exit Top
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": 3}, "reqs": []}, #? Southern District Exit Top -> Southern District Exit Bottom
     {"from": {"map": "MAC_02", "id": 3}, "to": {"map": "MAC_02", "id": 2}, "reqs": []}, #? Southern District Exit Bottom -> Southern District Exit Top
-    {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": 4}, "reqs": []}, #? Southern District Exit Top -> Southern District Open Pipe
+    {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": 4}, "reqs": [["can_climb_steps"]]}, #? Southern District Exit Top -> Southern District Open Pipe
     {"from": {"map": "MAC_02", "id": 4}, "to": {"map": "MAC_02", "id": 2}, "reqs": []}, #? Southern District Open Pipe -> Southern District Exit Top
-    {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": 5}, "reqs": [["OddKey","GF_MAC02_UnlockedHouse"]], "pseudoitems": ["GF_MAC02_UnlockedHouse"]}, #? Southern District Exit Top -> Southern District Blue House Pipe
+    {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": 5}, "reqs": [["OddKey","GF_MAC02_UnlockedHouse"],["can_climb_steps"]], "pseudoitems": ["GF_MAC02_UnlockedHouse"]}, #? Southern District Exit Top -> Southern District Blue House Pipe
     {"from": {"map": "MAC_02", "id": 5}, "to": {"map": "MAC_02", "id": 2}, "reqs": [["OddKey","GF_MAC02_UnlockedHouse"]], "pseudoitems": ["GF_MAC02_UnlockedHouse"]}, #? Southern District Blue House Pipe -> Southern District Exit Top
-    
-    {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftA"},       "reqs": []}, #* Southern District Exit Top -> GiftA (MagicalSeed1)
+
+    {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftA"},       "reqs": [["can_climb_steps"]]}, #* Southern District Exit Top -> GiftA (MagicalSeed1)
     {"from": {"map": "MAC_02", "id": "GiftA"},       "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* GiftA (MagicalSeed1) -> Southern District Exit Top
     {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "GiftB"},       "reqs": [["FryingPan"]], "pseudoitems": ["RF_CanCook"]}, #* Southern District Exit Top -> GiftB (Cake)
     {"from": {"map": "MAC_02", "id": "GiftB"},       "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* GiftB (Cake) -> Southern District Exit Top
@@ -165,7 +165,7 @@ edges_mac = [
     {"from": {"map": "MAC_02", "id": 2},             "to": {"map": "MAC_02", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Southern District Exit Top -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_02", "id": "HiddenPanel"}, "to": {"map": "MAC_02", "id": 2},             "reqs": []}, #* HiddenPanel (StarPiece) -> Southern District Exit Top
     {"from": {"map": "MAC_02", "id": 5},             "to": {"map": "MAC_02", "id": "ItemA"},       "reqs": []}, #* Southern District Blue House Pipe -> ItemA (OddKey)
-    {"from": {"map": "MAC_02", "id": "ItemA"},       "to": {"map": "MAC_02", "id": 5},             "reqs": [["RF_CanGetInsideBlueHouse"]]}, #* ItemA (OddKey) -> Southern District Blue House Pipe
+    {"from": {"map": "MAC_02", "id": "ItemA"},       "to": {"map": "MAC_02", "id": 5},             "reqs": [["RF_CanGetInsideBlueHouse"],["can_climb_steps"]]}, #* ItemA (OddKey) -> Southern District Blue House Pipe
 
     # Tayce T. related
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanVisitTayceT"]}, #+ Can visit Tayce T. for cooking
@@ -189,15 +189,15 @@ edges_mac = [
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_02", "id": 3}, "reqs": []}, # Station District Exit Top -> Southern District Exit Bottom
     {"from": {"map": "MAC_03", "id": 1}, "to": {"map": "IWA_11", "id": 1}, "reqs": []}, # Station District Train -> Train Ride Scene Exit Left
     {"from": {"map": "MAC_03", "id": 2}, "to": {"map": "MGM_00", "id": 0}, "reqs": []}, # Station District Minigame Pipe -> Playroom Lobby Exit Pipe
-    
+
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 1}, "reqs": [["GF_MAC03_BombedRock"]]}, #? Station District Exit Top -> Station District Train
     {"from": {"map": "MAC_03", "id": 1}, "to": {"map": "MAC_03", "id": 0}, "reqs": [], "pseudoitems": ["GF_MAC03_BombedRock"]}, #? Station District Train -> Station District Exit Top
-    {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 2}, "reqs": [["can_shake_trees"]]}, #? Station District Exit Top -> Station District Minigame Pipe
+    {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 2}, "reqs": [["can_shake_trees"],["can_climb_steps"]]}, #? Station District Exit Top -> Station District Minigame Pipe
     {"from": {"map": "MAC_03", "id": 2}, "to": {"map": "MAC_03", "id": 0}, "reqs": []}, #? Station District Minigame Pipe -> Station District Exit Top
-    
-    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "GiftA"},       "reqs": [["Parakarry"],["Letter20"]]}, #* Station District Exit Top -> GiftA (Letter21)
+
+    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "GiftA"},       "reqs": [["Parakarry"],["Letter20"],["Boots"]]}, #* Station District Exit Top -> GiftA (Letter21)
     {"from": {"map": "MAC_03", "id": "GiftA"},       "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* GiftA (Letter21) -> Station District Exit Top
-    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "GiftB"},       "reqs": [["Parakarry"],["Letter22"]]}, #* Station District Exit Top -> GiftB (Letter23)
+    {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "GiftB"},       "reqs": [["Parakarry"],["Letter22"],["Boots"]]}, #* Station District Exit Top -> GiftB (Letter23)
     {"from": {"map": "MAC_03", "id": "GiftB"},       "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* GiftB (Letter23) -> Station District Exit Top
     {"from": {"map": "MAC_03", "id": 0},             "to": {"map": "MAC_03", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Station District Exit Top -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_03", "id": "HiddenPanel"}, "to": {"map": "MAC_03", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Station District Exit Top
@@ -208,14 +208,14 @@ edges_mac = [
     {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": []}, # Residental District Exit Right -> Southern District Exit Left
     {"from": {"map": "MAC_04", "id": 1}, "to": {"map": "MAC_05", "id": 0}, "reqs": []}, # Residental District Exit Left -> Port District Exit Right
     {"from": {"map": "MAC_04", "id": 2}, "to": {"map": "OMO_03", "id": 4}, "reqs": []}, # Residental District Toybox Spring -> BLU Station Spring Exit
-    
+
     {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 1}, "reqs": []}, #? Residental District Exit Right -> Residental District Exit Left
     {"from": {"map": "MAC_04", "id": 1}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #? Residental District Exit Left -> Residental District Exit Right
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 2}, "reqs": [["Bow","RF_ToyboxOpen"]]}, #? Residental District Exit Right -> Residental District Toybox Spring    
+    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 2}, "reqs": [["Bow","RF_ToyboxOpen"],["can_climb_steps"]]}, #? Residental District Exit Right -> Residental District Toybox Spring
     {"from": {"map": "MAC_04", "id": 2}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #? Residental District Toybox Spring -> Residental District Exit Right
 
     {"from": {"map": "MAC_04", "id": 2}, "to": {"map": "MAC_04", "id": 2}, "reqs": [], "pseudoitems": ["MF_Ch4_CanThrowInTrain"]}, #+ Toybox: Can throw in ToyTrain
-    
+
     {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ItemA"},     "reqs": [["StoreroomKey"]]}, #* Residental District Exit Right -> ItemA (SnowmanDoll)
     {"from": {"map": "MAC_04", "id": "ItemA"},     "to": {"map": "MAC_04", "id": 0},           "reqs": []}, #* ItemA (SnowmanDoll) -> Residental District Exit Right
     {"from": {"map": "MAC_04", "id": 0},           "to": {"map": "MAC_04", "id": "ItemB"},     "reqs": [["StoreroomKey"]]}, #* Residental District Exit Right -> ItemB (VoltShroom)
@@ -262,12 +262,12 @@ edges_mac = [
     {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_04", "id": 1}, "reqs": []}, # Port District Exit Right -> Residental District Exit Left
     {"from": {"map": "MAC_05", "id": 1}, "to": {"map": "MAC_06", "id": 0}, "reqs": []}, # Port District Ride Whale -> Ride Whale (Toad Town)
     {"from": {"map": "MAC_05", "id": 3}, "to": {"map": "KGR_01", "id": 0}, "reqs": []}, # Port District Enter Whale -> Whale Mouth Exit Left
-    
+
     {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 1}, "reqs": [["RF_CanRideWhale"]]}, #? Port District Exit Right -> Port District Ride Whale
     {"from": {"map": "MAC_05", "id": 1}, "to": {"map": "MAC_05", "id": 0}, "reqs": []}, #? Port District Ride Whale -> Port District Exit Right
     {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 3}, "reqs": [["Hammer","SuperBoots","Bombette"]]}, #? Port District Exit Right -> Port District Enter Whale
     {"from": {"map": "MAC_05", "id": 3}, "to": {"map": "MAC_05", "id": 0}, "reqs": []}, #? Port District Enter Whale -> Port District Exit Right
-    
+
     {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftA"},       "reqs": []}, #* Port District Exit Right -> GiftA (Lyrics)
     {"from": {"map": "MAC_05", "id": "GiftA"},       "to": {"map": "MAC_05", "id": 0},             "reqs": []}, #* GiftA (Lyrics) -> Port District Exit Right
     {"from": {"map": "MAC_05", "id": 0},             "to": {"map": "MAC_05", "id": "GiftB"},       "reqs": [["Melody"]]}, #* Port District Exit Right -> GiftB (AttackFXD)
