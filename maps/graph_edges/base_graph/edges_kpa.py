@@ -69,7 +69,7 @@ edges_kpa = [
     {"from": {"map": "KPA_11",  "id": 4}, "to": {"map": "KPA_11",  "id": 3}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"]]}, #? Outside Lower Jail (Lava) Lava Door Right -> Outside Lower Jail (Lava) Lava Door Left
 
     {"from": {"map": "KPA_11",  "id": 0},         "to": {"map": "KPA_11",  "id": "ItemA"},   "reqs": []}, #* Outside Lower Jail (Lava) Door Top Left -> ItemA (BowserCastleKey)
-    {"from": {"map": "KPA_11",  "id": "ItemA"},   "to": {"map": "KPA_11",  "id": 0},         "reqs": [["can_climb_steps"]]}, #* ItemA (BowserCastleKey) -> Outside Lower Jail (Lava) Door Top Left
+    {"from": {"map": "KPA_11",  "id": "ItemA"},   "to": {"map": "KPA_11",  "id": 0},         "reqs": [["Boots"]]}, #* ItemA (BowserCastleKey) -> Outside Lower Jail (Lava) Door Top Left
 
     # KPA_12 Lava Channel 1
     {"from": {"map": "KPA_12",  "id": 0}, "to": {"map": "KPA_10",  "id": 1}, "reqs": []}, # Lava Channel 1 Door Left -> Outside Lower Jail (No Lava) Door Right

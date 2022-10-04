@@ -159,7 +159,7 @@ edges_sam = [
     {"from": {"map": "SAM_10", "id": 0}, "to": {"map": "SAM_10", "id": 2}, "reqs": [["Bombette"]]}, #? Shiver Mountain Peaks Exit West -> Shiver Mountain Peaks Bombable Wall
     {"from": {"map": "SAM_10", "id": 2}, "to": {"map": "SAM_10", "id": 0}, "reqs": []}, #? Shiver Mountain Peaks Bombable Wall -> Shiver Mountain Peaks Exit West
 
-    {"from": {"map": "SAM_10", "id": 0},         "to": {"map": "SAM_10", "id": "RBlockA"}, "reqs": [["StarStone"],["Boots"]]}, #* Shiver Mountain Peaks Exit West -> RBlockA (MegaJump)
+    {"from": {"map": "SAM_10", "id": 0},         "to": {"map": "SAM_10", "id": "RBlockA"}, "reqs": [["StarStone"],["can_climb_steps"],["can_hit_floating_blocks"]]}, #* Shiver Mountain Peaks Exit West -> RBlockA (MegaJump)
     {"from": {"map": "SAM_10", "id": "RBlockA"}, "to": {"map": "SAM_10", "id": 0},         "reqs": []}, #* RBlockA (MegaJump) -> Shiver Mountain Peaks Exit West
     {"from": {"map": "SAM_10", "id": 0},         "to": {"map": "SAM_10", "id": "ItemA"},   "reqs": [["StarStone"],["can_climb_steps"]]}, #* Shiver Mountain Peaks Exit West -> ItemA (StarPiece)
     {"from": {"map": "SAM_10", "id": "ItemA"},   "to": {"map": "SAM_10", "id": 0},         "reqs": []}, #* ItemA (StarPiece) -> Shiver Mountain Peaks Exit West

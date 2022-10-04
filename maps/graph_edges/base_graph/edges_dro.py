@@ -10,8 +10,6 @@ edges_dro = [
     {"from": {"map": "DRO_01", "id": 0}, "to": {"map": "DRO_01", "id": 2}, "reqs": [["GF_TIK01_WarpPipes"],["Boots"]]}, #? Outpost 1 Exit West -> Outpost 1 Blue Warp Pipe
     {"from": {"map": "DRO_01", "id": 2}, "to": {"map": "DRO_01", "id": 0}, "reqs": []}, #? Outpost 1 Blue Warp Pipe -> Outpost 1 Exit West
 
-    {"from": {"map": "DRO_01", "id": 2}, "to": {"map": "DRO_01", "id": 2}, "reqs": [], "pseudoitems": ["GF_TIK01_WarpPipes"]}, #+ Outpost 1 Blue Warp Pipe #TODO: probably wrong?
-
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "GiftA"},     "reqs": [["Lyrics"]]}, #* Outpost 1 Exit West -> GiftA (Melody)
     {"from": {"map": "DRO_01", "id": "GiftA"},     "to": {"map": "DRO_01", "id": 0},           "reqs": []}, #* GiftA (Melody) -> Outpost 1 Exit West
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "GiftB"},     "reqs": [["RF_MouserReturned"],["FAVOR_7_02_done"]]}, #* Outpost 1 Exit West -> GiftB (KootRedJar)

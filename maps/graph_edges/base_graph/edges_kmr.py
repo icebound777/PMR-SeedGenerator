@@ -54,9 +54,9 @@ edges_kmr  = [
     {"from": {"map": "KMR_05", "id": 0},               "to": {"map": "KMR_05", "id": 1},               "reqs": [["can_climb_steps"]]}, #? Behind the Village Exit Left -> Behind the Village Exit Right
     {"from": {"map": "KMR_05", "id": 1},               "to": {"map": "KMR_05", "id": 0},               "reqs": []}, #? Behind the Village Exit Right -> Behind the Village Exit Left
 
-    {"from": {"map": "KMR_05", "id": 1      },         "to": {"map": "KMR_05", "id": "ItemA"},         "reqs": [["can_climb_steps"]]}, #* Behind the Village Exit Right -> ItemA (StarPiece)
+    {"from": {"map": "KMR_05", "id": 1      },         "to": {"map": "KMR_05", "id": "ItemA"},         "reqs": [["Boots"]]}, #* Behind the Village Exit Right -> ItemA (StarPiece)
     {"from": {"map": "KMR_05", "id": "ItemA"},         "to": {"map": "KMR_05", "id": 1      },         "reqs": []}, #* ItemA (StarPiece) -> Behind the Village Exit Right
-    {"from": {"map": "KMR_05", "id": 1      },         "to": {"map": "KMR_05", "id": "Tree1_Drop1A"},  "reqs": [["can_shake_trees"],["can_climb_steps"]]}, #* Behind the Village Exit Right -> Tree1_Drop1A (Coin)
+    {"from": {"map": "KMR_05", "id": 1      },         "to": {"map": "KMR_05", "id": "Tree1_Drop1A"},  "reqs": [["can_shake_trees"],["Boots"]]}, #* Behind the Village Exit Right -> Tree1_Drop1A (Coin)
     {"from": {"map": "KMR_05", "id": "Tree1_Drop1A"},  "to": {"map": "KMR_05", "id": 1      },         "reqs": []}, #* Tree1_Drop1A (Coin) -> Behind the Village Exit Right
 
     # KMR_03 Bottom of the Cliff
@@ -137,8 +137,8 @@ edges_kmr  = [
     {"from": {"map": "KMR_11", "id": 0}, "to": {"map": "KMR_12", "id": 1}, "reqs": []}, # Goomba King's Castle Exit Left -> Goomba Road 4 Exit Right
     {"from": {"map": "KMR_11", "id": 1}, "to": {"map": "KMR_10", "id": 0}, "reqs": []}, # Goomba King's Castle Exit Right -> Toad Town Entrance Exit Left
 
-    {"from": {"map": "KMR_11", "id": 0}, "to": {"map": "KMR_11", "id": 1}, "reqs": [["RF_BeatGoombaBros"]], "pseudoitems": ["RF_BeatGoombaKing"]}, #? Goomba King's Castle Exit Left -> Goomba King's Castle Exit Right
-    {"from": {"map": "KMR_11", "id": 1}, "to": {"map": "KMR_11", "id": 0}, "reqs": [["RF_BeatGoombaKing"],["Kooper","Bombette","Parakarry","Hammer","Boots"]]}, #? Goomba King's Castle Exit Right -> Goomba King's Castle Exit Left
+    {"from": {"map": "KMR_11", "id": 0}, "to": {"map": "KMR_11", "id": 1}, "reqs": [["RF_BeatGoombaBros"],["can_climb_steps","Hammer","Kooper","Bombette"]], "pseudoitems": ["RF_BeatGoombaKing"]}, #? Goomba King's Castle Exit Left -> Goomba King's Castle Exit Right
+    {"from": {"map": "KMR_11", "id": 1}, "to": {"map": "KMR_11", "id": 0}, "reqs": [["RF_BeatGoombaKing"]]}, #? Goomba King's Castle Exit Right -> Goomba King's Castle Exit Left
 
     {"from": {"map": "KMR_11", "id": 0},              "to": {"map": "KMR_11", "id": "Tree1_Drop1A"}, "reqs": [["can_shake_trees"]]}, #* Goomba King's Castle Exit Left -> Tree1_Drop1A (StarPiece)
     {"from": {"map": "KMR_11", "id": "Tree1_Drop1A"}, "to": {"map": "KMR_11", "id": 0},              "reqs": []}, #* Tree1_Drop1A (StarPiece) -> Goomba King's Castle Exit Left
