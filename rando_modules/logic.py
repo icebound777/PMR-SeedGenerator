@@ -874,9 +874,10 @@ def _algo_assumed_fill(
             candidate_locations = [node for node in candidate_locations if node.map_area.name[:3] == dungeon]
             dungeon_restricted_items.pop(item.item_name)
 
-        if gear_shuffle_mode == 1:
-            # Gear Location Shuffle
-            if item.item_type == "GEAR":
+        if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
+            # Note: Boots 1 (Jumpless start) has to be placed elsewhere, as all
+            # gear locations are unreachable otherwise
+            if item.item_type == "GEAR" and item.item_name != "BootsProxy1":
                 candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
             else:
                 candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type != "GEAR"]
