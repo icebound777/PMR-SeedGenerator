@@ -9,5 +9,5 @@ edges_obk_add_record_skip_bombette_push = [
 
 edges_obk_add_record_skip_spin_jump = [
     #* Record Player Room Door South -> ChestA (BooWeight)
-    {"from": {"map": "OBK_07", "id": 0}, "to": {"map": "OBK_07", "id": "ChestA"}, "reqs": [], "mapchange": False},
+    {"from": {"map": "OBK_07", "id": 0}, "to": {"map": "OBK_07", "id": "ChestA"}, "reqs": [["Boots"]], "mapchange": False},
 ]

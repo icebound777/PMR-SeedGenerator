@@ -4,5 +4,5 @@ for Glitched Logic: Bombette-less Right Fortress Jail Key.
 """
 edges_trd_add_bombetteless_right_key = [
     #* Central Hall Exit Bottom Right -> ItemB (KoopaFortressKey) (Right)
-    {"from": {"map": "TRD_03", "id": 1}, "to": {"map": "TRD_03", "id": "ItemB"}, "reqs": [["Lakilester"]], "mapchange": False},
+    {"from": {"map": "TRD_03", "id": 1}, "to": {"map": "TRD_03", "id": "ItemB"}, "reqs": [["Lakilester"],["Boots"]], "mapchange": False},
 ]
