@@ -39,7 +39,7 @@ edges_mac = [
     {"from": {"map": "MAC_00", "id": "ShopItemF"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemF (Mushroom) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoA"},       "reqs": []}, #* Gate District Exit Left -> Dojo Fight A (First Degree Card)
     {"from": {"map": "MAC_00", "id": "DojoA"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* Dojo Fight A (First Degree Card) -> Gate District Exit Left
-    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoB"},       "reqs": [[{"starspirits": 2}]]}, #* Gate District Exit Left -> Dojo Fight B (Second Degree Card)
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoB"},       "reqs": [[{"starspirits": 1}]]}, #* Gate District Exit Left -> Dojo Fight B (Second Degree Card)
     {"from": {"map": "MAC_00", "id": "DojoB"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* Dojo Fight B (Second Degree Card) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoC"},       "reqs": [[{"starspirits": 3}]]}, #* Gate District Exit Left -> Dojo Fight C (Third Degree Card)
     {"from": {"map": "MAC_00", "id": "DojoC"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* Dojo Fight C (Third Degree Card) -> Gate District Exit Left
@@ -211,7 +211,7 @@ edges_mac = [
     
     {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 1}, "reqs": []}, #? Residental District Exit Right -> Residental District Exit Left
     {"from": {"map": "MAC_04", "id": 1}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #? Residental District Exit Left -> Residental District Exit Right
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 2}, "reqs": [["Bow","RF_ToyboxOpen"]]}, #? Residental District Exit Right -> Residental District Toybox Spring    
+    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 2}, "reqs": [["Bow","RF_ToyboxOpen"]]}, #? Residental District Exit Right -> Residental District Toybox Spring
     {"from": {"map": "MAC_04", "id": 2}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, #? Residental District Toybox Spring -> Residental District Exit Right
 
     {"from": {"map": "MAC_04", "id": 2}, "to": {"map": "MAC_04", "id": 2}, "reqs": [], "pseudoitems": ["MF_Ch4_CanThrowInTrain"]}, #+ Toybox: Can throw in ToyTrain
