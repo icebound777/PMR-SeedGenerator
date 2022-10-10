@@ -14,10 +14,10 @@ edges_kzn_add = [
     {"from": {"map": "KZN_06", "id": 0}, "to": {"map": "KZN_06", "id": 2}, "reqs": [["UltraHammer"]], "mapchange": False},
 
     # KZN_07 Ultra Hammer Room Exit East -> BigChest (UltraHammer)
-    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": "BigChest"}, "reqs": [["Parakarry","Lakilester","UltraHammer"]], "mapchange": False},
+    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": "BigChest"}, "reqs": [["Parakarry","Lakilester","UltraHammer"],["can_climb_steps"]], "mapchange": False},
 
     # KZN_17 Spike Roller Trap Exit West -> Spike Roller Trap Exit East
-    {"from": {"map": "KZN_17", "id": 0}, "to": {"map": "KZN_17", "id": 1}, "reqs": [["UltraHammer"]], "mapchange": False},
+    {"from": {"map": "KZN_17", "id": 0}, "to": {"map": "KZN_17", "id": 1}, "reqs": [["UltraHammer"],["can_climb_steps"]], "mapchange": False},
 ]
 
 edges_kzn_remove = [
@@ -28,8 +28,8 @@ edges_kzn_remove = [
     {"from": {"map": "KZN_06", "id": 0}, "to": {"map": "KZN_06", "id": 2}, "reqs": [["RF_KZN07_OpenedHammerChest"]]},
 
     # KZN_07 Ultra Hammer Room Exit East -> BigChest (UltraHammer)
-    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": "BigChest"}, "reqs": [["Parakarry","Lakilester"]], "pseudoitems": ["RF_KZN07_OpenedHammerChest"]},
+    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": "BigChest"}, "reqs": [["Parakarry","Lakilester"],["can_climb_steps"]], "pseudoitems": ["RF_KZN07_OpenedHammerChest"]},
 
     # KZN_17 Spike Roller Trap Exit West -> Spike Roller Trap Exit East
-    {"from": {"map": "KZN_17", "id": 0}, "to": {"map": "KZN_17", "id": 1}, "reqs": [["RF_KZN07_OpenedHammerChest"]]},
+    {"from": {"map": "KZN_17", "id": 0}, "to": {"map": "KZN_17", "id": 1}, "reqs": [["RF_KZN07_OpenedHammerChest"],["can_climb_steps"]]},
 ]

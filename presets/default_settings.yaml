@@ -35,7 +35,7 @@ StartingMaxHP    : 10
 StartingMaxFP    : 5
 StartingMaxBP    : 3
 StartingStarPower: 0
-StartingBoots    : 0 # 0:Boots, 1:Super, 2:Ultra
+StartingBoots    : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
 StartingHammer   : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
 
 StartWithRandomItems: false

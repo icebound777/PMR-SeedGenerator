@@ -4,5 +4,5 @@ for Glitched Logic: Bombette-less Mega Smash.
 """
 edges_flo_add_bombetteless_mega_smash = [
     #* (NW) Lakilester Exit Right -> ItemA (MegaSmash)
-    {"from": {"map": "FLO_13", "id": 0}, "to": {"map": "FLO_13", "id": "ItemA"}, "reqs": [], "mapchange": False},
+    {"from": {"map": "FLO_13", "id": 0}, "to": {"map": "FLO_13", "id": "ItemA"}, "reqs": [["can_climb_steps"]], "mapchange": False},
 ]
