@@ -5,7 +5,7 @@ state.
 """
 edges_kmr_add_prologue_sushie_glitch = [
     # Jr. Troopa's Playground Exit Right -> Bottom of the Cliff Exit Left
-    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_03", "id": 0}, "reqs": [["Kooper"], ["Sushie"]], "pseudoitems": ["RF_PrologueSushieGlitch"], "mapchange": False},
+    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_03", "id": 0}, "reqs": [["Kooper"], ["Sushie"], ["SuperBoots"]], "pseudoitems": ["RF_PrologueSushieGlitch"], "mapchange": False},
 
     #? Goomba Village Exit Left -> Goomba Village Exit Right
     {"from": {"map": "KMR_02", "id": 1 },  "to": {"map": "KMR_02", "id": 0 },  "reqs": [["RF_PrologueSushieGlitch"]], "mapchange": False},
