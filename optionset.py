@@ -1136,22 +1136,22 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BombetteSetting").get("value"), int)
     if "BombetteSprite" in options_dict:
         assert isinstance(options_dict.get("BombetteSprite").get("value"), int)
-    #if "ParakarrySetting" in options_dict:
-    #    assert isinstance(options_dict.get("ParakarrySetting").get("value"), int)
-    #if "ParakarrySprite" in options_dict:
-    #    assert isinstance(options_dict.get("ParakarrySprite").get("value"), int)
+    if "ParakarrySetting" in options_dict:
+        assert isinstance(options_dict.get("ParakarrySetting").get("value"), int)
+    if "ParakarrySprite" in options_dict:
+        assert isinstance(options_dict.get("ParakarrySprite").get("value"), int)
     if "BowSetting" in options_dict:
         assert isinstance(options_dict.get("BowSetting").get("value"), int)
     if "BowSprite" in options_dict:
         assert isinstance(options_dict.get("BowSprite").get("value"), int)
-    #if "WattSetting" in options_dict:
-    #    assert isinstance(options_dict.get("WattSetting").get("value"), int)
-    #if "WattSprite" in options_dict:
-    #    assert isinstance(options_dict.get("WattSprite").get("value"), int)
-    #if "SushieSetting" in options_dict:
-    #    assert isinstance(options_dict.get("SushieSetting").get("value"), int)
-    #if "SushieSprite" in options_dict:
-    #    assert isinstance(options_dict.get("SushieSprite").get("value"), int)
+    if "WattSetting" in options_dict:
+        assert isinstance(options_dict.get("WattSetting").get("value"), int)
+    if "WattSprite" in options_dict:
+        assert isinstance(options_dict.get("WattSprite").get("value"), int)
+    if "SushieSetting" in options_dict:
+        assert isinstance(options_dict.get("SushieSetting").get("value"), int)
+    if "SushieSprite" in options_dict:
+        assert isinstance(options_dict.get("SushieSprite").get("value"), int)
     #if "LakilesterSetting" in options_dict:
     #    assert isinstance(options_dict.get("LakilesterSetting").get("value"), int)
     #if "LakilesterSprite" in options_dict:
