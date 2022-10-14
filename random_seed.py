@@ -101,7 +101,7 @@ class RandomSeed:
                 world_graph_copy = deepcopy(world_graph)
                 place_items(
                     item_placement= self.placed_items,
-                    algorithm=self.rando_settings.placement_algorithm,
+                    do_custom_seed=self.rando_settings.custom_seed,
                     do_shuffle_items=self.rando_settings.shuffle_items["value"],
                     do_randomize_coins=self.rando_settings.include_coins["value"],
                     do_randomize_shops=self.rando_settings.include_shops["value"],
