@@ -234,8 +234,8 @@ WaterStaircaseSkip                              : false
 MtRuggedQuakeHammerAndLetterWithLaki            : false
 ParakarrylessMtRuggedSeed                       : false
 BuzzarGapSkipClippy                             : false
-ParakarrylessMtRuggedStarPiece                  : false
 MtRuggedCoinsWithKooper                         : false
+ParakarrylessMtRuggedStarPiece                  : false
 
 DesertBrickBlockItemWithParakarry               : false
 EarlyRuinsLakiJump                              : false
@@ -290,6 +290,7 @@ UltraHammerSkipLaki                             : false
 Flarakarry                                      : false
 ParakarrylessFlarakarryBombette                 : false
 ParakarrylessFlarakarryLaki                     : false
+VolcanoSushieGlitch                             : false
 
 EarlyLakiLZS                                    : false
 EarlyLakiBombettePush                           : false
@@ -303,7 +304,6 @@ RedBerryGateSkipLaki                            : false
 BlueBerryGateSkipBombettePush                   : false
 BlueBerryGateSkipLaki                           : false
 BubbleBerryTreeLakiJump                         : false
-VolcanoSushieGlitch                             : false
 
 MurderSolvedEarlyLaki                           : false
 MurderSolvedEarlyBombettePush                   : false

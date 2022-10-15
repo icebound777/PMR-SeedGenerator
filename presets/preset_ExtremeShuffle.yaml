@@ -234,8 +234,8 @@ WaterStaircaseSkip                              : false
 MtRuggedQuakeHammerAndLetterWithLaki            : false
 ParakarrylessMtRuggedSeed                       : false
 BuzzarGapSkipClippy                             : false
-ParakarrylessMtRuggedStarPiece                  : false
 MtRuggedCoinsWithKooper                         : false
+ParakarrylessMtRuggedStarPiece                  : false
 
 DesertBrickBlockItemWithParakarry               : false
 EarlyRuinsLakiJump                              : false
@@ -256,11 +256,11 @@ BoosPortraitWithKooper                          : false
 BoosPortraitWithLaki                            : false
 
 GustyGulchGateSkipLZS                           : false
+GustyGulchGateSkipLaki                          : false
 KooperlessGustyGulchDizzyDialJump               : false
 KooperlessGustyGulchDizzyDialLaki               : false
 KooperlessGustyGulchDizzyDialParakarry          : false
 GustyGulchGapSkip                               : false
-GustyGulchGateSkipLaki                          : false
 
 BowlessTubbasCastle                             : false
 TubbasTableLakiJump                             : false
