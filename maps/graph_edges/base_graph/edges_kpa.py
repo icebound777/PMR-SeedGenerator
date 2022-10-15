@@ -78,11 +78,12 @@ edges_kpa = [
     {"from": {"map": "KPA_12",  "id": 2}, "to": {"map": "KPA_10",  "id": 4}, "reqs": []}, # Lava Channel 1 Lava Door Left -> Outside Lower Jail (No Lava) Lava Door Right
     {"from": {"map": "KPA_12",  "id": 2}, "to": {"map": "KPA_11",  "id": 4}, "reqs": []}, # Lava Channel 1 Lava Door Left -> Outside Lower Jail (Lava) Lava Door Right
 
-    {"from": {"map": "KPA_12",  "id": 0}, "to": {"map": "KPA_12",  "id": 1}, "reqs": [["can_climb_steps"]]}, #? Lava Channel 1 Door Left -> Lava Channel 1 Door Right
-    {"from": {"map": "KPA_12",  "id": 1}, "to": {"map": "KPA_12",  "id": 0}, "reqs": [["can_climb_steps"]]}, #? Lava Channel 1 Door Right -> Lava Channel 1 Door Left
+    {"from": {"map": "KPA_12",  "id": 0}, "to": {"map": "KPA_12",  "id": 1}, "reqs": [["Boots"]]}, #? Lava Channel 1 Door Left -> Lava Channel 1 Door Right
+    #+ note for above: while can_climb_steps would be okay for lava active, lava inactive hard-requires Boots
+    {"from": {"map": "KPA_12",  "id": 1}, "to": {"map": "KPA_12",  "id": 0}, "reqs": [["can_climb_steps","GF_KPA16_ShutOffLava"]]}, #? Lava Channel 1 Door Right -> Lava Channel 1 Door Left
     {"from": {"map": "KPA_12",  "id": 0}, "to": {"map": "KPA_12",  "id": 2}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"]]}, #? Lava Channel 1 Door Left -> Lava Channel 1 Lava Door Left
-    {"from": {"map": "KPA_12",  "id": 2}, "to": {"map": "KPA_12",  "id": 0}, "reqs": []}, #? Lava Chmannel 1 Lava Door Left -> Lava Channel 1 Door Left
-#TODO
+    {"from": {"map": "KPA_12",  "id": 2}, "to": {"map": "KPA_12",  "id": 0}, "reqs": []}, #? Lava Channel 1 Lava Door Left -> Lava Channel 1 Door Left
+
     # KPA_13 Lava Channel 2
     {"from": {"map": "KPA_13",  "id": 0}, "to": {"map": "KPA_12",  "id": 1}, "reqs": []}, # Lava Channel 2 Door Left -> Lava Channel 1 Door Right
     {"from": {"map": "KPA_13",  "id": 1}, "to": {"map": "KPA_14",  "id": 0}, "reqs": []}, # Lava Channel 2 Door Right -> Lava Channel 3 Door Left
@@ -104,11 +105,12 @@ edges_kpa = [
     {"from": {"map": "KPA_14",  "id": 0}, "to": {"map": "KPA_14",  "id": 2}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"],["Bow","GF_KPA16_ShutOffLava"],["Parakarry","GF_KPA16_ShutOffLava"],["can_climb_steps"]]}, #? Lava Channel 3 Door Left -> Lava Channel 3 Lava Door Center
     {"from": {"map": "KPA_14",  "id": 2}, "to": {"map": "KPA_14",  "id": 0}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"]]}, #? Lava Channel 3 Lava Door Center -> Lava Channel 3 Door Left
 
-    {"from": {"map": "KPA_14",  "id": 0},       "to": {"map": "KPA_14",  "id": "ItemA"}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"],["Kooper","Parakarry"],["Boots"]]}, #* Lava Channel 3 Door Left -> ItemA (Mystery)
+    {"from": {"map": "KPA_14",  "id": 0},       "to": {"map": "KPA_14",  "id": "ItemA"}, "reqs": [["GF_KPA16_ShutOffLava"],["Boots"]]}, #* Lava Channel 3 Door Left -> ItemA (Mystery)
     {"from": {"map": "KPA_14",  "id": "ItemA"}, "to": {"map": "KPA_14",  "id": 0},       "reqs": []}, #* ItemA (Mystery) -> Lava Channel 3 Door Left
     {"from": {"map": "KPA_14",  "id": 0},       "to": {"map": "KPA_14",  "id": "ItemB"}, "reqs": [["GF_KPA16_ShutOffLava"],["Boots"]]}, #* Lava Channel 3 Door Left -> ItemB (ThunderRage)
     {"from": {"map": "KPA_14",  "id": "ItemB"}, "to": {"map": "KPA_14",  "id": 0},       "reqs": []}, #* ItemB (ThunderRage) -> Lava Channel 3 Door Left
-#TODO the heck is the above node's logic even
+    #+ note: since turning off the lava is irreversible we have to assume that it is off for logic requirements
+
     # KPA_15 Lava Key Room
     {"from": {"map": "KPA_15",  "id": 0}, "to": {"map": "KPA_13",  "id": 2}, "reqs": []}, # Lava Key Room Door Left -> Lava Channel 2 Lava Door Center
 

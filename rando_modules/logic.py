@@ -63,6 +63,11 @@ def get_startingnode_id_from_startingmap_id(starting_map_id):
     starting_maparea = MapArea.get(  (MapArea.area_id == starting_map_area_id)
                                    & (MapArea.map_id  == starting_map_map_id))
 
+    # Janky, temporary workaround for jumpless logic being unable to handle
+    # starting from pipe entrances pointing upwards (can't re-enter by jumping)
+    if starting_maparea.name == 'MAC_00':
+        starting_map_entrance_id = 0
+
     # String concat maparea-name and entrance-id to node-id string
     starting_node_id = starting_maparea.name + "/" + str(starting_map_entrance_id)
 

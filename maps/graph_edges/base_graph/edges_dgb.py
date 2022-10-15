@@ -84,8 +84,8 @@ edges_dgb = [
 
     # DGB_07 Study (1F)
     {"from": {"map": "DGB_07", "id": 0}, "to": {"map": "DGB_02", "id": 2}, "reqs": []}, # Study (1F) Door Bottom -> West Hall (1F) Door Top Left
-# TODO: table reachable with laki jump
-    {"from": {"map": "DGB_07", "id": 0},       "to": {"map": "DGB_07", "id": "ItemA"}, "reqs": []}, #* Study (1F) Door Bottom -> ItemA (StarPiece)
+
+    {"from": {"map": "DGB_07", "id": 0},       "to": {"map": "DGB_07", "id": "ItemA"}, "reqs": [["Boots"]]}, #* Study (1F) Door Bottom -> ItemA (StarPiece)
     {"from": {"map": "DGB_07", "id": "ItemA"}, "to": {"map": "DGB_07", "id": 0},       "reqs": []}, #* ItemA (StarPiece) -> Study (1F) Door Bottom
 
     # DGB_08 East Hall (1/2F)
@@ -141,13 +141,13 @@ edges_dgb = [
 
     # DGB_12 Spike Trap Room (2F)
     {"from": {"map": "DGB_12", "id": 0}, "to": {"map": "DGB_09", "id": 2}, "reqs": []}, # Spike Trap Room (2F) Door Bottom Left -> West Hall (2F) Door Top Left
-# TODO: check bowless tubba's castle glitch setting for this
+
     {"from": {"map": "DGB_12", "id": 0},        "to": {"map": "DGB_12", "id": "ChestA"}, "reqs": [["Bow","Lakilester"]]}, #* Spike Trap Room (2F) Door Bottom Left -> ChestA (CastleKey1)
     {"from": {"map": "DGB_12", "id": "ChestA"}, "to": {"map": "DGB_12", "id": 0},        "reqs": []}, #* ChestA (CastleKey1) -> Spike Trap Room (2F) Door Bottom Left
 
     # DGB_13 Hidden Bedroom (2F)
     {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_03", "id": 5}, "reqs": []}, # Hidden Bedroom (2F) Door Bottom -> Table/Clock Room (1/2F) 2F Behind The Clock
-# TODO: check climbing the bed by jumping glitch
+
     {"from": {"map": "DGB_13", "id": 0},       "to": {"map": "DGB_13", "id": "ItemA"}, "reqs": [["Parakarry"],["Boots"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemA (MegaRush)
     {"from": {"map": "DGB_13", "id": "ItemA"}, "to": {"map": "DGB_13", "id": 0},       "reqs": []}, #* ItemA (MegaRush) -> Hidden Bedroom (2F) Door Bottom
     {"from": {"map": "DGB_13", "id": 0},       "to": {"map": "DGB_13", "id": "ItemB"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemB (Coin)

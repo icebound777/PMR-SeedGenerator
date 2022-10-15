@@ -32,10 +32,9 @@ edges_kzn = [
     {"from": {"map": "KZN_03", "id": 4}, "to": {"map": "KZN_03", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Central Cavern Exit East Lower 2 -> Central Cavern Exit West Upper
 
     {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "ItemA"},   "reqs": []}, #* Central Cavern Exit West Upper -> ItemA (FireShield)
-    {"from": {"map": "KZN_03", "id": "ItemA"},   "to": {"map": "KZN_03", "id": 0},         "reqs": []}, #* ItemA (FireShield) -> Central Cavern Exit West Upper
     {"from": {"map": "KZN_03", "id": 2},         "to": {"map": "KZN_03", "id": "ItemA"},   "reqs": []}, #* Central Cavern Exit East Lower 1 (Ultra Block) -> ItemA (FireShield)
-    {"from": {"map": "KZN_03", "id": "ItemA"},   "to": {"map": "KZN_03", "id": 2},         "reqs": []}, #* ItemA (FireShield) -> Central Cavern Exit East Lower 1 (Ultra Block)
-    #TODO mhmm
+    {"from": {"map": "KZN_03", "id": "ItemA"},   "to": {"map": "KZN_03", "id": 3},         "reqs": []}, #* ItemA (FireShield) -> Central Cavern Exit West Lower
+
     {"from": {"map": "KZN_03", "id": 1},         "to": {"map": "KZN_03", "id": "ItemB"},   "reqs": [["Kooper","UltraBoots"],["can_climb_steps"]]}, #* Central Cavern Exit East Upper -> ItemB (POWBlock)
     {"from": {"map": "KZN_03", "id": "ItemB"},   "to": {"map": "KZN_03", "id": 1},         "reqs": []}, #* ItemB (POWBlock) -> Central Cavern Exit East Upper
     {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockA (Coin)
@@ -125,7 +124,7 @@ edges_kzn = [
     {"from": {"map": "KZN_18", "id": 1}, "to": {"map": "KZN_18", "id": 0}, "reqs": []}, #? Boss Antechamber Exit East Upper -> Boss Antechamber Exit West
     {"from": {"map": "KZN_18", "id": 0}, "to": {"map": "KZN_18", "id": 2}, "reqs": []}, #? Boss Antechamber Exit West -> Boss Antechamber Exit East Lower
     {"from": {"map": "KZN_18", "id": 2}, "to": {"map": "KZN_18", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Boss Antechamber Exit East Lower -> Boss Antechamber Exit West
-    #TODO uhh, lava rising after boss? ...
+    #TODO lava rising after boss is important for entrance rando
 
     {"from": {"map": "KZN_18", "id": 0},             "to": {"map": "KZN_18", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Boss Antechamber Exit West -> HiddenPanel (StarPiece)
     {"from": {"map": "KZN_18", "id": "HiddenPanel"}, "to": {"map": "KZN_18", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Boss Antechamber Exit West
@@ -149,7 +148,7 @@ edges_kzn = [
 
     {"from": {"map": "KZN_20", "id": 0}, "to": {"map": "KZN_20", "id": 1}, "reqs": [["Boots"]]}, #? Rising Lava 1 Exit West -> Rising Lava 1 Bombable Wall
     {"from": {"map": "KZN_20", "id": 1}, "to": {"map": "KZN_20", "id": 0}, "reqs": []}, #? Rising Lava 1 Bombable Wall -> Rising Lava 1 Exit West
-    #TODO literally stuck without boots? also lava
+    #TODO literally stuck without boots! also lava
     # KZN_22 Rising Lava 2
     {"from": {"map": "KZN_22", "id": 0}, "to": {"map": "KZN_20", "id": 1}, "reqs": []}, # Rising Lava 2 Bombable Wall (non-bomb side) -> Rising Lava 1 Bombable Wall
 

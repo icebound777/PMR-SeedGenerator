@@ -12,7 +12,7 @@ edges_mac = [
     {"from": {"map": "MAC_00", "id": 3}, "to": {"map": "MAC_00", "id": 0}, "reqs": [["Sushie"]]}, #? Gate District Island Pipe -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 4}, "reqs": [["can_climb_steps"]]}, #? Gate District Exit Left -> Gate District Top Green Pipe
     {"from": {"map": "MAC_00", "id": 4}, "to": {"map": "MAC_00", "id": 0}, "reqs": []}, #? Gate District Top Green Pipe -> Gate District Exit Left
-#TODO spawn on pipe logic
+
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Gate District Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_00", "id": "HiddenPanel"}, "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "ItemA"},       "reqs": [["Sushie"]]}, #* Gate District Exit Left -> ItemA (StarPiece)

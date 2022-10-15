@@ -263,8 +263,9 @@ KooperlessGustyGulchDizzyDialParakarry          : false
 GustyGulchGapSkip                               : false
 
 BowlessTubbasCastle                             : false
-TubbasTableLakiJump                             : false
+TubbasTableLakiJumpClock                        : false
 TubbasTableUltraBoots                           : false
+TubbasTableLakiJumpStudy                        : false
 TubbasCastleSuperBootsSkip                      : false
 ParakarrylessMegaRush                           : false
 
