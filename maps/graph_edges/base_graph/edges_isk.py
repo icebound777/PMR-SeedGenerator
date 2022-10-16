@@ -48,8 +48,9 @@ edges_isk = [
     {"from": {"map": "ISK_04", "id": 2}, "to": {"map": "ISK_04", "id": 0}, "reqs": []}, #? Descending Stairs 1 Exit Top Right Cracked Wall -> Descending Stairs 1 Exit Middle Left
     {"from": {"map": "ISK_04", "id": 0}, "to": {"map": "ISK_04", "id": 3}, "reqs": []}, #? Descending Stairs 1 Exit Middle Left -> Descending Stairs 1 Exit Middle Right
     {"from": {"map": "ISK_04", "id": 3}, "to": {"map": "ISK_04", "id": 0}, "reqs": []}, #? Descending Stairs 1 Exit Middle Right -> Descending Stairs 1 Exit Middle Left
-    {"from": {"map": "ISK_04", "id": 0}, "to": {"map": "ISK_04", "id": 4}, "reqs": []}, #? Descending Stairs 1 Exit Middle Left -> Descending Stairs 1 Exit Bottom Right
+    {"from": {"map": "ISK_04", "id": 0}, "to": {"map": "ISK_04", "id": 4}, "reqs": [["can_climb_steps"]]}, #? Descending Stairs 1 Exit Middle Left -> Descending Stairs 1 Exit Bottom Right
     {"from": {"map": "ISK_04", "id": 4}, "to": {"map": "ISK_04", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Descending Stairs 1 Exit Bottom Right -> Descending Stairs 1 Exit Middle Left
+    {"from": {"map": "ISK_04", "id": 4}, "to": {"map": "ISK_04", "id": 1}, "reqs": [[{"RuinsKey": 2}]]}, #? Descending Stairs 1 Exit Bottom Right -> Descending Stairs 1 Exit Bottom Left
 
     # ISK_05 Pyramid Stone Room
     {"from": {"map": "ISK_05", "id": 0}, "to": {"map": "ISK_04", "id": 4}, "reqs": []}, # Pyramid Stone Room Exit Left -> Descending Stairs 1 Exit Bottom Right
@@ -87,11 +88,11 @@ edges_isk = [
     {"from": {"map": "ISK_08", "id": 3}, "to": {"map": "ISK_11", "id": 0}, "reqs": []}, # Descending Stairs 2 Exit Bottom Right -> Stone Puzzle Room Exit Left
 
     {"from": {"map": "ISK_08", "id": 2}, "to": {"map": "ISK_08", "id": 0}, "reqs": [["Parakarry"]]}, #? Descending Stairs 2 Exit Top Right -> Descending Stairs 2 Exit Top Left
-    {"from": {"map": "ISK_08", "id": 0}, "to": {"map": "ISK_08", "id": 2}, "reqs": [["can_climb_steps"]]}, #? Descending Stairs 2 Exit Top Left -> Descending Stairs 2 Exit Top Right
-    {"from": {"map": "ISK_08", "id": 2}, "to": {"map": "ISK_08", "id": 1}, "reqs": [["Bombette"]]}, #? Descending Stairs 2 Exit Top Right -> Descending Stairs 2 Exit Bottom Left Cracked Wall
-    {"from": {"map": "ISK_08", "id": 1}, "to": {"map": "ISK_08", "id": 2}, "reqs": [["can_climb_steps"]]}, #? Descending Stairs 2 Exit Bottom Left Cracked Wall -> Descending Stairs 2 Exit Top Right
-    {"from": {"map": "ISK_08", "id": 2}, "to": {"map": "ISK_08", "id": 3}, "reqs": []}, #? Descending Stairs 2 Exit Top Right -> Descending Stairs 2 Exit Bottom Right
+    {"from": {"map": "ISK_08", "id": 0}, "to": {"map": "ISK_08", "id": 3}, "reqs": []}, #? Descending Stairs 2 Exit Top Left -> Descending Stairs 2 Exit Bottom Right
+    {"from": {"map": "ISK_08", "id": 3}, "to": {"map": "ISK_08", "id": 1}, "reqs": [["Bombette"]]}, #? Descending Stairs 2 Exit Bottom Right -> Descending Stairs 2 Exit Bottom Left Cracked Wall
+    {"from": {"map": "ISK_08", "id": 1}, "to": {"map": "ISK_08", "id": 3}, "reqs": []}, #? Descending Stairs 2 Exit Bottom Left Cracked Wall -> Descending Stairs 2 Exit Bottom Right
     {"from": {"map": "ISK_08", "id": 3}, "to": {"map": "ISK_08", "id": 2}, "reqs": [["can_climb_steps"]]}, #? Descending Stairs 2 Exit Bottom Right -> Descending Stairs 2 Exit Top Right
+    {"from": {"map": "ISK_08", "id": 2}, "to": {"map": "ISK_08", "id": 3}, "reqs": []}, #? Descending Stairs 2 Exit Top Right -> Descending Stairs 2 Exit Bottom Right
 
     # ISK_09 Super Hammer Room
     {"from": {"map": "ISK_09", "id": 0}, "to": {"map": "ISK_08", "id": 0}, "reqs": []}, # Super Hammer Room Exit Right -> Descending Stairs 2 Exit Top Left
@@ -106,10 +107,10 @@ edges_isk = [
     {"from": {"map": "ISK_10", "id": 1}, "to": {"map": "ISK_14", "id": 0}, "reqs": []}, # Vertical Shaft Exit Bottom Left -> Diamond Stone Room Exit Right
     {"from": {"map": "ISK_10", "id": 2}, "to": {"map": "ISK_18", "id": 0}, "reqs": []}, # Vertical Shaft Exit Bottom Right -> Deep Tunnel Exit Left
 
-    {"from": {"map": "ISK_10", "id": 0}, "to": {"map": "ISK_10", "id": 1}, "reqs": [["Bombette"]]}, #? Vertical Shaft Exit Top Right -> Vertical Shaft Exit Bottom Left
-    {"from": {"map": "ISK_10", "id": 1}, "to": {"map": "ISK_10", "id": 0}, "reqs": [["Bombette"],["can_climb_steps"]]}, #? Vertical Shaft Exit Bottom Left -> Vertical Shaft Exit Top Right
-    {"from": {"map": "ISK_10", "id": 0}, "to": {"map": "ISK_10", "id": 2}, "reqs": []}, #? Vertical Shaft Exit Top Right -> Vertical Shaft Exit Bottom Right
+    {"from": {"map": "ISK_10", "id": 2}, "to": {"map": "ISK_10", "id": 1}, "reqs": [["Bombette"]]}, #? Vertical Shaft Exit Bottom Right -> Vertical Shaft Exit Bottom Left
+    {"from": {"map": "ISK_10", "id": 1}, "to": {"map": "ISK_10", "id": 2}, "reqs": []}, #? Vertical Shaft Exit Bottom Left -> Vertical Shaft Exit Bottom Right
     {"from": {"map": "ISK_10", "id": 2}, "to": {"map": "ISK_10", "id": 0}, "reqs": [["Bombette"],["can_climb_steps"]]}, #? Vertical Shaft Exit Bottom Right -> Vertical Shaft Exit Top Right
+    {"from": {"map": "ISK_10", "id": 0}, "to": {"map": "ISK_10", "id": 2}, "reqs": []}, #? Vertical Shaft Exit Top Right -> Vertical Shaft Exit Bottom Right
 
     # ISK_11 Stone Puzzle Room
     {"from": {"map": "ISK_11", "id": 0}, "to": {"map": "ISK_08", "id": 3}, "reqs": []}, # Stone Puzzle Room Exit Left -> Descending Stairs 2 Exit Bottom Right

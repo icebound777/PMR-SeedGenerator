@@ -229,7 +229,7 @@ edges_jan = [
     # JAN_11 Root Cavern
     {"from": {"map": "JAN_11", "id": 0}, "to": {"map": "JAN_09", "id": 3}, "reqs": []}, # Root Cavern Pipe Left -> NW Jungle (Large Ledge) Pipe On Hill
 
-    {"from": {"map": "JAN_11", "id": 0}, "to": {"map": "JAN_11", "id": 0}, "reqs": [["RF_YoshiKidsMissing"],["Watt"],["can_climb_steps"]], "pseudoitems": ["RF_SavedYoshiKid_5"]}, #+ Save Yoshi Kid
+    {"from": {"map": "JAN_11", "id": 0}, "to": {"map": "JAN_11", "id": 0}, "reqs": [["RF_YoshiKidsMissing"],["Watt"],["Boots"]], "pseudoitems": ["RF_SavedYoshiKid_5"]}, #+ Save Yoshi Kid
 
     # JAN_12 Deep Jungle 1
     {"from": {"map": "JAN_12", "id": 0}, "to": {"map": "JAN_06", "id": 2}, "reqs": []}, # Deep Jungle 1 Exit Bottom Left -> NE Jungle (Raven Statue) Exit Top

@@ -113,7 +113,7 @@ edges_tik = [
 
     {"from": {"map": "TIK_09", "id": 0}, "to": {"map": "TIK_09", "id": 1}, "reqs": []}, #? Warp Zone 2 (B2) Exit Left -> Warp Zone 2 (B2) Exit Right
     {"from": {"map": "TIK_09", "id": 1}, "to": {"map": "TIK_09", "id": 0}, "reqs": []}, #? Warp Zone 2 (B2) Exit Right -> Warp Zone 2 (B2) Exit Left
-    {"from": {"map": "TIK_09", "id": 0}, "to": {"map": "TIK_09", "id": 2}, "reqs": [["GF_TIK09_WarpPipe"]]}, #? Warp Zone 2 (B2) Exit Left -> Warp Zone 2 (B2) Blue Warp Pipe
+    {"from": {"map": "TIK_09", "id": 0}, "to": {"map": "TIK_09", "id": 2}, "reqs": [["GF_TIK09_WarpPipe"],["Boots"]]}, #? Warp Zone 2 (B2) Exit Left -> Warp Zone 2 (B2) Blue Warp Pipe
     {"from": {"map": "TIK_09", "id": 2}, "to": {"map": "TIK_09", "id": 0}, "reqs": []}, #? Warp Zone 2 (B2) Blue Warp Pipe -> Warp Zone 2 (B2) Exit Left
 
     {"from": {"map": "TIK_09", "id": 0}, "to": {"map": "TIK_09", "id": 0}, "reqs": [["can_climb_steps","Hammer","Kooper","Bombette"]], "pseudoitems": ["GF_TIK09_WarpPipe"]}, #+ Warp Zone 2 (B2) Exit Left

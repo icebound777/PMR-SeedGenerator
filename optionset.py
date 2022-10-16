@@ -903,8 +903,9 @@ def validate_options(options_dict):
             if "ShuffleItems" in options_dict and not options_dict.get("ShuffleItems").get("value"):
                 assert (StartingBoots.BOOTS <= options_dict.get("StartingBoots").get("value"))
         except AssertionError:
-            print(f"No item shuffle but jumpless start is not a valid setting-combination!")
-            raise
+            raise ValueError(
+                "No item shuffle but jumpless start is not a valid setting-combination!",
+            )
     if "StartingHammer" in options_dict:
         assert (    isinstance(options_dict.get("StartingHammer").get("value"), int)
                 and StartingHammer.HAMMERLESS <= options_dict.get("StartingHammer").get("value") <= StartingHammer.ULTRAHAMMER)

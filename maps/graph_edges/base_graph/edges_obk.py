@@ -52,7 +52,7 @@ edges_obk = [
     {"from": {"map": "OBK_03", "id": 0}, "to": {"map": "OBK_03", "id": 2}, "reqs": [["RF_OBK03_BuiltStairs"]]}, #? Basement Upper Door North -> Basement Fall From Ceiling
     {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": 0}, "reqs": [["RF_OBK03_BuiltStairs"]]}, #? Basement Fall From Ceiling -> Basement Upper Door North
 
-    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": 2}, "reqs": [["can_climb_steps"]], "pseudoitems": ["RF_OBK03_BuiltStairs"]}, #+ Basement Fall From Ceiling Activate Stairs
+    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": 2}, "reqs": [["Boots"]], "pseudoitems": ["RF_OBK03_BuiltStairs"]}, #+ Basement Fall From Ceiling Activate Stairs
 
     {"from": {"map": "OBK_03", "id": 0},           "to": {"map": "OBK_03", "id": "CrateA"},    "reqs": [["SuperBoots"]]}, #* Basement Upper Door North -> CrateA (SuperShroom)
     {"from": {"map": "OBK_03", "id": "CrateA"},    "to": {"map": "OBK_03", "id": 0},           "reqs": []}, #* CrateA (SuperShroom) -> Basement Upper Door North

@@ -143,7 +143,8 @@ edges_trd = [
     {"from": {"map": "TRD_09", "id": 1}, "to": {"map": "TRD_09", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Battlement Exit Right -> Battlement Exit Left
 
     {"from": {"map": "TRD_09", "id": 0},         "to": {"map": "TRD_09", "id": "YBlockA"}, "reqs": [["Bombette"],["can_hit_floating_blocks"]]}, #* Battlement Exit Left -> YBlockA (MapleSyrup)
-    {"from": {"map": "TRD_09", "id": "YBlockA"}, "to": {"map": "TRD_09", "id": 0},         "reqs": []}, #* YBlockA (MapleSyrup) -> Battlement Exit Left
+    {"from": {"map": "TRD_09", "id": 1},         "to": {"map": "TRD_09", "id": "YBlockA"}, "reqs": [["Bombette"],["can_hit_floating_blocks"]]}, #* Battlement Exit Right -> YBlockA (MapleSyrup)
+    {"from": {"map": "TRD_09", "id": "YBlockA"}, "to": {"map": "TRD_09", "id": 0},         "reqs": [["Boots"]]}, #* YBlockA (MapleSyrup) -> Battlement Exit Left
 
     # TRD_10 Boss Battle Room
     {"from": {"map": "TRD_10", "id": 0}, "to": {"map": "TRD_09", "id": 1}, "reqs": []}, # Boss Battle Room Exit Left -> Battlement Exit Right

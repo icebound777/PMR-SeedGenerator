@@ -28,12 +28,11 @@ edges_kzn = [
     {"from": {"map": "KZN_03", "id": 0}, "to": {"map": "KZN_03", "id": 3}, "reqs": []}, #? Central Cavern Exit West Upper -> Central Cavern Exit West Lower
     {"from": {"map": "KZN_03", "id": 3}, "to": {"map": "KZN_03", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Central Cavern Exit West Lower -> Central Cavern Exit West Upper
     {"from": {"map": "KZN_03", "id": 3}, "to": {"map": "KZN_03", "id": 4}, "reqs": []}, #? Central Cavern Exit West Lower -> Central Cavern Exit East Lower 2
-    {"from": {"map": "KZN_03", "id": 0}, "to": {"map": "KZN_03", "id": 4}, "reqs": []}, #? Central Cavern Exit West Upper -> Central Cavern Exit East Lower 2
-    {"from": {"map": "KZN_03", "id": 4}, "to": {"map": "KZN_03", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Central Cavern Exit East Lower 2 -> Central Cavern Exit West Upper
+    {"from": {"map": "KZN_03", "id": 4}, "to": {"map": "KZN_03", "id": 3}, "reqs": [["can_climb_steps"]]}, #? Central Cavern Exit East Lower 2 -> Central Cavern Exit West Lower
 
     {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "ItemA"},   "reqs": []}, #* Central Cavern Exit West Upper -> ItemA (FireShield)
     {"from": {"map": "KZN_03", "id": 2},         "to": {"map": "KZN_03", "id": "ItemA"},   "reqs": []}, #* Central Cavern Exit East Lower 1 (Ultra Block) -> ItemA (FireShield)
-    {"from": {"map": "KZN_03", "id": "ItemA"},   "to": {"map": "KZN_03", "id": 3},         "reqs": []}, #* ItemA (FireShield) -> Central Cavern Exit West Lower
+    {"from": {"map": "KZN_03", "id": "ItemA"},   "to": {"map": "KZN_03", "id": 4},         "reqs": []}, #* ItemA (FireShield) -> Central Cavern Exit East Lower 2
 
     {"from": {"map": "KZN_03", "id": 1},         "to": {"map": "KZN_03", "id": "ItemB"},   "reqs": [["Kooper","UltraBoots"],["can_climb_steps"]]}, #* Central Cavern Exit East Upper -> ItemB (POWBlock)
     {"from": {"map": "KZN_03", "id": "ItemB"},   "to": {"map": "KZN_03", "id": 1},         "reqs": []}, #* ItemB (POWBlock) -> Central Cavern Exit East Upper

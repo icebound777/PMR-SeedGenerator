@@ -115,8 +115,8 @@ edges_flo = [
     {"from": {"map": "FLO_24", "id": 0}, "to": {"map": "FLO_08", "id": 1}, "reqs": []}, # (SE) Water Level Room Exit Left -> (SE) Briar Platforming Exit Right
     {"from": {"map": "FLO_24", "id": 1}, "to": {"map": "FLO_10", "id": 0}, "reqs": []}, # (SE) Water Level Room Exit Right -> (SE) Lily's Fountain Exit Left
 
-    {"from": {"map": "FLO_24", "id": 0}, "to": {"map": "FLO_24", "id": 1}, "reqs": [["can_climb_steps"],["RF_Ch6_ReturnedWaterStone","Sushie"]]}, #? (SE) Water Level Room Exit Left -> (SE) Water Level Room Exit Right
-    {"from": {"map": "FLO_24", "id": 1}, "to": {"map": "FLO_24", "id": 0}, "reqs": [["can_climb_steps"],["RF_Ch6_ReturnedWaterStone","Sushie"]]}, #? (SE) Water Level Room Exit Right -> (SE) Water Level Room Exit Left
+    {"from": {"map": "FLO_24", "id": 0}, "to": {"map": "FLO_24", "id": 1}, "reqs": [["can_climb_steps","RF_Ch6_ReturnedWaterStone"],["can_climb_steps","Sushie"]]}, #? (SE) Water Level Room Exit Left -> (SE) Water Level Room Exit Right
+    {"from": {"map": "FLO_24", "id": 1}, "to": {"map": "FLO_24", "id": 0}, "reqs": [["can_climb_steps","RF_Ch6_ReturnedWaterStone"],["can_climb_steps","Sushie"]]}, #? (SE) Water Level Room Exit Right -> (SE) Water Level Room Exit Left
 
     {"from": {"map": "FLO_24", "id": 0},               "to": {"map": "FLO_24", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* (SE) Water Level Room Exit Left -> YBlockA (DizzyDial)
     {"from": {"map": "FLO_24", "id": "YBlockA"},       "to": {"map": "FLO_24", "id": 0},               "reqs": []}, #* YBlockA (DizzyDial) -> (SE) Water Level Room Exit Left
