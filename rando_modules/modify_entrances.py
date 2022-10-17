@@ -144,8 +144,11 @@ from maps.graph_edges.glitched_logic.arn_kooperless_gusty_gulch_dizzy_dial impor
 # Glitched Logic - Tubba's Castle
 from maps.graph_edges.glitched_logic.dgb_bowless_tubbas_castle import \
     edges_dgb_add_bowless_tubbas_castle
-from maps.graph_edges.glitched_logic.dgb_tubbas_table_jump import \
-    edges_dgb_add_tubbas_table_laki_jump, edges_dgb_add_tubbas_table_ultra_boots
+from maps.graph_edges.glitched_logic.dgb_tubbas_table_jump_clock import \
+    edges_dgb_add_tubbas_table_clock_laki_jump,\
+    edges_dgb_add_tubbas_table_clock_ultra_boots
+from maps.graph_edges.glitched_logic.dgb_tubbas_table_jump_study import \
+    edges_dgb_add_tubbas_table_laki_jump_study
 from maps.graph_edges.glitched_logic.dgb_tubba_castle_super_boots_skip import \
     edges_dgb_add_tubbas_castle_super_boots_skip_laki
 from maps.graph_edges.glitched_logic.dgb_parakarryless_mega_rush import \
@@ -473,10 +476,12 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     # Tubba's Castle
     if glitch_settings.bowless_tubbas_castle["value"]:
         all_new_edges.extend(edges_dgb_add_bowless_tubbas_castle)
-    if glitch_settings.tubbas_table_laki_jump["value"]:
-        all_new_edges.extend(edges_dgb_add_tubbas_table_laki_jump)
+    if glitch_settings.tubbas_table_laki_jump_clock["value"]:
+        all_new_edges.extend(edges_dgb_add_tubbas_table_clock_laki_jump)
     if glitch_settings.tubbas_table_ultra_boots["value"]:
-        all_new_edges.extend(edges_dgb_add_tubbas_table_ultra_boots)
+        all_new_edges.extend(edges_dgb_add_tubbas_table_clock_ultra_boots)
+    if glitch_settings.tubbas_table_laki_jump_study["value"]:
+        all_new_edges.extend(edges_dgb_add_tubbas_table_laki_jump_study)
     if glitch_settings.tubbas_castle_super_boots_skip["value"]:
         all_new_edges.extend(edges_dgb_add_tubbas_castle_super_boots_skip_laki)
     if glitch_settings.parakarryless_mega_rush["value"]:

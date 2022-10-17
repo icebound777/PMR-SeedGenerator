@@ -235,6 +235,7 @@ def _get_new_special_formation(
     elif battle_id == "0B-07":
         # StoneChomp x2 -> add one extra random enemy
         cur_enemylist = ["0B_StoneChomp", "0B_StoneChomp"]
+        available_enemies.remove("0B_Swooper")
         max_number_of_enemies = 3
     elif battle_id == "18-1C":
         # AmazyDayzee -> add one extra random enemy

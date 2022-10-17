@@ -214,6 +214,25 @@ class MarioInventory:
         )
 
 
+    def can_hit_floating_blocks(self):
+        """Check if Mario is able to hit a block suspended in midair."""
+        return (
+            len(self.boots) - 1 >= 0
+         or "Kooper" in self.partners
+        )
+
+
+    def can_climb_steps(self):
+        """
+        Check if Mario can reach high enough to climb higher steps or get ontop
+        of spring boards.
+        """
+        return (
+            len(self.boots) - 1 >= 0
+         or "Parakarry" in self.partners
+        )
+
+
     def can_see_hidden_blocks(self):
         """Check if Mario can see hidden blocks."""
         return (
@@ -298,6 +317,10 @@ class MarioInventory:
                             if len(self.boots) - 1 >= 1:
                                 group_fulfilled = True
                                 break
+                        elif req == "Boots":
+                            if len(self.boots) - 1 >= 0:
+                                group_fulfilled = True
+                                break
                     # Check hammer
                     if req.endswith("Hammer"):
                         if req == "UltraHammer":
@@ -353,6 +376,16 @@ class MarioInventory:
                     # Check hitting grounded blocks
                     if req == "can_hit_grounded_blocks":
                         if self.can_hit_grounded_blocks():
+                            group_fulfilled = True
+                            break
+                    # Check hitting floating blocks
+                    if req == "can_hit_floating_blocks":
+                        if self.can_hit_floating_blocks():
+                            group_fulfilled = True
+                            break
+                    # Check ascending onto higher levels (...?)
+                    if req == "can_climb_steps":
+                        if self.can_climb_steps():
                             group_fulfilled = True
                             break
                     # Check hidden blocks

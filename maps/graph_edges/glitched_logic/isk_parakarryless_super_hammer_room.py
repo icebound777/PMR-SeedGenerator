@@ -9,5 +9,5 @@ edges_isk_add_parakarryless_super_hammer_room_ultra_boots = [
 
 edges_isk_add_parakarryless_super_hammer_room_normal_boots = [
     #? Descending Stairs 2 Exit Top Right -> Descending Stairs 2 Exit Top Left
-    {"from": {"map": "ISK_08", "id": 2}, "to": {"map": "ISK_08", "id": 0}, "reqs": [], "mapchange": False},
+    {"from": {"map": "ISK_08", "id": 2}, "to": {"map": "ISK_08", "id": 0}, "reqs": [["Boots"]], "mapchange": False},
 ]

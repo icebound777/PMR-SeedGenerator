@@ -653,10 +653,12 @@ class OptionSet:
 
         if "BowlessTubbasCastle" in options_dict:
             self.glitch_settings.bowless_tubbas_castle = options_dict.get("BowlessTubbasCastle")
-        if "TubbasTableLakiJump" in options_dict:
-            self.glitch_settings.tubbas_table_laki_jump = options_dict.get("TubbasTableLakiJump")
+        if "TubbasTableLakiJumpClock" in options_dict:
+            self.glitch_settings.tubbas_table_laki_jump_clock = options_dict.get("TubbasTableLakiJumpClock")
         if "TubbasTableUltraBoots" in options_dict:
             self.glitch_settings.tubbas_table_ultra_boots = options_dict.get("TubbasTableUltraBoots")
+        if "TubbasTableLakiJumpStudy" in options_dict:
+            self.glitch_settings.tubbas_table_laki_jump_study = options_dict.get("TubbasTableLakiJumpStudy")
         if "TubbasCastleSuperBootsSkip" in options_dict:
             self.glitch_settings.tubbas_castle_super_boots_skip = options_dict.get("TubbasCastleSuperBootsSkip")
         if "ParakarrylessMegaRush" in options_dict:
@@ -895,12 +897,15 @@ def validate_options(options_dict):
         assert (    isinstance(options_dict.get("StartingStarPower").get("value"), int)
                 and 0 <= options_dict.get("StartingStarPower").get("value") <= 7)
     if "StartingBoots" in options_dict:
+        assert (    isinstance(options_dict.get("StartingBoots").get("value"), int)
+                and StartingBoots.JUMPLESS <= options_dict.get("StartingBoots").get("value") <= StartingBoots.ULTRABOOTS)
         try:
-            assert (    isinstance(options_dict.get("StartingBoots").get("value"), int)
-                    and StartingBoots.BOOTS <= options_dict.get("StartingBoots").get("value") <= StartingBoots.ULTRABOOTS)
+            if "ShuffleItems" in options_dict and not options_dict.get("ShuffleItems").get("value"):
+                assert (StartingBoots.BOOTS <= options_dict.get("StartingBoots").get("value"))
         except AssertionError:
-            print("Preset Error: Jumpless start Not Yet Implemented in logic!")
-            raise
+            raise ValueError(
+                "No item shuffle but jumpless start is not a valid setting-combination!",
+            )
     if "StartingHammer" in options_dict:
         assert (    isinstance(options_dict.get("StartingHammer").get("value"), int)
                 and StartingHammer.HAMMERLESS <= options_dict.get("StartingHammer").get("value") <= StartingHammer.ULTRAHAMMER)
@@ -1136,22 +1141,22 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BombetteSetting").get("value"), int)
     if "BombetteSprite" in options_dict:
         assert isinstance(options_dict.get("BombetteSprite").get("value"), int)
-    #if "ParakarrySetting" in options_dict:
-    #    assert isinstance(options_dict.get("ParakarrySetting").get("value"), int)
-    #if "ParakarrySprite" in options_dict:
-    #    assert isinstance(options_dict.get("ParakarrySprite").get("value"), int)
+    if "ParakarrySetting" in options_dict:
+        assert isinstance(options_dict.get("ParakarrySetting").get("value"), int)
+    if "ParakarrySprite" in options_dict:
+        assert isinstance(options_dict.get("ParakarrySprite").get("value"), int)
     if "BowSetting" in options_dict:
         assert isinstance(options_dict.get("BowSetting").get("value"), int)
     if "BowSprite" in options_dict:
         assert isinstance(options_dict.get("BowSprite").get("value"), int)
-    #if "WattSetting" in options_dict:
-    #    assert isinstance(options_dict.get("WattSetting").get("value"), int)
-    #if "WattSprite" in options_dict:
-    #    assert isinstance(options_dict.get("WattSprite").get("value"), int)
-    #if "SushieSetting" in options_dict:
-    #    assert isinstance(options_dict.get("SushieSetting").get("value"), int)
-    #if "SushieSprite" in options_dict:
-    #    assert isinstance(options_dict.get("SushieSprite").get("value"), int)
+    if "WattSetting" in options_dict:
+        assert isinstance(options_dict.get("WattSetting").get("value"), int)
+    if "WattSprite" in options_dict:
+        assert isinstance(options_dict.get("WattSprite").get("value"), int)
+    if "SushieSetting" in options_dict:
+        assert isinstance(options_dict.get("SushieSetting").get("value"), int)
+    if "SushieSprite" in options_dict:
+        assert isinstance(options_dict.get("SushieSprite").get("value"), int)
     #if "LakilesterSetting" in options_dict:
     #    assert isinstance(options_dict.get("LakilesterSetting").get("value"), int)
     #if "LakilesterSprite" in options_dict:
@@ -1300,10 +1305,12 @@ def validate_options(options_dict):
 
     if "BowlessTubbasCastle" in options_dict:
         assert isinstance(options_dict.get("BowlessTubbasCastle").get("value"), bool)
-    if "TubbasTableLakiJump" in options_dict:
-        assert isinstance(options_dict.get("TubbasTableLakiJump").get("value"), bool)
+    if "TubbasTableLakiJumpClock" in options_dict:
+        assert isinstance(options_dict.get("TubbasTableLakiJumpClock").get("value"), bool)
     if "TubbasTableUltraBoots" in options_dict:
         assert isinstance(options_dict.get("TubbasTableUltraBoots").get("value"), bool)
+    if "TubbasTableLakiJumpStudy" in options_dict:
+        assert isinstance(options_dict.get("TubbasTableLakiJumpStudy").get("value"), bool)
     if "TubbasCastleSuperBootsSkip" in options_dict:
         assert isinstance(options_dict.get("TubbasCastleSuperBootsSkip").get("value"), bool)
     if "ParakarrylessMegaRush" in options_dict:
@@ -1499,7 +1506,6 @@ class GlitchOptionSet():
             self.blue_house_skip_toad_lure = False
             self.bowless_toy_box_hammer = False
             self.bowless_toy_box_hammerless_lure = False
-            self.bowless_toy_box_ultra_boots = False
             self.early_storeroom_parakarry = False
             self.early_storeroom_hammer = False
             self.early_storeroom_hammerless_lure = False
@@ -1558,8 +1564,9 @@ class GlitchOptionSet():
             self.gusty_gulch_gap_skip = False
 
             self.bowless_tubbas_castle = False
-            self.tubbas_table_laki_jump = False
+            self.tubbas_table_laki_jump_clock = False
             self.tubbas_table_ultra_boots = False
+            self.tubbas_table_laki_jump_study = False
             self.tubbas_castle_super_boots_skip = False
             self.parakarryless_mega_rush = False
 

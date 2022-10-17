@@ -35,7 +35,7 @@ StartingMaxHP    : 10
 StartingMaxFP    : 5
 StartingMaxBP    : 3
 StartingStarPower: 0
-StartingBoots    : 0 # 0:Boots, 1:Super, 2:Ultra
+StartingBoots    : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
 StartingHammer   : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
 
 StartWithRandomItems: false
@@ -159,31 +159,32 @@ RomanNumerals  : false
 RandomText     : false
 
 # "*Setting" values explanation:
-# DEFAULT_PALETTE: 0
-# SELECT_PALETTE : 1 (only Mario and partners)
-# RANDOM_PICK    : 2
-# ALWAYS_RANDOM  : 3
-MarioSetting     : 2
-MarioSprite      : 0
-GoombarioSetting : 2
-GoombarioSprite  : 0
-KooperSetting    : 2
-KooperSprite     : 0
-BombetteSetting  : 2
-BombetteSprite   : 0
-ParakarrySetting : 2
-ParakarrySprite  : 0
-BowSetting       : 2
-BowSprite        : 0
-WattSetting      : 2
-WattSprite       : 0
-SushieSetting    : 2
-SushieSprite     : 0
-#LakilesterSetting: 2 # NYI
-#LakilesterSprite : 0 # NYI
-BossesSetting    : 2
-EnemiesSetting   : 2
-NPCSetting       : 2
+# DEFAULT_PALETTE    : 0
+# SELECT_PALETTE     : 1 (only Mario and partners)
+# RANDOM_PICK        : 2
+# RANDOM_PICK_NOT_VANILLA  : 3
+# ALWAYS_RANDOM      : 4
+MarioSetting         : 2
+MarioSprite          : 0
+GoombarioSetting     : 2
+GoombarioSprite      : 0
+KooperSetting        : 2
+KooperSprite         : 0
+BombetteSetting      : 2
+BombetteSprite       : 0
+ParakarrySetting     : 2
+ParakarrySprite      : 0
+BowSetting           : 2
+BowSprite            : 0
+WattSetting          : 2
+WattSprite           : 0
+SushieSetting        : 2
+SushieSprite         : 0
+#LakilesterSetting    : 2 # NYI
+#LakilesterSprite     : 0 # NYI
+BossesSetting        : 2
+EnemiesSetting       : 2
+NPCSetting           : 2
 
 # Audio
 RandomPitch: false
@@ -233,8 +234,8 @@ WaterStaircaseSkip                              : false
 MtRuggedQuakeHammerAndLetterWithLaki            : false
 ParakarrylessMtRuggedSeed                       : false
 BuzzarGapSkipClippy                             : false
-ParakarrylessMtRuggedStarPiece                  : false
 MtRuggedCoinsWithKooper                         : false
+ParakarrylessMtRuggedStarPiece                  : false
 
 DesertBrickBlockItemWithParakarry               : false
 EarlyRuinsLakiJump                              : false
@@ -262,8 +263,9 @@ KooperlessGustyGulchDizzyDialParakarry          : false
 GustyGulchGapSkip                               : false
 
 BowlessTubbasCastle                             : false
-TubbasTableLakiJump                             : false
+TubbasTableLakiJumpClock                        : false
 TubbasTableUltraBoots                           : false
+TubbasTableLakiJumpStudy                        : false
 TubbasCastleSuperBootsSkip                      : false
 ParakarrylessMegaRush                           : false
 
@@ -289,6 +291,7 @@ UltraHammerSkipLaki                             : false
 Flarakarry                                      : false
 ParakarrylessFlarakarryBombette                 : false
 ParakarrylessFlarakarryLaki                     : false
+VolcanoSushieGlitch                             : false
 
 EarlyLakiLZS                                    : false
 EarlyLakiBombettePush                           : false
@@ -302,7 +305,6 @@ RedBerryGateSkipLaki                            : false
 BlueBerryGateSkipBombettePush                   : false
 BlueBerryGateSkipLaki                           : false
 BubbleBerryTreeLakiJump                         : false
-VolcanoSushieGlitch                             : false
 
 MurderSolvedEarlyLaki                           : false
 MurderSolvedEarlyBombettePush                   : false
