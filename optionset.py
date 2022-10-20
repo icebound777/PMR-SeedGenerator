@@ -694,8 +694,10 @@ class OptionSet:
         if "Ch5SushieGlitch" in options_dict:
             self.glitch_settings.ch5_sushie_glitch = options_dict.get("Ch5SushieGlitch")
 
-        if "KooperlessLavalavaPowBlock" in options_dict:
-            self.glitch_settings.kooperless_lavalava_pow_block = options_dict.get("KooperlessLavalavaPowBlock")
+        if "KooperlessLavalavaPowBlockParakarry" in options_dict:
+            self.glitch_settings.kooperless_lavalava_pow_block_parakarry = options_dict.get("KooperlessLavalavaPowBlockParakarry")
+        if "KooperlessLavalavaPowBlockSuperBoots" in options_dict:
+            self.glitch_settings.kooperless_lavalava_pow_block_super_boots = options_dict.get("KooperlessLavalavaPowBlockSuperBoots")
         if "UltraHammerSkip" in options_dict:
             self.glitch_settings.ultra_hammer_skip = options_dict.get("UltraHammerSkip")
         if "UltraHammerSkipLaki" in options_dict:
@@ -1348,8 +1350,10 @@ def validate_options(options_dict):
     if "Ch5SushieGlitch" in options_dict:
         assert isinstance(options_dict.get("Ch5SushieGlitch").get("value"), bool)
 
-    if "KooperlessLavalavaPowBlock" in options_dict:
-        assert isinstance(options_dict.get("KooperlessLavalavaPowBlock").get("value"), bool)
+    if "KooperlessLavalavaPowBlockParakarry" in options_dict:
+        assert isinstance(options_dict.get("KooperlessLavalavaPowBlockParakarry").get("value"), bool)
+    if "KooperlessLavalavaPowBlockSuperBoots" in options_dict:
+        assert isinstance(options_dict.get("KooperlessLavalavaPowBlockSuperBoots").get("value"), bool)
     if "UltraHammerSkip" in options_dict:
         assert isinstance(options_dict.get("UltraHammerSkip").get("value"), bool)
     if "UltraHammerSkipLaki" in options_dict:
@@ -1589,7 +1593,8 @@ class GlitchOptionSet():
 
             self.raph_skip_english = False
             self.ch5_sushie_glitch = False
-            self.kooperless_lavalava_pow_block = False
+            self.kooperless_lavalava_pow_block_parakarry = False
+            self.kooperless_lavalava_pow_block_super_boots = False
             self.ultra_hammer_skip = False
             self.ultra_hammer_skip_laki = False
             self.ultra_hammer_skip_sushie = False
