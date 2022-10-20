@@ -676,6 +676,8 @@ class OptionSet:
             self.glitch_settings.bowless_green_station = options_dict.get("BowlessGreenStation")
         if "KooperlessRedStationShootingStar" in options_dict:
             self.glitch_settings.kooperless_red_station_shooting_star = options_dict.get("KooperlessRedStationShootingStar")
+        if "GearlessRedStationShootingStar" in options_dict:
+            self.glitch_settings.gearless_red_station_shooting_star = options_dict.get("GearlessRedStationShootingStar")
         if "ParakarrylessBlueBlockCityGap" in options_dict:
             self.glitch_settings.parakarryless_blue_block_city_gap = options_dict.get("ParakarrylessBlueBlockCityGap")
         if "BlueSwitchSkipLaki" in options_dict:
@@ -1332,6 +1334,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BowlessGreenStation").get("value"), bool)
     if "KooperlessRedStationShootingStar" in options_dict:
         assert isinstance(options_dict.get("KooperlessRedStationShootingStar").get("value"), bool)
+    if "GearlessRedStationShootingStar" in options_dict:
+        assert isinstance(options_dict.get("GearlessRedStationShootingStar").get("value"), bool)
     if "ParakarrylessBlueBlockCityGap" in options_dict:
         assert isinstance(options_dict.get("ParakarrylessBlueBlockCityGap").get("value"), bool)
     if "BlueSwitchSkipLaki" in options_dict:
@@ -1584,6 +1588,7 @@ class GlitchOptionSet():
             self.gourmet_guy_skip_parakarry = False
             self.bowless_green_station = False
             self.kooperless_red_station_shooting_star = False
+            self.gearless_red_station_shooting_star = False
             self.parakarryless_blue_block_city_gap = False
             self.blue_switch_skip_laki = False
             self.blue_switch_skip_ultra_boots = False
