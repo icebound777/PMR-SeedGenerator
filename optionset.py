@@ -529,8 +529,10 @@ class OptionSet:
             self.glitch_settings.hammerless_jr_playground_laki = options_dict.get("HammerlessJrPlaygroundLaki")
         if "GoombaVillageLakiExit" in options_dict:
             self.glitch_settings.goomba_village_laki_exit = options_dict.get("GoombaVillageLakiExit")
-        if "PrologueSushieGlitch" in options_dict:
-            self.glitch_settings.prologue_sushie_glitch = options_dict.get("PrologueSushieGlitch")
+        if "PrologueSushieGlitchKsj" in options_dict:
+            self.glitch_settings.prologue_sushie_glitch_ksj = options_dict.get("PrologueSushieGlitchKsj")
+        if "PrologueSushieGlitchUltraBootsLaki" in options_dict:
+            self.glitch_settings.prologue_sushie_glitch_ultra_boots_laki = options_dict.get("PrologueSushieGlitchUltraBootsLaki")
 
         if "OddKeyEarly" in options_dict:
             self.glitch_settings.odd_key_early = options_dict.get("OddKeyEarly")
@@ -1187,8 +1189,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("GoombaVillageNpcLureExit").get("value"), bool)
     if "HammerlessJrPlaygroundLaki" in options_dict:
         assert isinstance(options_dict.get("HammerlessJrPlaygroundLaki").get("value"), bool)
-    if "PrologueSushieGlitch" in options_dict:
-        assert isinstance(options_dict.get("PrologueSushieGlitch").get("value"), bool)
+    if "PrologueSushieGlitchKsj" in options_dict:
+        assert isinstance(options_dict.get("PrologueSushieGlitchKsj").get("value"), bool)
+    if "PrologueSushieGlitchUltraBootsLaki" in options_dict:
+        assert isinstance(options_dict.get("PrologueSushieGlitchUltraBootsLaki").get("value"), bool)
     if "GoombaVillageLakiExit" in options_dict:
         assert isinstance(options_dict.get("GoombaVillageLakiExit").get("value"), bool)
 
@@ -1514,7 +1518,8 @@ class GlitchOptionSet():
             self.goomba_village_npc_lure_exit = False
             self.hammerless_jr_playground_laki = False
             self.goomba_village_laki_exit = False
-            self.prologue_sushie_glitch = False
+            self.prologue_sushie_glitch_ksj = False
+            self.prologue_sushie_glitch_ultra_boots_laki = False
 
             self.odd_key_early = False
             self.blue_house_skip = False

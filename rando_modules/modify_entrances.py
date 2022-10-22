@@ -44,7 +44,7 @@ from maps.graph_edges.glitched_logic.kmr_goomba_village_hammerless_exit import \
 from maps.graph_edges.glitched_logic.kmr_hammerless_jr_playground_laki import \
     edges_kmr_add_hammerless_jr_playground_laki
 from maps.graph_edges.glitched_logic.kmr_prologue_sushie_glitch import \
-    edges_kmr_add_prologue_sushie_glitch
+    edges_kmr_add_prologue_sushie_glitch_ksj, edges_kmr_add_prologue_sushie_glitch_common, edges_kmr_add_prologue_sushie_glitch_ultra_boots_laki
 
 # Glitched Logic - Toad Town
 from maps.graph_edges.glitched_logic.mac_odd_key_early import \
@@ -346,8 +346,10 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_kmr_add_goomba_village_hammerless_exit_laki)
     if glitch_settings.hammerless_jr_playground_laki["value"]:
         all_new_edges.extend(edges_kmr_add_hammerless_jr_playground_laki)
-    if glitch_settings.prologue_sushie_glitch["value"]:
-        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch)
+    if glitch_settings.prologue_sushie_glitch_ksj["value"]:
+        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_ksj, edges_kmr_add_prologue_sushie_glitch_common)
+    if glitch_settings.prologue_sushie_glitch_ultra_boots_laki["value"]:
+        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_ultra_boots_laki, edges_kmr_add_prologue_sushie_glitch_common)
 
     # Toad Town
     if glitch_settings.odd_key_early["value"]:
