@@ -576,6 +576,8 @@ class OptionSet:
 
         if "KooperlessPleasantPathStarPiece" in options_dict:
             self.glitch_settings.kooperless_pleasant_path_star_piece = options_dict.get("KooperlessPleasantPathStarPiece")
+        if "HammerlessPleasantPathBridgeUltraBootsParakarry" in options_dict:
+            self.glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry = options_dict.get("HammerlessPleasantPathBridgeUltraBootsParakarry")
         if "InvisibleBridgeClipLzs" in options_dict:
             self.glitch_settings.invisible_bridge_clip_lzs = options_dict.get("InvisibleBridgeClipLzs")
         if "InvisibleBridgeClipLaki" in options_dict:
@@ -1234,6 +1236,8 @@ def validate_options(options_dict):
 
     if "KooperlessPleasantPathStarPiece" in options_dict:
         assert isinstance(options_dict.get("KooperlessPleasantPathStarPiece").get("value"), bool)
+    if "HammerlessPleasantPathBridgeUltraBootsParakarry" in options_dict:
+        assert isinstance(options_dict.get("HammerlessPleasantPathBridgeUltraBootsParakarry").get("value"), bool)
     if "InvisibleBridgeClipLzs" in options_dict:
         assert isinstance(options_dict.get("InvisibleBridgeClipLzs").get("value"), bool)
     if "InvisibleBridgeClipLaki" in options_dict:
@@ -1535,6 +1539,7 @@ class GlitchOptionSet():
             self.sewer_yellow_block_with_ultra_boots = False
 
             self.kooperless_pleasant_path_star_piece = False
+            self.hammerless_pleasant_path_bridge_ultra_boots_parakarry = False
             self.invisible_bridge_clip_lzs = False
             self.invisible_bridge_clip_laki = False
             self.kooperless_pleasant_path_thunderbolt = False

@@ -81,6 +81,8 @@ from maps.graph_edges.glitched_logic.tik_break_sewer_yellow_block_with_ultra_boo
 # Glitched Logic - Pleasant Path
 from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_star_piece import \
     edges_nok_add_kooperless_starpiece_clippy
+from maps.graph_edges.glitched_logic.nok_hammerless_pleasant_path_bridge_skip import \
+    edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry
 from maps.graph_edges.glitched_logic.nok_invisible_bridge_clip import \
     edges_nok_add_invisible_bridge_clip_laki, edges_nok_add_invisible_bridge_clip_lzs
 from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_thunderbolt import \
@@ -394,6 +396,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     # Pleasant Path
     if glitch_settings.kooperless_pleasant_path_star_piece["value"]:
         all_new_edges.extend(edges_nok_add_kooperless_starpiece_clippy)
+    if glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry["value"]:
+        all_new_edges.extend(edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry)
     if glitch_settings.invisible_bridge_clip_laki["value"]:
         all_new_edges.extend(edges_nok_add_invisible_bridge_clip_laki)
     if glitch_settings.invisible_bridge_clip_lzs["value"]:
