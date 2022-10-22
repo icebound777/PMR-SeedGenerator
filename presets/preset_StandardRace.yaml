@@ -129,7 +129,7 @@ ToyboxOpen          : false
 WhaleOpen           : false
 
 # Entrance General
-StarWaySpiritsNeeded: 7
+StarWaySpiritsNeeded: 7 # -1:Random
 BowsersCastleMode   : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 
 # Entrance Shuffle

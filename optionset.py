@@ -1088,7 +1088,7 @@ def validate_options(options_dict):
     # Entrance General
     if "StarWaySpiritsNeeded" in options_dict:
         assert (    isinstance(options_dict.get("StarWaySpiritsNeeded").get("value"), int)
-                and 0 <= options_dict.get("StarWaySpiritsNeeded").get("value") <= 7)
+                and -1 <= options_dict.get("StarWaySpiritsNeeded").get("value") <= 7)
     if "BowsersCastleMode" in options_dict:
         assert isinstance(options_dict.get("BowsersCastleMode").get("value"), int)
 
