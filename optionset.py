@@ -760,8 +760,10 @@ class OptionSet:
             self.glitch_settings.snowmen_skip_laki = options_dict.get("SnowmenSkipLaki")
         if "ShiverMountainSwitchSkip" in options_dict:
             self.glitch_settings.shiver_mountain_switch_skip = options_dict.get("ShiverMountainSwitchSkip")
-        if "SushielessWarehouseKey" in options_dict:
-            self.glitch_settings.sushieless_warehouse_key = options_dict.get("SushielessWarehouseKey")
+        if "SushielessWarehouseKeyBombette" in options_dict:
+            self.glitch_settings.sushieless_warehouse_key_bombette = options_dict.get("SushielessWarehouseKeyBombette")
+        if "SushielessWarehouseKeyKooper" in options_dict:
+            self.glitch_settings.sushieless_warehouse_key_kooper = options_dict.get("SushielessWarehouseKeyKooper")
 
         if "MirrorClip" in options_dict:
             self.glitch_settings.mirror_clip = options_dict.get("MirrorClip")
@@ -1422,8 +1424,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("SnowmenSkipLaki").get("value"), bool)
     if "ShiverMountainSwitchSkip" in options_dict:
         assert isinstance(options_dict.get("ShiverMountainSwitchSkip").get("value"), bool)
-    if "SushielessWarehouseKey" in options_dict:
-        assert isinstance(options_dict.get("SushielessWarehouseKey").get("value"), bool)
+    if "SushielessWarehouseKeyBombette" in options_dict:
+        assert isinstance(options_dict.get("SushielessWarehouseKeyBombette").get("value"), bool)
+    if "SushielessWarehouseKeyKooper" in options_dict:
+        assert isinstance(options_dict.get("SushielessWarehouseKeyKooper").get("value"), bool)
 
     if "MirrorClip" in options_dict:
         assert isinstance(options_dict.get("MirrorClip").get("value"), bool)
@@ -1639,7 +1643,8 @@ class GlitchOptionSet():
             self.shiver_mountain_hidden_block_without_ultra_boots_no_laki = False
             self.snowmen_skip_laki = False
             self.shiver_mountain_switch_skip = False
-            self.sushieless_warehouse_key = False
+            self.sushieless_warehouse_key_bombette = False
+            self.sushieless_warehouse_key_kooper = False
 
             self.mirror_clip = False
 

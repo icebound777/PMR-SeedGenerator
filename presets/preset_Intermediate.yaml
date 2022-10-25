@@ -319,7 +319,8 @@ ShiverMountainHiddenBlockWithoutUltraBootsLaki  : false
 ShiverMountainHiddenBlockWithoutUltraBootsNoLaki: false
 SnowmenSkipLaki                                 : false
 ShiverMountainSwitchSkip                        : false
-SushielessWarehouseKey                          : false
+SushielessWarehouseKeyBombette                  : false
+SushielessWarehouseKeyKooper                    : false
 
 MirrorClip                                      : false
 
