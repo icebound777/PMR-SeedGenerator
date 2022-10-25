@@ -78,7 +78,7 @@ RandomFormations        : true
 ShuffleItems          : true
 IncludeCoins          : false
 IncludeShops          : true
-MerlowRewardPricing   : 1 # 0:Cheap (5-30), 1:Normal (10-60)
+MerlowRewardPricing   : 0 # 0:Cheap (5-30), 1:Normal (10-60)
 RipCheatoItemsInLogic : 6 # 0-11
 IncludePanels         : false
 IncludeDojo           : false
