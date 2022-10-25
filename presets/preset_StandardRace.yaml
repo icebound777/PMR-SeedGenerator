@@ -57,7 +57,7 @@ ItemTrapMode        : 0 # 0:off, 1:sparse, 2:moderate, 3:plenty
 
 # Item Misc
 CookWithoutFryingPan : false
-MerlowRewardPricing  : 1 # 0:Cheap (5-30), 1:Normal (10-60)
+MerlowRewardPricing  : 0 # 0:Cheap (5-30), 1:Normal (10-60)
 RipCheatoItemsInLogic: 6 # 0-11
 AllowItemHints       : false
 # Mystery? item options
