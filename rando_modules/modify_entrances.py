@@ -111,6 +111,8 @@ from maps.graph_edges.glitched_logic.iwa_mt_rugged_coins_with_kooper import \
     edges_iwa_add_mt_rugged_coins_with_kooper
 from maps.graph_edges.glitched_logic.iwa_mt_rugged_station_jumpless_climb import \
     edges_iwa_add_mt_rugged_station_jumpless_climb_bombette, edges_iwa_add_mt_rugged_station_jumpless_climb_laki
+from maps.graph_edges.glitched_logic.iwa_mt_rugged_slide_jumpless_climb import \
+    edges_iwa_add_mt_rugged_slide_jumpless_climb_laki
 
 # Glitched Logic - Dry Dry Desert
 from maps.graph_edges.glitched_logic.sbk_desert_brick_block_item_with_parakarry import \
@@ -438,6 +440,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_bombette)
     if glitch_settings.mt_rugged_station_jumpless_climb_laki["value"]:
         all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_laki)
+    if glitch_settings.mt_rugged_slide_jumpless_climb_laki["value"]:
+        all_new_edges.extend(edges_iwa_add_mt_rugged_slide_jumpless_climb_laki)
 
     # Dry Dry Desert
     if glitch_settings.early_ruins_laki_jump["value"]:
