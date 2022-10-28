@@ -149,5 +149,5 @@ edges_trd = [
     # TRD_10 Boss Battle Room
     {"from": {"map": "TRD_10", "id": 0}, "to": {"map": "TRD_09", "id": 1}, "reqs": []}, # Boss Battle Room Exit Left -> Battlement Exit Right
 
-    {"from": {"map": "TRD_10", "id": 0}, "to": {"map": "TRD_10", "id": 0}, "reqs": [], "pseudoitems": ["STARSPIRIT_1","MF_Ch1_RescuedStarSpirit"]}, #+ Boss Battle Room Exit Left
+    {"from": {"map": "TRD_10", "id": 0}, "to": {"map": "TRD_10", "id": 0}, "reqs": [["Hammer","Bombette","Watt"]], "pseudoitems": ["STARSPIRIT_1","MF_Ch1_RescuedStarSpirit"]}, #+ Boss Battle Room Exit Left
 ]

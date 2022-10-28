@@ -37,15 +37,15 @@ edges_mac = [
     {"from": {"map": "MAC_00", "id": "ShopItemE"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemE (HoneySyrup) -> Gate District Exit Left
     {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "ShopItemF"},   "reqs": []}, #* Gate District Exit Left -> ShopItemF (Mushroom)
     {"from": {"map": "MAC_00", "id": "ShopItemF"},   "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* ShopItemF (Mushroom) -> Gate District Exit Left
-    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoA"},       "reqs": []}, #* Gate District Exit Left -> Dojo Fight A (First Degree Card)
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoA"},       "reqs": [["Boots","Goombario","Watt","Sushie"]], "pseudoitems": ["RF_BeatChan"]}, #* Gate District Exit Left -> Dojo Fight A (First Degree Card)
     {"from": {"map": "MAC_00", "id": "DojoA"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* Dojo Fight A (First Degree Card) -> Gate District Exit Left
-    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoB"},       "reqs": [[{"starspirits": 1}]]}, #* Gate District Exit Left -> Dojo Fight B (Second Degree Card)
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoB"},       "reqs": [[{"starspirits": 1}],["RF_BeatChan"]]}, #* Gate District Exit Left -> Dojo Fight B (Second Degree Card)
     {"from": {"map": "MAC_00", "id": "DojoB"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* Dojo Fight B (Second Degree Card) -> Gate District Exit Left
-    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoC"},       "reqs": [[{"starspirits": 3}]]}, #* Gate District Exit Left -> Dojo Fight C (Third Degree Card)
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoC"},       "reqs": [[{"starspirits": 3}],["RF_BeatChan"]]}, #* Gate District Exit Left -> Dojo Fight C (Third Degree Card)
     {"from": {"map": "MAC_00", "id": "DojoC"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* Dojo Fight C (Third Degree Card) -> Gate District Exit Left
-    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoD"},       "reqs": [[{"starspirits": 4}]]}, #* Gate District Exit Left -> Dojo Fight D (Fourth Degree Card)
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoD"},       "reqs": [[{"starspirits": 4}],["RF_BeatChan"]]}, #* Gate District Exit Left -> Dojo Fight D (Fourth Degree Card)
     {"from": {"map": "MAC_00", "id": "DojoD"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* Dojo Fight D (Fourth Degree Card) -> Gate District Exit Left
-    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoE"},       "reqs": [[{"starspirits": 5}]]}, #* Gate District Exit Left -> Dojo Fight E (Diploma)
+    {"from": {"map": "MAC_00", "id": 0},             "to": {"map": "MAC_00", "id": "DojoE"},       "reqs": [[{"starspirits": 5}],["RF_BeatChan"]]}, #* Gate District Exit Left -> Dojo Fight E (Diploma)
     {"from": {"map": "MAC_00", "id": "DojoE"},       "to": {"map": "MAC_00", "id": 0},             "reqs": []}, #* Dojo Fight E (Diploma) -> Gate District Exit Left
 
     {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanVisitRussT"]}, #+ Can decipher MysteryNote
