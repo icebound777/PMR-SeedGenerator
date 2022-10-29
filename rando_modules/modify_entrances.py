@@ -195,6 +195,8 @@ from maps.graph_edges.glitched_logic.jan_sushieless_jungle_starpiece_and_letter 
 # Glitched Logic - Mt. Lavalava
 from maps.graph_edges.glitched_logic.kzn_kooperless_lavalava_pow_block import \
     edges_kzn_add_kooperless_pow_block_parakarry, edges_kzn_add_kooperless_pow_block_super_boots
+from maps.graph_edges.glitched_logic.kzn_jumpless_lavalava_pow_block import \
+    edges_kzn_add_jumpless_pow_block_kooper
 from maps.graph_edges.glitched_logic.kzn_ultra_hammer_skip import \
     edges_kzn_add_ultra_hammer_skip, edges_kzn_add_ultra_hammer_skip_laki, edges_kzn_add_ultra_hammer_skip_sushie
 from maps.graph_edges.glitched_logic.kzn_flarakarry import \
@@ -552,6 +554,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_kzn_add_kooperless_pow_block_parakarry)
     if glitch_settings.kooperless_lavalava_pow_block_super_boots["value"]:
         all_new_edges.extend(edges_kzn_add_kooperless_pow_block_super_boots)
+    if glitch_settings.jumpless_lavalava_pow_block["value"]:
+        all_new_edges.extend(edges_kzn_add_jumpless_pow_block_kooper)
     if glitch_settings.ultra_hammer_skip["value"]:
         all_new_edges.extend(edges_kzn_add_ultra_hammer_skip)
     if glitch_settings.ultra_hammer_skip_laki["value"]:

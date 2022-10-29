@@ -714,6 +714,8 @@ class OptionSet:
             self.glitch_settings.kooperless_lavalava_pow_block_parakarry = options_dict.get("KooperlessLavalavaPowBlockParakarry")
         if "KooperlessLavalavaPowBlockSuperBoots" in options_dict:
             self.glitch_settings.kooperless_lavalava_pow_block_super_boots = options_dict.get("KooperlessLavalavaPowBlockSuperBoots")
+        if "JumplessLavalavaPowBlock" in options_dict:
+            self.glitch_settings.jumpless_lavalava_pow_block = options_dict.get("JumplessLavalavaPowBlock")
         if "UltraHammerSkip" in options_dict:
             self.glitch_settings.ultra_hammer_skip = options_dict.get("UltraHammerSkip")
         if "UltraHammerSkipLaki" in options_dict:
@@ -1388,6 +1390,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("KooperlessLavalavaPowBlockParakarry").get("value"), bool)
     if "KooperlessLavalavaPowBlockSuperBoots" in options_dict:
         assert isinstance(options_dict.get("KooperlessLavalavaPowBlockSuperBoots").get("value"), bool)
+    if "JumplessLavalavaPowBlock" in options_dict:
+        assert isinstance(options_dict.get("JumplessLavalavaPowBlock").get("value"), bool)
     if "UltraHammerSkip" in options_dict:
         assert isinstance(options_dict.get("UltraHammerSkip").get("value"), bool)
     if "UltraHammerSkipLaki" in options_dict:
@@ -1639,6 +1643,7 @@ class GlitchOptionSet():
             self.sushieless_jungle_starpiece_and_letter = False
             self.kooperless_lavalava_pow_block_parakarry = False
             self.kooperless_lavalava_pow_block_super_boots = False
+            self.jumpless_lavalava_pow_block = False
             self.ultra_hammer_skip = False
             self.ultra_hammer_skip_laki = False
             self.ultra_hammer_skip_sushie = False
