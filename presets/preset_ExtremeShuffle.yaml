@@ -258,6 +258,7 @@ RecordSkipNoBombettePush                        : false
 RecordSkipBombettePush                          : false
 BoosPortraitWithKooper                          : false
 BoosPortraitWithLaki                            : false
+JumplessMansionEntry                            : false
 
 GustyGulchGateSkipLZS                           : false
 GustyGulchGateSkipLaki                          : false

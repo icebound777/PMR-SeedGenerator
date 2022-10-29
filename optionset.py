@@ -647,6 +647,8 @@ class OptionSet:
             self.glitch_settings.boos_portrait_with_kooper = options_dict.get("BoosPortraitWithKooper")
         if "BoosPortraitWithLaki" in options_dict:
             self.glitch_settings.boos_portrait_with_laki = options_dict.get("BoosPortraitWithLaki")
+        if "JumplessMansionEntry" in options_dict:
+            self.glitch_settings.jumpless_mansion_entry = options_dict.get("JumplessMansionEntry")
             
         if "GustyGulchGateSkipLZS" in options_dict:
             self.glitch_settings.gusty_gulch_gate_skip_lzs = options_dict.get("GustyGulchGateSkipLZS")
@@ -1319,6 +1321,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BoosPortraitWithKooper").get("value"), bool)
     if "BoosPortraitWithLaki" in options_dict:
         assert isinstance(options_dict.get("BoosPortraitWithLaki").get("value"), bool)
+    if "JumplessMansionEntry" in options_dict:
+        assert isinstance(options_dict.get("JumplessMansionEntry").get("value"), bool)
         
     if "GustyGulchGateSkipLZS" in options_dict:
         assert isinstance(options_dict.get("GustyGulchGateSkipLZS").get("value"), bool)
@@ -1600,6 +1604,7 @@ class GlitchOptionSet():
             self.record_skip_bombette_push = False
             self.boos_portrait_with_kooper = False
             self.boos_portrait_with_laki = False
+            self.jumpless_mansion_entry = False
             
             self.gusty_gulch_gate_skip_lzs = False
             self.gusty_gulch_gate_skip_laki = False

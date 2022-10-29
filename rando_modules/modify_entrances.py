@@ -138,6 +138,8 @@ from maps.graph_edges.glitched_logic.obk_record_skip import \
     edges_obk_add_record_skip_bombette_push, edges_obk_add_record_skip_spin_jump
 from maps.graph_edges.glitched_logic.obk_parakarryless_boos_portrait import \
     edges_obk_add_boo_portrait_kooper, edges_obk_add_boo_portrait_laki
+from maps.graph_edges.glitched_logic.mim_jumpless_mansion_entry import \
+    edges_mim_add_jumpless_mansion_entry_parakarry
     
 # Glitched Logic - Gusty Gulch
 from maps.graph_edges.glitched_logic.mim_gusty_gulch_gate_skip import \
@@ -478,6 +480,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_obk_add_boo_portrait_kooper)
     if glitch_settings.boos_portrait_with_laki["value"]:
         all_new_edges.extend(edges_obk_add_boo_portrait_laki)
+    if glitch_settings.jumpless_mansion_entry["value"]:
+        all_new_edges.extend(edges_mim_add_jumpless_mansion_entry_parakarry)
 
     # Gusty Gulch
     if glitch_settings.gusty_gulch_gate_skip_lzs["value"]:
