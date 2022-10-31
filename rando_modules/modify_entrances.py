@@ -217,8 +217,8 @@ from maps.graph_edges.glitched_logic.flo_red_berry_gate_skip import \
     edges_flo_add_red_berry_gate_skip_bombette_push, edges_flo_add_red_berry_gate_skip_laki
 from maps.graph_edges.glitched_logic.flo_blue_berry_gate_skip import \
     edges_flo_add_blue_berry_gate_skip_bombette_push, edges_flo_add_blue_berry_gate_skip_laki
-from maps.graph_edges.glitched_logic.flo_bubble_berry_tree_laki_jump import \
-    edges_flo_add_bubble_berry_tree_laki
+from maps.graph_edges.glitched_logic.flo_bubble_berry_tree_early import \
+    edges_flo_add_bubble_berry_tree_early_laki, edges_flo_add_bubble_berry_tree_early_ultra_boots
 
 # Glitched Logic - Shiver Region
 from maps.graph_edges.glitched_logic.sam_murder_solved_early import \
@@ -598,8 +598,10 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_flo_add_blue_berry_gate_skip_bombette_push)
     if glitch_settings.blue_berry_gate_skip_laki["value"]:
         all_new_edges.extend(edges_flo_add_blue_berry_gate_skip_laki)
-    if glitch_settings.bubble_berry_tree_laki_jump["value"]:
-        all_new_edges.extend(edges_flo_add_bubble_berry_tree_laki)
+    if glitch_settings.bubble_berry_tree_early_laki_jump["value"]:
+        all_new_edges.extend(edges_flo_add_bubble_berry_tree_early_laki)
+    if glitch_settings.bubble_berry_tree_early_ultra_boots["value"]:
+        all_new_edges.extend(edges_flo_add_bubble_berry_tree_early_ultra_boots)
 
     # Shiver Region
     if glitch_settings.murder_solved_early_bombette_push["value"]:

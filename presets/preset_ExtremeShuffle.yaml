@@ -316,6 +316,7 @@ RedBerryGateSkipLaki                            : false
 BlueBerryGateSkipBombettePush                   : false
 BlueBerryGateSkipLaki                           : false
 BubbleBerryTreeLakiJump                         : false
+BubbleBerryTreeUltraBoots                       : false
 
 MurderSolvedEarlyLaki                           : false
 MurderSolvedEarlyBombettePush                   : false

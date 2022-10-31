@@ -756,7 +756,9 @@ class OptionSet:
         if "BlueBerryGateSkipLaki" in options_dict:
             self.glitch_settings.blue_berry_gate_skip_laki = options_dict.get("BlueBerryGateSkipLaki")
         if "BubbleBerryTreeLakiJump" in options_dict:
-            self.glitch_settings.bubble_berry_tree_laki_jump = options_dict.get("BubbleBerryTreeLakiJump")
+            self.glitch_settings.bubble_berry_tree_early_laki_jump = options_dict.get("BubbleBerryTreeLakiJump")
+        if "BubbleBerryTreeUltraBoots" in options_dict:
+            self.glitch_settings.bubble_berry_tree_early_ultra_boots = options_dict.get("BubbleBerryTreeUltraBoots")
 
         if "MurderSolvedEarlyLaki" in options_dict:
             self.glitch_settings.murder_solved_early_laki = options_dict.get("MurderSolvedEarlyLaki")
@@ -1435,6 +1437,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BlueBerryGateSkipLaki").get("value"), bool)
     if "BubbleBerryTreeLakiJump" in options_dict:
         assert isinstance(options_dict.get("BubbleBerryTreeLakiJump").get("value"), bool)
+    if "BubbleBerryTreeUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("BubbleBerryTreeUltraBoots").get("value"), bool)
 
     if "MurderSolvedEarlyLaki" in options_dict:
         assert isinstance(options_dict.get("MurderSolvedEarlyLaki").get("value"), bool)
@@ -1668,7 +1672,8 @@ class GlitchOptionSet():
             self.red_berry_gate_skip_laki = False
             self.blue_berry_gate_skip_bombette_push = False
             self.blue_berry_gate_skip_laki = False
-            self.bubble_berry_tree_laki_jump = False
+            self.bubble_berry_tree_early_laki_jump = False
+            self.bubble_berry_tree_early_ultra_boots = False
 
             self.murder_solved_early_laki = False
             self.murder_solved_early_bombette_push = False
