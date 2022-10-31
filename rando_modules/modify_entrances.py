@@ -359,9 +359,11 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     if glitch_settings.hammerless_jr_playground_laki["value"]:
         all_new_edges.extend(edges_kmr_add_hammerless_jr_playground_laki)
     if glitch_settings.prologue_sushie_glitch_ksj["value"]:
-        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_ksj, edges_kmr_add_prologue_sushie_glitch_common)
+        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_ksj)
+        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_common)
     if glitch_settings.prologue_sushie_glitch_ultra_boots_laki["value"]:
-        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_ultra_boots_laki, edges_kmr_add_prologue_sushie_glitch_common)
+        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_ultra_boots_laki)
+        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_common)
 
     # Toad Town
     if glitch_settings.odd_key_early["value"]:
@@ -550,7 +552,7 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_jan_add_raph_skip_english)
     if glitch_settings.ch5_sushie_glitch["value"]:
         all_new_edges.extend(edges_jan_kzn_add_ch5_sushie_glitch)
-    if glitch_settings.ch5_sushieless_jungle_starpiece_and_letter["value"]:
+    if glitch_settings.sushieless_jungle_starpiece_and_letter["value"]:
         all_new_edges.extend(edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs)
 
     # Mt. Lavalava
@@ -650,7 +652,7 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     if glitch_settings.reach_high_blocks_with_super_boots["value"]:
         all_new_edges.extend(edges_global_reach_high_blocks_with_super_boots)
 
-    #print(all_new_edges)
+    print(all_new_edges)
 
     # Modify graph with all pending changes, if any
     if all_new_edges or all_edges_to_remove:
