@@ -241,6 +241,7 @@ MtRuggedStationJumplessClimbBombette            : false
 MtRuggedStationJumplessClimbLaki                : false
 MtRuggedSlideJumplessClimbLaki                  : false
 ParakarrylessMtRuggedStarPiece                  : false
+JumplessMtRuggedTrainPlatformParakarry          : false
 
 DesertBrickBlockItemWithParakarry               : false
 EarlyRuinsLakiJump                              : false
