@@ -38,7 +38,7 @@ edges_flo = [
 
     {"from": {"map": "FLO_16", "id": 1},       "to": {"map": "FLO_16", "id": "ItemA"}, "reqs": [["SuperBoots"]]}, #* (NE) Elevators Exit Right -> ItemA (StarPiece)
     {"from": {"map": "FLO_16", "id": "ItemA"}, "to": {"map": "FLO_16", "id": 1},       "reqs": []}, #* ItemA (StarPiece) -> (NE) Elevators Exit Right
-    {"from": {"map": "FLO_16", "id": 0},       "to": {"map": "FLO_16", "id": "ItemB"}, "reqs": [["can_climb_steps","Kooper"]]}, #* (NE) Elevators Exit Left -> ItemB (StinkyHerb)
+    {"from": {"map": "FLO_16", "id": 0},       "to": {"map": "FLO_16", "id": "ItemB"}, "reqs": [["can_climb_steps","Kooper","Lakilester"]]}, #* (NE) Elevators Exit Left -> ItemB (StinkyHerb)
     {"from": {"map": "FLO_16", "id": "ItemB"}, "to": {"map": "FLO_16", "id": 0},       "reqs": []}, #* ItemB (StinkyHerb) -> (NE) Elevators Exit Left
 
     # FLO_17 (NE) Fallen Logs
