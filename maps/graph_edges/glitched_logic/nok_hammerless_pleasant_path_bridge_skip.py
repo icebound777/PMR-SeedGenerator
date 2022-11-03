@@ -1,6 +1,6 @@
 """
 This file represents edges of the world graph that have to be added
-for Glitched Logic: Kooper-less Pleasant Path Star Piece.
+for Glitched Logic: Hammer-less Pleasant Path Bridge Skip.
 """
 edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry= [
     #? Pleasant Path Bridge Exit Left -> Pleasant Path Bridge Exit Right
