@@ -1117,7 +1117,7 @@ def get_item_spheres(
 
 def place_items(
     item_placement,
-    algorithm,
+    do_custom_seed:bool,
     do_shuffle_items,
     do_randomize_coins,
     do_randomize_shops,
@@ -1168,7 +1168,9 @@ def place_items(
                 merlow_costs=merlow_reward_pricing
             )
             item_placement.append(node)
-    elif algorithm == "AssumedFill":
+    elif do_custom_seed:
+        raise ValueError
+    else:
         # Place items in a backward fill, ensuring a maximally deep fill.
         _algo_assumed_fill(
             item_placement,

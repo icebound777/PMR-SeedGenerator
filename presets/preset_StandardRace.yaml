@@ -1,23 +1,26 @@
 ---
 # PAPER MARIO RANDOMIZER SETTINGS
-SettingsName   : Standard Race Preset
+SettingsName: Standard Race Preset
 
-# Options
-BlocksMatchContent   : true
+# General
+BlocksMatchContent  : true
+HiddenBlockMode     : 2 # 0:vanilla, 1:Watt out, 2:Watt acquired, 3:always visible
+AllowPhysicsGlitches: true
+
+# QOL
 AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
-HiddenBlockMode      : 2 # 0:vanilla, 1:Watt out, 2:Watt acquired, 3:always visible
 ShortenCutscenes     : true
-AllowPhysicsGlitches : true
 SkipEpilogue         : true
-StarWaySpiritsNeeded : 7
 PeachCastleReturnPipe: true # false locks the pipe
-CookWithoutFryingPan : false
 FoliageItemHints     : true
 HiddenPanelVisibility: 1 # 0:vanilla, 1:texture-edit
 
-StartingCoins  : 100
+# Difficulty and Enemies
+ShuffleChapterDifficulty: true
+ProgressiveScaling      : false
+
 ChallengeMode  : false
 CapEnemyXP     : false
 NoXP           : false
@@ -28,6 +31,47 @@ NoSaveBlocks   : false
 NoHeartBlocks  : false
 NoHealingItems : false
 
+RandomFormations: true
+
+# Custom Seed / Planned Seed / "Plandomizer"
+CustomSeed: false # NYI
+
+# Item Placement
+ShuffleItems          : true
+IncludeCoins          : false
+IncludeShops          : true
+IncludePanels         : false
+IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
+IncludeLettersMode    : 0 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
+IncludeRadioTradeEvent: false
+IncludeDojo           : false
+KeyitemsOutsideDungeon: true
+KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
+
+# Item Pool Modification
+GearShuffleMode     : 0 # 0:vanilla, 1:location shuffle, 2:full shuffle
+AddItemPouches      : false
+RandomConsumableMode: 0 # 0 = vanilla, 1 = full random, 2 = balanced random, 3 = mystery only
+ItemQuality         : 100
+ItemTrapMode        : 0 # 0:off, 1:sparse, 2:moderate, 3:plenty
+
+# Item Misc
+CookWithoutFryingPan : false
+MerlowRewardPricing  : 0 # 0:Cheap (5-30), 1:Normal (10-60)
+RipCheatoItemsInLogic: 6 # 0-11
+AllowItemHints       : false
+# Mystery? item options
+RandomChoice         : false
+MysteryRandomPick    : false
+# Below are never used, they get hardcoded overwritten, just for doc purposes
+ItemChoiceA          : 0x08A # Mushroom
+ItemChoiceB          : 0x08C # SuperShroom
+ItemChoiceC          : 0x080 # FireFlower
+ItemChoiceD          : 0x088 # StoneCap
+ItemChoiceE          : 0x09A # DizzyDial
+ItemChoiceF          : 0x082 # ThunderRage
+ItemChoiceG          : 0x085 # Pebble
+
 # Starting setup
 StartingMap      : 0x00010104 # 0x00010104:Toad Town Gate District, 0xFFFFFFFF:RandomFromSelection
 StartingLevel    : 1
@@ -37,104 +81,29 @@ StartingMaxBP    : 3
 StartingStarPower: 0
 StartingBoots    : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
 StartingHammer   : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
+StartingCoins    : 100
 
 StartWithRandomItems: false
-RandomItemsMin: 0
-RandomItemsMax: 16
-StartingItem0: 0x000 # Nothing
-StartingItem1: 0x000 # Nothing
-StartingItem2: 0x000 # Nothing
-StartingItem3: 0x000 # Nothing
-StartingItem4: 0x000 # Nothing
-StartingItem5: 0x000 # Nothing
-StartingItem6: 0x000 # Nothing
-StartingItem7: 0x000 # Nothing
-StartingItem8: 0x000 # Nothing
-StartingItem9: 0x000 # Nothing
-StartingItemA: 0x000 # Nothing
-StartingItemB: 0x000 # Nothing
-StartingItemC: 0x000 # Nothing
-StartingItemD: 0x000 # Nothing
-StartingItemE: 0x000 # Nothing
-StartingItemF: 0x000 # Nothing
+RandomItemsMin      : 0
+RandomItemsMax      : 16
+StartingItem0       : 0x000 # Nothing
+StartingItem1       : 0x000 # Nothing
+StartingItem2       : 0x000 # Nothing
+StartingItem3       : 0x000 # Nothing
+StartingItem4       : 0x000 # Nothing
+StartingItem5       : 0x000 # Nothing
+StartingItem6       : 0x000 # Nothing
+StartingItem7       : 0x000 # Nothing
+StartingItem8       : 0x000 # Nothing
+StartingItem9       : 0x000 # Nothing
+StartingItemA       : 0x000 # Nothing
+StartingItemB       : 0x000 # Nothing
+StartingItemC       : 0x000 # Nothing
+StartingItemD       : 0x000 # Nothing
+StartingItemE       : 0x000 # Nothing
+StartingItemF       : 0x000 # Nothing
 
-# Pre-opened areas
-MagicalSeedsRequired: 4 # 5:random
-PrologueOpen        : false
-BlueHouseOpen       : false
-ToyboxOpen          : false
-WhaleOpen           : false
-
-# Randomization: Logic
-PlacementAlgorithm: AssumedFill
-#PlacementAlgorithm: CustomSeed # NYI
-
-# Randomization: Difficulty
-ShuffleChapterDifficulty: true
-ProgressiveScaling      : false
-RandomFormations        : true
-
-# Randomization: Items
-ShuffleItems          : true
-IncludeCoins          : false
-IncludeShops          : true
-MerlowRewardPricing   : 1 # 0:Cheap (5-30), 1:Normal (10-60)
-RipCheatoItemsInLogic : 6 # 0-11
-IncludePanels         : false
-IncludeDojo           : false
-IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
-IncludeLettersMode    : 0 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
-IncludeRadioTradeEvent: false
-RandomConsumableMode  : 0 # 0 = vanilla, 1 = full random, 2 = balanced random, 3 = mystery only
-ItemQuality           : 100
-ItemTrapMode          : 0 # 0:off, 1:sparse, 2:moderate, 3:plenty
-GearShuffleMode       : 0 # 0:vanilla, 1:location shuffle, 2:full shuffle
-AddItemPouches        : false
-KeyitemsOutsideDungeon: true
-KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
-AllowItemHints        : false
-# Mystery? item options
-RandomChoice     : false
-MysteryRandomPick: false
-# Below are never used, they get hardcoded overwritten, just for doc purposes
-ItemChoiceA      : 0x08A # Mushroom
-ItemChoiceB      : 0x08C # SuperShroom
-ItemChoiceC      : 0x080 # FireFlower
-ItemChoiceD      : 0x088 # StoneCap
-ItemChoiceE      : 0x09A # DizzyDial
-ItemChoiceF      : 0x082 # ThunderRage
-ItemChoiceG      : 0x085 # Pebble
-
-# Randomization: Blocks
-ShuffleBlocks: false
-
-# Randomization: Moves and Badges
-# 0: vanilla, 1: balanced random, 2: shuffled, 3: fully random
-RandomBadgesBP   : 1
-RandomBadgesFP   : 1
-RandomPartnerFP  : 1
-RandomStarpowerSP: 0
-
-# Randomization: Entrances
-ShuffleEntrances        : true  # NYI
-ShuffleEntrancesByArea  : true  # NYI
-ShuffleEntrancesByAll   : false # NYI
-MatchEntranceTypes      : true  # NYI
-RandomizeOnewayEntrances: false # NYI
-UnpairedEntrances       : false # NYI
-BowsersCastleMode       : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
-
-# Randomization: Quizzes
-RandomQuiz         : true
-SkipQuiz           : true
-QuizmoAlwaysAppears: false
-
-# Randomization: Partner
-PartnersInDefaultLocations: false
-PartnersAlwaysUsable      : false
-StartWithRandomPartners   : true
-RandomPartnersMin         : 1 # 1-8
-RandomPartnersMax         : 1 # 1-8
+# Partners
 StartWithPartners: { # ignored if StartWithRandomPartners true
     Goombario : true,
     Kooper    : false,
@@ -146,47 +115,87 @@ StartWithPartners: { # ignored if StartWithRandomPartners true
     Lakilester: false
 }
 
-# Spoiler log
+PartnersInDefaultLocations: false
+PartnersAlwaysUsable      : false
+StartWithRandomPartners   : true
+RandomPartnersMin         : 1 # 1-8
+RandomPartnersMax         : 1 # 1-8
+
+# Pre-opened areas
+MagicalSeedsRequired: 4 # 5:random
+PrologueOpen        : false
+BlueHouseOpen       : false
+ToyboxOpen          : false
+WhaleOpen           : false
+
+# Entrance General
+StarWaySpiritsNeeded: 7 # -1:Random
+BowsersCastleMode   : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
+
+# Entrance Shuffle
+ShuffleEntrances        : true  # NYI
+ShuffleEntrancesByArea  : true  # NYI
+ShuffleEntrancesByAll   : false # NYI
+MatchEntranceTypes      : true  # NYI
+RandomizeOnewayEntrances: false # NYI
+UnpairedEntrances       : false # NYI
+
+# Costs of Moves and Badges
+# 0: vanilla, 1: balanced random, 2: shuffled, 3: fully random
+RandomBadgesBP   : 1
+RandomBadgesFP   : 1
+RandomPartnerFP  : 1
+RandomStarpowerSP: 0
+
+# Misc Gameplay Randomization
+ShuffleBlocks: false
+
+# Quizmo Quizzes
+RandomQuiz         : true
+QuizmoAlwaysAppears: false
+SkipQuiz           : true
+
+# Spoilerlog
 WriteSpoilerLog : true
 PrettySpoilerlog: true
 
-# Cosmetics / Palettes
+# Cosmetics
 Box5ColorA     : 0xEBE676FF # Status Bar Color A (main)
 Box5ColorB     : 0x8E5A24FF # Status Bar Color B (shadow)
 CoinColor      : 0 # 0:gold, 1:red, 2:blue, 3:purple, 4:silver
 RandomCoinColor: true # if true: overrules CoinColor
-RomanNumerals  : false
-RandomText     : false
 
 # "*Setting" values explanation:
-# DEFAULT_PALETTE    : 0
-# SELECT_PALETTE     : 1 (only Mario and partners)
-# RANDOM_PICK        : 2
-# RANDOM_PICK_NOT_VANILLA  : 3
-# ALWAYS_RANDOM      : 4
-MarioSetting         : 2
-MarioSprite          : 0
-GoombarioSetting     : 2
-GoombarioSprite      : 0
-KooperSetting        : 2
-KooperSprite         : 0
-BombetteSetting      : 2
-BombetteSprite       : 0
-ParakarrySetting     : 2
-ParakarrySprite      : 0
-BowSetting           : 2
-BowSprite            : 0
-WattSetting          : 2
-WattSprite           : 0
-SushieSetting        : 2
-SushieSprite         : 0
-#LakilesterSetting    : 2 # NYI
-#LakilesterSprite     : 0 # NYI
-BossesSetting        : 2
-EnemiesSetting       : 2
-NPCSetting           : 2
+# DEFAULT_PALETTE: 0
+# SELECT_PALETTE : 1 (only Mario and partners)
+# RANDOM_PICK    : 2
+# RANDOM_PICK_NOT_VANILLA: 3
+# ALWAYS_RANDOM  : 4
+MarioSetting     : 2
+MarioSprite      : 0
+GoombarioSetting : 2
+GoombarioSprite  : 0
+KooperSetting    : 2
+KooperSprite     : 0
+BombetteSetting  : 2
+BombetteSprite   : 0
+ParakarrySetting : 2
+ParakarrySprite  : 0
+BowSetting       : 2
+BowSprite        : 0
+WattSetting      : 2
+WattSprite       : 0
+SushieSetting    : 2
+SushieSprite     : 0
+#LakilesterSetting: 2 # NYI
+#LakilesterSprite : 0 # NYI
+BossesSetting    : 2
+EnemiesSetting   : 2
+NPCSetting       : 2
 
-# Audio
+# Joke options
+RomanNumerals  : false
+RandomText     : false
 RandomPitch: false
 
 # Glitched Logic

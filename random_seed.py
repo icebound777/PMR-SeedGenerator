@@ -79,10 +79,13 @@ class RandomSeed:
         )
         world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings, self.rando_settings.bowsers_castle_mode["value"])
 
+        # Adjust further settings
         hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
         if self.rando_settings.glitch_settings.knows_hidden_blocks["value"]:
             hidden_block_mode = 3 # Having this trick enabled is equivalent to mode 3, logic wise
 
+        if self.rando_settings.starway_spirits_needed["value"] == -1:
+            self.rando_settings.starway_spirits_needed["value"] = random.randint(1,7)
 
         # Item Placement
         for placement_attempt in range(1, 11):  # try 10 times
@@ -101,7 +104,7 @@ class RandomSeed:
                 world_graph_copy = deepcopy(world_graph)
                 place_items(
                     item_placement= self.placed_items,
-                    algorithm=self.rando_settings.placement_algorithm,
+                    do_custom_seed=self.rando_settings.custom_seed,
                     do_shuffle_items=self.rando_settings.shuffle_items["value"],
                     do_randomize_coins=self.rando_settings.include_coins["value"],
                     do_randomize_shops=self.rando_settings.include_shops["value"],

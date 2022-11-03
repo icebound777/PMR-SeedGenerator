@@ -131,17 +131,20 @@ edges_isk = [
     {"from": {"map": "ISK_12", "id": 2}, "to": {"map": "ISK_18", "id": 1}, "reqs": []}, # Sand Drainage Room 3 Exit Bottom Left -> Deep Tunnel Exit Right
     {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_13", "id": 0}, "reqs": []}, # Sand Drainage Room 3 Exit Top Right -> Lunar Stone Room Exit Left
 
-    {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 2}, "reqs": [["Bombette"]]}, #? Sand Drainage Room 3 Exit Top Left -> Sand Drainage Room 3 Exit Bottom Left
+    #{"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 2}, "reqs": [["RF_NeverTraversible"]]}, #? Sand Drainage Room 3 Exit Top Left -> Sand Drainage Room 3 Exit Bottom Left
     {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 3}, "reqs": [["RF_DrainedThirdSandRoomAndCanSolvePuzzle"]]}, #? Sand Drainage Room 3 Exit Top Left -> Sand Drainage Room 3 Exit Top Right
     {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 1}, "reqs": [["RF_DrainedThirdSandRoomAndCanSolvePuzzle"],["can_climb_steps"]]}, #? Sand Drainage Room 3 Exit Top Right -> Sand Drainage Room 3 Exit Top Left
-    {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 2}, "reqs": [["Bombette"]]}, #? Sand Drainage Room 3 Exit Top Right -> Sand Drainage Room 3 Exit Bottom Left
+    #{"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 2}, "reqs": [["RF_NeverTraversible"]]}, #? Sand Drainage Room 3 Exit Top Right -> Sand Drainage Room 3 Exit Bottom Left
 
     {"from": {"map": "ISK_12", "id": 0}, "to": {"map": "ISK_12", "id": 0}, "reqs": [["can_climb_steps"]], "pseudoitems": ["RF_DrainedThirdSandRoomAndCanSolvePuzzle"]}, #+ Sand Drainage Room 3 Exit Upper Room Left
+    {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": 1}, "reqs": [], "pseudoitems": ["RF_ISK12_CanEnterFromAbove"]}, #+ Sand Drainage Room 3 Exit Top Left
+    {"from": {"map": "ISK_12", "id": 3}, "to": {"map": "ISK_12", "id": 3}, "reqs": [], "pseudoitems": ["RF_ISK12_CanEnterFromAbove"]}, #+ Sand Drainage Room 3 Exit Top Right
 
+    {"from": {"map": "ISK_12", "id": 1},       "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": [["RF_DrainedThirdSandRoomAndCanSolvePuzzle","can_climb_steps"],["RF_DrainedThirdSandRoomAndCanSolvePuzzle","RF_ISK09_OpenedHammerChest"]]}, #* Sand Drainage Room 3 Exit Top Left -> ItemA (RuinsKey)
+    {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 1},       "reqs": [["can_climb_steps"],["RF_ISK12_CanEnterFromAbove"]]}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Top Left
     {"from": {"map": "ISK_12", "id": 2},       "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"],["can_climb_steps"]]}, #* Sand Drainage Room 3 Exit Bottom Left -> ItemA (RuinsKey)
-    {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 2},       "reqs": []}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Bottom Left
     {"from": {"map": "ISK_12", "id": 3},       "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": []}, #* Sand Drainage Room 3 Exit Top Right -> ItemA (RuinsKey)
-    {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 3},       "reqs": [["RF_DrainedThirdSandRoomAndCanSolvePuzzle"]]}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Top Right
+    {"from": {"map": "ISK_12", "id": "ItemA"}, "to": {"map": "ISK_12", "id": 3},       "reqs": [["RF_DrainedThirdSandRoomAndCanSolvePuzzle"],["RF_ISK12_CanEnterFromAbove"]]}, #* ItemA (RuinsKey) -> Sand Drainage Room 3 Exit Top Right
 
     # ISK_13 Lunar Stone Room
     {"from": {"map": "ISK_13", "id": 0}, "to": {"map": "ISK_12", "id": 3}, "reqs": []}, # Lunar Stone Room Exit Left -> Sand Drainage Room 3 Exit Top Right
@@ -164,7 +167,7 @@ edges_isk = [
     {"from": {"map": "ISK_18", "id": 0}, "to": {"map": "ISK_10", "id": 2}, "reqs": []}, # Deep Tunnel Exit Left -> Vertical Shaft Exit Bottom Right
     {"from": {"map": "ISK_18", "id": 1}, "to": {"map": "ISK_12", "id": 2}, "reqs": []}, # Deep Tunnel Exit Right -> Sand Drainage Room 3 Exit Bottom Left
 
-    {"from": {"map": "ISK_18", "id": 0}, "to": {"map": "ISK_18", "id": 1}, "reqs": []}, #? Deep Tunnel Exit Left -> Deep Tunnel Exit Right
+    #{"from": {"map": "ISK_18", "id": 0}, "to": {"map": "ISK_18", "id": 1}, "reqs": [["RF_NeverTraversible"]]}, #? Deep Tunnel Exit Left -> Deep Tunnel Exit Right
     {"from": {"map": "ISK_18", "id": 1}, "to": {"map": "ISK_18", "id": 0}, "reqs": []}, #? Deep Tunnel Exit Right -> Deep Tunnel Exit Left
 
     # ISK_19 Boss Antechamber

@@ -13,7 +13,7 @@ edges_obk = [
     {"from": {"map": "OBK_01", "id": 1}, "to": {"map": "OBK_01", "id": 0}, "reqs": []}, #? Foyer Lower Hidden Door -> Foyer Front Door
     {"from": {"map": "OBK_01", "id": 0}, "to": {"map": "OBK_01", "id": 2}, "reqs": []}, #? Foyer Front Door -> Foyer Lower Door
     {"from": {"map": "OBK_01", "id": 2}, "to": {"map": "OBK_01", "id": 0}, "reqs": []}, #? Foyer Lower Door -> Foyer Front Door
-    {"from": {"map": "OBK_01", "id": 0}, "to": {"map": "OBK_01", "id": 3}, "reqs": [["Boots"]]}, #? Foyer Front Door -> Foyer Upper Door West
+    {"from": {"map": "OBK_01", "id": 0}, "to": {"map": "OBK_01", "id": 3}, "reqs": [["Boots","BooWeight"],["can_climb_steps"]]}, #? Foyer Front Door -> Foyer Upper Door West
     {"from": {"map": "OBK_01", "id": 3}, "to": {"map": "OBK_01", "id": 0}, "reqs": []}, #? Foyer Upper Door West -> Foyer Front Door
     {"from": {"map": "OBK_01", "id": 3}, "to": {"map": "OBK_01", "id": 4}, "reqs": []}, #? Foyer Upper Door West -> Foyer Upper Door East
     {"from": {"map": "OBK_01", "id": 4}, "to": {"map": "OBK_01", "id": 3}, "reqs": []}, #? Foyer Upper Door East -> Foyer Upper Door West
