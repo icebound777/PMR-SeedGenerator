@@ -193,6 +193,8 @@ from maps.graph_edges.glitched_logic.jan_kzn_ch5_sushie_glitch import \
     edges_jan_kzn_add_ch5_sushie_glitch, edges_kzn_add_volcano_sushie_glitch
 from maps.graph_edges.glitched_logic.jan_sushieless_jungle_starpiece_and_letter import \
     edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs
+from maps.graph_edges.glitched_logic.jan_jumpless_deep_jungle import \
+    edges_jan_add_jumpless_deep_jungle_laki
 
 # Glitched Logic - Mt. Lavalava
 from maps.graph_edges.glitched_logic.kzn_kooperless_lavalava_pow_block import \
@@ -554,6 +556,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_jan_kzn_add_ch5_sushie_glitch)
     if glitch_settings.sushieless_jungle_starpiece_and_letter["value"]:
         all_new_edges.extend(edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs)
+    if glitch_settings.jumpless_deep_jungle_laki["value"]:
+        all_new_edges.extend(edges_jan_add_jumpless_deep_jungle_laki)
 
     # Mt. Lavalava
     if glitch_settings.kooperless_lavalava_pow_block_parakarry["value"]:
@@ -652,7 +656,7 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     if glitch_settings.reach_high_blocks_with_super_boots["value"]:
         all_new_edges.extend(edges_global_reach_high_blocks_with_super_boots)
 
-    print(all_new_edges)
+    #print(all_new_edges)
 
     # Modify graph with all pending changes, if any
     if all_new_edges or all_edges_to_remove:

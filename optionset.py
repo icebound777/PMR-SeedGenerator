@@ -711,6 +711,8 @@ class OptionSet:
             self.glitch_settings.ch5_sushie_glitch = options_dict.get("Ch5SushieGlitch")
         if "SushielessJungleStarpieceAndLetter" in options_dict:
             self.glitch_settings.sushieless_jungle_starpiece_and_letter = options_dict.get("SushielessJungleStarpieceAndLetter")
+        if "JumplessDeepJungleLaki" in options_dict:
+            self.glitch_settings.jumpless_deep_jungle_laki = options_dict.get("JumplessDeepJungleLaki")
 
         if "KooperlessLavalavaPowBlockParakarry" in options_dict:
             self.glitch_settings.kooperless_lavalava_pow_block_parakarry = options_dict.get("KooperlessLavalavaPowBlockParakarry")
@@ -1391,6 +1393,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("Ch5SushieGlitch").get("value"), bool)
     if "SushielessJungleStarpieceAndLetter" in options_dict:
         assert isinstance(options_dict.get("SushielessJungleStarpieceAndLetter").get("value"), bool)
+    if "JumplessDeepJungleLaki" in options_dict:
+        assert isinstance(options_dict.get("JumplessDeepJungleLaki").get("value"), bool)
 
     if "KooperlessLavalavaPowBlockParakarry" in options_dict:
         assert isinstance(options_dict.get("KooperlessLavalavaPowBlockParakarry").get("value"), bool)
@@ -1650,6 +1654,7 @@ class GlitchOptionSet():
             self.raph_skip_english = False
             self.ch5_sushie_glitch = False
             self.sushieless_jungle_starpiece_and_letter = False
+            self.jumpless_deep_jungle_laki = False
             self.kooperless_lavalava_pow_block_parakarry = False
             self.kooperless_lavalava_pow_block_super_boots = False
             self.jumpless_lavalava_pow_block = False
