@@ -2,6 +2,8 @@
 This module represents a world graph. This graph maps item locations and the
 connections between them to allow simulated traversal of the in-game world.
 """
+import logging
+
 from metadata.area_name_mappings import area_name_id_map, area_name_edges_map
 
 from db.node import Node
@@ -182,6 +184,10 @@ def adjust(world_graph, new_edges=None, edges_to_remove=None):
     Adjusts and returns a modified world graph depending on given edge list
     parameters.
     """
+    level = logging.INFO
+    fmt = '[%(levelname)s] %(asctime)s - %(message)s'
+    logging.basicConfig(level=level, format=fmt)
+
     if new_edges is None:
         new_edges = []
     if edges_to_remove is None:
@@ -254,6 +260,13 @@ def adjust(world_graph, new_edges=None, edges_to_remove=None):
     # Remove old edges from graph nodes
     for old_edge in [hashabledict(x) for x in edges_to_remove]:
         node_id = f"{old_edge['from']['map']}/{old_edge['from']['id']}"
+        if world_graph.get(node_id) is None:
+            logging.info(
+                "Attempted to remove edges from node %s, but the world graph "\
+                "holds no such node.",
+                node_id
+            )
+            continue
         stripped_edge_list = world_graph[node_id]["edge_list"]
         for i, strip_edge in enumerate(stripped_edge_list):
             if (
@@ -266,6 +279,13 @@ def adjust(world_graph, new_edges=None, edges_to_remove=None):
 
     # Add new edges to graph nodes
     for node_id, adjustment_list in edge_adjustments.items():
+        if world_graph.get(node_id) is None:
+            logging.info(
+                "Attempted to add edges to node %s, but the world graph "\
+                "holds no such node.",
+                node_id
+            )
+            continue
         world_graph[node_id]["edge_list"].extend(adjustment_list)
 
     # Prepare tuples for entrance rando db-entries

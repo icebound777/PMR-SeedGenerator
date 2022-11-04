@@ -4,7 +4,7 @@ settings it can set pre-determined paths or randomize them.
 """
 from copy import deepcopy
 
-from worldgraph import adjust, check_unreachable_from_start
+from worldgraph import adjust
 
 from rando_enums.enum_options import \
     GearShuffleMode,\
@@ -27,7 +27,6 @@ from maps.graph_edges.gear_location_shuffle.edges_kzn import \
 from maps.graph_edges.gear_location_shuffle.edges_tik import \
     edges_tik_add    as edges_tik_gls_add, \
     edges_tik_remove as edges_tik_gls_remove
-from worldgraph import adjust, check_unreachable_from_start
 
 # Imports: Glitched logic
 from optionset import GlitchOptionSet
@@ -257,10 +256,6 @@ def get_shorter_bowsercastle(world_graph: dict):
         edges_to_remove=edges_kpa_remove
     )
 
-    unreachable_node_ids = check_unreachable_from_start(world_graph, False)
-    for node_id in unreachable_node_ids:
-        world_graph.pop(node_id)
-
     return kpa_entrance_modifications, world_graph
 
 
@@ -287,10 +282,6 @@ def get_bowsercastle_bossrush(world_graph: dict):
 
     all_entrance_modifications.extend(hos_entrance_modifications)
     all_entrance_modifications.extend(kpa_entrance_modifications)
-
-    unreachable_node_ids = check_unreachable_from_start(world_graph, False)
-    for node_id in unreachable_node_ids:
-        world_graph.pop(node_id)
 
     return all_entrance_modifications, world_graph
 

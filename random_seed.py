@@ -24,7 +24,9 @@ from rando_modules.random_palettes     \
 from rando_modules.random_partners import get_rnd_starting_partners
 from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
-from worldgraph import generate as generate_world_graph
+from worldgraph import \
+    generate as generate_world_graph,\
+    check_unreachable_from_start
 from metadata.starting_maps import starting_maps
 from metadata.starting_items import allowed_starting_badges, allowed_starting_items, allowed_starting_key_items
 from db.item import Item
@@ -65,19 +67,37 @@ class RandomSeed:
             world_graph = generate_world_graph(None, None)
 
         # Modify entrances if needed
+        entrances_modified = False
         if self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.SHORTEN:
             self.entrance_list, world_graph = get_shorter_bowsercastle(world_graph)
+            entrances_modified = True
         elif self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.BOSSRUSH:
             self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
-        if self.rando_settings.gear_shuffle_mode["value"] != GearShuffleMode.VANILLA:
-            world_graph = get_gear_location_shuffle(world_graph, self.rando_settings.gear_shuffle_mode["value"])
+            entrances_modified = True
+        # Cull unneeded data from world graph if entrances changed
+        if entrances_modified:
+            unreachable_node_ids = check_unreachable_from_start(
+                world_graph,
+                False
+            )
+            for node_id in unreachable_node_ids:
+                world_graph.pop(node_id)
 
         # Adjust graph logic if needed
+        if self.rando_settings.gear_shuffle_mode["value"] != GearShuffleMode.VANILLA:
+            world_graph = get_gear_location_shuffle(
+                world_graph,
+                self.rando_settings.gear_shuffle_mode["value"]
+            )
         world_graph = adjust_rip_cheato_pricing(
             world_graph,
             self.rando_settings.ripcheato_items_in_logic
         )
-        world_graph = get_glitched_logic(world_graph, self.rando_settings.glitch_settings, self.rando_settings.bowsers_castle_mode["value"])
+        world_graph = get_glitched_logic(
+            world_graph,
+            self.rando_settings.glitch_settings,
+            self.rando_settings.bowsers_castle_mode["value"]
+        )
 
         # Adjust further settings
         hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
