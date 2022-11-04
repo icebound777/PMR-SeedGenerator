@@ -82,6 +82,7 @@ def print_usage():
     print("  -t, --targetmod   set path to pre-modded PM64 ROM to randomize")
     print("  -s, --spoilerlog  set path to output spoilerlog file")
     print("  -S, --seed        set the generation seed")
+    print("  -d, --dry-run     generate seed, but don't write to ROM")
     print("  -r, --rebuild-db  rebuild database from mod files and exit")
     print("  -h, --help        display this help and exit")
     print("  -v, --version     display version information and exit")
@@ -604,13 +605,15 @@ def main_randomizer(args):
     rando_settings = None
     rando_seed = None
 
+    write_to_rom = True
+
     # Get arguments from cmd
     argv = sys.argv[1:]
     try:
         opts, args = getopt.gnu_getopt(
             argv,
-            'hc:t:s:S:rv',
-            ['help', 'config-file=', 'targetmod=', 'spoilerlog=', 'seed=', 'rebuild-db', 'version']
+            'hdc:t:s:S:rv',
+            ['help', 'dry-run', 'config-file=', 'targetmod=', 'spoilerlog=', 'seed=', 'rebuild-db', 'version']
         )
         for opt, arg in opts:
             # Print usage
@@ -627,6 +630,10 @@ def main_randomizer(args):
             if opt in ["-r", "--rebuild-db"]:
                 init_randomizer(rebuild_database=True)
                 sys.exit()
+
+            # Make a dry run (no writing to ROM)
+            if opt in ["-d", "--dry-run"]:
+                write_to_rom = False
 
             # Config file for rando
             if opt in ["-c", "--config-file"]:
@@ -688,23 +695,24 @@ def main_randomizer(args):
     random_seed.generate()
 
     # Write data to ROM
-    write_data_to_rom(
-        target_modfile=target_modfile,
-        options=rando_settings,
-        placed_items=random_seed.placed_items,
-        placed_blocks=random_seed.placed_blocks,
-        entrance_list=random_seed.entrance_list,
-        enemy_stats=random_seed.enemy_stats,
-        battle_formations=random_seed.battle_formations,
-        move_costs=random_seed.move_costs,
-        itemhints=random_seed.itemhints,
-        coin_palette_data=random_seed.coin_palette.data,
-        coin_palette_targets=random_seed.coin_palette.targets,
-        coin_palette_crcs=random_seed.coin_palette.crcs,
-        palette_data=random_seed.palette_data,
-        quiz_data=random_seed.quiz_list,
-        music_list=random_seed.music_list
-    )
+    if write_to_rom:
+        write_data_to_rom(
+            target_modfile=target_modfile,
+            options=rando_settings,
+            placed_items=random_seed.placed_items,
+            placed_blocks=random_seed.placed_blocks,
+            entrance_list=random_seed.entrance_list,
+            enemy_stats=random_seed.enemy_stats,
+            battle_formations=random_seed.battle_formations,
+            move_costs=random_seed.move_costs,
+            itemhints=random_seed.itemhints,
+            coin_palette_data=random_seed.coin_palette.data,
+            coin_palette_targets=random_seed.coin_palette.targets,
+            coin_palette_crcs=random_seed.coin_palette.crcs,
+            palette_data=random_seed.palette_data,
+            quiz_data=random_seed.quiz_list,
+            music_list=random_seed.music_list
+        )
 
     # Write sorted spoiler log
     if custom_spoilerlog_file_path:
