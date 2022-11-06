@@ -77,6 +77,8 @@ from maps.graph_edges.glitched_logic.tik_blocks_to_shiver_city_kooper_shell_item
     edges_tik_add_blocks_to_shiver_city_kooper_shell_item_throw
 from maps.graph_edges.glitched_logic.tik_break_sewer_yellow_block_with_ultra_boots import \
     edges_tik_add_break_sewer_yellow_block_with_ultra_boots
+from maps.graph_edges.glitched_logic.tik_jumpless_sewer_shooting_star import \
+    edges_tik_add_jumpless_sewer_shooting_star_kooper
 
 # Glitched Logic - Pleasant Path
 from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_star_piece import \
@@ -410,6 +412,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_tik_add_blocks_to_shiver_city_kooper_shell_item_throw)
     if glitch_settings.sewer_yellow_block_with_ultra_boots["value"]:
         all_new_edges.extend(edges_tik_add_break_sewer_yellow_block_with_ultra_boots)
+    if glitch_settings.jumpless_sewer_shooting_star["value"]:
+        all_new_edges.extend(edges_tik_add_jumpless_sewer_shooting_star_kooper)
 
     # Pleasant Path
     if glitch_settings.kooperless_pleasant_path_star_piece["value"]:

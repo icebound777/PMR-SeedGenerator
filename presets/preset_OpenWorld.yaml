@@ -229,6 +229,7 @@ SewerBlocksWithoutUltraBoots                    : false
 FirstBlockToShiverCityWithoutSuperBoots         : false
 BlocksToShiverCityWithKooperShellItemThrow      : false
 SewerYellowBlockWithUltraBoots                  : false
+JumplessSewerShootingStar                       : false
 
 KooperlessPleasantPathStarPiece                 : false
 HammerlessPleasantPathBridgeUltraBootsParakarry : false
