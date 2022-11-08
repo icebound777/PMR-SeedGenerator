@@ -205,7 +205,8 @@ GoombaVillageEntryFenceClip                     : false
 GoombaVillageNpcLureExit                        : false
 HammerlessJrPlaygroundLaki                      : false
 GoombaVillageLakiExit                           : false
-PrologueSushieGlitchKsj                            : false
+PrologueSushieGlitchKsj                         : false
+PrologueSushieGlitchUltraBootsLaki              : false
 
 OddKeyEarly                                     : false
 BlueHouseSkip                                   : false
