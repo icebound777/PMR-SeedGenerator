@@ -113,8 +113,6 @@ from maps.graph_edges.glitched_logic.iwa_mt_rugged_coins_with_kooper import \
     edges_iwa_add_mt_rugged_coins_with_kooper
 from maps.graph_edges.glitched_logic.iwa_mt_rugged_station_jumpless_climb import \
     edges_iwa_add_mt_rugged_station_jumpless_climb_bombette, edges_iwa_add_mt_rugged_station_jumpless_climb_laki
-from maps.graph_edges.glitched_logic.iwa_mt_rugged_slide_jumpless_climb import \
-    edges_iwa_add_mt_rugged_slide_jumpless_climb_laki
 from maps.graph_edges.glitched_logic.iwa_jumpless_mt_rugged_train_platform import \
     edges_iwa_add_jumpless_mt_rugged_train_platform_parakarry
 
@@ -454,8 +452,6 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_bombette)
     if glitch_settings.mt_rugged_station_jumpless_climb_laki["value"]:
         all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_laki)
-    if glitch_settings.mt_rugged_slide_jumpless_climb_laki["value"]:
-        all_new_edges.extend(edges_iwa_add_mt_rugged_slide_jumpless_climb_laki)
     if glitch_settings.jumpless_mt_rugged_train_platform_parakarry["value"]:
         all_new_edges.extend(edges_iwa_add_jumpless_mt_rugged_train_platform_parakarry)
 

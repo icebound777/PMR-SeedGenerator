@@ -641,8 +641,6 @@ class OptionSet:
             self.glitch_settings.mt_rugged_station_jumpless_climb_bombette = options_dict.get("MtRuggedStationJumplessClimbBombette")
         if "MtRuggedStationJumplessClimbLaki" in options_dict:
             self.glitch_settings.mt_rugged_station_jumpless_climb_laki = options_dict.get("MtRuggedStationJumplessClimbLaki")
-        if "MtRuggedSlideJumplessClimbLaki" in options_dict:
-            self.glitch_settings.mt_rugged_slide_jumpless_climb_laki = options_dict.get("MtRuggedSlideJumplessClimbLaki")
         if "JumplessMtRuggedTrainPlatformParakarry" in options_dict:
             self.glitch_settings.jumpless_mt_rugged_train_platform_parakarry = options_dict.get("JumplessMtRuggedTrainPlatformParakarry")
 
@@ -1331,8 +1329,6 @@ def validate_options(options_dict):
        assert isinstance(options_dict.get("MtRuggedStationJumplessClimbBombette").get("value"), bool)
     if "MtRuggedStationJumplessClimbLaki" in options_dict:
        assert isinstance(options_dict.get("MtRuggedStationJumplessClimbLaki").get("value"), bool)
-    if "MtRuggedSlideJumplessClimbLaki" in options_dict:
-       assert isinstance(options_dict.get("MtRuggedSlideJumplessClimbLaki").get("value"), bool)
     if "JumplessMtRuggedTrainPlatformParakarry" in options_dict:
        assert isinstance(options_dict.get("JumplessMtRuggedTrainPlatformParakarry").get("value"), bool)
 
@@ -1636,7 +1632,6 @@ class GlitchOptionSet():
             self.mt_rugged_coins_with_kooper = False
             self.mt_rugged_station_jumpless_climb_bombette = False
             self.mt_rugged_station_jumpless_climb_laki = False
-            self.mt_rugged_slide_jumpless_climb_laki = False
             self.jumpless_mt_rugged_train_platform_parakarry = False
             self.parakarryless_mt_rugged_star_piece = False
             self.desert_brick_block_item_with_parakarry = False
