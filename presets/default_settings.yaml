@@ -205,7 +205,8 @@ GoombaVillageEntryFenceClip                     : false
 GoombaVillageNpcLureExit                        : false
 HammerlessJrPlaygroundLaki                      : false
 GoombaVillageLakiExit                           : false
-PrologueSushieGlitch                            : false
+PrologueSushieGlitchKsj                         : false
+PrologueSushieGlitchUltraBootsLaki              : false
 
 OddKeyEarly                                     : false
 BlueHouseSkip                                   : false
@@ -228,8 +229,10 @@ SewerBlocksWithoutUltraBoots                    : false
 FirstBlockToShiverCityWithoutSuperBoots         : false
 BlocksToShiverCityWithKooperShellItemThrow      : false
 SewerYellowBlockWithUltraBoots                  : false
+JumplessSewerShootingStar                       : false
 
 KooperlessPleasantPathStarPiece                 : false
+HammerlessPleasantPathBridgeUltraBootsParakarry : false
 InvisibleBridgeClipLzs                          : false
 InvisibleBridgeClipLaki                         : false
 KooperlessPleasantPathThunderBolt               : false
@@ -244,7 +247,10 @@ MtRuggedQuakeHammerAndLetterWithLaki            : false
 ParakarrylessMtRuggedSeed                       : false
 BuzzarGapSkipClippy                             : false
 MtRuggedCoinsWithKooper                         : false
+MtRuggedStationJumplessClimbBombette            : false
+MtRuggedStationJumplessClimbLaki                : false
 ParakarrylessMtRuggedStarPiece                  : false
+JumplessMtRuggedTrainPlatformParakarry          : false
 
 DesertBrickBlockItemWithParakarry               : false
 EarlyRuinsLakiJump                              : false
@@ -263,6 +269,7 @@ RecordSkipNoBombettePush                        : false
 RecordSkipBombettePush                          : false
 BoosPortraitWithKooper                          : false
 BoosPortraitWithLaki                            : false
+JumplessMansionEntry                            : false
 
 GustyGulchGateSkipLZS                           : false
 GustyGulchGateSkipLaki                          : false
@@ -284,6 +291,7 @@ GourmetGuySkipLaki                              : false
 GourmetGuySkipParakarry                         : false
 BowlessGreenStation                             : false
 KooperlessRedStationShootingStar                : false
+GearlessRedStationShootingStar                  : false
 ParakarrylessBlueBlockCityGap                   : false
 BlueSwitchSkipLaki                              : false
 BlueSwitchSkipUltraBoots                        : false
@@ -293,10 +301,15 @@ HammerlessPinkStationLaki                       : false
 
 RaphSkipEnglish                                 : false
 Ch5SushieGlitch                                 : false
+SushielessJungleStarpieceAndLetter              : false
+JumplessDeepJungleLaki                          : false
 
-KooperlessLavalavaPowBlock                      : false
+KooperlessLavalavaPowBlockParakarry             : false
+KooperlessLavalavaPowBlockSuperBoots            : false
+JumplessLavalavaPowBlock                        : false
 UltraHammerSkip                                 : false
 UltraHammerSkipLaki                             : false
+UltraHammerSkipSushie                           : false
 Flarakarry                                      : false
 ParakarrylessFlarakarryBombette                 : false
 ParakarrylessFlarakarryLaki                     : false
@@ -314,6 +327,7 @@ RedBerryGateSkipLaki                            : false
 BlueBerryGateSkipBombettePush                   : false
 BlueBerryGateSkipLaki                           : false
 BubbleBerryTreeLakiJump                         : false
+BubbleBerryTreeUltraBoots                       : false
 
 MurderSolvedEarlyLaki                           : false
 MurderSolvedEarlyBombettePush                   : false
@@ -323,7 +337,8 @@ ShiverMountainHiddenBlockWithoutUltraBootsLaki  : false
 ShiverMountainHiddenBlockWithoutUltraBootsNoLaki: false
 SnowmenSkipLaki                                 : false
 ShiverMountainSwitchSkip                        : false
-SushielessWarehouseKey                          : false
+SushielessWarehouseKeyBombette                  : false
+SushielessWarehouseKeyKooper                    : false
 
 MirrorClip                                      : false
 

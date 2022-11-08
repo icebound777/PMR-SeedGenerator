@@ -556,8 +556,10 @@ class OptionSet:
             self.glitch_settings.hammerless_jr_playground_laki = options_dict.get("HammerlessJrPlaygroundLaki")
         if "GoombaVillageLakiExit" in options_dict:
             self.glitch_settings.goomba_village_laki_exit = options_dict.get("GoombaVillageLakiExit")
-        if "PrologueSushieGlitch" in options_dict:
-            self.glitch_settings.prologue_sushie_glitch = options_dict.get("PrologueSushieGlitch")
+        if "PrologueSushieGlitchKsj" in options_dict:
+            self.glitch_settings.prologue_sushie_glitch_ksj = options_dict.get("PrologueSushieGlitchKsj")
+        if "PrologueSushieGlitchUltraBootsLaki" in options_dict:
+            self.glitch_settings.prologue_sushie_glitch_ultra_boots_laki = options_dict.get("PrologueSushieGlitchUltraBootsLaki")
 
         if "OddKeyEarly" in options_dict:
             self.glitch_settings.odd_key_early = options_dict.get("OddKeyEarly")
@@ -600,9 +602,13 @@ class OptionSet:
             self.glitch_settings.blocks_to_shiver_city_kooper_shell_item_throw = options_dict.get("BlocksToShiverCityWithKooperShellItemThrow")
         if "SewerYellowBlockWithUltraBoots" in options_dict:
             self.glitch_settings.sewer_yellow_block_with_ultra_boots = options_dict.get("SewerYellowBlockWithUltraBoots")
+        if "JumplessSewerShootingStar" in options_dict:
+            self.glitch_settings.jumpless_sewer_shooting_star = options_dict.get("JumplessSewerShootingStar")
 
         if "KooperlessPleasantPathStarPiece" in options_dict:
             self.glitch_settings.kooperless_pleasant_path_star_piece = options_dict.get("KooperlessPleasantPathStarPiece")
+        if "HammerlessPleasantPathBridgeUltraBootsParakarry" in options_dict:
+            self.glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry = options_dict.get("HammerlessPleasantPathBridgeUltraBootsParakarry")
         if "InvisibleBridgeClipLzs" in options_dict:
             self.glitch_settings.invisible_bridge_clip_lzs = options_dict.get("InvisibleBridgeClipLzs")
         if "InvisibleBridgeClipLaki" in options_dict:
@@ -631,6 +637,12 @@ class OptionSet:
             self.glitch_settings.parakarryless_mt_rugged_star_piece = options_dict.get("ParakarrylessMtRuggedStarPiece")
         if "MtRuggedCoinsWithKooper" in options_dict:
             self.glitch_settings.mt_rugged_coins_with_kooper = options_dict.get("MtRuggedCoinsWithKooper")
+        if "MtRuggedStationJumplessClimbBombette" in options_dict:
+            self.glitch_settings.mt_rugged_station_jumpless_climb_bombette = options_dict.get("MtRuggedStationJumplessClimbBombette")
+        if "MtRuggedStationJumplessClimbLaki" in options_dict:
+            self.glitch_settings.mt_rugged_station_jumpless_climb_laki = options_dict.get("MtRuggedStationJumplessClimbLaki")
+        if "JumplessMtRuggedTrainPlatformParakarry" in options_dict:
+            self.glitch_settings.jumpless_mt_rugged_train_platform_parakarry = options_dict.get("JumplessMtRuggedTrainPlatformParakarry")
 
         if "DesertBrickBlockItemWithParakarry" in options_dict:
             self.glitch_settings.desert_brick_block_item_with_parakarry = options_dict.get("DesertBrickBlockItemWithParakarry")
@@ -664,6 +676,8 @@ class OptionSet:
             self.glitch_settings.boos_portrait_with_kooper = options_dict.get("BoosPortraitWithKooper")
         if "BoosPortraitWithLaki" in options_dict:
             self.glitch_settings.boos_portrait_with_laki = options_dict.get("BoosPortraitWithLaki")
+        if "JumplessMansionEntry" in options_dict:
+            self.glitch_settings.jumpless_mansion_entry = options_dict.get("JumplessMansionEntry")
 
         if "GustyGulchGateSkipLZS" in options_dict:
             self.glitch_settings.gusty_gulch_gate_skip_lzs = options_dict.get("GustyGulchGateSkipLZS")
@@ -703,6 +717,8 @@ class OptionSet:
             self.glitch_settings.bowless_green_station = options_dict.get("BowlessGreenStation")
         if "KooperlessRedStationShootingStar" in options_dict:
             self.glitch_settings.kooperless_red_station_shooting_star = options_dict.get("KooperlessRedStationShootingStar")
+        if "GearlessRedStationShootingStar" in options_dict:
+            self.glitch_settings.gearless_red_station_shooting_star = options_dict.get("GearlessRedStationShootingStar")
         if "ParakarrylessBlueBlockCityGap" in options_dict:
             self.glitch_settings.parakarryless_blue_block_city_gap = options_dict.get("ParakarrylessBlueBlockCityGap")
         if "BlueSwitchSkipLaki" in options_dict:
@@ -720,13 +736,23 @@ class OptionSet:
             self.glitch_settings.raph_skip_english = options_dict.get("RaphSkipEnglish")
         if "Ch5SushieGlitch" in options_dict:
             self.glitch_settings.ch5_sushie_glitch = options_dict.get("Ch5SushieGlitch")
+        if "SushielessJungleStarpieceAndLetter" in options_dict:
+            self.glitch_settings.sushieless_jungle_starpiece_and_letter = options_dict.get("SushielessJungleStarpieceAndLetter")
+        if "JumplessDeepJungleLaki" in options_dict:
+            self.glitch_settings.jumpless_deep_jungle_laki = options_dict.get("JumplessDeepJungleLaki")
 
-        if "KooperlessLavalavaPowBlock" in options_dict:
-            self.glitch_settings.kooperless_lavalava_pow_block = options_dict.get("KooperlessLavalavaPowBlock")
+        if "KooperlessLavalavaPowBlockParakarry" in options_dict:
+            self.glitch_settings.kooperless_lavalava_pow_block_parakarry = options_dict.get("KooperlessLavalavaPowBlockParakarry")
+        if "KooperlessLavalavaPowBlockSuperBoots" in options_dict:
+            self.glitch_settings.kooperless_lavalava_pow_block_super_boots = options_dict.get("KooperlessLavalavaPowBlockSuperBoots")
+        if "JumplessLavalavaPowBlock" in options_dict:
+            self.glitch_settings.jumpless_lavalava_pow_block = options_dict.get("JumplessLavalavaPowBlock")
         if "UltraHammerSkip" in options_dict:
             self.glitch_settings.ultra_hammer_skip = options_dict.get("UltraHammerSkip")
         if "UltraHammerSkipLaki" in options_dict:
             self.glitch_settings.ultra_hammer_skip_laki = options_dict.get("UltraHammerSkipLaki")
+        if "UltraHammerSkipSushie" in options_dict:
+            self.glitch_settings.ultra_hammer_skip_sushie = options_dict.get("UltraHammerSkipSushie")
         if "Flarakarry" in options_dict:
             self.glitch_settings.flarakarry = options_dict.get("Flarakarry")
         if "ParakarrylessFlarakarryBombette" in options_dict:
@@ -759,7 +785,9 @@ class OptionSet:
         if "BlueBerryGateSkipLaki" in options_dict:
             self.glitch_settings.blue_berry_gate_skip_laki = options_dict.get("BlueBerryGateSkipLaki")
         if "BubbleBerryTreeLakiJump" in options_dict:
-            self.glitch_settings.bubble_berry_tree_laki_jump = options_dict.get("BubbleBerryTreeLakiJump")
+            self.glitch_settings.bubble_berry_tree_early_laki_jump = options_dict.get("BubbleBerryTreeLakiJump")
+        if "BubbleBerryTreeUltraBoots" in options_dict:
+            self.glitch_settings.bubble_berry_tree_early_ultra_boots = options_dict.get("BubbleBerryTreeUltraBoots")
 
         if "MurderSolvedEarlyLaki" in options_dict:
             self.glitch_settings.murder_solved_early_laki = options_dict.get("MurderSolvedEarlyLaki")
@@ -777,8 +805,10 @@ class OptionSet:
             self.glitch_settings.snowmen_skip_laki = options_dict.get("SnowmenSkipLaki")
         if "ShiverMountainSwitchSkip" in options_dict:
             self.glitch_settings.shiver_mountain_switch_skip = options_dict.get("ShiverMountainSwitchSkip")
-        if "SushielessWarehouseKey" in options_dict:
-            self.glitch_settings.sushieless_warehouse_key = options_dict.get("SushielessWarehouseKey")
+        if "SushielessWarehouseKeyBombette" in options_dict:
+            self.glitch_settings.sushieless_warehouse_key_bombette = options_dict.get("SushielessWarehouseKeyBombette")
+        if "SushielessWarehouseKeyKooper" in options_dict:
+            self.glitch_settings.sushieless_warehouse_key_kooper = options_dict.get("SushielessWarehouseKeyKooper")
 
         if "MirrorClip" in options_dict:
             self.glitch_settings.mirror_clip = options_dict.get("MirrorClip")
@@ -1212,8 +1242,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("GoombaVillageNpcLureExit").get("value"), bool)
     if "HammerlessJrPlaygroundLaki" in options_dict:
         assert isinstance(options_dict.get("HammerlessJrPlaygroundLaki").get("value"), bool)
-    if "PrologueSushieGlitch" in options_dict:
-        assert isinstance(options_dict.get("PrologueSushieGlitch").get("value"), bool)
+    if "PrologueSushieGlitchKsj" in options_dict:
+        assert isinstance(options_dict.get("PrologueSushieGlitchKsj").get("value"), bool)
+    if "PrologueSushieGlitchUltraBootsLaki" in options_dict:
+        assert isinstance(options_dict.get("PrologueSushieGlitchUltraBootsLaki").get("value"), bool)
     if "GoombaVillageLakiExit" in options_dict:
         assert isinstance(options_dict.get("GoombaVillageLakiExit").get("value"), bool)
 
@@ -1258,9 +1290,13 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BlocksToShiverCityWithKooperShellItemThrow").get("value"), bool)
     if "SewerYellowBlockWithUltraBoots" in options_dict:
         assert isinstance(options_dict.get("SewerYellowBlockWithUltraBoots").get("value"), bool)
+    if "JumplessSewerShootingStar" in options_dict:
+        assert isinstance(options_dict.get("JumplessSewerShootingStar").get("value"), bool)
 
     if "KooperlessPleasantPathStarPiece" in options_dict:
         assert isinstance(options_dict.get("KooperlessPleasantPathStarPiece").get("value"), bool)
+    if "HammerlessPleasantPathBridgeUltraBootsParakarry" in options_dict:
+        assert isinstance(options_dict.get("HammerlessPleasantPathBridgeUltraBootsParakarry").get("value"), bool)
     if "InvisibleBridgeClipLzs" in options_dict:
         assert isinstance(options_dict.get("InvisibleBridgeClipLzs").get("value"), bool)
     if "InvisibleBridgeClipLaki" in options_dict:
@@ -1289,6 +1325,12 @@ def validate_options(options_dict):
        assert isinstance(options_dict.get("ParakarrylessMtRuggedStarPiece").get("value"), bool)
     if "MtRuggedCoinsWithKooper" in options_dict:
        assert isinstance(options_dict.get("MtRuggedCoinsWithKooper").get("value"), bool)
+    if "MtRuggedStationJumplessClimbBombette" in options_dict:
+       assert isinstance(options_dict.get("MtRuggedStationJumplessClimbBombette").get("value"), bool)
+    if "MtRuggedStationJumplessClimbLaki" in options_dict:
+       assert isinstance(options_dict.get("MtRuggedStationJumplessClimbLaki").get("value"), bool)
+    if "JumplessMtRuggedTrainPlatformParakarry" in options_dict:
+       assert isinstance(options_dict.get("JumplessMtRuggedTrainPlatformParakarry").get("value"), bool)
 
     if "DesertBrickBlockItemWithParakarry" in options_dict:
         assert isinstance(options_dict.get("DesertBrickBlockItemWithParakarry").get("value"), bool)
@@ -1322,7 +1364,9 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BoosPortraitWithKooper").get("value"), bool)
     if "BoosPortraitWithLaki" in options_dict:
         assert isinstance(options_dict.get("BoosPortraitWithLaki").get("value"), bool)
-
+    if "JumplessMansionEntry" in options_dict:
+        assert isinstance(options_dict.get("JumplessMansionEntry").get("value"), bool)
+        
     if "GustyGulchGateSkipLZS" in options_dict:
         assert isinstance(options_dict.get("GustyGulchGateSkipLZS").get("value"), bool)
     if "GustyGulchGateSkipLaki" in options_dict:
@@ -1361,6 +1405,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BowlessGreenStation").get("value"), bool)
     if "KooperlessRedStationShootingStar" in options_dict:
         assert isinstance(options_dict.get("KooperlessRedStationShootingStar").get("value"), bool)
+    if "GearlessRedStationShootingStar" in options_dict:
+        assert isinstance(options_dict.get("GearlessRedStationShootingStar").get("value"), bool)
     if "ParakarrylessBlueBlockCityGap" in options_dict:
         assert isinstance(options_dict.get("ParakarrylessBlueBlockCityGap").get("value"), bool)
     if "BlueSwitchSkipLaki" in options_dict:
@@ -1378,13 +1424,23 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("RaphSkipEnglish").get("value"), bool)
     if "Ch5SushieGlitch" in options_dict:
         assert isinstance(options_dict.get("Ch5SushieGlitch").get("value"), bool)
+    if "SushielessJungleStarpieceAndLetter" in options_dict:
+        assert isinstance(options_dict.get("SushielessJungleStarpieceAndLetter").get("value"), bool)
+    if "JumplessDeepJungleLaki" in options_dict:
+        assert isinstance(options_dict.get("JumplessDeepJungleLaki").get("value"), bool)
 
-    if "KooperlessLavalavaPowBlock" in options_dict:
-        assert isinstance(options_dict.get("KooperlessLavalavaPowBlock").get("value"), bool)
+    if "KooperlessLavalavaPowBlockParakarry" in options_dict:
+        assert isinstance(options_dict.get("KooperlessLavalavaPowBlockParakarry").get("value"), bool)
+    if "KooperlessLavalavaPowBlockSuperBoots" in options_dict:
+        assert isinstance(options_dict.get("KooperlessLavalavaPowBlockSuperBoots").get("value"), bool)
+    if "JumplessLavalavaPowBlock" in options_dict:
+        assert isinstance(options_dict.get("JumplessLavalavaPowBlock").get("value"), bool)
     if "UltraHammerSkip" in options_dict:
         assert isinstance(options_dict.get("UltraHammerSkip").get("value"), bool)
     if "UltraHammerSkipLaki" in options_dict:
         assert isinstance(options_dict.get("UltraHammerSkipLaki").get("value"), bool)
+    if "UltraHammerSkipSushie" in options_dict:
+        assert isinstance(options_dict.get("UltraHammerSkipSushie").get("value"), bool)
     if "Flarakarry" in options_dict:
         assert isinstance(options_dict.get("Flarakarry").get("value"), bool)
     if "ParakarrylessFlarakarryBombette" in options_dict:
@@ -1418,6 +1474,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BlueBerryGateSkipLaki").get("value"), bool)
     if "BubbleBerryTreeLakiJump" in options_dict:
         assert isinstance(options_dict.get("BubbleBerryTreeLakiJump").get("value"), bool)
+    if "BubbleBerryTreeUltraBoots" in options_dict:
+        assert isinstance(options_dict.get("BubbleBerryTreeUltraBoots").get("value"), bool)
 
     if "MurderSolvedEarlyLaki" in options_dict:
         assert isinstance(options_dict.get("MurderSolvedEarlyLaki").get("value"), bool)
@@ -1435,8 +1493,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("SnowmenSkipLaki").get("value"), bool)
     if "ShiverMountainSwitchSkip" in options_dict:
         assert isinstance(options_dict.get("ShiverMountainSwitchSkip").get("value"), bool)
-    if "SushielessWarehouseKey" in options_dict:
-        assert isinstance(options_dict.get("SushielessWarehouseKey").get("value"), bool)
+    if "SushielessWarehouseKeyBombette" in options_dict:
+        assert isinstance(options_dict.get("SushielessWarehouseKeyBombette").get("value"), bool)
+    if "SushielessWarehouseKeyKooper" in options_dict:
+        assert isinstance(options_dict.get("SushielessWarehouseKeyKooper").get("value"), bool)
 
     if "MirrorClip" in options_dict:
         assert isinstance(options_dict.get("MirrorClip").get("value"), bool)
@@ -1528,7 +1588,8 @@ class GlitchOptionSet():
             self.goomba_village_npc_lure_exit = False
             self.hammerless_jr_playground_laki = False
             self.goomba_village_laki_exit = False
-            self.prologue_sushie_glitch = False
+            self.prologue_sushie_glitch_ksj = False
+            self.prologue_sushie_glitch_ultra_boots_laki = False
 
             self.odd_key_early = False
             self.blue_house_skip = False
@@ -1551,8 +1612,10 @@ class GlitchOptionSet():
             self.first_block_to_shiver_city_without_super_boots = False
             self.blocks_to_shiver_city_kooper_shell_item_throw = False
             self.sewer_yellow_block_with_ultra_boots = False
+            self.jumpless_sewer_shooting_star = False
 
             self.kooperless_pleasant_path_star_piece = False
+            self.hammerless_pleasant_path_bridge_ultra_boots_parakarry = False
             self.invisible_bridge_clip_lzs = False
             self.invisible_bridge_clip_laki = False
             self.kooperless_pleasant_path_thunderbolt = False
@@ -1567,6 +1630,9 @@ class GlitchOptionSet():
             self.parakarryless_mt_rugged_seed = False
             self.buzzar_gap_skip_clippy = False
             self.mt_rugged_coins_with_kooper = False
+            self.mt_rugged_station_jumpless_climb_bombette = False
+            self.mt_rugged_station_jumpless_climb_laki = False
+            self.jumpless_mt_rugged_train_platform_parakarry = False
             self.parakarryless_mt_rugged_star_piece = False
             self.desert_brick_block_item_with_parakarry = False
             self.early_ruins_laki_jump = False
@@ -1585,7 +1651,8 @@ class GlitchOptionSet():
             self.record_skip_bombette_push = False
             self.boos_portrait_with_kooper = False
             self.boos_portrait_with_laki = False
-
+            self.jumpless_mansion_entry = False
+            
             self.gusty_gulch_gate_skip_lzs = False
             self.gusty_gulch_gate_skip_laki = False
             self.kooperless_gusty_gulch_dizzy_dial_jump = False
@@ -1606,6 +1673,7 @@ class GlitchOptionSet():
             self.gourmet_guy_skip_parakarry = False
             self.bowless_green_station = False
             self.kooperless_red_station_shooting_star = False
+            self.gearless_red_station_shooting_star = False
             self.parakarryless_blue_block_city_gap = False
             self.blue_switch_skip_laki = False
             self.blue_switch_skip_ultra_boots = False
@@ -1615,9 +1683,14 @@ class GlitchOptionSet():
 
             self.raph_skip_english = False
             self.ch5_sushie_glitch = False
-            self.kooperless_lavalava_pow_block = False
+            self.sushieless_jungle_starpiece_and_letter = False
+            self.jumpless_deep_jungle_laki = False
+            self.kooperless_lavalava_pow_block_parakarry = False
+            self.kooperless_lavalava_pow_block_super_boots = False
+            self.jumpless_lavalava_pow_block = False
             self.ultra_hammer_skip = False
             self.ultra_hammer_skip_laki = False
+            self.ultra_hammer_skip_sushie = False
             self.flarakarry = False
             self.parakarryless_flarakarry_bombette = False
             self.parakarryless_flarakarry_laki = False
@@ -1634,7 +1707,8 @@ class GlitchOptionSet():
             self.red_berry_gate_skip_laki = False
             self.blue_berry_gate_skip_bombette_push = False
             self.blue_berry_gate_skip_laki = False
-            self.bubble_berry_tree_laki_jump = False
+            self.bubble_berry_tree_early_laki_jump = False
+            self.bubble_berry_tree_early_ultra_boots = False
 
             self.murder_solved_early_laki = False
             self.murder_solved_early_bombette_push = False
@@ -1644,7 +1718,8 @@ class GlitchOptionSet():
             self.shiver_mountain_hidden_block_without_ultra_boots_no_laki = False
             self.snowmen_skip_laki = False
             self.shiver_mountain_switch_skip = False
-            self.sushieless_warehouse_key = False
+            self.sushieless_warehouse_key_bombette = False
+            self.sushieless_warehouse_key_kooper = False
 
             self.mirror_clip = False
 
