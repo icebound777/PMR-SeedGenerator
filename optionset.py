@@ -678,7 +678,7 @@ class OptionSet:
             self.glitch_settings.boos_portrait_with_laki = options_dict.get("BoosPortraitWithLaki")
         if "JumplessMansionEntry" in options_dict:
             self.glitch_settings.jumpless_mansion_entry = options_dict.get("JumplessMansionEntry")
-            
+
         if "GustyGulchGateSkipLZS" in options_dict:
             self.glitch_settings.gusty_gulch_gate_skip_lzs = options_dict.get("GustyGulchGateSkipLZS")
         if "GustyGulchGateSkipLaki" in options_dict:

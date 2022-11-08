@@ -13,5 +13,5 @@ edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs = [
     {"from": {"map": "JAN_04", "id": 0}, "to": {"map": "JAN_04", "id": "Tree2_Drop1A"}, "reqs": [["Boots"], ["can_shake_trees"]], "mapchange": False},
 
     #* Tree2_Drop1A (Letter04) -> Sushi Tree Exit Left
-    {"from": {"map": "JAN_04", "id": "Tree2_Drop1A"}, "to": {"map": "JAN_04", "id": 0}, "reqs": [["Boots"]], "mapchange": False}, 
+    {"from": {"map": "JAN_04", "id": "Tree2_Drop1A"}, "to": {"map": "JAN_04", "id": 0}, "reqs": [["Boots"]], "mapchange": False},
 ]
