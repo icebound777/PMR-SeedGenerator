@@ -8,28 +8,20 @@ def get_rnd_starting_partners(
     num_rnd_partners_min:int,
     num_rnd_partners_max:int,
     rando_settings:OptionSet
-):
+) -> list:
     """
     Returns a list of randomly chosen partners according to the parameters.
-    Above the given minimum amount of partners there is a 50% roll to stop
-    adding another partner after each one.
     """
-    partners = []
+    starting_partners = []
     all_partners = all_partners_imp.copy()
 
-    while len(partners) < num_rnd_partners_min:
+    non_guaranteed_partners = num_rnd_partners_max - num_rnd_partners_min
+    randomly_added_partners = random.randint(0, non_guaranteed_partners)
+
+    while len(starting_partners) < (num_rnd_partners_min + randomly_added_partners):
         new_partner = random.choice(all_partners)
         all_partners.remove(new_partner)
-        partners.append(new_partner)
-
-    while len(partners) < num_rnd_partners_max:
-        # Flip a coin to add another partner
-        if random.randint(0, 1) == 1:
-            new_partner = random.choice(all_partners)
-            all_partners.remove(new_partner)
-            partners.append(new_partner)
-        else:
-            break
+        starting_partners.append(new_partner)
 
     rando_settings.start_with_goombario["value"] = False
     rando_settings.start_with_kooper["value"] = False
@@ -40,7 +32,7 @@ def get_rnd_starting_partners(
     rando_settings.start_with_sushie["value"] = False
     rando_settings.start_with_lakilester["value"] = False
 
-    for partner in partners:
+    for partner in starting_partners:
         if partner == "Goombario":
             rando_settings.start_with_goombario["value"] = True
         elif partner == "Kooper":
@@ -58,4 +50,4 @@ def get_rnd_starting_partners(
         elif partner == "Lakilester":
             rando_settings.start_with_lakilester["value"] = True
 
-    return partners
+    return starting_partners
