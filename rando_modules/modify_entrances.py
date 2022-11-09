@@ -4,7 +4,7 @@ settings it can set pre-determined paths or randomize them.
 """
 from copy import deepcopy
 
-from worldgraph import adjust, check_unreachable_from_start
+from worldgraph import adjust
 
 from rando_enums.enum_options import \
     GearShuffleMode,\
@@ -27,7 +27,6 @@ from maps.graph_edges.gear_location_shuffle.edges_kzn import \
 from maps.graph_edges.gear_location_shuffle.edges_tik import \
     edges_tik_add    as edges_tik_gls_add, \
     edges_tik_remove as edges_tik_gls_remove
-from worldgraph import adjust, check_unreachable_from_start
 
 # Imports: Glitched logic
 from optionset import GlitchOptionSet
@@ -44,7 +43,7 @@ from maps.graph_edges.glitched_logic.kmr_goomba_village_hammerless_exit import \
 from maps.graph_edges.glitched_logic.kmr_hammerless_jr_playground_laki import \
     edges_kmr_add_hammerless_jr_playground_laki
 from maps.graph_edges.glitched_logic.kmr_prologue_sushie_glitch import \
-    edges_kmr_add_prologue_sushie_glitch
+    edges_kmr_add_prologue_sushie_glitch_ksj, edges_kmr_add_prologue_sushie_glitch_common, edges_kmr_add_prologue_sushie_glitch_ultra_boots_laki
 
 # Glitched Logic - Toad Town
 from maps.graph_edges.glitched_logic.mac_odd_key_early import \
@@ -77,10 +76,14 @@ from maps.graph_edges.glitched_logic.tik_blocks_to_shiver_city_kooper_shell_item
     edges_tik_add_blocks_to_shiver_city_kooper_shell_item_throw
 from maps.graph_edges.glitched_logic.tik_break_sewer_yellow_block_with_ultra_boots import \
     edges_tik_add_break_sewer_yellow_block_with_ultra_boots
+from maps.graph_edges.glitched_logic.tik_jumpless_sewer_shooting_star import \
+    edges_tik_add_jumpless_sewer_shooting_star_kooper
 
 # Glitched Logic - Pleasant Path
 from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_star_piece import \
     edges_nok_add_kooperless_starpiece_clippy
+from maps.graph_edges.glitched_logic.nok_hammerless_pleasant_path_bridge_skip import \
+    edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry
 from maps.graph_edges.glitched_logic.nok_invisible_bridge_clip import \
     edges_nok_add_invisible_bridge_clip_laki, edges_nok_add_invisible_bridge_clip_lzs
 from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_thunderbolt import \
@@ -107,6 +110,10 @@ from maps.graph_edges.glitched_logic.iwa_buzzar_gap_skip import \
     edges_iwa_add_buzzar_gap_skip_clippy
 from maps.graph_edges.glitched_logic.iwa_mt_rugged_coins_with_kooper import \
     edges_iwa_add_mt_rugged_coins_with_kooper
+from maps.graph_edges.glitched_logic.iwa_mt_rugged_station_jumpless_climb import \
+    edges_iwa_add_mt_rugged_station_jumpless_climb_bombette, edges_iwa_add_mt_rugged_station_jumpless_climb_laki
+from maps.graph_edges.glitched_logic.iwa_jumpless_mt_rugged_train_platform import \
+    edges_iwa_add_jumpless_mt_rugged_train_platform_parakarry
 
 # Glitched Logic - Dry Dry Desert
 from maps.graph_edges.glitched_logic.sbk_desert_brick_block_item_with_parakarry import \
@@ -132,6 +139,8 @@ from maps.graph_edges.glitched_logic.obk_record_skip import \
     edges_obk_add_record_skip_bombette_push, edges_obk_add_record_skip_spin_jump
 from maps.graph_edges.glitched_logic.obk_parakarryless_boos_portrait import \
     edges_obk_add_boo_portrait_kooper, edges_obk_add_boo_portrait_laki
+from maps.graph_edges.glitched_logic.mim_jumpless_mansion_entry import \
+    edges_mim_add_jumpless_mansion_entry_parakarry
     
 # Glitched Logic - Gusty Gulch
 from maps.graph_edges.glitched_logic.mim_gusty_gulch_gate_skip import \
@@ -163,6 +172,8 @@ from maps.graph_edges.glitched_logic.omo_bowless_green_station import \
     edges_omo_add_bowless_green_station_laki
 from maps.graph_edges.glitched_logic.omo_kooperless_red_station_shooting_star import \
     edges_omo_add_red_station_shooting_star_parakarry
+from maps.graph_edges.glitched_logic.omo_gearless_red_station_shooting_star import \
+    edges_omo_add_red_station_shooting_star_gearless
 from maps.graph_edges.glitched_logic.omo_parakarryless_blue_block_city_gap import \
     edges_omo_add_parakarryless_blue_block_city_gap
 from maps.graph_edges.glitched_logic.omo_blue_switch_skip import \
@@ -179,12 +190,18 @@ from maps.graph_edges.glitched_logic.jan_raph_skip_english import \
     edges_jan_add_raph_skip_english
 from maps.graph_edges.glitched_logic.jan_kzn_ch5_sushie_glitch import \
     edges_jan_kzn_add_ch5_sushie_glitch, edges_kzn_add_volcano_sushie_glitch
+from maps.graph_edges.glitched_logic.jan_sushieless_jungle_starpiece_and_letter import \
+    edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs
+from maps.graph_edges.glitched_logic.jan_jumpless_deep_jungle import \
+    edges_jan_add_jumpless_deep_jungle_laki
 
 # Glitched Logic - Mt. Lavalava
 from maps.graph_edges.glitched_logic.kzn_kooperless_lavalava_pow_block import \
-    edges_kzn_add_kooperless_pow_block_parakarry
+    edges_kzn_add_kooperless_pow_block_parakarry, edges_kzn_add_kooperless_pow_block_super_boots
+from maps.graph_edges.glitched_logic.kzn_jumpless_lavalava_pow_block import \
+    edges_kzn_add_jumpless_pow_block_kooper
 from maps.graph_edges.glitched_logic.kzn_ultra_hammer_skip import \
-    edges_kzn_add_ultra_hammer_skip, edges_kzn_add_ultra_hammer_skip_laki
+    edges_kzn_add_ultra_hammer_skip, edges_kzn_add_ultra_hammer_skip_laki, edges_kzn_add_ultra_hammer_skip_sushie
 from maps.graph_edges.glitched_logic.kzn_flarakarry import \
     edges_kzn_add_flarakarry_bombette, edges_kzn_add_flarakarry_laki, edges_kzn_add_flarakarry_parakarry
 
@@ -201,8 +218,8 @@ from maps.graph_edges.glitched_logic.flo_red_berry_gate_skip import \
     edges_flo_add_red_berry_gate_skip_bombette_push, edges_flo_add_red_berry_gate_skip_laki
 from maps.graph_edges.glitched_logic.flo_blue_berry_gate_skip import \
     edges_flo_add_blue_berry_gate_skip_bombette_push, edges_flo_add_blue_berry_gate_skip_laki
-from maps.graph_edges.glitched_logic.flo_bubble_berry_tree_laki_jump import \
-    edges_flo_add_bubble_berry_tree_laki
+from maps.graph_edges.glitched_logic.flo_bubble_berry_tree_early import \
+    edges_flo_add_bubble_berry_tree_early_laki, edges_flo_add_bubble_berry_tree_early_ultra_boots
 
 # Glitched Logic - Shiver Region
 from maps.graph_edges.glitched_logic.sam_murder_solved_early import \
@@ -216,7 +233,7 @@ from maps.graph_edges.glitched_logic.sam_snowmen_skip import \
 from maps.graph_edges.glitched_logic.sam_shiver_mountain_switch_skip import \
     edges_sam_add_shiver_mountain_switch_skip
 from maps.graph_edges.glitched_logic.sam_sushieless_warehouse_key import \
-    edges_sam_add_sushieless_warehouse_key
+    edges_sam_add_sushieless_warehouse_key_bombette_push, edges_sam_add_sushieless_warehouse_key_kooper_ksj
 
 # Glitched Logic - Crystal Palace
 from maps.graph_edges.glitched_logic.pra_mirror_clip import \
@@ -257,10 +274,6 @@ def get_shorter_bowsercastle(world_graph: dict):
         edges_to_remove=edges_kpa_remove
     )
 
-    unreachable_node_ids = check_unreachable_from_start(world_graph, False)
-    for node_id in unreachable_node_ids:
-        world_graph.pop(node_id)
-
     return kpa_entrance_modifications, world_graph
 
 
@@ -287,10 +300,6 @@ def get_bowsercastle_bossrush(world_graph: dict):
 
     all_entrance_modifications.extend(hos_entrance_modifications)
     all_entrance_modifications.extend(kpa_entrance_modifications)
-
-    unreachable_node_ids = check_unreachable_from_start(world_graph, False)
-    for node_id in unreachable_node_ids:
-        world_graph.pop(node_id)
 
     return all_entrance_modifications, world_graph
 
@@ -342,8 +351,12 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_kmr_add_goomba_village_hammerless_exit_laki)
     if glitch_settings.hammerless_jr_playground_laki["value"]:
         all_new_edges.extend(edges_kmr_add_hammerless_jr_playground_laki)
-    if glitch_settings.prologue_sushie_glitch["value"]:
-        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch)
+    if glitch_settings.prologue_sushie_glitch_ksj["value"]:
+        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_ksj)
+        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_common)
+    if glitch_settings.prologue_sushie_glitch_ultra_boots_laki["value"]:
+        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_ultra_boots_laki)
+        all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_common)
 
     # Toad Town
     if glitch_settings.odd_key_early["value"]:
@@ -388,10 +401,14 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_tik_add_blocks_to_shiver_city_kooper_shell_item_throw)
     if glitch_settings.sewer_yellow_block_with_ultra_boots["value"]:
         all_new_edges.extend(edges_tik_add_break_sewer_yellow_block_with_ultra_boots)
+    if glitch_settings.jumpless_sewer_shooting_star["value"]:
+        all_new_edges.extend(edges_tik_add_jumpless_sewer_shooting_star_kooper)
 
     # Pleasant Path
     if glitch_settings.kooperless_pleasant_path_star_piece["value"]:
         all_new_edges.extend(edges_nok_add_kooperless_starpiece_clippy)
+    if glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry["value"]:
+        all_new_edges.extend(edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry)
     if glitch_settings.invisible_bridge_clip_laki["value"]:
         all_new_edges.extend(edges_nok_add_invisible_bridge_clip_laki)
     if glitch_settings.invisible_bridge_clip_lzs["value"]:
@@ -422,6 +439,12 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_iwa_add_buzzar_gap_skip_clippy)
     if glitch_settings.mt_rugged_coins_with_kooper["value"]:
         all_new_edges.extend(edges_iwa_add_mt_rugged_coins_with_kooper)
+    if glitch_settings.mt_rugged_station_jumpless_climb_bombette["value"]:
+        all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_bombette)
+    if glitch_settings.mt_rugged_station_jumpless_climb_laki["value"]:
+        all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_laki)
+    if glitch_settings.jumpless_mt_rugged_train_platform_parakarry["value"]:
+        all_new_edges.extend(edges_iwa_add_jumpless_mt_rugged_train_platform_parakarry)
 
     # Dry Dry Desert
     if glitch_settings.early_ruins_laki_jump["value"]:
@@ -458,6 +481,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_obk_add_boo_portrait_kooper)
     if glitch_settings.boos_portrait_with_laki["value"]:
         all_new_edges.extend(edges_obk_add_boo_portrait_laki)
+    if glitch_settings.jumpless_mansion_entry["value"]:
+        all_new_edges.extend(edges_mim_add_jumpless_mansion_entry_parakarry)
 
     # Gusty Gulch
     if glitch_settings.gusty_gulch_gate_skip_lzs["value"]:
@@ -500,6 +525,8 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_omo_add_bowless_green_station_laki)
     if glitch_settings.kooperless_red_station_shooting_star["value"]:
         all_new_edges.extend(edges_omo_add_red_station_shooting_star_parakarry)
+    if glitch_settings.gearless_red_station_shooting_star["value"]:
+        all_new_edges.extend(edges_omo_add_red_station_shooting_star_gearless)
     if glitch_settings.parakarryless_blue_block_city_gap["value"]:
         all_new_edges.extend(edges_omo_add_parakarryless_blue_block_city_gap)
     if glitch_settings.blue_switch_skip_laki["value"]:
@@ -518,14 +545,24 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_jan_add_raph_skip_english)
     if glitch_settings.ch5_sushie_glitch["value"]:
         all_new_edges.extend(edges_jan_kzn_add_ch5_sushie_glitch)
+    if glitch_settings.sushieless_jungle_starpiece_and_letter["value"]:
+        all_new_edges.extend(edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs)
+    if glitch_settings.jumpless_deep_jungle_laki["value"]:
+        all_new_edges.extend(edges_jan_add_jumpless_deep_jungle_laki)
 
     # Mt. Lavalava
-    if glitch_settings.kooperless_lavalava_pow_block["value"]:
+    if glitch_settings.kooperless_lavalava_pow_block_parakarry["value"]:
         all_new_edges.extend(edges_kzn_add_kooperless_pow_block_parakarry)
+    if glitch_settings.kooperless_lavalava_pow_block_super_boots["value"]:
+        all_new_edges.extend(edges_kzn_add_kooperless_pow_block_super_boots)
+    if glitch_settings.jumpless_lavalava_pow_block["value"]:
+        all_new_edges.extend(edges_kzn_add_jumpless_pow_block_kooper)
     if glitch_settings.ultra_hammer_skip["value"]:
         all_new_edges.extend(edges_kzn_add_ultra_hammer_skip)
     if glitch_settings.ultra_hammer_skip_laki["value"]:
         all_new_edges.extend(edges_kzn_add_ultra_hammer_skip_laki)
+    if glitch_settings.ultra_hammer_skip_sushie["value"]:
+        all_new_edges.extend(edges_kzn_add_ultra_hammer_skip_sushie)
     if glitch_settings.flarakarry["value"]:
         all_new_edges.extend(edges_kzn_add_flarakarry_parakarry)
     if glitch_settings.parakarryless_flarakarry_bombette["value"]:
@@ -558,8 +595,10 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_flo_add_blue_berry_gate_skip_bombette_push)
     if glitch_settings.blue_berry_gate_skip_laki["value"]:
         all_new_edges.extend(edges_flo_add_blue_berry_gate_skip_laki)
-    if glitch_settings.bubble_berry_tree_laki_jump["value"]:
-        all_new_edges.extend(edges_flo_add_bubble_berry_tree_laki)
+    if glitch_settings.bubble_berry_tree_early_laki_jump["value"]:
+        all_new_edges.extend(edges_flo_add_bubble_berry_tree_early_laki)
+    if glitch_settings.bubble_berry_tree_early_ultra_boots["value"]:
+        all_new_edges.extend(edges_flo_add_bubble_berry_tree_early_ultra_boots)
 
     # Shiver Region
     if glitch_settings.murder_solved_early_bombette_push["value"]:
@@ -578,8 +617,10 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
         all_new_edges.extend(edges_sam_add_snowmen_skip_laki)
     if glitch_settings.shiver_mountain_switch_skip["value"]:
         all_new_edges.extend(edges_sam_add_shiver_mountain_switch_skip)
-    if glitch_settings.sushieless_warehouse_key["value"]:
-        all_new_edges.extend(edges_sam_add_sushieless_warehouse_key)
+    if glitch_settings.sushieless_warehouse_key_bombette["value"]:
+        all_new_edges.extend(edges_sam_add_sushieless_warehouse_key_bombette_push)
+    if glitch_settings.sushieless_warehouse_key_kooper["value"]:
+        all_new_edges.extend(edges_sam_add_sushieless_warehouse_key_kooper_ksj)
 
     # Crystal Palace
     if glitch_settings.mirror_clip["value"]:

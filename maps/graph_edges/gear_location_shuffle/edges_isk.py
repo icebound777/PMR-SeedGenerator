@@ -17,6 +17,8 @@ edges_isk_add = [
     {"from": {"map": "ISK_09", "id": 0}, "to": {"map": "ISK_09", "id": "BigChest"}, "reqs": [["can_climb_steps"]], "mapchange": False},
 
     # ISK_12 Sand Drainage Room 3 Exit Bottom Left -> ItemA (RuinsKey)
+    {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": [["RF_DrainedThirdSandRoomAndCanSolvePuzzle","can_climb_steps"],["RF_DrainedThirdSandRoomAndCanSolvePuzzle","SuperHammer"]], "mapchange": False},
+    # ISK_12 Sand Drainage Room 3 Exit Bottom Left -> ItemA (RuinsKey)
     {"from": {"map": "ISK_12", "id": 2}, "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": [["SuperHammer"],["can_climb_steps"]], "mapchange": False},
 
     # ISK_13 Lunar Stone Room Exit Left -> ItemA (LunarStone)
@@ -36,6 +38,8 @@ edges_isk_remove = [
     # ISK_09 Super Hammer Room Exit Right -> BigChest (SuperHammer)
     {"from": {"map": "ISK_09", "id": 0}, "to": {"map": "ISK_09", "id": "BigChest"}, "reqs": [["can_climb_steps"]], "pseudoitems": ["RF_ISK09_OpenedHammerChest"]},
 
+    # ISK_12 Sand Drainage Room 3 Exit Bottom Left -> ItemA (RuinsKey)
+    {"from": {"map": "ISK_12", "id": 1}, "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": [["RF_DrainedThirdSandRoomAndCanSolvePuzzle","can_climb_steps"],["RF_DrainedThirdSandRoomAndCanSolvePuzzle","RF_ISK09_OpenedHammerChest"]]},
     # ISK_12 Sand Drainage Room 3 Exit Bottom Left -> ItemA (RuinsKey)
     {"from": {"map": "ISK_12", "id": 2}, "to": {"map": "ISK_12", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"],["can_climb_steps"]]},
 

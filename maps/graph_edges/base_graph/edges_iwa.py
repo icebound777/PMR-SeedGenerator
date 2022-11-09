@@ -4,15 +4,15 @@ edges_iwa = [
     {"from": {"map": "IWA_00", "id": 0}, "to": {"map": "IWA_10", "id": 1}, "reqs": []}, # Mt Rugged 1 Exit Left -> Train Station Exit Top Right
     {"from": {"map": "IWA_00", "id": 1}, "to": {"map": "IWA_01", "id": 0}, "reqs": []}, # Mt Rugged 1 Exit Right -> Mt Rugged 2 Exit Bottom Left
 
-    {"from": {"map": "IWA_00", "id": 0}, "to": {"map": "IWA_00", "id": 1}, "reqs": [["can_climb_steps"]]}, #? Mt Rugged 1 Exit Left -> Mt Rugged 1 Exit Right
+    {"from": {"map": "IWA_00", "id": 0}, "to": {"map": "IWA_00", "id": 1}, "reqs": [["can_climb_steps", "Lakilester"]]}, #? Mt Rugged 1 Exit Left -> Mt Rugged 1 Exit Right
     {"from": {"map": "IWA_00", "id": 1}, "to": {"map": "IWA_00", "id": 0}, "reqs": []}, #? Mt Rugged 1 Exit Right -> Mt Rugged 1 Exit Left
 
     {"from": {"map": "IWA_00", "id": 0},         "to": {"map": "IWA_00", "id": "ItemA"},   "reqs": []}, #* Mt Rugged 1 Exit Left -> ItemA (Coin)
     {"from": {"map": "IWA_00", "id": "ItemA"},   "to": {"map": "IWA_00", "id": 0},         "reqs": []}, #* ItemA (Coin) -> Mt Rugged 1 Exit Left
-    {"from": {"map": "IWA_00", "id": 0},         "to": {"map": "IWA_00", "id": "ItemB"},   "reqs": [["Kooper"]]}, #* Mt Rugged 1 Exit Left -> ItemB (Coin)
+    {"from": {"map": "IWA_00", "id": 0},         "to": {"map": "IWA_00", "id": "ItemB"},   "reqs": [["Kooper", "Lakilester"]]}, #* Mt Rugged 1 Exit Left -> ItemB (Coin)
     {"from": {"map": "IWA_00", "id": 1},         "to": {"map": "IWA_00", "id": "ItemB"},   "reqs": [["can_climb_steps"]]}, #* Mt Rugged 1 Exit Right -> ItemB (Coin)
     {"from": {"map": "IWA_00", "id": "ItemB"},   "to": {"map": "IWA_00", "id": 0},         "reqs": []}, #* ItemB (Coin) -> Mt Rugged 1 Exit Left
-    {"from": {"map": "IWA_00", "id": 0},         "to": {"map": "IWA_00", "id": "ItemC"},   "reqs": [["Kooper"]]}, #* Mt Rugged 1 Exit Left -> ItemC (Coin)
+    {"from": {"map": "IWA_00", "id": 0},         "to": {"map": "IWA_00", "id": "ItemC"},   "reqs": [["Kooper", "Lakilester"]]}, #* Mt Rugged 1 Exit Left -> ItemC (Coin)
     {"from": {"map": "IWA_00", "id": 1},         "to": {"map": "IWA_00", "id": "ItemC"},   "reqs": [["can_climb_steps"]]}, #* Mt Rugged 1 Exit Right -> ItemC (Coin)
     {"from": {"map": "IWA_00", "id": "ItemC"},   "to": {"map": "IWA_00", "id": 0},         "reqs": []}, #* ItemC (Coin) -> Mt Rugged 1 Exit Left
     {"from": {"map": "IWA_00", "id": 1},         "to": {"map": "IWA_00", "id": "ItemD"},   "reqs": [["Hammer", "Bombette"],["RF_Missable"]]}, #* Mt Rugged 1 Exit Right -> ItemD (WhackasBump)

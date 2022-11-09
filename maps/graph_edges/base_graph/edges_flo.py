@@ -38,7 +38,7 @@ edges_flo = [
 
     {"from": {"map": "FLO_16", "id": 1},       "to": {"map": "FLO_16", "id": "ItemA"}, "reqs": [["SuperBoots"]]}, #* (NE) Elevators Exit Right -> ItemA (StarPiece)
     {"from": {"map": "FLO_16", "id": "ItemA"}, "to": {"map": "FLO_16", "id": 1},       "reqs": []}, #* ItemA (StarPiece) -> (NE) Elevators Exit Right
-    {"from": {"map": "FLO_16", "id": 0},       "to": {"map": "FLO_16", "id": "ItemB"}, "reqs": [["can_climb_steps","Kooper"]]}, #* (NE) Elevators Exit Left -> ItemB (StinkyHerb)
+    {"from": {"map": "FLO_16", "id": 0},       "to": {"map": "FLO_16", "id": "ItemB"}, "reqs": [["can_climb_steps","Kooper","Lakilester"]]}, #* (NE) Elevators Exit Left -> ItemB (StinkyHerb)
     {"from": {"map": "FLO_16", "id": "ItemB"}, "to": {"map": "FLO_16", "id": 0},       "reqs": []}, #* ItemB (StinkyHerb) -> (NE) Elevators Exit Left
 
     # FLO_17 (NE) Fallen Logs
@@ -170,7 +170,7 @@ edges_flo = [
     {"from": {"map": "FLO_23", "id": 0}, "to": {"map": "FLO_23", "id": 1}, "reqs": [["GF_FLO23_GaveBlueBerry"]]}, #? (West) Path to Maze Exit Right -> (West) Path to Maze Exit Left
     {"from": {"map": "FLO_23", "id": 1}, "to": {"map": "FLO_23", "id": 0}, "reqs": [["GF_FLO23_GaveBlueBerry"]]}, #? (West) Path to Maze Exit Left -> (West) Path to Maze Exit Right
 
-    {"from": {"map": "FLO_23", "id": 1},               "to": {"map": "FLO_23", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* (West) Path to Maze Exit Left -> HiddenYBlockA (ShootingStar)
+    {"from": {"map": "FLO_23", "id": 1},               "to": {"map": "FLO_23", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["Boots"]]}, #* (West) Path to Maze Exit Left -> HiddenYBlockA (ShootingStar)
     {"from": {"map": "FLO_23", "id": "HiddenYBlockA"}, "to": {"map": "FLO_23", "id": 1},               "reqs": []}, #* HiddenYBlockA (ShootingStar) -> (West) Path to Maze Exit Left
     {"from": {"map": "FLO_23", "id": 1},               "to": {"map": "FLO_23", "id": "HiddenYBlockB"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* (West) Path to Maze Exit Left -> HiddenYBlockB (Coin)
     {"from": {"map": "FLO_23", "id": "HiddenYBlockB"}, "to": {"map": "FLO_23", "id": 1},               "reqs": []}, #* HiddenYBlockB (Coin) -> (West) Path to Maze Exit Left

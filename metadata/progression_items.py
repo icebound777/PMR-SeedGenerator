@@ -107,7 +107,7 @@ progression_items = {
     0x01E8 : "HammerProxy1",
     0x01E9 : "HammerProxy2",
     0x01EA : "HammerProxy3",
-    #0x01D1 : "Goombario",
+    0x01FF : "Goombario",
     0x0200 : "Kooper",
     0x0201 : "Bombette",
     0x0202 : "Parakarry",
