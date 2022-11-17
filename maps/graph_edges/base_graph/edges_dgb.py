@@ -56,8 +56,7 @@ edges_dgb = [
     {"from": {"map": "DGB_03", "id": 4}, "to": {"map": "DGB_03", "id": 5}, "reqs": []}, #? Table/Clock Room (1/2F) Door 2F Far Right -> Table/Clock Room (1/2F) 2F Behind The Clock
     {"from": {"map": "DGB_03", "id": 5}, "to": {"map": "DGB_03", "id": 4}, "reqs": []}, #? Table/Clock Room (1/2F) 2F Behind The Clock -> Table/Clock Room (1/2F) Door 2F Far Right
 
-    {"from": {"map": "DGB_03", "id": 4},       "to": {"map": "DGB_03", "id": "ItemA"}, "reqs": []}, #* Table/Clock Room (1/2F) Door 2F Far Right -> ItemA (StarPiece)
-    {"from": {"map": "DGB_03", "id": "ItemA"}, "to": {"map": "DGB_03", "id": 0},       "reqs": []}, #* ItemA (StarPiece) -> Table/Clock Room (1/2F) Door 1F Far Left
+    {"from": {"map": "DGB_03", "id": 4}, "to": {"map": "DGB_03", "id": "ItemA"}, "reqs": []}, #* Table/Clock Room (1/2F) Door 2F Far Right -> ItemA (StarPiece)
 
     # DGB_04 Stairs to Basement
     {"from": {"map": "DGB_04", "id": 0}, "to": {"map": "DGB_03", "id": 0}, "reqs": []}, # Stairs to Basement Door Top Right -> Table/Clock Room (1/2F) Door 1F Far Left
@@ -75,18 +74,16 @@ edges_dgb = [
 
     # DGB_06 Basement
     {"from": {"map": "DGB_06", "id": 0}, "to": {"map": "DGB_04", "id": 1}, "reqs": []}, # Basement Door Bottom Left -> Stairs to Basement Door Bottom Right
-    {"from": {"map": "DGB_06", "id": 1}, "to": {"map": None, "id": None}, "reqs": []},  # Basement Fall From Ceiling
+    #{"from": {"map": "DGB_06", "id": 1}, "to": {"map": None, "id": None}, "reqs": []},  # Basement Fall From Ceiling
 
     {"from": {"map": "DGB_06", "id": 1}, "to": {"map": "DGB_06", "id": 0}, "reqs": []}, #? Basement Fall From Ceiling -> Basement Door Bottom Left
 
-    {"from": {"map": "DGB_06", "id": 1},        "to": {"map": "DGB_06", "id": "ChestA"}, "reqs": []}, #* Basement Fall From Ceiling -> ChestA (CastleKey1)
-    {"from": {"map": "DGB_06", "id": "ChestA"}, "to": {"map": "DGB_06", "id": 1},        "reqs": []}, #* ChestA (CastleKey1) -> Basement Fall From Ceiling
+    {"from": {"map": "DGB_06", "id": 1}, "to": {"map": "DGB_06", "id": "ChestA"}, "reqs": []}, #* Basement Fall From Ceiling -> ChestA (CastleKey1)
 
     # DGB_07 Study (1F)
     {"from": {"map": "DGB_07", "id": 0}, "to": {"map": "DGB_02", "id": 2}, "reqs": []}, # Study (1F) Door Bottom -> West Hall (1F) Door Top Left
 
-    {"from": {"map": "DGB_07", "id": 0},       "to": {"map": "DGB_07", "id": "ItemA"}, "reqs": [["Boots"]]}, #* Study (1F) Door Bottom -> ItemA (StarPiece)
-    {"from": {"map": "DGB_07", "id": "ItemA"}, "to": {"map": "DGB_07", "id": 0},       "reqs": []}, #* ItemA (StarPiece) -> Study (1F) Door Bottom
+    {"from": {"map": "DGB_07", "id": 0}, "to": {"map": "DGB_07", "id": "ItemA"}, "reqs": [["Boots"]]}, #* Study (1F) Door Bottom -> ItemA (StarPiece)
 
     # DGB_08 East Hall (1/2F)
     {"from": {"map": "DGB_08", "id": 0}, "to": {"map": "DGB_01", "id": 2}, "reqs": []}, # East Hall (1/2F) Door 1F Left -> Great Hall Door Door 1F Right
@@ -125,8 +122,8 @@ edges_dgb = [
 
     # DGB_11 Covered Tables Room (1F)
     {"from": {"map": "DGB_11", "id": 0}, "to": {"map": "DGB_02", "id": 3}, "reqs": []}, # Covered Tables Room (1F) Door Bottom -> West Hall (1F) Door Top Right
-    {"from": {"map": "DGB_11", "id": 1}, "to": {"map": None, "id": None}, "reqs": []},  # Covered Tables Room (1F) Bottom Right Ceiling Hole
-    {"from": {"map": "DGB_11", "id": 2}, "to": {"map": None, "id": None}, "reqs": []},  # Covered Tables Room (1F) Top Right Ceiling Hole
+    #{"from": {"map": "DGB_11", "id": 1}, "to": {"map": None, "id": None}, "reqs": []},  # Covered Tables Room (1F) Bottom Right Ceiling Hole
+    #{"from": {"map": "DGB_11", "id": 2}, "to": {"map": None, "id": None}, "reqs": []},  # Covered Tables Room (1F) Top Right Ceiling Hole
     {"from": {"map": "DGB_11", "id": 3}, "to": {"map": "DGB_10", "id": 1}, "reqs": []}, # Covered Tables Room (1F) Spring To Ceiling -> Sealed Room (2F) Top Left Hole
 
     {"from": {"map": "DGB_11", "id": 0}, "to": {"map": "DGB_11", "id": 1}, "reqs": []}, #? Covered Tables Room (1F) Door Bottom -> Covered Tables Room (1F) Bottom Right Ceiling Hole
@@ -136,32 +133,23 @@ edges_dgb = [
     {"from": {"map": "DGB_11", "id": 0}, "to": {"map": "DGB_11", "id": 3}, "reqs": [["GF_DGB10_BoardedFloor3"],["Boots"]]}, #? Covered Tables Room (1F) Door Bottom -> Covered Tables Room (1F) Spring To Ceiling
     {"from": {"map": "DGB_11", "id": 3}, "to": {"map": "DGB_11", "id": 0}, "reqs": []}, #? Covered Tables Room (1F) Spring To Ceiling -> Covered Tables Room (1F) Door Bottom
 
-    {"from": {"map": "DGB_11", "id": 2},       "to": {"map": "DGB_11", "id": "ItemA"}, "reqs": [["Parakarry"]]}, #* Covered Tables Room (1F) Top Right Ceiling Hole -> ItemA (DDownJump)
-    {"from": {"map": "DGB_11", "id": "ItemA"}, "to": {"map": "DGB_11", "id": 2},       "reqs": []}, #* ItemA (DDownJump) -> Covered Tables Room (1F) Top Right Ceiling Hole
+    {"from": {"map": "DGB_11", "id": 2}, "to": {"map": "DGB_11", "id": "ItemA"}, "reqs": [["Parakarry"]]}, #* Covered Tables Room (1F) Top Right Ceiling Hole -> ItemA (DDownJump)
 
     # DGB_12 Spike Trap Room (2F)
     {"from": {"map": "DGB_12", "id": 0}, "to": {"map": "DGB_09", "id": 2}, "reqs": []}, # Spike Trap Room (2F) Door Bottom Left -> West Hall (2F) Door Top Left
 
-    {"from": {"map": "DGB_12", "id": 0},        "to": {"map": "DGB_12", "id": "ChestA"}, "reqs": [["Bow","Lakilester"]]}, #* Spike Trap Room (2F) Door Bottom Left -> ChestA (CastleKey1)
-    {"from": {"map": "DGB_12", "id": "ChestA"}, "to": {"map": "DGB_12", "id": 0},        "reqs": []}, #* ChestA (CastleKey1) -> Spike Trap Room (2F) Door Bottom Left
+    {"from": {"map": "DGB_12", "id": 0}, "to": {"map": "DGB_12", "id": "ChestA"}, "reqs": [["Bow","Lakilester"]]}, #* Spike Trap Room (2F) Door Bottom Left -> ChestA (CastleKey1)
 
     # DGB_13 Hidden Bedroom (2F)
     {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_03", "id": 5}, "reqs": []}, # Hidden Bedroom (2F) Door Bottom -> Table/Clock Room (1/2F) 2F Behind The Clock
 
-    {"from": {"map": "DGB_13", "id": 0},       "to": {"map": "DGB_13", "id": "ItemA"}, "reqs": [["Parakarry"],["Boots"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemA (MegaRush)
-    {"from": {"map": "DGB_13", "id": "ItemA"}, "to": {"map": "DGB_13", "id": 0},       "reqs": []}, #* ItemA (MegaRush) -> Hidden Bedroom (2F) Door Bottom
-    {"from": {"map": "DGB_13", "id": 0},       "to": {"map": "DGB_13", "id": "ItemB"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemB (Coin)
-    {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": 0},       "reqs": []}, #* ItemB (Coin) -> Hidden Bedroom (2F) Door Bottom
-    {"from": {"map": "DGB_13", "id": 0},       "to": {"map": "DGB_13", "id": "ItemC"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemC (Coin)
-    {"from": {"map": "DGB_13", "id": "ItemC"}, "to": {"map": "DGB_13", "id": 0},       "reqs": []}, #* ItemC (Coin) -> Hidden Bedroom (2F) Door Bottom
-    {"from": {"map": "DGB_13", "id": 0},       "to": {"map": "DGB_13", "id": "ItemD"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemD (Coin)
-    {"from": {"map": "DGB_13", "id": "ItemD"}, "to": {"map": "DGB_13", "id": 0},       "reqs": []}, #* ItemD (Coin) -> Hidden Bedroom (2F) Door Bottom
-    {"from": {"map": "DGB_13", "id": 0},       "to": {"map": "DGB_13", "id": "ItemE"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemE (Coin)
-    {"from": {"map": "DGB_13", "id": "ItemE"}, "to": {"map": "DGB_13", "id": 0},       "reqs": []}, #* ItemE (Coin) -> Hidden Bedroom (2F) Door Bottom
-    {"from": {"map": "DGB_13", "id": 0},       "to": {"map": "DGB_13", "id": "ItemF"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemF (Coin)
-    {"from": {"map": "DGB_13", "id": "ItemF"}, "to": {"map": "DGB_13", "id": 0},       "reqs": []}, #* ItemF (Coin) -> Hidden Bedroom (2F) Door Bottom
-    {"from": {"map": "DGB_13", "id": 0},       "to": {"map": "DGB_13", "id": "ItemG"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemG (Coin)
-    {"from": {"map": "DGB_13", "id": "ItemG"}, "to": {"map": "DGB_13", "id": 0},       "reqs": []}, #* ItemG (Coin) -> Hidden Bedroom (2F) Door Bottom
+    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemA"}, "reqs": [["Parakarry"],["Boots"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemA (MegaRush)
+    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemB"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemB (Coin)
+    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemC"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemC (Coin)
+    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemD"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemD (Coin)
+    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemE"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemE (Coin)
+    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemF"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemF (Coin)
+    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemG"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemG (Coin)
 
     # DGB_14 Stairs to Third Floor
     {"from": {"map": "DGB_14", "id": 0}, "to": {"map": "DGB_03", "id": 3}, "reqs": []}, # Stairs to Third Floor Door Bottom Right -> Table/Clock Room (1/2F) Door 2F Far Left
@@ -170,8 +158,7 @@ edges_dgb = [
     {"from": {"map": "DGB_14", "id": 0}, "to": {"map": "DGB_14", "id": 1}, "reqs": []}, #? Stairs to Third Floor Door Bottom Right -> Stairs to Third Floor Door Top Right
     {"from": {"map": "DGB_14", "id": 1}, "to": {"map": "DGB_14", "id": 0}, "reqs": []}, #? Stairs to Third Floor Door Top Right -> Stairs to Third Floor Door Bottom Right
 
-    {"from": {"map": "DGB_14", "id": 0},         "to": {"map": "DGB_14", "id": "YBlockA"}, "reqs": []}, #* Stairs to Third Floor Door Bottom Right -> YBlockA (MapleSyrup)
-    {"from": {"map": "DGB_14", "id": "YBlockA"}, "to": {"map": "DGB_14", "id": 0},         "reqs": []}, #* YBlockA (MapleSyrup) -> Stairs to Third Floor Door Bottom Right
+    {"from": {"map": "DGB_14", "id": 0}, "to": {"map": "DGB_14", "id": "YBlockA"}, "reqs": []}, #* Stairs to Third Floor Door Bottom Right -> YBlockA (MapleSyrup)
 
     # DGB_15 West Hall (3F)
     {"from": {"map": "DGB_15", "id": 0}, "to": {"map": "DGB_14", "id": 1}, "reqs": []}, # West Hall (3F) Door Far Left -> Stairs to Third Floor Door Top Right
@@ -186,8 +173,7 @@ edges_dgb = [
     # DGB_16 Sleeping Clubbas Room (3F)
     {"from": {"map": "DGB_16", "id": 0}, "to": {"map": "DGB_15", "id": 2}, "reqs": []}, # Sleeping Clubbas Room (3F) Door Bottom Right -> West Hall (3F) Door Top Right
 
-    {"from": {"map": "DGB_16", "id": 0},       "to": {"map": "DGB_16", "id": "ItemA"}, "reqs": [["can_climb_steps"]]}, #* Sleeping Clubbas Room (3F) Door Bottom Right -> ItemA (CastleKey1)
-    {"from": {"map": "DGB_16", "id": "ItemA"}, "to": {"map": "DGB_16", "id": 0},       "reqs": []}, #* ItemA (CastleKey1) -> Sleeping Clubbas Room (3F) Door Bottom Right
+    {"from": {"map": "DGB_16", "id": 0}, "to": {"map": "DGB_16", "id": "ItemA"}, "reqs": [["can_climb_steps"]]}, #* Sleeping Clubbas Room (3F) Door Bottom Right -> ItemA (CastleKey1)
 
     # DGB_17 Save Room (3F)
     {"from": {"map": "DGB_17", "id": 0}, "to": {"map": "DGB_15", "id": 1}, "reqs": []}, # Save Room (3F) Door Left -> West Hall (3F) Door Far Right

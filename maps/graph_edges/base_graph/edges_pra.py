@@ -50,20 +50,17 @@ edges_pra = [
     {"from": {"map": "PRA_04", "id": 0}, "to": {"map": "PRA_04", "id": 2}, "reqs": [["SuperBoots"]], "pseudoitems": ["GF_PRA04_BoardedFloor"]}, #? Reflected Save Room Door West -> Reflected Save Room Basement Door
     {"from": {"map": "PRA_04", "id": 2}, "to": {"map": "PRA_04", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Reflected Save Room Basement Door -> Reflected Save Room Door West
 
-    {"from": {"map": "PRA_04", "id": 0},         "to": {"map": "PRA_04", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Reflected Save Room Door West -> YBlockA (SuperShroom)
-    {"from": {"map": "PRA_04", "id": "YBlockA"}, "to": {"map": "PRA_04", "id": 0},         "reqs": []}, #* YBlockA (SuperShroom) -> Reflected Save Room Door West
+    {"from": {"map": "PRA_04", "id": 0}, "to": {"map": "PRA_04", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Reflected Save Room Door West -> YBlockA (SuperShroom)
 
     # PRA_05 Blue Key Room
     {"from": {"map": "PRA_05", "id": 0}, "to": {"map": "PRA_38", "id": 1}, "reqs": []}, # Blue Key Room Door West -> Blue Key Hall Door East
 
-    {"from": {"map": "PRA_05", "id": 0},        "to": {"map": "PRA_05", "id": "ChestA"}, "reqs": [["can_climb_steps"]]}, #* Blue Key Room Door West -> ChestA (BlueKey)
-    {"from": {"map": "PRA_05", "id": "ChestA"}, "to": {"map": "PRA_05", "id": 0},        "reqs": []}, #* ChestA (BlueKey) -> Blue Key Room Door West
+    {"from": {"map": "PRA_05", "id": 0}, "to": {"map": "PRA_05", "id": "ChestA"}, "reqs": [["can_climb_steps"]]}, #* Blue Key Room Door West -> ChestA (BlueKey)
 
     # PRA_06 Shooting Star Room
     {"from": {"map": "PRA_06", "id": 0}, "to": {"map": "PRA_39", "id": 1}, "reqs": []}, # Shooting Star Room Door West -> Shooting Star Hall Door East
 
-    {"from": {"map": "PRA_06", "id": 0},       "to": {"map": "PRA_06", "id": "ItemA"}, "reqs": [["can_climb_steps"]]}, #* Shooting Star Room Door West -> ItemA (ShootingStar)
-    {"from": {"map": "PRA_06", "id": "ItemA"}, "to": {"map": "PRA_06", "id": 0},       "reqs": []}, #* ItemA (ShootingStar) -> Shooting Star Room Door West
+    {"from": {"map": "PRA_06", "id": 0}, "to": {"map": "PRA_06", "id": "ItemA"}, "reqs": [["can_climb_steps"]]}, #* Shooting Star Room Door West -> ItemA (ShootingStar)
 
     # PRA_09 Red Key Hall
     {"from": {"map": "PRA_09", "id": 0}, "to": {"map": "PRA_03", "id": 2}, "reqs": []}, # Red Key Hall Door West -> Save Room Basement Door
@@ -82,14 +79,12 @@ edges_pra = [
     # PRA_11 Red Key Room
     {"from": {"map": "PRA_11", "id": 0}, "to": {"map": "PRA_09", "id": 1}, "reqs": []}, # Red Key Room Bombable Wall -> Red Key Hall Bombable Wall
 
-    {"from": {"map": "PRA_11", "id": 0},        "to": {"map": "PRA_11", "id": "ChestA"}, "reqs": [["can_climb_steps"]]}, #* Red Key Room Bombable Wall -> ChestA (RedKey)
-    {"from": {"map": "PRA_11", "id": "ChestA"}, "to": {"map": "PRA_11", "id": 0},        "reqs": []}, #* ChestA (RedKey) -> Red Key Room Bombable Wall
+    {"from": {"map": "PRA_11", "id": 0}, "to": {"map": "PRA_11", "id": "ChestA"}, "reqs": [["can_climb_steps"]]}, #* Red Key Room Bombable Wall -> ChestA (RedKey)
 
     # PRA_12 P-Down, D-Up Room
     {"from": {"map": "PRA_12", "id": 0}, "to": {"map": "PRA_10", "id": 1}, "reqs": []}, # P-Down, D-Up Room Door West -> P-Down, D-Up Hall Door East
 
-    {"from": {"map": "PRA_12", "id": 0},        "to": {"map": "PRA_12", "id": "ChestA"}, "reqs": [["can_climb_steps"]]}, #* P-Down, D-Up Room Door West -> ChestA (PDownDUp)
-    {"from": {"map": "PRA_12", "id": "ChestA"}, "to": {"map": "PRA_12", "id": 0},        "reqs": []}, #* ChestA (PDownDUp) -> P-Down, D-Up Room Door West
+    {"from": {"map": "PRA_12", "id": 0}, "to": {"map": "PRA_12", "id": "ChestA"}, "reqs": [["can_climb_steps"]]}, #* P-Down, D-Up Room Door West -> ChestA (PDownDUp)
 
     # PRA_13 Blue Mirror Hall 1
     {"from": {"map": "PRA_13", "id": 0}, "to": {"map": "PRA_02", "id": 2}, "reqs": []}, # Blue Mirror Hall 1 Door West -> Entry Hall Blue/Red Door
@@ -112,13 +107,12 @@ edges_pra = [
     # PRA_15 Star Piece Cave
     {"from": {"map": "PRA_15", "id": 0}, "to": {"map": "PRA_01", "id": 3}, "reqs": []}, # Star Piece Cave Cave Entrance -> Entrance Cave Entrance
 
-    {"from": {"map": "PRA_15", "id": 0},       "to": {"map": "PRA_15", "id": "ItemA"}, "reqs": []}, #* Star Piece Cave Cave Entrance -> ItemA (StarPiece)
-    {"from": {"map": "PRA_15", "id": "ItemA"}, "to": {"map": "PRA_15", "id": 0},       "reqs": []}, #* ItemA (StarPiece) -> Star Piece Cave Cave Entrance
+    {"from": {"map": "PRA_15", "id": 0}, "to": {"map": "PRA_15", "id": "ItemA"}, "reqs": []}, #* Star Piece Cave Cave Entrance -> ItemA (StarPiece)
 
     # PRA_16 Red Mirror Hall
     {"from": {"map": "PRA_16", "id": 0}, "to": {"map": "PRA_02", "id": 2}, "reqs": []}, # Red Mirror Hall Door West -> Entry Hall Blue/Red Door
     {"from": {"map": "PRA_16", "id": 1}, "to": {"map": "PRA_18", "id": 0}, "reqs": []}, # Red Mirror Hall Door East -> Bridge Mirror Hall Bridge Mirror Hall Door West
-    {"from": {"map": "PRA_16", "id": 2}, "to": {"map": "PRA_18", "id": 2}, "reqs": []}, # Red Mirror Hall Door East (Mirror Side) -> Bridge Mirror Hall 
+    {"from": {"map": "PRA_16", "id": 2}, "to": {"map": "PRA_18", "id": 2}, "reqs": []}, # Red Mirror Hall Door East (Mirror Side) -> Bridge Mirror Hall
     {"from": {"map": "PRA_16", "id": 3}, "to": {"map": "PRA_02", "id": 3}, "reqs": []}, # Red Mirror Hall Door West (Mirror Side) -> Entry Hall Blue/Red Door (Mirror Side)
 
     {"from": {"map": "PRA_16", "id": 0}, "to": {"map": "PRA_16", "id": 1}, "reqs": []}, #? Red Mirror Hall Door West -> Red Mirror Hall Door East
@@ -166,10 +160,8 @@ edges_pra = [
     {"from": {"map": "PRA_21", "id": 0}, "to": {"map": "PRA_21", "id": 1}, "reqs": [["MF_PRA_22_FoundHiddenRoomUnderStatue"]]}, #? Huge Statue Room Door West -> Huge Statue Room Basement Door
     {"from": {"map": "PRA_21", "id": 1}, "to": {"map": "PRA_21", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Huge Statue Room Basement Door -> Huge Statue Room Door West
 
-    {"from": {"map": "PRA_21", "id": 0},             "to": {"map": "PRA_21", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Huge Statue Room Door West -> HiddenPanel (StarPiece)
-    {"from": {"map": "PRA_21", "id": "HiddenPanel"}, "to": {"map": "PRA_21", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Huge Statue Room Door West
-    {"from": {"map": "PRA_21", "id": 0},             "to": {"map": "PRA_21", "id": "YBlockA"},     "reqs": [["UltraBoots"]]}, #* Huge Statue Room Door West -> YBlockA (MapleSyrup)
-    {"from": {"map": "PRA_21", "id": "YBlockA"},     "to": {"map": "PRA_21", "id": 0},             "reqs": []}, #* YBlockA (MapleSyrup) -> Huge Statue Room Door West
+    {"from": {"map": "PRA_21", "id": 0}, "to": {"map": "PRA_21", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Huge Statue Room Door West -> HiddenPanel (StarPiece)
+    {"from": {"map": "PRA_21", "id": 0}, "to": {"map": "PRA_21", "id": "YBlockA"},     "reqs": [["UltraBoots"]]}, #* Huge Statue Room Door West -> YBlockA (MapleSyrup)
 
     # PRA_22 Small Statue Room
     {"from": {"map": "PRA_22", "id": 0}, "to": {"map": "PRA_20", "id": 4}, "reqs": []}, # Small Statue Room Door West -> Mirrored Door Room Hallway Door (Mirror Side)
@@ -180,22 +172,18 @@ edges_pra = [
 
     {"from": {"map": "PRA_22", "id": 0}, "to": {"map": "PRA_22", "id": 1}, "reqs": [], "pseudoitems": ["MF_PRA_22_FoundHiddenRoomUnderStatue"]}, #+ Small Statue Room Door West
 
-    {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenPanel"},   "reqs": [["can_flip_panels"]]}, #* Small Statue Room Door West -> HiddenPanel (StarPiece)
-    {"from": {"map": "PRA_22", "id": "HiddenPanel"},   "to": {"map": "PRA_22", "id": 0},               "reqs": []}, #* HiddenPanel (StarPiece) -> Small Statue Room Door West
-    {"from": {"map": "PRA_22", "id": 0},               "to": {"map": "PRA_22", "id": "HiddenYBlockA"}, "reqs": [["UltraBoots"],["can_see_hidden_blocks"]]}, #* Small Statue Room Door West -> HiddenYBlockA (JamminJelly)
-    {"from": {"map": "PRA_22", "id": "HiddenYBlockA"}, "to": {"map": "PRA_22", "id": 0},               "reqs": []}, #* HiddenYBlockA (JamminJelly) -> Small Statue Room Door West
+    {"from": {"map": "PRA_22", "id": 0}, "to": {"map": "PRA_22", "id": "HiddenPanel"},   "reqs": [["can_flip_panels"]]}, #* Small Statue Room Door West -> HiddenPanel (StarPiece)
+    {"from": {"map": "PRA_22", "id": 0}, "to": {"map": "PRA_22", "id": "HiddenYBlockA"}, "reqs": [["UltraBoots"],["can_see_hidden_blocks"]]}, #* Small Statue Room Door West -> HiddenYBlockA (JamminJelly)
 
     # PRA_27 Palace Key Room
     {"from": {"map": "PRA_27", "id": 0}, "to": {"map": "PRA_36", "id": 1}, "reqs": []}, # Palace Key Room Door West -> Palace Key Hall Door East
 
-    {"from": {"map": "PRA_27", "id": 0},        "to": {"map": "PRA_27", "id": "ChestA"}, "reqs": [["can_climb_steps"]]}, #* Palace Key Room Door West -> ChestA (CrystalPalaceKey)
-    {"from": {"map": "PRA_27", "id": "ChestA"}, "to": {"map": "PRA_27", "id": 0},        "reqs": []}, #* ChestA (CrystalPalaceKey) -> Palace Key Room Door West
+    {"from": {"map": "PRA_27", "id": 0}, "to": {"map": "PRA_27", "id": "ChestA"}, "reqs": [["can_climb_steps"]]}, #* Palace Key Room Door West -> ChestA (CrystalPalaceKey)
 
     # PRA_28 P-Up, D-Down Room
     {"from": {"map": "PRA_28", "id": 0}, "to": {"map": "PRA_37", "id": 1}, "reqs": []}, # P-Up, D-Down Room Door West -> P-Up, D-Down Hall Door East
 
-    {"from": {"map": "PRA_28", "id": 0},        "to": {"map": "PRA_28", "id": "ChestA"}, "reqs": [["can_climb_steps"]]}, #* P-Up, D-Down Room Door West -> ChestA (PUpDDown)
-    {"from": {"map": "PRA_28", "id": "ChestA"}, "to": {"map": "PRA_28", "id": 0},        "reqs": []}, #* ChestA (PUpDDown) -> P-Up, D-Down Room Door West
+    {"from": {"map": "PRA_28", "id": 0}, "to": {"map": "PRA_28", "id": "ChestA"}, "reqs": [["can_climb_steps"]]}, #* P-Up, D-Down Room Door West -> ChestA (PUpDDown)
 
     # PRA_29 Hidden Bridge Room
     {"from": {"map": "PRA_29", "id": 0}, "to": {"map": "PRA_20", "id": 2}, "reqs": []}, # Hidden Bridge Room Door West -> Mirrored Door Room Door East

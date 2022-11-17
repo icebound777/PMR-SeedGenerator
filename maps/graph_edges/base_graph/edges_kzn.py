@@ -30,20 +30,15 @@ edges_kzn = [
     {"from": {"map": "KZN_03", "id": 3}, "to": {"map": "KZN_03", "id": 4}, "reqs": []}, #? Central Cavern Exit West Lower -> Central Cavern Exit East Lower 2
     {"from": {"map": "KZN_03", "id": 4}, "to": {"map": "KZN_03", "id": 3}, "reqs": [["can_climb_steps"]]}, #? Central Cavern Exit East Lower 2 -> Central Cavern Exit West Lower
 
-    {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "ItemA"},   "reqs": []}, #* Central Cavern Exit West Upper -> ItemA (FireShield)
-    {"from": {"map": "KZN_03", "id": 2},         "to": {"map": "KZN_03", "id": "ItemA"},   "reqs": []}, #* Central Cavern Exit East Lower 1 (Ultra Block) -> ItemA (FireShield)
-    {"from": {"map": "KZN_03", "id": "ItemA"},   "to": {"map": "KZN_03", "id": 4},         "reqs": []}, #* ItemA (FireShield) -> Central Cavern Exit East Lower 2
+    {"from": {"map": "KZN_03", "id": 0},       "to": {"map": "KZN_03", "id": "ItemA"},   "reqs": []}, #* Central Cavern Exit West Upper -> ItemA (FireShield)
+    {"from": {"map": "KZN_03", "id": 2},       "to": {"map": "KZN_03", "id": "ItemA"},   "reqs": []}, #* Central Cavern Exit East Lower 1 (Ultra Block) -> ItemA (FireShield)
+    {"from": {"map": "KZN_03", "id": "ItemA"}, "to": {"map": "KZN_03", "id": 4},         "reqs": []}, #* ItemA (FireShield) -> Central Cavern Exit East Lower 2
 
-    {"from": {"map": "KZN_03", "id": 1},         "to": {"map": "KZN_03", "id": "ItemB"},   "reqs": [["Kooper","UltraBoots"],["can_climb_steps"]]}, #* Central Cavern Exit East Upper -> ItemB (POWBlock)
-    {"from": {"map": "KZN_03", "id": "ItemB"},   "to": {"map": "KZN_03", "id": 1},         "reqs": []}, #* ItemB (POWBlock) -> Central Cavern Exit East Upper
-    {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockA (Coin)
-    {"from": {"map": "KZN_03", "id": "YBlockA"}, "to": {"map": "KZN_03", "id": 0},         "reqs": []}, #* YBlockA (Coin) -> Central Cavern Exit West Upper
-    {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockB (Coin)
-    {"from": {"map": "KZN_03", "id": "YBlockB"}, "to": {"map": "KZN_03", "id": 0},         "reqs": []}, #* YBlockB (Coin) -> Central Cavern Exit West Upper
-    {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "YBlockC"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockC (Coin)
-    {"from": {"map": "KZN_03", "id": "YBlockC"}, "to": {"map": "KZN_03", "id": 0},         "reqs": []}, #* YBlockC (Coin) -> Central Cavern Exit West Upper
-    {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "YBlockD"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockD (Coin)
-    {"from": {"map": "KZN_03", "id": "YBlockD"}, "to": {"map": "KZN_03", "id": 0},         "reqs": []}, #* YBlockD (Coin) -> Central Cavern Exit West Upper
+    {"from": {"map": "KZN_03", "id": 1},       "to": {"map": "KZN_03", "id": "ItemB"},   "reqs": [["Kooper","UltraBoots"],["can_climb_steps"]]}, #* Central Cavern Exit East Upper -> ItemB (POWBlock)
+    {"from": {"map": "KZN_03", "id": 0},       "to": {"map": "KZN_03", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockA (Coin)
+    {"from": {"map": "KZN_03", "id": 0},       "to": {"map": "KZN_03", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockB (Coin)
+    {"from": {"map": "KZN_03", "id": 0},       "to": {"map": "KZN_03", "id": "YBlockC"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockC (Coin)
+    {"from": {"map": "KZN_03", "id": 0},       "to": {"map": "KZN_03", "id": "YBlockD"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockD (Coin)
 
     # KZN_04 Fire Bar Bridge
     {"from": {"map": "KZN_04", "id": 0}, "to": {"map": "KZN_03", "id": 1}, "reqs": []}, # Fire Bar Bridge Exit West -> Central Cavern Exit East Upper
@@ -65,20 +60,17 @@ edges_kzn = [
     {"from": {"map": "KZN_06", "id": 0}, "to": {"map": "KZN_06", "id": 2}, "reqs": [["RF_KZN07_OpenedHammerChest"]]}, #? Flowing Lava Puzzle Exit East Upper -> Flowing Lava Puzzle Exit East Lower
     {"from": {"map": "KZN_06", "id": 2}, "to": {"map": "KZN_06", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Flowing Lava Puzzle Exit East Lower -> Flowing Lava Puzzle Exit East Upper
 
-    {"from": {"map": "KZN_06", "id": 0},               "to": {"map": "KZN_06", "id": "HiddenYBlockA"}, "reqs": [["can_climb_steps"],["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* Flowing Lava Puzzle Exit East Upper -> HiddenYBlockA (LifeShroom)
-    {"from": {"map": "KZN_06", "id": "HiddenYBlockA"}, "to": {"map": "KZN_06", "id": 0},               "reqs": []}, #* HiddenYBlockA (LifeShroom) -> Flowing Lava Puzzle Exit East Upper
+    {"from": {"map": "KZN_06", "id": 0}, "to": {"map": "KZN_06", "id": "HiddenYBlockA"}, "reqs": [["can_climb_steps"],["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* Flowing Lava Puzzle Exit East Upper -> HiddenYBlockA (LifeShroom)
 
     # KZN_07 Ultra Hammer Room
     {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_06", "id": 1}, "reqs": []}, # Ultra Hammer Room Exit East -> Flowing Lava Puzzle Exit West
 
-    {"from": {"map": "KZN_07", "id": 0},          "to": {"map": "KZN_07", "id": "BigChest"}, "reqs": [["Parakarry","Lakilester"],["can_climb_steps"]], "pseudoitems": ["RF_KZN07_OpenedHammerChest","RF_KZN06_SolvedBlockPuzzle"]}, #? Ultra Hammer Room Exit East -> BigChest (UltraHammer)
-    {"from": {"map": "KZN_07", "id": "BigChest"}, "to": {"map": "KZN_07", "id": 0},          "reqs": []}, #? BigChest (UltraHammer) -> Ultra Hammer Room Exit East
+    {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": "BigChest"}, "reqs": [["Parakarry","Lakilester"],["can_climb_steps"]], "pseudoitems": ["RF_KZN07_OpenedHammerChest","RF_KZN06_SolvedBlockPuzzle"]}, #? Ultra Hammer Room Exit East -> BigChest (UltraHammer)
 
     # KZN_08 Dizzy Stomp Room
     {"from": {"map": "KZN_08", "id": 0}, "to": {"map": "KZN_06", "id": 2}, "reqs": []}, # Dizzy Stomp Room Exit West -> Flowing Lava Puzzle Exit East Lower
 
-    {"from": {"map": "KZN_08", "id": 0},        "to": {"map": "KZN_08", "id": "ChestA"}, "reqs": [["can_climb_steps"],["Parakarry","Lakilester"]]}, #* Dizzy Stomp Room Exit West -> ChestA (DizzyStomp)
-    {"from": {"map": "KZN_08", "id": "ChestA"}, "to": {"map": "KZN_08", "id": 0},        "reqs": []}, #* ChestA (DizzyStomp) -> Dizzy Stomp Room Exit West
+    {"from": {"map": "KZN_08", "id": 0}, "to": {"map": "KZN_08", "id": "ChestA"}, "reqs": [["can_climb_steps"],["Parakarry","Lakilester"]]}, #* Dizzy Stomp Room Exit West -> ChestA (DizzyStomp)
 
     # KZN_09 Zipline Cavern
     {"from": {"map": "KZN_09", "id": 0}, "to": {"map": "KZN_03", "id": 2}, "reqs": []}, # Zipline Cavern Exit West Upper -> Central Cavern Exit East Lower 1 (Ultra Block)
@@ -89,9 +81,8 @@ edges_kzn = [
     {"from": {"map": "KZN_09", "id": 0}, "to": {"map": "KZN_09", "id": 2}, "reqs": []}, #? Zipline Cavern Exit West Upper -> Zipline Cavern Exit West Lower
     {"from": {"map": "KZN_09", "id": 1}, "to": {"map": "KZN_09", "id": 2}, "reqs": [["can_climb_steps"]]}, #? Zipline Cavern Exit East -> Zipline Cavern Exit West Lower
 
-    {"from": {"map": "KZN_09", "id": 2},             "to": {"map": "KZN_09", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Zipline Cavern Exit West Lower -> HiddenPanel (StarPiece)
-    {"from": {"map": "KZN_09", "id": 1},             "to": {"map": "KZN_09", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Zipline Cavern Exit East -> HiddenPanel (StarPiece)
-    {"from": {"map": "KZN_09", "id": "HiddenPanel"}, "to": {"map": "KZN_09", "id": 2},             "reqs": [["can_climb_steps"]]}, #* HiddenPanel (StarPiece) -> Zipline Cavern Exit West Lower
+    {"from": {"map": "KZN_09", "id": 2}, "to": {"map": "KZN_09", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Zipline Cavern Exit West Lower -> HiddenPanel (StarPiece)
+    {"from": {"map": "KZN_09", "id": 1}, "to": {"map": "KZN_09", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Zipline Cavern Exit East -> HiddenPanel (StarPiece)
 
     # KZN_10 Descent Toward Boss
     {"from": {"map": "KZN_10", "id": 0}, "to": {"map": "KZN_09", "id": 1}, "reqs": []}, # Descent Toward Boss Exit West -> Zipline Cavern Exit East
@@ -125,8 +116,7 @@ edges_kzn = [
     {"from": {"map": "KZN_18", "id": 2}, "to": {"map": "KZN_18", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Boss Antechamber Exit East Lower -> Boss Antechamber Exit West
     #TODO lava rising after boss is important for entrance rando
 
-    {"from": {"map": "KZN_18", "id": 0},             "to": {"map": "KZN_18", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Boss Antechamber Exit West -> HiddenPanel (StarPiece)
-    {"from": {"map": "KZN_18", "id": "HiddenPanel"}, "to": {"map": "KZN_18", "id": 0},             "reqs": []}, #* HiddenPanel (StarPiece) -> Boss Antechamber Exit West
+    {"from": {"map": "KZN_18", "id": 0}, "to": {"map": "KZN_18", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Boss Antechamber Exit West -> HiddenPanel (StarPiece)
 
     # KZN_19 Boss Room
     {"from": {"map": "KZN_19", "id": 0}, "to": {"map": "KZN_18", "id": 1}, "reqs": []}, # Boss Room Exit West Upper -> Boss Antechamber Exit East Upper
@@ -136,10 +126,8 @@ edges_kzn = [
     {"from": {"map": "KZN_19", "id": 1}, "to": {"map": "KZN_19", "id": 2}, "reqs": []}, #? Boss Room Exit West Lower -> Boss Room Exit East
     {"from": {"map": "KZN_19", "id": 2}, "to": {"map": "KZN_19", "id": 1}, "reqs": []}, #? Boss Room Exit East -> Boss Room Exit West Lower
 
-    {"from": {"map": "KZN_19", "id": 0},         "to": {"map": "KZN_19", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Boss Room Exit West Upper -> YBlockA (SuperShroom)
-    {"from": {"map": "KZN_19", "id": "YBlockA"}, "to": {"map": "KZN_19", "id": 0},         "reqs": []}, #* YBlockA (SuperShroom) -> Boss Room Exit West Upper
-    {"from": {"map": "KZN_19", "id": 0},         "to": {"map": "KZN_19", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Boss Room Exit West Upper -> YBlockB (MapleSyrup)
-    {"from": {"map": "KZN_19", "id": "YBlockB"}, "to": {"map": "KZN_19", "id": 0},         "reqs": []}, #* YBlockB (MapleSyrup) -> Boss Room Exit West Upper
+    {"from": {"map": "KZN_19", "id": 0}, "to": {"map": "KZN_19", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Boss Room Exit West Upper -> YBlockA (SuperShroom)
+    {"from": {"map": "KZN_19", "id": 0}, "to": {"map": "KZN_19", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Boss Room Exit West Upper -> YBlockB (MapleSyrup)
 
     # KZN_20 Rising Lava 1
     {"from": {"map": "KZN_20", "id": 0}, "to": {"map": "KZN_19", "id": 2}, "reqs": []}, # Rising Lava 1 Exit West -> Boss Room Exit East
