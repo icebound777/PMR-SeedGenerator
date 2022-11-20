@@ -170,8 +170,7 @@ def generate(node_list: list, edge_list: list):
                     or edge.get("from").get("id") == node.key_name_item
                 ):
                     world_graph[node.identifier]["edge_list"].append(edge)
-                    if not node.map_area.name.startswith("PRA_02"):
-                        edge_list_cpy.remove(edge)
+                    edge_list_cpy.remove(edge)
         edge_list = edge_list_cpy
 
     return world_graph
