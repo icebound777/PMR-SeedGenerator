@@ -117,7 +117,7 @@ edges_kpa = [
     {"from": {"map": "KPA_16",  "id": 0}, "to": {"map": "KPA_16",  "id": 0}, "reqs": [["Lakilester"],["can_climb_steps"]], "pseudoitems": ["GF_KPA16_ShutOffLava"]}, #+ Shut off Lava Control
 
     # KPA_17 Lower Jail
-    {"from": {"map": "KPA_17",  "id": 0}, "to": {"map": None, "id": None}, "reqs": []},   # Lower Jail Fall From Ceiling
+    #{"from": {"map": "KPA_17",  "id": 0}, "to": {"map": None, "id": None}, "reqs": []},   # Lower Jail Fall From Ceiling
     {"from": {"map": "KPA_17",  "id": 1}, "to": {"map": "KPA_10",  "id": 2}, "reqs": []}, # Lower Jail Cracked Wall Right -> Outside Lower Jail (No Lava) Cracked Wall To Jail
     {"from": {"map": "KPA_17",  "id": 1}, "to": {"map": "KPA_11",  "id": 2}, "reqs": []}, # Lower Jail Cracked Wall Right -> Outside Lower Jail (Lava) Cracked Wall To Jail
 

@@ -108,7 +108,7 @@ edges_trd = [
     {"from": {"map": "TRD_05", "id": 4}, "to": {"map": "TRD_05", "id": 0}, "reqs": []}, #? Right Tower YBlock Trap -> Right Tower Exit Bottom Left
 
     # TRD_06 Jail
-    {"from": {"map": "TRD_06", "id": 0}, "to": {"map": None, "id": None},  "reqs": []}, # Jail Fall From Ceiling
+    #{"from": {"map": "TRD_06", "id": 0}, "to": {"map": None, "id": None},  "reqs": []}, # Jail Fall From Ceiling
     {"from": {"map": "TRD_06", "id": 1}, "to": {"map": "TRD_04", "id": 5}, "reqs": []}, # Jail Exit Left -> Right Starway Exit Bottom Right
 
     {"from": {"map": "TRD_06", "id": 1}, "to": {"map": "TRD_06", "id": 0}, "reqs": [["Bombette"]]}, #? Jail Exit Left -> Jail Fall From Ceiling

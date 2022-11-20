@@ -147,7 +147,7 @@ def get_area_edges(area_shorthand:str):
     return hashabledicts
 
 
-def generate(node_list, edge_list):
+def generate(node_list: list, edge_list: list):
     """
     Generates and returns a world graph dictionary with nodes' node_ids in string form as keys and
     a list of neighboring nodes' node_ids in string form as values.
@@ -166,11 +166,9 @@ def generate(node_list, edge_list):
         edge_list_cpy = edge_list.copy()
         for edge in edge_list:
             if edge.get("from").get("map") == node.map_area.name:
-                if edge.get("to").get("map") is None:
-                    # This edge exists for completeness' sake only and has no use inside the graph
-                    pass
-                elif (   edge.get("from").get("id") == node.entrance_id
-                      or edge.get("from").get("id") == node.key_name_item):
+                if (   edge.get("from").get("id") == node.entrance_id
+                    or edge.get("from").get("id") == node.key_name_item
+                ):
                     world_graph[node.identifier]["edge_list"].append(edge)
                     if not node.map_area.name.startswith("PRA_02"):
                         edge_list_cpy.remove(edge)

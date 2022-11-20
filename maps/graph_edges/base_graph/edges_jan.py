@@ -228,7 +228,7 @@ edges_jan = [
     {"from": {"map": "JAN_16", "id": 0}, "to": {"map": "JAN_15", "id": 1}, "reqs": []}, # Base of Great Tree Exit Left -> Deep Jungle 4 (Ambush) Exit Right
     {"from": {"map": "JAN_16", "id": 1}, "to": {"map": "JAN_22", "id": 1}, "reqs": []}, # Base of Great Tree Exit Right -> Path to the Volcano Exit Top
     {"from": {"map": "JAN_16", "id": 2}, "to": {"map": "JAN_17", "id": 0}, "reqs": []}, # Base of Great Tree Enter Tree -> Lower Great Tree Interior Exit Bottom
-    {"from": {"map": "JAN_16", "id": 4}, "to": {"map": None, "id": None}, "reqs": []},  # Base of Great Tree Fall Off Of Tree
+    #{"from": {"map": "JAN_16", "id": 4}, "to": {"map": None, "id": None}, "reqs": []},  # Base of Great Tree Fall Off Of Tree
 
     {"from": {"map": "JAN_16", "id": 0}, "to": {"map": "JAN_16", "id": 1}, "reqs": [["MF_Ch5_TalkedToRafael"]], "pseudoitems": ["MF_Ch5_RafaelMovedRoot"]}, #? Base of Great Tree Exit Left -> Base of Great Tree Exit Right
     {"from": {"map": "JAN_16", "id": 1}, "to": {"map": "JAN_16", "id": 0}, "reqs": [["MF_Ch5_TalkedToRafael"]]}, #? Base of Great Tree Exit Right -> Base of Great Tree Exit Left

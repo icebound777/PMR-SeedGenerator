@@ -60,7 +60,7 @@ edges_obk = [
     {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": "ShopItemF"}, "reqs": [["RF_OpenedGustyGulch"]]}, #* Basement Fall From Ceiling -> ShopItemF (SuperShroom)
 
     # OBK_04 Super Boots Room
-    {"from": {"map": "OBK_04", "id": 0}, "to": {"map": None, "id": None},  "reqs": []}, # Super Boots Room Vanishing Door
+    #{"from": {"map": "OBK_04", "id": 0}, "to": {"map": None, "id": None},  "reqs": []}, # Super Boots Room Vanishing Door
     {"from": {"map": "OBK_04", "id": 1}, "to": {"map": "OBK_03", "id": 2}, "reqs": []}, # Super Boots Room Hole Under Planks -> Basement Fall From Ceiling
 
     {"from": {"map": "OBK_04", "id": 0}, "to": {"map": "OBK_04", "id": 1}, "reqs": [["RF_OBK04_OpenedBigChest"]]}, #? Super Boots Room Vanishing Door -> Super Boots Room Hole Under Planks
