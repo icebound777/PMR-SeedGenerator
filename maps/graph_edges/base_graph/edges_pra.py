@@ -14,9 +14,9 @@ edges_pra = [
     # PRA_02 Entry Hall
     {"from": {"map": "PRA_02", "id": 0}, "to": {"map": "PRA_01", "id": 1}, "reqs": []}, # Entry Hall Entrance Door -> Entrance Front Door
     {"from": {"map": "PRA_02", "id": 1}, "to": {"map": "PRA_03", "id": 0}, "reqs": []}, # Entry Hall Hallway Door -> Save Room Door West
-    {"from": {"map": "PRA_02", "id": 2}, "to": {"map": "PRA_13", "id": 0}, "reqs": [["BlueKey"],["SuperBoots"]]}, # Entry Hall Blue/Red Door -> Blue Mirror Hall 1 Door West
+    {"from": {"map": "PRA_02", "id": 6}, "to": {"map": "PRA_13", "id": 0}, "reqs": [["BlueKey"],["SuperBoots"]]}, # Entry Hall Blue/Red Door -> Blue Mirror Hall 1 Door West
     {"from": {"map": "PRA_02", "id": 2}, "to": {"map": "PRA_16", "id": 0}, "reqs": [["RedKey"]]}, # Entry Hall Blue/Red Door -> Red Mirror Hall Door West
-    {"from": {"map": "PRA_02", "id": 3}, "to": {"map": "PRA_13", "id": 3}, "reqs": [["BlueKey"],["SuperBoots"]]}, # Entry Hall Blue/Red Door (Mirror Side) -> Blue Mirror Hall 1 Door West (Mirror Side)
+    {"from": {"map": "PRA_02", "id": 7}, "to": {"map": "PRA_13", "id": 3}, "reqs": [["BlueKey"],["SuperBoots"]]}, # Entry Hall Blue/Red Door (Mirror Side) -> Blue Mirror Hall 1 Door West (Mirror Side)
     {"from": {"map": "PRA_02", "id": 3}, "to": {"map": "PRA_16", "id": 3}, "reqs": [["RedKey"]]}, # Entry Hall Blue/Red Door (Mirror Side) -> Red Mirror Hall Door West (Mirror Side)
     {"from": {"map": "PRA_02", "id": 4}, "to": {"map": "PRA_04", "id": 0}, "reqs": []}, # Entry Hall Hallway Door (Mirror Side) -> Reflected Save Room Door West
     {"from": {"map": "PRA_02", "id": 5}, "to": {"map": "PRA_01", "id": 2}, "reqs": []}, # Entry Hall Entrance Door (Mirror Side) -> Entrance Front Door (Mirror Side)
@@ -87,10 +87,10 @@ edges_pra = [
     {"from": {"map": "PRA_12", "id": 0}, "to": {"map": "PRA_12", "id": "ChestA"}, "reqs": [["can_climb_steps"]]}, #* P-Down, D-Up Room Door West -> ChestA (PDownDUp)
 
     # PRA_13 Blue Mirror Hall 1
-    {"from": {"map": "PRA_13", "id": 0}, "to": {"map": "PRA_02", "id": 2}, "reqs": []}, # Blue Mirror Hall 1 Door West -> Entry Hall Blue/Red Door
+    {"from": {"map": "PRA_13", "id": 0}, "to": {"map": "PRA_02", "id": 6}, "reqs": []}, # Blue Mirror Hall 1 Door West -> Entry Hall Blue/Red Door
     {"from": {"map": "PRA_13", "id": 1}, "to": {"map": "PRA_14", "id": 0}, "reqs": []}, # Blue Mirror Hall 1 Bombable Wall -> Blue Mirror Hall 2 Bombable Wall
     {"from": {"map": "PRA_13", "id": 2}, "to": {"map": "PRA_14", "id": 1}, "reqs": []}, # Blue Mirror Hall 1 Bombable Wall (Mirror Side) -> Blue Mirror Hall 2 Bombable Wall (Mirror Side)
-    {"from": {"map": "PRA_13", "id": 3}, "to": {"map": "PRA_02", "id": 3}, "reqs": []}, # Blue Mirror Hall 1 Door West (Mirror Side) -> Entry Hall Blue/Red Door (Mirror Side)
+    {"from": {"map": "PRA_13", "id": 3}, "to": {"map": "PRA_02", "id": 7}, "reqs": []}, # Blue Mirror Hall 1 Door West (Mirror Side) -> Entry Hall Blue/Red Door (Mirror Side)
 
     {"from": {"map": "PRA_13", "id": 0}, "to": {"map": "PRA_13", "id": 1}, "reqs": [["Bombette"]]}, #? Blue Mirror Hall 1 Door West -> Blue Mirror Hall 1 Bombable Wall
     {"from": {"map": "PRA_13", "id": 1}, "to": {"map": "PRA_13", "id": 0}, "reqs": []}, #? Blue Mirror Hall 1 Bombable Wall -> Blue Mirror Hall 1 Door West
