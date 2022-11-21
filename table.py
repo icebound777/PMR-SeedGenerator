@@ -77,18 +77,6 @@ class Table:
                     "key": node.get_item_key(),
                     "value": node.current_item.value,
                 })
-                # Generate a ROM table pair that describes where a unique itemID
-				# resides in the game using areaID and mapID
-                if node.current_item.item_type in [
-                    "KEYITEM",
-                    "BADGE",
-                    "STARPIECE",
-                    "PARTNER"
-                ]:
-                    table_data.append({
-                        "key": (0xAA << 24) | (node.current_item.value),
-                        "value": (node.map_area.area_id << 8) | (node.map_area.map_id),
-                    })
 
             # Item Prices
             if (    node.key_name_price is not None
