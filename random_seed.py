@@ -23,6 +23,7 @@ from rando_modules.random_palettes     \
            get_randomized_palettes
 from rando_modules.random_partners import get_rnd_starting_partners
 from rando_modules.random_quizzes import get_randomized_quizzes
+from rando_modules.random_shop_prices import get_shop_price
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
 from worldgraph import \
     generate as generate_world_graph,\
@@ -168,7 +169,15 @@ class RandomSeed:
             except UnbeatableSeedError as err:
                 print(f"Failed to place items! Fail count: {placement_attempt}")
 
-        
+        # Adjust item pricing
+        for node in self.placed_items:
+            if "Shop" in node.identifier:
+                node.current_item.base_price = get_shop_price(
+                        node,
+                        self.rando_settings.include_shops["value"],
+                        self.rando_settings.merlow_reward_pricing
+                    )
+
         # Modify Mystery? item
         self.rando_settings.mystery_settings = get_random_mystery(
             self.rando_settings.mystery_settings

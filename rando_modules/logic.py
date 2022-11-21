@@ -9,7 +9,6 @@ from collections import defaultdict
 from db.node import Node
 from db.item import Item
 from db.map_area import MapArea
-from rando_modules.random_shop_prices import get_shop_price
 
 from models.MarioInventory import MarioInventory
 
@@ -432,11 +431,6 @@ def _generate_item_pools(
                 and not do_randomize_shops
             ):
                 current_node.current_item = current_node.vanilla_item
-                current_node.current_item.base_price = get_shop_price(
-                    current_node,
-                    do_randomize_shops,
-                    merlow_reward_pricing
-                )
                 all_item_nodes.append(current_node)
                 continue
 
@@ -893,14 +887,6 @@ def _algo_assumed_fill(
 
         placement_location = random.choice(candidate_locations)
         placement_location.current_item = item
-        node_identifier = placement_location.identifier
-
-        if "Shop" in node_identifier:
-            placement_location.current_item.base_price = get_shop_price(
-                placement_location,
-                do_randomize_shops,
-                merlow_reward_pricing
-            )
 
     # Mark all unreachable nodes, which hold pre-filled items, as filled
     for item_node in all_item_nodes:
@@ -958,13 +944,6 @@ def _algo_assumed_fill(
                         random_item = pool_other_items.pop(random_item_id)
 
                 item_node.current_item = random_item
-
-                if "Shop" in item_node_id:
-                    item_node.current_item.base_price = get_shop_price(
-                        item_node,
-                        do_randomize_shops,
-                        merlow_reward_pricing
-                    )
 
                 filled_item_node_ids.add(item_node_id)
                 logging.debug(
@@ -1162,11 +1141,6 @@ def place_items(
         # Place items in their vanilla locations
         for node in Node.select().where(Node.key_name_item.is_null(False)):
             node.current_item = node.vanilla_item
-            node.current_item.base_price = get_shop_price(
-                node,
-                do_randomize_shops=False,
-                merlow_costs=merlow_reward_pricing
-            )
             item_placement.append(node)
     elif do_custom_seed:
         raise ValueError
