@@ -109,9 +109,9 @@ def _get_random_taycet_item():
 def _depth_first_search(
     node_id:str,
     world_graph:dict,
-    reachable_node_ids:set,
-    reachable_item_nodes:dict,
-    non_traversable_edges:defaultdict, #(set)
+    reachable_node_ids:set, # set() of str()
+    reachable_item_nodes:dict, # dict of str() on Node
+    non_traversable_edges:dict, # dict() of node_id to list(edge_id)
     mario:MarioInventory
 ):
     """
@@ -128,12 +128,12 @@ def _depth_first_search(
     graph traversal.
     """
     #logging.debug("> DFS node %s", node_id)
-    found_new_pseudoitems = False
+    found_new_pseudoitems = False # bool
 
     # Node already visited? -> Return!
-    node_checked_earlier = False
+    node_checked_earlier = False # bool
     if node_id in reachable_node_ids:
-        if non_traversable_edges[node_id]:
+        if node_id in non_traversable_edges:
             node_checked_earlier = True
         else:
             return found_new_pseudoitems, mario
@@ -149,26 +149,21 @@ def _depth_first_search(
 
     if not node_checked_earlier:
         # Get all outgoing edges
-        outgoing_edges = world_graph[node_id]["edge_list"]
+        outgoing_edges = [edge["edge_id"] for edge in world_graph[node_id]["edge_list"]]
     else:
         # Get all formerly untraversable edges
         outgoing_edges = non_traversable_edges.pop(node_id)
-    #logging.debug("DFS outgoing_edges %s", outgoing_edges)
 
-    for edge in outgoing_edges:
+    for edge_id in outgoing_edges:
         # Check if all requirements for edge traversal are fulfilled
+        edge_index = world_graph["edge_index"][edge_id][1]
+        edge = world_graph[node_id]["edge_list"][edge_index]
         if mario.requirements_fulfilled(edge.get("reqs")):
             #logging.debug("DFS edge requirements fullfilled %s", edge)
             # Add all pseudoitems provided by this edge to the inventory
             if edge.get("pseudoitems") is not None:
                 mario.add(edge.get("pseudoitems"))
                 found_new_pseudoitems = True
-
-            while edge in non_traversable_edges[node_id]:
-                #logging.debug("DFS remove edge from non_traversable_edges %s",edge)
-                #logging.debug("non_traversable_edges[node_id] before %s", non_traversable_edges[node_id])
-                non_traversable_edges[node_id].remove(edge)
-                #logging.debug("non_traversable_edges[node_id] after %s", non_traversable_edges[node_id])
 
             # DFS from newly reachable node
             edge_target_node_id = get_edge_target_node_id(edge)
@@ -182,7 +177,9 @@ def _depth_first_search(
             )
             found_new_pseudoitems = found_new_pseudoitems or found_additional_pseudoitems
         else:
-            non_traversable_edges[node_id].add(edge)
+            if node_id not in non_traversable_edges:
+                non_traversable_edges[node_id] = []
+            non_traversable_edges[node_id].append(edge_id)
     return found_new_pseudoitems, mario
 
 
@@ -192,7 +189,7 @@ def _find_new_nodes_and_edges(
     world_graph:dict,
     reachable_node_ids:set,
     reachable_item_nodes:dict,
-    non_traversable_edges:defaultdict, #(set)
+    non_traversable_edges:dict, # dict() of node_id to list(edge_id)
     filled_item_nodes:list,
     mario:MarioInventory
 ):
@@ -210,18 +207,13 @@ def _find_new_nodes_and_edges(
         non_traversable_edges_cpy = non_traversable_edges.copy()
         logging.debug(
             "non_traversable_edges_cpy before %s",
-            non_traversable_edges_cpy.values()
+            non_traversable_edges_cpy
         )
 
         # Re-traverse already found edges which could not be traversed before.
-        node_ids_to_check = []
-        for edges in non_traversable_edges.values():
-            for edge in edges:
-                # Generate list of unique node_ids to check to avoid multiple
-                # checks of the same node
-                from_node_id = get_edge_origin_node_id(edge)
-                if from_node_id not in node_ids_to_check:
-                    node_ids_to_check.append(from_node_id)
+        node_ids_to_check = set()
+        for node_id in non_traversable_edges:
+            node_ids_to_check.add(node_id)
 
         logging.debug("%s", node_ids_to_check)
         for from_node_id in node_ids_to_check:
@@ -237,11 +229,11 @@ def _find_new_nodes_and_edges(
         non_traversable_edges = non_traversable_edges_cpy.copy()
         logging.debug(
             "non_traversable_edges_cpy after %s",
-            non_traversable_edges_cpy.values()
+            non_traversable_edges_cpy
         )
         logging.debug(
             "non_traversable_edges after %s",
-            non_traversable_edges.values()
+            non_traversable_edges
         )
 
         # Check if an item node is reachable which already has an item placed.
@@ -401,7 +393,9 @@ def _generate_item_pools(
     """
 
     # Pre-fill nodes that are not to be randomized
-    for node_id in world_graph.keys():
+    for node_id in world_graph:
+        if node_id == "edge_index":
+            continue
         current_node = world_graph[node_id]["node"]
         is_item_node = current_node.key_name_item
         if is_item_node: # and current_node not in all_item_nodes:
@@ -518,7 +512,9 @@ def _generate_item_pools(
 
     # Check all remaining nodes for items to add to the pools
     all_item_nodes_ids = {node.identifier for node in all_item_nodes}
-    for node_id in world_graph.keys():
+    for node_id in world_graph:
+        if node_id == "edge_index":
+            continue
         current_node = world_graph[node_id]["node"]
         is_item_node = current_node.key_name_item
         if is_item_node and node_id not in all_item_nodes_ids:
@@ -660,12 +656,13 @@ def find_available_nodes(
 ):
     reachable_node_ids = set()
     reachable_item_nodes = {}
-    non_traversable_edges = defaultdict(set)
+    non_traversable_edges = dict()
     filled_item_node_ids = set()
 
     reachable_node_ids.add(starting_node_id)
-    for edge in world_graph[starting_node_id]["edge_list"]:
-        non_traversable_edges[starting_node_id].add(edge)
+    non_traversable_edges[starting_node_id] = [
+        edge["edge_id"] for edge in world_graph[starting_node_id]["edge_list"]
+    ]
 
     empty_reachables, mario = find_empty_reachable_nodes(
         world_graph,
@@ -683,7 +680,7 @@ def find_empty_reachable_nodes(
     world_graph:dict,
     reachable_node_ids:set,
     reachable_item_nodes:dict,
-    non_traversable_edges:defaultdict,
+    non_traversable_edges:dict, # dict of node_id to list(edge_id)
     filled_item_node_ids:set,
     mario:MarioInventory
 ):
@@ -693,16 +690,15 @@ def find_empty_reachable_nodes(
     origin node ("from-node").
     """
     logging.debug("++++ find_empty_reachable_nodes called")
-    empty_item_nodes = []
-    checked_item_node_ids = set()
+    empty_item_nodes = [] # [] of Node
+    checked_item_node_ids = set() # set() of str()
     while True:
         found_new_items = False
 
         # Re-traverse already found edges which could not be traversed before.
-        node_ids_to_check = set()
-        for from_node_id, edges in non_traversable_edges.items():
-            if edges:
-                node_ids_to_check.add(from_node_id)
+        node_ids_to_check = set() # set() of str()
+        for from_node_id in non_traversable_edges:
+            node_ids_to_check.add(from_node_id)
 
         logging.debug("%s", node_ids_to_check)
         for from_node_id in node_ids_to_check:
@@ -993,7 +989,7 @@ def get_item_spheres(
     ## Data structures for graph traversal
     reachable_node_ids = set()
     reachable_item_nodes = {}
-    non_traversable_edges = defaultdict(set)
+    non_traversable_edges = dict()
     ## Data structures for item pool
     pool_other_items = []
     pool_misc_progression_items = []
@@ -1021,8 +1017,9 @@ def get_item_spheres(
     starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
 
     # Find initially reachable nodes within the world graph
-    for edge in world_graph.get(starting_node_id).get("edge_list"):
-        non_traversable_edges[starting_node_id].add(edge)
+    non_traversable_edges[starting_node_id] = [
+        edge["edge_id"] for edge in world_graph[starting_node_id]["edge_list"]
+    ]
 
     reachable_node_ids.add(starting_node_id)
 

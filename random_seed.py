@@ -1,5 +1,6 @@
 from copy import deepcopy
 import random
+import time
 
 from rando_enums.enum_options import BowserCastleMode, GearShuffleMode
 
@@ -27,7 +28,8 @@ from rando_modules.random_shop_prices import get_shop_price
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
 from worldgraph import \
     generate as generate_world_graph,\
-    check_unreachable_from_start
+    check_unreachable_from_start,\
+    index_edges
 from metadata.starting_maps import starting_maps
 from metadata.starting_items import allowed_starting_badges, allowed_starting_items, allowed_starting_key_items
 from db.item import Item
@@ -99,6 +101,8 @@ class RandomSeed:
             self.rando_settings.glitch_settings,
             self.rando_settings.bowsers_castle_mode["value"]
         )
+
+        world_graph = index_edges(world_graph)
 
         # Adjust further settings
         hidden_block_mode = self.rando_settings.hidden_block_mode["value"]

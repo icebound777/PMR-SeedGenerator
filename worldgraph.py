@@ -164,14 +164,27 @@ def generate(node_list: list, edge_list: list):
         world_graph[node.identifier]["edge_list"] = []
 
         edge_list_cpy = edge_list.copy()
-        for edge in edge_list:
+        for edge in edge_list_cpy:
             if edge.get("from").get("map") == node.map_area.name:
                 if (   edge.get("from").get("id") == node.entrance_id
                     or edge.get("from").get("id") == node.key_name_item
                 ):
                     world_graph[node.identifier]["edge_list"].append(edge)
-                    edge_list_cpy.remove(edge)
-        edge_list = edge_list_cpy
+                    edge_list.remove(edge)
+
+    return world_graph
+
+
+def index_edges(world_graph: dict) -> dict:
+    world_graph["edge_index"] = {}
+    edge_id = 0
+
+    for node_id in world_graph:
+        if node_id != "edge_index":
+            for i, _ in enumerate(world_graph[node_id]["edge_list"]):
+                world_graph["edge_index"][edge_id] = (node_id, i)
+                world_graph[node_id]["edge_list"][i]["edge_id"] = edge_id
+                edge_id = edge_id + 1
 
     return world_graph
 
