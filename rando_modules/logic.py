@@ -655,9 +655,7 @@ def find_available_nodes(
     mario
 ):
     reachable_node_ids = set()
-    reachable_item_nodes = {}
     non_traversable_edges = dict()
-    filled_item_node_ids = set()
 
     reachable_node_ids.add(starting_node_id)
     non_traversable_edges[starting_node_id] = [
@@ -667,9 +665,7 @@ def find_available_nodes(
     empty_reachables, mario = find_empty_reachable_nodes(
         world_graph,
         reachable_node_ids,
-        reachable_item_nodes,
         non_traversable_edges,
-        filled_item_node_ids,
         mario
     )
 
@@ -679,9 +675,7 @@ def find_available_nodes(
 def find_empty_reachable_nodes(
     world_graph:dict,
     reachable_node_ids:set,
-    reachable_item_nodes:dict,
     non_traversable_edges:dict, # dict of node_id to list(edge_id)
-    filled_item_node_ids:set,
     mario:MarioInventory
 ):
     """
@@ -690,6 +684,8 @@ def find_empty_reachable_nodes(
     origin node ("from-node").
     """
     logging.debug("++++ find_empty_reachable_nodes called")
+    reachable_item_nodes = {} # < hmmm
+    filled_item_node_ids = set()
     empty_item_nodes = [] # [] of Node
     checked_item_node_ids = set() # set() of str()
     while True:
@@ -863,7 +859,7 @@ def _algo_assumed_fill(
 
         if item.item_name in dungeon_restricted_items:
             dungeon = dungeon_restricted_items[item.item_name]
-            candidate_locations = [node for node in candidate_locations if node.map_area.name[:3] == dungeon]
+            candidate_locations = [node for node in candidate_locations if node.identifier[:3] == dungeon]
             dungeon_restricted_items.pop(item.item_name)
 
         if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
