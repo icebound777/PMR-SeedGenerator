@@ -3,7 +3,7 @@ This modules offers the randomization logic and takes care of actually randomizi
 the game according to the settings chosen.
 """
 import random
-import logging
+#import logging
 
 from db.node import Node
 from db.item import Item
@@ -181,24 +181,21 @@ def _find_new_nodes_and_edges(
     This re-traversing is accomplished by calling DFS on each respective edge's
     origin node ("from-node").
     """
-    logging.debug("++++ _find_new_nodes_and_edges called")
+    #logging.debug("++++ _find_new_nodes_and_edges called")
     while True:
         found_new_items = False
 
         # We require a copy here since we cannot iterate over a list and
         # at the same time possibly delete entries from it (see DFS)
         non_traversable_edges_cpy = non_traversable_edges.copy()
-        logging.debug(
-            "non_traversable_edges_cpy before %s",
-            non_traversable_edges_cpy
-        )
+        #logging.debug("non_traversable_edges_cpy before %s", non_traversable_edges_cpy)
 
         # Re-traverse already found edges which could not be traversed before.
         node_ids_to_check = set()
         for node_id in non_traversable_edges:
             node_ids_to_check.add(node_id)
 
-        logging.debug("%s", node_ids_to_check)
+        #logging.debug("%s", node_ids_to_check)
         for from_node_id in node_ids_to_check:
             found_additional_items, mario = _depth_first_search(
                 from_node_id,
@@ -210,14 +207,8 @@ def _find_new_nodes_and_edges(
             )
             found_new_items = found_new_items or found_additional_items
         non_traversable_edges = non_traversable_edges_cpy.copy()
-        logging.debug(
-            "non_traversable_edges_cpy after %s",
-            non_traversable_edges_cpy
-        )
-        logging.debug(
-            "non_traversable_edges after %s",
-            non_traversable_edges
-        )
+        #logging.debug("non_traversable_edges_cpy after %s", non_traversable_edges_cpy)
+        #logging.debug("non_traversable_edges after %s", non_traversable_edges)
 
         # Check if an item node is reachable which already has an item placed.
         # Since nodes are usually removed from this dict the moment an item is
@@ -243,18 +234,14 @@ def _find_new_nodes_and_edges(
                     pool_other_items.append(current_item)
 
                 filled_item_nodes.append(item_node)
-                logging.debug(
-                    "Pre-filled: %s: %s",
-                    node_id,
-                    current_item.item_name
-                )
-        
+                #logging.debug("Pre-filled: %s: %s", node_id, current_item.item_name)
+
         # Keep searching for new edges and nodes until we don't find any new
         # items which might open up even more edges and nodes
         if not found_new_items:
             break
-    logging.debug("non_traversable_edges after after %s", non_traversable_edges)
-    logging.debug("---- _find_new_nodes_and_edges end")
+    #logging.debug("non_traversable_edges after after %s", non_traversable_edges)
+    #logging.debug("---- _find_new_nodes_and_edges end")
     return pool_misc_progression_items, pool_other_items, reachable_node_ids, reachable_item_nodes, non_traversable_edges, filled_item_nodes, mario
 
 
@@ -597,11 +584,7 @@ def _generate_item_pools(
         if item in pool_other_items:
             pool_other_items.remove(item)
             continue
-        logging.info(
-            "Attempted to remove %s from item pools, but no pool"\
-            " holds such item.",
-            item
-        )
+        #logging.info("Attempted to remove %s from item pools, but no pool holds such item.", item)
 
     # If the item pool is too small now, fill it back up
     cur_size_item_pool = len(pool_progression_items)      \
@@ -666,7 +649,7 @@ def find_empty_reachable_nodes(
     This re-traversing is accomplished by calling DFS on each respective edge's
     origin node ("from-node").
     """
-    logging.debug("++++ find_empty_reachable_nodes called")
+    #logging.debug("++++ find_empty_reachable_nodes called")
     reachable_item_nodes = {} # < hmmm
     filled_item_node_ids = set()
     empty_item_nodes = [] # [] of Node
@@ -679,7 +662,7 @@ def find_empty_reachable_nodes(
         for from_node_id in non_traversable_edges:
             node_ids_to_check.add(from_node_id)
 
-        logging.debug("%s", node_ids_to_check)
+        #logging.debug("%s", node_ids_to_check)
         for from_node_id in node_ids_to_check:
             found_additional_items, mario = _depth_first_search(
                 from_node_id,
@@ -895,11 +878,7 @@ def _algo_assumed_fill(
 
             item_node.current_item = random_item
             filled_item_node_ids.add(item_node_id)
-            logging.debug(
-                "%s: %s",
-                item_node_id,
-                random_item.item_name
-            )
+            #logging.debug("%s: %s", item_node_id, random_item.item_name)
             continue
 
         if item_node_id not in filled_item_node_ids:
@@ -918,28 +897,15 @@ def _algo_assumed_fill(
                 item_node.current_item = random_item
 
                 filled_item_node_ids.add(item_node_id)
-                logging.debug(
-                    "%s: %s",
-                    item_node_id,
-                    random_item.item_name
-                )
+                #logging.debug("%s: %s", item_node_id, random_item.item_name)
 
             except ValueError as err:
-                logging.warning(
-                    "filled_item_node_ids size: %d",
-                    len(filled_item_node_ids)
-                )
-                logging.warning(
-                    "pool_other_items size: %d",
-                    len(pool_other_items)
-                )
-                logging.warning(
-                    "nodes left: %d",
-                    len([item_node_id not in filled_item_node_ids])
-                )
+                #logging.warning("filled_item_node_ids size: %d", len(filled_item_node_ids))
+                #logging.warning("pool_other_items size: %d", len(pool_other_items))
+                #logging.warning("nodes left: %d", len([item_node_id not in filled_item_node_ids]))
                 #raise
                 item_node.current_item = item_node.vanilla_item
-                logging.warning("%s", item_node_id)
+                #logging.warning("%s", item_node_id)
 
     # "Return" list of modified item nodes
     item_placement.extend([node for node in all_item_nodes if node.current_item])
@@ -1105,9 +1071,9 @@ def place_items(
     world_graph = None
 ):
     """Places items into item locations according to chosen settings."""
-    level = logging.INFO
-    fmt = '[%(levelname)s] %(asctime)s - %(message)s'
-    logging.basicConfig(level=level, format=fmt)
+    #level = logging.INFO
+    #fmt = '[%(levelname)s] %(asctime)s - %(message)s'
+    #logging.basicConfig(level=level, format=fmt)
 
     if not do_shuffle_items:
         # Place items in their vanilla locations
