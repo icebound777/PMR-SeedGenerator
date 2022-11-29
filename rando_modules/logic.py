@@ -860,6 +860,7 @@ def _algo_assumed_fill(
             for i_item, item in enumerate(pool_other_items):
                 if item.item_name != "Coin":
                     item_index = i_item
+                    break
 
             if item_index == -1:
                 # No non-coin item in item-pool: Just place a Mushroom
@@ -876,15 +877,13 @@ def _algo_assumed_fill(
         if item_node_id not in filled_item_node_ids:
             # Place random remaining item here
             try:
-                random_item_id = random.randint(0, len(pool_other_items) - 1)
-                random_item = pool_other_items.pop(random_item_id)
+                random_item = pool_other_items.pop()
 
                 if "Shop" in item_node_id or item_node_id in exclude_from_trap_placement:
                     # Do not put item traps into shops or underwater -> it breaks otherwise!
                     while random_item.is_trapped():
-                        pool_other_items.append(random_item)
-                        random_item_id = random.randint(0, len(pool_other_items) - 1)
-                        random_item = pool_other_items.pop(random_item_id)
+                        pool_other_items.insert(0, random_item)
+                        random_item = pool_other_items.pop()
 
                 item_node.current_item = random_item
 
