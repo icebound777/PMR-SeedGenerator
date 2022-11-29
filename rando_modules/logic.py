@@ -480,16 +480,8 @@ def _generate_item_pools(
                 continue
 
 
-    # Check all remaining nodes for items to add to the pools
-    all_item_nodes_ids = {node.identifier for node in all_item_nodes}
-    for node_id in world_graph:
-        if node_id == "edge_index":
-            continue
-        current_node = world_graph[node_id]["node"]
-        is_item_node = current_node.key_name_item
-        if is_item_node and node_id not in all_item_nodes_ids:
+            # Check all remaining nodes for items to add to the pools
             all_item_nodes.append(current_node)
-            all_item_nodes_ids.add(node_id)
 
             # Special casing for hammer bush during gear location shuffle w/o
             # hammerless: add modified "gear" Tayce T item to gear locations
