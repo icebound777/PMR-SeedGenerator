@@ -175,7 +175,24 @@ def generate(node_list: list, edge_list: list):
     return world_graph
 
 
-def index_edges(world_graph: dict) -> dict:
+def enrich_graph_data(world_graph: dict) -> dict:
+    world_graph = _index_edges(world_graph)
+    world_graph = _setup_node_ids(world_graph)
+
+    return world_graph
+
+
+def _setup_node_ids(world_graph: dict) -> dict:
+    for entry in world_graph:
+        if entry != "edge_index":
+            for edge in world_graph[entry]["edge_list"]:
+                # Create target_node_id
+                edge["target_node_id"] = f'{edge["to"]["map"]}/{edge["to"]["id"]}'
+
+    return world_graph
+
+
+def _index_edges(world_graph: dict) -> dict:
     world_graph["edge_index"] = {}
     edge_id = 0
 

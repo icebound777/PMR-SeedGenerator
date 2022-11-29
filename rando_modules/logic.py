@@ -4,7 +4,6 @@ the game according to the settings chosen.
 """
 import random
 import logging
-from collections import defaultdict
 
 from db.node import Node
 from db.item import Item
@@ -43,7 +42,6 @@ from metadata.progression_items                                 \
 from metadata.item_exclusion \
     import exclude_due_to_settings, exclude_from_taycet_placement
 from metadata.item_general import taycet_items
-from metadata.partners_meta import all_partners as all_partners_imp
 from metadata.node_exclusion import exclude_from_trap_placement
 
 from metadata.verbose_area_names import verbose_area_names
@@ -71,20 +69,6 @@ def get_startingnode_id_from_startingmap_id(starting_map_id):
     starting_node_id = starting_maparea.name + "/" + str(starting_map_entrance_id)
 
     return starting_node_id
-
-
-def get_edge_target_node_id(edge):
-    """Returns the node_id of a given edge's target node in string format"""
-    if "target_node_id" not in edge:
-        edge["target_node_id"] = f'{edge["to"]["map"]}/{edge["to"]["id"]}'
-    return edge["target_node_id"]
-
-
-def get_edge_origin_node_id(edge):
-    """Returns the node_id of a given edge's origin node in string format"""
-    if "origin_node_id" not in edge:
-        edge["origin_node_id"] = f'{edge["from"]["map"]}/{edge["from"]["id"]}'
-    return edge["origin_node_id"]
 
 
 def is_itemlocation_replenishable(item_node):
@@ -166,9 +150,8 @@ def _depth_first_search(
                 found_new_pseudoitems = True
 
             # DFS from newly reachable node
-            edge_target_node_id = get_edge_target_node_id(edge)
             found_additional_pseudoitems, mario = _depth_first_search(
-                edge_target_node_id,
+                edge["target_node_id"],
                 world_graph,
                 reachable_node_ids,
                 reachable_item_nodes,

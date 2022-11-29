@@ -31,7 +31,7 @@ from rando_modules.unbeatable_seed_error import UnbeatableSeedError
 from worldgraph import \
     generate as generate_world_graph,\
     check_unreachable_from_start,\
-    index_edges
+    enrich_graph_data
 from metadata.starting_maps import starting_maps
 from metadata.starting_items import \
     allowed_starting_badges,\
@@ -107,7 +107,7 @@ class RandomSeed:
             self.rando_settings.bowsers_castle_mode["value"]
         )
 
-        world_graph = index_edges(world_graph)
+        world_graph = enrich_graph_data(world_graph)
 
         # Adjust further settings
         hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
