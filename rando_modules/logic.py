@@ -190,12 +190,7 @@ def _find_new_nodes_and_edges(
         #logging.debug("non_traversable_edges_cpy before %s", non_traversable_edges_cpy)
 
         # Re-traverse already found edges which could not be traversed before.
-        node_ids_to_check = set()
-        for node_id in non_traversable_edges:
-            node_ids_to_check.add(node_id)
-
-        #logging.debug("%s", node_ids_to_check)
-        for from_node_id in node_ids_to_check:
+        for from_node_id in non_traversable_edges:
             found_additional_items, mario = _depth_first_search(
                 from_node_id,
                 world_graph,
@@ -218,8 +213,7 @@ def _find_new_nodes_and_edges(
         for node_id, item_node in reachable_item_nodes.items():
             current_item = item_node.current_item
             if current_item and item_node.identifier not in [x.identifier for x in filled_item_nodes]:
-                current_item_name = current_item.item_name
-                mario.add(current_item_name)
+                mario.add(current_item.item_name)
                 found_new_items = True
 
                 # Special case: Item location is replenishable, holds a misc.
