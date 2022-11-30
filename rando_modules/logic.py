@@ -732,7 +732,6 @@ def _algo_assumed_fill(
     pool_progression_items = []
     pool_other_items = []
     pool_misc_progression_items = []
-    filled_item_node_ids = set()
 
     # Generate item pool
     print("Generating item pool...")
@@ -835,11 +834,6 @@ def _algo_assumed_fill(
         placement_location = random.choice(candidate_locations)
         placement_location.current_item = item
 
-    # Mark all unreachable nodes, which hold pre-filled items, as filled
-    for item_node in all_item_nodes:
-        if item_node.current_item:
-            filled_item_node_ids.add(item_node.identifier)
-
     # Place all remaining items into still empty item nodes
     print("Placing Miscellaneous Items ...")
     random.shuffle(pool_other_items)
@@ -849,11 +843,12 @@ def _algo_assumed_fill(
     all_item_nodes.sort(key=lambda x: x.is_shop(), reverse=True)
 
     for item_node in all_item_nodes:
+        if item_node.current_item:
+            continue
         item_node_id = item_node.identifier
 
-        if (item_node_id == "KMR_06/ItemA"
-        and do_randomize_coins
-        and item_node_id not in filled_item_node_ids
+        if (    item_node_id == "KMR_06/ItemA"
+            and do_randomize_coins
         ):
             # Do not put coin on the Goomba Road sign due to glitchy graphics
             item_index = -1
@@ -870,11 +865,9 @@ def _algo_assumed_fill(
                 random_item = pool_other_items.pop(item_index)
 
             item_node.current_item = random_item
-            filled_item_node_ids.add(item_node_id)
             #logging.debug("%s: %s", item_node_id, random_item.item_name)
-            continue
 
-        if item_node_id not in filled_item_node_ids:
+        else:
             # Place random remaining item here
             try:
                 random_item = pool_other_items.pop()
@@ -886,14 +879,10 @@ def _algo_assumed_fill(
                         random_item = pool_other_items.pop()
 
                 item_node.current_item = random_item
-
-                filled_item_node_ids.add(item_node_id)
                 #logging.debug("%s: %s", item_node_id, random_item.item_name)
 
             except ValueError as err:
-                #logging.warning("filled_item_node_ids size: %d", len(filled_item_node_ids))
                 #logging.warning("pool_other_items size: %d", len(pool_other_items))
-                #logging.warning("nodes left: %d", len([item_node_id not in filled_item_node_ids]))
                 #raise
                 item_node.current_item = item_node.vanilla_item
                 #logging.warning("%s", item_node_id)
