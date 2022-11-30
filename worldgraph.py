@@ -176,8 +176,8 @@ def generate(node_list: list, edge_list: list):
 
 
 def enrich_graph_data(world_graph: dict) -> dict:
-    world_graph = _index_edges(world_graph)
     world_graph = _setup_node_ids(world_graph)
+    world_graph = _index_edges(world_graph)
 
     return world_graph
 
@@ -199,7 +199,7 @@ def _index_edges(world_graph: dict) -> dict:
     for node_id in world_graph:
         if node_id != "edge_index":
             for i, _ in enumerate(world_graph[node_id]["edge_list"]):
-                world_graph["edge_index"][edge_id] = (node_id, i)
+                world_graph["edge_index"][edge_id] = world_graph[node_id]["edge_list"][i]
                 world_graph[node_id]["edge_list"][i]["edge_id"] = edge_id
                 edge_id = edge_id + 1
 

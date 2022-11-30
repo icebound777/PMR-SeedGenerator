@@ -140,8 +140,7 @@ def _depth_first_search(
 
     for edge_id in outgoing_edges:
         # Check if all requirements for edge traversal are fulfilled
-        edge_index = world_graph["edge_index"][edge_id][1]
-        edge = world_graph[node_id]["edge_list"][edge_index]
+        edge = world_graph["edge_index"][edge_id]
         if mario.requirements_fulfilled(edge.get("reqs")):
             #logging.debug("DFS edge requirements fullfilled %s", edge)
             # Add all pseudoitems provided by this edge to the inventory
