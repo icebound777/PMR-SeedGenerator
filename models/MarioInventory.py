@@ -307,37 +307,19 @@ class MarioInventory:
                             group_fulfilled = True
                             break
                 else:
-                    # Check boots
-                    if req.endswith("Boots"):
-                        if req == "UltraBoots":
-                            if len(self.boots) - 1 >= 2:
-                                group_fulfilled = True
-                                break
-                        elif req == "SuperBoots":
-                            if len(self.boots) - 1 >= 1:
-                                group_fulfilled = True
-                                break
-                        elif req == "Boots":
-                            if len(self.boots) - 1 >= 0:
-                                group_fulfilled = True
-                                break
-                    # Check hammer
-                    if req.endswith("Hammer"):
-                        if req == "UltraHammer":
-                            if len(self.hammer) - 1 >= 2:
-                                group_fulfilled = True
-                                break
-                        elif req == "SuperHammer":
-                            if len(self.hammer) - 1 >= 1:
-                                group_fulfilled = True
-                                break
-                        elif req == "Hammer":
-                            if len(self.hammer) - 1 >= 0:
-                                group_fulfilled = True
-                                break
+                    # Note: The order of the following checks may seem weird,
+                    # but the checks are in order of most often checked by
+                    # item placement logic, thus speeding up the seed
+                    # generation.
+
                     # Check partners
                     if req in all_partners:
                         if req in self.partners:
+                            group_fulfilled = True
+                            break
+                    # Check ascending onto higher levels (...?)
+                    if req == "can_climb_steps":
+                        if self.can_climb_steps():
                             group_fulfilled = True
                             break
                     # Check flags
@@ -348,34 +330,9 @@ class MarioInventory:
                         if req in self.flags:
                             group_fulfilled = True
                             break
-                    # Check Koopa Koot favors
-                    if req.startswith("FAVOR"):
-                        if req in self.favors:
-                            group_fulfilled = True
-                            break
-                    # Check panel flipping
-                    if req == "can_flip_panels":
-                        if self.can_flip_panels():
-                            group_fulfilled = True
-                            break
-                    # Check tree shaking
-                    if req == "can_shake_trees":
-                        if self.can_shake_trees():
-                            group_fulfilled = True
-                            break
-                    # Check letters for Parakarry
-                    if req == "has_parakarry_letters":
-                        if self.has_parakarry_letters():
-                            group_fulfilled = True
-                            break
-                    # Check saved Yoshi kids
-                    if req == "saved_all_yoshikids":
-                        if self.saved_all_yoshikids():
-                            group_fulfilled = True
-                            break
-                    # Check hitting grounded blocks
-                    if req == "can_hit_grounded_blocks":
-                        if self.can_hit_grounded_blocks():
+                    # Check boots
+                    if req == "Boots":
+                        if len(self.boots) - 1 >= 0:
                             group_fulfilled = True
                             break
                     # Check hitting floating blocks
@@ -383,9 +340,14 @@ class MarioInventory:
                         if self.can_hit_floating_blocks():
                             group_fulfilled = True
                             break
-                    # Check ascending onto higher levels (...?)
-                    if req == "can_climb_steps":
-                        if self.can_climb_steps():
+                    # Check panel flipping
+                    if req == "can_flip_panels":
+                        if self.can_flip_panels():
+                            group_fulfilled = True
+                            break
+                    # Check hammer
+                    if req == "Hammer":
+                        if len(self.hammer) - 1 >= 0:
                             group_fulfilled = True
                             break
                     # Check hidden blocks
@@ -393,14 +355,59 @@ class MarioInventory:
                         if self.can_see_hidden_blocks():
                             group_fulfilled = True
                             break
-                    # Check can end sushie glitch
-                    if req == "can_end_sushie_glitch":
-                        if self.can_end_sushie_glitch():
+                    # Check super boots
+                    if req == "SuperBoots":
+                        if len(self.boots) - 1 >= 1:
+                            group_fulfilled = True
+                            break
+                    # Check tree shaking
+                    if req == "can_shake_trees":
+                        if self.can_shake_trees():
+                            group_fulfilled = True
+                            break
+                    # Check ultra boots
+                    if req == "UltraBoots":
+                        if len(self.boots) - 1 >= 2:
+                            group_fulfilled = True
+                            break
+                    # Check Koopa Koot favors
+                    if req.startswith("FAVOR"):
+                        if req in self.favors:
+                            group_fulfilled = True
+                            break
+                    # Check saved Yoshi kids
+                    if req == "saved_all_yoshikids":
+                        if self.saved_all_yoshikids():
+                            group_fulfilled = True
+                            break
+                    # Check super hammer
+                    if req == "SuperHammer":
+                        if len(self.hammer) - 1 >= 1:
+                            group_fulfilled = True
+                            break
+                    # Check hitting grounded blocks
+                    if req == "can_hit_grounded_blocks":
+                        if self.can_hit_grounded_blocks():
+                            group_fulfilled = True
+                            break
+                    # Check ultra hammer
+                    if req == "UltraHammer":
+                        if len(self.hammer) - 1 >= 2:
                             group_fulfilled = True
                             break
                     # Check berries
                     if req in ["BlueBerry","RedBerry","YellowBerry","BubbleBerry"]:
                         if f"{req}Proxy1" in self.items:
+                            group_fulfilled = True
+                            break
+                    # Check can end sushie glitch
+                    if req == "can_end_sushie_glitch":
+                        if self.can_end_sushie_glitch():
+                            group_fulfilled = True
+                            break
+                    # Check letters for Parakarry
+                    if req == "has_parakarry_letters":
+                        if self.has_parakarry_letters():
                             group_fulfilled = True
                             break
                     # Check other items
