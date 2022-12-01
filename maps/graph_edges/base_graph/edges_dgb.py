@@ -56,7 +56,8 @@ edges_dgb = [
     {"from": {"map": "DGB_03", "id": 4}, "to": {"map": "DGB_03", "id": 5}, "reqs": []}, #? Table/Clock Room (1/2F) Door 2F Far Right -> Table/Clock Room (1/2F) 2F Behind The Clock
     {"from": {"map": "DGB_03", "id": 5}, "to": {"map": "DGB_03", "id": 4}, "reqs": []}, #? Table/Clock Room (1/2F) 2F Behind The Clock -> Table/Clock Room (1/2F) Door 2F Far Right
 
-    {"from": {"map": "DGB_03", "id": 4}, "to": {"map": "DGB_03", "id": "ItemA"}, "reqs": []}, #* Table/Clock Room (1/2F) Door 2F Far Right -> ItemA (StarPiece)
+    {"from": {"map": "DGB_03", "id": 4},       "to": {"map": "DGB_03", "id": "ItemA"}, "reqs": []}, #* Table/Clock Room (1/2F) Door 2F Far Right -> ItemA (StarPiece)
+    {"from": {"map": "DGB_03", "id": "ItemA"}, "to": {"map": "DGB_03", "id": 0},       "reqs": []}, #* ItemA (StarPiece) -> Table/Clock Room (1/2F) Door 1F Far Left
 
     # DGB_04 Stairs to Basement
     {"from": {"map": "DGB_04", "id": 0}, "to": {"map": "DGB_03", "id": 0}, "reqs": []}, # Stairs to Basement Door Top Right -> Table/Clock Room (1/2F) Door 1F Far Left
