@@ -136,17 +136,17 @@ edges_tik = [
     {"from": {"map": "TIK_15", "id": 0}, "to": {"map": "TIK_15", "id": 1}, "reqs": []}, #? Rip Cheato's Home (B3) Bomb Wall Left -> Rip Cheato's Home (B3) Green Pipe Right
     {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": 0}, "reqs": [["Bombette"]]}, #? Rip Cheato's Home (B3) Green Pipe Right -> Rip Cheato's Home (B3) Bomb Wall Left
 
-    {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": "GiftA"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftA (StarPiece3F 2 coins)
-    {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": "GiftB"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftB (LifeShroom 2 coins)
-    {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": "GiftC"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftC (BumpAttack 4 coins)
-    {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": "GiftD"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftD (RepelGel 4 coins)
-    {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": "GiftE"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftE (StarPiece40 8 coins)
-    {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": "GiftF"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftF (SuperShroom 8 coins)
-    {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": "GiftG"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftG (Mushroom 16 coins)
-    {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": "GiftH"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftH (DriedShroom 16 coins)
-    {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": "GiftI"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftI (DriedShroom 32 coins)
-    {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": "GiftJ"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftI (StarPiece41 32 coins)
-    {"from": {"map": "TIK_15", "id": 1}, "to": {"map": "TIK_15", "id": "GiftK"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftK (DriedShroom 64 coins)
+    {"from": {"map": "TIK_15", "id": 1},       "to": {"map": "TIK_15", "id": "GiftA"}, "reqs": []}, #* Rip Cheato's Home (B3) Green Pipe Right -> GiftA (StarPiece3F 2 coins)
+    {"from": {"map": "TIK_15", "id": "GiftA"}, "to": {"map": "TIK_15", "id": "GiftB"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> GiftB (LifeShroom 2 coins)
+    {"from": {"map": "TIK_15", "id": "GiftB"}, "to": {"map": "TIK_15", "id": "GiftC"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> GiftC (BumpAttack 4 coins)
+    {"from": {"map": "TIK_15", "id": "GiftC"}, "to": {"map": "TIK_15", "id": "GiftD"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> GiftD (RepelGel 4 coins)
+    {"from": {"map": "TIK_15", "id": "GiftD"}, "to": {"map": "TIK_15", "id": "GiftE"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> GiftE (StarPiece40 8 coins)
+    {"from": {"map": "TIK_15", "id": "GiftE"}, "to": {"map": "TIK_15", "id": "GiftF"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> GiftF (SuperShroom 8 coins)
+    {"from": {"map": "TIK_15", "id": "GiftF"}, "to": {"map": "TIK_15", "id": "GiftG"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> GiftG (Mushroom 16 coins)
+    {"from": {"map": "TIK_15", "id": "GiftG"}, "to": {"map": "TIK_15", "id": "GiftH"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> GiftH (DriedShroom 16 coins)
+    {"from": {"map": "TIK_15", "id": "GiftH"}, "to": {"map": "TIK_15", "id": "GiftI"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> GiftI (DriedShroom 32 coins)
+    {"from": {"map": "TIK_15", "id": "GiftI"}, "to": {"map": "TIK_15", "id": "GiftJ"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> GiftI (StarPiece41 32 coins)
+    {"from": {"map": "TIK_15", "id": "GiftJ"}, "to": {"map": "TIK_15", "id": "GiftK"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> GiftK (DriedShroom 64 coins)
 
     # TIK_17 Frozen Room (B3)
     {"from": {"map": "TIK_17", "id": 0}, "to": {"map": "TIK_22", "id": 1}, "reqs": []}, # Frozen Room (B3) Green Pipe Left -> Path to Shiver City (B2) Green Pipe
