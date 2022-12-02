@@ -54,15 +54,15 @@ edges_kmr  = [
     {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_03", "id": 1}, "reqs": [["Hammer", "Bombette"]]}, #? Bottom of the Cliff Exit Left -> Bottom of the Cliff Exit Right
     {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": 0}, "reqs": [["Hammer", "Bombette"]]}, #? Bottom of the Cliff Exit Right -> Bottom of the Cliff Exit Left
 
-    {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_03", "id": "YBlockA"},       "reqs": [["can_hit_grounded_blocks"]]}, #* Bottom of the Cliff Exit Left -> YBlockA (Coin)
-    {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_03", "id": "Tree1_Drop1A"},  "reqs": [["can_shake_trees"]]}, #* Bottom of the Cliff Exit Left -> Tree1_Drop1A (Mushroom)
-    {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": "HiddenPanel"},   "reqs": [["can_flip_panels"]]}, #* Bottom of the Cliff Exit Right -> HiddenPanel (StarPiece)
-    {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": "HiddenYBlockA"}, "reqs": [["SuperHammer"],["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* Bottom of the Cliff Exit Right -> HiddenYBlockA (RepelGel)
-    {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": "ItemA"},         "reqs": [["can_climb_steps"]]}, #* Bottom of the Cliff Exit Right -> ItemA (Coin)
-    {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": "ItemB"},         "reqs": [["can_climb_steps"]]}, #* Bottom of the Cliff Exit Right -> ItemB (Coin)
-    {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": "ItemC"},         "reqs": [["can_climb_steps"]]}, #* Bottom of the Cliff Exit Right -> ItemC (Coin)
-    {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": "ItemD"},         "reqs": [["can_climb_steps"]]}, #* Bottom of the Cliff Exit Right -> ItemD (Coin)
-    {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": "ItemE"},         "reqs": [["can_climb_steps"]]}, #* Bottom of the Cliff Exit Right -> ItemE (FireFlower)
+    {"from": {"map": "KMR_03", "id": 0},       "to": {"map": "KMR_03", "id": "YBlockA"},       "reqs": [["can_hit_grounded_blocks"]]}, #* Bottom of the Cliff Exit Left -> YBlockA (Coin)
+    {"from": {"map": "KMR_03", "id": 0},       "to": {"map": "KMR_03", "id": "Tree1_Drop1A"},  "reqs": [["can_shake_trees"]]}, #* Bottom of the Cliff Exit Left -> Tree1_Drop1A (Mushroom)
+    {"from": {"map": "KMR_03", "id": 1},       "to": {"map": "KMR_03", "id": "HiddenPanel"},   "reqs": [["can_flip_panels"]]}, #* Bottom of the Cliff Exit Right -> HiddenPanel (StarPiece)
+    {"from": {"map": "KMR_03", "id": 1},       "to": {"map": "KMR_03", "id": "HiddenYBlockA"}, "reqs": [["SuperHammer"],["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* Bottom of the Cliff Exit Right -> HiddenYBlockA (RepelGel)
+    {"from": {"map": "KMR_03", "id": 1},       "to": {"map": "KMR_03", "id": "ItemA"},         "reqs": [["can_climb_steps"]]}, #* Bottom of the Cliff Exit Right -> ItemA (Coin)
+    {"from": {"map": "KMR_03", "id": "ItemA"}, "to": {"map": "KMR_03", "id": "ItemB"},         "reqs": []}, #+ SHARED REQUIREMENTS -> ItemB (Coin)
+    {"from": {"map": "KMR_03", "id": "ItemA"}, "to": {"map": "KMR_03", "id": "ItemC"},         "reqs": []}, #+ SHARED REQUIREMENTS -> ItemC (Coin)
+    {"from": {"map": "KMR_03", "id": "ItemA"}, "to": {"map": "KMR_03", "id": "ItemD"},         "reqs": []}, #+ SHARED REQUIREMENTS -> ItemD (Coin)
+    {"from": {"map": "KMR_03", "id": "ItemA"}, "to": {"map": "KMR_03", "id": "ItemE"},         "reqs": []}, #+ SHARED REQUIREMENTS -> ItemE (FireFlower)
 
     # KMR_04 Jr. Troopa's Playground
     {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_03", "id": 0}, "reqs": []}, # Jr. Troopa's Playground Exit Right -> Bottom of the Cliff Exit Left
@@ -77,8 +77,8 @@ edges_kmr  = [
     {"from": {"map": "KMR_09", "id": 0}, "to": {"map": "KMR_09", "id": 1}, "reqs": []}, #? Goomba Road 1 Exit Left -> Goomba Road 1 Exit Right
     {"from": {"map": "KMR_09", "id": 1}, "to": {"map": "KMR_09", "id": 0}, "reqs": []}, #? Goomba Road 1 Exit Right -> Goomba Road 1 Exit Left
 
-    {"from": {"map": "KMR_09", "id": 1}, "to": {"map": "KMR_09", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Goomba Road 1 Exit Right -> YBlockA (Coin)
-    {"from": {"map": "KMR_09", "id": 1}, "to": {"map": "KMR_09", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Goomba Road 1 Exit Right -> YBlockB (Coin)
+    {"from": {"map": "KMR_09", "id": 1},         "to": {"map": "KMR_09", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Goomba Road 1 Exit Right -> YBlockA (Coin)
+    {"from": {"map": "KMR_09", "id": "YBlockA"}, "to": {"map": "KMR_09", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
 
     # KMR_06 Goomba Road 2
     {"from": {"map": "KMR_06", "id": 0}, "to": {"map": "KMR_09", "id": 1}, "reqs": []}, # Goomba Road 2 Exit Left -> Goomba Road 1 Exit Right

@@ -7,8 +7,8 @@ edges_sbk = [
     {"from": {"map": "SBK_00", "id": 1}, "to": {"map": "SBK_00", "id": 3}, "reqs": []}, #? N3W3 Exit East -> N3W3 Exit South
     {"from": {"map": "SBK_00", "id": 3}, "to": {"map": "SBK_00", "id": 1}, "reqs": []}, #? N3W3 Exit South -> N3W3 Exit East
 
-    {"from": {"map": "SBK_00", "id": 1}, "to": {"map": "SBK_00", "id": "YBlockA"}, "reqs": [["can_hit_grounded_blocks"]]}, #* N3W3 Exit East -> YBlockA (FrightJar)
-    {"from": {"map": "SBK_00", "id": 1}, "to": {"map": "SBK_00", "id": "YBlockB"}, "reqs": [["can_hit_grounded_blocks"]]}, #* N3W3 Exit East -> YBlockB (Coin)
+    {"from": {"map": "SBK_00", "id": 1},         "to": {"map": "SBK_00", "id": "YBlockA"}, "reqs": [["can_hit_grounded_blocks"]]}, #* N3W3 Exit East -> YBlockA (FrightJar)
+    {"from": {"map": "SBK_00", "id": "YBlockA"}, "to": {"map": "SBK_00", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
 
     # SBK_01 N3W2
     {"from": {"map": "SBK_01", "id": 0}, "to": {"map": "SBK_00", "id": 1}, "reqs": []}, # N3W2 Exit West -> N3W3 Exit East
@@ -144,8 +144,8 @@ edges_sbk = [
     {"from": {"map": "SBK_14", "id": 0}, "to": {"map": "SBK_14", "id": 4}, "reqs": []}, #? N2E1 (Tweester A) Exit West -> N2E1 (Tweester A) Tweester
     {"from": {"map": "SBK_14", "id": 4}, "to": {"map": "SBK_14", "id": 0}, "reqs": []}, #? N2E1 (Tweester A) Tweester -> N2E1 (Tweester A) Exit West
 
-    {"from": {"map": "SBK_14", "id": 0}, "to": {"map": "SBK_14", "id": "YBlockA"}, "reqs": [["can_hit_grounded_blocks"]]}, #* N2E1 (Tweester A) Exit West -> YBlockA (Coin)
-    {"from": {"map": "SBK_14", "id": 0}, "to": {"map": "SBK_14", "id": "YBlockB"}, "reqs": [["can_hit_grounded_blocks"]]}, #* N2E1 (Tweester A) Exit West -> YBlockB (HoneySyrup)
+    {"from": {"map": "SBK_14", "id": 0},         "to": {"map": "SBK_14", "id": "YBlockA"}, "reqs": [["can_hit_grounded_blocks"]]}, #* N2E1 (Tweester A) Exit West -> YBlockA (Coin)
+    {"from": {"map": "SBK_14", "id": "YBlockA"}, "to": {"map": "SBK_14", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (HoneySyrup)
 
     # SBK_15 N2E2
     {"from": {"map": "SBK_15", "id": 0}, "to": {"map": "SBK_14", "id": 1}, "reqs": []}, # N2E2 Exit West -> N2E1 (Tweester A) Exit East
@@ -180,9 +180,9 @@ edges_sbk = [
     {"from": {"map": "SBK_20", "id": 1}, "to": {"map": "SBK_20", "id": 3}, "reqs": []}, #? N1W3 Special Block Exit East -> N1W3 Special Block Exit South
     {"from": {"map": "SBK_20", "id": 3}, "to": {"map": "SBK_20", "id": 1}, "reqs": []}, #? N1W3 Special Block Exit South -> N1W3 Special Block Exit East
 
-    {"from": {"map": "SBK_20", "id": 1}, "to": {"map": "SBK_20", "id": "YBlockA"}, "reqs": [["can_hit_grounded_blocks"],["can_hit_floating_blocks"]]}, #* N1W3 Special Block Exit East -> YBlockA (Mushroom)
-    {"from": {"map": "SBK_20", "id": 1}, "to": {"map": "SBK_20", "id": "YBlockB"}, "reqs": [["can_hit_grounded_blocks"],["can_hit_floating_blocks"]]}, #* N1W3 Special Block Exit East -> YBlockB (SuperShroom)
-    {"from": {"map": "SBK_20", "id": 1}, "to": {"map": "SBK_20", "id": "YBlockC"}, "reqs": [["can_hit_grounded_blocks"],["can_hit_floating_blocks"]]}, #* N1W3 Special Block Exit East -> YBlockC (UltraShroom)
+    {"from": {"map": "SBK_20", "id": 1},         "to": {"map": "SBK_20", "id": "YBlockA"}, "reqs": [["can_hit_grounded_blocks"],["can_hit_floating_blocks"]]}, #* N1W3 Special Block Exit East -> YBlockA (Mushroom)
+    {"from": {"map": "SBK_20", "id": "YBlockA"}, "to": {"map": "SBK_20", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (SuperShroom)
+    {"from": {"map": "SBK_20", "id": "YBlockA"}, "to": {"map": "SBK_20", "id": "YBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockC (UltraShroom)
 
     # SBK_21 N1W2
     {"from": {"map": "SBK_21", "id": 0}, "to": {"map": "SBK_20", "id": 1}, "reqs": []}, # N1W2 Exit West -> N1W3 Special Block Exit East
@@ -210,11 +210,11 @@ edges_sbk = [
     {"from": {"map": "SBK_22", "id": 0}, "to": {"map": "SBK_22", "id": 3}, "reqs": []}, #? N1W1 Exit West -> N1W1 Exit South
     {"from": {"map": "SBK_22", "id": 3}, "to": {"map": "SBK_22", "id": 0}, "reqs": []}, #? N1W1 Exit South -> N1W1 Exit West
 
-    {"from": {"map": "SBK_22", "id": 0}, "to": {"map": "SBK_22", "id": "YBlockA"}, "reqs": [["can_hit_grounded_blocks"]]}, #* N1W1 Exit West -> YBlockA (Coin)
-    {"from": {"map": "SBK_22", "id": 0}, "to": {"map": "SBK_22", "id": "YBlockB"}, "reqs": [["can_hit_grounded_blocks"]]}, #* N1W1 Exit West -> YBlockB (Coin)
-    {"from": {"map": "SBK_22", "id": 0}, "to": {"map": "SBK_22", "id": "YBlockC"}, "reqs": [["can_hit_grounded_blocks"]]}, #* N1W1 Exit West -> YBlockC (Coin)
-    {"from": {"map": "SBK_22", "id": 0}, "to": {"map": "SBK_22", "id": "YBlockD"}, "reqs": [["can_hit_grounded_blocks"]]}, #* N1W1 Exit West -> YBlockD (Coin)
-    {"from": {"map": "SBK_22", "id": 0}, "to": {"map": "SBK_22", "id": "YBlockE"}, "reqs": [["can_hit_grounded_blocks"]]}, #* N1W1 Exit West -> YBlockE (FireFlower)
+    {"from": {"map": "SBK_22", "id": 0},         "to": {"map": "SBK_22", "id": "YBlockA"}, "reqs": [["can_hit_grounded_blocks"]]}, #* N1W1 Exit West -> YBlockA (Coin)
+    {"from": {"map": "SBK_22", "id": "YBlockA"}, "to": {"map": "SBK_22", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "SBK_22", "id": "YBlockA"}, "to": {"map": "SBK_22", "id": "YBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockC (Coin)
+    {"from": {"map": "SBK_22", "id": "YBlockA"}, "to": {"map": "SBK_22", "id": "YBlockD"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockD (Coin)
+    {"from": {"map": "SBK_22", "id": "YBlockA"}, "to": {"map": "SBK_22", "id": "YBlockE"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockE (FireFlower)
 
     # SBK_23 N1 (Tweester B)
     {"from": {"map": "SBK_23", "id": 0}, "to": {"map": "SBK_22", "id": 1}, "reqs": []}, # N1 (Tweester B) Exit West -> N1W1 Exit East
@@ -568,8 +568,8 @@ edges_sbk = [
     {"from": {"map": "SBK_56", "id": 0}, "to": {"map": "SBK_56", "id": 3}, "reqs": []}, #? S2E3 Oasis Exit West -> S2E3 Oasis Exit South
     {"from": {"map": "SBK_56", "id": 3}, "to": {"map": "SBK_56", "id": 0}, "reqs": []}, #? S2E3 Oasis Exit South -> S2E3 Oasis Exit West
 
-    {"from": {"map": "SBK_56", "id": 0}, "to": {"map": "SBK_56", "id": "Tree1_Drop1A"}, "reqs": [["can_shake_trees"]]}, #* S2E3 Oasis Exit West -> Tree1_Drop1A (Lemon)
-    {"from": {"map": "SBK_56", "id": 0}, "to": {"map": "SBK_56", "id": "Tree2_Drop1A"}, "reqs": [["can_shake_trees"]]}, #* S2E3 Oasis Exit West -> Tree2_Drop1A (Lime)
+    {"from": {"map": "SBK_56", "id": 0},              "to": {"map": "SBK_56", "id": "Tree1_Drop1A"}, "reqs": [["can_shake_trees"]]}, #* S2E3 Oasis Exit West -> Tree1_Drop1A (Lemon)
+    {"from": {"map": "SBK_56", "id": "Tree1_Drop1A"}, "to": {"map": "SBK_56", "id": "Tree2_Drop1A"}, "reqs": []}, #+ SHARED REQUIREMENTS -> Tree2_Drop1A (Lime)
 
     # SBK_60 S3W3
     {"from": {"map": "SBK_60", "id": 1}, "to": {"map": "SBK_61", "id": 0}, "reqs": []}, # S3W3 Exit East -> S3W2 Hidden AttackFX Exit West

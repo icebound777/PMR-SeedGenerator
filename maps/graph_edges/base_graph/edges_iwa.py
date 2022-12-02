@@ -46,20 +46,20 @@ edges_iwa = [
     # IWA_03 Mt Rugged 4
     {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_01", "id": 1}, "reqs": []}, # Mt Rugged 4 Exit Bottom Right -> Mt Rugged 2 Exit Top Left
 
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ChestA"},  "reqs": [["can_climb_steps"]]}, #* Mt Rugged 4 Exit Bottom Right -> ChestA (DamageDodgeB)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemA"},   "reqs": [["can_climb_steps"]]}, #* Mt Rugged 4 Exit Bottom Right -> ItemA (Letter25)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemB"},   "reqs": [["Parakarry"]]}, #* Mt Rugged 4 Exit Bottom Right -> ItemB (StarPiece)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemC"},   "reqs": [["Kooper","Parakarry"],["can_climb_steps"]]}, #* Mt Rugged 4 Exit Bottom Right -> ItemC (Coin) (circle-right)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemD"},   "reqs": [["Parakarry"]]}, #* Mt Rugged 4 Exit Bottom Right -> ItemD (Coin)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemE"},   "reqs": [["Parakarry"]]}, #* Mt Rugged 4 Exit Bottom Right -> ItemE (Coin)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemF"},   "reqs": [["Parakarry"]]}, #* Mt Rugged 4 Exit Bottom Right -> ItemF (Coin)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemG"},   "reqs": [["Parakarry"]]}, #* Mt Rugged 4 Exit Bottom Right -> ItemG (Coin)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemH"},   "reqs": [["Parakarry"]]}, #* Mt Rugged 4 Exit Bottom Right -> ItemH (Coin)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemI"},   "reqs": [["can_climb_steps"]]}, #* Mt Rugged 4 Exit Bottom Right -> ItemI (Coin) (bottom1)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemJ"},   "reqs": [["can_climb_steps"]]}, #* Mt Rugged 4 Exit Bottom Right -> ItemJ (Coin) (bottom2)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "YBlockA"}, "reqs": [["can_hit_grounded_blocks"],["can_climb_steps"]]}, #* Mt Rugged 4 Exit Bottom Right -> YBlockA (Coin)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Mt Rugged 4 Exit Bottom Right -> YBlockB (Mushroom)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "YBlockC"}, "reqs": [["can_hit_grounded_blocks"],["can_climb_steps"]]}, #* Mt Rugged 4 Exit Bottom Right -> YBlockC (HoneySyrup)
+    {"from": {"map": "IWA_03", "id": 0},        "to": {"map": "IWA_03", "id": "ChestA"},  "reqs": [["can_climb_steps"]]}, #* Mt Rugged 4 Exit Bottom Right -> ChestA (DamageDodgeB)
+    {"from": {"map": "IWA_03", "id": "ChestA"}, "to": {"map": "IWA_03", "id": "ItemA"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemA (Letter25)
+    {"from": {"map": "IWA_03", "id": 0},        "to": {"map": "IWA_03", "id": "ItemB"},   "reqs": [["Parakarry"]]}, #* Mt Rugged 4 Exit Bottom Right -> ItemB (StarPiece)
+    {"from": {"map": "IWA_03", "id": "ChestA"}, "to": {"map": "IWA_03", "id": "ItemC"},   "reqs": [["Kooper","Parakarry"]]}, #+ CHAINED REQUIREMENTS -> ItemC (Coin) (circle-right)
+    {"from": {"map": "IWA_03", "id": "ItemB"},  "to": {"map": "IWA_03", "id": "ItemD"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemD (Coin)
+    {"from": {"map": "IWA_03", "id": "ItemB"},  "to": {"map": "IWA_03", "id": "ItemE"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemE (Coin)
+    {"from": {"map": "IWA_03", "id": "ItemB"},  "to": {"map": "IWA_03", "id": "ItemF"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemF (Coin)
+    {"from": {"map": "IWA_03", "id": "ItemB"},  "to": {"map": "IWA_03", "id": "ItemG"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemG (Coin)
+    {"from": {"map": "IWA_03", "id": "ItemB"},  "to": {"map": "IWA_03", "id": "ItemH"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemH (Coin)
+    {"from": {"map": "IWA_03", "id": "ChestA"}, "to": {"map": "IWA_03", "id": "ItemI"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemI (Coin) (bottom1)
+    {"from": {"map": "IWA_03", "id": "ChestA"}, "to": {"map": "IWA_03", "id": "ItemJ"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemJ (Coin) (bottom2)
+    {"from": {"map": "IWA_03", "id": "ChestA"}, "to": {"map": "IWA_03", "id": "YBlockA"}, "reqs": [["can_hit_grounded_blocks"]]}, #+ CHAINED REQUIREMENTS -> YBlockA (Coin)
+    {"from": {"map": "IWA_03", "id": 0},        "to": {"map": "IWA_03", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Mt Rugged 4 Exit Bottom Right -> YBlockB (Mushroom)
+    {"from": {"map": "IWA_03", "id": "ChestA"}, "to": {"map": "IWA_03", "id": "YBlockC"}, "reqs": [["can_hit_grounded_blocks"]]}, #+ CHAINED REQUIREMENTS -> YBlockC (HoneySyrup)
 
     # IWA_04 Suspension Bridge
     {"from": {"map": "IWA_04", "id": 0}, "to": {"map": "IWA_02", "id": 2}, "reqs": []}, # Suspension Bridge Exit Left -> Mt Rugged 3 Exit Top Right

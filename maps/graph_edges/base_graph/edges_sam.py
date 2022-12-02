@@ -30,18 +30,18 @@ edges_sam = [
     {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": 2}, "reqs": [["can_climb_steps"]]}, #? Shiver City Center Exit West -> Shiver City Center Pipe Entrance
     {"from": {"map": "SAM_02", "id": 2}, "to": {"map": "SAM_02", "id": 0}, "reqs": []}, #? Shiver City Center Pipe Entrance -> Shiver City Center Exit West
 
-    {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": "ItemA"},     "reqs": []}, #* Shiver City Center Exit West -> ItemA (IcedPotato)
-    {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": "ItemB"},     "reqs": [["MF_SAM_04_UnlockedShiverMountain"]]}, #* Shiver City Center Exit West -> ItemB (UltraShroom)
-    {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": "ItemC"},     "reqs": [["MF_SAM_04_UnlockedShiverMountain"]]}, #* Shiver City Center Exit West -> ItemC (Mushroom)
-    {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": "ItemD"},     "reqs": [["MF_SAM_04_UnlockedShiverMountain"]]}, #* Shiver City Center Exit West -> ItemD (Mushroom)
-    {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": "ItemE"},     "reqs": [["MF_SAM_04_UnlockedShiverMountain"]]}, #* Shiver City Center Exit West -> ItemE (Mushroom)
-    {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": "ItemF"},     "reqs": [["MF_SAM_04_UnlockedShiverMountain"]]}, #* Shiver City Center Exit West -> ItemF (Mushroom)
-    {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": "ShopItemA"}, "reqs": [["RF_Ch7_MurderMysterySolved"]]}, #* Shiver City Center Exit West -> ShopItemA (DizzyDial)
-    {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": "ShopItemB"}, "reqs": [["RF_Ch7_MurderMysterySolved"]]}, #* Shiver City Center Exit West -> ShopItemB (ShootingStar)
-    {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": "ShopItemC"}, "reqs": [["RF_Ch7_MurderMysterySolved"]]}, #* Shiver City Center Exit West -> ShopItemC (SnowmanDoll)
-    {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": "ShopItemD"}, "reqs": [["RF_Ch7_MurderMysterySolved"]]}, #* Shiver City Center Exit West -> ShopItemD (MapleSyrup)
-    {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": "ShopItemE"}, "reqs": [["RF_Ch7_MurderMysterySolved"]]}, #* Shiver City Center Exit West -> ShopItemE (LifeShroom)
-    {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": "ShopItemF"}, "reqs": [["RF_Ch7_MurderMysterySolved"]]}, #* Shiver City Center Exit West -> ShopItemF (SuperShroom)
+    {"from": {"map": "SAM_02", "id": 0},           "to": {"map": "SAM_02", "id": "ItemA"},     "reqs": []}, #* Shiver City Center Exit West -> ItemA (IcedPotato)
+    {"from": {"map": "SAM_02", "id": 0},           "to": {"map": "SAM_02", "id": "ItemB"},     "reqs": [["MF_SAM_04_UnlockedShiverMountain"]]}, #* Shiver City Center Exit West -> ItemB (UltraShroom)
+    {"from": {"map": "SAM_02", "id": "ItemB"},     "to": {"map": "SAM_02", "id": "ItemC"},     "reqs": []}, #+ SHARED REQUIREMENTS -> ItemC (Mushroom)
+    {"from": {"map": "SAM_02", "id": "ItemB"},     "to": {"map": "SAM_02", "id": "ItemD"},     "reqs": []}, #+ SHARED REQUIREMENTS -> ItemD (Mushroom)
+    {"from": {"map": "SAM_02", "id": "ItemB"},     "to": {"map": "SAM_02", "id": "ItemE"},     "reqs": []}, #+ SHARED REQUIREMENTS -> ItemE (Mushroom)
+    {"from": {"map": "SAM_02", "id": "ItemB"},     "to": {"map": "SAM_02", "id": "ItemF"},     "reqs": []}, #+ SHARED REQUIREMENTS -> ItemF (Mushroom)
+    {"from": {"map": "SAM_02", "id": 0},           "to": {"map": "SAM_02", "id": "ShopItemA"}, "reqs": [["RF_Ch7_MurderMysterySolved"]]}, #* Shiver City Center Exit West -> ShopItemA (DizzyDial)
+    {"from": {"map": "SAM_02", "id": "ShopItemA"}, "to": {"map": "SAM_02", "id": "ShopItemB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemB (ShootingStar)
+    {"from": {"map": "SAM_02", "id": "ShopItemA"}, "to": {"map": "SAM_02", "id": "ShopItemC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemC (SnowmanDoll)
+    {"from": {"map": "SAM_02", "id": "ShopItemA"}, "to": {"map": "SAM_02", "id": "ShopItemD"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemD (MapleSyrup)
+    {"from": {"map": "SAM_02", "id": "ShopItemA"}, "to": {"map": "SAM_02", "id": "ShopItemE"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemE (LifeShroom)
+    {"from": {"map": "SAM_02", "id": "ShopItemA"}, "to": {"map": "SAM_02", "id": "ShopItemF"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemF (SuperShroom)
 
     {"from": {"map": "SAM_02", "id": 0}, "to": {"map": "SAM_02", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_SAM_1",
                                                                                                      #  "StarPiece_SAM_2",
@@ -133,8 +133,8 @@ edges_sam = [
     {"from": {"map": "SAM_10", "id": 0}, "to": {"map": "SAM_10", "id": 2}, "reqs": [["Bombette"]]}, #? Shiver Mountain Peaks Exit West -> Shiver Mountain Peaks Bombable Wall
     {"from": {"map": "SAM_10", "id": 2}, "to": {"map": "SAM_10", "id": 0}, "reqs": []}, #? Shiver Mountain Peaks Bombable Wall -> Shiver Mountain Peaks Exit West
 
-    {"from": {"map": "SAM_10", "id": 0}, "to": {"map": "SAM_10", "id": "RBlockA"}, "reqs": [["StarStone"],["can_climb_steps"],["can_hit_floating_blocks"]]}, #* Shiver Mountain Peaks Exit West -> RBlockA (MegaJump)
-    {"from": {"map": "SAM_10", "id": 0}, "to": {"map": "SAM_10", "id": "ItemA"},   "reqs": [["StarStone"],["can_climb_steps"]]}, #* Shiver Mountain Peaks Exit West -> ItemA (StarPiece)
+    {"from": {"map": "SAM_10", "id": "ItemA"}, "to": {"map": "SAM_10", "id": "RBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #+ CHAINED REQUIREMENTS -> RBlockA (MegaJump)
+    {"from": {"map": "SAM_10", "id": 0},       "to": {"map": "SAM_10", "id": "ItemA"},   "reqs": [["StarStone"],["can_climb_steps"]]}, #* Shiver Mountain Peaks Exit West -> ItemA (StarPiece)
 
     # SAM_11 Shiver City Pond Area
     {"from": {"map": "SAM_11", "id": 0}, "to": {"map": "SAM_02", "id": 1}, "reqs": []}, # Shiver City Pond Area Exit West -> Shiver City Center Exit East

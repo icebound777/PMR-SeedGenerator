@@ -124,8 +124,8 @@ edges_kpa = [
     {"from": {"map": "KPA_17",  "id": 0}, "to": {"map": "KPA_17",  "id": 1}, "reqs": [["Bombette"]]}, #? Lower Jail Fall From Ceiling -> Lower Jail Cracked Wall Right
     {"from": {"map": "KPA_17",  "id": 1}, "to": {"map": "KPA_17",  "id": 0}, "reqs": []}, #? Lower Jail Cracked Wall Right -> Lower Jail Fall From Ceiling
 
-    {"from": {"map": "KPA_17",  "id": 0}, "to": {"map": "KPA_17",  "id": "CrateA"}, "reqs": [["SuperBoots"]]}, #* Lower Jail Fall From Ceiling -> CrateA (TastyTonic)
-    {"from": {"map": "KPA_17",  "id": 0}, "to": {"map": "KPA_17",  "id": "CrateB"}, "reqs": [["SuperBoots"]]}, #* Lower Jail Fall From Ceiling -> CrateB (LifeShroom)
+    {"from": {"map": "KPA_17",  "id": 0},        "to": {"map": "KPA_17",  "id": "CrateA"}, "reqs": [["SuperBoots"]]}, #* Lower Jail Fall From Ceiling -> CrateA (TastyTonic)
+    {"from": {"map": "KPA_17",  "id": "CrateA"}, "to": {"map": "KPA_17",  "id": "CrateB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> CrateB (LifeShroom)
 
     # KPA_32 Lower Grand Hall
     {"from": {"map": "KPA_32",  "id": 0}, "to": {"map": "KPA_81",  "id": 2}, "reqs": []}, # Lower Grand Hall Door Bottom Left -> Guard Door 1 Guard Door Right
@@ -223,10 +223,10 @@ edges_kpa = [
     {"from": {"map": "KPA_61",  "id": 0}, "to": {"map": "KPA_61",  "id": 1}, "reqs": [["can_climb_steps"]]}, #? Battlement Door Bottom Left -> Battlement Door Top Left
     {"from": {"map": "KPA_61",  "id": 1}, "to": {"map": "KPA_61",  "id": 0}, "reqs": []}, #? Battlement Door Top Left -> Battlement Door Bottom Left
 
-    {"from": {"map": "KPA_61",  "id": 0}, "to": {"map": "KPA_61",  "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Battlement Door Bottom Left -> YBlockA (SuperShroom)
-    {"from": {"map": "KPA_61",  "id": 0}, "to": {"map": "KPA_61",  "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Battlement Door Bottom Left -> YBlockB (MapleSyrup)
-    {"from": {"map": "KPA_61",  "id": 0}, "to": {"map": "KPA_61",  "id": "YBlockC"}, "reqs": [["can_hit_floating_blocks"]]}, #* Battlement Door Bottom Left -> YBlockC (SuperShroom)
-    {"from": {"map": "KPA_61",  "id": 1}, "to": {"map": "KPA_61",  "id": "ItemA"},   "reqs": []}, #* Battlement Door Top Left -> ItemA (JamminJelly)
+    {"from": {"map": "KPA_61",  "id": 0},         "to": {"map": "KPA_61",  "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Battlement Door Bottom Left -> YBlockA (SuperShroom)
+    {"from": {"map": "KPA_61",  "id": "YBlockA"}, "to": {"map": "KPA_61",  "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (MapleSyrup)
+    {"from": {"map": "KPA_61",  "id": "YBlockA"}, "to": {"map": "KPA_61",  "id": "YBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockC (SuperShroom)
+    {"from": {"map": "KPA_61",  "id": 1},         "to": {"map": "KPA_61",  "id": "ItemA"},   "reqs": []}, #* Battlement Door Top Left -> ItemA (JamminJelly)
 
     # KPA_62 Front Door Exterior
     {"from": {"map": "KPA_62",  "id": 0}, "to": {"map": "KPA_70",  "id": 0}, "reqs": []}, # Front Door Exterior Front Door -> Entry Lava Hall Door Left
@@ -342,8 +342,8 @@ edges_kpa = [
     {"from": {"map": "KPA_111", "id": 0}, "to": {"map": "KPA_111", "id": 1}, "reqs": []}, #? Room with Hidden Door 1 Door Left -> Room with Hidden Door 1 Hidden Door
     {"from": {"map": "KPA_111", "id": 1}, "to": {"map": "KPA_111", "id": 0}, "reqs": []}, #? Room with Hidden Door 1 Hidden Door -> Room with Hidden Door 1 Door Left
 
-    {"from": {"map": "KPA_111", "id": 0}, "to": {"map": "KPA_111", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* Room with Hidden Door 1 Door Left -> YBlockA (SuperShroom)
-    {"from": {"map": "KPA_111", "id": 0}, "to": {"map": "KPA_111", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* Room with Hidden Door 1 Door Left -> HiddenYBlockA (MapleSyrup)
+    {"from": {"map": "KPA_111", "id": 0},         "to": {"map": "KPA_111", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* Room with Hidden Door 1 Door Left -> YBlockA (SuperShroom)
+    {"from": {"map": "KPA_111", "id": "YBlockA"}, "to": {"map": "KPA_111", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockA (MapleSyrup)
 
     # KPA_112 Hidden Passage 1
     {"from": {"map": "KPA_112", "id": 0}, "to": {"map": "KPA_111", "id": 1}, "reqs": []}, # Hidden Passage 1 Hidden Door Bottom Left -> Room with Hidden Door 1 Hidden Door

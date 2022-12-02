@@ -12,7 +12,7 @@ edges_trd = [
 
     {"from": {"map": "TRD_00", "id": 3},        "to": {"map": "TRD_00", "id": "ChestA"}, "reqs": []}, #* Fortress Exterior Exit Bottom Left -> ChestA (Refund)
     {"from": {"map": "TRD_00", "id": "ChestA"}, "to": {"map": "TRD_00", "id": 3},        "reqs": [["Bombette"]]}, #* ChestA (Refund) -> Fortress Exterior Exit Bottom Left
-    {"from": {"map": "TRD_00", "id": 4}, "to": {"map": "TRD_00", "id": "ChestB"}, "reqs": []}, #* Fortress Exterior Exit Top Left -> ChestB (FPPlusB)
+    {"from": {"map": "TRD_00", "id": 4},        "to": {"map": "TRD_00", "id": "ChestB"}, "reqs": []}, #* Fortress Exterior Exit Top Left -> ChestB (FPPlusB)
 
     # TRD_01 Left Tower
     {"from": {"map": "TRD_01", "id": 0}, "to": {"map": "TRD_00", "id": 1}, "reqs": []}, # Left Tower Exit Bottom Left -> Fortress Exterior Main Entrance

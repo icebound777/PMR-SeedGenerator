@@ -50,14 +50,14 @@ edges_obk = [
 
     {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": 2}, "reqs": [["Boots"]], "pseudoitems": ["RF_OBK03_BuiltStairs"]}, #+ Basement Fall From Ceiling Activate Stairs
 
-    {"from": {"map": "OBK_03", "id": 0}, "to": {"map": "OBK_03", "id": "CrateA"},    "reqs": [["SuperBoots"]]}, #* Basement Upper Door North -> CrateA (SuperShroom)
-    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": "GiftA"},     "reqs": [["Parakarry"],["Letter11"]]}, #* Basement Fall From Ceiling -> GiftA (StarPiece)
-    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": "ShopItemA"}, "reqs": [["RF_OpenedGustyGulch"]]}, #* Basement Fall From Ceiling -> ShopItemA (Mystery)
-    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": "ShopItemB"}, "reqs": [["RF_OpenedGustyGulch"]]}, #* Basement Fall From Ceiling -> ShopItemB (StopWatch)
-    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": "ShopItemC"}, "reqs": [["RF_OpenedGustyGulch"]]}, #* Basement Fall From Ceiling -> ShopItemC (SnowmanDoll)
-    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": "ShopItemD"}, "reqs": [["RF_OpenedGustyGulch"]]}, #* Basement Fall From Ceiling -> ShopItemD (MapleSyrup)
-    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": "ShopItemE"}, "reqs": [["RF_OpenedGustyGulch"]]}, #* Basement Fall From Ceiling -> ShopItemE (LifeShroom)
-    {"from": {"map": "OBK_03", "id": 2}, "to": {"map": "OBK_03", "id": "ShopItemF"}, "reqs": [["RF_OpenedGustyGulch"]]}, #* Basement Fall From Ceiling -> ShopItemF (SuperShroom)
+    {"from": {"map": "OBK_03", "id": 0},           "to": {"map": "OBK_03", "id": "CrateA"},    "reqs": [["SuperBoots"]]}, #* Basement Upper Door North -> CrateA (SuperShroom)
+    {"from": {"map": "OBK_03", "id": 2},           "to": {"map": "OBK_03", "id": "GiftA"},     "reqs": [["Parakarry"],["Letter11"]]}, #* Basement Fall From Ceiling -> GiftA (StarPiece)
+    {"from": {"map": "OBK_03", "id": 2},           "to": {"map": "OBK_03", "id": "ShopItemA"}, "reqs": [["RF_OpenedGustyGulch"]]}, #* Basement Fall From Ceiling -> ShopItemA (Mystery)
+    {"from": {"map": "OBK_03", "id": "ShopItemA"}, "to": {"map": "OBK_03", "id": "ShopItemB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemB (StopWatch)
+    {"from": {"map": "OBK_03", "id": "ShopItemA"}, "to": {"map": "OBK_03", "id": "ShopItemC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemC (SnowmanDoll)
+    {"from": {"map": "OBK_03", "id": "ShopItemA"}, "to": {"map": "OBK_03", "id": "ShopItemD"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemD (MapleSyrup)
+    {"from": {"map": "OBK_03", "id": "ShopItemA"}, "to": {"map": "OBK_03", "id": "ShopItemE"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemE (LifeShroom)
+    {"from": {"map": "OBK_03", "id": "ShopItemA"}, "to": {"map": "OBK_03", "id": "ShopItemF"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemF (SuperShroom)
 
     # OBK_04 Super Boots Room
     #{"from": {"map": "OBK_04", "id": 0}, "to": {"map": None, "id": None},  "reqs": []}, # Super Boots Room Vanishing Door
@@ -77,8 +77,8 @@ edges_obk = [
     {"from": {"map": "OBK_05", "id": 0}, "to": {"map": "OBK_05", "id": 1}, "reqs": [["SuperBoots"], ["Bombette"]]}, #? Pot Room Door South -> Pot Room Hole Under Planks
     {"from": {"map": "OBK_05", "id": 1}, "to": {"map": "OBK_05", "id": 0}, "reqs": []}, #? Pot Room Hole Under Planks -> Pot Room Door South
 
-    {"from": {"map": "OBK_05", "id": 0}, "to": {"map": "OBK_05", "id": "CrateA"}, "reqs": [["SuperBoots"]]}, #* Pot Room Door South -> CrateA (Apple)
-    {"from": {"map": "OBK_05", "id": 0}, "to": {"map": "OBK_05", "id": "CrateB"}, "reqs": [["SuperBoots"]]}, #* Pot Room Door South -> CrateB (Apple)
+    {"from": {"map": "OBK_05", "id": 0},        "to": {"map": "OBK_05", "id": "CrateA"}, "reqs": [["SuperBoots"]]}, #* Pot Room Door South -> CrateA (Apple)
+    {"from": {"map": "OBK_05", "id": "CrateA"}, "to": {"map": "OBK_05", "id": "CrateB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> CrateB (Apple)
 
     # OBK_06 Library
     {"from": {"map": "OBK_06", "id": 1}, "to": {"map": "OBK_02", "id": 2}, "reqs": []}, # Library Bombable Wall -> Basement Stairs Bombable Wall

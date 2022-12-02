@@ -144,13 +144,13 @@ edges_dgb = [
     # DGB_13 Hidden Bedroom (2F)
     {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_03", "id": 5}, "reqs": []}, # Hidden Bedroom (2F) Door Bottom -> Table/Clock Room (1/2F) 2F Behind The Clock
 
-    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemA"}, "reqs": [["Parakarry"],["Boots"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemA (MegaRush)
-    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemB"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemB (Coin)
-    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemC"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemC (Coin)
-    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemD"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemD (Coin)
-    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemE"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemE (Coin)
-    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemF"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemF (Coin)
-    {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_13", "id": "ItemG"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemG (Coin)
+    {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemA"}, "reqs": [["Boots"]]}, #+ CHAINED REQUIREMENTS -> ItemA (MegaRush)
+    {"from": {"map": "DGB_13", "id": 0},       "to": {"map": "DGB_13", "id": "ItemB"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemB (Coin)
+    {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemC (Coin)
+    {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemD"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemD (Coin)
+    {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemE"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemE (Coin)
+    {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemF"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemF (Coin)
+    {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemG"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemG (Coin)
 
     # DGB_14 Stairs to Third Floor
     {"from": {"map": "DGB_14", "id": 0}, "to": {"map": "DGB_03", "id": 3}, "reqs": []}, # Stairs to Third Floor Door Bottom Right -> Table/Clock Room (1/2F) Door 2F Far Left

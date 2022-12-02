@@ -34,11 +34,11 @@ edges_kzn = [
     {"from": {"map": "KZN_03", "id": 2},       "to": {"map": "KZN_03", "id": "ItemA"},   "reqs": []}, #* Central Cavern Exit East Lower 1 (Ultra Block) -> ItemA (FireShield)
     {"from": {"map": "KZN_03", "id": "ItemA"}, "to": {"map": "KZN_03", "id": 4},         "reqs": []}, #* ItemA (FireShield) -> Central Cavern Exit East Lower 2
 
-    {"from": {"map": "KZN_03", "id": 1},       "to": {"map": "KZN_03", "id": "ItemB"},   "reqs": [["Kooper","UltraBoots"],["can_climb_steps"]]}, #* Central Cavern Exit East Upper -> ItemB (POWBlock)
-    {"from": {"map": "KZN_03", "id": 0},       "to": {"map": "KZN_03", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockA (Coin)
-    {"from": {"map": "KZN_03", "id": 0},       "to": {"map": "KZN_03", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockB (Coin)
-    {"from": {"map": "KZN_03", "id": 0},       "to": {"map": "KZN_03", "id": "YBlockC"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockC (Coin)
-    {"from": {"map": "KZN_03", "id": 0},       "to": {"map": "KZN_03", "id": "YBlockD"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockD (Coin)
+    {"from": {"map": "KZN_03", "id": 1},         "to": {"map": "KZN_03", "id": "ItemB"},   "reqs": [["Kooper","UltraBoots"],["can_climb_steps"]]}, #* Central Cavern Exit East Upper -> ItemB (POWBlock)
+    {"from": {"map": "KZN_03", "id": 0},         "to": {"map": "KZN_03", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Central Cavern Exit West Upper -> YBlockA (Coin)
+    {"from": {"map": "KZN_03", "id": "YBlockA"}, "to": {"map": "KZN_03", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "KZN_03", "id": "YBlockA"}, "to": {"map": "KZN_03", "id": "YBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockC (Coin)
+    {"from": {"map": "KZN_03", "id": "YBlockA"}, "to": {"map": "KZN_03", "id": "YBlockD"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockD (Coin)
 
     # KZN_04 Fire Bar Bridge
     {"from": {"map": "KZN_04", "id": 0}, "to": {"map": "KZN_03", "id": 1}, "reqs": []}, # Fire Bar Bridge Exit West -> Central Cavern Exit East Upper
@@ -126,8 +126,8 @@ edges_kzn = [
     {"from": {"map": "KZN_19", "id": 1}, "to": {"map": "KZN_19", "id": 2}, "reqs": []}, #? Boss Room Exit West Lower -> Boss Room Exit East
     {"from": {"map": "KZN_19", "id": 2}, "to": {"map": "KZN_19", "id": 1}, "reqs": []}, #? Boss Room Exit East -> Boss Room Exit West Lower
 
-    {"from": {"map": "KZN_19", "id": 0}, "to": {"map": "KZN_19", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Boss Room Exit West Upper -> YBlockA (SuperShroom)
-    {"from": {"map": "KZN_19", "id": 0}, "to": {"map": "KZN_19", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Boss Room Exit West Upper -> YBlockB (MapleSyrup)
+    {"from": {"map": "KZN_19", "id": 0},         "to": {"map": "KZN_19", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Boss Room Exit West Upper -> YBlockA (SuperShroom)
+    {"from": {"map": "KZN_19", "id": "YBlockA"}, "to": {"map": "KZN_19", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (MapleSyrup)
 
     # KZN_20 Rising Lava 1
     {"from": {"map": "KZN_20", "id": 0}, "to": {"map": "KZN_19", "id": 2}, "reqs": []}, # Rising Lava 1 Exit West -> Boss Room Exit East

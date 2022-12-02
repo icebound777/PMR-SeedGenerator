@@ -3,14 +3,14 @@ edges_omo = [
     # OMO_01 BLU Large Playroom
     {"from": {"map": "OMO_01", "id": 0}, "to": {"map": "OMO_13", "id": 0}, "reqs": []}, # BLU Large Playroom Exit East -> BLU Anti-Guy Hall Exit West
 
-    {"from": {"map": "OMO_01", "id": 0}, "to": {"map": "OMO_01", "id": "ItemA"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemA (Calculator)
-    {"from": {"map": "OMO_01", "id": 0}, "to": {"map": "OMO_01", "id": "ItemB"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemB (MapleSyrup)
-    {"from": {"map": "OMO_01", "id": 0}, "to": {"map": "OMO_01", "id": "ItemC"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemC (CakeMix)
-    {"from": {"map": "OMO_01", "id": 0}, "to": {"map": "OMO_01", "id": "ItemD"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemD (CakeMix)
-    {"from": {"map": "OMO_01", "id": 0}, "to": {"map": "OMO_01", "id": "ItemE"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemE (Mushroom)
-    {"from": {"map": "OMO_01", "id": 0}, "to": {"map": "OMO_01", "id": "ItemF"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemF (FireFLower)
-    {"from": {"map": "OMO_01", "id": 0}, "to": {"map": "OMO_01", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* BLU Large Playroom Exit East -> HiddenYBlockA (Mystery)
-    {"from": {"map": "OMO_01", "id": 0}, "to": {"map": "OMO_01", "id": "HiddenYBlockB"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* BLU Large Playroom Exit East -> HiddenYBlockB (FrightJar)
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "ItemA"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemA (Calculator)
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "ItemB"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemB (MapleSyrup)
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "ItemC"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemC (CakeMix)
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "ItemD"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemD (CakeMix)
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "ItemE"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemE (Mushroom)
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "ItemF"},         "reqs": []}, #* BLU Large Playroom Exit East -> ItemF (FireFLower)
+    {"from": {"map": "OMO_01", "id": 0},               "to": {"map": "OMO_01", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* BLU Large Playroom Exit East -> HiddenYBlockA (Mystery)
+    {"from": {"map": "OMO_01", "id": "HiddenYBlockA"}, "to": {"map": "OMO_01", "id": "HiddenYBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> HiddenYBlockB (FrightJar)
 
     # OMO_02 RED Boss Barricade
     {"from": {"map": "OMO_02", "id": 0}, "to": {"map": "OMO_10", "id": 1}, "reqs": []}, # RED Boss Barricade Exit West -> RED Station Exit East
@@ -45,21 +45,21 @@ edges_omo = [
     # OMO_04 BLU Block City
     {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_03", "id": 1}, "reqs": []}, # BLU Block City Exit West -> BLU Station Exit East
 
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "ItemA"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemA (Mushroom)
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "ChestA"},  "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ChestA (StoreroomKey)
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "YBlockA"}, "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> YBlockA (Coin)
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "YBlockB"}, "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> YBlockB (Coin)
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "YBlockC"}, "reqs": [["Boots"],["Hammer","SuperBoots"],["Parakarry"]]}, #* BLU Block City Exit West -> YBlockC (ThunderBolt)
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "ItemB"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemB (Coin)
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "ItemC"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemC (Coin)
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "ItemD"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemD (Coin)
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "ItemE"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemE (Coin)
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "ItemF"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemF (Coin)
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "ItemG"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemG (Coin)
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "ItemH"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemH (Coin)
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "ItemI"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemI (Coin)
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "ItemJ"},   "reqs": [["Boots"],["Hammer","SuperBoots"],["Parakarry"]]}, #* BLU Block City Exit West -> ItemJ (StarPiece) on building
-    {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_04", "id": "ItemK"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemK (StarPiece)
+    {"from": {"map": "OMO_04", "id": 0},       "to": {"map": "OMO_04", "id": "ItemA"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemA (Mushroom)
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ChestA"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ChestA (StoreroomKey)
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "YBlockA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockA (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "YBlockC"}, "reqs": [["Parakarry"]]}, #+ CHAINED REQUIREMENTS -> YBlockC (ThunderBolt)
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemB"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemB (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemC"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemC (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemD"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemD (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemE"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemE (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemF"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemF (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemG"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemG (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemH"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemH (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemI"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemI (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemJ"},   "reqs": [["Parakarry"]]}, #+ CHAINED REQUIREMENTS -> ItemJ (StarPiece) on building
+    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemK"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemK (StarPiece)
     #! note: "can_hit_floating_blocks" is redundant above as boots is hard-required to reach the floating blocks
 
     # OMO_05 PNK Gourmet Guy Crossing
@@ -69,11 +69,11 @@ edges_omo = [
     {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 1}, "reqs": [["MF_Ch4_GaveCakeToGourmetGuy"]]}, #? PNK Gourmet Guy Crossing Exit East (South) -> PNK Gourmet Guy Crossing Exit East (North)
     {"from": {"map": "OMO_05", "id": 1}, "to": {"map": "OMO_05", "id": 0}, "reqs": []}, #? PNK Gourmet Guy Crossing Exit East (North) -> PNK Gourmet Guy Crossing Exit East (South)
 
-    {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": "ItemA"},         "reqs": [["MF_Ch4_GaveCakeToGourmetGuy"]]}, #* PNK Gourmet Guy Crossing Exit East (South) -> ItemA (Cookbook)
-    {"from": {"map": "OMO_05", "id": 1}, "to": {"map": "OMO_05", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* PNK Gourmet Guy Crossing Exit East (North) -> YBlockA (Coin)
-    {"from": {"map": "OMO_05", "id": 1}, "to": {"map": "OMO_05", "id": "YBlockB"},       "reqs": [["can_hit_floating_blocks"]]}, #* PNK Gourmet Guy Crossing Exit East (North) -> YBlockB (Coin)
-    {"from": {"map": "OMO_05", "id": 1}, "to": {"map": "OMO_05", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* PNK Gourmet Guy Crossing Exit East (North) -> HiddenYBlockA (DizzyDial)
-    {"from": {"map": "OMO_05", "id": 1}, "to": {"map": "OMO_05", "id": "HiddenYBlockB"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* PNK Gourmet Guy Crossing Exit East (North) -> HiddenYBlockB (SuperSoda)
+    {"from": {"map": "OMO_05", "id": 0},         "to": {"map": "OMO_05", "id": "ItemA"},         "reqs": [["MF_Ch4_GaveCakeToGourmetGuy"]]}, #* PNK Gourmet Guy Crossing Exit East (South) -> ItemA (Cookbook)
+    {"from": {"map": "OMO_05", "id": 1},         "to": {"map": "OMO_05", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* PNK Gourmet Guy Crossing Exit East (North) -> YBlockA (Coin)
+    {"from": {"map": "OMO_05", "id": "YBlockA"}, "to": {"map": "OMO_05", "id": "YBlockB"},       "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "OMO_05", "id": "YBlockA"}, "to": {"map": "OMO_05", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockA (DizzyDial)
+    {"from": {"map": "OMO_05", "id": "YBlockA"}, "to": {"map": "OMO_05", "id": "HiddenYBlockB"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockB (SuperSoda)
 
     {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": [["Cake"]], "pseudoitems": ["MF_Ch4_GaveCakeToGourmetGuy"]}, #+ Give Cake to Gourmet Guy
 
@@ -100,11 +100,11 @@ edges_omo = [
     # OMO_07 PNK Playhouse
     {"from": {"map": "OMO_07", "id": 0}, "to": {"map": "OMO_06", "id": 4}, "reqs": []}, # PNK Playhouse Exit West -> PNK Station Exit East
 
-    {"from": {"map": "OMO_07", "id": 0}, "to": {"map": "OMO_07", "id": "ItemA"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* PNK Playhouse Exit West -> ItemA (ThunderRage)
-    {"from": {"map": "OMO_07", "id": 0}, "to": {"map": "OMO_07", "id": "ChestA"},  "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* PNK Playhouse Exit West -> ChestA (FryingPan)
-    {"from": {"map": "OMO_07", "id": 0}, "to": {"map": "OMO_07", "id": "ChestB"},  "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* PNK Playhouse Exit West -> ChestB (DefendPlusA)
-    {"from": {"map": "OMO_07", "id": 0}, "to": {"map": "OMO_07", "id": "ChestC"},  "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* PNK Playhouse Exit West -> ChestC (IcePower)
-    {"from": {"map": "OMO_07", "id": 0}, "to": {"map": "OMO_07", "id": "YBlockA"}, "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* PNK Playhouse Exit West -> YBlockA (Coin)
+    {"from": {"map": "OMO_07", "id": 0},       "to": {"map": "OMO_07", "id": "ItemA"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* PNK Playhouse Exit West -> ItemA (ThunderRage)
+    {"from": {"map": "OMO_07", "id": "ItemA"}, "to": {"map": "OMO_07", "id": "ChestA"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ChestA (FryingPan)
+    {"from": {"map": "OMO_07", "id": "ItemA"}, "to": {"map": "OMO_07", "id": "ChestB"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ChestB (DefendPlusA)
+    {"from": {"map": "OMO_07", "id": "ItemA"}, "to": {"map": "OMO_07", "id": "ChestC"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ChestC (IcePower)
+    {"from": {"map": "OMO_07", "id": "ItemA"}, "to": {"map": "OMO_07", "id": "YBlockA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockA (Coin)
     #! note: "can_hit_floating_blocks" is redundant above as boots is hard-required to reach the floating block
 
     # OMO_08 GRN Station
@@ -125,10 +125,10 @@ edges_omo = [
     # OMO_09 GRN Treadmills/Slot Machine
     {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_08", "id": 0}, "reqs": []}, # GRN Treadmills/Slot Machine Exit West -> GRN Station Exit East
 
-    {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemA"},  "reqs": [["Bow"],["Boots"],["Parakarry"]]}, #* GRN Treadmills/Slot Machine Exit West -> ItemA (SuperSoda)
-    {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ChestA"}, "reqs": [["Bow"],["Boots"],["Parakarry"]]}, #* GRN Treadmills/Slot Machine Exit West -> ChestA (Dictionary)
-    {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemH"},  "reqs": [["Bow"],["Boots"]]}, #* GRN Treadmills/Slot Machine Exit West -> ItemH (StarPiece)
-    {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemO"},  "reqs": [["Bow"]]}, #* GRN Treadmills/Slot Machine Exit West -> ItemO (MysteryNote)
+    {"from": {"map": "OMO_09", "id": "ItemH"}, "to": {"map": "OMO_09", "id": "ItemA"},  "reqs": [["Parakarry"]]}, #+ CHAINED REQUIREMENTS -> ItemA (SuperSoda)
+    {"from": {"map": "OMO_09", "id": "ItemA"}, "to": {"map": "OMO_09", "id": "ChestA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ChestA (Dictionary)
+    {"from": {"map": "OMO_09", "id": "ItemO"}, "to": {"map": "OMO_09", "id": "ItemH"},  "reqs": [["Boots"]]}, #+ CHAINED REQUIREMENTS -> ItemH (StarPiece)
+    {"from": {"map": "OMO_09", "id": 0},       "to": {"map": "OMO_09", "id": "ItemO"},  "reqs": [["Bow"]]}, #* GRN Treadmills/Slot Machine Exit West -> ItemO (MysteryNote)
     # Treadmill Coins
     {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemB"}, "reqs": []}, #* GRN Treadmills/Slot Machine Exit West -> ItemB (Coin)
     {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemC"}, "reqs": []}, #* GRN Treadmills/Slot Machine Exit West -> ItemC (Coin)
@@ -137,12 +137,12 @@ edges_omo = [
     {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemF"}, "reqs": []}, #* GRN Treadmills/Slot Machine Exit West -> ItemF (Coin)
     {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemG"}, "reqs": []}, #* GRN Treadmills/Slot Machine Exit West -> ItemG (Coin)
     # Starpiece Coins
-    {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemI"}, "reqs": [["Bow"],["Boots"]]}, #* GRN Treadmills/Slot Machine Exit West -> ItemI (Coin)
-    {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemJ"}, "reqs": [["Bow"],["Boots"]]}, #* GRN Treadmills/Slot Machine Exit West -> ItemJ (Coin)
-    {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemK"}, "reqs": [["Bow"],["Boots"]]}, #* GRN Treadmills/Slot Machine Exit West -> ItemK (Coin)
-    {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemL"}, "reqs": [["Bow"],["Boots"]]}, #* GRN Treadmills/Slot Machine Exit West -> ItemL (Coin)
-    {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemM"}, "reqs": [["Bow"],["Boots"]]}, #* GRN Treadmills/Slot Machine Exit West -> ItemM (Coin)
-    {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemN"}, "reqs": [["Bow"],["Boots"]]}, #* GRN Treadmills/Slot Machine Exit West -> ItemN (Coin)
+    {"from": {"map": "OMO_09", "id": "ItemH"}, "to": {"map": "OMO_09", "id": "ItemI"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemI (Coin)
+    {"from": {"map": "OMO_09", "id": "ItemH"}, "to": {"map": "OMO_09", "id": "ItemJ"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemJ (Coin)
+    {"from": {"map": "OMO_09", "id": "ItemH"}, "to": {"map": "OMO_09", "id": "ItemK"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemK (Coin)
+    {"from": {"map": "OMO_09", "id": "ItemH"}, "to": {"map": "OMO_09", "id": "ItemL"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemL (Coin)
+    {"from": {"map": "OMO_09", "id": "ItemH"}, "to": {"map": "OMO_09", "id": "ItemM"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemM (Coin)
+    {"from": {"map": "OMO_09", "id": "ItemH"}, "to": {"map": "OMO_09", "id": "ItemN"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemN (Coin)
 
     # OMO_10 RED Station
     {"from": {"map": "OMO_10", "id": 0}, "to": {"map": "OMO_11", "id": 1}, "reqs": []}, # RED Station Exit West -> RED Moving Platforms Exit East
@@ -167,11 +167,11 @@ edges_omo = [
     {"from": {"map": "OMO_11", "id": 0}, "to": {"map": "OMO_11", "id": 1}, "reqs": []}, #? RED Moving Platforms Exit West -> RED Moving Platforms Exit East
     {"from": {"map": "OMO_11", "id": 1}, "to": {"map": "OMO_11", "id": 0}, "reqs": []}, #? RED Moving Platforms Exit East -> RED Moving Platforms Exit West
 
-    {"from": {"map": "OMO_11", "id": 1}, "to": {"map": "OMO_11", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit East -> HiddenYBlockA (VoltShroom)
-    {"from": {"map": "OMO_11", "id": 0}, "to": {"map": "OMO_11", "id": "HiddenYBlockB"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit West -> HiddenYBlockB (SnowmanDoll)
-    {"from": {"map": "OMO_11", "id": 0}, "to": {"map": "OMO_11", "id": "YBlockA"},       "reqs": [["Boots"]]}, #* RED Moving Platforms Exit West -> YBlockA (Coin)
-    {"from": {"map": "OMO_11", "id": 0}, "to": {"map": "OMO_11", "id": "YBlockB"},       "reqs": [["Boots"]]}, #* RED Moving Platforms Exit West -> YBlockB (Coin)
-    {"from": {"map": "OMO_11", "id": 0}, "to": {"map": "OMO_11", "id": "HiddenRBlockA"}, "reqs": [["can_see_hidden_blocks"],["Boots"]]}, #* RED Moving Platforms Exit West -> HiddenRBlockA (DeepFocus2)
+    {"from": {"map": "OMO_11", "id": 1},         "to": {"map": "OMO_11", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit East -> HiddenYBlockA (VoltShroom)
+    {"from": {"map": "OMO_11", "id": 0},         "to": {"map": "OMO_11", "id": "HiddenYBlockB"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit West -> HiddenYBlockB (SnowmanDoll)
+    {"from": {"map": "OMO_11", "id": 0},         "to": {"map": "OMO_11", "id": "YBlockA"},       "reqs": [["Boots"]]}, #* RED Moving Platforms Exit West -> YBlockA (Coin)
+    {"from": {"map": "OMO_11", "id": "YBlockA"}, "to": {"map": "OMO_11", "id": "YBlockB"},       "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "OMO_11", "id": "YBlockA"}, "to": {"map": "OMO_11", "id": "HiddenRBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenRBlockA (DeepFocus2)
     #! note: "can_hit_floating_blocks" is partially redundant above as boots is hard-required to reach some of the floating blocks
 
     # OMO_12 RED Lantern Ghost
@@ -186,9 +186,9 @@ edges_omo = [
     {"from": {"map": "OMO_13", "id": 0}, "to": {"map": "OMO_13", "id": 1}, "reqs": []}, #? BLU Anti-Guy Hall Exit West -> BLU Anti-Guy Hall Exit East
     {"from": {"map": "OMO_13", "id": 1}, "to": {"map": "OMO_13", "id": 0}, "reqs": []}, #? BLU Anti-Guy Hall Exit East -> BLU Anti-Guy Hall Exit West
 
-    {"from": {"map": "OMO_13", "id": 0}, "to": {"map": "OMO_13", "id": "ChestA"},        "reqs": [["LemonCandy"]]}, #* BLU Anti-Guy Hall Exit West -> ChestA (PowerPlusB)
-    {"from": {"map": "OMO_13", "id": 0}, "to": {"map": "OMO_13", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* BLU Anti-Guy Hall Exit West -> YBlockA (Coin)
-    {"from": {"map": "OMO_13", "id": 0}, "to": {"map": "OMO_13", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* BLU Anti-Guy Hall Exit West -> HiddenYBlockA (MapleSyrup)
+    {"from": {"map": "OMO_13", "id": 0},         "to": {"map": "OMO_13", "id": "ChestA"},        "reqs": [["LemonCandy"]]}, #* BLU Anti-Guy Hall Exit West -> ChestA (PowerPlusB)
+    {"from": {"map": "OMO_13", "id": 0},         "to": {"map": "OMO_13", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* BLU Anti-Guy Hall Exit West -> YBlockA (Coin)
+    {"from": {"map": "OMO_13", "id": "YBlockA"}, "to": {"map": "OMO_13", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockA (MapleSyrup)
 
     # OMO_14 RED Boss Antechamber
     {"from": {"map": "OMO_14", "id": 0}, "to": {"map": "OMO_02", "id": 1}, "reqs": []}, # RED Boss Antechamber Exit West -> RED Boss Barricade Exit East
@@ -213,7 +213,7 @@ edges_omo = [
     {"from": {"map": "OMO_17", "id": 1}, "to": {"map": "OMO_17", "id": 3}, "reqs": []}, #? PNK Tracks Hallway Exit West (North) -> PNK Tracks Hallway Exit East (North)
     {"from": {"map": "OMO_17", "id": 3}, "to": {"map": "OMO_17", "id": 1}, "reqs": []}, #? PNK Tracks Hallway Exit East (North) -> PNK Tracks Hallway Exit West (North)
 
-    {"from": {"map": "OMO_17", "id": 0}, "to": {"map": "OMO_17", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* PNK Tracks Hallway Exit West (South) -> YBlockA (Coin)
-    {"from": {"map": "OMO_17", "id": 1}, "to": {"map": "OMO_17", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* PNK Tracks Hallway Exit West (North) -> YBlockB (Coin)
-    {"from": {"map": "OMO_17", "id": 1}, "to": {"map": "OMO_17", "id": "YBlockC"}, "reqs": [["can_hit_floating_blocks"]]}, #* PNK Tracks Hallway Exit West (North) -> YBlockC (Coin)
+    {"from": {"map": "OMO_17", "id": 0},         "to": {"map": "OMO_17", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* PNK Tracks Hallway Exit West (South) -> YBlockA (Coin)
+    {"from": {"map": "OMO_17", "id": 1},         "to": {"map": "OMO_17", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* PNK Tracks Hallway Exit West (North) -> YBlockB (Coin)
+    {"from": {"map": "OMO_17", "id": "YBlockB"}, "to": {"map": "OMO_17", "id": "YBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockC (Coin)
 ]

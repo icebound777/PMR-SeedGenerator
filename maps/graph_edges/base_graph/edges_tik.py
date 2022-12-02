@@ -34,9 +34,9 @@ edges_tik = [
     {"from": {"map": "TIK_03", "id": 0}, "to": {"map": "TIK_03", "id": 1}, "reqs": []}, #? Short Elevator Room (B1) Exit Right -> Short Elevator Room (B1) Green Pipe Left
     {"from": {"map": "TIK_03", "id": 1}, "to": {"map": "TIK_03", "id": 0}, "reqs": []}, #? Short Elevator Room (B1) Green Pipe Left -> Short Elevator Room (B1) Exit Right
 
-    {"from": {"map": "TIK_03", "id": 0}, "to": {"map": "TIK_03", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Short Elevator Room (B1) Exit Right -> YBlockA (SnowmanDoll)
-    {"from": {"map": "TIK_03", "id": 0}, "to": {"map": "TIK_03", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Short Elevator Room (B1) Exit Right -> YBlockB (Coin)
-    {"from": {"map": "TIK_03", "id": 0}, "to": {"map": "TIK_03", "id": "YBlockC"}, "reqs": [["can_hit_floating_blocks"]]}, #* Short Elevator Room (B1) Exit Right -> YBlockC (Coin)
+    {"from": {"map": "TIK_03", "id": 0},         "to": {"map": "TIK_03", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Short Elevator Room (B1) Exit Right -> YBlockA (SnowmanDoll)
+    {"from": {"map": "TIK_03", "id": "YBlockA"}, "to": {"map": "TIK_03", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "TIK_03", "id": "YBlockA"}, "to": {"map": "TIK_03", "id": "YBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockC (Coin)
 
     # TIK_04 Scales Room (B2)
     {"from": {"map": "TIK_04", "id": 0}, "to": {"map": "TIK_05", "id": 0}, "reqs": []}, # Scales Room (B2) Exit Left -> Spring Room (B2) Exit Right
@@ -115,9 +115,9 @@ edges_tik = [
     # TIK_10 Block Puzzle Room (B2)
     {"from": {"map": "TIK_10", "id": 0}, "to": {"map": "TIK_09", "id": 0}, "reqs": []}, # Block Puzzle Room (B2) Exit Right -> Warp Zone 2 (B2) Exit Left
 
-    {"from": {"map": "TIK_10", "id": 0}, "to": {"map": "TIK_10", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"],["can_climb_steps"]]}, #* Block Puzzle Room (B2) Exit Right -> HiddenYBlockA (Coin)
-    {"from": {"map": "TIK_10", "id": 0}, "to": {"map": "TIK_10", "id": "HiddenYBlockB"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"],["can_climb_steps"]]}, #* Block Puzzle Room (B2) Exit Right -> HiddenYBlockB (Coin)
-    {"from": {"map": "TIK_10", "id": 0}, "to": {"map": "TIK_10", "id": "HiddenYBlockC"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"],["can_climb_steps"]]}, #* Block Puzzle Room (B2) Exit Right -> HiddenYBlockC (Coin)
+    {"from": {"map": "TIK_10", "id": 0},               "to": {"map": "TIK_10", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"],["can_climb_steps"]]}, #* Block Puzzle Room (B2) Exit Right -> HiddenYBlockA (Coin)
+    {"from": {"map": "TIK_10", "id": "HiddenYBlockA"}, "to": {"map": "TIK_10", "id": "HiddenYBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> HiddenYBlockB (Coin)
+    {"from": {"map": "TIK_10", "id": "HiddenYBlockA"}, "to": {"map": "TIK_10", "id": "HiddenYBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> HiddenYBlockC (Coin)
 
     # TIK_12 Metal Block Room (B3)
     {"from": {"map": "TIK_12", "id": 0}, "to": {"map": "TIK_04", "id": 3}, "reqs": []}, # Metal Block Room (B3) Green Pipe Left -> Scales Room (B2) Green Pipe BottomRight
@@ -189,11 +189,11 @@ edges_tik = [
     {"from": {"map": "TIK_21", "id": 1}, "to": {"map": "TIK_21", "id": 2}, "reqs": []}, #? Hidden Blocks Room (B2) Top Right Door -> Hidden Blocks Room (B2) Green Pipe BottomRight
     {"from": {"map": "TIK_21", "id": 2}, "to": {"map": "TIK_21", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Hidden Blocks Room (B2) Green Pipe BottomRight -> Hidden Blocks Room (B2) Exit Left
 
-    {"from": {"map": "TIK_21", "id": 0}, "to": {"map": "TIK_21", "id": "YBlockA"}, "reqs": [["SuperBoots"]]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockA (Coin)
-    {"from": {"map": "TIK_21", "id": 0}, "to": {"map": "TIK_21", "id": "YBlockB"}, "reqs": [["SuperBoots"]]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockB (Coin)
-    {"from": {"map": "TIK_21", "id": 0}, "to": {"map": "TIK_21", "id": "YBlockC"}, "reqs": [["SuperBoots"]]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockC (Coin)
-    {"from": {"map": "TIK_21", "id": 0}, "to": {"map": "TIK_21", "id": "YBlockD"}, "reqs": [["SuperBoots"]]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockD (Coin)
-    {"from": {"map": "TIK_21", "id": 0}, "to": {"map": "TIK_21", "id": "YBlockE"}, "reqs": [["SuperBoots"]]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockE (Coin)
+    {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockA"}, "reqs": [["SuperBoots"]]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockA (Coin)
+    {"from": {"map": "TIK_21", "id": "YBlockA"}, "to": {"map": "TIK_21", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "TIK_21", "id": "YBlockA"}, "to": {"map": "TIK_21", "id": "YBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockC (Coin)
+    {"from": {"map": "TIK_21", "id": "YBlockA"}, "to": {"map": "TIK_21", "id": "YBlockD"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockD (Coin)
+    {"from": {"map": "TIK_21", "id": "YBlockA"}, "to": {"map": "TIK_21", "id": "YBlockE"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockE (Coin)
 
     # TIK_22 Path to Shiver City (B2)
     {"from": {"map": "TIK_22", "id": 0}, "to": {"map": "TIK_21", "id": 1}, "reqs": []}, # Path to Shiver City (B2) Left Door -> Hidden Blocks Room (B2) Top Right Door
@@ -209,10 +209,10 @@ edges_tik = [
     {"from": {"map": "TIK_23", "id": 0}, "to": {"map": "TIK_23", "id": 1}, "reqs": []}, #? Windy Path (B3) Exit Left -> Windy Path (B3) Green Pipe
     {"from": {"map": "TIK_23", "id": 1}, "to": {"map": "TIK_23", "id": 0}, "reqs": [["SuperHammer"]]}, #? Windy Path (B3) Green Pipe -> Windy Path (B3) Exit Left
 
-    {"from": {"map": "TIK_23", "id": 1}, "to": {"map": "TIK_23", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* Windy Path (B3) Green Pipe -> HiddenYBlockA (MapleSyrup)
-    {"from": {"map": "TIK_23", "id": 1}, "to": {"map": "TIK_23", "id": "HiddenYBlockB"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* Windy Path (B3) Green Pipe -> HiddenYBlockB (StopWatch)
-    {"from": {"map": "TIK_23", "id": 1}, "to": {"map": "TIK_23", "id": "HiddenYBlockC"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* Windy Path (B3) Green Pipe -> HiddenYBlockC (VoltShroom)
-    {"from": {"map": "TIK_23", "id": 1}, "to": {"map": "TIK_23", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* Windy Path (B3) Green Pipe -> YBlockA (Coin)
+    {"from": {"map": "TIK_23", "id": "YBlockA"},       "to": {"map": "TIK_23", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockA (MapleSyrup)
+    {"from": {"map": "TIK_23", "id": "HiddenYBlockA"}, "to": {"map": "TIK_23", "id": "HiddenYBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> HiddenYBlockB (StopWatch)
+    {"from": {"map": "TIK_23", "id": "HiddenYBlockA"}, "to": {"map": "TIK_23", "id": "HiddenYBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> HiddenYBlockC (VoltShroom)
+    {"from": {"map": "TIK_23", "id": 1},               "to": {"map": "TIK_23", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* Windy Path (B3) Green Pipe -> YBlockA (Coin)
 
     # TIK_24 Hall to Ultra Boots (B3)
     {"from": {"map": "TIK_24", "id": 0}, "to": {"map": "TIK_25", "id": 0}, "reqs": []}, # Hall to Ultra Boots (B3) Exit Left -> Ultra Boots Room (B3) Exit Right
@@ -221,9 +221,9 @@ edges_tik = [
     {"from": {"map": "TIK_24", "id": 0}, "to": {"map": "TIK_24", "id": 1}, "reqs": []}, #? Hall to Ultra Boots (B3) Exit Left -> Hall to Ultra Boots (B3) Exit Right
     {"from": {"map": "TIK_24", "id": 1}, "to": {"map": "TIK_24", "id": 0}, "reqs": [["UltraHammer"]]}, #? Hall to Ultra Boots (B3) Exit Right -> Hall to Ultra Boots (B3) Exit Left
 
-    {"from": {"map": "TIK_24", "id": 1}, "to": {"map": "TIK_24", "id": "HiddenYBlockA"}, "reqs": [["UltraBoots"],["can_see_hidden_blocks"]]}, #* Hall to Ultra Boots (B3) Exit Right -> HiddenYBlockA (LifeShroom)
-    {"from": {"map": "TIK_24", "id": 1}, "to": {"map": "TIK_24", "id": "YBlockA"},       "reqs": [["UltraBoots"]]}, #* Hall to Ultra Boots (B3) Exit Right -> YBlockA (Coin)
-    {"from": {"map": "TIK_24", "id": 1}, "to": {"map": "TIK_24", "id": "YBlockB"},       "reqs": [["UltraBoots"]]}, #* Hall to Ultra Boots (B3) Exit Right -> YBlockB (Coin)
+    {"from": {"map": "TIK_24", "id": "YBlockA"}, "to": {"map": "TIK_24", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockA (LifeShroom)
+    {"from": {"map": "TIK_24", "id": 1},         "to": {"map": "TIK_24", "id": "YBlockA"},       "reqs": [["UltraBoots"]]}, #* Hall to Ultra Boots (B3) Exit Right -> YBlockA (Coin)
+    {"from": {"map": "TIK_24", "id": "YBlockA"}, "to": {"map": "TIK_24", "id": "YBlockB"},       "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
 
     # TIK_25 Ultra Boots Room (B3)
     {"from": {"map": "TIK_25", "id": 0}, "to": {"map": "TIK_24", "id": 0}, "reqs": []}, # Ultra Boots Room (B3) Exit Right -> Hall to Ultra Boots (B3) Exit Left
