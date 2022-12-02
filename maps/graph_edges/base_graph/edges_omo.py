@@ -45,21 +45,21 @@ edges_omo = [
     # OMO_04 BLU Block City
     {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_03", "id": 1}, "reqs": []}, # BLU Block City Exit West -> BLU Station Exit East
 
-    {"from": {"map": "OMO_04", "id": 0},       "to": {"map": "OMO_04", "id": "ItemA"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemA (Mushroom)
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ChestA"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ChestA (StoreroomKey)
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "YBlockA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockA (Coin)
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "YBlockC"}, "reqs": [["Parakarry"]]}, #+ CHAINED REQUIREMENTS -> YBlockC (ThunderBolt)
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemB"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemB (Coin)
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemC"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemC (Coin)
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemD"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemD (Coin)
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemE"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemE (Coin)
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemF"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemF (Coin)
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemG"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemG (Coin)
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemH"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemH (Coin)
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemI"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemI (Coin)
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemJ"},   "reqs": [["Parakarry"]]}, #+ CHAINED REQUIREMENTS -> ItemJ (StarPiece) on building
-    {"from": {"map": "OMO_04", "id": "ItemA"}, "to": {"map": "OMO_04", "id": "ItemK"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemK (StarPiece)
+    {"from": {"map": "OMO_04", "id": 0},         "to": {"map": "OMO_04", "id": "ItemA"},   "reqs": [["Boots"],["Hammer","SuperBoots"]]}, #* BLU Block City Exit West -> ItemA (Mushroom)
+    {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": "ChestA"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ChestA (StoreroomKey)
+    {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": "YBlockA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockA (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": "YBlockC"}, "reqs": [["Parakarry"]]}, #+ CHAINED REQUIREMENTS -> YBlockC (ThunderBolt)
+    {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": "ItemB"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemB (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": "ItemC"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemC (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": "ItemD"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemD (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": "ItemE"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemE (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": "ItemF"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemF (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": "ItemG"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemG (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": "ItemH"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemH (Coin)
+    {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": "ItemI"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemI (Coin)
+    {"from": {"map": "OMO_04", "id": "YBlockC"}, "to": {"map": "OMO_04", "id": "ItemJ"},   "reqs": []}, #+ CHAINED REQUIREMENTS -> ItemJ (StarPiece) on building
+    {"from": {"map": "OMO_04", "id": "ItemA"},   "to": {"map": "OMO_04", "id": "ItemK"},   "reqs": []}, #+ SHARED REQUIREMENTS -> ItemK (StarPiece)
     #! note: "can_hit_floating_blocks" is redundant above as boots is hard-required to reach the floating blocks
 
     # OMO_05 PNK Gourmet Guy Crossing
