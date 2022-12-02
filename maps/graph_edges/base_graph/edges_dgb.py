@@ -144,8 +144,8 @@ edges_dgb = [
     # DGB_13 Hidden Bedroom (2F)
     {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_03", "id": 5}, "reqs": []}, # Hidden Bedroom (2F) Door Bottom -> Table/Clock Room (1/2F) 2F Behind The Clock
 
-    {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemA"}, "reqs": [["Boots"]]}, #+ CHAINED REQUIREMENTS -> ItemA (MegaRush)
-    {"from": {"map": "DGB_13", "id": 0},       "to": {"map": "DGB_13", "id": "ItemB"}, "reqs": [["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemB (Coin)
+    {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemA"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> ItemA (MegaRush)
+    {"from": {"map": "DGB_13", "id": 0},       "to": {"map": "DGB_13", "id": "ItemB"}, "reqs": [["Boots"],["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemB (Coin)
     {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemC (Coin)
     {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemD"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemD (Coin)
     {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemE"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemE (Coin)
