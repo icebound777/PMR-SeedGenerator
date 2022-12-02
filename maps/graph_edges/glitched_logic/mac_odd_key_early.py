@@ -4,7 +4,5 @@ for Glitched Logic: Odd Key Early.
 """
 edges_mac_odd_key_early = [
     #* Southern District Exit Top -> ItemA (OddKey)
-    {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "ItemA"}, "reqs": [["Hammer"]], "mapchange": False},
-    #* ItemA (OddKey) -> Southern District Exit Top
-    {"from": {"map": "MAC_02", "id": "ItemA"}, "to": {"map": "MAC_02", "id": 2}, "reqs": [], "mapchange": False}
+    {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "ItemA"}, "reqs": [["Hammer"]], "mapchange": False}
 ]

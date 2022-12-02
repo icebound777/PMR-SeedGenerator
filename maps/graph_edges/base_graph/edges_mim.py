@@ -52,8 +52,7 @@ edges_mim = [
     {"from": {"map": "MIM_04", "id": 3}, "to": {"map": "MIM_04", "id": 2}, "reqs": []}, #? Tree Face (Bub-ulb) Wrong Exit (To Previous) -> Get Lost In The Forest 2
     {"from": {"map": "MIM_04", "id": 2}, "to": {"map": "MIM_04", "id": 3}, "reqs": []}, #? Get Lost In The Forest 2 -> Tree Face (Bub-ulb) Wrong Exit (To Previous)
 
-    {"from": {"map": "MIM_04", "id": 3},       "to": {"map": "MIM_04", "id": "GiftA"}, "reqs": []}, #* Tree Face (Bub-ulb) Wrong Exit (To Previous) -> GiftA (MagicalSeed3)
-    {"from": {"map": "MIM_04", "id": "GiftA"}, "to": {"map": "MIM_04", "id": 3},       "reqs": []}, #* GiftA (MagicalSeed3) -> Tree Face (Bub-ulb) Wrong Exit (To Previous)
+    {"from": {"map": "MIM_04", "id": 3}, "to": {"map": "MIM_04", "id": "GiftA"}, "reqs": []}, #* Tree Face (Bub-ulb) Wrong Exit (To Previous) -> GiftA (MagicalSeed3)
 
     # MIM_05
     {"from": {"map": "MIM_05", "id": 0}, "to": {"map": "MIM_01", "id": 1}, "reqs": []}, # Get Lost In The Forest
@@ -107,8 +106,7 @@ edges_mim = [
     {"from": {"map": "MIM_08", "id": 1}, "to": {"map": "MIM_08", "id": 3}, "reqs": []}, #? MIM_08 Correct Exit -> Get Lost In The Forest 3
     {"from": {"map": "MIM_08", "id": 3}, "to": {"map": "MIM_08", "id": 1}, "reqs": []}, #? Get Lost In The Forest 3 -> MIM_08 Correct Exit
 
-    {"from": {"map": "MIM_08", "id": 1},         "to": {"map": "MIM_08", "id": "RBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* MIM_08 Correct Exit -> RBlockA (HPPlus)
-    {"from": {"map": "MIM_08", "id": "RBlockA"}, "to": {"map": "MIM_08", "id": 1},         "reqs": []}, #* RBlockA (HPPlus) -> MIM_08 Correct Exit
+    {"from": {"map": "MIM_08", "id": 1}, "to": {"map": "MIM_08", "id": "RBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* MIM_08 Correct Exit -> RBlockA (HPPlus)
 
     # MIM_09 Flowers Appear (FP Plus)
     {"from": {"map": "MIM_09", "id": 0}, "to": {"map": "MIM_01", "id": 1}, "reqs": []}, # Get Lost In The Forest 1
@@ -123,8 +121,7 @@ edges_mim = [
     {"from": {"map": "MIM_09", "id": 2}, "to": {"map": "MIM_09", "id": 3}, "reqs": []}, #? Flowers Appear (FP Plus) Correct Exit -> Get Lost In The Forest 3
     {"from": {"map": "MIM_09", "id": 3}, "to": {"map": "MIM_09", "id": 2}, "reqs": []}, #? Get Lost In The Forest 3 -> Flowers Appear (FP Plus) Correct Exit
 
-    {"from": {"map": "MIM_09", "id": 2},         "to": {"map": "MIM_09", "id": "RBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Flowers Appear (FP Plus) Correct Exit -> RBlockA (FPPlus)
-    {"from": {"map": "MIM_09", "id": "RBlockA"}, "to": {"map": "MIM_09", "id": 2},         "reqs": []}, #* RBlockA (FPPlus) -> Flowers Appear (FP Plus) Correct Exit
+    {"from": {"map": "MIM_09", "id": 2}, "to": {"map": "MIM_09", "id": "RBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Flowers Appear (FP Plus) Correct Exit -> RBlockA (FPPlus)
 
     # MIM_10 Exit to Toad Town
     {"from": {"map": "MIM_10", "id": 0}, "to": {"map": "MAC_02", "id": 1}, "reqs": []}, # Exit to Toad Town Toad Town Entrance -> Southern District Exit Right
@@ -146,10 +143,8 @@ edges_mim = [
     {"from": {"map": "MIM_11", "id": 0}, "to": {"map": "MIM_11", "id": 3}, "reqs": [["GF_TIK09_WarpPipe"],["Boots"]]}, #? Outside Boo's Mansion Forever Forest Entrance -> Outside Boo's Mansion Blue Warp Pipe
     {"from": {"map": "MIM_11", "id": 3}, "to": {"map": "MIM_11", "id": 0}, "reqs": []}, #? Outside Boo's Mansion Blue Warp Pipe -> Outside Boo's Mansion Forever Forest Entrance
 
-    {"from": {"map": "MIM_11", "id": 0},             "to": {"map": "MIM_11", "id": "YBlockA"},     "reqs": [["can_hit_floating_blocks"]]}, #* Outside Boo's Mansion Forever Forest Entrance -> YBlockA (VoltShroom)
-    {"from": {"map": "MIM_11", "id": "YBlockA"},     "to": {"map": "MIM_11", "id": 0},             "reqs": []}, #* YBlockA (VoltShroom) -> Outside Boo's Mansion Forever Forest Entrance
-    {"from": {"map": "MIM_11", "id": 1},             "to": {"map": "MIM_11", "id": "Bush1_Drop1"}, "reqs": []}, #* Outside Boo's Mansion Entrance to Wasteland -> Bush1_Drop1 (StrangeLeaf)
-    {"from": {"map": "MIM_11", "id": "Bush1_Drop1"}, "to": {"map": "MIM_11", "id": 1},             "reqs": []}, #* Bush1_Drop1 (StrangeLeaf) -> Outside Boo's Mansion Entrance to Wasteland
+    {"from": {"map": "MIM_11", "id": 0}, "to": {"map": "MIM_11", "id": "YBlockA"},     "reqs": [["can_hit_floating_blocks"]]}, #* Outside Boo's Mansion Forever Forest Entrance -> YBlockA (VoltShroom)
+    {"from": {"map": "MIM_11", "id": 1}, "to": {"map": "MIM_11", "id": "Bush1_Drop1"}, "reqs": []}, #* Outside Boo's Mansion Entrance to Wasteland -> Bush1_Drop1 (StrangeLeaf)
 
     # MIM_12 Exit to Gusty Gulch
     {"from": {"map": "MIM_12", "id": 0}, "to": {"map": "MIM_11", "id": 1}, "reqs": []}, # Exit to Gusty Gulch Exit West -> Outside Boo's Mansion Entrance to Wasteland
@@ -158,6 +153,5 @@ edges_mim = [
     {"from": {"map": "MIM_12", "id": 0}, "to": {"map": "MIM_12", "id": 1}, "reqs": [["RF_OpenedGustyGulch"]]}, #? Exit to Gusty Gulch Exit West -> Exit to Gusty Gulch Exit East
     {"from": {"map": "MIM_12", "id": 1}, "to": {"map": "MIM_12", "id": 0}, "reqs": [["RF_OpenedGustyGulch"]]}, #? Exit to Gusty Gulch Exit East -> Exit to Gusty Gulch Exit West
 
-    {"from": {"map": "MIM_12", "id": 1},             "to": {"map": "MIM_12", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Exit to Gusty Gulch Exit East -> HiddenPanel (StarPiece)
-    {"from": {"map": "MIM_12", "id": "HiddenPanel"}, "to": {"map": "MIM_12", "id": 1},             "reqs": []}, #* HiddenPanel (StarPiece) -> Exit to Gusty Gulch Exit East
+    {"from": {"map": "MIM_12", "id": 1}, "to": {"map": "MIM_12", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Exit to Gusty Gulch Exit East -> HiddenPanel (StarPiece)
 ]

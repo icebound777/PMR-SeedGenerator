@@ -6,7 +6,7 @@ edges_mim_add_gusty_gulch_gate_skip_lzs = [
     #? Exit to Gusty Gulch Exit West -> Exit to Gusty Gulch Exit East
     {"from": {"map": "MIM_12", "id": 0}, "to": {"map": "MIM_12", "id": 1}, "reqs": [["Boots"]], "mapchange": False},
     #? Exit to Gusty Gulch Exit East -> Exit to Gusty Gulch Exit West
-    {"from": {"map": "MIM_12", "id": 1}, "to": {"map": "MIM_12", "id": 0}, "reqs": [], "mapchange": False},
+    {"from": {"map": "MIM_12", "id": 1}, "to": {"map": "MIM_12", "id": 0}, "reqs": [["Boots"]], "mapchange": False},
 ]
 
 edges_mim_add_gusty_gulch_gate_skip_laki = [
