@@ -216,43 +216,23 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
             continue
 
         if palette_info.sprite in boss_sprite_names:
-            if palette_settings.bosses_setting == RandomPalettes.RANDOM_PICK:
-                palette_count = palette_info.palette_count
-                chosen_palette = random.randrange(0, palette_count)
-            if palette_settings.bosses_setting == RandomPalettes.RANDOM_PICK_NOT_VANILLA:
-                palette_count = palette_info.palette_count
-                chosen_palette = random.randrange(1, palette_count)
-            elif palette_settings.bosses_setting == RandomPalettes.DEFAULT_PALETTE:
-                chosen_palette = PALETTEVALUE_DEFAULT
-            else:
-                # set always random palette by not setting anything at all
-                continue
-            palettes_data.append((palette_info.dbkey, chosen_palette))
+            cur_setting = palette_settings.bosses_setting
         elif palette_info.sprite in enemy_sprite_names:
-            if palette_settings.enemies_setting == RandomPalettes.RANDOM_PICK:
-                palette_count = palette_info.palette_count
-                chosen_palette = random.randrange(0, palette_count)
-            if palette_settings.enemies_setting == RandomPalettes.RANDOM_PICK_NOT_VANILLA:
-                palette_count = palette_info.palette_count
-                chosen_palette = random.randrange(1, palette_count)
-            elif palette_settings.enemies_setting == RandomPalettes.DEFAULT_PALETTE:
-                chosen_palette = PALETTEVALUE_DEFAULT
-            else:
-                # set always random palette by not setting anything at all
-                continue
-            palettes_data.append((palette_info.dbkey, chosen_palette))
+            cur_setting = palette_settings.enemies_setting
         else:
-            if palette_settings.npc_setting == RandomPalettes.RANDOM_PICK:
-                palette_count = palette_info.palette_count
-                chosen_palette = random.randrange(0, palette_count)
-            elif palette_settings.npc_setting == RandomPalettes.RANDOM_PICK_NOT_VANILLA:
-                palette_count = palette_info.palette_count
-                chosen_palette = random.randrange(1, palette_count)
-            elif palette_settings.npc_setting == RandomPalettes.DEFAULT_PALETTE:
-                chosen_palette = PALETTEVALUE_DEFAULT
-            else:
-                # set always random palette by not setting anything at all
-                continue
-            palettes_data.append((palette_info.dbkey, chosen_palette))
+            cur_setting = palette_settings.npc_setting
+
+        if cur_setting == RandomPalettes.RANDOM_PICK:
+            palette_count = palette_info.palette_count
+            chosen_palette = random.randrange(0, palette_count)
+        if cur_setting == RandomPalettes.RANDOM_PICK_NOT_VANILLA:
+            palette_count = palette_info.palette_count
+            chosen_palette = random.randrange(1, palette_count)
+        elif cur_setting == RandomPalettes.DEFAULT_PALETTE:
+            chosen_palette = PALETTEVALUE_DEFAULT
+        else:
+            # set always random palette by not setting anything at all
+            continue
+        palettes_data.append((palette_info.dbkey, chosen_palette))
 
     return palettes_data
