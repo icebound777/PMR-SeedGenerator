@@ -187,8 +187,8 @@ WattSetting      : 0
 WattSprite       : 0
 SushieSetting    : 0
 SushieSprite     : 0
-#LakilesterSetting: 0 # NYI
-#LakilesterSprite : 0 # NYI
+LakilesterSetting: 0
+LakilesterSprite : 0
 BossesSetting    : 0
 EnemiesSetting   : 0
 NPCSetting       : 0

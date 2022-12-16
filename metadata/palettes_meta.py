@@ -6,17 +6,21 @@ mario_n_partner_sprite_names = [
     "04_0_Parakarry",
     "05_0_Bow",
     "06_0_Watt",
-    "07_0_Sushie"
+    "07_0_Sushie",
+    "08_0_Lakilester",
 ]
 
 boss_sprite_names = [
+    "47_0_KentCKoopa",
     "60_0_Kammy",
+    "63_0_GoombaKing",
     "66_0_KoopaBros",
     "66_1_KoopaBros",
     "66_2_KoopaBros",
     "66_3_KoopaBros",
     "68_0_TutanKoopa",
     "6A_0_TubbaBlubba",
+    "6D_0_LanternGhost",
     "78_0_TankGuy",
     "79_0_LavaPiranha",
     "7C_0_HuffNPuff",
@@ -28,14 +32,18 @@ enemy_sprite_names = [
     "27_0_SpikedGoomba",
     "28_0_Paragoomba",
     "29_1_Koopa",
+    "2C_0_Bobomb",
+    "2D_0_BulletBill",
+    "2D_1_BombshellBill",
     "31_0_Pokey",
-    "31_1_Pokey",
+    "31_1_PokeyMummy",
     "32_0_Bandit",
     "33_0_BuzzyBeetles",
     "34_0_Swooper",
     "35_0_StoneChomp",
     "37_0_PiranhaPlant",
     "39_0_Clubba",
+    "39_1_IceClubba",
     "3B_1_ShyGuy",
     "3B_2_ShyGuy",
     "3B_3_ShyGuy",
@@ -44,7 +52,15 @@ enemy_sprite_names = [
     "3E_0_PyroGuy",
     "3F_0_SpyGuy",
     "40_0_MediGuy",
+    "42_0_JungleGuy",
+    "5A_0_HammerBros",
     "6E_0_ShyGuySquad",
     "70_0_StiltGuy",
     "72_0_ShyGuyStack",
+]
+
+gear_sprite_names = [
+    "Hammer1",
+    "Hammer2",
+    "Hammer3",
 ]

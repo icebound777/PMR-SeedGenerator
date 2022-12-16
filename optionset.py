@@ -524,10 +524,10 @@ class OptionSet:
             self.palette_settings.sushie_setting = options_dict.get("SushieSetting").get("value")
         if "SushieSprite" in options_dict:
             self.palette_settings.sushie_sprite = options_dict.get("SushieSprite").get("value")
-        #if "LakilesterSetting" in options_dict:
-        #    self.palette_settings.lakilester_setting = options_dict.get("LakilesterSetting").get("value")
-        #if "LakilesterSprite" in options_dict:
-        #    self.palette_settings.lakilester_sprite = options_dict.get("LakilesterSprite").get("value")
+        if "LakilesterSetting" in options_dict:
+            self.palette_settings.lakilester_setting = options_dict.get("LakilesterSetting").get("value")
+        if "LakilesterSprite" in options_dict:
+            self.palette_settings.lakilester_sprite = options_dict.get("LakilesterSprite").get("value")
         if "BossesSetting" in options_dict:
             self.palette_settings.bosses_setting = options_dict.get("BossesSetting").get("value")
         if "EnemiesSetting" in options_dict:
@@ -1212,10 +1212,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("SushieSetting").get("value"), int)
     if "SushieSprite" in options_dict:
         assert isinstance(options_dict.get("SushieSprite").get("value"), int)
-    #if "LakilesterSetting" in options_dict:
-    #    assert isinstance(options_dict.get("LakilesterSetting").get("value"), int)
-    #if "LakilesterSprite" in options_dict:
-    #    assert isinstance(options_dict.get("LakilesterSprite").get("value"), int)
+    if "LakilesterSetting" in options_dict:
+        assert isinstance(options_dict.get("LakilesterSetting").get("value"), int)
+    if "LakilesterSprite" in options_dict:
+        assert isinstance(options_dict.get("LakilesterSprite").get("value"), int)
     if "BossesSetting" in options_dict:
         assert isinstance(options_dict.get("BossesSetting").get("value"), int)
     if "EnemiesSetting" in options_dict:
@@ -1560,8 +1560,8 @@ class PaletteOptionSet():
         self.watt_sprite = DEFAULT_PALETTE
         self.sushie_setting = DEFAULT_PALETTE
         self.sushie_sprite = DEFAULT_PALETTE
-        #self.lakilester_setting = DEFAULT_PALETTE
-        #self.lakilester_sprite = DEFAULT_PALETTE
+        self.lakilester_setting = DEFAULT_PALETTE
+        self.lakilester_sprite = DEFAULT_PALETTE
         self.bosses_setting = DEFAULT_PALETTE
         self.enemies_setting = DEFAULT_PALETTE
         self.npc_setting = DEFAULT_PALETTE
@@ -1652,7 +1652,7 @@ class GlitchOptionSet():
             self.boos_portrait_with_kooper = False
             self.boos_portrait_with_laki = False
             self.jumpless_mansion_entry = False
-            
+
             self.gusty_gulch_gate_skip_lzs = False
             self.gusty_gulch_gate_skip_laki = False
             self.kooperless_gusty_gulch_dizzy_dial_jump = False
