@@ -53,6 +53,7 @@ enemy_sprite_names = [
     "3F_0_SpyGuy",
     "40_0_MediGuy",
     "42_0_JungleGuy",
+    "48_0_CrazyDayzee",
     "5A_0_HammerBros",
     "6E_0_ShyGuySquad",
     "70_0_StiltGuy",
