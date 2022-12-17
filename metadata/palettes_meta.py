@@ -59,7 +59,7 @@ enemy_sprite_names = [
     "72_0_ShyGuyStack",
 ]
 
-gear_sprite_names = [
+hammer_sprite_names = [
     "Hammer1",
     "Hammer2",
     "Hammer3",

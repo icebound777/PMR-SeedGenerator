@@ -192,6 +192,7 @@ LakilesterSprite : 0
 BossesSetting    : 2
 EnemiesSetting   : 2
 NPCSetting       : 2
+HammerSetting    : 2
 
 # Joke options
 RomanNumerals  : false

@@ -534,6 +534,8 @@ class OptionSet:
             self.palette_settings.enemies_setting = options_dict.get("EnemiesSetting").get("value")
         if "NPCSetting" in options_dict:
             self.palette_settings.npc_setting = options_dict.get("NPCSetting").get("value")
+        if "HammerSetting" in options_dict:
+            self.palette_settings.hammer_setting = options_dict.get("HammerSetting").get("value")
 
         # Joke options
         if "RomanNumerals" in options_dict:
@@ -1222,6 +1224,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("EnemiesSetting").get("value"), int)
     if "NPCSetting" in options_dict:
         assert isinstance(options_dict.get("NPCSetting").get("value"), int)
+    if "HammerSetting" in options_dict:
+        assert isinstance(options_dict.get("HammerSetting").get("value"), int)
 
     # Joke options
     if "RomanNumerals" in options_dict:
@@ -1562,9 +1566,11 @@ class PaletteOptionSet():
         self.sushie_sprite = DEFAULT_PALETTE
         self.lakilester_setting = DEFAULT_PALETTE
         self.lakilester_sprite = DEFAULT_PALETTE
+
         self.bosses_setting = DEFAULT_PALETTE
         self.enemies_setting = DEFAULT_PALETTE
         self.npc_setting = DEFAULT_PALETTE
+        self.hammer_setting = DEFAULT_PALETTE
 
 
 class MysteryOptionSet():

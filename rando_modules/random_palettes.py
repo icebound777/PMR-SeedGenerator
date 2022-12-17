@@ -11,6 +11,7 @@ from metadata.palettes_meta import \
     mario_n_partner_sprite_names, \
     boss_sprite_names, \
     enemy_sprite_names, \
+    hammer_sprite_names, \
     special_vanilla_palette_ids
 
 
@@ -226,13 +227,15 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
             cur_setting = palette_settings.bosses_setting
         elif palette_info.sprite in enemy_sprite_names:
             cur_setting = palette_settings.enemies_setting
-        else:
+        elif palette_info.sprite in hammer_sprite_names:
+            cur_setting = palette_settings.hammer_setting
+        else: # other NPC settings
             cur_setting = palette_settings.npc_setting
 
         if cur_setting == RandomPalettes.RANDOM_PICK:
             palette_count = palette_info.palette_count
             chosen_palette = random.randrange(0, palette_count)
-        if cur_setting == RandomPalettes.RANDOM_PICK_NOT_VANILLA:
+        elif cur_setting == RandomPalettes.RANDOM_PICK_NOT_VANILLA:
             palette_count = palette_info.palette_count
             chosen_palette = random.randrange(1, palette_count)
         elif cur_setting == RandomPalettes.ALWAYS_RANDOM:
