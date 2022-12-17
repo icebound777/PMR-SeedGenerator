@@ -10,7 +10,8 @@ from optionset import PaletteOptionSet
 from metadata.palettes_meta import \
     mario_n_partner_sprite_names, \
     boss_sprite_names, \
-    enemy_sprite_names
+    enemy_sprite_names, \
+    special_vanilla_palette_ids
 
 
 
@@ -173,7 +174,14 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
     also use palette id 0 for that, but for some sprites palette 0 is not their
     vanilla color (again a special case for toads, shy guys etc.).
     """
-    PALETTEVALUE_DEFAULT = 0
+    def get_vanilla_palette_id(sprite_name: str) -> int:
+        if sprite_name not in special_vanilla_palette_ids:
+            return 0
+        else:
+            return int(sprite_name[3:4])
+
+
+    PALETTEVALUE_ALWAYS_RANDOM = -1
 
     palettes_data = []
     all_palettes = []
@@ -203,11 +211,10 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
             chosen_palette = random.randrange(0, palette_count)
         elif cur_setting == RandomPalettes.RANDOM_PICK_NOT_VANILLA:
             chosen_palette = random.randrange(1, palette_count)
-        elif cur_setting == RandomPalettes.DEFAULT_PALETTE:
-            chosen_palette = PALETTEVALUE_DEFAULT
+        elif cur_setting == RandomPalettes.ALWAYS_RANDOM:
+            chosen_palette = PALETTEVALUE_ALWAYS_RANDOM
         else:
-            # set always random palette by not setting anything at all
-            continue
+            chosen_palette = get_vanilla_palette_id(palette_info.sprite)
         palettes_data.append((palette_info.dbkey, chosen_palette))
 
     # Bosses, enemies and general NPC palettes
@@ -228,11 +235,10 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
         if cur_setting == RandomPalettes.RANDOM_PICK_NOT_VANILLA:
             palette_count = palette_info.palette_count
             chosen_palette = random.randrange(1, palette_count)
-        elif cur_setting == RandomPalettes.DEFAULT_PALETTE:
-            chosen_palette = PALETTEVALUE_DEFAULT
+        elif cur_setting == RandomPalettes.ALWAYS_RANDOM:
+            chosen_palette = PALETTEVALUE_ALWAYS_RANDOM
         else:
-            # set always random palette by not setting anything at all
-            continue
+            chosen_palette = get_vanilla_palette_id(palette_info.sprite)
         palettes_data.append((palette_info.dbkey, chosen_palette))
 
     return palettes_data
