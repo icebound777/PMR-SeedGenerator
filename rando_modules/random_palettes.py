@@ -182,7 +182,7 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
             return int(sprite_name[3:4])
 
 
-    PALETTEVALUE_ALWAYS_RANDOM = -1
+    PALETTEVALUE_ALWAYS_RANDOM = 0xFFFFFFFF
 
     palettes_data = []
     all_palettes = []
