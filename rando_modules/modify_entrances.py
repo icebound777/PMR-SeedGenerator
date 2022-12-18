@@ -687,7 +687,7 @@ def adjust_rip_cheato_pricing(world_graph: dict, checks_in_logic:int):
         new_edge["reqs"] = [["RF_OutOfLogic"]]
         adjusted_cheato_edges.append(new_edge)
         adjusted_edges_cnt += 1
-    print(adjusted_cheato_edges)
+
     if adjusted_cheato_edges:
         world_graph, _ = adjust(
             world_graph,
