@@ -81,6 +81,7 @@ edges_obk = [
     {"from": {"map": "OBK_05", "id": "CrateA"}, "to": {"map": "OBK_05", "id": "CrateB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> CrateB (Apple)
 
     # OBK_06 Library
+    #{"from": {"map": "OBK_06", "id": 0}, "to": {"map": None, "id": None},  "reqs": []}, # Library Fall From Ceiling
     {"from": {"map": "OBK_06", "id": 1}, "to": {"map": "OBK_02", "id": 2}, "reqs": []}, # Library Bombable Wall -> Basement Stairs Bombable Wall
 
     {"from": {"map": "OBK_06", "id": 0}, "to": {"map": "OBK_06", "id": 1}, "reqs": [["Bombette"]]}, #? Library Fall From Ceiling -> Library Bombable Wall
