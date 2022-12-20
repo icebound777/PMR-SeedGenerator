@@ -170,10 +170,9 @@ def get_randomized_palettes(palette_settings:PaletteOptionSet) -> list:
     yet.
     Some color palettes are shared among several sprites (like for toads,
     toadettes, dryites, or shy guys).
-    If a sprite is to be left vanilla, then we don't write that sprite's dbkey
-    at all, so the base mod knows to use the vanilla sprite palette. We could
-    also use palette id 0 for that, but for some sprites palette 0 is not their
-    vanilla color (again a special case for toads, shy guys etc.).
+    If a sprite is to be left vanilla, then we have to determine the vanilla
+    sprite id first using a local function. The affected sprites have their
+    vanilla sprite id encoded in the sprite name.
     """
     def get_vanilla_palette_id(sprite_name: str) -> int:
         if sprite_name not in special_vanilla_palette_ids:
