@@ -12,7 +12,7 @@ edges_iwa = [
     {"from": {"map": "IWA_00", "id": 1}, "to": {"map": "IWA_00", "id": "ItemB"},   "reqs": [["can_climb_steps"]]}, #* Mt Rugged 1 Exit Right -> ItemB (Coin)
     {"from": {"map": "IWA_00", "id": 0}, "to": {"map": "IWA_00", "id": "ItemC"},   "reqs": [["Kooper", "Lakilester"]]}, #* Mt Rugged 1 Exit Left -> ItemC (Coin)
     {"from": {"map": "IWA_00", "id": 1}, "to": {"map": "IWA_00", "id": "ItemC"},   "reqs": [["can_climb_steps"]]}, #* Mt Rugged 1 Exit Right -> ItemC (Coin)
-    {"from": {"map": "IWA_00", "id": 1}, "to": {"map": "IWA_00", "id": "ItemD"},   "reqs": [["Hammer", "Bombette"],["RF_Missable"]]}, #* Mt Rugged 1 Exit Right -> ItemD (WhackasBump)
+    {"from": {"map": "IWA_00", "id": 1}, "to": {"map": "IWA_00", "id": "ItemD"},   "reqs": [["RF_Missable"],["Hammer", "Bombette"]]}, #* Mt Rugged 1 Exit Right -> ItemD (WhackasBump)
     {"from": {"map": "IWA_00", "id": 1}, "to": {"map": "IWA_00", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Mt Rugged 1 Exit Right -> YBlockA (SleepySheep)
 
     # IWA_01 Mt Rugged 2

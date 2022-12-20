@@ -19,9 +19,9 @@ edges_omo = [
     {"from": {"map": "OMO_02", "id": 0}, "to": {"map": "OMO_02", "id": 1}, "reqs": [["Bombette"]]}, #? RED Boss Barricade Exit West -> RED Boss Barricade Exit East
     {"from": {"map": "OMO_02", "id": 1}, "to": {"map": "OMO_02", "id": 0}, "reqs": [["Bombette"]]}, #? RED Boss Barricade Exit East -> RED Boss Barricade Exit West
 
-    {"from": {"map": "OMO_02", "id": 1}, "to": {"map": "OMO_02", "id": "YBlockA"},       "reqs": []}, #* RED Boss Barricade Exit East -> YBlockA (SleepySheep)
-    {"from": {"map": "OMO_02", "id": 1}, "to": {"map": "OMO_02", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Boss Barricade Exit East -> HiddenYBlockA (Coin)
-    {"from": {"map": "OMO_02", "id": 1}, "to": {"map": "OMO_02", "id": "ItemA"},         "reqs": [["Boots"],["Kooper","UltraBoots"],["Hammer","SuperBoots"],["can_see_hidden_blocks","UltraBoots"],["can_hit_floating_blocks","UltraBoots"]]}, #* RED Boss Barricade Exit East -> ItemA (ShootingStar)
+    {"from": {"map": "OMO_02", "id": 1},         "to": {"map": "OMO_02", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* RED Boss Barricade Exit East -> YBlockA (SleepySheep)
+    {"from": {"map": "OMO_02", "id": "YBlockA"}, "to": {"map": "OMO_02", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS (Coin)
+    {"from": {"map": "OMO_02", "id": 1},         "to": {"map": "OMO_02", "id": "ItemA"},         "reqs": [["Boots"],["Kooper","UltraBoots"],["Hammer","SuperBoots"],["can_see_hidden_blocks","UltraBoots"],["can_hit_floating_blocks","UltraBoots"]]}, #* RED Boss Barricade Exit East -> ItemA (ShootingStar)
 
     # OMO_03 BLU Station
     {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_13", "id": 1}, "reqs": []}, # BLU Station Exit West -> BLU Anti-Guy Hall Exit East
@@ -69,11 +69,11 @@ edges_omo = [
     {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 1}, "reqs": [["MF_Ch4_GaveCakeToGourmetGuy"]]}, #? PNK Gourmet Guy Crossing Exit East (South) -> PNK Gourmet Guy Crossing Exit East (North)
     {"from": {"map": "OMO_05", "id": 1}, "to": {"map": "OMO_05", "id": 0}, "reqs": []}, #? PNK Gourmet Guy Crossing Exit East (North) -> PNK Gourmet Guy Crossing Exit East (South)
 
-    {"from": {"map": "OMO_05", "id": 0},         "to": {"map": "OMO_05", "id": "ItemA"},         "reqs": [["MF_Ch4_GaveCakeToGourmetGuy"]]}, #* PNK Gourmet Guy Crossing Exit East (South) -> ItemA (Cookbook)
-    {"from": {"map": "OMO_05", "id": 1},         "to": {"map": "OMO_05", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* PNK Gourmet Guy Crossing Exit East (North) -> YBlockA (Coin)
-    {"from": {"map": "OMO_05", "id": "YBlockA"}, "to": {"map": "OMO_05", "id": "YBlockB"},       "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
-    {"from": {"map": "OMO_05", "id": "YBlockA"}, "to": {"map": "OMO_05", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockA (DizzyDial)
-    {"from": {"map": "OMO_05", "id": "YBlockA"}, "to": {"map": "OMO_05", "id": "HiddenYBlockB"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockB (SuperSoda)
+    {"from": {"map": "OMO_05", "id": 0},               "to": {"map": "OMO_05", "id": "ItemA"},         "reqs": [["MF_Ch4_GaveCakeToGourmetGuy"]]}, #* PNK Gourmet Guy Crossing Exit East (South) -> ItemA (Cookbook)
+    {"from": {"map": "OMO_05", "id": 1},               "to": {"map": "OMO_05", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* PNK Gourmet Guy Crossing Exit East (North) -> YBlockA (Coin)
+    {"from": {"map": "OMO_05", "id": "YBlockA"},       "to": {"map": "OMO_05", "id": "YBlockB"},       "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "OMO_05", "id": "YBlockA"},       "to": {"map": "OMO_05", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockA (DizzyDial)
+    {"from": {"map": "OMO_05", "id": "HiddenYBlockA"}, "to": {"map": "OMO_05", "id": "HiddenYBlockB"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> HiddenYBlockB (SuperSoda)
 
     {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": [["Cake"]], "pseudoitems": ["MF_Ch4_GaveCakeToGourmetGuy"]}, #+ Give Cake to Gourmet Guy
 
