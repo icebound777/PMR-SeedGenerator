@@ -6,7 +6,10 @@ from rando_enums.enum_options import BowserCastleMode, GearShuffleMode
 from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
 from optionset import OptionSet
-from rando_modules.logic import place_items, get_item_spheres, get_items_to_exclude
+from rando_modules.logic import \
+    place_items,\
+    get_item_spheres,\
+    get_items_to_exclude
 from rando_modules.random_blocks import get_block_placement
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.modify_entrances import \
@@ -18,17 +21,22 @@ from rando_modules.modify_entrances import \
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
-from rando_modules.random_palettes     \
-    import get_randomized_coinpalette, \
-           get_randomized_palettes
+from rando_modules.random_palettes import \
+    get_randomized_coinpalette,\
+    get_randomized_palettes
 from rando_modules.random_partners import get_rnd_starting_partners
 from rando_modules.random_quizzes import get_randomized_quizzes
+from rando_modules.random_shop_prices import get_shop_price
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
 from worldgraph import \
     generate as generate_world_graph,\
-    check_unreachable_from_start
+    check_unreachable_from_start,\
+    enrich_graph_data
 from metadata.starting_maps import starting_maps
-from metadata.starting_items import allowed_starting_badges, allowed_starting_items, allowed_starting_key_items
+from metadata.starting_items import \
+    allowed_starting_badges,\
+    allowed_starting_items,\
+    allowed_starting_key_items
 from db.item import Item
 
 class RandomSeed:
@@ -99,6 +107,8 @@ class RandomSeed:
             self.rando_settings.bowsers_castle_mode["value"]
         )
 
+        world_graph = enrich_graph_data(world_graph)
+
         # Adjust further settings
         hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
         if self.rando_settings.glitch_settings.knows_hidden_blocks["value"]:
@@ -119,7 +129,10 @@ class RandomSeed:
                 else:
                     magical_seeds_required = self.rando_settings.magical_seeds_required["value"]
 
-                self.init_starting_items(self.rando_settings, magical_seeds_required)
+                self.init_starting_items(
+                    self.rando_settings,
+                    magical_seeds_required
+                )
 
                 world_graph_copy = deepcopy(world_graph)
                 place_items(
@@ -128,7 +141,6 @@ class RandomSeed:
                     do_shuffle_items=self.rando_settings.shuffle_items["value"],
                     do_randomize_coins=self.rando_settings.include_coins["value"],
                     do_randomize_shops=self.rando_settings.include_shops["value"],
-                    merlow_reward_pricing=self.rando_settings.merlow_reward_pricing,
                     do_randomize_panels=self.rando_settings.include_panels["value"],
                     randomize_favors_mode=self.rando_settings.include_favors_mode,
                     randomize_letters_mode=self.rando_settings.include_letters_mode,
@@ -168,7 +180,15 @@ class RandomSeed:
             except UnbeatableSeedError as err:
                 print(f"Failed to place items! Fail count: {placement_attempt}")
 
-        
+        # Adjust item pricing
+        for node in self.placed_items:
+            if "Shop" in node.identifier:
+                node.current_item.base_price = get_shop_price(
+                    node,
+                    self.rando_settings.include_shops["value"],
+                    self.rando_settings.merlow_reward_pricing
+                )
+
         # Modify Mystery? item
         self.rando_settings.mystery_settings = get_random_mystery(
             self.rando_settings.mystery_settings
@@ -179,7 +199,9 @@ class RandomSeed:
         #self.placed_items = get_alpha_prices(self.placed_items)
 
         # Randomize blocks if needed
-        self.placed_blocks = get_block_placement(self.rando_settings.shuffle_blocks)
+        self.placed_blocks = get_block_placement(
+            self.rando_settings.shuffle_blocks
+        )
 
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(
@@ -287,12 +309,16 @@ class RandomSeed:
                     break
             else:
                 start_chapter = 0
-        
+
         return start_chapter, starting_map_value
 
 
 
-    def init_starting_items(self, rando_settings:OptionSet, magical_seeds_needed:int):
+    def init_starting_items(
+        self,
+        rando_settings:OptionSet,
+        magical_seeds_needed:int
+    ):
         """
         Initialize the starting items from either the chosen starting items or
         pick them randomly.

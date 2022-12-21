@@ -65,16 +65,13 @@ edges_kkj = [
     # KKJ_16 Library (2F)
     {"from": {"map": "KKJ_16", "id": 0}, "to": {"map": "KKJ_11", "id": 2}, "reqs": []}, # Library (2F) Door Right -> Upper Hall (2F) Door Left
 
-    {"from": {"map": "KKJ_16", "id": 0},       "to": {"map": "KKJ_16", "id": "ItemA"}, "reqs": [["can_climb_steps"]]}, #* Library (2F) Door Right -> ItemA (LifeShroom)
-    {"from": {"map": "KKJ_16", "id": "ItemA"}, "to": {"map": "KKJ_16", "id": 0},       "reqs": []}, #* ItemA (LifeShroom) -> Library (2F) Door Right
-    {"from": {"map": "KKJ_16", "id": 0},       "to": {"map": "KKJ_16", "id": "ItemB"}, "reqs": []}, #* Library (2F) Door Right -> ItemB (PowerRush)
-    {"from": {"map": "KKJ_16", "id": "ItemB"}, "to": {"map": "KKJ_16", "id": 0},       "reqs": []}, #* ItemB (PowerRush) -> Library (2F) Door Right
+    {"from": {"map": "KKJ_16", "id": 0}, "to": {"map": "KKJ_16", "id": "ItemA"}, "reqs": [["can_climb_steps"]]}, #* Library (2F) Door Right -> ItemA (LifeShroom)
+    {"from": {"map": "KKJ_16", "id": 0}, "to": {"map": "KKJ_16", "id": "ItemB"}, "reqs": []}, #* Library (2F) Door Right -> ItemB (PowerRush)
 
     # KKJ_17 Storeroom (2F)
     {"from": {"map": "KKJ_17", "id": 0}, "to": {"map": "KKJ_11", "id": 5}, "reqs": []}, # Storeroom (2F) Door Left -> Upper Hall (2F) Door Right
 
-    {"from": {"map": "KKJ_17", "id": 0},       "to": {"map": "KKJ_17", "id": "ItemA"}, "reqs": []}, #* Storeroom (2F) Door Left -> ItemA (DeepFocus1)
-    {"from": {"map": "KKJ_17", "id": "ItemA"}, "to": {"map": "KKJ_17", "id": 0},       "reqs": []}, #* ItemA (DeepFocus1) -> Storeroom (2F) Door Left
+    {"from": {"map": "KKJ_17", "id": 0}, "to": {"map": "KKJ_17", "id": "ItemA"}, "reqs": []}, #* Storeroom (2F) Door Left -> ItemA (DeepFocus1)
 
     # KKJ_18 Dining Room (2F)
     {"from": {"map": "KKJ_18", "id": 0}, "to": {"map": "KKJ_11", "id": 6}, "reqs": []}, # Dining Room (2F) Door Left -> Upper Hall (2F) Door Bottom Right
@@ -85,8 +82,7 @@ edges_kkj = [
     # KKJ_20 Guest Room (1F)
     {"from": {"map": "KKJ_20", "id": 0}, "to": {"map": "KKJ_10", "id": 4}, "reqs": []}, # Guest Room (1F) Door Left -> Entry Hall (1F) Door Far Right
 
-    {"from": {"map": "KKJ_20", "id": 0},        "to": {"map": "KKJ_20", "id": "ChestA"}, "reqs": []}, #* Guest Room (1F) Door Left -> ChestA (LastStand)
-    {"from": {"map": "KKJ_20", "id": "ChestA"}, "to": {"map": "KKJ_20", "id": 0},        "reqs": []}, #* ChestA (LastStand) -> Guest Room (1F) Door Left
+    {"from": {"map": "KKJ_20", "id": 0}, "to": {"map": "KKJ_20", "id": "ChestA"}, "reqs": []}, #* Guest Room (1F) Door Left -> ChestA (LastStand)
 
     # KKJ_21 Inactive Quiz-Off (1F)
     {"from": {"map": "KKJ_21", "id": 0}, "to": {"map": "KKJ_10", "id": 2}, "reqs": []}, # Inactive Quiz-Off (1F) Door Right -> Entry Hall (1F) Door Far Left

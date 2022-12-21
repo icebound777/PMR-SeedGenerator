@@ -147,7 +147,7 @@ def get_area_edges(area_shorthand:str):
     return hashabledicts
 
 
-def generate(node_list, edge_list):
+def generate(node_list: list, edge_list: list):
     """
     Generates and returns a world graph dictionary with nodes' node_ids in string form as keys and
     a list of neighboring nodes' node_ids in string form as values.
@@ -164,17 +164,44 @@ def generate(node_list, edge_list):
         world_graph[node.identifier]["edge_list"] = []
 
         edge_list_cpy = edge_list.copy()
-        for edge in edge_list:
+        for edge in edge_list_cpy:
             if edge.get("from").get("map") == node.map_area.name:
-                if edge.get("to").get("map") is None:
-                    # This edge exists for completeness' sake only and has no use inside the graph
-                    pass
-                elif (   edge.get("from").get("id") == node.entrance_id
-                      or edge.get("from").get("id") == node.key_name_item):
+                if (   edge.get("from").get("id") == node.entrance_id
+                    or edge.get("from").get("id") == node.key_name_item
+                ):
                     world_graph[node.identifier]["edge_list"].append(edge)
-                    if not node.map_area.name.startswith("PRA_02"):
-                        edge_list_cpy.remove(edge)
-        edge_list = edge_list_cpy
+                    edge_list.remove(edge)
+
+    return world_graph
+
+
+def enrich_graph_data(world_graph: dict) -> dict:
+    world_graph = _setup_node_ids(world_graph)
+    world_graph = _index_edges(world_graph)
+
+    return world_graph
+
+
+def _setup_node_ids(world_graph: dict) -> dict:
+    for entry in world_graph:
+        if entry != "edge_index":
+            for edge in world_graph[entry]["edge_list"]:
+                # Create target_node_id
+                edge["target_node_id"] = f'{edge["to"]["map"]}/{edge["to"]["id"]}'
+
+    return world_graph
+
+
+def _index_edges(world_graph: dict) -> dict:
+    world_graph["edge_index"] = {}
+    edge_id = 0
+
+    for node_id in world_graph:
+        if node_id != "edge_index":
+            for i, _ in enumerate(world_graph[node_id]["edge_list"]):
+                world_graph["edge_index"][edge_id] = world_graph[node_id]["edge_list"][i]
+                world_graph[node_id]["edge_list"][i]["edge_id"] = edge_id
+                edge_id = edge_id + 1
 
     return world_graph
 

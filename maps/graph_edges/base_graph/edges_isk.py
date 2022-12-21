@@ -19,8 +19,7 @@ edges_isk = [
     {"from": {"map": "ISK_02", "id": 0}, "to": {"map": "ISK_02", "id": 2}, "reqs": []}, #? Sarcophagus Hall 1 Exit Left -> Sarcophagus Hall 1 Exit Bottom Right
     {"from": {"map": "ISK_02", "id": 2}, "to": {"map": "ISK_02", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Sarcophagus Hall 1 Exit Bottom Right -> Sarcophagus Hall 1 Exit Left
 
-    {"from": {"map": "ISK_02", "id": 0},       "to": {"map": "ISK_02", "id": "ItemA"}, "reqs": []}, #* Sarcophagus Hall 1 Exit Left -> ItemA (SpikeShield)
-    {"from": {"map": "ISK_02", "id": "ItemA"}, "to": {"map": "ISK_02", "id": 0},       "reqs": []}, #* ItemA (SpikeShield) -> Sarcophagus Hall 1 Exit Left
+    {"from": {"map": "ISK_02", "id": 0}, "to": {"map": "ISK_02", "id": "ItemA"}, "reqs": []}, #* Sarcophagus Hall 1 Exit Left -> ItemA (SpikeShield)
 
     # ISK_03 Sand Drainage Room 1
     {"from": {"map": "ISK_03", "id": 0}, "to": {"map": "ISK_02", "id": 1}, "reqs": []}, # Sand Drainage Room 1 Exit Upper Room Left -> Sarcophagus Hall 1 Exit Top Right
@@ -32,8 +31,7 @@ edges_isk = [
 
     {"from": {"map": "ISK_03", "id": 0}, "to": {"map": "ISK_03", "id": 0}, "reqs": [["can_climb_steps"]], "pseudoitems": ["MF_ISK03_DrainedFirstSandRoom"]}, #+ Sand Drainage Room 1 Exit Upper Room Left
 
-    {"from": {"map": "ISK_03", "id": 1},       "to": {"map": "ISK_03", "id": "ItemA"}, "reqs": [["can_climb_steps","MF_ISK03_DrainedFirstSandRoom"]]}, #* Sand Drainage Room 1 Exit Lower Room Left -> ItemA (RuinsKey)
-    {"from": {"map": "ISK_03", "id": "ItemA"}, "to": {"map": "ISK_03", "id": 1},       "reqs": []}, #* ItemA (RuinsKey) -> Sand Drainage Room 1 Exit Lower Room Left
+    {"from": {"map": "ISK_03", "id": 1}, "to": {"map": "ISK_03", "id": "ItemA"}, "reqs": [["can_climb_steps","MF_ISK03_DrainedFirstSandRoom"]]}, #* Sand Drainage Room 1 Exit Lower Room Left -> ItemA (RuinsKey)
 
     # ISK_04 Descending Stairs 1
     {"from": {"map": "ISK_04", "id": 0}, "to": {"map": "ISK_03", "id": 2}, "reqs": []}, # Descending Stairs 1 Exit Middle Left -> Sand Drainage Room 1 Exit Lower Room Right
@@ -55,17 +53,14 @@ edges_isk = [
     # ISK_05 Pyramid Stone Room
     {"from": {"map": "ISK_05", "id": 0}, "to": {"map": "ISK_04", "id": 4}, "reqs": []}, # Pyramid Stone Room Exit Left -> Descending Stairs 1 Exit Bottom Right
 
-    {"from": {"map": "ISK_05", "id": 0},       "to": {"map": "ISK_05", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"],["can_climb_steps"]]}, #* Pyramid Stone Room Exit Left -> ItemA (PyramidStone)
-    {"from": {"map": "ISK_05", "id": "ItemA"}, "to": {"map": "ISK_05", "id": 0},       "reqs": []}, #* ItemA (PyramidStone) -> Pyramid Stone Room Exit Left
+    {"from": {"map": "ISK_05", "id": 0}, "to": {"map": "ISK_05", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"],["can_climb_steps"]]}, #* Pyramid Stone Room Exit Left -> ItemA (PyramidStone)
 
     # ISK_06 Sand Drainage Room 2
     {"from": {"map": "ISK_06", "id": 0}, "to": {"map": "ISK_04", "id": 2}, "reqs": []}, # Sand Drainage Room 2 Exit Upper Room Left -> Descending Stairs 1 Exit Top Right Cracked Wall
     {"from": {"map": "ISK_06", "id": 1}, "to": {"map": "ISK_04", "id": 3}, "reqs": []}, # Sand Drainage Room 2 Exit Lower Room Left -> Descending Stairs 1 Exit Middle Right
 
-    {"from": {"map": "ISK_06", "id": 0},       "to": {"map": "ISK_06", "id": "ItemA"}, "reqs": [["MF_ISK06_DrainedSecondSandRoom"]]}, #* Sand Drainage Room 2 Exit Upper Room Left -> ItemA (StarPiece)
-    {"from": {"map": "ISK_06", "id": "ItemA"}, "to": {"map": "ISK_06", "id": 0},       "reqs": []}, #* ItemA (StarPiece) -> Sand Drainage Room 2 Exit Upper Room Left
-    {"from": {"map": "ISK_06", "id": 1},       "to": {"map": "ISK_06", "id": "ItemB"}, "reqs": [["MF_ISK06_DrainedSecondSandRoom"]]}, #* Sand Drainage Room 2 Exit Lower Room Left -> ItemB (RuinsKey)
-    {"from": {"map": "ISK_06", "id": "ItemB"}, "to": {"map": "ISK_06", "id": 1},       "reqs": []}, #* ItemB (RuinsKey) -> Sand Drainage Room 2 Exit Lower Room Left
+    {"from": {"map": "ISK_06", "id": 0}, "to": {"map": "ISK_06", "id": "ItemA"}, "reqs": [["MF_ISK06_DrainedSecondSandRoom"]]}, #* Sand Drainage Room 2 Exit Upper Room Left -> ItemA (StarPiece)
+    {"from": {"map": "ISK_06", "id": 1}, "to": {"map": "ISK_06", "id": "ItemB"}, "reqs": [["MF_ISK06_DrainedSecondSandRoom"]]}, #* Sand Drainage Room 2 Exit Lower Room Left -> ItemB (RuinsKey)
 
     {"from": {"map": "ISK_06", "id": 0}, "to": {"map": "ISK_06", "id": 0}, "reqs": [["can_climb_steps"]], "pseudoitems": ["MF_ISK06_DrainedSecondSandRoom"]}, #+ Sand Drainage Room 2 Exit Upper Room Left
 
@@ -76,10 +71,8 @@ edges_isk = [
     {"from": {"map": "ISK_07", "id": 0}, "to": {"map": "ISK_07", "id": 1}, "reqs": [["can_climb_steps"]]}, #? Sarcophagus Hall 2 Exit Left -> Sarcophagus Hall 2 Exit Right
     {"from": {"map": "ISK_07", "id": 1}, "to": {"map": "ISK_07", "id": 0}, "reqs": [[{"RuinsKey": 3}]]}, #? Sarcophagus Hall 2 Exit Right -> Sarcophagus Hall 2 Exit Left
 
-    {"from": {"map": "ISK_07", "id": 1},       "to": {"map": "ISK_07", "id": "ItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Sarcophagus Hall 2 Exit Right -> ItemA (RuinsKey)
-    {"from": {"map": "ISK_07", "id": "ItemA"}, "to": {"map": "ISK_07", "id": 1},       "reqs": []}, #* ItemA (RuinsKey) -> Sarcophagus Hall 2 Exit Right
-    {"from": {"map": "ISK_07", "id": 1},       "to": {"map": "ISK_07", "id": "ItemB"}, "reqs": [["RF_ISK09_OpenedHammerChest"],["can_climb_steps"]]}, #* Sarcophagus Hall 2 Exit Right -> ItemB (Artifact)
-    {"from": {"map": "ISK_07", "id": "ItemB"}, "to": {"map": "ISK_07", "id": 1},       "reqs": []}, #* ItemB (Artifact) -> Sarcophagus Hall 2 Exit Right
+    {"from": {"map": "ISK_07", "id": 1}, "to": {"map": "ISK_07", "id": "ItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Sarcophagus Hall 2 Exit Right -> ItemA (RuinsKey)
+    {"from": {"map": "ISK_07", "id": 1}, "to": {"map": "ISK_07", "id": "ItemB"}, "reqs": [["RF_ISK09_OpenedHammerChest"],["can_climb_steps"]]}, #* Sarcophagus Hall 2 Exit Right -> ItemB (Artifact)
 
     # ISK_08 Descending Stairs 2
     {"from": {"map": "ISK_08", "id": 0}, "to": {"map": "ISK_09", "id": 0}, "reqs": []}, # Descending Stairs 2 Exit Top Left -> Super Hammer Room Exit Right
@@ -97,10 +90,8 @@ edges_isk = [
     # ISK_09 Super Hammer Room
     {"from": {"map": "ISK_09", "id": 0}, "to": {"map": "ISK_08", "id": 0}, "reqs": []}, # Super Hammer Room Exit Right -> Descending Stairs 2 Exit Top Left
 
-    {"from": {"map": "ISK_09", "id": 0},          "to": {"map": "ISK_09", "id": "ChestA"},   "reqs": [["can_climb_steps"]]}, #* Super Hammer Room Exit Right -> ChestA (SlowGo)
-    {"from": {"map": "ISK_09", "id": "ChestA"},   "to": {"map": "ISK_09", "id": 0},          "reqs": []}, #* ChestA (SlowGo) -> Super Hammer Room Exit Right
-    {"from": {"map": "ISK_09", "id": 0},          "to": {"map": "ISK_09", "id": "BigChest"}, "reqs": [["can_climb_steps"]], "pseudoitems": ["RF_ISK09_OpenedHammerChest"]}, #* Super Hammer Room Exit Right -> BigChest (SuperHammer)
-    {"from": {"map": "ISK_09", "id": "BigChest"}, "to": {"map": "ISK_09", "id": 0},          "reqs": []}, #* BigChest (SuperHammer) -> Super Hammer Room Exit Right
+    {"from": {"map": "ISK_09", "id": 0}, "to": {"map": "ISK_09", "id": "ChestA"},   "reqs": [["can_climb_steps"]]}, #* Super Hammer Room Exit Right -> ChestA (SlowGo)
+    {"from": {"map": "ISK_09", "id": 0}, "to": {"map": "ISK_09", "id": "BigChest"}, "reqs": [["can_climb_steps"]], "pseudoitems": ["RF_ISK09_OpenedHammerChest"]}, #* Super Hammer Room Exit Right -> BigChest (SuperHammer)
 
     # ISK_10 Vertical Shaft
     {"from": {"map": "ISK_10", "id": 0}, "to": {"map": "ISK_08", "id": 1}, "reqs": []}, # Vertical Shaft Exit Top Right -> Descending Stairs 2 Exit Bottom Left Cracked Wall
@@ -149,14 +140,12 @@ edges_isk = [
     # ISK_13 Lunar Stone Room
     {"from": {"map": "ISK_13", "id": 0}, "to": {"map": "ISK_12", "id": 3}, "reqs": []}, # Lunar Stone Room Exit Left -> Sand Drainage Room 3 Exit Top Right
 
-    {"from": {"map": "ISK_13", "id": 0},       "to": {"map": "ISK_13", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"],["can_climb_steps"]]}, #* Lunar Stone Room Exit Left -> ItemA (LunarStone)
-    {"from": {"map": "ISK_13", "id": "ItemA"}, "to": {"map": "ISK_13", "id": 0},       "reqs": []}, #* ItemA (LunarStone) -> Lunar Stone Room Exit Left
+    {"from": {"map": "ISK_13", "id": 0}, "to": {"map": "ISK_13", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"],["can_climb_steps"]]}, #* Lunar Stone Room Exit Left -> ItemA (LunarStone)
 
     # ISK_14 Diamond Stone Room
     {"from": {"map": "ISK_14", "id": 0}, "to": {"map": "ISK_10", "id": 1}, "reqs": []}, # Diamond Stone Room Exit Right -> Vertical Shaft Exit Bottom Left
 
-    {"from": {"map": "ISK_14", "id": 0},       "to": {"map": "ISK_14", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"],["can_climb_steps"]]}, #* Diamond Stone Room Exit Right -> ItemA (DiamondStone)
-    {"from": {"map": "ISK_14", "id": "ItemA"}, "to": {"map": "ISK_14", "id": 0},       "reqs": []}, #* ItemA (DiamondStone) -> Diamond Stone Room Exit Right
+    {"from": {"map": "ISK_14", "id": 0}, "to": {"map": "ISK_14", "id": "ItemA"}, "reqs": [["RF_ISK09_OpenedHammerChest"],["can_climb_steps"]]}, #* Diamond Stone Room Exit Right -> ItemA (DiamondStone)
 
     # ISK_16 Tutankoopa Room
     {"from": {"map": "ISK_16", "id": 0}, "to": {"map": "ISK_19", "id": 1}, "reqs": []}, # Tutankoopa Room Exit Left -> Boss Antechamber Exit Right

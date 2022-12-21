@@ -665,10 +665,11 @@ def adjust_rip_cheato_pricing(world_graph: dict, checks_in_logic:int):
     Returns the modified world graph itself with adjusted item check logic for
     the 11 item checks of Rip Cheato.
     """
-    base_cheato_edges = deepcopy([
-        edge for edge in world_graph["TIK_15/1"]["edge_list"]
-            if isinstance(edge["to"]["id"], str)
-    ])
+    base_cheato_edges = []
+    base_cheato_edges.extend([deepcopy(edge) for edge in world_graph["TIK_15/1"]["edge_list"] if isinstance(edge["to"]["id"], str)])
+    for x in "ABCDEFGHIJ":
+        base_cheato_edges.extend(deepcopy([edge for edge in world_graph[f"TIK_15/Gift{x}"]["edge_list"]]))
+
     # late checks first to mark out of logic from the back of Cheato's item list
     base_cheato_edges.sort(key=lambda edge: edge["to"]["id"], reverse=True)
 

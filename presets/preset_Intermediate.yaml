@@ -133,8 +133,8 @@ StarWaySpiritsNeeded : 7 # -1:Random
 BowsersCastleMode    : 1 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 
 # Entrance Shuffle
-ShuffleEntrances        : true  # NYI
-ShuffleEntrancesByArea  : true  # NYI
+ShuffleEntrances        : false # NYI
+ShuffleEntrancesByArea  : false # NYI
 ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI
 RandomizeOnewayEntrances: false # NYI
@@ -187,11 +187,12 @@ WattSetting      : 0
 WattSprite       : 0
 SushieSetting    : 0
 SushieSprite     : 0
-#LakilesterSetting: 0 # NYI
-#LakilesterSprite : 0 # NYI
+LakilesterSetting: 0
+LakilesterSprite : 0
 BossesSetting    : 0
 EnemiesSetting   : 0
 NPCSetting       : 0
+HammerSetting    : 0
 
 # Joke options
 RomanNumerals: false

@@ -42,13 +42,13 @@
             "dest_map": "PRA_16",
             "dest_entry": 0,
             "type": "door",
-            "verbose_name": "Blue/Red Door"
+            "verbose_name": "Red Door"
         },
         "3": {
             "dest_map": "PRA_16",
             "dest_entry": 3,
             "type": "door",
-            "verbose_name": "Blue/Red Door (Mirror Side)"
+            "verbose_name": "Red Door (Mirror Side)"
         },
         "4": {
             "dest_map": "PRA_04",
@@ -61,6 +61,18 @@
             "dest_entry": 2,
             "type": "door",
             "verbose_name": "Entrance Door (Mirror Side)"
+        },
+        "6": {
+            "dest_map": "PRA_13",
+            "dest_entry": 0,
+            "type": "door",
+            "verbose_name": "Blue Door"
+        },
+        "7": {
+            "dest_map": "PRA_13",
+            "dest_entry": 3,
+            "type": "door",
+            "verbose_name": "Blue Door (Mirror Side)"
         }
     },
     "PRA_03": {
@@ -166,7 +178,7 @@
     "PRA_13": {
         "0": {
             "dest_map": "PRA_02",
-            "dest_entry": 2,
+            "dest_entry": 6,
             "type": "door",
             "verbose_name": "Door West"
         },
@@ -184,7 +196,7 @@
         },
         "3": {
             "dest_map": "PRA_02",
-            "dest_entry": 3,
+            "dest_entry": 7,
             "type": "door",
             "verbose_name": "Door West (Mirror Side)"
         }

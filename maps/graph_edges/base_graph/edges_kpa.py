@@ -7,8 +7,7 @@ edges_kpa = [
     {"from": {"map": "KPA_01",  "id": 0}, "to": {"map": "KPA_01",  "id": 1}, "reqs": [["Parakarry"]]}, #? Dark Cave 1 Door Bottom Left -> Dark Cave 1 Exit Top Left
     {"from": {"map": "KPA_01",  "id": 1}, "to": {"map": "KPA_01",  "id": 0}, "reqs": []}, #? Dark Cave 1 Exit Top Left -> Dark Cave 1 Door Bottom Left
 
-    {"from": {"map": "KPA_01",  "id": 1},         "to": {"map": "KPA_01",  "id": "YBlockA"}, "reqs": [["Parakarry"],["can_hit_floating_blocks"]]}, #* Dark Cave 1 Exit Top Left -> YBlockA (POWBlock)
-    {"from": {"map": "KPA_01",  "id": "YBlockA"}, "to": {"map": "KPA_01",  "id": 1},         "reqs": []}, #* YBlockA (POWBlock) -> Dark Cave 1 Exit Top Left
+    {"from": {"map": "KPA_01",  "id": 1}, "to": {"map": "KPA_01",  "id": "YBlockA"}, "reqs": [["Parakarry"],["can_hit_floating_blocks"]]}, #* Dark Cave 1 Exit Top Left -> YBlockA (POWBlock)
 
     # KPA_03 Dark Cave 2
     {"from": {"map": "KPA_03",  "id": 0}, "to": {"map": "KPA_01",  "id": 1}, "reqs": []}, # Dark Cave 2 Exit Right -> Dark Cave 1 Exit Top Left
@@ -17,8 +16,7 @@ edges_kpa = [
     {"from": {"map": "KPA_03",  "id": 0}, "to": {"map": "KPA_03",  "id": 1}, "reqs": [["Parakarry"]]}, #? Dark Cave 2 Exit Right -> Dark Cave 2 Door Top Left
     {"from": {"map": "KPA_03",  "id": 1}, "to": {"map": "KPA_03",  "id": 0}, "reqs": [["can_climb_steps"]]}, #? Dark Cave 2 Door Top Left -> Dark Cave 2 Exit Right
 
-    {"from": {"map": "KPA_03",  "id": 0},         "to": {"map": "KPA_03",  "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Dark Cave 2 Exit Right -> YBlockA (ShootingStar)
-    {"from": {"map": "KPA_03",  "id": "YBlockA"}, "to": {"map": "KPA_03",  "id": 0},         "reqs": []}, #* YBlockA (ShootingStar) -> Dark Cave 2 Exit Right
+    {"from": {"map": "KPA_03",  "id": 0}, "to": {"map": "KPA_03",  "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Dark Cave 2 Exit Right -> YBlockA (ShootingStar)
 
     # KPA_04 Cave Exit
     {"from": {"map": "KPA_04",  "id": 0}, "to": {"map": "KPA_03",  "id": 1}, "reqs": []}, # Cave Exit Door Right -> Dark Cave 2 Door Top Left
@@ -53,8 +51,7 @@ edges_kpa = [
     {"from": {"map": "KPA_10",  "id": 3}, "to": {"map": "KPA_10",  "id": 4}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"]]}, #? Outside Lower Jail (No Lava) Lava Door Left -> Outside Lower Jail (No Lava) Lava Door Right
     {"from": {"map": "KPA_10",  "id": 4}, "to": {"map": "KPA_10",  "id": 3}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"]]}, #? Outside Lower Jail (No Lava) Lava Door Right -> Outside Lower Jail (No Lava) Lava Door Left
 
-    {"from": {"map": "KPA_10",  "id": 4},         "to": {"map": "KPA_10",  "id": "YBlockA"}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"],["can_hit_floating_blocks"]]}, #* Outside Lower Jail (No Lava) Lava Door Right -> YBlockA (LifeShroom)
-    {"from": {"map": "KPA_10",  "id": "YBlockA"}, "to": {"map": "KPA_10",  "id": 4},         "reqs": []}, #* YBlockA (LifeShroom) -> Outside Lower Jail (No Lava) Lava Door Right
+    {"from": {"map": "KPA_10",  "id": 4}, "to": {"map": "KPA_10",  "id": "YBlockA"}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"],["can_hit_floating_blocks"]]}, #* Outside Lower Jail (No Lava) Lava Door Right -> YBlockA (LifeShroom)
 
     # KPA_11 Outside Lower Jail (Lava)
     {"from": {"map": "KPA_11",  "id": 0}, "to": {"map": "KPA_62",  "id": 1}, "reqs": []}, # Outside Lower Jail (Lava) Door Top Left -> Front Door Exterior Door Right
@@ -68,8 +65,7 @@ edges_kpa = [
     {"from": {"map": "KPA_11",  "id": 3}, "to": {"map": "KPA_11",  "id": 4}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"]]}, #? Outside Lower Jail (Lava) Lava Door Left -> Outside Lower Jail (Lava) Lava Door Right
     {"from": {"map": "KPA_11",  "id": 4}, "to": {"map": "KPA_11",  "id": 3}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"]]}, #? Outside Lower Jail (Lava) Lava Door Right -> Outside Lower Jail (Lava) Lava Door Left
 
-    {"from": {"map": "KPA_11",  "id": 0},         "to": {"map": "KPA_11",  "id": "ItemA"},   "reqs": []}, #* Outside Lower Jail (Lava) Door Top Left -> ItemA (BowserCastleKey)
-    {"from": {"map": "KPA_11",  "id": "ItemA"},   "to": {"map": "KPA_11",  "id": 0},         "reqs": [["Boots"]]}, #* ItemA (BowserCastleKey) -> Outside Lower Jail (Lava) Door Top Left
+    {"from": {"map": "KPA_11",  "id": 0}, "to": {"map": "KPA_11",  "id": "ItemA"}, "reqs": []}, #* Outside Lower Jail (Lava) Door Top Left -> ItemA (BowserCastleKey)
 
     # KPA_12 Lava Channel 1
     {"from": {"map": "KPA_12",  "id": 0}, "to": {"map": "KPA_10",  "id": 1}, "reqs": []}, # Lava Channel 1 Door Left -> Outside Lower Jail (No Lava) Door Right
@@ -106,17 +102,14 @@ edges_kpa = [
     {"from": {"map": "KPA_14",  "id": 0}, "to": {"map": "KPA_14",  "id": 2}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"],["Bow","GF_KPA16_ShutOffLava"],["Parakarry","GF_KPA16_ShutOffLava"],["can_climb_steps"]]}, #? Lava Channel 3 Door Left -> Lava Channel 3 Lava Door Center
     {"from": {"map": "KPA_14",  "id": 2}, "to": {"map": "KPA_14",  "id": 0}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"]]}, #? Lava Channel 3 Lava Door Center -> Lava Channel 3 Door Left
 
-    {"from": {"map": "KPA_14",  "id": 0},       "to": {"map": "KPA_14",  "id": "ItemA"}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"],["Lakilester","can_climb_steps"],["Kooper","Parakarry","GF_KPA16_ShutOffLava"],["Kooper","can_climb_steps"],["can_climb_steps","GF_KPA16_ShutOffLava"]]}, #* Lava Channel 3 Door Left -> ItemA (Mystery)
+    {"from": {"map": "KPA_14",  "id": 0}, "to": {"map": "KPA_14",  "id": "ItemA"}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"],["Lakilester","can_climb_steps"],["Kooper","Parakarry","GF_KPA16_ShutOffLava"],["Kooper","can_climb_steps"],["can_climb_steps","GF_KPA16_ShutOffLava"]]}, #* Lava Channel 3 Door Left -> ItemA (Mystery)
     #+ note: above set up from: "(Laki AND (Kooper OR Parakarry) AND can_climb_steps[lava-failsafe]) OR (Lava off AND can_climb_steps)"
-    {"from": {"map": "KPA_14",  "id": "ItemA"}, "to": {"map": "KPA_14",  "id": 0},       "reqs": []}, #* ItemA (Mystery) -> Lava Channel 3 Door Left
-    {"from": {"map": "KPA_14",  "id": 0},       "to": {"map": "KPA_14",  "id": "ItemB"}, "reqs": [["GF_KPA16_ShutOffLava"],["Boots"]]}, #* Lava Channel 3 Door Left -> ItemB (ThunderRage)
-    {"from": {"map": "KPA_14",  "id": "ItemB"}, "to": {"map": "KPA_14",  "id": 0},       "reqs": []}, #* ItemB (ThunderRage) -> Lava Channel 3 Door Left
+    {"from": {"map": "KPA_14",  "id": 0}, "to": {"map": "KPA_14",  "id": "ItemB"}, "reqs": [["GF_KPA16_ShutOffLava"],["Boots"]]}, #* Lava Channel 3 Door Left -> ItemB (ThunderRage)
 
     # KPA_15 Lava Key Room
     {"from": {"map": "KPA_15",  "id": 0}, "to": {"map": "KPA_13",  "id": 2}, "reqs": []}, # Lava Key Room Door Left -> Lava Channel 2 Lava Door Center
 
-    {"from": {"map": "KPA_15",  "id": 0},        "to": {"map": "KPA_15",  "id": "ChestA"}, "reqs": [["GF_KPA16_ShutOffLava"],["can_climb_steps"]]}, #* Lava Key Room Door Left -> ChestA (BowserCastleKey)
-    {"from": {"map": "KPA_15",  "id": "ChestA"}, "to": {"map": "KPA_15",  "id": 0},        "reqs": []}, #* ChestA (BowserCastleKey) -> Lava Key Room Door Left
+    {"from": {"map": "KPA_15",  "id": 0}, "to": {"map": "KPA_15",  "id": "ChestA"}, "reqs": [["GF_KPA16_ShutOffLava"],["can_climb_steps"]]}, #* Lava Key Room Door Left -> ChestA (BowserCastleKey)
 
     # KPA_16 Lava Control Room
     {"from": {"map": "KPA_16",  "id": 0}, "to": {"map": "KPA_14",  "id": 2}, "reqs": []}, # Lava Control Room Lava Door Left -> Lava Channel 3 Lava Door Center
@@ -124,7 +117,7 @@ edges_kpa = [
     {"from": {"map": "KPA_16",  "id": 0}, "to": {"map": "KPA_16",  "id": 0}, "reqs": [["Lakilester"],["can_climb_steps"]], "pseudoitems": ["GF_KPA16_ShutOffLava"]}, #+ Shut off Lava Control
 
     # KPA_17 Lower Jail
-    {"from": {"map": "KPA_17",  "id": 0}, "to": {"map": None, "id": None}, "reqs": []},   # Lower Jail Fall From Ceiling
+    #{"from": {"map": "KPA_17",  "id": 0}, "to": {"map": None, "id": None}, "reqs": []},   # Lower Jail Fall From Ceiling
     {"from": {"map": "KPA_17",  "id": 1}, "to": {"map": "KPA_10",  "id": 2}, "reqs": []}, # Lower Jail Cracked Wall Right -> Outside Lower Jail (No Lava) Cracked Wall To Jail
     {"from": {"map": "KPA_17",  "id": 1}, "to": {"map": "KPA_11",  "id": 2}, "reqs": []}, # Lower Jail Cracked Wall Right -> Outside Lower Jail (Lava) Cracked Wall To Jail
 
@@ -132,9 +125,7 @@ edges_kpa = [
     {"from": {"map": "KPA_17",  "id": 1}, "to": {"map": "KPA_17",  "id": 0}, "reqs": []}, #? Lower Jail Cracked Wall Right -> Lower Jail Fall From Ceiling
 
     {"from": {"map": "KPA_17",  "id": 0},        "to": {"map": "KPA_17",  "id": "CrateA"}, "reqs": [["SuperBoots"]]}, #* Lower Jail Fall From Ceiling -> CrateA (TastyTonic)
-    {"from": {"map": "KPA_17",  "id": "CrateA"}, "to": {"map": "KPA_17",  "id": 0},        "reqs": []}, #* CrateA (TastyTonic) -> Lower Jail Fall From Ceiling
-    {"from": {"map": "KPA_17",  "id": 0},        "to": {"map": "KPA_17",  "id": "CrateB"}, "reqs": [["SuperBoots"]]}, #* Lower Jail Fall From Ceiling -> CrateB (LifeShroom)
-    {"from": {"map": "KPA_17",  "id": "CrateB"}, "to": {"map": "KPA_17",  "id": 0},        "reqs": []}, #* CrateB (LifeShroom) -> Lower Jail Fall From Ceiling
+    {"from": {"map": "KPA_17",  "id": "CrateA"}, "to": {"map": "KPA_17",  "id": "CrateB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> CrateB (LifeShroom)
 
     # KPA_32 Lower Grand Hall
     {"from": {"map": "KPA_32",  "id": 0}, "to": {"map": "KPA_81",  "id": 2}, "reqs": []}, # Lower Grand Hall Door Bottom Left -> Guard Door 1 Guard Door Right
@@ -166,7 +157,7 @@ edges_kpa = [
     {"from": {"map": "KPA_40",  "id": 0}, "to": {"map": "KPA_52",  "id": 1}, "reqs": []}, # Maze Guide Room Door Left -> Split Level Hall Door Bottom Right
     {"from": {"map": "KPA_40",  "id": 1}, "to": {"map": "KPA_40",  "id": 3}, "reqs": []}, # Maze Guide Room Door Bottom Right -> Maze Guide Room Door Top Left
     {"from": {"map": "KPA_40",  "id": 2}, "to": {"map": "KPA_41",  "id": 3}, "reqs": []}, # Maze Guide Room Door Top Right -> Maze Room Door Top Left
-    {"from": {"map": "KPA_40",  "id": 3}, "to": {"map": None,  "id": None},  "reqs": []}, # Maze Guide Room Door Top Left
+    #{"from": {"map": "KPA_40",  "id": 3}, "to": {"map": None,  "id": None},  "reqs": []}, # Maze Guide Room Door Top Left
 
     {"from": {"map": "KPA_40",  "id": 0}, "to": {"map": "KPA_40",  "id": 1}, "reqs": []}, #? Maze Guide Room Door Left -> Maze Guide Room Door Bottom Right
     {"from": {"map": "KPA_40",  "id": 1}, "to": {"map": "KPA_40",  "id": 0}, "reqs": []}, #? Maze Guide Room Door Bottom Right -> Maze Guide Room Door Left
@@ -233,13 +224,9 @@ edges_kpa = [
     {"from": {"map": "KPA_61",  "id": 1}, "to": {"map": "KPA_61",  "id": 0}, "reqs": []}, #? Battlement Door Top Left -> Battlement Door Bottom Left
 
     {"from": {"map": "KPA_61",  "id": 0},         "to": {"map": "KPA_61",  "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Battlement Door Bottom Left -> YBlockA (SuperShroom)
-    {"from": {"map": "KPA_61",  "id": "YBlockA"}, "to": {"map": "KPA_61",  "id": 0},         "reqs": []}, #* YBlockA (SuperShroom) -> Battlement Door Bottom Left
-    {"from": {"map": "KPA_61",  "id": 0},         "to": {"map": "KPA_61",  "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Battlement Door Bottom Left -> YBlockB (MapleSyrup)
-    {"from": {"map": "KPA_61",  "id": "YBlockB"}, "to": {"map": "KPA_61",  "id": 0},         "reqs": []}, #* YBlockB (MapleSyrup) -> Battlement Door Bottom Left
-    {"from": {"map": "KPA_61",  "id": 0},         "to": {"map": "KPA_61",  "id": "YBlockC"}, "reqs": [["can_hit_floating_blocks"]]}, #* Battlement Door Bottom Left -> YBlockC (SuperShroom)
-    {"from": {"map": "KPA_61",  "id": "YBlockC"}, "to": {"map": "KPA_61",  "id": 0},         "reqs": []}, #* YBlockC (SuperShroom) -> Battlement Door Bottom Left
+    {"from": {"map": "KPA_61",  "id": "YBlockA"}, "to": {"map": "KPA_61",  "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (MapleSyrup)
+    {"from": {"map": "KPA_61",  "id": "YBlockA"}, "to": {"map": "KPA_61",  "id": "YBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockC (SuperShroom)
     {"from": {"map": "KPA_61",  "id": 1},         "to": {"map": "KPA_61",  "id": "ItemA"},   "reqs": []}, #* Battlement Door Top Left -> ItemA (JamminJelly)
-    {"from": {"map": "KPA_61",  "id": "ItemA"},   "to": {"map": "KPA_61",  "id": 1},         "reqs": []}, #* ItemA (JamminJelly) -> Battlement Door Top Left
 
     # KPA_62 Front Door Exterior
     {"from": {"map": "KPA_62",  "id": 0}, "to": {"map": "KPA_70",  "id": 0}, "reqs": []}, # Front Door Exterior Front Door -> Entry Lava Hall Door Left
@@ -254,8 +241,7 @@ edges_kpa = [
     {"from": {"map": "KPA_62",  "id": 0}, "to": {"map": "KPA_62",  "id": 3}, "reqs": []}, #? Front Door Exterior Front Door -> Front Door Exterior Hangar Door Bottom Left
     {"from": {"map": "KPA_62",  "id": 3}, "to": {"map": "KPA_62",  "id": 0}, "reqs": [[{"BowserCastleKey": 1}]]}, #? Front Door Exterior Hangar Door Bottom Left -> Front Door Exterior Front Door
 
-    {"from": {"map": "KPA_62",  "id": 2},         "to": {"map": "KPA_62",  "id": "RBlockA"}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"],["can_climb_steps"],["can_hit_floating_blocks"]]}, #* Front Door Exterior Lava Door Right -> RBlockA (DeepFocus3)
-    {"from": {"map": "KPA_62",  "id": "RBlockA"}, "to": {"map": "KPA_62",  "id": 2},         "reqs": [["Lakilester","GF_KPA16_ShutOffLava"]]}, #* RBlockA (DeepFocus3) -> Front Door Exterior Lava Door Right
+    {"from": {"map": "KPA_62",  "id": 2}, "to": {"map": "KPA_62",  "id": "RBlockA"}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"],["can_climb_steps"],["can_hit_floating_blocks"]]}, #* Front Door Exterior Lava Door Right -> RBlockA (DeepFocus3)
 
     # KPA_63 Hangar
     {"from": {"map": "KPA_63",  "id": 0}, "to": {"map": "KPA_62",  "id": 3}, "reqs": []}, # Hangar Door Bottom Right -> Front Door Exterior Hangar Door Bottom Left
@@ -308,8 +294,7 @@ edges_kpa = [
     # KPA_91 East Upper Jail
     {"from": {"map": "KPA_91",  "id": 0}, "to": {"map": "KPA_90",  "id": 1}, "reqs": []}, # East Upper Jail Door Left -> Stairs to East Upper Jail Door Bottom Right To Jail
 
-    {"from": {"map": "KPA_91",  "id": 0},       "to": {"map": "KPA_91",  "id": "ItemA"}, "reqs": []}, #* East Upper Jail Door Left -> ItemA (PrisonKey1)
-    {"from": {"map": "KPA_91",  "id": "ItemA"}, "to": {"map": "KPA_91",  "id": 0},       "reqs": []}, #* ItemA (PrisonKey1) -> East Upper Jail Door Left
+    {"from": {"map": "KPA_91",  "id": 0}, "to": {"map": "KPA_91",  "id": "ItemA"}, "reqs": []}, #* East Upper Jail Door Left -> ItemA (PrisonKey1)
 
     # KPA_94 Stairs to West Upper Jail
     {"from": {"map": "KPA_94",  "id": 0}, "to": {"map": "KPA_95",  "id": 0}, "reqs": []}, # Stairs to West Upper Jail Door Bottom Left To Jail -> West Upper Jail Door Right
@@ -321,36 +306,27 @@ edges_kpa = [
     # KPA_95 West Upper Jail
     {"from": {"map": "KPA_95",  "id": 0}, "to": {"map": "KPA_94",  "id": 0}, "reqs": []}, # West Upper Jail Door Right -> Stairs to West Upper Jail Door Bottom Left To Jail
 
-    {"from": {"map": "KPA_95",  "id": 0},       "to": {"map": "KPA_95",  "id": "ItemA"}, "reqs": []}, #* West Upper Jail Door Right -> ItemA (PrisonKey1)
-    {"from": {"map": "KPA_95",  "id": "ItemA"}, "to": {"map": "KPA_95",  "id": 0},       "reqs": []}, #* ItemA (PrisonKey1) -> West Upper Jail Door Right
+    {"from": {"map": "KPA_95",  "id": 0}, "to": {"map": "KPA_95",  "id": "ItemA"}, "reqs": []}, #* West Upper Jail Door Right -> ItemA (PrisonKey1)
 
     # KPA_96 Item Shop
     {"from": {"map": "KPA_96",  "id": 0}, "to": {"map": "KPA_32",  "id": 3}, "reqs": []}, # Item Shop Door Right -> Lower Grand Hall Door Top Left
 
-    {"from": {"map": "KPA_96",  "id": 0},           "to": {"map": "KPA_96",  "id": "ShopItemA"}, "reqs": []}, #* Item Shop Door Right -> ShopItemA (Mystery)
-    {"from": {"map": "KPA_96",  "id": "ShopItemA"}, "to": {"map": "KPA_96",  "id": 0},           "reqs": []}, #* ShopItemA (Mystery) -> Item Shop Door Right
-    {"from": {"map": "KPA_96",  "id": 0},           "to": {"map": "KPA_96",  "id": "ShopItemB"}, "reqs": []}, #* Item Shop Door Right -> ShopItemB (DizzyDial)
-    {"from": {"map": "KPA_96",  "id": "ShopItemB"}, "to": {"map": "KPA_96",  "id": 0},           "reqs": []}, #* ShopItemB (DizzyDial) -> Item Shop Door Right
-    {"from": {"map": "KPA_96",  "id": 0},           "to": {"map": "KPA_96",  "id": "ShopItemC"}, "reqs": []}, #* Item Shop Door Right -> ShopItemC (POWBlock)
-    {"from": {"map": "KPA_96",  "id": "ShopItemC"}, "to": {"map": "KPA_96",  "id": 0},           "reqs": []}, #* ShopItemC (POWBlock) -> Item Shop Door Right
-    {"from": {"map": "KPA_96",  "id": 0},           "to": {"map": "KPA_96",  "id": "ShopItemD"}, "reqs": []}, #* Item Shop Door Right -> ShopItemD (ThunderRage)
-    {"from": {"map": "KPA_96",  "id": "ShopItemD"}, "to": {"map": "KPA_96",  "id": 0},           "reqs": []}, #* ShopItemD (ThunderRage) -> Item Shop Door Right
-    {"from": {"map": "KPA_96",  "id": 0},           "to": {"map": "KPA_96",  "id": "ShopItemE"}, "reqs": []}, #* Item Shop Door Right -> ShopItemE (MapleSyrup)
-    {"from": {"map": "KPA_96",  "id": "ShopItemE"}, "to": {"map": "KPA_96",  "id": 0},           "reqs": []}, #* ShopItemE (MapleSyrup) -> Item Shop Door Right
-    {"from": {"map": "KPA_96",  "id": 0},           "to": {"map": "KPA_96",  "id": "ShopItemF"}, "reqs": []}, #* Item Shop Door Right -> ShopItemF (SuperShroom)
-    {"from": {"map": "KPA_96",  "id": "ShopItemF"}, "to": {"map": "KPA_96",  "id": 0},           "reqs": []}, #* ShopItemF (SuperShroom) -> Item Shop Door Right
+    {"from": {"map": "KPA_96",  "id": 0}, "to": {"map": "KPA_96",  "id": "ShopItemA"}, "reqs": []}, #* Item Shop Door Right -> ShopItemA (Mystery)
+    {"from": {"map": "KPA_96",  "id": 0}, "to": {"map": "KPA_96",  "id": "ShopItemB"}, "reqs": []}, #* Item Shop Door Right -> ShopItemB (DizzyDial)
+    {"from": {"map": "KPA_96",  "id": 0}, "to": {"map": "KPA_96",  "id": "ShopItemC"}, "reqs": []}, #* Item Shop Door Right -> ShopItemC (POWBlock)
+    {"from": {"map": "KPA_96",  "id": 0}, "to": {"map": "KPA_96",  "id": "ShopItemD"}, "reqs": []}, #* Item Shop Door Right -> ShopItemD (ThunderRage)
+    {"from": {"map": "KPA_96",  "id": 0}, "to": {"map": "KPA_96",  "id": "ShopItemE"}, "reqs": []}, #* Item Shop Door Right -> ShopItemE (MapleSyrup)
+    {"from": {"map": "KPA_96",  "id": 0}, "to": {"map": "KPA_96",  "id": "ShopItemF"}, "reqs": []}, #* Item Shop Door Right -> ShopItemF (SuperShroom)
 
     # KPA_100 Castle Key Room
     {"from": {"map": "KPA_100", "id": 0}, "to": {"map": "KPA_08",  "id": 1}, "reqs": []}, # Castle Key Room Door Left -> Castle Key Timing Puzzle Door Right
 
-    {"from": {"map": "KPA_100", "id": 0},       "to": {"map": "KPA_100", "id": "ItemA"}, "reqs": []}, #* Castle Key Room Door Left -> ItemA (BowserCastleKey)
-    {"from": {"map": "KPA_100", "id": "ItemA"}, "to": {"map": "KPA_100", "id": 0},       "reqs": []}, #* ItemA (BowserCastleKey) -> Castle Key Room Door Left
+    {"from": {"map": "KPA_100", "id": 0}, "to": {"map": "KPA_100", "id": "ItemA"}, "reqs": []}, #* Castle Key Room Door Left -> ItemA (BowserCastleKey)
 
     # KPA_101 Ultra Shroom Room
     {"from": {"map": "KPA_101", "id": 0}, "to": {"map": "KPA_09",  "id": 0}, "reqs": []}, # Ultra Shroom Room Door Right -> Ultra Shroom Timing Puzzle Door Left
 
-    {"from": {"map": "KPA_101", "id": 0},       "to": {"map": "KPA_101", "id": "ItemA"}, "reqs": [["can_climb_steps"]]}, #* Ultra Shroom Room Door Right -> ItemA (UltraShroom)
-    {"from": {"map": "KPA_101", "id": "ItemA"}, "to": {"map": "KPA_101", "id": 0},       "reqs": []}, #* ItemA (UltraShroom) -> Ultra Shroom Room Door Right
+    {"from": {"map": "KPA_101", "id": 0}, "to": {"map": "KPA_101", "id": "ItemA"}, "reqs": [["can_climb_steps"]]}, #* Ultra Shroom Room Door Right -> ItemA (UltraShroom)
 
     # KPA_102 Blue Fire Bridge
     {"from": {"map": "KPA_102", "id": 0}, "to": {"map": "KPA_41",  "id": 2}, "reqs": []}, # Blue Fire Bridge Door Left -> Maze Room Door Top Right
@@ -366,10 +342,8 @@ edges_kpa = [
     {"from": {"map": "KPA_111", "id": 0}, "to": {"map": "KPA_111", "id": 1}, "reqs": []}, #? Room with Hidden Door 1 Door Left -> Room with Hidden Door 1 Hidden Door
     {"from": {"map": "KPA_111", "id": 1}, "to": {"map": "KPA_111", "id": 0}, "reqs": []}, #? Room with Hidden Door 1 Hidden Door -> Room with Hidden Door 1 Door Left
 
-    {"from": {"map": "KPA_111", "id": 0},               "to": {"map": "KPA_111", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* Room with Hidden Door 1 Door Left -> YBlockA (SuperShroom)
-    {"from": {"map": "KPA_111", "id": "YBlockA"},       "to": {"map": "KPA_111", "id": 0},               "reqs": []}, #* YBlockA (SuperShroom) -> Room with Hidden Door 1 Door Left
-    {"from": {"map": "KPA_111", "id": 0},               "to": {"map": "KPA_111", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* Room with Hidden Door 1 Door Left -> HiddenYBlockA (MapleSyrup)
-    {"from": {"map": "KPA_111", "id": "HiddenYBlockA"}, "to": {"map": "KPA_111", "id": 0},               "reqs": []}, #* HiddenYBlockA (MapleSyrup) -> Room with Hidden Door 1 Door Left
+    {"from": {"map": "KPA_111", "id": 0},         "to": {"map": "KPA_111", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* Room with Hidden Door 1 Door Left -> YBlockA (SuperShroom)
+    {"from": {"map": "KPA_111", "id": "YBlockA"}, "to": {"map": "KPA_111", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockA (MapleSyrup)
 
     # KPA_112 Hidden Passage 1
     {"from": {"map": "KPA_112", "id": 0}, "to": {"map": "KPA_111", "id": 1}, "reqs": []}, # Hidden Passage 1 Hidden Door Bottom Left -> Room with Hidden Door 1 Hidden Door
@@ -425,8 +399,7 @@ edges_kpa = [
     # KPA_119 Hidden Key Room
     {"from": {"map": "KPA_119", "id": 0}, "to": {"map": "KPA_118", "id": 1}, "reqs": []}, # Hidden Key Room Door Right -> Hidden Passage 3 Door Left
 
-    {"from": {"map": "KPA_119", "id": 0},       "to": {"map": "KPA_119", "id": "ItemA"}, "reqs": [["can_climb_steps"]]}, #* Hidden Key Room Door Right -> ItemA (BowserCastleKey)
-    {"from": {"map": "KPA_119", "id": "ItemA"}, "to": {"map": "KPA_119", "id": 0},       "reqs": []}, #* ItemA (BowserCastleKey) -> Hidden Key Room Door Right
+    {"from": {"map": "KPA_119", "id": 0}, "to": {"map": "KPA_119", "id": "ItemA"}, "reqs": [["can_climb_steps"]]}, #* Hidden Key Room Door Right -> ItemA (BowserCastleKey)
 
     # KPA_121 Exit to Peach's Castle
     {"from": {"map": "KPA_121", "id": 0}, "to": {"map": "KPA_83",  "id": 1}, "reqs": []}, # Exit to Peach's Castle Door Bottom Left -> Guard Door 3 Guard Door Right
@@ -455,8 +428,7 @@ edges_kpa = [
     {"from": {"map": "KPA_133", "id": 2}, "to": {"map": "KPA_133", "id": 1}, "reqs": []}, #? Left Water Puzzle Door Bottom Right Upper Half -> Left Water Puzzle Door Bottom Right
     {"from": {"map": "KPA_133", "id": 3}, "to": {"map": "KPA_133", "id": 1}, "reqs": []}, #? Left Water Puzzle Door Bombable Wall -> Left Water Puzzle Door Bottom Right
 
-    {"from": {"map": "KPA_133", "id": 3},       "to": {"map": "KPA_133", "id": "ItemA"}, "reqs": [["Sushie"],["RF_WaterLevel2"]]}, #* Left Water Puzzle Door Bombable Wall -> ItemA (BowserCastleKey)
-    {"from": {"map": "KPA_133", "id": "ItemA"}, "to": {"map": "KPA_133", "id": 3},       "reqs": []}, #* ItemA (BowserCastleKey) -> Left Water Puzzle Door Bombable Wall
+    {"from": {"map": "KPA_133", "id": 3}, "to": {"map": "KPA_133", "id": "ItemA"}, "reqs": [["Sushie"],["RF_WaterLevel2"]]}, #* Left Water Puzzle Door Bombable Wall -> ItemA (BowserCastleKey)
 
     # KPA_134 Right Water Puzzle
     {"from": {"map": "KPA_134", "id": 0}, "to": {"map": "KPA_133", "id": 1}, "reqs": []}, # Right Water Puzzle Door Bottom Left -> Left Water Puzzle Door Bottom Right
@@ -469,6 +441,5 @@ edges_kpa = [
     {"from": {"map": "KPA_134", "id": 0}, "to": {"map": "KPA_134", "id": 2}, "reqs": [["Sushie"],["can_climb_steps"],["can_hit_floating_blocks"]]}, #? Right Water Puzzle Door Bottom Left -> Right Water Puzzle Door Bottom Left Upper Half
     {"from": {"map": "KPA_134", "id": 2}, "to": {"map": "KPA_134", "id": 0}, "reqs": [["Sushie"],["can_hit_floating_blocks"]]}, #? Right Water Puzzle Door Bottom Left Upper Half -> Right Water Puzzle Door Bottom Left
 
-    {"from": {"map": "KPA_134", "id": 3},               "to": {"map": "KPA_134", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["UltraBoots"]], "pseudoitems": ["RF_WaterLevel2"]}, #* Right Water Puzzle Bombable Wall -> HiddenYBlockA (MapleSyrup)
-    {"from": {"map": "KPA_134", "id": "HiddenYBlockA"}, "to": {"map": "KPA_134", "id": 3},               "reqs": []}, #* HiddenYBlockA (MapleSyrup) -> Right Water Puzzle Bombable Wall
+    {"from": {"map": "KPA_134", "id": 3}, "to": {"map": "KPA_134", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["UltraBoots"]], "pseudoitems": ["RF_WaterLevel2"]}, #* Right Water Puzzle Bombable Wall -> HiddenYBlockA (MapleSyrup)
 ]
