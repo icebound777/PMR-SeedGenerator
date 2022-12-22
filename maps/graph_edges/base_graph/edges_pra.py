@@ -26,7 +26,7 @@ edges_pra = [
     {"from": {"map": "PRA_02", "id": 0}, "to": {"map": "PRA_02", "id": 2}, "reqs": []}, #? Entry Hall Entrance Door -> Entry Hall Red Door
     {"from": {"map": "PRA_02", "id": 0}, "to": {"map": "PRA_02", "id": 6}, "reqs": []}, #? Entry Hall Entrance Door -> Entry Hall Blue Door
     {"from": {"map": "PRA_02", "id": 2}, "to": {"map": "PRA_02", "id": 0}, "reqs": []}, #? Entry Hall Red Door -> Entry Hall Entrance Door
-    {"from": {"map": "PRA_02", "id": 2}, "to": {"map": "PRA_02", "id": 6}, "reqs": []}, #? Entry Hall Blue Door -> Entry Hall Entrance Door
+    {"from": {"map": "PRA_02", "id": 6}, "to": {"map": "PRA_02", "id": 0}, "reqs": []}, #? Entry Hall Blue Door -> Entry Hall Entrance Door
     {"from": {"map": "PRA_02", "id": 5}, "to": {"map": "PRA_02", "id": 4}, "reqs": []}, #? Entry Hall Entrance Door (Mirror Side) -> Entry Hall Hallway Door (Mirror Side)
     {"from": {"map": "PRA_02", "id": 4}, "to": {"map": "PRA_02", "id": 5}, "reqs": []}, #? Entry Hall Hallway Door (Mirror Side) -> Entry Hall Entrance Door (Mirror Side)
     {"from": {"map": "PRA_02", "id": 3}, "to": {"map": "PRA_02", "id": 5}, "reqs": []}, #? Entry Hall Red Door (Mirror Side) -> Entry Hall Entrance Door (Mirror Side)
