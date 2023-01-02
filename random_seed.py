@@ -56,7 +56,7 @@ class RandomSeed:
         self.palette_data = []
         self.quiz_list = []
         self.music_list = []
-        self.item_spheres_text = None
+        self.item_spheres_dict = None
 
         if seed_value is None:
             self.seed_value = random.randint(0, 0xFFFFFFFF)
@@ -258,7 +258,7 @@ class RandomSeed:
         # Music settings
 
         # Determine item placement spheres
-        self.item_spheres_text = get_item_spheres(
+        self.item_spheres_dict = get_item_spheres(
             item_placement= self.placed_items,
             starting_map_id=self.rando_settings.starting_map["value"],
             startwith_prologue_open=self.rando_settings.prologue_open["value"],

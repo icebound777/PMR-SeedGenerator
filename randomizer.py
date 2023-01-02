@@ -583,13 +583,13 @@ def web_randomizer(jsonSettings, world_graph):
         random_chapter_difficulty=random_seed.chapter_changes,
         settings=rando_settings,
         is_web_spoiler_log=True,
-        spheres_text=random_seed.item_spheres_text
+        spheres_dict=random_seed.item_spheres_dict
     )
 
     timer_end = time.perf_counter()
     print(f'Seed generated in {round(timer_end - timer_start, 2)}s')
     return WebSeedResponse(random_seed.seed_value, patch_file, spoiler_log_file, palette_offset, cosmetics_offset, audio_offset)
-    
+
 
 
 def main_randomizer(args):
@@ -727,7 +727,7 @@ def main_randomizer(args):
             random_chapter_difficulty=random_seed.chapter_changes,
             settings=rando_settings,
             spoilerlog_file=target_spoilerfile,
-            spheres_text=random_seed.item_spheres_text
+            spheres_dict=random_seed.item_spheres_dict
         )
 
     timer_end = time.perf_counter()

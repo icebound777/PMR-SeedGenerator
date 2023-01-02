@@ -137,7 +137,7 @@ class MarioInventory:
                     is_new_pseudoitem = True
                 else:
                     self.partners.add(f'{item_object} (Battle)')
-                    self.item_history.append(f"+{item_object} (Battle)'")
+                    self.item_history.append(f"+{item_object} (Battle)")
                     is_new_pseudoitem = True
             elif item_object.find("StarPiece") != -1:
                 if item_object not in self.starpieces:
