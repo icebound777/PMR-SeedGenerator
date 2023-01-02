@@ -158,7 +158,6 @@ class OptionSet:
 
         # Spoilerlog
         self.write_spoilerlog = True
-        self.pretty_spoilerlog = True
 
         # Cosmetics
         self.color_a = get_option_keyvalue_dict("Box5ColorA")
@@ -478,8 +477,6 @@ class OptionSet:
         # Spoilerlog
         if "WriteSpoilerLog" in options_dict:
             self.write_spoilerlog = options_dict.get("WriteSpoilerLog").get("value")
-        if "PrettySpoilerlog" in options_dict:
-            self.pretty_spoilerlog = options_dict.get("PrettySpoilerlog").get("value")
 
         # Cosmetics General
         if "Box5ColorA" in options_dict:
@@ -1163,8 +1160,6 @@ def validate_options(options_dict):
     # Spoilerlog
     if "WriteSpoilerLog" in options_dict:
         assert isinstance(options_dict.get("WriteSpoilerLog").get("value"), bool)
-    if "PrettySpoilerlog" in options_dict:
-        assert isinstance(options_dict.get("PrettySpoilerlog").get("value"), bool)
 
     # Cosmetics
     if "Box5ColorA" in options_dict:
