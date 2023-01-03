@@ -10,7 +10,7 @@ class Move(Model):
     # partner move, badge move, starpower move
     move_type = CharField(null=True)
     # cost type (FP/BP) and cost value
-    cost_type = IntegerField()
+    cost_type = CharField()
     cost_value = IntegerField()
 
     area_id = IntegerField()
