@@ -2,6 +2,9 @@ import io
 import json
 
 from db.move import Move
+from db.map_area import MapArea
+
+from rando_enums.enum_types import BlockType
 
 from metadata.partners_meta import partner_moves
 from metadata.verbose_area_names import verbose_area_names
@@ -150,6 +153,37 @@ def write_spoiler_log(
     partners_ordered["Lakilester"] = spoiler_dict["move_costs"]["partner"]["Lakilester"]
 
     spoiler_dict["move_costs"]["partner"] = partners_ordered
+
+    # Add super block locations
+    block_dict = dict()
+    block_locations.sort(key=lambda x: x[0])
+    for location_key, block_type in block_locations:
+        if block_type == BlockType.SUPER:
+            # resolve location
+            area_id = (location_key & 0xFF0000) >> 16
+            map_id = (location_key & 0xFF00) >> 8
+            map_area = (
+                MapArea.select(MapArea.name, MapArea.verbose_name)
+                    .where(MapArea.area_id == area_id)
+                    .where(MapArea.map_id == map_id)
+                    .get()
+            )
+            cur_map_name, cur_verbose_map = map_area.name, map_area.verbose_name
+            cur_verbose_area = verbose_area_names.get(cur_map_name[:3])
+
+            cur_verbose_map = cur_verbose_map.replace("'", "")
+            cur_verbose_area = cur_verbose_area.replace("'", "")
+
+            if cur_verbose_area not in block_dict:
+                block_dict[cur_verbose_area] = []
+            block_dict[cur_verbose_area].append(cur_verbose_map)
+    ## order block locations
+
+
+    spoiler_dict["superblocks"] = block_dict
+
+    # Add entrances if applicable
+    # Add (logic only?) settings
 
     # Output spoiler log
     if is_web_spoiler_log:
