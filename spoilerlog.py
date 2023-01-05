@@ -89,25 +89,29 @@ def write_spoiler_log(
 
     def add_move_cost(spoilers:dict, move:Move, cost:int):
         cur_move_type = move.move_type.lower()
+        cur_move_name = move.move_name
+        if cur_move_name.startswith("ChillOut"):
+            # Trim "ChillOutMove" and "ChillOutBadge"
+            cur_move_name = "ChillOut"
 
         if cur_move_type not in spoilers:
             spoilers[cur_move_type] = dict()
-        if (    move.move_name not in spoilers[cur_move_type]
+        if (    cur_move_name not in spoilers[cur_move_type]
             and cur_move_type != "partner"
         ):
-            spoilers[cur_move_type][move.move_name] = dict()
+            spoilers[cur_move_type][cur_move_name] = dict()
 
         cost_type = move.cost_type
         if cur_move_type == "starpower":
             cost_type = "SP"
 
         if cur_move_type == "partner":
-            current_partner = get_partner_by_move(move.move_name)
+            current_partner = get_partner_by_move(cur_move_name)
             if current_partner not in spoilers[cur_move_type]:
                 spoilers[cur_move_type][current_partner] = dict()
-            spoilers[cur_move_type][current_partner][move.move_name] = cost
+            spoilers[cur_move_type][current_partner][cur_move_name] = cost
         else:
-            spoilers[cur_move_type][move.move_name][cost_type] = cost
+            spoilers[cur_move_type][cur_move_name][cost_type] = cost
 
 
     spoiler_dict["move_costs"] = dict()
@@ -177,13 +181,8 @@ def write_spoiler_log(
             if cur_verbose_area not in block_dict:
                 block_dict[cur_verbose_area] = []
             block_dict[cur_verbose_area].append(cur_verbose_map)
-    ## order block locations
-
 
     spoiler_dict["superblocks"] = block_dict
-
-    # Add entrances if applicable
-    # Add (logic only?) settings
 
     # Output spoiler log
     if is_web_spoiler_log:
