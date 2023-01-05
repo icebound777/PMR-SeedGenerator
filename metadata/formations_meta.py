@@ -9,7 +9,8 @@ dont_randomize_formations = [
     "02-07", # JrTroopa6
     "03-XX", # Dojo fights
     "04-XX", # GoombarioTutor, ch8 Embers, Ch1 Magikoopa Miniboss
-    "05-18", # KentCKoopa
+    "05-18", # KentCKoopa,
+    "06-17", # Billblaster x3, having a flying ennemy in the back prevents jumping on the billblasters
     "07-XX", # NinjaKoopas
     "08-XX", # GoombarioTutor2
     "09-0C", # Buzzar
