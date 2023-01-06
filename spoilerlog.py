@@ -21,7 +21,8 @@ def write_spoiler_log(
     is_web_spoiler_log=False,
     spheres_dict:dict=None,
     move_costs:list=None,
-    block_locations:list=None
+    block_locations:list=None,
+    seed_hash_items:list=None
 ):
     """
     Outputs a log file listing the final locations of all items
@@ -32,6 +33,9 @@ def write_spoiler_log(
     sorted_by_key =  sorted(placed_items,  key=lambda node: node.key_name_item)
     sorted_by_map =  sorted(sorted_by_key, key=lambda node: node.map_area.map_id)
     sorted_by_area = sorted(sorted_by_map, key=lambda node: node.map_area.area_id)
+
+    # Add seed hash
+    spoiler_dict["SeedHashItems"] = seed_hash_items
 
     # Add chapter difficulties
     if settings.progressive_scaling["value"]:

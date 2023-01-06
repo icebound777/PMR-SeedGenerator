@@ -553,7 +553,7 @@ def web_randomizer(jsonSettings, world_graph):
         palette_data=random_seed.palette_data,
         quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
-        seed_id=data["SeedID"]["value"]
+        seed_id=random_seed.seed_hash
     )
     patch_file = io.BytesIO(operations)
 
@@ -585,7 +585,8 @@ def web_randomizer(jsonSettings, world_graph):
         is_web_spoiler_log=True,
         spheres_dict=random_seed.item_spheres_dict,
         move_costs=random_seed.move_costs,
-        block_locations=random_seed.placed_blocks
+        block_locations=random_seed.placed_blocks,
+        seed_hash_items=random_seed.seed_hash_items
     )
 
     timer_end = time.perf_counter()
@@ -714,7 +715,8 @@ def main_randomizer(args):
             coin_palette_crcs=random_seed.coin_palette.crcs,
             palette_data=random_seed.palette_data,
             quiz_data=random_seed.quiz_list,
-            music_list=random_seed.music_list
+            music_list=random_seed.music_list,
+            seed_id=random_seed.seed_hash
         )
 
     # Write sorted spoiler log
@@ -731,7 +733,8 @@ def main_randomizer(args):
             spoilerlog_file=target_spoilerfile,
             spheres_dict=random_seed.item_spheres_dict,
             move_costs=random_seed.move_costs,
-            block_locations=random_seed.placed_blocks
+            block_locations=random_seed.placed_blocks,
+            seed_hash_items=random_seed.seed_hash_items
         )
 
     timer_end = time.perf_counter()

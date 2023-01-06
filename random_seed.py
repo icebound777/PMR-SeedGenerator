@@ -1,5 +1,6 @@
 from copy import deepcopy
 import random
+import datetime
 
 from rando_enums.enum_options import BowserCastleMode, GearShuffleMode
 
@@ -32,11 +33,14 @@ from worldgraph import \
     generate as generate_world_graph,\
     check_unreachable_from_start,\
     enrich_graph_data
+
 from metadata.starting_maps import starting_maps
 from metadata.starting_items import \
     allowed_starting_badges,\
     allowed_starting_items,\
     allowed_starting_key_items
+from metadata.item_general import seed_hash_item_names
+
 from db.item import Item
 
 class RandomSeed:
@@ -277,6 +281,9 @@ class RandomSeed:
             world_graph=world_graph
         )
 
+        # Set up seed hash for the save select screen
+        self.set_seed_hash()
+
 
     def init_starting_partners(self,rando_settings):
         # Choose random starting partners if necessary
@@ -384,3 +391,29 @@ class RandomSeed:
                     starting_item_options[i]["value"] = random_item_id
         else:
             self.starting_items = self.rando_settings.get_startitem_list()
+
+
+    def set_seed_hash(self) -> tuple():
+        """
+        Randomly selects 4 items and their indices for displaying an item icon
+        hash representing the seeded game on the save select screen.
+        NOTE: This function resets the internally used random seeding, so
+        after calling this don't do other seed dependent calls to the random
+        module anymore!
+        """
+        random.seed(datetime.datetime.now())
+
+        seed_hash = 0
+        seed_hash_items = []
+
+        for i in range(4):
+            random_index = random.randint(0, 0xFF)
+            seed_hash = seed_hash + (random_index << (8 * i))
+
+            hash_item_name = seed_hash_item_names[random_index]
+            seed_hash_items.append(hash_item_name)
+
+        seed_hash_items.reverse()
+
+        self.seed_hash = seed_hash
+        self.seed_hash_items = seed_hash_items
