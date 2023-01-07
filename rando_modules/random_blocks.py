@@ -6,11 +6,10 @@ import random
 
 from db.block import Block
 
+from rando_enums.enum_types import BlockType
+
 
 def get_block_placement(shuffle_blocks:bool):
-    #BLOCKTYPE_MULTICOIN = 0
-    BLOCKTYPE_SUPER = 1
-
     block_placement = []
 
     if not shuffle_blocks:
@@ -31,8 +30,8 @@ def get_block_placement(shuffle_blocks:bool):
                 db_values[block.vanilla_type] = 1
             else:
                 db_values[block.vanilla_type] = db_values[block.vanilla_type] + 1
-        
-        while BLOCKTYPE_SUPER in db_values and db_keys:
+
+        while BlockType.SUPER in db_values and db_keys:
             # Choose random area, then random db key / block spawn in that area
             area_id = random.choice(list(db_keys))
             db_key = random.choice(db_keys[area_id])
@@ -40,10 +39,10 @@ def get_block_placement(shuffle_blocks:bool):
             if not db_keys[area_id]:
                 db_keys.pop(area_id)
 
-            block_placement.append((db_key, BLOCKTYPE_SUPER))
+            block_placement.append((db_key, BlockType.SUPER))
 
-            db_values[BLOCKTYPE_SUPER] = db_values[BLOCKTYPE_SUPER] - 1
-            if db_values[BLOCKTYPE_SUPER] == 0:
-                db_values.pop(BLOCKTYPE_SUPER)
+            db_values[BlockType.SUPER] = db_values[BlockType.SUPER] - 1
+            if db_values[BlockType.SUPER] == 0:
+                db_values.pop(BlockType.SUPER)
 
     return block_placement

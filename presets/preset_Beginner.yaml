@@ -157,7 +157,6 @@ SkipQuiz           : false
 
 # Spoilerlog
 WriteSpoilerLog : true
-PrettySpoilerlog: true
 
 # Cosmetics
 Box5ColorA     : 0xEBE676FF # Status Bar Color A (main)

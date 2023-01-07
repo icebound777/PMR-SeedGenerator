@@ -25,6 +25,7 @@ class OptionSet:
         self.always_ispy = get_option_keyvalue_dict("AlwaysISpy")
         self.always_peekaboo = get_option_keyvalue_dict("AlwaysPeekaboo")
         self.shorten_cutscenes = get_option_keyvalue_dict("ShortenCutscenes")
+        self.fast_text_skip = get_option_keyvalue_dict("FastTextSkip")
         self.skip_epilogue = get_option_keyvalue_dict("SkipEpilogue")
         self.peachcastle_return_pipe = get_option_keyvalue_dict("PeachCastleReturnPipe")
         self.foliage_item_hints = get_option_keyvalue_dict("FoliageItemHints")
@@ -158,7 +159,6 @@ class OptionSet:
 
         # Spoilerlog
         self.write_spoilerlog = True
-        self.pretty_spoilerlog = True
 
         # Cosmetics
         self.color_a = get_option_keyvalue_dict("Box5ColorA")
@@ -225,6 +225,7 @@ class OptionSet:
             self.always_peekaboo = options_dict.get("AlwaysPeekaboo")
         if "ShortenCutscenes" in options_dict:
             self.shorten_cutscenes = options_dict.get("ShortenCutscenes")
+            self.fast_text_skip["value"] = self.shorten_cutscenes["value"]
         if "SkipEpilogue" in options_dict:
             self.skip_epilogue = options_dict.get("SkipEpilogue")
         if "PeachCastleReturnPipe" in options_dict:
@@ -478,8 +479,6 @@ class OptionSet:
         # Spoilerlog
         if "WriteSpoilerLog" in options_dict:
             self.write_spoilerlog = options_dict.get("WriteSpoilerLog").get("value")
-        if "PrettySpoilerlog" in options_dict:
-            self.pretty_spoilerlog = options_dict.get("PrettySpoilerlog").get("value")
 
         # Cosmetics General
         if "Box5ColorA" in options_dict:
@@ -858,6 +857,7 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("AlwaysPeekaboo").get("value"), bool)
     if "ShortenCutscenes" in options_dict:
         assert isinstance(options_dict.get("ShortenCutscenes").get("value"), bool)
+    # ignore FastTextSkip
     if "SkipEpilogue" in options_dict:
         assert isinstance(options_dict.get("SkipEpilogue").get("value"), bool)
     if "PeachCastleReturnPipe" in options_dict:
@@ -1163,8 +1163,6 @@ def validate_options(options_dict):
     # Spoilerlog
     if "WriteSpoilerLog" in options_dict:
         assert isinstance(options_dict.get("WriteSpoilerLog").get("value"), bool)
-    if "PrettySpoilerlog" in options_dict:
-        assert isinstance(options_dict.get("PrettySpoilerlog").get("value"), bool)
 
     # Cosmetics
     if "Box5ColorA" in options_dict:

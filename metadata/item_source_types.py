@@ -314,7 +314,7 @@ item_source_types = {
                "GiftB": SRC_GIVENBYNPC,
                "GiftC": SRC_GIVENBYNPC,
                "HiddenPanel": SRC_HIDDENTILE,
-               "ItemA": SRC_GIVENBYNPC,},
+               "ItemA": SRC_LAYINGAROUND,},
 
 # Dry Dry Desert
     "SBK_00": {"YBlockA": SRC_ITEMBLOCK,

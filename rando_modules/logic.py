@@ -901,7 +901,11 @@ def get_item_spheres(
     starting_items:list,
     startwith_speedyspin,
     world_graph
-):
+) -> dict:
+    """
+    Builds and returns a dictionary containing progression spheres and their
+    items, showing a possible way of tracing a playthrough.
+    """
 
     # Declare and init additional data structures
     ## Data structures for graph traversal
@@ -912,9 +916,21 @@ def get_item_spheres(
     pool_other_items = []
     pool_misc_progression_items = []
     filled_item_nodes = set()
+    spheres_dict = dict()
 
-    print("Writing Item Spheres")
+    print("Gathering Item Spheres Data")
 
+    # Set node to start graph traversal from
+    starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
+
+    # Find initially reachable nodes within the world graph
+    non_traversable_edges[starting_node_id] = [
+        edge["edge_id"] for edge in world_graph[starting_node_id]["edge_list"]
+    ]
+
+    reachable_node_ids.add(starting_node_id)
+
+    # Init Mario Inventory
     mario = MarioInventory(
         starting_boots,
         starting_hammer,
@@ -931,32 +947,37 @@ def get_item_spheres(
         cook_without_fryingpan
     )
 
-    # Set node to start graph traversal from
-    starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
+    # Add starting items
+    spheres_dict["starting_items"] = []
 
-    # Find initially reachable nodes within the world graph
-    non_traversable_edges[starting_node_id] = [
-        edge["edge_id"] for edge in world_graph[starting_node_id]["edge_list"]
-    ]
-
-    reachable_node_ids.add(starting_node_id)
-
-    item_spheres_text = "Starting Items:\n"
-    item_placement_map = {}
-    mario_item_history = mario.item_history
-
-    for n in item_placement:
-        item_placement_map[n.identifier] = n
-
-    for item in mario_item_history:
+    for item in mario.item_history:
         item_suffix = ""
         item = item[1:] # Remove the trailing + from items in initial mario history
         if item in progression_items.values() or item in progression_miscitems_names:
             item_suffix = "*"
 
-        item_spheres_text += f'    ((Start) Mario\'s inventory): {item}{item_suffix}\n'
+        spheres_dict["starting_items"].append(f"{item}{item_suffix}")
 
-    sphere = 0
+    if starting_boots == 2:
+        spheres_dict["starting_items"].append("ProgressiveBoots*")
+    if starting_boots >= 1:
+        spheres_dict["starting_items"].append("ProgressiveBoots*")
+    if starting_boots >= 0:
+        spheres_dict["starting_items"].append("ProgressiveBoots*")
+
+    if starting_hammer == 2:
+        spheres_dict["starting_items"].append("ProgressiveHammer*")
+    if starting_hammer >= 1:
+        spheres_dict["starting_items"].append("ProgressiveHammer*")
+    if starting_hammer >= 0:
+        spheres_dict["starting_items"].append("ProgressiveHammer*")
+
+    # Scan spheres
+    item_placement_map = {}
+    for n in item_placement:
+        item_placement_map[n.identifier] = n
+
+    cur_sphere = 0
     while item_placement_map:
         pool_misc_progression_items, \
         pool_other_items, \
@@ -974,36 +995,63 @@ def get_item_spheres(
                                   filled_item_nodes,
                                   mario)
 
-        item_spheres_text += '\n'
         if reachable_item_nodes:
-            item_spheres_text += f'Sphere {sphere}:\n'
+            item_spheres_text = f"sphere_{cur_sphere}"
             nodes_to_print = list(reachable_item_nodes.values())
         else:
-            item_spheres_text += f'Unreachable In Logic:\n'
+            item_spheres_text = "unreachable_in_logic"
             nodes_to_print = list(item_placement_map.values())
 
-        nodes_to_print.sort(key=lambda node: (node.map_area.area_id, node.map_area.map_id, node.identifier))
+        nodes_to_print.sort(key=lambda node: \
+            (node.map_area.area_id, node.map_area.map_id, node.identifier)
+        )
 
         for node in nodes_to_print:
-            item = item_placement_map.pop(node.identifier).current_item
-            node_long_name = f'({verbose_area_names[node.map_area.name[:3]]}) {node.map_area.verbose_name} - {verbose_item_locations[node.map_area.name][node.key_name_item]}'
-            item_verbose_name = verbose_item_names[item.item_name] if item.item_name in verbose_item_names else item.item_name
+            if item_spheres_text not in spheres_dict:
+                spheres_dict[item_spheres_text] = dict()
 
-            item_suffix = ""
-            if item.is_trapped():
-                item_spheres_text += f'    ({node_long_name}): TRAP ({item_verbose_name})\n'
+            item = item_placement_map.pop(node.identifier).current_item
+
+            area = verbose_area_names[node.map_area.name[:3]]
+            area = area.replace("'", "")
+            map = (node.map_area.verbose_name)
+            map = map.replace("'", "")
+            item_location = verbose_item_locations[node.map_area.name][node.key_name_item]
+            item_location = item_location.replace("'", "")
+
+            if area not in spheres_dict[item_spheres_text]:
+                spheres_dict[item_spheres_text][area] = dict()
+            area_dict = spheres_dict[item_spheres_text][area]
+
+            full_location = f"{map} - {item_location}"
+            if item.item_name in verbose_item_names:
+                item_name = verbose_item_names[item.item_name]
             else:
+                item_name = item.item_name
+
+            if item.is_trapped():
+                item_name = f"TRAP ({item_name})"
+            else:
+                item_suffix = ""
                 if item.item_type != "ITEM" or is_itemlocation_replenishable(node):
-                    if f"+{item.item_name}" not in mario_item_history and (item.item_name in progression_items.values() or item.item_name in progression_miscitems_names or item.item_type == 'GEAR'):
+                    if (    f"+{item.item_name}" not in mario.item_history
+                        and (   item.item_name in progression_items.values()
+                             or item.item_name in progression_miscitems_names
+                             or item.item_type == 'GEAR')
+                    ):
                         item_suffix = "*"
                     mario.add(item.item_name)
 
-                item_spheres_text += f'    ({node_long_name}): {item_verbose_name}{item_suffix}\n'
+                item_name = f"{item_name}{item_suffix}"
+
+            area_dict[full_location] = item_name
+
         reachable_item_nodes.clear()
-        sphere += 1
+        cur_sphere += 1
 
     assert "YOUWIN" in mario.items
-    return item_spheres_text
+
+    return spheres_dict
 
 
 def place_items(
