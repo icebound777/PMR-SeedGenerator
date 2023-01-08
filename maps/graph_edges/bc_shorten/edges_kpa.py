@@ -20,7 +20,8 @@ edges_kpa_add = [
 
     #? KPA_62 Front Door Exterior Hangar Door Bottom Left -> Front Door Exterior Front Door
     # This removes the key requirement
-    {"from": {"map": "KPA_62",  "id": 3}, "to": {"map": "KPA_62",  "id": 0}, "reqs": [], "mapchange": False},
+    #{"from": {"map": "KPA_62",  "id": 3}, "to": {"map": "KPA_62",  "id": 0}, "reqs": [], "mapchange": False},
+    {"from": {"map": "KPA_62",  "id": 0}, "to": {"map": "KPA_70",  "id": 0}, "reqs": []}, # mhh mapchange? ...
 
     # KPA_82 Guard Door 2 Door Left -> Hall to Guard Door 1 Door Right
     {"from": {"map": "KPA_82",  "id": 0}, "to": {"map": "KPA_50",  "id": 1}, "reqs": []},
@@ -53,12 +54,12 @@ edges_kpa_remove = [
     # KPA_61 Battlement Bottom Left -> Guard Door 2 Guard Door Right
     {"from": {"map": "KPA_61",  "id": 0}, "to": {"map": "KPA_82",  "id": 1}, "reqs": []},
 
-    #? KPA_62 Front Door Exterior Hangar Door Bottom Left -> Front Door Exterior Front Door
+    #? KPA_62 Front Door Exterior Front Door -> Entry Lava Hall Door Left
     # This removes the key requirement
-    {"from": {"map": "KPA_62",  "id": 3}, "to": {"map": "KPA_62",  "id": 0}, "reqs": [[{"BowserCastleKey": 1}]]},
+    {"from": {"map": "KPA_62",  "id": 0}, "to": {"map": "KPA_70",  "id": 0}, "reqs": [[{"BowserCastleKey": 1}]]},
 
     # KPA_82 Guard Door 2 Door Left -> Room with Hidden Door 2 Door Right
-    {"from": {"map": "KPA_82",  "id": 0}, "to": {"map": "KPA_113", "id": 1}, "reqs": []}, 
+    {"from": {"map": "KPA_82",  "id": 0}, "to": {"map": "KPA_113", "id": 1}, "reqs": []},
     # KPA_82 Guard Door 2 Door Left -> Battlement Door Bottom Left
     {"from": {"map": "KPA_82",  "id": 1}, "to": {"map": "KPA_61",  "id": 0}, "reqs": []},
 
