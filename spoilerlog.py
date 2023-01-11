@@ -191,7 +191,7 @@ def write_spoiler_log(
     # Output spoiler log
     if is_web_spoiler_log:
         file = io.StringIO()
-        json.dump(spoiler_dict, file)
+        json.dump(spoiler_dict, file, indent=4)
         file.seek(0)
         return file
     else:
