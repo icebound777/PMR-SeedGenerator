@@ -40,6 +40,8 @@ CustomSeed: false # NYI
 ShuffleItems          : true
 IncludeCoins          : false
 IncludeShops          : true
+ProgressionOnRowf     : true # irrelevant if IncludeShops:false
+ProgressionOnMerlow   : true # irrelevant if IncludeShops:false
 IncludePanels         : true
 IncludeFavorsMode     : 1 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
 IncludeLettersMode    : 1 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle

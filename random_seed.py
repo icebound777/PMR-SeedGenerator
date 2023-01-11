@@ -18,7 +18,7 @@ from rando_modules.modify_entrances import \
     get_bowsercastle_bossrush,\
     get_gear_location_shuffle,\
     get_glitched_logic,\
-    adjust_rip_cheato_pricing
+    adjust_shop_logic
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
@@ -101,8 +101,10 @@ class RandomSeed:
                 world_graph,
                 self.rando_settings.gear_shuffle_mode["value"]
             )
-        world_graph = adjust_rip_cheato_pricing(
+        world_graph = adjust_shop_logic(
             world_graph,
+            self.rando_settings.progression_on_rowf,
+            self.rando_settings.progression_on_merlow,
             self.rando_settings.ripcheato_items_in_logic
         )
         world_graph = get_glitched_logic(

@@ -660,7 +660,70 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     return world_graph
 
 
-def adjust_rip_cheato_pricing(world_graph: dict, checks_in_logic:int):
+def adjust_shop_logic(
+    world_graph: dict,
+    rowf_in_logic:bool,
+    merlow_in_logic:bool,
+    ripcheato_cnt_in_logic:int
+):
+    if not rowf_in_logic:
+        world_graph = _set_rowf_out_of_logic(world_graph)
+    if not merlow_in_logic:
+        world_graph = _set_merlow_out_of_logic(world_graph)
+
+    world_graph = _adjust_rip_cheato_logic(world_graph, ripcheato_cnt_in_logic)
+
+    return world_graph
+
+
+def _set_rowf_out_of_logic(world_graph:dict):
+    remove_rowf_edges = []
+    adjusted_rowf_edges = []
+
+    for edge in world_graph["MAC_01/0"]["edge_list"]:
+        if (    isinstance(edge["to"]["id"], str)
+            and edge["to"]["id"].startswith("ShopBadge")
+        ):
+            remove_rowf_edges.append(deepcopy(edge))
+
+            out_of_logic_edge = deepcopy(edge)
+            out_of_logic_edge["reqs"] = [["RF_OutOfLogic"]]
+            adjusted_rowf_edges.append(out_of_logic_edge)
+
+    world_graph, _ = adjust(
+        world_graph,
+        new_edges=adjusted_rowf_edges,
+        edges_to_remove=remove_rowf_edges
+    )
+
+    return world_graph
+
+
+def _set_merlow_out_of_logic(world_graph:dict):
+    remove_merlow_edges = []
+    adjusted_merlow_edges = []
+
+    for edge in world_graph["HOS_06/0"]["edge_list"]:
+        if (    isinstance(edge["to"]["id"], str)
+            and edge["to"]["id"] == "ShopRewardA"
+        ):
+            remove_merlow_edges.append(deepcopy(edge))
+
+            out_of_logic_edge = deepcopy(edge)
+            out_of_logic_edge["reqs"] = [["RF_OutOfLogic"]]
+            adjusted_merlow_edges.append(out_of_logic_edge)
+            break
+
+    world_graph, _ = adjust(
+        world_graph,
+        new_edges=adjusted_merlow_edges,
+        edges_to_remove=remove_merlow_edges
+    )
+
+    return world_graph
+
+
+def _adjust_rip_cheato_logic(world_graph: dict, checks_in_logic:int):
     """
     Returns the modified world graph itself with adjusted item check logic for
     the 11 item checks of Rip Cheato.
