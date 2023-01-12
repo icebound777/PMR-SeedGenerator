@@ -7,7 +7,7 @@ edges_tik = [
     {"from": {"map": "TIK_01", "id": 3}, "to": {"map": "NOK_02", "id": 2}, "reqs": []}, # Warp Zone 1 (B1) Blue Warp Pipe (Center) -> Koopa Village 2 Blue Pipe
     {"from": {"map": "TIK_01", "id": 4}, "to": {"map": "DRO_01", "id": 2}, "reqs": []}, # Warp Zone 1 (B1) Blue Warp Pipe (Left) -> Outpost 1 Blue Warp Pipe
 
-    {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 1}, "reqs": []}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Exit Left
+    {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 1}, "reqs": [["SuperHammer"]]}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Exit Left
     {"from": {"map": "TIK_01", "id": 1}, "to": {"map": "TIK_01", "id": 0}, "reqs": []}, #? Warp Zone 1 (B1) Exit Left -> Warp Zone 1 (B1) Exit Right
     {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 2}, "reqs": [["GF_TIK01_WarpPipes"],["Boots"]]}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Blue Warp Pipe (Right)
     {"from": {"map": "TIK_01", "id": 2}, "to": {"map": "TIK_01", "id": 0}, "reqs": []}, #? Warp Zone 1 (B1) Blue Warp Pipe (Right) -> Warp Zone 1 (B1) Exit Right
