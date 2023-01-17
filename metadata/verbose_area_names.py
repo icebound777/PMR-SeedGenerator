@@ -19,7 +19,7 @@ verbose_area_names = {
     "JAN": "Jade Jungle",
     "KZN": "Mt Lavalava",
     "FLO": "Flower Fields",
-    "SAM": "Shiver Mountain",
+    "SAM": "Shiver Region",
     "PRA": "Crystal Palace",
     "KPA": "Bowser's Castle",
     "OSR": "Peach's Castle Grounds",

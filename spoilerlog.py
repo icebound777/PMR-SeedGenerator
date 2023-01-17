@@ -31,8 +31,9 @@ def write_spoiler_log(
     spoiler_dict = dict()
 
     sorted_by_key =  sorted(placed_items,  key=lambda node: node.key_name_item)
-    sorted_by_map =  sorted(sorted_by_key, key=lambda node: node.map_area.map_id)
-    sorted_by_area = sorted(sorted_by_map, key=lambda node: node.map_area.area_id)
+    sorted_by_map =  sorted(sorted_by_key, key=lambda node: node.map_area.ordering)
+    # order by area_id except Peachs Castle, that one is last
+    sorted_by_area = sorted(sorted_by_map, key=lambda node: node.map_area.area_id if node.map_area.area_id != 4 else 100)
 
     # Add seed hash
     spoiler_dict["SeedHashItems"] = seed_hash_items

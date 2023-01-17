@@ -9,6 +9,7 @@ from db.map_meta import MapMeta
 class MapArea(Model):
     area_id = IntegerField()
     map_id = IntegerField()
+    ordering = IntegerField()
 
     name = CharField(null=True)
     verbose_name = CharField(null=True)

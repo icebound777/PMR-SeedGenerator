@@ -54,6 +54,8 @@ class OptionSet:
         self.shuffle_items = get_option_keyvalue_dict("ShuffleItems")
         self.include_coins = get_option_keyvalue_dict("IncludeCoins")
         self.include_shops = get_option_keyvalue_dict("IncludeShops")
+        self.progression_on_rowf = True
+        self.progression_on_merlow = True
         self.include_panels = get_option_keyvalue_dict("IncludePanels")
         self.include_favors_mode = IncludeFavorsMode.NOT_RANDOMIZED
         self.include_letters_mode = IncludeLettersMode.NOT_RANDOMIZED
@@ -274,6 +276,10 @@ class OptionSet:
             self.include_coins = options_dict.get("IncludeCoins")
         if "IncludeShops" in options_dict:
             self.include_shops = options_dict.get("IncludeShops")
+        if "ProgressionOnRowf" in options_dict:
+            self.progression_on_rowf = options_dict.get("ProgressionOnRowf").get("value")
+        if "ProgressionOnMerlow" in options_dict:
+            self.progression_on_merlow = options_dict.get("ProgressionOnMerlow").get("value")
         if "IncludePanels" in options_dict:
             self.include_panels = options_dict.get("IncludePanels")
         if "IncludeFavorsMode" in options_dict:
@@ -905,6 +911,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("IncludeCoins").get("value"), bool)
     if "IncludeShops" in options_dict:
         assert isinstance(options_dict.get("IncludeShops").get("value"), bool)
+    if "ProgressionOnRowf" in options_dict:
+        assert isinstance(options_dict.get("ProgressionOnRowf").get("value"), bool)
+    if "ProgressionOnMerlow" in options_dict:
+        assert isinstance(options_dict.get("ProgressionOnMerlow").get("value"), bool)
     if "IncludePanels" in options_dict:
         assert isinstance(options_dict.get("IncludePanels").get("value"), bool)
     if "IncludeFavorsMode" in options_dict:

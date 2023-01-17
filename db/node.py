@@ -8,6 +8,7 @@ from db.map_area import MapArea
 from db.item import Item
 
 from metadata.item_source_types import item_source_types
+from metadata.spoilerlog_order import custom_map_order
 
 # A table that represents all areas of interactivity
 class Node(Model):
@@ -96,9 +97,16 @@ def create_nodes():
 
     # Create item only nodes
     for _, data in item_keys.items():
+        if (   not data["area_id"] in custom_map_order
+            or not data["map_id"] in custom_map_order[data["area_id"]]
+        ):
+            map_order = 100
+        else:
+            map_order = custom_map_order[data["area_id"]][data["map_id"]]
         map_area, created = MapArea.get_or_create(
             area_id = data["area_id"],
             map_id = data["map_id"],
+            ordering = map_order,
             name = data["map_name"],
             verbose_name = MapArea.get_verbose_name(data["map_name"])
         )
@@ -166,9 +174,16 @@ def create_nodes():
         for entrance_id, entrance_data in entrance_keys.items():
 
             if entrance_data["name"] == map_id:
+                if (   not entrance_data["area_id"] in custom_map_order
+                    or not entrance_data["map_id"] in custom_map_order[entrance_data["area_id"]]
+                ):
+                    map_order = 100
+                else:
+                    map_order = custom_map_order[entrance_data["area_id"]][entrance_data["map_id"]]
                 map_area, created = MapArea.get_or_create(
                     area_id = entrance_data["area_id"],
                     map_id = entrance_data["map_id"],
+                    ordering = map_order,
                     name = entrance_data["name"],
                     verbose_name = MapArea.get_verbose_name(entrance_data["name"])
                 )
