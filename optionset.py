@@ -37,7 +37,7 @@ class OptionSet:
 
         self.challenge_mode = get_option_keyvalue_dict("ChallengeMode")
         self.cap_enemy_xp = get_option_keyvalue_dict("CapEnemyXP")
-        self.no_xp = get_option_keyvalue_dict("NoXP")
+        self.xp_multiplier = get_option_keyvalue_dict("XPMultiplier")
         self.damage_x2 = get_option_keyvalue_dict("DoubleDamage")
         self.damage_x4 = get_option_keyvalue_dict("QuadrupleDamage")
         self.ohko = get_option_keyvalue_dict("OHKO")
@@ -247,8 +247,9 @@ class OptionSet:
             self.challenge_mode = options_dict.get("ChallengeMode")
         if "CapEnemyXP" in options_dict:
             self.cap_enemy_xp = options_dict.get("CapEnemyXP")
-        if "NoXP" in options_dict:
-            self.no_xp = options_dict.get("NoXP")
+        if "XPMultiplier" in options_dict:
+            options_dict["XPMultiplier"]["value"] = int(options_dict.get("XPMultiplier").get("value") * 2) # Will get divided by 2 in mod
+            self.xp_multiplier = options_dict.get("XPMultiplier")
         if "DoubleDamage" in options_dict:
             self.damage_x2 = options_dict.get("DoubleDamage")
         if "QuadrupleDamage" in options_dict:
@@ -882,8 +883,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("ChallengeMode").get("value"), bool)
     if "CapEnemyXP" in options_dict:
         assert isinstance(options_dict.get("CapEnemyXP").get("value"), bool)
-    if "NoXP" in options_dict:
-        assert isinstance(options_dict.get("NoXP").get("value"), bool)
+    if "XPMultiplier" in options_dict:
+        assert isinstance(options_dict.get("XPMultiplier").get("value"), (int,float))
     if "DoubleDamage" in options_dict:
         assert isinstance(options_dict.get("DoubleDamage").get("value"), bool)
     if "QuadrupleDamage" in options_dict:

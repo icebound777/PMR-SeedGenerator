@@ -23,7 +23,7 @@ ProgressiveScaling      : false
 
 ChallengeMode  : false
 CapEnemyXP     : false
-NoXP           : false
+XPMultiplier   : 1
 DoubleDamage   : false
 QuadrupleDamage: false
 OHKO           : false
