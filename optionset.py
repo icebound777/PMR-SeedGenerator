@@ -130,6 +130,7 @@ class OptionSet:
         self.magical_seeds_required = get_option_keyvalue_dict("MagicalSeedsRequired")
         self.prologue_open = get_option_keyvalue_dict("PrologueOpen")
         self.bluehouse_open = get_option_keyvalue_dict("BlueHouseOpen")
+        self.mtrugged_open = get_option_keyvalue_dict("MtRuggedOpen")
         self.toybox_open = get_option_keyvalue_dict("ToyboxOpen")
         self.whale_open = get_option_keyvalue_dict("WhaleOpen")
 
@@ -436,6 +437,8 @@ class OptionSet:
             self.prologue_open = options_dict.get("PrologueOpen")
         if "BlueHouseOpen" in options_dict:
             self.bluehouse_open = options_dict.get("BlueHouseOpen")
+        if "MtRuggedOpen" in options_dict:
+            self.mtrugged_open = options_dict.get("MtRuggedOpen")
         if "ToyboxOpen" in options_dict:
             self.toybox_open = options_dict.get("ToyboxOpen")
         if "WhaleOpen" in options_dict:
@@ -1123,6 +1126,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("PrologueOpen").get("value"), bool)
     if "BlueHouseOpen" in options_dict:
         assert isinstance(options_dict.get("BlueHouseOpen").get("value"), bool)
+    if "MtRuggedOpen" in options_dict:
+        assert isinstance(options_dict.get("MtRuggedOpen").get("value"), bool)
     if "ToyboxOpen" in options_dict:
         assert isinstance(options_dict.get("ToyboxOpen").get("value"), bool)
     if "WhaleOpen" in options_dict:

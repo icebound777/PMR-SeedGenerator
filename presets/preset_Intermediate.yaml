@@ -127,6 +127,7 @@ RandomPartnersMax         : 1 # 1-8
 MagicalSeedsRequired: 4 # 5:random
 PrologueOpen        : false
 BlueHouseOpen       : false
+MtRuggedOpen        : false
 ToyboxOpen          : false
 WhaleOpen           : false
 
