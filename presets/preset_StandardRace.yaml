@@ -136,7 +136,7 @@ StarWaySpiritsNeeded: 7 # -1:Random
 BowsersCastleMode   : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 
 # Entrance Shuffle
-ShuffleEntrances        : false # NYI
+ShuffleDungeonRooms     : false # NYI
 ShuffleEntrancesByArea  : false # NYI
 ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI

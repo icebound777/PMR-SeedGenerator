@@ -139,7 +139,7 @@ class OptionSet:
         self.bowsers_castle_mode = get_option_keyvalue_dict("BowsersCastleMode")
 
         # Entrance Shuffle
-        self.shuffle_entrances = get_option_keyvalue_dict("ShuffleEntrances")
+        self.shuffle_dungeon_rooms = get_option_keyvalue_dict("ShuffleDungeonRooms")
         self.shuffle_entrances_by_area = get_option_keyvalue_dict("ShuffleEntrancesByArea")
         self.shuffle_entrances_by_all = get_option_keyvalue_dict("ShuffleEntrancesByAll")
         self.match_entrance_type = get_option_keyvalue_dict("MatchEntranceTypes")
@@ -451,8 +451,8 @@ class OptionSet:
             self.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
 
         # Entrance Shuffle
-        if "ShuffleEntrances" in options_dict:
-            self.shuffle_entrances = options_dict.get("ShuffleEntrances")
+        if "ShuffleDungeonRooms" in options_dict:
+            self.shuffle_dungeon_rooms = options_dict.get("ShuffleDungeonRooms")
         if "ShuffleEntrancesByArea" in options_dict:
             self.shuffle_entrances_by_area = options_dict.get("ShuffleEntrancesByArea")
         if "ShuffleEntrancesByAll" in options_dict:
@@ -1141,8 +1141,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BowsersCastleMode").get("value"), int)
 
     # Entrance Shuffle
-    if "ShuffleEntrances" in options_dict:
-        assert isinstance(options_dict.get("ShuffleEntrances").get("value"), bool)
+    if "ShuffleDungeonRooms" in options_dict:
+        assert isinstance(options_dict.get("ShuffleDungeonRooms").get("value"), bool)
     if "ShuffleEntrancesByArea" in options_dict:
         assert isinstance(options_dict.get("ShuffleEntrancesByArea").get("value"), bool)
     if "ShuffleEntrancesByAll" in options_dict:
