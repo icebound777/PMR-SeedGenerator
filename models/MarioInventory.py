@@ -24,6 +24,7 @@ class MarioInventory:
         startwith_mtrugged_open:bool=False,
         startwith_toybox_open:bool=False,
         startwith_whale_open:bool=False,
+        ch7_bridge_visible:bool=True,
         startwith_speedyspin:bool=True,
         cook_without_fryingpan:bool=True
     ):
@@ -52,6 +53,7 @@ class MarioInventory:
         assert(isinstance(startwith_mtrugged_open, bool))
         assert(isinstance(startwith_toybox_open, bool))
         assert(isinstance(startwith_whale_open, bool))
+        assert(isinstance(ch7_bridge_visible, bool))
         assert(isinstance(startwith_speedyspin, bool))
         assert(isinstance(cook_without_fryingpan, bool))
 
@@ -111,6 +113,8 @@ class MarioInventory:
             self.add("RF_ToyboxOpen")
         if startwith_whale_open:
             self.add("RF_CanRideWhale")
+        if ch7_bridge_visible:
+            self.add("RF_BuiltCh7Bridge")
 
         if startwith_speedyspin:
             self.add("SpeedySpin")

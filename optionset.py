@@ -133,6 +133,7 @@ class OptionSet:
         self.mtrugged_open = get_option_keyvalue_dict("MtRuggedOpen")
         self.toybox_open = get_option_keyvalue_dict("ToyboxOpen")
         self.whale_open = get_option_keyvalue_dict("WhaleOpen")
+        self.ch7_bridge_visible = get_option_keyvalue_dict("Ch7BridgeVisible")
 
         # Entrance General
         self.starway_spirits_needed = get_option_keyvalue_dict("StarWaySpiritsNeeded")
@@ -443,6 +444,8 @@ class OptionSet:
             self.toybox_open = options_dict.get("ToyboxOpen")
         if "WhaleOpen" in options_dict:
             self.whale_open = options_dict.get("WhaleOpen")
+        if "Ch7BridgeVisible" in options_dict:
+            self.ch7_bridge_visible = options_dict.get("Ch7BridgeVisible")
 
         # Entrance General
         if "StarWaySpiritsNeeded" in options_dict:
@@ -1132,6 +1135,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("ToyboxOpen").get("value"), bool)
     if "WhaleOpen" in options_dict:
         assert isinstance(options_dict.get("WhaleOpen").get("value"), bool)
+    if "Ch7BridgeVisible" in options_dict:
+        assert isinstance(options_dict.get("Ch7BridgeVisible").get("value"), bool)
 
     # Entrance General
     if "StarWaySpiritsNeeded" in options_dict:

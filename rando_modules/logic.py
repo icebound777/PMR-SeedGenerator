@@ -702,6 +702,7 @@ def _algo_assumed_fill(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    ch7_bridge_visible:bool,
     cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
@@ -794,6 +795,7 @@ def _algo_assumed_fill(
             startwith_mtrugged_open,
             startwith_toybox_open,
             startwith_whale_open,
+            ch7_bridge_visible,
             speedyspin,
             cook_without_fryingpan
         )
@@ -895,6 +897,7 @@ def get_item_spheres(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    ch7_bridge_visible,
     cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
@@ -947,6 +950,7 @@ def get_item_spheres(
         startwith_mtrugged_open,
         startwith_toybox_open,
         startwith_whale_open,
+        ch7_bridge_visible,
         startwith_speedyspin,
         cook_without_fryingpan
     )
@@ -1080,6 +1084,7 @@ def place_items(
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
+    ch7_bridge_visible:bool,
     cook_without_fryingpan:bool,
     starting_partners,
     starting_boots,
@@ -1130,6 +1135,7 @@ def place_items(
             magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,
+            ch7_bridge_visible,
             cook_without_fryingpan,
             starting_partners,
             starting_boots,

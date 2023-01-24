@@ -130,6 +130,7 @@ BlueHouseOpen       : false
 MtRuggedOpen        : false
 ToyboxOpen          : false
 WhaleOpen           : false
+Ch7BridgeVisible    : true
 
 # Entrance General
 StarWaySpiritsNeeded : 7 # -1:Random
