@@ -90,14 +90,14 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": "KootGift0D"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [[{"starspirits": 5}]], "pseudoitems": ["FAVOR_6_01_active"]}, #+ Get KootGlasses from Bush
     {"from": {"map": "NOK_02", "id": "KootGift10"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [[{"starspirits": 6}]], "pseudoitems": ["FAVOR_7_01_active"]}, #+ Get KootPackage from Gusty Gulch Boo
 
-    {"from": {"map": "NOK_02", "id": 0}, "to": {"map": "NOK_02", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_NOK_1",
-                                                                                                    #   "StarPiece_NOK_2",
-                                                                                                    #   "StarPiece_NOK_3",
-                                                                                                    #   "StarPiece_NOK_4",
-                                                                                                    #   "StarPiece_NOK_5",
-                                                                                                    #   "StarPiece_NOK_6",
-                                                                                                    #   "StarPiece_NOK_7",
-                                                                                                       "StarPiece_NOK_8"]}, #+ Quizmo StarPieces
+    {"from": {"map": "NOK_02", "id": 0}, "to": {"map": "NOK_02", "id": 0}, "reqs": [["RF_Ch1_Fuzzies_Banished"]], "pseudoitems": ["StarPiece_NOK_1",
+                                                                                                                               #   "StarPiece_NOK_2",
+                                                                                                                               #   "StarPiece_NOK_3",
+                                                                                                                               #   "StarPiece_NOK_4",
+                                                                                                                               #   "StarPiece_NOK_5",
+                                                                                                                               #   "StarPiece_NOK_6",
+                                                                                                                               #   "StarPiece_NOK_7",
+                                                                                                                                  "StarPiece_NOK_8"]}, #+ Quizmo StarPieces
 
     # NOK_03 Behind Koopa Village
     {"from": {"map": "NOK_03", "id": 0}, "to": {"map": "NOK_02", "id": 1}, "reqs": []}, # Behind Koopa Village Exit Left -> Koopa Village 2 Exit Top

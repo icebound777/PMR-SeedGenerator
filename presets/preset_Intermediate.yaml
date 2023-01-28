@@ -23,7 +23,7 @@ ProgressiveScaling      : true
 
 ChallengeMode  : false
 CapEnemyXP     : true
-NoXP           : false
+XPMultiplier   : 1
 DoubleDamage   : false
 QuadrupleDamage: false
 OHKO           : false
@@ -40,6 +40,8 @@ CustomSeed: false # NYI
 ShuffleItems          : true
 IncludeCoins          : false
 IncludeShops          : true
+ProgressionOnRowf     : true # irrelevant if IncludeShops:false
+ProgressionOnMerlow   : true # irrelevant if IncludeShops:false
 IncludePanels         : true
 IncludeFavorsMode     : 1 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
 IncludeLettersMode    : 1 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
@@ -125,15 +127,17 @@ RandomPartnersMax         : 1 # 1-8
 MagicalSeedsRequired: 4 # 5:random
 PrologueOpen        : false
 BlueHouseOpen       : false
+MtRuggedOpen        : false
 ToyboxOpen          : false
 WhaleOpen           : false
+Ch7BridgeVisible    : true
 
 # Entrance General
 StarWaySpiritsNeeded : 7 # -1:Random
 BowsersCastleMode    : 1 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 
 # Entrance Shuffle
-ShuffleEntrances        : false # NYI
+ShuffleDungeonRooms     : false # NYI
 ShuffleEntrancesByArea  : false # NYI
 ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI

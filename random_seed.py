@@ -18,7 +18,7 @@ from rando_modules.modify_entrances import \
     get_bowsercastle_bossrush,\
     get_gear_location_shuffle,\
     get_glitched_logic,\
-    adjust_rip_cheato_pricing
+    adjust_shop_logic
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
@@ -101,8 +101,10 @@ class RandomSeed:
                 world_graph,
                 self.rando_settings.gear_shuffle_mode["value"]
             )
-        world_graph = adjust_rip_cheato_pricing(
+        world_graph = adjust_shop_logic(
             world_graph,
+            self.rando_settings.progression_on_rowf,
+            self.rando_settings.progression_on_merlow,
             self.rando_settings.ripcheato_items_in_logic
         )
         world_graph = get_glitched_logic(
@@ -157,9 +159,11 @@ class RandomSeed:
                     starting_map_id=starting_map_value,
                     startwith_prologue_open=self.rando_settings.prologue_open["value"],
                     startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
+                    startwith_mtrugged_open=self.rando_settings.mtrugged_open["value"],
                     magical_seeds_required=magical_seeds_required,
                     startwith_toybox_open=self.rando_settings.toybox_open["value"],
                     startwith_whale_open=self.rando_settings.whale_open["value"],
+                    ch7_bridge_visible=self.rando_settings.ch7_bridge_visible["value"],
                     cook_without_fryingpan=self.rando_settings.cook_without_fryingpan["value"],
                     starting_partners=self.starting_partners,
                     starting_boots=self.rando_settings.starting_boots["value"],
@@ -267,9 +271,11 @@ class RandomSeed:
             starting_map_id=self.rando_settings.starting_map["value"],
             startwith_prologue_open=self.rando_settings.prologue_open["value"],
             startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
+            startwith_mtrugged_open=self.rando_settings.mtrugged_open["value"],
             magical_seeds_required=self.rando_settings.magical_seeds_required["value"],
             startwith_toybox_open=self.rando_settings.toybox_open["value"],
             startwith_whale_open=self.rando_settings.whale_open["value"],
+            ch7_bridge_visible=self.rando_settings.ch7_bridge_visible["value"],
             cook_without_fryingpan=self.rando_settings.cook_without_fryingpan["value"],
             starting_partners=self.starting_partners,
             starting_boots=self.rando_settings.starting_boots["value"],

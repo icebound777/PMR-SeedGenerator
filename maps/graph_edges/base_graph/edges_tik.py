@@ -7,7 +7,7 @@ edges_tik = [
     {"from": {"map": "TIK_01", "id": 3}, "to": {"map": "NOK_02", "id": 2}, "reqs": []}, # Warp Zone 1 (B1) Blue Warp Pipe (Center) -> Koopa Village 2 Blue Pipe
     {"from": {"map": "TIK_01", "id": 4}, "to": {"map": "DRO_01", "id": 2}, "reqs": []}, # Warp Zone 1 (B1) Blue Warp Pipe (Left) -> Outpost 1 Blue Warp Pipe
 
-    {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 1}, "reqs": []}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Exit Left
+    {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 1}, "reqs": [["SuperHammer"]]}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Exit Left
     {"from": {"map": "TIK_01", "id": 1}, "to": {"map": "TIK_01", "id": 0}, "reqs": []}, #? Warp Zone 1 (B1) Exit Left -> Warp Zone 1 (B1) Exit Right
     {"from": {"map": "TIK_01", "id": 0}, "to": {"map": "TIK_01", "id": 2}, "reqs": [["GF_TIK01_WarpPipes"],["Boots"]]}, #? Warp Zone 1 (B1) Exit Right -> Warp Zone 1 (B1) Blue Warp Pipe (Right)
     {"from": {"map": "TIK_01", "id": 2}, "to": {"map": "TIK_01", "id": 0}, "reqs": []}, #? Warp Zone 1 (B1) Blue Warp Pipe (Right) -> Warp Zone 1 (B1) Exit Right
@@ -184,16 +184,18 @@ edges_tik = [
     {"from": {"map": "TIK_21", "id": 1}, "to": {"map": "TIK_22", "id": 0}, "reqs": []}, # Hidden Blocks Room (B2) Top Right Door -> Path to Shiver City (B2) Left Door
     {"from": {"map": "TIK_21", "id": 2}, "to": {"map": "TIK_14", "id": 0}, "reqs": []}, # Hidden Blocks Room (B2) Green Pipe BottomRight -> Rip Cheato Antechamber (B3) Green Pipe Left
 
-    {"from": {"map": "TIK_21", "id": 0}, "to": {"map": "TIK_21", "id": 1}, "reqs": [["can_climb_steps"]]}, #? Hidden Blocks Room (B2) Exit Left -> Hidden Blocks Room (B2) Top Right Door
+    {"from": {"map": "TIK_21", "id": 0}, "to": {"map": "TIK_21", "id": 1}, "reqs": [["can_climb_steps"],["RF_BuiltCh7Bridge"]]}, #? Hidden Blocks Room (B2) Exit Left -> Hidden Blocks Room (B2) Top Right Door
     {"from": {"map": "TIK_21", "id": 1}, "to": {"map": "TIK_21", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Hidden Blocks Room (B2) Top Right Door -> Hidden Blocks Room (B2) Exit Left
     {"from": {"map": "TIK_21", "id": 1}, "to": {"map": "TIK_21", "id": 2}, "reqs": []}, #? Hidden Blocks Room (B2) Top Right Door -> Hidden Blocks Room (B2) Green Pipe BottomRight
     {"from": {"map": "TIK_21", "id": 2}, "to": {"map": "TIK_21", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Hidden Blocks Room (B2) Green Pipe BottomRight -> Hidden Blocks Room (B2) Exit Left
 
     {"from": {"map": "TIK_21", "id": 0},         "to": {"map": "TIK_21", "id": "YBlockA"}, "reqs": [["SuperBoots"]]}, #* Hidden Blocks Room (B2) Exit Left -> YBlockA (Coin)
-    {"from": {"map": "TIK_21", "id": "YBlockA"}, "to": {"map": "TIK_21", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
-    {"from": {"map": "TIK_21", "id": "YBlockA"}, "to": {"map": "TIK_21", "id": "YBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockC (Coin)
-    {"from": {"map": "TIK_21", "id": "YBlockA"}, "to": {"map": "TIK_21", "id": "YBlockD"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockD (Coin)
-    {"from": {"map": "TIK_21", "id": "YBlockA"}, "to": {"map": "TIK_21", "id": "YBlockE"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockE (Coin)
+    {"from": {"map": "TIK_21", "id": "YBlockA"}, "to": {"map": "TIK_21", "id": "YBlockB"}, "reqs": [["RF_BuiltCh7Bridge"]]}, #+ CHAINED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "TIK_21", "id": "YBlockB"}, "to": {"map": "TIK_21", "id": "YBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockC (Coin)
+    {"from": {"map": "TIK_21", "id": "YBlockB"}, "to": {"map": "TIK_21", "id": "YBlockD"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockD (Coin)
+    {"from": {"map": "TIK_21", "id": "YBlockB"}, "to": {"map": "TIK_21", "id": "YBlockE"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockE (Coin)
+
+    {"from": {"map": "TIK_21", "id": 0}, "to": {"map": "TIK_21", "id": 0}, "reqs": [["UltraBoots"],["can_see_hidden_blocks"]], "pseudoitems": ["RF_BuiltCh7Bridge"]}, #+ Make hidden block bridge
 
     # TIK_22 Path to Shiver City (B2)
     {"from": {"map": "TIK_22", "id": 0}, "to": {"map": "TIK_21", "id": 1}, "reqs": []}, # Path to Shiver City (B2) Left Door -> Hidden Blocks Room (B2) Top Right Door
