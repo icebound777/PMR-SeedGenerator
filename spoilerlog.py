@@ -3,6 +3,7 @@ import json
 
 from db.move import Move
 from db.map_area import MapArea
+from db.node import Node
 
 from rando_enums.enum_types import BlockType
 
@@ -22,6 +23,7 @@ def write_spoiler_log(
     spheres_dict:dict=None,
     move_costs:list=None,
     block_locations:list=None,
+    modified_entrances:list=None,
     seed_hash_items:list=None
 ):
     """
@@ -45,6 +47,57 @@ def write_spoiler_log(
         spoiler_dict["difficulty"] = dict()
         for old_chapter, new_chapter in random_chapter_difficulty.items():
             spoiler_dict["difficulty"][f"chapter {old_chapter}"] = new_chapter
+
+    # Add modified entrances
+    spoiler_dict["entrances"] = []
+    for old_lz_target, new_lz_target in modified_entrances:
+        old_lz_target = old_lz_target & 0xFFFFFF # mask off leading A3
+        old_entrance_area = old_lz_target >> 16
+        old_entrance_map = (old_lz_target >> 8) & 0xFF
+        old_entrance_id = old_lz_target & 0xFF
+
+        target_entrance_data = (
+            MapArea.select(MapArea.name,
+                           MapArea.verbose_name,
+                           Node.entrance_name)
+                   .join(Node)
+                   .where(MapArea.area_id == old_entrance_area)
+                   .where(MapArea.map_id == old_entrance_map)
+                   .where(Node.entrance_id == old_entrance_id)
+                   .objects()
+                   .get()
+        )
+        area_name = verbose_area_names.get(target_entrance_data.name[:3]).replace("'", "")
+        map_name = target_entrance_data.verbose_name.replace("'", "")
+        entrance_name = target_entrance_data.entrance_name.replace("'", "")
+        old_target_full = f"{area_name} - {map_name} - {entrance_name}"
+
+        new_entrance_area = new_lz_target >> 16
+        new_entrance_map = (new_lz_target >> 8) & 0xFF
+        new_entrance_id = new_lz_target & 0xFF
+
+        target_entrance_data = (
+            MapArea.select(MapArea.name,
+                           MapArea.verbose_name,
+                           Node.entrance_name)
+                   .join(Node)
+                   .where(MapArea.area_id == new_entrance_area)
+                   .where(MapArea.map_id == new_entrance_map)
+                   .where(Node.entrance_id == new_entrance_id)
+                   .objects()
+                   .get()
+        )
+        area_name = verbose_area_names.get(target_entrance_data.name[:3]).replace("'", "")
+        map_name = target_entrance_data.verbose_name.replace("'", "")
+        entrance_name = target_entrance_data.entrance_name.replace("'", "")
+        new_target_full = f"{area_name} - {map_name} - {entrance_name}"
+
+        spoiler_dict["entrances"].append(
+            {
+                "original_entrance": old_target_full,
+                "redirected_to": new_target_full
+            }
+        )
 
     # Add item locations
     for node in sorted_by_area:
