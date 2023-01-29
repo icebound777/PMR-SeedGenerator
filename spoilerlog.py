@@ -49,7 +49,7 @@ def write_spoiler_log(
             spoiler_dict["difficulty"][f"chapter {old_chapter}"] = new_chapter
 
     # Add modified entrances
-    spoiler_dict["entrances"] = []
+    verbose_entrances = []
     for old_lz_target, new_lz_target in modified_entrances:
         old_lz_target = old_lz_target & 0xFFFFFF # mask off leading A3
         old_entrance_area = old_lz_target >> 16
@@ -92,12 +92,9 @@ def write_spoiler_log(
         entrance_name = target_entrance_data.entrance_name.replace("'", "")
         new_target_full = f"{area_name} - {map_name} - {entrance_name}"
 
-        spoiler_dict["entrances"].append(
-            {
-                "original_entrance": old_target_full,
-                "redirected_to": new_target_full
-            }
-        )
+        if (old_target_full,new_target_full) not in verbose_entrances:
+            verbose_entrances.append((old_target_full,new_target_full))
+    spoiler_dict["entrances"] = verbose_entrances
 
     # Add item locations
     for node in sorted_by_area:
