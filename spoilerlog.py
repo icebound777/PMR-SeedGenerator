@@ -94,7 +94,12 @@ def write_spoiler_log(
 
         if (old_target_full,new_target_full) not in verbose_entrances:
             verbose_entrances.append((old_target_full,new_target_full))
-    spoiler_dict["entrances"] = verbose_entrances
+    spoiler_dict["entrances"] = []
+    for old, new in verbose_entrances:
+        spoiler_dict["entrances"].append({
+            "original_entrance": old,
+            "redirects_to": new
+        })
 
     # Add item locations
     for node in sorted_by_area:
