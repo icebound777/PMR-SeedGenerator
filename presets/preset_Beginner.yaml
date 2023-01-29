@@ -138,7 +138,7 @@ BowsersCastleMode   : 1 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 
 # Entrance Shuffle
 ShuffleDungeonRooms     : false # NYI
-ShuffleEntrancesByArea  : false # NYI
+ShuffleDungeonEntrances : false
 ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI
 RandomizeOnewayEntrances: false # NYI

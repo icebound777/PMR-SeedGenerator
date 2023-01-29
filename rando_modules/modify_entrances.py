@@ -1,6 +1,7 @@
 """
-This module is used to modify entrances / loading zones. Depending on chosen
-settings it can set pre-determined paths or randomize them.
+This module is used to modify entrances / loading zones statically.
+Pre-determined changes are done to the world graph and loading zones in
+accordance to chosen settings.
 """
 from copy import deepcopy
 
