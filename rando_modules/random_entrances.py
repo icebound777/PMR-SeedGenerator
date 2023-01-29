@@ -10,10 +10,13 @@ from db.node import Node
 
 from worldgraph import adjust
 
+from metadata.verbose_area_names import verbose_area_names
+
 def shuffle_dungeon_entrances(
     world_graph:dict,
     starway_spirits_needed:int,
-    shuffle_bowsers_castle:bool
+    shuffle_bowsers_castle:bool,
+    write_spoilers:bool
 ) -> dict:
     if starway_spirits_needed > 6:
         shuffle_bowsers_castle = False
@@ -128,4 +131,47 @@ def shuffle_dungeon_entrances(
         )
     entrance_changes.extend(spirit_warp_relinks)
 
-    return entrance_changes, world_graph
+    # spoiler log data
+    spoilers = []
+    if write_spoilers:
+        for edge in add_edges:
+            # verbose from-entrance
+            area_name = verbose_area_names.get(edge["from"]["map"][:3]).replace("'", "")
+
+            from_map_data = (
+                MapArea.select(MapArea.verbose_name,
+                               Node.entrance_name)
+                       .join(Node)
+                       .where(MapArea.name == edge["from"]["map"])
+                       .where(Node.entrance_id == edge["from"]["id"])
+                       .objects()
+                       .get()
+            )
+            map_name_verbose = from_map_data.verbose_name
+            entrance_verbose = from_map_data.entrance_name
+
+            full_from_entrance = f"{area_name} - {map_name_verbose} - {entrance_verbose}"
+
+            # verbose to-entrance
+            area_name = verbose_area_names.get(edge["to"]["map"][:3]).replace("'", "")
+
+            to_map_data = (
+                MapArea.select(MapArea.verbose_name,
+                               Node.entrance_name)
+                       .join(Node)
+                       .where(MapArea.name == edge["to"]["map"])
+                       .where(Node.entrance_id == edge["to"]["id"])
+                       .objects()
+                       .get()
+            )
+            map_name_verbose = to_map_data.verbose_name
+            entrance_verbose = to_map_data.entrance_name
+
+            full_to_entrance = f"{area_name} - {map_name_verbose} - {entrance_verbose}"
+
+            spoilers.append({
+                "entrance": full_from_entrance,
+                "exit": full_to_entrance
+            })
+
+    return entrance_changes, world_graph, spoilers

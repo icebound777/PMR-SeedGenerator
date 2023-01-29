@@ -62,6 +62,7 @@ class RandomSeed:
         self.quiz_list = []
         self.music_list = []
         self.item_spheres_dict = None
+        self.spoilerlog_additions = {}
 
         if seed_value is None:
             self.seed_value = random.randint(0, 0xFFFFFFFF)
@@ -91,12 +92,16 @@ class RandomSeed:
         if (    self.rando_settings.shuffle_dungeon_entrances["value"]
             and self.rando_settings.shuffle_items["value"]
         ):
-            entrance_changes, world_graph = shuffle_dungeon_entrances(
+            entrance_changes, world_graph, spoilerlog_info = shuffle_dungeon_entrances(
                 world_graph,
                 self.rando_settings.starway_spirits_needed["value"],
-                shuffle_bowsers_castle=False
+                False,
+                self.rando_settings.write_spoilerlog
             )
             self.entrance_list.extend(entrance_changes)
+            if self.spoilerlog_additions.get("entrances") is None:
+                self.spoilerlog_additions["entrances"] = []
+            self.spoilerlog_additions["entrances"].extend(spoilerlog_info)
 
         # Cull unneeded data from world graph if entrances changed
         if entrances_modified:
