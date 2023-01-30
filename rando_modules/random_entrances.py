@@ -148,8 +148,8 @@ def shuffle_dungeon_entrances(
                        .objects()
                        .get()
             )
-            map_name_verbose = from_map_data.verbose_name
-            entrance_verbose = from_map_data.entrance_name
+            map_name_verbose = from_map_data.verbose_name.replace("'", "")
+            entrance_verbose = from_map_data.entrance_name.replace("'", "")
 
             full_from_entrance = f"{area_name} - {map_name_verbose} - {entrance_verbose}"
 
@@ -165,8 +165,8 @@ def shuffle_dungeon_entrances(
                        .objects()
                        .get()
             )
-            map_name_verbose = to_map_data.verbose_name
-            entrance_verbose = to_map_data.entrance_name
+            map_name_verbose = to_map_data.verbose_name.replace("'", "")
+            entrance_verbose = to_map_data.entrance_name.replace("'", "")
 
             full_to_entrance = f"{area_name} - {map_name_verbose} - {entrance_verbose}"
 
