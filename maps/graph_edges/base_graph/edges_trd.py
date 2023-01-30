@@ -4,7 +4,7 @@ edges_trd = [
     {"from": {"map": "TRD_00", "id": 0}, "to": {"map": "NOK_15", "id": 1}, "reqs": []}, # Fortress Exterior Exit Bottom Left -> Path to Fortress 2 Exit Bottom Right
     {"from": {"map": "TRD_00", "id": 1}, "to": {"map": "TRD_01", "id": 0}, "reqs": []}, # Fortress Exterior Main Entrance -> Left Tower Exit Bottom Left
     {"from": {"map": "TRD_00", "id": 2}, "to": {"map": "TRD_05", "id": 1}, "reqs": []}, # Fortress Exterior Save Block -> Right Tower Exit Bottom Down
-    {"from": {"map": "TRD_00", "id": 3}, "to": {"map": "TRD_05", "id": 2}, "reqs": [["RF_TRD_05_BombedWall"]]}, # Fortress Exterior Refund Chest -> Right Tower Exit Bottom Right
+    {"from": {"map": "TRD_00", "id": 3}, "to": {"map": "TRD_05", "id": 2}, "reqs": [["Bombette"]]}, # Fortress Exterior Refund Chest -> Right Tower Exit Bottom Right
     {"from": {"map": "TRD_00", "id": 4}, "to": {"map": "NOK_15", "id": 2}, "reqs": []}, # Fortress Exterior Exit Top Left -> Path to Fortress 2 Exit Top Right
 
     {"from": {"map": "TRD_00", "id": 0}, "to": {"map": "TRD_00", "id": 1}, "reqs": []}, #? Fortress Exterior Exit Bottom Left -> Fortress Exterior Main Entrance
@@ -94,7 +94,7 @@ edges_trd = [
     # TRD_05 Right Tower
     {"from": {"map": "TRD_05", "id": 0}, "to": {"map": "TRD_04", "id": 1}, "reqs": []}, # Right Tower Exit Bottom Left -> Right Starway Exit Middle Right
     {"from": {"map": "TRD_05", "id": 1}, "to": {"map": "TRD_00", "id": 2}, "reqs": []}, # Right Tower Exit Bottom Down-> Fortress Exterior Save Block
-    {"from": {"map": "TRD_05", "id": 2}, "to": {"map": "TRD_00", "id": 3}, "reqs": [["Bombette"]], "pseudoitems": ["RF_TRD_05_BombedWall"]}, # Right Tower Exit Bottom Right -> Fortress Exterior Refund Chest
+    {"from": {"map": "TRD_05", "id": 2}, "to": {"map": "TRD_00", "id": 3}, "reqs": [["Bombette"]]}, # Right Tower Exit Bottom Right -> Fortress Exterior Refund Chest
     {"from": {"map": "TRD_05", "id": 3}, "to": {"map": "TRD_04", "id": 3}, "reqs": []}, # Right Tower Exit Top Left -> Right Starway Exit Top Right
     {"from": {"map": "TRD_05", "id": 4}, "to": {"map": "TRD_06", "id": 0}, "reqs": []}, # Right Tower YBlock Trap -> Jail Fall From Ceiling
 
