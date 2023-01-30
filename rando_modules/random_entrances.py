@@ -133,6 +133,7 @@ def shuffle_dungeon_entrances(
 
     # spoiler log data
     spoilers = []
+    pre_sort_spoilers = []
     if write_spoilers:
         for edge in add_edges:
             # verbose from-entrance
@@ -169,9 +170,20 @@ def shuffle_dungeon_entrances(
 
             full_to_entrance = f"{area_name} - {map_name_verbose} - {entrance_verbose}"
 
-            spoilers.append({
-                "entrance": full_from_entrance,
-                "exit": full_to_entrance
-            })
+            if (full_to_entrance, full_from_entrance) not in pre_sort_spoilers:
+                pre_sort_spoilers.append((full_from_entrance,full_to_entrance))
+            else:
+                pre_sort_spoilers.remove((full_to_entrance, full_from_entrance))
+                spoilers.append({
+                    "entrance": full_to_entrance,
+                    "exit": full_from_entrance,
+                    "direction": "both"
+                })
+    for from_entrance, to_entrance in pre_sort_spoilers:
+        spoilers.append({
+            "entrance": from_entrance,
+            "exit": to_entrance,
+            "direction": "one-way"
+        })
 
     return entrance_changes, world_graph, spoilers
