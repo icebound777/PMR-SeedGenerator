@@ -127,7 +127,8 @@ class RandomSeed:
         world_graph = get_glitched_logic(
             world_graph,
             self.rando_settings.glitch_settings,
-            self.rando_settings.bowsers_castle_mode["value"]
+            self.rando_settings.bowsers_castle_mode["value"],
+            self.rando_settings.shuffle_dungeon_entrances["value"]
         )
 
         world_graph = enrich_graph_data(world_graph)
