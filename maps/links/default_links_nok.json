@@ -147,6 +147,12 @@
             "dest_entry": 3,
             "type": "pipe",
             "verbose_name": "Upper Pipe to Lower Pipe"
+        },
+        "5": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "spirit-warp",
+            "verbose_name": "Exit East Lower"
         }
     }
 }

@@ -586,6 +586,7 @@ def web_randomizer(jsonSettings, world_graph):
         spheres_dict=random_seed.item_spheres_dict,
         move_costs=random_seed.move_costs,
         block_locations=random_seed.placed_blocks,
+        spoilerlog_additions=random_seed.spoilerlog_additions,
         seed_hash_items=random_seed.seed_hash_items
     )
 
@@ -734,6 +735,7 @@ def main_randomizer(args):
             spheres_dict=random_seed.item_spheres_dict,
             move_costs=random_seed.move_costs,
             block_locations=random_seed.placed_blocks,
+            spoilerlog_additions=random_seed.spoilerlog_additions,
             seed_hash_items=random_seed.seed_hash_items
         )
 

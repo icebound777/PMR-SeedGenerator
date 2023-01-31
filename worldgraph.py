@@ -236,12 +236,14 @@ def adjust(world_graph, new_edges=None, edges_to_remove=None):
             edge_adjustments[node_id] = []
         edge_adjustments[node_id].append(new_edge)
 
-        # Map changes are implicitly True unless specified otherwise
+        # Relinking entrance connections is implicitly turned off unless
+        # specified otherwise
         is_mapchange = new_edge.get("mapchange")
         if is_mapchange is None:
-            is_mapchange = True
+            is_mapchange = False
 
-        # If the edge symbolizes a map change, gather ROM db data to write
+        # If the edge is supposed to change an entrance connection, gather
+        # ROM db data to write that new connection
         if (isinstance(origin_entrance_id, int)
         and isinstance(destination_entrance_id, int)
         and is_mapchange

@@ -143,6 +143,12 @@
             "dest_entry": 0,
             "type": "bomb-wall",
             "verbose_name": "Bombable Wall"
+        },
+        "5": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "spirit-warp",
+            "verbose_name": "Exit East"
         }
     },
     "SAM_11": {

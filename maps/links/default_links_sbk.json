@@ -57,6 +57,12 @@
             "dest_entry": 0,
             "type": "door",
             "verbose_name": "Temple Entrance"
+        },
+        "8": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "spirit-warp",
+            "verbose_name": "Temple Entrance"
         }
     },
     "SBK_03": {

@@ -3,6 +3,7 @@ import json
 
 from db.move import Move
 from db.map_area import MapArea
+from db.node import Node
 
 from rando_enums.enum_types import BlockType
 
@@ -22,7 +23,8 @@ def write_spoiler_log(
     spheres_dict:dict=None,
     move_costs:list=None,
     block_locations:list=None,
-    seed_hash_items:list=None
+    seed_hash_items:list=None,
+    spoilerlog_additions:dict=None
 ):
     """
     Outputs a log file listing the final locations of all items
@@ -45,6 +47,10 @@ def write_spoiler_log(
         spoiler_dict["difficulty"] = dict()
         for old_chapter, new_chapter in random_chapter_difficulty.items():
             spoiler_dict["difficulty"][f"chapter {old_chapter}"] = new_chapter
+
+    # Add modified entrances
+    if spoilerlog_additions and spoilerlog_additions["entrances"]:
+        spoiler_dict["entrances"] = spoilerlog_additions["entrances"]
 
     # Add item locations
     for node in sorted_by_area:

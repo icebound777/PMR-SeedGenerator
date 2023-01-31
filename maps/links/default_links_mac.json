@@ -55,6 +55,12 @@
             "dest_entry": 0,
             "type": "door",
             "verbose_name": "Flower Fields Door"
+        },
+        "7": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "spirit-warp",
+            "verbose_name": "Flower Fields Door"
         }
     },
     "MAC_02": {
@@ -132,6 +138,12 @@
             "dest_map": "OMO_03",
             "dest_entry": 4,
             "type": "spring",
+            "verbose_name": "Spring to Shy Guy's Toybox"
+        },
+        "6": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "spirit-warp",
             "verbose_name": "Spring to Shy Guy's Toybox"
         }
     },
