@@ -21,8 +21,10 @@ class MarioInventory:
         magical_seeds_required:int=4,
         startwith_prologue_open:bool=False,
         startwith_bluehouse_open:bool=False,
+        startwith_mtrugged_open:bool=False,
         startwith_toybox_open:bool=False,
         startwith_whale_open:bool=False,
+        ch7_bridge_visible:bool=True,
         startwith_speedyspin:bool=True,
         cook_without_fryingpan:bool=True
     ):
@@ -48,8 +50,10 @@ class MarioInventory:
         assert(isinstance(magical_seeds_required, int) and magical_seeds_required in range(0,5))
         assert(isinstance(startwith_prologue_open, bool))
         assert(isinstance(startwith_bluehouse_open, bool))
+        assert(isinstance(startwith_mtrugged_open, bool))
         assert(isinstance(startwith_toybox_open, bool))
         assert(isinstance(startwith_whale_open, bool))
+        assert(isinstance(ch7_bridge_visible, bool))
         assert(isinstance(startwith_speedyspin, bool))
         assert(isinstance(cook_without_fryingpan, bool))
 
@@ -103,10 +107,14 @@ class MarioInventory:
             self.add("RF_BeatGoombaKing")
         if startwith_bluehouse_open:
             self.add("GF_MAC02_UnlockedHouse")
+        if startwith_mtrugged_open:
+            self.add("GF_MAC03_BombedRock")
         if startwith_toybox_open:
             self.add("RF_ToyboxOpen")
         if startwith_whale_open:
             self.add("RF_CanRideWhale")
+        if ch7_bridge_visible:
+            self.add("RF_BuiltCh7Bridge")
 
         if startwith_speedyspin:
             self.add("SpeedySpin")

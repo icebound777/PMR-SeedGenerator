@@ -8,7 +8,7 @@ edges_flo = [
     {"from": {"map": "FLO_00", "id": 4}, "to": {"map": "FLO_16", "id": 0}, "reqs": []}, # Center Exit Top Right -> (NE) Elevators Exit Left
     {"from": {"map": "FLO_00", "id": 5}, "to": {"map": "FLO_09", "id": 0}, "reqs": []}, # Center Exit Right -> (East) Triple Tree Path Exit Left
     {"from": {"map": "FLO_00", "id": 6}, "to": {"map": "FLO_08", "id": 0}, "reqs": []}, # Center Exit Bottom Right -> (SE) Briar Platforming Exit Left
-    {"from": {"map": "FLO_00", "id": 8}, "to": {"map": "FLO_19", "id": 3}, "reqs": []}, # Center Ride Beanstalk Up -> Cloudy Climb Ride Beanstalk Down
+    {"from": {"map": "FLO_00", "id": 8}, "to": {"map": "FLO_19", "id": 3}, "reqs": [["RF_GrewBeanstalk"]]}, # Center Ride Beanstalk Up -> Cloudy Climb Ride Beanstalk Down
 
     {"from": {"map": "FLO_00", "id": 0}, "to": {"map": "FLO_00", "id": 1}, "reqs": []}, #? Center Tree Door -> Center Exit Top Left
     {"from": {"map": "FLO_00", "id": 1}, "to": {"map": "FLO_00", "id": 0}, "reqs": []}, #? Center Exit Top Left -> Center Tree Door
@@ -22,12 +22,14 @@ edges_flo = [
     {"from": {"map": "FLO_00", "id": 5}, "to": {"map": "FLO_00", "id": 0}, "reqs": []}, #? Center Exit Right -> Center Tree Door
     {"from": {"map": "FLO_00", "id": 0}, "to": {"map": "FLO_00", "id": 6}, "reqs": []}, #? Center Tree Door -> Center Exit Bottom Right
     {"from": {"map": "FLO_00", "id": 6}, "to": {"map": "FLO_00", "id": 0}, "reqs": []}, #? Center Exit Bottom Right -> Center Tree Door
-    {"from": {"map": "FLO_00", "id": 0}, "to": {"map": "FLO_00", "id": 8}, "reqs": [["RF_Ch6_DestroyedPuffPuffMachine"],
+    {"from": {"map": "FLO_00", "id": 0}, "to": {"map": "FLO_00", "id": 8}, "reqs": []}, #? Center Tree Door -> Center Ride Beanstalk Up
+    {"from": {"map": "FLO_00", "id": 8}, "to": {"map": "FLO_00", "id": 0}, "reqs": []}, #? Center Ride Beanstalk Up -> Center Tree Door
+
+    {"from": {"map": "FLO_00", "id": 0}, "to": {"map": "FLO_00", "id": 0}, "reqs": [["RF_Ch6_DestroyedPuffPuffMachine"],
                                                                                     ["MagicalBean"],
                                                                                     ["FertileSoil"],
                                                                                     ["MiracleWater"],
-                                                                                    ["can_climb_steps"]]}, #? Center Tree Door -> Center Ride Beanstalk Up
-    {"from": {"map": "FLO_00", "id": 8}, "to": {"map": "FLO_00", "id": 0}, "reqs": []}, #? Center Ride Beanstalk Up -> Center Tree Door
+                                                                                    ["can_climb_steps"]], "pseudoitems": ["RF_GrewBeanstalk"]}, #+ Plant beanstalk
 
     # FLO_16 (NE) Elevators
     {"from": {"map": "FLO_16", "id": 0}, "to": {"map": "FLO_00", "id": 4}, "reqs": []}, # (NE) Elevators Exit Left -> Center Exit Top Right
@@ -148,12 +150,31 @@ edges_flo = [
     {"from": {"map": "FLO_23", "id": 0}, "to": {"map": "FLO_23", "id": 1}, "reqs": [["BlueBerry"]], "pseudoitems": ["GF_FLO23_GaveBlueBerry"]}, #+ (West) Path to Maze Exit Right
 
     # FLO_11 (West) Maze
+    #+ Right Side Entrances
     {"from": {"map": "FLO_11", "id": 0}, "to": {"map": "FLO_23", "id": 1}, "reqs": []}, # (West) Maze Exit Right -> (West) Path to Maze Exit Left
+    {"from": {"map": "FLO_11", "id": 2}, "to": {"map": "FLO_11", "id": 5}, "reqs": [["can_climb_steps"]]}, # (West) Maze Pipe Top Right -> (West) Maze Pipe Bottom
+    {"from": {"map": "FLO_11", "id": 5}, "to": {"map": "FLO_11", "id": 2}, "reqs": [["can_climb_steps"]]}, # (West) Maze Pipe Bottom -> (West) Maze Pipe Top Right
+    {"from": {"map": "FLO_11", "id": 3}, "to": {"map": "FLO_11", "id": 6}, "reqs": [["can_climb_steps"]]}, # (West) Maze Pipe Top Center -> (West) Maze Top Left
+    {"from": {"map": "FLO_11", "id": 6}, "to": {"map": "FLO_11", "id": 3}, "reqs": [["can_climb_steps"]]}, # (West) Maze Pipe Top Left -> (West) Maze Top Center
+    {"from": {"map": "FLO_11", "id": 4}, "to": {"map": "FLO_11", "id": 7}, "reqs": [["can_climb_steps"]]}, # (West) Maze Pipe Center -> (West) Maze Pipe Left
+    #+ Left Side Entrances
     {"from": {"map": "FLO_11", "id": 1}, "to": {"map": "FLO_12", "id": 0}, "reqs": []}, # (West) Maze Exit Left -> (West) Rosie's Trellis Exit Right
+    {"from": {"map": "FLO_11", "id": 7}, "to": {"map": "FLO_11", "id": 4}, "reqs": [["can_climb_steps"]]}, # (West) Maze Pipe Left -> (West) Maze Pipe Center
 
-    {"from": {"map": "FLO_11", "id": 0}, "to": {"map": "FLO_11", "id": 1}, "reqs": [["Boots"]]}, #? (West) Maze Exit Right -> (West) Maze Exit Left
-    {"from": {"map": "FLO_11", "id": 1}, "to": {"map": "FLO_11", "id": 0}, "reqs": [["Boots"]]}, #? (West) Maze Exit Left -> (West) Maze Exit Right
-#TODO: missing other pipe entrances
+    #+ Right Side edges
+    {"from": {"map": "FLO_11", "id": 0}, "to": {"map": "FLO_11", "id": 2}, "reqs": [["Boots"]]}, #? (West) Maze Exit Right -> (West) Maze Pipe Top Right
+    {"from": {"map": "FLO_11", "id": 0}, "to": {"map": "FLO_11", "id": 3}, "reqs": [["Boots"]]}, #? (West) Maze Exit Right -> (West) Maze Pipe Top Center
+    {"from": {"map": "FLO_11", "id": 0}, "to": {"map": "FLO_11", "id": 4}, "reqs": [["Boots"]]}, #? (West) Maze Exit Right -> (West) Maze Pipe Center
+    {"from": {"map": "FLO_11", "id": 0}, "to": {"map": "FLO_11", "id": 5}, "reqs": [["Boots"]]}, #? (West) Maze Exit Right -> (West) Maze Pipe Bottom
+    {"from": {"map": "FLO_11", "id": 0}, "to": {"map": "FLO_11", "id": 6}, "reqs": [["Boots"]]}, #? (West) Maze Exit Right -> (West) Maze Pipe Top Left
+    {"from": {"map": "FLO_11", "id": 2}, "to": {"map": "FLO_11", "id": 0}, "reqs": []}, #? (West) Maze Pipe Top Right -> (West) Maze Exit Right
+    {"from": {"map": "FLO_11", "id": 3}, "to": {"map": "FLO_11", "id": 0}, "reqs": []}, #? (West) Maze Pipe Top Center -> (West) Maze Exit Right
+    {"from": {"map": "FLO_11", "id": 4}, "to": {"map": "FLO_11", "id": 0}, "reqs": []}, #? (West) Maze Pipe Center -> (West) Maze Exit Right
+    {"from": {"map": "FLO_11", "id": 5}, "to": {"map": "FLO_11", "id": 0}, "reqs": []}, #? (West) Maze Pipe Bottom -> (West) Maze Exit Right
+    {"from": {"map": "FLO_11", "id": 6}, "to": {"map": "FLO_11", "id": 0}, "reqs": []}, #? (West) Maze Pipe Top Left -> (West) Maze Exit Right
+    #+ Left Side edges
+    {"from": {"map": "FLO_11", "id": 1}, "to": {"map": "FLO_11", "id": 7}, "reqs": [["Boots"]]}, #? (West) Maze Exit Left -> (West) Maze Pipe Left
+    {"from": {"map": "FLO_11", "id": 7}, "to": {"map": "FLO_11", "id": 1}, "reqs": []}, #? (West) Maze Pipe Left -> (West) Maze Exit Left
 
     # FLO_12 (West) Rosie's Trellis
     {"from": {"map": "FLO_12", "id": 0}, "to": {"map": "FLO_11", "id": 1}, "reqs": []}, # (West) Rosie's Trellis Exit Right -> (West) Maze Exit Left
@@ -188,9 +209,9 @@ edges_flo = [
 
     # FLO_19 Cloudy Climb
     {"from": {"map": "FLO_19", "id": 1}, "to": {"map": "FLO_21", "id": 0}, "reqs": []}, # Cloudy Climb Exit Right -> Huff N Puff Room Exit Left
-    {"from": {"map": "FLO_19", "id": 3}, "to": {"map": "FLO_00", "id": 8}, "reqs": []}, # Cloudy Climb Ride Beanstalk Down -> Center Ride Beanstalk Up
+    {"from": {"map": "FLO_19", "id": 3}, "to": {"map": "FLO_00", "id": 8}, "reqs": [["can_climb_steps"],["RF_GrewBeanstalk"]]}, # Cloudy Climb Ride Beanstalk Down -> Center Ride Beanstalk Up
 
-    {"from": {"map": "FLO_19", "id": 1}, "to": {"map": "FLO_19", "id": 3}, "reqs": [["can_climb_steps"]]}, #? Cloudy Climb Exit Right -> Cloudy Climb Ride Beanstalk Down
+    {"from": {"map": "FLO_19", "id": 1}, "to": {"map": "FLO_19", "id": 3}, "reqs": []}, #? Cloudy Climb Exit Right -> Cloudy Climb Ride Beanstalk Down
     {"from": {"map": "FLO_19", "id": 3}, "to": {"map": "FLO_19", "id": 1}, "reqs": []}, #? Cloudy Climb Ride Beanstalk Down -> Cloudy Climb Exit Right
 
     {"from": {"map": "FLO_19", "id": 1}, "to": {"map": "FLO_19", "id": "ItemA"}, "reqs": [["can_climb_steps","Kooper"]]}, #* Cloudy Climb Exit Right -> ItemA (SJumpChg)

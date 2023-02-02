@@ -5,7 +5,7 @@ Bowser's Castle Boss Rush setting.
 """
 edges_kpa_add = [
     # Fake Peach Hallway Door Left -> Riding Star Ship Scene Fly To Bowser's Castle
-    {"from": {"map": "KPA_53",  "id": 0}, "to": {"map": "HOS_20", "id": 2}, "reqs": []},
+    {"from": {"map": "KPA_53",  "id": 0}, "to": {"map": "HOS_20", "id": 2}, "reqs": [], "mapchange": True},
 ]
 
 edges_kpa_remove = [

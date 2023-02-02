@@ -26,17 +26,17 @@ edges_omo = [
     # OMO_03 BLU Station
     {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_13", "id": 1}, "reqs": []}, # BLU Station Exit West -> BLU Anti-Guy Hall Exit East
     {"from": {"map": "OMO_03", "id": 1}, "to": {"map": "OMO_04", "id": 0}, "reqs": []}, # BLU Station Exit East -> BLU Block City Exit West
-    {"from": {"map": "OMO_03", "id": 2}, "to": {"map": "OMO_10", "id": 3}, "reqs": []}, # BLU Station Ride Train West -> RED Station Ride Train East
-    {"from": {"map": "OMO_03", "id": 3}, "to": {"map": "OMO_06", "id": 2}, "reqs": []}, # BLU Station Ride Train East -> PNK Station Ride Train West
-    {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "MAC_04", "id": 2}, "reqs": []}, # BLU Station Spring to Toad Town -> Residental District Toybox Spring
+    {"from": {"map": "OMO_03", "id": 2}, "to": {"map": "OMO_10", "id": 3}, "reqs": [["MF_Ch4_CanThrowInTrain"],["ToyTrain"],["RF_BlueSwitchPulled"],["Boots"]]}, # BLU Station Ride Train West -> RED Station Ride Train East
+    {"from": {"map": "OMO_03", "id": 3}, "to": {"map": "OMO_06", "id": 2}, "reqs": [["MF_Ch4_CanThrowInTrain"],["ToyTrain"],["Boots"]]}, # BLU Station Ride Train East -> PNK Station Ride Train West
+    {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "MAC_04", "id": 2}, "reqs": [["can_climb_steps"]]}, # BLU Station Spring to Toad Town -> Residental District Toybox Spring
 
     {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 1}, "reqs": []}, #? BLU Station Exit West -> BLU Station Exit East
     {"from": {"map": "OMO_03", "id": 1}, "to": {"map": "OMO_03", "id": 0}, "reqs": []}, #? BLU Station Exit East -> BLU Station Exit West
     {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 2}, "reqs": [["MF_Ch4_CanThrowInTrain"],["ToyTrain"],["RF_BlueSwitchPulled"],["Boots"]]}, #? BLU Station Exit West -> BLU Station Ride Train West
     {"from": {"map": "OMO_03", "id": 2}, "to": {"map": "OMO_03", "id": 0}, "reqs": [], "pseudoitems": ["RF_BlueSwitchPulled"]}, #? BLU Station Ride Train West -> BLU Station Exit West
-    {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 3}, "reqs": [["MF_Ch4_CanThrowInTrain"],["ToyTrain"],["Boots"]]}, #? BLU Station Exit West -> BLU Station Ride Train East
+    {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 3}, "reqs": []}, #? BLU Station Exit West -> BLU Station Ride Train East
     {"from": {"map": "OMO_03", "id": 3}, "to": {"map": "OMO_03", "id": 0}, "reqs": []}, #? BLU Station Ride Train East -> BLU Station Exit West
-    {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 4}, "reqs": [["can_climb_steps"]]}, #? BLU Station Exit West -> BLU Station Spring to Toad Town
+    {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 4}, "reqs": []}, #? BLU Station Exit West -> BLU Station Spring to Toad Town
     {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": 0}, "reqs": []}, #? BLU Station Spring to Toad Town -> BLU Station Exit West
 
     {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": "HiddenPanel"},   "reqs": [["can_flip_panels"]]}, #* BLU Station Spring to Toad Town -> HiddenPanel (StarPiece)
@@ -80,13 +80,13 @@ edges_omo = [
     # OMO_06 PNK Station
     {"from": {"map": "OMO_06", "id": 0}, "to": {"map": "OMO_17", "id": 2}, "reqs": []}, # PNK Station Exit West -> PNK Tracks Hallway Exit East (South)
     {"from": {"map": "OMO_06", "id": 1}, "to": {"map": "OMO_17", "id": 3}, "reqs": []}, # PNK Station Exit West (Switch Area) -> PNK Tracks Hallway Exit East (North)
-    {"from": {"map": "OMO_06", "id": 2}, "to": {"map": "OMO_03", "id": 3}, "reqs": []}, # PNK Station Ride Train West -> BLU Station Ride Train East
-    {"from": {"map": "OMO_06", "id": 3}, "to": {"map": "OMO_08", "id": 1}, "reqs": []}, # PNK Station Ride Train East -> GRN Station Ride Train West
+    {"from": {"map": "OMO_06", "id": 2}, "to": {"map": "OMO_03", "id": 3}, "reqs": [["ToyTrain"],["MF_Ch4_CanThrowInTrain"],["Boots"]]}, # PNK Station Ride Train West -> BLU Station Ride Train East
+    {"from": {"map": "OMO_06", "id": 3}, "to": {"map": "OMO_08", "id": 1}, "reqs": [["MF_Ch4_PulledPinkSwitch"],["Boots"],["ToyTrain"],["MF_Ch4_CanThrowInTrain"]]}, # PNK Station Ride Train East -> GRN Station Ride Train West
     {"from": {"map": "OMO_06", "id": 4}, "to": {"map": "OMO_07", "id": 0}, "reqs": []}, # PNK Station Exit East -> PNK Playhouse Exit West
 
-    {"from": {"map": "OMO_06", "id": 0}, "to": {"map": "OMO_06", "id": 2}, "reqs": [["Boots"]]}, #? PNK Station Exit West -> PNK Station Ride Train West
+    {"from": {"map": "OMO_06", "id": 0}, "to": {"map": "OMO_06", "id": 2}, "reqs": []}, #? PNK Station Exit West -> PNK Station Ride Train West
     {"from": {"map": "OMO_06", "id": 2}, "to": {"map": "OMO_06", "id": 0}, "reqs": []}, #? PNK Station Ride Train West -> PNK Station Exit West
-    {"from": {"map": "OMO_06", "id": 0}, "to": {"map": "OMO_06", "id": 3}, "reqs": [["MF_Ch4_PulledPinkSwitch"],["Boots"]]}, #? PNK Station Exit West -> PNK Station Ride Train East
+    {"from": {"map": "OMO_06", "id": 0}, "to": {"map": "OMO_06", "id": 3}, "reqs": []}, #? PNK Station Exit West -> PNK Station Ride Train East
     {"from": {"map": "OMO_06", "id": 3}, "to": {"map": "OMO_06", "id": 0}, "reqs": []}, #? PNK Station Ride Train East -> PNK Station Exit West
     {"from": {"map": "OMO_06", "id": 0}, "to": {"map": "OMO_06", "id": 4}, "reqs": []}, #? PNK Station Exit West -> PNK Station Exit East
     {"from": {"map": "OMO_06", "id": 4}, "to": {"map": "OMO_06", "id": 0}, "reqs": []}, #? PNK Station Exit East -> PNK Station Exit West
@@ -109,12 +109,12 @@ edges_omo = [
 
     # OMO_08 GRN Station
     {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_09", "id": 0}, "reqs": []}, # GRN Station Exit East -> GRN Treadmills/Slot Machine Exit West
-    {"from": {"map": "OMO_08", "id": 1}, "to": {"map": "OMO_06", "id": 3}, "reqs": []}, # GRN Station Ride Train West -> PNK Station Ride Train East
-    {"from": {"map": "OMO_08", "id": 2}, "to": {"map": "OMO_10", "id": 2}, "reqs": []}, # GRN Station Ride Train East -> RED Station Ride Train West
+    {"from": {"map": "OMO_08", "id": 1}, "to": {"map": "OMO_06", "id": 3}, "reqs": [["ToyTrain"],["MF_Ch4_CanThrowInTrain"],["Boots"]]}, # GRN Station Ride Train West -> PNK Station Ride Train East
+    {"from": {"map": "OMO_08", "id": 2}, "to": {"map": "OMO_10", "id": 2}, "reqs": [["ToyTrain"],["MF_Ch4_CanThrowInTrain"],["MF_Ch4_SolvedColorPuzzle"],["Boots"]]}, # GRN Station Ride Train East -> RED Station Ride Train West
 
-    {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_08", "id": 1}, "reqs": [["Boots"]]}, #? GRN Station Exit East -> GRN Station Ride Train West
+    {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_08", "id": 1}, "reqs": []}, #? GRN Station Exit East -> GRN Station Ride Train West
     {"from": {"map": "OMO_08", "id": 1}, "to": {"map": "OMO_08", "id": 0}, "reqs": []}, #? GRN Station Ride Train West -> GRN Station Exit East
-    {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_08", "id": 2}, "reqs": [["MF_Ch4_SolvedColorPuzzle"],["Boots"]]}, #? GRN Station Exit East -> GRN Station Ride Train East
+    {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_08", "id": 2}, "reqs": []}, #? GRN Station Exit East -> GRN Station Ride Train East
     {"from": {"map": "OMO_08", "id": 2}, "to": {"map": "OMO_08", "id": 0}, "reqs": []}, #? GRN Station Ride Train East -> GRN Station Exit East
 
     {"from": {"map": "OMO_08", "id": 0}, "to": {"map": "OMO_08", "id": "HiddenPanel"},   "reqs": [["can_flip_panels"]]}, #* GRN Station Exit East -> HiddenPanel (StarPiece)
@@ -147,14 +147,14 @@ edges_omo = [
     # OMO_10 RED Station
     {"from": {"map": "OMO_10", "id": 0}, "to": {"map": "OMO_11", "id": 1}, "reqs": []}, # RED Station Exit West -> RED Moving Platforms Exit East
     {"from": {"map": "OMO_10", "id": 1}, "to": {"map": "OMO_02", "id": 0}, "reqs": []}, # RED Station Exit East -> RED Boss Barricade Exit West
-    {"from": {"map": "OMO_10", "id": 2}, "to": {"map": "OMO_08", "id": 2}, "reqs": []}, # RED Station Ride Train West -> GRN Station Ride Train East
-    {"from": {"map": "OMO_10", "id": 3}, "to": {"map": "OMO_03", "id": 2}, "reqs": []}, # RED Station Ride Train East -> BLU Station Ride Train West
+    {"from": {"map": "OMO_10", "id": 2}, "to": {"map": "OMO_08", "id": 2}, "reqs": [["ToyTrain"],["MF_Ch4_CanThrowInTrain"],["Boots"]]}, # RED Station Ride Train West -> GRN Station Ride Train East
+    {"from": {"map": "OMO_10", "id": 3}, "to": {"map": "OMO_03", "id": 2}, "reqs": [["ToyTrain"],["MF_Ch4_CanThrowInTrain"],["Boots"]]}, # RED Station Ride Train East -> BLU Station Ride Train West
 
     {"from": {"map": "OMO_10", "id": 0}, "to": {"map": "OMO_10", "id": 1}, "reqs": []}, #? RED Station Exit West -> RED Station Exit East
     {"from": {"map": "OMO_10", "id": 1}, "to": {"map": "OMO_10", "id": 0}, "reqs": []}, #? RED Station Exit East -> RED Station Exit West
-    {"from": {"map": "OMO_10", "id": 0}, "to": {"map": "OMO_10", "id": 2}, "reqs": [["Boots"]]}, #? RED Station Exit West -> RED Station Ride Train West
+    {"from": {"map": "OMO_10", "id": 0}, "to": {"map": "OMO_10", "id": 2}, "reqs": []}, #? RED Station Exit West -> RED Station Ride Train West
     {"from": {"map": "OMO_10", "id": 2}, "to": {"map": "OMO_10", "id": 0}, "reqs": []}, #? RED Station Ride Train West -> RED Station Exit West
-    {"from": {"map": "OMO_10", "id": 0}, "to": {"map": "OMO_10", "id": 3}, "reqs": [["Boots"]]}, #? RED Station Exit West -> RED Station Ride Train East
+    {"from": {"map": "OMO_10", "id": 0}, "to": {"map": "OMO_10", "id": 3}, "reqs": []}, #? RED Station Exit West -> RED Station Ride Train East
     {"from": {"map": "OMO_10", "id": 3}, "to": {"map": "OMO_10", "id": 0}, "reqs": []}, #? RED Station Ride Train East -> RED Station Exit West
 
     {"from": {"map": "OMO_10", "id": 0}, "to": {"map": "OMO_10", "id": "HiddenPanel"},   "reqs": [["can_flip_panels"]]}, #* RED Station Exit West -> HiddenPanel (StarPiece)
@@ -192,9 +192,9 @@ edges_omo = [
 
     # OMO_14 RED Boss Antechamber
     {"from": {"map": "OMO_14", "id": 0}, "to": {"map": "OMO_02", "id": 1}, "reqs": []}, # RED Boss Antechamber Exit West -> RED Boss Barricade Exit East
-    {"from": {"map": "OMO_14", "id": 1}, "to": {"map": "OMO_15", "id": 0}, "reqs": []}, # RED Boss Antechamber Exit East -> RED General Guy Room Exit West
+    {"from": {"map": "OMO_14", "id": 1}, "to": {"map": "OMO_15", "id": 0}, "reqs": [["Watt"]]}, # RED Boss Antechamber Exit East -> RED General Guy Room Exit West
 
-    {"from": {"map": "OMO_14", "id": 0}, "to": {"map": "OMO_14", "id": 1}, "reqs": [["Watt"]]}, #? RED Boss Antechamber Exit West -> RED Boss Antechamber Exit East
+    {"from": {"map": "OMO_14", "id": 0}, "to": {"map": "OMO_14", "id": 1}, "reqs": []}, #? RED Boss Antechamber Exit West -> RED Boss Antechamber Exit East
     {"from": {"map": "OMO_14", "id": 1}, "to": {"map": "OMO_14", "id": 0}, "reqs": []}, #? RED Boss Antechamber Exit East -> RED Boss Antechamber Exit West
 
     # OMO_15 RED General Guy Room

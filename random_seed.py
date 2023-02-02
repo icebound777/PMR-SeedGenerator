@@ -19,6 +19,7 @@ from rando_modules.modify_entrances import \
     get_gear_location_shuffle,\
     get_glitched_logic,\
     adjust_shop_logic
+from rando_modules.random_entrances import shuffle_dungeon_entrances
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
@@ -61,6 +62,7 @@ class RandomSeed:
         self.quiz_list = []
         self.music_list = []
         self.item_spheres_dict = None
+        self.spoilerlog_additions = {}
 
         if seed_value is None:
             self.seed_value = random.randint(0, 0xFFFFFFFF)
@@ -86,6 +88,21 @@ class RandomSeed:
         elif self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.BOSSRUSH:
             self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
             entrances_modified = True
+
+        if (    self.rando_settings.shuffle_dungeon_entrances["value"]
+            and self.rando_settings.shuffle_items["value"]
+        ):
+            entrance_changes, world_graph, spoilerlog_info = shuffle_dungeon_entrances(
+                world_graph,
+                self.rando_settings.starway_spirits_needed["value"],
+                False,
+                self.rando_settings.write_spoilerlog
+            )
+            self.entrance_list.extend(entrance_changes)
+            if self.spoilerlog_additions.get("entrances") is None:
+                self.spoilerlog_additions["entrances"] = []
+            self.spoilerlog_additions["entrances"].extend(spoilerlog_info)
+
         # Cull unneeded data from world graph if entrances changed
         if entrances_modified:
             unreachable_node_ids = check_unreachable_from_start(
@@ -110,7 +127,8 @@ class RandomSeed:
         world_graph = get_glitched_logic(
             world_graph,
             self.rando_settings.glitch_settings,
-            self.rando_settings.bowsers_castle_mode["value"]
+            self.rando_settings.bowsers_castle_mode["value"],
+            self.rando_settings.shuffle_dungeon_entrances["value"]
         )
 
         world_graph = enrich_graph_data(world_graph)
@@ -159,9 +177,11 @@ class RandomSeed:
                     starting_map_id=starting_map_value,
                     startwith_prologue_open=self.rando_settings.prologue_open["value"],
                     startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
+                    startwith_mtrugged_open=self.rando_settings.mtrugged_open["value"],
                     magical_seeds_required=magical_seeds_required,
                     startwith_toybox_open=self.rando_settings.toybox_open["value"],
                     startwith_whale_open=self.rando_settings.whale_open["value"],
+                    ch7_bridge_visible=self.rando_settings.ch7_bridge_visible["value"],
                     cook_without_fryingpan=self.rando_settings.cook_without_fryingpan["value"],
                     starting_partners=self.starting_partners,
                     starting_boots=self.rando_settings.starting_boots["value"],
@@ -269,9 +289,11 @@ class RandomSeed:
             starting_map_id=self.rando_settings.starting_map["value"],
             startwith_prologue_open=self.rando_settings.prologue_open["value"],
             startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
+            startwith_mtrugged_open=self.rando_settings.mtrugged_open["value"],
             magical_seeds_required=self.rando_settings.magical_seeds_required["value"],
             startwith_toybox_open=self.rando_settings.toybox_open["value"],
             startwith_whale_open=self.rando_settings.whale_open["value"],
+            ch7_bridge_visible=self.rando_settings.ch7_bridge_visible["value"],
             cook_without_fryingpan=self.rando_settings.cook_without_fryingpan["value"],
             starting_partners=self.starting_partners,
             starting_boots=self.rando_settings.starting_boots["value"],

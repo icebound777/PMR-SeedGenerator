@@ -1,6 +1,7 @@
 """
-This module is used to modify entrances / loading zones. Depending on chosen
-settings it can set pre-determined paths or randomize them.
+This module is used to modify entrances / loading zones statically.
+Pre-determined changes are done to the world graph and loading zones in
+accordance to chosen settings.
 """
 from copy import deepcopy
 
@@ -330,7 +331,12 @@ def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     return world_graph
 
 
-def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bowsers_castle_mode: int):
+def get_glitched_logic(
+    world_graph: dict,
+    glitch_settings: GlitchOptionSet,
+    bowsers_castle_mode: int,
+    shuffle_dungeon_entrances: bool
+):
     """
     Returns the modified world graph itself for glitched logic, depending
     on settings chosen.
@@ -419,7 +425,7 @@ def get_glitched_logic(world_graph: dict, glitch_settings: GlitchOptionSet, bows
     # Koopa Bros Fortress
     if glitch_settings.bombetteless_kbf_fp_plus_laki["value"]:
         all_new_edges.extend(edges_nok_add_bombetteless_fp_plus_laki)
-    if glitch_settings.bombetteless_kbf_fp_plus_lzs["value"]:
+    if glitch_settings.bombetteless_kbf_fp_plus_lzs["value"] and not shuffle_dungeon_entrances:
         all_new_edges.extend(edges_nok_add_bombetteless_fp_plus_lzs)
     if glitch_settings.laki_jailbreak["value"]:
         all_new_edges.extend(edges_trd_add_laki_jailbreak)

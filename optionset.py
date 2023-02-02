@@ -37,7 +37,7 @@ class OptionSet:
 
         self.challenge_mode = get_option_keyvalue_dict("ChallengeMode")
         self.cap_enemy_xp = get_option_keyvalue_dict("CapEnemyXP")
-        self.no_xp = get_option_keyvalue_dict("NoXP")
+        self.xp_multiplier = get_option_keyvalue_dict("XPMultiplier")
         self.damage_x2 = get_option_keyvalue_dict("DoubleDamage")
         self.damage_x4 = get_option_keyvalue_dict("QuadrupleDamage")
         self.ohko = get_option_keyvalue_dict("OHKO")
@@ -130,16 +130,18 @@ class OptionSet:
         self.magical_seeds_required = get_option_keyvalue_dict("MagicalSeedsRequired")
         self.prologue_open = get_option_keyvalue_dict("PrologueOpen")
         self.bluehouse_open = get_option_keyvalue_dict("BlueHouseOpen")
+        self.mtrugged_open = get_option_keyvalue_dict("MtRuggedOpen")
         self.toybox_open = get_option_keyvalue_dict("ToyboxOpen")
         self.whale_open = get_option_keyvalue_dict("WhaleOpen")
+        self.ch7_bridge_visible = get_option_keyvalue_dict("Ch7BridgeVisible")
 
         # Entrance General
         self.starway_spirits_needed = get_option_keyvalue_dict("StarWaySpiritsNeeded")
         self.bowsers_castle_mode = get_option_keyvalue_dict("BowsersCastleMode")
 
         # Entrance Shuffle
-        self.shuffle_entrances = get_option_keyvalue_dict("ShuffleEntrances")
-        self.shuffle_entrances_by_area = get_option_keyvalue_dict("ShuffleEntrancesByArea")
+        self.shuffle_dungeon_rooms = get_option_keyvalue_dict("ShuffleDungeonRooms")
+        self.shuffle_dungeon_entrances = get_option_keyvalue_dict("ShuffleDungeonEntrances")
         self.shuffle_entrances_by_all = get_option_keyvalue_dict("ShuffleEntrancesByAll")
         self.match_entrance_type = get_option_keyvalue_dict("MatchEntranceTypes")
         self.random_oneway_entrances = False # NYI
@@ -247,8 +249,9 @@ class OptionSet:
             self.challenge_mode = options_dict.get("ChallengeMode")
         if "CapEnemyXP" in options_dict:
             self.cap_enemy_xp = options_dict.get("CapEnemyXP")
-        if "NoXP" in options_dict:
-            self.no_xp = options_dict.get("NoXP")
+        if "XPMultiplier" in options_dict:
+            options_dict["XPMultiplier"]["value"] = int(options_dict.get("XPMultiplier").get("value") * 2) # Will get divided by 2 in mod
+            self.xp_multiplier = options_dict.get("XPMultiplier")
         if "DoubleDamage" in options_dict:
             self.damage_x2 = options_dict.get("DoubleDamage")
         if "QuadrupleDamage" in options_dict:
@@ -435,10 +438,14 @@ class OptionSet:
             self.prologue_open = options_dict.get("PrologueOpen")
         if "BlueHouseOpen" in options_dict:
             self.bluehouse_open = options_dict.get("BlueHouseOpen")
+        if "MtRuggedOpen" in options_dict:
+            self.mtrugged_open = options_dict.get("MtRuggedOpen")
         if "ToyboxOpen" in options_dict:
             self.toybox_open = options_dict.get("ToyboxOpen")
         if "WhaleOpen" in options_dict:
             self.whale_open = options_dict.get("WhaleOpen")
+        if "Ch7BridgeVisible" in options_dict:
+            self.ch7_bridge_visible = options_dict.get("Ch7BridgeVisible")
 
         # Entrance General
         if "StarWaySpiritsNeeded" in options_dict:
@@ -447,10 +454,10 @@ class OptionSet:
             self.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
 
         # Entrance Shuffle
-        if "ShuffleEntrances" in options_dict:
-            self.shuffle_entrances = options_dict.get("ShuffleEntrances")
-        if "ShuffleEntrancesByArea" in options_dict:
-            self.shuffle_entrances_by_area = options_dict.get("ShuffleEntrancesByArea")
+        if "ShuffleDungeonRooms" in options_dict:
+            self.shuffle_dungeon_rooms = options_dict.get("ShuffleDungeonRooms")
+        if "ShuffleDungeonEntrances" in options_dict:
+            self.shuffle_dungeon_entrances = options_dict.get("ShuffleDungeonEntrances")
         if "ShuffleEntrancesByAll" in options_dict:
             self.shuffle_entrances_by_all = options_dict.get("ShuffleEntrancesByAll")
         if "MatchEntranceTypes" in options_dict:
@@ -882,8 +889,8 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("ChallengeMode").get("value"), bool)
     if "CapEnemyXP" in options_dict:
         assert isinstance(options_dict.get("CapEnemyXP").get("value"), bool)
-    if "NoXP" in options_dict:
-        assert isinstance(options_dict.get("NoXP").get("value"), bool)
+    if "XPMultiplier" in options_dict:
+        assert isinstance(options_dict.get("XPMultiplier").get("value"), (int,float))
     if "DoubleDamage" in options_dict:
         assert isinstance(options_dict.get("DoubleDamage").get("value"), bool)
     if "QuadrupleDamage" in options_dict:
@@ -1122,10 +1129,14 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("PrologueOpen").get("value"), bool)
     if "BlueHouseOpen" in options_dict:
         assert isinstance(options_dict.get("BlueHouseOpen").get("value"), bool)
+    if "MtRuggedOpen" in options_dict:
+        assert isinstance(options_dict.get("MtRuggedOpen").get("value"), bool)
     if "ToyboxOpen" in options_dict:
         assert isinstance(options_dict.get("ToyboxOpen").get("value"), bool)
     if "WhaleOpen" in options_dict:
         assert isinstance(options_dict.get("WhaleOpen").get("value"), bool)
+    if "Ch7BridgeVisible" in options_dict:
+        assert isinstance(options_dict.get("Ch7BridgeVisible").get("value"), bool)
 
     # Entrance General
     if "StarWaySpiritsNeeded" in options_dict:
@@ -1135,10 +1146,10 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BowsersCastleMode").get("value"), int)
 
     # Entrance Shuffle
-    if "ShuffleEntrances" in options_dict:
-        assert isinstance(options_dict.get("ShuffleEntrances").get("value"), bool)
-    if "ShuffleEntrancesByArea" in options_dict:
-        assert isinstance(options_dict.get("ShuffleEntrancesByArea").get("value"), bool)
+    if "ShuffleDungeonRooms" in options_dict:
+        assert isinstance(options_dict.get("ShuffleDungeonRooms").get("value"), bool)
+    if "ShuffleDungeonEntrances" in options_dict:
+        assert isinstance(options_dict.get("ShuffleDungeonEntrances").get("value"), bool)
     if "ShuffleEntrancesByAll" in options_dict:
         assert isinstance(options_dict.get("ShuffleEntrancesByAll").get("value"), bool)
     if "MatchEntranceTypes" in options_dict:

@@ -345,6 +345,12 @@
             "dest_entry": 0,
             "type": "walk",
             "verbose_name": "Exit Right"
+        },
+        "4": {
+            "dest_map": null,
+            "dest_entry": null,
+            "type": "spirit-warp",
+            "verbose_name": "Exit Right"
         }
     },
     "JAN_23": {

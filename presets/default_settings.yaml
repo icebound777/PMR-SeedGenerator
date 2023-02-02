@@ -22,8 +22,8 @@ ShuffleChapterDifficulty: false
 ProgressiveScaling      : true
 
 ChallengeMode  : false
-CapEnemyXP     : true
-NoXP           : false
+CapEnemyXP     : false
+XPMultiplier   : 1
 DoubleDamage   : false
 QuadrupleDamage: false
 OHKO           : false
@@ -127,16 +127,18 @@ RandomPartnersMax         : 1 # 1-8
 MagicalSeedsRequired: 4 # 5:random
 PrologueOpen        : false
 BlueHouseOpen       : false
+MtRuggedOpen        : false
 ToyboxOpen          : false
 WhaleOpen           : false
+Ch7BridgeVisible    : true
 
 # Entrance General
 StarWaySpiritsNeeded: 7 # -1:Random
 BowsersCastleMode   : 0 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 
 # Entrance Shuffle
-ShuffleEntrances        : false # NYI
-ShuffleEntrancesByArea  : false # NYI
+ShuffleDungeonRooms     : false # NYI
+ShuffleDungeonEntrances : false
 ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI
 RandomizeOnewayEntrances: false # NYI

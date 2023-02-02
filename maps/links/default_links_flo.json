@@ -119,6 +119,42 @@
             "dest_entry": 0,
             "type": "walk",
             "verbose_name": "Exit Left"
+        },
+        "2": {
+            "dest_map": "FLO_11",
+            "dest_entry": 5,
+            "type": "pipe",
+            "verbose_name": "Pipe Top Right"
+        },
+        "3": {
+            "dest_map": "FLO_11",
+            "dest_entry": 6,
+            "type": "pipe",
+            "verbose_name": "Pipe Top Center"
+        },
+        "4": {
+            "dest_map": "FLO_11",
+            "dest_entry": 7,
+            "type": "pipe",
+            "verbose_name": "Pipe Center"
+        },
+        "5": {
+            "dest_map": "FLO_11",
+            "dest_entry": 2,
+            "type": "pipe",
+            "verbose_name": "Pipe Bottom"
+        },
+        "6": {
+            "dest_map": "FLO_11",
+            "dest_entry": 3,
+            "type": "pipe",
+            "verbose_name": "Pipe Top Left"
+        },
+        "7": {
+            "dest_map": "FLO_11",
+            "dest_entry": 4,
+            "type": "pipe",
+            "verbose_name": "Pipe Left"
         }
     },
     "FLO_12": {
