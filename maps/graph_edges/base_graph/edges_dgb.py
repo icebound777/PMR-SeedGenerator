@@ -67,8 +67,8 @@ edges_dgb = [
     {"from": {"map": "DGB_04", "id": 1}, "to": {"map": "DGB_04", "id": 0}, "reqs": []}, #? Stairs to Basement Door Bottom Right -> Stairs to Basement Door Top Right
 
     # DGB_05 Stairs Above Basement
-    {"from": {"map": "DGB_05", "id": 0}, "to": {"map": "DGB_03", "id": 2}, "reqs": [["SuperBoots"]]}, # Stairs Above Basement Door Top -> Table/Clock Room (1/2F) Door 1F Top Left
-    {"from": {"map": "DGB_05", "id": 1}, "to": {"map": "DGB_06", "id": 1}, "reqs": []}, # Stairs Above Basement Hole Bottom -> Basement Fall From Ceiling
+    {"from": {"map": "DGB_05", "id": 0}, "to": {"map": "DGB_03", "id": 2}, "reqs": []}, # Stairs Above Basement Door Top -> Table/Clock Room (1/2F) Door 1F Top Left
+    {"from": {"map": "DGB_05", "id": 1}, "to": {"map": "DGB_06", "id": 1}, "reqs": [["SuperBoots"]]}, # Stairs Above Basement Hole Bottom -> Basement Fall From Ceiling
 
     {"from": {"map": "DGB_05", "id": 0}, "to": {"map": "DGB_05", "id": 1}, "reqs": []}, #? Stairs Above Basement Door Top -> Stairs Above Basement Hole Bottom
     {"from": {"map": "DGB_05", "id": 1}, "to": {"map": "DGB_05", "id": 0}, "reqs": []}, #? Stairs Above Basement Hole Bottom -> Stairs Above Basement Door Top
