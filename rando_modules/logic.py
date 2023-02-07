@@ -778,7 +778,8 @@ def _algo_assumed_fill(
                     dungeon_restricted_items[item] = dungeon
         pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 
-    pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
+    if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
+        pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
 
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()
