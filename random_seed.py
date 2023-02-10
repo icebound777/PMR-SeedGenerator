@@ -425,7 +425,7 @@ class RandomSeed:
         after calling this don't do other seed dependent calls to the random
         module anymore!
         """
-        random.seed(datetime.datetime.now())
+        random.seed()
 
         seed_hash = 0
         seed_hash_items = []
