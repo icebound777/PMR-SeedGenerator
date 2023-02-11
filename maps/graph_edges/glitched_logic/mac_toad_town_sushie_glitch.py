@@ -15,6 +15,8 @@ edges_mac_add_toad_town_sushie_glitch = [
     {"from": {"map": "KMR_02", "id": 1 },  "to": {"map": "KMR_02", "id": 0 },  "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
     #? Goomba Village Exit Right -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 0 },  "to": {"map": "KMR_02", "id": 1 },  "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
+    #? Toad Town Entrance Exit Right -> Toad Town Entrance Exit Left
+    {"from": {"map": "KMR_10", "id": 1 },  "to": {"map": "KMR_10", "id": 0 },  "reqs": [["RF_PrologueSushieGlitch"]], "mapchange": False},
 
     #* Residental District Exit Right -> ItemA (SnowmanDoll)
     {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": "ItemA"}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
