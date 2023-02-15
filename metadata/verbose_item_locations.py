@@ -181,7 +181,7 @@ verbose_item_locations = {
                "Bush3_Drop1A": "Bush Left Front",
                "Bush4_Drop1A": "Bush Infront Of Tree",
                "Bush5_Drop1A": "Coin Bush 2",
-               "Bush6A_Drop1A": "Bush Second From Right (Koopa Koot Favor)",
+               "Bush6A_Drop1A": "Bush Second From Left (Koopa Koot Favor)",
                "Bush7A_Drop1A": "Bush Far Right (Koopa Koot Favor)",
                "GiftA": "Mort T. Letter Reward",
                "GiftB": "Koover Letter Reward 1",
