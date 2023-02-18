@@ -49,6 +49,7 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": 0},       "to": {"map": "NOK_02", "id": "GiftA"},       "reqs": [["RF_Ch1_Fuzzies_Banished"]]}, #* Koopa Village 2 Exit Left -> GiftA (KootKoopaLegends)
     {"from": {"map": "NOK_02", "id": "GiftA"}, "to": {"map": "NOK_02", "id": "ItemA"},       "reqs": [["can_climb_steps"],["can_hit_floating_blocks"]]}, #+ CHAINED REQUIREMENTS -> ItemA (StarPiece)
     {"from": {"map": "NOK_02", "id": 0},       "to": {"map": "NOK_02", "id": "Bush1_Drop1"}, "reqs": []}, #* Koopa Village 2 Exit Left -> Bush1_Drop1 (KoopaLeaf)
+    {"from": {"map": "NOK_02", "id": 0},       "to": {"map": "NOK_02", "id": "Bush6_Drop1"}, "reqs": []}, #* Koopa Village 2 Exit Left -> Bush6_Drop1 (Coin)
     {"from": {"map": "NOK_02", "id": 0},       "to": {"map": "NOK_02", "id": "Partner"},     "reqs": [["KooperShell"]]}, #* Koopa Village 2 Exit Left -> Partner (Kooper)
     {"from": {"map": "NOK_02", "id": "GiftA"}, "to": {"map": "NOK_02", "id": "GiftD"},       "reqs": [["Artifact"],["RF_CanVisitDesertCamp","RF_Ch2_SavedStarSpirit"]]}, #+ CHAINED REQUIREMENTS -> GiftD (StarPiece)
     {"from": {"map": "NOK_02", "id": "GiftA"}, "to": {"map": "NOK_02", "id": "GiftE"},       "reqs": [["Parakarry"],["Letter25"],["RF_CanVisitDesertCamp","RF_Ch2_SavedStarSpirit"]]}, #+ CHAINED REQUIREMENTS -> GiftE (StarPiece)
