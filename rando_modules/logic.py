@@ -35,7 +35,10 @@ from metadata.itemlocation_special import \
     radio_trade_event_locations,          \
     dojo_locations,                       \
     limited_by_item_areas,                \
-    bush_tree_coin_locations
+    bush_tree_coin_locations,             \
+    overworld_coin_locations,             \
+    block_coin_locations,                 \
+    favor_coin_locations
 from metadata.progression_items                                 \
     import progression_miscitems as progression_miscitems_names, \
            progression_items
@@ -321,7 +324,10 @@ def _generate_item_pools(
     pool_misc_progression_items:list,
     pool_other_items:list,
     all_item_nodes:list,
-    do_randomize_coins:bool,
+    shuffle_overworld_coins:bool,
+    shuffle_block_coins:bool,
+    shuffle_foliage_coins:bool,
+    shuffle_favor_coins:bool,
     do_randomize_shops:bool,
     do_randomize_panels:bool,
     randomize_favors_mode:int,
@@ -365,19 +371,36 @@ def _generate_item_pools(
 
             current_node_id = current_node.identifier
 
-            # temp. don't rando coins in trees or bushes
+            # Check the randomization settings. If something is not supposed
+            # to be randomized, mark location as filled by setting its
+            # current_item value
             if (    current_node.vanilla_item.item_name == "Coin"
-                and current_node_id in bush_tree_coin_locations
+                and current_node_id in overworld_coin_locations
+                and not shuffle_overworld_coins
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
-            # Check the randomization settings. If something is not supposed
-            # to be randomized, mark location as filled by setting its
-            # current_item value
             if (    current_node.vanilla_item.item_name == "Coin"
-                and not do_randomize_coins
+                and current_node_id in block_coin_locations
+                and not shuffle_block_coins
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    current_node.vanilla_item.item_name == "Coin"
+                and current_node_id in bush_tree_coin_locations
+                and not shuffle_foliage_coins
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    current_node.vanilla_item.item_name == "Coin"
+                and current_node_id in favor_coin_locations
+                and not shuffle_favor_coins
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -684,7 +707,10 @@ def find_empty_reachable_nodes(
 
 def _algo_assumed_fill(
     item_placement,
-    do_randomize_coins,
+    shuffle_overworld_coins:bool,
+    shuffle_block_coins:bool,
+    shuffle_foliage_coins:bool,
+    shuffle_favor_coins:bool,
     do_randomize_shops,
     do_randomize_panels,
     randomize_favors_mode:int,
@@ -736,7 +762,10 @@ def _algo_assumed_fill(
         pool_misc_progression_items,
         pool_other_items,
         all_item_nodes,
-        do_randomize_coins,
+        shuffle_overworld_coins,
+        shuffle_block_coins,
+        shuffle_foliage_coins,
+        shuffle_favor_coins,
         do_randomize_shops,
         do_randomize_panels,
         randomize_favors_mode,
@@ -846,7 +875,10 @@ def _algo_assumed_fill(
         item_node_id = item_node.identifier
 
         if (    item_node_id == "KMR_06/ItemA"
-            and do_randomize_coins
+            and (   shuffle_overworld_coins
+                 or shuffle_block_coins
+                 or shuffle_foliage_coins
+                 or shuffle_favor_coins)
         ):
             # Do not put coin on the Goomba Road sign due to glitchy graphics
             item_index = -1
@@ -1067,7 +1099,10 @@ def place_items(
     item_placement,
     do_custom_seed:bool,
     do_shuffle_items,
-    do_randomize_coins,
+    shuffle_overworld_coins:bool,
+    shuffle_block_coins:bool,
+    shuffle_foliage_coins:bool,
+    shuffle_favor_coins:bool,
     do_randomize_shops,
     do_randomize_panels,
     randomize_favors_mode:int,
@@ -1118,7 +1153,10 @@ def place_items(
         # Place items in a backward fill, ensuring a maximally deep fill.
         _algo_assumed_fill(
             item_placement,
-            do_randomize_coins,
+            shuffle_overworld_coins,
+            shuffle_block_coins,
+            shuffle_foliage_coins,
+            shuffle_favor_coins,
             do_randomize_shops,
             do_randomize_panels,
             randomize_favors_mode,
