@@ -568,7 +568,7 @@ edges_sbk = [
     {"from": {"map": "SBK_55", "id": 3}, "to": {"map": "SBK_55", "id": 0}, "reqs": []}, #? S2E2 West of Oasis Exit South -> S2E2 West of Oasis Exit West
 
     {"from": {"map": "SBK_55", "id": 0}, "to": {"map": "SBK_55", "id": "ItemA"}, "reqs": []}, #* S2E2 West of Oasis Exit West -> ItemA (TastyTonic)
-    {"from": {"map": "SBK_55", "id": 0}, "to": {"map": "SBK_55", "id": "Tree1_Drop1"}, "reqs": []}, #* S2E2 West of Oasis Exit West -> Tree1_Drop1 (Coin)
+    {"from": {"map": "SBK_55", "id": 0}, "to": {"map": "SBK_55", "id": "Tree1_Drop1"}, "reqs": [["can_shake_trees"]]}, #* S2E2 West of Oasis Exit West -> Tree1_Drop1 (Coin)
 
     # SBK_56 S2E3 Oasis
     {"from": {"map": "SBK_56", "id": 0}, "to": {"map": "SBK_55", "id": 1}, "reqs": []}, # S2E3 Oasis Exit West -> S2E2 West of Oasis Exit East
