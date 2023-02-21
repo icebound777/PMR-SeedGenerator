@@ -41,7 +41,7 @@ ShuffleItems          : true
 IncludeCoinsOverworld : false
 IncludeCoinsBlocks    : false
 IncludeCoinsFoliage   : false
-IncludeCoinsFavors    : false
+IncludeCoinsFavors    : false # always false if IncludeFavorsMode:0
 IncludeShops          : false
 ProgressionOnRowf     : false # irrelevant if IncludeShops:false
 ProgressionOnMerlow   : false # irrelevant if IncludeShops:false
