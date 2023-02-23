@@ -114,7 +114,10 @@ edges_jan = [
     {"from": {"map": "JAN_05", "id": 0}, "to": {"map": "JAN_05", "id": 3}, "reqs": [["GF_JAN05_CreateLogBridge"]]}, #? SE Jungle (Quake Hammer) Exit Bottom Right -> SE Jungle (Quake Hammer) Exit Top
     {"from": {"map": "JAN_05", "id": 3}, "to": {"map": "JAN_05", "id": 0}, "reqs": [["Hammer"]], "pseudoitems": ["GF_JAN05_CreateLogBridge"]}, #? SE Jungle (Quake Hammer) Exit Top-> SE Jungle (Quake Hammer) Exit Bottom Right
 
-    {"from": {"map": "JAN_05", "id": 2}, "to": {"map": "JAN_05", "id": "RBlockA"}, "reqs": [["Sushie"],["can_hit_floating_blocks"]]}, #* SE Jungle (Quake Hammer) Exit Right-> RBlockA (PowerQuake)
+    {"from": {"map": "JAN_05", "id": 2}, "to": {"map": "JAN_05", "id": "RBlockA"},     "reqs": [["Sushie"],["can_hit_floating_blocks"]]}, #* SE Jungle (Quake Hammer) Exit Right-> RBlockA (PowerQuake)
+    {"from": {"map": "JAN_05", "id": 2}, "to": {"map": "JAN_05", "id": "Bush1_Drop1"}, "reqs": []}, #* SE Jungle (Quake Hammer) Exit Right-> Bush1_Drop1 (Coin)
+    {"from": {"map": "JAN_05", "id": 3}, "to": {"map": "JAN_05", "id": "Bush2_Drop1"}, "reqs": []}, #* SE Jungle (Quake Hammer) Exit Top-> Bush2_Drop1 (Coin)
+    {"from": {"map": "JAN_05", "id": 2}, "to": {"map": "JAN_05", "id": "Tree2_Drop1"}, "reqs": [["can_shake_trees"]]}, #* SE Jungle (Quake Hammer) Exit Right-> Tree2_Drop1 (Coin)
 
     {"from": {"map": "JAN_05", "id": 3}, "to": {"map": "JAN_05", "id": 3}, "reqs": [["RF_YoshiKidsMissing"],["Hammer"]], "pseudoitems": ["RF_SavedYoshiKid_1"]}, #+ Save Yoshi Kid
 
@@ -132,9 +135,13 @@ edges_jan = [
     {"from": {"map": "JAN_06", "id": 3}, "to": {"map": "JAN_06", "id": 1}, "reqs": [["Hammer"]], "pseudoitems": ["GF_JAN06_CreateLogBridge"]}, #? NE Jungle (Raven Statue) Exit Left -> NE Jungle (Raven Statue) Exit Right
 
     {"from": {"map": "JAN_06", "id": 0}, "to": {"map": "JAN_06", "id": "ItemA"}, "reqs": [["Sushie"]]}, #* NE Jungle (Raven Statue) Exit Bottom -> ItemA (Coin)
+    {"from": {"map": "JAN_06", "id": 0}, "to": {"map": "JAN_06", "id": "Tree1_Drop1"}, "reqs": [["Sushie"],["can_shake_trees"]]}, #* NE Jungle (Raven Statue) Exit Bottom -> Tree1_Drop1 (Coin)
+    {"from": {"map": "JAN_06", "id": 2}, "to": {"map": "JAN_06", "id": "Tree1_Drop1"}, "reqs": [["can_shake_trees"]]}, #* NE Jungle (Raven Statue) Exit Top -> Tree1_Drop1 (Coin)
 
     # JAN_07 Small Jungle Ledge
     {"from": {"map": "JAN_07", "id": 0}, "to": {"map": "JAN_06", "id": 1}, "reqs": []}, # Small Jungle Ledge Exit Left -> NE Jungle (Raven Statue) Exit Right
+
+    {"from": {"map": "JAN_07", "id": 0}, "to": {"map": "JAN_07", "id": "Tree1_Drop1"}, "reqs": [["can_shake_trees"]]}, #* Small Jungle Ledge Exit Left -> Tree1_Drop1 (Coin)
 
     {"from": {"map": "JAN_07", "id": 0}, "to": {"map": "JAN_07", "id": 0}, "reqs": [["RF_YoshiKidsMissing"]], "pseudoitems": ["RF_SavedYoshiKid_2"]}, #+ Save Yoshi Kid
 
@@ -152,6 +159,10 @@ edges_jan = [
     {"from": {"map": "JAN_08", "id": "ItemA"}, "to": {"map": "JAN_08", "id": "ItemB"},         "reqs": []}, #+ SHARED REQUIREMENTS -> ItemB (Coin)
     {"from": {"map": "JAN_08", "id": "ItemA"}, "to": {"map": "JAN_08", "id": "ItemC"},         "reqs": []}, #+ SHARED REQUIREMENTS -> ItemC (Coin)
     {"from": {"map": "JAN_08", "id": 2},       "to": {"map": "JAN_08", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* SW Jungle (Super Block) Exit Top -> HiddenYBlockA (ThunderRage)
+    {"from": {"map": "JAN_08", "id": 2},       "to": {"map": "JAN_08", "id": "Bush1_Drop1"},   "reqs": []}, #* SW Jungle (Super Block) Exit Top -> Bush1_Drop1 (Coin)
+    {"from": {"map": "JAN_08", "id": 0},       "to": {"map": "JAN_08", "id": "Bush2_Drop1"},   "reqs": []}, #* SW Jungle (Super Block) Exit Bottom Left -> Bush2_Drop1 (Coin)
+    {"from": {"map": "JAN_08", "id": 2},       "to": {"map": "JAN_08", "id": "Tree2_Drop1"},   "reqs": [["can_shake_trees"]]}, #* SW Jungle (Super Block) Exit Top -> Tree2_Drop1 (Coin)
+    {"from": {"map": "JAN_08", "id": 2},       "to": {"map": "JAN_08", "id": "Tree3_Drop1"},   "reqs": [["can_shake_trees"]]}, #* SW Jungle (Super Block) Exit Top -> Tree3_Drop1 (Coin)
 
     {"from": {"map": "JAN_08", "id": 0}, "to": {"map": "JAN_08", "id": 0}, "reqs": [["RF_YoshiKidsMissing"]], "pseudoitems": ["RF_SavedYoshiKid_3"]}, #+ Save Yoshi Kid
 
@@ -194,6 +205,7 @@ edges_jan = [
     {"from": {"map": "JAN_12", "id": 1}, "to": {"map": "JAN_12", "id": 0}, "reqs": []}, #? Deep Jungle 1 Exit Top Right -> Deep Jungle 1 Exit Bottom Left
 
     {"from": {"map": "JAN_12", "id": 0}, "to": {"map": "JAN_12", "id": "Tree1_Drop1"},   "reqs": [["Boots"]]}, #* Deep Jungle 1 Exit Bottom Left -> Tree1_Drop1 (Egg)
+    {"from": {"map": "JAN_12", "id": 0}, "to": {"map": "JAN_12", "id": "Tree1_Drop2"},   "reqs": [["can_shake_trees"]]}, #* Deep Jungle 1 Exit Bottom Left -> Tree1_Drop2 (Coin)
     {"from": {"map": "JAN_12", "id": 0}, "to": {"map": "JAN_12", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"],["can_climb_steps"]]}, #* Deep Jungle 1 Exit Bottom Left -> HiddenYBlockA (StoneCap)
 
     # JAN_13 Deep Jungle 2 (Block Puzzle)
@@ -204,6 +216,7 @@ edges_jan = [
     {"from": {"map": "JAN_13", "id": 1}, "to": {"map": "JAN_13", "id": 0}, "reqs": []}, #? Deep Jungle 2 (Block Puzzle) Exit Top Right -> Deep Jungle 2 (Block Puzzle) Exit Bottom Left
 
     {"from": {"map": "JAN_13", "id": 0}, "to": {"map": "JAN_13", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"],["can_climb_steps"]]}, #* Deep Jungle 2 (Block Puzzle) Exit Bottom Left -> HiddenYBlockA (VoltShroom)
+    {"from": {"map": "JAN_13", "id": 0}, "to": {"map": "JAN_13", "id": "Tree1_Drop1"},   "reqs": [["can_shake_trees"]]}, #* Deep Jungle 2 (Block Puzzle) Exit Bottom Left -> Tree1_Drop1 (Coin)
 
     # JAN_14 Deep Jungle 3
     {"from": {"map": "JAN_14", "id": 0}, "to": {"map": "JAN_13", "id": 1}, "reqs": []}, # Deep Jungle 3 Exit Bottom Left -> Deep Jungle 2 (Block Puzzle) Exit Top Right
@@ -222,6 +235,7 @@ edges_jan = [
     {"from": {"map": "JAN_15", "id": 0}, "to": {"map": "JAN_15", "id": 1}, "reqs": []}, #? Deep Jungle 4 (Ambush) Exit Bottom Left -> Deep Jungle 4 (Ambush) Exit Right
     {"from": {"map": "JAN_15", "id": 1}, "to": {"map": "JAN_15", "id": 0}, "reqs": []}, #? Deep Jungle 4 (Ambush) Exit Right -> Deep Jungle 4 (Ambush) Exit Bottom Left
 
+    {"from": {"map": "JAN_15", "id": 0}, "to": {"map": "JAN_15", "id": "Tree2_Drop1"}, "reqs": [["can_shake_trees"]]}, #* Deep Jungle 4 (Ambush) Exit Bottom Left -> Tree2_Drop1 (Coin)
     {"from": {"map": "JAN_15", "id": 0}, "to": {"map": "JAN_15", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Deep Jungle 4 (Ambush) Exit Bottom Left -> HiddenPanel (StarPiece)
 
     # JAN_16 Base of Great Tree

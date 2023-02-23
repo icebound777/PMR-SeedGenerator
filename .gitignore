@@ -10,3 +10,5 @@
 
 # Python
 *.pyc
+# pyenv
+/.python-version

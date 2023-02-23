@@ -52,7 +52,10 @@ class OptionSet:
 
         # Item Placement
         self.shuffle_items = get_option_keyvalue_dict("ShuffleItems")
-        self.include_coins = get_option_keyvalue_dict("IncludeCoins")
+        self.include_coins_overworld = True
+        self.include_coins_blocks = True
+        self.include_coins_foliage = True
+        self.include_coins_favors = False
         self.include_shops = get_option_keyvalue_dict("IncludeShops")
         self.progression_on_rowf = True
         self.progression_on_merlow = True
@@ -275,8 +278,14 @@ class OptionSet:
         # Item Placement
         if "ShuffleItems" in options_dict:
             self.shuffle_items = options_dict.get("ShuffleItems")
-        if "IncludeCoins" in options_dict:
-            self.include_coins = options_dict.get("IncludeCoins")
+        if "IncludeCoinsOverworld" in options_dict:
+            self.include_coins_overworld = options_dict.get("IncludeCoinsOverworld").get("value")
+        if "IncludeCoinsBlocks" in options_dict:
+            self.include_coins_blocks = options_dict.get("IncludeCoinsBlocks").get("value")
+        if "IncludeCoinsFoliage" in options_dict:
+            self.include_coins_foliage = options_dict.get("IncludeCoinsFoliage").get("value")
+        if "IncludeCoinsFavors" in options_dict:
+            self.include_coins_favors = options_dict.get("IncludeCoinsFavors").get("value")
         if "IncludeShops" in options_dict:
             self.include_shops = options_dict.get("IncludeShops")
         if "ProgressionOnRowf" in options_dict:
@@ -914,8 +923,14 @@ def validate_options(options_dict):
     # Item Placement
     if "ShuffleItems" in options_dict:
         assert isinstance(options_dict.get("ShuffleItems").get("value"), bool)
-    if "IncludeCoins" in options_dict:
-        assert isinstance(options_dict.get("IncludeCoins").get("value"), bool)
+    if "IncludeCoinsOverworld" in options_dict:
+        assert isinstance(options_dict.get("IncludeCoinsOverworld").get("value"), bool)
+    if "IncludeCoinsBlocks" in options_dict:
+        assert isinstance(options_dict.get("IncludeCoinsBlocks").get("value"), bool)
+    if "IncludeCoinsFoliage" in options_dict:
+        assert isinstance(options_dict.get("IncludeCoinsFoliage").get("value"), bool)
+    if "IncludeCoinsFavors" in options_dict:
+        assert isinstance(options_dict.get("IncludeCoinsFavors").get("value"), bool)
     if "IncludeShops" in options_dict:
         assert isinstance(options_dict.get("IncludeShops").get("value"), bool)
     if "ProgressionOnRowf" in options_dict:

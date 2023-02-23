@@ -77,6 +77,8 @@ edges_sbk = [
     {"from": {"map": "SBK_06", "id": 0}, "to": {"map": "SBK_06", "id": 3}, "reqs": []}, #? N3E3 Exit West -> N3E3 Exit South
     {"from": {"map": "SBK_06", "id": 3}, "to": {"map": "SBK_06", "id": 0}, "reqs": []}, #? N3E3 Exit South -> N3E3 Exit West
 
+    {"from": {"map": "SBK_06", "id": 0}, "to": {"map": "SBK_06", "id": "Tree1_Drop1"}, "reqs": [["can_shake_trees"]]}, #* N3E3 Exit West -> Tree1_Drop1 (Coin)
+
     # SBK_10 N2W3
     {"from": {"map": "SBK_10", "id": 1}, "to": {"map": "SBK_11", "id": 0}, "reqs": []}, # N2W3 Exit East -> N2W2 Exit West
     {"from": {"map": "SBK_10", "id": 2}, "to": {"map": "SBK_00", "id": 3}, "reqs": []}, # N2W3 Exit North -> N3W3 Exit South
@@ -273,6 +275,8 @@ edges_sbk = [
     {"from": {"map": "SBK_26", "id": 0}, "to": {"map": "SBK_26", "id": 3}, "reqs": []}, #? N1E3 Exit West -> N1E3 Exit South
     {"from": {"map": "SBK_26", "id": 3}, "to": {"map": "SBK_26", "id": 0}, "reqs": []}, #? N1E3 Exit South -> N1E3 Exit West
 
+    {"from": {"map": "SBK_26", "id": 0}, "to": {"map": "SBK_26", "id": "Tree1_Drop1"}, "reqs": [["can_shake_trees"]]}, #* N1E3 Exit West -> Tree1_Drop1 (Coin)
+
     # SBK_30 W3 Kolorado's Camp
     {"from": {"map": "SBK_30", "id": 0}, "to": {"map": "SBK_99", "id": 1}, "reqs": []}, # W3 Kolorado's Camp Exit West -> Entrance Exit East
     {"from": {"map": "SBK_30", "id": 1}, "to": {"map": "SBK_31", "id": 0}, "reqs": []}, # W3 Kolorado's Camp Exit East -> W2 Exit West
@@ -351,6 +355,7 @@ edges_sbk = [
     {"from": {"map": "SBK_34", "id": 3}, "to": {"map": "SBK_34", "id": 0}, "reqs": []}, #? E1 Nomadimouse Exit South -> E1 Nomadimouse Exit West
 
     {"from": {"map": "SBK_34", "id": 0}, "to": {"map": "SBK_34", "id": "GiftA"}, "reqs": [["Parakarry"],["Letter08"]]}, #* E1 Nomadimouse Exit West -> GiftA (StarPiece)
+    {"from": {"map": "SBK_34", "id": 0}, "to": {"map": "SBK_34", "id": "Tree1_Drop1"}, "reqs": [["can_shake_trees"]]}, #* E1 Nomadimouse Exit West -> Tree1_Drop1 (Coin)
 
     # SBK_35 E2
     {"from": {"map": "SBK_35", "id": 0}, "to": {"map": "SBK_34", "id": 1}, "reqs": []}, # E2 Exit West -> E1 Nomadimouse Exit East
@@ -365,6 +370,8 @@ edges_sbk = [
     {"from": {"map": "SBK_35", "id": 0}, "to": {"map": "SBK_35", "id": 3}, "reqs": []}, #? E2 Exit West -> E2 Exit South
     {"from": {"map": "SBK_35", "id": 3}, "to": {"map": "SBK_35", "id": 0}, "reqs": []}, #? E2 Exit South -> E2 Exit West
 
+    {"from": {"map": "SBK_35", "id": 0}, "to": {"map": "SBK_35", "id": "Tree1_Drop1"}, "reqs": [["can_shake_trees"]]}, #* E2 Exit West -> Tree1_Drop1 (Coin)
+
     # SBK_36 E3 Outside Outpost
     {"from": {"map": "SBK_36", "id": 0}, "to": {"map": "SBK_35", "id": 1}, "reqs": []}, # E3 Outside Outpost Exit West -> E2 Exit East
     {"from": {"map": "SBK_36", "id": 1}, "to": {"map": "DRO_01", "id": 0}, "reqs": []}, # E3 Outside Outpost Exit East -> Outpost 1 Exit West
@@ -378,6 +385,9 @@ edges_sbk = [
     {"from": {"map": "SBK_36", "id": 0}, "to": {"map": "SBK_36", "id": 3}, "reqs": []}, #? E3 Outside Outpost Exit West -> E3 Outside Outpost Exit South
     {"from": {"map": "SBK_36", "id": 3}, "to": {"map": "SBK_36", "id": 0}, "reqs": []}, #? E3 Outside Outpost Exit South -> E3 Outside Outpost Exit West
 
+    {"from": {"map": "SBK_36", "id": 0}, "to": {"map": "SBK_36", "id": "Tree1_Drop1"},  "reqs": [["can_shake_trees"]]}, #* E3 Outside Outpost Exit West -> Tree1_Drop1 (Coin)
+    {"from": {"map": "SBK_36", "id": 0}, "to": {"map": "SBK_36", "id": "Tree2_Drop1"},  "reqs": [["can_shake_trees"]]}, #* E3 Outside Outpost Exit West -> Tree2_Drop1 (Coin)
+    {"from": {"map": "SBK_36", "id": 0}, "to": {"map": "SBK_36", "id": "Tree6_Drop1"},  "reqs": [["can_shake_trees"]]}, #* E3 Outside Outpost Exit West -> Tree6_Drop1 (Coin)
     {"from": {"map": "SBK_36", "id": 0}, "to": {"map": "SBK_36", "id": "Tree9_Drop1A"}, "reqs": [["can_shake_trees"]]}, #* E3 Outside Outpost Exit West -> Tree9_Drop1A (Letter03)
 
     # SBK_40 S1W3
@@ -477,6 +487,7 @@ edges_sbk = [
 
     {"from": {"map": "SBK_46", "id": 0}, "to": {"map": "SBK_46", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"],["can_climb_steps"]]}, #* S1E3 North of Oasis Exit West -> HiddenYBlockA (LifeShroom)
     {"from": {"map": "SBK_46", "id": 0}, "to": {"map": "SBK_46", "id": "YBlockA"},       "reqs": [["can_hit_grounded_blocks"]]}, #* S1E3 North of Oasis Exit West -> YBlockA (Coin)
+    {"from": {"map": "SBK_46", "id": 0}, "to": {"map": "SBK_46", "id": "Tree2_Drop1"},   "reqs": [["can_shake_trees"]]}, #* S1E3 North of Oasis Exit West -> Tree2_Drop1 (Coin)
 
     # SBK_50 S2W3
     {"from": {"map": "SBK_50", "id": 1}, "to": {"map": "SBK_51", "id": 0}, "reqs": []}, # S2W3 Exit East -> S2W2 Exit West
@@ -557,6 +568,7 @@ edges_sbk = [
     {"from": {"map": "SBK_55", "id": 3}, "to": {"map": "SBK_55", "id": 0}, "reqs": []}, #? S2E2 West of Oasis Exit South -> S2E2 West of Oasis Exit West
 
     {"from": {"map": "SBK_55", "id": 0}, "to": {"map": "SBK_55", "id": "ItemA"}, "reqs": []}, #* S2E2 West of Oasis Exit West -> ItemA (TastyTonic)
+    {"from": {"map": "SBK_55", "id": 0}, "to": {"map": "SBK_55", "id": "Tree1_Drop1"}, "reqs": [["can_shake_trees"]]}, #* S2E2 West of Oasis Exit West -> Tree1_Drop1 (Coin)
 
     # SBK_56 S2E3 Oasis
     {"from": {"map": "SBK_56", "id": 0}, "to": {"map": "SBK_55", "id": 1}, "reqs": []}, # S2E3 Oasis Exit West -> S2E2 West of Oasis Exit East
@@ -570,6 +582,8 @@ edges_sbk = [
 
     {"from": {"map": "SBK_56", "id": 0},              "to": {"map": "SBK_56", "id": "Tree1_Drop1A"}, "reqs": [["can_shake_trees"]]}, #* S2E3 Oasis Exit West -> Tree1_Drop1A (Lemon)
     {"from": {"map": "SBK_56", "id": "Tree1_Drop1A"}, "to": {"map": "SBK_56", "id": "Tree2_Drop1A"}, "reqs": []}, #+ SHARED REQUIREMENTS -> Tree2_Drop1A (Lime)
+    {"from": {"map": "SBK_56", "id": "Tree1_Drop1A"}, "to": {"map": "SBK_56", "id": "Tree3_Drop1"},  "reqs": []}, #+ SHARED REQUIREMENTS -> Tree3_Drop1 (Coin)
+    {"from": {"map": "SBK_56", "id": "Tree1_Drop1A"}, "to": {"map": "SBK_56", "id": "Tree9_Drop1"},  "reqs": []}, #+ SHARED REQUIREMENTS -> Tree9_Drop1 (Coin)
 
     # SBK_60 S3W3
     {"from": {"map": "SBK_60", "id": 1}, "to": {"map": "SBK_61", "id": 0}, "reqs": []}, # S3W3 Exit East -> S3W2 Hidden AttackFX Exit West
@@ -638,6 +652,8 @@ edges_sbk = [
 
     {"from": {"map": "SBK_66", "id": 0}, "to": {"map": "SBK_66", "id": 2}, "reqs": []}, #? S3E3 South of Oasis Exit North -> S3E3 South of Oasis Exit West
     {"from": {"map": "SBK_66", "id": 2}, "to": {"map": "SBK_66", "id": 0}, "reqs": []}, #? S3E3 South of Oasis Exit West -> S3E3 South of Oasis Exit North
+
+    {"from": {"map": "SBK_66", "id": 0}, "to": {"map": "SBK_66", "id": "Tree3_Drop1"}, "reqs": [["can_shake_trees"]]}, #* S3E3 South of Oasis Exit North -> Tree3_Drop1 (Coin)
 
     # SBK_99 Entrance
     {"from": {"map": "SBK_99", "id": 0}, "to": {"map": "IWA_04", "id": 1}, "reqs": []}, # Entrance Exit West -> Suspension Bridge Exit Right

@@ -26,9 +26,6 @@ edges_jan_kzn_add_ch5_sushie_glitch = [
     {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": "BigChest"}, "reqs": [["RF_Ch5_SushieGlitch"], ["can_climb_steps"]], "pseudoitems": ["RF_KZN07_OpenedHammerChest"], "mapchange": False},
     #* Dizzy Stomp Room Exit West -> ChestA (DizzyStomp)
     {"from": {"map": "KZN_08", "id": 0}, "to": {"map": "KZN_08", "id": "ChestA"}, "reqs": [["RF_Ch5_SushieGlitch"], ["can_climb_steps"]], "mapchange": False},
-    #? Spike Roller Trap Exit West -> Spike Roller Trap Exit East
-    {"from": {"map": "KZN_17", "id": 0}, "to": {"map": "KZN_17", "id": 1}, "reqs": [["RF_Ch5_SushieGlitch"]], "mapchange": False},
-
 ]
 
 edges_kzn_add_volcano_sushie_glitch = [
@@ -45,7 +42,4 @@ edges_kzn_add_volcano_sushie_glitch = [
     {"from": {"map": "KZN_07", "id": 0}, "to": {"map": "KZN_07", "id": "BigChest"}, "reqs": [["RF_Volcano_SushieGlitch"]], "pseudoitems": ["RF_KZN07_OpenedHammerChest"], "mapchange": False},
     #* Dizzy Stomp Room Exit West -> ChestA (DizzyStomp)
     {"from": {"map": "KZN_08", "id": 0}, "to": {"map": "KZN_08", "id": "ChestA"}, "reqs": [["RF_Volcano_SushieGlitch"]], "mapchange": False},
-    #? Spike Roller Trap Exit West -> Spike Roller Trap Exit East
-    {"from": {"map": "KZN_17", "id": 0}, "to": {"map": "KZN_17", "id": 1}, "reqs": [["RF_Volcano_SushieGlitch"]], "mapchange": False},
-
 ]

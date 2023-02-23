@@ -38,7 +38,10 @@ CustomSeed: false # NYI
 
 # Item Placement
 ShuffleItems          : true
-IncludeCoins          : true
+IncludeCoinsOverworld : true
+IncludeCoinsBlocks    : true
+IncludeCoinsFoliage   : true
+IncludeCoinsFavors    : true # always false if IncludeFavorsMode:0
 IncludeShops          : true
 ProgressionOnRowf     : true # irrelevant if IncludeShops:false
 ProgressionOnMerlow   : true # irrelevant if IncludeShops:false
