@@ -74,6 +74,10 @@ class OptionSet:
         self.item_quality = 100
         self.itemtrap_mode = ItemTrapMode.OFF
 
+        # Map Check Tracker (auto-set, not changeable via settings)
+        self.map_tracker_check_bits = get_option_keyvalue_dict("EnabledCheckBits")
+        self.map_tracker_shop_bits = get_option_keyvalue_dict("EnabledShopBits")
+
         # Item Misc
         self.cook_without_fryingpan = get_option_keyvalue_dict("CookWithoutFryingPan")
         self.merlow_reward_pricing = MerlowRewardPricing.NORMAL
@@ -318,6 +322,40 @@ class OptionSet:
             self.item_quality = options_dict.get("ItemQuality").get("value")
         if "ItemTrapMode" in options_dict:
             self.itemtrap_mode = options_dict.get("ItemTrapMode").get("value")
+
+        # Map Check Tracker (static)
+        #   0x1   # regular checks
+        #   0x2   # gear
+        #   0x4   # panels
+        #   0x10  # overworld coins
+        #   0x20  # block coins
+        #   0x40  # favor coins
+        #   0x80  # foliage coins
+        #   0x100 # dojo
+        #   0x200 # koot favors
+        #   0x400 # radio trade event
+        #   0x800 # letter delivery
+        map_tracker_bits = 0x1 + 0x2
+        if self.include_panels.get("value"):
+            map_tracker_bits += 0x4
+        if self.include_coins_overworld:
+            map_tracker_bits += 0x10
+        if self.include_coins_blocks:
+            map_tracker_bits += 0x20
+        if self.include_coins_favors:
+            map_tracker_bits += 0x40
+        if self.include_coins_foliage:
+            map_tracker_bits += 0x80
+        if self.include_dojo:
+            map_tracker_bits += 0x100
+        if self.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
+            map_tracker_bits += 0x200
+        if self.include_radiotradeevent:
+            map_tracker_bits += 0x400
+        if self.include_letters_mode != IncludeLettersMode.NOT_RANDOMIZED:
+            map_tracker_bits += 0x800
+        self.map_tracker_check_bits["value"] = map_tracker_bits
+        #self.map_tracker_shop_bits = 0xFFFF # static for now
 
         # Item Misc
         if "CookWithoutFryingPan" in options_dict:
