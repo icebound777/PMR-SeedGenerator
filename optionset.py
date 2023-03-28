@@ -10,7 +10,8 @@ from rando_enums.enum_options import \
     HiddenBlockMode,\
     StartingBoots,\
     StartingHammer,\
-    MerlowRewardPricing
+    MerlowRewardPricing,\
+    MusicRandomizationType
 
 class OptionSet:
     def __init__(self):
@@ -178,6 +179,11 @@ class OptionSet:
         self.random_coin_color = False
 
         self.palette_settings = PaletteOptionSet()
+
+        # Audio
+        self.shuffle_music = False
+        self.shuffle_music_mode = MusicRandomizationType.MOOD
+        self.shuffle_jingles = False
 
         # Joke options
         self.roman_numerals = get_option_keyvalue_dict("RomanNumerals")
@@ -595,6 +601,14 @@ class OptionSet:
             self.palette_settings.npc_setting = options_dict.get("NPCSetting").get("value")
         if "HammerSetting" in options_dict:
             self.palette_settings.hammer_setting = options_dict.get("HammerSetting").get("value")
+
+        # Audio options
+        if "ShuffleMusic" in options_dict:
+            self.shuffle_music = options_dict.get("ShuffleMusic").get("value")
+        if "ShuffleMusicMode" in options_dict:
+            self.shuffle_music_mode = options_dict.get("ShuffleMusicMode").get("value")
+        if "ShuffleJingles" in options_dict:
+            self.shuffle_jingles = options_dict.get("ShuffleJingles").get("value")
 
         # Joke options
         if "RomanNumerals" in options_dict:
@@ -1298,6 +1312,17 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("NPCSetting").get("value"), int)
     if "HammerSetting" in options_dict:
         assert isinstance(options_dict.get("HammerSetting").get("value"), int)
+
+    # Audio options
+    if "ShuffleMusic" in options_dict:
+        assert isinstance(options_dict.get("ShuffleMusic").get("value"), bool)
+    if "ShuffleMusicMode" in options_dict:
+        assert (
+            isinstance(options_dict.get("ShuffleMusicMode").get("value"), int)
+        and 0 <= options_dict.get("ShuffleMusicMode").get("value") <= 2
+        )
+    if "ShuffleJingles" in options_dict:
+        assert isinstance(options_dict.get("ShuffleJingles").get("value"), bool)
 
     # Joke options
     if "RomanNumerals" in options_dict:

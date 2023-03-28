@@ -26,6 +26,7 @@ from rando_modules.random_mystery import get_random_mystery
 from rando_modules.random_palettes import \
     get_randomized_coinpalette,\
     get_randomized_palettes
+from rando_modules.random_audio import get_randomized_audio
 from rando_modules.random_partners import get_rnd_starting_partners
 from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.random_shop_prices import get_shop_price
@@ -289,6 +290,11 @@ class RandomSeed:
         )
 
         # Music settings
+        self.music_list = get_randomized_audio(
+            randomize_bgm=self.rando_settings.shuffle_music,
+            randomize_by=self.rando_settings.shuffle_music_mode,
+            randomize_jingles=self.rando_settings.shuffle_jingles
+        )
 
         # Determine item placement spheres
         self.item_spheres_dict = get_item_spheres(
