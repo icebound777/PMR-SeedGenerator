@@ -80,70 +80,72 @@ class RandomSeed:
             print("Generating World Graph ...")
             world_graph = generate_world_graph(None, None)
 
-        # Modify entrances if needed
-        entrances_modified = False
-        if self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.SHORTEN:
-            self.entrance_list, world_graph = get_shorter_bowsercastle(world_graph)
-            entrances_modified = True
-        elif self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.BOSSRUSH:
-            self.entrance_list, world_graph = get_bowsercastle_bossrush(world_graph)
-            entrances_modified = True
-
-        if (    self.rando_settings.shuffle_dungeon_entrances["value"]
-            and self.rando_settings.shuffle_items["value"]
-        ):
-            entrance_changes, world_graph, spoilerlog_info = shuffle_dungeon_entrances(
-                world_graph,
-                self.rando_settings.starway_spirits_needed["value"],
-                False,
-                self.rando_settings.write_spoilerlog
-            )
-            self.entrance_list.extend(entrance_changes)
-            if self.spoilerlog_additions.get("entrances") is None:
-                self.spoilerlog_additions["entrances"] = []
-            self.spoilerlog_additions["entrances"].extend(spoilerlog_info)
-
-        # Cull unneeded data from world graph if entrances changed
-        if entrances_modified:
-            unreachable_node_ids = check_unreachable_from_start(
-                world_graph,
-                False
-            )
-            for node_id in unreachable_node_ids:
-                world_graph.pop(node_id)
-
-        # Adjust graph logic if needed
-        if self.rando_settings.gear_shuffle_mode["value"] != GearShuffleMode.VANILLA:
-            world_graph = get_gear_location_shuffle(
-                world_graph,
-                self.rando_settings.gear_shuffle_mode["value"]
-            )
-        world_graph = adjust_shop_logic(
-            world_graph,
-            self.rando_settings.progression_on_rowf,
-            self.rando_settings.progression_on_merlow,
-            self.rando_settings.ripcheato_items_in_logic
-        )
-        world_graph = get_glitched_logic(
-            world_graph,
-            self.rando_settings.glitch_settings,
-            self.rando_settings.bowsers_castle_mode["value"],
-            self.rando_settings.shuffle_dungeon_entrances["value"]
-        )
-
-        world_graph = enrich_graph_data(world_graph)
-
-        # Adjust further settings
-        hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
-        if self.rando_settings.glitch_settings.knows_hidden_blocks["value"]:
-            hidden_block_mode = 3 # Having this trick enabled is equivalent to mode 3, logic wise
-
-        if self.rando_settings.starway_spirits_needed["value"] == -1:
-            self.rando_settings.starway_spirits_needed["value"] = random.randint(0,7)
-
-        # Item Placement
+        # Generation attempt
         for placement_attempt in range(1, 11):  # try 10 times
             try:
+                modified_world_graph = deepcopy(world_graph)
+
+                # Modify entrances if needed
+                entrances_modified = False
+                if self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.SHORTEN:
+                    self.entrance_list, modified_world_graph = get_shorter_bowsercastle(modified_world_graph)
+                    entrances_modified = True
+                elif self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.BOSSRUSH:
+                    self.entrance_list, modified_world_graph = get_bowsercastle_bossrush(modified_world_graph)
+                    entrances_modified = True
+
+                if (    self.rando_settings.shuffle_dungeon_entrances["value"]
+                    and self.rando_settings.shuffle_items["value"]
+                ):
+                    entrance_changes, modified_world_graph, spoilerlog_info = shuffle_dungeon_entrances(
+                        modified_world_graph,
+                        self.rando_settings.starway_spirits_needed["value"],
+                        False,
+                        self.rando_settings.write_spoilerlog
+                    )
+                    self.entrance_list.extend(entrance_changes)
+                    if self.spoilerlog_additions.get("entrances") is None:
+                        self.spoilerlog_additions["entrances"] = []
+                    self.spoilerlog_additions["entrances"].extend(spoilerlog_info)
+
+                # Cull unneeded data from world graph if entrances changed
+                if entrances_modified:
+                    unreachable_node_ids = check_unreachable_from_start(
+                        modified_world_graph,
+                        False
+                    )
+                    for node_id in unreachable_node_ids:
+                        modified_world_graph.pop(node_id)
+
+                # Adjust graph logic if needed
+                if self.rando_settings.gear_shuffle_mode["value"] != GearShuffleMode.VANILLA:
+                    modified_world_graph = get_gear_location_shuffle(
+                        modified_world_graph,
+                        self.rando_settings.gear_shuffle_mode["value"]
+                    )
+                modified_world_graph = adjust_shop_logic(
+                    modified_world_graph,
+                    self.rando_settings.progression_on_rowf,
+                    self.rando_settings.progression_on_merlow,
+                    self.rando_settings.ripcheato_items_in_logic
+                )
+                modified_world_graph = get_glitched_logic(
+                    modified_world_graph,
+                    self.rando_settings.glitch_settings,
+                    self.rando_settings.bowsers_castle_mode["value"],
+                    self.rando_settings.shuffle_dungeon_entrances["value"]
+                )
+
+                modified_world_graph = enrich_graph_data(modified_world_graph)
+
+                # Adjust further settings
+                hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
+                if self.rando_settings.glitch_settings.knows_hidden_blocks["value"]:
+                    hidden_block_mode = 3 # Having this trick enabled is equivalent to mode 3, logic wise
+
+                if self.rando_settings.starway_spirits_needed["value"] == -1:
+                    self.rando_settings.starway_spirits_needed["value"] = random.randint(0,7)
+
                 starting_chapter, starting_map_value = self.init_starting_map(self.rando_settings)
                 self.init_starting_partners(self.rando_settings)
 
@@ -158,7 +160,9 @@ class RandomSeed:
                     magical_seeds_required
                 )
 
-                world_graph_copy = deepcopy(world_graph)
+                modified_world_graph_copy = deepcopy(modified_world_graph)
+
+                # Item Placement
                 place_items(
                     item_placement= self.placed_items,
                     do_custom_seed=self.rando_settings.custom_seed,
@@ -199,7 +203,7 @@ class RandomSeed:
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
                     add_item_pouches=self.rando_settings.add_item_pouches,
                     bowsers_castle_mode=self.rando_settings.bowsers_castle_mode["value"],
-                    world_graph=world_graph_copy
+                    world_graph=modified_world_graph_copy
                 )
 
                 self.rando_settings.starting_map["value"] = starting_map_value # Overwrite starting map in case it was random at first
@@ -305,7 +309,7 @@ class RandomSeed:
             hidden_block_mode=hidden_block_mode,
             starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
             startwith_speedyspin=self.rando_settings.always_speedyspin["value"],
-            world_graph=world_graph
+            world_graph=modified_world_graph
         )
 
         # Set up seed hash for the save select screen
