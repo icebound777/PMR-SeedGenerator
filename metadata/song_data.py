@@ -113,7 +113,7 @@ song_data_array = [
     SongData("ChapterEnd",          0x40, "default",             0, True,  SongMood.UPBEAT,   SongType.EVENT),
     SongData("ChapterStart",        0x41, "default",             0, True,  SongMood.UPBEAT,   SongType.EVENT),
     SongData("ChapterStart",        0x41, "SMB only",            0, True,  SongMood.UPBEAT,   SongType.EVENT),
-    SongData("ItemUpgrade",         0x42, "default",             0, False, SongMood.UPBEAT,   SongType.JINGLE),
+    SongData("ItemUpgrade",         0x42, "default",             1, False, SongMood.UPBEAT,   SongType.JINGLE),
     # 0x43 unused
     SongData("PhonographMusic",     0x44, "default",             0, True,  SongMood.RELAXED,  SongType.EVENT),
     SongData("TutankoopaTheme",     0x45, "default",             0, True,  SongMood.SINISTER, SongType.EVENT),
