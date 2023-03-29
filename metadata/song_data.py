@@ -142,7 +142,7 @@ song_data_array = [
     SongData("HuffNPuffTheme",      0x58, "default",             0, True,  SongMood.SINISTER, SongType.EVENT),
     SongData("CrystalKingTheme",    0x59, "default",             0, True,  SongMood.SINISTER, SongType.EVENT),
     SongData("BlooperTheme",        0x5A, "default",             0, True,  SongMood.CRISIS,   SongType.EVENT),
-    SongData("MinibossBattle",      0x5B, "default",             0, True,  SongMood.UPBEAT,   SongType.BATTLE),
+    SongData("MinibossBattle",      0x5B, "default",             0, True,  SongMood.UPBEAT,   SongType.EVENT),
     SongData("MonstarTheme",        0x5C, "default",             0, True,  SongMood.SINISTER, SongType.EVENT),
     SongData("Club64",              0x5D, "default",             0, True,  SongMood.UPBEAT,   SongType.FIELDANDTOWN),
     #SongData("ClubUnusedOpening64", 0x5E, "default",             0, False, SongMood.?       , ),
