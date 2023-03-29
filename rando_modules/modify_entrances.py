@@ -142,7 +142,7 @@ from maps.graph_edges.glitched_logic.obk_parakarryless_boos_portrait import \
     edges_obk_add_boo_portrait_kooper, edges_obk_add_boo_portrait_laki
 from maps.graph_edges.glitched_logic.mim_jumpless_mansion_entry import \
     edges_mim_add_jumpless_mansion_entry_parakarry
-    
+
 # Glitched Logic - Gusty Gulch
 from maps.graph_edges.glitched_logic.mim_gusty_gulch_gate_skip import \
     edges_mim_add_gusty_gulch_gate_skip_lzs, edges_mim_add_gusty_gulch_gate_skip_laki
@@ -189,6 +189,8 @@ from maps.graph_edges.glitched_logic.omo_hammerless_pink_station import \
 # Glitched Logic - Jade Jungle
 from maps.graph_edges.glitched_logic.jan_raph_skip_english import \
     edges_jan_add_raph_skip_english
+from maps.graph_edges.glitched_logic.jan_raph_skip_parakarry import \
+    edges_jan_add_raph_skip_parakarry
 from maps.graph_edges.glitched_logic.jan_kzn_ch5_sushie_glitch import \
     edges_jan_kzn_add_ch5_sushie_glitch, edges_kzn_add_volcano_sushie_glitch
 from maps.graph_edges.glitched_logic.jan_sushieless_jungle_starpiece_and_letter import \
@@ -549,6 +551,8 @@ def get_glitched_logic(
     # Jade Jungle
     if glitch_settings.raph_skip_english["value"]:
         all_new_edges.extend(edges_jan_add_raph_skip_english)
+    if glitch_settings.raph_skip_parakarry["value"]:
+        all_new_edges.extend(edges_jan_add_raph_skip_parakarry)
     if glitch_settings.ch5_sushie_glitch["value"]:
         all_new_edges.extend(edges_jan_kzn_add_ch5_sushie_glitch)
     if glitch_settings.sushieless_jungle_starpiece_and_letter["value"]:

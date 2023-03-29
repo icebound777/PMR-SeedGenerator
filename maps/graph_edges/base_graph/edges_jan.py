@@ -245,7 +245,7 @@ edges_jan = [
     #{"from": {"map": "JAN_16", "id": 4}, "to": {"map": None, "id": None}, "reqs": []},  # Base of Great Tree Fall Off Of Tree
 
     {"from": {"map": "JAN_16", "id": 0}, "to": {"map": "JAN_16", "id": 1}, "reqs": [["MF_Ch5_TalkedToRafael"]], "pseudoitems": ["MF_Ch5_RafaelMovedRoot"]}, #? Base of Great Tree Exit Left -> Base of Great Tree Exit Right
-    {"from": {"map": "JAN_16", "id": 1}, "to": {"map": "JAN_16", "id": 0}, "reqs": [["MF_Ch5_TalkedToRafael"]]}, #? Base of Great Tree Exit Right -> Base of Great Tree Exit Left
+    {"from": {"map": "JAN_16", "id": 1}, "to": {"map": "JAN_16", "id": 0}, "reqs": []}, #? Base of Great Tree Exit Right -> Base of Great Tree Exit Left
     {"from": {"map": "JAN_16", "id": 0}, "to": {"map": "JAN_16", "id": 2}, "reqs": []}, #? Base of Great Tree Exit Left -> Base of Great Tree Enter Tree
     {"from": {"map": "JAN_16", "id": 2}, "to": {"map": "JAN_16", "id": 0}, "reqs": []}, #? Base of Great Tree Enter Tree -> Base of Great Tree Exit Left
     {"from": {"map": "JAN_16", "id": 4}, "to": {"map": "JAN_16", "id": 0}, "reqs": []}, #? Base of Great Tree Fall Off Of Tree -> Base of Great Tree Exit Left

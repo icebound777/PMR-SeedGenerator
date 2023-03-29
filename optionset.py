@@ -809,6 +809,8 @@ class OptionSet:
 
         if "RaphSkipEnglish" in options_dict:
             self.glitch_settings.raph_skip_english = options_dict.get("RaphSkipEnglish")
+        if "RaphSkipParakarry" in options_dict:
+            self.glitch_settings.raph_skip_parakarry = options_dict.get("RaphSkipParakarry")
         if "Ch5SushieGlitch" in options_dict:
             self.glitch_settings.ch5_sushie_glitch = options_dict.get("Ch5SushieGlitch")
         if "SushielessJungleStarpieceAndLetter" in options_dict:
@@ -1523,6 +1525,8 @@ def validate_options(options_dict):
 
     if "RaphSkipEnglish" in options_dict:
         assert isinstance(options_dict.get("RaphSkipEnglish").get("value"), bool)
+    if "RaphSkipParakarry" in options_dict:
+        assert isinstance(options_dict.get("RaphSkipParakarry").get("value"), bool)
     if "Ch5SushieGlitch" in options_dict:
         assert isinstance(options_dict.get("Ch5SushieGlitch").get("value"), bool)
     if "SushielessJungleStarpieceAndLetter" in options_dict:
@@ -1785,6 +1789,7 @@ class GlitchOptionSet():
             self.hammerless_pink_station_laki = False
 
             self.raph_skip_english = False
+            self.raph_skip_parakarry = False
             self.ch5_sushie_glitch = False
             self.sushieless_jungle_starpiece_and_letter = False
             self.jumpless_deep_jungle_laki = False

@@ -312,6 +312,7 @@ HammerlessBlueStationLaki                       : false
 HammerlessPinkStationLaki                       : false
 
 RaphSkipEnglish                                 : false
+RaphSkipParakarry                               : false
 Ch5SushieGlitch                                 : false
 SushielessJungleStarpieceAndLetter              : false
 JumplessDeepJungleLaki                          : false
