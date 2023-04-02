@@ -350,7 +350,8 @@ def _generate_item_pools(
     starting_boots:int,
     starting_hammer:int,
     add_item_pouches:bool,
-    bowsers_castle_mode:int
+    bowsers_castle_mode:int,
+    star_hunt_stars:int
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -526,7 +527,29 @@ def _generate_item_pools(
                 else:
                     pool_other_items.append(current_node.vanilla_item)
 
-    # Swap random consumables for strange pouches if needed
+    # Swap random consumables and coins for power stars, if needed
+    if star_hunt_stars > 0:
+        stars_added = 0
+        for power_star_item in (
+            Item
+            .select()
+            .where(
+                Item.item_name % "PowerStar*"
+            )
+        ):
+            if stars_added >= star_hunt_stars:
+                break
+            while True:
+                rnd_index = random.randint(0, len(pool_other_items) - 1)
+                rnd_item = pool_other_items.pop(rnd_index)
+                if rnd_item.item_type in ["ITEM", "COIN"]:
+                    pool_progression_items.append(power_star_item)
+                    stars_added += 1
+                    break
+                else:
+                    pool_other_items.append(rnd_item)
+
+    # Swap random consumables and coins for strange pouches if needed
     if add_item_pouches:
         pouch_items = [
             Item.get(Item.item_name == "PouchA"),
@@ -540,7 +563,7 @@ def _generate_item_pools(
         while True:
             rnd_index = random.randint(0, len(pool_other_items) - 1)
             rnd_item = pool_other_items.pop(rnd_index)
-            if rnd_item.item_type == "ITEM":
+            if rnd_item.item_type in ["ITEM", "COIN"]:
                 cnt_items_removed += 1
             else:
                 pool_other_items.append(rnd_item)
@@ -554,7 +577,7 @@ def _generate_item_pools(
         while True:
             rnd_index = random.randint(0, len(pool_other_items) - 1)
             rnd_item = pool_other_items.pop(rnd_index)
-            if rnd_item.item_type == "ITEM":
+            if rnd_item.item_type in ["ITEM", "COIN"]:
                 break
             else:
                 pool_other_items.append(rnd_item)
@@ -743,6 +766,7 @@ def _algo_assumed_fill(
     starting_items:list,
     add_item_pouches:bool,
     bowsers_castle_mode:int,
+    star_hunt_stars:int,
     world_graph
 ):
 
@@ -788,7 +812,8 @@ def _algo_assumed_fill(
         starting_boots,
         starting_hammer,
         add_item_pouches,
-        bowsers_castle_mode
+        bowsers_castle_mode,
+        star_hunt_stars
     )
 
     starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
@@ -1135,6 +1160,7 @@ def place_items(
     starting_items:list,
     add_item_pouches:list,
     bowsers_castle_mode:int,
+    star_hunt_stars:int,
     world_graph = None
 ):
     """Places items into item locations according to chosen settings."""
@@ -1189,5 +1215,6 @@ def place_items(
             starting_items,
             add_item_pouches,
             bowsers_castle_mode,
+            star_hunt_stars,
             world_graph
         )

@@ -17,6 +17,7 @@ from rando_modules.modify_entrances import \
     get_shorter_bowsercastle,\
     get_bowsercastle_bossrush,\
     get_gear_location_shuffle,\
+    get_starhunt,\
     get_glitched_logic,\
     adjust_shop_logic
 from rando_modules.random_entrances import shuffle_dungeon_entrances
@@ -94,6 +95,14 @@ class RandomSeed:
                 elif self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.BOSSRUSH:
                     self.entrance_list, modified_world_graph = get_bowsercastle_bossrush(modified_world_graph)
                     entrances_modified = True
+
+                if self.rando_settings.star_hunt["value"]:
+                    self.entrance_list, modified_world_graph = get_starhunt(
+                        modified_world_graph,
+                        #self.rando_settings.star_hunt_required["value"],
+                        self.rando_settings.star_hunt_placed["value"],
+                        self.rando_settings.star_hunt_ends_game["value"]
+                    )
 
                 if (    self.rando_settings.shuffle_dungeon_entrances["value"]
                     and self.rando_settings.shuffle_items["value"]
@@ -204,6 +213,7 @@ class RandomSeed:
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
                     add_item_pouches=self.rando_settings.add_item_pouches,
                     bowsers_castle_mode=self.rando_settings.bowsers_castle_mode["value"],
+                    star_hunt_stars=self.rando_settings.star_hunt_placed["value"] if self.rando_settings.star_hunt["value"] else 0,
                     world_graph=modified_world_graph_copy
                 )
 

@@ -143,9 +143,13 @@ class OptionSet:
         self.whale_open = get_option_keyvalue_dict("WhaleOpen")
         self.ch7_bridge_visible = get_option_keyvalue_dict("Ch7BridgeVisible")
 
-        # Entrance General
+        # Goal Settings
         self.starway_spirits_needed = get_option_keyvalue_dict("StarWaySpiritsNeeded")
         self.bowsers_castle_mode = get_option_keyvalue_dict("BowsersCastleMode")
+        self.star_hunt = get_option_keyvalue_dict("StarHunt")
+        self.star_hunt_required = get_option_keyvalue_dict("StarHuntRequired")
+        self.star_hunt_placed = 120
+        self.star_hunt_ends_game = get_option_keyvalue_dict("StarHuntEndsGame")
 
         # Entrance Shuffle
         self.shuffle_dungeon_rooms = get_option_keyvalue_dict("ShuffleDungeonRooms")
@@ -500,11 +504,19 @@ class OptionSet:
         if "Ch7BridgeVisible" in options_dict:
             self.ch7_bridge_visible = options_dict.get("Ch7BridgeVisible")
 
-        # Entrance General
+        # Goal Settings
         if "StarWaySpiritsNeeded" in options_dict:
             self.starway_spirits_needed = options_dict.get("StarWaySpiritsNeeded")
         if "BowsersCastleMode" in options_dict:
             self.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
+        if "StarHunt" in options_dict:
+            self.star_hunt = options_dict.get("StarHunt")
+        if "StarHuntRequired" in options_dict:
+            self.star_hunt_required = options_dict.get("StarHuntRequired")
+        if "StarHuntPlaced" in options_dict:
+            self.star_hunt_placed = options_dict.get("StarHuntPlaced")
+        if "StarHuntEndsGame" in options_dict:
+            self.star_hunt_ends_game = options_dict.get("StarHuntEndsGame")
 
         # Entrance Shuffle
         if "ShuffleDungeonRooms" in options_dict:
@@ -1207,12 +1219,27 @@ def validate_options(options_dict):
     if "Ch7BridgeVisible" in options_dict:
         assert isinstance(options_dict.get("Ch7BridgeVisible").get("value"), bool)
 
-    # Entrance General
+    # Goal Settings
     if "StarWaySpiritsNeeded" in options_dict:
         assert (    isinstance(options_dict.get("StarWaySpiritsNeeded").get("value"), int)
                 and -1 <= options_dict.get("StarWaySpiritsNeeded").get("value") <= 7)
     if "BowsersCastleMode" in options_dict:
         assert isinstance(options_dict.get("BowsersCastleMode").get("value"), int)
+    if "StarHunt" in options_dict:
+        assert isinstance(options_dict.get("StarHunt").get("value"), bool)
+    if "StarHuntRequired" in options_dict:
+        assert (
+            isinstance(options_dict.get("StarHuntRequired").get("value"), int)
+        and 0 <= options_dict.get("StarHuntRequired").get("value") <= 120
+        )
+    if "StarHuntPlaced" in options_dict:
+        assert (
+            isinstance(options_dict.get("StarHuntPlaced").get("value"), int)
+        and 0 <= options_dict.get("StarHuntPlaced").get("value") <= 120
+        and options_dict.get("StarHuntPlaced").get("value") >= options_dict.get("StarHuntRequired").get("value")
+        )
+    if "StarHuntEndsGame" in options_dict:
+        assert isinstance(options_dict.get("StarHuntEndsGame").get("value"), bool)
 
     # Entrance Shuffle
     if "ShuffleDungeonRooms" in options_dict:

@@ -29,6 +29,13 @@ from maps.graph_edges.gear_location_shuffle.edges_tik import \
     edges_tik_add    as edges_tik_gls_add, \
     edges_tik_remove as edges_tik_gls_remove
 
+# Imports: Star Hunt
+from maps.graph_edges.star_hunt.edges_hos import \
+    edges_hos_starhunt_add,\
+    edges_hos_starhunt_remove,\
+    edges_hos_starhunt2credits_add,\
+    edges_hos_starhunt2credits_remove
+
 # Imports: Glitched logic
 from optionset import GlitchOptionSet
 
@@ -305,6 +312,40 @@ def get_bowsercastle_bossrush(world_graph: dict):
     all_entrance_modifications.extend(kpa_entrance_modifications)
 
     return all_entrance_modifications, world_graph
+
+def get_starhunt(
+    world_graph: dict,
+    #power_stars_required: int,
+    power_stars_placed: int,
+    star_hunt_triggers_credits: bool
+):
+    """
+    Returns the modified world graph itself for Star Hunt,
+    which either removes ch8 or changes the Star Way requirements.
+    """
+    all_new_edges = []
+    all_edges_to_remove = []
+    all_entrance_modifications = []
+
+    all_new_edges.extend(edges_hos_starhunt_add)
+    all_edges_to_remove.extend(edges_hos_starhunt_remove)
+
+    # always expect all power stars before ch8, else some get placed behind
+    # the edge they lock
+    all_new_edges[0]["reqs"].extend([[{"powerstars": power_stars_placed}]])
+
+    if star_hunt_triggers_credits:
+        all_new_edges.extend(edges_hos_starhunt2credits_add)
+        all_edges_to_remove.extend(edges_hos_starhunt2credits_remove)
+
+    world_graph, all_entrance_modifications = adjust(
+        world_graph,
+        new_edges=all_new_edges,
+        edges_to_remove=all_edges_to_remove
+    )
+
+    return all_entrance_modifications, world_graph
+
 
 def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     """

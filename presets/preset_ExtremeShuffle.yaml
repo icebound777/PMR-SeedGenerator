@@ -135,9 +135,13 @@ ToyboxOpen          : false
 WhaleOpen           : false
 Ch7BridgeVisible    : true
 
-# Entrance General
+# Goal Settings
 StarWaySpiritsNeeded: 7 # -1:Random
 BowsersCastleMode   : 0 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
+StarHunt            : false
+StarHuntRequired    : 120
+StarHuntPlaced      : 120
+StarHuntEndsGame    : true
 
 # Entrance Shuffle
 ShuffleDungeonRooms     : false # NYI
