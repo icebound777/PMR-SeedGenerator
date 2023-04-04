@@ -147,7 +147,7 @@ song_data_array = [
     SongData("MonstarTheme",        0x5C, "default",             0, True,  SongMood.SINISTER, SongType.EVENT),
     SongData("Club64",              0x5D, "default",             0, True,  SongMood.UPBEAT,   SongType.FIELDANDTOWN),
     #SongData("ClubUnusedOpening64", 0x5E, "default",             0, False, SongMood.?       , ),
-    SongData("BowsersCastleFalls",  0x5F, "default",             0, True,  SongMood.CRISIS,   SongType.EVENT),
+    SongData("BowsersCastleFalls",  0x5F, "default",             0, False, SongMood.CRISIS,   SongType.EVENT),
     SongData("StarHaven",           0x60, "default",             0, True,  SongMood.RELAXED,  SongType.FIELDANDTOWN),
     #SongData("StarHaven",           0x60, "sped up?",            1, False, SongMood.?       , ),
     SongData("ShootingStarSummit",  0x61, "default",             0, True,  SongMood.RELAXED,  SongType.FIELDANDTOWN),
