@@ -6,6 +6,7 @@ SettingsName: Standard Race Preset
 BlocksMatchContent  : true
 HiddenBlockMode     : 2 # 0:vanilla, 1:Watt out, 2:Watt acquired, 3:always visible
 AllowPhysicsGlitches: true
+BadgeSynergy        : false
 
 # QOL
 AlwaysSpeedySpin     : true

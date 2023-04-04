@@ -6,6 +6,7 @@ SettingsName: Extreme Shuffle Preset
 BlocksMatchContent  : true
 HiddenBlockMode     : 0 # 0:vanilla, 1:Watt out, 2:Watt acquired, 3:always visible
 AllowPhysicsGlitches: true
+BadgeSynergy        : false
 
 # QOL
 AlwaysSpeedySpin     : true

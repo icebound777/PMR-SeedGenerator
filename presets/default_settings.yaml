@@ -6,6 +6,7 @@ SettingsName: Default Preset
 BlocksMatchContent  : true
 HiddenBlockMode     : 1 # 0:vanilla, 1:Watt out, 2:Watt acquired, 3:always visible
 AllowPhysicsGlitches: false
+BadgeSynergy        : false
 
 # QOL
 AlwaysSpeedySpin     : true

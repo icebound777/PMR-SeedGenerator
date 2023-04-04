@@ -20,6 +20,7 @@ class OptionSet:
         self.blocks_match_content = get_option_keyvalue_dict("BlocksMatchContent")
         self.hidden_block_mode = get_option_keyvalue_dict("HiddenBlockMode")
         self.allow_physics_glitches = get_option_keyvalue_dict("AllowPhysicsGlitches")
+        self.badge_synergy = get_option_keyvalue_dict("BadgeSynergy")
 
         # QOL
         self.always_speedyspin = get_option_keyvalue_dict("AlwaysSpeedySpin")
@@ -236,6 +237,8 @@ class OptionSet:
             self.hidden_block_mode = options_dict.get("HiddenBlockMode")
         if "AllowPhysicsGlitches" in options_dict:
             self.allow_physics_glitches = options_dict.get("AllowPhysicsGlitches")
+        if "BadgeSynergy" in options_dict:
+            self.badge_synergy = options_dict.get("BadgeSynergy")
 
         # QOL
         if "AlwaysSpeedySpin" in options_dict:
@@ -935,6 +938,8 @@ def validate_options(options_dict):
                 and HiddenBlockMode.VANILLA <= options_dict.get("HiddenBlockMode").get("value") <= HiddenBlockMode.ALWAYS_VISIBLE)
     if "AllowPhysicsGlitches" in options_dict:
         assert isinstance(options_dict.get("AllowPhysicsGlitches").get("value"), bool)
+    if "BadgeSynergy" in options_dict:
+        assert isinstance(options_dict.get("BadgeSynergy").get("value"), bool)
 
     # QOL
     if "AlwaysSpeedySpin" in options_dict:
