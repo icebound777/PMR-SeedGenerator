@@ -100,7 +100,7 @@ class RandomSeed:
                     self.entrance_list, modified_world_graph = get_starhunt(
                         modified_world_graph,
                         #self.rando_settings.star_hunt_required["value"],
-                        self.rando_settings.star_hunt_placed["value"],
+                        self.rando_settings.star_hunt_total["value"],
                         self.rando_settings.star_hunt_ends_game["value"]
                     )
 
@@ -213,7 +213,7 @@ class RandomSeed:
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
                     add_item_pouches=self.rando_settings.add_item_pouches,
                     bowsers_castle_mode=self.rando_settings.bowsers_castle_mode["value"],
-                    star_hunt_stars=self.rando_settings.star_hunt_placed["value"] if self.rando_settings.star_hunt["value"] else 0,
+                    star_hunt_stars=self.rando_settings.star_hunt_total["value"] if self.rando_settings.star_hunt["value"] else 0,
                     world_graph=modified_world_graph_copy
                 )
 

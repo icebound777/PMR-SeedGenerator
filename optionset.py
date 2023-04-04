@@ -148,7 +148,7 @@ class OptionSet:
         self.bowsers_castle_mode = get_option_keyvalue_dict("BowsersCastleMode")
         self.star_hunt = get_option_keyvalue_dict("StarHunt")
         self.star_hunt_required = get_option_keyvalue_dict("StarHuntRequired")
-        self.star_hunt_placed = 120
+        self.star_hunt_total = get_option_keyvalue_dict("StarHuntTotal")
         self.star_hunt_ends_game = get_option_keyvalue_dict("StarHuntEndsGame")
 
         # Entrance Shuffle
@@ -513,8 +513,8 @@ class OptionSet:
             self.star_hunt = options_dict.get("StarHunt")
         if "StarHuntRequired" in options_dict:
             self.star_hunt_required = options_dict.get("StarHuntRequired")
-        if "StarHuntPlaced" in options_dict:
-            self.star_hunt_placed = options_dict.get("StarHuntPlaced")
+        if "StarHuntTotal" in options_dict:
+            self.star_hunt_total = options_dict.get("StarHuntTotal")
         if "StarHuntEndsGame" in options_dict:
             self.star_hunt_ends_game = options_dict.get("StarHuntEndsGame")
 
@@ -1232,11 +1232,11 @@ def validate_options(options_dict):
             isinstance(options_dict.get("StarHuntRequired").get("value"), int)
         and 0 <= options_dict.get("StarHuntRequired").get("value") <= 120
         )
-    if "StarHuntPlaced" in options_dict:
+    if "StarHuntTotal" in options_dict:
         assert (
-            isinstance(options_dict.get("StarHuntPlaced").get("value"), int)
-        and 0 <= options_dict.get("StarHuntPlaced").get("value") <= 120
-        and options_dict.get("StarHuntPlaced").get("value") >= options_dict.get("StarHuntRequired").get("value")
+            isinstance(options_dict.get("StarHuntTotal").get("value"), int)
+        and 0 <= options_dict.get("StarHuntTotal").get("value") <= 120
+        and options_dict.get("StarHuntTotal").get("value") >= options_dict.get("StarHuntRequired").get("value")
         )
     if "StarHuntEndsGame" in options_dict:
         assert isinstance(options_dict.get("StarHuntEndsGame").get("value"), bool)
