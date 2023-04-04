@@ -103,6 +103,8 @@ class RandomSeed:
                         self.rando_settings.star_hunt_total["value"],
                         self.rando_settings.star_hunt_ends_game["value"]
                     )
+                    if self.rando_settings.star_hunt_ends_game["value"]:
+                        entrances_modified = True
 
                 if (    self.rando_settings.shuffle_dungeon_entrances["value"]
                     and self.rando_settings.shuffle_items["value"]
