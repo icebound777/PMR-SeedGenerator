@@ -88,23 +88,24 @@ class RandomSeed:
                 modified_world_graph = deepcopy(world_graph)
 
                 # Modify entrances if needed
-                entrances_modified = False
+                maps_removed = False
                 if self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.SHORTEN:
                     self.entrance_list, modified_world_graph = get_shorter_bowsercastle(modified_world_graph)
-                    entrances_modified = True
+                    maps_removed = True
                 elif self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.BOSSRUSH:
                     self.entrance_list, modified_world_graph = get_bowsercastle_bossrush(modified_world_graph)
-                    entrances_modified = True
+                    maps_removed = True
 
                 if self.rando_settings.star_hunt["value"]:
-                    self.entrance_list, modified_world_graph = get_starhunt(
+                    entrance_changes, modified_world_graph = get_starhunt(
                         modified_world_graph,
                         #self.rando_settings.star_hunt_required["value"],
                         self.rando_settings.star_hunt_total["value"],
                         self.rando_settings.star_hunt_ends_game["value"]
                     )
+                    self.entrance_list.extend(entrance_changes)
                     if self.rando_settings.star_hunt_ends_game["value"]:
-                        entrances_modified = True
+                        maps_removed = True
 
                 if (    self.rando_settings.shuffle_dungeon_entrances["value"]
                     and self.rando_settings.shuffle_items["value"]
@@ -120,8 +121,9 @@ class RandomSeed:
                         self.spoilerlog_additions["entrances"] = []
                     self.spoilerlog_additions["entrances"].extend(spoilerlog_info)
 
-                # Cull unneeded data from world graph if entrances changed
-                if entrances_modified:
+                # Cull unneeded data from world graph if access to maps was
+                # removed
+                if maps_removed:
                     unreachable_node_ids = check_unreachable_from_start(
                         modified_world_graph,
                         False
