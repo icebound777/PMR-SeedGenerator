@@ -62,6 +62,7 @@ class MarioInventory:
         self.items = set()
         self.starpieces = set()
         self.starpiece_count = 0
+        self.powerstars = set()
         self.partners = set()
         self.favors = set()
         self.flags = set()
@@ -154,6 +155,10 @@ class MarioInventory:
                     else:
                         self.starpiece_count += 1
                     self.starpieces.add(item_object)
+                    self.item_history.append(f"+{item_object}")
+            elif item_object.startswith("PowerStar"):
+                if item_object not in self.powerstars:
+                    self.powerstars.add(item_object)
                     self.item_history.append(f"+{item_object}")
             elif item_object.startswith("FAVOR"):
                 if item_object not in self.favors:
@@ -302,6 +307,12 @@ class MarioInventory:
                     # Check star pieces
                     if ("starpieces" in req
                     and self.starpiece_count >= req["starpieces"]
+                    ):
+                        group_fulfilled = True
+                        break
+                    # Check power stars
+                    if ("powerstars" in req
+                    and len(self.powerstars) >= req["powerstars"]
                     ):
                         group_fulfilled = True
                         break

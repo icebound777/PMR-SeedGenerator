@@ -149,10 +149,10 @@ allowed_starting_items = [
 	0x0D8, # BoiledEgg
 	0x0D9, # YoshiCookie
 	0x0DA, # JellyShroom,
-	0x1DD, # BlueBerryProxy1
-	0x1DF, # RedBerryProxy1
-	0x1E1, # YellowBerryProxy1
-	0x1E3, # BubbleBerryProxy1
+	0x25D, # BlueBerryProxy1
+	0x25F, # RedBerryProxy1
+	0x261, # YellowBerryProxy1
+	0x263, # BubbleBerryProxy1
 ]
 
 allowed_starting_badges = [

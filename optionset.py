@@ -10,7 +10,8 @@ from rando_enums.enum_options import \
     HiddenBlockMode,\
     StartingBoots,\
     StartingHammer,\
-    MerlowRewardPricing
+    MerlowRewardPricing,\
+    MusicRandomizationType
 
 class OptionSet:
     def __init__(self):
@@ -19,6 +20,7 @@ class OptionSet:
         self.blocks_match_content = get_option_keyvalue_dict("BlocksMatchContent")
         self.hidden_block_mode = get_option_keyvalue_dict("HiddenBlockMode")
         self.allow_physics_glitches = get_option_keyvalue_dict("AllowPhysicsGlitches")
+        self.badge_synergy = get_option_keyvalue_dict("BadgeSynergy")
 
         # QOL
         self.always_speedyspin = get_option_keyvalue_dict("AlwaysSpeedySpin")
@@ -73,6 +75,10 @@ class OptionSet:
         self.randomize_consumable_mode = RandomizeConsumablesMode.OFF
         self.item_quality = 100
         self.itemtrap_mode = ItemTrapMode.OFF
+
+        # Map Check Tracker (auto-set, not changeable via settings)
+        self.map_tracker_check_bits = get_option_keyvalue_dict("EnabledCheckBits")
+        self.map_tracker_shop_bits = get_option_keyvalue_dict("EnabledShopBits")
 
         # Item Misc
         self.cook_without_fryingpan = get_option_keyvalue_dict("CookWithoutFryingPan")
@@ -138,9 +144,13 @@ class OptionSet:
         self.whale_open = get_option_keyvalue_dict("WhaleOpen")
         self.ch7_bridge_visible = get_option_keyvalue_dict("Ch7BridgeVisible")
 
-        # Entrance General
+        # Goal Settings
         self.starway_spirits_needed = get_option_keyvalue_dict("StarWaySpiritsNeeded")
         self.bowsers_castle_mode = get_option_keyvalue_dict("BowsersCastleMode")
+        self.star_hunt = get_option_keyvalue_dict("StarHunt")
+        self.star_hunt_required = get_option_keyvalue_dict("StarHuntRequired")
+        self.star_hunt_total = get_option_keyvalue_dict("StarHuntTotal")
+        self.star_hunt_ends_game = get_option_keyvalue_dict("StarHuntEndsGame")
 
         # Entrance Shuffle
         self.shuffle_dungeon_rooms = get_option_keyvalue_dict("ShuffleDungeonRooms")
@@ -174,6 +184,11 @@ class OptionSet:
         self.random_coin_color = False
 
         self.palette_settings = PaletteOptionSet()
+
+        # Audio
+        self.shuffle_music = False
+        self.shuffle_music_mode = MusicRandomizationType.MOOD
+        self.shuffle_jingles = False
 
         # Joke options
         self.roman_numerals = get_option_keyvalue_dict("RomanNumerals")
@@ -222,6 +237,8 @@ class OptionSet:
             self.hidden_block_mode = options_dict.get("HiddenBlockMode")
         if "AllowPhysicsGlitches" in options_dict:
             self.allow_physics_glitches = options_dict.get("AllowPhysicsGlitches")
+        if "BadgeSynergy" in options_dict:
+            self.badge_synergy = options_dict.get("BadgeSynergy")
 
         # QOL
         if "AlwaysSpeedySpin" in options_dict:
@@ -318,6 +335,40 @@ class OptionSet:
             self.item_quality = options_dict.get("ItemQuality").get("value")
         if "ItemTrapMode" in options_dict:
             self.itemtrap_mode = options_dict.get("ItemTrapMode").get("value")
+
+        # Map Check Tracker (static)
+        #   0x1   # regular checks
+        #   0x2   # gear
+        #   0x4   # panels
+        #   0x10  # overworld coins
+        #   0x20  # block coins
+        #   0x40  # favor coins
+        #   0x80  # foliage coins
+        #   0x100 # dojo
+        #   0x200 # koot favors
+        #   0x400 # radio trade event
+        #   0x800 # letter delivery
+        map_tracker_bits = 0x1 + 0x2
+        if self.include_panels.get("value"):
+            map_tracker_bits += 0x4
+        if self.include_coins_overworld:
+            map_tracker_bits += 0x10
+        if self.include_coins_blocks:
+            map_tracker_bits += 0x20
+        if self.include_coins_favors:
+            map_tracker_bits += 0x40
+        if self.include_coins_foliage:
+            map_tracker_bits += 0x80
+        if self.include_dojo:
+            map_tracker_bits += 0x100
+        if self.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
+            map_tracker_bits += 0x200
+        if self.include_radiotradeevent:
+            map_tracker_bits += 0x400
+        if self.include_letters_mode != IncludeLettersMode.NOT_RANDOMIZED:
+            map_tracker_bits += 0x800
+        self.map_tracker_check_bits["value"] = map_tracker_bits
+        #self.map_tracker_shop_bits = 0xFFFF # static for now
 
         # Item Misc
         if "CookWithoutFryingPan" in options_dict:
@@ -456,11 +507,19 @@ class OptionSet:
         if "Ch7BridgeVisible" in options_dict:
             self.ch7_bridge_visible = options_dict.get("Ch7BridgeVisible")
 
-        # Entrance General
+        # Goal Settings
         if "StarWaySpiritsNeeded" in options_dict:
             self.starway_spirits_needed = options_dict.get("StarWaySpiritsNeeded")
         if "BowsersCastleMode" in options_dict:
             self.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
+        if "StarHunt" in options_dict:
+            self.star_hunt = options_dict.get("StarHunt")
+        if "StarHuntRequired" in options_dict:
+            self.star_hunt_required = options_dict.get("StarHuntRequired")
+        if "StarHuntTotal" in options_dict:
+            self.star_hunt_total = options_dict.get("StarHuntTotal")
+        if "StarHuntEndsGame" in options_dict:
+            self.star_hunt_ends_game = options_dict.get("StarHuntEndsGame")
 
         # Entrance Shuffle
         if "ShuffleDungeonRooms" in options_dict:
@@ -557,6 +616,14 @@ class OptionSet:
             self.palette_settings.npc_setting = options_dict.get("NPCSetting").get("value")
         if "HammerSetting" in options_dict:
             self.palette_settings.hammer_setting = options_dict.get("HammerSetting").get("value")
+
+        # Audio options
+        if "ShuffleMusic" in options_dict:
+            self.shuffle_music = options_dict.get("ShuffleMusic").get("value")
+        if "ShuffleMusicMode" in options_dict:
+            self.shuffle_music_mode = options_dict.get("ShuffleMusicMode").get("value")
+        if "ShuffleJingles" in options_dict:
+            self.shuffle_jingles = options_dict.get("ShuffleJingles").get("value")
 
         # Joke options
         if "RomanNumerals" in options_dict:
@@ -757,6 +824,8 @@ class OptionSet:
 
         if "RaphSkipEnglish" in options_dict:
             self.glitch_settings.raph_skip_english = options_dict.get("RaphSkipEnglish")
+        if "RaphSkipParakarry" in options_dict:
+            self.glitch_settings.raph_skip_parakarry = options_dict.get("RaphSkipParakarry")
         if "Ch5SushieGlitch" in options_dict:
             self.glitch_settings.ch5_sushie_glitch = options_dict.get("Ch5SushieGlitch")
         if "SushielessJungleStarpieceAndLetter" in options_dict:
@@ -869,6 +938,8 @@ def validate_options(options_dict):
                 and HiddenBlockMode.VANILLA <= options_dict.get("HiddenBlockMode").get("value") <= HiddenBlockMode.ALWAYS_VISIBLE)
     if "AllowPhysicsGlitches" in options_dict:
         assert isinstance(options_dict.get("AllowPhysicsGlitches").get("value"), bool)
+    if "BadgeSynergy" in options_dict:
+        assert isinstance(options_dict.get("BadgeSynergy").get("value"), bool)
 
     # QOL
     if "AlwaysSpeedySpin" in options_dict:
@@ -1153,12 +1224,34 @@ def validate_options(options_dict):
     if "Ch7BridgeVisible" in options_dict:
         assert isinstance(options_dict.get("Ch7BridgeVisible").get("value"), bool)
 
-    # Entrance General
+    # Goal Settings
     if "StarWaySpiritsNeeded" in options_dict:
         assert (    isinstance(options_dict.get("StarWaySpiritsNeeded").get("value"), int)
                 and -1 <= options_dict.get("StarWaySpiritsNeeded").get("value") <= 7)
     if "BowsersCastleMode" in options_dict:
         assert isinstance(options_dict.get("BowsersCastleMode").get("value"), int)
+    if "StarHunt" in options_dict:
+        assert isinstance(options_dict.get("StarHunt").get("value"), bool)
+        try:
+            if "ShuffleItems" in options_dict and not options_dict.get("ShuffleItems").get("value"):
+                assert (options_dict.get("StarHunt").get("value") is False)
+        except AssertionError:
+            raise ValueError(
+                "No item shuffle but star hunt is not a valid setting-combination!",
+            )
+    if "StarHuntRequired" in options_dict:
+        assert (
+            isinstance(options_dict.get("StarHuntRequired").get("value"), int)
+        and 0 <= options_dict.get("StarHuntRequired").get("value") <= 120
+        )
+    if "StarHuntTotal" in options_dict:
+        assert (
+            isinstance(options_dict.get("StarHuntTotal").get("value"), int)
+        and 0 <= options_dict.get("StarHuntTotal").get("value") <= 120
+        and options_dict.get("StarHuntTotal").get("value") >= options_dict.get("StarHuntRequired").get("value")
+        )
+    if "StarHuntEndsGame" in options_dict:
+        assert isinstance(options_dict.get("StarHuntEndsGame").get("value"), bool)
 
     # Entrance Shuffle
     if "ShuffleDungeonRooms" in options_dict:
@@ -1260,6 +1353,17 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("NPCSetting").get("value"), int)
     if "HammerSetting" in options_dict:
         assert isinstance(options_dict.get("HammerSetting").get("value"), int)
+
+    # Audio options
+    if "ShuffleMusic" in options_dict:
+        assert isinstance(options_dict.get("ShuffleMusic").get("value"), bool)
+    if "ShuffleMusicMode" in options_dict:
+        assert (
+            isinstance(options_dict.get("ShuffleMusicMode").get("value"), int)
+        and 0 <= options_dict.get("ShuffleMusicMode").get("value") <= 2
+        )
+    if "ShuffleJingles" in options_dict:
+        assert isinstance(options_dict.get("ShuffleJingles").get("value"), bool)
 
     # Joke options
     if "RomanNumerals" in options_dict:
@@ -1460,6 +1564,8 @@ def validate_options(options_dict):
 
     if "RaphSkipEnglish" in options_dict:
         assert isinstance(options_dict.get("RaphSkipEnglish").get("value"), bool)
+    if "RaphSkipParakarry" in options_dict:
+        assert isinstance(options_dict.get("RaphSkipParakarry").get("value"), bool)
     if "Ch5SushieGlitch" in options_dict:
         assert isinstance(options_dict.get("Ch5SushieGlitch").get("value"), bool)
     if "SushielessJungleStarpieceAndLetter" in options_dict:
@@ -1722,6 +1828,7 @@ class GlitchOptionSet():
             self.hammerless_pink_station_laki = False
 
             self.raph_skip_english = False
+            self.raph_skip_parakarry = False
             self.ch5_sushie_glitch = False
             self.sushieless_jungle_starpiece_and_letter = False
             self.jumpless_deep_jungle_laki = False

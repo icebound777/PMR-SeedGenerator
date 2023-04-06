@@ -177,6 +177,19 @@ class Table:
 
         table_data.sort(key=lambda pair: pair["key"])
         return table_data
+    
+    def generate_music_pairs(self, **kwargs):
+        table_data = []
+        
+        music_list = kwargs.get("music_list")
+        for key, value in music_list:
+            table_data.append({
+                "key": key,
+                "value": value
+            })
+
+        table_data.sort(key=lambda pair: pair["key"])
+        return table_data
 
 
     def create(self):

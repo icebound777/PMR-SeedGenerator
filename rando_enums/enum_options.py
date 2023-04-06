@@ -76,6 +76,12 @@ class RandomPalettes(IntEnum):
     ALWAYS_RANDOM = 4
 
 @unique
+class MusicRandomizationType(IntEnum):
+    MOOD = 0
+    TYPE = 1
+    FULL = 2
+
+@unique
 class MerlowRewardPricing(IntEnum):
     CHEAP = 0
     NORMAL = 1

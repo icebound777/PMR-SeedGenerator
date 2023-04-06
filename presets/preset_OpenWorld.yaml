@@ -6,6 +6,7 @@ SettingsName: Open World Preset
 BlocksMatchContent  : true
 HiddenBlockMode     : 2 # 0:vanilla, 1:Watt out, 2:Watt acquired, 3:always visible
 AllowPhysicsGlitches: true
+BadgeSynergy        : false
 
 # QOL
 AlwaysSpeedySpin     : true
@@ -135,9 +136,13 @@ ToyboxOpen          : true
 WhaleOpen           : true
 Ch7BridgeVisible    : true
 
-# Entrance General
-StarWaySpiritsNeeded : 7 # -1:Random
-BowsersCastleMode    : 0 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
+# Goal Settings
+StarWaySpiritsNeeded: 7 # -1:Random
+BowsersCastleMode   : 0 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
+StarHunt            : false
+StarHuntRequired    : 120
+StarHuntTotal       : 120
+StarHuntEndsGame    : true
 
 # Entrance Shuffle
 ShuffleDungeonRooms     : false # NYI
@@ -199,6 +204,11 @@ BossesSetting    : 0
 EnemiesSetting   : 0
 NPCSetting       : 0
 HammerSetting    : 0
+
+# Audio options
+ShuffleMusic    : False
+ShuffleMusicMode: 0 # 0:shuffle by song mood, 1:shuffle by song type, 2:full shuffle
+ShuffleJingles  : False
 
 # Joke options
 RomanNumerals: false
@@ -307,6 +317,7 @@ HammerlessBlueStationLaki                       : false
 HammerlessPinkStationLaki                       : false
 
 RaphSkipEnglish                                 : false
+RaphSkipParakarry                               : false
 Ch5SushieGlitch                                 : false
 SushielessJungleStarpieceAndLetter              : false
 JumplessDeepJungleLaki                          : false
