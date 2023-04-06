@@ -1232,6 +1232,13 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BowsersCastleMode").get("value"), int)
     if "StarHunt" in options_dict:
         assert isinstance(options_dict.get("StarHunt").get("value"), bool)
+        try:
+            if "ShuffleItems" in options_dict and not options_dict.get("ShuffleItems").get("value"):
+                assert (options_dict.get("StarHunt").get("value") is False)
+        except AssertionError:
+            raise ValueError(
+                "No item shuffle but star hunt is not a valid setting-combination!",
+            )
     if "StarHuntRequired" in options_dict:
         assert (
             isinstance(options_dict.get("StarHuntRequired").get("value"), int)
