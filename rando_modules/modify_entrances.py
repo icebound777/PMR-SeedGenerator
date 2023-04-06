@@ -327,7 +327,7 @@ def get_starhunt(
     all_edges_to_remove = []
     all_entrance_modifications = []
 
-    all_new_edges.extend(edges_hos_starhunt_add)
+    all_new_edges.extend(deepcopy(edges_hos_starhunt_add))
     all_edges_to_remove.extend(edges_hos_starhunt_remove)
 
     # always expect all power stars before ch8, else some get placed behind
