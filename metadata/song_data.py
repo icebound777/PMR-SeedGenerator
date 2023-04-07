@@ -157,7 +157,7 @@ song_data_array = [
     SongData("StarSanctuary",       0x63, "w/ intro",            1, True,  SongMood.RELAXED,  SongType.FIELDANDTOWN),
     SongData("StarSanctuary",       0x63, "intro only",          2, False, SongMood.RELAXED,  SongType.JINGLE),
     SongData("BowsersCastle",       0x64, "default",             0, True,  SongMood.SINISTER, SongType.FIELDANDTOWN),
-    #SongData("BowsersCastle",       0x64, "upper floor",         1, True,  SongMood.SINISTER, SongType.FIELDANDTOWN),
+    SongData("BowsersCastle",       0x64, "upper floor",         1, True,  SongMood.SINISTER, SongType.FIELDANDTOWN),
     SongData("BowsersCastleCaves",  0x65, "default",             0, True,  SongMood.SINISTER, SongType.FIELDANDTOWN),
     SongData("BowserTheme",         0x66, "default",             0, True,  SongMood.SINISTER, SongType.EVENT),
     #SongData("BowserTheme",         0x66, "sped up?",            2, False, SongMood.CRISIS,   ),
