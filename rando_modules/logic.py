@@ -640,7 +640,8 @@ def _generate_item_pools(
         itemtrap_mode,
         randomize_favors_mode,
         do_randomize_dojo,
-        keyitems_outside_dungeon
+        keyitems_outside_dungeon,
+        (star_hunt_stars > 0)
     )
 
     return pool_other_items
