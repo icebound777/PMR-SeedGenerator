@@ -14,11 +14,11 @@ from metadata.verbose_area_names import verbose_area_names
 
 def shuffle_dungeon_entrances(
     world_graph:dict,
-    starway_spirits_needed:int,
+    starway_spirits_needed_count:int,
     shuffle_bowsers_castle:bool,
     write_spoilers:bool
 ) -> dict:
-    if starway_spirits_needed > 6:
+    if starway_spirits_needed_count > 6:
         shuffle_bowsers_castle = False
 
     dungeon_border_node_ids = [

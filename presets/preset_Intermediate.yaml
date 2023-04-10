@@ -137,12 +137,12 @@ WhaleOpen           : false
 Ch7BridgeVisible    : true
 
 # Goal Settings
-StarWaySpiritsNeeded: 7 # -1:Random
-BowsersCastleMode   : 1 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
-StarHunt            : false
-StarHuntRequired    : 120
-StarHuntTotal       : 120
-StarHuntEndsGame    : true
+StarWaySpiritsNeededCnt: 7 # -1:Random
+BowsersCastleMode      : 1 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
+StarHunt               : false
+StarHuntRequired       : 120
+StarHuntTotal          : 120
+StarHuntEndsGame       : true
 
 # Entrance Shuffle
 ShuffleDungeonRooms     : false # NYI
