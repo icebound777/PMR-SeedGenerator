@@ -822,7 +822,6 @@ def _algo_assumed_fill(
     print("Placing progression items...")
     #Place progression items, both key and replenishable
     pool_combined_progression_items = pool_progression_items + pool_misc_progression_items
-    random.shuffle(pool_combined_progression_items)
 
     dungeon_restricted_items = {}
     if not keyitems_outside_dungeon:
@@ -1104,7 +1103,8 @@ def get_item_spheres(
                     if (    f"+{item.item_name}" not in mario.item_history
                         and (   item.item_name in progression_items.values()
                              or item.item_name in progression_miscitems_names
-                             or item.item_type == 'GEAR')
+                             or item.item_type == 'GEAR'
+                             or item.item_type == 'POWERSTAR')
                     ):
                         item_suffix = "*"
                     mario.add(item.item_name)
