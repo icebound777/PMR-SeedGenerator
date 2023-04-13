@@ -145,7 +145,7 @@ class OptionSet:
         self.ch7_bridge_visible = get_option_keyvalue_dict("Ch7BridgeVisible")
 
         # Goal Settings
-        self.starway_spirits_needed = get_option_keyvalue_dict("StarWaySpiritsNeeded")
+        self.starway_spirits_needed_count = get_option_keyvalue_dict("StarWaySpiritsNeededCnt")
         self.bowsers_castle_mode = get_option_keyvalue_dict("BowsersCastleMode")
         self.star_hunt = get_option_keyvalue_dict("StarHunt")
         self.star_hunt_required = get_option_keyvalue_dict("StarHuntRequired")
@@ -508,8 +508,8 @@ class OptionSet:
             self.ch7_bridge_visible = options_dict.get("Ch7BridgeVisible")
 
         # Goal Settings
-        if "StarWaySpiritsNeeded" in options_dict:
-            self.starway_spirits_needed = options_dict.get("StarWaySpiritsNeeded")
+        if "StarWaySpiritsNeededCnt" in options_dict:
+            self.starway_spirits_needed_count = options_dict.get("StarWaySpiritsNeededCnt")
         if "BowsersCastleMode" in options_dict:
             self.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
         if "StarHunt" in options_dict:
@@ -1225,9 +1225,9 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("Ch7BridgeVisible").get("value"), bool)
 
     # Goal Settings
-    if "StarWaySpiritsNeeded" in options_dict:
-        assert (    isinstance(options_dict.get("StarWaySpiritsNeeded").get("value"), int)
-                and -1 <= options_dict.get("StarWaySpiritsNeeded").get("value") <= 7)
+    if "StarWaySpiritsNeededCnt" in options_dict:
+        assert (    isinstance(options_dict.get("StarWaySpiritsNeededCnt").get("value"), int)
+                and -1 <= options_dict.get("StarWaySpiritsNeededCnt").get("value") <= 7)
     if "BowsersCastleMode" in options_dict:
         assert isinstance(options_dict.get("BowsersCastleMode").get("value"), int)
     if "StarHunt" in options_dict:

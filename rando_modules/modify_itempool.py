@@ -134,7 +134,8 @@ def get_trapped_itempool(
     trap_mode:int,
     randomize_favors_mode:int,
     do_randomize_dojo:bool,
-    keyitems_outside_dungeon:bool
+    keyitems_outside_dungeon:bool,
+    power_star_hunt:bool
 ) -> list:
     """
     Modifies and returns a given item pool after placing trap items.
@@ -198,6 +199,11 @@ def get_trapped_itempool(
                 continue
 
         fakeable_items.append(item)
+
+    # Add Power Star traps if necessary
+    if power_star_hunt:
+        item_powerstar = Item.get(Item.item_name == 'PowerStar7F')
+        fakeable_items.append(item_powerstar)
 
     # Bias towards placing UltraStone traps, as requested by clover
     item_ultrastone = Item.get(Item.item_name == 'UltraStone')

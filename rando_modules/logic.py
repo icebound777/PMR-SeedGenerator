@@ -640,7 +640,8 @@ def _generate_item_pools(
         itemtrap_mode,
         randomize_favors_mode,
         do_randomize_dojo,
-        keyitems_outside_dungeon
+        keyitems_outside_dungeon,
+        (star_hunt_stars > 0)
     )
 
     return pool_other_items
@@ -1103,7 +1104,8 @@ def get_item_spheres(
                     if (    f"+{item.item_name}" not in mario.item_history
                         and (   item.item_name in progression_items.values()
                              or item.item_name in progression_miscitems_names
-                             or item.item_type == 'GEAR')
+                             or item.item_type == 'GEAR'
+                             or item.item_type == 'POWERSTAR')
                     ):
                         item_suffix = "*"
                     mario.add(item.item_name)

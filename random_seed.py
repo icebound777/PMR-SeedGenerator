@@ -112,7 +112,7 @@ class RandomSeed:
                 ):
                     entrance_changes, modified_world_graph, spoilerlog_info = shuffle_dungeon_entrances(
                         modified_world_graph,
-                        self.rando_settings.starway_spirits_needed["value"],
+                        self.rando_settings.starway_spirits_needed_count["value"],
                         False,
                         self.rando_settings.write_spoilerlog
                     )
@@ -157,8 +157,8 @@ class RandomSeed:
                 if self.rando_settings.glitch_settings.knows_hidden_blocks["value"]:
                     hidden_block_mode = 3 # Having this trick enabled is equivalent to mode 3, logic wise
 
-                if self.rando_settings.starway_spirits_needed["value"] == -1:
-                    self.rando_settings.starway_spirits_needed["value"] = random.randint(0,7)
+                if self.rando_settings.starway_spirits_needed_count["value"] == -1:
+                    self.rando_settings.starway_spirits_needed_count["value"] = random.randint(0,7)
 
                 starting_chapter, starting_map_value = self.init_starting_map(self.rando_settings)
                 self.init_starting_partners(self.rando_settings)
