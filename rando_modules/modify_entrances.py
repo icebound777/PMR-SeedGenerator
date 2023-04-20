@@ -267,6 +267,7 @@ from maps.graph_edges.glitched_logic.global_knows_puzzle_solutions import \
 from maps.graph_edges.glitched_logic.global_reach_high_blocks_with_super_boots import \
     edges_global_reach_high_blocks_with_super_boots
 
+
 def get_shorter_bowsercastle(world_graph: dict):
     """
     Returns a list of db data tuples representing modified entrances in Bowser's
@@ -295,27 +296,26 @@ def get_bowsercastle_bossrush(world_graph: dict):
     """
     # Sets up the following connection:
     # hos_20 (2) <-> kpa_53 (0) (Riding Star Ship Scene <-> Fake Peach Hallway)
-    all_entrance_modifications = []
+    all_new_edges = []
+    all_edges_to_remove = []
+    entrance_modifications = []
 
-    world_graph, hos_entrance_modifications = adjust(
+    all_new_edges.extend(edges_hos_add)
+    all_new_edges.extend(edges_kpa_bossrush_add)
+    all_edges_to_remove.extend(edges_hos_remove)
+    all_edges_to_remove.extend(edges_kpa_bossrus_remove)
+
+    world_graph, entrance_modifications = adjust(
         world_graph,
-        new_edges=edges_hos_add,
-        edges_to_remove=edges_hos_remove
-    )
-    world_graph, kpa_entrance_modifications = adjust(
-        world_graph,
-        new_edges=edges_kpa_bossrush_add,
-        edges_to_remove=edges_kpa_bossrus_remove
+        new_edges=all_new_edges,
+        edges_to_remove=all_edges_to_remove
     )
 
-    all_entrance_modifications.extend(hos_entrance_modifications)
-    all_entrance_modifications.extend(kpa_entrance_modifications)
+    return entrance_modifications, world_graph
 
-    return all_entrance_modifications, world_graph
 
 def get_starhunt(
     world_graph: dict,
-    #power_stars_required: int,
     power_stars_placed: int,
     star_hunt_triggers_credits: bool
 ):
@@ -325,7 +325,7 @@ def get_starhunt(
     """
     all_new_edges = []
     all_edges_to_remove = []
-    all_entrance_modifications = []
+    entrance_modifications = []
 
     all_new_edges.extend(deepcopy(edges_hos_starhunt_add))
     all_edges_to_remove.extend(edges_hos_starhunt_remove)
@@ -338,13 +338,13 @@ def get_starhunt(
         all_new_edges.extend(edges_hos_starhunt2credits_add)
         all_edges_to_remove.extend(edges_hos_starhunt2credits_remove)
 
-    world_graph, all_entrance_modifications = adjust(
+    world_graph, entrance_modifications = adjust(
         world_graph,
         new_edges=all_new_edges,
         edges_to_remove=all_edges_to_remove
     )
 
-    return all_entrance_modifications, world_graph
+    return entrance_modifications, world_graph
 
 
 def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
@@ -432,7 +432,7 @@ def get_glitched_logic(
         all_new_edges.extend(edges_mac_add_sushieless_starpiece)
     if glitch_settings.toad_town_sushie_glitch["value"]:
         all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch)
-    
+
     # Toad Town Tunnels
     if glitch_settings.clippy_boots_stone_block_skip["value"]:
         all_new_edges.extend(edges_tik_add_clippy_boots_stone_block_skip)

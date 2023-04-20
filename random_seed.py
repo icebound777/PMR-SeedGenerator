@@ -101,7 +101,6 @@ class RandomSeed:
                 if self.rando_settings.star_hunt["value"]:
                     entrance_changes, modified_world_graph = get_starhunt(
                         modified_world_graph,
-                        #self.rando_settings.star_hunt_required["value"],
                         self.rando_settings.star_hunt_total["value"],
                         self.rando_settings.star_hunt_ends_game["value"]
                     )
