@@ -86,6 +86,8 @@ class RandomSeed:
         for placement_attempt in range(1, 11):  # try 10 times
             try:
                 modified_world_graph = deepcopy(world_graph)
+                self.entrance_list = []
+                self.spoilerlog_additions = {}
 
                 # Modify entrances if needed
                 maps_removed = False
