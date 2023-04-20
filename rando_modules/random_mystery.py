@@ -12,7 +12,7 @@ def get_random_mystery(mystery_settings:MysteryOptionSet) -> MysteryOptionSet:
         # Set possible items the same as Random Choice (see Item_Mystery.bpat)
         possible_items = []
         chosen_items = []
-        
+
         mystery_itemid = Item.get(Item.item_name == "Mystery").value
 
         possible_items.extend(4 * [Item.get(Item.item_name == "Mushroom").value])
@@ -56,8 +56,8 @@ def get_random_mystery(mystery_settings:MysteryOptionSet) -> MysteryOptionSet:
         mystery_settings.mystery_itemE["value"] = chosen_items[4]
         mystery_settings.mystery_itemF["value"] = chosen_items[5]
         mystery_settings.mystery_itemG["value"] = chosen_items[6]
-        for itemthing in chosen_items:
-            print(Item.get(Item.value == itemthing))
+        #for itemthing in chosen_items:
+        #    print(Item.get(Item.value == itemthing))
     else:
         # Set vanilla
         mystery_settings.mystery_itemA["value"] = Item.get(Item.item_name == "Mushroom").value
