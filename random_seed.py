@@ -176,8 +176,6 @@ class RandomSeed:
                     magical_seeds_required
                 )
 
-                modified_world_graph_copy = deepcopy(modified_world_graph)
-
                 # Item Placement
                 place_items(
                     item_placement= self.placed_items,
@@ -220,7 +218,7 @@ class RandomSeed:
                     add_item_pouches=self.rando_settings.add_item_pouches,
                     bowsers_castle_mode=self.rando_settings.bowsers_castle_mode["value"],
                     star_hunt_stars=self.rando_settings.star_hunt_total["value"] if self.rando_settings.star_hunt["value"] else 0,
-                    world_graph=modified_world_graph_copy
+                    world_graph=modified_world_graph
                 )
 
                 self.rando_settings.starting_map["value"] = starting_map_value # Overwrite starting map in case it was random at first
