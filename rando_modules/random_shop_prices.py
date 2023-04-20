@@ -14,7 +14,9 @@ def get_shop_price(
     Return the price for an item for offer within a shop (regular or Merlow's).
     Merlow gets special pricing rules as he deals in star pieces.
     """
-    if "HOS_06" in node.identifier and "Shop" in node.identifier:
+    buy_price = 0
+
+    if node.identifier.startswith("HOS_06") and "Shop" in node.identifier:
         # Merlow's shop
         if "ShopReward" in node.identifier:
             # Merlow's trade rewards
@@ -23,36 +25,22 @@ def get_shop_price(
             # even if an item is placed in an expensive reward slot,
             # gathering the required star pieces becomes much easier
             # overall.
+            starpiece_increments = 10
+            if merlow_costs == MerlowRewardPricing.CHEAP:
+                starpiece_increments = 5
+
             if "ShopRewardA" in node.identifier:
-                if merlow_costs == MerlowRewardPricing.CHEAP:
-                    buy_price = 5
-                else:
-                    buy_price = 10
+                buy_price = starpiece_increments * 1
             elif "ShopRewardB" in node.identifier:
-                if merlow_costs == MerlowRewardPricing.CHEAP:
-                    buy_price = 10
-                else:
-                    buy_price = 20
+                buy_price = starpiece_increments * 2
             elif "ShopRewardC" in node.identifier:
-                if merlow_costs == MerlowRewardPricing.CHEAP:
-                    buy_price = 15
-                else:
-                    buy_price = 30
+                buy_price = starpiece_increments * 3
             elif "ShopRewardD" in node.identifier:
-                if merlow_costs == MerlowRewardPricing.CHEAP:
-                    buy_price = 20
-                else:
-                    buy_price = 40
+                buy_price = starpiece_increments * 4
             elif "ShopRewardE" in node.identifier:
-                if merlow_costs == MerlowRewardPricing.CHEAP:
-                    buy_price = 25
-                else:
-                    buy_price = 50
+                buy_price = starpiece_increments * 5
             else:
-                if merlow_costs == MerlowRewardPricing.CHEAP:
-                    buy_price = 30
-                else:
-                    buy_price = 60
+                buy_price = starpiece_increments * 6
         else:
             # Merlow's StarPiece trade (for a total cost of all 112 StarPieces)
             if any(True for i in ["ShopBadgeA","ShopBadgeB"] if i in node.identifier):
@@ -69,7 +57,7 @@ def get_shop_price(
                 buy_price = 10
             elif any(True for i in ["ShopBadgeM","ShopBadgeN"] if i in node.identifier):
                 buy_price = 15
-            elif any(True for i in ["ShopBadgeO"] if i in node.identifier):
+            elif "ShopBadgeO" in node.identifier:
                 buy_price = 20
     else:
         # Regular Shop
