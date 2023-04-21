@@ -1,17 +1,18 @@
 from db.item import Item
 from db.option import Option
 
-from rando_enums.enum_options import \
-    IncludeFavorsMode,\
-    IncludeLettersMode,\
-    RandomizeConsumablesMode,\
-    ItemTrapMode,\
-    RandomMoveCosts,\
-    HiddenBlockMode,\
-    StartingBoots,\
-    StartingHammer,\
-    MerlowRewardPricing,\
+from rando_enums.enum_options import (
+    IncludeFavorsMode,
+    IncludeLettersMode,
+    RandomizeConsumablesMode,
+    ItemTrapMode,
+    RandomMoveCosts,
+    HiddenBlockMode,
+    StartingBoots,
+    StartingHammer,
+    MerlowRewardPricing,
     MusicRandomizationType
+)
 
 class OptionSet:
     def __init__(self):
@@ -210,8 +211,8 @@ class OptionSet:
                     item_obj = Item.get_or_none(Item.value == item_id)
                     if item_obj is not None:
                         # No double uniques
-                        if (item_obj.item_type in ["BADGE", "KEYITEM", "STARPIECE"]
-                        and item_obj in starting_items
+                        if (    item_obj.item_type in ["BADGE", "KEYITEM", "STARPIECE"]
+                            and item_obj in starting_items
                         ):
                             continue
                         starting_items.append(Item.get(Item.value == item_id))
@@ -1029,12 +1030,12 @@ def validate_options(options_dict):
     if "AddItemPouches" in options_dict:
         assert isinstance(options_dict.get("AddItemPouches").get("value"), bool)
     if "RandomConsumableMode" in options_dict:
-        assert (isinstance(options_dict.get("RandomConsumableMode").get("value"), int)
-            and 0 <= options_dict.get("RandomConsumableMode").get("value") <= 3
+        assert (    isinstance(options_dict.get("RandomConsumableMode").get("value"), int)
+                and RandomizeConsumablesMode.OFF <= options_dict.get("RandomConsumableMode").get("value") <= RandomizeConsumablesMode.MYSTERY_ONLY
         )
     if "ItemQuality" in options_dict:
-        assert (isinstance(options_dict.get("ItemQuality").get("value"), int)
-            and 25 <= options_dict.get("ItemQuality").get("value") <= 125
+        assert (    isinstance(options_dict.get("ItemQuality").get("value"), int)
+                and 25 <= options_dict.get("ItemQuality").get("value") <= 125
         )
     if "ItemTrapMode" in options_dict:
         assert isinstance(options_dict.get("ItemTrapMode").get("value"), int)
@@ -1049,9 +1050,8 @@ def validate_options(options_dict):
         )
     if "RipCheatoItemsInLogic" in options_dict:
         value = options_dict.get("RipCheatoItemsInLogic").get("value")
-        assert (
-            isinstance(value, int)
-        and 0 <= value <= 11
+        assert (    isinstance(value, int)
+                and 0 <= value <= 11
         )
     if "AllowItemHints" in options_dict:
         assert isinstance(options_dict.get("AllowItemHints").get("value"), bool)
@@ -1107,7 +1107,9 @@ def validate_options(options_dict):
         assert (    isinstance(options_dict.get("StartingBoots").get("value"), int)
                 and StartingBoots.JUMPLESS <= options_dict.get("StartingBoots").get("value") <= StartingBoots.ULTRABOOTS)
         try:
-            if "ShuffleItems" in options_dict and not options_dict.get("ShuffleItems").get("value"):
+            if (    "ShuffleItems" in options_dict
+                and not options_dict.get("ShuffleItems").get("value")
+            ):
                 assert (StartingBoots.BOOTS <= options_dict.get("StartingBoots").get("value"))
         except AssertionError:
             raise ValueError(
@@ -1117,25 +1119,25 @@ def validate_options(options_dict):
         assert (    isinstance(options_dict.get("StartingHammer").get("value"), int)
                 and StartingHammer.HAMMERLESS <= options_dict.get("StartingHammer").get("value") <= StartingHammer.ULTRAHAMMER)
     if "StartingCoins" in options_dict:
-        assert (isinstance(options_dict.get("StartingCoins").get("value"), int)
-            and 0 <= options_dict.get("StartingCoins").get("value") <= 999
+        assert (    isinstance(options_dict.get("StartingCoins").get("value"), int)
+                and 0 <= options_dict.get("StartingCoins").get("value") <= 999
         )
 
     if "StartWithRandomItems" in options_dict:
         assert isinstance(options_dict.get("StartWithRandomItems").get("value"), bool)
     if "RandomItemsMin" in options_dict:
-        assert (isinstance(options_dict.get("RandomItemsMin").get("value"), int)
-            and 0 <= options_dict.get("RandomItemsMin").get("value") <= 16
-            and ("RandomItemsMax" not in options_dict
-              or options_dict.get("RandomItemsMin").get("value") <= 
-                 options_dict.get("RandomItemsMax").get("value"))
+        assert (    isinstance(options_dict.get("RandomItemsMin").get("value"), int)
+                and 0 <= options_dict.get("RandomItemsMin").get("value") <= 16
+                and (   "RandomItemsMax" not in options_dict
+                     or options_dict.get("RandomItemsMin").get("value") <=
+                        options_dict.get("RandomItemsMax").get("value"))
         )
     if "RandomItemsMax" in options_dict:
-        assert (isinstance(options_dict.get("RandomItemsMax").get("value"), int)
-            and 0 <= options_dict.get("RandomItemsMax").get("value") <= 16
-            and ("RandomItemsMin" not in options_dict
-              or options_dict.get("RandomItemsMax").get("value") <= 
-                 options_dict.get("RandomItemsMax").get("value"))
+        assert (    isinstance(options_dict.get("RandomItemsMax").get("value"), int)
+                and 0 <= options_dict.get("RandomItemsMax").get("value") <= 16
+                and (   "RandomItemsMin" not in options_dict
+                     or options_dict.get("RandomItemsMax").get("value") <=
+                        options_dict.get("RandomItemsMax").get("value"))
         )
     if "StartingItem0" in options_dict:
         assert isinstance(options_dict.get("StartingItem0").get("value"), int)
@@ -1182,10 +1184,10 @@ def validate_options(options_dict):
             "Sushie",
             "Lakilester"
         ]
-        assert (isinstance(options_dict.get("StartWithPartners").get("value"), dict)
-            and all(key in permitted_values for key in options_dict.get("StartWithPartners").get("value"))
-            and all(isinstance(value, bool) for value in options_dict.get("StartWithPartners").get("value").values())
-            and any(value for value in options_dict.get("StartWithPartners").get("value").values()))
+        assert (    isinstance(options_dict.get("StartWithPartners").get("value"), dict)
+                and all(key in permitted_values for key in options_dict.get("StartWithPartners").get("value"))
+                and all(isinstance(value, bool) for value in options_dict.get("StartWithPartners").get("value").values())
+                and any(value for value in options_dict.get("StartWithPartners").get("value").values()))
 
     if "PartnersInDefaultLocations" in options_dict:
         assert isinstance(options_dict.get("PartnersInDefaultLocations").get("value"), bool)
@@ -1194,18 +1196,18 @@ def validate_options(options_dict):
     if "StartWithRandomPartners" in options_dict:
         assert isinstance(options_dict.get("StartWithRandomPartners").get("value"), bool)
     if "RandomPartnersMin" in options_dict:
-        assert (isinstance(options_dict.get("RandomPartnersMin").get("value"), int)
-            and 1 <= options_dict.get("RandomPartnersMin").get("value") <= 8
-            and ("RandomPartnersMax" not in options_dict
-              or options_dict.get("RandomPartnersMin").get("value") <=
-                 options_dict.get("RandomPartnersMax").get("value"))
+        assert (    isinstance(options_dict.get("RandomPartnersMin").get("value"), int)
+                and 1 <= options_dict.get("RandomPartnersMin").get("value") <= 8
+                and (   "RandomPartnersMax" not in options_dict
+                     or options_dict.get("RandomPartnersMin").get("value") <=
+                        options_dict.get("RandomPartnersMax").get("value"))
         )
     if "RandomPartnersMax" in options_dict:
-        assert (isinstance(options_dict.get("RandomPartnersMax").get("value"), int)
-            and 1 <= options_dict.get("RandomPartnersMax").get("value") <= 8
-            and ("RandomPartnersMin" not in options_dict
-              or options_dict.get("RandomPartnersMin").get("value") <=
-                 options_dict.get("RandomPartnersMax").get("value"))
+        assert (    isinstance(options_dict.get("RandomPartnersMax").get("value"), int)
+                and 1 <= options_dict.get("RandomPartnersMax").get("value") <= 8
+                and (   "RandomPartnersMin" not in options_dict
+                     or options_dict.get("RandomPartnersMin").get("value") <=
+                        options_dict.get("RandomPartnersMax").get("value"))
         )
 
     # Pre-opened areas
@@ -1233,22 +1235,22 @@ def validate_options(options_dict):
     if "StarHunt" in options_dict:
         assert isinstance(options_dict.get("StarHunt").get("value"), bool)
         try:
-            if "ShuffleItems" in options_dict and not options_dict.get("ShuffleItems").get("value"):
+            if (    "ShuffleItems" in options_dict
+                and not options_dict.get("ShuffleItems").get("value")
+            ):
                 assert (options_dict.get("StarHunt").get("value") is False)
         except AssertionError:
             raise ValueError(
                 "No item shuffle but star hunt is not a valid setting-combination!",
             )
     if "StarHuntRequired" in options_dict:
-        assert (
-            isinstance(options_dict.get("StarHuntRequired").get("value"), int)
-        and 0 <= options_dict.get("StarHuntRequired").get("value") <= 120
+        assert (    isinstance(options_dict.get("StarHuntRequired").get("value"), int)
+                and 0 <= options_dict.get("StarHuntRequired").get("value") <= 120
         )
     if "StarHuntTotal" in options_dict:
-        assert (
-            isinstance(options_dict.get("StarHuntTotal").get("value"), int)
-        and 0 <= options_dict.get("StarHuntTotal").get("value") <= 120
-        and options_dict.get("StarHuntTotal").get("value") >= options_dict.get("StarHuntRequired").get("value")
+        assert (    isinstance(options_dict.get("StarHuntTotal").get("value"), int)
+                and 0 <= options_dict.get("StarHuntTotal").get("value") <= 120
+                and options_dict.get("StarHuntTotal").get("value") >= options_dict.get("StarHuntRequired").get("value")
         )
     if "StarHuntEndsGame" in options_dict:
         assert isinstance(options_dict.get("StarHuntEndsGame").get("value"), bool)
@@ -1295,16 +1297,16 @@ def validate_options(options_dict):
 
     # Cosmetics
     if "Box5ColorA" in options_dict:
-        assert (isinstance(options_dict.get("Box5ColorA").get("value"), int)
-            and 0 <= options_dict.get("Box5ColorA").get("value") <= 0xFFFFFFFF
+        assert (    isinstance(options_dict.get("Box5ColorA").get("value"), int)
+                and 0 <= options_dict.get("Box5ColorA").get("value") <= 0xFFFFFFFF
         )
     if "Box5ColorB" in options_dict:
-        assert (isinstance(options_dict.get("Box5ColorB").get("value"), int)
-            and 0 <= options_dict.get("Box5ColorB").get("value") <= 0xFFFFFFFF
+        assert (    isinstance(options_dict.get("Box5ColorB").get("value"), int)
+                and 0 <= options_dict.get("Box5ColorB").get("value") <= 0xFFFFFFFF
         )
     if "CoinColor" in options_dict:
-        assert (isinstance(options_dict.get("CoinColor").get("value"), int)
-            and 0 <= options_dict.get("CoinColor").get("value") <= 4
+        assert (    isinstance(options_dict.get("CoinColor").get("value"), int)
+                and 0 <= options_dict.get("CoinColor").get("value") <= 4
         )
     if "RandomCoinColor" in options_dict:
         assert isinstance(options_dict.get("RandomCoinColor").get("value"), bool)
@@ -1358,9 +1360,8 @@ def validate_options(options_dict):
     if "ShuffleMusic" in options_dict:
         assert isinstance(options_dict.get("ShuffleMusic").get("value"), bool)
     if "ShuffleMusicMode" in options_dict:
-        assert (
-            isinstance(options_dict.get("ShuffleMusicMode").get("value"), int)
-        and 0 <= options_dict.get("ShuffleMusicMode").get("value") <= 2
+        assert (    isinstance(options_dict.get("ShuffleMusicMode").get("value"), int)
+                and 0 <= options_dict.get("ShuffleMusicMode").get("value") <= 2
         )
     if "ShuffleJingles" in options_dict:
         assert isinstance(options_dict.get("ShuffleJingles").get("value"), bool)
@@ -1508,7 +1509,7 @@ def validate_options(options_dict):
         assert isinstance(options_dict.get("BoosPortraitWithLaki").get("value"), bool)
     if "JumplessMansionEntry" in options_dict:
         assert isinstance(options_dict.get("JumplessMansionEntry").get("value"), bool)
-        
+
     if "GustyGulchGateSkipLZS" in options_dict:
         assert isinstance(options_dict.get("GustyGulchGateSkipLZS").get("value"), bool)
     if "GustyGulchGateSkipLaki" in options_dict:
