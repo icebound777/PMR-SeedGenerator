@@ -92,10 +92,14 @@ class RandomSeed:
                 # Modify entrances if needed
                 maps_removed = False
                 if self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.SHORTEN:
-                    self.entrance_list, modified_world_graph = get_shorter_bowsercastle(modified_world_graph)
+                    self.entrance_list, modified_world_graph = get_shorter_bowsercastle(
+                        modified_world_graph
+                    )
                     maps_removed = True
                 elif self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.BOSSRUSH:
-                    self.entrance_list, modified_world_graph = get_bowsercastle_bossrush(modified_world_graph)
+                    self.entrance_list, modified_world_graph = get_bowsercastle_bossrush(
+                        modified_world_graph
+                    )
                     maps_removed = True
 
                 if self.rando_settings.star_hunt["value"]:
@@ -156,7 +160,8 @@ class RandomSeed:
                 # Adjust further settings
                 hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
                 if self.rando_settings.glitch_settings.knows_hidden_blocks["value"]:
-                    hidden_block_mode = 3 # Having this trick enabled is equivalent to mode 3, logic wise
+                    # Having this trick enabled is equivalent to mode 3, logic wise
+                    hidden_block_mode = 3
 
                 if self.rando_settings.starway_spirits_needed_count["value"] == -1:
                     self.rando_settings.starway_spirits_needed_count["value"] = random.randint(0,7)
@@ -177,7 +182,7 @@ class RandomSeed:
 
                 # Item Placement
                 place_items(
-                    item_placement= self.placed_items,
+                    item_placement=self.placed_items,
                     do_custom_seed=self.rando_settings.custom_seed,
                     do_shuffle_items=self.rando_settings.shuffle_items["value"],
                     shuffle_overworld_coins=self.rando_settings.include_coins_overworld,
@@ -220,7 +225,9 @@ class RandomSeed:
                     world_graph=modified_world_graph
                 )
 
-                self.rando_settings.starting_map["value"] = starting_map_value # Overwrite starting map in case it was random at first
+                # Overwrite starting map in case it was random at first
+                self.rando_settings.starting_map["value"] = starting_map_value
+
                 self.rando_settings.magical_seeds_required["value"] = magical_seeds_required
                 break
 
@@ -240,10 +247,6 @@ class RandomSeed:
         self.rando_settings.mystery_settings = get_random_mystery(
             self.rando_settings.mystery_settings
         )
-
-        # Make everything inexpensive
-        #set_cheap_shopitems(placed_items)
-        #self.placed_items = get_alpha_prices(self.placed_items)
 
         # Randomize blocks if needed
         self.placed_blocks = get_block_placement(
@@ -292,8 +295,9 @@ class RandomSeed:
             self.quiz_list = get_randomized_quizzes()
 
         # Randomize sprite palettes
-        (self.coin_palette,
-         self.rando_settings.coin_color["value"]
+        (
+            self.coin_palette,
+            self.rando_settings.coin_color["value"]
         ) = get_randomized_coinpalette(
             color_id = self.rando_settings.coin_color["value"],
             should_randomize_color = self.rando_settings.random_coin_color
@@ -335,7 +339,10 @@ class RandomSeed:
         self.set_seed_hash()
 
 
-    def init_starting_partners(self,rando_settings):
+    def init_starting_partners(
+        self,
+        rando_settings:OptionSet
+    ):
         # Choose random starting partners if necessary
         if rando_settings.random_partners:
             self.starting_partners = get_rnd_starting_partners(
@@ -347,7 +354,10 @@ class RandomSeed:
             self.starting_partners = rando_settings.starting_partners
 
 
-    def init_starting_map(self, rando_settings):
+    def init_starting_map(
+        self,
+        rando_settings:OptionSet
+    ):
         """
         Initializes the starting map and returns its chapter number. If the
         starting map is to be chosen at random, pick from curated list.
@@ -368,7 +378,6 @@ class RandomSeed:
                 start_chapter = 0
 
         return start_chapter, starting_map_value
-
 
 
     def init_starting_items(
@@ -402,11 +411,11 @@ class RandomSeed:
             ]
 
             # Set up allowed items
-            all_allowed_starting_items = (
-                allowed_starting_badges
-              + allowed_starting_items
-              + allowed_starting_key_items
-            )
+            all_allowed_starting_items = []
+            all_allowed_starting_items.extend(allowed_starting_badges)
+            all_allowed_starting_items.extend(allowed_starting_items)
+            all_allowed_starting_items.extend(allowed_starting_key_items)
+
             excluded_items = get_items_to_exclude(
                 do_randomize_dojo=rando_settings.include_dojo,
                 starting_partners=self.starting_partners,
@@ -432,8 +441,8 @@ class RandomSeed:
                 random_item_obj = Item.get_or_none(Item.value == random_item_id)
                 if random_item_obj is not None:
                     # No double uniques
-                    if (random_item_obj.item_type in ["BADGE", "KEYITEM", "STARPIECE"]
-                    and random_item_obj in self.starting_items
+                    if (    random_item_obj.item_type in ["BADGE", "KEYITEM", "STARPIECE"]
+                        and random_item_obj in self.starting_items
                     ):
                         continue
 
