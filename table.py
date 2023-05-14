@@ -36,13 +36,6 @@ class Table:
                     "key": option_data.get("key"),
                     "value": option_data_value,
                 })
-            if isinstance(option_data, MysteryOptionSet):
-                for mystery_option in option_data.__dict__.values():
-                    if isinstance(mystery_option, dict) and "key" in mystery_option:
-                        table_data.append({
-                            "key": mystery_option.get("key"),
-                            "value": mystery_option.get("value"),
-                        })
 
         # temp fix for multiworld
         table_data.append({

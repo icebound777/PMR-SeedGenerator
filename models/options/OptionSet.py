@@ -1415,8 +1415,8 @@ class OptionSet:
 
         return [
             # General
-            load_dbkey(self.allow_physics_glitches, "BlocksMatchContent"),
-            load_dbkey(self.allow_physics_glitches, "HiddenBlockMode"),
+            load_dbkey(self.blocks_match_content, "BlocksMatchContent"),
+            load_dbkey(self.hidden_block_mode, "HiddenBlockMode"),
             load_dbkey(self.allow_physics_glitches, "AllowPhysicsGlitches"),
             load_dbkey(self.badge_synergy, "BadgeSynergy"),
 
@@ -1430,6 +1430,19 @@ class OptionSet:
             load_dbkey(self.peachcastle_return_pipe, "PeachCastleReturnPipe"),
             load_dbkey(self.foliage_item_hints, "FoliageItemHints"),
             load_dbkey(self.hiddenpanel_visibility, "HiddenPanelVisibility"),
+
+            # Difficulty and Enemies
+            load_dbkey(self.progressive_scaling, "ProgressiveScaling"),
+
+            load_dbkey(self.challenge_mode, "ChallengeMode"),
+            load_dbkey(self.cap_enemy_xp, "CapEnemyXP"),
+            load_dbkey(self.xp_multiplier, "XPMultiplier"),
+            load_dbkey(self.damage_x2, "DoubleDamage"),
+            load_dbkey(self.damage_x4, "QuadrupleDamage"),
+            load_dbkey(self.ohko, "OHKO"),
+            load_dbkey(self.no_save_blocks, "NoSaveBlocks"),
+            load_dbkey(self.no_heart_blocks, "NoHeartBlocks"),
+            load_dbkey(self.no_healing_items, "NoHealingItems"),
 
             load_dbkey(self.random_formations, "RandomFormations"),
 
@@ -1449,12 +1462,12 @@ class OptionSet:
             load_dbkey(self.cook_without_fryingpan, "CookWithoutFryingPan"),
             load_dbkey(self.mystery_settings.mystery_random_choice, "RandomChoice"),
             load_dbkey(self.mystery_settings.mystery_itemA, "ItemChoiceA"),
-            load_dbkey(self.mystery_settings.mystery_itemA, "ItemChoiceB"),
-            load_dbkey(self.mystery_settings.mystery_itemA, "ItemChoiceC"),
-            load_dbkey(self.mystery_settings.mystery_itemA, "ItemChoiceD"),
-            load_dbkey(self.mystery_settings.mystery_itemA, "ItemChoiceE"),
-            load_dbkey(self.mystery_settings.mystery_itemA, "ItemChoiceF"),
-            load_dbkey(self.mystery_settings.mystery_itemA, "ItemChoiceG"),
+            load_dbkey(self.mystery_settings.mystery_itemB, "ItemChoiceB"),
+            load_dbkey(self.mystery_settings.mystery_itemC, "ItemChoiceC"),
+            load_dbkey(self.mystery_settings.mystery_itemD, "ItemChoiceD"),
+            load_dbkey(self.mystery_settings.mystery_itemE, "ItemChoiceE"),
+            load_dbkey(self.mystery_settings.mystery_itemF, "ItemChoiceF"),
+            load_dbkey(self.mystery_settings.mystery_itemG, "ItemChoiceG"),
 
             # Starting setup
             load_dbkey(self.starting_map, "StartingMap"),
