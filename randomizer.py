@@ -17,7 +17,8 @@ from table import Table
 from parse import gather_keys, gather_values
 from calculate_crc import recalculate_crcs
 
-from models.options.OptionSet import OptionSet, PaletteOptionSet, populate_keys
+from models.options.OptionSet import OptionSet, PaletteOptionSet
+from models.options.option_utility import populate_keys
 
 from spoilerlog import write_spoiler_log
 from db.option          import Option, create_options

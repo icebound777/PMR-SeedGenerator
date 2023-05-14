@@ -1,5 +1,4 @@
 from db.item import Item
-from db.option import Option
 
 from rando_enums.enum_options import (
     IncludeFavorsMode,
@@ -13,6 +12,11 @@ from rando_enums.enum_options import (
     MerlowRewardPricing,
     MusicRandomizationType
 )
+from models.options.PaletteOptionSet import PaletteOptionSet
+from models.options.MysteryOptionSet import MysteryOptionSet
+from models.options.GlitchOptionSet import GlitchOptionSet
+
+from models.options.option_utility import get_option_keyvalue_dict
 
 class OptionSet:
     def __init__(self):
@@ -200,30 +204,10 @@ class OptionSet:
         self.glitch_settings = GlitchOptionSet()
 
 
-    def get_startitem_list(self) -> list:
-        """Returns this OptionSet's starting items as list of Item objects."""
-        starting_items = []
-
-        for self_key, self_value in self.__dict__.items():
-            if self_key.startswith("starting_item"):
-                item_id = self_value.get("value")
-                if item_id != 0:
-                    item_obj = Item.get_or_none(Item.value == item_id)
-                    if item_obj is not None:
-                        # No double uniques
-                        if (    item_obj.item_type in ["BADGE", "KEYITEM", "STARPIECE"]
-                            and item_obj in starting_items
-                        ):
-                            continue
-                        starting_items.append(Item.get(Item.value == item_id))
-
-        return starting_items
-
-
     def update_options(self, options_dict=None):
 
         try:
-            validate_options(options_dict)
+            self.validate_options(options_dict)
         except ValueError as err:
             print(f"{err.args}: Settings file not provided.")
             raise
@@ -927,712 +911,516 @@ class OptionSet:
             self.glitch_settings.reach_high_blocks_with_super_boots = options_dict.get("ReachHighBlocksWithSuperBoots")
 
 
-def validate_options(options_dict):
-    if options_dict is None:
-        raise ValueError
+    def validate_options(self, options_dict):
+        if options_dict is None:
+            raise ValueError
 
-    def basic_assert(
-        option_name:str,
-        data_type:type # or tuple(type)
-    ):
-        try:
-            if option_name in options_dict:
-                assert isinstance(options_dict.get(option_name).get("value"), data_type)
-        except AssertionError as err:
-            print(
-                f"{option_name}/{type(options_dict.get(option_name).get('value'))}: "\
-                    f"Wrong data type, expected '{data_type}'."
+        def basic_assert(
+            option_name:str,
+            data_type:type # or tuple(type)
+        ):
+            try:
+                if option_name in options_dict:
+                    assert isinstance(options_dict.get(option_name).get("value"), data_type)
+            except AssertionError as err:
+                print(
+                    f"{option_name}/{type(options_dict.get(option_name).get('value'))}: "\
+                        f"Wrong data type, expected '{data_type}'."
+                )
+                raise
+
+        # General
+        basic_assert("BlocksMatchContent", bool)
+        if "HiddenBlockMode" in options_dict:
+            assert (    isinstance(options_dict.get("HiddenBlockMode").get("value"), int)
+                    and HiddenBlockMode.VANILLA <= options_dict.get("HiddenBlockMode").get("value") <= HiddenBlockMode.ALWAYS_VISIBLE)
+        basic_assert("AllowPhysicsGlitches", bool)
+        basic_assert("BadgeSynergy", bool)
+
+        # QOL
+        basic_assert("AlwaysSpeedySpin", bool)
+        basic_assert("AlwaysISpy", bool)
+        basic_assert("AlwaysPeekaboo", bool)
+        basic_assert("ShortenCutscenes", bool)
+        # ignore FastTextSkip
+        basic_assert("SkipEpilogue", bool)
+        basic_assert("PeachCastleReturnPipe", bool)
+        basic_assert("FoliageItemHints", bool)
+        basic_assert("HiddenPanelVisibility", int)
+
+        # Difficulty and Enemies
+        basic_assert("ShuffleChapterDifficulty", bool)
+        basic_assert("ProgressiveScaling", bool)
+        basic_assert("ChallengeMode", bool)
+        basic_assert("CapEnemyXP", bool)
+        basic_assert("XPMultiplier", (int,float))
+        basic_assert("DoubleDamage", bool)
+        basic_assert("QuadrupleDamage", bool)
+        basic_assert("OHKO", bool)
+        basic_assert("NoSaveBlocks", bool)
+        basic_assert("NoHeartBlocks", bool)
+        basic_assert("NoHealingItems", bool)
+
+        basic_assert("RandomFormations", bool)
+
+        # Custom Seed / Planned Seed / "Plandomizer"
+        basic_assert("CustomSeed", bool)
+
+        # Item Placement
+        basic_assert("ShuffleItems", bool)
+        basic_assert("IncludeCoinsOverworld", bool)
+        basic_assert("IncludeCoinsBlocks", bool)
+        basic_assert("IncludeCoinsFoliage", bool)
+        basic_assert("IncludeCoinsFavors", bool)
+        basic_assert("IncludeShops", bool)
+        basic_assert("ProgressionOnRowf", bool)
+        basic_assert("ProgressionOnMerlow", bool)
+        basic_assert("IncludePanels", bool)
+        basic_assert("IncludeFavorsMode", int)
+        basic_assert("IncludeLettersMode", int)
+        basic_assert("IncludeRadioTradeEvent", bool)
+        basic_assert("IncludeDojo", bool)
+        basic_assert("KeyitemsOutsideDungeon", bool)
+        basic_assert("KeyitemsOutsideChapter", bool) #NYI
+
+        # Item Pool Modification
+        basic_assert("GearShuffleMode", int)
+        basic_assert("AddItemPouches", bool)
+        if "RandomConsumableMode" in options_dict:
+            assert (    isinstance(options_dict.get("RandomConsumableMode").get("value"), int)
+                    and RandomizeConsumablesMode.OFF <= options_dict.get("RandomConsumableMode").get("value") <= RandomizeConsumablesMode.MYSTERY_ONLY
             )
-            raise
-
-    # General
-    basic_assert("BlocksMatchContent", bool)
-    if "HiddenBlockMode" in options_dict:
-        assert (    isinstance(options_dict.get("HiddenBlockMode").get("value"), int)
-                and HiddenBlockMode.VANILLA <= options_dict.get("HiddenBlockMode").get("value") <= HiddenBlockMode.ALWAYS_VISIBLE)
-    basic_assert("AllowPhysicsGlitches", bool)
-    basic_assert("BadgeSynergy", bool)
-
-    # QOL
-    basic_assert("AlwaysSpeedySpin", bool)
-    basic_assert("AlwaysISpy", bool)
-    basic_assert("AlwaysPeekaboo", bool)
-    basic_assert("ShortenCutscenes", bool)
-    # ignore FastTextSkip
-    basic_assert("SkipEpilogue", bool)
-    basic_assert("PeachCastleReturnPipe", bool)
-    basic_assert("FoliageItemHints", bool)
-    basic_assert("HiddenPanelVisibility", int)
-
-    # Difficulty and Enemies
-    basic_assert("ShuffleChapterDifficulty", bool)
-    basic_assert("ProgressiveScaling", bool)
-    basic_assert("ChallengeMode", bool)
-    basic_assert("CapEnemyXP", bool)
-    basic_assert("XPMultiplier", (int,float))
-    basic_assert("DoubleDamage", bool)
-    basic_assert("QuadrupleDamage", bool)
-    basic_assert("OHKO", bool)
-    basic_assert("NoSaveBlocks", bool)
-    basic_assert("NoHeartBlocks", bool)
-    basic_assert("NoHealingItems", bool)
-
-    basic_assert("RandomFormations", bool)
-
-    # Custom Seed / Planned Seed / "Plandomizer"
-    basic_assert("CustomSeed", bool)
-
-    # Item Placement
-    basic_assert("ShuffleItems", bool)
-    basic_assert("IncludeCoinsOverworld", bool)
-    basic_assert("IncludeCoinsBlocks", bool)
-    basic_assert("IncludeCoinsFoliage", bool)
-    basic_assert("IncludeCoinsFavors", bool)
-    basic_assert("IncludeShops", bool)
-    basic_assert("ProgressionOnRowf", bool)
-    basic_assert("ProgressionOnMerlow", bool)
-    basic_assert("IncludePanels", bool)
-    basic_assert("IncludeFavorsMode", int)
-    basic_assert("IncludeLettersMode", int)
-    basic_assert("IncludeRadioTradeEvent", bool)
-    basic_assert("IncludeDojo", bool)
-    basic_assert("KeyitemsOutsideDungeon", bool)
-    basic_assert("KeyitemsOutsideChapter", bool) #NYI
-
-    # Item Pool Modification
-    basic_assert("GearShuffleMode", int)
-    basic_assert("AddItemPouches", bool)
-    if "RandomConsumableMode" in options_dict:
-        assert (    isinstance(options_dict.get("RandomConsumableMode").get("value"), int)
-                and RandomizeConsumablesMode.OFF <= options_dict.get("RandomConsumableMode").get("value") <= RandomizeConsumablesMode.MYSTERY_ONLY
-        )
-    if "ItemQuality" in options_dict:
-        assert (    isinstance(options_dict.get("ItemQuality").get("value"), int)
-                and 25 <= options_dict.get("ItemQuality").get("value") <= 125
-        )
-    basic_assert("ItemTrapMode", int)
-
-    # Item Misc
-    basic_assert("CookWithoutFryingPan", bool)
-    if "MerlowRewardPricing" in options_dict:
-        assert (
-            isinstance(options_dict.get("MerlowRewardPricing").get("value"), int)
-        and MerlowRewardPricing.has_value(options_dict.get("MerlowRewardPricing").get("value"))
-        )
-    if "RipCheatoItemsInLogic" in options_dict:
-        value = options_dict.get("RipCheatoItemsInLogic").get("value")
-        assert (    isinstance(value, int)
-                and 0 <= value <= 11
-        )
-    basic_assert("AllowItemHints", bool)
-    # Mystery? item options
-    basic_assert("RandomChoice", bool)
-    basic_assert("MysteryRandomPick", bool)
-    if "ItemChoiceA" in options_dict:
-        assert (isinstance(options_dict.get("ItemChoiceA").get("value"), int)
-            and 0x80 <= options_dict.get("ItemChoiceA").get("value") <= 0xDA
-        )
-    if "ItemChoiceB" in options_dict:
-        assert (isinstance(options_dict.get("ItemChoiceB").get("value"), int)
-            and 0x80 <= options_dict.get("ItemChoiceB").get("value") <= 0xDA
-        )
-    if "ItemChoiceC" in options_dict:
-        assert (isinstance(options_dict.get("ItemChoiceC").get("value"), int)
-            and 0x80 <= options_dict.get("ItemChoiceC").get("value") <= 0xDA
-        )
-    if "ItemChoiceD" in options_dict:
-        assert (isinstance(options_dict.get("ItemChoiceD").get("value"), int)
-            and 0x80 <= options_dict.get("ItemChoiceD").get("value") <= 0xDA
-        )
-    if "ItemChoiceE" in options_dict:
-        assert (isinstance(options_dict.get("ItemChoiceE").get("value"), int)
-            and 0x80 <= options_dict.get("ItemChoiceE").get("value") <= 0xDA
-        )
-    if "ItemChoiceF" in options_dict:
-        assert (isinstance(options_dict.get("ItemChoiceF").get("value"), int)
-            and 0x80 <= options_dict.get("ItemChoiceF").get("value") <= 0xDA
-        )
-    if "ItemChoiceG" in options_dict:
-        assert (isinstance(options_dict.get("ItemChoiceG").get("value"), int)
-            and 0x80 <= options_dict.get("ItemChoiceG").get("value") <= 0xDA
-        )
-
-    # Starting setup
-    basic_assert("StartingMap", int)
-    basic_assert("StartingLevel", int)
-    basic_assert("StartingMaxHP", int)
-    basic_assert("StartingMaxFP", int)
-    basic_assert("StartingMaxBP", int)
-    if "StartingStarPower" in options_dict:
-        assert (    isinstance(options_dict.get("StartingStarPower").get("value"), int)
-                and 0 <= options_dict.get("StartingStarPower").get("value") <= 7)
-    if "StartingBoots" in options_dict:
-        assert (    isinstance(options_dict.get("StartingBoots").get("value"), int)
-                and StartingBoots.JUMPLESS <= options_dict.get("StartingBoots").get("value") <= StartingBoots.ULTRABOOTS)
-        try:
-            if (    "ShuffleItems" in options_dict
-                and not options_dict.get("ShuffleItems").get("value")
-            ):
-                assert (StartingBoots.BOOTS <= options_dict.get("StartingBoots").get("value"))
-        except AssertionError:
-            raise ValueError(
-                "No item shuffle but jumpless start is not a valid setting-combination!",
+        if "ItemQuality" in options_dict:
+            assert (    isinstance(options_dict.get("ItemQuality").get("value"), int)
+                    and 25 <= options_dict.get("ItemQuality").get("value") <= 125
             )
-    if "StartingHammer" in options_dict:
-        assert (    isinstance(options_dict.get("StartingHammer").get("value"), int)
-                and StartingHammer.HAMMERLESS <= options_dict.get("StartingHammer").get("value") <= StartingHammer.ULTRAHAMMER)
-    if "StartingCoins" in options_dict:
-        assert (    isinstance(options_dict.get("StartingCoins").get("value"), int)
-                and 0 <= options_dict.get("StartingCoins").get("value") <= 999
-        )
+        basic_assert("ItemTrapMode", int)
 
-    basic_assert("StartWithRandomItems", bool)
-    if "RandomItemsMin" in options_dict:
-        assert (    isinstance(options_dict.get("RandomItemsMin").get("value"), int)
-                and 0 <= options_dict.get("RandomItemsMin").get("value") <= 16
-                and (   "RandomItemsMax" not in options_dict
-                     or options_dict.get("RandomItemsMin").get("value") <=
-                        options_dict.get("RandomItemsMax").get("value"))
-        )
-    if "RandomItemsMax" in options_dict:
-        assert (    isinstance(options_dict.get("RandomItemsMax").get("value"), int)
-                and 0 <= options_dict.get("RandomItemsMax").get("value") <= 16
-                and (   "RandomItemsMin" not in options_dict
-                     or options_dict.get("RandomItemsMax").get("value") <=
-                        options_dict.get("RandomItemsMax").get("value"))
-        )
-    basic_assert("StartingItem0", int)
-    basic_assert("StartingItem1", int)
-    basic_assert("StartingItem2", int)
-    basic_assert("StartingItem3", int)
-    basic_assert("StartingItem4", int)
-    basic_assert("StartingItem5", int)
-    basic_assert("StartingItem6", int)
-    basic_assert("StartingItem7", int)
-    basic_assert("StartingItem8", int)
-    basic_assert("StartingItem9", int)
-    basic_assert("StartingItemA", int)
-    basic_assert("StartingItemB", int)
-    basic_assert("StartingItemC", int)
-    basic_assert("StartingItemD", int)
-    basic_assert("StartingItemE", int)
-    basic_assert("StartingItemF", int)
-
-    # Partners
-    if "StartWithPartners" in options_dict:
-        permitted_values = [
-            "Goombario",
-            "Kooper",
-            "Bombette",
-            "Parakarry",
-            "Bow",
-            "Watt",
-            "Sushie",
-            "Lakilester"
-        ]
-        assert (    isinstance(options_dict.get("StartWithPartners").get("value"), dict)
-                and all(key in permitted_values for key in options_dict.get("StartWithPartners").get("value"))
-                and all(isinstance(value, bool) for value in options_dict.get("StartWithPartners").get("value").values())
-                and any(value for value in options_dict.get("StartWithPartners").get("value").values()))
-
-    basic_assert("PartnersInDefaultLocations", bool)
-    basic_assert("PartnersAlwaysUsable", bool)
-    basic_assert("StartWithRandomPartners", bool)
-    if "RandomPartnersMin" in options_dict:
-        assert (    isinstance(options_dict.get("RandomPartnersMin").get("value"), int)
-                and 1 <= options_dict.get("RandomPartnersMin").get("value") <= 8
-                and (   "RandomPartnersMax" not in options_dict
-                     or options_dict.get("RandomPartnersMin").get("value") <=
-                        options_dict.get("RandomPartnersMax").get("value"))
-        )
-    if "RandomPartnersMax" in options_dict:
-        assert (    isinstance(options_dict.get("RandomPartnersMax").get("value"), int)
-                and 1 <= options_dict.get("RandomPartnersMax").get("value") <= 8
-                and (   "RandomPartnersMin" not in options_dict
-                     or options_dict.get("RandomPartnersMin").get("value") <=
-                        options_dict.get("RandomPartnersMax").get("value"))
-        )
-
-    # Pre-opened areas
-    basic_assert("MagicalSeedsRequired", int)
-    basic_assert("PrologueOpen", bool)
-    basic_assert("BlueHouseOpen", bool)
-    basic_assert("MtRuggedOpen", bool)
-    basic_assert("ToyboxOpen", bool)
-    basic_assert("WhaleOpen", bool)
-    basic_assert("Ch7BridgeVisible", bool)
-
-    # Goal Settings
-    if "StarWaySpiritsNeededCnt" in options_dict:
-        assert (    isinstance(options_dict.get("StarWaySpiritsNeededCnt").get("value"), int)
-                and -1 <= options_dict.get("StarWaySpiritsNeededCnt").get("value") <= 7)
-    basic_assert("BowsersCastleMode", int)
-    if "StarHunt" in options_dict:
-        assert isinstance(options_dict.get("StarHunt").get("value"), bool)
-        try:
-            if (    "ShuffleItems" in options_dict
-                and not options_dict.get("ShuffleItems").get("value")
-            ):
-                assert (options_dict.get("StarHunt").get("value") is False)
-        except AssertionError:
-            raise ValueError(
-                "No item shuffle but star hunt is not a valid setting-combination!",
+        # Item Misc
+        basic_assert("CookWithoutFryingPan", bool)
+        if "MerlowRewardPricing" in options_dict:
+            assert (
+                isinstance(options_dict.get("MerlowRewardPricing").get("value"), int)
+            and MerlowRewardPricing.has_value(options_dict.get("MerlowRewardPricing").get("value"))
             )
-    if "StarHuntRequired" in options_dict:
-        assert (    isinstance(options_dict.get("StarHuntRequired").get("value"), int)
-                and 0 <= options_dict.get("StarHuntRequired").get("value") <= 120
-        )
-    if "StarHuntTotal" in options_dict:
-        assert (    isinstance(options_dict.get("StarHuntTotal").get("value"), int)
-                and 0 <= options_dict.get("StarHuntTotal").get("value") <= 120
-                and options_dict.get("StarHuntTotal").get("value") >= options_dict.get("StarHuntRequired").get("value")
-        )
-    basic_assert("StarHuntEndsGame", bool)
+        if "RipCheatoItemsInLogic" in options_dict:
+            value = options_dict.get("RipCheatoItemsInLogic").get("value")
+            assert (    isinstance(value, int)
+                    and 0 <= value <= 11
+            )
+        basic_assert("AllowItemHints", bool)
+        # Mystery? item options
+        basic_assert("RandomChoice", bool)
+        basic_assert("MysteryRandomPick", bool)
+        if "ItemChoiceA" in options_dict:
+            assert (isinstance(options_dict.get("ItemChoiceA").get("value"), int)
+                and 0x80 <= options_dict.get("ItemChoiceA").get("value") <= 0xDA
+            )
+        if "ItemChoiceB" in options_dict:
+            assert (isinstance(options_dict.get("ItemChoiceB").get("value"), int)
+                and 0x80 <= options_dict.get("ItemChoiceB").get("value") <= 0xDA
+            )
+        if "ItemChoiceC" in options_dict:
+            assert (isinstance(options_dict.get("ItemChoiceC").get("value"), int)
+                and 0x80 <= options_dict.get("ItemChoiceC").get("value") <= 0xDA
+            )
+        if "ItemChoiceD" in options_dict:
+            assert (isinstance(options_dict.get("ItemChoiceD").get("value"), int)
+                and 0x80 <= options_dict.get("ItemChoiceD").get("value") <= 0xDA
+            )
+        if "ItemChoiceE" in options_dict:
+            assert (isinstance(options_dict.get("ItemChoiceE").get("value"), int)
+                and 0x80 <= options_dict.get("ItemChoiceE").get("value") <= 0xDA
+            )
+        if "ItemChoiceF" in options_dict:
+            assert (isinstance(options_dict.get("ItemChoiceF").get("value"), int)
+                and 0x80 <= options_dict.get("ItemChoiceF").get("value") <= 0xDA
+            )
+        if "ItemChoiceG" in options_dict:
+            assert (isinstance(options_dict.get("ItemChoiceG").get("value"), int)
+                and 0x80 <= options_dict.get("ItemChoiceG").get("value") <= 0xDA
+            )
 
-    # Entrance Shuffle
-    basic_assert("ShuffleDungeonRooms", bool)
-    basic_assert("ShuffleDungeonEntrances", bool)
-    basic_assert("ShuffleEntrancesByAll", bool)
-    basic_assert("MatchEntranceTypes", bool)
-    basic_assert("RandomizeOnewayEntrances", bool)
-    basic_assert("UnpairedEntrances", bool)
+        # Starting setup
+        basic_assert("StartingMap", int)
+        basic_assert("StartingLevel", int)
+        basic_assert("StartingMaxHP", int)
+        basic_assert("StartingMaxFP", int)
+        basic_assert("StartingMaxBP", int)
+        if "StartingStarPower" in options_dict:
+            assert (    isinstance(options_dict.get("StartingStarPower").get("value"), int)
+                    and 0 <= options_dict.get("StartingStarPower").get("value") <= 7)
+        if "StartingBoots" in options_dict:
+            assert (    isinstance(options_dict.get("StartingBoots").get("value"), int)
+                    and StartingBoots.JUMPLESS <= options_dict.get("StartingBoots").get("value") <= StartingBoots.ULTRABOOTS)
+            try:
+                if (    "ShuffleItems" in options_dict
+                    and not options_dict.get("ShuffleItems").get("value")
+                ):
+                    assert (StartingBoots.BOOTS <= options_dict.get("StartingBoots").get("value"))
+            except AssertionError:
+                raise ValueError(
+                    "No item shuffle but jumpless start is not a valid setting-combination!",
+                )
+        if "StartingHammer" in options_dict:
+            assert (    isinstance(options_dict.get("StartingHammer").get("value"), int)
+                    and StartingHammer.HAMMERLESS <= options_dict.get("StartingHammer").get("value") <= StartingHammer.ULTRAHAMMER)
+        if "StartingCoins" in options_dict:
+            assert (    isinstance(options_dict.get("StartingCoins").get("value"), int)
+                    and 0 <= options_dict.get("StartingCoins").get("value") <= 999
+            )
 
-    # Costs of Moves and Badges
-    basic_assert("RandomBadgesBP", int)
-    basic_assert("RandomBadgesFP", int)
-    basic_assert("RandomPartnerFP", int)
-    basic_assert("RandomStarpowerSP", int)
+        basic_assert("StartWithRandomItems", bool)
+        if "RandomItemsMin" in options_dict:
+            assert (    isinstance(options_dict.get("RandomItemsMin").get("value"), int)
+                    and 0 <= options_dict.get("RandomItemsMin").get("value") <= 16
+                    and (   "RandomItemsMax" not in options_dict
+                         or options_dict.get("RandomItemsMin").get("value") <=
+                            options_dict.get("RandomItemsMax").get("value"))
+            )
+        if "RandomItemsMax" in options_dict:
+            assert (    isinstance(options_dict.get("RandomItemsMax").get("value"), int)
+                    and 0 <= options_dict.get("RandomItemsMax").get("value") <= 16
+                    and (   "RandomItemsMin" not in options_dict
+                         or options_dict.get("RandomItemsMax").get("value") <=
+                            options_dict.get("RandomItemsMax").get("value"))
+            )
+        basic_assert("StartingItem0", int)
+        basic_assert("StartingItem1", int)
+        basic_assert("StartingItem2", int)
+        basic_assert("StartingItem3", int)
+        basic_assert("StartingItem4", int)
+        basic_assert("StartingItem5", int)
+        basic_assert("StartingItem6", int)
+        basic_assert("StartingItem7", int)
+        basic_assert("StartingItem8", int)
+        basic_assert("StartingItem9", int)
+        basic_assert("StartingItemA", int)
+        basic_assert("StartingItemB", int)
+        basic_assert("StartingItemC", int)
+        basic_assert("StartingItemD", int)
+        basic_assert("StartingItemE", int)
+        basic_assert("StartingItemF", int)
 
-    # Misc Gameplay Randomization
-    basic_assert("ShuffleBlocks", bool)
+        # Partners
+        if "StartWithPartners" in options_dict:
+            permitted_values = [
+                "Goombario",
+                "Kooper",
+                "Bombette",
+                "Parakarry",
+                "Bow",
+                "Watt",
+                "Sushie",
+                "Lakilester"
+            ]
+            assert (    isinstance(options_dict.get("StartWithPartners").get("value"), dict)
+                    and all(key in permitted_values for key in options_dict.get("StartWithPartners").get("value"))
+                    and all(isinstance(value, bool) for value in options_dict.get("StartWithPartners").get("value").values())
+                    and any(value for value in options_dict.get("StartWithPartners").get("value").values()))
 
-    # Quizmo Quizzes
-    basic_assert("RandomQuiz", bool)
-    basic_assert("QuizmoAlwaysAppears", bool)
-    basic_assert("SkipQuiz", bool)
+        basic_assert("PartnersInDefaultLocations", bool)
+        basic_assert("PartnersAlwaysUsable", bool)
+        basic_assert("StartWithRandomPartners", bool)
+        if "RandomPartnersMin" in options_dict:
+            assert (    isinstance(options_dict.get("RandomPartnersMin").get("value"), int)
+                    and 1 <= options_dict.get("RandomPartnersMin").get("value") <= 8
+                    and (   "RandomPartnersMax" not in options_dict
+                         or options_dict.get("RandomPartnersMin").get("value") <=
+                            options_dict.get("RandomPartnersMax").get("value"))
+            )
+        if "RandomPartnersMax" in options_dict:
+            assert (    isinstance(options_dict.get("RandomPartnersMax").get("value"), int)
+                    and 1 <= options_dict.get("RandomPartnersMax").get("value") <= 8
+                    and (   "RandomPartnersMin" not in options_dict
+                         or options_dict.get("RandomPartnersMin").get("value") <=
+                            options_dict.get("RandomPartnersMax").get("value"))
+            )
 
-    # Spoilerlog
-    basic_assert("WriteSpoilerLog", bool)
+        # Pre-opened areas
+        basic_assert("MagicalSeedsRequired", int)
+        basic_assert("PrologueOpen", bool)
+        basic_assert("BlueHouseOpen", bool)
+        basic_assert("MtRuggedOpen", bool)
+        basic_assert("ToyboxOpen", bool)
+        basic_assert("WhaleOpen", bool)
+        basic_assert("Ch7BridgeVisible", bool)
 
-    # Cosmetics
-    if "Box5ColorA" in options_dict:
-        assert (    isinstance(options_dict.get("Box5ColorA").get("value"), int)
-                and 0 <= options_dict.get("Box5ColorA").get("value") <= 0xFFFFFFFF
-        )
-    if "Box5ColorB" in options_dict:
-        assert (    isinstance(options_dict.get("Box5ColorB").get("value"), int)
-                and 0 <= options_dict.get("Box5ColorB").get("value") <= 0xFFFFFFFF
-        )
-    if "CoinColor" in options_dict:
-        assert (    isinstance(options_dict.get("CoinColor").get("value"), int)
-                and 0 <= options_dict.get("CoinColor").get("value") <= 4
-        )
-    basic_assert("RandomCoinColor", bool)
+        # Goal Settings
+        if "StarWaySpiritsNeededCnt" in options_dict:
+            assert (    isinstance(options_dict.get("StarWaySpiritsNeededCnt").get("value"), int)
+                    and -1 <= options_dict.get("StarWaySpiritsNeededCnt").get("value") <= 7)
+        basic_assert("BowsersCastleMode", int)
+        if "StarHunt" in options_dict:
+            assert isinstance(options_dict.get("StarHunt").get("value"), bool)
+            try:
+                if (    "ShuffleItems" in options_dict
+                    and not options_dict.get("ShuffleItems").get("value")
+                ):
+                    assert (options_dict.get("StarHunt").get("value") is False)
+            except AssertionError:
+                raise ValueError(
+                    "No item shuffle but star hunt is not a valid setting-combination!",
+                )
+        if "StarHuntRequired" in options_dict:
+            assert (    isinstance(options_dict.get("StarHuntRequired").get("value"), int)
+                    and 0 <= options_dict.get("StarHuntRequired").get("value") <= 120
+            )
+        if "StarHuntTotal" in options_dict:
+            assert (    isinstance(options_dict.get("StarHuntTotal").get("value"), int)
+                    and 0 <= options_dict.get("StarHuntTotal").get("value") <= 120
+                    and options_dict.get("StarHuntTotal").get("value") >= options_dict.get("StarHuntRequired").get("value")
+            )
+        basic_assert("StarHuntEndsGame", bool)
 
-    basic_assert("MarioSetting", int)
-    basic_assert("MarioSprite", int)
-    basic_assert("GoombarioSetting", int)
-    basic_assert("GoombarioSprite", int)
-    basic_assert("KooperSetting", int)
-    basic_assert("KooperSprite", int)
-    basic_assert("BombetteSetting", int)
-    basic_assert("BombetteSprite", int)
-    basic_assert("ParakarrySetting", int)
-    basic_assert("ParakarrySprite", int)
-    basic_assert("BowSetting", int)
-    basic_assert("BowSprite", int)
-    basic_assert("WattSetting", int)
-    basic_assert("WattSprite", int)
-    basic_assert("SushieSetting", int)
-    basic_assert("SushieSprite", int)
-    basic_assert("LakilesterSetting", int)
-    basic_assert("LakilesterSprite", int)
-    basic_assert("BossesSetting", int)
-    basic_assert("EnemiesSetting", int)
-    basic_assert("NPCSetting", int)
-    basic_assert("HammerSetting", int)
+        # Entrance Shuffle
+        basic_assert("ShuffleDungeonRooms", bool)
+        basic_assert("ShuffleDungeonEntrances", bool)
+        basic_assert("ShuffleEntrancesByAll", bool)
+        basic_assert("MatchEntranceTypes", bool)
+        basic_assert("RandomizeOnewayEntrances", bool)
+        basic_assert("UnpairedEntrances", bool)
 
-    # Audio options
-    basic_assert("ShuffleMusic", bool)
-    if "ShuffleMusicMode" in options_dict:
-        assert (    isinstance(options_dict.get("ShuffleMusicMode").get("value"), int)
-                and 0 <= options_dict.get("ShuffleMusicMode").get("value") <= 2
-        )
-    basic_assert("ShuffleJingles", bool)
+        # Costs of Moves and Badges
+        basic_assert("RandomBadgesBP", int)
+        basic_assert("RandomBadgesFP", int)
+        basic_assert("RandomPartnerFP", int)
+        basic_assert("RandomStarpowerSP", int)
 
-    # Joke options
-    basic_assert("RomanNumerals", bool)
-    basic_assert("RandomText", bool)
-    basic_assert("RandomPitch", bool)
+        # Misc Gameplay Randomization
+        basic_assert("ShuffleBlocks", bool)
 
-    # Glitched Logic
-    basic_assert("PrologueGelEarly", bool)
-    basic_assert("ReverseGoombaKingBridge", bool)
-    basic_assert("GoombaVillageEntryFenceClip", bool)
-    basic_assert("GoombaVillageNpcLureExit", bool)
-    basic_assert("HammerlessJrPlaygroundLaki", bool)
-    basic_assert("PrologueSushieGlitchKsj", bool)
-    basic_assert("PrologueSushieGlitchUltraBootsLaki", bool)
-    basic_assert("GoombaVillageLakiExit", bool)
+        # Quizmo Quizzes
+        basic_assert("RandomQuiz", bool)
+        basic_assert("QuizmoAlwaysAppears", bool)
+        basic_assert("SkipQuiz", bool)
 
-    basic_assert("OddKeyEarly", bool)
-    basic_assert("BlueHouseSkip", bool)
-    basic_assert("BlueHouseSkipLaki", bool)
-    basic_assert("BlueHouseSkipToadLure", bool)
-    basic_assert("BowlessToyBoxHammer", bool)
-    basic_assert("BowlessToyBoxHammerlessLure", bool)
-    basic_assert("EarlyStoreroomParakarry", bool)
-    basic_assert("EarlyStoreroomHammer", bool)
-    basic_assert("EarlyStoreroomHammerlessLure", bool)
-    basic_assert("WhaleEarly", bool)
-    basic_assert("SushielessToadTownStarPiece", bool)
-    basic_assert("ToadTownSushieGlitch", bool)
+        # Spoilerlog
+        basic_assert("WriteSpoilerLog", bool)
 
-    basic_assert("ClippyBootsStoneBlockSkip", bool)
-    basic_assert("ClippyBootsMetalBlockSkip", bool)
-    basic_assert("IslandPipeBlooperSkip", bool)
-    basic_assert("ParakarrylessSewerStarPiece", bool)
-    basic_assert("SewerBlocksWithoutUltraBoots", bool)
-    basic_assert("FirstBlockToShiverCityWithoutSuperBoots", bool)
-    basic_assert("BlocksToShiverCityWithKooperShellItemThrow", bool)
-    basic_assert("SewerYellowBlockWithUltraBoots", bool)
-    basic_assert("JumplessSewerShootingStar", bool)
+        # Cosmetics
+        if "Box5ColorA" in options_dict:
+            assert (    isinstance(options_dict.get("Box5ColorA").get("value"), int)
+                    and 0 <= options_dict.get("Box5ColorA").get("value") <= 0xFFFFFFFF
+            )
+        if "Box5ColorB" in options_dict:
+            assert (    isinstance(options_dict.get("Box5ColorB").get("value"), int)
+                    and 0 <= options_dict.get("Box5ColorB").get("value") <= 0xFFFFFFFF
+            )
+        if "CoinColor" in options_dict:
+            assert (    isinstance(options_dict.get("CoinColor").get("value"), int)
+                    and 0 <= options_dict.get("CoinColor").get("value") <= 4
+            )
+        basic_assert("RandomCoinColor", bool)
 
-    basic_assert("KooperlessPleasantPathStarPiece", bool)
-    basic_assert("HammerlessPleasantPathBridgeUltraBootsParakarry", bool)
-    basic_assert("InvisibleBridgeClipLzs", bool)
-    basic_assert("InvisibleBridgeClipLaki", bool)
-    basic_assert("KooperlessPleasantPathThunderBolt", bool)
+        basic_assert("MarioSetting", int)
+        basic_assert("MarioSprite", int)
+        basic_assert("GoombarioSetting", int)
+        basic_assert("GoombarioSprite", int)
+        basic_assert("KooperSetting", int)
+        basic_assert("KooperSprite", int)
+        basic_assert("BombetteSetting", int)
+        basic_assert("BombetteSprite", int)
+        basic_assert("ParakarrySetting", int)
+        basic_assert("ParakarrySprite", int)
+        basic_assert("BowSetting", int)
+        basic_assert("BowSprite", int)
+        basic_assert("WattSetting", int)
+        basic_assert("WattSprite", int)
+        basic_assert("SushieSetting", int)
+        basic_assert("SushieSprite", int)
+        basic_assert("LakilesterSetting", int)
+        basic_assert("LakilesterSprite", int)
+        basic_assert("BossesSetting", int)
+        basic_assert("EnemiesSetting", int)
+        basic_assert("NPCSetting", int)
+        basic_assert("HammerSetting", int)
 
-    basic_assert("BombettelessKbfFpPlusLZS", bool)
-    basic_assert("BombettelessKbfFpPlusLaki", bool)
-    basic_assert("LakiJailbreak", bool)
-    basic_assert("BombettelessRightFortressJailKey", bool)
-    basic_assert("WaterStaircaseSkip", bool)
+        # Audio options
+        basic_assert("ShuffleMusic", bool)
+        if "ShuffleMusicMode" in options_dict:
+            assert (    isinstance(options_dict.get("ShuffleMusicMode").get("value"), int)
+                    and 0 <= options_dict.get("ShuffleMusicMode").get("value") <= 2
+            )
+        basic_assert("ShuffleJingles", bool)
 
-    basic_assert("MtRuggedQuakeHammerAndLetterWithLaki", bool)
-    basic_assert("ParakarrylessMtRuggedSeed", bool)
-    basic_assert("BuzzarGapSkipClippy", bool)
-    basic_assert("ParakarrylessMtRuggedStarPiece", bool)
-    basic_assert("MtRuggedCoinsWithKooper", bool)
-    basic_assert("MtRuggedStationJumplessClimbBombette", bool)
-    basic_assert("MtRuggedStationJumplessClimbLaki", bool)
-    basic_assert("JumplessMtRuggedTrainPlatformParakarry", bool)
+        # Joke options
+        basic_assert("RomanNumerals", bool)
+        basic_assert("RandomText", bool)
+        basic_assert("RandomPitch", bool)
 
-    basic_assert("DesertBrickBlockItemWithParakarry", bool)
-    basic_assert("EarlyRuinsLakiJump", bool)
-    basic_assert("EarlyRuinsUltraBoots", bool)
+        # Glitched Logic
+        basic_assert("PrologueGelEarly", bool)
+        basic_assert("ReverseGoombaKingBridge", bool)
+        basic_assert("GoombaVillageEntryFenceClip", bool)
+        basic_assert("GoombaVillageNpcLureExit", bool)
+        basic_assert("HammerlessJrPlaygroundLaki", bool)
+        basic_assert("PrologueSushieGlitchKsj", bool)
+        basic_assert("PrologueSushieGlitchUltraBootsLaki", bool)
+        basic_assert("GoombaVillageLakiExit", bool)
 
-    basic_assert("ArtifactJumpLaki", bool)
-    basic_assert("ArtifactJumpUltraBoots", bool)
-    basic_assert("RuinsKeyLakiJump", bool)
-    basic_assert("ParakarrylessSecondSandRoomUltraBoots", bool)
-    basic_assert("ParakarrylessSecondSandRoomNormalBoots", bool)
-    basic_assert("ParakarrylessSuperHammerRoomUltraBoots", bool)
-    basic_assert("ParakarrylessSuperHammerRoomNormalBoots", bool)
-    basic_assert("RuinsLocksSkipClippy", bool)
+        basic_assert("OddKeyEarly", bool)
+        basic_assert("BlueHouseSkip", bool)
+        basic_assert("BlueHouseSkipLaki", bool)
+        basic_assert("BlueHouseSkipToadLure", bool)
+        basic_assert("BowlessToyBoxHammer", bool)
+        basic_assert("BowlessToyBoxHammerlessLure", bool)
+        basic_assert("EarlyStoreroomParakarry", bool)
+        basic_assert("EarlyStoreroomHammer", bool)
+        basic_assert("EarlyStoreroomHammerlessLure", bool)
+        basic_assert("WhaleEarly", bool)
+        basic_assert("SushielessToadTownStarPiece", bool)
+        basic_assert("ToadTownSushieGlitch", bool)
 
-    basic_assert("RecordSkipNoBombettePush", bool)
-    basic_assert("RecordSkipBombettePush", bool)
-    basic_assert("BoosPortraitWithKooper", bool)
-    basic_assert("BoosPortraitWithLaki", bool)
-    basic_assert("JumplessMansionEntry", bool)
+        basic_assert("ClippyBootsStoneBlockSkip", bool)
+        basic_assert("ClippyBootsMetalBlockSkip", bool)
+        basic_assert("IslandPipeBlooperSkip", bool)
+        basic_assert("ParakarrylessSewerStarPiece", bool)
+        basic_assert("SewerBlocksWithoutUltraBoots", bool)
+        basic_assert("FirstBlockToShiverCityWithoutSuperBoots", bool)
+        basic_assert("BlocksToShiverCityWithKooperShellItemThrow", bool)
+        basic_assert("SewerYellowBlockWithUltraBoots", bool)
+        basic_assert("JumplessSewerShootingStar", bool)
 
-    basic_assert("GustyGulchGateSkipLZS", bool)
-    basic_assert("GustyGulchGateSkipLaki", bool)
-    basic_assert("KooperlessGustyGulchDizzyDialJump", bool)
-    basic_assert("KooperlessGustyGulchDizzyDialLaki", bool)
-    basic_assert("KooperlessGustyGulchDizzyDialParakarry", bool)
-    basic_assert("GustyGulchGapSkip", bool)
+        basic_assert("KooperlessPleasantPathStarPiece", bool)
+        basic_assert("HammerlessPleasantPathBridgeUltraBootsParakarry", bool)
+        basic_assert("InvisibleBridgeClipLzs", bool)
+        basic_assert("InvisibleBridgeClipLaki", bool)
+        basic_assert("KooperlessPleasantPathThunderBolt", bool)
 
-    basic_assert("BowlessTubbasCastle", bool)
-    basic_assert("TubbasTableLakiJumpClock", bool)
-    basic_assert("TubbasTableUltraBoots", bool)
-    basic_assert("TubbasTableLakiJumpStudy", bool)
-    basic_assert("TubbasCastleSuperBootsSkip", bool)
-    basic_assert("ParakarrylessMegaRush", bool)
+        basic_assert("BombettelessKbfFpPlusLZS", bool)
+        basic_assert("BombettelessKbfFpPlusLaki", bool)
+        basic_assert("LakiJailbreak", bool)
+        basic_assert("BombettelessRightFortressJailKey", bool)
+        basic_assert("WaterStaircaseSkip", bool)
 
-    basic_assert("ParakarrylessBlueBuildingStarPiece", bool)
-    basic_assert("GourmetGuySkipJump", bool)
-    basic_assert("GourmetGuySkipLaki", bool)
-    basic_assert("GourmetGuySkipParakarry", bool)
-    basic_assert("BowlessGreenStation", bool)
-    basic_assert("KooperlessRedStationShootingStar", bool)
-    basic_assert("GearlessRedStationShootingStar", bool)
-    basic_assert("ParakarrylessBlueBlockCityGap", bool)
-    basic_assert("BlueSwitchSkipLaki", bool)
-    basic_assert("BlueSwitchSkipUltraBoots", bool)
-    basic_assert("RedBarricadeSkip", bool)
-    basic_assert("HammerlessBlueStationLaki", bool)
-    basic_assert("HammerlessPinkStationLaki", bool)
+        basic_assert("MtRuggedQuakeHammerAndLetterWithLaki", bool)
+        basic_assert("ParakarrylessMtRuggedSeed", bool)
+        basic_assert("BuzzarGapSkipClippy", bool)
+        basic_assert("ParakarrylessMtRuggedStarPiece", bool)
+        basic_assert("MtRuggedCoinsWithKooper", bool)
+        basic_assert("MtRuggedStationJumplessClimbBombette", bool)
+        basic_assert("MtRuggedStationJumplessClimbLaki", bool)
+        basic_assert("JumplessMtRuggedTrainPlatformParakarry", bool)
 
-    basic_assert("RaphSkipEnglish", bool)
-    basic_assert("RaphSkipParakarry", bool)
-    basic_assert("Ch5SushieGlitch", bool)
-    basic_assert("SushielessJungleStarpieceAndLetter", bool)
-    basic_assert("JumplessDeepJungleLaki", bool)
+        basic_assert("DesertBrickBlockItemWithParakarry", bool)
+        basic_assert("EarlyRuinsLakiJump", bool)
+        basic_assert("EarlyRuinsUltraBoots", bool)
 
-    basic_assert("KooperlessLavalavaPowBlockParakarry", bool)
-    basic_assert("KooperlessLavalavaPowBlockSuperBoots", bool)
-    basic_assert("JumplessLavalavaPowBlock", bool)
-    basic_assert("UltraHammerSkip", bool)
-    basic_assert("UltraHammerSkipLaki", bool)
-    basic_assert("UltraHammerSkipSushie", bool)
-    basic_assert("Flarakarry", bool)
-    basic_assert("ParakarrylessFlarakarryBombette", bool)
-    basic_assert("ParakarrylessFlarakarryLaki", bool)
-    basic_assert("VolcanoSushieGlitch", bool)
+        basic_assert("ArtifactJumpLaki", bool)
+        basic_assert("ArtifactJumpUltraBoots", bool)
+        basic_assert("RuinsKeyLakiJump", bool)
+        basic_assert("ParakarrylessSecondSandRoomUltraBoots", bool)
+        basic_assert("ParakarrylessSecondSandRoomNormalBoots", bool)
+        basic_assert("ParakarrylessSuperHammerRoomUltraBoots", bool)
+        basic_assert("ParakarrylessSuperHammerRoomNormalBoots", bool)
+        basic_assert("RuinsLocksSkipClippy", bool)
 
-    basic_assert("EarlyLakiLZS", bool)
-    basic_assert("EarlyLakiBombettePush", bool)
-    basic_assert("BombettelessMegaSmash", bool)
-    basic_assert("SunTowerSkip", bool)
-    basic_assert("YellowBerryGateSkipLZS", bool)
-    basic_assert("YellowBerryGateSkipLaki", bool)
-    basic_assert("YellowBerryGateSkipBombettePush", bool)
-    basic_assert("RedBerryGateSkipBombettePush", bool)
-    basic_assert("RedBerryGateSkipLaki", bool)
-    basic_assert("BlueBerryGateSkipBombettePush", bool)
-    basic_assert("BlueBerryGateSkipLaki", bool)
-    basic_assert("BubbleBerryTreeLakiJump", bool)
-    basic_assert("BubbleBerryTreeUltraBoots", bool)
+        basic_assert("RecordSkipNoBombettePush", bool)
+        basic_assert("RecordSkipBombettePush", bool)
+        basic_assert("BoosPortraitWithKooper", bool)
+        basic_assert("BoosPortraitWithLaki", bool)
+        basic_assert("JumplessMansionEntry", bool)
 
-    basic_assert("MurderSolvedEarlyLaki", bool)
-    basic_assert("MurderSolvedEarlyBombettePush", bool)
-    basic_assert("Ch7SushieGlitch", bool)
-    basic_assert("StarStoneWithCh7SushieGlitch", bool)
-    basic_assert("ShiverMountainHiddenBlockWithoutUltraBootsLaki", bool)
-    basic_assert("ShiverMountainHiddenBlockWithoutUltraBootsNoLaki", bool)
-    basic_assert("SnowmenSkipLaki", bool)
-    basic_assert("ShiverMountainSwitchSkip", bool)
-    basic_assert("SushielessWarehouseKeyBombette", bool)
-    basic_assert("SushielessWarehouseKeyKooper", bool)
+        basic_assert("GustyGulchGateSkipLZS", bool)
+        basic_assert("GustyGulchGateSkipLaki", bool)
+        basic_assert("KooperlessGustyGulchDizzyDialJump", bool)
+        basic_assert("KooperlessGustyGulchDizzyDialLaki", bool)
+        basic_assert("KooperlessGustyGulchDizzyDialParakarry", bool)
+        basic_assert("GustyGulchGapSkip", bool)
 
-    basic_assert("MirrorClip", bool)
+        basic_assert("BowlessTubbasCastle", bool)
+        basic_assert("TubbasTableLakiJumpClock", bool)
+        basic_assert("TubbasTableUltraBoots", bool)
+        basic_assert("TubbasTableLakiJumpStudy", bool)
+        basic_assert("TubbasCastleSuperBootsSkip", bool)
+        basic_assert("ParakarrylessMegaRush", bool)
 
-    basic_assert("BowlessBowsersCastleBasement", bool)
-    basic_assert("FastFloodRoomKooper", bool)
-    basic_assert("FastFloodRoomBombetteUltraBoots", bool)
-    basic_assert("BombettelessBowsersCastleBasement", bool)
+        basic_assert("ParakarrylessBlueBuildingStarPiece", bool)
+        basic_assert("GourmetGuySkipJump", bool)
+        basic_assert("GourmetGuySkipLaki", bool)
+        basic_assert("GourmetGuySkipParakarry", bool)
+        basic_assert("BowlessGreenStation", bool)
+        basic_assert("KooperlessRedStationShootingStar", bool)
+        basic_assert("GearlessRedStationShootingStar", bool)
+        basic_assert("ParakarrylessBlueBlockCityGap", bool)
+        basic_assert("BlueSwitchSkipLaki", bool)
+        basic_assert("BlueSwitchSkipUltraBoots", bool)
+        basic_assert("RedBarricadeSkip", bool)
+        basic_assert("HammerlessBlueStationLaki", bool)
+        basic_assert("HammerlessPinkStationLaki", bool)
 
-    basic_assert("BreakYellowBlocksWithSuperBoots", bool)
-    basic_assert("BreakStoneBlocksWithUltraBoots", bool)
-    basic_assert("KnowsHiddenBlocks", bool)
-    basic_assert("KnowsPuzzleSolutions", bool)
-    basic_assert("ReachHighBlocksWithSuperBoots", bool)
+        basic_assert("RaphSkipEnglish", bool)
+        basic_assert("RaphSkipParakarry", bool)
+        basic_assert("Ch5SushieGlitch", bool)
+        basic_assert("SushielessJungleStarpieceAndLetter", bool)
+        basic_assert("JumplessDeepJungleLaki", bool)
 
+        basic_assert("KooperlessLavalavaPowBlockParakarry", bool)
+        basic_assert("KooperlessLavalavaPowBlockSuperBoots", bool)
+        basic_assert("JumplessLavalavaPowBlock", bool)
+        basic_assert("UltraHammerSkip", bool)
+        basic_assert("UltraHammerSkipLaki", bool)
+        basic_assert("UltraHammerSkipSushie", bool)
+        basic_assert("Flarakarry", bool)
+        basic_assert("ParakarrylessFlarakarryBombette", bool)
+        basic_assert("ParakarrylessFlarakarryLaki", bool)
+        basic_assert("VolcanoSushieGlitch", bool)
 
-def get_option_keyvalue_dict(option_str):
-    key = Option.get(Option.name == option_str).get_key()
-    value = Option.get(Option.name == option_str).value
+        basic_assert("EarlyLakiLZS", bool)
+        basic_assert("EarlyLakiBombettePush", bool)
+        basic_assert("BombettelessMegaSmash", bool)
+        basic_assert("SunTowerSkip", bool)
+        basic_assert("YellowBerryGateSkipLZS", bool)
+        basic_assert("YellowBerryGateSkipLaki", bool)
+        basic_assert("YellowBerryGateSkipBombettePush", bool)
+        basic_assert("RedBerryGateSkipBombettePush", bool)
+        basic_assert("RedBerryGateSkipLaki", bool)
+        basic_assert("BlueBerryGateSkipBombettePush", bool)
+        basic_assert("BlueBerryGateSkipLaki", bool)
+        basic_assert("BubbleBerryTreeLakiJump", bool)
+        basic_assert("BubbleBerryTreeUltraBoots", bool)
 
-    return {"key": key, "value": value}
+        basic_assert("MurderSolvedEarlyLaki", bool)
+        basic_assert("MurderSolvedEarlyBombettePush", bool)
+        basic_assert("Ch7SushieGlitch", bool)
+        basic_assert("StarStoneWithCh7SushieGlitch", bool)
+        basic_assert("ShiverMountainHiddenBlockWithoutUltraBootsLaki", bool)
+        basic_assert("ShiverMountainHiddenBlockWithoutUltraBootsNoLaki", bool)
+        basic_assert("SnowmenSkipLaki", bool)
+        basic_assert("ShiverMountainSwitchSkip", bool)
+        basic_assert("SushielessWarehouseKeyBombette", bool)
+        basic_assert("SushielessWarehouseKeyKooper", bool)
 
+        basic_assert("MirrorClip", bool)
 
-def populate_keys(data:dict):
-    for option_str in data.copy():
-        if Option.get_or_none(Option.name == option_str) is not None:
-            data[option_str] = {
-                "key": Option.get(Option.name == option_str).get_key(),
-                "value": data[option_str]
-            }
-        else:
-            data[option_str] = {"value": data[option_str]}
+        basic_assert("BowlessBowsersCastleBasement", bool)
+        basic_assert("FastFloodRoomKooper", bool)
+        basic_assert("FastFloodRoomBombetteUltraBoots", bool)
+        basic_assert("BombettelessBowsersCastleBasement", bool)
 
-
-class PaletteOptionSet():
-    def __init__(self):
-        DEFAULT_PALETTE = 0
-
-        self.mario_setting = DEFAULT_PALETTE
-        self.mario_sprite = DEFAULT_PALETTE
-        self.goombario_setting = DEFAULT_PALETTE
-        self.goombario_sprite = DEFAULT_PALETTE
-        self.kooper_setting = DEFAULT_PALETTE
-        self.kooper_sprite = DEFAULT_PALETTE
-        self.bombette_setting = DEFAULT_PALETTE
-        self.bombette_sprite = DEFAULT_PALETTE
-        self.parakarry_setting = DEFAULT_PALETTE
-        self.parakarry_sprite = DEFAULT_PALETTE
-        self.bow_setting = DEFAULT_PALETTE
-        self.bow_sprite = DEFAULT_PALETTE
-        self.watt_setting = DEFAULT_PALETTE
-        self.watt_sprite = DEFAULT_PALETTE
-        self.sushie_setting = DEFAULT_PALETTE
-        self.sushie_sprite = DEFAULT_PALETTE
-        self.lakilester_setting = DEFAULT_PALETTE
-        self.lakilester_sprite = DEFAULT_PALETTE
-
-        self.bosses_setting = DEFAULT_PALETTE
-        self.enemies_setting = DEFAULT_PALETTE
-        self.npc_setting = DEFAULT_PALETTE
-        self.hammer_setting = DEFAULT_PALETTE
-
-
-class MysteryOptionSet():
-    def __init__(self):
-        self.mystery_random_choice = get_option_keyvalue_dict("RandomChoice")
-        self.mystery_random_pick = False
-        self.mystery_itemA = get_option_keyvalue_dict("ItemChoiceA")
-        self.mystery_itemB = get_option_keyvalue_dict("ItemChoiceB")
-        self.mystery_itemC = get_option_keyvalue_dict("ItemChoiceC")
-        self.mystery_itemD = get_option_keyvalue_dict("ItemChoiceD")
-        self.mystery_itemE = get_option_keyvalue_dict("ItemChoiceE")
-        self.mystery_itemF = get_option_keyvalue_dict("ItemChoiceF")
-        self.mystery_itemG = get_option_keyvalue_dict("ItemChoiceG")
+        basic_assert("BreakYellowBlocksWithSuperBoots", bool)
+        basic_assert("BreakStoneBlocksWithUltraBoots", bool)
+        basic_assert("KnowsHiddenBlocks", bool)
+        basic_assert("KnowsPuzzleSolutions", bool)
+        basic_assert("ReachHighBlocksWithSuperBoots", bool)
 
 
-class GlitchOptionSet():
-    def __init__(self):
-        self.prologue_gel_early = False
-        self.reverse_goomba_king_bridge = False
-        self.goomba_village_entry_fence_clip = False
-        self.goomba_village_npc_lure_exit = False
-        self.hammerless_jr_playground_laki = False
-        self.goomba_village_laki_exit = False
-        self.prologue_sushie_glitch_ksj = False
-        self.prologue_sushie_glitch_ultra_boots_laki = False
+    def get_startitem_list(self) -> list:
+        """Returns this OptionSet's starting items as list of Item objects."""
+        starting_items = []
 
-        self.odd_key_early = False
-        self.blue_house_skip = False
-        self.blue_house_skip_laki = False
-        self.blue_house_skip_toad_lure = False
-        self.bowless_toy_box_hammer = False
-        self.bowless_toy_box_hammerless_lure = False
-        self.early_storeroom_parakarry = False
-        self.early_storeroom_hammer = False
-        self.early_storeroom_hammerless_lure = False
-        self.whale_early = False
-        self.sushiesless_toad_town_star_piece = False
-        self.toad_town_sushie_glitch = False
+        for self_key, self_value in self.__dict__.items():
+            if self_key.startswith("starting_item"):
+                item_id = self_value.get("value")
+                if item_id != 0:
+                    item_obj = Item.get_or_none(Item.value == item_id)
+                    if item_obj is not None:
+                        # No double uniques
+                        if (    item_obj.item_type in ["BADGE", "KEYITEM", "STARPIECE"]
+                            and item_obj in starting_items
+                        ):
+                            continue
+                        starting_items.append(Item.get(Item.value == item_id))
 
-        self.clippy_boots_stone_block_skip = False
-        self.clippy_boots_metal_block_skip = False
-        self.island_pipe_blooper_skip = False
-        self.parakarryless_sewer_star_piece = False
-        self.sewer_blocks_without_ultra_boots = False
-        self.first_block_to_shiver_city_without_super_boots = False
-        self.blocks_to_shiver_city_kooper_shell_item_throw = False
-        self.sewer_yellow_block_with_ultra_boots = False
-        self.jumpless_sewer_shooting_star = False
-
-        self.kooperless_pleasant_path_star_piece = False
-        self.hammerless_pleasant_path_bridge_ultra_boots_parakarry = False
-        self.invisible_bridge_clip_lzs = False
-        self.invisible_bridge_clip_laki = False
-        self.kooperless_pleasant_path_thunderbolt = False
-
-        self.bombetteless_kbf_fp_plus_lzs = False
-        self.bombetteless_kbf_fp_plus_laki = False
-        self.laki_jailbreak = False
-        self.bombetteless_right_fortress_jail_key = False
-        self.water_staircase_skip = False
-
-        self.mt_rugged_quake_hammer_and_letter_with_laki = False
-        self.parakarryless_mt_rugged_seed = False
-        self.buzzar_gap_skip_clippy = False
-        self.mt_rugged_coins_with_kooper = False
-        self.mt_rugged_station_jumpless_climb_bombette = False
-        self.mt_rugged_station_jumpless_climb_laki = False
-        self.jumpless_mt_rugged_train_platform_parakarry = False
-        self.parakarryless_mt_rugged_star_piece = False
-        self.desert_brick_block_item_with_parakarry = False
-        self.early_ruins_laki_jump = False
-        self.early_ruins_ultra_boots = False
-
-        self.artifact_jump_laki = False
-        self.artifact_jump_ultra_boots = False
-        self.ruins_key_laki_jump = False
-        self.parakarryless_second_sand_room_ultra_boots = False
-        self.parakarryless_second_sand_room_normal_boots = False
-        self.parakarryless_super_hammer_room_ultra_boots = False
-        self.parakarryless_super_hammer_room_normal_boots = False
-        self.ruins_locks_skip_clippy = False
-
-        self.record_skip_no_bombette_push = False
-        self.record_skip_bombette_push = False
-        self.boos_portrait_with_kooper = False
-        self.boos_portrait_with_laki = False
-        self.jumpless_mansion_entry = False
-
-        self.gusty_gulch_gate_skip_lzs = False
-        self.gusty_gulch_gate_skip_laki = False
-        self.kooperless_gusty_gulch_dizzy_dial_jump = False
-        self.kooperless_gusty_gulch_dizzy_dial_laki = False
-        self.kooperless_gusty_gulch_dizzy_dial_parakarry = False
-        self.gusty_gulch_gap_skip = False
-
-        self.bowless_tubbas_castle = False
-        self.tubbas_table_laki_jump_clock = False
-        self.tubbas_table_ultra_boots = False
-        self.tubbas_table_laki_jump_study = False
-        self.tubbas_castle_super_boots_skip = False
-        self.parakarryless_mega_rush = False
-
-        self.parakarryless_blue_building_star_piece = False
-        self.gourmet_guy_skip_jump = False
-        self.gourmet_guy_skip_laki = False
-        self.gourmet_guy_skip_parakarry = False
-        self.bowless_green_station = False
-        self.kooperless_red_station_shooting_star = False
-        self.gearless_red_station_shooting_star = False
-        self.parakarryless_blue_block_city_gap = False
-        self.blue_switch_skip_laki = False
-        self.blue_switch_skip_ultra_boots = False
-        self.red_barricade_skip = False
-        self.hammerless_blue_station_laki = False
-        self.hammerless_pink_station_laki = False
-
-        self.raph_skip_english = False
-        self.raph_skip_parakarry = False
-        self.ch5_sushie_glitch = False
-        self.sushieless_jungle_starpiece_and_letter = False
-        self.jumpless_deep_jungle_laki = False
-        self.kooperless_lavalava_pow_block_parakarry = False
-        self.kooperless_lavalava_pow_block_super_boots = False
-        self.jumpless_lavalava_pow_block = False
-        self.ultra_hammer_skip = False
-        self.ultra_hammer_skip_laki = False
-        self.ultra_hammer_skip_sushie = False
-        self.flarakarry = False
-        self.parakarryless_flarakarry_bombette = False
-        self.parakarryless_flarakarry_laki = False
-        self.volcano_sushie_glitch = False
-
-        self.early_laki_lzs = False
-        self.early_laki_bombette_push = False
-        self.bombetteless_mega_smash = False
-        self.sun_tower_skip = False
-        self.yellow_berry_gate_skip_lzs = False
-        self.yellow_berry_gate_skip_laki = False
-        self.yellow_berry_gate_skip_bombette_push = False
-        self.red_berry_gate_skip_bombette_push = False
-        self.red_berry_gate_skip_laki = False
-        self.blue_berry_gate_skip_bombette_push = False
-        self.blue_berry_gate_skip_laki = False
-        self.bubble_berry_tree_early_laki_jump = False
-        self.bubble_berry_tree_early_ultra_boots = False
-
-        self.murder_solved_early_laki = False
-        self.murder_solved_early_bombette_push = False
-        self.ch7_sushie_glitch = False
-        self.star_stone_with_ch7_sushie_glitch = False
-        self.shiver_mountain_hidden_block_without_ultra_boots_laki = False
-        self.shiver_mountain_hidden_block_without_ultra_boots_no_laki = False
-        self.snowmen_skip_laki = False
-        self.shiver_mountain_switch_skip = False
-        self.sushieless_warehouse_key_bombette = False
-        self.sushieless_warehouse_key_kooper = False
-
-        self.mirror_clip = False
-
-        self.bowless_bowsers_castle_basement = False
-        self.fast_flood_room_kooper = False
-        self.fast_flood_room_bombette_ultra_boots = False
-        self.bombetteless_bowsers_castle_basement = False
-
-        self.break_yellow_blocks_with_super_boots = False
-        self.break_stone_blocks_with_ultra_boots = False
-        self.knows_hidden_blocks = False
-        self.knows_puzzle_solutions = False
-        self.reach_high_blocks_with_super_boots = False
+        return starting_items
