@@ -6,7 +6,7 @@ from rando_enums.enum_options import BowserCastleMode, GearShuffleMode
 
 from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
-from optionset import OptionSet
+from models.options.OptionSet import OptionSet
 from rando_modules.logic import \
     place_items,\
     get_item_spheres,\

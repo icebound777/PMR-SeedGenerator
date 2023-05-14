@@ -1,7 +1,7 @@
 import random
 
 from db.item import Item
-from optionset import MysteryOptionSet
+from models.options.OptionSet import MysteryOptionSet
 
 def get_random_mystery(mystery_settings:MysteryOptionSet) -> MysteryOptionSet:
     # If Random Choice is on, then none of the other settings matter

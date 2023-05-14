@@ -1,7 +1,7 @@
 from parse import get_table_info
 
 from db.option import Option
-from optionset import MysteryOptionSet
+from models.options.OptionSet import MysteryOptionSet
 
 
 class Table:

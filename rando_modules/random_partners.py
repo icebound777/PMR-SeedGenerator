@@ -2,7 +2,7 @@
 import random
 
 from metadata.partners_meta import all_partners as all_partners_imp
-from optionset import OptionSet
+from models.options.OptionSet import OptionSet
 
 def get_rnd_starting_partners(
     num_rnd_partners_min:int,

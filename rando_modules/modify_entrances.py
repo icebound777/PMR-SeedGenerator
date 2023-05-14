@@ -37,7 +37,7 @@ from maps.graph_edges.star_hunt.edges_hos import \
     edges_hos_starhunt2credits_remove
 
 # Imports: Glitched logic
-from optionset import GlitchOptionSet
+from models.options.OptionSet import GlitchOptionSet
 
 # Glitched Logic - Prologue
 from maps.graph_edges.glitched_logic.kmr_prologue_gel_early import \
