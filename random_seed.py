@@ -91,33 +91,33 @@ class RandomSeed:
 
                 # Modify entrances if needed
                 maps_removed = False
-                if self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.SHORTEN:
+                if self.rando_settings.bowsers_castle_mode == BowserCastleMode.SHORTEN:
                     self.entrance_list, modified_world_graph = get_shorter_bowsercastle(
                         modified_world_graph
                     )
                     maps_removed = True
-                elif self.rando_settings.bowsers_castle_mode["value"] == BowserCastleMode.BOSSRUSH:
+                elif self.rando_settings.bowsers_castle_mode == BowserCastleMode.BOSSRUSH:
                     self.entrance_list, modified_world_graph = get_bowsercastle_bossrush(
                         modified_world_graph
                     )
                     maps_removed = True
 
-                if self.rando_settings.star_hunt["value"]:
+                if self.rando_settings.star_hunt:
                     entrance_changes, modified_world_graph = get_starhunt(
                         modified_world_graph,
-                        self.rando_settings.star_hunt_total["value"],
-                        self.rando_settings.star_hunt_ends_game["value"]
+                        self.rando_settings.star_hunt_total,
+                        self.rando_settings.star_hunt_ends_game
                     )
                     self.entrance_list.extend(entrance_changes)
-                    if self.rando_settings.star_hunt_ends_game["value"]:
+                    if self.rando_settings.star_hunt_ends_game:
                         maps_removed = True
 
-                if (    self.rando_settings.shuffle_dungeon_entrances["value"]
-                    and self.rando_settings.shuffle_items["value"]
+                if (    self.rando_settings.shuffle_dungeon_entrances
+                    and self.rando_settings.shuffle_items
                 ):
                     entrance_changes, modified_world_graph, spoilerlog_info = shuffle_dungeon_entrances(
                         modified_world_graph,
-                        self.rando_settings.starway_spirits_needed_count["value"],
+                        self.rando_settings.starway_spirits_needed_count,
                         False,
                         self.rando_settings.write_spoilerlog
                     )
@@ -137,10 +137,10 @@ class RandomSeed:
                         modified_world_graph.pop(node_id)
 
                 # Adjust graph logic if needed
-                if self.rando_settings.gear_shuffle_mode["value"] != GearShuffleMode.VANILLA:
+                if self.rando_settings.gear_shuffle_mode != GearShuffleMode.VANILLA:
                     modified_world_graph = get_gear_location_shuffle(
                         modified_world_graph,
-                        self.rando_settings.gear_shuffle_mode["value"]
+                        self.rando_settings.gear_shuffle_mode
                     )
                 modified_world_graph = adjust_shop_logic(
                     modified_world_graph,
@@ -151,29 +151,29 @@ class RandomSeed:
                 modified_world_graph = get_glitched_logic(
                     modified_world_graph,
                     self.rando_settings.glitch_settings,
-                    self.rando_settings.bowsers_castle_mode["value"],
-                    self.rando_settings.shuffle_dungeon_entrances["value"]
+                    self.rando_settings.bowsers_castle_mode,
+                    self.rando_settings.shuffle_dungeon_entrances
                 )
 
                 modified_world_graph = enrich_graph_data(modified_world_graph)
 
                 # Adjust further settings
-                hidden_block_mode = self.rando_settings.hidden_block_mode["value"]
-                if self.rando_settings.glitch_settings.knows_hidden_blocks["value"]:
+                hidden_block_mode = self.rando_settings.hidden_block_mode
+                if self.rando_settings.glitch_settings.knows_hidden_blocks:
                     # Having this trick enabled is equivalent to mode 3, logic wise
                     hidden_block_mode = 3
 
-                if self.rando_settings.starway_spirits_needed_count["value"] == -1:
-                    self.rando_settings.starway_spirits_needed_count["value"] = random.randint(0,7)
+                if self.rando_settings.starway_spirits_needed_count == -1:
+                    self.rando_settings.starway_spirits_needed_count = random.randint(0,7)
 
                 starting_chapter, starting_map_value = self.init_starting_map(self.rando_settings)
                 self.init_starting_partners(self.rando_settings)
 
                 # Pick seeds required for flower gate, if random
-                if self.rando_settings.magical_seeds_required["value"] == 5:
+                if self.rando_settings.magical_seeds_required == 5:
                     magical_seeds_required = random.randint(0, 4)
                 else:
-                    magical_seeds_required = self.rando_settings.magical_seeds_required["value"]
+                    magical_seeds_required = self.rando_settings.magical_seeds_required
 
                 self.init_starting_items(
                     self.rando_settings,
@@ -184,51 +184,51 @@ class RandomSeed:
                 place_items(
                     item_placement=self.placed_items,
                     do_custom_seed=self.rando_settings.custom_seed,
-                    do_shuffle_items=self.rando_settings.shuffle_items["value"],
+                    do_shuffle_items=self.rando_settings.shuffle_items,
                     shuffle_overworld_coins=self.rando_settings.include_coins_overworld,
                     shuffle_block_coins=self.rando_settings.include_coins_blocks,
                     shuffle_foliage_coins=self.rando_settings.include_coins_foliage,
                     shuffle_favor_coins=self.rando_settings.include_coins_favors,
-                    do_randomize_shops=self.rando_settings.include_shops["value"],
-                    do_randomize_panels=self.rando_settings.include_panels["value"],
+                    do_randomize_shops=self.rando_settings.include_shops,
+                    do_randomize_panels=self.rando_settings.include_panels,
                     randomize_favors_mode=self.rando_settings.include_favors_mode,
                     randomize_letters_mode=self.rando_settings.include_letters_mode,
                     do_randomize_radiotrade=self.rando_settings.include_radiotradeevent,
                     do_randomize_dojo=self.rando_settings.include_dojo,
-                    gear_shuffle_mode=self.rando_settings.gear_shuffle_mode["value"],
+                    gear_shuffle_mode=self.rando_settings.gear_shuffle_mode,
                     randomize_consumable_mode=self.rando_settings.randomize_consumable_mode,
                     item_quality=self.rando_settings.item_quality,
                     itemtrap_mode=self.rando_settings.itemtrap_mode,
                     starting_map_id=starting_map_value,
-                    startwith_prologue_open=self.rando_settings.prologue_open["value"],
-                    startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
-                    startwith_mtrugged_open=self.rando_settings.mtrugged_open["value"],
+                    startwith_prologue_open=self.rando_settings.prologue_open,
+                    startwith_bluehouse_open=self.rando_settings.bluehouse_open,
+                    startwith_mtrugged_open=self.rando_settings.mtrugged_open,
                     magical_seeds_required=magical_seeds_required,
-                    startwith_toybox_open=self.rando_settings.toybox_open["value"],
-                    startwith_whale_open=self.rando_settings.whale_open["value"],
-                    ch7_bridge_visible=self.rando_settings.ch7_bridge_visible["value"],
-                    cook_without_fryingpan=self.rando_settings.cook_without_fryingpan["value"],
+                    startwith_toybox_open=self.rando_settings.toybox_open,
+                    startwith_whale_open=self.rando_settings.whale_open,
+                    ch7_bridge_visible=self.rando_settings.ch7_bridge_visible,
+                    cook_without_fryingpan=self.rando_settings.cook_without_fryingpan,
                     starting_partners=self.starting_partners,
-                    starting_boots=self.rando_settings.starting_boots["value"],
-                    starting_hammer=self.rando_settings.starting_hammer["value"],
-                    speedyspin=self.rando_settings.always_speedyspin["value"],
-                    ispy=self.rando_settings.always_ispy["value"],
-                    peekaboo=self.rando_settings.always_peekaboo["value"],
-                    partners_always_usable=self.rando_settings.partners_always_usable["value"],
+                    starting_boots=self.rando_settings.starting_boots,
+                    starting_hammer=self.rando_settings.starting_hammer,
+                    speedyspin=self.rando_settings.always_speedyspin,
+                    ispy=self.rando_settings.always_ispy,
+                    peekaboo=self.rando_settings.always_peekaboo,
+                    partners_always_usable=self.rando_settings.partners_always_usable,
                     partners_in_default_locations=self.rando_settings.partners_in_default_locations,
                     hidden_block_mode=hidden_block_mode,
                     keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
                     add_item_pouches=self.rando_settings.add_item_pouches,
-                    bowsers_castle_mode=self.rando_settings.bowsers_castle_mode["value"],
-                    star_hunt_stars=self.rando_settings.star_hunt_total["value"] if self.rando_settings.star_hunt["value"] else 0,
+                    bowsers_castle_mode=self.rando_settings.bowsers_castle_mode,
+                    star_hunt_stars=self.rando_settings.star_hunt_total if self.rando_settings.star_hunt else 0,
                     world_graph=modified_world_graph
                 )
 
                 # Overwrite starting map in case it was random at first
-                self.rando_settings.starting_map["value"] = starting_map_value
+                self.rando_settings.starting_map = starting_map_value
 
-                self.rando_settings.magical_seeds_required["value"] = magical_seeds_required
+                self.rando_settings.magical_seeds_required = magical_seeds_required
                 break
 
             except UnbeatableSeedError as err:
@@ -239,7 +239,7 @@ class RandomSeed:
             if "Shop" in node.identifier:
                 node.current_item.base_price = get_shop_price(
                     node,
-                    self.rando_settings.include_shops["value"],
+                    self.rando_settings.include_shops,
                     self.rando_settings.merlow_reward_pricing
                 )
 
@@ -256,17 +256,17 @@ class RandomSeed:
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(
             self.rando_settings.shuffle_chapter_difficulty,
-            self.rando_settings.progressive_scaling.get("value"),
+            self.rando_settings.progressive_scaling,
             starting_chapter
         )
 
         # Randomize enemy battle formations
-        if (   self.rando_settings.random_formations["value"]
-            or self.rando_settings.progressive_scaling["value"]
+        if (   self.rando_settings.random_formations
+            or self.rando_settings.progressive_scaling
         ):
             self.battle_formations = get_random_formations(
                 self.chapter_changes,
-                self.rando_settings.progressive_scaling["value"]
+                self.rando_settings.progressive_scaling
             )
 
         # Randomize move costs (FP/BP) if needed
@@ -283,23 +283,23 @@ class RandomSeed:
             self.placed_items,
             self.starting_partners,
             self.rando_settings.partners_in_default_locations,
-            self.rando_settings.include_shops["value"],
-            self.rando_settings.include_panels["value"],
+            self.rando_settings.include_shops,
+            self.rando_settings.include_panels,
             self.rando_settings.include_favors_mode,
             self.rando_settings.include_letters_mode,
             self.rando_settings.keyitems_outside_dungeon
         )
 
         # Random quiz
-        if self.rando_settings.random_quiz["value"]:
+        if self.rando_settings.random_quiz:
             self.quiz_list = get_randomized_quizzes()
 
         # Randomize sprite palettes
         (
             self.coin_palette,
-            self.rando_settings.coin_color["value"]
+            self.rando_settings.coin_color
         ) = get_randomized_coinpalette(
-            color_id = self.rando_settings.coin_color["value"],
+            color_id = self.rando_settings.coin_color,
             should_randomize_color = self.rando_settings.random_coin_color
         )
         self.palette_data = get_randomized_palettes(
@@ -316,22 +316,22 @@ class RandomSeed:
         # Determine item placement spheres
         self.item_spheres_dict = get_item_spheres(
             item_placement= self.placed_items,
-            starting_map_id=self.rando_settings.starting_map["value"],
-            startwith_prologue_open=self.rando_settings.prologue_open["value"],
-            startwith_bluehouse_open=self.rando_settings.bluehouse_open["value"],
-            startwith_mtrugged_open=self.rando_settings.mtrugged_open["value"],
-            magical_seeds_required=self.rando_settings.magical_seeds_required["value"],
-            startwith_toybox_open=self.rando_settings.toybox_open["value"],
-            startwith_whale_open=self.rando_settings.whale_open["value"],
-            ch7_bridge_visible=self.rando_settings.ch7_bridge_visible["value"],
-            cook_without_fryingpan=self.rando_settings.cook_without_fryingpan["value"],
+            starting_map_id=self.rando_settings.starting_map,
+            startwith_prologue_open=self.rando_settings.prologue_open,
+            startwith_bluehouse_open=self.rando_settings.bluehouse_open,
+            startwith_mtrugged_open=self.rando_settings.mtrugged_open,
+            magical_seeds_required=self.rando_settings.magical_seeds_required,
+            startwith_toybox_open=self.rando_settings.toybox_open,
+            startwith_whale_open=self.rando_settings.whale_open,
+            ch7_bridge_visible=self.rando_settings.ch7_bridge_visible,
+            cook_without_fryingpan=self.rando_settings.cook_without_fryingpan,
             starting_partners=self.starting_partners,
-            starting_boots=self.rando_settings.starting_boots["value"],
-            starting_hammer=self.rando_settings.starting_hammer["value"],
-            partners_always_usable=self.rando_settings.partners_always_usable["value"],
+            starting_boots=self.rando_settings.starting_boots,
+            starting_hammer=self.rando_settings.starting_hammer,
+            partners_always_usable=self.rando_settings.partners_always_usable,
             hidden_block_mode=hidden_block_mode,
             starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
-            startwith_speedyspin=self.rando_settings.always_speedyspin["value"],
+            startwith_speedyspin=self.rando_settings.always_speedyspin,
             world_graph=modified_world_graph
         )
 
@@ -362,7 +362,7 @@ class RandomSeed:
         Initializes the starting map and returns its chapter number. If the
         starting map is to be chosen at random, pick from curated list.
         """
-        starting_map_value = rando_settings.starting_map["value"]
+        starting_map_value = rando_settings.starting_map
         start_chapter = None
         if starting_map_value == 0xFFFFFFFF:
             # Pick random starting location
@@ -419,13 +419,13 @@ class RandomSeed:
             excluded_items = get_items_to_exclude(
                 do_randomize_dojo=rando_settings.include_dojo,
                 starting_partners=self.starting_partners,
-                startwith_bluehouse_open=rando_settings.bluehouse_open["value"],
+                startwith_bluehouse_open=rando_settings.bluehouse_open,
                 magical_seeds_required=magical_seeds_needed,
-                bowsers_castle_mode=rando_settings.bowsers_castle_mode["value"],
-                always_speedyspin=rando_settings.always_speedyspin["value"],
-                always_ispy=rando_settings.always_ispy["value"],
-                always_peekaboo=rando_settings.always_peekaboo["value"],
-                gear_shuffle_mode=rando_settings.gear_shuffle_mode["value"]
+                bowsers_castle_mode=rando_settings.bowsers_castle_mode,
+                always_speedyspin=rando_settings.always_speedyspin,
+                always_ispy=rando_settings.always_ispy,
+                always_peekaboo=rando_settings.always_peekaboo,
+                gear_shuffle_mode=rando_settings.gear_shuffle_mode
             )
             for item_obj in excluded_items:
                 if item_obj.value in all_allowed_starting_items:
@@ -447,7 +447,7 @@ class RandomSeed:
                         continue
 
                     self.starting_items.append(random_item_obj)
-                    starting_item_options[i]["value"] = random_item_id
+                    starting_item_options[i] = random_item_id
         else:
             self.starting_items = self.rando_settings.get_startitem_list()
 

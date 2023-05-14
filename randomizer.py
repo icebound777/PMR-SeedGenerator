@@ -18,7 +18,6 @@ from parse import gather_keys, gather_values
 from calculate_crc import recalculate_crcs
 
 from models.options.OptionSet import OptionSet, PaletteOptionSet
-from models.options.option_utility import populate_keys
 
 from spoilerlog import write_spoiler_log
 from db.option          import Option, create_options
@@ -561,7 +560,6 @@ def web_randomizer(jsonSettings, world_graph):
     data = json.loads(jsonSettings)
 
     rando_settings = OptionSet()
-    populate_keys(data)
     rando_settings.update_options(data)
 
     init_randomizer(rebuild_database=False)
@@ -682,7 +680,6 @@ def main_randomizer(args):
                 rando_settings = OptionSet()
                 if "SeedValue" in data and rando_seed is None:
                     rando_seed = data.get("SeedValue")
-                populate_keys(data)
                 rando_settings.update_options(data)
 
             # Pre-modded Open World PM64 ROM
@@ -715,7 +712,6 @@ def main_randomizer(args):
         with open(os.path.abspath(__file__ + "/../presets/default_settings.yaml"), "r", encoding="utf-8") as file:
             data = yaml.load(file, Loader=SafeLoader)
             rando_settings = OptionSet()
-            populate_keys(data)
             rando_settings.update_options(data)
 
     # DEFAULTS: Set targetmod if none provided
