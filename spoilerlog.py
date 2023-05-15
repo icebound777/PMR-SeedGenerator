@@ -12,7 +12,7 @@ from metadata.verbose_area_names import verbose_area_names
 from metadata.verbose_item_names import verbose_item_names
 from metadata.verbose_item_locations import verbose_item_locations
 
-from optionset import OptionSet
+from models.options.OptionSet import OptionSet
 
 def write_spoiler_log(
     placed_items:list,
@@ -41,7 +41,7 @@ def write_spoiler_log(
     spoiler_dict["SeedHashItems"] = seed_hash_items
 
     # Add chapter difficulties
-    if settings.progressive_scaling["value"]:
+    if settings.progressive_scaling:
         spoiler_dict["difficulty"] = "progressive"
     else:
         spoiler_dict["difficulty"] = dict()

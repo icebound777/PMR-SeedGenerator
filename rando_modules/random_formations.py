@@ -104,9 +104,7 @@ def _get_new_formation(
         4: [0,1,2,3]
     }
 
-    gulpit_in_formation = False
-    if "1D_Gulpit" in enemylist:
-        gulpit_in_formation = True
+    gulpit_in_formation = ("1D_Gulpit" in enemylist)
 
     if gulpit_in_formation:
         cur_turn_order = 0x14
@@ -118,7 +116,7 @@ def _get_new_formation(
         # -> 0000010A 8021B0AC 00000000 00000000
         # word 1:
         # battleID:position:turn order
-        # 0000     01       0A         
+        # 0000     01       0A
         # word 2:
         # enemy pointer:
         # 8021B0AC
@@ -270,7 +268,7 @@ def _get_new_special_formation(
         rnd_number_of_enemies = max_number_of_enemies
     while rnd_number_of_enemies > len(cur_enemylist):
         cur_enemylist.append(random.choice(available_enemies))
-    
+
     special_formation = _get_new_formation(
         actor_pointers,
         area_id,
@@ -318,9 +316,8 @@ def get_random_formations(
 
         do_randomize_battle = True
         for forbidden_formation in dont_randomize_formations:
-            if (
-                forbidden_formation[:2] == area_id
-            and forbidden_formation[3:] in [formation_id, "XX"]
+            if (    forbidden_formation[:2] == area_id
+                and forbidden_formation[3:] in [formation_id, "XX"]
             ):
                 do_randomize_battle = False
                 break
@@ -340,7 +337,9 @@ def get_random_formations(
                 do_progressive_scaling
             )
 
-            available_enemies = [enemy for enemy in actor_areas.get(area_id) if enemy not in dont_randomize_enemies]
+            available_enemies = [
+                enemy for enemy in actor_areas.get(area_id) if enemy not in dont_randomize_enemies
+            ]
 
             if battle not in special_random_formations:
                 # Select an enemy at random for each occupied file
@@ -368,20 +367,17 @@ def get_random_formations(
                                     continue
                                 break
                             else:
-                                if (("WMagikoopa" in new_enemy
-                                  or "MediGuy" in new_enemy)
-                                and placed_healer
+                                if (   "WMagikoopa" in new_enemy
+                                    or "MediGuy" in new_enemy
                                 ):
-                                    # We do not want more than one healing
-                                    # enemy in a formation
-                                    continue
-                                if ("WMagikoopa" in new_enemy
-                                 or "MediGuy" in new_enemy
-                                ):
+                                    if placed_healer:
+                                        # We do not want more than one healing
+                                        # enemy in a formation
+                                        continue
                                     placed_healer = True
                                 current_enemylist.append(new_enemy)
                                 break
-                
+
                 # Build new formation for current battle with chosen enemies
                 new_formation = _get_new_formation(
                     actor_pointers,
