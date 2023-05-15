@@ -18,7 +18,7 @@ from maps.graph_edges.bc_bossrush.edges_hos import \
     edges_hos_add, edges_hos_remove
 from maps.graph_edges.bc_bossrush.edges_kpa import \
     edges_kpa_add    as edges_kpa_bossrush_add, \
-    edges_kpa_remove as edges_kpa_bossrus_remove
+    edges_kpa_remove as edges_kpa_bossrush_remove
 from maps.graph_edges.gear_location_shuffle.edges_isk import \
     edges_isk_add    as edges_isk_gls_add, \
     edges_isk_remove as edges_isk_gls_remove
@@ -303,7 +303,7 @@ def get_bowsercastle_bossrush(world_graph: dict):
     all_new_edges.extend(edges_hos_add)
     all_new_edges.extend(edges_kpa_bossrush_add)
     all_edges_to_remove.extend(edges_hos_remove)
-    all_edges_to_remove.extend(edges_kpa_bossrus_remove)
+    all_edges_to_remove.extend(edges_kpa_bossrush_remove)
 
     world_graph, entrance_modifications = adjust(
         world_graph,
