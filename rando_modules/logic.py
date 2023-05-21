@@ -333,6 +333,8 @@ def _generate_item_pools(
     pool_other_items (every other item). Additionally marks item nodes that
     shall not be randomized as already filled.
     """
+    pool_coins_only = []
+    pool_illogical_consumables = []
 
     # Pre-fill nodes that are not to be randomized
     for node_id in world_graph:
@@ -497,7 +499,14 @@ def _generate_item_pools(
                     # replenishable locations, we only need one of each
                     pool_misc_progression_items.append(current_node.vanilla_item)
                 else:
-                    pool_other_items.append(current_node.vanilla_item)
+                    if current_node.vanilla_item.item_type == "COIN":
+                        pool_coins_only.append(current_node.vanilla_item)
+                    elif current_node.vanilla_item.item_type == "ITEM":
+                        pool_illogical_consumables.append(current_node.vanilla_item)
+                    else:
+                        pool_other_items.append(current_node.vanilla_item)
+
+    random.shuffle(pool_illogical_consumables)
 
     # Swap random consumables and coins for power stars, if needed
     if star_hunt_stars > 0:
@@ -511,15 +520,14 @@ def _generate_item_pools(
         ):
             if stars_added >= star_hunt_stars:
                 break
-            while True:
-                rnd_index = random.randint(0, len(pool_other_items) - 1)
-                rnd_item = pool_other_items.pop(rnd_index)
-                if rnd_item.item_type in ["ITEM", "COIN"]:
-                    pool_progression_items.append(power_star_item)
-                    stars_added += 1
-                    break
-                else:
-                    pool_other_items.append(rnd_item)
+            if len(pool_coins_only) > 20:
+                trashable_items = pool_coins_only
+            else:
+                trashable_items = pool_illogical_consumables
+
+            trashable_items.pop()
+            pool_progression_items.append(power_star_item)
+            stars_added += 1
 
     # Swap random consumables and coins for strange pouches if needed
     if add_item_pouches:
@@ -532,29 +540,31 @@ def _generate_item_pools(
         ]
 
         cnt_items_removed = 0
-        while True:
-            rnd_index = random.randint(0, len(pool_other_items) - 1)
-            rnd_item = pool_other_items.pop(rnd_index)
-            if rnd_item.item_type in ["ITEM", "COIN"]:
-                cnt_items_removed += 1
-            else:
-                pool_other_items.append(rnd_item)
-            if cnt_items_removed == 5:
-                break
+
+        if len(pool_coins_only) > 20:
+            trashable_items = pool_coins_only
+        else:
+            trashable_items = pool_illogical_consumables
+        while cnt_items_removed < 5:
+            trashable_items.pop()
+            cnt_items_removed += 1
+
         pool_other_items.extend(pouch_items)
 
     # If we start jumpless, add a progressive boots item to the item pool
     if starting_boots == StartingBoots.JUMPLESS:
         new_boots = Item.get(Item.item_name == "BootsProxy1")
-        while True:
-            rnd_index = random.randint(0, len(pool_other_items) - 1)
-            rnd_item = pool_other_items.pop(rnd_index)
-            if rnd_item.item_type in ["ITEM", "COIN"]:
-                break
-            else:
-                pool_other_items.append(rnd_item)
+        if len(pool_coins_only) > 20:
+            trashable_items = pool_coins_only
+        else:
+            trashable_items = pool_illogical_consumables
+        trashable_items.pop()
+
         pool_progression_items.append(new_boots)
 
+    # Re-join the non-required items into one array
+    pool_other_items.extend(pool_coins_only)
+    pool_other_items.extend(pool_illogical_consumables)
 
     # Adjust item pools based on settings
     goal_size_item_pool = len(pool_progression_items)      \
