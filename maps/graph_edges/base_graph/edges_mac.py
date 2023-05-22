@@ -143,7 +143,7 @@ edges_mac = [
 
     # MAC_03 Station District
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_02", "id": 3}, "reqs": []}, # Station District Exit Top -> Southern District Exit Bottom
-    {"from": {"map": "MAC_03", "id": 1}, "to": {"map": "IWA_11", "id": 1}, "reqs": []}, # Station District Train -> Train Ride Scene Exit Left
+    {"from": {"map": "MAC_03", "id": 1}, "to": {"map": "IWA_11", "id": 0}, "reqs": []}, # Station District Train -> Train Ride Scene Exit Left
     {"from": {"map": "MAC_03", "id": 2}, "to": {"map": "MGM_00", "id": 0}, "reqs": []}, # Station District Minigame Pipe -> Playroom Lobby Exit Pipe
 
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 1}, "reqs": [["GF_MAC03_BombedRock"]]}, #? Station District Exit Top -> Station District Train
