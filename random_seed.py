@@ -37,6 +37,7 @@ from worldgraph import \
     check_unreachable_from_start,\
     enrich_graph_data
 
+from rando_enums.enum_ingame import StarSpirits
 from metadata.starting_maps import starting_maps
 from metadata.starting_items import \
     allowed_starting_badges,\
@@ -163,13 +164,37 @@ class RandomSeed:
                     # Having this trick enabled is equivalent to mode 3, logic wise
                     hidden_block_mode = 3
 
+                ## Setup star spirits
                 if self.rando_settings.starway_spirits_needed_count == -1:
                     self.rando_settings.starway_spirits_needed_count = random.randint(0,7)
+                if (    self.rando_settings.require_specific_spirits
+                    and self.rando_settings.starway_spirits_needed_count < 7
+                ):
+                    all_spirits = [
+                        StarSpirits.ELDSTAR,
+                        StarSpirits.MAMAR,
+                        StarSpirits.SKOLAR,
+                        StarSpirits.MUSKULAR,
+                        StarSpirits.MISSTAR,
+                        StarSpirits.KLEVAR,
+                        StarSpirits.KALMAR,
+                    ]
+                    chosen_spirits = []
+                    for _ in range(self.rando_settings.starway_spirits_needed_count):
+                        rnd_spirit = random.randint(0, len(all_spirits) - 1)
+                        chosen_spirits.append(all_spirits.pop(rnd_spirit))
+                    encoded_spirits = 0
+                    for spirit in chosen_spirits:
+                        encoded_spirits = encoded_spirits | (1 << (spirit - 1))
+                    self.rando_settings.starway_spirits_needed_encoded = encoded_spirits
+                else:
+                    self.rando_settings.require_specific_spirits = False
+                    self.rando_settings.starway_spirits_needed_encoded = 0xFF
 
                 starting_chapter, starting_map_value = self.init_starting_map(self.rando_settings)
                 self.init_starting_partners(self.rando_settings)
 
-                # Pick seeds required for flower gate, if random
+                ## Pick seeds required for flower gate, if random
                 if self.rando_settings.magical_seeds_required == 5:
                     magical_seeds_required = random.randint(0, 4)
                 else:
