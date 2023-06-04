@@ -1,6 +1,7 @@
 from db.item import Item
 from db.option import Option
 
+from rando_enums.enum_ingame import StarSpirits
 from rando_enums.enum_options import (
     IncludeFavorsMode,
     IncludeLettersMode,
@@ -152,6 +153,8 @@ class OptionSet:
 
         # Goal Settings
         self.starway_spirits_needed_count = get_option_default_value("StarWaySpiritsNeededCnt")
+        self.require_specific_spirits = False
+        self.starway_spirits_needed_encoded = get_option_default_value("StarWaySpiritsNeededEnc")
         self.bowsers_castle_mode = get_option_default_value("BowsersCastleMode")
         self.star_hunt = get_option_default_value("StarHunt")
         self.star_hunt_required = get_option_default_value("StarHuntRequired")
@@ -495,6 +498,11 @@ class OptionSet:
         # Goal Settings
         if "StarWaySpiritsNeededCnt" in options_dict:
             self.starway_spirits_needed_count = options_dict.get("StarWaySpiritsNeededCnt")
+        # auto-set, not changeable via settings
+        #if "StarWaySpiritsNeededEnc" in options_dict:
+        #    self.starway_spirits_needed_encoded = options_dict.get("StarWaySpiritsNeededEnc")
+        if "RequireSpecificSpirits" in options_dict:
+            self.require_specific_spirits = options_dict.get("RequireSpecificSpirits")
         if "BowsersCastleMode" in options_dict:
             self.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
         if "StarHunt" in options_dict:
@@ -1150,6 +1158,7 @@ class OptionSet:
         if "StarWaySpiritsNeededCnt" in options_dict:
             assert (    isinstance(options_dict.get("StarWaySpiritsNeededCnt"), int)
                     and -1 <= options_dict.get("StarWaySpiritsNeededCnt") <= 7)
+        basic_assert("RequireSpecificSpirits", bool)
         basic_assert("BowsersCastleMode", int)
         if "StarHunt" in options_dict:
             assert isinstance(options_dict.get("StarHunt"), bool)
@@ -1520,6 +1529,7 @@ class OptionSet:
 
             # Goal Settings
             load_dbkey(self.starway_spirits_needed_count, "StarWaySpiritsNeededCnt"),
+            load_dbkey(self.starway_spirits_needed_encoded, "StarWaySpiritsNeededEnc"),
             load_dbkey(self.bowsers_castle_mode, "BowsersCastleMode"),
             load_dbkey(self.star_hunt, "StarHunt"),
             load_dbkey(self.star_hunt_required, "StarHuntRequired"),
