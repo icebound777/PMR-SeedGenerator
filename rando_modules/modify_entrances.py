@@ -374,6 +374,28 @@ def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     return world_graph
 
 
+def get_specific_spirits(world_graph: dict, chosen_spirits: list) -> dict:
+    """
+    Returns the modified world graph itself for specific spirits,
+    which adjusts how the chapter 8 access gets handled.
+    """
+    new_requirements = [["can_climb_steps"]]
+
+    # the logic knows the spirits as "STARSPIRIT_X", where X is in 1-7
+    for spirit_number in chosen_spirits:
+        new_requirements.append([f"STARSPIRIT_{spirit_number}"])
+
+    for index, entrance in enumerate(world_graph["HOS_01/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "HOS_01"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["HOS_01/0"]["edge_list"][index]["reqs"].clear()
+            world_graph["HOS_01/0"]["edge_list"][index]["reqs"] = new_requirements
+            break
+
+    return world_graph
+
+
 def get_glitched_logic(
     world_graph: dict,
     glitch_settings: GlitchOptionSet,

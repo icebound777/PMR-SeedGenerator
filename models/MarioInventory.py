@@ -298,7 +298,7 @@ class MarioInventory:
             group_fulfilled = False
             for req in req_group:
                 if isinstance(req, dict):
-                    # Check star spirits
+                    # Check star spirits count
                     if ("starspirits" in req
                     and len(self.starspirits) >= req["starspirits"]
                     ):
@@ -427,6 +427,11 @@ class MarioInventory:
                     # Check letters for Parakarry
                     if req == "has_parakarry_letters":
                         if self.has_parakarry_letters():
+                            group_fulfilled = True
+                            break
+                    # Check specific star spirits
+                    if req.startswith("STARSPIRIT_"):
+                        if req in self.starspirits:
                             group_fulfilled = True
                             break
                     # Check other items

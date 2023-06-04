@@ -19,7 +19,8 @@ from rando_modules.modify_entrances import \
     get_gear_location_shuffle,\
     get_starhunt,\
     get_glitched_logic,\
-    adjust_shop_logic
+    adjust_shop_logic,\
+    get_specific_spirits
 from rando_modules.random_entrances import shuffle_dungeon_entrances
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
@@ -156,19 +157,11 @@ class RandomSeed:
                     self.rando_settings.shuffle_dungeon_entrances
                 )
 
-                modified_world_graph = enrich_graph_data(modified_world_graph)
-
-                # Adjust further settings
-                hidden_block_mode = self.rando_settings.hidden_block_mode
-                if self.rando_settings.glitch_settings.knows_hidden_blocks:
-                    # Having this trick enabled is equivalent to mode 3, logic wise
-                    hidden_block_mode = 3
-
                 ## Setup star spirits
                 if self.rando_settings.starway_spirits_needed_count == -1:
                     self.rando_settings.starway_spirits_needed_count = random.randint(0,7)
                 if (    self.rando_settings.require_specific_spirits
-                    and self.rando_settings.starway_spirits_needed_count < 7
+                    and 0 < self.rando_settings.starway_spirits_needed_count < 7
                 ):
                     all_spirits = [
                         StarSpirits.ELDSTAR,
@@ -187,9 +180,25 @@ class RandomSeed:
                     for spirit in chosen_spirits:
                         encoded_spirits = encoded_spirits | (1 << (spirit - 1))
                     self.rando_settings.starway_spirits_needed_encoded = encoded_spirits
+                    modified_world_graph = get_specific_spirits(
+                        modified_world_graph,
+                        chosen_spirits
+                    )
+                    chosen_spirits.sort()
+                    if self.spoilerlog_additions.get("required_spirits") is None:
+                        self.spoilerlog_additions["required_spirits"] = []
+                    self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
                 else:
                     self.rando_settings.require_specific_spirits = False
                     self.rando_settings.starway_spirits_needed_encoded = 0xFF
+
+                modified_world_graph = enrich_graph_data(modified_world_graph)
+
+                # Adjust further settings
+                hidden_block_mode = self.rando_settings.hidden_block_mode
+                if self.rando_settings.glitch_settings.knows_hidden_blocks:
+                    # Having this trick enabled is equivalent to mode 3, logic wise
+                    hidden_block_mode = 3
 
                 starting_chapter, starting_map_value = self.init_starting_map(self.rando_settings)
                 self.init_starting_partners(self.rando_settings)
