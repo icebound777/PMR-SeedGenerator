@@ -48,8 +48,24 @@ def write_spoiler_log(
         for old_chapter, new_chapter in random_chapter_difficulty.items():
             spoiler_dict["difficulty"][f"chapter {old_chapter}"] = new_chapter
 
+    # Add required spirits, if specific
+    if spoilerlog_additions and spoilerlog_additions.get("required_spirits"):
+        additions = []
+        spirit_names = [
+            "Eldstar",
+            "Mamar",
+            "Skolar",
+            "Muskular",
+            "Misstar",
+            "Klevar",
+            "Kalmar"
+        ]
+        for spirit in spoilerlog_additions["required_spirits"]:
+            additions.append(f"{spirit_names[spirit - 1]} (Ch. {spirit})")
+        spoiler_dict["required_spirits"] = additions
+
     # Add modified entrances
-    if spoilerlog_additions and spoilerlog_additions["entrances"]:
+    if spoilerlog_additions and spoilerlog_additions.get("entrances"):
         spoiler_dict["entrances"] = spoilerlog_additions["entrances"]
 
     # Add item locations

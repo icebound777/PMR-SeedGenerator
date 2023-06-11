@@ -374,6 +374,77 @@ def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     return world_graph
 
 
+def get_specific_spirits(world_graph: dict, chosen_spirits: list) -> dict:
+    """
+    Returns the modified world graph itself for specific spirits,
+    which adjusts how the chapter 8 access gets handled.
+    """
+    new_requirements = [["can_climb_steps"]]
+
+    # the logic knows the spirits as "STARSPIRIT_X", where X is in 1-7
+    for spirit_number in chosen_spirits:
+        new_requirements.append([f"STARSPIRIT_{spirit_number}"])
+
+    for index, entrance in enumerate(world_graph["HOS_01/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "HOS_01"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["HOS_01/0"]["edge_list"][index]["reqs"].clear()
+            world_graph["HOS_01/0"]["edge_list"][index]["reqs"] = new_requirements
+            break
+
+    return world_graph
+
+
+def get_limited_chapter_logic(
+    world_graph: dict,
+    chosen_spirits: list,
+    gear_shuffle_mode: GearShuffleMode
+) -> dict:
+    """
+    Returns the modified world graph itself for specific spirits limiting
+    chapter logic, which sets item locations in non-required chapters
+    out of logic.
+    """
+    chapter_areaname_map = {
+        1: ["NOK","TRD"],
+        2: ["IWA","SBK","DRO","ISK"],
+        3: ["MIM","OBK","ARN","DBG"],
+        4: ["OMO"],
+        5: ["JAN","KZN"],
+        6: ["FLO"],
+        7: ["SAM","PRA"],
+        8: ["KPA"]
+    }
+    out_of_logic_areas = []
+    for chapter, area_list in chapter_areaname_map.items():
+        if chapter not in chosen_spirits:
+            out_of_logic_areas.extend(chapter_areaname_map[chapter])
+
+    if gear_shuffle_mode == GearShuffleMode.FULL_SHUFFLE:
+        for node_id in world_graph:
+            if node_id[:3] in out_of_logic_areas:
+                for index, edge in enumerate(world_graph[node_id]["edge_list"]):
+                    if type(edge["to"]["id"]) is str: # is item location
+                        world_graph[node_id]["edge_list"][index]["reqs"].extend([["RF_OutOfLogic"]])
+    else:
+        gear_node_ids = [
+            # Hammer bush irrelevant here
+            "ISK_09/BigChest", # SuperHammer
+            "OBK_04/BigChest", # SuperBoots
+            "KZN_07/BigChest"  # UltraHammer
+            # UltraBoots irrelevant here
+        ]
+        for node_id in world_graph:
+            if node_id[:3] in out_of_logic_areas:
+                for index, edge in enumerate(world_graph[node_id]["edge_list"]):
+                    if type(edge["to"]["id"]) is str: # is item location
+                        if (f"{edge['to']['map']}/{edge['to']['id']}") not in gear_node_ids:
+                            world_graph[node_id]["edge_list"][index]["reqs"].extend([["RF_OutOfLogic"]])
+
+    return world_graph
+
+
 def get_glitched_logic(
     world_graph: dict,
     glitch_settings: GlitchOptionSet,
