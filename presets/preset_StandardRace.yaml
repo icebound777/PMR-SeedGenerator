@@ -142,8 +142,8 @@ RequireSpecificSpirits : false # always false if StarWaySpiritsNeededCnt: 7
 LimitChapterLogic      : false # always false if RequireSpecificSpirits: false
 BowsersCastleMode      : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 StarHunt               : false
-StarHuntRequired       : 120
-StarHuntTotal          : 120
+StarHuntRequired       : 50 # max 120
+StarHuntTotal          : 70 # max 120, must be >= StarHuntRequired
 StarHuntEndsGame       : true
 
 # Entrance Shuffle
