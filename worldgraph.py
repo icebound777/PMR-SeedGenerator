@@ -338,6 +338,15 @@ def adjust(world_graph, new_edges=None, edges_to_remove=None):
     return world_graph, db_data
 
 
+def print_graph(world_graph: dict):
+    print("world graph")
+    for node_id in world_graph:
+        if node_id != "edge_index":
+            print(node_id)
+            for edge in world_graph[node_id]["edge_list"]:
+                print(f"    {edge}")
+
+
 def check_graph():
     """
     Generate world graph from default entrance links and edges, then run a few
