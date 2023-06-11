@@ -154,6 +154,7 @@ class OptionSet:
         # Goal Settings
         self.starway_spirits_needed_count = get_option_default_value("StarWaySpiritsNeededCnt")
         self.require_specific_spirits = False
+        self.limit_chapter_logic = False
         self.starway_spirits_needed_encoded = get_option_default_value("StarWaySpiritsNeededEnc")
         self.bowsers_castle_mode = get_option_default_value("BowsersCastleMode")
         self.star_hunt = get_option_default_value("StarHunt")
@@ -503,6 +504,8 @@ class OptionSet:
         #    self.starway_spirits_needed_encoded = options_dict.get("StarWaySpiritsNeededEnc")
         if "RequireSpecificSpirits" in options_dict:
             self.require_specific_spirits = options_dict.get("RequireSpecificSpirits")
+        if "LimitChapterLogic" in options_dict:
+            self.limit_chapter_logic = options_dict.get("LimitChapterLogic")
         if "BowsersCastleMode" in options_dict:
             self.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
         if "StarHunt" in options_dict:
@@ -1159,6 +1162,7 @@ class OptionSet:
             assert (    isinstance(options_dict.get("StarWaySpiritsNeededCnt"), int)
                     and -1 <= options_dict.get("StarWaySpiritsNeededCnt") <= 7)
         basic_assert("RequireSpecificSpirits", bool)
+        basic_assert("LimitChapterLogic", bool)
         basic_assert("BowsersCastleMode", int)
         if "StarHunt" in options_dict:
             assert isinstance(options_dict.get("StarHunt"), bool)

@@ -396,6 +396,55 @@ def get_specific_spirits(world_graph: dict, chosen_spirits: list) -> dict:
     return world_graph
 
 
+def get_limited_chapter_logic(
+    world_graph: dict,
+    chosen_spirits: list,
+    gear_shuffle_mode: GearShuffleMode
+) -> dict:
+    """
+    Returns the modified world graph itself for specific spirits limiting
+    chapter logic, which sets item locations in non-required chapters
+    out of logic.
+    """
+    chapter_areaname_map = {
+        1: ["NOK","TRD"],
+        2: ["IWA","SBK","DRO","ISK"],
+        3: ["MIM","OBK","ARN","DBG"],
+        4: ["OMO"],
+        5: ["JAN","KZN"],
+        6: ["FLO"],
+        7: ["SAM","PRA"],
+        8: ["KPA"]
+    }
+    out_of_logic_areas = []
+    for chapter, area_list in chapter_areaname_map.items():
+        if chapter not in chosen_spirits:
+            out_of_logic_areas.extend(chapter_areaname_map[chapter])
+
+    if gear_shuffle_mode == GearShuffleMode.FULL_SHUFFLE:
+        for node_id in world_graph:
+            if node_id[:3] in out_of_logic_areas:
+                for index, edge in enumerate(world_graph[node_id]["edge_list"]):
+                    if type(edge["to"]["id"]) is str: # is item location
+                        world_graph[node_id]["edge_list"][index]["reqs"].extend([["RF_OutOfLogic"]])
+    else:
+        gear_node_ids = [
+            # Hammer bush irrelevant here
+            "ISK_09/BigChest", # SuperHammer
+            "OBK_04/BigChest", # SuperBoots
+            "KZN_07/BigChest"  # UltraHammer
+            # UltraBoots irrelevant here
+        ]
+        for node_id in world_graph:
+            if node_id[:3] in out_of_logic_areas:
+                for index, edge in enumerate(world_graph[node_id]["edge_list"]):
+                    if type(edge["to"]["id"]) is str: # is item location
+                        if (f"{edge['to']['map']}/{edge['to']['id']}") not in gear_node_ids:
+                            world_graph[node_id]["edge_list"][index]["reqs"].extend([["RF_OutOfLogic"]])
+
+    return world_graph
+
+
 def get_glitched_logic(
     world_graph: dict,
     glitch_settings: GlitchOptionSet,

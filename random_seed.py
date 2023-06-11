@@ -20,7 +20,8 @@ from rando_modules.modify_entrances import \
     get_starhunt,\
     get_glitched_logic,\
     adjust_shop_logic,\
-    get_specific_spirits
+    get_specific_spirits,\
+    get_limited_chapter_logic
 from rando_modules.random_entrances import shuffle_dungeon_entrances
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
@@ -157,7 +158,7 @@ class RandomSeed:
                     self.rando_settings.shuffle_dungeon_entrances
                 )
 
-                ## Setup star spirits
+                ## Setup star spirits and relevant logic
                 if self.rando_settings.starway_spirits_needed_count == -1:
                     self.rando_settings.starway_spirits_needed_count = random.randint(0,7)
                 if (    self.rando_settings.require_specific_spirits
@@ -184,6 +185,13 @@ class RandomSeed:
                         modified_world_graph,
                         chosen_spirits
                     )
+
+                    if self.rando_settings.limit_chapter_logic:
+                        modified_world_graph = get_limited_chapter_logic(
+                            modified_world_graph,
+                            chosen_spirits,
+                            self.rando_settings.gear_shuffle_mode
+                        )
                     chosen_spirits.sort()
                     if self.spoilerlog_additions.get("required_spirits") is None:
                         self.spoilerlog_additions["required_spirits"] = []

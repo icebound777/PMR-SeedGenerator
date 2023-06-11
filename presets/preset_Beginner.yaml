@@ -138,7 +138,8 @@ Ch7BridgeVisible    : true
 
 # Goal Settings
 StarWaySpiritsNeededCnt: 7 # -1:Random
-RequireSpecificSpirits : false
+RequireSpecificSpirits : false # always false if StarWaySpiritsNeededCnt: 7
+LimitChapterLogic      : false # always false if RequireSpecificSpirits: false
 BowsersCastleMode      : 1 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 StarHunt               : false
 StarHuntRequired       : 120
