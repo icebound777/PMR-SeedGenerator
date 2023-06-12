@@ -90,7 +90,6 @@ unplaceable_items = [
     "RuinsKey",
     "TubbaCastleKey",
     "BowserCastleKey",
-    "ForestPass",
     "MysticalKey",
     "SuspiciousNote",
     "Screwdriver",

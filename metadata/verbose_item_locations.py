@@ -87,6 +87,7 @@ verbose_item_locations = {
     "MAC_02": {"GiftA": "Bub-ulb Gift",
                "GiftB": "Tayce T. Frying Pan Reward",
                "GiftC": "Fice T. Letter Reward",
+               "GiftD": "Fice T. Forest Pass",
                "ItemA": "Inside Blue House",
                "HiddenPanel": "Hidden Panel",},
     "MAC_03": {"GiftA": "Dane T. Letter Reward 1",

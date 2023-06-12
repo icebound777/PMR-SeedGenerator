@@ -311,6 +311,7 @@ def _generate_item_pools(
     item_quality:int,
     itemtrap_mode:int,
     startwith_bluehouse_open:bool,
+    startwith_forest_open:bool,
     magical_seeds_required:int,
     keyitems_outside_dungeon:bool,
     partners_in_default_locations:bool,
@@ -439,6 +440,13 @@ def _generate_item_pools(
 
             if (   current_node_id in dojo_locations
                 and not do_randomize_dojo
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    current_node_id == "MAC_02/GiftD"
+                and startwith_forest_open
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -731,6 +739,7 @@ def _algo_assumed_fill(
     startwith_prologue_open:bool,
     startwith_bluehouse_open,
     startwith_mtrugged_open:bool,
+    startwith_forest_open:bool,
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
@@ -784,6 +793,7 @@ def _algo_assumed_fill(
         item_quality,
         itemtrap_mode,
         startwith_bluehouse_open,
+        startwith_forest_open,
         magical_seeds_required,
         keyitems_outside_dungeon,
         partners_in_default_locations,
@@ -831,6 +841,7 @@ def _algo_assumed_fill(
             startwith_prologue_open,
             startwith_bluehouse_open,
             startwith_mtrugged_open,
+            startwith_forest_open,
             startwith_toybox_open,
             startwith_whale_open,
             ch7_bridge_visible,
@@ -935,6 +946,7 @@ def get_item_spheres(
     startwith_prologue_open:bool,
     startwith_bluehouse_open,
     startwith_mtrugged_open:bool,
+    startwith_forest_open:bool,
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
@@ -986,6 +998,7 @@ def get_item_spheres(
         startwith_prologue_open,
         startwith_bluehouse_open,
         startwith_mtrugged_open,
+        startwith_forest_open,
         startwith_toybox_open,
         startwith_whale_open,
         ch7_bridge_visible,
@@ -1120,6 +1133,7 @@ def place_items(
     startwith_prologue_open:bool,
     startwith_bluehouse_open,
     startwith_mtrugged_open:bool,
+    startwith_forest_open:bool,
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
@@ -1175,6 +1189,7 @@ def place_items(
             startwith_prologue_open,
             startwith_bluehouse_open,
             startwith_mtrugged_open,
+            startwith_forest_open,
             magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,

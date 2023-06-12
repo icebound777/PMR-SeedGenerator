@@ -8,6 +8,7 @@ allowed_starting_key_items = [
     0x016, # Pyramid Stone
     0x017, # Diamond Stone
     0x019, # Kooper Shell
+    0x01B, # Forest Pass
     0x01C, # Boo Weight
     0x01D, # Boo Portrait
     0x01E, # Crystal Berry

@@ -120,6 +120,7 @@ edges_mac = [
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "GiftA"},       "reqs": [["can_climb_steps"]]}, #* Southern District Exit Top -> GiftA (MagicalSeed1)
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "GiftB"},       "reqs": [["FryingPan"]], "pseudoitems": ["RF_CanCook"]}, #* Southern District Exit Top -> GiftB (Cake)
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "GiftC"},       "reqs": [["Parakarry"],["Letter07"]]}, #* Southern District Exit Top -> GiftC (StarPiece)
+    {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "GiftD"},       "reqs": [["RF_ClosedForest"]]}, #* Southern District Exit Top -> GiftD (ForestPass)
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Southern District Exit Top -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_02", "id": 5}, "to": {"map": "MAC_02", "id": "ItemA"},       "reqs": []}, #* Southern District Blue House Pipe -> ItemA (OddKey)
 

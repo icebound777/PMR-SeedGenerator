@@ -147,6 +147,7 @@ class OptionSet:
         self.prologue_open = get_option_default_value("PrologueOpen")
         self.bluehouse_open = get_option_default_value("BlueHouseOpen")
         self.mtrugged_open = get_option_default_value("MtRuggedOpen")
+        self.foreverforest_open = get_option_default_value("ForeverForestOpen")
         self.toybox_open = get_option_default_value("ToyboxOpen")
         self.whale_open = get_option_default_value("WhaleOpen")
         self.ch7_bridge_visible = get_option_default_value("Ch7BridgeVisible")
@@ -489,6 +490,8 @@ class OptionSet:
             self.bluehouse_open = options_dict.get("BlueHouseOpen")
         if "MtRuggedOpen" in options_dict:
             self.mtrugged_open = options_dict.get("MtRuggedOpen")
+        if "ForeverForestOpen" in options_dict:
+            self.foreverforest_open = options_dict.get("ForeverForestOpen")
         if "ToyboxOpen" in options_dict:
             self.toybox_open = options_dict.get("ToyboxOpen")
         if "WhaleOpen" in options_dict:
@@ -1153,6 +1156,7 @@ class OptionSet:
         basic_assert("PrologueOpen", bool)
         basic_assert("BlueHouseOpen", bool)
         basic_assert("MtRuggedOpen", bool)
+        basic_assert("ForeverForestOpen", bool)
         basic_assert("ToyboxOpen", bool)
         basic_assert("WhaleOpen", bool)
         basic_assert("Ch7BridgeVisible", bool)
@@ -1527,6 +1531,7 @@ class OptionSet:
             load_dbkey(self.prologue_open, "PrologueOpen"),
             load_dbkey(self.bluehouse_open, "BlueHouseOpen"),
             load_dbkey(self.mtrugged_open, "MtRuggedOpen"),
+            load_dbkey(self.foreverforest_open, "ForeverForestOpen"),
             load_dbkey(self.toybox_open, "ToyboxOpen"),
             load_dbkey(self.whale_open, "WhaleOpen"),
             load_dbkey(self.ch7_bridge_visible, "Ch7BridgeVisible"),

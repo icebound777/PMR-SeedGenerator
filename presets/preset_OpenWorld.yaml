@@ -132,6 +132,7 @@ MagicalSeedsRequired: 0 # 5:random
 PrologueOpen        : true
 BlueHouseOpen       : true
 MtRuggedOpen        : true
+ForeverForestOpen   : true
 ToyboxOpen          : true
 WhaleOpen           : true
 Ch7BridgeVisible    : true

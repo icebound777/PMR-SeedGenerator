@@ -19,12 +19,12 @@ edges_mim = [
     {"from": {"map": "MIM_02", "id": 2}, "to": {"map": "MIM_01", "id": 1}, "reqs": []}, # Get Lost In The Forest 1
     {"from": {"map": "MIM_02", "id": 3}, "to": {"map": "MIM_01", "id": 1}, "reqs": []}, # Get Lost In The Forest 2
 
-    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_02", "id": 0}, "reqs": []}, #? Stump Eyes Wrong Exit (To Previous) -> Stump Eyes Correct Exit
-    {"from": {"map": "MIM_02", "id": 0}, "to": {"map": "MIM_02", "id": 1}, "reqs": []}, #? Stump Eyes Correct Exit -> Stump Eyes Wrong Exit (To Previous)
-    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_02", "id": 2}, "reqs": []}, #? Stump Eyes Wrong Exit (To Previous) -> Get Lost In The Forest 1
-    {"from": {"map": "MIM_02", "id": 2}, "to": {"map": "MIM_02", "id": 1}, "reqs": []}, #? Get Lost In The Forest 1 -> Stump Eyes Wrong Exit (To Previous)
-    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_02", "id": 3}, "reqs": []}, #? Stump Eyes Wrong Exit (To Previous) -> Get Lost In The Forest 2
-    {"from": {"map": "MIM_02", "id": 3}, "to": {"map": "MIM_02", "id": 1}, "reqs": []}, #? Get Lost In The Forest 2 -> Stump Eyes Wrong Exit (To Previous)
+    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_02", "id": 0}, "reqs": [["ForestPass", "RF_ForestPass"]]}, #? Stump Eyes Wrong Exit (To Previous) -> Stump Eyes Correct Exit
+    {"from": {"map": "MIM_02", "id": 0}, "to": {"map": "MIM_02", "id": 1}, "reqs": [], "pseudoitems": ["RF_ForestPass"]}, #? Stump Eyes Correct Exit -> Stump Eyes Wrong Exit (To Previous)
+    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_02", "id": 2}, "reqs": [["ForestPass", "RF_ForestPass"]]}, #? Stump Eyes Wrong Exit (To Previous) -> Get Lost In The Forest 1
+    {"from": {"map": "MIM_02", "id": 2}, "to": {"map": "MIM_02", "id": 1}, "reqs": [], "pseudoitems": ["RF_ForestPass"]}, #? Get Lost In The Forest 1 -> Stump Eyes Wrong Exit (To Previous)
+    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_02", "id": 3}, "reqs": [["ForestPass", "RF_ForestPass"]]}, #? Stump Eyes Wrong Exit (To Previous) -> Get Lost In The Forest 2
+    {"from": {"map": "MIM_02", "id": 3}, "to": {"map": "MIM_02", "id": 1}, "reqs": [], "pseudoitems": ["RF_ForestPass"]}, #? Get Lost In The Forest 2 -> Stump Eyes Wrong Exit (To Previous)
 
     # MIM_03 Flowers (Oaklie)
     {"from": {"map": "MIM_03", "id": 0}, "to": {"map": "MIM_01", "id": 1}, "reqs": []}, # Get Lost In The Forest 1
