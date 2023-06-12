@@ -442,6 +442,26 @@ def get_limited_chapter_logic(
                         if (f"{edge['to']['map']}/{edge['to']['id']}") not in gear_node_ids:
                             world_graph[node_id]["edge_list"][index]["reqs"].extend([["RF_OutOfLogic"]])
 
+    # Remove logic from star spirits we do not need to rescue.
+    # This is so Rowf doesn't require us to still save them.
+    area_spiritnode_pairs = [
+        ("TRD", "TRD_10/0"),
+        ("ISK", "ISK_16/0"),
+        ("ARN", "ARN_07/0"),
+        ("OMO", "OMO_15/0"),
+        ("JAN", "JAN_22/0"),
+        ("FLO", "FLO_21/0"),
+        ("PRA", "PRA_32/0")
+    ]
+    for pair in area_spiritnode_pairs:
+        if pair[0] in out_of_logic_areas:
+            for index, edge in enumerate(world_graph[pair[1]]["edge_list"]):
+                if (   "pseudoitems" in edge
+                    and any(True for x in edge["pseudoitems"] if x.startswith("STARSPIRIT_"))
+                ):
+                    world_graph[pair[1]]["edge_list"][index]["reqs"].extend([["RF_OutOfLogic"]])
+                    break
+
     return world_graph
 
 
