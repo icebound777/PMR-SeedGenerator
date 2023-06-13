@@ -3,6 +3,7 @@ from db.option import Option
 
 from rando_enums.enum_ingame import StarSpirits
 from rando_enums.enum_options import (
+    BowserCastleMode,
     IncludeFavorsMode,
     IncludeLettersMode,
     RandomizeConsumablesMode,
@@ -326,40 +327,6 @@ class OptionSet:
         if "ItemTrapMode" in options_dict:
             self.itemtrap_mode = options_dict.get("ItemTrapMode")
 
-        # Map Check Tracker (static)
-        #   0x1   # regular checks
-        #   0x2   # gear
-        #   0x4   # panels
-        #   0x10  # overworld coins
-        #   0x20  # block coins
-        #   0x40  # favor coins
-        #   0x80  # foliage coins
-        #   0x100 # dojo
-        #   0x200 # koot favors
-        #   0x400 # radio trade event
-        #   0x800 # letter delivery
-        map_tracker_bits = 0x1 + 0x2
-        if self.include_panels:
-            map_tracker_bits += 0x4
-        if self.include_coins_overworld:
-            map_tracker_bits += 0x10
-        if self.include_coins_blocks:
-            map_tracker_bits += 0x20
-        if self.include_coins_favors:
-            map_tracker_bits += 0x40
-        if self.include_coins_foliage:
-            map_tracker_bits += 0x80
-        if self.include_dojo:
-            map_tracker_bits += 0x100
-        if self.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
-            map_tracker_bits += 0x200
-        if self.include_radiotradeevent:
-            map_tracker_bits += 0x400
-        if self.include_letters_mode != IncludeLettersMode.NOT_RANDOMIZED:
-            map_tracker_bits += 0x800
-        self.map_tracker_check_bits = map_tracker_bits
-        #self.map_tracker_shop_bits = 0xFFFF # static for now
-
         # Item Misc
         if "CookWithoutFryingPan" in options_dict:
             self.cook_without_fryingpan = options_dict.get("CookWithoutFryingPan")
@@ -519,6 +486,48 @@ class OptionSet:
             self.star_hunt_total = options_dict.get("StarHuntTotal")
         if "StarHuntEndsGame" in options_dict:
             self.star_hunt_ends_game = options_dict.get("StarHuntEndsGame")
+
+        # Map Check Tracker (static)
+        #   0x1   # regular checks
+        #   0x2   # gear
+        #   0x4   # panels
+        #   0x10  # overworld coins
+        #   0x20  # block coins
+        #   0x40  # favor coins
+        #   0x80  # foliage coins
+        #   0x100 # dojo
+        #   0x200 # koot favors
+        #   0x400 # radio trade event
+        #   0x800 # letter delivery
+        map_tracker_bits = 0x1 + 0x2
+        if self.include_panels:
+            map_tracker_bits += 0x4
+        if self.include_coins_overworld:
+            map_tracker_bits += 0x10
+        if self.include_coins_blocks:
+            map_tracker_bits += 0x20
+        if self.include_coins_favors:
+            map_tracker_bits += 0x40
+        if self.include_coins_foliage:
+            map_tracker_bits += 0x80
+        if self.include_dojo:
+            map_tracker_bits += 0x100
+        if self.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
+            map_tracker_bits += 0x200
+        if self.include_radiotradeevent:
+            map_tracker_bits += 0x400
+        if self.include_letters_mode != IncludeLettersMode.NOT_RANDOMIZED:
+            map_tracker_bits += 0x800
+        if not self.foreverforest_open:
+            map_tracker_bits += 0x1000
+        if self.bowsers_castle_mode == BowserCastleMode.VANILLA:
+            map_tracker_bits += 0x2000
+        if self.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
+            map_tracker_bits += 0x4000
+        self.map_tracker_check_bits = map_tracker_bits
+        self.map_tracker_shop_bits = 0x7
+        if self.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
+            self.map_tracker_shop_bits += 0x8
 
         # Entrance Shuffle
         if "ShuffleDungeonRooms" in options_dict:
