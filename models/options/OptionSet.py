@@ -1166,7 +1166,11 @@ class OptionSet:
             assert (    isinstance(options_dict.get("StarWaySpiritsNeededCnt"), int)
                     and -1 <= options_dict.get("StarWaySpiritsNeededCnt") <= 7)
         basic_assert("RequireSpecificSpirits", bool)
-        basic_assert("LimitChapterLogic", bool)
+        if "LimitChapterLogic" in options_dict:
+            assert (    isinstance(options_dict.get("LimitChapterLogic"), bool)
+                    and not (    options_dict["LimitChapterLogic"]
+                             and (   options_dict.get("KeyitemsOutsideDungeon") is None
+                                  or not options_dict["KeyitemsOutsideDungeon"])))
         basic_assert("BowsersCastleMode", int)
         if "StarHunt" in options_dict:
             assert isinstance(options_dict.get("StarHunt"), bool)
