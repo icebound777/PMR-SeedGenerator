@@ -409,7 +409,7 @@ def get_limited_chapter_logic(
     chapter_areaname_map = {
         1: ["NOK","TRD"],
         2: ["IWA","SBK","DRO","ISK"],
-        3: ["MIM","OBK","ARN","DBG"],
+        3: ["MIM","OBK","ARN","DGB"],
         4: ["OMO"],
         5: ["JAN","KZN"],
         6: ["FLO"],
