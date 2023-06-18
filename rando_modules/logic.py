@@ -217,6 +217,7 @@ def get_items_to_exclude(
     do_randomize_dojo:bool,
     starting_partners:list,
     startwith_bluehouse_open:bool,
+    startwith_forest_open:bool,
     magical_seeds_required:int,
     bowsers_castle_mode:int,
     always_speedyspin:bool,
@@ -241,6 +242,10 @@ def get_items_to_exclude(
         excluded_items.append(partner_item)
     if startwith_bluehouse_open:
         for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    if startwith_forest_open:
+        for item_name in exclude_due_to_settings.get("startwith_forest_open"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
     if magical_seeds_required < 4:
@@ -583,6 +588,7 @@ def _generate_item_pools(
         do_randomize_dojo,
         starting_partners,
         startwith_bluehouse_open,
+        startwith_forest_open,
         magical_seeds_required,
         bowsers_castle_mode,
         always_speedyspin,

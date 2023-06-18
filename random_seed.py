@@ -464,6 +464,7 @@ class RandomSeed:
                 do_randomize_dojo=rando_settings.include_dojo,
                 starting_partners=self.starting_partners,
                 startwith_bluehouse_open=rando_settings.bluehouse_open,
+                startwith_forest_open=rando_settings.foreverforest_open,
                 magical_seeds_required=magical_seeds_needed,
                 bowsers_castle_mode=rando_settings.bowsers_castle_mode,
                 always_speedyspin=rando_settings.always_speedyspin,
