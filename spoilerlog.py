@@ -12,7 +12,7 @@ from metadata.verbose_area_names import verbose_area_names
 from metadata.verbose_item_names import verbose_item_names
 from metadata.verbose_item_locations import verbose_item_locations
 
-from optionset import OptionSet
+from models.options.OptionSet import OptionSet
 
 def write_spoiler_log(
     placed_items:list,
@@ -41,15 +41,31 @@ def write_spoiler_log(
     spoiler_dict["SeedHashItems"] = seed_hash_items
 
     # Add chapter difficulties
-    if settings.progressive_scaling["value"]:
+    if settings.progressive_scaling:
         spoiler_dict["difficulty"] = "progressive"
     else:
         spoiler_dict["difficulty"] = dict()
         for old_chapter, new_chapter in random_chapter_difficulty.items():
             spoiler_dict["difficulty"][f"chapter {old_chapter}"] = new_chapter
 
+    # Add required spirits, if specific
+    if spoilerlog_additions and spoilerlog_additions.get("required_spirits"):
+        additions = []
+        spirit_names = [
+            "Eldstar",
+            "Mamar",
+            "Skolar",
+            "Muskular",
+            "Misstar",
+            "Klevar",
+            "Kalmar"
+        ]
+        for spirit in spoilerlog_additions["required_spirits"]:
+            additions.append(f"{spirit_names[spirit - 1]} (Ch. {spirit})")
+        spoiler_dict["required_spirits"] = additions
+
     # Add modified entrances
-    if spoilerlog_additions and spoilerlog_additions["entrances"]:
+    if spoilerlog_additions and spoilerlog_additions.get("entrances"):
         spoiler_dict["entrances"] = spoilerlog_additions["entrances"]
 
     # Add item locations

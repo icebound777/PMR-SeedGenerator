@@ -44,16 +44,27 @@ class hashabledict(dict):
     def __hash__(self):
         return self._hash
 
+
 def print_node_info(node):
-    """Print a node's map name and its entrance_id or item key, depending on the node"""
-    entrancenode_string = str(node.entrance_id) + "/" \
-                        + node.entrance_name if node.entrance_id else ''
-    itemnode_string = node.key_name_item + "/" \
-                    + node.vanilla_item.item_name if node.key_name_item else ''
+    """
+    Print a node's map name and its entrance_id or item key, depending on the
+    node.
+    """
+    entrancenode_string = (
+        str(node.entrance_id)
+      + "/"
+      + node.entrance_name if node.entrance_id else ''
+    )
+    itemnode_string = (
+        node.key_name_item
+       + "/"
+       + node.vanilla_item.item_name if node.key_name_item else ''
+    )
     print(f"{node.map_area.name} - {entrancenode_string}{itemnode_string}")
 
+
 def get_all_nodes():
-    """Returns a list of all item and entrance nodes"""
+    """Returns a list of all item and entrance nodes."""
     all_nodes = []
     for node in (Node
                 .select(
@@ -90,7 +101,7 @@ def get_area_nodes(area_shorthand:str):
             area_nodes.append(node)
     else:
         raise KeyError
-    
+
     return area_nodes
 
 
@@ -149,8 +160,9 @@ def get_area_edges(area_shorthand:str):
 
 def generate(node_list: list, edge_list: list):
     """
-    Generates and returns a world graph dictionary with nodes' node_ids in string form as keys and
-    a list of neighboring nodes' node_ids in string form as values.
+    Generates and returns a world graph dictionary with nodes' node_ids in
+    string form as keys and a list of neighboring nodes' node_ids in string form
+    as values.
     """
     if not node_list or len(node_list) == 0:
         node_list = get_all_nodes()
@@ -244,14 +256,13 @@ def adjust(world_graph, new_edges=None, edges_to_remove=None):
 
         # If the edge is supposed to change an entrance connection, gather
         # ROM db data to write that new connection
-        if (isinstance(origin_entrance_id, int)
-        and isinstance(destination_entrance_id, int)
-        and is_mapchange
+        if (    isinstance(origin_entrance_id, int)
+            and isinstance(destination_entrance_id, int)
+            and is_mapchange
         ):
             for old_edge in world_graph[node_id]["edge_list"]:
-                if (
-                    old_edge["from"]["map"] == origin_map_name
-                and old_edge["from"]["id"]  == origin_entrance_id
+                if (    old_edge["from"]["map"] == origin_map_name
+                    and old_edge["from"]["id"]  == origin_entrance_id
                 ):
                     old_target_map_info = old_edge["to"]
                     break
@@ -265,10 +276,12 @@ def adjust(world_graph, new_edges=None, edges_to_remove=None):
                        .objects()
                        .get()
             )
-            db_key = (0xA3 << 24) \
-                   | (old_target_map_data.area_id << 16) \
-                   | (old_target_map_data.map_id  <<  8) \
-                   |  old_target_map_data.entrance_id
+            db_key = (
+                (0xA3 << 24)
+              | (old_target_map_data.area_id << 16)
+              | (old_target_map_data.map_id  <<  8)
+              |  old_target_map_data.entrance_id
+            )
 
             new_target_map_data = (
                 MapArea.select(MapArea.area_id,
@@ -280,9 +293,11 @@ def adjust(world_graph, new_edges=None, edges_to_remove=None):
                        .objects()
                        .get()
             )
-            db_value = (new_target_map_data.area_id << 16) \
-                     | (new_target_map_data.map_id  <<  8) \
-                     |  new_target_map_data.entrance_id
+            db_value = (
+                (new_target_map_data.area_id << 16)
+              | (new_target_map_data.map_id  <<  8)
+              |  new_target_map_data.entrance_id
+            )
 
             db_data_dict[db_key]= db_value
 
@@ -298,9 +313,8 @@ def adjust(world_graph, new_edges=None, edges_to_remove=None):
             continue
         stripped_edge_list = world_graph[node_id]["edge_list"]
         for i, strip_edge in enumerate(stripped_edge_list):
-            if (
-                strip_edge["from"] == old_edge["from"]
-            and strip_edge["to"] == old_edge["to"]
+            if (    strip_edge["from"] == old_edge["from"]
+                and strip_edge["to"] == old_edge["to"]
             ):
                 stripped_edge_list.pop(i)
                 break
@@ -324,9 +338,19 @@ def adjust(world_graph, new_edges=None, edges_to_remove=None):
     return world_graph, db_data
 
 
+def print_graph(world_graph: dict):
+    print("world graph")
+    for node_id in world_graph:
+        if node_id != "edge_index":
+            print(node_id)
+            for edge in world_graph[node_id]["edge_list"]:
+                print(f"    {edge}")
+
+
 def check_graph():
     """
-    Generate world graph from default entrance links and edges, then run a few validation checks
+    Generate world graph from default entrance links and edges, then run a few
+    validation checks.
     """
     print("Loading world graph nodes and edges ...")
 
@@ -346,7 +370,8 @@ def check_graph():
     # Check if edges exist that reference non-existing nodes
     check_nullnode_reference(all_nodes, all_edges)
 
-    # Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe)
+    # Check if theres any nodes unreachable from
+    # KMR_20/4 (Mario's House Green Pipe)
     print("Generating world graph from nodes and edges ...")
     graph = generate(all_nodes, all_edges)
     check_unreachable_from_start(graph, True)
@@ -364,7 +389,8 @@ def check_unleavable_nodes(all_nodes, all_edges):
         for edge in all_edges:
             if edge.get("from").get("map") == node.map_area.name:
                 if (   edge.get("from").get("id") == node.entrance_id
-                    or edge.get("from").get("id") == node.key_name_item):
+                    or edge.get("from").get("id") == node.key_name_item
+                ):
                     if edge.get("to").get("map") is not None:
                         leaving_edge_found = True
                         break
@@ -374,7 +400,7 @@ def check_unleavable_nodes(all_nodes, all_edges):
     if len(unleavable_nodes) == 0:
         print("No unleavable nodes found.")
     else:
-        print(str(len(unleavable_nodes)) + " unleavable nodes found:")
+        print(f"{len(unleavable_nodes)} unleavable nodes found:")
         for node in unleavable_nodes:
             print_node_info(node)
 
@@ -382,7 +408,7 @@ def check_unleavable_nodes(all_nodes, all_edges):
 
 
 def check_unreachable_nodes(all_nodes, all_edges):
-    """Check if nodes exist that are unreachable (not targets of any edges)"""
+    """Check if nodes exist that are unreachable (not targets of any edges)."""
     print("Check for unreachable nodes ...")
     unreachable_nodes = []
 
@@ -391,7 +417,8 @@ def check_unreachable_nodes(all_nodes, all_edges):
         for edge in all_edges:
             if edge.get("to").get("map") == node.map_area.name:
                 if (   edge.get("to").get("id") == node.entrance_id
-                    or edge.get("to").get("id") == node.key_name_item):
+                    or edge.get("to").get("id") == node.key_name_item
+                ):
                     edge_target_found = True
                     break
         if not edge_target_found:
@@ -400,7 +427,7 @@ def check_unreachable_nodes(all_nodes, all_edges):
     if len(unreachable_nodes) == 0:
         print("No unreachable nodes found.")
     else:
-        print(str(len(unreachable_nodes)) + " unreachable nodes found:")
+        print(f"{len(unreachable_nodes)} unreachable nodes found:")
         for node in unreachable_nodes:
             print_node_info(node)
 
@@ -408,7 +435,7 @@ def check_unreachable_nodes(all_nodes, all_edges):
 
 
 def check_nullnode_reference(all_nodes, all_edges):
-    """Check if edges exist that reference non-existing nodes"""
+    """Check if edges exist that reference non-existing nodes."""
     print("Check for edges that reference non-existing nodes ...")
     invalid_origin_edges = []
     invalid_target_edges = []
@@ -419,13 +446,15 @@ def check_nullnode_reference(all_nodes, all_edges):
         for node in all_nodes:
             if edge.get("from").get("map") == node.map_area.name:
                 if (   edge.get("from").get("id") == node.entrance_id
-                    or edge.get("from").get("id") == node.key_name_item):
+                    or edge.get("from").get("id") == node.key_name_item
+                ):
                     edge_origin_found = True
                     if edge_origin_found and edge_target_found:
                         break
             if edge.get("to").get("map") == node.map_area.name:
                 if (   edge.get("to").get("id") == node.entrance_id
-                    or edge.get("to").get("id") == node.key_name_item):
+                    or edge.get("to").get("id") == node.key_name_item
+                ):
                     edge_target_found = True
                     if edge_origin_found and edge_target_found:
                         break
@@ -437,7 +466,7 @@ def check_nullnode_reference(all_nodes, all_edges):
     if len(invalid_origin_edges) == 0:
         print("No edges with non-existing origin nodes found.")
     else:
-        print(str(len(invalid_origin_edges)) + " edges with invalid origin nodes found:")
+        print(f"{len(invalid_origin_edges)} edges with invalid origin nodes found:")
         for edge in invalid_origin_edges:
             print(edge)
 
@@ -446,7 +475,7 @@ def check_nullnode_reference(all_nodes, all_edges):
     if len(invalid_target_edges) == 0:
         print("No edges with non-existing target nodes found.")
     else:
-        print(str(len(invalid_target_edges)) + " edges with invalid target nodes found:")
+        print(f"{len(invalid_target_edges)} edges with invalid target nodes found:")
         for edge in invalid_target_edges:
             print(edge)
 
@@ -454,10 +483,16 @@ def check_nullnode_reference(all_nodes, all_edges):
 
 
 def check_unreachable_from_start(world_graph:dict, do_print:bool) -> list:
-    """Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe)"""
+    """
+    Check if theres any nodes unreachable from
+    KMR_20/4 (Mario's House Green Pipe).
+    """
     # build world graph
     if do_print:
-        print("Check if theres any nodes unreachable from KMR_20/4 (Mario's House Green Pipe) ...")
+        print(
+            "Check if theres any nodes unreachable from KMR_20/4 "\
+            "(Mario's House Green Pipe) ..."
+        )
 
     # prepare datastructures for world graph traversal
     visited_node_ids = []
@@ -470,7 +505,9 @@ def check_unreachable_from_start(world_graph:dict, do_print:bool) -> list:
         try:
             outgoing_edges = world_graph.get(node_id).get("edge_list")
             for edge in outgoing_edges:
-                depth_first_search(edge.get("to").get("map") + "/" + str(edge.get("to").get("id")))
+                depth_first_search(
+                    f"{edge.get('to').get('map')}/{edge.get('to').get('id')}"
+                )
         except AttributeError as err:
             if do_print:
                 print(f"{err.args}: Cannot find edges of {node_id}!")
@@ -487,7 +524,7 @@ def check_unreachable_from_start(world_graph:dict, do_print:bool) -> list:
         if len(not_visited_node_ids) == 0:
             print("No unreachable nodes from KMR_20/4 found.")
         else:
-            print(str(len(not_visited_node_ids)) + " unreachable nodes:")
+            print(f"{len(not_visited_node_ids)} unreachable nodes:")
             for node_id in not_visited_node_ids:
                 print(node_id)
 

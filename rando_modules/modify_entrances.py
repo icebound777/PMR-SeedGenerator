@@ -18,7 +18,7 @@ from maps.graph_edges.bc_bossrush.edges_hos import \
     edges_hos_add, edges_hos_remove
 from maps.graph_edges.bc_bossrush.edges_kpa import \
     edges_kpa_add    as edges_kpa_bossrush_add, \
-    edges_kpa_remove as edges_kpa_bossrus_remove
+    edges_kpa_remove as edges_kpa_bossrush_remove
 from maps.graph_edges.gear_location_shuffle.edges_isk import \
     edges_isk_add    as edges_isk_gls_add, \
     edges_isk_remove as edges_isk_gls_remove
@@ -37,7 +37,7 @@ from maps.graph_edges.star_hunt.edges_hos import \
     edges_hos_starhunt2credits_remove
 
 # Imports: Glitched logic
-from optionset import GlitchOptionSet
+from models.options.OptionSet import GlitchOptionSet
 
 # Glitched Logic - Prologue
 from maps.graph_edges.glitched_logic.kmr_prologue_gel_early import \
@@ -267,6 +267,7 @@ from maps.graph_edges.glitched_logic.global_knows_puzzle_solutions import \
 from maps.graph_edges.glitched_logic.global_reach_high_blocks_with_super_boots import \
     edges_global_reach_high_blocks_with_super_boots
 
+
 def get_shorter_bowsercastle(world_graph: dict):
     """
     Returns a list of db data tuples representing modified entrances in Bowser's
@@ -295,27 +296,26 @@ def get_bowsercastle_bossrush(world_graph: dict):
     """
     # Sets up the following connection:
     # hos_20 (2) <-> kpa_53 (0) (Riding Star Ship Scene <-> Fake Peach Hallway)
-    all_entrance_modifications = []
+    all_new_edges = []
+    all_edges_to_remove = []
+    entrance_modifications = []
 
-    world_graph, hos_entrance_modifications = adjust(
+    all_new_edges.extend(edges_hos_add)
+    all_new_edges.extend(edges_kpa_bossrush_add)
+    all_edges_to_remove.extend(edges_hos_remove)
+    all_edges_to_remove.extend(edges_kpa_bossrush_remove)
+
+    world_graph, entrance_modifications = adjust(
         world_graph,
-        new_edges=edges_hos_add,
-        edges_to_remove=edges_hos_remove
-    )
-    world_graph, kpa_entrance_modifications = adjust(
-        world_graph,
-        new_edges=edges_kpa_bossrush_add,
-        edges_to_remove=edges_kpa_bossrus_remove
+        new_edges=all_new_edges,
+        edges_to_remove=all_edges_to_remove
     )
 
-    all_entrance_modifications.extend(hos_entrance_modifications)
-    all_entrance_modifications.extend(kpa_entrance_modifications)
+    return entrance_modifications, world_graph
 
-    return all_entrance_modifications, world_graph
 
 def get_starhunt(
     world_graph: dict,
-    #power_stars_required: int,
     power_stars_placed: int,
     star_hunt_triggers_credits: bool
 ):
@@ -325,7 +325,7 @@ def get_starhunt(
     """
     all_new_edges = []
     all_edges_to_remove = []
-    all_entrance_modifications = []
+    entrance_modifications = []
 
     all_new_edges.extend(deepcopy(edges_hos_starhunt_add))
     all_edges_to_remove.extend(edges_hos_starhunt_remove)
@@ -338,13 +338,13 @@ def get_starhunt(
         all_new_edges.extend(edges_hos_starhunt2credits_add)
         all_edges_to_remove.extend(edges_hos_starhunt2credits_remove)
 
-    world_graph, all_entrance_modifications = adjust(
+    world_graph, entrance_modifications = adjust(
         world_graph,
         new_edges=all_new_edges,
         edges_to_remove=all_edges_to_remove
     )
 
-    return all_entrance_modifications, world_graph
+    return entrance_modifications, world_graph
 
 
 def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
@@ -374,6 +374,97 @@ def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     return world_graph
 
 
+def get_specific_spirits(world_graph: dict, chosen_spirits: list) -> dict:
+    """
+    Returns the modified world graph itself for specific spirits,
+    which adjusts how the chapter 8 access gets handled.
+    """
+    new_requirements = [["can_climb_steps"]]
+
+    # the logic knows the spirits as "STARSPIRIT_X", where X is in 1-7
+    for spirit_number in chosen_spirits:
+        new_requirements.append([f"STARSPIRIT_{spirit_number}"])
+
+    for index, entrance in enumerate(world_graph["HOS_01/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "HOS_01"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["HOS_01/0"]["edge_list"][index]["reqs"].clear()
+            world_graph["HOS_01/0"]["edge_list"][index]["reqs"] = new_requirements
+            break
+
+    return world_graph
+
+
+def get_limited_chapter_logic(
+    world_graph: dict,
+    chosen_spirits: list,
+    gear_shuffle_mode: GearShuffleMode
+) -> dict:
+    """
+    Returns the modified world graph itself for specific spirits limiting
+    chapter logic, which sets item locations in non-required chapters
+    out of logic.
+    """
+    chapter_areaname_map = {
+        1: ["NOK","TRD"],
+        2: ["IWA","SBK","DRO","ISK"],
+        3: ["MIM","OBK","ARN","DGB"],
+        4: ["OMO"],
+        5: ["JAN","KZN"],
+        6: ["FLO"],
+        7: ["SAM","PRA"],
+        8: ["KPA"]
+    }
+    out_of_logic_areas = []
+    for chapter, area_list in chapter_areaname_map.items():
+        if chapter not in chosen_spirits:
+            out_of_logic_areas.extend(chapter_areaname_map[chapter])
+
+    if gear_shuffle_mode == GearShuffleMode.FULL_SHUFFLE:
+        for node_id in world_graph:
+            if node_id[:3] in out_of_logic_areas:
+                for index, edge in enumerate(world_graph[node_id]["edge_list"]):
+                    if type(edge["to"]["id"]) is str: # is item location
+                        world_graph[node_id]["edge_list"][index]["reqs"].extend([["RF_OutOfLogic"]])
+    else:
+        gear_node_ids = [
+            # Hammer bush irrelevant here
+            "ISK_09/BigChest", # SuperHammer
+            "OBK_04/BigChest", # SuperBoots
+            "KZN_07/BigChest"  # UltraHammer
+            # UltraBoots irrelevant here
+        ]
+        for node_id in world_graph:
+            if node_id[:3] in out_of_logic_areas:
+                for index, edge in enumerate(world_graph[node_id]["edge_list"]):
+                    if type(edge["to"]["id"]) is str: # is item location
+                        if (f"{edge['to']['map']}/{edge['to']['id']}") not in gear_node_ids:
+                            world_graph[node_id]["edge_list"][index]["reqs"].extend([["RF_OutOfLogic"]])
+
+    # Remove logic from star spirits we do not need to rescue.
+    # This is so Rowf doesn't require us to still save them.
+    area_spiritnode_pairs = [
+        ("TRD", "TRD_10/0"),
+        ("ISK", "ISK_16/0"),
+        ("ARN", "ARN_07/0"),
+        ("OMO", "OMO_15/0"),
+        ("JAN", "JAN_22/0"),
+        ("FLO", "FLO_21/0"),
+        ("PRA", "PRA_32/0")
+    ]
+    for pair in area_spiritnode_pairs:
+        if pair[0] in out_of_logic_areas:
+            for index, edge in enumerate(world_graph[pair[1]]["edge_list"]):
+                if (   "pseudoitems" in edge
+                    and any(True for x in edge["pseudoitems"] if x.startswith("STARSPIRIT_"))
+                ):
+                    world_graph[pair[1]]["edge_list"][index]["reqs"].extend([["RF_OutOfLogic"]])
+                    break
+
+    return world_graph
+
+
 def get_glitched_logic(
     world_graph: dict,
     glitch_settings: GlitchOptionSet,
@@ -388,314 +479,314 @@ def get_glitched_logic(
     all_edges_to_remove = []
 
     # Goomba Region
-    if glitch_settings.prologue_gel_early["value"]:
+    if glitch_settings.prologue_gel_early:
         all_new_edges.extend(edges_kmr_add_prologue_gel_early)
-    if glitch_settings.reverse_goomba_king_bridge["value"]:
+    if glitch_settings.reverse_goomba_king_bridge:
         all_new_edges.extend(edges_kmr_add_reverse_goomba_king_bridge)
-    if glitch_settings.goomba_village_entry_fence_clip["value"]:
+    if glitch_settings.goomba_village_entry_fence_clip:
         all_new_edges.extend(edges_kmr_add_goomba_village_entry_fence_clip)
-    if glitch_settings.goomba_village_npc_lure_exit["value"]:
+    if glitch_settings.goomba_village_npc_lure_exit:
         all_new_edges.extend(edges_kmr_add_goomba_village_hammerless_exit_npc_lure)
-    if glitch_settings.goomba_village_laki_exit["value"]:
+    if glitch_settings.goomba_village_laki_exit:
         all_new_edges.extend(edges_kmr_add_goomba_village_hammerless_exit_laki)
-    if glitch_settings.hammerless_jr_playground_laki["value"]:
+    if glitch_settings.hammerless_jr_playground_laki:
         all_new_edges.extend(edges_kmr_add_hammerless_jr_playground_laki)
-    if glitch_settings.prologue_sushie_glitch_ksj["value"]:
+    if glitch_settings.prologue_sushie_glitch_ksj:
         all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_ksj)
         all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_common)
-    if glitch_settings.prologue_sushie_glitch_ultra_boots_laki["value"]:
+    if glitch_settings.prologue_sushie_glitch_ultra_boots_laki:
         all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_ultra_boots_laki)
         all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_common)
 
     # Toad Town
-    if glitch_settings.odd_key_early["value"]:
+    if glitch_settings.odd_key_early:
         all_new_edges.extend(edges_mac_odd_key_early)
-    if glitch_settings.blue_house_skip["value"]:
+    if glitch_settings.blue_house_skip:
         all_new_edges.extend(edges_mac_add_bhs_jump)
-    if glitch_settings.blue_house_skip_laki["value"]:
+    if glitch_settings.blue_house_skip_laki:
         all_new_edges.extend(edges_mac_add_bhs_laki)
-    if glitch_settings.blue_house_skip_toad_lure["value"]:
+    if glitch_settings.blue_house_skip_toad_lure:
         all_new_edges.extend(edges_mac_add_bhs_toad_lure)
-    if glitch_settings.bowless_toy_box_hammer["value"]:
+    if glitch_settings.bowless_toy_box_hammer:
         all_new_edges.extend(edges_mac_add_bowless_toybox_hammer_lure)
-    if glitch_settings.bowless_toy_box_hammerless_lure["value"]:
+    if glitch_settings.bowless_toy_box_hammerless_lure:
         all_new_edges.extend(edges_mac_add_bowless_toybox_hammerless_lure)
-    if glitch_settings.early_storeroom_parakarry["value"]:
+    if glitch_settings.early_storeroom_parakarry:
         all_new_edges.extend(edges_mac_add_storeroom_without_key_parakarry)
-    if glitch_settings.early_storeroom_hammer["value"]:
+    if glitch_settings.early_storeroom_hammer:
         all_new_edges.extend(edges_mac_add_storeroom_without_key_hammer)
-    if glitch_settings.early_storeroom_hammerless_lure["value"]:
+    if glitch_settings.early_storeroom_hammerless_lure:
         all_new_edges.extend(edges_mac_add_storeroom_without_key_hammerless_lure)
-    if glitch_settings.whale_early["value"]:
+    if glitch_settings.whale_early:
         all_new_edges.extend(edges_mac_add_whale_early_lzs)
-    if glitch_settings.sushiesless_toad_town_star_piece["value"]:
+    if glitch_settings.sushiesless_toad_town_star_piece:
         all_new_edges.extend(edges_mac_add_sushieless_starpiece)
-    if glitch_settings.toad_town_sushie_glitch["value"]:
+    if glitch_settings.toad_town_sushie_glitch:
         all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch)
-    
+
     # Toad Town Tunnels
-    if glitch_settings.clippy_boots_stone_block_skip["value"]:
+    if glitch_settings.clippy_boots_stone_block_skip:
         all_new_edges.extend(edges_tik_add_clippy_boots_stone_block_skip)
-    if glitch_settings.clippy_boots_metal_block_skip["value"]:
+    if glitch_settings.clippy_boots_metal_block_skip:
         all_new_edges.extend(edges_tik_add_clippy_boots_metal_block_skip)
-    if glitch_settings.island_pipe_blooper_skip["value"]:
+    if glitch_settings.island_pipe_blooper_skip:
         all_new_edges.extend(edges_tik_add_island_pipe_blooper_skip)
-    if glitch_settings.parakarryless_sewer_star_piece["value"]:
+    if glitch_settings.parakarryless_sewer_star_piece:
         all_new_edges.extend(edges_tik_add_parakarryless_sewer_star_piece)
-    if glitch_settings.sewer_blocks_without_ultra_boots["value"]:
+    if glitch_settings.sewer_blocks_without_ultra_boots:
         all_new_edges.extend(edges_tik_add_sewer_blocks_without_ultra_boots)
-    if glitch_settings.first_block_to_shiver_city_without_super_boots["value"]:
+    if glitch_settings.first_block_to_shiver_city_without_super_boots:
         all_new_edges.extend(edges_tik_add_first_block_to_shiver_city_witout_super_boots)
-    if glitch_settings.blocks_to_shiver_city_kooper_shell_item_throw["value"]:
+    if glitch_settings.blocks_to_shiver_city_kooper_shell_item_throw:
         all_new_edges.extend(edges_tik_add_blocks_to_shiver_city_kooper_shell_item_throw)
-    if glitch_settings.sewer_yellow_block_with_ultra_boots["value"]:
+    if glitch_settings.sewer_yellow_block_with_ultra_boots:
         all_new_edges.extend(edges_tik_add_break_sewer_yellow_block_with_ultra_boots)
-    if glitch_settings.jumpless_sewer_shooting_star["value"]:
+    if glitch_settings.jumpless_sewer_shooting_star:
         all_new_edges.extend(edges_tik_add_jumpless_sewer_shooting_star_kooper)
 
     # Pleasant Path
-    if glitch_settings.kooperless_pleasant_path_star_piece["value"]:
+    if glitch_settings.kooperless_pleasant_path_star_piece:
         all_new_edges.extend(edges_nok_add_kooperless_starpiece_clippy)
-    if glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry["value"]:
+    if glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry:
         all_new_edges.extend(edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry)
-    if glitch_settings.invisible_bridge_clip_laki["value"]:
+    if glitch_settings.invisible_bridge_clip_laki:
         all_new_edges.extend(edges_nok_add_invisible_bridge_clip_laki)
-    if glitch_settings.invisible_bridge_clip_lzs["value"]:
+    if glitch_settings.invisible_bridge_clip_lzs:
         all_new_edges.extend(edges_nok_add_invisible_bridge_clip_lzs)
-    if glitch_settings.kooperless_pleasant_path_thunderbolt["value"]:
+    if glitch_settings.kooperless_pleasant_path_thunderbolt:
         all_new_edges.extend(edges_nok_add_kooperless_thunderbolt)
 
     # Koopa Bros Fortress
-    if glitch_settings.bombetteless_kbf_fp_plus_laki["value"]:
+    if glitch_settings.bombetteless_kbf_fp_plus_laki:
         all_new_edges.extend(edges_nok_add_bombetteless_fp_plus_laki)
-    if glitch_settings.bombetteless_kbf_fp_plus_lzs["value"] and not shuffle_dungeon_entrances:
+    if glitch_settings.bombetteless_kbf_fp_plus_lzs and not shuffle_dungeon_entrances:
         all_new_edges.extend(edges_nok_add_bombetteless_fp_plus_lzs)
-    if glitch_settings.laki_jailbreak["value"]:
+    if glitch_settings.laki_jailbreak:
         all_new_edges.extend(edges_trd_add_laki_jailbreak)
-    if glitch_settings.bombetteless_right_fortress_jail_key["value"]:
+    if glitch_settings.bombetteless_right_fortress_jail_key:
         all_new_edges.extend(edges_trd_add_bombetteless_right_key)
-    if glitch_settings.water_staircase_skip["value"]:
+    if glitch_settings.water_staircase_skip:
         all_new_edges.extend(edges_trd_add_water_staircase_skip)
 
     # Mt. Rugged
-    if glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki["value"]:
+    if glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki:
         all_new_edges.extend(edges_iwa_add_quake_hammer_and_letter_laki)
-    if glitch_settings.parakarryless_mt_rugged_seed["value"]:
+    if glitch_settings.parakarryless_mt_rugged_seed:
         all_new_edges.extend(edges_iwa_add_parakarryless_mt_rugged_seed)
-    if glitch_settings.parakarryless_mt_rugged_star_piece["value"]:
+    if glitch_settings.parakarryless_mt_rugged_star_piece:
         all_new_edges.extend(edges_iwa_add_parakarryless_star_piece_laki)
-    if glitch_settings.buzzar_gap_skip_clippy["value"]:
+    if glitch_settings.buzzar_gap_skip_clippy:
         all_new_edges.extend(edges_iwa_add_buzzar_gap_skip_clippy)
-    if glitch_settings.mt_rugged_coins_with_kooper["value"]:
+    if glitch_settings.mt_rugged_coins_with_kooper:
         all_new_edges.extend(edges_iwa_add_mt_rugged_coins_with_kooper)
-    if glitch_settings.mt_rugged_station_jumpless_climb_bombette["value"]:
+    if glitch_settings.mt_rugged_station_jumpless_climb_bombette:
         all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_bombette)
-    if glitch_settings.mt_rugged_station_jumpless_climb_laki["value"]:
+    if glitch_settings.mt_rugged_station_jumpless_climb_laki:
         all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_laki)
-    if glitch_settings.jumpless_mt_rugged_train_platform_parakarry["value"]:
+    if glitch_settings.jumpless_mt_rugged_train_platform_parakarry:
         all_new_edges.extend(edges_iwa_add_jumpless_mt_rugged_train_platform_parakarry)
 
     # Dry Dry Desert
-    if glitch_settings.early_ruins_laki_jump["value"]:
+    if glitch_settings.early_ruins_laki_jump:
         all_new_edges.extend(edges_sbk_add_laki)
-    if glitch_settings.early_ruins_ultra_boots["value"]:
+    if glitch_settings.early_ruins_ultra_boots:
         all_new_edges.extend(edges_sbk_add_ultraboots)
-    if glitch_settings.desert_brick_block_item_with_parakarry["value"]:
+    if glitch_settings.desert_brick_block_item_with_parakarry:
         all_new_edges.extend(edges_sbk_add_desert_brick_block_item_parakarry)
 
     # Dry Dry Ruins
-    if glitch_settings.artifact_jump_laki["value"]:
+    if glitch_settings.artifact_jump_laki:
         all_new_edges.extend(edges_isk_add_artifact_jump_laki)
-    if glitch_settings.artifact_jump_ultra_boots["value"]:
+    if glitch_settings.artifact_jump_ultra_boots:
         all_new_edges.extend(edges_isk_add_artifact_jump_ultra_boots)
-    if glitch_settings.parakarryless_second_sand_room_normal_boots["value"]:
+    if glitch_settings.parakarryless_second_sand_room_normal_boots:
         all_new_edges.extend(edges_isk_add_parakarryless_second_sand_room_normal_boots)
-    if glitch_settings.parakarryless_second_sand_room_ultra_boots["value"]:
+    if glitch_settings.parakarryless_second_sand_room_ultra_boots:
         all_new_edges.extend(edges_isk_add_parakarryless_second_sand_room_ultra_boots)
-    if glitch_settings.parakarryless_super_hammer_room_normal_boots["value"]:
+    if glitch_settings.parakarryless_super_hammer_room_normal_boots:
         all_new_edges.extend(edges_isk_add_parakarryless_super_hammer_room_normal_boots)
-    if glitch_settings.parakarryless_super_hammer_room_ultra_boots["value"]:
+    if glitch_settings.parakarryless_super_hammer_room_ultra_boots:
         all_new_edges.extend(edges_isk_add_parakarryless_super_hammer_room_ultra_boots)
-    if glitch_settings.ruins_key_laki_jump["value"]:
+    if glitch_settings.ruins_key_laki_jump:
         all_new_edges.extend(edges_isk_add_ruins_key_laki_jump)
-    if glitch_settings.ruins_locks_skip_clippy["value"]:
+    if glitch_settings.ruins_locks_skip_clippy:
         all_new_edges.extend(edges_isk_add_ruins_locks_skip_clippy)
 
     # Boo's Mansion
-    if glitch_settings.record_skip_bombette_push["value"]:
+    if glitch_settings.record_skip_bombette_push:
         all_new_edges.extend(edges_obk_add_record_skip_bombette_push)
-    if glitch_settings.record_skip_no_bombette_push["value"]:
+    if glitch_settings.record_skip_no_bombette_push:
         all_new_edges.extend(edges_obk_add_record_skip_spin_jump)
-    if glitch_settings.boos_portrait_with_kooper["value"]:
+    if glitch_settings.boos_portrait_with_kooper:
         all_new_edges.extend(edges_obk_add_boo_portrait_kooper)
-    if glitch_settings.boos_portrait_with_laki["value"]:
+    if glitch_settings.boos_portrait_with_laki:
         all_new_edges.extend(edges_obk_add_boo_portrait_laki)
-    if glitch_settings.jumpless_mansion_entry["value"]:
+    if glitch_settings.jumpless_mansion_entry:
         all_new_edges.extend(edges_mim_add_jumpless_mansion_entry_parakarry)
 
     # Gusty Gulch
-    if glitch_settings.gusty_gulch_gate_skip_lzs["value"]:
+    if glitch_settings.gusty_gulch_gate_skip_lzs:
         all_new_edges.extend(edges_mim_add_gusty_gulch_gate_skip_lzs)
-    if glitch_settings.gusty_gulch_gate_skip_laki["value"]:
+    if glitch_settings.gusty_gulch_gate_skip_laki:
         all_new_edges.extend(edges_mim_add_gusty_gulch_gate_skip_laki)
-    if glitch_settings.kooperless_gusty_gulch_dizzy_dial_jump["value"]:
+    if glitch_settings.kooperless_gusty_gulch_dizzy_dial_jump:
         all_new_edges.extend(edges_arn_add_gusty_gulch_dizzy_dial_jump)
-    if glitch_settings.kooperless_gusty_gulch_dizzy_dial_laki["value"]:
+    if glitch_settings.kooperless_gusty_gulch_dizzy_dial_laki:
         all_new_edges.extend(edges_arn_add_gusty_gulch_dizzy_dial_laki)
-    if glitch_settings.kooperless_gusty_gulch_dizzy_dial_parakarry["value"]:
+    if glitch_settings.kooperless_gusty_gulch_dizzy_dial_parakarry:
         all_new_edges.extend(edges_arn_add_gusty_gulch_dizzy_dial_parakarry)
-    if glitch_settings.gusty_gulch_gap_skip["value"]:
+    if glitch_settings.gusty_gulch_gap_skip:
         all_new_edges.extend(edges_arn_add_gusty_gulch_gap_skip_jump)
 
     # Tubba's Castle
-    if glitch_settings.bowless_tubbas_castle["value"]:
+    if glitch_settings.bowless_tubbas_castle:
         all_new_edges.extend(edges_dgb_add_bowless_tubbas_castle)
-    if glitch_settings.tubbas_table_laki_jump_clock["value"]:
+    if glitch_settings.tubbas_table_laki_jump_clock:
         all_new_edges.extend(edges_dgb_add_tubbas_table_clock_laki_jump)
-    if glitch_settings.tubbas_table_ultra_boots["value"]:
+    if glitch_settings.tubbas_table_ultra_boots:
         all_new_edges.extend(edges_dgb_add_tubbas_table_clock_ultra_boots)
-    if glitch_settings.tubbas_table_laki_jump_study["value"]:
+    if glitch_settings.tubbas_table_laki_jump_study:
         all_new_edges.extend(edges_dgb_add_tubbas_table_laki_jump_study)
-    if glitch_settings.tubbas_castle_super_boots_skip["value"]:
+    if glitch_settings.tubbas_castle_super_boots_skip:
         all_new_edges.extend(edges_dgb_add_tubbas_castle_super_boots_skip_laki)
-    if glitch_settings.parakarryless_mega_rush["value"]:
+    if glitch_settings.parakarryless_mega_rush:
         all_new_edges.extend(edges_dgb_add_parakarryless_mega_rush)
 
     # Toy Box
-    if glitch_settings.parakarryless_blue_building_star_piece["value"]:
+    if glitch_settings.parakarryless_blue_building_star_piece:
         all_new_edges.extend(edges_omo_add_parakarryless_blue_station_star_piece)
-    if glitch_settings.gourmet_guy_skip_jump["value"]:
+    if glitch_settings.gourmet_guy_skip_jump:
         all_new_edges.extend(edges_omo_add_gourmet_guy_skip_jump)
-    if glitch_settings.gourmet_guy_skip_laki["value"]:
+    if glitch_settings.gourmet_guy_skip_laki:
         all_new_edges.extend(edges_omo_add_gourmet_guy_skip_laki)
-    if glitch_settings.gourmet_guy_skip_parakarry["value"]:
+    if glitch_settings.gourmet_guy_skip_parakarry:
         all_new_edges.extend(edges_omo_add_gourmet_guy_skip_parakarry)
-    if glitch_settings.bowless_green_station["value"]:
+    if glitch_settings.bowless_green_station:
         all_new_edges.extend(edges_omo_add_bowless_green_station_laki)
-    if glitch_settings.kooperless_red_station_shooting_star["value"]:
+    if glitch_settings.kooperless_red_station_shooting_star:
         all_new_edges.extend(edges_omo_add_red_station_shooting_star_parakarry)
-    if glitch_settings.gearless_red_station_shooting_star["value"]:
+    if glitch_settings.gearless_red_station_shooting_star:
         all_new_edges.extend(edges_omo_add_red_station_shooting_star_gearless)
-    if glitch_settings.parakarryless_blue_block_city_gap["value"]:
+    if glitch_settings.parakarryless_blue_block_city_gap:
         all_new_edges.extend(edges_omo_add_parakarryless_blue_block_city_gap)
-    if glitch_settings.blue_switch_skip_laki["value"]:
+    if glitch_settings.blue_switch_skip_laki:
         all_new_edges.extend(edges_omo_add_blue_switch_skip_laki)
-    if glitch_settings.blue_switch_skip_ultra_boots["value"]:
+    if glitch_settings.blue_switch_skip_ultra_boots:
         all_new_edges.extend(edges_omo_add_blue_switch_skip_ultra_boots)
-    if glitch_settings.red_barricade_skip["value"]:
+    if glitch_settings.red_barricade_skip:
         all_new_edges.extend(edges_omo_add_red_barricade_skip)
-    if glitch_settings.hammerless_blue_station_laki["value"]:
+    if glitch_settings.hammerless_blue_station_laki:
         all_new_edges.extend(edges_omo_add_hammerless_blue_station_laki)
-    if glitch_settings.hammerless_pink_station_laki["value"]:
+    if glitch_settings.hammerless_pink_station_laki:
         all_new_edges.extend(edges_omo_add_hammerless_pink_station_laki)
 
     # Jade Jungle
-    if glitch_settings.raph_skip_english["value"]:
+    if glitch_settings.raph_skip_english:
         all_new_edges.extend(edges_jan_add_raph_skip_english)
-    if glitch_settings.raph_skip_parakarry["value"]:
+    if glitch_settings.raph_skip_parakarry:
         all_new_edges.extend(edges_jan_add_raph_skip_parakarry)
-    if glitch_settings.ch5_sushie_glitch["value"]:
+    if glitch_settings.ch5_sushie_glitch:
         all_new_edges.extend(edges_jan_kzn_add_ch5_sushie_glitch)
-    if glitch_settings.sushieless_jungle_starpiece_and_letter["value"]:
+    if glitch_settings.sushieless_jungle_starpiece_and_letter:
         all_new_edges.extend(edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs)
-    if glitch_settings.jumpless_deep_jungle_laki["value"]:
+    if glitch_settings.jumpless_deep_jungle_laki:
         all_new_edges.extend(edges_jan_add_jumpless_deep_jungle_laki)
 
     # Mt. Lavalava
-    if glitch_settings.kooperless_lavalava_pow_block_parakarry["value"]:
+    if glitch_settings.kooperless_lavalava_pow_block_parakarry:
         all_new_edges.extend(edges_kzn_add_kooperless_pow_block_parakarry)
-    if glitch_settings.kooperless_lavalava_pow_block_super_boots["value"]:
+    if glitch_settings.kooperless_lavalava_pow_block_super_boots:
         all_new_edges.extend(edges_kzn_add_kooperless_pow_block_super_boots)
-    if glitch_settings.jumpless_lavalava_pow_block["value"]:
+    if glitch_settings.jumpless_lavalava_pow_block:
         all_new_edges.extend(edges_kzn_add_jumpless_pow_block_kooper)
-    if glitch_settings.ultra_hammer_skip["value"]:
+    if glitch_settings.ultra_hammer_skip:
         all_new_edges.extend(edges_kzn_add_ultra_hammer_skip)
-    if glitch_settings.ultra_hammer_skip_laki["value"]:
+    if glitch_settings.ultra_hammer_skip_laki:
         all_new_edges.extend(edges_kzn_add_ultra_hammer_skip_laki)
-    if glitch_settings.ultra_hammer_skip_sushie["value"]:
+    if glitch_settings.ultra_hammer_skip_sushie:
         all_new_edges.extend(edges_kzn_add_ultra_hammer_skip_sushie)
-    if glitch_settings.flarakarry["value"]:
+    if glitch_settings.flarakarry:
         all_new_edges.extend(edges_kzn_add_flarakarry_parakarry)
-    if glitch_settings.parakarryless_flarakarry_bombette["value"]:
+    if glitch_settings.parakarryless_flarakarry_bombette:
         all_new_edges.extend(edges_kzn_add_flarakarry_bombette)
-    if glitch_settings.parakarryless_flarakarry_laki["value"]:
+    if glitch_settings.parakarryless_flarakarry_laki:
         all_new_edges.extend(edges_kzn_add_flarakarry_laki)
-    if glitch_settings.volcano_sushie_glitch["value"]:
+    if glitch_settings.volcano_sushie_glitch:
         all_new_edges.extend(edges_kzn_add_volcano_sushie_glitch)
 
     # Flower Fields
-    if glitch_settings.early_laki_lzs["value"]:
+    if glitch_settings.early_laki_lzs:
         all_new_edges.extend(edges_flo_add_early_lakilester_without_bombette)
-    if glitch_settings.early_laki_bombette_push["value"]:
+    if glitch_settings.early_laki_bombette_push:
         all_new_edges.extend(edges_flo_add_early_lakilester_bombette_push)
-    if glitch_settings.bombetteless_mega_smash["value"]:
+    if glitch_settings.bombetteless_mega_smash:
         all_new_edges.extend(edges_flo_add_bombetteless_mega_smash)
-    if glitch_settings.sun_tower_skip["value"]:
+    if glitch_settings.sun_tower_skip:
         all_new_edges.extend(edges_flo_add_sun_tower_skip_lzs)
-    if glitch_settings.yellow_berry_gate_skip_bombette_push["value"]:
+    if glitch_settings.yellow_berry_gate_skip_bombette_push:
         all_new_edges.extend(edges_flo_add_yellow_berry_gate_skip_bombette_push)
-    if glitch_settings.yellow_berry_gate_skip_laki["value"]:
+    if glitch_settings.yellow_berry_gate_skip_laki:
         all_new_edges.extend(edges_flo_add_yellow_berry_gate_skip_laki)
-    if glitch_settings.yellow_berry_gate_skip_lzs["value"]:
+    if glitch_settings.yellow_berry_gate_skip_lzs:
         all_new_edges.extend(edges_flo_add_yellow_berry_gate_skip_lzs)
-    if glitch_settings.red_berry_gate_skip_bombette_push["value"]:
+    if glitch_settings.red_berry_gate_skip_bombette_push:
         all_new_edges.extend(edges_flo_add_red_berry_gate_skip_bombette_push)
-    if glitch_settings.red_berry_gate_skip_laki["value"]:
+    if glitch_settings.red_berry_gate_skip_laki:
         all_new_edges.extend(edges_flo_add_red_berry_gate_skip_laki)
-    if glitch_settings.blue_berry_gate_skip_bombette_push["value"]:
+    if glitch_settings.blue_berry_gate_skip_bombette_push:
         all_new_edges.extend(edges_flo_add_blue_berry_gate_skip_bombette_push)
-    if glitch_settings.blue_berry_gate_skip_laki["value"]:
+    if glitch_settings.blue_berry_gate_skip_laki:
         all_new_edges.extend(edges_flo_add_blue_berry_gate_skip_laki)
-    if glitch_settings.bubble_berry_tree_early_laki_jump["value"]:
+    if glitch_settings.bubble_berry_tree_early_laki_jump:
         all_new_edges.extend(edges_flo_add_bubble_berry_tree_early_laki)
-    if glitch_settings.bubble_berry_tree_early_ultra_boots["value"]:
+    if glitch_settings.bubble_berry_tree_early_ultra_boots:
         all_new_edges.extend(edges_flo_add_bubble_berry_tree_early_ultra_boots)
 
     # Shiver Region
-    if glitch_settings.murder_solved_early_bombette_push["value"]:
+    if glitch_settings.murder_solved_early_bombette_push:
         all_new_edges.extend(edges_sam_add_murder_solved_early_bombette_push)
-    if glitch_settings.murder_solved_early_laki["value"]:
+    if glitch_settings.murder_solved_early_laki:
         all_new_edges.extend(edges_sam_add_murder_solved_early_laki)
-    if glitch_settings.ch7_sushie_glitch["value"]:
+    if glitch_settings.ch7_sushie_glitch:
         all_new_edges.extend(edges_sam_add_ch7_sushie_glitch)
-    if glitch_settings.star_stone_with_ch7_sushie_glitch["value"]:
+    if glitch_settings.star_stone_with_ch7_sushie_glitch:
         all_new_edges.extend(edges_sam_add_star_stone_with_ch7_sushie_glitch)
-    if glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_laki["value"]:
+    if glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_laki:
         all_new_edges.extend(edges_sam_add_shiver_mountain_hidden_block_laki_throw)
-    if glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_no_laki["value"]:
+    if glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_no_laki:
         all_new_edges.extend(edges_sam_add_shiver_mountain_hidden_block_normal_throw)
-    if glitch_settings.snowmen_skip_laki["value"]:
+    if glitch_settings.snowmen_skip_laki:
         all_new_edges.extend(edges_sam_add_snowmen_skip_laki)
-    if glitch_settings.shiver_mountain_switch_skip["value"]:
+    if glitch_settings.shiver_mountain_switch_skip:
         all_new_edges.extend(edges_sam_add_shiver_mountain_switch_skip)
-    if glitch_settings.sushieless_warehouse_key_bombette["value"]:
+    if glitch_settings.sushieless_warehouse_key_bombette:
         all_new_edges.extend(edges_sam_add_sushieless_warehouse_key_bombette_push)
-    if glitch_settings.sushieless_warehouse_key_kooper["value"]:
+    if glitch_settings.sushieless_warehouse_key_kooper:
         all_new_edges.extend(edges_sam_add_sushieless_warehouse_key_kooper_ksj)
 
     # Crystal Palace
-    if glitch_settings.mirror_clip["value"]:
+    if glitch_settings.mirror_clip:
         all_new_edges.extend(edges_pra_add_mirror_clip_laki)
 
     # Bowser's Castle
     if bowsers_castle_mode == BowserCastleMode.VANILLA:
-        if glitch_settings.bowless_bowsers_castle_basement["value"]:
+        if glitch_settings.bowless_bowsers_castle_basement:
             all_new_edges.extend(edges_kpa_add_bowless_bowsers_castle_basement_laki)
-        if glitch_settings.fast_flood_room_kooper["value"]:
+        if glitch_settings.fast_flood_room_kooper:
             all_new_edges.extend(edges_kpa_add_fast_flood_room_kooper)
-        if glitch_settings.fast_flood_room_bombette_ultra_boots["value"]:
+        if glitch_settings.fast_flood_room_bombette_ultra_boots:
             all_new_edges.extend(edges_kpa_add_fast_flood_room_bombette_ultra_boots)
-        if glitch_settings.bombetteless_bowsers_castle_basement["value"]:
+        if glitch_settings.bombetteless_bowsers_castle_basement:
             all_new_edges.extend(edges_kpa_add_bombetteless_bowsers_castle_basement_laki)
 
     # Global
-    if glitch_settings.break_stone_blocks_with_ultra_boots["value"]:
+    if glitch_settings.break_stone_blocks_with_ultra_boots:
         all_new_edges.extend(edges_kmr_tik_isk_add_break_stone_blocks_ultra_boots)
-    if glitch_settings.break_yellow_blocks_with_super_boots["value"]:
+    if glitch_settings.break_yellow_blocks_with_super_boots:
         all_new_edges.extend(edges_kmr_add_break_yellow_blocks_super_boots)
-    if glitch_settings.knows_puzzle_solutions["value"]:
+    if glitch_settings.knows_puzzle_solutions:
         all_new_edges.extend(edges_global_knows_puzzle_solutions)
-    if glitch_settings.reach_high_blocks_with_super_boots["value"]:
+    if glitch_settings.reach_high_blocks_with_super_boots:
         all_new_edges.extend(edges_global_reach_high_blocks_with_super_boots)
 
     #print(all_new_edges)

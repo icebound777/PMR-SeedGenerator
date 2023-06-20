@@ -120,6 +120,7 @@ edges_mac = [
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "GiftA"},       "reqs": [["can_climb_steps"]]}, #* Southern District Exit Top -> GiftA (MagicalSeed1)
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "GiftB"},       "reqs": [["FryingPan"]], "pseudoitems": ["RF_CanCook"]}, #* Southern District Exit Top -> GiftB (Cake)
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "GiftC"},       "reqs": [["Parakarry"],["Letter07"]]}, #* Southern District Exit Top -> GiftC (StarPiece)
+    {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "GiftD"},       "reqs": [["RF_ClosedForest"]]}, #* Southern District Exit Top -> GiftD (ForestPass)
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Southern District Exit Top -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_02", "id": 5}, "to": {"map": "MAC_02", "id": "ItemA"},       "reqs": []}, #* Southern District Blue House Pipe -> ItemA (OddKey)
 
@@ -143,7 +144,7 @@ edges_mac = [
 
     # MAC_03 Station District
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_02", "id": 3}, "reqs": []}, # Station District Exit Top -> Southern District Exit Bottom
-    {"from": {"map": "MAC_03", "id": 1}, "to": {"map": "IWA_11", "id": 1}, "reqs": []}, # Station District Train -> Train Ride Scene Exit Left
+    {"from": {"map": "MAC_03", "id": 1}, "to": {"map": "IWA_11", "id": 0}, "reqs": []}, # Station District Train -> Train Ride Scene Exit Left
     {"from": {"map": "MAC_03", "id": 2}, "to": {"map": "MGM_00", "id": 0}, "reqs": []}, # Station District Minigame Pipe -> Playroom Lobby Exit Pipe
 
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_03", "id": 1}, "reqs": [["GF_MAC03_BombedRock"]]}, #? Station District Exit Top -> Station District Train

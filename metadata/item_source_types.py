@@ -104,6 +104,7 @@ item_source_types = {
     "MAC_02": {"GiftA": SRC_GIVENBYNPC,
                "GiftB": SRC_GIVENBYNPC,
                "GiftC": SRC_GIVENBYNPC,
+               "GiftD": SRC_GIVENBYNPC,
                "ItemA": SRC_LAYINGAROUND,
                "HiddenPanel": SRC_HIDDENTILE,},
     "MAC_03": {"GiftA": SRC_GIVENBYNPC,

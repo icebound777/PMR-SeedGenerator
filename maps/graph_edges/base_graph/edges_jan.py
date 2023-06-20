@@ -283,9 +283,10 @@ edges_jan = [
     {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": 2}, "reqs": [["MF_Ch5_ZiplineBuilt"],["can_climb_steps"]]}, #? Path to the Volcano Exit Left -> Path to the Volcano Exit Right
     {"from": {"map": "JAN_22", "id": 2}, "to": {"map": "JAN_22", "id": 0}, "reqs": [["MF_Ch5_ZiplineBuilt"]]}, #? Path to the Volcano Exit Right -> Path to the Volcano Exit Left
 
-    {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": "GiftA"}, "reqs": [["MF_Ch5_RafaelMovedRoot"]], "pseudoitems": ["MF_Ch5_ZiplineBuilt"]}, #* Path to the Volcano Exit Left -> GiftA (UltraStone)
+    {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": "GiftA"}, "reqs": [["MF_Ch5_RafaelMovedRoot"]]}, #* Path to the Volcano Exit Left -> GiftA (UltraStone)
     {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": "ItemA"}, "reqs": []}, #* Path to the Volcano Exit Left -> ItemA (JamminJelly)
 
+    {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": 0}, "reqs": [["MF_Ch5_RafaelMovedRoot"]], "pseudoitems": ["MF_Ch5_ZiplineBuilt"]}, #+ Let Raphael build the zipline
     {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": 0}, "reqs": [["MF_Ch5_FoundEscapeRoute"]], "pseudoitems": ["STARSPIRIT_5", "MF_Ch5_RescuedStarSpirit"]}, #+ Get Star Spirit after escaping Volcano
 
     # JAN_23 Great Treetop Roost

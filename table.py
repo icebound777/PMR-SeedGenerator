@@ -1,8 +1,8 @@
 from parse import get_table_info
 
 from db.option import Option
-from optionset import MysteryOptionSet
-
+from models.options.OptionSet import OptionSet
+from models.options.MysteryOptionSet import MysteryOptionSet
 
 class Table:
     instance = None
@@ -23,9 +23,11 @@ class Table:
         table_data = []
 
         # Options
-        options = kwargs.get("options")
+        optionset = kwargs.get("options")
 
-        for option_data in options.__dict__.values():
+        option_dbtuples = optionset.get_dbtuples()
+
+        for option_data in option_dbtuples:
             if isinstance(option_data, dict) and "key" in option_data:
                 option_data_value = option_data.get("value")
                 if isinstance(option_data_value, int) and option_data_value < 0:
@@ -34,13 +36,6 @@ class Table:
                     "key": option_data.get("key"),
                     "value": option_data_value,
                 })
-            if isinstance(option_data, MysteryOptionSet):
-                for mystery_option in option_data.__dict__.values():
-                    if isinstance(mystery_option, dict) and "key" in mystery_option:
-                        table_data.append({
-                            "key": mystery_option.get("key"),
-                            "value": mystery_option.get("value"),
-                        })
 
         # temp fix for multiworld
         table_data.append({

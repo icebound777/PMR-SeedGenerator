@@ -22,6 +22,7 @@ class MarioInventory:
         startwith_prologue_open:bool=False,
         startwith_bluehouse_open:bool=False,
         startwith_mtrugged_open:bool=False,
+        startwith_forest_open:bool=True,
         startwith_toybox_open:bool=False,
         startwith_whale_open:bool=False,
         ch7_bridge_visible:bool=True,
@@ -51,6 +52,7 @@ class MarioInventory:
         assert(isinstance(startwith_prologue_open, bool))
         assert(isinstance(startwith_bluehouse_open, bool))
         assert(isinstance(startwith_mtrugged_open, bool))
+        assert(isinstance(startwith_forest_open, bool))
         assert(isinstance(startwith_toybox_open, bool))
         assert(isinstance(startwith_whale_open, bool))
         assert(isinstance(ch7_bridge_visible, bool))
@@ -110,6 +112,10 @@ class MarioInventory:
             self.add("GF_MAC02_UnlockedHouse")
         if startwith_mtrugged_open:
             self.add("GF_MAC03_BombedRock")
+        if startwith_forest_open:
+            self.add("RF_ForestPass")
+        else:
+            self.add("RF_ClosedForest")
         if startwith_toybox_open:
             self.add("RF_ToyboxOpen")
         if startwith_whale_open:
@@ -298,7 +304,7 @@ class MarioInventory:
             group_fulfilled = False
             for req in req_group:
                 if isinstance(req, dict):
-                    # Check star spirits
+                    # Check star spirits count
                     if ("starspirits" in req
                     and len(self.starspirits) >= req["starspirits"]
                     ):
@@ -427,6 +433,11 @@ class MarioInventory:
                     # Check letters for Parakarry
                     if req == "has_parakarry_letters":
                         if self.has_parakarry_letters():
+                            group_fulfilled = True
+                            break
+                    # Check specific star spirits
+                    if req.startswith("STARSPIRIT_"):
+                        if req in self.starspirits:
                             group_fulfilled = True
                             break
                     # Check other items

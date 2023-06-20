@@ -169,13 +169,10 @@ def _depth_first_search(
 
 
 def _find_new_nodes_and_edges(
-    pool_misc_progression_items:list,
-    pool_other_items:list,
     world_graph:dict,
     reachable_node_ids:set,
     reachable_item_nodes:dict,
     non_traversable_edges:dict, # dict() of node_id to list(edge_id)
-    filled_item_nodes:list,
     mario:MarioInventory
 ):
     """
@@ -183,14 +180,12 @@ def _find_new_nodes_and_edges(
     This re-traversing is accomplished by calling DFS on each respective edge's
     origin node ("from-node").
     """
-    #logging.debug("++++ _find_new_nodes_and_edges called")
     while True:
         found_new_items = False
 
         # We require a copy here since we cannot iterate over a list and
         # at the same time possibly delete entries from it (see DFS)
         non_traversable_edges_cpy = non_traversable_edges.copy()
-        #logging.debug("non_traversable_edges_cpy before %s", non_traversable_edges_cpy)
 
         # Re-traverse already found edges which could not be traversed before.
         for from_node_id in non_traversable_edges:
@@ -204,47 +199,25 @@ def _find_new_nodes_and_edges(
             )
             found_new_items = found_new_items or found_additional_items
         non_traversable_edges = non_traversable_edges_cpy.copy()
-        #logging.debug("non_traversable_edges_cpy after %s", non_traversable_edges_cpy)
-        #logging.debug("non_traversable_edges after %s", non_traversable_edges)
-
-        # Check if an item node is reachable which already has an item placed.
-        # Since nodes are usually removed from this dict the moment an item is
-        # placed there, this can only be true for node which's item is not being
-        # randomized (caused by turned off shop shuffle, coin shuffle or
-        # hidden panel shuffle).
-        # If this is the case add item to inventory and remove node
-        for node_id, item_node in reachable_item_nodes.items():
-            current_item = item_node.current_item
-            if current_item and item_node.identifier not in [x.identifier for x in filled_item_nodes]:
-                mario.add(current_item.item_name)
-                found_new_items = True
-
-                # Special case: Item location is replenishable, holds a misc.
-                # item influencing progression and this type of item is yet to
-                # be placed anywhere:
-                # Consider item placed
-                if (    is_itemlocation_replenishable(item_node)
-                    and current_item in pool_misc_progression_items
-                ):
-                    pool_misc_progression_items.remove(current_item)
-                    pool_other_items.append(current_item)
-
-                filled_item_nodes.append(item_node)
-                #logging.debug("Pre-filled: %s: %s", node_id, current_item.item_name)
 
         # Keep searching for new edges and nodes until we don't find any new
         # items which might open up even more edges and nodes
         if not found_new_items:
             break
-    #logging.debug("non_traversable_edges after after %s", non_traversable_edges)
-    #logging.debug("---- _find_new_nodes_and_edges end")
-    return pool_misc_progression_items, pool_other_items, reachable_node_ids, reachable_item_nodes, non_traversable_edges, filled_item_nodes, mario
+
+    return (
+        reachable_node_ids,
+        reachable_item_nodes,
+        non_traversable_edges,
+        mario
+    )
 
 
 def get_items_to_exclude(
     do_randomize_dojo:bool,
     starting_partners:list,
     startwith_bluehouse_open:bool,
+    startwith_forest_open:bool,
     magical_seeds_required:int,
     bowsers_castle_mode:int,
     always_speedyspin:bool,
@@ -269,6 +242,10 @@ def get_items_to_exclude(
         excluded_items.append(partner_item)
     if startwith_bluehouse_open:
         for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    if startwith_forest_open:
+        for item_name in exclude_due_to_settings.get("startwith_forest_open"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
     if magical_seeds_required < 4:
@@ -339,6 +316,7 @@ def _generate_item_pools(
     item_quality:int,
     itemtrap_mode:int,
     startwith_bluehouse_open:bool,
+    startwith_forest_open:bool,
     magical_seeds_required:int,
     keyitems_outside_dungeon:bool,
     partners_in_default_locations:bool,
@@ -361,6 +339,8 @@ def _generate_item_pools(
     pool_other_items (every other item). Additionally marks item nodes that
     shall not be randomized as already filled.
     """
+    pool_coins_only = []
+    pool_illogical_consumables = []
 
     # Pre-fill nodes that are not to be randomized
     for node_id in world_graph:
@@ -470,6 +450,13 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
+            if (    current_node_id == "MAC_02/GiftD"
+                and startwith_forest_open
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
             if (    current_node.key_name_item == "Partner"
                 and partners_in_default_locations
                 and current_node.vanilla_item.item_name not in starting_partners
@@ -525,7 +512,14 @@ def _generate_item_pools(
                     # replenishable locations, we only need one of each
                     pool_misc_progression_items.append(current_node.vanilla_item)
                 else:
-                    pool_other_items.append(current_node.vanilla_item)
+                    if current_node.vanilla_item.item_type == "COIN":
+                        pool_coins_only.append(current_node.vanilla_item)
+                    elif current_node.vanilla_item.item_type == "ITEM":
+                        pool_illogical_consumables.append(current_node.vanilla_item)
+                    else:
+                        pool_other_items.append(current_node.vanilla_item)
+
+    random.shuffle(pool_illogical_consumables)
 
     # Swap random consumables and coins for power stars, if needed
     if star_hunt_stars > 0:
@@ -539,15 +533,14 @@ def _generate_item_pools(
         ):
             if stars_added >= star_hunt_stars:
                 break
-            while True:
-                rnd_index = random.randint(0, len(pool_other_items) - 1)
-                rnd_item = pool_other_items.pop(rnd_index)
-                if rnd_item.item_type in ["ITEM", "COIN"]:
-                    pool_progression_items.append(power_star_item)
-                    stars_added += 1
-                    break
-                else:
-                    pool_other_items.append(rnd_item)
+            if len(pool_coins_only) > 20:
+                trashable_items = pool_coins_only
+            else:
+                trashable_items = pool_illogical_consumables
+
+            trashable_items.pop()
+            pool_progression_items.append(power_star_item)
+            stars_added += 1
 
     # Swap random consumables and coins for strange pouches if needed
     if add_item_pouches:
@@ -560,29 +553,31 @@ def _generate_item_pools(
         ]
 
         cnt_items_removed = 0
-        while True:
-            rnd_index = random.randint(0, len(pool_other_items) - 1)
-            rnd_item = pool_other_items.pop(rnd_index)
-            if rnd_item.item_type in ["ITEM", "COIN"]:
-                cnt_items_removed += 1
-            else:
-                pool_other_items.append(rnd_item)
-            if cnt_items_removed == 5:
-                break
+
+        if len(pool_coins_only) > 20:
+            trashable_items = pool_coins_only
+        else:
+            trashable_items = pool_illogical_consumables
+        while cnt_items_removed < 5:
+            trashable_items.pop()
+            cnt_items_removed += 1
+
         pool_other_items.extend(pouch_items)
 
     # If we start jumpless, add a progressive boots item to the item pool
     if starting_boots == StartingBoots.JUMPLESS:
         new_boots = Item.get(Item.item_name == "BootsProxy1")
-        while True:
-            rnd_index = random.randint(0, len(pool_other_items) - 1)
-            rnd_item = pool_other_items.pop(rnd_index)
-            if rnd_item.item_type in ["ITEM", "COIN"]:
-                break
-            else:
-                pool_other_items.append(rnd_item)
+        if len(pool_coins_only) > 20:
+            trashable_items = pool_coins_only
+        else:
+            trashable_items = pool_illogical_consumables
+        trashable_items.pop()
+
         pool_progression_items.append(new_boots)
 
+    # Re-join the non-required items into one array
+    pool_other_items.extend(pool_coins_only)
+    pool_other_items.extend(pool_illogical_consumables)
 
     # Adjust item pools based on settings
     goal_size_item_pool = len(pool_progression_items)      \
@@ -593,6 +588,7 @@ def _generate_item_pools(
         do_randomize_dojo,
         starting_partners,
         startwith_bluehouse_open,
+        startwith_forest_open,
         magical_seeds_required,
         bowsers_castle_mode,
         always_speedyspin,
@@ -749,6 +745,7 @@ def _algo_assumed_fill(
     startwith_prologue_open:bool,
     startwith_bluehouse_open,
     startwith_mtrugged_open:bool,
+    startwith_forest_open:bool,
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
@@ -802,6 +799,7 @@ def _algo_assumed_fill(
         item_quality,
         itemtrap_mode,
         startwith_bluehouse_open,
+        startwith_forest_open,
         magical_seeds_required,
         keyitems_outside_dungeon,
         partners_in_default_locations,
@@ -849,6 +847,7 @@ def _algo_assumed_fill(
             startwith_prologue_open,
             startwith_bluehouse_open,
             startwith_mtrugged_open,
+            startwith_forest_open,
             startwith_toybox_open,
             startwith_whale_open,
             ch7_bridge_visible,
@@ -953,6 +952,7 @@ def get_item_spheres(
     startwith_prologue_open:bool,
     startwith_bluehouse_open,
     startwith_mtrugged_open:bool,
+    startwith_forest_open:bool,
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
@@ -977,10 +977,7 @@ def get_item_spheres(
     reachable_node_ids = set()
     reachable_item_nodes = {}
     non_traversable_edges = dict()
-    ## Data structures for item pool
-    pool_other_items = []
-    pool_misc_progression_items = []
-    filled_item_nodes = set()
+    ## Data structure for sphere information
     spheres_dict = dict()
 
     print("Gathering Item Spheres Data")
@@ -1007,6 +1004,7 @@ def get_item_spheres(
         startwith_prologue_open,
         startwith_bluehouse_open,
         startwith_mtrugged_open,
+        startwith_forest_open,
         startwith_toybox_open,
         startwith_whale_open,
         ch7_bridge_visible,
@@ -1046,21 +1044,18 @@ def get_item_spheres(
 
     cur_sphere = 0
     while item_placement_map:
-        pool_misc_progression_items, \
-        pool_other_items, \
-        reachable_node_ids, \
-        reachable_item_nodes, \
-        non_traversable_edges, \
-        filled_item_nodes, \
-        mario = \
-        _find_new_nodes_and_edges(pool_misc_progression_items,
-                                  pool_other_items,
-                                  world_graph,
-                                  reachable_node_ids,
-                                  reachable_item_nodes,
-                                  non_traversable_edges,
-                                  filled_item_nodes,
-                                  mario)
+        (
+            reachable_node_ids,
+            reachable_item_nodes,
+            non_traversable_edges,
+            mario
+        ) = _find_new_nodes_and_edges(
+            world_graph,
+            reachable_node_ids,
+            reachable_item_nodes,
+            non_traversable_edges,
+            mario
+        )
 
         if reachable_item_nodes:
             item_spheres_text = f"sphere_{cur_sphere}"
@@ -1144,6 +1139,7 @@ def place_items(
     startwith_prologue_open:bool,
     startwith_bluehouse_open,
     startwith_mtrugged_open:bool,
+    startwith_forest_open:bool,
     magical_seeds_required:int,
     startwith_toybox_open,
     startwith_whale_open,
@@ -1199,6 +1195,7 @@ def place_items(
             startwith_prologue_open,
             startwith_bluehouse_open,
             startwith_mtrugged_open,
+            startwith_forest_open,
             magical_seeds_required,
             startwith_toybox_open,
             startwith_whale_open,

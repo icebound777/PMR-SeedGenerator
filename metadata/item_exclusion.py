@@ -7,6 +7,9 @@ exclude_due_to_settings = {
     "startwith_bluehouse_open": [
         "OddKey"
     ],
+    "startwith_forest_open": [
+        "ForestPass"
+    ],
     "magical_seeds_required": {
         0: [
             "MagicalSeed1",

@@ -1,6 +1,6 @@
 ---
 # PAPER MARIO RANDOMIZER SETTINGS
-SettingsName: Intermediate Preset
+SettingsName: Standard Race (S0) Preset
 
 # General
 BlocksMatchContent  : true
@@ -15,15 +15,15 @@ AlwaysPeekaboo       : true
 ShortenCutscenes     : true
 SkipEpilogue         : true
 PeachCastleReturnPipe: true # false locks the pipe
-FoliageItemHints     : false
-HiddenPanelVisibility: 0 # 0:vanilla, 1:texture-edit
+FoliageItemHints     : true
+HiddenPanelVisibility: 1 # 0:vanilla, 1:texture-edit
 
 # Difficulty and Enemies
-ShuffleChapterDifficulty: false
-ProgressiveScaling      : true
+ShuffleChapterDifficulty: true
+ProgressiveScaling      : false
 
 ChallengeMode  : false
-CapEnemyXP     : true
+CapEnemyXP     : false
 XPMultiplier   : 1
 DoubleDamage   : false
 QuadrupleDamage: false
@@ -46,26 +46,26 @@ IncludeCoinsFavors    : false # always false if IncludeFavorsMode:0
 IncludeShops          : true
 ProgressionOnRowf     : true # irrelevant if IncludeShops:false
 ProgressionOnMerlow   : true # irrelevant if IncludeShops:false
-IncludePanels         : true
-IncludeFavorsMode     : 1 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
-IncludeLettersMode    : 1 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
+IncludePanels         : false
+IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
+IncludeLettersMode    : 0 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
 IncludeRadioTradeEvent: false
 IncludeDojo           : false
 KeyitemsOutsideDungeon: true
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
 # Item Pool Modification
-GearShuffleMode     : 1 # 0:vanilla, 1:location shuffle, 2:full shuffle
-AddItemPouches      : true
+GearShuffleMode     : 0 # 0:vanilla, 1:location shuffle, 2:full shuffle
+AddItemPouches      : false
 RandomConsumableMode: 0 # 0 = vanilla, 1 = full random, 2 = balanced random, 3 = mystery only
 ItemQuality         : 100
-ItemTrapMode        : 1 # 0:off, 1:sparse, 2:moderate, 3:plenty
+ItemTrapMode        : 0 # 0:off, 1:sparse, 2:moderate, 3:plenty
 
 # Item Misc
 CookWithoutFryingPan : false
-MerlowRewardPricing  : 1 # 0:Cheap (5-30), 1:Normal (10-60)
+MerlowRewardPricing  : 0 # 0:Cheap (5-30), 1:Normal (10-60)
 RipCheatoItemsInLogic: 6 # 0-11
-AllowItemHints       : true
+AllowItemHints       : false
 # Mystery? item options
 RandomChoice         : false
 MysteryRandomPick    : false
@@ -128,7 +128,7 @@ RandomPartnersMin         : 1 # 1-8
 RandomPartnersMax         : 1 # 1-8
 
 # Pre-opened areas
-MagicalSeedsRequired: 4 # 5:random
+MagicalSeedsRequired: 2 # 5:random
 PrologueOpen        : false
 BlueHouseOpen       : false
 MtRuggedOpen        : false
@@ -141,7 +141,7 @@ Ch7BridgeVisible    : true
 StarWaySpiritsNeededCnt: 7 # -1:Random
 RequireSpecificSpirits : false # always false if StarWaySpiritsNeededCnt: 7
 LimitChapterLogic      : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
-BowsersCastleMode      : 1 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
+BowsersCastleMode      : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 StarHunt               : false
 StarHuntRequired       : 50 # max 120
 StarHuntTotal          : 70 # max 120, must be >= StarHuntRequired
@@ -157,9 +157,9 @@ UnpairedEntrances       : false # NYI
 
 # Costs of Moves and Badges
 # 0: vanilla, 1: balanced random, 2: shuffled, 3: fully random
-RandomBadgesBP   : 0
-RandomBadgesFP   : 0
-RandomPartnerFP  : 0
+RandomBadgesBP   : 1
+RandomBadgesFP   : 1
+RandomPartnerFP  : 1
 RandomStarpowerSP: 0
 
 # Misc Gameplay Randomization
@@ -168,7 +168,7 @@ ShuffleBlocks: false
 # Quizmo Quizzes
 RandomQuiz         : true
 QuizmoAlwaysAppears: false
-SkipQuiz           : false
+SkipQuiz           : true
 
 # Spoilerlog
 WriteSpoilerLog : true
@@ -185,28 +185,28 @@ RandomCoinColor: true # if true: overrules CoinColor
 # RANDOM_PICK    : 2
 # RANDOM_PICK_NOT_VANILLA: 3
 # ALWAYS_RANDOM  : 4
-MarioSetting     : 0
+MarioSetting     : 2
 MarioSprite      : 0
-GoombarioSetting : 0
+GoombarioSetting : 2
 GoombarioSprite  : 0
-KooperSetting    : 0
+KooperSetting    : 2
 KooperSprite     : 0
-BombetteSetting  : 0
+BombetteSetting  : 2
 BombetteSprite   : 0
-ParakarrySetting : 0
+ParakarrySetting : 2
 ParakarrySprite  : 0
-BowSetting       : 0
+BowSetting       : 2
 BowSprite        : 0
-WattSetting      : 0
+WattSetting      : 2
 WattSprite       : 0
-SushieSetting    : 0
+SushieSetting    : 2
 SushieSprite     : 0
-LakilesterSetting: 0
+LakilesterSetting: 2
 LakilesterSprite : 0
-BossesSetting    : 0
-EnemiesSetting   : 0
-NPCSetting       : 0
-HammerSetting    : 0
+BossesSetting    : 2
+EnemiesSetting   : 2
+NPCSetting       : 2
+HammerSetting    : 2
 
 # Audio options
 ShuffleMusic    : False
@@ -214,9 +214,9 @@ ShuffleMusicMode: 0 # 0:shuffle by song mood, 1:shuffle by song type, 2:full shu
 ShuffleJingles  : False
 
 # Joke options
-RomanNumerals: false
-RandomText   : false
-RandomPitch  : false
+RomanNumerals  : false
+RandomText     : false
+RandomPitch: false
 
 # Glitched Logic
 PrologueGelEarly                                : false

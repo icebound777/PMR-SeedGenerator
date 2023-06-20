@@ -1,6 +1,6 @@
 ---
 # PAPER MARIO RANDOMIZER SETTINGS
-SettingsName: Standard Race Preset
+SettingsName: Standard Race (S1) Preset
 
 # General
 BlocksMatchContent  : true
@@ -55,7 +55,7 @@ KeyitemsOutsideDungeon: true
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
 # Item Pool Modification
-GearShuffleMode     : 0 # 0:vanilla, 1:location shuffle, 2:full shuffle
+GearShuffleMode     : 2 # 0:vanilla, 1:location shuffle, 2:full shuffle
 AddItemPouches      : false
 RandomConsumableMode: 0 # 0 = vanilla, 1 = full random, 2 = balanced random, 3 = mystery only
 ItemQuality         : 100
@@ -129,19 +129,22 @@ RandomPartnersMax         : 1 # 1-8
 
 # Pre-opened areas
 MagicalSeedsRequired: 2 # 5:random
-PrologueOpen        : false
+PrologueOpen        : true
 BlueHouseOpen       : false
 MtRuggedOpen        : false
+ForeverForestOpen   : true
 ToyboxOpen          : false
 WhaleOpen           : false
-Ch7BridgeVisible    : true
+Ch7BridgeVisible    : false
 
 # Goal Settings
 StarWaySpiritsNeededCnt: 7 # -1:Random
+RequireSpecificSpirits : false # always false if StarWaySpiritsNeededCnt: 7
+LimitChapterLogic      : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
 BowsersCastleMode      : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 StarHunt               : false
-StarHuntRequired       : 120
-StarHuntTotal          : 120
+StarHuntRequired       : 50 # max 120
+StarHuntTotal          : 70 # max 120, must be >= StarHuntRequired
 StarHuntEndsGame       : true
 
 # Entrance Shuffle

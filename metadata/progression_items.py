@@ -15,6 +15,7 @@ progression_items = {
     0x0017 : "DiamondStone",
     0x0019 : "KooperShell",
     #0x001A : "BowserCastleKey", # see end of list
+    0x001B : "ForestPass",
     0x001C : "BooWeight",
     0x001D : "BooPortrait",
     0x001E : "CrystalBerry",
