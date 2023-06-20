@@ -435,24 +435,7 @@ class RandomSeed:
         """
         self.starting_items = []
         if rando_settings.random_starting_items:
-            starting_item_options = [
-                rando_settings.starting_item_0,
-                rando_settings.starting_item_1,
-                rando_settings.starting_item_2,
-                rando_settings.starting_item_3,
-                rando_settings.starting_item_4,
-                rando_settings.starting_item_5,
-                rando_settings.starting_item_6,
-                rando_settings.starting_item_7,
-                rando_settings.starting_item_8,
-                rando_settings.starting_item_9,
-                rando_settings.starting_item_A,
-                rando_settings.starting_item_B,
-                rando_settings.starting_item_C,
-                rando_settings.starting_item_D,
-                rando_settings.starting_item_E,
-                rando_settings.starting_item_F
-            ]
+            starting_item_options = [0 for _ in range(16)]
 
             # Set up allowed items
             all_allowed_starting_items = []
@@ -493,6 +476,23 @@ class RandomSeed:
 
                     self.starting_items.append(random_item_obj)
                     starting_item_options[i] = random_item_id
+
+            rando_settings.starting_item_0 = starting_item_options[0]
+            rando_settings.starting_item_1 = starting_item_options[1]
+            rando_settings.starting_item_2 = starting_item_options[2]
+            rando_settings.starting_item_3 = starting_item_options[3]
+            rando_settings.starting_item_4 = starting_item_options[4]
+            rando_settings.starting_item_5 = starting_item_options[5]
+            rando_settings.starting_item_6 = starting_item_options[6]
+            rando_settings.starting_item_7 = starting_item_options[7]
+            rando_settings.starting_item_8 = starting_item_options[8]
+            rando_settings.starting_item_9 = starting_item_options[9]
+            rando_settings.starting_item_A = starting_item_options[10]
+            rando_settings.starting_item_B = starting_item_options[11]
+            rando_settings.starting_item_C = starting_item_options[12]
+            rando_settings.starting_item_D = starting_item_options[13]
+            rando_settings.starting_item_E = starting_item_options[14]
+            rando_settings.starting_item_F = starting_item_options[15]
         else:
             self.starting_items = self.rando_settings.get_startitem_list()
 
