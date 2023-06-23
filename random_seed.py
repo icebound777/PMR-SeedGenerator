@@ -163,6 +163,7 @@ class RandomSeed:
                     self.rando_settings.starway_spirits_needed_count = random.randint(0,7)
                 if (    self.rando_settings.require_specific_spirits
                     and 0 < self.rando_settings.starway_spirits_needed_count < 7
+                    and not self.rando_settings.star_hunt
                 ):
                     all_spirits = [
                         StarSpirits.ELDSTAR,
