@@ -404,7 +404,9 @@ def get_limited_chapter_logic(
     """
     Returns the modified world graph itself for specific spirits limiting
     chapter logic, which sets item locations in non-required chapters
-    out of logic.
+    to be in logic only if Bowser can already be reached. This makes them
+    effectively out of logic, but still allows the item placement to put
+    some progression items outside of the required chapters.
     """
     chapter_areaname_map = {
         1: ["NOK","TRD"],
@@ -426,7 +428,7 @@ def get_limited_chapter_logic(
             if node_id[:3] in out_of_logic_areas:
                 for index, edge in enumerate(world_graph[node_id]["edge_list"]):
                     if type(edge["to"]["id"]) is str: # is item location
-                        world_graph[node_id]["edge_list"][index]["reqs"].extend([["RF_OutOfLogic"]])
+                        world_graph[node_id]["edge_list"][index]["reqs"].extend([["YOUWIN"]])
     else:
         gear_node_ids = [
             # Hammer bush irrelevant here
@@ -440,7 +442,7 @@ def get_limited_chapter_logic(
                 for index, edge in enumerate(world_graph[node_id]["edge_list"]):
                     if type(edge["to"]["id"]) is str: # is item location
                         if (f"{edge['to']['map']}/{edge['to']['id']}") not in gear_node_ids:
-                            world_graph[node_id]["edge_list"][index]["reqs"].extend([["RF_OutOfLogic"]])
+                            world_graph[node_id]["edge_list"][index]["reqs"].extend([["YOUWIN"]])
 
     # Remove logic from star spirits we do not need to rescue.
     # This is so Rowf doesn't require us to still save them.
@@ -459,7 +461,7 @@ def get_limited_chapter_logic(
                 if (   "pseudoitems" in edge
                     and any(True for x in edge["pseudoitems"] if x.startswith("STARSPIRIT_"))
                 ):
-                    world_graph[pair[1]]["edge_list"][index]["reqs"].extend([["RF_OutOfLogic"]])
+                    world_graph[pair[1]]["edge_list"][index]["reqs"].extend([["YOUWIN"]])
                     break
 
     return world_graph
