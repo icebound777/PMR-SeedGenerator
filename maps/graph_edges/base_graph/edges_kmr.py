@@ -10,6 +10,7 @@ edges_kmr  = [
     {"from": {"map": "KMR_02", "id": 1}, "to": {"map": "KMR_00", "id": 0}, "reqs": []}, # Goomba Village Exit Left -> Forest Clearing Exit East
     {"from": {"map": "KMR_02", "id": 2}, "to": {"map": "KMR_05", "id": 1}, "reqs": []}, # Goomba Village Exit Top Left -> Behind the Village Exit Right
     {"from": {"map": "KMR_02", "id": 3}, "to": {"map": "TIK_01", "id": 2}, "reqs": []}, # Goomba Village Blue Warp Pipe -> Warp Zone 1 (B1) Blue Pipe (Right)
+    {"from": {"map": "KMR_02", "id": "GiftB"}, "to": {"map": "KMR_03", "id": 0}, "reqs": [["RF_BrokenVeranda"]]}, # Pseudo-Edge: Fall from balcony during vanilla start
 
     {"from": {"map": "KMR_02", "id": 1}, "to": {"map": "KMR_02", "id": 0}, "reqs": [["Hammer", "Bombette"]]}, #? Goomba Village Exit Left -> Goomba Village Exit Right
     {"from": {"map": "KMR_02", "id": 0}, "to": {"map": "KMR_02", "id": 1}, "reqs": [["Hammer", "Bombette"]]}, #? Goomba Village Exit Right -> Goomba Village Exit Left
@@ -18,7 +19,7 @@ edges_kmr  = [
     {"from": {"map": "KMR_02", "id": 1}, "to": {"map": "KMR_02", "id": 3}, "reqs": [["GF_TIK01_WarpPipes"],["Boots"]]}, #? Goomba Village Exit Left -> Goomba Village Blue Warp Pipe
     {"from": {"map": "KMR_02", "id": 3}, "to": {"map": "KMR_02", "id": 1}, "reqs": []}, #? Goomba Village Blue Warp Pipe -> Goomba Village Exit Left
 
-    {"from": {"map": "KMR_02", "id": 1}, "to": {"map": "KMR_02", "id": "ItemA"},        "reqs": []}, #* Goomba Village Exit Left -> ItemA (ShootingStar)
+    {"from": {"map": "KMR_02", "id": 1}, "to": {"map": "KMR_02", "id": "ItemA"},        "reqs": [["RF_FixedVeranda"]]}, #* Goomba Village Exit Left -> ItemA (ShootingStar)
     {"from": {"map": "KMR_02", "id": 1}, "to": {"map": "KMR_02", "id": "GiftA"},        "reqs": [["FAVOR_2_01_active"]]}, #* Goomba Village Exit Left -> GiftA (KootTheTape)
     {"from": {"map": "KMR_02", "id": 1}, "to": {"map": "KMR_02", "id": "GiftB"},        "reqs": []}, #* Goomba Village Exit Left -> GiftB (PowerJump)
     {"from": {"map": "KMR_02", "id": 1}, "to": {"map": "KMR_02", "id": "GiftC"},        "reqs": [["Dolly"]]}, #* Goomba Village Exit Left -> GiftC (StarPiece)
@@ -52,8 +53,8 @@ edges_kmr  = [
     {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_04", "id": 0}, "reqs": []}, # Bottom of the Cliff Exit Left -> Jr. Troopa's Playground Exit Right
     {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_05", "id": 0}, "reqs": []}, # Bottom of the Cliff Exit Right -> Behind the Village Exit Left
 
-    {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_03", "id": 1}, "reqs": [["Hammer", "Bombette"]]}, #? Bottom of the Cliff Exit Left -> Bottom of the Cliff Exit Right
-    {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": 0}, "reqs": [["Hammer", "Bombette"]]}, #? Bottom of the Cliff Exit Right -> Bottom of the Cliff Exit Left
+    {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_03", "id": 1}, "reqs": [["Hammer", "Bombette"]], "pseudoitems": ["RF_FixedVeranda"]}, #? Bottom of the Cliff Exit Left -> Bottom of the Cliff Exit Right
+    {"from": {"map": "KMR_03", "id": 1}, "to": {"map": "KMR_03", "id": 0}, "reqs": [["Hammer", "Bombette"]], "pseudoitems": ["RF_FixedVeranda"]}, #? Bottom of the Cliff Exit Right -> Bottom of the Cliff Exit Left
 
     {"from": {"map": "KMR_03", "id": 0},       "to": {"map": "KMR_03", "id": "YBlockA"},       "reqs": [["can_hit_grounded_blocks"]]}, #* Bottom of the Cliff Exit Left -> YBlockA (Coin)
     {"from": {"map": "KMR_03", "id": 0},       "to": {"map": "KMR_03", "id": "Tree1_Drop1A"},  "reqs": [["can_shake_trees"]]}, #* Bottom of the Cliff Exit Left -> Tree1_Drop1A (Mushroom)
