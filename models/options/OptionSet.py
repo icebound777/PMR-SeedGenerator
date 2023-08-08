@@ -54,6 +54,7 @@ class OptionSet:
         self.no_save_blocks = get_option_default_value("NoSaveBlocks")
         self.no_heart_blocks = get_option_default_value("NoHeartBlocks")
         self.no_healing_items = get_option_default_value("NoHealingItems")
+        self.drop_starpoints = get_option_default_value("DropStarPoints")
 
         self.random_formations = get_option_default_value("RandomFormations")
 
@@ -275,6 +276,8 @@ class OptionSet:
             self.no_heart_blocks = options_dict.get("NoHeartBlocks")
         if "NoHealingItems" in options_dict:
             self.no_healing_items = options_dict.get("NoHealingItems")
+        if "DropStarPoints" in options_dict:
+            self.drop_starpoints = options_dict.get("DropStarPoints")
 
         if "RandomFormations" in options_dict:
             self.random_formations = options_dict.get("RandomFormations")
@@ -983,6 +986,7 @@ class OptionSet:
         basic_assert("NoSaveBlocks", bool)
         basic_assert("NoHeartBlocks", bool)
         basic_assert("NoHealingItems", bool)
+        basic_assert("DropStarPoints", bool)
 
         basic_assert("RandomFormations", bool)
 
@@ -1473,6 +1477,7 @@ class OptionSet:
             load_dbkey(self.no_save_blocks, "NoSaveBlocks"),
             load_dbkey(self.no_heart_blocks, "NoHeartBlocks"),
             load_dbkey(self.no_healing_items, "NoHealingItems"),
+            load_dbkey(self.drop_starpoints, "DropStarPoints"),
 
             load_dbkey(self.random_formations, "RandomFormations"),
 
