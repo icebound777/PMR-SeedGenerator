@@ -377,7 +377,8 @@ class RandomSeed:
             hidden_block_mode=hidden_block_mode,
             starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
             startwith_speedyspin=self.rando_settings.always_speedyspin,
-            world_graph=modified_world_graph
+            world_graph=modified_world_graph,
+            shuffle_items=self.rando_settings.shuffle_items
         )
 
         # Set up seed hash for the save select screen

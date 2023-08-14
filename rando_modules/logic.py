@@ -852,7 +852,8 @@ def _algo_assumed_fill(
             startwith_whale_open,
             ch7_bridge_visible,
             speedyspin,
-            cook_without_fryingpan
+            cook_without_fryingpan,
+            vanilla_start=False
         )
 
         for item_ in pool_combined_progression_items:
@@ -965,7 +966,8 @@ def get_item_spheres(
     hidden_block_mode:int,
     starting_items:list,
     startwith_speedyspin,
-    world_graph
+    world_graph,
+    shuffle_items:bool
 ) -> dict:
     """
     Builds and returns a dictionary containing progression spheres and their
@@ -992,6 +994,14 @@ def get_item_spheres(
 
     reachable_node_ids.add(starting_node_id)
 
+    vanilla_start = (
+            starting_node_id == "KMR_02/1"
+        and not shuffle_items
+        and starting_hammer == -1
+        and "Bombette" not in starting_partners
+        and not partners_always_usable
+    )
+
     # Init Mario Inventory
     mario = MarioInventory(
         starting_boots,
@@ -1009,7 +1019,8 @@ def get_item_spheres(
         startwith_whale_open,
         ch7_bridge_visible,
         startwith_speedyspin,
-        cook_without_fryingpan
+        cook_without_fryingpan,
+        vanilla_start
     )
 
     # Add starting items

@@ -27,7 +27,8 @@ class MarioInventory:
         startwith_whale_open:bool=False,
         ch7_bridge_visible:bool=True,
         startwith_speedyspin:bool=True,
-        cook_without_fryingpan:bool=True
+        cook_without_fryingpan:bool=True,
+        vanilla_start:bool=False
     ):
         """
         Initializes Mario's starting inventory with values depending on
@@ -58,6 +59,7 @@ class MarioInventory:
         assert(isinstance(ch7_bridge_visible, bool))
         assert(isinstance(startwith_speedyspin, bool))
         assert(isinstance(cook_without_fryingpan, bool))
+        assert(isinstance(vanilla_start, bool))
 
         self.boots = set()
         self.hammer = set()
@@ -128,6 +130,11 @@ class MarioInventory:
 
         if cook_without_fryingpan:
             self.add("RF_CanCook")
+
+        if vanilla_start:
+            self.add("RF_BrokenVeranda")
+        else:
+            self.add("RF_FixedVeranda")
 
 
     def add(self, item_object):
