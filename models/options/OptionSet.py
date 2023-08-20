@@ -81,6 +81,7 @@ class OptionSet:
         # Item Pool Modification
         self.gear_shuffle_mode = get_option_default_value("GearShuffleMode")
         self.add_item_pouches = False
+        self.add_unused_badge_duplicates = False
         self.randomize_consumable_mode = RandomizeConsumablesMode.OFF
         self.item_quality = 100
         self.itemtrap_mode = ItemTrapMode.OFF
@@ -323,6 +324,8 @@ class OptionSet:
             self.gear_shuffle_mode = options_dict.get("GearShuffleMode")
         if "AddItemPouches" in options_dict:
             self.add_item_pouches = options_dict.get("AddItemPouches")
+        if "AddUnusedBadgeDuplicates" in options_dict:
+            self.add_unused_badge_duplicates = options_dict.get("AddUnusedBadgeDuplicates")
         if "RandomConsumableMode" in options_dict:
             self.randomize_consumable_mode = options_dict.get("RandomConsumableMode")
         if "ItemQuality" in options_dict:
@@ -1013,6 +1016,7 @@ class OptionSet:
         # Item Pool Modification
         basic_assert("GearShuffleMode", int)
         basic_assert("AddItemPouches", bool)
+        basic_assert("AddUnusedBadgeDuplicates", bool)
         if "RandomConsumableMode" in options_dict:
             assert (    isinstance(options_dict.get("RandomConsumableMode"), int)
                     and RandomizeConsumablesMode.OFF <= options_dict.get("RandomConsumableMode") <= RandomizeConsumablesMode.MYSTERY_ONLY

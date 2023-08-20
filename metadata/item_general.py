@@ -76,6 +76,20 @@ unused_items = [
     "ShrinkSmash"
 ]
 
+unused_duplicates = [
+    "HappyHeartX",
+    "FlowerSaverX",
+    "DamageDodgeX",
+    "PowerPlusX",
+    "DefendPlusX",
+    "DefendPlusY",
+    "HappyFlowerX",
+    "HPPlusX",
+    "HPPlusY",
+    "FPPlusX",
+    "FPPlusY",
+]
+
 unplaceable_items = [
     "Boots",
     "SuperBoots",

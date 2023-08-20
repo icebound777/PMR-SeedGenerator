@@ -328,6 +328,7 @@ def _generate_item_pools(
     starting_boots:int,
     starting_hammer:int,
     add_item_pouches:bool,
+    add_unused_badge_duplicates:bool,
     bowsers_castle_mode:int,
     star_hunt_stars:int
 ):
@@ -564,6 +565,22 @@ def _generate_item_pools(
 
         pool_other_items.extend(pouch_items)
 
+    # Swap random consumables and coins for unused badge duplicates, if needed
+    if add_unused_badge_duplicates:
+        unused_badge_duplicates = []
+        for item in Item.select().where(Item.unused_duplicates == True):
+            unused_badge_duplicates.append(item)
+
+        for _ in unused_badge_duplicates:
+            if len(pool_coins_only) > 20:
+                trashable_items = pool_coins_only
+            else:
+                trashable_items = pool_illogical_consumables
+            trashable_items.pop()
+
+        pool_other_items.extend(unused_badge_duplicates)
+
+
     # If we start jumpless, add a progressive boots item to the item pool
     if starting_boots == StartingBoots.JUMPLESS:
         new_boots = Item.get(Item.item_name == "BootsProxy1")
@@ -763,6 +780,7 @@ def _algo_assumed_fill(
     keyitems_outside_dungeon:bool,
     starting_items:list,
     add_item_pouches:bool,
+    add_unused_badge_duplicates:bool,
     bowsers_castle_mode:int,
     star_hunt_stars:int,
     world_graph
@@ -811,6 +829,7 @@ def _algo_assumed_fill(
         starting_boots,
         starting_hammer,
         add_item_pouches,
+        add_unused_badge_duplicates,
         bowsers_castle_mode,
         star_hunt_stars
     )
@@ -1168,6 +1187,7 @@ def place_items(
     keyitems_outside_dungeon:bool,
     starting_items:list,
     add_item_pouches:list,
+    add_unused_badge_duplicates:bool,
     bowsers_castle_mode:int,
     star_hunt_stars:int,
     world_graph = None
@@ -1224,6 +1244,7 @@ def place_items(
             keyitems_outside_dungeon,
             starting_items,
             add_item_pouches,
+            add_unused_badge_duplicates,
             bowsers_castle_mode,
             star_hunt_stars,
             world_graph
