@@ -91,6 +91,7 @@ class RandomSeed:
                 modified_world_graph = deepcopy(world_graph)
                 self.entrance_list = []
                 self.spoilerlog_additions = {}
+                self.item_spheres_dict = None
 
                 # Modify entrances if needed
                 maps_removed = False
@@ -273,10 +274,37 @@ class RandomSeed:
                 self.rando_settings.starting_map = starting_map_value
 
                 self.rando_settings.magical_seeds_required = magical_seeds_required
+
+                # Determine item placement spheres
+                self.item_spheres_dict = get_item_spheres(
+                    item_placement= self.placed_items,
+                    starting_map_id=self.rando_settings.starting_map,
+                    startwith_prologue_open=self.rando_settings.prologue_open,
+                    startwith_bluehouse_open=self.rando_settings.bluehouse_open,
+                    startwith_mtrugged_open=self.rando_settings.mtrugged_open,
+                    startwith_forest_open=self.rando_settings.foreverforest_open,
+                    magical_seeds_required=self.rando_settings.magical_seeds_required,
+                    startwith_toybox_open=self.rando_settings.toybox_open,
+                    startwith_whale_open=self.rando_settings.whale_open,
+                    ch7_bridge_visible=self.rando_settings.ch7_bridge_visible,
+                    cook_without_fryingpan=self.rando_settings.cook_without_fryingpan,
+                    starting_partners=self.starting_partners,
+                    starting_boots=self.rando_settings.starting_boots,
+                    starting_hammer=self.rando_settings.starting_hammer,
+                    partners_always_usable=self.rando_settings.partners_always_usable,
+                    hidden_block_mode=hidden_block_mode,
+                    starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
+                    startwith_speedyspin=self.rando_settings.always_speedyspin,
+                    world_graph=modified_world_graph,
+                    shuffle_items=self.rando_settings.shuffle_items
+                )
+
                 break
 
             except UnbeatableSeedError as err:
                 print(f"Failed to place items! Fail count: {placement_attempt}")
+            except AssertionError as err:
+                print(f"Failed to build beatable world! Fail count: {placement_attempt}")
 
         # Adjust item pricing
         for node in self.placed_items:
@@ -355,30 +383,6 @@ class RandomSeed:
             randomize_bgm=self.rando_settings.shuffle_music,
             randomize_by=self.rando_settings.shuffle_music_mode,
             randomize_jingles=self.rando_settings.shuffle_jingles
-        )
-
-        # Determine item placement spheres
-        self.item_spheres_dict = get_item_spheres(
-            item_placement= self.placed_items,
-            starting_map_id=self.rando_settings.starting_map,
-            startwith_prologue_open=self.rando_settings.prologue_open,
-            startwith_bluehouse_open=self.rando_settings.bluehouse_open,
-            startwith_mtrugged_open=self.rando_settings.mtrugged_open,
-            startwith_forest_open=self.rando_settings.foreverforest_open,
-            magical_seeds_required=self.rando_settings.magical_seeds_required,
-            startwith_toybox_open=self.rando_settings.toybox_open,
-            startwith_whale_open=self.rando_settings.whale_open,
-            ch7_bridge_visible=self.rando_settings.ch7_bridge_visible,
-            cook_without_fryingpan=self.rando_settings.cook_without_fryingpan,
-            starting_partners=self.starting_partners,
-            starting_boots=self.rando_settings.starting_boots,
-            starting_hammer=self.rando_settings.starting_hammer,
-            partners_always_usable=self.rando_settings.partners_always_usable,
-            hidden_block_mode=hidden_block_mode,
-            starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
-            startwith_speedyspin=self.rando_settings.always_speedyspin,
-            world_graph=modified_world_graph,
-            shuffle_items=self.rando_settings.shuffle_items
         )
 
         # Set up seed hash for the save select screen
