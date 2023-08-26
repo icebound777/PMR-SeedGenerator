@@ -266,6 +266,7 @@ class RandomSeed:
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
                     add_item_pouches=self.rando_settings.add_item_pouches,
                     add_unused_badge_duplicates=self.rando_settings.add_unused_badge_duplicates,
+                    add_beta_items=self.rando_settings.add_beta_items,
                     bowsers_castle_mode=self.rando_settings.bowsers_castle_mode,
                     star_hunt_stars=self.rando_settings.star_hunt_total if self.rando_settings.star_hunt else 0,
                     world_graph=modified_world_graph

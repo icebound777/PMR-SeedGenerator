@@ -329,6 +329,7 @@ def _generate_item_pools(
     starting_hammer:int,
     add_item_pouches:bool,
     add_unused_badge_duplicates:bool,
+    add_beta_items:bool,
     bowsers_castle_mode:int,
     star_hunt_stars:int
 ):
@@ -580,6 +581,20 @@ def _generate_item_pools(
 
         pool_other_items.extend(unused_badge_duplicates)
 
+    # Swap random consumables and coins for beta items, if needed
+    if add_beta_items:
+        beta_items = []
+        for item in Item.select().where(Item.unused_duplicates == False).where(Item.unused == True):
+            beta_items.append(item)
+
+        for _ in beta_items:
+            if len(pool_coins_only) > 20:
+                trashable_items = pool_coins_only
+            else:
+                trashable_items = pool_illogical_consumables
+            trashable_items.pop()
+
+        pool_other_items.extend(beta_items)
 
     # If we start jumpless, add a progressive boots item to the item pool
     if starting_boots == StartingBoots.JUMPLESS:
@@ -645,7 +660,7 @@ def _generate_item_pools(
         pool_other_items,
         randomize_consumable_mode,
         item_quality,
-        True  # add_unused_items
+        add_beta_items
     )
 
     pool_other_items = get_trapped_itempool(
@@ -781,6 +796,7 @@ def _algo_assumed_fill(
     starting_items:list,
     add_item_pouches:bool,
     add_unused_badge_duplicates:bool,
+    add_beta_items:bool,
     bowsers_castle_mode:int,
     star_hunt_stars:int,
     world_graph
@@ -830,6 +846,7 @@ def _algo_assumed_fill(
         starting_hammer,
         add_item_pouches,
         add_unused_badge_duplicates,
+        add_beta_items,
         bowsers_castle_mode,
         star_hunt_stars
     )
@@ -1188,6 +1205,7 @@ def place_items(
     starting_items:list,
     add_item_pouches:list,
     add_unused_badge_duplicates:bool,
+    add_beta_items:bool,
     bowsers_castle_mode:int,
     star_hunt_stars:int,
     world_graph = None
@@ -1245,6 +1263,7 @@ def place_items(
             starting_items,
             add_item_pouches,
             add_unused_badge_duplicates,
+            add_beta_items,
             bowsers_castle_mode,
             star_hunt_stars,
             world_graph

@@ -1,4 +1,5 @@
 item_scores = [
+    {"name": "InsecticideHerb",   "type": "battle",   "score": 1},
     {"name": "DriedShroom", "type": "heal",     "score": 1},
     {"name": "TastyTonic",  "type": "heal",     "score": 1},
     {"name": "DustyHammer", "type": "battle",   "score": 1},

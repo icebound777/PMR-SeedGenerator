@@ -100,7 +100,9 @@ def get_randomized_itempool(itempool:list, consumable_mode:int, quality:int, add
         if add_unused_items:
             available_items = item_scores
         else:
-            available_items = [item for item in item_scores if item["name"] != "HustleDrink"]
+            available_items = [
+                item for item in item_scores if item["name"] not in ["HustleDrink", "InsecticideHerb"]
+            ]
 
         # Generate fully random pool
         new_items = _get_random_consumables(target_count, available_items)
