@@ -267,6 +267,7 @@ class RandomSeed:
                     add_item_pouches=self.rando_settings.add_item_pouches,
                     add_unused_badge_duplicates=self.rando_settings.add_unused_badge_duplicates,
                     add_beta_items=self.rando_settings.add_beta_items,
+                    do_progressive_badges=self.rando_settings.progressive_badges,
                     bowsers_castle_mode=self.rando_settings.bowsers_castle_mode,
                     star_hunt_stars=self.rando_settings.star_hunt_total if self.rando_settings.star_hunt else 0,
                     world_graph=modified_world_graph
@@ -461,6 +462,7 @@ class RandomSeed:
                 always_speedyspin=rando_settings.always_speedyspin,
                 always_ispy=rando_settings.always_ispy,
                 always_peekaboo=rando_settings.always_peekaboo,
+                do_progressive_badges=rando_settings.progressive_badges,
                 gear_shuffle_mode=rando_settings.gear_shuffle_mode
             )
             for item_obj in excluded_items:

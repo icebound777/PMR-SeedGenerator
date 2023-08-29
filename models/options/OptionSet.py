@@ -83,6 +83,7 @@ class OptionSet:
         self.add_item_pouches = False
         self.add_unused_badge_duplicates = False
         self.add_beta_items = False
+        self.progressive_badges = False
         self.randomize_consumable_mode = RandomizeConsumablesMode.OFF
         self.item_quality = 100
         self.itemtrap_mode = ItemTrapMode.OFF
@@ -329,6 +330,8 @@ class OptionSet:
             self.add_unused_badge_duplicates = options_dict.get("AddUnusedBadgeDuplicates")
         if "AddBetaItems" in options_dict:
             self.add_beta_items = options_dict.get("AddBetaItems")
+        if "ProgressiveBadges" in options_dict:
+            self.progressive_badges = options_dict.get("ProgressiveBadges")
         if "RandomConsumableMode" in options_dict:
             self.randomize_consumable_mode = options_dict.get("RandomConsumableMode")
         if "ItemQuality" in options_dict:
@@ -1021,6 +1024,7 @@ class OptionSet:
         basic_assert("AddItemPouches", bool)
         basic_assert("AddUnusedBadgeDuplicates", bool)
         basic_assert("AddBetaItems", bool)
+        basic_assert("ProgressiveBadges", bool)
         if "RandomConsumableMode" in options_dict:
             assert (    isinstance(options_dict.get("RandomConsumableMode"), int)
                     and RandomizeConsumablesMode.OFF <= options_dict.get("RandomConsumableMode") <= RandomizeConsumablesMode.MYSTERY_ONLY

@@ -90,6 +90,24 @@ unused_duplicates = [
     "FPPlusY",
 ]
 
+progressive_badges = [
+    "SmashChargeProxy1",
+    "SmashChargeProxy2",
+    "SmashChargeProxy3",
+    "JumpChargeProxy1",
+    "JumpChargeProxy2",
+    "JumpChargeProxy3",
+    "PowerJumpProxy1",
+    "PowerJumpProxy2",
+    "PowerJumpProxy3",
+    "PowerSmashProxy1",
+    "PowerSmashProxy2",
+    "PowerSmashProxy3",
+    "QuakeHammerProxy1",
+    "QuakeHammerProxy2",
+    "QuakeHammerProxy3"
+]
+
 unplaceable_items = [
     "Boots",
     "SuperBoots",
@@ -182,21 +200,6 @@ unplaceable_items = [
     "RedBerryKey",
     "YellowBerryKey",
     "BubbleBerryKey",
-    "SmashChargeProxy1",
-    "SmashChargeProxy2",
-    "SmashChargeProxy3",
-    "JumpChargeProxy1",
-    "JumpChargeProxy2",
-    "JumpChargeProxy3",
-    "PowerJumpProxy1",
-    "PowerJumpProxy2",
-    "PowerJumpProxy3",
-    "PowerSmashProxy1",
-    "PowerSmashProxy2",
-    "PowerSmashProxy3",
-    "QuakeHammerProxy1",
-    "QuakeHammerProxy2",
-    "QuakeHammerProxy3",
     "Goompa",
 ]
 

@@ -59,6 +59,7 @@ KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 GearShuffleMode         : 0 # 0:vanilla, 1:location shuffle, 2:full shuffle
 AddItemPouches          : true
 AddUnusedBadgeDuplicates: false
+ProgressiveBadges       : false
 AddBetaItems            : false
 RandomConsumableMode    : 2 # 0 = vanilla, 1 = full random, 2 = balanced random, 3 = mystery only
 ItemQuality             : 125

@@ -57,6 +57,23 @@ exclude_due_to_settings = {
         "FourthDegreeCard",
         "Diploma",
     ],
+    "do_progressive_badges": [
+        "SmashCharge0",
+        "SmashCharge",
+        "SSmashChg",
+        "JumpCharge0",
+        "JumpCharge",
+        "SJumpChg",
+        "PowerJump",
+        "SuperJump",
+        "MegaJump",
+        "PowerSmash1",
+        "SuperSmash",
+        "MegaSmash",
+        "QuakeHammer",
+        "PowerQuake",
+        "MegaQuake"
+    ]
 }
 
 exclude_from_taycet_placement = [

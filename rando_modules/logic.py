@@ -44,7 +44,7 @@ from metadata.progression_items                                 \
            progression_items
 from metadata.item_exclusion \
     import exclude_due_to_settings, exclude_from_taycet_placement
-from metadata.item_general import taycet_items
+from metadata.item_general import taycet_items, progressive_badges
 from metadata.node_exclusion import exclude_from_trap_placement
 
 from metadata.verbose_area_names import verbose_area_names
@@ -223,9 +223,10 @@ def get_items_to_exclude(
     always_speedyspin:bool,
     always_ispy:bool,
     always_peekaboo:bool,
+    do_progressive_badges:bool,
     gear_shuffle_mode:int,
     starting_hammer:int=-1,
-    starting_boots:int=-1
+    starting_boots:int=-1,
 ) -> list:
     """
     Returns a list of items that should not be placed or given to Mario at the
@@ -270,6 +271,10 @@ def get_items_to_exclude(
             excluded_items.append(item)
     if always_peekaboo:
         for item_name in exclude_due_to_settings.get("always_peekaboo"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
+    if do_progressive_badges:
+        for item_name in exclude_due_to_settings.get("do_progressive_badges"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
     if gear_shuffle_mode >= GearShuffleMode.GEAR_LOCATION_SHUFFLE:
@@ -330,6 +335,7 @@ def _generate_item_pools(
     add_item_pouches:bool,
     add_unused_badge_duplicates:bool,
     add_beta_items:bool,
+    do_progressive_badges:bool,
     bowsers_castle_mode:int,
     star_hunt_stars:int
 ):
@@ -596,6 +602,21 @@ def _generate_item_pools(
 
         pool_other_items.extend(beta_items)
 
+    # Swap random consumables and coins for progressive badges, if needed
+    if do_progressive_badges:
+        new_badges = []
+        for item in Item.select().where(Item.item_name.in_(progressive_badges)):
+            new_badges.append(item)
+
+        for _ in new_badges:
+            if len(pool_coins_only) > 20:
+                trashable_items = pool_coins_only
+            else:
+                trashable_items = pool_illogical_consumables
+            trashable_items.pop()
+
+        pool_other_items.extend(new_badges)
+
     # If we start jumpless, add a progressive boots item to the item pool
     if starting_boots == StartingBoots.JUMPLESS:
         new_boots = Item.get(Item.item_name == "BootsProxy1")
@@ -626,6 +647,7 @@ def _generate_item_pools(
         always_speedyspin,
         always_ispy,
         always_peekaboo,
+        do_progressive_badges,
         gear_shuffle_mode,
         starting_hammer,
         starting_boots
@@ -797,6 +819,7 @@ def _algo_assumed_fill(
     add_item_pouches:bool,
     add_unused_badge_duplicates:bool,
     add_beta_items:bool,
+    do_progressive_badges:bool,
     bowsers_castle_mode:int,
     star_hunt_stars:int,
     world_graph
@@ -847,6 +870,7 @@ def _algo_assumed_fill(
         add_item_pouches,
         add_unused_badge_duplicates,
         add_beta_items,
+        do_progressive_badges,
         bowsers_castle_mode,
         star_hunt_stars
     )
@@ -1206,6 +1230,7 @@ def place_items(
     add_item_pouches:list,
     add_unused_badge_duplicates:bool,
     add_beta_items:bool,
+    do_progressive_badges:bool,
     bowsers_castle_mode:int,
     star_hunt_stars:int,
     world_graph = None
@@ -1264,6 +1289,7 @@ def place_items(
             add_item_pouches,
             add_unused_badge_duplicates,
             add_beta_items,
+            do_progressive_badges,
             bowsers_castle_mode,
             star_hunt_stars,
             world_graph
