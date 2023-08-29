@@ -120,6 +120,8 @@ def write_spoiler_log(
         if cur_move_name.startswith("ChillOut"):
             # Trim "ChillOutMove" and "ChillOutBadge"
             cur_move_name = "ChillOut"
+        if cur_move_name in verbose_item_names:
+            cur_move_name = verbose_item_names[cur_move_name]
 
         if cur_move_type not in spoilers:
             spoilers[cur_move_type] = dict()
