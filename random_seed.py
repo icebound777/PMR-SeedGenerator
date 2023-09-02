@@ -268,6 +268,7 @@ class RandomSeed:
                     add_unused_badge_duplicates=self.rando_settings.add_unused_badge_duplicates,
                     add_beta_items=self.rando_settings.add_beta_items,
                     do_progressive_badges=self.rando_settings.progressive_badges,
+                    badge_pool_limit=self.rando_settings.badge_pool_limit,
                     bowsers_castle_mode=self.rando_settings.bowsers_castle_mode,
                     star_hunt_stars=self.rando_settings.star_hunt_total if self.rando_settings.star_hunt else 0,
                     world_graph=modified_world_graph

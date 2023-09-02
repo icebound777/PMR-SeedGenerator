@@ -336,6 +336,7 @@ def _generate_item_pools(
     add_unused_badge_duplicates:bool,
     add_beta_items:bool,
     do_progressive_badges:bool,
+    badge_pool_limit:int,
     bowsers_castle_mode:int,
     star_hunt_stars:int
 ):
@@ -631,6 +632,13 @@ def _generate_item_pools(
             continue
         #logging.info("Attempted to remove %s from item pools, but no pool holds such item.", item)
 
+    # If we have set a badge pool limit and exceed that, remove random badges
+    # until that condition is satisfied
+    if len(pool_badges) > badge_pool_limit:
+        random.shuffle(pool_badges)
+        while len(pool_badges) > badge_pool_limit:
+            pool_badges.pop()
+
     # If the item pool is the wrong size now, fix it by filiing up or clearing
     # out items
     cur_itempool_size = (
@@ -804,6 +812,7 @@ def _algo_assumed_fill(
     add_unused_badge_duplicates:bool,
     add_beta_items:bool,
     do_progressive_badges:bool,
+    badge_pool_limit:int,
     bowsers_castle_mode:int,
     star_hunt_stars:int,
     world_graph
@@ -855,6 +864,7 @@ def _algo_assumed_fill(
         add_unused_badge_duplicates,
         add_beta_items,
         do_progressive_badges,
+        badge_pool_limit,
         bowsers_castle_mode,
         star_hunt_stars
     )
@@ -1215,6 +1225,7 @@ def place_items(
     add_unused_badge_duplicates:bool,
     add_beta_items:bool,
     do_progressive_badges:bool,
+    badge_pool_limit:int,
     bowsers_castle_mode:int,
     star_hunt_stars:int,
     world_graph = None
@@ -1274,6 +1285,7 @@ def place_items(
             add_unused_badge_duplicates,
             add_beta_items,
             do_progressive_badges,
+            badge_pool_limit,
             bowsers_castle_mode,
             star_hunt_stars,
             world_graph
