@@ -349,6 +349,7 @@ def _generate_item_pools(
     """
     pool_coins_only = []
     pool_illogical_consumables = []
+    pool_badges = []
 
     # Pre-fill nodes that are not to be randomized
     for node_id in world_graph:
@@ -524,12 +525,21 @@ def _generate_item_pools(
                         pool_coins_only.append(current_node.vanilla_item)
                     elif current_node.vanilla_item.item_type == "ITEM":
                         pool_illogical_consumables.append(current_node.vanilla_item)
+                    elif current_node.vanilla_item.item_type == "BADGE":
+                        pool_badges.append(current_node.vanilla_item)
                     else:
                         pool_other_items.append(current_node.vanilla_item)
 
-    random.shuffle(pool_illogical_consumables)
+    target_itempool_size = (
+        len(pool_progression_items)
+        + len(pool_misc_progression_items)
+        + len(pool_coins_only)
+        + len(pool_illogical_consumables)
+        + len(pool_badges)
+        + len(pool_other_items)
+    )
 
-    # Swap random consumables and coins for power stars, if needed
+    # Add Power Stars, if needed
     if star_hunt_stars > 0:
         stars_added = 0
         for power_star_item in (
@@ -541,16 +551,11 @@ def _generate_item_pools(
         ):
             if stars_added >= star_hunt_stars:
                 break
-            if len(pool_coins_only) > 20:
-                trashable_items = pool_coins_only
-            else:
-                trashable_items = pool_illogical_consumables
 
-            trashable_items.pop()
             pool_progression_items.append(power_star_item)
             stars_added += 1
 
-    # Swap random consumables and coins for strange pouches if needed
+    # Add Item Pouches, if needed
     if add_item_pouches:
         pouch_items = [
             Item.get(Item.item_name == "PouchA"),
@@ -560,83 +565,39 @@ def _generate_item_pools(
             Item.get(Item.item_name == "PouchE"),
         ]
 
-        cnt_items_removed = 0
-
-        if len(pool_coins_only) > 20:
-            trashable_items = pool_coins_only
-        else:
-            trashable_items = pool_illogical_consumables
-        while cnt_items_removed < 5:
-            trashable_items.pop()
-            cnt_items_removed += 1
-
         pool_other_items.extend(pouch_items)
 
-    # Swap random consumables and coins for unused badge duplicates, if needed
+    # Add unused badge duplicates, if needed
     if add_unused_badge_duplicates:
         unused_badge_duplicates = []
         for item in Item.select().where(Item.unused_duplicates == True):
             unused_badge_duplicates.append(item)
 
-        for _ in unused_badge_duplicates:
-            if len(pool_coins_only) > 20:
-                trashable_items = pool_coins_only
-            else:
-                trashable_items = pool_illogical_consumables
-            trashable_items.pop()
+        pool_badges.extend(unused_badge_duplicates)
 
-        pool_other_items.extend(unused_badge_duplicates)
-
-    # Swap random consumables and coins for beta items, if needed
+    # Add beta items, if needed
     if add_beta_items:
         beta_items = []
         for item in Item.select().where(Item.unused_duplicates == False).where(Item.unused == True):
             beta_items.append(item)
 
-        for _ in beta_items:
-            if len(pool_coins_only) > 20:
-                trashable_items = pool_coins_only
-            else:
-                trashable_items = pool_illogical_consumables
-            trashable_items.pop()
+        pool_badges.extend(beta_items)
 
-        pool_other_items.extend(beta_items)
-
-    # Swap random consumables and coins for progressive badges, if needed
+    # Add progressive badges, if needed
     if do_progressive_badges:
         new_badges = []
         for item in Item.select().where(Item.item_name.in_(progressive_badges)):
             new_badges.append(item)
 
-        for _ in new_badges:
-            if len(pool_coins_only) > 20:
-                trashable_items = pool_coins_only
-            else:
-                trashable_items = pool_illogical_consumables
-            trashable_items.pop()
-
-        pool_other_items.extend(new_badges)
+        pool_badges.extend(new_badges)
 
     # If we start jumpless, add a progressive boots item to the item pool
     if starting_boots == StartingBoots.JUMPLESS:
         new_boots = Item.get(Item.item_name == "BootsProxy1")
-        if len(pool_coins_only) > 20:
-            trashable_items = pool_coins_only
-        else:
-            trashable_items = pool_illogical_consumables
-        trashable_items.pop()
 
         pool_progression_items.append(new_boots)
 
-    # Re-join the non-required items into one array
-    pool_other_items.extend(pool_coins_only)
-    pool_other_items.extend(pool_illogical_consumables)
-
     # Adjust item pools based on settings
-    goal_size_item_pool = len(pool_progression_items)      \
-                        + len(pool_misc_progression_items) \
-                        + len(pool_other_items)
-
     items_to_remove_from_pools = get_items_to_exclude(
         do_randomize_dojo,
         starting_partners,
@@ -662,20 +623,43 @@ def _generate_item_pools(
         if item in pool_misc_progression_items:
             pool_misc_progression_items.remove(item)
             continue
+        if item in pool_badges:
+            pool_badges.remove(item)
+            continue
         if item in pool_other_items:
             pool_other_items.remove(item)
             continue
         #logging.info("Attempted to remove %s from item pools, but no pool holds such item.", item)
 
-    # If the item pool is too small now, fill it back up
-    cur_size_item_pool = len(pool_progression_items)      \
-                       + len(pool_misc_progression_items) \
-                       + len(pool_other_items)
-    while goal_size_item_pool > cur_size_item_pool:
-        pool_other_items.append(_get_random_taycet_item())
-        cur_size_item_pool = len(pool_progression_items)      \
-                           + len(pool_misc_progression_items) \
-                           + len(pool_other_items)
+    # If the item pool is the wrong size now, fix it by filiing up or clearing
+    # out items
+    cur_itempool_size = (
+        len(pool_progression_items)
+        + len(pool_misc_progression_items)
+        + len(pool_coins_only)
+        + len(pool_illogical_consumables)
+        + len(pool_badges)
+        + len(pool_other_items)
+    )
+
+    while target_itempool_size > cur_itempool_size:
+        pool_illogical_consumables.append(_get_random_taycet_item())
+        cur_itempool_size += 1
+
+    if target_itempool_size < cur_itempool_size:
+        random.shuffle(pool_illogical_consumables)
+        while target_itempool_size < cur_itempool_size:
+            if len(pool_coins_only) > 20:
+                trashable_items = pool_coins_only
+            else:
+                trashable_items = pool_illogical_consumables
+            trashable_items.pop()
+            cur_itempool_size -= 1
+
+    # Re-join the non-required items into one array
+    pool_other_items.extend(pool_coins_only)
+    pool_other_items.extend(pool_illogical_consumables)
+    pool_other_items.extend(pool_badges)
 
     # Randomize consumables if needed
     pool_other_items = get_randomized_itempool(
