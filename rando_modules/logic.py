@@ -683,7 +683,8 @@ def _generate_item_pools(
         randomize_favors_mode,
         do_randomize_dojo,
         keyitems_outside_dungeon,
-        (star_hunt_stars > 0)
+        (star_hunt_stars > 0),
+        add_beta_items
     )
 
     return pool_other_items
