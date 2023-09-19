@@ -56,11 +56,15 @@ KeyitemsOutsideDungeon: true
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
 # Item Pool Modification
-GearShuffleMode     : 0 # 0:vanilla, 1:location shuffle, 2:full shuffle
-AddItemPouches      : false
-RandomConsumableMode: 0 # 0 = vanilla, 1 = full random, 2 = balanced random, 3 = mystery only
-ItemQuality         : 100
-ItemTrapMode        : 0 # 0:off, 1:sparse, 2:moderate, 3:plenty
+GearShuffleMode         : 0 # 0:vanilla, 1:location shuffle, 2:full shuffle
+AddItemPouches          : false
+AddUnusedBadgeDuplicates: false
+AddBetaItems            : false
+ProgressiveBadges       : false
+BadgePoolLimit          : 128 # biggest possible size = 128
+RandomConsumableMode    : 0 # 0 = vanilla, 1 = full random, 2 = balanced random, 3 = mystery only
+ItemQuality             : 100
+ItemTrapMode            : 0 # 0:off, 1:sparse, 2:moderate, 3:plenty
 
 # Item Misc
 CookWithoutFryingPan : false

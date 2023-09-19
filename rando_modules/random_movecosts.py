@@ -63,13 +63,18 @@ def _get_balanced_random_costs(movetype:str, costtype:str) -> list:
         else:
             if movetype == "STARPOWER":
                 new_cost = default_cost + random.choice([-1, 0, 1])
-            else:   
+            else:
                 new_cost = default_cost + random.choice([-2, -1, 0, 1, 2])
 
             if new_cost < min_value:
                 new_cost = min_value
             if new_cost > max_value:
-                new_cost = max_value
+                # Flower Fanatic is the only badge allowed to scale to 9
+                # since it's the only badge with that high of a basic cost
+                if move.move_name == "FlowerFanatic":
+                    new_cost = 9
+                else:
+                    new_cost = max_value
 
         random_costs.append((move.get_key(), new_cost))
 

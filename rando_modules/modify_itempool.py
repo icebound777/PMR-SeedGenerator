@@ -100,7 +100,9 @@ def get_randomized_itempool(itempool:list, consumable_mode:int, quality:int, add
         if add_unused_items:
             available_items = item_scores
         else:
-            available_items = [item for item in item_scores if item["name"] != "HustleDrink"]
+            available_items = [
+                item for item in item_scores if item["name"] not in ["HustleDrink", "InsecticideHerb"]
+            ]
 
         # Generate fully random pool
         new_items = _get_random_consumables(target_count, available_items)
@@ -135,7 +137,8 @@ def get_trapped_itempool(
     randomize_favors_mode:int,
     do_randomize_dojo:bool,
     keyitems_outside_dungeon:bool,
-    power_star_hunt:bool
+    power_star_hunt:bool,
+    add_beta_items:bool
 ) -> list:
     """
     Modifies and returns a given item pool after placing trap items.
@@ -175,7 +178,7 @@ def get_trapped_itempool(
                  .select()
                  .where(Item.item_type.in_(["KEYITEM","PARTNER","BADGE","GEAR"]))
     ):
-        if item.unused or item.unplaceable:
+        if (item.unused and not add_beta_items) or item.unplaceable:
             continue
         if (not do_randomize_dojo
         and item.item_name in exclude_due_to_settings.get("do_randomize_dojo")

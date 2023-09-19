@@ -4,7 +4,11 @@ from peewee import *
 
 from db.db import db
 from metadata.progression_items import progression_items
-from metadata.item_general import unused_items, unplaceable_items
+from metadata.item_general import (
+    unused_items,
+    unused_duplicates,
+    unplaceable_items
+)
 
 
 class Item(Model):
@@ -20,6 +24,8 @@ class Item(Model):
     progression = BooleanField(default=False)
     # Is the item unused in the vanilla game, but functional
     unused = BooleanField(default=False)
+    # Is the item one of the unused badge duplicates
+    unused_duplicates = BooleanField(default=False)
     # Is the item unintended to be placed in the world and could break things,
     # or is unused but non-functional
     unplaceable = BooleanField(default=False)
@@ -105,5 +111,6 @@ def create_items():
             base_price = base_price,
             progression = (Item.get_type(item_id) in ["KEYITEM","PARTNER"] and item_id in progression_items.keys()),
             unused = item_name in unused_items,
+            unused_duplicates = item_name in unused_duplicates,
             unplaceable = item_name in unplaceable_items
         )

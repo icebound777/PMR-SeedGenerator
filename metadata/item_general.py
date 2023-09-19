@@ -76,6 +76,38 @@ unused_items = [
     "ShrinkSmash"
 ]
 
+unused_duplicates = [
+    "HappyHeartX",
+    "FlowerSaverX",
+    "DamageDodgeX",
+    "PowerPlusX",
+    "DefendPlusX",
+    "DefendPlusY",
+    "HappyFlowerX",
+    "HPPlusX",
+    "HPPlusY",
+    "FPPlusX",
+    "FPPlusY",
+]
+
+progressive_badges = [
+    "SmashChargeProxy1",
+    "SmashChargeProxy2",
+    "SmashChargeProxy3",
+    "JumpChargeProxy1",
+    "JumpChargeProxy2",
+    "JumpChargeProxy3",
+    "PowerJumpProxy1",
+    "PowerJumpProxy2",
+    "PowerJumpProxy3",
+    "PowerSmashProxy1",
+    "PowerSmashProxy2",
+    "PowerSmashProxy3",
+    "QuakeHammerProxy1",
+    "QuakeHammerProxy2",
+    "QuakeHammerProxy3"
+]
+
 unplaceable_items = [
     "Boots",
     "SuperBoots",
@@ -168,21 +200,6 @@ unplaceable_items = [
     "RedBerryKey",
     "YellowBerryKey",
     "BubbleBerryKey",
-    "SmashChargeProxy1",
-    "SmashChargeProxy2",
-    "SmashChargeProxy3",
-    "JumpChargeProxy1",
-    "JumpChargeProxy2",
-    "JumpChargeProxy3",
-    "PowerJumpProxy1",
-    "PowerJumpProxy2",
-    "PowerJumpProxy3",
-    "PowerSmashProxy1",
-    "PowerSmashProxy2",
-    "PowerSmashProxy3",
-    "QuakeHammerProxy1",
-    "QuakeHammerProxy2",
-    "QuakeHammerProxy3",
     "Goompa",
 ]
 
@@ -373,13 +390,13 @@ seed_hash_item_names = [
     "Quick Change",
     "D Down Pound",
     "Dizzy Stomp",
-    "Smash Charge",
+    "Mini Smash Chg",
     "Pretty Lucky",
     "Feeling Fine",
     "Attack FX A",
     "Allor Nothing",
     "HP Drain",
-    "Jump Charge",
+    "Mini Jump Chg",
     "Slow Go",
     "Mega Rush",
     "Ice Power",

@@ -81,6 +81,10 @@ class OptionSet:
         # Item Pool Modification
         self.gear_shuffle_mode = get_option_default_value("GearShuffleMode")
         self.add_item_pouches = False
+        self.add_unused_badge_duplicates = False
+        self.add_beta_items = False
+        self.progressive_badges = False
+        self.badge_pool_limit = 128 # literal cap of Paper Mario
         self.randomize_consumable_mode = RandomizeConsumablesMode.OFF
         self.item_quality = 100
         self.itemtrap_mode = ItemTrapMode.OFF
@@ -323,6 +327,14 @@ class OptionSet:
             self.gear_shuffle_mode = options_dict.get("GearShuffleMode")
         if "AddItemPouches" in options_dict:
             self.add_item_pouches = options_dict.get("AddItemPouches")
+        if "AddUnusedBadgeDuplicates" in options_dict:
+            self.add_unused_badge_duplicates = options_dict.get("AddUnusedBadgeDuplicates")
+        if "AddBetaItems" in options_dict:
+            self.add_beta_items = options_dict.get("AddBetaItems")
+        if "ProgressiveBadges" in options_dict:
+            self.progressive_badges = options_dict.get("ProgressiveBadges")
+        if "BadgePoolLimit" in options_dict:
+            self.badge_pool_limit = options_dict.get("BadgePoolLimit")
         if "RandomConsumableMode" in options_dict:
             self.randomize_consumable_mode = options_dict.get("RandomConsumableMode")
         if "ItemQuality" in options_dict:
@@ -1013,6 +1025,13 @@ class OptionSet:
         # Item Pool Modification
         basic_assert("GearShuffleMode", int)
         basic_assert("AddItemPouches", bool)
+        basic_assert("AddUnusedBadgeDuplicates", bool)
+        basic_assert("AddBetaItems", bool)
+        basic_assert("ProgressiveBadges", bool)
+        if "BadgePoolLimit" in options_dict:
+            assert (    isinstance(options_dict.get("BadgePoolLimit"), int)
+                    and 0 <= options_dict.get("BadgePoolLimit") <= 128
+            )
         if "RandomConsumableMode" in options_dict:
             assert (    isinstance(options_dict.get("RandomConsumableMode"), int)
                     and RandomizeConsumablesMode.OFF <= options_dict.get("RandomConsumableMode") <= RandomizeConsumablesMode.MYSTERY_ONLY

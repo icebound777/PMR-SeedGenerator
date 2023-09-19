@@ -609,7 +609,7 @@ verbose_item_locations = {
                "ItemB": "In The Flowers",
                "Partner": "Lakilester Partner",},
     "FLO_14": {"ItemA": "On Ledge",
-               "ItemB": "Left Vine",},
+               "ItemB": "Right Vine",},
     "FLO_16": {"ItemA": "Stomp On Ledge",
                "ItemB": "Leftside Vine",},
     "FLO_17": {"HiddenYBlockA": "Hidden Block",
