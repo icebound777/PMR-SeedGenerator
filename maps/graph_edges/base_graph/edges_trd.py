@@ -64,10 +64,9 @@ edges_trd = [
     {"from": {"map": "TRD_03", "id": 2}, "to": {"map": "TRD_03", "id": 0}, "reqs": []}, #? Central Hall Exit Top Left -> Central Hall Exit Bottom Left
     {"from": {"map": "TRD_03", "id": 3}, "to": {"map": "TRD_03", "id": 1}, "reqs": []}, #? Central Hall Exit Top Right-> Central Hall Exit Bottom Right
 
-    {"from": {"map": "TRD_03", "id": 4},       "to": {"map": "TRD_03", "id": "ItemA"}, "reqs": []}, #* Central Hall Exit Left Cell -> ItemA (KoopaFortressKey) (Left)
-    {"from": {"map": "TRD_03", "id": "ItemA"}, "to": {"map": "TRD_03", "id": 4},       "reqs": [["Bombette"]]}, #* ItemA (KoopaFortressKey) (Left) -> Central Hall Exit Left Cell
-    {"from": {"map": "TRD_03", "id": 0},       "to": {"map": "TRD_03", "id": "ItemC"}, "reqs": []}, #* Central Hall Exit Bottom Left -> ItemC (PowerBounce)
-    {"from": {"map": "TRD_03", "id": 1},       "to": {"map": "TRD_03", "id": "ItemB"}, "reqs": [["Bombette"]]}, #* Central Hall Exit Bottom Right -> ItemB (KoopaFortressKey) (Right)
+    {"from": {"map": "TRD_03", "id": 4}, "to": {"map": "TRD_03", "id": "ItemA"}, "reqs": []}, #* Central Hall Exit Left Cell -> ItemA (KoopaFortressKey) (Left)
+    {"from": {"map": "TRD_03", "id": 0}, "to": {"map": "TRD_03", "id": "ItemC"}, "reqs": []}, #* Central Hall Exit Bottom Left -> ItemC (PowerBounce)
+    {"from": {"map": "TRD_03", "id": 1}, "to": {"map": "TRD_03", "id": "ItemB"}, "reqs": [["Bombette"]]}, #* Central Hall Exit Bottom Right -> ItemB (KoopaFortressKey) (Right)
 
     # TRD_04 Right Stairway
     {"from": {"map": "TRD_04", "id": 0}, "to": {"map": "TRD_03", "id": 1}, "reqs": []}, # Right Starway Exit Middle Left -> Central Hall Exit Bottom Right
