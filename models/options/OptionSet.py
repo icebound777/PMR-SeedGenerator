@@ -81,6 +81,7 @@ class OptionSet:
         # Item Pool Modification
         self.gear_shuffle_mode = get_option_default_value("GearShuffleMode")
         self.add_item_pouches = False
+        self.partner_upgrade_shuffle = get_option_default_value("PartnerUpgradeShuffle")
         self.add_unused_badge_duplicates = False
         self.add_beta_items = False
         self.progressive_badges = False
@@ -327,6 +328,8 @@ class OptionSet:
             self.gear_shuffle_mode = options_dict.get("GearShuffleMode")
         if "AddItemPouches" in options_dict:
             self.add_item_pouches = options_dict.get("AddItemPouches")
+        if "PartnerUpgradeShuffle" in options_dict:
+            self.partner_upgrade_shuffle = options_dict.get("PartnerUpgradeShuffle")
         if "AddUnusedBadgeDuplicates" in options_dict:
             self.add_unused_badge_duplicates = options_dict.get("AddUnusedBadgeDuplicates")
         if "AddBetaItems" in options_dict:
@@ -1025,6 +1028,7 @@ class OptionSet:
         # Item Pool Modification
         basic_assert("GearShuffleMode", int)
         basic_assert("AddItemPouches", bool)
+        basic_assert("PartnerUpgradeShuffle", int)
         basic_assert("AddUnusedBadgeDuplicates", bool)
         basic_assert("AddBetaItems", bool)
         basic_assert("ProgressiveBadges", bool)
@@ -1507,6 +1511,7 @@ class OptionSet:
 
             # Item Pool Modification
             load_dbkey(self.gear_shuffle_mode, "GearShuffleMode"),
+            load_dbkey(self.partner_upgrade_shuffle, "PartnerUpgradeShuffle"),
 
             # Map Check Tracker (auto-set, not changeable via settings)
             load_dbkey(self.map_tracker_check_bits, "EnabledCheckBits"),

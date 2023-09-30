@@ -89,3 +89,9 @@ class MerlowRewardPricing(IntEnum):
     @classmethod
     def has_value(cls, value):
         return (value in set(item.value for item in cls))
+
+@unique
+class PartnerUpgradeShuffle(IntEnum):
+    OFF = 0
+    SUPERBLOCKLOCATIONS = 1
+    FULL = 2

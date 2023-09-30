@@ -80,7 +80,7 @@ def get_shop_price(
                 if (buy_price - (buy_price % 5)) != 0:
                     buy_price = round(buy_price / 5) * 5
 
-            elif item_type in ["BADGE", "KEYITEM", "PARTNER", "GEAR", "POWERSTAR"]:
+            elif item_type in ["BADGE", "KEYITEM", "PARTNER", "GEAR", "POWERSTAR", "PARTNERUPGRADE"]:
                 buy_price = random.choice([10,15,20,25,30])
 
             elif item_type == "COIN":
