@@ -537,6 +537,16 @@ def get_limited_chapter_logic(
                     world_graph[pair[1]]["edge_list"][index]["reqs"].extend([["YOUWIN"]])
                     break
 
+    # Special case: block Kolorado's Camp in the desert if ch2 is out of logic
+    kolorados_camp = ("SBK", "SBK_30/0")
+    if kolorados_camp[0] in out_of_logic_areas:
+        for index, edge in enumerate(world_graph[kolorados_camp[1]]["edge_list"]):
+            if (   "pseudoitems" in edge
+               and "RF_CanVisitDesertCamp" in edge["pseudoitems"]
+            ):
+                world_graph[kolorados_camp[1]]["edge_list"][index]["reqs"].extend([["YOUWIN"]])
+                break
+
     return world_graph
 
 
