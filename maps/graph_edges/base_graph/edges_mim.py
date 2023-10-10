@@ -137,13 +137,13 @@ edges_mim = [
     {"from": {"map": "MIM_11", "id": 3}, "to": {"map": "TIK_09", "id": 2}, "reqs": []}, # Outside Boo's Mansion Blue Warp Pipe -> Warp Zone 2 (B2) Blue Warp Pipe
 
     {"from": {"map": "MIM_11", "id": 0}, "to": {"map": "MIM_11", "id": 1}, "reqs": []}, #? Outside Boo's Mansion Forever Forest Entrance -> Outside Boo's Mansion Entrance to Wasteland
-    {"from": {"map": "MIM_11", "id": 1}, "to": {"map": "MIM_11", "id": 0}, "reqs": []}, #? Outside Boo's Mansion Entrance to Wasteland -> Outside Boo's Mansion Forever Forest Entrance
-    {"from": {"map": "MIM_11", "id": 0}, "to": {"map": "MIM_11", "id": 2}, "reqs": [["Boots"]]}, #? Outside Boo's Mansion Forever Forest Entrance -> Outside Boo's Mansion Front Door
-    {"from": {"map": "MIM_11", "id": 2}, "to": {"map": "MIM_11", "id": 0}, "reqs": []}, #? Outside Boo's Mansion Front Door -> Outside Boo's Mansion Forever Forest Entrance
-    {"from": {"map": "MIM_11", "id": 0}, "to": {"map": "MIM_11", "id": 3}, "reqs": [["GF_TIK09_WarpPipe"],["Boots"]]}, #? Outside Boo's Mansion Forever Forest Entrance -> Outside Boo's Mansion Blue Warp Pipe
-    {"from": {"map": "MIM_11", "id": 3}, "to": {"map": "MIM_11", "id": 0}, "reqs": []}, #? Outside Boo's Mansion Blue Warp Pipe -> Outside Boo's Mansion Forever Forest Entrance
+    {"from": {"map": "MIM_11", "id": 1}, "to": {"map": "MIM_11", "id": 0}, "reqs": [["RF_ForeverForestBackwards"]]}, #? Outside Boo's Mansion Entrance to Wasteland -> Outside Boo's Mansion Forever Forest Entrance
+    {"from": {"map": "MIM_11", "id": 1}, "to": {"map": "MIM_11", "id": 2}, "reqs": [["Boots"]]}, #? Outside Boo's Mansion Entrance to Wasteland -> Outside Boo's Mansion Front Door
+    {"from": {"map": "MIM_11", "id": 2}, "to": {"map": "MIM_11", "id": 1}, "reqs": []}, #? Outside Boo's Mansion Front Door -> Outside Boo's Mansion Entrance to Wasteland
+    {"from": {"map": "MIM_11", "id": 1}, "to": {"map": "MIM_11", "id": 3}, "reqs": [["GF_TIK09_WarpPipe"],["Boots"]]}, #? Outside Boo's Mansion Entrance to Wasteland -> Outside Boo's Mansion Blue Warp Pipe
+    {"from": {"map": "MIM_11", "id": 3}, "to": {"map": "MIM_11", "id": 1}, "reqs": []}, #? Outside Boo's Mansion Blue Warp Pipe -> Outside Boo's Mansion Entrance to Wasteland
 
-    {"from": {"map": "MIM_11", "id": 0}, "to": {"map": "MIM_11", "id": "YBlockA"},     "reqs": [["can_hit_floating_blocks"]]}, #* Outside Boo's Mansion Forever Forest Entrance -> YBlockA (VoltShroom)
+    {"from": {"map": "MIM_11", "id": 1}, "to": {"map": "MIM_11", "id": "YBlockA"},     "reqs": [["can_hit_floating_blocks"]]}, #* Outside Boo's Mansion Entrance to Wasteland -> YBlockA (VoltShroom)
     {"from": {"map": "MIM_11", "id": 1}, "to": {"map": "MIM_11", "id": "Bush1_Drop1"}, "reqs": []}, #* Outside Boo's Mansion Entrance to Wasteland -> Bush1_Drop1 (StrangeLeaf)
 
     # MIM_12 Exit to Gusty Gulch

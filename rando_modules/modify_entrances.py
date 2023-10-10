@@ -162,6 +162,10 @@ from maps.graph_edges.glitched_logic.isk_parakarryless_super_hammer_room import 
 from maps.graph_edges.glitched_logic.isk_ruins_locks_skip import \
     edges_isk_add_ruins_locks_skip_clippy
 
+# Glitched Logic - Forever Forest
+from maps.graph_edges.glitched_logic.mim_forever_forest_backwards import \
+    edges_mim_add_forever_forest_backwards
+
 # Glitched Logic - Boo's Mansion
 from maps.graph_edges.glitched_logic.obk_record_skip import \
     edges_obk_add_record_skip_bombette_push, edges_obk_add_record_skip_spin_jump
@@ -682,6 +686,10 @@ def get_glitched_logic(
         all_new_edges.extend(edges_isk_add_ruins_key_laki_jump)
     if glitch_settings.ruins_locks_skip_clippy:
         all_new_edges.extend(edges_isk_add_ruins_locks_skip_clippy)
+
+    # Forever Forest
+    if glitch_settings.forever_forest_backwards:
+        all_new_edges.extend(edges_mim_add_forever_forest_backwards)
 
     # Boo's Mansion
     if glitch_settings.record_skip_bombette_push:

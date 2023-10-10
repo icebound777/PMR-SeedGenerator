@@ -784,6 +784,9 @@ class OptionSet:
         if "RuinsLocksSkipClippy" in options_dict:
             self.glitch_settings.ruins_locks_skip_clippy = options_dict.get("RuinsLocksSkipClippy")
 
+        if "ForeverForestBackwards" in options_dict:
+            self.glitch_settings.forever_forest_backwards = options_dict.get("ForeverForestBackwards")
+
         if "RecordSkipNoBombettePush" in options_dict:
             self.glitch_settings.record_skip_no_bombette_push = options_dict.get("RecordSkipNoBombettePush")
         if "RecordSkipBombettePush" in options_dict:
@@ -1372,6 +1375,8 @@ class OptionSet:
         basic_assert("ParakarrylessSuperHammerRoomUltraBoots", bool)
         basic_assert("ParakarrylessSuperHammerRoomNormalBoots", bool)
         basic_assert("RuinsLocksSkipClippy", bool)
+
+        basic_assert("ForeverForestBackwards", bool)
 
         basic_assert("RecordSkipNoBombettePush", bool)
         basic_assert("RecordSkipBombettePush", bool)

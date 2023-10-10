@@ -291,6 +291,8 @@ ParakarrylessSuperHammerRoomUltraBoots          : false
 ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
 
+ForeverForestBackwards                          : false
+
 RecordSkipNoBombettePush                        : false
 RecordSkipBombettePush                          : false
 BoosPortraitWithKooper                          : false
