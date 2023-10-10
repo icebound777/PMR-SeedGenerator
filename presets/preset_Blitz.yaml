@@ -1,0 +1,383 @@
+---
+# PAPER MARIO RANDOMIZER SETTINGS
+SettingsName: Blitz / Limit Chapter Logic 4 Chapters
+
+# General
+BlocksMatchContent  : true
+HiddenBlockMode     : 2 # 0:vanilla, 1:Watt out, 2:Watt acquired, 3:always visible
+AllowPhysicsGlitches: true
+BadgeSynergy        : false
+
+# QOL
+AlwaysSpeedySpin     : true
+AlwaysISpy           : false
+AlwaysPeekaboo       : true
+ShortenCutscenes     : true
+SkipEpilogue         : true
+PeachCastleReturnPipe: true # false locks the pipe
+FoliageItemHints     : true
+HiddenPanelVisibility: 1 # 0:vanilla, 1:texture-edit
+
+# Difficulty and Enemies
+ShuffleChapterDifficulty: true
+ProgressiveScaling      : false
+
+ChallengeMode  : false
+CapEnemyXP     : false
+XPMultiplier   : 1
+DoubleDamage   : false
+QuadrupleDamage: false
+OHKO           : false
+NoSaveBlocks   : false
+NoHeartBlocks  : false
+NoHealingItems : false
+DropStarPoints : false
+
+RandomFormations: true
+
+# Custom Seed / Planned Seed / "Plandomizer"
+CustomSeed: false # NYI
+
+# Item Placement
+ShuffleItems          : true
+IncludeCoinsOverworld : false
+IncludeCoinsBlocks    : false
+IncludeCoinsFoliage   : false
+IncludeCoinsFavors    : false # always false if IncludeFavorsMode:0
+IncludeShops          : true
+ProgressionOnRowf     : true # irrelevant if IncludeShops:false
+ProgressionOnMerlow   : false # irrelevant if IncludeShops:false
+IncludePanels         : false
+IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
+IncludeLettersMode    : 0 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
+IncludeRadioTradeEvent: false
+IncludeDojo           : false
+KeyitemsOutsideDungeon: true
+KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
+
+# Item Pool Modification
+GearShuffleMode         : 2 # 0:vanilla, 1:location shuffle, 2:full shuffle
+AddItemPouches          : false
+PartnerUpgradeShuffle   : 0 # 0:off, 1:super block locations, 2:full shuffle
+AddUnusedBadgeDuplicates: false
+AddBetaItems            : false
+ProgressiveBadges       : false
+BadgePoolLimit          : 128 # biggest possible size = 128
+RandomConsumableMode    : 0 # 0 = vanilla, 1 = full random, 2 = balanced random, 3 = mystery only
+ItemQuality             : 100
+ItemTrapMode            : 0 # 0:off, 1:sparse, 2:moderate, 3:plenty
+
+# Item Misc
+CookWithoutFryingPan : true
+MerlowRewardPricing  : 0 # 0:Cheap (5-30), 1:Normal (10-60)
+RipCheatoItemsInLogic: 6 # 0-11
+AllowItemHints       : false
+# Mystery? item options
+RandomChoice         : true
+MysteryRandomPick    : false
+# Below are never used, they get hardcoded overwritten, just for doc purposes
+ItemChoiceA          : 0x08A # Mushroom
+ItemChoiceB          : 0x08C # SuperShroom
+ItemChoiceC          : 0x080 # FireFlower
+ItemChoiceD          : 0x088 # StoneCap
+ItemChoiceE          : 0x09A # DizzyDial
+ItemChoiceF          : 0x082 # ThunderRage
+ItemChoiceG          : 0x085 # Pebble
+
+# Starting setup
+StartingMap      : 0x00010104 # 0x00010104:Toad Town Gate District, 0xFFFFFFFF:RandomFromSelection
+StartingLevel    : 1
+StartingMaxHP    : 10
+StartingMaxFP    : 5
+StartingMaxBP    : 3
+StartingStarPower: 0
+StartingBoots    : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
+StartingHammer   : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
+StartingCoins    : 150
+
+StartWithRandomItems: false
+RandomItemsMin      : 0
+RandomItemsMax      : 16
+StartingItem0       : 0x00F # UltraStone
+StartingItem1       : 0x029 # Cookbook
+StartingItem2       : 0x000 # Nothing
+StartingItem3       : 0x000 # Nothing
+StartingItem4       : 0x000 # Nothing
+StartingItem5       : 0x000 # Nothing
+StartingItem6       : 0x000 # Nothing
+StartingItem7       : 0x000 # Nothing
+StartingItem8       : 0x000 # Nothing
+StartingItem9       : 0x000 # Nothing
+StartingItemA       : 0x000 # Nothing
+StartingItemB       : 0x000 # Nothing
+StartingItemC       : 0x000 # Nothing
+StartingItemD       : 0x000 # Nothing
+StartingItemE       : 0x000 # Nothing
+StartingItemF       : 0x000 # Nothing
+
+# Partners
+StartWithPartners: { # ignored if StartWithRandomPartners true
+    Goombario : true,
+    Kooper    : false,
+    Bombette  : false,
+    Parakarry : false,
+    Bow       : false,
+    Watt      : false,
+    Sushie    : false,
+    Lakilester: false
+}
+
+PartnersInDefaultLocations: false
+PartnersAlwaysUsable      : false
+StartWithRandomPartners   : true
+RandomPartnersMin         : 1 # 1-8
+RandomPartnersMax         : 1 # 1-8
+
+# Pre-opened areas
+MagicalSeedsRequired: 2 # 5:random
+PrologueOpen        : true
+BlueHouseOpen       : false
+MtRuggedOpen        : false
+ForeverForestOpen   : true
+ToyboxOpen          : false
+WhaleOpen           : false
+Ch7BridgeVisible    : false
+
+# Goal Settings
+StarWaySpiritsNeededCnt: 4 # -1:Random
+RequireSpecificSpirits : true # always false if StarWaySpiritsNeededCnt: 7
+LimitChapterLogic      : true # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
+BowsersCastleMode      : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
+StarHunt               : false
+StarHuntRequired       : 50 # max 120
+StarHuntTotal          : 70 # max 120, must be >= StarHuntRequired
+StarHuntEndsGame       : true
+
+# Entrance Shuffle
+ShuffleDungeonRooms     : false # NYI
+ShuffleDungeonEntrances : false
+ShuffleEntrancesByAll   : false # NYI
+MatchEntranceTypes      : true  # NYI
+RandomizeOnewayEntrances: false # NYI
+UnpairedEntrances       : false # NYI
+
+# Costs of Moves and Badges
+# 0: vanilla, 1: balanced random, 2: shuffled, 3: fully random
+RandomBadgesBP   : 1
+RandomBadgesFP   : 1
+RandomPartnerFP  : 1
+RandomStarpowerSP: 0
+
+# Misc Gameplay Randomization
+ShuffleBlocks: false
+
+# Quizmo Quizzes
+RandomQuiz         : true
+QuizmoAlwaysAppears: true
+SkipQuiz           : true
+
+# Spoilerlog
+WriteSpoilerLog : true
+
+# Cosmetics
+Box5ColorA     : 0xEBE676FF # Status Bar Color A (main)
+Box5ColorB     : 0x8E5A24FF # Status Bar Color B (shadow)
+CoinColor      : 0 # 0:gold, 1:red, 2:blue, 3:purple, 4:silver
+RandomCoinColor: true # if true: overrules CoinColor
+
+# "*Setting" values explanation:
+# DEFAULT_PALETTE: 0
+# SELECT_PALETTE : 1 (only Mario and partners)
+# RANDOM_PICK    : 2
+# RANDOM_PICK_NOT_VANILLA: 3
+# ALWAYS_RANDOM  : 4
+MarioSetting     : 2
+MarioSprite      : 0
+GoombarioSetting : 2
+GoombarioSprite  : 0
+KooperSetting    : 2
+KooperSprite     : 0
+BombetteSetting  : 2
+BombetteSprite   : 0
+ParakarrySetting : 2
+ParakarrySprite  : 0
+BowSetting       : 2
+BowSprite        : 0
+WattSetting      : 2
+WattSprite       : 0
+SushieSetting    : 2
+SushieSprite     : 0
+LakilesterSetting: 2
+LakilesterSprite : 0
+BossesSetting    : 2
+EnemiesSetting   : 2
+NPCSetting       : 2
+HammerSetting    : 2
+
+# Audio options
+ShuffleMusic    : False
+ShuffleMusicMode: 0 # 0:shuffle by song mood, 1:shuffle by song type, 2:full shuffle
+ShuffleJingles  : False
+
+# Joke options
+RomanNumerals  : false
+RandomText     : false
+RandomPitch: false
+
+# Glitched Logic
+PrologueGelEarly                                : false
+ReverseGoombaKingBridge                         : false
+GoombaVillageEntryFenceClip                     : false
+GoombaVillageNpcLureExit                        : false
+HammerlessJrPlaygroundLaki                      : false
+GoombaVillageLakiExit                           : false
+PrologueSushieGlitchKsj                         : false
+PrologueSushieGlitchUltraBootsLaki              : false
+
+OddKeyEarly                                     : false
+BlueHouseSkip                                   : false
+BlueHouseSkipLaki                               : false
+BlueHouseSkipToadLure                           : false
+BowlessToyBoxHammer                             : false
+BowlessToyBoxHammerlessLure                     : false
+EarlyStoreroomParakarry                         : false
+EarlyStoreroomHammer                            : false
+EarlyStoreroomHammerlessLure                    : false
+WhaleEarly                                      : false
+SushielessToadTownStarPiece                     : false
+ToadTownSushieGlitch                            : false
+
+ClippyBootsStoneBlockSkip                       : false
+ClippyBootsMetalBlockSkip                       : false
+IslandPipeBlooperSkip                           : false
+ParakarrylessSewerStarPiece                     : false
+SewerBlocksWithoutUltraBoots                    : false
+FirstBlockToShiverCityWithoutSuperBoots         : false
+BlocksToShiverCityWithKooperShellItemThrow      : false
+SewerYellowBlockWithUltraBoots                  : false
+JumplessSewerShootingStar                       : false
+
+KooperlessPleasantPathStarPiece                 : false
+HammerlessPleasantPathBridgeUltraBootsParakarry : false
+InvisibleBridgeClipLzs                          : false
+InvisibleBridgeClipLaki                         : false
+KooperlessPleasantPathThunderBolt               : false
+
+BombettelessKbfFpPlusLZS                        : false
+BombettelessKbfFpPlusLaki                       : false
+LakiJailbreak                                   : false
+BombettelessRightFortressJailKey                : false
+WaterStaircaseSkip                              : false
+
+MtRuggedQuakeHammerAndLetterWithLaki            : false
+ParakarrylessMtRuggedSeed                       : false
+BuzzarGapSkipClippy                             : false
+MtRuggedCoinsWithKooper                         : false
+MtRuggedStationJumplessClimbBombette            : false
+MtRuggedStationJumplessClimbLaki                : false
+ParakarrylessMtRuggedStarPiece                  : false
+JumplessMtRuggedTrainPlatformParakarry          : false
+
+DesertBrickBlockItemWithParakarry               : false
+EarlyRuinsLakiJump                              : false
+EarlyRuinsUltraBoots                            : false
+
+ArtifactJumpLaki                                : false
+ArtifactJumpUltraBoots                          : false
+RuinsKeyLakiJump                                : false
+ParakarrylessSecondSandRoomUltraBoots           : false
+ParakarrylessSecondSandRoomNormalBoots          : false
+ParakarrylessSuperHammerRoomUltraBoots          : false
+ParakarrylessSuperHammerRoomNormalBoots         : false
+RuinsLocksSkipClippy                            : false
+
+ForeverForestBackwards                          : false
+
+RecordSkipNoBombettePush                        : false
+RecordSkipBombettePush                          : false
+BoosPortraitWithKooper                          : false
+BoosPortraitWithLaki                            : false
+JumplessMansionEntry                            : false
+
+GustyGulchGateSkipLZS                           : false
+GustyGulchGateSkipLaki                          : false
+KooperlessGustyGulchDizzyDialJump               : false
+KooperlessGustyGulchDizzyDialLaki               : false
+KooperlessGustyGulchDizzyDialParakarry          : false
+GustyGulchGapSkip                               : false
+
+BowlessTubbasCastle                             : false
+TubbasTableLakiJumpClock                        : false
+TubbasTableUltraBoots                           : false
+TubbasTableLakiJumpStudy                        : false
+TubbasCastleSuperBootsSkip                      : false
+ParakarrylessMegaRush                           : false
+
+ParakarrylessBlueBuildingStarPiece              : false
+GourmetGuySkipJump                              : false
+GourmetGuySkipLaki                              : false
+GourmetGuySkipParakarry                         : false
+BowlessGreenStation                             : false
+KooperlessRedStationShootingStar                : false
+GearlessRedStationShootingStar                  : false
+ParakarrylessBlueBlockCityGap                   : false
+BlueSwitchSkipLaki                              : false
+BlueSwitchSkipUltraBoots                        : false
+RedBarricadeSkip                                : false
+HammerlessBlueStationLaki                       : false
+HammerlessPinkStationLaki                       : false
+
+RaphSkipEnglish                                 : false
+RaphSkipParakarry                               : false
+Ch5SushieGlitch                                 : false
+SushielessJungleStarpieceAndLetter              : false
+JumplessDeepJungleLaki                          : false
+
+KooperlessLavalavaPowBlockParakarry             : false
+KooperlessLavalavaPowBlockSuperBoots            : false
+JumplessLavalavaPowBlock                        : false
+UltraHammerSkip                                 : false
+UltraHammerSkipLaki                             : false
+UltraHammerSkipSushie                           : false
+Flarakarry                                      : false
+ParakarrylessFlarakarryBombette                 : false
+ParakarrylessFlarakarryLaki                     : false
+VolcanoSushieGlitch                             : false
+
+EarlyLakiLZS                                    : false
+EarlyLakiBombettePush                           : false
+BombettelessMegaSmash                           : false
+SunTowerSkip                                    : false
+YellowBerryGateSkipLZS                          : false
+YellowBerryGateSkipLaki                         : false
+YellowBerryGateSkipBombettePush                 : false
+RedBerryGateSkipBombettePush                    : false
+RedBerryGateSkipLaki                            : false
+BlueBerryGateSkipBombettePush                   : false
+BlueBerryGateSkipLaki                           : false
+BubbleBerryTreeLakiJump                         : false
+BubbleBerryTreeUltraBoots                       : false
+
+MurderSolvedEarlyLaki                           : false
+MurderSolvedEarlyBombettePush                   : false
+Ch7SushieGlitch                                 : false
+StarStoneWithCh7SushieGlitch                    : false
+ShiverMountainHiddenBlockWithoutUltraBootsLaki  : false
+ShiverMountainHiddenBlockWithoutUltraBootsNoLaki: false
+SnowmenSkipLaki                                 : false
+ShiverMountainSwitchSkip                        : false
+SushielessWarehouseKeyBombette                  : false
+SushielessWarehouseKeyKooper                    : false
+
+MirrorClip                                      : false
+
+BowlessBowsersCastleBasement                    : false
+FastFloodRoomKooper                             : false
+FastFloodRoomBombetteUltraBoots                 : false
+BombettelessBowsersCastleBasement               : false
+
+BreakYellowBlocksWithSuperBoots                 : false
+BreakStoneBlocksWithUltraBoots                  : false
+KnowsHiddenBlocks                               : false
+KnowsPuzzleSolutions                            : false
+ReachHighBlocksWithSuperBoots                   : false
