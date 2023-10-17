@@ -908,7 +908,11 @@ def _algo_assumed_fill(
 
     if partner_upgrade_shuffle == PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
         # Special handling: non-progression which has to be placed first
-        pool_upgrade_items = [item for item in pool_other_items if item.item_type == "PARTNERUPGRADE"]
+        pool_upgrade_items = [
+            item for item in pool_other_items
+            if     item.item_type == "PARTNERUPGRADE"
+               and not item.is_trapped()
+        ]
         for upgrade in pool_upgrade_items:
             pool_other_items.remove(upgrade)
 

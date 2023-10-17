@@ -45,10 +45,6 @@ class Table:
 
         # more temp fixes because we push half implemented features
         table_data.append({
-            "key": 0xAF02000B,
-            "value": 0x00000000
-        })
-        table_data.append({
             "key": 0xAF060505,
             "value": 0x00000000
         })
