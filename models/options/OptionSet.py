@@ -13,7 +13,8 @@ from rando_enums.enum_options import (
     StartingBoots,
     StartingHammer,
     MerlowRewardPricing,
-    MusicRandomizationType
+    MusicRandomizationType,
+    PartnerUpgradeShuffle
 )
 from models.options.PaletteOptionSet import PaletteOptionSet
 from models.options.MysteryOptionSet import MysteryOptionSet
@@ -81,6 +82,7 @@ class OptionSet:
         # Item Pool Modification
         self.gear_shuffle_mode = get_option_default_value("GearShuffleMode")
         self.add_item_pouches = False
+        self.partner_upgrade_shuffle = get_option_default_value("PartnerUpgradeShuffle")
         self.add_unused_badge_duplicates = False
         self.add_beta_items = False
         self.progressive_badges = False
@@ -327,6 +329,8 @@ class OptionSet:
             self.gear_shuffle_mode = options_dict.get("GearShuffleMode")
         if "AddItemPouches" in options_dict:
             self.add_item_pouches = options_dict.get("AddItemPouches")
+        if "PartnerUpgradeShuffle" in options_dict:
+            self.partner_upgrade_shuffle = options_dict.get("PartnerUpgradeShuffle")
         if "AddUnusedBadgeDuplicates" in options_dict:
             self.add_unused_badge_duplicates = options_dict.get("AddUnusedBadgeDuplicates")
         if "AddBetaItems" in options_dict:
@@ -502,48 +506,6 @@ class OptionSet:
         if "StarHuntEndsGame" in options_dict:
             self.star_hunt_ends_game = options_dict.get("StarHuntEndsGame")
 
-        # Map Check Tracker (static)
-        #   0x1   # regular checks
-        #   0x2   # gear
-        #   0x4   # panels
-        #   0x10  # overworld coins
-        #   0x20  # block coins
-        #   0x40  # favor coins
-        #   0x80  # foliage coins
-        #   0x100 # dojo
-        #   0x200 # koot favors
-        #   0x400 # radio trade event
-        #   0x800 # letter delivery
-        map_tracker_bits = 0x1 + 0x2
-        if self.include_panels:
-            map_tracker_bits += 0x4
-        if self.include_coins_overworld:
-            map_tracker_bits += 0x10
-        if self.include_coins_blocks:
-            map_tracker_bits += 0x20
-        if self.include_coins_favors:
-            map_tracker_bits += 0x40
-        if self.include_coins_foliage:
-            map_tracker_bits += 0x80
-        if self.include_dojo:
-            map_tracker_bits += 0x100
-        if self.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
-            map_tracker_bits += 0x200
-        if self.include_radiotradeevent:
-            map_tracker_bits += 0x400
-        if self.include_letters_mode != IncludeLettersMode.NOT_RANDOMIZED:
-            map_tracker_bits += 0x800
-        if not self.foreverforest_open:
-            map_tracker_bits += 0x1000
-        if self.bowsers_castle_mode == BowserCastleMode.VANILLA:
-            map_tracker_bits += 0x2000
-        if self.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
-            map_tracker_bits += 0x4000
-        self.map_tracker_check_bits = map_tracker_bits
-        self.map_tracker_shop_bits = 0x7
-        if self.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
-            self.map_tracker_shop_bits += 0x8
-
         # Entrance Shuffle
         if "ShuffleDungeonRooms" in options_dict:
             self.shuffle_dungeon_rooms = options_dict.get("ShuffleDungeonRooms")
@@ -571,6 +533,59 @@ class OptionSet:
         # Misc Gameplay Randomization
         if "ShuffleBlocks" in options_dict:
             self.shuffle_blocks = options_dict.get("ShuffleBlocks")
+
+        # Map Check Tracker (static)
+        #   0x1    # regular checks
+        #   0x2    # gear
+        #   0x4    # panels
+        #   0x8    # super blocks
+        #   0x10   # overworld coins
+        #   0x20   # block coins
+        #   0x40   # favor coins
+        #   0x80   # foliage coins
+        #   0x100  # dojo
+        #   0x200  # koot favors
+        #   0x400  # radio trade event
+        #   0x800  # letter delivery
+        #   0x1000 # forever forest open
+        #   0x2000 # vanilla bowser's castle
+        #   0x4000 # vanilla or shorten bowser's castle
+        #   0x8000 # multi coin blocks
+        map_tracker_bits = 0x1 + 0x2
+        if self.include_panels:
+            map_tracker_bits += 0x4
+        if self.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
+            map_tracker_bits += 0x8
+        if self.include_coins_overworld:
+            map_tracker_bits += 0x10
+        if self.include_coins_blocks:
+            map_tracker_bits += 0x20
+        if self.include_coins_favors:
+            map_tracker_bits += 0x40
+        if self.include_coins_foliage:
+            map_tracker_bits += 0x80
+        if self.include_dojo:
+            map_tracker_bits += 0x100
+        if self.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
+            map_tracker_bits += 0x200
+        if self.include_radiotradeevent:
+            map_tracker_bits += 0x400
+        if self.include_letters_mode != IncludeLettersMode.NOT_RANDOMIZED:
+            map_tracker_bits += 0x800
+        if not self.foreverforest_open:
+            map_tracker_bits += 0x1000
+        if self.bowsers_castle_mode == BowserCastleMode.VANILLA:
+            map_tracker_bits += 0x2000
+        if self.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
+            map_tracker_bits += 0x4000
+        if (    self.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
+            and self.shuffle_blocks
+        ):
+            map_tracker_bits += 0x8000
+        self.map_tracker_check_bits = map_tracker_bits
+        self.map_tracker_shop_bits = 0x7
+        if self.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
+            self.map_tracker_shop_bits += 0x8
 
         # Quizmo Quizzes
         if "RandomQuiz" in options_dict:
@@ -780,6 +795,9 @@ class OptionSet:
             self.glitch_settings.parakarryless_super_hammer_room_normal_boots = options_dict.get("ParakarrylessSuperHammerRoomNormalBoots")
         if "RuinsLocksSkipClippy" in options_dict:
             self.glitch_settings.ruins_locks_skip_clippy = options_dict.get("RuinsLocksSkipClippy")
+
+        if "ForeverForestBackwards" in options_dict:
+            self.glitch_settings.forever_forest_backwards = options_dict.get("ForeverForestBackwards")
 
         if "RecordSkipNoBombettePush" in options_dict:
             self.glitch_settings.record_skip_no_bombette_push = options_dict.get("RecordSkipNoBombettePush")
@@ -1025,6 +1043,7 @@ class OptionSet:
         # Item Pool Modification
         basic_assert("GearShuffleMode", int)
         basic_assert("AddItemPouches", bool)
+        basic_assert("PartnerUpgradeShuffle", int)
         basic_assert("AddUnusedBadgeDuplicates", bool)
         basic_assert("AddBetaItems", bool)
         basic_assert("ProgressiveBadges", bool)
@@ -1369,6 +1388,8 @@ class OptionSet:
         basic_assert("ParakarrylessSuperHammerRoomNormalBoots", bool)
         basic_assert("RuinsLocksSkipClippy", bool)
 
+        basic_assert("ForeverForestBackwards", bool)
+
         basic_assert("RecordSkipNoBombettePush", bool)
         basic_assert("RecordSkipBombettePush", bool)
         basic_assert("BoosPortraitWithKooper", bool)
@@ -1507,6 +1528,7 @@ class OptionSet:
 
             # Item Pool Modification
             load_dbkey(self.gear_shuffle_mode, "GearShuffleMode"),
+            load_dbkey(self.partner_upgrade_shuffle, "PartnerUpgradeShuffle"),
 
             # Map Check Tracker (auto-set, not changeable via settings)
             load_dbkey(self.map_tracker_check_bits, "EnabledCheckBits"),

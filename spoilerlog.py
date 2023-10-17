@@ -211,7 +211,8 @@ def write_spoiler_log(
                 block_dict[cur_verbose_area] = []
             block_dict[cur_verbose_area].append(cur_verbose_map)
 
-    spoiler_dict["superblocks"] = block_dict
+    if block_dict:
+        spoiler_dict["superblocks"] = block_dict
 
     # Output spoiler log
     if is_web_spoiler_log:

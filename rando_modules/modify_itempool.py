@@ -138,7 +138,8 @@ def get_trapped_itempool(
     do_randomize_dojo:bool,
     keyitems_outside_dungeon:bool,
     power_star_hunt:bool,
-    add_beta_items:bool
+    add_beta_items:bool,
+    do_partner_upgrade_shuffle:bool
 ) -> list:
     """
     Modifies and returns a given item pool after placing trap items.
@@ -208,9 +209,19 @@ def get_trapped_itempool(
         item_powerstar = Item.get(Item.item_name == 'PowerStar7F')
         fakeable_items.append(item_powerstar)
 
-    # Bias towards placing UltraStone traps, as requested by clover
-    item_ultrastone = Item.get(Item.item_name == 'UltraStone')
-    fakeable_items.extend([item_ultrastone] * 9)
+    # Bias towards placing UltraStone or upgrade traps, as requested by clover
+    if do_partner_upgrade_shuffle:
+        for item in (
+            Item
+            .select()
+            .where(Item.item_type == "PARTNERUPGRADE")
+            .where(Item.unplaceable != 1)
+            .where(Item.item_name % "*Up1")
+        ):
+            fakeable_items.append(item)
+    else:
+        item_ultrastone = Item.get(Item.item_name == "UltraStone")
+        fakeable_items.extend([item_ultrastone] * 9)
 
     cnt_traps = 0
     shuffled_pool = itempool.copy()

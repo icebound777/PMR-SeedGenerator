@@ -7,6 +7,8 @@ from copy import deepcopy
 
 from worldgraph import adjust
 
+from rando_modules.random_blocks import get_block_placement
+
 from rando_enums.enum_options import \
     GearShuffleMode,\
     BowserCastleMode
@@ -35,6 +37,24 @@ from maps.graph_edges.star_hunt.edges_hos import \
     edges_hos_starhunt_remove,\
     edges_hos_starhunt2credits_add,\
     edges_hos_starhunt2credits_remove
+
+# Imports: Partner Upgrade Shuffle
+from rando_enums.enum_types import BlockType
+from maps.graph_edges.partner_upgrade_shuffle.edges_arn import edges_arn_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_dgb import edges_dgb_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_flo import edges_flo_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_isk import edges_isk_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_iwa import edges_iwa_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_jan import edges_jan_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_kmr import edges_kmr_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_kzn import edges_kzn_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_mac import edges_mac_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_nok import edges_nok_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_omo import edges_omo_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_pra import edges_pra_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_sam import edges_sam_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_sbk import edges_sbk_add_partnerupgrades
+from maps.graph_edges.partner_upgrade_shuffle.edges_tik import edges_tik_add_partnerupgrades
 
 # Imports: Glitched logic
 from models.options.OptionSet import GlitchOptionSet
@@ -141,6 +161,10 @@ from maps.graph_edges.glitched_logic.isk_parakarryless_super_hammer_room import 
     edges_isk_add_parakarryless_super_hammer_room_normal_boots, edges_isk_add_parakarryless_super_hammer_room_ultra_boots
 from maps.graph_edges.glitched_logic.isk_ruins_locks_skip import \
     edges_isk_add_ruins_locks_skip_clippy
+
+# Glitched Logic - Forever Forest
+from maps.graph_edges.glitched_logic.mim_forever_forest_backwards import \
+    edges_mim_add_forever_forest_backwards
 
 # Glitched Logic - Boo's Mansion
 from maps.graph_edges.glitched_logic.obk_record_skip import \
@@ -374,6 +398,55 @@ def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     return world_graph
 
 
+def get_partner_upgrade_shuffle(
+    world_graph: dict,
+    shuffle_blocks: bool
+) -> (dict, list):
+    """
+    Returns the modified world graph itself for Partner Upgrade Shuffle,
+    with upgrades shuffled between SuperBlock locations and, if needed,
+    MultiCoinBlock locations.
+    """
+    block_placement = get_block_placement(
+        shuffle_blocks,
+        supers_are_yellow=True
+    )
+
+    edges_partner_upgrade = []
+    edges_partner_upgrade.extend(edges_arn_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_dgb_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_flo_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_isk_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_iwa_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_jan_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_kmr_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_kzn_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_mac_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_nok_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_omo_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_pra_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_sam_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_sbk_add_partnerupgrades)
+    edges_partner_upgrade.extend(edges_tik_add_partnerupgrades)
+
+    all_new_edges = []
+
+    for block_dbkey, block_type in block_placement:
+        if block_type == BlockType.YELLOW:
+            # add relevant graph edge to new edges
+            for cur_block_dbkey, edge in edges_partner_upgrade:
+                if block_dbkey == cur_block_dbkey:
+                    all_new_edges.append(edge)
+
+    world_graph, _ = adjust(
+        world_graph,
+        new_edges=all_new_edges,
+        edges_to_remove=[]
+    )
+
+    return world_graph, block_placement
+
+
 def get_specific_spirits(world_graph: dict, chosen_spirits: list) -> dict:
     """
     Returns the modified world graph itself for specific spirits,
@@ -463,6 +536,16 @@ def get_limited_chapter_logic(
                 ):
                     world_graph[pair[1]]["edge_list"][index]["reqs"].extend([["YOUWIN"]])
                     break
+
+    # Special case: block Kolorado's Camp in the desert if ch2 is out of logic
+    kolorados_camp = ("SBK", "SBK_30/0")
+    if kolorados_camp[0] in out_of_logic_areas:
+        for index, edge in enumerate(world_graph[kolorados_camp[1]]["edge_list"]):
+            if (   "pseudoitems" in edge
+               and "RF_CanVisitDesertCamp" in edge["pseudoitems"]
+            ):
+                world_graph[kolorados_camp[1]]["edge_list"][index]["reqs"].extend([["YOUWIN"]])
+                break
 
     return world_graph
 
@@ -613,6 +696,10 @@ def get_glitched_logic(
         all_new_edges.extend(edges_isk_add_ruins_key_laki_jump)
     if glitch_settings.ruins_locks_skip_clippy:
         all_new_edges.extend(edges_isk_add_ruins_locks_skip_clippy)
+
+    # Forever Forest
+    if glitch_settings.forever_forest_backwards:
+        all_new_edges.extend(edges_mim_add_forever_forest_backwards)
 
     # Boo's Mansion
     if glitch_settings.record_skip_bombette_push:

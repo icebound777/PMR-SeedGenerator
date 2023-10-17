@@ -4,6 +4,7 @@ from enum import IntEnum, unique
 class BlockType(IntEnum):
     MULTICOIN = 0
     SUPER = 1
+    YELLOW = 2
 
 @unique
 class SongType(IntEnum):

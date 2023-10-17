@@ -73,6 +73,25 @@ exclude_due_to_settings = {
         "QuakeHammer",
         "PowerQuake",
         "MegaQuake"
+    ],
+    "partner_upgrade_shuffle": [
+        "UltraStone",
+        "Nothing", # Goombario 1
+        "Nothing", # Goombario 2
+        "Nothing", # Kooper 1
+        "Nothing", # Kooper 2
+        "Nothing", # Bombette 1
+        "Nothing", # Bombette 2
+        "Nothing", # Parakarry 1
+        "Nothing", # Parakarry 2
+        "Nothing", # Watt 1
+        "Nothing", # Watt 2
+        "Nothing", # Sushie 1
+        "Nothing", # Sushie 2
+        "Nothing", # Lakilester 1
+        "Nothing", # Lakilester 2
+        "Nothing", # Bow 1
+        "Nothing", # Bow 2
     ]
 }
 

@@ -11,13 +11,15 @@ from db.map_area import MapArea
 
 from models.MarioInventory import MarioInventory
 
-from rando_enums.enum_options import \
-    BowserCastleMode,\
-    GearShuffleMode,\
-    StartingBoots,\
-    StartingHammer,\
-    IncludeFavorsMode,\
-    IncludeLettersMode
+from rando_enums.enum_options import (
+    BowserCastleMode,
+    GearShuffleMode,
+    StartingBoots,
+    StartingHammer,
+    IncludeFavorsMode,
+    IncludeLettersMode,
+    PartnerUpgradeShuffle
+)
 
 from rando_modules.modify_itempool \
     import get_randomized_itempool,\
@@ -227,6 +229,7 @@ def get_items_to_exclude(
     gear_shuffle_mode:int,
     starting_hammer:int=-1,
     starting_boots:int=-1,
+    do_partner_upgrade_shuffle:bool=False
 ) -> list:
     """
     Returns a list of items that should not be placed or given to Mario at the
@@ -296,6 +299,10 @@ def get_items_to_exclude(
         if starting_boots >= StartingBoots.BOOTS:
             item = Item.get(Item.item_name == "BootsProxy1")
             excluded_items.append(item)
+    if do_partner_upgrade_shuffle:
+        for item_name in exclude_due_to_settings.get("partner_upgrade_shuffle"):
+            item = Item.get(Item.item_name == item_name)
+            excluded_items.append(item)
 
     return excluded_items
 
@@ -338,7 +345,8 @@ def _generate_item_pools(
     do_progressive_badges:bool,
     badge_pool_limit:int,
     bowsers_castle_mode:int,
-    star_hunt_stars:int
+    star_hunt_stars:int,
+    do_partner_upgrade_shuffle:bool
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -598,6 +606,11 @@ def _generate_item_pools(
 
         pool_progression_items.append(new_boots)
 
+    # If we shuffle partner upgrades, add upgrade items to the item pool
+    if do_partner_upgrade_shuffle:
+        for item in Item.select().where(Item.item_type == "PARTNERUPGRADE").where(Item.unplaceable != 1):
+            pool_other_items.append(item)
+
     # Adjust item pools based on settings
     items_to_remove_from_pools = get_items_to_exclude(
         do_randomize_dojo,
@@ -612,7 +625,8 @@ def _generate_item_pools(
         do_progressive_badges,
         gear_shuffle_mode,
         starting_hammer,
-        starting_boots
+        starting_boots,
+        do_partner_upgrade_shuffle
     )
     items_to_remove_from_pools.extend(starting_items)
 
@@ -639,7 +653,7 @@ def _generate_item_pools(
         while len(pool_badges) > badge_pool_limit:
             pool_badges.pop()
 
-    # If the item pool is the wrong size now, fix it by filiing up or clearing
+    # If the item pool is the wrong size now, fix it by filling up or clearing
     # out items
     cur_itempool_size = (
         len(pool_progression_items)
@@ -684,7 +698,8 @@ def _generate_item_pools(
         do_randomize_dojo,
         keyitems_outside_dungeon,
         (star_hunt_stars > 0),
-        add_beta_items
+        add_beta_items,
+        do_partner_upgrade_shuffle
     )
 
     return pool_other_items
@@ -816,6 +831,7 @@ def _algo_assumed_fill(
     badge_pool_limit:int,
     bowsers_castle_mode:int,
     star_hunt_stars:int,
+    partner_upgrade_shuffle:int,
     world_graph
 ):
 
@@ -867,7 +883,8 @@ def _algo_assumed_fill(
         do_progressive_badges,
         badge_pool_limit,
         bowsers_castle_mode,
-        star_hunt_stars
+        star_hunt_stars,
+        (partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF)
     )
 
     starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
@@ -888,6 +905,23 @@ def _algo_assumed_fill(
 
     if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
         pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
+
+    if partner_upgrade_shuffle == PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
+        # Special handling: non-progression which has to be placed first
+        pool_upgrade_items = [item for item in pool_other_items if item.item_type == "PARTNERUPGRADE"]
+        for upgrade in pool_upgrade_items:
+            pool_other_items.remove(upgrade)
+
+        random.shuffle(pool_upgrade_items)
+        for item_node in all_item_nodes:
+            if item_node.current_item:
+                continue
+            item_node_id = item_node.identifier
+            if "RandomBlockItem" in item_node_id:
+                item_node.current_item = pool_upgrade_items.pop()
+            if not pool_upgrade_items:
+                break
+
 
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()
@@ -1229,6 +1263,7 @@ def place_items(
     badge_pool_limit:int,
     bowsers_castle_mode:int,
     star_hunt_stars:int,
+    partner_upgrade_shuffle:int,
     world_graph = None
 ):
     """Places items into item locations according to chosen settings."""
@@ -1289,5 +1324,6 @@ def place_items(
             badge_pool_limit,
             bowsers_castle_mode,
             star_hunt_stars,
+            partner_upgrade_shuffle,
             world_graph
         )

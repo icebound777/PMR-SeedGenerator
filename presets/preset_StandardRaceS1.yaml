@@ -58,6 +58,7 @@ KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 # Item Pool Modification
 GearShuffleMode         : 2 # 0:vanilla, 1:location shuffle, 2:full shuffle
 AddItemPouches          : false
+PartnerUpgradeShuffle   : 0 # 0:off, 1:super block locations, 2:full shuffle
 AddUnusedBadgeDuplicates: false
 AddBetaItems            : false
 ProgressiveBadges       : false
@@ -289,6 +290,8 @@ ParakarrylessSecondSandRoomNormalBoots          : false
 ParakarrylessSuperHammerRoomUltraBoots          : false
 ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
+
+ForeverForestBackwards                          : false
 
 RecordSkipNoBombettePush                        : false
 RecordSkipBombettePush                          : false

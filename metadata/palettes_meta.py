@@ -13,6 +13,7 @@ mario_n_partner_sprite_names = [
 boss_sprite_names = [
     "47_0_KentCKoopa",
     "60_0_Kammy",
+    "62_GoombaBros",
     "63_0_GoombaKing",
     "66_0_KoopaBros",
     "66_1_KoopaBros",

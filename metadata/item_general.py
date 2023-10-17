@@ -200,6 +200,8 @@ unplaceable_items = [
     "RedBerryKey",
     "YellowBerryKey",
     "BubbleBerryKey",
+    "GoompaUp1",
+    "GoompaUp2",
     "Goompa",
 ]
 

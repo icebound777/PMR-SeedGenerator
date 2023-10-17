@@ -183,6 +183,8 @@ def gather_values():
                 value = 0
             elif "Super" in value:
                 value = 1
+            elif "Item" in value:
+                value = 2
             else:
                 raise ValueError
             return value
@@ -223,7 +225,7 @@ def gather_values():
                 elif match := re.match(r"([A-Z]{2,5}_\d+):(\S*)", key_info):
                     map_name = match.group(1)
                     key_name = match.group(2)
-                    if "RandomBlock" in key_info:
+                    if "RandomBlock" in key_info and "Item" not in key_info:
                         if map_name not in values["blocks"]:
                             values["blocks"][map_name] = {}
                         values["blocks"][map_name][key_name] = get_value(value)
@@ -239,7 +241,8 @@ def gather_values():
                 elif any(["HP" in key_info,
                           "Damage" in key_info,
                           "Level" in key_info,
-                          "Increment" in key_info]):
+                          "Increment" in key_info,
+                          "Heal" in key_info]):
                     actor,attribute = key_info.split(":")
                     value = get_value(value)
                     if actor not in values["actors"]:

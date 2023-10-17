@@ -2,7 +2,11 @@ from copy import deepcopy
 import random
 import datetime
 
-from rando_enums.enum_options import BowserCastleMode, GearShuffleMode
+from rando_enums.enum_options import (
+    BowserCastleMode,
+    GearShuffleMode,
+    PartnerUpgradeShuffle
+)
 
 from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
@@ -13,15 +17,17 @@ from rando_modules.logic import \
     get_items_to_exclude
 from rando_modules.random_blocks import get_block_placement
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
-from rando_modules.modify_entrances import \
-    get_shorter_bowsercastle,\
-    get_bowsercastle_bossrush,\
-    get_gear_location_shuffle,\
-    get_starhunt,\
-    get_glitched_logic,\
-    adjust_shop_logic,\
-    get_specific_spirits,\
+from rando_modules.modify_entrances import (
+    get_shorter_bowsercastle,
+    get_bowsercastle_bossrush,
+    get_gear_location_shuffle,
+    get_partner_upgrade_shuffle,
+    get_starhunt,
+    get_glitched_logic,
+    adjust_shop_logic,
+    get_specific_spirits,
     get_limited_chapter_logic
+)
 from rando_modules.random_entrances import shuffle_dungeon_entrances
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_movecosts import get_randomized_moves
@@ -90,6 +96,7 @@ class RandomSeed:
             try:
                 modified_world_graph = deepcopy(world_graph)
                 self.entrance_list = []
+                self.placed_blocks = []
                 self.spoilerlog_additions = {}
                 self.item_spheres_dict = None
 
@@ -129,6 +136,12 @@ class RandomSeed:
                     if self.spoilerlog_additions.get("entrances") is None:
                         self.spoilerlog_additions["entrances"] = []
                     self.spoilerlog_additions["entrances"].extend(spoilerlog_info)
+
+                if self.rando_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF:
+                    modified_world_graph, self.placed_blocks = get_partner_upgrade_shuffle(
+                        modified_world_graph,
+                        self.rando_settings.shuffle_blocks
+                    )
 
                 # Cull unneeded data from world graph if access to maps was
                 # removed
@@ -271,6 +284,7 @@ class RandomSeed:
                     badge_pool_limit=self.rando_settings.badge_pool_limit,
                     bowsers_castle_mode=self.rando_settings.bowsers_castle_mode,
                     star_hunt_stars=self.rando_settings.star_hunt_total if self.rando_settings.star_hunt else 0,
+                    partner_upgrade_shuffle=self.rando_settings.partner_upgrade_shuffle,
                     world_graph=modified_world_graph
                 )
 
@@ -324,10 +338,12 @@ class RandomSeed:
             self.rando_settings.mystery_settings
         )
 
-        # Randomize blocks if needed
-        self.placed_blocks = get_block_placement(
-            self.rando_settings.shuffle_blocks
-        )
+        # Randomize blocks if needed and not already done logically
+        if not self.placed_blocks:
+            self.placed_blocks = get_block_placement(
+                self.rando_settings.shuffle_blocks,
+                supers_are_yellow=False
+            )
 
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(
@@ -464,7 +480,8 @@ class RandomSeed:
                 always_ispy=rando_settings.always_ispy,
                 always_peekaboo=rando_settings.always_peekaboo,
                 do_progressive_badges=rando_settings.progressive_badges,
-                gear_shuffle_mode=rando_settings.gear_shuffle_mode
+                gear_shuffle_mode=rando_settings.gear_shuffle_mode,
+                do_partner_upgrade_shuffle=(rando_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF)
             )
             for item_obj in excluded_items:
                 if item_obj.value in all_allowed_starting_items:

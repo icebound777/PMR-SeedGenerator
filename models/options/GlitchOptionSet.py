@@ -66,6 +66,8 @@ class GlitchOptionSet():
         self.parakarryless_super_hammer_room_normal_boots = False
         self.ruins_locks_skip_clippy = False
 
+        self.forever_forest_backwards = False
+
         self.record_skip_no_bombette_push = False
         self.record_skip_bombette_push = False
         self.boos_portrait_with_kooper = False
