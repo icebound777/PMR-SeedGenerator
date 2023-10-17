@@ -145,13 +145,12 @@ class RandomSeed:
 
                 # Cull unneeded data from world graph if access to maps was
                 # removed
-                if maps_removed:
-                    unreachable_node_ids = check_unreachable_from_start(
-                        modified_world_graph,
-                        False
-                    )
-                    for node_id in unreachable_node_ids:
-                        modified_world_graph.pop(node_id)
+                unreachable_node_ids = check_unreachable_from_start(
+                    modified_world_graph,
+                    False
+                )
+                for node_id in unreachable_node_ids:
+                    modified_world_graph.pop(node_id)
 
                 # Adjust graph logic if needed
                 if self.rando_settings.gear_shuffle_mode != GearShuffleMode.VANILLA:
