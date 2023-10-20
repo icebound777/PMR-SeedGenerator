@@ -11,7 +11,7 @@ edges_sbk_add_partnerupgrades = [
     (0xA10A1340, {"from": {"map": "SBK_25", "id": 0}, "to": {"map": "SBK_25", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]], "mapchange": False}),
     (0xA10A1341, {"from": {"map": "SBK_25", "id": 0}, "to": {"map": "SBK_25", "id": "RandomBlockItemB"}, "reqs": [["can_hit_floating_blocks"]], "mapchange": False}),
     #* S1W3 -> RandomBlockItemA (MultiCoinBlock)
-    (0xA10A1C40, {"from": {"map": "SBK_40", "id": 0}, "to": {"map": "SBK_40", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]], "mapchange": False}),
+    (0xA10A1C40, {"from": {"map": "SBK_40", "id": 1}, "to": {"map": "SBK_40", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]], "mapchange": False}),
     #* S2W1 -> RandomBlockItemA (MultiCoinBlock)
     (0xA10A2540, {"from": {"map": "SBK_52", "id": 0}, "to": {"map": "SBK_52", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]], "mapchange": False}),
     #* S2E2 West of Oasis -> RandomBlockItemA (MultiCoinBlock)
