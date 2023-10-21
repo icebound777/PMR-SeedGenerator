@@ -45,7 +45,7 @@ VERSION_STRING = f"Seed Generator for Paper Mario 64 Randomizer mod {BASE_MOD_VE
 
 def init_randomizer(rebuild_database=False):
     """Deals with the initialization of data required for the randomizer to work."""
-    
+
     # Build database from scratch if needed
     if rebuild_database:
         # Create enums from ./globals/enum/
@@ -241,6 +241,7 @@ def write_data_to_rom(
                 #        if enum_type == "Entrance":
                 #            pass #print(pair)
 
+
 def write_data_to_array(
     options:OptionSet,
     placed_items:list,
@@ -309,7 +310,7 @@ def write_data_to_array(
     # Write the db header
     patchOperations +=((0).to_bytes(1, byteorder="big"))
     patchOperations += (rom_table.info["address"].to_bytes(4, byteorder = "big"))
-    
+
     patchOperations += ((1).to_bytes(1, byteorder="big"))
     patchOperations += (rom_table.info["magic_value"].to_bytes(4, byteorder="big"))
 
@@ -333,7 +334,7 @@ def write_data_to_array(
         for target_rom_location in coin_palette_targets:
            patchOperations += ((0).to_bytes(1, byteorder="big"))
            patchOperations += (target_rom_location.to_bytes(4, byteorder="big"))
-           for palette_byte in coin_palette_data:               
+           for palette_byte in coin_palette_data:
                 patchOperations += ((1).to_bytes(1, byteorder="big"))
                 patchOperations += (palette_byte.to_bytes(4, byteorder="big"))
 
@@ -355,7 +356,7 @@ def write_data_to_array(
     for _,pair in enumerate(table_data):
         key_int = pair["key"].to_bytes(4, byteorder="big")
         value_int = pair["value"].to_bytes(4, byteorder="big")
-        
+
         patchOperations += (key_int)
         patchOperations += (value_int)
 
@@ -374,7 +375,7 @@ def write_data_to_array(
         db_offset += 0x00000008 # Keep track of the current db offset at every iteration
 
     for formation in battle_formations:
-        for formation_hex_word in formation:              
+        for formation_hex_word in formation:
             patchOperations += (formation_hex_word.to_bytes(4, byteorder="big"))
 
     # Write end of formations table
@@ -393,6 +394,7 @@ def write_data_to_array(
 
 
     return patchOperations, palette_offset, cosmetics_offset, audio_offset, music_offset
+
 
 def write_cosmetics_data_to_array(
     coin_palette_data:list,
@@ -425,7 +427,7 @@ def write_cosmetics_data_to_array(
         for target_rom_location in coin_palette_targets:
            patchOperations += ((0).to_bytes(1, byteorder="big"))
            patchOperations += (target_rom_location.to_bytes(4, byteorder="big"))
-           for palette_byte in coin_palette_data:               
+           for palette_byte in coin_palette_data:
                 patchOperations += ((1).to_bytes(1, byteorder="big"))
                 patchOperations += (palette_byte.to_bytes(4, byteorder="big"))
 
@@ -437,7 +439,7 @@ def write_cosmetics_data_to_array(
     for _,pair in enumerate(cosmetics_table_data):
         key_int = pair["key"].to_bytes(4, byteorder="big")
         value_int = pair["value"].to_bytes(4, byteorder="big")
-        
+
         patchOperations += ((1).to_bytes(1, byteorder="big"))
         patchOperations += (key_int)
 
@@ -451,7 +453,7 @@ def write_cosmetics_data_to_array(
     for _,pair in enumerate(audio_options_table_data):
         key_int = pair["key"].to_bytes(4, byteorder="big")
         value_int = pair["value"].to_bytes(4, byteorder="big")
-        
+
         patchOperations += ((1).to_bytes(1, byteorder="big"))
         patchOperations += (key_int)
 
@@ -465,7 +467,7 @@ def write_cosmetics_data_to_array(
     for _,pair in enumerate(music_list_table_data):
         key_int = pair["key"].to_bytes(4, byteorder="big")
         value_int = pair["value"].to_bytes(4, byteorder="big")
-        
+
         patchOperations += ((1).to_bytes(1, byteorder="big"))
         patchOperations += (key_int)
 
@@ -479,14 +481,23 @@ def write_cosmetics_data_to_array(
     for _,pair in enumerate(palette_table_data):
         key_int = pair["key"].to_bytes(4, byteorder="big")
         value_int = pair["value"].to_bytes(4, byteorder="big")
-        
+
         patchOperations += (key_int)
         patchOperations += (value_int)
 
     return patchOperations
 
-def web_apply_cosmetic_options(cosmetic_settings, palette_offset, cosmetics_offset, audio_offset, music_offset):
 
+def web_apply_cosmetic_options(
+    cosmetic_settings,
+    palette_offset,
+    cosmetics_offset,
+    audio_offset,
+    music_offset
+):
+    """
+    Optional step for patching cosmetics only. Only used by the website.
+    """
     palette_options = PaletteOptionSet()
 
     palette_options.mario_setting = cosmetic_settings["MarioSetting"]
@@ -511,7 +522,7 @@ def web_apply_cosmetic_options(cosmetic_settings, palette_offset, cosmetics_offs
     palette_options.npc_setting = cosmetic_settings["NPCSetting"]
     palette_options.enemies_setting = cosmetic_settings["EnemiesSetting"]
     palette_options.hammer_setting = cosmetic_settings["HammerSetting"]
-        
+
     # Randomize sprite palettes
     coin_palette, chosen_color_id= get_randomized_coinpalette(
         color_id = cosmetic_settings["CoinColor"],
@@ -554,7 +565,13 @@ def web_apply_cosmetic_options(cosmetic_settings, palette_offset, cosmetics_offs
     patch_file = io.BytesIO(operations)
     return patch_file
 
+
 def web_randomizer(jsonSettings, world_graph):
+    """
+    Main randomizer module for the website. Instead of writing to ROM the
+    changes are written to a byte array to be handled during a following
+    patching process implemented on the server.
+    """
     timer_start = time.perf_counter()
 
     data = json.loads(jsonSettings)
@@ -629,7 +646,7 @@ def web_randomizer(jsonSettings, world_graph):
 def main_randomizer(args):
     """
     Main randomizer module, used for controlling the randomizer from the
-    commandline. Calling this forgoes using the GUI.
+    commandline.
     """
     timer_start = time.perf_counter()
 

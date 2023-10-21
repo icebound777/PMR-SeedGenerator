@@ -101,17 +101,14 @@ class RandomSeed:
                 self.item_spheres_dict = None
 
                 # Modify entrances if needed
-                maps_removed = False
                 if self.rando_settings.bowsers_castle_mode == BowserCastleMode.SHORTEN:
                     self.entrance_list, modified_world_graph = get_shorter_bowsercastle(
                         modified_world_graph
                     )
-                    maps_removed = True
                 elif self.rando_settings.bowsers_castle_mode == BowserCastleMode.BOSSRUSH:
                     self.entrance_list, modified_world_graph = get_bowsercastle_bossrush(
                         modified_world_graph
                     )
-                    maps_removed = True
 
                 if self.rando_settings.star_hunt:
                     entrance_changes, modified_world_graph = get_starhunt(
@@ -120,8 +117,6 @@ class RandomSeed:
                         self.rando_settings.star_hunt_ends_game
                     )
                     self.entrance_list.extend(entrance_changes)
-                    if self.rando_settings.star_hunt_ends_game:
-                        maps_removed = True
 
                 if (    self.rando_settings.shuffle_dungeon_entrances
                     and self.rando_settings.shuffle_items
