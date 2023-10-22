@@ -313,10 +313,14 @@ class RandomSeed:
 
                 break
 
-            except UnbeatableSeedError as err:
+            except UnbeatableSeedError:
                 print(f"Failed to place items! Fail count: {placement_attempt}")
-            except AssertionError as err:
+                if placement_attempt == 10:
+                    raise
+            except AssertionError:
                 print(f"Failed to build beatable world! Fail count: {placement_attempt}")
+                if placement_attempt == 10:
+                    raise
 
         # Adjust item pricing
         for node in self.placed_items:

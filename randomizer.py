@@ -659,11 +659,9 @@ def main_randomizer(args):
 
     write_to_rom = True
 
-    # Get arguments from cmd
-    argv = sys.argv[1:]
     try:
         opts, args = getopt.gnu_getopt(
-            argv,
+            args,
             'hdc:t:s:S:rv',
             ['help', 'dry-run', 'config-file=', 'targetmod=', 'spoilerlog=', 'seed=', 'rebuild-db', 'version']
         )
