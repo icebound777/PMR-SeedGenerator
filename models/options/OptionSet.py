@@ -197,6 +197,7 @@ class OptionSet:
         self.write_spoilerlog = True
 
         # Cosmetics
+        self.color_mode = get_option_default_value("ColorMode")
         self.color_a = get_option_default_value("Box5ColorA")
         self.color_b = get_option_default_value("Box5ColorB")
         self.coin_color = get_option_default_value("CoinColor")
@@ -600,6 +601,8 @@ class OptionSet:
             self.write_spoilerlog = options_dict.get("WriteSpoilerLog")
 
         # Cosmetics General
+        if "ColorMode" in options_dict:
+            self.color_mode = options_dict.get("ColorMode")
         if "Box5ColorA" in options_dict:
             self.color_a = options_dict.get("Box5ColorA")
         if "Box5ColorB" in options_dict:
@@ -1271,6 +1274,10 @@ class OptionSet:
         basic_assert("WriteSpoilerLog", bool)
 
         # Cosmetics
+        if "ColorMode" in options_dict:
+            assert (    isinstance(options_dict.get("ColorMode"), int)
+                    and 0 <= options_dict.get("ColorMode") <= 2
+            )
         if "Box5ColorA" in options_dict:
             assert (    isinstance(options_dict.get("Box5ColorA"), int)
                     and 0 <= options_dict.get("Box5ColorA") <= 0xFFFFFFFF
@@ -1616,6 +1623,7 @@ class OptionSet:
             load_dbkey(self.skip_quiz, "SkipQuiz"),
 
             # Cosmetics
+            load_dbkey(self.color_mode, "ColorMode"),
             load_dbkey(self.color_a, "Box5ColorA"),
             load_dbkey(self.color_b, "Box5ColorB"),
             load_dbkey(self.coin_color, "CoinColor"),

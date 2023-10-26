@@ -189,6 +189,19 @@ def gather_values():
                 raise ValueError
             return value
 
+        # other Defines
+        if value.startswith(".ColorMode"):
+            # As per definition in RandomUI.patch in base mod
+            if ":Fixed" in value:
+                value = 0
+            elif ":Random" in value:
+                value = 1
+            elif ":Animated" in value:
+                value = 2
+            else:
+                raise ValueError
+            return value
+
         return None
 
     values = {

@@ -349,7 +349,7 @@ def write_data_to_array(
     music_offset = 0
 
     first_palette_db_key = Palette.get(Palette.sprite == "Mario").get_key()
-    first_cosmetics_db_key = Option.get(Option.name == "Box5ColorA").get_key()
+    first_cosmetics_db_key = Option.get(Option.name == "ColorMode").get_key()
     first_audio_db_key = Option.get(Option.name == "RandomPitch").get_key()
     first_music_db_key = 0xA7000000
 
@@ -533,6 +533,7 @@ def web_apply_cosmetic_options(
     )
 
     cosmetic_options = {
+        "ColorMode": cosmetic_settings["ColorMode"],
         "Box5ColorA": cosmetic_settings["Box5ColorA"],
         "Box5ColorB": cosmetic_settings["Box5ColorB"],
         "RandomText": cosmetic_settings["RandomText"],

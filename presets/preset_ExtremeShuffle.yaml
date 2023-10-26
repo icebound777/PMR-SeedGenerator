@@ -180,6 +180,7 @@ SkipQuiz           : false
 WriteSpoilerLog : true
 
 # Cosmetics
+ColorMode      : 0 # 0:fixed, 1:random, 2:animated
 Box5ColorA     : 0xEBE676FF # Status Bar Color A (main)
 Box5ColorB     : 0x8E5A24FF # Status Bar Color B (shadow)
 CoinColor      : 0 # 0:gold, 1:red, 2:blue, 3:purple, 4:silver
