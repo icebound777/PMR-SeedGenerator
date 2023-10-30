@@ -214,6 +214,7 @@ class OptionSet:
         self.roman_numerals = get_option_default_value("RomanNumerals")
         self.random_text = get_option_default_value("RandomText")
         self.random_pitch = get_option_default_value("RandomPitch")
+        self.mirror_mode = get_option_default_value("MirrorMode")
 
         # Glitched Logic
         self.glitch_settings = GlitchOptionSet()
@@ -673,6 +674,8 @@ class OptionSet:
             self.random_text = options_dict.get("RandomText")
         if "RandomPitch" in options_dict:
             self.random_pitch = options_dict.get("RandomPitch")
+        if "MirrorMode" in options_dict:
+            self.mirror_mode = options_dict.get("MirrorMode")
 
         # Glitched Logic
         if "PrologueGelEarly" in options_dict:
@@ -1327,6 +1330,7 @@ class OptionSet:
         basic_assert("RomanNumerals", bool)
         basic_assert("RandomText", bool)
         basic_assert("RandomPitch", bool)
+        basic_assert("MirrorMode", bool)
 
         # Glitched Logic
         basic_assert("PrologueGelEarly", bool)
@@ -1632,6 +1636,7 @@ class OptionSet:
             load_dbkey(self.roman_numerals, "RomanNumerals"),
             load_dbkey(self.random_text, "RandomText"),
             load_dbkey(self.random_pitch, "RandomPitch"),
+            load_dbkey(self.mirror_mode, "MirrorMode"),
         ]
 
 

@@ -221,9 +221,10 @@ ShuffleMusicMode: 0 # 0:shuffle by song mood, 1:shuffle by song type, 2:full shu
 ShuffleJingles  : False
 
 # Joke options
-RomanNumerals  : false
-RandomText     : false
-RandomPitch: false
+RomanNumerals: false
+RandomText   : false
+RandomPitch  : false
+MirrorMode   : false
 
 # Glitched Logic
 PrologueGelEarly                                : false

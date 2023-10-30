@@ -224,6 +224,7 @@ ShuffleJingles  : False
 RomanNumerals: false
 RandomPitch  : false
 RandomText   : false
+MirrorMode   : false
 
 # Glitched Logic
 PrologueGelEarly                                : false
