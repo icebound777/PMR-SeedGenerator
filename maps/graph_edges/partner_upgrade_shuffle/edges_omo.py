@@ -10,5 +10,5 @@ edges_omo_add_partnerupgrades = [
     #* RED Moving Platforms -> RandomBlockItemB (MultiCoinBlock)
     (0xA1100A41, {"from": {"map": "OMO_11", "id": "YBlockA"}, "to": {"map": "OMO_11", "id": "RandomBlockItemB"}, "reqs": [], "mapchange": False}), #+ CHAINED REQUIREMENTS
     #* PNK Tracks Hallway -> RandomBlockItemB (MultiCoinBlock)
-    (0xA1101040, {"from": {"map": "OMO_17", "id": 0}, "to": {"map": "OMO_17", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]], "mapchange": False}),
+    (0xA1101040, {"from": {"map": "OMO_17", "id": 1}, "to": {"map": "OMO_17", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]], "mapchange": False}),
 ]
