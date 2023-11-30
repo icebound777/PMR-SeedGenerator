@@ -30,6 +30,13 @@ class Item(Model):
     # or is unused but non-functional
     unplaceable = BooleanField(default=False)
 
+    def __eq__(self, other):
+        return (
+                self.item_type == other.item_type
+            and self.value == other.value
+            and self.is_trapped() == other.is_trapped()
+        )
+
     def __str__(self):
         return f"{self.item_name} ({self.item_type})[{hex(self.value)}]"
 
