@@ -35,7 +35,7 @@ class OptionSet:
         self.always_speedyspin = get_option_default_value("AlwaysSpeedySpin")
         self.always_ispy = get_option_default_value("AlwaysISpy")
         self.always_peekaboo = get_option_default_value("AlwaysPeekaboo")
-        self.shorten_cutscenes = get_option_default_value("ShortenCutscenes")
+        self.cutscene_mode = get_option_default_value("CutsceneMode")
         self.fast_text_skip = get_option_default_value("FastTextSkip")
         self.skip_epilogue = get_option_default_value("SkipEpilogue")
         self.peachcastle_return_pipe = get_option_default_value("PeachCastleReturnPipe")
@@ -248,9 +248,9 @@ class OptionSet:
             self.always_ispy = options_dict.get("AlwaysISpy")
         if "AlwaysPeekaboo" in options_dict:
             self.always_peekaboo = options_dict.get("AlwaysPeekaboo")
-        if "ShortenCutscenes" in options_dict:
-            self.shorten_cutscenes = options_dict.get("ShortenCutscenes")
-            self.fast_text_skip = self.shorten_cutscenes
+        if "CutsceneMode" in options_dict:
+            self.cutscene_mode = options_dict.get("CutsceneMode")
+            self.fast_text_skip = (self.cutscene_mode > 0)
         if "SkipEpilogue" in options_dict:
             self.skip_epilogue = options_dict.get("SkipEpilogue")
         if "PeachCastleReturnPipe" in options_dict:
@@ -1003,7 +1003,10 @@ class OptionSet:
         basic_assert("AlwaysSpeedySpin", bool)
         basic_assert("AlwaysISpy", bool)
         basic_assert("AlwaysPeekaboo", bool)
-        basic_assert("ShortenCutscenes", bool)
+        if "CutsceneMode" in options_dict:
+            assert (    isinstance(options_dict.get("CutsceneMode"), int)
+                    and 0 <= options_dict.get("CutsceneMode") <= 2
+            )
         # ignore FastTextSkip
         basic_assert("SkipEpilogue", bool)
         basic_assert("PeachCastleReturnPipe", bool)
@@ -1509,7 +1512,7 @@ class OptionSet:
             load_dbkey(self.always_speedyspin, "AlwaysSpeedySpin"),
             load_dbkey(self.always_ispy, "AlwaysISpy"),
             load_dbkey(self.always_peekaboo, "AlwaysPeekaboo"),
-            load_dbkey(self.shorten_cutscenes, "ShortenCutscenes"),
+            load_dbkey(self.cutscene_mode, "CutsceneMode"),
             load_dbkey(self.fast_text_skip, "FastTextSkip"),
             load_dbkey(self.skip_epilogue, "SkipEpilogue"),
             load_dbkey(self.peachcastle_return_pipe, "PeachCastleReturnPipe"),

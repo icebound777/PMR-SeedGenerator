@@ -202,6 +202,18 @@ def gather_values():
                 raise ValueError
             return value
 
+        if value.startswith(".Cutscenes"):
+            # As per definition in DatabaseDefaults.patch in base mod
+            if "Vanilla" in value:
+                value = 0
+            elif "Shortened" in value:
+                value = 1
+            elif "SpeedrunMode" in value:
+                value = 2
+            else:
+                raise ValueError
+            return value
+
         return None
 
     values = {
