@@ -43,12 +43,6 @@ class Table:
             "value": 0x00000000
         })
 
-        # more temp fixes because we push half implemented features
-        table_data.append({
-            "key": 0xAF060505,
-            "value": 0x00000000
-        })
-
         # Quizzes
         quizzes = kwargs.get("quiz_data")
 

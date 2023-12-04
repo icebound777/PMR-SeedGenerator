@@ -216,6 +216,9 @@ class OptionSet:
         self.random_pitch = get_option_default_value("RandomPitch")
         self.mirror_mode = get_option_default_value("MirrorMode")
 
+        # Not Yet Implemented, do not touch
+        self.widescreen = False
+
         # Glitched Logic
         self.glitch_settings = GlitchOptionSet()
 
@@ -1640,6 +1643,9 @@ class OptionSet:
             load_dbkey(self.random_text, "RandomText"),
             load_dbkey(self.random_pitch, "RandomPitch"),
             load_dbkey(self.mirror_mode, "MirrorMode"),
+
+            # Not Yet Implemented, do not touch
+            load_dbkey(self.widescreen, "Widescreen"),
         ]
 
 
