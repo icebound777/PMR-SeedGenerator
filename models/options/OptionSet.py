@@ -1336,7 +1336,7 @@ class OptionSet:
         basic_assert("RomanNumerals", bool)
         basic_assert("RandomText", bool)
         basic_assert("RandomPitch", bool)
-        basic_assert("MirrorMode", bool)
+        basic_assert("MirrorMode", int)
 
         # Glitched Logic
         basic_assert("PrologueGelEarly", bool)

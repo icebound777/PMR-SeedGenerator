@@ -208,7 +208,7 @@ def gather_values():
                 value = 0
             elif "Shortened" in value:
                 value = 1
-            elif "SpeedrunMode" in value:
+            elif "Minimal" in value:
                 value = 2
             else:
                 raise ValueError

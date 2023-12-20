@@ -12,7 +12,7 @@ BadgeSynergy        : false
 AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
-CutsceneMode         : 1 # 0:vanilla, 1:shortened, 2:speedrunmode
+CutsceneMode         : 1 # 0:vanilla, 1:shortened, 2:minimal
 SkipEpilogue         : true
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : true
@@ -224,7 +224,7 @@ ShuffleJingles  : False
 RomanNumerals: false
 RandomText   : false
 RandomPitch  : false
-MirrorMode   : false
+MirrorMode   : 0 # 0:off, 1:always on, 2: 50/50 chance on map load
 
 # Glitched Logic
 PrologueGelEarly                                : false
