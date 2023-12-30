@@ -30,6 +30,7 @@ from rando_modules.modify_entrances import (
 )
 from rando_modules.random_entrances import shuffle_dungeon_entrances
 from rando_modules.random_formations import get_random_formations
+from rando_modules.random_map_mirroring import get_mirrored_map_list
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
 from rando_modules.random_palettes import \
@@ -70,6 +71,7 @@ class RandomSeed:
         self.move_costs = []
         self.coin_palette:CoinPalette = CoinPalette()
         self.palette_data = []
+        self.static_map_mirroring = []
         self.quiz_list = []
         self.music_list = []
         self.item_spheres_dict = None
@@ -395,6 +397,10 @@ class RandomSeed:
         self.palette_data = get_randomized_palettes(
             self.rando_settings.palette_settings
         )
+
+        # Randomize map mirroring
+        if self.rando_settings.static_mirroring:
+            self.static_map_mirroring = get_mirrored_map_list()
 
         # Music settings
         self.music_list = get_randomized_audio(

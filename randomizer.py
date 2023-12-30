@@ -130,6 +130,7 @@ def write_data_to_rom(
     palette_data:list,
     quiz_data:list,
     music_list:list,
+    mapmirror_list:list,
     seed_id=random.randint(0, 0xFFFFFFFF)
 ):
     """
@@ -149,7 +150,8 @@ def write_data_to_rom(
         move_costs=move_costs,
         palettes=palette_data,
         quiz_data=quiz_data,
-        music_list=music_list
+        music_list=music_list,
+        mapmirror_list=mapmirror_list
     )
 
     # Update table info with variable data
@@ -277,7 +279,8 @@ def write_data_to_array(
         move_costs=move_costs,
         palettes=palette_data,
         quiz_data=quiz_data,
-        music_list=music_list
+        music_list=music_list,
+        mapmirror_list=mapmirror_list
     )
 
     # Update table info with variable data
@@ -601,6 +604,7 @@ def web_randomizer(jsonSettings, world_graph):
         palette_data=random_seed.palette_data,
         quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
+        mapmirror_list=random_seed.static_map_mirroring,
         seed_id=random_seed.seed_hash
     )
     patch_file = io.BytesIO(operations)
@@ -761,6 +765,7 @@ def main_randomizer(args):
             palette_data=random_seed.palette_data,
             quiz_data=random_seed.quiz_list,
             music_list=random_seed.music_list,
+            mapmirror_list=random_seed.static_map_mirroring,
             seed_id=random_seed.seed_hash
         )
 

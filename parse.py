@@ -18,6 +18,7 @@ def gather_keys():
     A5 = 
     A6 = Moves (cost FP/BP)
     AA = RESERVED (see table.py unique itemID)
+    AE = Static Map Mirroring (but we don't need them in the generator)
     AF = Quizzes
     """
     files = get_files("../../globals/patch")

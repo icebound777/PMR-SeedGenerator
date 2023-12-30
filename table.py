@@ -121,6 +121,14 @@ class Table:
                 "value": value
             })
 
+        # Map mirroring
+        mapmirror_list = kwargs.get("mapmirror_list")
+        for key, value in mapmirror_list:
+            table_data.append({
+                "key": key,
+                "value": value
+            })
+
         table_data.sort(key=lambda pair: pair["key"])
         return table_data
 

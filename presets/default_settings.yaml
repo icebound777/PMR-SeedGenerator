@@ -221,10 +221,11 @@ ShuffleMusicMode: 0 # 0:shuffle by song mood, 1:shuffle by song type, 2:full shu
 ShuffleJingles  : False
 
 # Joke options
-RomanNumerals: false
-RandomText   : false
-RandomPitch  : false
-MirrorMode   : 0 # 0:off, 1:always on, 2: 50/50 chance on map load
+RomanNumerals     : false
+RandomText        : false
+RandomPitch       : false
+MirrorMode        : 0 # 0:off, 1:always on, 2: 50/50 chance on map load
+StaticMapMirroring: false
 
 # Glitched Logic
 PrologueGelEarly                                : false

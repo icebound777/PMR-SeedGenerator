@@ -215,6 +215,7 @@ class OptionSet:
         self.random_text = get_option_default_value("RandomText")
         self.random_pitch = get_option_default_value("RandomPitch")
         self.mirror_mode = get_option_default_value("MirrorMode")
+        self.static_mirroring = False
 
         # Not Yet Implemented, do not touch
         self.widescreen = False
@@ -679,6 +680,8 @@ class OptionSet:
             self.random_pitch = options_dict.get("RandomPitch")
         if "MirrorMode" in options_dict:
             self.mirror_mode = options_dict.get("MirrorMode")
+        if "StaticMapMirroring" in options_dict:
+            self.static_mirroring = options_dict.get("StaticMapMirroring")
 
         # Glitched Logic
         if "PrologueGelEarly" in options_dict:
@@ -1337,6 +1340,7 @@ class OptionSet:
         basic_assert("RandomText", bool)
         basic_assert("RandomPitch", bool)
         basic_assert("MirrorMode", int)
+        basic_assert("StaticMapMirroring", bool)
 
         # Glitched Logic
         basic_assert("PrologueGelEarly", bool)
