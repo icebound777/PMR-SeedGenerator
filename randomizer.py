@@ -259,6 +259,7 @@ def write_data_to_array(
     palette_data:list,
     quiz_data:list,
     music_list:list,
+    mapmirror_list:list,
     seed_id: int
 ):
     """
