@@ -12,7 +12,7 @@ BadgeSynergy        : false
 AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
-ShortenCutscenes     : true
+CutsceneMode         : 1 # 0:vanilla, 1:shortened, 2:minimal
 SkipEpilogue         : true
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : false
@@ -180,6 +180,7 @@ SkipQuiz           : false
 WriteSpoilerLog : true
 
 # Cosmetics
+ColorMode      : 0 # 0:fixed, 1:random, 2:animated
 Box5ColorA     : 0xEBE676FF # Status Bar Color A (main)
 Box5ColorB     : 0x8E5A24FF # Status Bar Color B (shadow)
 CoinColor      : 0 # 0:gold, 1:red, 2:blue, 3:purple, 4:silver
@@ -220,9 +221,11 @@ ShuffleMusicMode: 0 # 0:shuffle by song mood, 1:shuffle by song type, 2:full shu
 ShuffleJingles  : False
 
 # Joke options
-RomanNumerals: false
-RandomPitch  : false
-RandomText   : false
+RomanNumerals     : false
+RandomPitch       : false
+RandomText        : false
+MirrorMode        : 0 # 0:off, 1:always on, 2: 50/50 chance on map load
+StaticMapMirroring: false
 
 # Glitched Logic
 PrologueGelEarly                                : false

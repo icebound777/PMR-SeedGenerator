@@ -18,6 +18,7 @@ def gather_keys():
     A5 = 
     A6 = Moves (cost FP/BP)
     AA = RESERVED (see table.py unique itemID)
+    AE = Static Map Mirroring (but we don't need them in the generator)
     AF = Quizzes
     """
     files = get_files("../../globals/patch")
@@ -184,6 +185,31 @@ def gather_values():
             elif "Super" in value:
                 value = 1
             elif "Item" in value:
+                value = 2
+            else:
+                raise ValueError
+            return value
+
+        # other Defines
+        if value.startswith(".ColorMode"):
+            # As per definition in RandomUI.patch in base mod
+            if ":Fixed" in value:
+                value = 0
+            elif ":Random" in value:
+                value = 1
+            elif ":Animated" in value:
+                value = 2
+            else:
+                raise ValueError
+            return value
+
+        if value.startswith(".Cutscenes"):
+            # As per definition in DatabaseDefaults.patch in base mod
+            if "Vanilla" in value:
+                value = 0
+            elif "Shortened" in value:
+                value = 1
+            elif "Minimal" in value:
                 value = 2
             else:
                 raise ValueError

@@ -130,6 +130,7 @@ def write_data_to_rom(
     palette_data:list,
     quiz_data:list,
     music_list:list,
+    mapmirror_list:list,
     seed_id=random.randint(0, 0xFFFFFFFF)
 ):
     """
@@ -149,7 +150,8 @@ def write_data_to_rom(
         move_costs=move_costs,
         palettes=palette_data,
         quiz_data=quiz_data,
-        music_list=music_list
+        music_list=music_list,
+        mapmirror_list=mapmirror_list
     )
 
     # Update table info with variable data
@@ -257,6 +259,7 @@ def write_data_to_array(
     palette_data:list,
     quiz_data:list,
     music_list:list,
+    mapmirror_list:list,
     seed_id: int
 ):
     """
@@ -277,7 +280,8 @@ def write_data_to_array(
         move_costs=move_costs,
         palettes=palette_data,
         quiz_data=quiz_data,
-        music_list=music_list
+        music_list=music_list,
+        mapmirror_list=mapmirror_list
     )
 
     # Update table info with variable data
@@ -349,7 +353,7 @@ def write_data_to_array(
     music_offset = 0
 
     first_palette_db_key = Palette.get(Palette.sprite == "Mario").get_key()
-    first_cosmetics_db_key = Option.get(Option.name == "Box5ColorA").get_key()
+    first_cosmetics_db_key = Option.get(Option.name == "ColorMode").get_key()
     first_audio_db_key = Option.get(Option.name == "RandomPitch").get_key()
     first_music_db_key = 0xA7000000
 
@@ -533,6 +537,7 @@ def web_apply_cosmetic_options(
     )
 
     cosmetic_options = {
+        "ColorMode": cosmetic_settings["ColorMode"],
         "Box5ColorA": cosmetic_settings["Box5ColorA"],
         "Box5ColorB": cosmetic_settings["Box5ColorB"],
         "RandomText": cosmetic_settings["RandomText"],
@@ -600,6 +605,7 @@ def web_randomizer(jsonSettings, world_graph):
         palette_data=random_seed.palette_data,
         quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
+        mapmirror_list=random_seed.static_map_mirroring,
         seed_id=random_seed.seed_hash
     )
     patch_file = io.BytesIO(operations)
@@ -659,11 +665,9 @@ def main_randomizer(args):
 
     write_to_rom = True
 
-    # Get arguments from cmd
-    argv = sys.argv[1:]
     try:
         opts, args = getopt.gnu_getopt(
-            argv,
+            args,
             'hdc:t:s:S:rv',
             ['help', 'dry-run', 'config-file=', 'targetmod=', 'spoilerlog=', 'seed=', 'rebuild-db', 'version']
         )
@@ -762,6 +766,7 @@ def main_randomizer(args):
             palette_data=random_seed.palette_data,
             quiz_data=random_seed.quiz_list,
             music_list=random_seed.music_list,
+            mapmirror_list=random_seed.static_map_mirroring,
             seed_id=random_seed.seed_hash
         )
 

@@ -43,12 +43,6 @@ class Table:
             "value": 0x00000000
         })
 
-        # more temp fixes because we push half implemented features
-        table_data.append({
-            "key": 0xAF060505,
-            "value": 0x00000000
-        })
-
         # Quizzes
         quizzes = kwargs.get("quiz_data")
 
@@ -122,6 +116,14 @@ class Table:
         # Audio
         music_list = kwargs.get("music_list")
         for key, value in music_list:
+            table_data.append({
+                "key": key,
+                "value": value
+            })
+
+        # Map mirroring
+        mapmirror_list = kwargs.get("mapmirror_list")
+        for key, value in mapmirror_list:
             table_data.append({
                 "key": key,
                 "value": value

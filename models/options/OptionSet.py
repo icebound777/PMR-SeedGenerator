@@ -35,7 +35,7 @@ class OptionSet:
         self.always_speedyspin = get_option_default_value("AlwaysSpeedySpin")
         self.always_ispy = get_option_default_value("AlwaysISpy")
         self.always_peekaboo = get_option_default_value("AlwaysPeekaboo")
-        self.shorten_cutscenes = get_option_default_value("ShortenCutscenes")
+        self.cutscene_mode = get_option_default_value("CutsceneMode")
         self.fast_text_skip = get_option_default_value("FastTextSkip")
         self.skip_epilogue = get_option_default_value("SkipEpilogue")
         self.peachcastle_return_pipe = get_option_default_value("PeachCastleReturnPipe")
@@ -197,6 +197,7 @@ class OptionSet:
         self.write_spoilerlog = True
 
         # Cosmetics
+        self.color_mode = get_option_default_value("ColorMode")
         self.color_a = get_option_default_value("Box5ColorA")
         self.color_b = get_option_default_value("Box5ColorB")
         self.coin_color = get_option_default_value("CoinColor")
@@ -213,6 +214,11 @@ class OptionSet:
         self.roman_numerals = get_option_default_value("RomanNumerals")
         self.random_text = get_option_default_value("RandomText")
         self.random_pitch = get_option_default_value("RandomPitch")
+        self.mirror_mode = get_option_default_value("MirrorMode")
+        self.static_mirroring = False
+
+        # Not Yet Implemented, do not touch
+        self.widescreen = False
 
         # Glitched Logic
         self.glitch_settings = GlitchOptionSet()
@@ -246,9 +252,9 @@ class OptionSet:
             self.always_ispy = options_dict.get("AlwaysISpy")
         if "AlwaysPeekaboo" in options_dict:
             self.always_peekaboo = options_dict.get("AlwaysPeekaboo")
-        if "ShortenCutscenes" in options_dict:
-            self.shorten_cutscenes = options_dict.get("ShortenCutscenes")
-            self.fast_text_skip = self.shorten_cutscenes
+        if "CutsceneMode" in options_dict:
+            self.cutscene_mode = options_dict.get("CutsceneMode")
+            self.fast_text_skip = (self.cutscene_mode > 0)
         if "SkipEpilogue" in options_dict:
             self.skip_epilogue = options_dict.get("SkipEpilogue")
         if "PeachCastleReturnPipe" in options_dict:
@@ -600,6 +606,8 @@ class OptionSet:
             self.write_spoilerlog = options_dict.get("WriteSpoilerLog")
 
         # Cosmetics General
+        if "ColorMode" in options_dict:
+            self.color_mode = options_dict.get("ColorMode")
         if "Box5ColorA" in options_dict:
             self.color_a = options_dict.get("Box5ColorA")
         if "Box5ColorB" in options_dict:
@@ -670,6 +678,10 @@ class OptionSet:
             self.random_text = options_dict.get("RandomText")
         if "RandomPitch" in options_dict:
             self.random_pitch = options_dict.get("RandomPitch")
+        if "MirrorMode" in options_dict:
+            self.mirror_mode = options_dict.get("MirrorMode")
+        if "StaticMapMirroring" in options_dict:
+            self.static_mirroring = options_dict.get("StaticMapMirroring")
 
         # Glitched Logic
         if "PrologueGelEarly" in options_dict:
@@ -997,7 +1009,10 @@ class OptionSet:
         basic_assert("AlwaysSpeedySpin", bool)
         basic_assert("AlwaysISpy", bool)
         basic_assert("AlwaysPeekaboo", bool)
-        basic_assert("ShortenCutscenes", bool)
+        if "CutsceneMode" in options_dict:
+            assert (    isinstance(options_dict.get("CutsceneMode"), int)
+                    and 0 <= options_dict.get("CutsceneMode") <= 2
+            )
         # ignore FastTextSkip
         basic_assert("SkipEpilogue", bool)
         basic_assert("PeachCastleReturnPipe", bool)
@@ -1271,6 +1286,10 @@ class OptionSet:
         basic_assert("WriteSpoilerLog", bool)
 
         # Cosmetics
+        if "ColorMode" in options_dict:
+            assert (    isinstance(options_dict.get("ColorMode"), int)
+                    and 0 <= options_dict.get("ColorMode") <= 2
+            )
         if "Box5ColorA" in options_dict:
             assert (    isinstance(options_dict.get("Box5ColorA"), int)
                     and 0 <= options_dict.get("Box5ColorA") <= 0xFFFFFFFF
@@ -1320,6 +1339,8 @@ class OptionSet:
         basic_assert("RomanNumerals", bool)
         basic_assert("RandomText", bool)
         basic_assert("RandomPitch", bool)
+        basic_assert("MirrorMode", int)
+        basic_assert("StaticMapMirroring", bool)
 
         # Glitched Logic
         basic_assert("PrologueGelEarly", bool)
@@ -1498,7 +1519,7 @@ class OptionSet:
             load_dbkey(self.always_speedyspin, "AlwaysSpeedySpin"),
             load_dbkey(self.always_ispy, "AlwaysISpy"),
             load_dbkey(self.always_peekaboo, "AlwaysPeekaboo"),
-            load_dbkey(self.shorten_cutscenes, "ShortenCutscenes"),
+            load_dbkey(self.cutscene_mode, "CutsceneMode"),
             load_dbkey(self.fast_text_skip, "FastTextSkip"),
             load_dbkey(self.skip_epilogue, "SkipEpilogue"),
             load_dbkey(self.peachcastle_return_pipe, "PeachCastleReturnPipe"),
@@ -1616,6 +1637,7 @@ class OptionSet:
             load_dbkey(self.skip_quiz, "SkipQuiz"),
 
             # Cosmetics
+            load_dbkey(self.color_mode, "ColorMode"),
             load_dbkey(self.color_a, "Box5ColorA"),
             load_dbkey(self.color_b, "Box5ColorB"),
             load_dbkey(self.coin_color, "CoinColor"),
@@ -1624,6 +1646,10 @@ class OptionSet:
             load_dbkey(self.roman_numerals, "RomanNumerals"),
             load_dbkey(self.random_text, "RandomText"),
             load_dbkey(self.random_pitch, "RandomPitch"),
+            load_dbkey(self.mirror_mode, "MirrorMode"),
+
+            # Not Yet Implemented, do not touch
+            load_dbkey(self.widescreen, "Widescreen"),
         ]
 
 
