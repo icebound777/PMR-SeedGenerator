@@ -41,6 +41,7 @@ class OptionSet:
         self.peachcastle_return_pipe = get_option_default_value("PeachCastleReturnPipe")
         self.foliage_item_hints = get_option_default_value("FoliageItemHints")
         self.hiddenpanel_visibility = get_option_default_value("HiddenPanelVisibility")
+        self.mute_danger_beeps = get_option_default_value("MuteDangerBeeps")
 
         # Difficulty and Enemies
         self.shuffle_chapter_difficulty = False
@@ -263,6 +264,8 @@ class OptionSet:
             self.foliage_item_hints = options_dict.get("FoliageItemHints")
         if "HiddenPanelVisibility" in options_dict:
             self.hiddenpanel_visibility = options_dict.get("HiddenPanelVisibility")
+        if "MuteDangerBeeps" in options_dict:
+            self.mute_danger_beeps = options_dict.get("MuteDangerBeeps")
 
         # Difficulty and Enemies
         if "ShuffleChapterDifficulty" in options_dict:
@@ -1525,6 +1528,7 @@ class OptionSet:
             load_dbkey(self.peachcastle_return_pipe, "PeachCastleReturnPipe"),
             load_dbkey(self.foliage_item_hints, "FoliageItemHints"),
             load_dbkey(self.hiddenpanel_visibility, "HiddenPanelVisibility"),
+            load_dbkey(self.mute_danger_beeps, "MuteDangerBeeps"),
 
             # Difficulty and Enemies
             load_dbkey(self.progressive_scaling, "ProgressiveScaling"),
