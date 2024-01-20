@@ -546,7 +546,8 @@ def web_apply_cosmetic_options(
     }
 
     audio_options = {
-        "RandomPitch": cosmetic_settings["RandomPitch"]
+        "RandomPitch": cosmetic_settings["RandomPitch"],
+        "MuteDangerBeeps": cosmetic_settings["MuteDangerBeeps"]
     }
 
     music_list = get_randomized_audio(
