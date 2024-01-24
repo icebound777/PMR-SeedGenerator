@@ -128,7 +128,7 @@ StartWithPartners: { # ignored if StartWithRandomPartners true
 }
 
 PartnersInDefaultLocations: true
-PartnersAlwaysUsable      : true
+PartnersAlwaysUsable      : false
 StartWithRandomPartners   : true
 RandomPartnersMin         : 1 # 1-8
 RandomPartnersMax         : 1 # 1-8
