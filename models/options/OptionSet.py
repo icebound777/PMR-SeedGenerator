@@ -1852,7 +1852,16 @@ class OptionSet:
             web_settings["RandomPartnersMax"] = self.random_partners_min
             web_settings["RandomPartnersMin"] = self.random_partners_max
         else:
-            web_settings["StartWithPartners"] = self.starting_partners
+            web_settings["StartWithPartners"] = {
+                "Goombario": self.start_with_goombario,
+                "Kooper": self.start_with_kooper,
+                "Bombette": self.start_with_bombette,
+                "Parakarry": self.start_with_parakarry,
+                "Bow": self.start_with_bow,
+                "Watt": self.start_with_watt,
+                "Sushie": self.start_with_sushie,
+                "Lakilester": self.start_with_lakilester,
+            }
 
         #if WriteSpoilerLog and RevealLogInHours != 0:
         #    web_settings["RevealLogAtTime"] = datetime.now(timezone.utc) + timedelta(hours = RevealLogInHours)
