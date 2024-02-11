@@ -646,7 +646,17 @@ def web_randomizer(jsonSettings, world_graph):
 
     timer_end = time.perf_counter()
     print(f'Seed generated in {round(timer_end - timer_start, 2)}s')
-    return WebSeedResponse(random_seed.seed_value, random_seed.seed_hash_items, patch_file, spoiler_log_file, palette_offset, cosmetics_offset, audio_offset, music_offset)
+    return WebSeedResponse(
+        random_seed.seed_value,
+        random_seed.seed_hash_items,
+        rando_settings.get_web_settings(),
+        patch_file,
+        spoiler_log_file,
+        palette_offset,
+        cosmetics_offset,
+        audio_offset,
+        music_offset
+    )
 
 
 
