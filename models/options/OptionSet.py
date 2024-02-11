@@ -386,14 +386,19 @@ class OptionSet:
         # Starting setup
         if "StartingMap" in options_dict:
             self.starting_map = options_dict.get("StartingMap")
-        if "StartingLevel" in options_dict:
-            self.starting_level = options_dict.get("StartingLevel")
+        #if "StartingLevel" in options_dict:
+        #    self.starting_level = options_dict.get("StartingLevel")
         if "StartingMaxHP" in options_dict:
             self.starting_maxhp = options_dict.get("StartingMaxHP")
         if "StartingMaxFP" in options_dict:
             self.starting_maxfp = options_dict.get("StartingMaxFP")
         if "StartingMaxBP" in options_dict:
             self.starting_maxbp = options_dict.get("StartingMaxBP")
+        self.starting_level = int(
+            ((self.starting_maxhp - 5) / 5)
+            + ((self.starting_maxfp - 5) / 5)
+            + ((self.starting_maxbp - 3) / 3)
+        )
         if "StartingStarPower" in options_dict:
             self.starting_starpower = options_dict.get("StartingStarPower")
         if "StartingBoots" in options_dict:
@@ -1773,7 +1778,7 @@ class OptionSet:
         web_settings["StartingMaxHP"] = self.starting_maxhp
         web_settings["StartingMaxFP"] = self.starting_maxfp
         web_settings["StartingMaxBP"] = self.starting_maxbp
-        web_settings["StartingLevel"] = int(((self.starting_maxhp - 5) / 5) + ((self.starting_maxfp - 5) / 5) + + ((self.starting_maxbp - 3) / 3))
+        web_settings["StartingLevel"] = self.starting_level
         web_settings["StartingStarPower"] = self.starting_starpower
         web_settings["StartingBoots"] = self.starting_boots
         web_settings["StartingHammer"] = self.starting_hammer
