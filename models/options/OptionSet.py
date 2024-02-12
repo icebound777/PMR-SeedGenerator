@@ -26,53 +26,53 @@ class OptionSet:
     def __init__(self):
         """ Load Defaults from DB """
         # General
-        self.blocks_match_content = get_option_default_value("BlocksMatchContent")
+        self.blocks_match_content = bool(get_option_default_value("BlocksMatchContent"))
         self.hidden_block_mode = get_option_default_value("HiddenBlockMode")
-        self.allow_physics_glitches = get_option_default_value("AllowPhysicsGlitches")
-        self.badge_synergy = get_option_default_value("BadgeSynergy")
+        self.allow_physics_glitches = bool(get_option_default_value("AllowPhysicsGlitches"))
+        self.badge_synergy = bool(get_option_default_value("BadgeSynergy"))
 
         # QOL
-        self.always_speedyspin = get_option_default_value("AlwaysSpeedySpin")
-        self.always_ispy = get_option_default_value("AlwaysISpy")
-        self.always_peekaboo = get_option_default_value("AlwaysPeekaboo")
+        self.always_speedyspin = bool(get_option_default_value("AlwaysSpeedySpin"))
+        self.always_ispy = bool(get_option_default_value("AlwaysISpy"))
+        self.always_peekaboo = bool(get_option_default_value("AlwaysPeekaboo"))
         self.cutscene_mode = get_option_default_value("CutsceneMode")
         self.fast_text_skip = get_option_default_value("FastTextSkip")
-        self.skip_epilogue = get_option_default_value("SkipEpilogue")
-        self.peachcastle_return_pipe = get_option_default_value("PeachCastleReturnPipe")
-        self.foliage_item_hints = get_option_default_value("FoliageItemHints")
+        self.skip_epilogue = bool(get_option_default_value("SkipEpilogue"))
+        self.peachcastle_return_pipe = bool(get_option_default_value("PeachCastleReturnPipe"))
+        self.foliage_item_hints = bool(get_option_default_value("FoliageItemHints"))
         self.hiddenpanel_visibility = get_option_default_value("HiddenPanelVisibility")
-        self.mute_danger_beeps = get_option_default_value("MuteDangerBeeps")
+        self.mute_danger_beeps = bool(get_option_default_value("MuteDangerBeeps"))
 
         # Difficulty and Enemies
         self.shuffle_chapter_difficulty = False
-        self.progressive_scaling = get_option_default_value("ProgressiveScaling")
+        self.progressive_scaling = bool(get_option_default_value("ProgressiveScaling"))
 
-        self.challenge_mode = get_option_default_value("ChallengeMode")
-        self.cap_enemy_xp = get_option_default_value("CapEnemyXP")
+        self.challenge_mode = bool(get_option_default_value("ChallengeMode"))
+        self.cap_enemy_xp = bool(get_option_default_value("CapEnemyXP"))
         self.xp_multiplier = get_option_default_value("XPMultiplier")
-        self.damage_x2 = get_option_default_value("DoubleDamage")
-        self.damage_x4 = get_option_default_value("QuadrupleDamage")
-        self.ohko = get_option_default_value("OHKO")
-        self.no_save_blocks = get_option_default_value("NoSaveBlocks")
-        self.no_heart_blocks = get_option_default_value("NoHeartBlocks")
-        self.no_healing_items = get_option_default_value("NoHealingItems")
-        self.drop_starpoints = get_option_default_value("DropStarPoints")
+        self.damage_x2 = bool(get_option_default_value("DoubleDamage"))
+        self.damage_x4 = bool(get_option_default_value("QuadrupleDamage"))
+        self.ohko = bool(get_option_default_value("OHKO"))
+        self.no_save_blocks = bool(get_option_default_value("NoSaveBlocks"))
+        self.no_heart_blocks = bool(get_option_default_value("NoHeartBlocks"))
+        self.no_healing_items = bool(get_option_default_value("NoHealingItems"))
+        self.drop_starpoints = bool(get_option_default_value("DropStarPoints"))
 
-        self.random_formations = get_option_default_value("RandomFormations")
+        self.random_formations = bool(get_option_default_value("RandomFormations"))
 
         # Custom Seed / Planned Seed / "Plandomizer"
         self.custom_seed = False
 
         # Item Placement
-        self.shuffle_items = get_option_default_value("ShuffleItems")
+        self.shuffle_items = bool(get_option_default_value("ShuffleItems"))
         self.include_coins_overworld = True
         self.include_coins_blocks = True
         self.include_coins_foliage = True
         self.include_coins_favors = False
-        self.include_shops = get_option_default_value("IncludeShops")
+        self.include_shops = bool(get_option_default_value("IncludeShops"))
         self.progression_on_rowf = True
         self.progression_on_merlow = True
-        self.include_panels = get_option_default_value("IncludePanels")
+        self.include_panels = bool(get_option_default_value("IncludePanels"))
         self.include_favors_mode = IncludeFavorsMode.NOT_RANDOMIZED
         self.include_letters_mode = IncludeLettersMode.NOT_RANDOMIZED
         self.include_radiotradeevent = False
@@ -97,7 +97,7 @@ class OptionSet:
         self.map_tracker_shop_bits = get_option_default_value("EnabledShopBits")
 
         # Item Misc
-        self.cook_without_fryingpan = get_option_default_value("CookWithoutFryingPan")
+        self.cook_without_fryingpan = bool(get_option_default_value("CookWithoutFryingPan"))
         self.merlow_reward_pricing = MerlowRewardPricing.NORMAL
         self.ripcheato_items_in_logic = 6
         self.allow_itemhints = True
@@ -136,30 +136,30 @@ class OptionSet:
 
         # Partners
         self.starting_partners = ["Goombario"]
-        self.start_with_goombario = get_option_default_value("StartWithGoombario")
-        self.start_with_kooper = get_option_default_value("StartWithKooper")
-        self.start_with_bombette = get_option_default_value("StartWithBombette")
-        self.start_with_parakarry = get_option_default_value("StartWithParakarry")
-        self.start_with_bow = get_option_default_value("StartWithBow")
-        self.start_with_watt = get_option_default_value("StartWithWatt")
-        self.start_with_sushie = get_option_default_value("StartWithSushie")
-        self.start_with_lakilester = get_option_default_value("StartWithLakilester")
+        self.start_with_goombario = bool(get_option_default_value("StartWithGoombario"))
+        self.start_with_kooper = bool(get_option_default_value("StartWithKooper"))
+        self.start_with_bombette = bool(get_option_default_value("StartWithBombette"))
+        self.start_with_parakarry = bool(get_option_default_value("StartWithParakarry"))
+        self.start_with_bow = bool(get_option_default_value("StartWithBow"))
+        self.start_with_watt = bool(get_option_default_value("StartWithWatt"))
+        self.start_with_sushie = bool(get_option_default_value("StartWithSushie"))
+        self.start_with_lakilester = bool(get_option_default_value("StartWithLakilester"))
 
         self.partners_in_default_locations = True
-        self.partners_always_usable = get_option_default_value("PartnersAlwaysUsable")
+        self.partners_always_usable = bool(get_option_default_value("PartnersAlwaysUsable"))
         self.random_partners = False
         self.random_partners_min = 1
         self.random_partners_max = 1
 
         # Pre-opened areas
         self.magical_seeds_required = get_option_default_value("MagicalSeedsRequired")
-        self.prologue_open = get_option_default_value("PrologueOpen")
-        self.bluehouse_open = get_option_default_value("BlueHouseOpen")
-        self.mtrugged_open = get_option_default_value("MtRuggedOpen")
-        self.foreverforest_open = get_option_default_value("ForeverForestOpen")
-        self.toybox_open = get_option_default_value("ToyboxOpen")
-        self.whale_open = get_option_default_value("WhaleOpen")
-        self.ch7_bridge_visible = get_option_default_value("Ch7BridgeVisible")
+        self.prologue_open = bool(get_option_default_value("PrologueOpen"))
+        self.bluehouse_open = bool(get_option_default_value("BlueHouseOpen"))
+        self.mtrugged_open = bool(get_option_default_value("MtRuggedOpen"))
+        self.foreverforest_open = bool(get_option_default_value("ForeverForestOpen"))
+        self.toybox_open = bool(get_option_default_value("ToyboxOpen"))
+        self.whale_open = bool(get_option_default_value("WhaleOpen"))
+        self.ch7_bridge_visible = bool(get_option_default_value("Ch7BridgeVisible"))
 
         # Goal Settings
         self.starway_spirits_needed_count = get_option_default_value("StarWaySpiritsNeededCnt")
@@ -167,16 +167,16 @@ class OptionSet:
         self.limit_chapter_logic = False
         self.starway_spirits_needed_encoded = get_option_default_value("StarWaySpiritsNeededEnc")
         self.bowsers_castle_mode = get_option_default_value("BowsersCastleMode")
-        self.star_hunt = get_option_default_value("StarHunt")
+        self.star_hunt = bool(get_option_default_value("StarHunt"))
         self.star_hunt_required = get_option_default_value("StarHuntRequired")
         self.star_hunt_total = get_option_default_value("StarHuntTotal")
-        self.star_hunt_ends_game = get_option_default_value("StarHuntEndsGame")
+        self.star_hunt_ends_game = bool(get_option_default_value("StarHuntEndsGame"))
 
         # Entrance Shuffle
-        self.shuffle_dungeon_rooms = get_option_default_value("ShuffleDungeonRooms")
-        self.shuffle_dungeon_entrances = get_option_default_value("ShuffleDungeonEntrances")
-        self.shuffle_entrances_by_all = get_option_default_value("ShuffleEntrancesByAll")
-        self.match_entrance_type = get_option_default_value("MatchEntranceTypes")
+        self.shuffle_dungeon_rooms = bool(get_option_default_value("ShuffleDungeonRooms"))
+        self.shuffle_dungeon_entrances = bool(get_option_default_value("ShuffleDungeonEntrances"))
+        self.shuffle_entrances_by_all = bool(get_option_default_value("ShuffleEntrancesByAll"))
+        self.match_entrance_type = bool(get_option_default_value("MatchEntranceTypes"))
         self.random_oneway_entrances = False # NYI
         self.unpaired_entrances = False # NYI
 
@@ -190,9 +190,9 @@ class OptionSet:
         self.shuffle_blocks = False
 
         # Quizmo Quizzes
-        self.random_quiz = get_option_default_value("RandomQuiz")
-        self.quizmo_always_appears = get_option_default_value("QuizmoAlwaysAppears")
-        self.skip_quiz = get_option_default_value("SkipQuiz")
+        self.random_quiz = bool(get_option_default_value("RandomQuiz"))
+        self.quizmo_always_appears = bool(get_option_default_value("QuizmoAlwaysAppears"))
+        self.skip_quiz = bool(get_option_default_value("SkipQuiz"))
 
         # Spoilerlog
         self.write_spoilerlog = True
@@ -212,9 +212,9 @@ class OptionSet:
         self.shuffle_jingles = False
 
         # Joke options
-        self.roman_numerals = get_option_default_value("RomanNumerals")
-        self.random_text = get_option_default_value("RandomText")
-        self.random_pitch = get_option_default_value("RandomPitch")
+        self.roman_numerals = bool(get_option_default_value("RomanNumerals"))
+        self.random_text = bool(get_option_default_value("RandomText"))
+        self.random_pitch = bool(get_option_default_value("RandomPitch"))
         self.mirror_mode = get_option_default_value("MirrorMode")
         self.static_mirroring = False
 
