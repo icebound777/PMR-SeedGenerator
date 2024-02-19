@@ -129,6 +129,14 @@ class Table:
                 "value": value
             })
 
+        # Puzzles & Minigames
+        puzzle_list = kwargs.get("puzzle_list")
+        for key, value in puzzle_list:
+            table_data.append({
+                "key": key,
+                "value": value
+            })
+
         table_data.sort(key=lambda pair: pair["key"])
         return table_data
 

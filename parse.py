@@ -17,6 +17,7 @@ def gather_keys():
     A4 = Palettes
     A5 = 
     A6 = Moves (cost FP/BP)
+    A8 = Puzzles & Minigames
     AA = RESERVED (see table.py unique itemID)
     AE = Static Map Mirroring (but we don't need them in the generator)
     AF = Quizzes
@@ -31,6 +32,7 @@ def gather_keys():
         "entrances": {},
         "palettes": {},
         "options": {},
+        "puzzles": {},
         "quizzes": {},
     }
     sprite_palette_counts = {}
@@ -114,6 +116,12 @@ def gather_keys():
                             "area_id": area_id,
                             "map_id": map_id,
                             "value_id": value_id,
+                        }
+                    elif byte_id == 0xA8:
+                        puzzle_name = key_info.split(":")[-1]
+                        keys["puzzles"][key] = {
+                            "puzzle": puzzle_name,
+                            "index": (area_id << 16) | (map_id << 8) | value_id,
                         }
                     elif byte_id == 0xAF:
                         name,attribute = key_info.split(":")
@@ -226,6 +234,7 @@ def gather_values():
         "entrances": {},
         "palettes": {},
         "options": {},
+        "puzzles": {},
         "quizzes": {},
     }
 
@@ -238,6 +247,9 @@ def gather_values():
                 if "Options" in key_info or "Cosmetic" in key_info or "Mystery" in key_info:
                     name = key_info.split(":")[-1]
                     values["options"][name] = get_value(value)
+                elif "Puzzle" in key_info:
+                    name = key_info.split(":")[-1]
+                    values["puzzles"][name] = get_value(value)
                 elif "Quiz" in key_info:
                     name = key_info.split(":")[-1]
                     values["quizzes"][name] = get_value(value)
@@ -330,7 +342,8 @@ def create_table(default_table):
                                 0xA2: "Actor",
                                 0xA3: "Entrance",
                                 0xA4: "Palette",
-                                0xA6: "Move"
+                                0xA6: "Move",
+                                0xA8: "Puzzle",
                             }.get((key & 0xFF000000) >> 24)
                         }
     db = {}

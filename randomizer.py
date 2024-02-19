@@ -30,6 +30,7 @@ from db.actor_params    import create_actor_params
 from db.actor_attribute import create_actor_attributes
 from db.move            import create_moves
 from db.quiz            import create_quizzes
+from db.puzzle          import create_puzzles
 from db.palette         import Palette, create_palettes
 from rando_modules.random_palettes     \
     import get_randomized_coinpalette, \
@@ -62,6 +63,7 @@ def init_randomizer(rebuild_database=False):
         create_palettes()
         create_moves()
         create_quizzes()
+        create_puzzles()
 
 
 def set_cheap_shopitems(placed_items):
@@ -131,6 +133,7 @@ def write_data_to_rom(
     quiz_data:list,
     music_list:list,
     mapmirror_list:list,
+    puzzle_list:list,
     seed_id=random.randint(0, 0xFFFFFFFF)
 ):
     """
@@ -151,7 +154,8 @@ def write_data_to_rom(
         palettes=palette_data,
         quiz_data=quiz_data,
         music_list=music_list,
-        mapmirror_list=mapmirror_list
+        mapmirror_list=mapmirror_list,
+        puzzle_list=puzzle_list,
     )
 
     # Update table info with variable data
@@ -260,6 +264,7 @@ def write_data_to_array(
     quiz_data:list,
     music_list:list,
     mapmirror_list:list,
+    puzzle_list:list,
     seed_id: int
 ):
     """
@@ -281,7 +286,8 @@ def write_data_to_array(
         palettes=palette_data,
         quiz_data=quiz_data,
         music_list=music_list,
-        mapmirror_list=mapmirror_list
+        mapmirror_list=mapmirror_list,
+        puzzle_list=puzzle_list,
     )
 
     # Update table info with variable data
@@ -607,6 +613,7 @@ def web_randomizer(jsonSettings, world_graph):
         quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
         mapmirror_list=random_seed.static_map_mirroring,
+        puzzle_list=rando_seed.puzzle_minigame_data,
         seed_id=random_seed.seed_hash
     )
     patch_file = io.BytesIO(operations)
@@ -778,6 +785,7 @@ def main_randomizer(args):
             quiz_data=random_seed.quiz_list,
             music_list=random_seed.music_list,
             mapmirror_list=random_seed.static_map_mirroring,
+            puzzle_list=random_seed.puzzle_minigame_data,
             seed_id=random_seed.seed_hash
         )
 

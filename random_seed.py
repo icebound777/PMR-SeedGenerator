@@ -38,6 +38,7 @@ from rando_modules.random_palettes import \
     get_randomized_palettes
 from rando_modules.random_audio import get_randomized_audio
 from rando_modules.random_partners import get_rnd_starting_partners
+from rando_modules.random_puzzles_minigames import get_puzzles_minigames
 from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.random_shop_prices import get_shop_price
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
@@ -74,6 +75,7 @@ class RandomSeed:
         self.static_map_mirroring = []
         self.quiz_list = []
         self.music_list = []
+        self.puzzle_minigame_data = []
         self.item_spheres_dict = None
         self.spoilerlog_additions = {}
 
@@ -408,6 +410,9 @@ class RandomSeed:
             randomize_by=self.rando_settings.shuffle_music_mode,
             randomize_jingles=self.rando_settings.shuffle_jingles
         )
+
+        # Setup puzzles and minigames
+        self.puzzle_minigame_data = get_puzzles_minigames()
 
         # Set up seed hash for the save select screen
         self.set_seed_hash()
