@@ -15,8 +15,20 @@ def get_puzzles_minigames() -> list:
     puzzle_minigame_list = []
 
     for puzzle in Puzzle.select():
+        # Fuzzy Tree Minigame Round 1 hops
+        if puzzle.name == "FuzzyTreesRound1":
+            num_hops = random.randint(10, 13)
+            puzzle_minigame_list.append((puzzle.get_key(), num_hops))
+        # Fuzzy Tree Minigame Round 2 hops
+        elif puzzle.name == "FuzzyTreesRound2":
+            num_hops = random.randint(9, 12)
+            puzzle_minigame_list.append((puzzle.get_key(), num_hops))
+        # Fuzzy Tree Minigame Round 3 hops
+        elif puzzle.name == "FuzzyTreesRound3":
+            num_hops = random.randint(8, 11)
+            puzzle_minigame_list.append((puzzle.get_key(), num_hops))
         # Super Boots Chest Boo Ring
-        if puzzle.name == "BooRingOBK04":
+        elif puzzle.name == "BooRingOBK04":
             num_throws = random.randint(6, 10)
             puzzle_minigame_list.append((puzzle.get_key(), num_throws))
         # Record Boo Ring: Degrees of rotation until item drop
