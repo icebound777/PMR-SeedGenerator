@@ -46,6 +46,19 @@ def get_puzzles_minigames() -> list:
             puzzle_minigame_list.append((puzzle.get_key(), delay))
 
         # Albino Dino Statues: Initial positions
+        elif puzzle.name == "BombetteDuplighosts":
+            npc_ids = [0, 1, 2, 3, 4]
+            random.shuffle(npc_ids)
+            positions_encoded = (
+                (npc_ids[0] << 16)
+              + (npc_ids[1] << 12)
+              + (npc_ids[2] << 8)
+              + (npc_ids[3] << 4)
+              + npc_ids[4]
+            )
+            puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
+
+        # Albino Dino Statues: Initial positions
         elif puzzle.name == "AlbinoDinoPositions":
             positions_encoded = _albino_dino_puzzle()
             puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
