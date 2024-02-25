@@ -168,7 +168,8 @@ RandomPartnerFP  : 1
 RandomStarpowerSP: 0
 
 # Misc Gameplay Randomization
-ShuffleBlocks: false
+ShuffleBlocks   : false
+RandomizePuzzles: false
 
 # Quizmo Quizzes
 RandomQuiz         : true

@@ -188,6 +188,7 @@ class OptionSet:
 
         # Misc Gameplay Randomization
         self.shuffle_blocks = False
+        self.randomize_puzzles = False
 
         # Quizmo Quizzes
         self.random_quiz = bool(get_option_default_value("RandomQuiz"))
@@ -547,6 +548,8 @@ class OptionSet:
         # Misc Gameplay Randomization
         if "ShuffleBlocks" in options_dict:
             self.shuffle_blocks = options_dict.get("ShuffleBlocks")
+        if "RandomizePuzzles" in options_dict:
+            self.randomize_puzzles = options_dict.get("RandomizePuzzles")
 
         # Map Check Tracker (static)
         #   0x1    # regular checks
@@ -1284,6 +1287,7 @@ class OptionSet:
 
         # Misc Gameplay Randomization
         basic_assert("ShuffleBlocks", bool)
+        basic_assert("RandomizePuzzles", bool)
 
         # Quizmo Quizzes
         basic_assert("RandomQuiz", bool)
@@ -1825,6 +1829,7 @@ class OptionSet:
         web_settings["MysteryRandomPick"] = self.mystery_settings.mystery_random_pick
         web_settings["AllowItemHints"] = self.allow_itemhints
         web_settings["ShuffleBlocks"] = self.shuffle_blocks
+        web_settings["RandomizePuzzles"] = self.randomize_puzzles
         web_settings["RandomPitch"] = self.random_pitch
         web_settings["MuteDangerBeeps"] = self.mute_danger_beeps
         web_settings["ShuffleMusic"] = self.shuffle_music

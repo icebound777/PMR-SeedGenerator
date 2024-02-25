@@ -412,7 +412,7 @@ class RandomSeed:
         )
 
         # Setup puzzles and minigames
-        self.puzzle_minigame_data = get_puzzles_minigames()
+        self.puzzle_minigame_data = get_puzzles_minigames(self.rando_settings.randomize_puzzles)
 
         # Set up seed hash for the save select screen
         self.set_seed_hash()
