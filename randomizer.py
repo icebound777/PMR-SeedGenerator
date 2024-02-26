@@ -613,7 +613,7 @@ def web_randomizer(jsonSettings, world_graph):
         quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
         mapmirror_list=random_seed.static_map_mirroring,
-        puzzle_list=rando_seed.puzzle_minigame_data,
+        puzzle_list=random_seed.puzzle_minigame_data,
         seed_id=random_seed.seed_hash
     )
     patch_file = io.BytesIO(operations)
