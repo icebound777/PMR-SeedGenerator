@@ -45,6 +45,22 @@ def get_puzzles_minigames(random_puzzles: bool) -> list:
             delay = random.randint(360, 380)
             puzzle_minigame_list.append((puzzle.get_key(), delay))
 
+        # Kooper Duplighosts (Crystal Palace): Actor positions
+        elif puzzle.name == "PRAKooperDuplighosts":
+            if not random_puzzles:
+                positions_encoded = puzzle.default_value
+            else:
+                npc_ids = [0, 1, 2, 3, 4]
+                random.shuffle(npc_ids)
+                positions_encoded = (
+                    (npc_ids[0] << 16)
+                  + (npc_ids[1] << 12)
+                  + (npc_ids[2] << 8)
+                  + (npc_ids[3] << 4)
+                  + npc_ids[4]
+                )
+            puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
+
         # Bombette Duplighosts: Actor positions
         elif puzzle.name == "BombetteDuplighosts":
             if not random_puzzles:
