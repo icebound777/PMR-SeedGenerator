@@ -60,6 +60,14 @@ def get_puzzles_minigames(random_puzzles: bool) -> list:
                 )
             puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
 
+        # Lava Dam Push Blocks: Initial positions
+        elif puzzle.name == "LavaDamPushBlocks":
+            if not random_puzzles:
+                positions_encoded = puzzle.default_value
+            else:
+                positions_encoded = _lavadam_pushblock_positions()
+            puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
+
         # Kooper Duplighosts (Crystal Palace): Actor positions
         elif puzzle.name == "PRAKooperDuplighosts":
             if not random_puzzles:
@@ -135,6 +143,7 @@ def _albino_dino_puzzle() -> int:
       + dino_3[1]
     )
 
+
 def _random_pushblock_positions(
     num_blocks: int,
     min_x: int,
@@ -163,6 +172,39 @@ def _random_pushblock_positions(
             continue
         if new_block_pos in block_positions:
             # don't place two at the same coordinates
+            continue
+
+        block_positions.append(new_block_pos)
+
+    positions_encoded = 0
+
+    for block in block_positions:
+        positions_encoded = positions_encoded << 4
+        positions_encoded += block[0]
+        positions_encoded = positions_encoded << 4
+        positions_encoded += block[1]
+
+    return positions_encoded
+
+
+def _lavadam_pushblock_positions() -> int:
+    block_positions = []
+    disallowed_positions = [(9, 0), (10, 0), (11, 0)]
+
+    while len(block_positions) < 3:
+        new_block_pos = (random.randint(0, 12), 0)
+
+        if new_block_pos in disallowed_positions:
+            continue
+        if new_block_pos in block_positions:
+            # don't place two at the same coordinates
+            continue
+        if (
+            new_block_pos[0] + 1 in [x for (x, _) in block_positions]
+         or new_block_pos[0] - 1 in [x for (x, _) in block_positions]
+        ):
+            # don't allow two blocks right next to each other, otherwise they
+            # cannot be pushed
             continue
 
         block_positions.append(new_block_pos)
