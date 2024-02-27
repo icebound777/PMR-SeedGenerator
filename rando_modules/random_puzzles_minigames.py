@@ -45,6 +45,21 @@ def get_puzzles_minigames(random_puzzles: bool) -> list:
             delay = random.randint(360, 380)
             puzzle_minigame_list.append((puzzle.get_key(), delay))
 
+        # Ultra Hammer room Push Blocks: Initial positions
+        elif puzzle.name == "UltraHammerPushBlocks":
+            if not random_puzzles:
+                positions_encoded = puzzle.default_value
+            else:
+                positions_encoded = _random_pushblock_positions(
+                    num_blocks = 2,
+                    min_x = 5,
+                    max_x = 14,
+                    min_z = 0,
+                    max_z = 4,
+                    disallowed_positions = [(14, 1)]
+                )
+            puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
+
         # Kooper Duplighosts (Crystal Palace): Actor positions
         elif puzzle.name == "PRAKooperDuplighosts":
             if not random_puzzles:
@@ -119,3 +134,45 @@ def _albino_dino_puzzle() -> int:
       + (dino_3[0] << 4)
       + dino_3[1]
     )
+
+def _random_pushblock_positions(
+    num_blocks: int,
+    min_x: int,
+    max_x: int,
+    min_z: int,
+    max_z: int,
+    disallowed_positions: list
+) -> int:
+    if (
+        not 1 <= num_blocks <= 4
+     or min_x >= max_x
+     or min_z >= max_z
+     or min_x < 0
+     or max_x > 15
+     or min_z < 0
+     or max_z > 15
+    ):
+        raise ValueError
+
+    block_positions = []
+
+    while len(block_positions) < num_blocks:
+        new_block_pos = (random.randint(min_x, max_x), random.randint(min_z, max_z))
+
+        if new_block_pos in disallowed_positions:
+            continue
+        if new_block_pos in block_positions:
+            # don't place two at the same coordinates
+            continue
+
+        block_positions.append(new_block_pos)
+
+    positions_encoded = 0
+
+    for block in block_positions:
+        positions_encoded = positions_encoded << 4
+        positions_encoded += block[0]
+        positions_encoded = positions_encoded << 4
+        positions_encoded += block[1]
+
+    return positions_encoded
