@@ -45,6 +45,21 @@ def get_puzzles_minigames(random_puzzles: bool) -> list:
             delay = random.randint(360, 380)
             puzzle_minigame_list.append((puzzle.get_key(), delay))
 
+        # Koopa Village Push Block: Initial position
+        elif puzzle.name == "KoopaVillagePushBlocks":
+            if not random_puzzles:
+                positions_encoded = puzzle.default_value
+            else:
+                positions_encoded = _random_pushblock_positions(
+                    num_blocks = 1,
+                    min_x = 0,
+                    max_x = 4,
+                    min_z = 0,
+                    max_z = 4,
+                    disallowed_positions = []
+                )
+            puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
+
         # Ultra Hammer room Push Blocks: Initial positions
         elif puzzle.name == "UltraHammerPushBlocks":
             if not random_puzzles:
