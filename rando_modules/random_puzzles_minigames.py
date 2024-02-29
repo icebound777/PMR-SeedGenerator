@@ -60,6 +60,22 @@ def get_puzzles_minigames(random_puzzles: bool) -> list:
                 )
             puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
 
+        # Shy Guy's Toybox: Green Station boxes order
+        elif puzzle.name == "GreenStationBoxes":
+            if not random_puzzles:
+                boxes_order = puzzle.default_value
+            else:
+                # if puzzles random: mod breaks if not exactly 6 values
+                boxes_order = (
+                    (random.randint(1, 4) << 20)
+                  + (random.randint(1, 4) << 16)
+                  + (random.randint(1, 4) << 12)
+                  + (random.randint(1, 4) << 8)
+                  + (random.randint(1, 4) << 4)
+                  + random.randint(1, 4)
+                )
+            puzzle_minigame_list.append((puzzle.get_key(), boxes_order))
+
         # Ultra Hammer room Push Blocks: Initial positions
         elif puzzle.name == "UltraHammerPushBlocks":
             if not random_puzzles:
