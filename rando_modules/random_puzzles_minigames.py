@@ -118,6 +118,18 @@ def get_puzzles_minigames(random_puzzles: bool) -> list:
                 positions_encoded = _lavadam_pushblock_positions()
             puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
 
+        # Flower Fields elevators: Initial positions
+        elif puzzle.name == "FlowerFieldsElevators":
+            if not random_puzzles:
+                positions_encoded = puzzle.default_value
+            else:
+                positions_encoded = (
+                    (random.randint(0, 1) << 8)
+                  + (random.randint(0, 1) << 4)
+                  + random.randint(0, 1)
+                )
+            puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
+
         # Kooper Duplighosts (Crystal Palace): Actor positions
         elif puzzle.name == "PRAKooperDuplighosts":
             if not random_puzzles:
