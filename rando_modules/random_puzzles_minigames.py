@@ -60,6 +60,25 @@ def get_puzzles_minigames(random_puzzles: bool) -> list:
                 )
             puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
 
+        # Dry Dry Ruins: Ruins stones positions
+        elif puzzle.name == "RuinsStones":
+            if not random_puzzles:
+                slot_order = puzzle.default_value
+            else:
+                slots = [0,0,1,2,3]
+                random.shuffle(slots)
+                slot_order = (
+                    (slots[0] << 16)
+                  + (slots[1] << 12)
+                  + (slots[2] << 8)
+                  + (slots[3] << 4)
+                  + slots[4]
+                )
+            puzzle_minigame_list.append((
+                puzzle.get_key(),
+                slot_order
+            ))
+
         # Shy Guy's Toybox: Green Station boxes order
         elif puzzle.name == "GreenStationBoxes":
             if not random_puzzles:

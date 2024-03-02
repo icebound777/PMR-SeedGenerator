@@ -223,6 +223,9 @@ def gather_values():
                 raise ValueError
             return value
 
+        if value == ".Puzzles:RuinsStones":
+            # Dry Dry Ruins: Ruins stones positions special case: 0x10203
+            return (1 << 16) + (2 << 8) + 3
         if value == ".Puzzles:GreenStationBoxesDefault":
             # Green Station boxes puzzle special case: 0x2134
             return (2 << 12) + (1 << 8) + (3 << 4) + 4
