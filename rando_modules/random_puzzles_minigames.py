@@ -145,6 +145,14 @@ def get_puzzles_minigames(random_puzzles: bool) -> list:
                 )
             puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
 
+        # Kooper Duplighost (Shiver Mountain): Actor positions
+        elif puzzle.name == "SAMKooperDuplighost":
+            if not random_puzzles:
+                actors_swapped = puzzle.default_value
+            else:
+                actors_swapped = random.randint(0, 1)
+            puzzle_minigame_list.append((puzzle.get_key(), actors_swapped))
+
         # Kooper Duplighosts (Crystal Palace): Actor positions
         elif puzzle.name == "PRAKooperDuplighosts":
             if not random_puzzles:
