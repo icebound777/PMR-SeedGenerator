@@ -13,6 +13,7 @@ def get_puzzles_minigames(random_puzzles: bool) -> list:
     iterations) for puzzles and minigames.
     """
     puzzle_minigame_list = []
+    deepjungle_blocked_positions = []
 
     for puzzle in Puzzle.select():
         # Fuzzy Tree Minigame Round 1 hops
@@ -94,6 +95,20 @@ def get_puzzles_minigames(random_puzzles: bool) -> list:
                   + random.randint(1, 4)
                 )
             puzzle_minigame_list.append((puzzle.get_key(), boxes_order))
+
+        # Deep Jungle Push Blocks: Initial positions
+        elif puzzle.name in [
+            "DeepJunglePushBlocks1","DeepJunglePushBlocks2",
+            "DeepJunglePushBlocks3","DeepJunglePushBlocks4"
+        ]:
+            if not random_puzzles:
+                positions_encoded = puzzle.default_value
+            else:
+                positions_encoded, deepjungle_blocked_positions = _deepjungle_pushblock_positions(
+                    puzzle.name,
+                    deepjungle_blocked_positions
+                )
+            puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
 
         # Ultra Hammer room Push Blocks: Initial positions
         elif puzzle.name == "UltraHammerPushBlocks":
@@ -247,6 +262,91 @@ def _random_pushblock_positions(
         positions_encoded += block[1]
 
     return positions_encoded
+
+
+def _deepjungle_pushblock_positions(
+    puzzle_name: str,
+    already_placed: list
+) -> int:
+
+    # Pushblockgrid (x: obstructed, B: boulder, P: push block, %: geyser hole, o: unused hole )
+    #              1111111111222222222233
+    #    01234567890123456789012345678901
+    #   +--------------------------------
+    #  0|xxxxxxxxxxxxxxxBBBBBxxxxxxxxxxxx
+    #  1|xxxxxxxxxxxxxxxBBBBBxxxxxxxxxxxx
+    #  2|xxx       xxxx BBBBB P    xxxxxx
+    #  3|xx        xxxx      o
+    #  4|    %     o           P  %
+    #  5|       P        P
+    #  6|              %           P %
+    #  7|                           P
+    #  8|                     %
+    #  9|         o   P
+    # 10|
+    # 11|
+    # Default block default positions: 7/5, 13/9, 16/5, 21/2, 22/4, 26/6, 27/7
+    all_block_positions = already_placed.copy()
+    new_block_positions = []
+    disallowed_positions = [
+        # obstructed positions
+        (0,2), (0,3), (1,2), (1,3), (2,2),
+        (10,2), (10,3), (11,2), (11,3), (12,2), (12,3), (13,2), (13,3),
+        (15,2), (16,2), (17,2), (18,2), (19,2),
+        (26,2), (27,2), (28,2), (29,2), (30,2), (31,2),
+        # geyser holes
+        (4,4), (14,6), (21,8), (25,4), (28,6),
+        # edge/corner locations where blocks cannot be moved out of
+        (2,3), (3,2), (4,2), (5,2), (6,2), (7,2), (8,2), (9,2)
+    ]
+
+    if puzzle_name == "DeepJunglePushBlocks4":
+        blocks_per_puzzle_name = 1
+    else:
+        blocks_per_puzzle_name = 2
+
+    while len(new_block_positions) < blocks_per_puzzle_name:
+        # Do not place blocks on rows 0, 1, 11, or column 0, 31
+        # because the first rows are obstructed, and the outer ring positions
+        # don't allow moving the block back into the center
+        new_block_pos = (random.randint(1, 30), random.randint(2, 10))
+
+        if new_block_pos in disallowed_positions:
+            continue
+        if new_block_pos in all_block_positions:
+            # don't place two at the same coordinates
+            continue
+        if (   (    (new_block_pos[0] + 1, new_block_pos[1]) in all_block_positions
+                and (   (    (new_block_pos[0],     new_block_pos[1] + 1) in all_block_positions
+                         and (new_block_pos[0] + 1, new_block_pos[1] + 1) in all_block_positions)
+                     or (    (new_block_pos[0],     new_block_pos[1] - 1) in all_block_positions
+                         and (new_block_pos[0] + 1, new_block_pos[1] - 1) in all_block_positions)
+                    )
+               )
+            or (    (new_block_pos[0] - 1, new_block_pos[1]) in all_block_positions
+                and (   (    (new_block_pos[0],     new_block_pos[1] + 1) in all_block_positions
+                         and (new_block_pos[0] - 1, new_block_pos[1] + 1) in all_block_positions)
+                     or (    (new_block_pos[0],     new_block_pos[1] - 1) in all_block_positions
+                         and (new_block_pos[0] - 1, new_block_pos[1] - 1) in all_block_positions)
+                    )
+               )
+        ):
+            # don't allow four blocks in a square pattern, as then they
+            # cannot be pushed
+            continue
+
+        new_block_positions.append(new_block_pos)
+        all_block_positions.append(new_block_pos)
+
+    positions_encoded = 0
+
+    for block in new_block_positions:
+        positions_encoded = positions_encoded << 8
+        positions_encoded += block[0]
+        positions_encoded = positions_encoded << 8
+        positions_encoded += block[1]
+
+    return positions_encoded, all_block_positions
 
 
 def _lavadam_pushblock_positions() -> int:
