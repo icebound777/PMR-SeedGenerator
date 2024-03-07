@@ -18,12 +18,8 @@ def get_randomized_quizzes() -> list:
     db_values = []
 
     for quiz in Quiz.select():
-        if quiz.name.endswith("Num"):
-            # Do not mess with quiz numbers per area
-            quiz_list.append((quiz.get_key(), quiz.value))
-        else:
-            db_keys.append(quiz.get_key())
-            db_values.append(quiz.value)
+        db_keys.append(quiz.get_key())
+        db_values.append(quiz.value)
 
     random.shuffle(db_values)
 
