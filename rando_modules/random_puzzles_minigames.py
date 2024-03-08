@@ -133,6 +133,20 @@ def get_puzzles_minigames(random_puzzles: bool) -> list:
                 positions_encoded = _lavadam_pushblock_positions()
             puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
 
+        # Flower Fields Three Tree: Correct hit sequence
+        elif puzzle.name == "FlowerFieldsThreeTrees":
+            if not random_puzzles:
+                sequence_encoded = puzzle.default_value
+            else:
+                trees = [1,2,3]
+                random.shuffle(trees)
+                sequence_encoded = (
+                    (trees[0] << 8)
+                  + (trees[1] << 4)
+                  + trees[2]
+                )
+            puzzle_minigame_list.append((puzzle.get_key(), sequence_encoded))
+
         # Flower Fields elevators: Initial positions
         elif puzzle.name == "FlowerFieldsElevators":
             if not random_puzzles:
