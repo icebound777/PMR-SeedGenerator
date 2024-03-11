@@ -1,6 +1,7 @@
 import io
 import json
 
+from db.puzzle import Puzzle
 from db.move import Move
 from db.map_area import MapArea
 from db.node import Node
@@ -23,6 +24,7 @@ def write_spoiler_log(
     spheres_dict:dict=None,
     move_costs:list=None,
     block_locations:list=None,
+    puzzle_solutions:list=None,
     seed_hash_items:list=None,
     spoilerlog_additions:dict=None
 ):
@@ -100,6 +102,10 @@ def write_spoiler_log(
             spoiler_dict[area_name] = dict()
         spoiler_dict[area_name][f"{map_verbose_name} - {item_location}"] = \
             current_item_name
+
+    # Add puzzle solutions
+    if spoilerlog_additions and spoilerlog_additions.get("puzzle_solutions"):
+        spoiler_dict["puzzle_solutions"] = spoilerlog_additions["puzzle_solutions"]
 
     # Add sphere log
     if(spheres_dict):

@@ -413,10 +413,11 @@ class RandomSeed:
         )
 
         # Setup puzzles and minigames
-        self.puzzle_minigame_data = get_puzzles_minigames(
+        self.puzzle_minigame_data, spoilerlog_info = get_puzzles_minigames(
             self.rando_settings.randomize_puzzles,
             get_dro_shop_items(modified_world_graph)
         )
+        self.spoilerlog_additions["puzzle_solutions"] = spoilerlog_info
 
         # Set up seed hash for the save select screen
         self.set_seed_hash()

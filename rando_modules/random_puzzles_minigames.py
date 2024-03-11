@@ -18,6 +18,8 @@ def get_puzzles_minigames(
     puzzle_minigame_list = []
     deepjungle_blocked_positions = []
 
+    spoilerlog_additions = {}
+
     for puzzle in Puzzle.select():
         # Fuzzy Tree Minigame Round 1 hops
         if puzzle.name == "FuzzyTreesRound1":
@@ -68,6 +70,9 @@ def get_puzzles_minigames(
         elif puzzle.name == "ShopCodePulseStone":
             if not random_puzzles:
                 buy_order = puzzle.default_value
+                spoilerlog_additions["ShopCodePulseStone"] = (
+                    "DriedPasta, DustyHammer"
+                )
             else:
                 dro_shop_consumables = [
                     x for x in dro_shop_items
@@ -81,6 +86,9 @@ def get_puzzles_minigames(
                     (code_item_1.value << 8)
                   + code_item_2.value
                 )
+                spoilerlog_additions["ShopCodePulseStone"] = (
+                    f"{code_item_1.item_name}, {code_item_2.item_name}"
+                )
             puzzle_minigame_list.append((
                 puzzle.get_key(),
                 buy_order
@@ -90,6 +98,9 @@ def get_puzzles_minigames(
         elif puzzle.name == "ShopCodeRedJar":
             if not random_puzzles:
                 buy_order = puzzle.default_value
+                spoilerlog_additions["ShopCodeRedJar"] = (
+                    "DustyHammer, DriedPasta, DustyHammer, DriedShroom"
+                )
             else:
                 dro_shop_consumables = [
                     x for x in dro_shop_items
@@ -111,6 +122,10 @@ def get_puzzles_minigames(
                   + (code_item_3.value << 8)
                   + code_item_4.value
                 )
+                spoilerlog_additions["ShopCodeRedJar"] = (
+                    f"{code_item_1.item_name}, {code_item_2.item_name}, "
+                    f"{code_item_3.item_name}, {code_item_4.item_name}"
+                )
             puzzle_minigame_list.append((
                 puzzle.get_key(),
                 buy_order
@@ -120,7 +135,19 @@ def get_puzzles_minigames(
         elif puzzle.name == "RuinsStones":
             if not random_puzzles:
                 slot_order = puzzle.default_value
+                spoilerlog_additions["RuinsStones"] = (
+                    "Pyramid Stone, Empty, Diamond Stone, Empty, Lunar Stone"
+                )
             else:
+                def _map_stones(stone_id: int) -> str:
+                    if stone_id == 1:
+                        return "Pyramid Stone"
+                    elif stone_id == 2:
+                        return "Diamond Stone"
+                    elif stone_id == 3:
+                        return "Lunar Stone"
+                    else:
+                        return "Empty"
                 slots = [0,0,1,2,3]
                 random.shuffle(slots)
                 slot_order = (
@@ -129,6 +156,11 @@ def get_puzzles_minigames(
                   + (slots[2] << 8)
                   + (slots[3] << 4)
                   + slots[4]
+                )
+                spoilerlog_additions["RuinsStones"] = (
+                    f"{_map_stones(slots[0])}, {_map_stones(slots[1])}, "
+                    f"{_map_stones(slots[2])}, {_map_stones(slots[3])}, "
+                    f"{_map_stones(slots[4])}"
                 )
             puzzle_minigame_list.append((
                 puzzle.get_key(),
@@ -139,15 +171,37 @@ def get_puzzles_minigames(
         elif puzzle.name == "GreenStationBoxes":
             if not random_puzzles:
                 boxes_order = puzzle.default_value
+                spoilerlog_additions["GreenStationBoxes"] = (
+                    "Yellow (2), Green (1), Red (3), Blue (4)"
+                )
             else:
                 # if puzzles random: mod breaks if not exactly 6 values
+                def _map_boxes(box_id: int) -> str:
+                    if box_id == 1:
+                        return "Green (1)"
+                    elif box_id == 2:
+                        return "Yellow (2)"
+                    elif box_id == 3:
+                        return "Red (3)"
+                    else:
+                        return "Blue (4)"
+                box_1 = random.randint(1, 4)
+                box_2 = random.randint(1, 4)
+                box_3 = random.randint(1, 4)
+                box_4 = random.randint(1, 4)
+                box_5 = random.randint(1, 4)
+                box_6 = random.randint(1, 4)
                 boxes_order = (
-                    (random.randint(1, 4) << 20)
-                  + (random.randint(1, 4) << 16)
-                  + (random.randint(1, 4) << 12)
-                  + (random.randint(1, 4) << 8)
-                  + (random.randint(1, 4) << 4)
-                  + random.randint(1, 4)
+                    (box_1 << 20)
+                  + (box_2 << 16)
+                  + (box_3 << 12)
+                  + (box_4 << 8)
+                  + (box_5 << 4)
+                  + box_6
+                )
+                spoilerlog_additions["GreenStationBoxes"] = (
+                    f"{_map_boxes(box_1)}, {_map_boxes(box_2)}, {_map_boxes(box_3)}, "
+                    f"{_map_boxes(box_4)}, {_map_boxes(box_5)}, {_map_boxes(box_6)}"
                 )
             puzzle_minigame_list.append((puzzle.get_key(), boxes_order))
 
@@ -192,13 +246,24 @@ def get_puzzles_minigames(
         elif puzzle.name == "FlowerFieldsThreeTrees":
             if not random_puzzles:
                 sequence_encoded = puzzle.default_value
+                spoilerlog_additions["FlowerFieldsThreeTrees"] = "Middle, Right, Left"
             else:
+                def _map_tree(tree_id: int) -> str:
+                    if tree_id == 1:
+                        return "Left"
+                    elif tree_id == 2:
+                        return "Middle"
+                    else:
+                        return "Right"
                 trees = [1,2,3]
                 random.shuffle(trees)
                 sequence_encoded = (
                     (trees[0] << 8)
                   + (trees[1] << 4)
                   + trees[2]
+                )
+                spoilerlog_additions["FlowerFieldsThreeTrees"] = (
+                    f"{_map_tree(trees[0])}, {_map_tree(trees[1])}, {_map_tree(trees[2])}"
                 )
             puzzle_minigame_list.append((puzzle.get_key(), sequence_encoded))
 
@@ -262,7 +327,8 @@ def get_puzzles_minigames(
                 positions_encoded = _albino_dino_puzzle()
             puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
 
-    return puzzle_minigame_list
+
+    return puzzle_minigame_list, spoilerlog_additions
 
 
 def _albino_dino_puzzle() -> int:
