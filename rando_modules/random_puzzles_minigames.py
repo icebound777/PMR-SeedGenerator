@@ -69,7 +69,7 @@ def get_puzzles_minigames(
         # Dry Dry Outpost: Shop code for Pulse Stone
         elif puzzle.name == "ShopCodePulseStone":
             if not random_puzzles:
-                buy_order = puzzle.default_value
+                pulsestone_buy_order = puzzle.default_value
                 spoilerlog_additions["ShopCodePulseStone"] = (
                     "DriedPasta, DustyHammer"
                 )
@@ -82,7 +82,7 @@ def get_puzzles_minigames(
                 random.shuffle(dro_shop_consumables)
                 code_item_1 = dro_shop_consumables.pop()
                 code_item_2 = dro_shop_consumables.pop()
-                buy_order = (
+                pulsestone_buy_order = (
                     (code_item_1.value << 8)
                   + code_item_2.value
                 )
@@ -91,7 +91,7 @@ def get_puzzles_minigames(
                 )
             puzzle_minigame_list.append((
                 puzzle.get_key(),
-                buy_order
+                pulsestone_buy_order
             ))
 
         # Dry Dry Outpost: Shop code for Red Jar
@@ -110,18 +110,29 @@ def get_puzzles_minigames(
                 if len(dro_shop_consumables) < 4:
                     dro_shop_consumables.append(random.choice(dro_shop_consumables))
 
-                random.shuffle(dro_shop_consumables)
-                code_item_1 = dro_shop_consumables.pop()
-                code_item_2 = dro_shop_consumables.pop()
-                code_item_3 = dro_shop_consumables.pop()
-                code_item_4 = dro_shop_consumables.pop()
+                while True:
+                    random.shuffle(dro_shop_consumables)
+                    code_item_1 = dro_shop_consumables.pop()
+                    code_item_2 = dro_shop_consumables.pop()
+                    code_item_3 = dro_shop_consumables.pop()
+                    code_item_4 = dro_shop_consumables.pop()
 
-                buy_order = (
-                    (code_item_1.value << 24)
-                  + (code_item_2.value << 16)
-                  + (code_item_3.value << 8)
-                  + code_item_4.value
-                )
+                    buy_order = (
+                        (code_item_1.value << 24)
+                      + (code_item_2.value << 16)
+                      + (code_item_3.value << 8)
+                      + code_item_4.value
+                    )
+
+                    # repeat generating a red jar code until the pulse stone
+                    # code is no longer found inside of the red jar code
+                    if hex(pulsestone_buy_order)[2:] not in hex(buy_order)[2:]:
+                        break
+                    else:
+                        dro_shop_consumables.append(code_item_1)
+                        dro_shop_consumables.append(code_item_2)
+                        dro_shop_consumables.append(code_item_3)
+                        dro_shop_consumables.append(code_item_4)
                 spoilerlog_additions["ShopCodeRedJar"] = (
                     f"{code_item_1.item_name}, {code_item_2.item_name}, "
                     f"{code_item_3.item_name}, {code_item_4.item_name}"
