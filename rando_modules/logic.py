@@ -346,7 +346,8 @@ def _generate_item_pools(
     badge_pool_limit:int,
     bowsers_castle_mode:int,
     star_hunt_stars:int,
-    do_partner_upgrade_shuffle:bool
+    do_partner_upgrade_shuffle:bool,
+    random_puzzles:bool
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -501,6 +502,16 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
+            if (    not random_puzzles
+                and current_node.identifier in [
+                        "DRO_01/ShopItemB",
+                        "DRO_01/ShopItemD",
+                        "DRO_01/ShopItemE"
+                    ]
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
 
             # Check all remaining nodes for items to add to the pools
             all_item_nodes.append(current_node)
@@ -832,6 +843,7 @@ def _algo_assumed_fill(
     bowsers_castle_mode:int,
     star_hunt_stars:int,
     partner_upgrade_shuffle:int,
+    random_puzzles:bool,
     world_graph
 ):
 
@@ -884,10 +896,31 @@ def _algo_assumed_fill(
         badge_pool_limit,
         bowsers_castle_mode,
         star_hunt_stars,
-        (partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF)
+        (partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF),
+        random_puzzles
     )
 
     starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
+
+    if random_puzzles:
+        # Force at least 3 different consumables into the Dry Dry Outpost shop
+        # which are at least somewhat affordable
+        affordable_consumables = set([
+            x for x in pool_other_items
+            if x.item_type == "ITEM" and x.base_price <= 10 and x.value <= 0xFF
+            #  consumable                affordable             mod can't handle >= 0x100
+        ])
+        unique_consumables = sorted(list(dict.fromkeys(affordable_consumables)))
+        shop_code_items = random.sample(unique_consumables, k=3)
+        for shop_code_item in shop_code_items:
+            pool_other_items.remove(shop_code_item)
+        shop_slot_ids = random.sample(
+            population=["ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
+            k=3
+        )
+        while shop_slot_ids:
+            world_graph[f"DRO_01/{shop_slot_ids.pop()}"]["node"].current_item = shop_code_items.pop()
+
 
     print("Placing progression items...")
     #Place progression items, both key and replenishable
@@ -1268,6 +1301,7 @@ def place_items(
     bowsers_castle_mode:int,
     star_hunt_stars:int,
     partner_upgrade_shuffle:int,
+    random_puzzles:bool,
     world_graph = None
 ):
     """Places items into item locations according to chosen settings."""
@@ -1329,5 +1363,6 @@ def place_items(
             bowsers_castle_mode,
             star_hunt_stars,
             partner_upgrade_shuffle,
+            random_puzzles,
             world_graph
         )

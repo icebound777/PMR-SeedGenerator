@@ -7,7 +7,10 @@ import random
 from db.puzzle import Puzzle
 
 
-def get_puzzles_minigames(random_puzzles: bool) -> list:
+def get_puzzles_minigames(
+    random_puzzles: bool,
+    dro_shop_items: list
+) -> list:
     """
     Returns a list of randomly rolled data (solutions, initial setups and
     iterations) for puzzles and minigames.
@@ -60,6 +63,58 @@ def get_puzzles_minigames(random_puzzles: bool) -> list:
                     disallowed_positions = []
                 )
             puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
+
+        # Dry Dry Outpost: Shop code for Pulse Stone
+        elif puzzle.name == "ShopCodePulseStone":
+            if not random_puzzles:
+                buy_order = puzzle.default_value
+            else:
+                dro_shop_consumables = [
+                    x for x in dro_shop_items
+                    if x.item_type == "ITEM" and x.base_price <= 10 and x.value <= 0xFF
+                    #  consumable                affordable             mod can't handle >= 0x100
+                ]
+                random.shuffle(dro_shop_consumables)
+                code_item_1 = dro_shop_consumables.pop()
+                code_item_2 = dro_shop_consumables.pop()
+                buy_order = (
+                    (code_item_1.value << 8)
+                  + code_item_2.value
+                )
+            puzzle_minigame_list.append((
+                puzzle.get_key(),
+                buy_order
+            ))
+
+        # Dry Dry Outpost: Shop code for Red Jar
+        elif puzzle.name == "ShopCodeRedJar":
+            if not random_puzzles:
+                buy_order = puzzle.default_value
+            else:
+                dro_shop_consumables = [
+                    x for x in dro_shop_items
+                    if x.item_type == "ITEM" and x.base_price <= 10 and x.value <= 0xFF
+                    #  consumable                affordable             mod can't handle >= 0x100
+                ]
+                if len(dro_shop_consumables) < 4:
+                    dro_shop_consumables.append(random.choice(dro_shop_consumables))
+
+                random.shuffle(dro_shop_consumables)
+                code_item_1 = dro_shop_consumables.pop()
+                code_item_2 = dro_shop_consumables.pop()
+                code_item_3 = dro_shop_consumables.pop()
+                code_item_4 = dro_shop_consumables.pop()
+
+                buy_order = (
+                    (code_item_1.value << 24)
+                  + (code_item_2.value << 16)
+                  + (code_item_3.value << 8)
+                  + code_item_4.value
+                )
+            puzzle_minigame_list.append((
+                puzzle.get_key(),
+                buy_order
+            ))
 
         # Dry Dry Ruins: Ruins stones positions
         elif puzzle.name == "RuinsStones":
@@ -402,3 +457,16 @@ def _lavadam_pushblock_positions() -> int:
         positions_encoded += block[1]
 
     return positions_encoded
+
+
+def get_dro_shop_items(world_graph) -> list:
+    dro_shop_items = []
+
+    dro_shop_items.append(world_graph["DRO_01/ShopItemA"]["node"].current_item)
+    dro_shop_items.append(world_graph["DRO_01/ShopItemB"]["node"].current_item)
+    dro_shop_items.append(world_graph["DRO_01/ShopItemC"]["node"].current_item)
+    dro_shop_items.append(world_graph["DRO_01/ShopItemD"]["node"].current_item)
+    dro_shop_items.append(world_graph["DRO_01/ShopItemE"]["node"].current_item)
+    dro_shop_items.append(world_graph["DRO_01/ShopItemF"]["node"].current_item)
+
+    return dro_shop_items

@@ -38,7 +38,7 @@ from rando_modules.random_palettes import \
     get_randomized_palettes
 from rando_modules.random_audio import get_randomized_audio
 from rando_modules.random_partners import get_rnd_starting_partners
-from rando_modules.random_puzzles_minigames import get_puzzles_minigames
+from rando_modules.random_puzzles_minigames import get_puzzles_minigames, get_dro_shop_items
 from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.random_shop_prices import get_shop_price
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
@@ -283,6 +283,7 @@ class RandomSeed:
                     bowsers_castle_mode=self.rando_settings.bowsers_castle_mode,
                     star_hunt_stars=self.rando_settings.star_hunt_total if self.rando_settings.star_hunt else 0,
                     partner_upgrade_shuffle=self.rando_settings.partner_upgrade_shuffle,
+                    random_puzzles=self.rando_settings.randomize_puzzles,
                     world_graph=modified_world_graph
                 )
 
@@ -412,7 +413,10 @@ class RandomSeed:
         )
 
         # Setup puzzles and minigames
-        self.puzzle_minigame_data = get_puzzles_minigames(self.rando_settings.randomize_puzzles)
+        self.puzzle_minigame_data = get_puzzles_minigames(
+            self.rando_settings.randomize_puzzles,
+            get_dro_shop_items(modified_world_graph)
+        )
 
         # Set up seed hash for the save select screen
         self.set_seed_hash()

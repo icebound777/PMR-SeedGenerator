@@ -37,8 +37,31 @@ class Item(Model):
             and self.is_trapped() == other.is_trapped()
         )
 
+    def __lt__(self, other):
+        return (
+            self.value < other.value
+        )
+
+    def __le__(self, other):
+        return (
+            self.value <= other.value
+        )
+
+    def __gt__(self, other):
+        return (
+            self.value > other.value
+        )
+
+    def __ge__(self, other):
+        return (
+            self.value >= other.value
+        )
+
     def __str__(self):
         return f"{self.item_name} ({self.item_type})[{hex(self.value)}]"
+
+    def __hash__(self):
+        return (hash(str(self)))
 
     def is_trapped(self):
         trap_flag = 0x2000

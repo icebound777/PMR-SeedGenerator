@@ -223,6 +223,9 @@ def gather_values():
                 raise ValueError
             return value
 
+        if value == ".Puzzles:RedJarShopCodeDefault":
+            # Dry Dry Outpost: Red Jar code special case: 0x86A7868D
+            return (0x86 << 24) + (0xA7 << 16) + (0x86 << 8) + 0x8D
         if value == ".Puzzles:RuinsStones":
             # Dry Dry Ruins: Ruins stones positions special case: 0x10203
             return (1 << 16) + (2 << 8) + 3

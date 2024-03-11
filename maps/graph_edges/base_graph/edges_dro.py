@@ -15,10 +15,10 @@ edges_dro = [
     {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": "GiftB"},      "reqs": [["FAVOR_7_02_done"]]}, #+ CHAINED REQUIREMENTS -> GiftB (KootRedJar)
     {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": "GiftC"},      "reqs": [["Parakarry"],["Letter19"]]}, #+ CHAINED REQUIREMENTS -> GiftC (Letter12)
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": "ShopItemA"},  "reqs": [["RF_MouserReturned"]]}, #* Outpost 1 Exit West -> ShopItemA (ThunderBolt)
-    # {"from": {"map": "DRO_01", "id": 0}, "to": {"map": "DRO_01", "id": "ShopItemB"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemB (DustyHammer)
+    {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": "ShopItemB"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemB (DustyHammer)
     {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": "ShopItemC"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemC (HoneySyrup)
-    # {"from": {"map": "DRO_01", "id": 0}, "to": {"map": "DRO_01", "id": "ShopItemD"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemD (DriedShroom)
-    # {"from": {"map": "DRO_01", "id": 0}, "to": {"map": "DRO_01", "id": "ShopItemE"}, "reqs": []}, #* Outpost 1 Exit West -> ShopItemE (DriedPasta)
+    {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": "ShopItemD"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemD (DriedShroom)
+    {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": "ShopItemE"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemE (DriedPasta)
     {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": "ShopItemF"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemF (Mushroom)
 
     {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": "ShopItemA"}, "reqs": [], "pseudoitems": ["DriedPasta"]}, #+ SHARED REQUIREMENTS -> ShopItemE
