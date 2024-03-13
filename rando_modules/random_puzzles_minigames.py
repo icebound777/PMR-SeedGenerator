@@ -51,6 +51,22 @@ def get_puzzles_minigames(
             delay = random.randint(360, 380)
             puzzle_minigame_list.append((puzzle.get_key(), delay))
 
+        # Toad Town Tunnels Push Block: Initial position
+        elif puzzle.name == "TunnelsPushBlock":
+            if not random_puzzles:
+                position_encoded = puzzle.default_value
+            else:
+                position_encoded = _random_pushblock_positions(
+                    num_blocks = 1,
+                    min_x = 0,
+                    max_x = 6,
+                    min_z = 0,
+                    max_z = 5,
+                    disallowed_positions = []
+                )
+            puzzle_minigame_list.append((puzzle.get_key(), position_encoded))
+
+
         # Koopa Village Push Block: Initial position
         elif puzzle.name == "KoopaVillagePushBlocks":
             if not random_puzzles:
