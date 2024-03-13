@@ -66,6 +66,30 @@ def get_puzzles_minigames(
                 )
             puzzle_minigame_list.append((puzzle.get_key(), position_encoded))
 
+        # Pleasant Path: Attack FX B block code
+        elif puzzle.name == "AttackFXBBlocks":
+            if not random_puzzles:
+                block_order = puzzle.default_value
+                spoilerlog_additions["AttackFXBBlocks"] = "Left, Right, Middle"
+            else:
+                def _map_blocks(block_id: int) -> str:
+                    if block_id == 1:
+                        return "Left"
+                    elif block_id == 2:
+                        return "Right"
+                    else:
+                        return "Middle"
+                blocks = [1,2,3]
+                random.shuffle(blocks)
+                block_order = (
+                    (blocks[0] << 8)
+                  + (blocks[1] << 4)
+                  + blocks[2]
+                )
+                spoilerlog_additions["AttackFXBBlocks"] = (
+                    f"{_map_blocks(blocks[0])}, {_map_blocks(blocks[1])}, {_map_blocks(blocks[2])}"
+                )
+            puzzle_minigame_list.append((puzzle.get_key(), block_order))
 
         # Koopa Village Push Block: Initial position
         elif puzzle.name == "KoopaVillagePushBlocks":
