@@ -338,6 +338,24 @@ def get_puzzles_minigames(
                 positions_encoded = _albino_dino_puzzle()
             puzzle_minigame_list.append((puzzle.get_key(), positions_encoded))
 
+        # Bowser's Castle Up/Down Maze room: Solution
+        elif puzzle.name == "BowsersCastleMaze":
+            #if not random_puzzles:
+            #    solution_encoded = puzzle.default_value
+            #else:
+            #    solution_encoded = (
+            #      + (random.randint(0,1) << 5)
+            #      + (random.randint(0,1) << 4)
+            #      + (random.randint(0,1) << 3)
+            #      + (random.randint(0,1) << 2)
+            #      + (random.randint(0,1) << 1)
+            #      + 1 # static "up" as last step
+            #    )
+            # NOTE: randomizing this puzzle is turned off for now, as the map-
+            # edit isn't done yet
+            solution_encoded = puzzle.default_value
+            puzzle_minigame_list.append((puzzle.get_key(), solution_encoded))
+
 
     return puzzle_minigame_list, spoilerlog_additions
 
