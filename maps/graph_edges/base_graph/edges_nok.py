@@ -151,7 +151,7 @@ edges_nok = [
 
     {"from": {"map": "NOK_13", "id": 0}, "to": {"map": "NOK_13", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Pleasant Crossroads Exit Left -> HiddenPanel (StarPiece)
     {"from": {"map": "NOK_13", "id": 0}, "to": {"map": "NOK_13", "id": "ItemA"},       "reqs": []}, #* Pleasant Crossroads Exit Left -> ItemA (HoneySyrup)
-    {"from": {"map": "NOK_13", "id": 1}, "to": {"map": "NOK_13", "id": "RBlockA"},     "reqs": [["can_hit_grounded_blocks"],["can_hit_floating_blocks"]]}, #* Pleasant Crossroads Exit Bottom -> RBlockA (AttackFXB)
+    {"from": {"map": "NOK_13", "id": 1}, "to": {"map": "NOK_13", "id": "RBlockA"},     "reqs": [["can_hit_grounded_blocks"],["can_hit_floating_blocks"],["RF_CanSolveAttackFXBPuzzle"]]}, #* Pleasant Crossroads Exit Bottom -> RBlockA (AttackFXB)
 
     # NOK_14 Path to Fortress 1
     {"from": {"map": "NOK_14", "id": 0}, "to": {"map": "NOK_13", "id": 2}, "reqs": []}, # Path to Fortress 1 Exit Left -> Pleasant Crossroads Exit Right

@@ -96,6 +96,7 @@ edges_hos = [
     {"from": {"map": "HOS_06", "id": "ShopRewardE"}, "to": {"map": "HOS_06", "id": "ShopRewardF"}, "reqs": [[{"starpieces": 68}]]}, #+ CHAINED REQUIREMENTS (RepelGel)
 
     {"from": {"map": "HOS_06", "id": 0}, "to": {"map": "HOS_06", "id": 0}, "reqs": [["FAVOR_3_03_active"]], "pseudoitems": ["GF_HOS06_MerluvleeRequestedCrystalBall"]}, #+ Merluvlee's House Exit Left
+    {"from": {"map": "HOS_06", "id": 0}, "to": {"map": "HOS_06", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanSolveAttackFXBPuzzle"]}, #+ Merluvlee's House Exit Left
 
     # HOS_20 Riding Star Ship Scene
     {"from": {"map": "HOS_20", "id": 0}, "to": {"map": "HOS_05", "id": 1}, "reqs": []}, # Riding Star Ship Scene Fly To Star Haven -> Star Sanctuary Fly Starship
