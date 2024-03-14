@@ -327,6 +327,15 @@ class RandomSeed:
                 if placement_attempt == 10:
                     raise
 
+        # Setup puzzles and minigames
+        # (have to set up the Dry Dry Outpost shop puzzles before item prices
+        # get adjusted)
+        self.puzzle_minigame_data, spoilerlog_info = get_puzzles_minigames(
+            self.rando_settings.randomize_puzzles,
+            get_dro_shop_items(modified_world_graph)
+        )
+        self.spoilerlog_additions["puzzle_solutions"] = spoilerlog_info
+
         # Adjust item pricing
         for node in self.placed_items:
             if "Shop" in node.identifier:
@@ -411,13 +420,6 @@ class RandomSeed:
             randomize_by=self.rando_settings.shuffle_music_mode,
             randomize_jingles=self.rando_settings.shuffle_jingles
         )
-
-        # Setup puzzles and minigames
-        self.puzzle_minigame_data, spoilerlog_info = get_puzzles_minigames(
-            self.rando_settings.randomize_puzzles,
-            get_dro_shop_items(modified_world_graph)
-        )
-        self.spoilerlog_additions["puzzle_solutions"] = spoilerlog_info
 
         # Set up seed hash for the save select screen
         self.set_seed_hash()
