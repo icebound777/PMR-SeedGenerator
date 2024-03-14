@@ -111,7 +111,7 @@ def get_puzzles_minigames(
             if not random_puzzles:
                 pulsestone_buy_order = puzzle.default_value
                 spoilerlog_additions["ShopCodePulseStone"] = (
-                    "DriedPasta, DustyHammer"
+                    "DriedShroom, DustyHammer"
                 )
             else:
                 dro_shop_consumables = [
