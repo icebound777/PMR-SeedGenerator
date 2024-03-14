@@ -16,11 +16,13 @@ def get_puzzles_minigames(
     iterations) for puzzles and minigames.
     """
     puzzle_minigame_list = []
+
     deepjungle_blocked_positions = []
+    shopcode_redjar = {}
 
     spoilerlog_additions = {}
 
-    for puzzle in Puzzle.select():
+    for puzzle in Puzzle.select().order_by(Puzzle.index):
         # Fuzzy Tree Minigame Round 1 hops
         if puzzle.name == "FuzzyTreesRound1":
             num_hops = random.randint(10, 13)
@@ -114,16 +116,19 @@ def get_puzzles_minigames(
                     "DriedShroom, DustyHammer"
                 )
             else:
-                dro_shop_consumables = [
+                dro_shop_nonuniques = set([
                     x for x in dro_shop_items
-                    if x.item_type == "ITEM" and x.base_price <= 10 and x.value <= 0xFF
-                    #  consumable                affordable             mod can't handle >= 0x100
-                ]
-                random.shuffle(dro_shop_consumables)
-                code_item_1 = dro_shop_consumables.pop()
-                code_item_2 = dro_shop_consumables.pop()
+                    if    (x.item_type == "ITEM" and x.base_price <= 10 and x.value <= 0xFF)
+                    #      consumable                affordable             not the berry keys
+                       or x.item_type == "COIN"
+                ])
+                dro_shop_nonuniques = sorted(list(dict.fromkeys(dro_shop_nonuniques)))
+                random.shuffle(dro_shop_nonuniques)
+                code_item_1 = dro_shop_nonuniques.pop()
+                code_item_2 = dro_shop_nonuniques.pop()
+                pulsestone_item_order_str = f"{code_item_1.item_name}{code_item_2.item_name}"
                 pulsestone_buy_order = (
-                    (code_item_1.value << 8)
+                    (code_item_1.value << 16)
                   + code_item_2.value
                 )
                 spoilerlog_additions["ShopCodePulseStone"] = (
@@ -135,47 +140,55 @@ def get_puzzles_minigames(
             ))
 
         # Dry Dry Outpost: Shop code for Red Jar
-        elif puzzle.name == "ShopCodeRedJar":
+        elif puzzle.name in ["ShopCodeRedJar1", "ShopCodeRedJar2"]:
             if not random_puzzles:
                 buy_order = puzzle.default_value
                 spoilerlog_additions["ShopCodeRedJar"] = (
                     "DustyHammer, DriedPasta, DustyHammer, DriedShroom"
                 )
             else:
-                dro_shop_consumables = [
-                    x for x in dro_shop_items
-                    if x.item_type == "ITEM" and x.base_price <= 10 and x.value <= 0xFF
-                    #  consumable                affordable             mod can't handle >= 0x100
-                ]
-                if len(dro_shop_consumables) < 4:
-                    dro_shop_consumables.append(random.choice(dro_shop_consumables))
+                if not shopcode_redjar:
+                    # Setup the Red Jar item code before assigning to the
+                    # two puzzle dbkeys
+                    shopcode_redjar = {1: "", 2: "", 3: "", 4: ""}
+                    dro_shop_nonuniques = set([
+                        x for x in dro_shop_items
+                        if    (x.item_type == "ITEM" and x.base_price <= 10 and x.value <= 0xFF)
+                        #      consumable                affordable             not the berry keys
+                           or x.item_type == "COIN"
+                    ])
+                    dro_shop_nonuniques = sorted(list(dict.fromkeys(dro_shop_nonuniques)))
+                    if len(dro_shop_nonuniques) < 4:
+                        dro_shop_nonuniques.append(random.choice(dro_shop_nonuniques))
+                    while True:
+                        random.shuffle(dro_shop_nonuniques)
+                        code_item_1 = dro_shop_nonuniques.pop()
+                        code_item_2 = dro_shop_nonuniques.pop()
+                        code_item_3 = dro_shop_nonuniques.pop()
+                        code_item_4 = dro_shop_nonuniques.pop()
 
-                while True:
-                    random.shuffle(dro_shop_consumables)
-                    code_item_1 = dro_shop_consumables.pop()
-                    code_item_2 = dro_shop_consumables.pop()
-                    code_item_3 = dro_shop_consumables.pop()
-                    code_item_4 = dro_shop_consumables.pop()
+                        item_order_str = f"{code_item_1.item_name}{code_item_2.item_name}{code_item_3.item_name}{code_item_4.item_name}"
 
-                    buy_order = (
-                        (code_item_1.value << 24)
-                      + (code_item_2.value << 16)
-                      + (code_item_3.value << 8)
-                      + code_item_4.value
-                    )
-
-                    # repeat generating a red jar code until the pulse stone
-                    # code is no longer found inside of the red jar code
-                    if hex(pulsestone_buy_order)[2:] not in hex(buy_order)[2:]:
-                        break
-                    else:
-                        dro_shop_consumables.append(code_item_1)
-                        dro_shop_consumables.append(code_item_2)
-                        dro_shop_consumables.append(code_item_3)
-                        dro_shop_consumables.append(code_item_4)
+                        # repeat generating a red jar code until the pulse stone
+                        # code is no longer found inside of the red jar code
+                        if pulsestone_item_order_str not in item_order_str:
+                            shopcode_redjar[1] = code_item_1
+                            shopcode_redjar[2] = code_item_2
+                            shopcode_redjar[3] = code_item_3
+                            shopcode_redjar[4] = code_item_4
+                            break
+                        else:
+                            dro_shop_nonuniques.append(code_item_1)
+                            dro_shop_nonuniques.append(code_item_2)
+                            dro_shop_nonuniques.append(code_item_3)
+                            dro_shop_nonuniques.append(code_item_4)
+                if puzzle.name == "ShopCodeRedJar1":
+                    buy_order = (shopcode_redjar[1].value << 16) + shopcode_redjar[2].value
+                else:
+                    buy_order = (shopcode_redjar[3].value << 16) + shopcode_redjar[4].value
                 spoilerlog_additions["ShopCodeRedJar"] = (
-                    f"{code_item_1.item_name}, {code_item_2.item_name}, "
-                    f"{code_item_3.item_name}, {code_item_4.item_name}"
+                    f"{shopcode_redjar[1].item_name}, {shopcode_redjar[2].item_name}, "
+                    f"{shopcode_redjar[3].item_name}, {shopcode_redjar[4].item_name}"
                 )
             puzzle_minigame_list.append((
                 puzzle.get_key(),
