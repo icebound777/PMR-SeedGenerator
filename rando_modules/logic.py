@@ -902,16 +902,17 @@ def _algo_assumed_fill(
 
     starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
 
-    if random_puzzles:
-        # Force at least 3 different consumables into the Dry Dry Outpost shop
+    if random_puzzles and do_randomize_shops:
+        # Force at least 3 different non-uniques into the Dry Dry Outpost shop
         # which are at least somewhat affordable
-        affordable_consumables = set([
+        affordable_nonuniques = set([
             x for x in pool_other_items
-            if x.item_type == "ITEM" and x.base_price <= 10 and x.value <= 0xFF
-            #  consumable                affordable             mod can't handle >= 0x100
+            if    (x.item_type == "ITEM" and x.base_price <= 10 and x.value <= 0xFF)
+            #      consumable                affordable             not the berry keys
+               or x.item_type == "COIN"
         ])
-        unique_consumables = sorted(list(dict.fromkeys(affordable_consumables)))
-        shop_code_items = random.sample(unique_consumables, k=3)
+        unique_nonuniques = sorted(list(dict.fromkeys(affordable_nonuniques)))
+        shop_code_items = random.sample(unique_nonuniques, k=3)
         for shop_code_item in shop_code_items:
             pool_other_items.remove(shop_code_item)
         shop_slot_ids = random.sample(
