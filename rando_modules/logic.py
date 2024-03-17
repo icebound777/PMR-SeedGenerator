@@ -729,14 +729,14 @@ def find_available_nodes(
         edge["edge_id"] for edge in world_graph[starting_node_id]["edge_list"]
     ]
 
-    empty_reachables, mario = find_empty_reachable_nodes(
+    empty_reachables = find_empty_reachable_nodes(
         world_graph,
         reachable_node_ids,
         non_traversable_edges,
         mario
     )
 
-    return empty_reachables, mario
+    return empty_reachables
 
 
 def find_empty_reachable_nodes(
@@ -795,7 +795,7 @@ def find_empty_reachable_nodes(
         if node_id not in filled_item_node_ids:
             empty_item_nodes.append(item_node)
 
-    return empty_item_nodes, mario
+    return empty_item_nodes
 
 
 def _algo_assumed_fill(
@@ -993,7 +993,7 @@ def _algo_assumed_fill(
         for item_ in pool_combined_progression_items:
             mario.add(item_.item_name)
 
-        candidate_locations, mario = find_available_nodes(
+        candidate_locations = find_available_nodes(
             world_graph,
             starting_node_id,
             mario
