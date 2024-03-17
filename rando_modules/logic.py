@@ -759,12 +759,7 @@ def find_empty_reachable_nodes(
         found_new_items = False
 
         # Re-traverse already found edges which could not be traversed before.
-        node_ids_to_check = set() # set() of str()
-        for from_node_id in non_traversable_edges:
-            node_ids_to_check.add(from_node_id)
-
-        #logging.debug("%s", node_ids_to_check)
-        for from_node_id in node_ids_to_check:
+        for from_node_id in set(non_traversable_edges):
             found_additional_items, mario = _depth_first_search(
                 from_node_id,
                 world_graph,
