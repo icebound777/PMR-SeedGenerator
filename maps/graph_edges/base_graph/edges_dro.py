@@ -21,7 +21,6 @@ edges_dro = [
     {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": "ShopItemE"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemE (DriedPasta)
     {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": "ShopItemF"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ShopItemF (Mushroom)
 
-    {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": "ShopItemA"}, "reqs": [], "pseudoitems": ["DriedPasta"]}, #+ SHARED REQUIREMENTS -> ShopItemE
     {"from": {"map": "DRO_01", "id": "ShopItemA"}, "to": {"map": "DRO_01", "id": "ShopItemA"}, "reqs": [["RF_CanUseDROCode"]], "pseudoitems": ["RF_CanMeetMoustafa"]}, #+ CHAINED REQUIREMENTS -> ShopItemE
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": 0},           "reqs": [], "pseudoitems": ["RF_MouserLeftShop"]}, #+ See Mouser leave
     {"from": {"map": "DRO_01", "id": 0},           "to": {"map": "DRO_01", "id": 0},           "reqs": [], "pseudoitems": ["StarPiece_DRO_1",
