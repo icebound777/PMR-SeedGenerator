@@ -915,6 +915,14 @@ def _algo_assumed_fill(
         shop_code_items = random.sample(unique_nonuniques, k=3)
         for shop_code_item in shop_code_items:
             pool_other_items.remove(shop_code_item)
+        # check if some of the consumables are relevant to progression
+        # if so, then move them from the misc progression
+        for item in shop_code_items:
+            if item in pool_misc_progression_items:
+                pool_other_items.append(item)
+                pool_misc_progression_items.remove(item)
+
+        # place into random dro shop slots
         shop_slot_ids = random.sample(
             population=["ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
             k=3
