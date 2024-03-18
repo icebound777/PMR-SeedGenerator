@@ -99,6 +99,7 @@ class RandomSeed:
         for placement_attempt in range(1, 11):  # try 10 times
             try:
                 modified_world_graph = deepcopy(world_graph)
+                self.placed_items = []
                 self.entrance_list = []
                 self.placed_blocks = []
                 self.spoilerlog_additions = {}
@@ -555,7 +556,7 @@ class RandomSeed:
         seed_hash_items = []
 
         for i in range(4):
-            random_index = random.randint(0, 0xFF)
+            random_index = 1 #random.randint(0, 0xFF)
             seed_hash = seed_hash + (random_index << (8 * i))
 
             hash_item_name = seed_hash_item_names[random_index]
