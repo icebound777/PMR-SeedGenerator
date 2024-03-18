@@ -219,6 +219,7 @@ HammerSetting    : 2
 ShuffleMusic    : False
 ShuffleMusicMode: 0 # 0:shuffle by song mood, 1:shuffle by song type, 2:full shuffle
 ShuffleJingles  : False
+MuteDangerBeeps : False
 
 # Joke options
 RomanNumerals     : false
