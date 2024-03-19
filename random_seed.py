@@ -556,7 +556,7 @@ class RandomSeed:
         seed_hash_items = []
 
         for i in range(4):
-            random_index = 1 #random.randint(0, 0xFF)
+            random_index = random.randint(0, 0xFF)
             seed_hash = seed_hash + (random_index << (8 * i))
 
             hash_item_name = seed_hash_item_names[random_index]
