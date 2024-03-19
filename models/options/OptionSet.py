@@ -387,8 +387,6 @@ class OptionSet:
         # Starting setup
         if "StartingMap" in options_dict:
             self.starting_map = options_dict.get("StartingMap")
-        #if "StartingLevel" in options_dict:
-        #    self.starting_level = options_dict.get("StartingLevel")
         if "StartingMaxHP" in options_dict:
             self.starting_maxhp = options_dict.get("StartingMaxHP")
         if "StartingMaxFP" in options_dict:
@@ -1870,9 +1868,6 @@ class OptionSet:
                 "Lakilester": self.start_with_lakilester,
             }
 
-        #if WriteSpoilerLog and RevealLogInHours != 0:
-        #    web_settings["RevealLogAtTime"] = datetime.now(timezone.utc) + timedelta(hours = RevealLogInHours)
-
         # Glitches: Goomba Region
         web_settings["PrologueGelEarly"] = self.glitch_settings.prologue_gel_early
         web_settings["ReverseGoombaKingBridge"] = self.glitch_settings.reverse_goomba_king_bridge
@@ -2047,12 +2042,5 @@ class OptionSet:
         web_settings["KnowsHiddenBlocks"] = self.glitch_settings.knows_hidden_blocks
         web_settings["KnowsPuzzleSolutions"] = self.glitch_settings.knows_puzzle_solutions
         web_settings["ReachHighBlocksWithSuperBoots"] = self.glitch_settings.reach_high_blocks_with_super_boots
-
-        # Other/Hidden Options
-        #self.SettingsName = "Default Dev Preset"
-        #self.SettingsVersion = "1.0.0"
-        #self.PlacementAlgorithm = "AssumedFill"
-        #self.PeachCastleReturnPipe = True # Default
-        #self.ChallengeMode = False # Default
 
         return web_settings
