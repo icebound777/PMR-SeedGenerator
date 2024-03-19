@@ -1347,6 +1347,7 @@ class OptionSet:
                     and 0 <= options_dict.get("ShuffleMusicMode") <= 2
             )
         basic_assert("ShuffleJingles", bool)
+        basic_assert("MuteDangerBeeps", bool)
 
         # Joke options
         basic_assert("RomanNumerals", bool)
