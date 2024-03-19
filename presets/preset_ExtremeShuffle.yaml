@@ -169,7 +169,7 @@ RandomStarpowerSP: 3
 
 # Misc Gameplay Randomization
 ShuffleBlocks   : true
-RandomizePuzzles: false
+RandomizePuzzles: true
 
 # Quizmo Quizzes
 RandomQuiz         : true
