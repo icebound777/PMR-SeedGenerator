@@ -38,6 +38,7 @@ from rando_modules.random_palettes import \
     get_randomized_palettes
 from rando_modules.random_audio import get_randomized_audio
 from rando_modules.random_partners import get_rnd_starting_partners
+from rando_modules.random_puzzles_minigames import get_puzzles_minigames, get_dro_shop_items
 from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.random_shop_prices import get_shop_price
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
@@ -74,6 +75,7 @@ class RandomSeed:
         self.static_map_mirroring = []
         self.quiz_list = []
         self.music_list = []
+        self.puzzle_minigame_data = []
         self.item_spheres_dict = None
         self.spoilerlog_additions = {}
 
@@ -97,6 +99,7 @@ class RandomSeed:
         for placement_attempt in range(1, 11):  # try 10 times
             try:
                 modified_world_graph = deepcopy(world_graph)
+                self.placed_items = []
                 self.entrance_list = []
                 self.placed_blocks = []
                 self.spoilerlog_additions = {}
@@ -281,6 +284,7 @@ class RandomSeed:
                     bowsers_castle_mode=self.rando_settings.bowsers_castle_mode,
                     star_hunt_stars=self.rando_settings.star_hunt_total if self.rando_settings.star_hunt else 0,
                     partner_upgrade_shuffle=self.rando_settings.partner_upgrade_shuffle,
+                    random_puzzles=self.rando_settings.randomize_puzzles,
                     world_graph=modified_world_graph
                 )
 
@@ -323,6 +327,15 @@ class RandomSeed:
                 print(f"Failed to build beatable world! Fail count: {placement_attempt}")
                 if placement_attempt == 10:
                     raise
+
+        # Setup puzzles and minigames
+        # (have to set up the Dry Dry Outpost shop puzzles before item prices
+        # get adjusted)
+        self.puzzle_minigame_data, spoilerlog_info = get_puzzles_minigames(
+            self.rando_settings.randomize_puzzles,
+            get_dro_shop_items(modified_world_graph)
+        )
+        self.spoilerlog_additions["puzzle_solutions"] = spoilerlog_info
 
         # Adjust item pricing
         for node in self.placed_items:

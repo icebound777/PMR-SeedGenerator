@@ -17,6 +17,7 @@ def gather_keys():
     A4 = Palettes
     A5 = 
     A6 = Moves (cost FP/BP)
+    A8 = Puzzles & Minigames
     AA = RESERVED (see table.py unique itemID)
     AE = Static Map Mirroring (but we don't need them in the generator)
     AF = Quizzes
@@ -31,6 +32,7 @@ def gather_keys():
         "entrances": {},
         "palettes": {},
         "options": {},
+        "puzzles": {},
         "quizzes": {},
     }
     sprite_palette_counts = {}
@@ -114,6 +116,12 @@ def gather_keys():
                             "area_id": area_id,
                             "map_id": map_id,
                             "value_id": value_id,
+                        }
+                    elif byte_id == 0xA8:
+                        puzzle_name = key_info.split(":")[-1]
+                        keys["puzzles"][key] = {
+                            "puzzle": puzzle_name,
+                            "index": (area_id << 16) | (map_id << 8) | value_id,
                         }
                     elif byte_id == 0xAF:
                         name,attribute = key_info.split(":")
@@ -215,6 +223,19 @@ def gather_values():
                 raise ValueError
             return value
 
+        if value == ".Puzzles:RedJarShopCodeDefault1":
+            # Dry Dry Outpost: Red Jar code special case 1: 0x008600A7
+            return (0x86 << 16) + 0xA7
+        if value == ".Puzzles:RedJarShopCodeDefault2":
+            # Dry Dry Outpost: Red Jar code special case 2: 0x0086008D
+            return (0x86 << 16) + 0x8D
+        if value == ".Puzzles:RuinsStones":
+            # Dry Dry Ruins: Ruins stones positions special case: 0x10203
+            return (1 << 16) + (2 << 8) + 3
+        if value == ".Puzzles:GreenStationBoxesDefault":
+            # Green Station boxes puzzle special case: 0x2134
+            return (2 << 12) + (1 << 8) + (3 << 4) + 4
+
         return None
 
     values = {
@@ -226,6 +247,7 @@ def gather_values():
         "entrances": {},
         "palettes": {},
         "options": {},
+        "puzzles": {},
         "quizzes": {},
     }
 
@@ -238,6 +260,9 @@ def gather_values():
                 if "Options" in key_info or "Cosmetic" in key_info or "Mystery" in key_info:
                     name = key_info.split(":")[-1]
                     values["options"][name] = get_value(value)
+                elif "Puzzle" in key_info:
+                    name = key_info.split(":")[-1]
+                    values["puzzles"][name] = get_value(value)
                 elif "Quiz" in key_info:
                     name = key_info.split(":")[-1]
                     values["quizzes"][name] = get_value(value)
@@ -330,7 +355,8 @@ def create_table(default_table):
                                 0xA2: "Actor",
                                 0xA3: "Entrance",
                                 0xA4: "Palette",
-                                0xA6: "Move"
+                                0xA6: "Move",
+                                0xA8: "Puzzle",
                             }.get((key & 0xFF000000) >> 24)
                         }
     db = {}

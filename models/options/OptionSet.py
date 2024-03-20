@@ -26,52 +26,53 @@ class OptionSet:
     def __init__(self):
         """ Load Defaults from DB """
         # General
-        self.blocks_match_content = get_option_default_value("BlocksMatchContent")
+        self.blocks_match_content = bool(get_option_default_value("BlocksMatchContent"))
         self.hidden_block_mode = get_option_default_value("HiddenBlockMode")
-        self.allow_physics_glitches = get_option_default_value("AllowPhysicsGlitches")
-        self.badge_synergy = get_option_default_value("BadgeSynergy")
+        self.allow_physics_glitches = bool(get_option_default_value("AllowPhysicsGlitches"))
+        self.badge_synergy = bool(get_option_default_value("BadgeSynergy"))
 
         # QOL
-        self.always_speedyspin = get_option_default_value("AlwaysSpeedySpin")
-        self.always_ispy = get_option_default_value("AlwaysISpy")
-        self.always_peekaboo = get_option_default_value("AlwaysPeekaboo")
+        self.always_speedyspin = bool(get_option_default_value("AlwaysSpeedySpin"))
+        self.always_ispy = bool(get_option_default_value("AlwaysISpy"))
+        self.always_peekaboo = bool(get_option_default_value("AlwaysPeekaboo"))
         self.cutscene_mode = get_option_default_value("CutsceneMode")
         self.fast_text_skip = get_option_default_value("FastTextSkip")
-        self.skip_epilogue = get_option_default_value("SkipEpilogue")
-        self.peachcastle_return_pipe = get_option_default_value("PeachCastleReturnPipe")
-        self.foliage_item_hints = get_option_default_value("FoliageItemHints")
+        self.skip_epilogue = bool(get_option_default_value("SkipEpilogue"))
+        self.peachcastle_return_pipe = bool(get_option_default_value("PeachCastleReturnPipe"))
+        self.foliage_item_hints = bool(get_option_default_value("FoliageItemHints"))
         self.hiddenpanel_visibility = get_option_default_value("HiddenPanelVisibility")
+        self.mute_danger_beeps = bool(get_option_default_value("MuteDangerBeeps"))
 
         # Difficulty and Enemies
         self.shuffle_chapter_difficulty = False
-        self.progressive_scaling = get_option_default_value("ProgressiveScaling")
+        self.progressive_scaling = bool(get_option_default_value("ProgressiveScaling"))
 
-        self.challenge_mode = get_option_default_value("ChallengeMode")
-        self.cap_enemy_xp = get_option_default_value("CapEnemyXP")
+        self.challenge_mode = bool(get_option_default_value("ChallengeMode"))
+        self.cap_enemy_xp = bool(get_option_default_value("CapEnemyXP"))
         self.xp_multiplier = get_option_default_value("XPMultiplier")
-        self.damage_x2 = get_option_default_value("DoubleDamage")
-        self.damage_x4 = get_option_default_value("QuadrupleDamage")
-        self.ohko = get_option_default_value("OHKO")
-        self.no_save_blocks = get_option_default_value("NoSaveBlocks")
-        self.no_heart_blocks = get_option_default_value("NoHeartBlocks")
-        self.no_healing_items = get_option_default_value("NoHealingItems")
-        self.drop_starpoints = get_option_default_value("DropStarPoints")
+        self.damage_x2 = bool(get_option_default_value("DoubleDamage"))
+        self.damage_x4 = bool(get_option_default_value("QuadrupleDamage"))
+        self.ohko = bool(get_option_default_value("OHKO"))
+        self.no_save_blocks = bool(get_option_default_value("NoSaveBlocks"))
+        self.no_heart_blocks = bool(get_option_default_value("NoHeartBlocks"))
+        self.no_healing_items = bool(get_option_default_value("NoHealingItems"))
+        self.drop_starpoints = bool(get_option_default_value("DropStarPoints"))
 
-        self.random_formations = get_option_default_value("RandomFormations")
+        self.random_formations = bool(get_option_default_value("RandomFormations"))
 
         # Custom Seed / Planned Seed / "Plandomizer"
         self.custom_seed = False
 
         # Item Placement
-        self.shuffle_items = get_option_default_value("ShuffleItems")
+        self.shuffle_items = bool(get_option_default_value("ShuffleItems"))
         self.include_coins_overworld = True
         self.include_coins_blocks = True
         self.include_coins_foliage = True
         self.include_coins_favors = False
-        self.include_shops = get_option_default_value("IncludeShops")
+        self.include_shops = bool(get_option_default_value("IncludeShops"))
         self.progression_on_rowf = True
         self.progression_on_merlow = True
-        self.include_panels = get_option_default_value("IncludePanels")
+        self.include_panels = bool(get_option_default_value("IncludePanels"))
         self.include_favors_mode = IncludeFavorsMode.NOT_RANDOMIZED
         self.include_letters_mode = IncludeLettersMode.NOT_RANDOMIZED
         self.include_radiotradeevent = False
@@ -96,7 +97,7 @@ class OptionSet:
         self.map_tracker_shop_bits = get_option_default_value("EnabledShopBits")
 
         # Item Misc
-        self.cook_without_fryingpan = get_option_default_value("CookWithoutFryingPan")
+        self.cook_without_fryingpan = bool(get_option_default_value("CookWithoutFryingPan"))
         self.merlow_reward_pricing = MerlowRewardPricing.NORMAL
         self.ripcheato_items_in_logic = 6
         self.allow_itemhints = True
@@ -135,30 +136,30 @@ class OptionSet:
 
         # Partners
         self.starting_partners = ["Goombario"]
-        self.start_with_goombario = get_option_default_value("StartWithGoombario")
-        self.start_with_kooper = get_option_default_value("StartWithKooper")
-        self.start_with_bombette = get_option_default_value("StartWithBombette")
-        self.start_with_parakarry = get_option_default_value("StartWithParakarry")
-        self.start_with_bow = get_option_default_value("StartWithBow")
-        self.start_with_watt = get_option_default_value("StartWithWatt")
-        self.start_with_sushie = get_option_default_value("StartWithSushie")
-        self.start_with_lakilester = get_option_default_value("StartWithLakilester")
+        self.start_with_goombario = bool(get_option_default_value("StartWithGoombario"))
+        self.start_with_kooper = bool(get_option_default_value("StartWithKooper"))
+        self.start_with_bombette = bool(get_option_default_value("StartWithBombette"))
+        self.start_with_parakarry = bool(get_option_default_value("StartWithParakarry"))
+        self.start_with_bow = bool(get_option_default_value("StartWithBow"))
+        self.start_with_watt = bool(get_option_default_value("StartWithWatt"))
+        self.start_with_sushie = bool(get_option_default_value("StartWithSushie"))
+        self.start_with_lakilester = bool(get_option_default_value("StartWithLakilester"))
 
         self.partners_in_default_locations = True
-        self.partners_always_usable = get_option_default_value("PartnersAlwaysUsable")
+        self.partners_always_usable = bool(get_option_default_value("PartnersAlwaysUsable"))
         self.random_partners = False
         self.random_partners_min = 1
         self.random_partners_max = 1
 
         # Pre-opened areas
         self.magical_seeds_required = get_option_default_value("MagicalSeedsRequired")
-        self.prologue_open = get_option_default_value("PrologueOpen")
-        self.bluehouse_open = get_option_default_value("BlueHouseOpen")
-        self.mtrugged_open = get_option_default_value("MtRuggedOpen")
-        self.foreverforest_open = get_option_default_value("ForeverForestOpen")
-        self.toybox_open = get_option_default_value("ToyboxOpen")
-        self.whale_open = get_option_default_value("WhaleOpen")
-        self.ch7_bridge_visible = get_option_default_value("Ch7BridgeVisible")
+        self.prologue_open = bool(get_option_default_value("PrologueOpen"))
+        self.bluehouse_open = bool(get_option_default_value("BlueHouseOpen"))
+        self.mtrugged_open = bool(get_option_default_value("MtRuggedOpen"))
+        self.foreverforest_open = bool(get_option_default_value("ForeverForestOpen"))
+        self.toybox_open = bool(get_option_default_value("ToyboxOpen"))
+        self.whale_open = bool(get_option_default_value("WhaleOpen"))
+        self.ch7_bridge_visible = bool(get_option_default_value("Ch7BridgeVisible"))
 
         # Goal Settings
         self.starway_spirits_needed_count = get_option_default_value("StarWaySpiritsNeededCnt")
@@ -166,16 +167,16 @@ class OptionSet:
         self.limit_chapter_logic = False
         self.starway_spirits_needed_encoded = get_option_default_value("StarWaySpiritsNeededEnc")
         self.bowsers_castle_mode = get_option_default_value("BowsersCastleMode")
-        self.star_hunt = get_option_default_value("StarHunt")
+        self.star_hunt = bool(get_option_default_value("StarHunt"))
         self.star_hunt_required = get_option_default_value("StarHuntRequired")
         self.star_hunt_total = get_option_default_value("StarHuntTotal")
-        self.star_hunt_ends_game = get_option_default_value("StarHuntEndsGame")
+        self.star_hunt_ends_game = bool(get_option_default_value("StarHuntEndsGame"))
 
         # Entrance Shuffle
-        self.shuffle_dungeon_rooms = get_option_default_value("ShuffleDungeonRooms")
-        self.shuffle_dungeon_entrances = get_option_default_value("ShuffleDungeonEntrances")
-        self.shuffle_entrances_by_all = get_option_default_value("ShuffleEntrancesByAll")
-        self.match_entrance_type = get_option_default_value("MatchEntranceTypes")
+        self.shuffle_dungeon_rooms = bool(get_option_default_value("ShuffleDungeonRooms"))
+        self.shuffle_dungeon_entrances = bool(get_option_default_value("ShuffleDungeonEntrances"))
+        self.shuffle_entrances_by_all = bool(get_option_default_value("ShuffleEntrancesByAll"))
+        self.match_entrance_type = bool(get_option_default_value("MatchEntranceTypes"))
         self.random_oneway_entrances = False # NYI
         self.unpaired_entrances = False # NYI
 
@@ -187,11 +188,12 @@ class OptionSet:
 
         # Misc Gameplay Randomization
         self.shuffle_blocks = False
+        self.randomize_puzzles = False
 
         # Quizmo Quizzes
-        self.random_quiz = get_option_default_value("RandomQuiz")
-        self.quizmo_always_appears = get_option_default_value("QuizmoAlwaysAppears")
-        self.skip_quiz = get_option_default_value("SkipQuiz")
+        self.random_quiz = bool(get_option_default_value("RandomQuiz"))
+        self.quizmo_always_appears = bool(get_option_default_value("QuizmoAlwaysAppears"))
+        self.skip_quiz = bool(get_option_default_value("SkipQuiz"))
 
         # Spoilerlog
         self.write_spoilerlog = True
@@ -211,9 +213,9 @@ class OptionSet:
         self.shuffle_jingles = False
 
         # Joke options
-        self.roman_numerals = get_option_default_value("RomanNumerals")
-        self.random_text = get_option_default_value("RandomText")
-        self.random_pitch = get_option_default_value("RandomPitch")
+        self.roman_numerals = bool(get_option_default_value("RomanNumerals"))
+        self.random_text = bool(get_option_default_value("RandomText"))
+        self.random_pitch = bool(get_option_default_value("RandomPitch"))
         self.mirror_mode = get_option_default_value("MirrorMode")
         self.static_mirroring = False
 
@@ -263,6 +265,8 @@ class OptionSet:
             self.foliage_item_hints = options_dict.get("FoliageItemHints")
         if "HiddenPanelVisibility" in options_dict:
             self.hiddenpanel_visibility = options_dict.get("HiddenPanelVisibility")
+        if "MuteDangerBeeps" in options_dict:
+            self.mute_danger_beeps = options_dict.get("MuteDangerBeeps")
 
         # Difficulty and Enemies
         if "ShuffleChapterDifficulty" in options_dict:
@@ -383,14 +387,17 @@ class OptionSet:
         # Starting setup
         if "StartingMap" in options_dict:
             self.starting_map = options_dict.get("StartingMap")
-        if "StartingLevel" in options_dict:
-            self.starting_level = options_dict.get("StartingLevel")
         if "StartingMaxHP" in options_dict:
             self.starting_maxhp = options_dict.get("StartingMaxHP")
         if "StartingMaxFP" in options_dict:
             self.starting_maxfp = options_dict.get("StartingMaxFP")
         if "StartingMaxBP" in options_dict:
             self.starting_maxbp = options_dict.get("StartingMaxBP")
+        self.starting_level = int(
+            ((self.starting_maxhp - 5) / 5)
+            + ((self.starting_maxfp - 5) / 5)
+            + ((self.starting_maxbp - 3) / 3)
+        )
         if "StartingStarPower" in options_dict:
             self.starting_starpower = options_dict.get("StartingStarPower")
         if "StartingBoots" in options_dict:
@@ -539,6 +546,8 @@ class OptionSet:
         # Misc Gameplay Randomization
         if "ShuffleBlocks" in options_dict:
             self.shuffle_blocks = options_dict.get("ShuffleBlocks")
+        if "RandomizePuzzles" in options_dict:
+            self.randomize_puzzles = options_dict.get("RandomizePuzzles")
 
         # Map Check Tracker (static)
         #   0x1    # regular checks
@@ -974,7 +983,8 @@ class OptionSet:
         if "KnowsHiddenBlocks" in options_dict:
             self.glitch_settings.knows_hidden_blocks = options_dict.get("KnowsHiddenBlocks")
         if "KnowsPuzzleSolutions" in options_dict:
-            self.glitch_settings.knows_puzzle_solutions = options_dict.get("KnowsPuzzleSolutions")
+            if not self.randomize_puzzles:
+                self.glitch_settings.knows_puzzle_solutions = options_dict.get("KnowsPuzzleSolutions")
         if "ReachHighBlocksWithSuperBoots" in options_dict:
             self.glitch_settings.reach_high_blocks_with_super_boots = options_dict.get("ReachHighBlocksWithSuperBoots")
 
@@ -1276,6 +1286,7 @@ class OptionSet:
 
         # Misc Gameplay Randomization
         basic_assert("ShuffleBlocks", bool)
+        basic_assert("RandomizePuzzles", bool)
 
         # Quizmo Quizzes
         basic_assert("RandomQuiz", bool)
@@ -1334,6 +1345,7 @@ class OptionSet:
                     and 0 <= options_dict.get("ShuffleMusicMode") <= 2
             )
         basic_assert("ShuffleJingles", bool)
+        basic_assert("MuteDangerBeeps", bool)
 
         # Joke options
         basic_assert("RomanNumerals", bool)
@@ -1525,6 +1537,7 @@ class OptionSet:
             load_dbkey(self.peachcastle_return_pipe, "PeachCastleReturnPipe"),
             load_dbkey(self.foliage_item_hints, "FoliageItemHints"),
             load_dbkey(self.hiddenpanel_visibility, "HiddenPanelVisibility"),
+            load_dbkey(self.mute_danger_beeps, "MuteDangerBeeps"),
 
             # Difficulty and Enemies
             load_dbkey(self.progressive_scaling, "ProgressiveScaling"),
@@ -1671,3 +1684,363 @@ class OptionSet:
                         starting_items.append(Item.get(Item.value == item_id))
 
         return starting_items
+
+
+    def get_web_settings(self) -> dict:
+        """
+        Returns this OptionSet's data in a format specific to the generator
+        website's Seed handling format.
+        """
+        web_settings = {}
+
+        #self.StarRodModVersion = StarRodModVersion
+        #self.SettingsString = SettingsString
+
+        web_settings["AlwaysSpeedySpin"] = self.always_speedyspin
+        web_settings["AlwaysISpy"] = self.always_ispy
+        web_settings["AlwaysPeekaboo"] = self.always_peekaboo
+        web_settings["HiddenBlockMode"] = self.hidden_block_mode
+        web_settings["AllowPhysicsGlitches"] = self.allow_physics_glitches
+        web_settings["StartingCoins"] = self.starting_coins
+        web_settings["CapEnemyXP"] = self.cap_enemy_xp
+        web_settings["XPMultiplier"] = self.xp_multiplier
+        web_settings["DoubleDamage"] = self.damage_x2
+        web_settings["QuadrupleDamage"] = self.damage_x4
+        web_settings["OHKO"] = self.ohko
+        web_settings["NoSaveBlocks"] = self.no_save_blocks
+        web_settings["NoHeartBlocks"] = self.no_heart_blocks
+        web_settings["MagicalSeedsRequired"] = self.magical_seeds_required
+        web_settings["BlueHouseOpen"] = self.bluehouse_open
+        web_settings["ToyboxOpen"] = self.toybox_open
+        web_settings["WhaleOpen"] = self.whale_open
+        web_settings["Ch7BridgeVisible"] = self.ch7_bridge_visible
+        web_settings["MtRuggedOpen"] = self.mtrugged_open
+        web_settings["ForeverForestOpen"] = self.foreverforest_open
+        web_settings["ShuffleChapterDifficulty"] = self.shuffle_chapter_difficulty
+        web_settings["RandomFormations"] = self.random_formations
+        web_settings["ShuffleItems"] = self.shuffle_items
+        web_settings["IncludeCoinsOverworld"] = self.include_coins_overworld
+        web_settings["IncludeCoinsBlocks"] = self.include_coins_blocks
+        web_settings["IncludeCoinsFavors"] = self.include_coins_favors
+        web_settings["IncludeCoinsFoliage"] = self.include_coins_foliage
+        web_settings["IncludeShops"] = self.include_shops
+        web_settings["IncludePanels"] = self.include_panels
+        web_settings["IncludeFavorsMode"] = int(self.include_favors_mode)
+        web_settings["IncludeLettersMode"] = int(self.include_letters_mode)
+        web_settings["KeyitemsOutsideDungeon"] = self.keyitems_outside_dungeon
+        web_settings["ProgressiveScaling"] = self.progressive_scaling
+        web_settings["RandomBadgesBP"] = int(self.random_badges_bp)
+        web_settings["RandomBadgesFP"] = int(self.random_badges_fp)
+        web_settings["RandomPartnerFP"] = int(self.random_partner_fp)
+        web_settings["RandomStarpowerSP"] = int(self.random_starpower_sp)
+        web_settings["RandomQuiz"] = self.random_quiz
+        web_settings["SkipQuiz"] = self.skip_quiz
+        web_settings["QuizmoAlwaysAppears"] = self.quizmo_always_appears
+        web_settings["PartnersInDefaultLocations"] = self.partners_in_default_locations
+        web_settings["PartnersAlwaysUsable"] = self.partners_always_usable
+        web_settings["StartWithRandomPartners"] = self.random_partners
+        web_settings["WriteSpoilerLog"] = self.write_spoilerlog
+        web_settings["RomanNumerals"] = self.roman_numerals
+        web_settings["IncludeDojo"] = self.include_dojo
+        web_settings["BowsersCastleMode"] = self.bowsers_castle_mode
+        web_settings["CutsceneMode"] = self.cutscene_mode
+        web_settings["SkipEpilogue"] = self.skip_epilogue
+        web_settings["IncludeRadioTradeEvent"] = self.include_radiotradeevent
+
+        web_settings["ColorMode"] = self.color_mode
+        web_settings["Box5ColorA"] = self.color_a
+        web_settings["Box5ColorB"] = self.color_b
+        web_settings["RandomCoinColor"] = self.random_coin_color
+        web_settings["CoinColor"] = self.coin_color
+
+        web_settings["MarioSetting"] = self.palette_settings.mario_setting
+        web_settings["MarioSprite"] = self.palette_settings.mario_sprite
+        web_settings["GoombarioSetting"] = self.palette_settings.goombario_setting
+        web_settings["GoombarioSprite"] = self.palette_settings.goombario_sprite
+        web_settings["KooperSetting"] = self.palette_settings.kooper_setting
+        web_settings["KooperSprite"] = self.palette_settings.kooper_sprite
+        web_settings["BombetteSetting"] = self.palette_settings.bombette_setting
+        web_settings["BombetteSprite"] = self.palette_settings.bombette_sprite
+        web_settings["BowSetting"] = self.palette_settings.bow_setting
+        web_settings["BowSprite"] = self.palette_settings.bow_sprite
+
+        web_settings["WattSetting"] = self.palette_settings.watt_setting
+        web_settings["WattSprite"] = self.palette_settings.watt_sprite
+        web_settings["SushieSetting"] = self.palette_settings.sushie_setting
+        web_settings["SushieSprite"] = self.palette_settings.sushie_sprite
+        web_settings["LakilesterSetting"] = self.palette_settings.lakilester_setting
+        web_settings["LakilesterSprite"] = self.palette_settings.lakilester_sprite
+        web_settings["ParakarrySetting"] = self.palette_settings.parakarry_setting
+        web_settings["ParakarrySprite"] = self.palette_settings.parakarry_sprite
+
+        web_settings["BossesSetting"] = self.palette_settings.bosses_setting
+        web_settings["NPCSetting"] = self.palette_settings.npc_setting
+        web_settings["EnemiesSetting"] = self.palette_settings.enemies_setting
+        web_settings["HammerSetting"] = self.palette_settings.hammer_setting
+
+        web_settings["StartingMap"] = self.starting_map
+        web_settings["StartingMaxHP"] = self.starting_maxhp
+        web_settings["StartingMaxFP"] = self.starting_maxfp
+        web_settings["StartingMaxBP"] = self.starting_maxbp
+        web_settings["StartingLevel"] = self.starting_level
+        web_settings["StartingStarPower"] = self.starting_starpower
+        web_settings["StartingBoots"] = self.starting_boots
+        web_settings["StartingHammer"] = self.starting_hammer
+
+        web_settings["StartingItem0"] = self.starting_item_0
+        web_settings["StartingItem1"] = self.starting_item_1
+        web_settings["StartingItem2"] = self.starting_item_2
+        web_settings["StartingItem3"] = self.starting_item_3
+        web_settings["StartingItem4"] = self.starting_item_4
+        web_settings["StartingItem5"] = self.starting_item_5
+        web_settings["StartingItem6"] = self.starting_item_6
+        web_settings["StartingItem7"] = self.starting_item_7
+        web_settings["StartingItem8"] = self.starting_item_8
+        web_settings["StartingItem9"] = self.starting_item_9
+        web_settings["StartingItemA"] = self.starting_item_A
+        web_settings["StartingItemB"] = self.starting_item_B
+        web_settings["StartingItemC"] = self.starting_item_C
+        web_settings["StartingItemD"] = self.starting_item_D
+        web_settings["StartingItemE"] = self.starting_item_E
+        web_settings["StartingItemF"] = self.starting_item_F
+        web_settings["StartWithRandomItems"] = self.random_starting_items
+        web_settings["RandomItemsMin"] = self.random_starting_items_min
+        web_settings["RandomItemsMax"] = self.random_starting_items_max
+
+        web_settings["StarWaySpiritsNeededCnt"] = self.starway_spirits_needed_count
+        web_settings["RequireSpecificSpirits"] = self.require_specific_spirits
+        web_settings["LimitChapterLogic"] = self.limit_chapter_logic
+        web_settings["BadgeSynergy"] = self.badge_synergy
+        web_settings["FoliageItemHints"] = self.foliage_item_hints
+        web_settings["RandomText"] = self.random_text
+        web_settings["NoHealingItems"] = self.no_healing_items
+        web_settings["DropStarPoints"] = self.drop_starpoints
+
+        web_settings["ItemQuality"] = self.item_quality
+        web_settings["RandomConsumableMode"] = int(self.randomize_consumable_mode)
+        web_settings["AddItemPouches"] = self.add_item_pouches
+        web_settings["ItemTrapMode"] = int(self.itemtrap_mode)
+        web_settings["AddUnusedBadgeDuplicates"] = self.add_unused_badge_duplicates
+        web_settings["AddBetaItems"] = self.add_beta_items
+        web_settings["ProgressiveBadges"] = self.progressive_badges
+        web_settings["BadgePoolLimit"] = self.badge_pool_limit
+
+        web_settings["RandomChoice"] = self.mystery_settings.mystery_random_choice
+        web_settings["MysteryRandomPick"] = self.mystery_settings.mystery_random_pick
+        web_settings["AllowItemHints"] = self.allow_itemhints
+        web_settings["ShuffleBlocks"] = self.shuffle_blocks
+        web_settings["RandomizePuzzles"] = self.randomize_puzzles
+        web_settings["RandomPitch"] = self.random_pitch
+        web_settings["MuteDangerBeeps"] = self.mute_danger_beeps
+        web_settings["ShuffleMusic"] = self.shuffle_music
+        web_settings["ShuffleMusicMode"] = int(self.shuffle_music_mode)
+        web_settings["ShuffleJingles"] = self.shuffle_jingles
+        web_settings["GearShuffleMode"] = self.gear_shuffle_mode
+        web_settings["PartnerUpgradeShuffle"] = self.partner_upgrade_shuffle
+        web_settings["HiddenPanelVisibility"] = self.hiddenpanel_visibility
+        web_settings["CookWithoutFryingPan"] = self.cook_without_fryingpan
+        web_settings["RipCheatoItemsInLogic"] = self.ripcheato_items_in_logic
+        web_settings["MerlowRewardPricing"] = int(self.merlow_reward_pricing)
+        web_settings["PrologueOpen"] = self.prologue_open
+        web_settings["ProgressionOnRowf"] = self.progression_on_rowf
+        web_settings["ProgressionOnMerlow"] = self.progression_on_merlow
+        web_settings["ShuffleDungeonEntrances"] = self.shuffle_dungeon_entrances
+        web_settings["MirrorMode"] = self.mirror_mode
+        web_settings["StaticMapMirroring"] = self.static_mirroring
+
+        web_settings["StarHunt"] = self.star_hunt
+        web_settings["StarHuntEndsGame"] = self.star_hunt_ends_game
+        web_settings["StarHuntRequired"] = self.star_hunt_required
+        web_settings["StarHuntTotal"] = self.star_hunt_total
+
+        if self.random_partners:
+            web_settings["RandomPartnersMax"] = self.random_partners_min
+            web_settings["RandomPartnersMin"] = self.random_partners_max
+        else:
+            web_settings["StartWithPartners"] = {
+                "Goombario": self.start_with_goombario,
+                "Kooper": self.start_with_kooper,
+                "Bombette": self.start_with_bombette,
+                "Parakarry": self.start_with_parakarry,
+                "Bow": self.start_with_bow,
+                "Watt": self.start_with_watt,
+                "Sushie": self.start_with_sushie,
+                "Lakilester": self.start_with_lakilester,
+            }
+
+        # Glitches: Goomba Region
+        web_settings["PrologueGelEarly"] = self.glitch_settings.prologue_gel_early
+        web_settings["ReverseGoombaKingBridge"] = self.glitch_settings.reverse_goomba_king_bridge
+        web_settings["GoombaVillageEntryFenceClip"] = self.glitch_settings.goomba_village_entry_fence_clip
+        web_settings["GoombaVillageNpcLureExit"] = self.glitch_settings.goomba_village_npc_lure_exit
+        web_settings["HammerlessJrPlaygroundLaki"] = self.glitch_settings.hammerless_jr_playground_laki
+        web_settings["GoombaVillageLakiExit"] = self.glitch_settings.goomba_village_laki_exit
+        web_settings["PrologueSushieGlitchKsj"] = self.glitch_settings.prologue_sushie_glitch_ksj
+        web_settings["PrologueSushieGlitchUltraBootsLaki"] = self.glitch_settings.prologue_sushie_glitch_ultra_boots_laki
+
+        # Glitches: Toad Town
+        web_settings["OddKeyEarly"] = self.glitch_settings.odd_key_early
+        web_settings["BlueHouseSkip"] = self.glitch_settings.blue_house_skip
+        web_settings["BlueHouseSkipLaki"] = self.glitch_settings.blue_house_skip_laki
+        web_settings["BlueHouseSkipToadLure"] = self.glitch_settings.blue_house_skip_toad_lure
+        web_settings["BowlessToyBoxHammer"] = self.glitch_settings.bowless_toy_box_hammer
+        web_settings["BowlessToyBoxHammerlessLure"] = self.glitch_settings.bowless_toy_box_hammerless_lure
+        web_settings["EarlyStoreroomParakarry"] = self.glitch_settings.early_storeroom_parakarry
+        web_settings["EarlyStoreroomHammer"] = self.glitch_settings.early_storeroom_hammer
+        web_settings["EarlyStoreroomHammerlessLure"] = self.glitch_settings.early_storeroom_hammerless_lure
+        web_settings["WhaleEarly"]= self.glitch_settings.whale_early
+        web_settings["SushielessToadTownStarPiece"] = self.glitch_settings.sushiesless_toad_town_star_piece
+        web_settings["ToadTownSushieGlitch"] = self.glitch_settings.toad_town_sushie_glitch
+
+        # Glitches: Toad Town Tunnels
+        web_settings["ClippyBootsStoneBlockSkip"] = self.glitch_settings.clippy_boots_stone_block_skip
+        web_settings["ClippyBootsMetalBlockSkip"] = self.glitch_settings.clippy_boots_metal_block_skip
+        web_settings["IslandPipeBlooperSkip"] = self.glitch_settings.island_pipe_blooper_skip
+        web_settings["ParakarrylessSewerStarPiece"] = self.glitch_settings.parakarryless_sewer_star_piece
+        web_settings["SewerBlocksWithoutUltraBoots"] = self.glitch_settings.sewer_blocks_without_ultra_boots
+        web_settings["FirstBlockToShiverCityWithoutSuperBoots"] = self.glitch_settings.first_block_to_shiver_city_without_super_boots
+        web_settings["BlocksToShiverCityWithKooperShellItemThrow"] = self.glitch_settings.blocks_to_shiver_city_kooper_shell_item_throw
+        web_settings["SewerYellowBlockWithUltraBoots"] = self.glitch_settings.sewer_yellow_block_with_ultra_boots
+        web_settings["JumplessSewerShootingStar"] = self.glitch_settings.jumpless_sewer_shooting_star
+
+        # Glitches: Plesant Path
+        web_settings["KooperlessPleasantPathStarPiece"] = self.glitch_settings.kooperless_pleasant_path_star_piece
+        web_settings["HammerlessPleasantPathBridgeUltraBootsParakarry"] = self.glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry
+        web_settings["InvisibleBridgeClipLzs"]= self.glitch_settings.invisible_bridge_clip_lzs
+        web_settings["InvisibleBridgeClipLaki"] = self.glitch_settings.invisible_bridge_clip_laki
+        web_settings["KooperlessPleasantPathThunderBolt"] = self.glitch_settings.kooperless_pleasant_path_thunderbolt
+
+        # Glitches: Koopa Bros Fortress
+        web_settings["BombettelessKbfFpPlusLZS"] = self.glitch_settings.bombetteless_kbf_fp_plus_lzs
+        web_settings["BombettelessKbfFpPlusLaki"] = self.glitch_settings.bombetteless_kbf_fp_plus_laki
+        web_settings["LakiJailbreak"] = self.glitch_settings.laki_jailbreak
+        web_settings["BombettelessRightFortressJailKey"] = self.glitch_settings.bombetteless_right_fortress_jail_key
+        web_settings["WaterStaircaseSkip"] = self.glitch_settings.water_staircase_skip
+
+        # Glitches: Mt. Rugged
+        web_settings["MtRuggedQuakeHammerAndLetterWithLaki"] = self.glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki
+        web_settings["ParakarrylessMtRuggedSeed"] = self.glitch_settings.parakarryless_mt_rugged_seed
+        web_settings["BuzzarGapSkipClippy"] = self.glitch_settings.buzzar_gap_skip_clippy
+        web_settings["ParakarrylessMtRuggedStarPiece"] = self.glitch_settings.parakarryless_mt_rugged_star_piece
+        web_settings["MtRuggedCoinsWithKooper"] = self.glitch_settings.mt_rugged_coins_with_kooper
+        web_settings["MtRuggedStationJumplessClimbBombette"] = self.glitch_settings.mt_rugged_station_jumpless_climb_bombette
+        web_settings["MtRuggedStationJumplessClimbLaki"] = self.glitch_settings.mt_rugged_station_jumpless_climb_laki
+        web_settings["JumplessMtRuggedTrainPlatformParakarry"] = self.glitch_settings.jumpless_mt_rugged_train_platform_parakarry
+
+        # Glitches: Dry Dry Desert
+        web_settings["DesertBrickBlockItemWithParakarry"] = self.glitch_settings.desert_brick_block_item_with_parakarry
+        web_settings["EarlyRuinsLakiJump"] = self.glitch_settings.early_ruins_laki_jump
+        web_settings["EarlyRuinsUltraBoots"] = self.glitch_settings.early_ruins_ultra_boots
+
+        # Glitches: Dry Dry Ruins
+        web_settings["ArtifactJumpLaki"] = self.glitch_settings.artifact_jump_laki
+        web_settings["ArtifactJumpUltraBoots"] = self.glitch_settings.artifact_jump_ultra_boots
+        web_settings["RuinsKeyLakiJump"] = self.glitch_settings.ruins_key_laki_jump
+        web_settings["ParakarrylessSecondSandRoomUltraBoots"] = self.glitch_settings.parakarryless_second_sand_room_ultra_boots
+        web_settings["ParakarrylessSecondSandRoomNormalBoots"] = self.glitch_settings.parakarryless_second_sand_room_normal_boots
+        web_settings["ParakarrylessSuperHammerRoomUltraBoots"] = self.glitch_settings.parakarryless_super_hammer_room_ultra_boots
+        web_settings["ParakarrylessSuperHammerRoomNormalBoots"] = self.glitch_settings.parakarryless_super_hammer_room_normal_boots
+        web_settings["RuinsLocksSkipClippy"] = self.glitch_settings.ruins_locks_skip_clippy
+
+        # Glitches: Boo's Mansion
+        web_settings["ForeverForestBackwards"] = self.glitch_settings.forever_forest_backwards
+        web_settings["RecordSkipNoBombettePush"] = self.glitch_settings.record_skip_no_bombette_push
+        web_settings["RecordSkipBombettePush"] = self.glitch_settings.record_skip_bombette_push
+        web_settings["BoosPortraitWithKooper"] = self.glitch_settings.boos_portrait_with_kooper
+        web_settings["BoosPortraitWithLaki"] = self.glitch_settings.boos_portrait_with_laki
+        web_settings["JumplessMansionEntry"] = self.glitch_settings.jumpless_mansion_entry
+
+        # Glitches: Gusty Gulch
+        web_settings["GustyGulchGateSkipLZS"] = self.glitch_settings.gusty_gulch_gate_skip_lzs
+        web_settings["GustyGulchGateSkipLaki"] = self.glitch_settings.gusty_gulch_gate_skip_laki
+        web_settings["KooperlessGustyGulchDizzyDialJump"] = self.glitch_settings.kooperless_gusty_gulch_dizzy_dial_jump
+        web_settings["KooperlessGustyGulchDizzyDialLaki"] = self.glitch_settings.kooperless_gusty_gulch_dizzy_dial_laki
+        web_settings["KooperlessGustyGulchDizzyDialParakarry"]= self.glitch_settings.kooperless_gusty_gulch_dizzy_dial_parakarry
+        web_settings["GustyGulchGapSkip"] = self.glitch_settings.gusty_gulch_gap_skip
+
+        # Glitches: Tubba's Castle
+        web_settings["BowlessTubbasCastle"] = self.glitch_settings.bowless_tubbas_castle
+        web_settings["TubbasTableLakiJumpClock"] = self.glitch_settings.tubbas_table_laki_jump_clock
+        web_settings["TubbasTableLakiJumpStudy"] = self.glitch_settings.tubbas_table_laki_jump_study
+        web_settings["TubbasTableUltraBoots"] = self.glitch_settings.tubbas_table_ultra_boots
+        web_settings["TubbasCastleSuperBootsSkip"]= self.glitch_settings.tubbas_castle_super_boots_skip
+        web_settings["ParakarrylessMegaRush"] = self.glitch_settings.parakarryless_mega_rush
+
+        # Glitches: Toy Box
+        web_settings["ParakarrylessBlueBuildingStarPiece"] = self.glitch_settings.parakarryless_blue_building_star_piece
+        web_settings["GourmetGuySkipJump"] = self.glitch_settings.gourmet_guy_skip_jump
+        web_settings["GourmetGuySkipLaki"] = self.glitch_settings.gourmet_guy_skip_laki
+        web_settings["GourmetGuySkipParakarry"] = self.glitch_settings.gourmet_guy_skip_parakarry
+        web_settings["BowlessGreenStation"] = self.glitch_settings.bowless_green_station
+        web_settings["KooperlessRedStationShootingStar"] = self.glitch_settings.kooperless_red_station_shooting_star
+        web_settings["GearlessRedStationShootingStar"] = self.glitch_settings.gearless_red_station_shooting_star
+        web_settings["ParakarrylessBlueBlockCityGap"] = self.glitch_settings.parakarryless_blue_block_city_gap
+        web_settings["BlueSwitchSkipLaki"] = self.glitch_settings.blue_switch_skip_laki
+        web_settings["BlueSwitchSkipUltraBoots"] = self.glitch_settings.blue_switch_skip_ultra_boots
+        web_settings["RedBarricadeSkip"] = self.glitch_settings.red_barricade_skip
+        web_settings["HammerlessBlueStationLaki"] = self.glitch_settings.hammerless_blue_station_laki
+        web_settings["HammerlessPinkStationLaki"] = self.glitch_settings.hammerless_pink_station_laki
+
+        # Glitches: Jade Jungle
+        web_settings["RaphSkipEnglish"] = self.glitch_settings.raph_skip_english
+        web_settings["RaphSkipParakarry"] = self.glitch_settings.raph_skip_parakarry
+        web_settings["Ch5SushieGlitch"] = self.glitch_settings.ch5_sushie_glitch
+        web_settings["SushielessJungleStarpieceAndLetter"] = self.glitch_settings.sushieless_jungle_starpiece_and_letter
+        web_settings["JumplessDeepJungleLaki"] = self.glitch_settings.jumpless_deep_jungle_laki
+
+        # Glitches: Mt. Lavalava
+        web_settings["KooperlessLavalavaPowBlockParakarry"] = self.glitch_settings.kooperless_lavalava_pow_block_parakarry
+        web_settings["KooperlessLavalavaPowBlockSuperBoots"] = self.glitch_settings.kooperless_lavalava_pow_block_super_boots
+        web_settings["JumplessLavalavaPowBlock"] = self.glitch_settings.jumpless_lavalava_pow_block
+        web_settings["UltraHammerSkip"] = self.glitch_settings.ultra_hammer_skip
+        web_settings["UltraHammerSkipLaki"] = self.glitch_settings.ultra_hammer_skip_laki
+        web_settings["UltraHammerSkipSushie"] = self.glitch_settings.ultra_hammer_skip_sushie
+        web_settings["Flarakarry"] = self.glitch_settings.flarakarry
+        web_settings["ParakarrylessFlarakarryBombette"] = self.glitch_settings.parakarryless_flarakarry_bombette
+        web_settings["ParakarrylessFlarakarryLaki"] = self.glitch_settings.parakarryless_flarakarry_laki
+        web_settings["VolcanoSushieGlitch"] = self.glitch_settings.volcano_sushie_glitch
+
+        # Glitches: Flower Fields
+        web_settings["EarlyLakiLZS"] = self.glitch_settings.early_laki_lzs
+        web_settings["EarlyLakiBombettePush"] = self.glitch_settings.early_laki_bombette_push
+        web_settings["BombettelessMegaSmash"] = self.glitch_settings.bombetteless_mega_smash
+        web_settings["SunTowerSkip"]= self.glitch_settings.sun_tower_skip
+        web_settings["YellowBerryGateSkipLZS"] = self.glitch_settings.yellow_berry_gate_skip_lzs
+        web_settings["YellowBerryGateSkipLaki"] = self.glitch_settings.yellow_berry_gate_skip_laki
+        web_settings["YellowBerryGateSkipBombettePush"] = self.glitch_settings.yellow_berry_gate_skip_bombette_push
+        web_settings["RedBerryGateSkipBombettePush"] = self.glitch_settings.red_berry_gate_skip_bombette_push
+        web_settings["RedBerryGateSkipLaki"] = self.glitch_settings.red_berry_gate_skip_laki
+        web_settings["BlueBerryGateSkipBombettePush"] = self.glitch_settings.blue_berry_gate_skip_bombette_push
+        web_settings["BlueBerryGateSkipLaki"] = self.glitch_settings.blue_berry_gate_skip_laki
+        web_settings["BubbleBerryTreeLakiJump"] = self.glitch_settings.bubble_berry_tree_early_laki_jump
+        web_settings["BubbleBerryTreeUltraBoots"] = self.glitch_settings.bubble_berry_tree_early_ultra_boots
+
+        # Glitches: Shiver Region
+        web_settings["MurderSolvedEarlyLaki"] = self.glitch_settings.murder_solved_early_laki
+        web_settings["MurderSolvedEarlyBombettePush"] = self.glitch_settings.murder_solved_early_bombette_push
+        web_settings["Ch7SushieGlitch"] = self.glitch_settings.ch7_sushie_glitch
+        web_settings["StarStoneWithCh7SushieGlitch"] = self.glitch_settings.star_stone_with_ch7_sushie_glitch
+        web_settings["ShiverMountainHiddenBlockWithoutUltraBootsLaki"] = self.glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_laki
+        web_settings["ShiverMountainHiddenBlockWithoutUltraBootsNoLaki"] = self.glitch_settings.shiver_mountain_hidden_block_without_ultra_boots_no_laki
+        web_settings["SnowmenSkipLaki"]  = self.glitch_settings.snowmen_skip_laki
+        web_settings["ShiverMountainSwitchSkip"] = self.glitch_settings.shiver_mountain_switch_skip
+        web_settings["SushielessWarehouseKeyBombette"] = self.glitch_settings.sushieless_warehouse_key_bombette
+        web_settings["SushielessWarehouseKeyKooper"] = self.glitch_settings.sushieless_warehouse_key_kooper
+
+        # Glitches: Crystal Palace
+        web_settings["MirrorClip"] = self.glitch_settings.mirror_clip
+
+        # Glitches: Bowser's Castle
+        web_settings["BowlessBowsersCastleBasement"] = self.glitch_settings.bowless_bowsers_castle_basement
+        web_settings["BombettelessBowsersCastleBasement"] = self.glitch_settings.bombetteless_bowsers_castle_basement
+        web_settings["FastFloodRoomKooper"] = self.glitch_settings.fast_flood_room_kooper
+        web_settings["FastFloodRoomBombetteUltraBoots"] = self.glitch_settings.fast_flood_room_bombette_ultra_boots
+
+        # Glitches: Global
+        web_settings["BreakStoneBlocksWithUltraBoots"] = self.glitch_settings.break_stone_blocks_with_ultra_boots
+        web_settings["BreakYellowBlocksWithSuperBoots"] = self.glitch_settings.break_yellow_blocks_with_super_boots
+        web_settings["KnowsHiddenBlocks"] = self.glitch_settings.knows_hidden_blocks
+        web_settings["KnowsPuzzleSolutions"] = self.glitch_settings.knows_puzzle_solutions
+        web_settings["ReachHighBlocksWithSuperBoots"] = self.glitch_settings.reach_high_blocks_with_super_boots
+
+        return web_settings

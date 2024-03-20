@@ -22,19 +22,24 @@ xyz (0 -1000 0).
 
 ## Header
 
+```text
 Current Player Index (80358000)
 (4 bytes) playerID (assumed from 0-7)
 The networking plugin is responsible for writing playerID here
+```
 
 ## Buffers
 
 ### Toss_Send
 
+```text
 Range: (80358100 - 80358280, len = 16)
 (1 byte) to playerID
 (1 byte) from playerID
 (2 byte) itemID (*** zero indicates entry is blank)
 (0x14 bytes) additional data
+```
+
 Client will write entries to this buffer for the server to consume.
 Server copies entries from this buffer to other player's Toss_Recv.
 Server clears entries after consuming them.
@@ -42,20 +47,26 @@ Server clears entries after consuming them.
 
 ### Toss_Recv
 
+```text
 Range: (80358280 - 80358400, len = 16)
 (1 byte) to playerID
 (1 byte) from playerID
 (2 byte) itemID (*** zero indicates entry is blank)
 (0x14 bytes) additional data
+```
+
 Server copies entries from other players into empty positions in this buffer.
 Client will consume these entries to spawn the items.
 Client clears entries after consuming them.
 
 ### Players
 
+```text
 Range: (80358800 - 80359000)
 (1 byte) enabled --- set to TRUE if a player with current array index (= playerID) is connected
 (0x3F bytes) pawn data
+```
+
 Each client will update their own player record (i.e., player X updates entry X)
 Plugin should gather these from all players, combine them, and broadcast to all players.
 Plugin is responsbile for setting the 'enabled' flag to connected players only.
@@ -72,7 +83,10 @@ setting flags and other related data as well.
 
 ### Keys_Recv
 
+```text
 Range: (80358400 - 80358500, len = 128)
 (2 bytes) itemID (*** zero indicates entry is blank)
+```
+
 Server should write into empty entries in this buffer.
 Client will read them and clear entries after consuming them.
