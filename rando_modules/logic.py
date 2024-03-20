@@ -1317,6 +1317,13 @@ def place_items(
         for node in Node.select().where(Node.key_name_item.is_null(False)):
             node.current_item = node.vanilla_item
             item_placement.append(node)
+            # Also write the DRO shop items into the world graph, otherwise
+            # "random puzzles" won't work
+            if node.identifier in [
+                "DRO_01/ShopItemA", "DRO_01/ShopItemB", "DRO_01/ShopItemC",
+                "DRO_01/ShopItemD", "DRO_01/ShopItemE", "DRO_01/ShopItemF"
+            ]:
+                world_graph[node.identifier]["node"].current_item = node.vanilla_item
     elif do_custom_seed:
         raise ValueError
     else:
