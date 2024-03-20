@@ -729,14 +729,14 @@ def find_available_nodes(
         edge["edge_id"] for edge in world_graph[starting_node_id]["edge_list"]
     ]
 
-    empty_reachables, mario = find_empty_reachable_nodes(
+    empty_reachables = find_empty_reachable_nodes(
         world_graph,
         reachable_node_ids,
         non_traversable_edges,
         mario
     )
 
-    return empty_reachables, mario
+    return empty_reachables
 
 
 def find_empty_reachable_nodes(
@@ -759,12 +759,7 @@ def find_empty_reachable_nodes(
         found_new_items = False
 
         # Re-traverse already found edges which could not be traversed before.
-        node_ids_to_check = set() # set() of str()
-        for from_node_id in non_traversable_edges:
-            node_ids_to_check.add(from_node_id)
-
-        #logging.debug("%s", node_ids_to_check)
-        for from_node_id in node_ids_to_check:
+        for from_node_id in set(non_traversable_edges):
             found_additional_items, mario = _depth_first_search(
                 from_node_id,
                 world_graph,
@@ -795,7 +790,7 @@ def find_empty_reachable_nodes(
         if node_id not in filled_item_node_ids:
             empty_item_nodes.append(item_node)
 
-    return empty_item_nodes, mario
+    return empty_item_nodes
 
 
 def _algo_assumed_fill(
@@ -993,7 +988,7 @@ def _algo_assumed_fill(
         for item_ in pool_combined_progression_items:
             mario.add(item_.item_name)
 
-        candidate_locations, mario = find_available_nodes(
+        candidate_locations = find_available_nodes(
             world_graph,
             starting_node_id,
             mario
@@ -1322,6 +1317,13 @@ def place_items(
         for node in Node.select().where(Node.key_name_item.is_null(False)):
             node.current_item = node.vanilla_item
             item_placement.append(node)
+            # Also write the DRO shop items into the world graph, otherwise
+            # "random puzzles" won't work
+            if node.identifier in [
+                "DRO_01/ShopItemA", "DRO_01/ShopItemB", "DRO_01/ShopItemC",
+                "DRO_01/ShopItemD", "DRO_01/ShopItemE", "DRO_01/ShopItemF"
+            ]:
+                world_graph[node.identifier]["node"].current_item = node.vanilla_item
     elif do_custom_seed:
         raise ValueError
     else:
