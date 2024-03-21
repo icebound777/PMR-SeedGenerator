@@ -593,7 +593,7 @@ def web_randomizer(jsonSettings, world_graph):
 
     init_randomizer(rebuild_database=False)
 
-    random_seed = RandomSeed(rando_settings)
+    random_seed = RandomSeed(rando_settings, data.get("SeedValue"))
     random_seed.generate(world_graph)
 
     # Write data to byte array
