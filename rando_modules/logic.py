@@ -26,6 +26,7 @@ from rando_modules.modify_itempool \
            get_trapped_itempool
 
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
+from rando_modules.item_pool_too_small_error import ItemPoolTooSmallError
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
 from metadata.itemlocation_special import \
@@ -686,8 +687,11 @@ def _generate_item_pools(
                 trashable_items = pool_coins_only
             else:
                 trashable_items = pool_illogical_consumables
-            trashable_items.pop()
-            cur_itempool_size -= 1
+            try:
+                trashable_items.pop()
+                cur_itempool_size -= 1
+            except IndexError:
+                raise ItemPoolTooSmallError()
 
     # Re-join the non-required items into one array
     pool_other_items.extend(pool_coins_only)
