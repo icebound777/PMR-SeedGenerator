@@ -911,6 +911,20 @@ def _algo_assumed_fill(
                or x.item_type == "COIN"
         ])
         unique_nonuniques = sorted(list(dict.fromkeys(affordable_nonuniques)))
+
+        if len(unique_nonuniques) < 3:
+            # We might have to place progression consumables here if the item
+            # pool is too small, for example during "mystery only"
+            unique_nonuniques.extend(
+                random.sample(
+                    [
+                        x for x in pool_misc_progression_items
+                        if not ("Proxy") in x.item_name
+                    ],
+                    k=3-len(unique_nonuniques)
+                )
+            )
+
         shop_code_items = random.sample(unique_nonuniques, k=3)
         for shop_code_item in shop_code_items:
             # check if some of the consumables are relevant to progression
