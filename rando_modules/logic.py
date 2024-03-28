@@ -1016,7 +1016,12 @@ def _algo_assumed_fill(
 
         if item.item_name in dungeon_restricted_items:
             dungeon = dungeon_restricted_items[item.item_name]
-            candidate_locations = [node for node in candidate_locations if node.identifier[:3] == dungeon]
+            candidate_locations = [
+                node for node in candidate_locations
+                if (    node.identifier[:3] == dungeon
+                    and node.identifier != "TRD_00/ChestB" # not chest on Koopa Fortress ledge
+                )
+            ]
             dungeon_restricted_items.pop(item.item_name)
 
         if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
