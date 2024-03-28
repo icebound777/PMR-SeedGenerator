@@ -909,8 +909,6 @@ class OptionSet:
             self.glitch_settings.ultra_hammer_skip_sushie = options_dict.get("UltraHammerSkipSushie")
         if "Flarakarry" in options_dict:
             self.glitch_settings.flarakarry = options_dict.get("Flarakarry")
-        if "ParakarrylessFlarakarryBombette" in options_dict:
-            self.glitch_settings.parakarryless_flarakarry_bombette = options_dict.get("ParakarrylessFlarakarryBombette")
         if "ParakarrylessFlarakarryLaki" in options_dict:
             self.glitch_settings.parakarryless_flarakarry_laki = options_dict.get("ParakarrylessFlarakarryLaki")
         if "VolcanoSushieGlitch" in options_dict:
@@ -1470,7 +1468,6 @@ class OptionSet:
         basic_assert("UltraHammerSkipLaki", bool)
         basic_assert("UltraHammerSkipSushie", bool)
         basic_assert("Flarakarry", bool)
-        basic_assert("ParakarrylessFlarakarryBombette", bool)
         basic_assert("ParakarrylessFlarakarryLaki", bool)
         basic_assert("VolcanoSushieGlitch", bool)
 
@@ -1996,7 +1993,6 @@ class OptionSet:
         web_settings["UltraHammerSkipLaki"] = self.glitch_settings.ultra_hammer_skip_laki
         web_settings["UltraHammerSkipSushie"] = self.glitch_settings.ultra_hammer_skip_sushie
         web_settings["Flarakarry"] = self.glitch_settings.flarakarry
-        web_settings["ParakarrylessFlarakarryBombette"] = self.glitch_settings.parakarryless_flarakarry_bombette
         web_settings["ParakarrylessFlarakarryLaki"] = self.glitch_settings.parakarryless_flarakarry_laki
         web_settings["VolcanoSushieGlitch"] = self.glitch_settings.volcano_sushie_glitch
 

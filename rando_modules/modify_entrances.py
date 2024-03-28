@@ -237,7 +237,7 @@ from maps.graph_edges.glitched_logic.kzn_jumpless_lavalava_pow_block import \
 from maps.graph_edges.glitched_logic.kzn_ultra_hammer_skip import \
     edges_kzn_add_ultra_hammer_skip, edges_kzn_add_ultra_hammer_skip_laki, edges_kzn_add_ultra_hammer_skip_sushie
 from maps.graph_edges.glitched_logic.kzn_flarakarry import \
-    edges_kzn_add_flarakarry_bombette, edges_kzn_add_flarakarry_laki, edges_kzn_add_flarakarry_parakarry
+    edges_kzn_add_flarakarry_laki, edges_kzn_add_flarakarry_parakarry
 
 # Glitched Logic - Flower Fields
 from maps.graph_edges.glitched_logic.flo_early_lakilester import \
@@ -796,8 +796,6 @@ def get_glitched_logic(
         all_new_edges.extend(edges_kzn_add_ultra_hammer_skip_sushie)
     if glitch_settings.flarakarry:
         all_new_edges.extend(edges_kzn_add_flarakarry_parakarry)
-    if glitch_settings.parakarryless_flarakarry_bombette:
-        all_new_edges.extend(edges_kzn_add_flarakarry_bombette)
     if glitch_settings.parakarryless_flarakarry_laki:
         all_new_edges.extend(edges_kzn_add_flarakarry_laki)
     if glitch_settings.volcano_sushie_glitch:
