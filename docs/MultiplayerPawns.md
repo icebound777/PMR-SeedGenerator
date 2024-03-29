@@ -90,3 +90,4 @@ Range: (80358400 - 80358500, len = 128)
 
 Server should write into empty entries in this buffer.
 Client will read them and clear entries after consuming them.
+This buffer is read only on map load and not during any other time.
