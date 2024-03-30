@@ -212,6 +212,10 @@ class OptionSet:
         self.shuffle_music_mode = MusicRandomizationType.MOOD
         self.shuffle_jingles = False
 
+        # Multiplayer
+        self.mp_pawns_enabled = False
+        self.mp_multiworld_enabled = False
+
         # Joke options
         self.roman_numerals = bool(get_option_default_value("RomanNumerals"))
         self.random_text = bool(get_option_default_value("RandomText"))
@@ -679,6 +683,12 @@ class OptionSet:
             self.shuffle_music_mode = options_dict.get("ShuffleMusicMode")
         if "ShuffleJingles" in options_dict:
             self.shuffle_jingles = options_dict.get("ShuffleJingles")
+
+        # Multiplayer
+        #if "PawnsEnabled" in options_dict:
+        #    self.mp_pawns_enabled = options_dict.get("PawnsEnabled")
+        #if "MultiworldEnabled" in options_dict:
+        #    self.mp_multiworld_enabled = options_dict.get("MultiworldEnabled")
 
         # Joke options
         if "RomanNumerals" in options_dict:
@@ -1347,6 +1357,10 @@ class OptionSet:
         basic_assert("ShuffleJingles", bool)
         basic_assert("MuteDangerBeeps", bool)
 
+        # Multiplayer
+        basic_assert("PawnsEnabled", bool)
+        basic_assert("MultiworldEnabled", bool)
+
         # Joke options
         basic_assert("RomanNumerals", bool)
         basic_assert("RandomText", bool)
@@ -1655,6 +1669,10 @@ class OptionSet:
             load_dbkey(self.color_b, "Box5ColorB"),
             load_dbkey(self.coin_color, "CoinColor"),
 
+            # Multiplayer
+            load_dbkey(self.mp_pawns_enabled, "PawnsEnabled"),
+            load_dbkey(self.mp_multiworld_enabled, "MultiworldEnabled"),
+
             # Joke options
             load_dbkey(self.roman_numerals, "RomanNumerals"),
             load_dbkey(self.random_text, "RandomText"),
@@ -1835,6 +1853,8 @@ class OptionSet:
         web_settings["ShuffleMusic"] = self.shuffle_music
         web_settings["ShuffleMusicMode"] = int(self.shuffle_music_mode)
         web_settings["ShuffleJingles"] = self.shuffle_jingles
+        web_settings["PawnsEnabled"] = self.mp_pawns_enabled
+        web_settings["MultiworldEnabled"] = self.mp_multiworld_enabled
         web_settings["GearShuffleMode"] = self.gear_shuffle_mode
         web_settings["PartnerUpgradeShuffle"] = self.partner_upgrade_shuffle
         web_settings["HiddenPanelVisibility"] = self.hiddenpanel_visibility

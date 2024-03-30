@@ -125,7 +125,7 @@ def gather_keys():
                         }
                     elif byte_id == 0xAF:
                         name,attribute = key_info.split(":")
-                        if name in ("Options", "Cosmetic", "Mystery"):
+                        if name in ("Options", "Cosmetic", "Mystery", "Multiplayer"):
                             keys["options"][key] = {
                                 "name": attribute,
                                 "byte_id": byte_id,
@@ -257,7 +257,7 @@ def gather_values():
             if match := re.match(r"\s*.DBKey:(\S*)\s*(\S*)", line):
                 key_info = match.group(1)
                 value = match.group(2)
-                if "Options" in key_info or "Cosmetic" in key_info or "Mystery" in key_info:
+                if "Options" in key_info or "Cosmetic" in key_info or "Mystery" in key_info or "Multiplayer" in key_info:
                     name = key_info.split(":")[-1]
                     values["options"][name] = get_value(value)
                 elif "Puzzle" in key_info:

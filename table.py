@@ -37,12 +37,6 @@ class Table:
                     "value": option_data_value,
                 })
 
-        # temp fix for multiworld
-        table_data.append({
-            "key": 0xAF050000,
-            "value": 0x00000000
-        })
-
         # Quizzes
         quizzes = kwargs.get("quiz_data")
 
