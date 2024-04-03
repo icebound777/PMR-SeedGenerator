@@ -73,9 +73,9 @@ class Item(Model):
             return "NOTHING"
         elif 0x07 <= item_id <= 0x7F or (0x16D <= item_id <= 0x17E):
             return "KEYITEM"
-        elif 0x80 <= item_id <= 0xDF or 0x25D <= item_id <= 0x265:
+        elif 0x80 <= item_id <= 0xDF or 0x2BA <= item_id <= 0x2C2:
             return "ITEM"
-        elif 0xE0 <= item_id <= 0x155 or 0x26C <= item_id <= 0x27A:
+        elif 0xE0 <= item_id <= 0x155 or 0x2C9 <= item_id <= 0x2D7:
             return "BADGE"
         elif 0x156 <= item_id <= 0x15C:
             return {
@@ -90,11 +90,11 @@ class Item(Model):
             return "STARPIECE"
         elif 0x1DC <= item_id <= 0x25B:
             return "POWERSTAR"
-        elif 0x266 <= item_id <= 0x26B:
+        elif 0x2C3 <= item_id <= 0x2C8:
             return "GEAR"
-        elif 0x280 <= item_id <= 0x291:
+        elif 0x2DD <= item_id <= 0x2EE:
             return "PARTNERUPGRADE"
-        elif 0x292 <= item_id <= 0x29A:
+        elif 0x2EF <= item_id <= 0x2F7:
             return "PARTNER"
         else:
             return "OTHER"
