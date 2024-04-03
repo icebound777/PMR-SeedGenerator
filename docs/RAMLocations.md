@@ -144,14 +144,14 @@ ID  | Item
 ```text
 ID  | Item
 ----+------------------------
-291 | Goombario
-292 | Kooper
-293 | Bombette
-294 | Parakarry
-296 | Watt
-297 | Sushie
-298 | Lakilester
-299 | Bow
+2EF | Goombario
+2F0 | Kooper
+2F1 | Bombette
+2F2 | Parakarry
+2F4 | Watt
+2F5 | Sushie
+2F6 | Lakilester
+2F7 | Bow
 ```
 
 (for current partner upgrade level, there is no need to check the collected flags for partner upgrade items. Instead check the current partner level in the Player Data, as outlined below)
