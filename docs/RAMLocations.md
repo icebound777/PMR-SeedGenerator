@@ -770,6 +770,7 @@ N2W3 - Hidden Block                              | GameFlag   31F
 
 N2E1 (Tweester A) - Yellow Block Left            | GameFlag   320
 N2E1 (Tweester A) - Yellow Block Right           | GameFlag   321
+N2E1 (Tweester A) - In MultiCoinBlock            | GameFlag   331
 
 N1W3 Special Block - Hit Block                   | GameFlag   322
 N1W3 Special Block - Hit Block Plenty            | GameFlag   323
@@ -807,11 +808,13 @@ S1W3 - In MultiCoinBlock Top Left                | GameFlag   334
 S1 - Yellow Block                                | GameFlag   32B
 
 S1E2 Small Bluffs - On Brick Block               | GameFlag   343
-S1E2 Small Bluffs - Ontop Of Bluffs              | GameFlag   344
+S1E2 Small Bluffs - Ontop Of Bluffs              | GameFlag   342
 
 S1E3 North of Oasis - Hidden Block               | GameFlag   32D
 S1E3 North of Oasis - Tree Bottom Left           | GameFlag   34C
 S1E3 North of Oasis - Yellow Block               | GameFlag   32C
+
+S2W1 - In MultiCoinBlock Top                     | GameFlag   335
 
 S2E2 West of Oasis - Behind Bush                 | GameFlag   344
 S2E2 West of Oasis - In Tree                     | GameFlag   34D
@@ -821,6 +824,7 @@ S2E3 Oasis - In Fruit Tree (Left)                | ModFlag   1056
 S2E3 Oasis - In Fruit Tree (Right)               | ModFlag   1057
 S2E3 Oasis - In Tree (Far Left)                  | GameFlag   34E
 S2E3 Oasis - In Tree (Front Right)               | GameFlag   34F
+S2E3 Oasis - In SuperBlock                       | GameFlag   33D
 
 S3W2 Hidden AttackFX - Hidden Block              | GameFlag   32E
 
