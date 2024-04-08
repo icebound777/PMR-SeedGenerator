@@ -170,6 +170,7 @@ verbose_item_locations = {
                "ShopItemD": "Shop Item 4",
                "ShopItemE": "Shop Item 5",
                "ShopItemF": "Shop Item 6",},
+    "HOS_05": {"GiftA": "Gift of the Stars",},
     "HOS_06": {"GiftA": "Merluvlee Koopa Koot Favor",
                "GiftB": "Merlow Letter Reward",
                "HiddenPanel": "Hidden Panel",

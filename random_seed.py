@@ -2,6 +2,8 @@ from copy import deepcopy
 import random
 import datetime
 
+from metadata.area_name_mappings import area_name_id_map
+
 from rando_enums.enum_options import (
     BowserCastleMode,
     GearShuffleMode,
@@ -285,6 +287,7 @@ class RandomSeed:
                     star_hunt_stars=self.rando_settings.star_hunt_total if self.rando_settings.star_hunt else 0,
                     partner_upgrade_shuffle=self.rando_settings.partner_upgrade_shuffle,
                     random_puzzles=self.rando_settings.randomize_puzzles,
+                    shuffle_starbeam=self.rando_settings.shuffle_starbeam,
                     world_graph=modified_world_graph
                 )
 
@@ -327,6 +330,25 @@ class RandomSeed:
                 print(f"Failed to build beatable world! Fail count: {placement_attempt}")
                 if placement_attempt == 10:
                     raise
+
+        # Write ingame hint area for star beam, if shuffled
+        if self.rando_settings.shuffle_starbeam:
+            for node_id in modified_world_graph:
+                cur_node = modified_world_graph[node_id]["node"]
+                if (    cur_node.current_item
+                    and cur_node.current_item.item_name == "StarBeam"
+                ):
+                    if cur_node.map_area.area_id == area_name_id_map["OSR"]:
+                        # Either Muss T. or the hidden block in front of the
+                        # Peach's Castle entrance. Let's rebind those to
+                        # Toad Town and Peach's Castle respectively
+                        if cur_node.map_area.map_id == 1:
+                            self.rando_settings.starbeam_location = area_name_id_map["MAC"]
+                        else:
+                            self.rando_settings.starbeam_location = area_name_id_map["KKJ"]
+                    else:
+                        self.rando_settings.starbeam_location = cur_node.map_area.area_id
+                    break
 
         # Setup puzzles and minigames
         # (have to set up the Dry Dry Outpost shop puzzles before item prices

@@ -1,6 +1,8 @@
 from db.item import Item
 from db.option import Option
 
+from metadata.area_name_mappings import area_name_id_map
+
 from rando_enums.enum_ingame import StarSpirits
 from rando_enums.enum_options import (
     BowserCastleMode,
@@ -164,6 +166,8 @@ class OptionSet:
         # Goal Settings
         self.starway_spirits_needed_count = get_option_default_value("StarWaySpiritsNeededCnt")
         self.require_specific_spirits = False
+        self.shuffle_starbeam = False
+        self.starbeam_location = area_name_id_map["HOS"]
         self.limit_chapter_logic = False
         self.starway_spirits_needed_encoded = get_option_default_value("StarWaySpiritsNeededEnc")
         self.bowsers_castle_mode = get_option_default_value("BowsersCastleMode")
@@ -506,6 +510,11 @@ class OptionSet:
         #    self.starway_spirits_needed_encoded = options_dict.get("StarWaySpiritsNeededEnc")
         if "RequireSpecificSpirits" in options_dict:
             self.require_specific_spirits = options_dict.get("RequireSpecificSpirits")
+        if "ShuffleStarBeam" in options_dict:
+            self.shuffle_starbeam = options_dict.get("ShuffleStarBeam")
+        # auto-set, not changeable via settings
+        #if "StarBeamArea" in options_dict:
+        #    self.starbeam_location = options_dict.get("StarBeamArea")
         if "LimitChapterLogic" in options_dict:
             self.limit_chapter_logic = options_dict.get("LimitChapterLogic")
         if "BowsersCastleMode" in options_dict:
@@ -1240,6 +1249,7 @@ class OptionSet:
             assert (    isinstance(options_dict.get("StarWaySpiritsNeededCnt"), int)
                     and -1 <= options_dict.get("StarWaySpiritsNeededCnt") <= 7)
         basic_assert("RequireSpecificSpirits", bool)
+        basic_assert("ShuffleStarBeam", bool)
         if "LimitChapterLogic" in options_dict:
             assert (    isinstance(options_dict.get("LimitChapterLogic"), bool)
                     and not (    options_dict["LimitChapterLogic"]
@@ -1629,6 +1639,7 @@ class OptionSet:
             # Goal Settings
             load_dbkey(self.starway_spirits_needed_count, "StarWaySpiritsNeededCnt"),
             load_dbkey(self.starway_spirits_needed_encoded, "StarWaySpiritsNeededEnc"),
+            load_dbkey(self.starbeam_location, "StarBeamArea"),
             load_dbkey(self.bowsers_castle_mode, "BowsersCastleMode"),
             load_dbkey(self.star_hunt, "StarHunt"),
             load_dbkey(self.star_hunt_required, "StarHuntRequired"),
@@ -1806,6 +1817,7 @@ class OptionSet:
 
         web_settings["StarWaySpiritsNeededCnt"] = self.starway_spirits_needed_count
         web_settings["RequireSpecificSpirits"] = self.require_specific_spirits
+        web_settings["ShuffleStarBeam"] = self.shuffle_starbeam
         web_settings["LimitChapterLogic"] = self.limit_chapter_logic
         web_settings["BadgeSynergy"] = self.badge_synergy
         web_settings["FoliageItemHints"] = self.foliage_item_hints

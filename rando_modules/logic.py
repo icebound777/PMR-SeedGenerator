@@ -348,7 +348,8 @@ def _generate_item_pools(
     bowsers_castle_mode:int,
     star_hunt_stars:int,
     do_partner_upgrade_shuffle:bool,
-    random_puzzles:bool
+    random_puzzles:bool,
+    shuffle_starbeam:bool,
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -509,6 +510,13 @@ def _generate_item_pools(
                         "DRO_01/ShopItemD",
                         "DRO_01/ShopItemE"
                     ]
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    not shuffle_starbeam
+                and current_node.identifier == "HOS_05/GiftA"
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -843,6 +851,7 @@ def _algo_assumed_fill(
     star_hunt_stars:int,
     partner_upgrade_shuffle:int,
     random_puzzles:bool,
+    shuffle_starbeam:bool,
     world_graph
 ):
 
@@ -896,7 +905,8 @@ def _algo_assumed_fill(
         bowsers_castle_mode,
         star_hunt_stars,
         (partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF),
-        random_puzzles
+        random_puzzles,
+        shuffle_starbeam,
     )
 
     starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
@@ -1328,6 +1338,7 @@ def place_items(
     star_hunt_stars:int,
     partner_upgrade_shuffle:int,
     random_puzzles:bool,
+    shuffle_starbeam:bool,
     world_graph = None
 ):
     """Places items into item locations according to chosen settings."""
@@ -1397,5 +1408,6 @@ def place_items(
             star_hunt_stars,
             partner_upgrade_shuffle,
             random_puzzles,
+            shuffle_starbeam,
             world_graph
         )
