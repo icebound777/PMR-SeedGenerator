@@ -162,7 +162,10 @@ def gather_values():
         item_value = int(item.getAttribute("index"), 16)
         item_list[item_name] = item_value
 
-    def get_value(value):
+    def get_value(value, constants_dict: dict):
+        if constants_dict and value in constants_dict:
+            return get_value(constants_dict[value], None)
+
         # Booleans
         if value == ".True":
             return True
@@ -223,19 +226,6 @@ def gather_values():
                 raise ValueError
             return value
 
-        if value == ".Puzzles:RedJarShopCodeDefault1":
-            # Dry Dry Outpost: Red Jar code special case 1: 0x008600A7
-            return (0x86 << 16) + 0xA7
-        if value == ".Puzzles:RedJarShopCodeDefault2":
-            # Dry Dry Outpost: Red Jar code special case 2: 0x0086008D
-            return (0x86 << 16) + 0x8D
-        if value == ".Puzzles:RuinsStones":
-            # Dry Dry Ruins: Ruins stones positions special case: 0x10203
-            return (1 << 16) + (2 << 8) + 3
-        if value == ".Puzzles:GreenStationBoxesDefault":
-            # Green Station boxes puzzle special case: 0x2134
-            return (2 << 12) + (1 << 8) + (3 << 4) + 4
-
         return None
 
     values = {
@@ -252,26 +242,31 @@ def gather_values():
     }
 
     file_path = "/../../../globals/patch/DatabaseDefaults.patch"
+    db_constants = {}
     with open(os.path.abspath(__file__ + file_path), "r", encoding="utf-8") as file:
         for line in file:
+            if match := re.match(r"#export\s(\S+)\s+(\S+)", line):
+                db_constants[match.group(1)] = match.group(2)
+                continue
+
             if match := re.match(r"\s*.DBKey:(\S*)\s*(\S*)", line):
                 key_info = match.group(1)
                 value = match.group(2)
                 if "Options" in key_info or "Cosmetic" in key_info or "Mystery" in key_info:
                     name = key_info.split(":")[-1]
-                    values["options"][name] = get_value(value)
+                    values["options"][name] = get_value(value, db_constants)
                 elif "Puzzle" in key_info:
                     name = key_info.split(":")[-1]
-                    values["puzzles"][name] = get_value(value)
+                    values["puzzles"][name] = get_value(value, db_constants)
                 elif "Quiz" in key_info:
                     name = key_info.split(":")[-1]
-                    values["quizzes"][name] = get_value(value)
+                    values["quizzes"][name] = get_value(value, db_constants)
                 elif "Move" in key_info: # MoveBP:SpinSmash                 1`
                     name = key_info.split(":")[-1]
                     cost_type = key_info.split(":")[0][-2:]
                     if name not in values["move_costs"]:
                         values["move_costs"][name] = {}
-                    values["move_costs"][name][cost_type] = get_value(value)
+                    values["move_costs"][name][cost_type] = get_value(value, db_constants)
                 # Check for map name (which means it's an item, item price or block)
                 elif match := re.match(r"([A-Z]{2,5}_\d+):(\S*)", key_info):
                     map_name = match.group(1)
@@ -279,15 +274,15 @@ def gather_values():
                     if "RandomBlock" in key_info and "Item" not in key_info:
                         if map_name not in values["blocks"]:
                             values["blocks"][map_name] = {}
-                        values["blocks"][map_name][key_name] = get_value(value)
+                        values["blocks"][map_name][key_name] = get_value(value, db_constants)
                     elif "ShopPrice" in key_name or "RewardAmount" in key_name:
                         if map_name not in values["item_prices"]:
                             values["item_prices"][map_name] = {}
-                        values["item_prices"][map_name][key_name] = get_value(value)
+                        values["item_prices"][map_name][key_name] = get_value(value, db_constants)
                     else:
                         if map_name not in values["items"]:
                             values["items"][map_name] = {}
-                        values["items"][map_name][key_name] = get_value(value)
+                        values["items"][map_name][key_name] = get_value(value, db_constants)
                 # Check for actor data
                 elif any(["HP" in key_info,
                           "Damage" in key_info,
@@ -295,7 +290,7 @@ def gather_values():
                           "Increment" in key_info,
                           "Heal" in key_info]):
                     actor,attribute = key_info.split(":")
-                    value = get_value(value)
+                    value = get_value(value, db_constants)
                     if actor not in values["actors"]:
                         values["actors"][actor] = {}
                     values["actors"][actor][attribute] = value
