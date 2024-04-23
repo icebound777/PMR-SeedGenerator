@@ -28,10 +28,17 @@ edges_jan_kzn_add_ch5_sushie_glitch = [
     {"from": {"map": "KZN_08", "id": 0}, "to": {"map": "KZN_08", "id": "ChestA"}, "reqs": [["RF_Ch5_SushieGlitch"], ["can_climb_steps"]], "mapchange": False},
 ]
 
-edges_kzn_add_volcano_sushie_glitch = [
+edges_kzn_add_volcano_sushie_glitch_goombario = [
+    #? Central Cavern Exit West Upper -> Central Cavern Exit East Upper
+    {"from": {"map": "KZN_03", "id": 0}, "to": {"map": "KZN_03", "id": 1}, "reqs": [["Sushie"], ["Goombario"], ["can_end_sushie_glitch"]], "pseudoitems": ["RF_Volcano_SushieGlitch"], "mapchange": False},
+]
+
+edges_kzn_add_volcano_sushie_glitch_superboots = [
     #? Central Cavern Exit West Upper -> Central Cavern Exit East Upper
     {"from": {"map": "KZN_03", "id": 0}, "to": {"map": "KZN_03", "id": 1}, "reqs": [["Sushie"], ["Goombario", "Kooper", "Bombette"], ["SuperBoots"], ["can_end_sushie_glitch"]], "pseudoitems": ["RF_Volcano_SushieGlitch"], "mapchange": False},
+]
 
+edges_kzn_add_volcano_sushie_glitch = [
     #? Flowing Lava Puzzle Exit East Upper -> Flowing Lava Puzzle Exit West
     {"from": {"map": "KZN_06", "id": 0}, "to": {"map": "KZN_06", "id": 1}, "reqs": [["RF_Volcano_SushieGlitch"]], "mapchange": False},
     #? Flowing Lava Puzzle Exit West -> Flowing Lava Puzzle Exit East Upper

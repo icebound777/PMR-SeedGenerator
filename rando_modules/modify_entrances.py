@@ -223,7 +223,8 @@ from maps.graph_edges.glitched_logic.jan_raph_skip_english import \
 from maps.graph_edges.glitched_logic.jan_raph_skip_parakarry import \
     edges_jan_add_raph_skip_parakarry
 from maps.graph_edges.glitched_logic.jan_kzn_ch5_sushie_glitch import \
-    edges_jan_kzn_add_ch5_sushie_glitch, edges_kzn_add_volcano_sushie_glitch
+    edges_jan_kzn_add_ch5_sushie_glitch, edges_kzn_add_volcano_sushie_glitch, \
+    edges_kzn_add_volcano_sushie_glitch_superboots, edges_kzn_add_volcano_sushie_glitch_goombario
 from maps.graph_edges.glitched_logic.jan_sushieless_jungle_starpiece_and_letter import \
     edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs
 from maps.graph_edges.glitched_logic.jan_jumpless_deep_jungle import \
@@ -798,7 +799,11 @@ def get_glitched_logic(
         all_new_edges.extend(edges_kzn_add_flarakarry_parakarry)
     if glitch_settings.parakarryless_flarakarry_laki:
         all_new_edges.extend(edges_kzn_add_flarakarry_laki)
-    if glitch_settings.volcano_sushie_glitch:
+    if glitch_settings.volcano_sushie_glitch_superboots: # super boots save block storage
+        all_new_edges.extend(edges_kzn_add_volcano_sushie_glitch_superboots)
+    if glitch_settings.volcano_sushie_glitch_goombario: # tattle save block storage
+        all_new_edges.extend(edges_kzn_add_volcano_sushie_glitch_goombario)
+    if glitch_settings.volcano_sushie_glitch_superboots or glitch_settings.volcano_sushie_glitch_goombario:
         all_new_edges.extend(edges_kzn_add_volcano_sushie_glitch)
 
     # Flower Fields

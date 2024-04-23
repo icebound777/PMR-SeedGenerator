@@ -115,7 +115,8 @@ class GlitchOptionSet():
         self.ultra_hammer_skip_sushie = False
         self.flarakarry = False
         self.parakarryless_flarakarry_laki = False
-        self.volcano_sushie_glitch = False
+        self.volcano_sushie_glitch_superboots = False
+        self.volcano_sushie_glitch_goombario = False
 
         self.early_laki_lzs = False
         self.early_laki_bombette_push = False

@@ -921,7 +921,9 @@ class OptionSet:
         if "ParakarrylessFlarakarryLaki" in options_dict:
             self.glitch_settings.parakarryless_flarakarry_laki = options_dict.get("ParakarrylessFlarakarryLaki")
         if "VolcanoSushieGlitch" in options_dict:
-            self.glitch_settings.volcano_sushie_glitch = options_dict.get("VolcanoSushieGlitch")
+            self.glitch_settings.volcano_sushie_glitch_superboots = options_dict.get("VolcanoSushieGlitch")
+        if "VolcanoSushieGlitchGoombario" in options_dict:
+            self.glitch_settings.volcano_sushie_glitch_goombario = options_dict.get("VolcanoSushieGlitchGoombario")
 
         if "EarlyLakiLZS" in options_dict:
             self.glitch_settings.early_laki_lzs = options_dict.get("EarlyLakiLZS")
@@ -2006,7 +2008,7 @@ class OptionSet:
         web_settings["UltraHammerSkipSushie"] = self.glitch_settings.ultra_hammer_skip_sushie
         web_settings["Flarakarry"] = self.glitch_settings.flarakarry
         web_settings["ParakarrylessFlarakarryLaki"] = self.glitch_settings.parakarryless_flarakarry_laki
-        web_settings["VolcanoSushieGlitch"] = self.glitch_settings.volcano_sushie_glitch
+        web_settings["VolcanoSushieGlitch"] = self.glitch_settings.volcano_sushie_glitch_superboots
 
         # Glitches: Flower Fields
         web_settings["EarlyLakiLZS"] = self.glitch_settings.early_laki_lzs
