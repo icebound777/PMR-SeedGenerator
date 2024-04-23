@@ -94,6 +94,8 @@ from maps.graph_edges.glitched_logic.tik_island_pipe_blooper_skip import \
     edges_tik_add_island_pipe_blooper_skip
 from maps.graph_edges.glitched_logic.tik_parakarryless_sewer_star_piece import \
     edges_tik_add_parakarryless_sewer_star_piece
+from maps.graph_edges.glitch_logic.tik_clippy_sewers_upgrade_block import \
+    edges_tik_add_clippy_sewers_upgrade_block
 from maps.graph_edges.glitched_logic.tik_sewer_blocks_without_ultra_boots import \
     edges_tik_add_sewer_blocks_without_ultra_boots
 from maps.graph_edges.glitched_logic.tik_chapter_7_bridge_with_super_boots import \
@@ -621,6 +623,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_tik_add_island_pipe_blooper_skip)
     if glitch_settings.parakarryless_sewer_star_piece:
         all_new_edges.extend(edges_tik_add_parakarryless_sewer_star_piece)
+    if glitch_settings.clippy_sewers_upgrade_block:
+        all_new_edges.extend(edges_tik_add_clippy_sewers_upgrade_block)
     if glitch_settings.sewer_blocks_without_ultra_boots:
         all_new_edges.extend(edges_tik_add_sewer_blocks_without_ultra_boots)
     if glitch_settings.chapter_7_bridge_with_super_boots:

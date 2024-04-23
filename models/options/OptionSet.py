@@ -752,6 +752,8 @@ class OptionSet:
             self.glitch_settings.island_pipe_blooper_skip = options_dict.get("IslandPipeBlooperSkip")
         if "ParakarrylessSewerStarPiece" in options_dict:
             self.glitch_settings.parakarryless_sewer_star_piece = options_dict.get("ParakarrylessSewerStarPiece")
+        if "ClippySewersUpgradeBlock" in options_dict:
+            self.glitch_settings.clippy_sewers_upgrade_block = options_dict.get("ClippySewersUpgradeBlock")
         if "SewerBlocksWithoutUltraBoots" in options_dict:
             self.glitch_settings.sewer_blocks_without_ultra_boots = options_dict.get("SewerBlocksWithoutUltraBoots")
         if "Chapter7BridgeWithSuperBoots" in options_dict:
@@ -1393,7 +1395,9 @@ class OptionSet:
         basic_assert("ClippyBootsMetalBlockSkip", bool)
         basic_assert("IslandPipeBlooperSkip", bool)
         basic_assert("ParakarrylessSewerStarPiece", bool)
+        basic_assert("ClippySewersUpgradeBlock", bool)
         basic_assert("SewerBlocksWithoutUltraBoots", bool)
+        basic_assert("Chapter7BridgeWithSuperBoots", bool)
         basic_assert("FirstBlockToShiverCityWithoutSuperBoots", bool)
         basic_assert("BlocksToShiverCityWithKooperShellItemThrow", bool)
         basic_assert("SewerYellowBlockWithUltraBoots", bool)
@@ -1484,6 +1488,7 @@ class OptionSet:
         basic_assert("Flarakarry", bool)
         basic_assert("ParakarrylessFlarakarryLaki", bool)
         basic_assert("VolcanoSushieGlitch", bool)
+        basic_assert("VolcanoSushieGlitchGoombario", bool)
 
         basic_assert("EarlyLakiLZS", bool)
         basic_assert("EarlyLakiBombettePush", bool)
@@ -1910,6 +1915,7 @@ class OptionSet:
         web_settings["ClippyBootsMetalBlockSkip"] = self.glitch_settings.clippy_boots_metal_block_skip
         web_settings["IslandPipeBlooperSkip"] = self.glitch_settings.island_pipe_blooper_skip
         web_settings["ParakarrylessSewerStarPiece"] = self.glitch_settings.parakarryless_sewer_star_piece
+        web_settings["ClippySewersUpgradeBlock"] = self.glitch_settings.clippy_sewers_upgrade_block
         web_settings["SewerBlocksWithoutUltraBoots"] = self.glitch_settings.sewer_blocks_without_ultra_boots
         web_settings["Chapter7BridgeWithSuperBoots"] = self.glitch_settings.chapter_7_bridge_with_super_boots
         web_settings["FirstBlockToShiverCityWithoutSuperBoots"] = self.glitch_settings.first_block_to_shiver_city_without_super_boots
