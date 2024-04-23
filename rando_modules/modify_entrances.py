@@ -96,6 +96,8 @@ from maps.graph_edges.glitched_logic.tik_parakarryless_sewer_star_piece import \
     edges_tik_add_parakarryless_sewer_star_piece
 from maps.graph_edges.glitched_logic.tik_sewer_blocks_without_ultra_boots import \
     edges_tik_add_sewer_blocks_without_ultra_boots
+from maps.graph_edges.glitched_logic.tik_chapter_7_bridge_with_super_boots import \
+    edges_tik_add_blocks_to_shiver_city_super_boots
 from maps.graph_edges.glitched_logic.tik_clippy_boots import \
     edges_tik_add_clippy_boots_metal_block_skip, edges_tik_add_clippy_boots_stone_block_skip
 from maps.graph_edges.glitched_logic.tik_first_block_to_shiver_city_without_super_boots import \
@@ -621,6 +623,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_tik_add_parakarryless_sewer_star_piece)
     if glitch_settings.sewer_blocks_without_ultra_boots:
         all_new_edges.extend(edges_tik_add_sewer_blocks_without_ultra_boots)
+    if glitch_settings.chapter_7_bridge_with_super_boots:
+        all_new_edges.extend(edges_tik_add_chapter_7_bridge_with_super_boots)
     if glitch_settings.first_block_to_shiver_city_without_super_boots:
         all_new_edges.extend(edges_tik_add_first_block_to_shiver_city_witout_super_boots)
     if glitch_settings.blocks_to_shiver_city_kooper_shell_item_throw:

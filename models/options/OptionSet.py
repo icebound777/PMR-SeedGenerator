@@ -754,6 +754,8 @@ class OptionSet:
             self.glitch_settings.parakarryless_sewer_star_piece = options_dict.get("ParakarrylessSewerStarPiece")
         if "SewerBlocksWithoutUltraBoots" in options_dict:
             self.glitch_settings.sewer_blocks_without_ultra_boots = options_dict.get("SewerBlocksWithoutUltraBoots")
+        if "Chapter7BridgeWithSuperBoots" in options_dict:
+            self.glitch_settings.chapter_7_bridge_with_super_boots = options_dict.get("Chapter7BridgeWithSuperBoots")
         if "FirstBlockToShiverCityWithoutSuperBoots" in options_dict:
             self.glitch_settings.first_block_to_shiver_city_without_super_boots = options_dict.get("FirstBlockToShiverCityWithoutSuperBoots")
         if "BlocksToShiverCityWithKooperShellItemThrow" in options_dict:
@@ -1909,6 +1911,7 @@ class OptionSet:
         web_settings["IslandPipeBlooperSkip"] = self.glitch_settings.island_pipe_blooper_skip
         web_settings["ParakarrylessSewerStarPiece"] = self.glitch_settings.parakarryless_sewer_star_piece
         web_settings["SewerBlocksWithoutUltraBoots"] = self.glitch_settings.sewer_blocks_without_ultra_boots
+        web_settings["Chapter7BridgeWithSuperBoots"] = self.glitch_settings.chapter_7_bridge_with_super_boots
         web_settings["FirstBlockToShiverCityWithoutSuperBoots"] = self.glitch_settings.first_block_to_shiver_city_without_super_boots
         web_settings["BlocksToShiverCityWithKooperShellItemThrow"] = self.glitch_settings.blocks_to_shiver_city_kooper_shell_item_throw
         web_settings["SewerYellowBlockWithUltraBoots"] = self.glitch_settings.sewer_yellow_block_with_ultra_boots
@@ -2009,6 +2012,7 @@ class OptionSet:
         web_settings["Flarakarry"] = self.glitch_settings.flarakarry
         web_settings["ParakarrylessFlarakarryLaki"] = self.glitch_settings.parakarryless_flarakarry_laki
         web_settings["VolcanoSushieGlitch"] = self.glitch_settings.volcano_sushie_glitch_superboots
+        web_settings["VolcanoSushieGlitchGoombario"] = self.glitch_settings.volcano_sushie_glitch_goombario
 
         # Glitches: Flower Fields
         web_settings["EarlyLakiLZS"] = self.glitch_settings.early_laki_lzs

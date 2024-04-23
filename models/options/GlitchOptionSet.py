@@ -28,6 +28,7 @@ class GlitchOptionSet():
         self.island_pipe_blooper_skip = False
         self.parakarryless_sewer_star_piece = False
         self.sewer_blocks_without_ultra_boots = False
+        self.chapter_7_bridge_with_super_boots = False
         self.first_block_to_shiver_city_without_super_boots = False
         self.blocks_to_shiver_city_kooper_shell_item_throw = False
         self.sewer_yellow_block_with_ultra_boots = False
