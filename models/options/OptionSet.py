@@ -979,6 +979,8 @@ class OptionSet:
 
         if "MirrorClip" in options_dict:
             self.glitch_settings.mirror_clip = options_dict.get("MirrorClip")
+        if "KooperPuzzleSkip" in options_dict:
+            self.glitch_settings.kooper_puzzle_skip = options_dict.get("KooperPuzzleSkip")
 
         if "BowlessBowsersCastleBasement" in options_dict:
             self.glitch_settings.bowless_bowsers_castle_basement = options_dict.get("BowlessBowsersCastleBasement")
@@ -1516,6 +1518,7 @@ class OptionSet:
         basic_assert("SushielessWarehouseKeyKooper", bool)
 
         basic_assert("MirrorClip", bool)
+        basic_assert("KooperPuzzleSkip", bool)
 
         basic_assert("BowlessBowsersCastleBasement", bool)
         basic_assert("FastFloodRoomKooper", bool)
@@ -2049,6 +2052,7 @@ class OptionSet:
 
         # Glitches: Crystal Palace
         web_settings["MirrorClip"] = self.glitch_settings.mirror_clip
+        web_settings["KooperPuzzleSkip"] = self.glitch_settings.kooper_puzzle_skip
 
         # Glitches: Bowser's Castle
         web_settings["BowlessBowsersCastleBasement"] = self.glitch_settings.bowless_bowsers_castle_basement

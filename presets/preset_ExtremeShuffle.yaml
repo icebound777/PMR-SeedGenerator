@@ -377,6 +377,7 @@ SushielessWarehouseKeyBombette                  : false
 SushielessWarehouseKeyKooper                    : false
 
 MirrorClip                                      : false
+KooperPuzzleSkip                                : false
 
 BowlessBowsersCastleBasement                    : false
 FastFloodRoomKooper                             : false

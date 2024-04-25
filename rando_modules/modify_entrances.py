@@ -277,6 +277,8 @@ from maps.graph_edges.glitched_logic.sam_sushieless_warehouse_key import \
 # Glitched Logic - Crystal Palace
 from maps.graph_edges.glitched_logic.pra_mirror_clip import \
     edges_pra_add_mirror_clip_laki
+from maps.graph_edges.glitch_logic.pra_kooper_puzzle_skip import \
+    edges_pra_add_kooper_puzzle_skip
 
 # Glitched Logic - Bowser's Castle
 from maps.graph_edges.glitched_logic.kpa_bowless_bowsers_castle_basement import \
@@ -867,6 +869,8 @@ def get_glitched_logic(
     # Crystal Palace
     if glitch_settings.mirror_clip:
         all_new_edges.extend(edges_pra_add_mirror_clip_laki)
+    if glitch_settings.mirror_clip:
+        all_new_edges.extned(edges_pra_add_kooper_puzzle_skip)
 
     # Bowser's Castle
     if bowsers_castle_mode == BowserCastleMode.VANILLA:
