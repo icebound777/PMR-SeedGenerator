@@ -829,6 +829,8 @@ class OptionSet:
             self.glitch_settings.parakarryless_super_hammer_room_normal_boots = options_dict.get("ParakarrylessSuperHammerRoomNormalBoots")
         if "RuinsLocksSkipClippy" in options_dict:
             self.glitch_settings.ruins_locks_skip_clippy = options_dict.get("RuinsLocksSkipClippy")
+        if "RuinsStoneSkip" in options_dict:
+            self.glitch_settings.ruins_stone_skip = options_dict.get("RuinsStoneSkip")
 
         if "ForeverForestBackwards" in options_dict:
             self.glitch_settings.forever_forest_backwards = options_dict.get("ForeverForestBackwards")
@@ -1438,6 +1440,7 @@ class OptionSet:
         basic_assert("ParakarrylessSuperHammerRoomUltraBoots", bool)
         basic_assert("ParakarrylessSuperHammerRoomNormalBoots", bool)
         basic_assert("RuinsLocksSkipClippy", bool)
+        basic_assert("RuinsStoneSkip", bool)
 
         basic_assert("ForeverForestBackwards", bool)
 
@@ -1964,6 +1967,7 @@ class OptionSet:
         web_settings["ParakarrylessSuperHammerRoomUltraBoots"] = self.glitch_settings.parakarryless_super_hammer_room_ultra_boots
         web_settings["ParakarrylessSuperHammerRoomNormalBoots"] = self.glitch_settings.parakarryless_super_hammer_room_normal_boots
         web_settings["RuinsLocksSkipClippy"] = self.glitch_settings.ruins_locks_skip_clippy
+        web_settings["RuinsStoneSkip"] = self.glitch_settings.ruins_stone_skip
 
         # Glitches: Boo's Mansion
         web_settings["ForeverForestBackwards"] = self.glitch_settings.forever_forest_backwards

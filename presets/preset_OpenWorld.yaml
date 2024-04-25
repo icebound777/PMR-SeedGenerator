@@ -297,6 +297,7 @@ ParakarrylessSecondSandRoomNormalBoots          : false
 ParakarrylessSuperHammerRoomUltraBoots          : false
 ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
+RuinsStoneSkip                                  : false
 
 ForeverForestBackwards                          : false
 

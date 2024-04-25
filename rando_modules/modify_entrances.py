@@ -165,6 +165,8 @@ from maps.graph_edges.glitched_logic.isk_parakarryless_super_hammer_room import 
     edges_isk_add_parakarryless_super_hammer_room_normal_boots, edges_isk_add_parakarryless_super_hammer_room_ultra_boots
 from maps.graph_edges.glitched_logic.isk_ruins_locks_skip import \
     edges_isk_add_ruins_locks_skip_clippy
+from maps.graph_edges.glitched_logic.isk_ruins_stone_skip import \
+    edges_pra_add_ruins_stone_skip
 
 # Glitched Logic - Forever Forest
 from maps.graph_edges.glitched_logic.mim_forever_forest_backwards import \
@@ -707,6 +709,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_isk_add_ruins_key_laki_jump)
     if glitch_settings.ruins_locks_skip_clippy:
         all_new_edges.extend(edges_isk_add_ruins_locks_skip_clippy)
+    if glitch_settings.ruins_stone_skip:
+        all_new_edges.extend(edges_pra_add_ruins_stone_skip)
 
     # Forever Forest
     if glitch_settings.forever_forest_backwards:
