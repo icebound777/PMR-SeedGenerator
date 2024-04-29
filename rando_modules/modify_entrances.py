@@ -166,7 +166,7 @@ from maps.graph_edges.glitched_logic.isk_parakarryless_super_hammer_room import 
 from maps.graph_edges.glitched_logic.isk_ruins_locks_skip import \
     edges_isk_add_ruins_locks_skip_clippy
 from maps.graph_edges.glitched_logic.isk_ruins_stone_skip import \
-    edges_pra_add_ruins_stone_skip
+    edges_isk_add_ruins_stone_skip
 
 # Glitched Logic - Forever Forest
 from maps.graph_edges.glitched_logic.mim_forever_forest_backwards import \
@@ -710,7 +710,7 @@ def get_glitched_logic(
     if glitch_settings.ruins_locks_skip_clippy:
         all_new_edges.extend(edges_isk_add_ruins_locks_skip_clippy)
     if glitch_settings.ruins_stone_skip:
-        all_new_edges.extend(edges_pra_add_ruins_stone_skip)
+        all_new_edges.extend(edges_isk_add_ruins_stone_skip)
 
     # Forever Forest
     if glitch_settings.forever_forest_backwards:
@@ -873,8 +873,8 @@ def get_glitched_logic(
     # Crystal Palace
     if glitch_settings.mirror_clip:
         all_new_edges.extend(edges_pra_add_mirror_clip_laki)
-    if glitch_settings.mirror_clip:
-        all_new_edges.extned(edges_pra_add_kooper_puzzle_skip)
+    if glitch_settings.kooper_puzzle_skip:
+        all_new_edges.extend(edges_pra_add_kooper_puzzle_skip)
 
     # Bowser's Castle
     if bowsers_castle_mode == BowserCastleMode.VANILLA:
