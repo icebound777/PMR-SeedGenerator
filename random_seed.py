@@ -27,7 +27,7 @@ from rando_modules.modify_entrances import (
     get_starhunt,
     get_glitched_logic,
     adjust_shop_logic,
-    get_specific_spirits,
+    set_required_starspirits,
     get_limited_chapter_logic
 )
 from rando_modules.random_entrances import shuffle_dungeon_entrances
@@ -176,30 +176,37 @@ class RandomSeed:
                 ## Setup star spirits and relevant logic
                 if self.rando_settings.starway_spirits_needed_count == -1:
                     self.rando_settings.starway_spirits_needed_count = random.randint(0,7)
-                if (    self.rando_settings.require_specific_spirits
-                    and 0 < self.rando_settings.starway_spirits_needed_count < 7
-                    and not self.rando_settings.star_hunt
-                ):
-                    all_spirits = [
-                        StarSpirits.ELDSTAR,
-                        StarSpirits.MAMAR,
-                        StarSpirits.SKOLAR,
-                        StarSpirits.MUSKULAR,
-                        StarSpirits.MISSTAR,
-                        StarSpirits.KLEVAR,
-                        StarSpirits.KALMAR,
-                    ]
+                if not self.rando_settings.star_hunt:
                     chosen_spirits = []
-                    for _ in range(self.rando_settings.starway_spirits_needed_count):
-                        rnd_spirit = random.randint(0, len(all_spirits) - 1)
-                        chosen_spirits.append(all_spirits.pop(rnd_spirit))
-                    encoded_spirits = 0
-                    for spirit in chosen_spirits:
-                        encoded_spirits = encoded_spirits | (1 << (spirit - 1))
-                    self.rando_settings.starway_spirits_needed_encoded = encoded_spirits
-                    modified_world_graph = get_specific_spirits(
-                        modified_world_graph,
-                        chosen_spirits
+                    if (    self.rando_settings.require_specific_spirits
+                        and 0 < self.rando_settings.starway_spirits_needed_count < 7
+                    ):
+                        all_spirits = [
+                            StarSpirits.ELDSTAR,
+                            StarSpirits.MAMAR,
+                            StarSpirits.SKOLAR,
+                            StarSpirits.MUSKULAR,
+                            StarSpirits.MISSTAR,
+                            StarSpirits.KLEVAR,
+                            StarSpirits.KALMAR,
+                        ]
+                        for _ in range(self.rando_settings.starway_spirits_needed_count):
+                            rnd_spirit = random.randint(0, len(all_spirits) - 1)
+                            chosen_spirits.append(all_spirits.pop(rnd_spirit))
+                        encoded_spirits = 0
+                        for spirit in chosen_spirits:
+                            encoded_spirits = encoded_spirits | (1 << (spirit - 1))
+                        self.rando_settings.starway_spirits_needed_encoded = encoded_spirits
+
+                        chosen_spirits.sort()
+                        if self.spoilerlog_additions.get("required_spirits") is None:
+                            self.spoilerlog_additions["required_spirits"] = []
+                        self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
+
+                    modified_world_graph = set_required_starspirits(
+                        world_graph=modified_world_graph,
+                        spirits_needed=self.rando_settings.starway_spirits_needed_count,
+                        specific_spirits=chosen_spirits
                     )
 
                     if self.rando_settings.limit_chapter_logic:
@@ -208,10 +215,6 @@ class RandomSeed:
                             chosen_spirits,
                             self.rando_settings.gear_shuffle_mode
                         )
-                    chosen_spirits.sort()
-                    if self.spoilerlog_additions.get("required_spirits") is None:
-                        self.spoilerlog_additions["required_spirits"] = []
-                    self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
                 else:
                     self.rando_settings.require_specific_spirits = False
                     self.rando_settings.starway_spirits_needed_encoded = 0xFF

@@ -447,23 +447,33 @@ def get_partner_upgrade_shuffle(
     return world_graph, block_placement
 
 
-def get_specific_spirits(world_graph: dict, chosen_spirits: list) -> dict:
+def set_required_starspirits(
+    world_graph: dict,
+    spirits_needed: int,
+    specific_spirits: list
+) -> dict:
     """
-    Returns the modified world graph itself for specific spirits,
-    which adjusts how the chapter 8 access gets handled.
+    Returns the modified world graph itself, modified to set the spirits
+    required to enter Star Way.
     """
-    new_requirements = [["can_climb_steps"]]
+    added_requirements = []
 
+    # set number of spirits needed
+    if spirits_needed > 0:
+        added_requirements.append([{"starspirits": spirits_needed}])
+
+    # set specific spirits, if required
     # the logic knows the spirits as "STARSPIRIT_X", where X is in 1-7
-    for spirit_number in chosen_spirits:
-        new_requirements.append([f"STARSPIRIT_{spirit_number}"])
+    for spirit_number in specific_spirits:
+        added_requirements.append([f"STARSPIRIT_{spirit_number}"])
 
+    # find Star Way edge and modify its requirements
     for index, entrance in enumerate(world_graph["HOS_01/0"]["edge_list"]):
         if (    entrance["to"]["map"] == "HOS_01"
             and entrance["to"]["id"] == 1
         ):
-            world_graph["HOS_01/0"]["edge_list"][index]["reqs"].clear()
-            world_graph["HOS_01/0"]["edge_list"][index]["reqs"] = new_requirements
+            world_graph["HOS_01/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            print(world_graph["HOS_01/0"]["edge_list"][index]["reqs"])
             break
 
     return world_graph

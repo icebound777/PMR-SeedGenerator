@@ -16,7 +16,7 @@ edges_hos = [
     {"from": {"map": "HOS_01", "id": 0}, "to": {"map": "HOS_00", "id": 1}, "reqs": []}, # Shooting Star Summit Exit Bottom Left -> Shooting Star Path Exit Top Right
     {"from": {"map": "HOS_01", "id": 1}, "to": {"map": "HOS_02", "id": 0}, "reqs": []}, # Shooting Star Summit Ride Up To Starway -> Star Way Ride Down To Summit
 
-    {"from": {"map": "HOS_01", "id": 0}, "to": {"map": "HOS_01", "id": 1}, "reqs": [[{"starspirits": 7}],["can_climb_steps"]]}, #? Shooting Star Summit Exit Bottom Left -> Shooting Star Summit Ride Up To Starway
+    {"from": {"map": "HOS_01", "id": 0}, "to": {"map": "HOS_01", "id": 1}, "reqs": [["can_climb_steps"]]}, #? Shooting Star Summit Exit Bottom Left -> Shooting Star Summit Ride Up To Starway
     {"from": {"map": "HOS_01", "id": 1}, "to": {"map": "HOS_01", "id": 0}, "reqs": []}, #? Shooting Star Summit Ride Up To Starway -> Shooting Star Summit Exit Bottom Left
 
     {"from": {"map": "HOS_01", "id": 0}, "to": {"map": "HOS_01", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"],["can_climb_steps"]]}, #* Shooting Star Summit Exit Bottom Left -> HiddenPanel (StarPiece)
