@@ -944,13 +944,18 @@ def _algo_assumed_fill(
             else:
                 pool_other_items.remove(shop_code_item)
 
+        # avoid item object references
+        copied_shop_code_items = []
+        for item in shop_code_items:
+            copied_shop_code_items.append(deepcopy(item))
+
         # place into random dro shop slots
         shop_slot_ids = random.sample(
             population=["ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
             k=3
         )
         while shop_slot_ids:
-            world_graph[f"DRO_01/{shop_slot_ids.pop()}"]["node"].current_item = shop_code_items.pop()
+            world_graph[f"DRO_01/{shop_slot_ids.pop()}"]["node"].current_item = copied_shop_code_items.pop()
 
 
     print("Placing progression items...")
