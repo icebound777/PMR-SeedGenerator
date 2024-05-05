@@ -24,10 +24,9 @@ from rando_modules.modify_entrances import (
     get_bowsercastle_bossrush,
     get_gear_location_shuffle,
     get_partner_upgrade_shuffle,
-    get_starhunt,
     get_glitched_logic,
     adjust_shop_logic,
-    set_required_starspirits,
+    set_starway_requirements,
     get_limited_chapter_logic
 )
 from rando_modules.random_entrances import shuffle_dungeon_entrances
@@ -117,14 +116,6 @@ class RandomSeed:
                         modified_world_graph
                     )
 
-                if self.rando_settings.star_hunt:
-                    entrance_changes, modified_world_graph = get_starhunt(
-                        modified_world_graph,
-                        self.rando_settings.star_hunt_total,
-                        self.rando_settings.star_hunt_ends_game
-                    )
-                    self.entrance_list.extend(entrance_changes)
-
                 if (    self.rando_settings.shuffle_dungeon_entrances
                     and self.rando_settings.shuffle_items
                 ):
@@ -145,15 +136,6 @@ class RandomSeed:
                         self.rando_settings.shuffle_blocks
                     )
 
-                # Cull unneeded data from world graph if access to maps was
-                # removed
-                unreachable_node_ids = check_unreachable_from_start(
-                    modified_world_graph,
-                    False
-                )
-                for node_id in unreachable_node_ids:
-                    modified_world_graph.pop(node_id)
-
                 # Adjust graph logic if needed
                 if self.rando_settings.gear_shuffle_mode != GearShuffleMode.VANILLA:
                     modified_world_graph = get_gear_location_shuffle(
@@ -173,51 +155,61 @@ class RandomSeed:
                     self.rando_settings.shuffle_dungeon_entrances
                 )
 
-                ## Setup star spirits and relevant logic
+                ## Setup star spirits, power stars, and relevant logic
                 if self.rando_settings.starway_spirits_needed_count == -1:
                     self.rando_settings.starway_spirits_needed_count = random.randint(0,7)
-                if not self.rando_settings.star_hunt:
-                    chosen_spirits = []
-                    if (    self.rando_settings.require_specific_spirits
-                        and 0 < self.rando_settings.starway_spirits_needed_count < 7
-                    ):
-                        all_spirits = [
-                            StarSpirits.ELDSTAR,
-                            StarSpirits.MAMAR,
-                            StarSpirits.SKOLAR,
-                            StarSpirits.MUSKULAR,
-                            StarSpirits.MISSTAR,
-                            StarSpirits.KLEVAR,
-                            StarSpirits.KALMAR,
-                        ]
-                        for _ in range(self.rando_settings.starway_spirits_needed_count):
-                            rnd_spirit = random.randint(0, len(all_spirits) - 1)
-                            chosen_spirits.append(all_spirits.pop(rnd_spirit))
-                        encoded_spirits = 0
-                        for spirit in chosen_spirits:
-                            encoded_spirits = encoded_spirits | (1 << (spirit - 1))
-                        self.rando_settings.starway_spirits_needed_encoded = encoded_spirits
 
-                        chosen_spirits.sort()
-                        if self.spoilerlog_additions.get("required_spirits") is None:
-                            self.spoilerlog_additions["required_spirits"] = []
-                        self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
+                chosen_spirits = []
+                if (    self.rando_settings.require_specific_spirits
+                    and 0 < self.rando_settings.starway_spirits_needed_count < 7
+                ):
+                    all_spirits = [
+                        StarSpirits.ELDSTAR,
+                        StarSpirits.MAMAR,
+                        StarSpirits.SKOLAR,
+                        StarSpirits.MUSKULAR,
+                        StarSpirits.MISSTAR,
+                        StarSpirits.KLEVAR,
+                        StarSpirits.KALMAR,
+                    ]
+                    for _ in range(self.rando_settings.starway_spirits_needed_count):
+                        rnd_spirit = random.randint(0, len(all_spirits) - 1)
+                        chosen_spirits.append(all_spirits.pop(rnd_spirit))
+                    encoded_spirits = 0
+                    for spirit in chosen_spirits:
+                        encoded_spirits = encoded_spirits | (1 << (spirit - 1))
+                    self.rando_settings.starway_spirits_needed_encoded = encoded_spirits
 
-                    modified_world_graph = set_required_starspirits(
-                        world_graph=modified_world_graph,
-                        spirits_needed=self.rando_settings.starway_spirits_needed_count,
-                        specific_spirits=chosen_spirits
+                    chosen_spirits.sort()
+                    if self.spoilerlog_additions.get("required_spirits") is None:
+                        self.spoilerlog_additions["required_spirits"] = []
+                    self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
+
+                entrance_changes, modified_world_graph = set_starway_requirements(
+                    world_graph=modified_world_graph,
+                    spirits_needed=self.rando_settings.starway_spirits_needed_count,
+                    specific_spirits=chosen_spirits,
+                    power_stars_placed=self.rando_settings.star_hunt_total,
+                    star_hunt_triggers_credits=self.rando_settings.star_hunt_ends_game
+                )
+                if entrance_changes:
+                    self.entrance_list.extend(entrance_changes)
+
+                if self.rando_settings.limit_chapter_logic:
+                    modified_world_graph = get_limited_chapter_logic(
+                        modified_world_graph,
+                        chosen_spirits,
+                        self.rando_settings.gear_shuffle_mode
                     )
 
-                    if self.rando_settings.limit_chapter_logic:
-                        modified_world_graph = get_limited_chapter_logic(
-                            modified_world_graph,
-                            chosen_spirits,
-                            self.rando_settings.gear_shuffle_mode
-                        )
-                else:
-                    self.rando_settings.require_specific_spirits = False
-                    self.rando_settings.starway_spirits_needed_encoded = 0xFF
+                # Cull unneeded data from world graph if access to maps was
+                # removed
+                unreachable_node_ids = check_unreachable_from_start(
+                    modified_world_graph,
+                    False
+                )
+                for node_id in unreachable_node_ids:
+                    modified_world_graph.pop(node_id)
 
                 modified_world_graph = enrich_graph_data(modified_world_graph)
 
@@ -287,7 +279,7 @@ class RandomSeed:
                     do_progressive_badges=self.rando_settings.progressive_badges,
                     badge_pool_limit=self.rando_settings.badge_pool_limit,
                     bowsers_castle_mode=self.rando_settings.bowsers_castle_mode,
-                    star_hunt_stars=self.rando_settings.star_hunt_total if self.rando_settings.star_hunt else 0,
+                    star_hunt_stars=self.rando_settings.star_hunt_total,
                     partner_upgrade_shuffle=self.rando_settings.partner_upgrade_shuffle,
                     random_puzzles=self.rando_settings.randomize_puzzles,
                     shuffle_starbeam=self.rando_settings.shuffle_starbeam,

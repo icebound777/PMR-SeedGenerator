@@ -33,8 +33,6 @@ from maps.graph_edges.gear_location_shuffle.edges_tik import \
 
 # Imports: Star Hunt
 from maps.graph_edges.star_hunt.edges_hos import \
-    edges_hos_starhunt_add,\
-    edges_hos_starhunt_remove,\
     edges_hos_starhunt2credits_add,\
     edges_hos_starhunt2credits_remove
 
@@ -338,39 +336,6 @@ def get_bowsercastle_bossrush(world_graph: dict):
     return entrance_modifications, world_graph
 
 
-def get_starhunt(
-    world_graph: dict,
-    power_stars_placed: int,
-    star_hunt_triggers_credits: bool
-):
-    """
-    Returns the modified world graph itself for Star Hunt,
-    which either removes ch8 or changes the Star Way requirements.
-    """
-    all_new_edges = []
-    all_edges_to_remove = []
-    entrance_modifications = []
-
-    all_new_edges.extend(deepcopy(edges_hos_starhunt_add))
-    all_edges_to_remove.extend(edges_hos_starhunt_remove)
-
-    # always expect all power stars before ch8, else some get placed behind
-    # the edge they lock
-    all_new_edges[0]["reqs"].extend([[{"powerstars": power_stars_placed}]])
-
-    if star_hunt_triggers_credits:
-        all_new_edges.extend(edges_hos_starhunt2credits_add)
-        all_edges_to_remove.extend(edges_hos_starhunt2credits_remove)
-
-    world_graph, entrance_modifications = adjust(
-        world_graph,
-        new_edges=all_new_edges,
-        edges_to_remove=all_edges_to_remove
-    )
-
-    return entrance_modifications, world_graph
-
-
 def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     """
     Returns the modified world graph itself for Gear Location Shuffle and Full Shuffle,
@@ -447,16 +412,19 @@ def get_partner_upgrade_shuffle(
     return world_graph, block_placement
 
 
-def set_required_starspirits(
+def set_starway_requirements(
     world_graph: dict,
     spirits_needed: int,
-    specific_spirits: list
+    specific_spirits: list,
+    power_stars_placed: int,
+    star_hunt_triggers_credits: bool
 ) -> dict:
     """
     Returns the modified world graph itself, modified to set the spirits
     required to enter Star Way.
     """
     added_requirements = []
+    entrance_modifications = []
 
     # set number of spirits needed
     if spirits_needed > 0:
@@ -467,6 +435,18 @@ def set_required_starspirits(
     for spirit_number in specific_spirits:
         added_requirements.append([f"STARSPIRIT_{spirit_number}"])
 
+    if power_stars_placed > 0:
+        # always expect all power stars before ch8, else some get placed behind
+        # the edge they lock
+        added_requirements.append([{"powerstars": power_stars_placed}])
+
+    if star_hunt_triggers_credits:
+        world_graph, entrance_modifications = adjust(
+            world_graph,
+            new_edges=edges_hos_starhunt2credits_add,
+            edges_to_remove=edges_hos_starhunt2credits_remove
+        )
+
     # find Star Way edge and modify its requirements
     for index, entrance in enumerate(world_graph["HOS_01/0"]["edge_list"]):
         if (    entrance["to"]["map"] == "HOS_01"
@@ -476,7 +456,7 @@ def set_required_starspirits(
             print(world_graph["HOS_01/0"]["edge_list"][index]["reqs"])
             break
 
-    return world_graph
+    return entrance_modifications, world_graph
 
 
 def get_limited_chapter_logic(
