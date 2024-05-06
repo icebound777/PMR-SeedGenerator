@@ -9,9 +9,11 @@ from worldgraph import adjust
 
 from rando_modules.random_blocks import get_block_placement
 
-from rando_enums.enum_options import \
-    GearShuffleMode,\
-    BowserCastleMode
+from rando_enums.enum_options import (
+    GearShuffleMode,
+    BowserCastleMode,
+    SeedGoal
+)
 
 # Imports: Modify Bowser's Castle
 from maps.graph_edges.bc_shorten.edges_kpa import \
@@ -32,9 +34,10 @@ from maps.graph_edges.gear_location_shuffle.edges_tik import \
     edges_tik_remove as edges_tik_gls_remove
 
 # Imports: Star Hunt
-from maps.graph_edges.star_hunt.edges_hos import \
-    edges_hos_starhunt2credits_add,\
-    edges_hos_starhunt2credits_remove
+from maps.graph_edges.goal_openstarway.edges_hos import (
+    edges_hos_goal_openstarway_add,
+    edges_hos_goal_openstarway_remove
+)
 
 # Imports: Partner Upgrade Shuffle
 from rando_enums.enum_types import BlockType
@@ -417,7 +420,7 @@ def set_starway_requirements(
     spirits_needed: int,
     specific_spirits: list,
     power_stars_placed: int,
-    star_hunt_triggers_credits: bool
+    seed_goal: SeedGoal
 ) -> dict:
     """
     Returns the modified world graph itself, modified to set the spirits
@@ -440,11 +443,11 @@ def set_starway_requirements(
         # the edge they lock
         added_requirements.append([{"powerstars": power_stars_placed}])
 
-    if star_hunt_triggers_credits:
+    if seed_goal == SeedGoal.OPEN_STARWAY:
         world_graph, entrance_modifications = adjust(
             world_graph,
-            new_edges=edges_hos_starhunt2credits_add,
-            edges_to_remove=edges_hos_starhunt2credits_remove
+            new_edges=edges_hos_goal_openstarway_add,
+            edges_to_remove=edges_hos_goal_openstarway_remove
         )
 
     # find Star Way edge and modify its requirements

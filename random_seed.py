@@ -190,7 +190,7 @@ class RandomSeed:
                     spirits_needed=self.rando_settings.starway_spirits_needed_count,
                     specific_spirits=chosen_spirits,
                     power_stars_placed=self.rando_settings.star_hunt_total,
-                    star_hunt_triggers_credits=self.rando_settings.star_hunt_ends_game
+                    seed_goal=self.rando_settings.seed_goal
                 )
                 if entrance_changes:
                     self.entrance_list.extend(entrance_changes)

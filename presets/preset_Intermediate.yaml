@@ -149,9 +149,9 @@ ShuffleStarBeam        : false
 LimitChapterLogic      : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
 BowsersCastleMode      : 1 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 StarHunt               : false
-StarHuntRequired       : 0 # max 120
-StarHuntTotal          : 0 # max 120, must be >= StarHuntRequired
-StarHuntEndsGame       : false
+StarWayPowerStarsNeeded: 0 # max 120
+StarHuntTotal          : 0 # max 120, must be >= StarWayPowerStarsNeeded
+SeedGoal               : 0 # 0: Defeat Bowser, 1: Open StarWay
 
 # Entrance Shuffle
 ShuffleDungeonRooms     : false # NYI
