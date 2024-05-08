@@ -462,6 +462,34 @@ def set_starway_requirements(
     return entrance_modifications, world_graph
 
 
+def set_starbeam_requirements(
+    world_graph: dict,
+    spirits_needed: int,
+    powerstars_placed: int,
+) -> dict:
+    """
+    Returns the modified world graph itself, modified to set the spirits
+    and power stars required to collect the Star Beam item location.
+    """
+    added_requirements = []
+
+    if spirits_needed > 0:
+        added_requirements.append([{"starspirits": spirits_needed}])
+    if powerstars_placed > 0:
+        added_requirements.append([{"powerstars": powerstars_placed}])
+
+    # find Star Beam edge and modify its requirements
+    for index, entrance in enumerate(world_graph["HOS_05/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "HOS_05"
+            and entrance["to"]["id"] == "GiftA"
+        ):
+            world_graph["HOS_05/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            print(world_graph["HOS_05/0"]["edge_list"][index]["reqs"])
+            break
+
+    return world_graph
+
+
 def get_limited_chapter_logic(
     world_graph: dict,
     chosen_spirits: list,

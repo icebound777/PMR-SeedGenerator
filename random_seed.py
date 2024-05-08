@@ -27,6 +27,7 @@ from rando_modules.modify_entrances import (
     get_glitched_logic,
     adjust_shop_logic,
     set_starway_requirements,
+    set_starbeam_requirements,
     get_limited_chapter_logic
 )
 from rando_modules.random_entrances import shuffle_dungeon_entrances
@@ -185,6 +186,15 @@ class RandomSeed:
                         self.spoilerlog_additions["required_spirits"] = []
                     self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
 
+                if (   self.rando_settings.starbeam_spirits_needed > 0
+                    or self.rando_settings.starbeam_powerstars_needed > 0
+                ):
+                    modified_world_graph = set_starbeam_requirements(
+                        world_graph=modified_world_graph,
+                        spirits_needed=self.rando_settings.starbeam_spirits_needed,
+                        powerstars_placed=self.rando_settings.star_hunt_total
+                    )
+
                 entrance_changes, modified_world_graph = set_starway_requirements(
                     world_graph=modified_world_graph,
                     spirits_needed=self.rando_settings.starway_spirits_needed_count,
@@ -329,8 +339,9 @@ class RandomSeed:
         # Write ingame hint area for star beam, if shuffled
         if self.rando_settings.shuffle_starbeam:
             for node_id in modified_world_graph:
-                cur_node = modified_world_graph[node_id]["node"]
-                if (    cur_node.current_item
+                cur_node = modified_world_graph[node_id].get("node")
+                if (    cur_node # check for edge_index
+                    and cur_node.current_item
                     and cur_node.current_item.item_name == "StarBeam"
                 ):
                     if cur_node.map_area.area_id == area_name_id_map["OSR"]:

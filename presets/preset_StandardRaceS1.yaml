@@ -146,11 +146,12 @@ Ch7BridgeVisible    : false
 StarWaySpiritsNeededCnt: 7 # -1:Random
 RequireSpecificSpirits : false # always false if StarWaySpiritsNeededCnt: 7
 ShuffleStarBeam        : false
+StarBeamSpiritsNeeded  : 0
+StarBeamPowerStarsNeeded: 0
 LimitChapterLogic      : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
 BowsersCastleMode      : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
-StarHunt               : false
 StarWayPowerStarsNeeded: 0 # max 120
-StarHuntTotal          : 0 # max 120, must be >= StarWayPowerStarsNeeded
+StarHuntTotal          : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded
 SeedGoal               : 0 # 0: Defeat Bowser, 1: Open StarWay
 
 # Entrance Shuffle
