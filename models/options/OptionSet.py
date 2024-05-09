@@ -1275,6 +1275,16 @@ class OptionSet:
                     and not (    options_dict["LimitChapterLogic"]
                              and (   options_dict.get("KeyitemsOutsideDungeon") is None
                                   or not options_dict["KeyitemsOutsideDungeon"])))
+            try:
+                assert (not (    options_dict["LimitChapterLogic"]
+                             and options_dict.get("StarBeamSpiritsNeeded") is not None
+                             and options_dict["StarBeamSpiritsNeeded"] != 0
+                        )
+                )
+            except:
+                raise ValueError(
+                    "LCL does not support requiring more than zero spirits for Star Beam!",
+                )
         basic_assert("BowsersCastleMode", int)
         if "StarWayPowerStarsNeeded" in options_dict:
             assert (    isinstance(options_dict.get("StarWayPowerStarsNeeded"), int)
