@@ -894,6 +894,8 @@ class OptionSet:
             self.glitch_settings.blue_switch_skip_ultra_boots = options_dict.get("BlueSwitchSkipUltraBoots")
         if "RedBarricadeSkip" in options_dict:
             self.glitch_settings.red_barricade_skip = options_dict.get("RedBarricadeSkip")
+        if "WattlessDarkRoom" in options_dict:
+            self.glitch_settings.wattless_dark_room = options_dict.get("WattlessDarkRoom")
         if "HammerlessBlueStationLaki" in options_dict:
             self.glitch_settings.hammerless_blue_station_laki = options_dict.get("HammerlessBlueStationLaki")
         if "HammerlessPinkStationLaki" in options_dict:
@@ -1475,6 +1477,7 @@ class OptionSet:
         basic_assert("BlueSwitchSkipLaki", bool)
         basic_assert("BlueSwitchSkipUltraBoots", bool)
         basic_assert("RedBarricadeSkip", bool)
+        basic_assert("WattlessDarkRoom", bool)
         basic_assert("HammerlessBlueStationLaki", bool)
         basic_assert("HammerlessPinkStationLaki", bool)
 
@@ -2005,6 +2008,7 @@ class OptionSet:
         web_settings["BlueSwitchSkipLaki"] = self.glitch_settings.blue_switch_skip_laki
         web_settings["BlueSwitchSkipUltraBoots"] = self.glitch_settings.blue_switch_skip_ultra_boots
         web_settings["RedBarricadeSkip"] = self.glitch_settings.red_barricade_skip
+        web_settings["WattlessDarkRoom"] = self.glitch_settings.wattless_dark_room
         web_settings["HammerlessBlueStationLaki"] = self.glitch_settings.hammerless_blue_station_laki
         web_settings["HammerlessPinkStationLaki"] = self.glitch_settings.hammerless_pink_station_laki
 
