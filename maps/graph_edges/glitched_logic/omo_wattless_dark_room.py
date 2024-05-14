@@ -1,6 +1,6 @@
 """
 This file represents edges of the world graph that have to be added
-for Glitched Logic: ToyBox Blue Switch Skip.
+for Glitched Logic: Wattless Dark Room.
 """
 edges_omo_add_wattless_dark_room = [
     # RED Boss Antechamber Exit East -> RED General Guy Room Exit West
