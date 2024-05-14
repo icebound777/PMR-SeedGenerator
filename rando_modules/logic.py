@@ -4,6 +4,7 @@ the game according to the settings chosen.
 """
 import random
 #import logging
+from copy import deepcopy
 
 from db.node import Node
 from db.item import Item
