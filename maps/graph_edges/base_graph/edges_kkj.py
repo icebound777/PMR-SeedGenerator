@@ -111,7 +111,7 @@ edges_kkj = [
     # KKJ_25 Final Boss Arena (6F)
     {"from": {"map": "KKJ_25", "id": 0}, "to": {"map": "KKJ_24", "id": 1}, "reqs": []}, # Final Boss Arena (6F) Door Left -> Tower Staircase (5F) Door Top
 
-    {"from": {"map": "KKJ_25", "id": 0}, "to": {"map": "KKJ_24", "id": 1}, "reqs": [["StarBeam"]], "pseudoitems": ["YOUWIN"]}, #+ Beat Bowser
+    {"from": {"map": "KKJ_25", "id": 0}, "to": {"map": "KKJ_25", "id": 0}, "reqs": [["StarBeam"]], "pseudoitems": ["YOUWIN"]}, #+ Beat Bowser
 
     # KKJ_26 Balcony (2F)
     {"from": {"map": "KKJ_26", "id": 0}, "to": {"map": "KKJ_14", "id": 1}, "reqs": []}, # Balcony (2F) Door Left -> Peach's Room (2F) Door Right
