@@ -459,6 +459,43 @@ def set_starway_requirements(
             print(world_graph["HOS_01/0"]["edge_list"][index]["reqs"])
             break
 
+    # add requirements to chapter 8 jr. troopa and both bowser battles, so the
+    # logic doesn't require going through them too early
+
+    ## ch8 jr. troopa
+    for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_83"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_83"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## hallway bowser
+    for index, entrance in enumerate(world_graph["KKJ_13/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_13"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["KKJ_13/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    for index, entrance in enumerate(world_graph["KKJ_13/1"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_13"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KKJ_13/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## final bowser
+    for index, entrance in enumerate(world_graph["KKJ_25/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_25"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KKJ_25/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+
     return entrance_modifications, world_graph
 
 
@@ -485,6 +522,44 @@ def set_starbeam_requirements(
         ):
             world_graph["HOS_05/0"]["edge_list"][index]["reqs"].extend(added_requirements)
             print(world_graph["HOS_05/0"]["edge_list"][index]["reqs"])
+            break
+
+    # add requirements to chapter 8 jr. troopa and both bowser battles, so the
+    # logic doesn't require going through them too early.
+    # this will add onto requirements placed by set_starway_requirements
+
+    ## ch8 jr. troopa
+    for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_83"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_83"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## hallway bowser
+    for index, entrance in enumerate(world_graph["KKJ_13/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_13"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["KKJ_13/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    for index, entrance in enumerate(world_graph["KKJ_13/1"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_13"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KKJ_13/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## final bowser
+    for index, entrance in enumerate(world_graph["KKJ_25/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_25"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KKJ_25/0"]["edge_list"][index]["reqs"].extend(added_requirements)
             break
 
     return world_graph
