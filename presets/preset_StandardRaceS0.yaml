@@ -146,7 +146,7 @@ Ch7BridgeVisible    : true
 StarWaySpiritsNeededCnt: 7 # -1:Random
 RequireSpecificSpirits : false # always false if StarWaySpiritsNeededCnt: 7
 ShuffleStarBeam        : false
-StarBeamSpiritsNeeded  : 0
+StarBeamSpiritsNeeded  : 0 # -1:Random
 StarBeamPowerStarsNeeded: 0
 LimitChapterLogic      : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
 BowsersCastleMode      : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush

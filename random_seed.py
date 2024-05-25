@@ -118,6 +118,11 @@ class RandomSeed:
                 else:
                     num_starway_spirits_needed = self.rando_settings.starway_spirits_needed_count
 
+                if self.rando_settings.starbeam_spirits_needed == -1:
+                    num_starbeam_spirits_needed = random.randint(0,7)
+                else:
+                    num_starbeam_spirits_needed = self.rando_settings.starbeam_spirits_needed
+
                 # Modify entrances if needed
                 if self.rando_settings.bowsers_castle_mode == BowserCastleMode.SHORTEN:
                     self.entrance_list, modified_world_graph = get_shorter_bowsercastle(
@@ -194,12 +199,12 @@ class RandomSeed:
                         self.spoilerlog_additions["required_spirits"] = []
                     self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
 
-                if (   self.rando_settings.starbeam_spirits_needed > 0
+                if (   num_starbeam_spirits_needed > 0
                     or self.rando_settings.starbeam_powerstars_needed > 0
                 ):
                     modified_world_graph = set_starbeam_requirements(
                         world_graph=modified_world_graph,
-                        spirits_needed=self.rando_settings.starbeam_spirits_needed,
+                        spirits_needed=num_starbeam_spirits_needed,
                         powerstars_placed=self.rando_settings.star_hunt_total
                     )
 
