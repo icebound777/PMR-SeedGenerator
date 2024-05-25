@@ -108,7 +108,7 @@ class RandomSeed:
                 self.item_spheres_dict = None
 
                 # Choose values for options that are set to "random"
-                if self.rando_settings.magical_seeds_required == 5:
+                if self.rando_settings.magical_seeds_required == -1:
                     magical_seeds_required = random.randint(0, 4)
                 else:
                     magical_seeds_required = self.rando_settings.magical_seeds_required

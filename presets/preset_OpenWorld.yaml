@@ -133,7 +133,7 @@ RandomPartnersMin         : 1 # 1-8
 RandomPartnersMax         : 1 # 1-8
 
 # Pre-opened areas
-MagicalSeedsRequired: 0 # 5:random
+MagicalSeedsRequired: 0 # -1:Random
 PrologueOpen        : true
 BlueHouseOpen       : true
 MtRuggedOpen        : true

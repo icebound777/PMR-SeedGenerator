@@ -1239,7 +1239,10 @@ class OptionSet:
             )
 
         # Pre-opened areas
-        basic_assert("MagicalSeedsRequired", int)
+        if "MagicalSeedsRequired" in options_dict:
+            assert (    isinstance(options_dict["MagicalSeedsRequired"], int)
+                    and -1 <= options_dict["MagicalSeedsRequired"] <= 4
+            )
         basic_assert("PrologueOpen", bool)
         basic_assert("BlueHouseOpen", bool)
         basic_assert("MtRuggedOpen", bool)
