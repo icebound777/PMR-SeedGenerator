@@ -107,6 +107,17 @@ class RandomSeed:
                 self.spoilerlog_additions = {}
                 self.item_spheres_dict = None
 
+                # Choose values for options that are set to "random"
+                if self.rando_settings.magical_seeds_required == 5:
+                    magical_seeds_required = random.randint(0, 4)
+                else:
+                    magical_seeds_required = self.rando_settings.magical_seeds_required
+
+                if self.rando_settings.starway_spirits_needed_count == -1:
+                    num_starway_spirits_needed = random.randint(0,7)
+                else:
+                    num_starway_spirits_needed = self.rando_settings.starway_spirits_needed_count
+
                 # Modify entrances if needed
                 if self.rando_settings.bowsers_castle_mode == BowserCastleMode.SHORTEN:
                     self.entrance_list, modified_world_graph = get_shorter_bowsercastle(
@@ -122,7 +133,7 @@ class RandomSeed:
                 ):
                     entrance_changes, modified_world_graph, spoilerlog_info = shuffle_dungeon_entrances(
                         modified_world_graph,
-                        self.rando_settings.starway_spirits_needed_count,
+                        num_starway_spirits_needed,
                         False,
                         self.rando_settings.write_spoilerlog
                     )
@@ -157,12 +168,9 @@ class RandomSeed:
                 )
 
                 ## Setup star spirits, power stars, and relevant logic
-                if self.rando_settings.starway_spirits_needed_count == -1:
-                    self.rando_settings.starway_spirits_needed_count = random.randint(0,7)
-
                 chosen_spirits = []
                 if (    self.rando_settings.require_specific_spirits
-                    and 0 < self.rando_settings.starway_spirits_needed_count < 7
+                    and 0 < num_starway_spirits_needed < 7
                 ):
                     all_spirits = [
                         StarSpirits.ELDSTAR,
@@ -173,7 +181,7 @@ class RandomSeed:
                         StarSpirits.KLEVAR,
                         StarSpirits.KALMAR,
                     ]
-                    for _ in range(self.rando_settings.starway_spirits_needed_count):
+                    for _ in range(num_starway_spirits_needed):
                         rnd_spirit = random.randint(0, len(all_spirits) - 1)
                         chosen_spirits.append(all_spirits.pop(rnd_spirit))
                     encoded_spirits = 0
@@ -197,7 +205,7 @@ class RandomSeed:
 
                 entrance_changes, modified_world_graph = set_starway_requirements(
                     world_graph=modified_world_graph,
-                    spirits_needed=self.rando_settings.starway_spirits_needed_count,
+                    spirits_needed=num_starway_spirits_needed,
                     specific_spirits=chosen_spirits,
                     power_stars_placed=self.rando_settings.star_hunt_total,
                     seed_goal=self.rando_settings.seed_goal
@@ -231,12 +239,6 @@ class RandomSeed:
 
                 starting_chapter, starting_map_value = self.init_starting_map(self.rando_settings)
                 self.init_starting_partners(self.rando_settings)
-
-                ## Pick seeds required for flower gate, if random
-                if self.rando_settings.magical_seeds_required == 5:
-                    magical_seeds_required = random.randint(0, 4)
-                else:
-                    magical_seeds_required = self.rando_settings.magical_seeds_required
 
                 self.init_starting_items(
                     self.rando_settings,
