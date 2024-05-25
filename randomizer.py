@@ -590,6 +590,7 @@ def web_randomizer(jsonSettings, world_graph):
 
     rando_settings = OptionSet()
     rando_settings.update_options(data)
+    web_settings = rando_settings.get_web_settings()
 
     init_randomizer(rebuild_database=False)
 
@@ -657,7 +658,7 @@ def web_randomizer(jsonSettings, world_graph):
     return WebSeedResponse(
         random_seed.seed_value,
         random_seed.seed_hash_items,
-        rando_settings.get_web_settings(),
+        web_settings,
         patch_file,
         spoiler_log_file,
         palette_offset,

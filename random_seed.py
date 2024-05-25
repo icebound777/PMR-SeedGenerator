@@ -109,19 +109,13 @@ class RandomSeed:
 
                 # Choose values for options that are set to "random"
                 if self.rando_settings.magical_seeds_required == -1:
-                    magical_seeds_required = random.randint(0, 4)
-                else:
-                    magical_seeds_required = self.rando_settings.magical_seeds_required
+                    self.rando_settings.magical_seeds_required = random.randint(0, 4)
 
                 if self.rando_settings.starway_spirits_needed_count == -1:
-                    num_starway_spirits_needed = random.randint(0,7)
-                else:
-                    num_starway_spirits_needed = self.rando_settings.starway_spirits_needed_count
+                    self.rando_settings.starway_spirits_needed_count = random.randint(0,7)
 
                 if self.rando_settings.starbeam_spirits_needed == -1:
-                    num_starbeam_spirits_needed = random.randint(0,7)
-                else:
-                    num_starbeam_spirits_needed = self.rando_settings.starbeam_spirits_needed
+                    self.rando_settings.starbeam_spirits_needed = random.randint(0,7)
 
                 # Modify entrances if needed
                 if self.rando_settings.bowsers_castle_mode == BowserCastleMode.SHORTEN:
@@ -138,7 +132,7 @@ class RandomSeed:
                 ):
                     entrance_changes, modified_world_graph, spoilerlog_info = shuffle_dungeon_entrances(
                         modified_world_graph,
-                        num_starway_spirits_needed,
+                        self.rando_settings.starway_spirits_needed_count,
                         False,
                         self.rando_settings.write_spoilerlog
                     )
@@ -175,7 +169,7 @@ class RandomSeed:
                 ## Setup star spirits, power stars, and relevant logic
                 chosen_spirits = []
                 if (    self.rando_settings.require_specific_spirits
-                    and 0 < num_starway_spirits_needed < 7
+                    and 0 < self.rando_settings.starway_spirits_needed_count < 7
                 ):
                     all_spirits = [
                         StarSpirits.ELDSTAR,
@@ -186,7 +180,7 @@ class RandomSeed:
                         StarSpirits.KLEVAR,
                         StarSpirits.KALMAR,
                     ]
-                    for _ in range(num_starway_spirits_needed):
+                    for _ in range(self.rando_settings.starway_spirits_needed_count):
                         rnd_spirit = random.randint(0, len(all_spirits) - 1)
                         chosen_spirits.append(all_spirits.pop(rnd_spirit))
                     encoded_spirits = 0
@@ -199,18 +193,18 @@ class RandomSeed:
                         self.spoilerlog_additions["required_spirits"] = []
                     self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
 
-                if (   num_starbeam_spirits_needed > 0
+                if (   self.rando_settings.starbeam_spirits_needed > 0
                     or self.rando_settings.starbeam_powerstars_needed > 0
                 ):
                     modified_world_graph = set_starbeam_requirements(
                         world_graph=modified_world_graph,
-                        spirits_needed=num_starbeam_spirits_needed,
+                        spirits_needed=self.rando_settings.starbeam_spirits_needed,
                         powerstars_placed=self.rando_settings.star_hunt_total
                     )
 
                 entrance_changes, modified_world_graph = set_starway_requirements(
                     world_graph=modified_world_graph,
-                    spirits_needed=num_starway_spirits_needed,
+                    spirits_needed=self.rando_settings.starway_spirits_needed_count,
                     specific_spirits=chosen_spirits,
                     power_stars_placed=self.rando_settings.star_hunt_total,
                     seed_goal=self.rando_settings.seed_goal
@@ -242,12 +236,14 @@ class RandomSeed:
                     # Having this trick enabled is equivalent to mode 3, logic wise
                     hidden_block_mode = 3
 
-                starting_chapter, starting_map_value = self.init_starting_map(self.rando_settings)
+                starting_chapter, self.rando_settings.starting_map = self.init_starting_map(
+                    self.rando_settings
+                )
                 self.init_starting_partners(self.rando_settings)
 
                 self.init_starting_items(
                     self.rando_settings,
-                    magical_seeds_required
+                    self.rando_settings.magical_seeds_required
                 )
 
                 # Item Placement
@@ -269,12 +265,12 @@ class RandomSeed:
                     randomize_consumable_mode=self.rando_settings.randomize_consumable_mode,
                     item_quality=self.rando_settings.item_quality,
                     itemtrap_mode=self.rando_settings.itemtrap_mode,
-                    starting_map_id=starting_map_value,
+                    starting_map_id=self.rando_settings.starting_map,
                     startwith_prologue_open=self.rando_settings.prologue_open,
                     startwith_bluehouse_open=self.rando_settings.bluehouse_open,
                     startwith_mtrugged_open=self.rando_settings.mtrugged_open,
                     startwith_forest_open=self.rando_settings.foreverforest_open,
-                    magical_seeds_required=magical_seeds_required,
+                    magical_seeds_required=self.rando_settings.magical_seeds_required,
                     startwith_toybox_open=self.rando_settings.toybox_open,
                     startwith_whale_open=self.rando_settings.whale_open,
                     ch7_bridge_visible=self.rando_settings.ch7_bridge_visible,
@@ -302,11 +298,6 @@ class RandomSeed:
                     shuffle_starbeam=self.rando_settings.shuffle_starbeam,
                     world_graph=modified_world_graph
                 )
-
-                # Overwrite starting map in case it was random at first
-                self.rando_settings.starting_map = starting_map_value
-
-                self.rando_settings.magical_seeds_required = magical_seeds_required
 
                 # Determine item placement spheres
                 self.item_spheres_dict = get_item_spheres(
