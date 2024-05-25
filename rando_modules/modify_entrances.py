@@ -456,7 +456,7 @@ def set_starway_requirements(
             and entrance["to"]["id"] == 1
         ):
             world_graph["HOS_01/0"]["edge_list"][index]["reqs"].extend(added_requirements)
-            print(world_graph["HOS_01/0"]["edge_list"][index]["reqs"])
+            #print(world_graph["HOS_01/0"]["edge_list"][index]["reqs"])
             break
 
     # add requirements to chapter 8 jr. troopa and both bowser battles, so the
@@ -521,7 +521,7 @@ def set_starbeam_requirements(
             and entrance["to"]["id"] == "GiftA"
         ):
             world_graph["HOS_05/0"]["edge_list"][index]["reqs"].extend(added_requirements)
-            print(world_graph["HOS_05/0"]["edge_list"][index]["reqs"])
+            #print(world_graph["HOS_05/0"]["edge_list"][index]["reqs"])
             break
 
     # add requirements to chapter 8 jr. troopa and both bowser battles, so the
