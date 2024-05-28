@@ -108,14 +108,15 @@ progression_items = {
     0x0268 : "HammerProxy1",
     0x0269 : "HammerProxy2",
     0x026A : "HammerProxy3",
-    0x0291 : "Goombario",
-    0x0292 : "Kooper",
-    0x0293 : "Bombette",
-    0x0294 : "Parakarry",
-    0x0296 : "Watt",
-    0x0297 : "Sushie",
-    0x0298 : "Lakilester",
-    0x0299 : "Bow",
+    0x027F : "StarBeam",
+    0x0292 : "Goombario",
+    0x0293 : "Kooper",
+    0x0294 : "Bombette",
+    0x0295 : "Parakarry",
+    0x0297 : "Watt",
+    0x0298 : "Sushie",
+    0x0299 : "Lakilester",
+    0x029A : "Bow",
 }
     # 0x0078 ??
 
