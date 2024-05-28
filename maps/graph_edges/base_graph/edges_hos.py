@@ -91,11 +91,11 @@ edges_hos = [
     {"from": {"map": "HOS_06", "id": "ShopBadgeA"},  "to": {"map": "HOS_06", "id": "ShopBadgeN"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ShopBadgeN (FlowerSaverA)
     {"from": {"map": "HOS_06", "id": "ShopBadgeA"},  "to": {"map": "HOS_06", "id": "ShopBadgeO"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ShopBadgeO (PowerPlusA)
     {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopRewardA"}, "reqs": [[{"starpieces": 10}],["can_climb_steps"]]}, #* Merluvlee's House Exit Left -> ShopRewardA (Mushroom)
-    {"from": {"map": "HOS_06", "id": "ShopRewardA"}, "to": {"map": "HOS_06", "id": "ShopRewardB"}, "reqs": [[{"starpieces": 23}]]}, #+ CHAINED REQUIREMENTS (SuperShroom)
+    {"from": {"map": "HOS_06", "id": "ShopRewardA"}, "to": {"map": "HOS_06", "id": "ShopRewardB"}, "reqs": [[{"starpieces": 22}]]}, #+ CHAINED REQUIREMENTS (SuperShroom)
     {"from": {"map": "HOS_06", "id": "ShopRewardB"}, "to": {"map": "HOS_06", "id": "ShopRewardC"}, "reqs": [[{"starpieces": 35}]]}, #+ CHAINED REQUIREMENTS (ThunderRage)
-    {"from": {"map": "HOS_06", "id": "ShopRewardC"}, "to": {"map": "HOS_06", "id": "ShopRewardD"}, "reqs": [[{"starpieces": 47}]]}, #+ CHAINED REQUIREMENTS (LifeShroom)
+    {"from": {"map": "HOS_06", "id": "ShopRewardC"}, "to": {"map": "HOS_06", "id": "ShopRewardD"}, "reqs": [[{"starpieces": 45}]]}, #+ CHAINED REQUIREMENTS (LifeShroom)
     {"from": {"map": "HOS_06", "id": "ShopRewardD"}, "to": {"map": "HOS_06", "id": "ShopRewardE"}, "reqs": [[{"starpieces": 57}]]}, #+ CHAINED REQUIREMENTS (UltraShroom)
-    {"from": {"map": "HOS_06", "id": "ShopRewardE"}, "to": {"map": "HOS_06", "id": "ShopRewardF"}, "reqs": [[{"starpieces": 68}]]}, #+ CHAINED REQUIREMENTS (RepelGel)
+    {"from": {"map": "HOS_06", "id": "ShopRewardE"}, "to": {"map": "HOS_06", "id": "ShopRewardF"}, "reqs": [[{"starpieces": 67}]]}, #+ CHAINED REQUIREMENTS (RepelGel)
 
     {"from": {"map": "HOS_06", "id": 0}, "to": {"map": "HOS_06", "id": 0}, "reqs": [["FAVOR_3_03_active"]], "pseudoitems": ["GF_HOS06_MerluvleeRequestedCrystalBall"]}, #+ Merluvlee's House Exit Left
     {"from": {"map": "HOS_06", "id": 0}, "to": {"map": "HOS_06", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanSolveAttackFXBPuzzle"]}, #+ Merluvlee's House Exit Left
