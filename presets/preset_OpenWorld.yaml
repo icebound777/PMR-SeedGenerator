@@ -45,7 +45,7 @@ IncludeCoinsBlocks    : false
 IncludeCoinsFoliage   : false
 IncludeCoinsFavors    : false # always false if IncludeFavorsMode:0
 IncludeShops          : false
-ProgressionOnRowf     : false # irrelevant if IncludeShops:false
+ProgressionOnRowf     : 0 # 0: no progression, 1-5: item sets in logic (irrelevant if IncludeShops:false)
 ProgressionOnMerlow   : false # irrelevant if IncludeShops:false
 IncludePanels         : false
 IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle

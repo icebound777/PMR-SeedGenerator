@@ -72,7 +72,7 @@ class OptionSet:
         self.include_coins_foliage = True
         self.include_coins_favors = False
         self.include_shops = bool(get_option_default_value("IncludeShops"))
-        self.progression_on_rowf = True
+        self.progression_on_rowf = 5
         self.progression_on_merlow = True
         self.include_panels = bool(get_option_default_value("IncludePanels"))
         self.include_favors_mode = IncludeFavorsMode.NOT_RANDOMIZED
@@ -1062,7 +1062,10 @@ class OptionSet:
         basic_assert("IncludeCoinsFoliage", bool)
         basic_assert("IncludeCoinsFavors", bool)
         basic_assert("IncludeShops", bool)
-        basic_assert("ProgressionOnRowf", bool)
+        if "ProgressionOnRowf" in options_dict:
+            assert (    isinstance(options_dict["ProgressionOnRowf"], int)
+                    and 0 <= options_dict["ProgressionOnRowf"] <= 5
+            )
         basic_assert("ProgressionOnMerlow", bool)
         basic_assert("IncludePanels", bool)
         basic_assert("IncludeFavorsMode", int)
