@@ -94,12 +94,12 @@ from maps.graph_edges.glitched_logic.tik_island_pipe_blooper_skip import \
     edges_tik_add_island_pipe_blooper_skip
 from maps.graph_edges.glitched_logic.tik_parakarryless_sewer_star_piece import \
     edges_tik_add_parakarryless_sewer_star_piece
-from maps.graph_edges.glitch_logic.tik_clippy_sewers_upgrade_block import \
+from maps.graph_edges.glitched_logic.tik_clippy_sewers_upgrade_block import \
     edges_tik_add_clippy_sewers_upgrade_block
 from maps.graph_edges.glitched_logic.tik_sewer_blocks_without_ultra_boots import \
     edges_tik_add_sewer_blocks_without_ultra_boots
 from maps.graph_edges.glitched_logic.tik_chapter_7_bridge_with_super_boots import \
-    edges_tik_add_blocks_to_shiver_city_super_boots
+    edges_tik_add_chapter_7_bridge_with_super_boots
 from maps.graph_edges.glitched_logic.tik_clippy_boots import \
     edges_tik_add_clippy_boots_metal_block_skip, edges_tik_add_clippy_boots_stone_block_skip
 from maps.graph_edges.glitched_logic.tik_first_block_to_shiver_city_without_super_boots import \
@@ -281,7 +281,7 @@ from maps.graph_edges.glitched_logic.sam_sushieless_warehouse_key import \
 # Glitched Logic - Crystal Palace
 from maps.graph_edges.glitched_logic.pra_mirror_clip import \
     edges_pra_add_mirror_clip_laki
-from maps.graph_edges.glitch_logic.pra_kooper_puzzle_skip import \
+from maps.graph_edges.glitched_logic.pra_kooper_puzzle_skip import \
     edges_pra_add_kooper_puzzle_skip
 
 # Glitched Logic - Bowser's Castle
