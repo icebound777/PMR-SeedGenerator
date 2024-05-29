@@ -208,6 +208,8 @@ from maps.graph_edges.glitched_logic.omo_parakarryless_blue_station_star_piece i
     edges_omo_add_parakarryless_blue_station_star_piece
 from maps.graph_edges.glitched_logic.omo_bowless_green_station import \
     edges_omo_add_bowless_green_station_laki
+from maps.graph_edges.glitched_logic.omo_clippy_green_station_coin_block import \
+    edges_omo_clippy_green_station_coin_block
 from maps.graph_edges.glitched_logic.omo_kooperless_red_station_shooting_star import \
     edges_omo_add_red_station_shooting_star_parakarry
 from maps.graph_edges.glitched_logic.omo_gearless_red_station_shooting_star import \
@@ -411,7 +413,8 @@ def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
 
 def get_partner_upgrade_shuffle(
     world_graph: dict,
-    shuffle_blocks: bool
+    shuffle_blocks: bool,
+    glitch_settings: GlitchOptionSet
 ) -> (dict, list):
     """
     Returns the modified world graph itself for Partner Upgrade Shuffle,
@@ -422,6 +425,12 @@ def get_partner_upgrade_shuffle(
         shuffle_blocks,
         supers_are_yellow=True
     )
+
+    # handle upgrade block glitch logic first
+    if glitch_settings.clippy_sewers_upgrade_block:
+        edges_tik_add_partnerupgrades.extend(edges_tik_add_clippy_sewers_upgrade_block)
+    if glitch_settings.clippy_green_station_coin_block:
+        edges_omo_add_partnerupgrades.extend(edges_omo_clippy_green_station_coin_block)
 
     edges_partner_upgrade = []
     edges_partner_upgrade.extend(edges_arn_add_partnerupgrades)
@@ -629,8 +638,6 @@ def get_glitched_logic(
         all_new_edges.extend(edges_tik_add_island_pipe_blooper_skip)
     if glitch_settings.parakarryless_sewer_star_piece:
         all_new_edges.extend(edges_tik_add_parakarryless_sewer_star_piece)
-    if glitch_settings.clippy_sewers_upgrade_block:
-        all_new_edges.extend(edges_tik_add_clippy_sewers_upgrade_block)
     if glitch_settings.sewer_blocks_without_ultra_boots:
         all_new_edges.extend(edges_tik_add_sewer_blocks_without_ultra_boots)
     if glitch_settings.chapter_7_bridge_with_super_boots:

@@ -882,6 +882,8 @@ class OptionSet:
             self.glitch_settings.gourmet_guy_skip_parakarry = options_dict.get("GourmetGuySkipParakarry")
         if "BowlessGreenStation" in options_dict:
             self.glitch_settings.bowless_green_station = options_dict.get("BowlessGreenStation")
+        if "ClippyGreenStationCoinBlock" in options_dict:
+            self.glitch_settings.clippy_green_station_coin_block = options_dict.get("ClippyGreenStationCoinBlock")
         if "KooperlessRedStationShootingStar" in options_dict:
             self.glitch_settings.kooperless_red_station_shooting_star = options_dict.get("KooperlessRedStationShootingStar")
         if "GearlessRedStationShootingStar" in options_dict:
@@ -1471,6 +1473,7 @@ class OptionSet:
         basic_assert("GourmetGuySkipLaki", bool)
         basic_assert("GourmetGuySkipParakarry", bool)
         basic_assert("BowlessGreenStation", bool)
+        basic_assert("ClippyGreenStationCoinBlock", bool)
         basic_assert("KooperlessRedStationShootingStar", bool)
         basic_assert("GearlessRedStationShootingStar", bool)
         basic_assert("ParakarrylessBlueBlockCityGap", bool)
@@ -2002,6 +2005,7 @@ class OptionSet:
         web_settings["GourmetGuySkipLaki"] = self.glitch_settings.gourmet_guy_skip_laki
         web_settings["GourmetGuySkipParakarry"] = self.glitch_settings.gourmet_guy_skip_parakarry
         web_settings["BowlessGreenStation"] = self.glitch_settings.bowless_green_station
+        web_settings["ClippyGreenStationCoinBlock"] = self.glitch_settings.clippy_green_station_coin_block
         web_settings["KooperlessRedStationShootingStar"] = self.glitch_settings.kooperless_red_station_shooting_star
         web_settings["GearlessRedStationShootingStar"] = self.glitch_settings.gearless_red_station_shooting_star
         web_settings["ParakarrylessBlueBlockCityGap"] = self.glitch_settings.parakarryless_blue_block_city_gap

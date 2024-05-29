@@ -326,6 +326,7 @@ GourmetGuySkipJump                              : false
 GourmetGuySkipLaki                              : false
 GourmetGuySkipParakarry                         : false
 BowlessGreenStation                             : false
+ClippyGreenStationCoinBlock                     : false
 KooperlessRedStationShootingStar                : false
 GearlessRedStationShootingStar                  : false
 ParakarrylessBlueBlockCityGap                   : false

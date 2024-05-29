@@ -96,6 +96,7 @@ class GlitchOptionSet():
         self.gourmet_guy_skip_laki = False
         self.gourmet_guy_skip_parakarry = False
         self.bowless_green_station = False
+        self.clippy_green_station_coin_block = False
         self.kooperless_red_station_shooting_star = False
         self.gearless_red_station_shooting_star = False
         self.parakarryless_blue_block_city_gap = False

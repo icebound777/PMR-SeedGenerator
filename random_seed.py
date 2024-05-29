@@ -142,7 +142,8 @@ class RandomSeed:
                 if self.rando_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF:
                     modified_world_graph, self.placed_blocks = get_partner_upgrade_shuffle(
                         modified_world_graph,
-                        self.rando_settings.shuffle_blocks
+                        self.rando_settings.shuffle_blocks,
+                        self.rando_settings.glitch_settings
                     )
 
                 # Cull unneeded data from world graph if access to maps was
