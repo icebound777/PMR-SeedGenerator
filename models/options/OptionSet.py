@@ -16,7 +16,8 @@ from rando_enums.enum_options import (
     StartingHammer,
     MerlowRewardPricing,
     MusicRandomizationType,
-    PartnerUpgradeShuffle
+    PartnerUpgradeShuffle,
+    PartnerShuffle,
 )
 from models.options.PaletteOptionSet import PaletteOptionSet
 from models.options.MysteryOptionSet import MysteryOptionSet
@@ -147,7 +148,7 @@ class OptionSet:
         self.start_with_sushie = bool(get_option_default_value("StartWithSushie"))
         self.start_with_lakilester = bool(get_option_default_value("StartWithLakilester"))
 
-        self.partners_in_default_locations = True
+        self.partner_shuffle = PartnerShuffle.VANILLA
         self.partners_always_usable = bool(get_option_default_value("PartnersAlwaysUsable"))
         self.random_partners = False
         self.random_partners_min = 1
@@ -473,8 +474,8 @@ class OptionSet:
                 elif partner == "Lakilester":
                     self.start_with_lakilester = start_with_partner
 
-        if "PartnersInDefaultLocations" in options_dict:
-            self.partners_in_default_locations = options_dict.get("PartnersInDefaultLocations")
+        if "PartnerShuffle" in options_dict:
+            self.partner_shuffle = options_dict.get("PartnerShuffle")
         if "PartnersAlwaysUsable" in options_dict:
             self.partners_always_usable = options_dict.get("PartnersAlwaysUsable")
         if "StartWithRandomPartners" in options_dict:
@@ -1219,7 +1220,10 @@ class OptionSet:
                     and all(isinstance(value, bool) for value in options_dict.get("StartWithPartners").values())
                     and any(value for value in options_dict.get("StartWithPartners").values()))
 
-        basic_assert("PartnersInDefaultLocations", bool)
+        if "PartnerShuffle" in options_dict:
+            assert (    isinstance(options_dict["PartnerShuffle"], int)
+                    and PartnerShuffle.VANILLA <= options_dict["PartnerShuffle"] <= PartnerShuffle.ANYWHERE
+            )
         basic_assert("PartnersAlwaysUsable", bool)
         basic_assert("StartWithRandomPartners", bool)
         if "RandomPartnersMin" in options_dict:
@@ -1747,7 +1751,7 @@ class OptionSet:
         web_settings["RandomQuiz"] = self.random_quiz
         web_settings["SkipQuiz"] = self.skip_quiz
         web_settings["QuizmoAlwaysAppears"] = self.quizmo_always_appears
-        web_settings["PartnersInDefaultLocations"] = self.partners_in_default_locations
+        web_settings["PartnerShuffle"] = self.partner_shuffle
         web_settings["PartnersAlwaysUsable"] = self.partners_always_usable
         web_settings["StartWithRandomPartners"] = self.random_partners
         web_settings["WriteSpoilerLog"] = self.write_spoilerlog

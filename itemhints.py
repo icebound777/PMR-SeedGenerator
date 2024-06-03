@@ -1,5 +1,9 @@
 """This module handles creation of item hints for Merluvlee to offer Mario."""
-from rando_enums.enum_options import IncludeFavorsMode, IncludeLettersMode
+from rando_enums.enum_options import (
+    IncludeFavorsMode,
+    IncludeLettersMode,
+    PartnerShuffle,
+)
 
 from metadata.item_source_types import item_source_types as source_types
 from metadata.itemlocation_special \
@@ -15,7 +19,7 @@ def get_itemhints(
     allow_itemhints:bool,
     placed_items:list,
     starting_partners:list,
-    partners_in_default_locations:bool,
+    partner_shuffle:PartnerShuffle,
     do_randomize_shops:bool,
     do_randomize_panels:bool,
     favors_mode:int,
@@ -109,7 +113,7 @@ def get_itemhints(
             # Skip partner if default location or starting partner
             if (    item_node.current_item.item_name in all_partners
                 and (   item_node.current_item.item_name in starting_partners
-                     or partners_in_default_locations)
+                     or partner_shuffle != PartnerShuffle.VANILLA)
             ):
                 continue
 

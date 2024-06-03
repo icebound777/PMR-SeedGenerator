@@ -126,7 +126,7 @@ StartWithPartners: { # ignored if StartWithRandomPartners true
     Lakilester: false
 }
 
-PartnersInDefaultLocations: true
+PartnerShuffle            : 0 # 0: vanilla, 1: shuffled, 2: partners anywhere
 PartnersAlwaysUsable      : true
 StartWithRandomPartners   : false
 RandomPartnersMin         : 1 # 1-8

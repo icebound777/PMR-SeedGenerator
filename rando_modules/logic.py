@@ -19,7 +19,8 @@ from rando_enums.enum_options import (
     StartingHammer,
     IncludeFavorsMode,
     IncludeLettersMode,
-    PartnerUpgradeShuffle
+    PartnerUpgradeShuffle,
+    PartnerShuffle,
 )
 
 from rando_modules.modify_itempool \
@@ -50,6 +51,7 @@ from metadata.item_exclusion \
     import exclude_due_to_settings, exclude_from_taycet_placement
 from metadata.item_general import taycet_items, progressive_badges
 from metadata.node_exclusion import exclude_from_trap_placement
+from metadata.partners_meta import all_partners
 
 from metadata.verbose_area_names import verbose_area_names
 from metadata.verbose_item_names import verbose_item_names
@@ -333,7 +335,7 @@ def _generate_item_pools(
     startwith_forest_open:bool,
     magical_seeds_required:int,
     keyitems_outside_dungeon:bool,
-    partners_in_default_locations:bool,
+    partner_shuffle:PartnerShuffle,
     always_speedyspin,
     always_ispy,
     always_peekaboo,
@@ -480,7 +482,7 @@ def _generate_item_pools(
                 continue
 
             if (    current_node.key_name_item == "Partner"
-                and partners_in_default_locations
+                and partner_shuffle == PartnerShuffle.VANILLA
                 and current_node.vanilla_item.item_name not in starting_partners
             ):
                 current_node.current_item = current_node.vanilla_item
@@ -839,7 +841,7 @@ def _algo_assumed_fill(
     ispy,
     peekaboo,
     partners_always_usable,
-    partners_in_default_locations,
+    partner_shuffle:PartnerShuffle,
     hidden_block_mode:int,
     keyitems_outside_dungeon:bool,
     starting_items:list,
@@ -890,7 +892,7 @@ def _algo_assumed_fill(
         startwith_forest_open,
         magical_seeds_required,
         keyitems_outside_dungeon,
-        partners_in_default_locations,
+        partner_shuffle,
         speedyspin,
         ispy,
         peekaboo,
@@ -973,6 +975,11 @@ def _algo_assumed_fill(
                     dungeon_restricted_items[item] = dungeon
         pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 
+    if partner_shuffle == PartnerShuffle.SHUFFLED:
+        pool_combined_progression_items.sort(
+            key = lambda x: x.item_name in all_partners
+        )
+
     if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
         pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
 
@@ -1039,6 +1046,18 @@ def _algo_assumed_fill(
                 )
             ]
             dungeon_restricted_items.pop(item.item_name)
+
+        if partner_shuffle == PartnerShuffle.SHUFFLED:
+            if item.item_type == "PARTNER":
+                candidate_locations = [
+                    node for node in candidate_locations
+                    if node.vanilla_item.item_type == "PARTNER"
+                ]
+            else:
+                candidate_locations = [
+                    node for node in candidate_locations
+                    if node.vanilla_item.item_type != "PARTNER"
+                ]
 
         if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
             # Note: Boots 1 (Jumpless start) has to be placed elsewhere, as all
@@ -1331,7 +1350,7 @@ def place_items(
     ispy,
     peekaboo,
     partners_always_usable:bool,
-    partners_in_default_locations,
+    partner_shuffle:PartnerShuffle,
     hidden_block_mode:int,
     keyitems_outside_dungeon:bool,
     starting_items:list,
@@ -1401,7 +1420,7 @@ def place_items(
             ispy,
             peekaboo,
             partners_always_usable,
-            partners_in_default_locations,
+            partner_shuffle,
             hidden_block_mode,
             keyitems_outside_dungeon,
             starting_items,

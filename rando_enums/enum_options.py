@@ -95,3 +95,9 @@ class PartnerUpgradeShuffle(IntEnum):
     OFF = 0
     SUPERBLOCKLOCATIONS = 1
     FULL = 2
+
+@unique
+class PartnerShuffle(IntEnum):
+    VANILLA = 0
+    SHUFFLED = 1
+    ANYWHERE = 2
