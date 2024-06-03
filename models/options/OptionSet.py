@@ -18,6 +18,7 @@ from rando_enums.enum_options import (
     MusicRandomizationType,
     PartnerUpgradeShuffle,
     PartnerShuffle,
+    DojoShuffle,
 )
 from models.options.PaletteOptionSet import PaletteOptionSet
 from models.options.MysteryOptionSet import MysteryOptionSet
@@ -79,7 +80,7 @@ class OptionSet:
         self.include_favors_mode = IncludeFavorsMode.NOT_RANDOMIZED
         self.include_letters_mode = IncludeLettersMode.NOT_RANDOMIZED
         self.include_radiotradeevent = False
-        self.include_dojo = False
+        self.include_dojo = DojoShuffle.OFF
         self.keyitems_outside_dungeon = True
         self.keyitems_outside_chapter = True # "Keysanity" # false -> NYI
 
@@ -589,7 +590,7 @@ class OptionSet:
             map_tracker_bits += 0x40
         if self.include_coins_foliage:
             map_tracker_bits += 0x80
-        if self.include_dojo:
+        if self.include_dojo != DojoShuffle.OFF:
             map_tracker_bits += 0x100
         if self.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
             map_tracker_bits += 0x200
@@ -1072,7 +1073,10 @@ class OptionSet:
         basic_assert("IncludeFavorsMode", int)
         basic_assert("IncludeLettersMode", int)
         basic_assert("IncludeRadioTradeEvent", bool)
-        basic_assert("IncludeDojo", bool)
+        if "IncludeDojo" in options_dict:
+            assert (    isinstance(options_dict["IncludeDojo"], int)
+                    and DojoShuffle.OFF <= options_dict["IncludeDojo"] <= DojoShuffle.INCLUDE_MASTER3
+            )
         basic_assert("KeyitemsOutsideDungeon", bool)
         basic_assert("KeyitemsOutsideChapter", bool) #NYI
 

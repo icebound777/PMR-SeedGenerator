@@ -50,13 +50,33 @@ exclude_due_to_settings = {
     "always_peekaboo": [
         "Peekaboo",
     ],
-    "do_randomize_dojo": [
-        "FirstDegreeCard",
-        "SecondDegreeCard",
-        "ThirdDegreeCard",
-        "FourthDegreeCard",
-        "Diploma",
-    ],
+    "do_randomize_dojo": {
+        1: [ # Chan
+            "FirstDegreeCard",
+        ],
+        2: [ # Lee
+            "FirstDegreeCard",
+            "SecondDegreeCard",
+        ],
+        3: [ # Master1
+            "FirstDegreeCard",
+            "SecondDegreeCard",
+            "ThirdDegreeCard",
+        ],
+        4: [ # Master2
+            "FirstDegreeCard",
+            "SecondDegreeCard",
+            "ThirdDegreeCard",
+            "FourthDegreeCard",
+        ],
+        5: [ # Master3
+            "FirstDegreeCard",
+            "SecondDegreeCard",
+            "ThirdDegreeCard",
+            "FourthDegreeCard",
+            "Diploma",
+        ],
+    },
     "do_progressive_badges": [
         "SmashCharge0",
         "SmashCharge",

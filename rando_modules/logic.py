@@ -21,6 +21,7 @@ from rando_enums.enum_options import (
     IncludeLettersMode,
     PartnerUpgradeShuffle,
     PartnerShuffle,
+    DojoShuffle,
 )
 
 from rando_modules.modify_itempool \
@@ -220,7 +221,7 @@ def _find_new_nodes_and_edges(
 
 
 def get_items_to_exclude(
-    do_randomize_dojo:bool,
+    do_randomize_dojo:DojoShuffle,
     starting_partners:list,
     startwith_bluehouse_open:bool,
     startwith_forest_open:bool,
@@ -241,8 +242,8 @@ def get_items_to_exclude(
     """
     excluded_items = []
 
-    if do_randomize_dojo:
-        for item_name in exclude_due_to_settings.get("do_randomize_dojo"):
+    if do_randomize_dojo != DojoShuffle.OFF:
+        for item_name in exclude_due_to_settings["do_randomize_dojo"][do_randomize_dojo]:
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
     for partner_string in starting_partners:
@@ -326,7 +327,7 @@ def _generate_item_pools(
     randomize_favors_mode:int,
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
-    do_randomize_dojo:bool,
+    do_randomize_dojo:DojoShuffle,
     gear_shuffle_mode:int,
     randomize_consumable_mode:int,
     item_quality:int,
@@ -467,8 +468,8 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if (   current_node_id in dojo_locations
-                and not do_randomize_dojo
+            if (    current_node_id in dojo_locations[5] # all dojo locations
+                and current_node_id not in dojo_locations[do_randomize_dojo]
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -819,7 +820,7 @@ def _algo_assumed_fill(
     randomize_favors_mode:int,
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
-    do_randomize_dojo,
+    do_randomize_dojo:DojoShuffle,
     gear_shuffle_mode:int,
     randomize_consumable_mode:int,
     item_quality,
@@ -1328,7 +1329,7 @@ def place_items(
     randomize_favors_mode:int,
     randomize_letters_mode:int,
     do_randomize_radiotrade:bool,
-    do_randomize_dojo,
+    do_randomize_dojo:DojoShuffle,
     gear_shuffle_mode:int,
     randomize_consumable_mode:int,
     item_quality,

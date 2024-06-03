@@ -51,7 +51,7 @@ IncludePanels         : true
 IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
 IncludeLettersMode    : 0 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
 IncludeRadioTradeEvent: false
-IncludeDojo           : false
+IncludeDojo           : 0 # 0: don't shuffle, 1-5: Chan-Master3
 KeyitemsOutsideDungeon: false
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
