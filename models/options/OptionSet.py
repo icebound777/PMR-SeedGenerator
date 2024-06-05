@@ -16,7 +16,8 @@ from rando_enums.enum_options import (
     StartingHammer,
     MerlowRewardPricing,
     MusicRandomizationType,
-    PartnerUpgradeShuffle
+    PartnerUpgradeShuffle,
+    SeedGoal
 )
 from models.options.PaletteOptionSet import PaletteOptionSet
 from models.options.MysteryOptionSet import MysteryOptionSet
@@ -168,13 +169,14 @@ class OptionSet:
         self.require_specific_spirits = False
         self.shuffle_starbeam = False
         self.starbeam_location = area_name_id_map["HOS"]
+        self.starbeam_spirits_needed = get_option_default_value("StarBeamSpiritsNeeded")
+        self.starbeam_powerstars_needed = get_option_default_value("StarBeamPowerStarsNeeded")
         self.limit_chapter_logic = False
         self.starway_spirits_needed_encoded = get_option_default_value("StarWaySpiritsNeededEnc")
         self.bowsers_castle_mode = get_option_default_value("BowsersCastleMode")
-        self.star_hunt = bool(get_option_default_value("StarHunt"))
-        self.star_hunt_required = get_option_default_value("StarHuntRequired")
+        self.starway_powerstars_needed = get_option_default_value("StarWayPowerStarsNeeded")
         self.star_hunt_total = get_option_default_value("StarHuntTotal")
-        self.star_hunt_ends_game = bool(get_option_default_value("StarHuntEndsGame"))
+        self.seed_goal = get_option_default_value("SeedGoal")
 
         # Entrance Shuffle
         self.shuffle_dungeon_rooms = bool(get_option_default_value("ShuffleDungeonRooms"))
@@ -515,18 +517,20 @@ class OptionSet:
         # auto-set, not changeable via settings
         #if "StarBeamArea" in options_dict:
         #    self.starbeam_location = options_dict.get("StarBeamArea")
+        if "StarBeamSpiritsNeeded" in options_dict:
+            self.starbeam_spirits_needed = options_dict.get("StarBeamSpiritsNeeded")
+        if "StarBeamPowerStarsNeeded" in options_dict:
+            self.starbeam_powerstars_needed = options_dict.get("StarBeamPowerStarsNeeded")
         if "LimitChapterLogic" in options_dict:
             self.limit_chapter_logic = options_dict.get("LimitChapterLogic")
         if "BowsersCastleMode" in options_dict:
             self.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
-        if "StarHunt" in options_dict:
-            self.star_hunt = options_dict.get("StarHunt")
-        if "StarHuntRequired" in options_dict:
-            self.star_hunt_required = options_dict.get("StarHuntRequired")
+        if "StarWayPowerStarsNeeded" in options_dict:
+            self.starway_powerstars_needed = options_dict.get("StarWayPowerStarsNeeded")
         if "StarHuntTotal" in options_dict:
             self.star_hunt_total = options_dict.get("StarHuntTotal")
-        if "StarHuntEndsGame" in options_dict:
-            self.star_hunt_ends_game = options_dict.get("StarHuntEndsGame")
+        if "SeedGoal" in options_dict:
+            self.seed_goal = options_dict.get("SeedGoal")
 
         # Entrance Shuffle
         if "ShuffleDungeonRooms" in options_dict:
@@ -1249,7 +1253,10 @@ class OptionSet:
             )
 
         # Pre-opened areas
-        basic_assert("MagicalSeedsRequired", int)
+        if "MagicalSeedsRequired" in options_dict:
+            assert (    isinstance(options_dict["MagicalSeedsRequired"], int)
+                    and -1 <= options_dict["MagicalSeedsRequired"] <= 4
+            )
         basic_assert("PrologueOpen", bool)
         basic_assert("BlueHouseOpen", bool)
         basic_assert("MtRuggedOpen", bool)
@@ -1264,33 +1271,61 @@ class OptionSet:
                     and -1 <= options_dict.get("StarWaySpiritsNeededCnt") <= 7)
         basic_assert("RequireSpecificSpirits", bool)
         basic_assert("ShuffleStarBeam", bool)
+        if "StarBeamSpiritsNeeded" in options_dict:
+            assert (    isinstance(options_dict.get("StarBeamSpiritsNeeded"), int)
+                    and -1 <= options_dict.get("StarBeamSpiritsNeeded") <= 7)
+        if "StarBeamPowerStarsNeeded" in options_dict:
+            assert (    isinstance(options_dict.get("StarBeamPowerStarsNeeded"), int)
+                    and 0 <= options_dict.get("StarBeamPowerStarsNeeded") <= 120
+            )
+            try:
+                if (    "ShuffleItems" in options_dict
+                    and not options_dict.get("ShuffleItems")
+                ):
+                    assert (options_dict.get("StarBeamPowerStarsNeeded") == 0)
+            except AssertionError:
+                raise ValueError(
+                    "No item shuffle but star hunt is not a valid setting-combination!",
+                )
         if "LimitChapterLogic" in options_dict:
             assert (    isinstance(options_dict.get("LimitChapterLogic"), bool)
                     and not (    options_dict["LimitChapterLogic"]
                              and (   options_dict.get("KeyitemsOutsideDungeon") is None
                                   or not options_dict["KeyitemsOutsideDungeon"])))
+            try:
+                assert (not (    options_dict["LimitChapterLogic"]
+                             and options_dict.get("StarBeamSpiritsNeeded") is not None
+                             and options_dict["StarBeamSpiritsNeeded"] != 0
+                        )
+                )
+            except:
+                raise ValueError(
+                    "LCL does not support requiring more than zero spirits for Star Beam!",
+                )
         basic_assert("BowsersCastleMode", int)
-        if "StarHunt" in options_dict:
-            assert isinstance(options_dict.get("StarHunt"), bool)
+        if "StarWayPowerStarsNeeded" in options_dict:
+            assert (    isinstance(options_dict.get("StarWayPowerStarsNeeded"), int)
+                    and 0 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
+            )
             try:
                 if (    "ShuffleItems" in options_dict
                     and not options_dict.get("ShuffleItems")
                 ):
-                    assert (options_dict.get("StarHunt") is False)
+                    assert (options_dict.get("StarWayPowerStarsNeeded") == 0)
             except AssertionError:
                 raise ValueError(
                     "No item shuffle but star hunt is not a valid setting-combination!",
                 )
-        if "StarHuntRequired" in options_dict:
-            assert (    isinstance(options_dict.get("StarHuntRequired"), int)
-                    and 0 <= options_dict.get("StarHuntRequired") <= 120
-            )
         if "StarHuntTotal" in options_dict:
             assert (    isinstance(options_dict.get("StarHuntTotal"), int)
                     and 0 <= options_dict.get("StarHuntTotal") <= 120
-                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarHuntRequired")
+                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarWayPowerStarsNeeded")
+                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarBeamPowerStarsNeeded")
             )
-        basic_assert("StarHuntEndsGame", bool)
+        if "SeedGoal" in options_dict:
+            assert (    isinstance(options_dict.get("SeedGoal"), int)
+                    and SeedGoal.DEFEAT_BOWSER <= options_dict.get("SeedGoal") <= SeedGoal.OPEN_STARWAY
+            )
 
         # Entrance Shuffle
         basic_assert("ShuffleDungeonRooms", bool)
@@ -1661,11 +1696,12 @@ class OptionSet:
             load_dbkey(self.starway_spirits_needed_count, "StarWaySpiritsNeededCnt"),
             load_dbkey(self.starway_spirits_needed_encoded, "StarWaySpiritsNeededEnc"),
             load_dbkey(self.starbeam_location, "StarBeamArea"),
+            load_dbkey(self.starbeam_spirits_needed, "StarBeamSpiritsNeeded"),
+            load_dbkey(self.starbeam_powerstars_needed, "StarBeamPowerStarsNeeded"),
             load_dbkey(self.bowsers_castle_mode, "BowsersCastleMode"),
-            load_dbkey(self.star_hunt, "StarHunt"),
-            load_dbkey(self.star_hunt_required, "StarHuntRequired"),
+            load_dbkey(self.starway_powerstars_needed, "StarWayPowerStarsNeeded"),
             load_dbkey(self.star_hunt_total, "StarHuntTotal"),
-            load_dbkey(self.star_hunt_ends_game, "StarHuntEndsGame"),
+            load_dbkey(self.seed_goal, "SeedGoal"),
 
             # Entrance Shuffle
             load_dbkey(self.shuffle_dungeon_rooms, "ShuffleDungeonRooms"),
@@ -1839,6 +1875,8 @@ class OptionSet:
         web_settings["StarWaySpiritsNeededCnt"] = self.starway_spirits_needed_count
         web_settings["RequireSpecificSpirits"] = self.require_specific_spirits
         web_settings["ShuffleStarBeam"] = self.shuffle_starbeam
+        web_settings["StarBeamSpiritsNeeded"] = self.starbeam_spirits_needed
+        web_settings["StarBeamPowerStarsNeeded"] = self.starbeam_powerstars_needed
         web_settings["LimitChapterLogic"] = self.limit_chapter_logic
         web_settings["BadgeSynergy"] = self.badge_synergy
         web_settings["FoliageItemHints"] = self.foliage_item_hints
@@ -1878,9 +1916,8 @@ class OptionSet:
         web_settings["MirrorMode"] = self.mirror_mode
         web_settings["StaticMapMirroring"] = self.static_mirroring
 
-        web_settings["StarHunt"] = self.star_hunt
-        web_settings["StarHuntEndsGame"] = self.star_hunt_ends_game
-        web_settings["StarHuntRequired"] = self.star_hunt_required
+        web_settings["SeedGoal"] = self.seed_goal
+        web_settings["StarWayPowerStarsNeeded"] = self.starway_powerstars_needed
         web_settings["StarHuntTotal"] = self.star_hunt_total
 
         if self.random_partners:

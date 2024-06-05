@@ -9,9 +9,11 @@ from worldgraph import adjust
 
 from rando_modules.random_blocks import get_block_placement
 
-from rando_enums.enum_options import \
-    GearShuffleMode,\
-    BowserCastleMode
+from rando_enums.enum_options import (
+    GearShuffleMode,
+    BowserCastleMode,
+    SeedGoal
+)
 
 # Imports: Modify Bowser's Castle
 from maps.graph_edges.bc_shorten.edges_kpa import \
@@ -32,11 +34,10 @@ from maps.graph_edges.gear_location_shuffle.edges_tik import \
     edges_tik_remove as edges_tik_gls_remove
 
 # Imports: Star Hunt
-from maps.graph_edges.star_hunt.edges_hos import \
-    edges_hos_starhunt_add,\
-    edges_hos_starhunt_remove,\
-    edges_hos_starhunt2credits_add,\
-    edges_hos_starhunt2credits_remove
+from maps.graph_edges.goal_openstarway.edges_hos import (
+    edges_hos_goal_openstarway_add,
+    edges_hos_goal_openstarway_remove
+)
 
 # Imports: Partner Upgrade Shuffle
 from rando_enums.enum_types import BlockType
@@ -351,39 +352,6 @@ def get_bowsercastle_bossrush(world_graph: dict):
     return entrance_modifications, world_graph
 
 
-def get_starhunt(
-    world_graph: dict,
-    power_stars_placed: int,
-    star_hunt_triggers_credits: bool
-):
-    """
-    Returns the modified world graph itself for Star Hunt,
-    which either removes ch8 or changes the Star Way requirements.
-    """
-    all_new_edges = []
-    all_edges_to_remove = []
-    entrance_modifications = []
-
-    all_new_edges.extend(deepcopy(edges_hos_starhunt_add))
-    all_edges_to_remove.extend(edges_hos_starhunt_remove)
-
-    # always expect all power stars before ch8, else some get placed behind
-    # the edge they lock
-    all_new_edges[0]["reqs"].extend([[{"powerstars": power_stars_placed}]])
-
-    if star_hunt_triggers_credits:
-        all_new_edges.extend(edges_hos_starhunt2credits_add)
-        all_edges_to_remove.extend(edges_hos_starhunt2credits_remove)
-
-    world_graph, entrance_modifications = adjust(
-        world_graph,
-        new_edges=all_new_edges,
-        edges_to_remove=all_edges_to_remove
-    )
-
-    return entrance_modifications, world_graph
-
-
 def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     """
     Returns the modified world graph itself for Gear Location Shuffle and Full Shuffle,
@@ -467,23 +435,151 @@ def get_partner_upgrade_shuffle(
     return world_graph, block_placement
 
 
-def get_specific_spirits(world_graph: dict, chosen_spirits: list) -> dict:
+def set_starway_requirements(
+    world_graph: dict,
+    spirits_needed: int,
+    specific_spirits: list,
+    power_stars_placed: int,
+    seed_goal: SeedGoal
+) -> dict:
     """
-    Returns the modified world graph itself for specific spirits,
-    which adjusts how the chapter 8 access gets handled.
+    Returns the modified world graph itself, modified to set the spirits
+    required to enter Star Way.
     """
-    new_requirements = [["can_climb_steps"]]
+    added_requirements = []
+    entrance_modifications = []
 
+    # set number of spirits needed
+    if spirits_needed > 0:
+        added_requirements.append([{"starspirits": spirits_needed}])
+
+    # set specific spirits, if required
     # the logic knows the spirits as "STARSPIRIT_X", where X is in 1-7
-    for spirit_number in chosen_spirits:
-        new_requirements.append([f"STARSPIRIT_{spirit_number}"])
+    for spirit_number in specific_spirits:
+        added_requirements.append([f"STARSPIRIT_{spirit_number}"])
 
+    if power_stars_placed > 0:
+        # always expect all power stars before ch8, else some get placed behind
+        # the edge they lock
+        added_requirements.append([{"powerstars": power_stars_placed}])
+
+    if seed_goal == SeedGoal.OPEN_STARWAY:
+        world_graph, entrance_modifications = adjust(
+            world_graph,
+            new_edges=edges_hos_goal_openstarway_add,
+            edges_to_remove=edges_hos_goal_openstarway_remove
+        )
+
+    # find Star Way edge and modify its requirements
     for index, entrance in enumerate(world_graph["HOS_01/0"]["edge_list"]):
         if (    entrance["to"]["map"] == "HOS_01"
             and entrance["to"]["id"] == 1
         ):
-            world_graph["HOS_01/0"]["edge_list"][index]["reqs"].clear()
-            world_graph["HOS_01/0"]["edge_list"][index]["reqs"] = new_requirements
+            world_graph["HOS_01/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            #print(world_graph["HOS_01/0"]["edge_list"][index]["reqs"])
+            break
+
+    # add requirements to chapter 8 jr. troopa and both bowser battles, so the
+    # logic doesn't require going through them too early
+
+    ## ch8 jr. troopa
+    for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_83"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_83"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## hallway bowser
+    for index, entrance in enumerate(world_graph["KKJ_13/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_13"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["KKJ_13/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    for index, entrance in enumerate(world_graph["KKJ_13/1"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_13"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KKJ_13/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## final bowser
+    for index, entrance in enumerate(world_graph["KKJ_25/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_25"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KKJ_25/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+
+    return entrance_modifications, world_graph
+
+
+def set_starbeam_requirements(
+    world_graph: dict,
+    spirits_needed: int,
+    powerstars_placed: int,
+) -> dict:
+    """
+    Returns the modified world graph itself, modified to set the spirits
+    and power stars required to collect the Star Beam item location.
+    """
+    added_requirements = []
+
+    if spirits_needed > 0:
+        added_requirements.append([{"starspirits": spirits_needed}])
+    if powerstars_placed > 0:
+        added_requirements.append([{"powerstars": powerstars_placed}])
+
+    # find Star Beam edge and modify its requirements
+    for index, entrance in enumerate(world_graph["HOS_05/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "HOS_05"
+            and entrance["to"]["id"] == "GiftA"
+        ):
+            world_graph["HOS_05/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            #print(world_graph["HOS_05/0"]["edge_list"][index]["reqs"])
+            break
+
+    # add requirements to chapter 8 jr. troopa and both bowser battles, so the
+    # logic doesn't require going through them too early.
+    # this will add onto requirements placed by set_starway_requirements
+
+    ## ch8 jr. troopa
+    for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_83"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_83"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## hallway bowser
+    for index, entrance in enumerate(world_graph["KKJ_13/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_13"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["KKJ_13/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    for index, entrance in enumerate(world_graph["KKJ_13/1"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_13"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KKJ_13/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## final bowser
+    for index, entrance in enumerate(world_graph["KKJ_25/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_25"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KKJ_25/0"]["edge_list"][index]["reqs"].extend(added_requirements)
             break
 
     return world_graph

@@ -133,7 +133,7 @@ RandomPartnersMin         : 1 # 1-8
 RandomPartnersMax         : 1 # 1-8
 
 # Pre-opened areas
-MagicalSeedsRequired: 2 # 5:random
+MagicalSeedsRequired: 2 # -1:Random
 PrologueOpen        : false
 BlueHouseOpen       : false
 MtRuggedOpen        : false
@@ -146,12 +146,13 @@ Ch7BridgeVisible    : true
 StarWaySpiritsNeededCnt: 7 # -1:Random
 RequireSpecificSpirits : false # always false if StarWaySpiritsNeededCnt: 7
 ShuffleStarBeam        : false
+StarBeamSpiritsNeeded  : 0 # -1:Random
+StarBeamPowerStarsNeeded: 0
 LimitChapterLogic      : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
 BowsersCastleMode      : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
-StarHunt               : false
-StarHuntRequired       : 50 # max 120
-StarHuntTotal          : 70 # max 120, must be >= StarHuntRequired
-StarHuntEndsGame       : true
+StarWayPowerStarsNeeded: 0 # max 120
+StarHuntTotal          : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded
+SeedGoal               : 0 # 0: Defeat Bowser, 1: Open StarWay
 
 # Entrance Shuffle
 ShuffleDungeonRooms     : false # NYI

@@ -95,3 +95,8 @@ class PartnerUpgradeShuffle(IntEnum):
     OFF = 0
     SUPERBLOCKLOCATIONS = 1
     FULL = 2
+
+@unique
+class SeedGoal(IntEnum):
+    DEFEAT_BOWSER = 0
+    OPEN_STARWAY = 1
