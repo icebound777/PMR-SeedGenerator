@@ -752,8 +752,12 @@ class OptionSet:
             self.glitch_settings.island_pipe_blooper_skip = options_dict.get("IslandPipeBlooperSkip")
         if "ParakarrylessSewerStarPiece" in options_dict:
             self.glitch_settings.parakarryless_sewer_star_piece = options_dict.get("ParakarrylessSewerStarPiece")
+        if "ClippySewersUpgradeBlock" in options_dict:
+            self.glitch_settings.clippy_sewers_upgrade_block = options_dict.get("ClippySewersUpgradeBlock")
         if "SewerBlocksWithoutUltraBoots" in options_dict:
             self.glitch_settings.sewer_blocks_without_ultra_boots = options_dict.get("SewerBlocksWithoutUltraBoots")
+        if "Chapter7BridgeWithSuperBoots" in options_dict:
+            self.glitch_settings.chapter_7_bridge_with_super_boots = options_dict.get("Chapter7BridgeWithSuperBoots")
         if "FirstBlockToShiverCityWithoutSuperBoots" in options_dict:
             self.glitch_settings.first_block_to_shiver_city_without_super_boots = options_dict.get("FirstBlockToShiverCityWithoutSuperBoots")
         if "BlocksToShiverCityWithKooperShellItemThrow" in options_dict:
@@ -825,6 +829,8 @@ class OptionSet:
             self.glitch_settings.parakarryless_super_hammer_room_normal_boots = options_dict.get("ParakarrylessSuperHammerRoomNormalBoots")
         if "RuinsLocksSkipClippy" in options_dict:
             self.glitch_settings.ruins_locks_skip_clippy = options_dict.get("RuinsLocksSkipClippy")
+        if "RuinsStoneSkip" in options_dict:
+            self.glitch_settings.ruins_stone_skip = options_dict.get("RuinsStoneSkip")
 
         if "ForeverForestBackwards" in options_dict:
             self.glitch_settings.forever_forest_backwards = options_dict.get("ForeverForestBackwards")
@@ -876,6 +882,8 @@ class OptionSet:
             self.glitch_settings.gourmet_guy_skip_parakarry = options_dict.get("GourmetGuySkipParakarry")
         if "BowlessGreenStation" in options_dict:
             self.glitch_settings.bowless_green_station = options_dict.get("BowlessGreenStation")
+        if "ClippyGreenStationCoinBlock" in options_dict:
+            self.glitch_settings.clippy_green_station_coin_block = options_dict.get("ClippyGreenStationCoinBlock")
         if "KooperlessRedStationShootingStar" in options_dict:
             self.glitch_settings.kooperless_red_station_shooting_star = options_dict.get("KooperlessRedStationShootingStar")
         if "GearlessRedStationShootingStar" in options_dict:
@@ -888,6 +896,8 @@ class OptionSet:
             self.glitch_settings.blue_switch_skip_ultra_boots = options_dict.get("BlueSwitchSkipUltraBoots")
         if "RedBarricadeSkip" in options_dict:
             self.glitch_settings.red_barricade_skip = options_dict.get("RedBarricadeSkip")
+        if "WattlessDarkRoom" in options_dict:
+            self.glitch_settings.wattless_dark_room = options_dict.get("WattlessDarkRoom")
         if "HammerlessBlueStationLaki" in options_dict:
             self.glitch_settings.hammerless_blue_station_laki = options_dict.get("HammerlessBlueStationLaki")
         if "HammerlessPinkStationLaki" in options_dict:
@@ -921,7 +931,9 @@ class OptionSet:
         if "ParakarrylessFlarakarryLaki" in options_dict:
             self.glitch_settings.parakarryless_flarakarry_laki = options_dict.get("ParakarrylessFlarakarryLaki")
         if "VolcanoSushieGlitch" in options_dict:
-            self.glitch_settings.volcano_sushie_glitch = options_dict.get("VolcanoSushieGlitch")
+            self.glitch_settings.volcano_sushie_glitch_superboots = options_dict.get("VolcanoSushieGlitch")
+        if "VolcanoSushieGlitchGoombario" in options_dict:
+            self.glitch_settings.volcano_sushie_glitch_goombario = options_dict.get("VolcanoSushieGlitchGoombario")
 
         if "EarlyLakiLZS" in options_dict:
             self.glitch_settings.early_laki_lzs = options_dict.get("EarlyLakiLZS")
@@ -973,6 +985,8 @@ class OptionSet:
 
         if "MirrorClip" in options_dict:
             self.glitch_settings.mirror_clip = options_dict.get("MirrorClip")
+        if "KooperPuzzleSkip" in options_dict:
+            self.glitch_settings.kooper_puzzle_skip = options_dict.get("KooperPuzzleSkip")
 
         if "BowlessBowsersCastleBasement" in options_dict:
             self.glitch_settings.bowless_bowsers_castle_basement = options_dict.get("BowlessBowsersCastleBasement")
@@ -1389,7 +1403,9 @@ class OptionSet:
         basic_assert("ClippyBootsMetalBlockSkip", bool)
         basic_assert("IslandPipeBlooperSkip", bool)
         basic_assert("ParakarrylessSewerStarPiece", bool)
+        basic_assert("ClippySewersUpgradeBlock", bool)
         basic_assert("SewerBlocksWithoutUltraBoots", bool)
+        basic_assert("Chapter7BridgeWithSuperBoots", bool)
         basic_assert("FirstBlockToShiverCityWithoutSuperBoots", bool)
         basic_assert("BlocksToShiverCityWithKooperShellItemThrow", bool)
         basic_assert("SewerYellowBlockWithUltraBoots", bool)
@@ -1428,6 +1444,7 @@ class OptionSet:
         basic_assert("ParakarrylessSuperHammerRoomUltraBoots", bool)
         basic_assert("ParakarrylessSuperHammerRoomNormalBoots", bool)
         basic_assert("RuinsLocksSkipClippy", bool)
+        basic_assert("RuinsStoneSkip", bool)
 
         basic_assert("ForeverForestBackwards", bool)
 
@@ -1456,12 +1473,14 @@ class OptionSet:
         basic_assert("GourmetGuySkipLaki", bool)
         basic_assert("GourmetGuySkipParakarry", bool)
         basic_assert("BowlessGreenStation", bool)
+        basic_assert("ClippyGreenStationCoinBlock", bool)
         basic_assert("KooperlessRedStationShootingStar", bool)
         basic_assert("GearlessRedStationShootingStar", bool)
         basic_assert("ParakarrylessBlueBlockCityGap", bool)
         basic_assert("BlueSwitchSkipLaki", bool)
         basic_assert("BlueSwitchSkipUltraBoots", bool)
         basic_assert("RedBarricadeSkip", bool)
+        basic_assert("WattlessDarkRoom", bool)
         basic_assert("HammerlessBlueStationLaki", bool)
         basic_assert("HammerlessPinkStationLaki", bool)
 
@@ -1480,6 +1499,7 @@ class OptionSet:
         basic_assert("Flarakarry", bool)
         basic_assert("ParakarrylessFlarakarryLaki", bool)
         basic_assert("VolcanoSushieGlitch", bool)
+        basic_assert("VolcanoSushieGlitchGoombario", bool)
 
         basic_assert("EarlyLakiLZS", bool)
         basic_assert("EarlyLakiBombettePush", bool)
@@ -1507,6 +1527,7 @@ class OptionSet:
         basic_assert("SushielessWarehouseKeyKooper", bool)
 
         basic_assert("MirrorClip", bool)
+        basic_assert("KooperPuzzleSkip", bool)
 
         basic_assert("BowlessBowsersCastleBasement", bool)
         basic_assert("FastFloodRoomKooper", bool)
@@ -1906,7 +1927,9 @@ class OptionSet:
         web_settings["ClippyBootsMetalBlockSkip"] = self.glitch_settings.clippy_boots_metal_block_skip
         web_settings["IslandPipeBlooperSkip"] = self.glitch_settings.island_pipe_blooper_skip
         web_settings["ParakarrylessSewerStarPiece"] = self.glitch_settings.parakarryless_sewer_star_piece
+        web_settings["ClippySewersUpgradeBlock"] = self.glitch_settings.clippy_sewers_upgrade_block
         web_settings["SewerBlocksWithoutUltraBoots"] = self.glitch_settings.sewer_blocks_without_ultra_boots
+        web_settings["Chapter7BridgeWithSuperBoots"] = self.glitch_settings.chapter_7_bridge_with_super_boots
         web_settings["FirstBlockToShiverCityWithoutSuperBoots"] = self.glitch_settings.first_block_to_shiver_city_without_super_boots
         web_settings["BlocksToShiverCityWithKooperShellItemThrow"] = self.glitch_settings.blocks_to_shiver_city_kooper_shell_item_throw
         web_settings["SewerYellowBlockWithUltraBoots"] = self.glitch_settings.sewer_yellow_block_with_ultra_boots
@@ -1950,6 +1973,7 @@ class OptionSet:
         web_settings["ParakarrylessSuperHammerRoomUltraBoots"] = self.glitch_settings.parakarryless_super_hammer_room_ultra_boots
         web_settings["ParakarrylessSuperHammerRoomNormalBoots"] = self.glitch_settings.parakarryless_super_hammer_room_normal_boots
         web_settings["RuinsLocksSkipClippy"] = self.glitch_settings.ruins_locks_skip_clippy
+        web_settings["RuinsStoneSkip"] = self.glitch_settings.ruins_stone_skip
 
         # Glitches: Boo's Mansion
         web_settings["ForeverForestBackwards"] = self.glitch_settings.forever_forest_backwards
@@ -1981,12 +2005,14 @@ class OptionSet:
         web_settings["GourmetGuySkipLaki"] = self.glitch_settings.gourmet_guy_skip_laki
         web_settings["GourmetGuySkipParakarry"] = self.glitch_settings.gourmet_guy_skip_parakarry
         web_settings["BowlessGreenStation"] = self.glitch_settings.bowless_green_station
+        web_settings["ClippyGreenStationCoinBlock"] = self.glitch_settings.clippy_green_station_coin_block
         web_settings["KooperlessRedStationShootingStar"] = self.glitch_settings.kooperless_red_station_shooting_star
         web_settings["GearlessRedStationShootingStar"] = self.glitch_settings.gearless_red_station_shooting_star
         web_settings["ParakarrylessBlueBlockCityGap"] = self.glitch_settings.parakarryless_blue_block_city_gap
         web_settings["BlueSwitchSkipLaki"] = self.glitch_settings.blue_switch_skip_laki
         web_settings["BlueSwitchSkipUltraBoots"] = self.glitch_settings.blue_switch_skip_ultra_boots
         web_settings["RedBarricadeSkip"] = self.glitch_settings.red_barricade_skip
+        web_settings["WattlessDarkRoom"] = self.glitch_settings.wattless_dark_room
         web_settings["HammerlessBlueStationLaki"] = self.glitch_settings.hammerless_blue_station_laki
         web_settings["HammerlessPinkStationLaki"] = self.glitch_settings.hammerless_pink_station_laki
 
@@ -2006,7 +2032,8 @@ class OptionSet:
         web_settings["UltraHammerSkipSushie"] = self.glitch_settings.ultra_hammer_skip_sushie
         web_settings["Flarakarry"] = self.glitch_settings.flarakarry
         web_settings["ParakarrylessFlarakarryLaki"] = self.glitch_settings.parakarryless_flarakarry_laki
-        web_settings["VolcanoSushieGlitch"] = self.glitch_settings.volcano_sushie_glitch
+        web_settings["VolcanoSushieGlitch"] = self.glitch_settings.volcano_sushie_glitch_superboots
+        web_settings["VolcanoSushieGlitchGoombario"] = self.glitch_settings.volcano_sushie_glitch_goombario
 
         # Glitches: Flower Fields
         web_settings["EarlyLakiLZS"] = self.glitch_settings.early_laki_lzs
@@ -2037,6 +2064,7 @@ class OptionSet:
 
         # Glitches: Crystal Palace
         web_settings["MirrorClip"] = self.glitch_settings.mirror_clip
+        web_settings["KooperPuzzleSkip"] = self.glitch_settings.kooper_puzzle_skip
 
         # Glitches: Bowser's Castle
         web_settings["BowlessBowsersCastleBasement"] = self.glitch_settings.bowless_bowsers_castle_basement

@@ -256,7 +256,9 @@ ClippyBootsStoneBlockSkip                       : false
 ClippyBootsMetalBlockSkip                       : false
 IslandPipeBlooperSkip                           : false
 ParakarrylessSewerStarPiece                     : false
+ClippySewersUpgradeBlock                        : false
 SewerBlocksWithoutUltraBoots                    : false
+Chapter7BridgeWithSuperBoots                    : false
 FirstBlockToShiverCityWithoutSuperBoots         : false
 BlocksToShiverCityWithKooperShellItemThrow      : false
 SewerYellowBlockWithUltraBoots                  : false
@@ -295,6 +297,7 @@ ParakarrylessSecondSandRoomNormalBoots          : false
 ParakarrylessSuperHammerRoomUltraBoots          : false
 ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
+RuinsStoneSkip                                  : false
 
 ForeverForestBackwards                          : false
 
@@ -323,12 +326,14 @@ GourmetGuySkipJump                              : false
 GourmetGuySkipLaki                              : false
 GourmetGuySkipParakarry                         : false
 BowlessGreenStation                             : false
+ClippyGreenStationCoinBlock                     : false
 KooperlessRedStationShootingStar                : false
 GearlessRedStationShootingStar                  : false
 ParakarrylessBlueBlockCityGap                   : false
 BlueSwitchSkipLaki                              : false
 BlueSwitchSkipUltraBoots                        : false
 RedBarricadeSkip                                : false
+WattlessDarkRoom                                : false
 HammerlessBlueStationLaki                       : false
 HammerlessPinkStationLaki                       : false
 
@@ -347,6 +352,7 @@ UltraHammerSkipSushie                           : false
 Flarakarry                                      : false
 ParakarrylessFlarakarryLaki                     : false
 VolcanoSushieGlitch                             : false
+VolcanoSushieGlitchGoombario                    : false
 
 EarlyLakiLZS                                    : false
 EarlyLakiBombettePush                           : false
@@ -374,6 +380,7 @@ SushielessWarehouseKeyBombette                  : false
 SushielessWarehouseKeyKooper                    : false
 
 MirrorClip                                      : false
+KooperPuzzleSkip                                : false
 
 BowlessBowsersCastleBasement                    : false
 FastFloodRoomKooper                             : false

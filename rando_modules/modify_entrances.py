@@ -94,8 +94,12 @@ from maps.graph_edges.glitched_logic.tik_island_pipe_blooper_skip import \
     edges_tik_add_island_pipe_blooper_skip
 from maps.graph_edges.glitched_logic.tik_parakarryless_sewer_star_piece import \
     edges_tik_add_parakarryless_sewer_star_piece
+from maps.graph_edges.glitched_logic.tik_clippy_sewers_upgrade_block import \
+    edges_tik_add_clippy_sewers_upgrade_block
 from maps.graph_edges.glitched_logic.tik_sewer_blocks_without_ultra_boots import \
     edges_tik_add_sewer_blocks_without_ultra_boots
+from maps.graph_edges.glitched_logic.tik_chapter_7_bridge_with_super_boots import \
+    edges_tik_add_chapter_7_bridge_with_super_boots
 from maps.graph_edges.glitched_logic.tik_clippy_boots import \
     edges_tik_add_clippy_boots_metal_block_skip, edges_tik_add_clippy_boots_stone_block_skip
 from maps.graph_edges.glitched_logic.tik_first_block_to_shiver_city_without_super_boots import \
@@ -161,6 +165,8 @@ from maps.graph_edges.glitched_logic.isk_parakarryless_super_hammer_room import 
     edges_isk_add_parakarryless_super_hammer_room_normal_boots, edges_isk_add_parakarryless_super_hammer_room_ultra_boots
 from maps.graph_edges.glitched_logic.isk_ruins_locks_skip import \
     edges_isk_add_ruins_locks_skip_clippy
+from maps.graph_edges.glitched_logic.isk_ruins_stone_skip import \
+    edges_isk_add_ruins_stone_skip
 
 # Glitched Logic - Forever Forest
 from maps.graph_edges.glitched_logic.mim_forever_forest_backwards import \
@@ -202,6 +208,8 @@ from maps.graph_edges.glitched_logic.omo_parakarryless_blue_station_star_piece i
     edges_omo_add_parakarryless_blue_station_star_piece
 from maps.graph_edges.glitched_logic.omo_bowless_green_station import \
     edges_omo_add_bowless_green_station_laki
+from maps.graph_edges.glitched_logic.omo_clippy_green_station_coin_block import \
+    edges_omo_clippy_green_station_coin_block
 from maps.graph_edges.glitched_logic.omo_kooperless_red_station_shooting_star import \
     edges_omo_add_red_station_shooting_star_parakarry
 from maps.graph_edges.glitched_logic.omo_gearless_red_station_shooting_star import \
@@ -212,6 +220,8 @@ from maps.graph_edges.glitched_logic.omo_blue_switch_skip import \
     edges_omo_add_blue_switch_skip_laki, edges_omo_add_blue_switch_skip_ultra_boots
 from maps.graph_edges.glitched_logic.omo_red_barricade_skip import \
     edges_omo_add_red_barricade_skip
+from maps.graph_edges.glitched_logic.omo_wattless_dark_room import \
+    edges_omo_add_wattless_dark_room
 from maps.graph_edges.glitched_logic.omo_hammerless_blue_station import \
     edges_omo_add_hammerless_blue_station_laki
 from maps.graph_edges.glitched_logic.omo_hammerless_pink_station import \
@@ -223,7 +233,8 @@ from maps.graph_edges.glitched_logic.jan_raph_skip_english import \
 from maps.graph_edges.glitched_logic.jan_raph_skip_parakarry import \
     edges_jan_add_raph_skip_parakarry
 from maps.graph_edges.glitched_logic.jan_kzn_ch5_sushie_glitch import \
-    edges_jan_kzn_add_ch5_sushie_glitch, edges_kzn_add_volcano_sushie_glitch
+    edges_jan_kzn_add_ch5_sushie_glitch, edges_kzn_add_volcano_sushie_glitch, \
+    edges_kzn_add_volcano_sushie_glitch_superboots, edges_kzn_add_volcano_sushie_glitch_goombario
 from maps.graph_edges.glitched_logic.jan_sushieless_jungle_starpiece_and_letter import \
     edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs
 from maps.graph_edges.glitched_logic.jan_jumpless_deep_jungle import \
@@ -272,6 +283,8 @@ from maps.graph_edges.glitched_logic.sam_sushieless_warehouse_key import \
 # Glitched Logic - Crystal Palace
 from maps.graph_edges.glitched_logic.pra_mirror_clip import \
     edges_pra_add_mirror_clip_laki
+from maps.graph_edges.glitched_logic.pra_kooper_puzzle_skip import \
+    edges_pra_add_kooper_puzzle_skip
 
 # Glitched Logic - Bowser's Castle
 from maps.graph_edges.glitched_logic.kpa_bowless_bowsers_castle_basement import \
@@ -400,7 +413,8 @@ def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
 
 def get_partner_upgrade_shuffle(
     world_graph: dict,
-    shuffle_blocks: bool
+    shuffle_blocks: bool,
+    glitch_settings: GlitchOptionSet
 ) -> (dict, list):
     """
     Returns the modified world graph itself for Partner Upgrade Shuffle,
@@ -411,6 +425,12 @@ def get_partner_upgrade_shuffle(
         shuffle_blocks,
         supers_are_yellow=True
     )
+
+    # handle upgrade block glitch logic first
+    if glitch_settings.clippy_sewers_upgrade_block:
+        edges_tik_add_partnerupgrades.extend(edges_tik_add_clippy_sewers_upgrade_block)
+    if glitch_settings.clippy_green_station_coin_block:
+        edges_omo_add_partnerupgrades.extend(edges_omo_clippy_green_station_coin_block)
 
     edges_partner_upgrade = []
     edges_partner_upgrade.extend(edges_arn_add_partnerupgrades)
@@ -620,6 +640,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_tik_add_parakarryless_sewer_star_piece)
     if glitch_settings.sewer_blocks_without_ultra_boots:
         all_new_edges.extend(edges_tik_add_sewer_blocks_without_ultra_boots)
+    if glitch_settings.chapter_7_bridge_with_super_boots:
+        all_new_edges.extend(edges_tik_add_chapter_7_bridge_with_super_boots)
     if glitch_settings.first_block_to_shiver_city_without_super_boots:
         all_new_edges.extend(edges_tik_add_first_block_to_shiver_city_witout_super_boots)
     if glitch_settings.blocks_to_shiver_city_kooper_shell_item_throw:
@@ -696,6 +718,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_isk_add_ruins_key_laki_jump)
     if glitch_settings.ruins_locks_skip_clippy:
         all_new_edges.extend(edges_isk_add_ruins_locks_skip_clippy)
+    if glitch_settings.ruins_stone_skip:
+        all_new_edges.extend(edges_isk_add_ruins_stone_skip)
 
     # Forever Forest
     if glitch_settings.forever_forest_backwards:
@@ -764,6 +788,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_omo_add_blue_switch_skip_ultra_boots)
     if glitch_settings.red_barricade_skip:
         all_new_edges.extend(edges_omo_add_red_barricade_skip)
+    if glitch_settings.wattless_dark_room:
+        all_new_edges.extend(edges_omo_add_wattless_dark_room)
     if glitch_settings.hammerless_blue_station_laki:
         all_new_edges.extend(edges_omo_add_hammerless_blue_station_laki)
     if glitch_settings.hammerless_pink_station_laki:
@@ -798,7 +824,11 @@ def get_glitched_logic(
         all_new_edges.extend(edges_kzn_add_flarakarry_parakarry)
     if glitch_settings.parakarryless_flarakarry_laki:
         all_new_edges.extend(edges_kzn_add_flarakarry_laki)
-    if glitch_settings.volcano_sushie_glitch:
+    if glitch_settings.volcano_sushie_glitch_superboots: # super boots save block storage
+        all_new_edges.extend(edges_kzn_add_volcano_sushie_glitch_superboots)
+    if glitch_settings.volcano_sushie_glitch_goombario: # tattle save block storage
+        all_new_edges.extend(edges_kzn_add_volcano_sushie_glitch_goombario)
+    if glitch_settings.volcano_sushie_glitch_superboots or glitch_settings.volcano_sushie_glitch_goombario:
         all_new_edges.extend(edges_kzn_add_volcano_sushie_glitch)
 
     # Flower Fields
@@ -854,6 +884,8 @@ def get_glitched_logic(
     # Crystal Palace
     if glitch_settings.mirror_clip:
         all_new_edges.extend(edges_pra_add_mirror_clip_laki)
+    if glitch_settings.kooper_puzzle_skip:
+        all_new_edges.extend(edges_pra_add_kooper_puzzle_skip)
 
     # Bowser's Castle
     if bowsers_castle_mode == BowserCastleMode.VANILLA:
