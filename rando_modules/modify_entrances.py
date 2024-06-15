@@ -516,6 +516,40 @@ def set_starway_requirements(
             world_graph["KKJ_25/0"]["edge_list"][index]["reqs"].extend(added_requirements)
             break
 
+    # also add requirements to chapter 8 Koopatrol and lava switch battles, so
+    # the logic doesn't require going through them too early
+    # This is far from ideal, but an okay-ish temporary solution to having
+    # to battle chapter 8 enemies way too early
+
+    ## Koopatrol: Bowser Castle Key in lava room
+    for index, entrance in enumerate(world_graph["KPA_11/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_11"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_11/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Koopatrol: Prison 1
+    for index, entrance in enumerate(world_graph["KPA_91/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_91"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_91/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Koopatrol: Prison 2
+    for index, entrance in enumerate(world_graph["KPA_95/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_95"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_95/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Lava Control room battle
+    for index, entrance in enumerate(world_graph["KPA_16/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_16"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KPA_16/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+
     return entrance_modifications, world_graph
 
 
@@ -580,6 +614,40 @@ def set_starbeam_requirements(
             and entrance["to"]["id"] == 0
         ):
             world_graph["KKJ_25/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+
+    # also add requirements to chapter 8 Koopatrol and lava switch battles, so
+    # the logic doesn't require going through them too early
+    # This is far from ideal, but an okay-ish temporary solution to having
+    # to battle chapter 8 enemies way too early
+
+    ## Koopatrol: Bowser Castle Key in lava room
+    for index, entrance in enumerate(world_graph["KPA_11/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_11"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_11/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Koopatrol: Prison 1
+    for index, entrance in enumerate(world_graph["KPA_91/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_91"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_91/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Koopatrol: Prison 2
+    for index, entrance in enumerate(world_graph["KPA_95/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_95"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_95/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Lava Control room battle
+    for index, entrance in enumerate(world_graph["KPA_16/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_16"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KPA_16/0"]["edge_list"][index]["reqs"].extend(added_requirements)
             break
 
     return world_graph
