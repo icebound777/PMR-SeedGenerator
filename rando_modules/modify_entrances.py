@@ -439,7 +439,7 @@ def set_starway_requirements(
     world_graph: dict,
     spirits_needed: int,
     specific_spirits: list,
-    power_stars_placed: int,
+    powerstars_needed: int,
     seed_goal: SeedGoal
 ) -> dict:
     """
@@ -458,10 +458,8 @@ def set_starway_requirements(
     for spirit_number in specific_spirits:
         added_requirements.append([f"STARSPIRIT_{spirit_number}"])
 
-    if power_stars_placed > 0:
-        # always expect all power stars before ch8, else some get placed behind
-        # the edge they lock
-        added_requirements.append([{"powerstars": power_stars_placed}])
+    if powerstars_needed > 0:
+        added_requirements.append([{"powerstars": powerstars_needed}])
 
     if seed_goal == SeedGoal.OPEN_STARWAY:
         world_graph, entrance_modifications = adjust(
@@ -556,7 +554,7 @@ def set_starway_requirements(
 def set_starbeam_requirements(
     world_graph: dict,
     spirits_needed: int,
-    powerstars_placed: int,
+    powerstars_needed: int,
 ) -> dict:
     """
     Returns the modified world graph itself, modified to set the spirits
@@ -566,8 +564,8 @@ def set_starbeam_requirements(
 
     if spirits_needed > 0:
         added_requirements.append([{"starspirits": spirits_needed}])
-    if powerstars_placed > 0:
-        added_requirements.append([{"powerstars": powerstars_placed}])
+    if powerstars_needed > 0:
+        added_requirements.append([{"powerstars": powerstars_needed}])
 
     # find Star Beam edge and modify its requirements
     for index, entrance in enumerate(world_graph["HOS_05/0"]["edge_list"]):

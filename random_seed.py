@@ -200,14 +200,21 @@ class RandomSeed:
                     modified_world_graph = set_starbeam_requirements(
                         world_graph=modified_world_graph,
                         spirits_needed=self.rando_settings.starbeam_spirits_needed,
-                        powerstars_placed=self.rando_settings.star_hunt_total
+                        powerstars_needed=self.rando_settings.starbeam_powerstars_needed
                     )
 
                 entrance_changes, modified_world_graph = set_starway_requirements(
                     world_graph=modified_world_graph,
                     spirits_needed=self.rando_settings.starway_spirits_needed_count,
                     specific_spirits=chosen_spirits,
-                    power_stars_placed=self.rando_settings.star_hunt_total,
+                    powerstars_needed=( # don't expect all, but also don't bottleneck
+                        self.rando_settings.star_hunt_total
+                      - int(  (  self.rando_settings.star_hunt_total
+                               - self.rando_settings.starway_powerstars_needed
+                              )
+                            / 2
+                        )
+                    ),
                     seed_goal=self.rando_settings.seed_goal
                 )
                 if entrance_changes:
