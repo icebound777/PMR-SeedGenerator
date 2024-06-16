@@ -439,7 +439,7 @@ def set_starway_requirements(
     world_graph: dict,
     spirits_needed: int,
     specific_spirits: list,
-    power_stars_placed: int,
+    powerstars_needed: int,
     seed_goal: SeedGoal
 ) -> dict:
     """
@@ -458,10 +458,8 @@ def set_starway_requirements(
     for spirit_number in specific_spirits:
         added_requirements.append([f"STARSPIRIT_{spirit_number}"])
 
-    if power_stars_placed > 0:
-        # always expect all power stars before ch8, else some get placed behind
-        # the edge they lock
-        added_requirements.append([{"powerstars": power_stars_placed}])
+    if powerstars_needed > 0:
+        added_requirements.append([{"powerstars": powerstars_needed}])
 
     if seed_goal == SeedGoal.OPEN_STARWAY:
         world_graph, entrance_modifications = adjust(
@@ -516,13 +514,47 @@ def set_starway_requirements(
             world_graph["KKJ_25/0"]["edge_list"][index]["reqs"].extend(added_requirements)
             break
 
+    # also add requirements to chapter 8 Koopatrol and lava switch battles, so
+    # the logic doesn't require going through them too early
+    # This is far from ideal, but an okay-ish temporary solution to having
+    # to battle chapter 8 enemies way too early
+
+    ## Koopatrol: Bowser Castle Key in lava room
+    for index, entrance in enumerate(world_graph["KPA_11/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_11"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_11/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Koopatrol: Prison 1
+    for index, entrance in enumerate(world_graph["KPA_91/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_91"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_91/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Koopatrol: Prison 2
+    for index, entrance in enumerate(world_graph["KPA_95/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_95"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_95/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Lava Control room battle
+    for index, entrance in enumerate(world_graph["KPA_16/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_16"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KPA_16/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+
     return entrance_modifications, world_graph
 
 
 def set_starbeam_requirements(
     world_graph: dict,
     spirits_needed: int,
-    powerstars_placed: int,
+    powerstars_needed: int,
 ) -> dict:
     """
     Returns the modified world graph itself, modified to set the spirits
@@ -532,8 +564,8 @@ def set_starbeam_requirements(
 
     if spirits_needed > 0:
         added_requirements.append([{"starspirits": spirits_needed}])
-    if powerstars_placed > 0:
-        added_requirements.append([{"powerstars": powerstars_placed}])
+    if powerstars_needed > 0:
+        added_requirements.append([{"powerstars": powerstars_needed}])
 
     # find Star Beam edge and modify its requirements
     for index, entrance in enumerate(world_graph["HOS_05/0"]["edge_list"]):
@@ -580,6 +612,40 @@ def set_starbeam_requirements(
             and entrance["to"]["id"] == 0
         ):
             world_graph["KKJ_25/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+
+    # also add requirements to chapter 8 Koopatrol and lava switch battles, so
+    # the logic doesn't require going through them too early
+    # This is far from ideal, but an okay-ish temporary solution to having
+    # to battle chapter 8 enemies way too early
+
+    ## Koopatrol: Bowser Castle Key in lava room
+    for index, entrance in enumerate(world_graph["KPA_11/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_11"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_11/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Koopatrol: Prison 1
+    for index, entrance in enumerate(world_graph["KPA_91/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_91"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_91/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Koopatrol: Prison 2
+    for index, entrance in enumerate(world_graph["KPA_95/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_95"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_95/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Lava Control room battle
+    for index, entrance in enumerate(world_graph["KPA_16/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_16"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KPA_16/0"]["edge_list"][index]["reqs"].extend(added_requirements)
             break
 
     return world_graph
