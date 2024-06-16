@@ -17,7 +17,8 @@ from rando_enums.enum_options import (
     MerlowRewardPricing,
     MusicRandomizationType,
     PartnerUpgradeShuffle,
-    SeedGoal
+    SeedGoal,
+    DungeonEntranceShuffle
 )
 from models.options.PaletteOptionSet import PaletteOptionSet
 from models.options.MysteryOptionSet import MysteryOptionSet
@@ -1329,7 +1330,12 @@ class OptionSet:
 
         # Entrance Shuffle
         basic_assert("ShuffleDungeonRooms", bool)
-        basic_assert("ShuffleDungeonEntrances", bool)
+        if "ShuffleDungeonEntrances" in options_dict:
+            assert (    isinstance(options_dict["ShuffleDungeonEntrances"], int)
+                    and DungeonEntranceShuffle.OFF
+                        <= options_dict["ShuffleDungeonEntrances"]
+                        <= DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
+            )
         basic_assert("ShuffleEntrancesByAll", bool)
         basic_assert("MatchEntranceTypes", bool)
         basic_assert("RandomizeOnewayEntrances", bool)

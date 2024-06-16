@@ -100,3 +100,9 @@ class PartnerUpgradeShuffle(IntEnum):
 class SeedGoal(IntEnum):
     DEFEAT_BOWSER = 0
     OPEN_STARWAY = 1
+
+@unique
+class DungeonEntranceShuffle(IntEnum):
+    OFF = 0
+    ONLY_SPIRIT_DUNGEONS = 1
+    INCLUDE_BOWSERSCASTLE = 2

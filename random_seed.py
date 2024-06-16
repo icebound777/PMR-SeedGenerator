@@ -7,7 +7,8 @@ from metadata.area_name_mappings import area_name_id_map
 from rando_enums.enum_options import (
     BowserCastleMode,
     GearShuffleMode,
-    PartnerUpgradeShuffle
+    PartnerUpgradeShuffle,
+    DungeonEntranceShuffle,
 )
 
 from itemhints import get_itemhints
@@ -131,10 +132,12 @@ class RandomSeed:
                     and self.rando_settings.shuffle_items
                 ):
                     entrance_changes, modified_world_graph, spoilerlog_info = shuffle_dungeon_entrances(
-                        modified_world_graph,
-                        self.rando_settings.starway_spirits_needed_count,
-                        False,
-                        self.rando_settings.write_spoilerlog
+                        world_graph = modified_world_graph,
+                        starway_spirits_needed_count = self.rando_settings.starway_spirits_needed_count,
+                        shuffle_bowsers_castle = (
+                            self.rando_settings.shuffle_dungeon_entrances == DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
+                        ),
+                        write_spoilers = self.rando_settings.write_spoilerlog
                     )
                     self.entrance_list.extend(entrance_changes)
                     if self.spoilerlog_additions.get("entrances") is None:

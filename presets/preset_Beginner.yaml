@@ -156,7 +156,7 @@ SeedGoal               : 0 # 0: Defeat Bowser, 1: Open StarWay
 
 # Entrance Shuffle
 ShuffleDungeonRooms     : false # NYI
-ShuffleDungeonEntrances : false
+ShuffleDungeonEntrances : 0 # 0:off, 1:shuffle spirit dungeons only, 2:also include BowsersCastle
 ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI
 RandomizeOnewayEntrances: false # NYI
