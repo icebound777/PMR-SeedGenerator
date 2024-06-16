@@ -257,7 +257,6 @@ class RandomSeed:
                 # Item Placement
                 place_items(
                     item_placement=self.placed_items,
-                    do_custom_seed=self.rando_settings.custom_seed,
                     do_shuffle_items=self.rando_settings.shuffle_items,
                     shuffle_overworld_coins=self.rando_settings.include_coins_overworld,
                     shuffle_block_coins=self.rando_settings.include_coins_blocks,

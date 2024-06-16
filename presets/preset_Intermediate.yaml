@@ -35,9 +35,6 @@ DropStarPoints : true
 
 RandomFormations: true
 
-# Custom Seed / Planned Seed / "Plandomizer"
-CustomSeed: false # NYI
-
 # Item Placement
 ShuffleItems          : true
 IncludeCoinsOverworld : false

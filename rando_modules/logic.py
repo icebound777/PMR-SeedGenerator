@@ -1298,7 +1298,6 @@ def get_item_spheres(
 
 def place_items(
     item_placement,
-    do_custom_seed:bool,
     do_shuffle_items,
     shuffle_overworld_coins:bool,
     shuffle_block_coins:bool,
@@ -1364,8 +1363,6 @@ def place_items(
                 "DRO_01/ShopItemD", "DRO_01/ShopItemE", "DRO_01/ShopItemF"
             ]:
                 world_graph[node.identifier]["node"].current_item = node.vanilla_item
-    elif do_custom_seed:
-        raise ValueError
     else:
         # Place items in a backward fill, ensuring a maximally deep fill.
         _algo_assumed_fill(

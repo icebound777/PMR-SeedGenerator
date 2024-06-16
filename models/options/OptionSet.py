@@ -63,9 +63,6 @@ class OptionSet:
 
         self.random_formations = bool(get_option_default_value("RandomFormations"))
 
-        # Custom Seed / Planned Seed / "Plandomizer"
-        self.custom_seed = False
-
         # Item Placement
         self.shuffle_items = bool(get_option_default_value("ShuffleItems"))
         self.include_coins_overworld = True
@@ -303,10 +300,6 @@ class OptionSet:
 
         if "RandomFormations" in options_dict:
             self.random_formations = options_dict.get("RandomFormations")
-
-        # Custom Seed / Planned Seed / "Plandomizer"
-        if "CustomSeed" in options_dict:
-            self.custom_seed = options_dict.get("CustomSeed")
 
         # Item Placement
         if "ShuffleItems" in options_dict:
