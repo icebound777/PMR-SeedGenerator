@@ -165,18 +165,18 @@ class OptionSet:
         self.ch7_bridge_visible = bool(get_option_default_value("Ch7BridgeVisible"))
 
         # Goal Settings
+        self.seed_goal = get_option_default_value("SeedGoal")
+        self.bowsers_castle_mode = get_option_default_value("BowsersCastleMode")
         self.starway_spirits_needed_count = get_option_default_value("StarWaySpiritsNeededCnt")
-        self.require_specific_spirits = False
+        self.starway_spirits_needed_encoded = get_option_default_value("StarWaySpiritsNeededEnc")
+        self.starway_powerstars_needed = get_option_default_value("StarWayPowerStarsNeeded")
         self.shuffle_starbeam = False
         self.starbeam_location = area_name_id_map["HOS"]
         self.starbeam_spirits_needed = get_option_default_value("StarBeamSpiritsNeeded")
         self.starbeam_powerstars_needed = get_option_default_value("StarBeamPowerStarsNeeded")
-        self.limit_chapter_logic = False
-        self.starway_spirits_needed_encoded = get_option_default_value("StarWaySpiritsNeededEnc")
-        self.bowsers_castle_mode = get_option_default_value("BowsersCastleMode")
-        self.starway_powerstars_needed = get_option_default_value("StarWayPowerStarsNeeded")
         self.star_hunt_total = get_option_default_value("StarHuntTotal")
-        self.seed_goal = get_option_default_value("SeedGoal")
+        self.require_specific_spirits = False
+        self.limit_chapter_logic = False
 
         # Entrance Shuffle
         self.shuffle_dungeon_rooms = bool(get_option_default_value("ShuffleDungeonRooms"))
@@ -505,13 +505,17 @@ class OptionSet:
             self.ch7_bridge_visible = options_dict.get("Ch7BridgeVisible")
 
         # Goal Settings
+        if "SeedGoal" in options_dict:
+            self.seed_goal = options_dict.get("SeedGoal")
+        if "BowsersCastleMode" in options_dict:
+            self.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
         if "StarWaySpiritsNeededCnt" in options_dict:
             self.starway_spirits_needed_count = options_dict.get("StarWaySpiritsNeededCnt")
         # auto-set, not changeable via settings
         #if "StarWaySpiritsNeededEnc" in options_dict:
         #    self.starway_spirits_needed_encoded = options_dict.get("StarWaySpiritsNeededEnc")
-        if "RequireSpecificSpirits" in options_dict:
-            self.require_specific_spirits = options_dict.get("RequireSpecificSpirits")
+        if "StarWayPowerStarsNeeded" in options_dict:
+            self.starway_powerstars_needed = options_dict.get("StarWayPowerStarsNeeded")
         if "ShuffleStarBeam" in options_dict:
             self.shuffle_starbeam = options_dict.get("ShuffleStarBeam")
         # auto-set, not changeable via settings
@@ -521,16 +525,12 @@ class OptionSet:
             self.starbeam_spirits_needed = options_dict.get("StarBeamSpiritsNeeded")
         if "StarBeamPowerStarsNeeded" in options_dict:
             self.starbeam_powerstars_needed = options_dict.get("StarBeamPowerStarsNeeded")
-        if "LimitChapterLogic" in options_dict:
-            self.limit_chapter_logic = options_dict.get("LimitChapterLogic")
-        if "BowsersCastleMode" in options_dict:
-            self.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
-        if "StarWayPowerStarsNeeded" in options_dict:
-            self.starway_powerstars_needed = options_dict.get("StarWayPowerStarsNeeded")
         if "StarHuntTotal" in options_dict:
             self.star_hunt_total = options_dict.get("StarHuntTotal")
-        if "SeedGoal" in options_dict:
-            self.seed_goal = options_dict.get("SeedGoal")
+        if "RequireSpecificSpirits" in options_dict:
+            self.require_specific_spirits = options_dict.get("RequireSpecificSpirits")
+        if "LimitChapterLogic" in options_dict:
+            self.limit_chapter_logic = options_dict.get("LimitChapterLogic")
 
         # Entrance Shuffle
         if "ShuffleDungeonRooms" in options_dict:
@@ -1266,10 +1266,27 @@ class OptionSet:
         basic_assert("Ch7BridgeVisible", bool)
 
         # Goal Settings
+        if "SeedGoal" in options_dict:
+            assert (    isinstance(options_dict.get("SeedGoal"), int)
+                    and SeedGoal.DEFEAT_BOWSER <= options_dict.get("SeedGoal") <= SeedGoal.OPEN_STARWAY
+            )
+        basic_assert("BowsersCastleMode", int)
         if "StarWaySpiritsNeededCnt" in options_dict:
             assert (    isinstance(options_dict.get("StarWaySpiritsNeededCnt"), int)
                     and -1 <= options_dict.get("StarWaySpiritsNeededCnt") <= 7)
-        basic_assert("RequireSpecificSpirits", bool)
+        if "StarWayPowerStarsNeeded" in options_dict:
+            assert (    isinstance(options_dict.get("StarWayPowerStarsNeeded"), int)
+                    and 0 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
+            )
+            try:
+                if (    "ShuffleItems" in options_dict
+                    and not options_dict.get("ShuffleItems")
+                ):
+                    assert (options_dict.get("StarWayPowerStarsNeeded") == 0)
+            except AssertionError:
+                raise ValueError(
+                    "No item shuffle but star hunt is not a valid setting-combination!",
+                )
         basic_assert("ShuffleStarBeam", bool)
         if "StarBeamSpiritsNeeded" in options_dict:
             assert (    isinstance(options_dict.get("StarBeamSpiritsNeeded"), int)
@@ -1287,6 +1304,13 @@ class OptionSet:
                 raise ValueError(
                     "No item shuffle but star hunt is not a valid setting-combination!",
                 )
+        if "StarHuntTotal" in options_dict:
+            assert (    isinstance(options_dict.get("StarHuntTotal"), int)
+                    and 0 <= options_dict.get("StarHuntTotal") <= 120
+                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarWayPowerStarsNeeded")
+                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarBeamPowerStarsNeeded")
+            )
+        basic_assert("RequireSpecificSpirits", bool)
         if "LimitChapterLogic" in options_dict:
             assert (    isinstance(options_dict.get("LimitChapterLogic"), bool)
                     and not (    options_dict["LimitChapterLogic"]
@@ -1302,30 +1326,6 @@ class OptionSet:
                 raise ValueError(
                     "LCL does not support requiring more than zero spirits for Star Beam!",
                 )
-        basic_assert("BowsersCastleMode", int)
-        if "StarWayPowerStarsNeeded" in options_dict:
-            assert (    isinstance(options_dict.get("StarWayPowerStarsNeeded"), int)
-                    and 0 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
-            )
-            try:
-                if (    "ShuffleItems" in options_dict
-                    and not options_dict.get("ShuffleItems")
-                ):
-                    assert (options_dict.get("StarWayPowerStarsNeeded") == 0)
-            except AssertionError:
-                raise ValueError(
-                    "No item shuffle but star hunt is not a valid setting-combination!",
-                )
-        if "StarHuntTotal" in options_dict:
-            assert (    isinstance(options_dict.get("StarHuntTotal"), int)
-                    and 0 <= options_dict.get("StarHuntTotal") <= 120
-                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarWayPowerStarsNeeded")
-                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarBeamPowerStarsNeeded")
-            )
-        if "SeedGoal" in options_dict:
-            assert (    isinstance(options_dict.get("SeedGoal"), int)
-                    and SeedGoal.DEFEAT_BOWSER <= options_dict.get("SeedGoal") <= SeedGoal.OPEN_STARWAY
-            )
 
         # Entrance Shuffle
         basic_assert("ShuffleDungeonRooms", bool)
