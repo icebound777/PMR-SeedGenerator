@@ -133,7 +133,7 @@ RandomPartnersMin         : 1 # 1-8
 RandomPartnersMax         : 1 # 1-8
 
 # Pre-opened areas
-MagicalSeedsRequired: 2 # 5:random
+MagicalSeedsRequired: 2 # -1:Random
 PrologueOpen        : true
 BlueHouseOpen       : false
 MtRuggedOpen        : false
@@ -145,12 +145,14 @@ Ch7BridgeVisible    : false
 # Goal Settings
 StarWaySpiritsNeededCnt: 4 # -1:Random
 RequireSpecificSpirits : true # always false if StarWaySpiritsNeededCnt: 7
+ShuffleStarBeam        : false
+StarBeamSpiritsNeeded  : 0 # -1:Random
+StarBeamPowerStarsNeeded: 0
 LimitChapterLogic      : true # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
 BowsersCastleMode      : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
-StarHunt               : false
-StarHuntRequired       : 50 # max 120
-StarHuntTotal          : 70 # max 120, must be >= StarHuntRequired
-StarHuntEndsGame       : true
+StarWayPowerStarsNeeded: 0 # max 120
+StarHuntTotal          : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded
+SeedGoal               : 0 # 0: Defeat Bowser, 1: Open StarWay
 
 # Entrance Shuffle
 ShuffleDungeonRooms     : false # NYI
@@ -255,7 +257,9 @@ ClippyBootsStoneBlockSkip                       : false
 ClippyBootsMetalBlockSkip                       : false
 IslandPipeBlooperSkip                           : false
 ParakarrylessSewerStarPiece                     : false
+ClippySewersUpgradeBlock                        : false
 SewerBlocksWithoutUltraBoots                    : false
+Chapter7BridgeWithSuperBoots                    : false
 FirstBlockToShiverCityWithoutSuperBoots         : false
 BlocksToShiverCityWithKooperShellItemThrow      : false
 SewerYellowBlockWithUltraBoots                  : false
@@ -294,6 +298,7 @@ ParakarrylessSecondSandRoomNormalBoots          : false
 ParakarrylessSuperHammerRoomUltraBoots          : false
 ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
+RuinsStoneSkip                                  : false
 
 ForeverForestBackwards                          : false
 
@@ -322,12 +327,14 @@ GourmetGuySkipJump                              : false
 GourmetGuySkipLaki                              : false
 GourmetGuySkipParakarry                         : false
 BowlessGreenStation                             : false
+ClippyGreenStationCoinBlock                     : false
 KooperlessRedStationShootingStar                : false
 GearlessRedStationShootingStar                  : false
 ParakarrylessBlueBlockCityGap                   : false
 BlueSwitchSkipLaki                              : false
 BlueSwitchSkipUltraBoots                        : false
 RedBarricadeSkip                                : false
+WattlessDarkRoom                                : false
 HammerlessBlueStationLaki                       : false
 HammerlessPinkStationLaki                       : false
 
@@ -344,9 +351,9 @@ UltraHammerSkip                                 : false
 UltraHammerSkipLaki                             : false
 UltraHammerSkipSushie                           : false
 Flarakarry                                      : false
-ParakarrylessFlarakarryBombette                 : false
 ParakarrylessFlarakarryLaki                     : false
 VolcanoSushieGlitch                             : false
+VolcanoSushieGlitchGoombario                    : false
 
 EarlyLakiLZS                                    : false
 EarlyLakiBombettePush                           : false
@@ -374,6 +381,7 @@ SushielessWarehouseKeyBombette                  : false
 SushielessWarehouseKeyKooper                    : false
 
 MirrorClip                                      : false
+KooperPuzzleSkip                                : false
 
 BowlessBowsersCastleBasement                    : false
 FastFloodRoomKooper                             : false

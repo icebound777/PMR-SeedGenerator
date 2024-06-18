@@ -1,6 +1,8 @@
 from db.item import Item
 from db.option import Option
 
+from metadata.area_name_mappings import area_name_id_map
+
 from rando_enums.enum_ingame import StarSpirits
 from rando_enums.enum_options import (
     BowserCastleMode,
@@ -14,7 +16,8 @@ from rando_enums.enum_options import (
     StartingHammer,
     MerlowRewardPricing,
     MusicRandomizationType,
-    PartnerUpgradeShuffle
+    PartnerUpgradeShuffle,
+    SeedGoal
 )
 from models.options.PaletteOptionSet import PaletteOptionSet
 from models.options.MysteryOptionSet import MysteryOptionSet
@@ -164,13 +167,16 @@ class OptionSet:
         # Goal Settings
         self.starway_spirits_needed_count = get_option_default_value("StarWaySpiritsNeededCnt")
         self.require_specific_spirits = False
+        self.shuffle_starbeam = False
+        self.starbeam_location = area_name_id_map["HOS"]
+        self.starbeam_spirits_needed = get_option_default_value("StarBeamSpiritsNeeded")
+        self.starbeam_powerstars_needed = get_option_default_value("StarBeamPowerStarsNeeded")
         self.limit_chapter_logic = False
         self.starway_spirits_needed_encoded = get_option_default_value("StarWaySpiritsNeededEnc")
         self.bowsers_castle_mode = get_option_default_value("BowsersCastleMode")
-        self.star_hunt = bool(get_option_default_value("StarHunt"))
-        self.star_hunt_required = get_option_default_value("StarHuntRequired")
+        self.starway_powerstars_needed = get_option_default_value("StarWayPowerStarsNeeded")
         self.star_hunt_total = get_option_default_value("StarHuntTotal")
-        self.star_hunt_ends_game = bool(get_option_default_value("StarHuntEndsGame"))
+        self.seed_goal = get_option_default_value("SeedGoal")
 
         # Entrance Shuffle
         self.shuffle_dungeon_rooms = bool(get_option_default_value("ShuffleDungeonRooms"))
@@ -510,18 +516,25 @@ class OptionSet:
         #    self.starway_spirits_needed_encoded = options_dict.get("StarWaySpiritsNeededEnc")
         if "RequireSpecificSpirits" in options_dict:
             self.require_specific_spirits = options_dict.get("RequireSpecificSpirits")
+        if "ShuffleStarBeam" in options_dict:
+            self.shuffle_starbeam = options_dict.get("ShuffleStarBeam")
+        # auto-set, not changeable via settings
+        #if "StarBeamArea" in options_dict:
+        #    self.starbeam_location = options_dict.get("StarBeamArea")
+        if "StarBeamSpiritsNeeded" in options_dict:
+            self.starbeam_spirits_needed = options_dict.get("StarBeamSpiritsNeeded")
+        if "StarBeamPowerStarsNeeded" in options_dict:
+            self.starbeam_powerstars_needed = options_dict.get("StarBeamPowerStarsNeeded")
         if "LimitChapterLogic" in options_dict:
             self.limit_chapter_logic = options_dict.get("LimitChapterLogic")
         if "BowsersCastleMode" in options_dict:
             self.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
-        if "StarHunt" in options_dict:
-            self.star_hunt = options_dict.get("StarHunt")
-        if "StarHuntRequired" in options_dict:
-            self.star_hunt_required = options_dict.get("StarHuntRequired")
+        if "StarWayPowerStarsNeeded" in options_dict:
+            self.starway_powerstars_needed = options_dict.get("StarWayPowerStarsNeeded")
         if "StarHuntTotal" in options_dict:
             self.star_hunt_total = options_dict.get("StarHuntTotal")
-        if "StarHuntEndsGame" in options_dict:
-            self.star_hunt_ends_game = options_dict.get("StarHuntEndsGame")
+        if "SeedGoal" in options_dict:
+            self.seed_goal = options_dict.get("SeedGoal")
 
         # Entrance Shuffle
         if "ShuffleDungeonRooms" in options_dict:
@@ -753,8 +766,12 @@ class OptionSet:
             self.glitch_settings.island_pipe_blooper_skip = options_dict.get("IslandPipeBlooperSkip")
         if "ParakarrylessSewerStarPiece" in options_dict:
             self.glitch_settings.parakarryless_sewer_star_piece = options_dict.get("ParakarrylessSewerStarPiece")
+        if "ClippySewersUpgradeBlock" in options_dict:
+            self.glitch_settings.clippy_sewers_upgrade_block = options_dict.get("ClippySewersUpgradeBlock")
         if "SewerBlocksWithoutUltraBoots" in options_dict:
             self.glitch_settings.sewer_blocks_without_ultra_boots = options_dict.get("SewerBlocksWithoutUltraBoots")
+        if "Chapter7BridgeWithSuperBoots" in options_dict:
+            self.glitch_settings.chapter_7_bridge_with_super_boots = options_dict.get("Chapter7BridgeWithSuperBoots")
         if "FirstBlockToShiverCityWithoutSuperBoots" in options_dict:
             self.glitch_settings.first_block_to_shiver_city_without_super_boots = options_dict.get("FirstBlockToShiverCityWithoutSuperBoots")
         if "BlocksToShiverCityWithKooperShellItemThrow" in options_dict:
@@ -826,6 +843,8 @@ class OptionSet:
             self.glitch_settings.parakarryless_super_hammer_room_normal_boots = options_dict.get("ParakarrylessSuperHammerRoomNormalBoots")
         if "RuinsLocksSkipClippy" in options_dict:
             self.glitch_settings.ruins_locks_skip_clippy = options_dict.get("RuinsLocksSkipClippy")
+        if "RuinsStoneSkip" in options_dict:
+            self.glitch_settings.ruins_stone_skip = options_dict.get("RuinsStoneSkip")
 
         if "ForeverForestBackwards" in options_dict:
             self.glitch_settings.forever_forest_backwards = options_dict.get("ForeverForestBackwards")
@@ -877,6 +896,8 @@ class OptionSet:
             self.glitch_settings.gourmet_guy_skip_parakarry = options_dict.get("GourmetGuySkipParakarry")
         if "BowlessGreenStation" in options_dict:
             self.glitch_settings.bowless_green_station = options_dict.get("BowlessGreenStation")
+        if "ClippyGreenStationCoinBlock" in options_dict:
+            self.glitch_settings.clippy_green_station_coin_block = options_dict.get("ClippyGreenStationCoinBlock")
         if "KooperlessRedStationShootingStar" in options_dict:
             self.glitch_settings.kooperless_red_station_shooting_star = options_dict.get("KooperlessRedStationShootingStar")
         if "GearlessRedStationShootingStar" in options_dict:
@@ -889,6 +910,8 @@ class OptionSet:
             self.glitch_settings.blue_switch_skip_ultra_boots = options_dict.get("BlueSwitchSkipUltraBoots")
         if "RedBarricadeSkip" in options_dict:
             self.glitch_settings.red_barricade_skip = options_dict.get("RedBarricadeSkip")
+        if "WattlessDarkRoom" in options_dict:
+            self.glitch_settings.wattless_dark_room = options_dict.get("WattlessDarkRoom")
         if "HammerlessBlueStationLaki" in options_dict:
             self.glitch_settings.hammerless_blue_station_laki = options_dict.get("HammerlessBlueStationLaki")
         if "HammerlessPinkStationLaki" in options_dict:
@@ -919,12 +942,12 @@ class OptionSet:
             self.glitch_settings.ultra_hammer_skip_sushie = options_dict.get("UltraHammerSkipSushie")
         if "Flarakarry" in options_dict:
             self.glitch_settings.flarakarry = options_dict.get("Flarakarry")
-        if "ParakarrylessFlarakarryBombette" in options_dict:
-            self.glitch_settings.parakarryless_flarakarry_bombette = options_dict.get("ParakarrylessFlarakarryBombette")
         if "ParakarrylessFlarakarryLaki" in options_dict:
             self.glitch_settings.parakarryless_flarakarry_laki = options_dict.get("ParakarrylessFlarakarryLaki")
         if "VolcanoSushieGlitch" in options_dict:
-            self.glitch_settings.volcano_sushie_glitch = options_dict.get("VolcanoSushieGlitch")
+            self.glitch_settings.volcano_sushie_glitch_superboots = options_dict.get("VolcanoSushieGlitch")
+        if "VolcanoSushieGlitchGoombario" in options_dict:
+            self.glitch_settings.volcano_sushie_glitch_goombario = options_dict.get("VolcanoSushieGlitchGoombario")
 
         if "EarlyLakiLZS" in options_dict:
             self.glitch_settings.early_laki_lzs = options_dict.get("EarlyLakiLZS")
@@ -976,6 +999,8 @@ class OptionSet:
 
         if "MirrorClip" in options_dict:
             self.glitch_settings.mirror_clip = options_dict.get("MirrorClip")
+        if "KooperPuzzleSkip" in options_dict:
+            self.glitch_settings.kooper_puzzle_skip = options_dict.get("KooperPuzzleSkip")
 
         if "BowlessBowsersCastleBasement" in options_dict:
             self.glitch_settings.bowless_bowsers_castle_basement = options_dict.get("BowlessBowsersCastleBasement")
@@ -1238,7 +1263,10 @@ class OptionSet:
             )
 
         # Pre-opened areas
-        basic_assert("MagicalSeedsRequired", int)
+        if "MagicalSeedsRequired" in options_dict:
+            assert (    isinstance(options_dict["MagicalSeedsRequired"], int)
+                    and -1 <= options_dict["MagicalSeedsRequired"] <= 4
+            )
         basic_assert("PrologueOpen", bool)
         basic_assert("BlueHouseOpen", bool)
         basic_assert("MtRuggedOpen", bool)
@@ -1252,33 +1280,62 @@ class OptionSet:
             assert (    isinstance(options_dict.get("StarWaySpiritsNeededCnt"), int)
                     and -1 <= options_dict.get("StarWaySpiritsNeededCnt") <= 7)
         basic_assert("RequireSpecificSpirits", bool)
+        basic_assert("ShuffleStarBeam", bool)
+        if "StarBeamSpiritsNeeded" in options_dict:
+            assert (    isinstance(options_dict.get("StarBeamSpiritsNeeded"), int)
+                    and -1 <= options_dict.get("StarBeamSpiritsNeeded") <= 7)
+        if "StarBeamPowerStarsNeeded" in options_dict:
+            assert (    isinstance(options_dict.get("StarBeamPowerStarsNeeded"), int)
+                    and 0 <= options_dict.get("StarBeamPowerStarsNeeded") <= 120
+            )
+            try:
+                if (    "ShuffleItems" in options_dict
+                    and not options_dict.get("ShuffleItems")
+                ):
+                    assert (options_dict.get("StarBeamPowerStarsNeeded") == 0)
+            except AssertionError:
+                raise ValueError(
+                    "No item shuffle but star hunt is not a valid setting-combination!",
+                )
         if "LimitChapterLogic" in options_dict:
             assert (    isinstance(options_dict.get("LimitChapterLogic"), bool)
                     and not (    options_dict["LimitChapterLogic"]
                              and (   options_dict.get("KeyitemsOutsideDungeon") is None
                                   or not options_dict["KeyitemsOutsideDungeon"])))
+            try:
+                assert (not (    options_dict["LimitChapterLogic"]
+                             and options_dict.get("StarBeamSpiritsNeeded") is not None
+                             and options_dict["StarBeamSpiritsNeeded"] != 0
+                        )
+                )
+            except:
+                raise ValueError(
+                    "LCL does not support requiring more than zero spirits for Star Beam!",
+                )
         basic_assert("BowsersCastleMode", int)
-        if "StarHunt" in options_dict:
-            assert isinstance(options_dict.get("StarHunt"), bool)
+        if "StarWayPowerStarsNeeded" in options_dict:
+            assert (    isinstance(options_dict.get("StarWayPowerStarsNeeded"), int)
+                    and 0 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
+            )
             try:
                 if (    "ShuffleItems" in options_dict
                     and not options_dict.get("ShuffleItems")
                 ):
-                    assert (options_dict.get("StarHunt") is False)
+                    assert (options_dict.get("StarWayPowerStarsNeeded") == 0)
             except AssertionError:
                 raise ValueError(
                     "No item shuffle but star hunt is not a valid setting-combination!",
                 )
-        if "StarHuntRequired" in options_dict:
-            assert (    isinstance(options_dict.get("StarHuntRequired"), int)
-                    and 0 <= options_dict.get("StarHuntRequired") <= 120
-            )
         if "StarHuntTotal" in options_dict:
             assert (    isinstance(options_dict.get("StarHuntTotal"), int)
                     and 0 <= options_dict.get("StarHuntTotal") <= 120
-                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarHuntRequired")
+                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarWayPowerStarsNeeded")
+                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarBeamPowerStarsNeeded")
             )
-        basic_assert("StarHuntEndsGame", bool)
+        if "SeedGoal" in options_dict:
+            assert (    isinstance(options_dict.get("SeedGoal"), int)
+                    and SeedGoal.DEFEAT_BOWSER <= options_dict.get("SeedGoal") <= SeedGoal.OPEN_STARWAY
+            )
 
         # Entrance Shuffle
         basic_assert("ShuffleDungeonRooms", bool)
@@ -1395,7 +1452,9 @@ class OptionSet:
         basic_assert("ClippyBootsMetalBlockSkip", bool)
         basic_assert("IslandPipeBlooperSkip", bool)
         basic_assert("ParakarrylessSewerStarPiece", bool)
+        basic_assert("ClippySewersUpgradeBlock", bool)
         basic_assert("SewerBlocksWithoutUltraBoots", bool)
+        basic_assert("Chapter7BridgeWithSuperBoots", bool)
         basic_assert("FirstBlockToShiverCityWithoutSuperBoots", bool)
         basic_assert("BlocksToShiverCityWithKooperShellItemThrow", bool)
         basic_assert("SewerYellowBlockWithUltraBoots", bool)
@@ -1434,6 +1493,7 @@ class OptionSet:
         basic_assert("ParakarrylessSuperHammerRoomUltraBoots", bool)
         basic_assert("ParakarrylessSuperHammerRoomNormalBoots", bool)
         basic_assert("RuinsLocksSkipClippy", bool)
+        basic_assert("RuinsStoneSkip", bool)
 
         basic_assert("ForeverForestBackwards", bool)
 
@@ -1462,12 +1522,14 @@ class OptionSet:
         basic_assert("GourmetGuySkipLaki", bool)
         basic_assert("GourmetGuySkipParakarry", bool)
         basic_assert("BowlessGreenStation", bool)
+        basic_assert("ClippyGreenStationCoinBlock", bool)
         basic_assert("KooperlessRedStationShootingStar", bool)
         basic_assert("GearlessRedStationShootingStar", bool)
         basic_assert("ParakarrylessBlueBlockCityGap", bool)
         basic_assert("BlueSwitchSkipLaki", bool)
         basic_assert("BlueSwitchSkipUltraBoots", bool)
         basic_assert("RedBarricadeSkip", bool)
+        basic_assert("WattlessDarkRoom", bool)
         basic_assert("HammerlessBlueStationLaki", bool)
         basic_assert("HammerlessPinkStationLaki", bool)
 
@@ -1484,9 +1546,9 @@ class OptionSet:
         basic_assert("UltraHammerSkipLaki", bool)
         basic_assert("UltraHammerSkipSushie", bool)
         basic_assert("Flarakarry", bool)
-        basic_assert("ParakarrylessFlarakarryBombette", bool)
         basic_assert("ParakarrylessFlarakarryLaki", bool)
         basic_assert("VolcanoSushieGlitch", bool)
+        basic_assert("VolcanoSushieGlitchGoombario", bool)
 
         basic_assert("EarlyLakiLZS", bool)
         basic_assert("EarlyLakiBombettePush", bool)
@@ -1514,6 +1576,7 @@ class OptionSet:
         basic_assert("SushielessWarehouseKeyKooper", bool)
 
         basic_assert("MirrorClip", bool)
+        basic_assert("KooperPuzzleSkip", bool)
 
         basic_assert("BowlessBowsersCastleBasement", bool)
         basic_assert("FastFloodRoomKooper", bool)
@@ -1646,11 +1709,13 @@ class OptionSet:
             # Goal Settings
             load_dbkey(self.starway_spirits_needed_count, "StarWaySpiritsNeededCnt"),
             load_dbkey(self.starway_spirits_needed_encoded, "StarWaySpiritsNeededEnc"),
+            load_dbkey(self.starbeam_location, "StarBeamArea"),
+            load_dbkey(self.starbeam_spirits_needed, "StarBeamSpiritsNeeded"),
+            load_dbkey(self.starbeam_powerstars_needed, "StarBeamPowerStarsNeeded"),
             load_dbkey(self.bowsers_castle_mode, "BowsersCastleMode"),
-            load_dbkey(self.star_hunt, "StarHunt"),
-            load_dbkey(self.star_hunt_required, "StarHuntRequired"),
+            load_dbkey(self.starway_powerstars_needed, "StarWayPowerStarsNeeded"),
             load_dbkey(self.star_hunt_total, "StarHuntTotal"),
-            load_dbkey(self.star_hunt_ends_game, "StarHuntEndsGame"),
+            load_dbkey(self.seed_goal, "SeedGoal"),
 
             # Entrance Shuffle
             load_dbkey(self.shuffle_dungeon_rooms, "ShuffleDungeonRooms"),
@@ -1827,6 +1892,9 @@ class OptionSet:
 
         web_settings["StarWaySpiritsNeededCnt"] = self.starway_spirits_needed_count
         web_settings["RequireSpecificSpirits"] = self.require_specific_spirits
+        web_settings["ShuffleStarBeam"] = self.shuffle_starbeam
+        web_settings["StarBeamSpiritsNeeded"] = self.starbeam_spirits_needed
+        web_settings["StarBeamPowerStarsNeeded"] = self.starbeam_powerstars_needed
         web_settings["LimitChapterLogic"] = self.limit_chapter_logic
         web_settings["BadgeSynergy"] = self.badge_synergy
         web_settings["FoliageItemHints"] = self.foliage_item_hints
@@ -1868,9 +1936,8 @@ class OptionSet:
         web_settings["MirrorMode"] = self.mirror_mode
         web_settings["StaticMapMirroring"] = self.static_mirroring
 
-        web_settings["StarHunt"] = self.star_hunt
-        web_settings["StarHuntEndsGame"] = self.star_hunt_ends_game
-        web_settings["StarHuntRequired"] = self.star_hunt_required
+        web_settings["SeedGoal"] = self.seed_goal
+        web_settings["StarWayPowerStarsNeeded"] = self.starway_powerstars_needed
         web_settings["StarHuntTotal"] = self.star_hunt_total
 
         if self.random_partners:
@@ -1917,7 +1984,9 @@ class OptionSet:
         web_settings["ClippyBootsMetalBlockSkip"] = self.glitch_settings.clippy_boots_metal_block_skip
         web_settings["IslandPipeBlooperSkip"] = self.glitch_settings.island_pipe_blooper_skip
         web_settings["ParakarrylessSewerStarPiece"] = self.glitch_settings.parakarryless_sewer_star_piece
+        web_settings["ClippySewersUpgradeBlock"] = self.glitch_settings.clippy_sewers_upgrade_block
         web_settings["SewerBlocksWithoutUltraBoots"] = self.glitch_settings.sewer_blocks_without_ultra_boots
+        web_settings["Chapter7BridgeWithSuperBoots"] = self.glitch_settings.chapter_7_bridge_with_super_boots
         web_settings["FirstBlockToShiverCityWithoutSuperBoots"] = self.glitch_settings.first_block_to_shiver_city_without_super_boots
         web_settings["BlocksToShiverCityWithKooperShellItemThrow"] = self.glitch_settings.blocks_to_shiver_city_kooper_shell_item_throw
         web_settings["SewerYellowBlockWithUltraBoots"] = self.glitch_settings.sewer_yellow_block_with_ultra_boots
@@ -1961,6 +2030,7 @@ class OptionSet:
         web_settings["ParakarrylessSuperHammerRoomUltraBoots"] = self.glitch_settings.parakarryless_super_hammer_room_ultra_boots
         web_settings["ParakarrylessSuperHammerRoomNormalBoots"] = self.glitch_settings.parakarryless_super_hammer_room_normal_boots
         web_settings["RuinsLocksSkipClippy"] = self.glitch_settings.ruins_locks_skip_clippy
+        web_settings["RuinsStoneSkip"] = self.glitch_settings.ruins_stone_skip
 
         # Glitches: Boo's Mansion
         web_settings["ForeverForestBackwards"] = self.glitch_settings.forever_forest_backwards
@@ -1992,12 +2062,14 @@ class OptionSet:
         web_settings["GourmetGuySkipLaki"] = self.glitch_settings.gourmet_guy_skip_laki
         web_settings["GourmetGuySkipParakarry"] = self.glitch_settings.gourmet_guy_skip_parakarry
         web_settings["BowlessGreenStation"] = self.glitch_settings.bowless_green_station
+        web_settings["ClippyGreenStationCoinBlock"] = self.glitch_settings.clippy_green_station_coin_block
         web_settings["KooperlessRedStationShootingStar"] = self.glitch_settings.kooperless_red_station_shooting_star
         web_settings["GearlessRedStationShootingStar"] = self.glitch_settings.gearless_red_station_shooting_star
         web_settings["ParakarrylessBlueBlockCityGap"] = self.glitch_settings.parakarryless_blue_block_city_gap
         web_settings["BlueSwitchSkipLaki"] = self.glitch_settings.blue_switch_skip_laki
         web_settings["BlueSwitchSkipUltraBoots"] = self.glitch_settings.blue_switch_skip_ultra_boots
         web_settings["RedBarricadeSkip"] = self.glitch_settings.red_barricade_skip
+        web_settings["WattlessDarkRoom"] = self.glitch_settings.wattless_dark_room
         web_settings["HammerlessBlueStationLaki"] = self.glitch_settings.hammerless_blue_station_laki
         web_settings["HammerlessPinkStationLaki"] = self.glitch_settings.hammerless_pink_station_laki
 
@@ -2016,9 +2088,9 @@ class OptionSet:
         web_settings["UltraHammerSkipLaki"] = self.glitch_settings.ultra_hammer_skip_laki
         web_settings["UltraHammerSkipSushie"] = self.glitch_settings.ultra_hammer_skip_sushie
         web_settings["Flarakarry"] = self.glitch_settings.flarakarry
-        web_settings["ParakarrylessFlarakarryBombette"] = self.glitch_settings.parakarryless_flarakarry_bombette
         web_settings["ParakarrylessFlarakarryLaki"] = self.glitch_settings.parakarryless_flarakarry_laki
-        web_settings["VolcanoSushieGlitch"] = self.glitch_settings.volcano_sushie_glitch
+        web_settings["VolcanoSushieGlitch"] = self.glitch_settings.volcano_sushie_glitch_superboots
+        web_settings["VolcanoSushieGlitchGoombario"] = self.glitch_settings.volcano_sushie_glitch_goombario
 
         # Glitches: Flower Fields
         web_settings["EarlyLakiLZS"] = self.glitch_settings.early_laki_lzs
@@ -2049,6 +2121,7 @@ class OptionSet:
 
         # Glitches: Crystal Palace
         web_settings["MirrorClip"] = self.glitch_settings.mirror_clip
+        web_settings["KooperPuzzleSkip"] = self.glitch_settings.kooper_puzzle_skip
 
         # Glitches: Bowser's Castle
         web_settings["BowlessBowsersCastleBasement"] = self.glitch_settings.bowless_bowsers_castle_basement

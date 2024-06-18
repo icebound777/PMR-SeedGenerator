@@ -9,9 +9,11 @@ from worldgraph import adjust
 
 from rando_modules.random_blocks import get_block_placement
 
-from rando_enums.enum_options import \
-    GearShuffleMode,\
-    BowserCastleMode
+from rando_enums.enum_options import (
+    GearShuffleMode,
+    BowserCastleMode,
+    SeedGoal
+)
 
 # Imports: Modify Bowser's Castle
 from maps.graph_edges.bc_shorten.edges_kpa import \
@@ -32,11 +34,10 @@ from maps.graph_edges.gear_location_shuffle.edges_tik import \
     edges_tik_remove as edges_tik_gls_remove
 
 # Imports: Star Hunt
-from maps.graph_edges.star_hunt.edges_hos import \
-    edges_hos_starhunt_add,\
-    edges_hos_starhunt_remove,\
-    edges_hos_starhunt2credits_add,\
-    edges_hos_starhunt2credits_remove
+from maps.graph_edges.goal_openstarway.edges_hos import (
+    edges_hos_goal_openstarway_add,
+    edges_hos_goal_openstarway_remove
+)
 
 # Imports: Partner Upgrade Shuffle
 from rando_enums.enum_types import BlockType
@@ -94,8 +95,12 @@ from maps.graph_edges.glitched_logic.tik_island_pipe_blooper_skip import \
     edges_tik_add_island_pipe_blooper_skip
 from maps.graph_edges.glitched_logic.tik_parakarryless_sewer_star_piece import \
     edges_tik_add_parakarryless_sewer_star_piece
+from maps.graph_edges.glitched_logic.tik_clippy_sewers_upgrade_block import \
+    edges_tik_add_clippy_sewers_upgrade_block
 from maps.graph_edges.glitched_logic.tik_sewer_blocks_without_ultra_boots import \
     edges_tik_add_sewer_blocks_without_ultra_boots
+from maps.graph_edges.glitched_logic.tik_chapter_7_bridge_with_super_boots import \
+    edges_tik_add_chapter_7_bridge_with_super_boots
 from maps.graph_edges.glitched_logic.tik_clippy_boots import \
     edges_tik_add_clippy_boots_metal_block_skip, edges_tik_add_clippy_boots_stone_block_skip
 from maps.graph_edges.glitched_logic.tik_first_block_to_shiver_city_without_super_boots import \
@@ -161,6 +166,8 @@ from maps.graph_edges.glitched_logic.isk_parakarryless_super_hammer_room import 
     edges_isk_add_parakarryless_super_hammer_room_normal_boots, edges_isk_add_parakarryless_super_hammer_room_ultra_boots
 from maps.graph_edges.glitched_logic.isk_ruins_locks_skip import \
     edges_isk_add_ruins_locks_skip_clippy
+from maps.graph_edges.glitched_logic.isk_ruins_stone_skip import \
+    edges_isk_add_ruins_stone_skip
 
 # Glitched Logic - Forever Forest
 from maps.graph_edges.glitched_logic.mim_forever_forest_backwards import \
@@ -202,6 +209,8 @@ from maps.graph_edges.glitched_logic.omo_parakarryless_blue_station_star_piece i
     edges_omo_add_parakarryless_blue_station_star_piece
 from maps.graph_edges.glitched_logic.omo_bowless_green_station import \
     edges_omo_add_bowless_green_station_laki
+from maps.graph_edges.glitched_logic.omo_clippy_green_station_coin_block import \
+    edges_omo_clippy_green_station_coin_block
 from maps.graph_edges.glitched_logic.omo_kooperless_red_station_shooting_star import \
     edges_omo_add_red_station_shooting_star_parakarry
 from maps.graph_edges.glitched_logic.omo_gearless_red_station_shooting_star import \
@@ -212,6 +221,8 @@ from maps.graph_edges.glitched_logic.omo_blue_switch_skip import \
     edges_omo_add_blue_switch_skip_laki, edges_omo_add_blue_switch_skip_ultra_boots
 from maps.graph_edges.glitched_logic.omo_red_barricade_skip import \
     edges_omo_add_red_barricade_skip
+from maps.graph_edges.glitched_logic.omo_wattless_dark_room import \
+    edges_omo_add_wattless_dark_room
 from maps.graph_edges.glitched_logic.omo_hammerless_blue_station import \
     edges_omo_add_hammerless_blue_station_laki
 from maps.graph_edges.glitched_logic.omo_hammerless_pink_station import \
@@ -223,7 +234,8 @@ from maps.graph_edges.glitched_logic.jan_raph_skip_english import \
 from maps.graph_edges.glitched_logic.jan_raph_skip_parakarry import \
     edges_jan_add_raph_skip_parakarry
 from maps.graph_edges.glitched_logic.jan_kzn_ch5_sushie_glitch import \
-    edges_jan_kzn_add_ch5_sushie_glitch, edges_kzn_add_volcano_sushie_glitch
+    edges_jan_kzn_add_ch5_sushie_glitch, edges_kzn_add_volcano_sushie_glitch, \
+    edges_kzn_add_volcano_sushie_glitch_superboots, edges_kzn_add_volcano_sushie_glitch_goombario
 from maps.graph_edges.glitched_logic.jan_sushieless_jungle_starpiece_and_letter import \
     edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs
 from maps.graph_edges.glitched_logic.jan_jumpless_deep_jungle import \
@@ -237,7 +249,7 @@ from maps.graph_edges.glitched_logic.kzn_jumpless_lavalava_pow_block import \
 from maps.graph_edges.glitched_logic.kzn_ultra_hammer_skip import \
     edges_kzn_add_ultra_hammer_skip, edges_kzn_add_ultra_hammer_skip_laki, edges_kzn_add_ultra_hammer_skip_sushie
 from maps.graph_edges.glitched_logic.kzn_flarakarry import \
-    edges_kzn_add_flarakarry_bombette, edges_kzn_add_flarakarry_laki, edges_kzn_add_flarakarry_parakarry
+    edges_kzn_add_flarakarry_laki, edges_kzn_add_flarakarry_parakarry
 
 # Glitched Logic - Flower Fields
 from maps.graph_edges.glitched_logic.flo_early_lakilester import \
@@ -272,6 +284,8 @@ from maps.graph_edges.glitched_logic.sam_sushieless_warehouse_key import \
 # Glitched Logic - Crystal Palace
 from maps.graph_edges.glitched_logic.pra_mirror_clip import \
     edges_pra_add_mirror_clip_laki
+from maps.graph_edges.glitched_logic.pra_kooper_puzzle_skip import \
+    edges_pra_add_kooper_puzzle_skip
 
 # Glitched Logic - Bowser's Castle
 from maps.graph_edges.glitched_logic.kpa_bowless_bowsers_castle_basement import \
@@ -338,39 +352,6 @@ def get_bowsercastle_bossrush(world_graph: dict):
     return entrance_modifications, world_graph
 
 
-def get_starhunt(
-    world_graph: dict,
-    power_stars_placed: int,
-    star_hunt_triggers_credits: bool
-):
-    """
-    Returns the modified world graph itself for Star Hunt,
-    which either removes ch8 or changes the Star Way requirements.
-    """
-    all_new_edges = []
-    all_edges_to_remove = []
-    entrance_modifications = []
-
-    all_new_edges.extend(deepcopy(edges_hos_starhunt_add))
-    all_edges_to_remove.extend(edges_hos_starhunt_remove)
-
-    # always expect all power stars before ch8, else some get placed behind
-    # the edge they lock
-    all_new_edges[0]["reqs"].extend([[{"powerstars": power_stars_placed}]])
-
-    if star_hunt_triggers_credits:
-        all_new_edges.extend(edges_hos_starhunt2credits_add)
-        all_edges_to_remove.extend(edges_hos_starhunt2credits_remove)
-
-    world_graph, entrance_modifications = adjust(
-        world_graph,
-        new_edges=all_new_edges,
-        edges_to_remove=all_edges_to_remove
-    )
-
-    return entrance_modifications, world_graph
-
-
 def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     """
     Returns the modified world graph itself for Gear Location Shuffle and Full Shuffle,
@@ -400,7 +381,8 @@ def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
 
 def get_partner_upgrade_shuffle(
     world_graph: dict,
-    shuffle_blocks: bool
+    shuffle_blocks: bool,
+    glitch_settings: GlitchOptionSet
 ) -> (dict, list):
     """
     Returns the modified world graph itself for Partner Upgrade Shuffle,
@@ -411,6 +393,12 @@ def get_partner_upgrade_shuffle(
         shuffle_blocks,
         supers_are_yellow=True
     )
+
+    # handle upgrade block glitch logic first
+    if glitch_settings.clippy_sewers_upgrade_block:
+        edges_tik_add_partnerupgrades.extend(edges_tik_add_clippy_sewers_upgrade_block)
+    if glitch_settings.clippy_green_station_coin_block:
+        edges_omo_add_partnerupgrades.extend(edges_omo_clippy_green_station_coin_block)
 
     edges_partner_upgrade = []
     edges_partner_upgrade.extend(edges_arn_add_partnerupgrades)
@@ -447,23 +435,217 @@ def get_partner_upgrade_shuffle(
     return world_graph, block_placement
 
 
-def get_specific_spirits(world_graph: dict, chosen_spirits: list) -> dict:
+def set_starway_requirements(
+    world_graph: dict,
+    spirits_needed: int,
+    specific_spirits: list,
+    powerstars_needed: int,
+    seed_goal: SeedGoal
+) -> dict:
     """
-    Returns the modified world graph itself for specific spirits,
-    which adjusts how the chapter 8 access gets handled.
+    Returns the modified world graph itself, modified to set the spirits
+    required to enter Star Way.
     """
-    new_requirements = [["can_climb_steps"]]
+    added_requirements = []
+    entrance_modifications = []
 
+    # set number of spirits needed
+    if spirits_needed > 0:
+        added_requirements.append([{"starspirits": spirits_needed}])
+
+    # set specific spirits, if required
     # the logic knows the spirits as "STARSPIRIT_X", where X is in 1-7
-    for spirit_number in chosen_spirits:
-        new_requirements.append([f"STARSPIRIT_{spirit_number}"])
+    for spirit_number in specific_spirits:
+        added_requirements.append([f"STARSPIRIT_{spirit_number}"])
 
+    if powerstars_needed > 0:
+        added_requirements.append([{"powerstars": powerstars_needed}])
+
+    if seed_goal == SeedGoal.OPEN_STARWAY:
+        world_graph, entrance_modifications = adjust(
+            world_graph,
+            new_edges=edges_hos_goal_openstarway_add,
+            edges_to_remove=edges_hos_goal_openstarway_remove
+        )
+
+    # find Star Way edge and modify its requirements
     for index, entrance in enumerate(world_graph["HOS_01/0"]["edge_list"]):
         if (    entrance["to"]["map"] == "HOS_01"
             and entrance["to"]["id"] == 1
         ):
-            world_graph["HOS_01/0"]["edge_list"][index]["reqs"].clear()
-            world_graph["HOS_01/0"]["edge_list"][index]["reqs"] = new_requirements
+            world_graph["HOS_01/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            #print(world_graph["HOS_01/0"]["edge_list"][index]["reqs"])
+            break
+
+    # add requirements to chapter 8 jr. troopa and both bowser battles, so the
+    # logic doesn't require going through them too early
+
+    ## ch8 jr. troopa
+    for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_83"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_83"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## hallway bowser
+    for index, entrance in enumerate(world_graph["KKJ_13/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_13"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["KKJ_13/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    for index, entrance in enumerate(world_graph["KKJ_13/1"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_13"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KKJ_13/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## final bowser
+    for index, entrance in enumerate(world_graph["KKJ_25/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_25"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KKJ_25/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+
+    # also add requirements to chapter 8 Koopatrol and lava switch battles, so
+    # the logic doesn't require going through them too early
+    # This is far from ideal, but an okay-ish temporary solution to having
+    # to battle chapter 8 enemies way too early
+
+    ## Koopatrol: Bowser Castle Key in lava room
+    for index, entrance in enumerate(world_graph["KPA_11/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_11"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_11/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Koopatrol: Prison 1
+    for index, entrance in enumerate(world_graph["KPA_91/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_91"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_91/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Koopatrol: Prison 2
+    for index, entrance in enumerate(world_graph["KPA_95/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_95"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_95/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Lava Control room battle
+    for index, entrance in enumerate(world_graph["KPA_16/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_16"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KPA_16/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+
+    return entrance_modifications, world_graph
+
+
+def set_starbeam_requirements(
+    world_graph: dict,
+    spirits_needed: int,
+    powerstars_needed: int,
+) -> dict:
+    """
+    Returns the modified world graph itself, modified to set the spirits
+    and power stars required to collect the Star Beam item location.
+    """
+    added_requirements = []
+
+    if spirits_needed > 0:
+        added_requirements.append([{"starspirits": spirits_needed}])
+    if powerstars_needed > 0:
+        added_requirements.append([{"powerstars": powerstars_needed}])
+
+    # find Star Beam edge and modify its requirements
+    for index, entrance in enumerate(world_graph["HOS_05/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "HOS_05"
+            and entrance["to"]["id"] == "GiftA"
+        ):
+            world_graph["HOS_05/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            #print(world_graph["HOS_05/0"]["edge_list"][index]["reqs"])
+            break
+
+    # add requirements to chapter 8 jr. troopa and both bowser battles, so the
+    # logic doesn't require going through them too early.
+    # this will add onto requirements placed by set_starway_requirements
+
+    ## ch8 jr. troopa
+    for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_83"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_83"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## hallway bowser
+    for index, entrance in enumerate(world_graph["KKJ_13/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_13"
+            and entrance["to"]["id"] == 1
+        ):
+            world_graph["KKJ_13/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    for index, entrance in enumerate(world_graph["KKJ_13/1"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_13"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KKJ_13/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## final bowser
+    for index, entrance in enumerate(world_graph["KKJ_25/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KKJ_25"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KKJ_25/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+
+    # also add requirements to chapter 8 Koopatrol and lava switch battles, so
+    # the logic doesn't require going through them too early
+    # This is far from ideal, but an okay-ish temporary solution to having
+    # to battle chapter 8 enemies way too early
+
+    ## Koopatrol: Bowser Castle Key in lava room
+    for index, entrance in enumerate(world_graph["KPA_11/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_11"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_11/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Koopatrol: Prison 1
+    for index, entrance in enumerate(world_graph["KPA_91/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_91"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_91/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Koopatrol: Prison 2
+    for index, entrance in enumerate(world_graph["KPA_95/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_95"
+            and entrance["to"]["id"] == "ItemA"
+        ):
+            world_graph["KPA_95/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+            break
+    ## Lava Control room battle
+    for index, entrance in enumerate(world_graph["KPA_16/0"]["edge_list"]):
+        if (    entrance["to"]["map"] == "KPA_16"
+            and entrance["to"]["id"] == 0
+        ):
+            world_graph["KPA_16/0"]["edge_list"][index]["reqs"].extend(added_requirements)
             break
 
     return world_graph
@@ -620,6 +802,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_tik_add_parakarryless_sewer_star_piece)
     if glitch_settings.sewer_blocks_without_ultra_boots:
         all_new_edges.extend(edges_tik_add_sewer_blocks_without_ultra_boots)
+    if glitch_settings.chapter_7_bridge_with_super_boots:
+        all_new_edges.extend(edges_tik_add_chapter_7_bridge_with_super_boots)
     if glitch_settings.first_block_to_shiver_city_without_super_boots:
         all_new_edges.extend(edges_tik_add_first_block_to_shiver_city_witout_super_boots)
     if glitch_settings.blocks_to_shiver_city_kooper_shell_item_throw:
@@ -696,6 +880,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_isk_add_ruins_key_laki_jump)
     if glitch_settings.ruins_locks_skip_clippy:
         all_new_edges.extend(edges_isk_add_ruins_locks_skip_clippy)
+    if glitch_settings.ruins_stone_skip:
+        all_new_edges.extend(edges_isk_add_ruins_stone_skip)
 
     # Forever Forest
     if glitch_settings.forever_forest_backwards:
@@ -764,6 +950,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_omo_add_blue_switch_skip_ultra_boots)
     if glitch_settings.red_barricade_skip:
         all_new_edges.extend(edges_omo_add_red_barricade_skip)
+    if glitch_settings.wattless_dark_room:
+        all_new_edges.extend(edges_omo_add_wattless_dark_room)
     if glitch_settings.hammerless_blue_station_laki:
         all_new_edges.extend(edges_omo_add_hammerless_blue_station_laki)
     if glitch_settings.hammerless_pink_station_laki:
@@ -796,11 +984,13 @@ def get_glitched_logic(
         all_new_edges.extend(edges_kzn_add_ultra_hammer_skip_sushie)
     if glitch_settings.flarakarry:
         all_new_edges.extend(edges_kzn_add_flarakarry_parakarry)
-    if glitch_settings.parakarryless_flarakarry_bombette:
-        all_new_edges.extend(edges_kzn_add_flarakarry_bombette)
     if glitch_settings.parakarryless_flarakarry_laki:
         all_new_edges.extend(edges_kzn_add_flarakarry_laki)
-    if glitch_settings.volcano_sushie_glitch:
+    if glitch_settings.volcano_sushie_glitch_superboots: # super boots save block storage
+        all_new_edges.extend(edges_kzn_add_volcano_sushie_glitch_superboots)
+    if glitch_settings.volcano_sushie_glitch_goombario: # tattle save block storage
+        all_new_edges.extend(edges_kzn_add_volcano_sushie_glitch_goombario)
+    if glitch_settings.volcano_sushie_glitch_superboots or glitch_settings.volcano_sushie_glitch_goombario:
         all_new_edges.extend(edges_kzn_add_volcano_sushie_glitch)
 
     # Flower Fields
@@ -856,6 +1046,8 @@ def get_glitched_logic(
     # Crystal Palace
     if glitch_settings.mirror_clip:
         all_new_edges.extend(edges_pra_add_mirror_clip_laki)
+    if glitch_settings.kooper_puzzle_skip:
+        all_new_edges.extend(edges_pra_add_kooper_puzzle_skip)
 
     # Bowser's Castle
     if bowsers_castle_mode == BowserCastleMode.VANILLA:

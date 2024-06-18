@@ -16,7 +16,7 @@ edges_hos = [
     {"from": {"map": "HOS_01", "id": 0}, "to": {"map": "HOS_00", "id": 1}, "reqs": []}, # Shooting Star Summit Exit Bottom Left -> Shooting Star Path Exit Top Right
     {"from": {"map": "HOS_01", "id": 1}, "to": {"map": "HOS_02", "id": 0}, "reqs": []}, # Shooting Star Summit Ride Up To Starway -> Star Way Ride Down To Summit
 
-    {"from": {"map": "HOS_01", "id": 0}, "to": {"map": "HOS_01", "id": 1}, "reqs": [[{"starspirits": 7}],["can_climb_steps"]]}, #? Shooting Star Summit Exit Bottom Left -> Shooting Star Summit Ride Up To Starway
+    {"from": {"map": "HOS_01", "id": 0}, "to": {"map": "HOS_01", "id": 1}, "reqs": [["can_climb_steps"]]}, #? Shooting Star Summit Exit Bottom Left -> Shooting Star Summit Ride Up To Starway
     {"from": {"map": "HOS_01", "id": 1}, "to": {"map": "HOS_01", "id": 0}, "reqs": []}, #? Shooting Star Summit Ride Up To Starway -> Shooting Star Summit Exit Bottom Left
 
     {"from": {"map": "HOS_01", "id": 0}, "to": {"map": "HOS_01", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"],["can_climb_steps"]]}, #* Shooting Star Summit Exit Bottom Left -> HiddenPanel (StarPiece)
@@ -63,8 +63,10 @@ edges_hos = [
     {"from": {"map": "HOS_05", "id": 0}, "to": {"map": "HOS_04", "id": 1}, "reqs": []}, # Star Sanctuary Exit Left -> Outside the Sanctuary Exit Right
     {"from": {"map": "HOS_05", "id": 1}, "to": {"map": "HOS_20", "id": 0}, "reqs": []}, # Star Sanctuary Fly Starship -> Riding Star Ship Scene Fly To Star Haven
 
-    {"from": {"map": "HOS_05", "id": 0}, "to": {"map": "HOS_05", "id": 1}, "reqs": [["can_climb_steps"]], "pseudoitems": ["RF_HasStarbeam"]}, #? Star Sanctuary Exit Left -> Star Sanctuary Fly Starship
+    {"from": {"map": "HOS_05", "id": 0}, "to": {"map": "HOS_05", "id": 1}, "reqs": [["can_climb_steps"]]}, #? Star Sanctuary Exit Left -> Star Sanctuary Fly Starship
     {"from": {"map": "HOS_05", "id": 1}, "to": {"map": "HOS_05", "id": 0}, "reqs": []}, #? Star Sanctuary Fly Starship -> Star Sanctuary Exit Left
+
+    {"from": {"map": "HOS_05", "id": 0}, "to": {"map": "HOS_05", "id": "GiftA"}, "reqs": []}, #* Star Sanctuary Exit Left -> GiftA (StarBeam)
 
     # HOS_06 Merluvlee's House
     {"from": {"map": "HOS_06", "id": 0}, "to": {"map": "HOS_00", "id": 2}, "reqs": []}, # Merluvlee's House Exit Left -> Shooting Star Path Exit Bottom Right
@@ -89,11 +91,11 @@ edges_hos = [
     {"from": {"map": "HOS_06", "id": "ShopBadgeA"},  "to": {"map": "HOS_06", "id": "ShopBadgeN"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ShopBadgeN (FlowerSaverA)
     {"from": {"map": "HOS_06", "id": "ShopBadgeA"},  "to": {"map": "HOS_06", "id": "ShopBadgeO"},  "reqs": []}, #+ SHARED REQUIREMENTS -> ShopBadgeO (PowerPlusA)
     {"from": {"map": "HOS_06", "id": 0},             "to": {"map": "HOS_06", "id": "ShopRewardA"}, "reqs": [[{"starpieces": 10}],["can_climb_steps"]]}, #* Merluvlee's House Exit Left -> ShopRewardA (Mushroom)
-    {"from": {"map": "HOS_06", "id": "ShopRewardA"}, "to": {"map": "HOS_06", "id": "ShopRewardB"}, "reqs": [[{"starpieces": 23}]]}, #+ CHAINED REQUIREMENTS (SuperShroom)
+    {"from": {"map": "HOS_06", "id": "ShopRewardA"}, "to": {"map": "HOS_06", "id": "ShopRewardB"}, "reqs": [[{"starpieces": 22}]]}, #+ CHAINED REQUIREMENTS (SuperShroom)
     {"from": {"map": "HOS_06", "id": "ShopRewardB"}, "to": {"map": "HOS_06", "id": "ShopRewardC"}, "reqs": [[{"starpieces": 35}]]}, #+ CHAINED REQUIREMENTS (ThunderRage)
-    {"from": {"map": "HOS_06", "id": "ShopRewardC"}, "to": {"map": "HOS_06", "id": "ShopRewardD"}, "reqs": [[{"starpieces": 47}]]}, #+ CHAINED REQUIREMENTS (LifeShroom)
+    {"from": {"map": "HOS_06", "id": "ShopRewardC"}, "to": {"map": "HOS_06", "id": "ShopRewardD"}, "reqs": [[{"starpieces": 45}]]}, #+ CHAINED REQUIREMENTS (LifeShroom)
     {"from": {"map": "HOS_06", "id": "ShopRewardD"}, "to": {"map": "HOS_06", "id": "ShopRewardE"}, "reqs": [[{"starpieces": 57}]]}, #+ CHAINED REQUIREMENTS (UltraShroom)
-    {"from": {"map": "HOS_06", "id": "ShopRewardE"}, "to": {"map": "HOS_06", "id": "ShopRewardF"}, "reqs": [[{"starpieces": 68}]]}, #+ CHAINED REQUIREMENTS (RepelGel)
+    {"from": {"map": "HOS_06", "id": "ShopRewardE"}, "to": {"map": "HOS_06", "id": "ShopRewardF"}, "reqs": [[{"starpieces": 67}]]}, #+ CHAINED REQUIREMENTS (RepelGel)
 
     {"from": {"map": "HOS_06", "id": 0}, "to": {"map": "HOS_06", "id": 0}, "reqs": [["FAVOR_3_03_active"]], "pseudoitems": ["GF_HOS06_MerluvleeRequestedCrystalBall"]}, #+ Merluvlee's House Exit Left
     {"from": {"map": "HOS_06", "id": 0}, "to": {"map": "HOS_06", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanSolveAttackFXBPuzzle"]}, #+ Merluvlee's House Exit Left

@@ -187,6 +187,7 @@ item_source_types = {
                "ShopItemD": SRC_SOLDBYNPC,
                "ShopItemE": SRC_SOLDBYNPC,
                "ShopItemF": SRC_SOLDBYNPC,},
+    "HOS_05": {"GiftA": SRC_GIVENBYNPC,},
     "HOS_06": {"GiftA": SRC_GIVENBYNPC,
                "GiftB": SRC_GIVENBYNPC,
                "HiddenPanel": SRC_HIDDENTILE,
