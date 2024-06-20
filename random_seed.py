@@ -107,73 +107,74 @@ class RandomSeed:
                 self.placed_blocks = []
                 self.spoilerlog_additions = {}
                 self.item_spheres_dict = None
+                logic_settings = self.rando_settings.logic_settings
 
                 # Choose values for options that are set to "random"
-                if self.rando_settings.magical_seeds_required == -1:
-                    self.rando_settings.magical_seeds_required = random.randint(0, 4)
+                if logic_settings.magical_seeds_required == -1:
+                    logic_settings.magical_seeds_required = random.randint(0, 4)
 
-                if self.rando_settings.starway_spirits_needed_count == -1:
-                    self.rando_settings.starway_spirits_needed_count = random.randint(0,7)
+                if logic_settings.starway_spirits_needed_count == -1:
+                    logic_settings.starway_spirits_needed_count = random.randint(0,7)
 
-                if self.rando_settings.starbeam_spirits_needed == -1:
-                    self.rando_settings.starbeam_spirits_needed = random.randint(0,7)
+                if logic_settings.starbeam_spirits_needed == -1:
+                    logic_settings.starbeam_spirits_needed = random.randint(0,7)
 
                 # Modify entrances if needed
-                if self.rando_settings.bowsers_castle_mode == BowserCastleMode.SHORTEN:
+                if logic_settings.bowsers_castle_mode == BowserCastleMode.SHORTEN:
                     self.entrance_list, modified_world_graph = get_shorter_bowsercastle(
                         modified_world_graph
                     )
-                elif self.rando_settings.bowsers_castle_mode == BowserCastleMode.BOSSRUSH:
+                elif logic_settings.bowsers_castle_mode == BowserCastleMode.BOSSRUSH:
                     self.entrance_list, modified_world_graph = get_bowsercastle_bossrush(
                         modified_world_graph
                     )
 
-                if (    self.rando_settings.shuffle_dungeon_entrances
-                    and self.rando_settings.shuffle_items
+                if (    logic_settings.shuffle_dungeon_entrances
+                    and logic_settings.shuffle_items
                 ):
                     entrance_changes, modified_world_graph, spoilerlog_info = shuffle_dungeon_entrances(
                         world_graph = modified_world_graph,
-                        starway_spirits_needed_count = self.rando_settings.starway_spirits_needed_count,
+                        starway_spirits_needed_count = logic_settings.starway_spirits_needed_count,
                         shuffle_bowsers_castle = (
-                            self.rando_settings.shuffle_dungeon_entrances == DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
+                            logic_settings.shuffle_dungeon_entrances == DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
                         ),
-                        write_spoilers = self.rando_settings.write_spoilerlog
+                        write_spoilers = self.rando_settings.write_spoilerlog,
                     )
                     self.entrance_list.extend(entrance_changes)
                     if self.spoilerlog_additions.get("entrances") is None:
                         self.spoilerlog_additions["entrances"] = []
                     self.spoilerlog_additions["entrances"].extend(spoilerlog_info)
 
-                if self.rando_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF:
+                if logic_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF:
                     modified_world_graph, self.placed_blocks = get_partner_upgrade_shuffle(
                         modified_world_graph,
-                        self.rando_settings.shuffle_blocks,
+                        logic_settings.shuffle_blocks,
                         self.rando_settings.glitch_settings
                     )
 
                 # Adjust graph logic if needed
-                if self.rando_settings.gear_shuffle_mode != GearShuffleMode.VANILLA:
+                if logic_settings.gear_shuffle_mode != GearShuffleMode.VANILLA:
                     modified_world_graph = get_gear_location_shuffle(
                         modified_world_graph,
-                        self.rando_settings.gear_shuffle_mode
+                        logic_settings.gear_shuffle_mode
                     )
                 modified_world_graph = adjust_shop_logic(
                     modified_world_graph,
-                    self.rando_settings.progression_on_rowf,
-                    self.rando_settings.progression_on_merlow,
-                    self.rando_settings.ripcheato_items_in_logic
+                    logic_settings.progression_on_rowf,
+                    logic_settings.progression_on_merlow,
+                    logic_settings.ripcheato_items_in_logic
                 )
                 modified_world_graph = get_glitched_logic(
                     modified_world_graph,
                     self.rando_settings.glitch_settings,
-                    self.rando_settings.bowsers_castle_mode,
-                    self.rando_settings.shuffle_dungeon_entrances
+                    logic_settings.bowsers_castle_mode,
+                    logic_settings.shuffle_dungeon_entrances
                 )
 
                 ## Setup star spirits, power stars, and relevant logic
                 chosen_spirits = []
-                if (    self.rando_settings.require_specific_spirits
-                    and 0 < self.rando_settings.starway_spirits_needed_count < 7
+                if (    logic_settings.require_specific_spirits
+                    and 0 < logic_settings.starway_spirits_needed_count < 7
                 ):
                     all_spirits = [
                         StarSpirits.ELDSTAR,
@@ -184,50 +185,50 @@ class RandomSeed:
                         StarSpirits.KLEVAR,
                         StarSpirits.KALMAR,
                     ]
-                    for _ in range(self.rando_settings.starway_spirits_needed_count):
+                    for _ in range(logic_settings.starway_spirits_needed_count):
                         rnd_spirit = random.randint(0, len(all_spirits) - 1)
                         chosen_spirits.append(all_spirits.pop(rnd_spirit))
                     encoded_spirits = 0
                     for spirit in chosen_spirits:
                         encoded_spirits = encoded_spirits | (1 << (spirit - 1))
-                    self.rando_settings.starway_spirits_needed_encoded = encoded_spirits
+                    logic_settings.starway_spirits_needed_encoded = encoded_spirits
 
                     chosen_spirits.sort()
                     if self.spoilerlog_additions.get("required_spirits") is None:
                         self.spoilerlog_additions["required_spirits"] = []
                     self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
 
-                if (   self.rando_settings.starbeam_spirits_needed > 0
-                    or self.rando_settings.starbeam_powerstars_needed > 0
+                if (   logic_settings.starbeam_spirits_needed > 0
+                    or logic_settings.starbeam_powerstars_needed > 0
                 ):
                     modified_world_graph = set_starbeam_requirements(
                         world_graph=modified_world_graph,
-                        spirits_needed=self.rando_settings.starbeam_spirits_needed,
-                        powerstars_needed=self.rando_settings.starbeam_powerstars_needed
+                        spirits_needed=logic_settings.starbeam_spirits_needed,
+                        powerstars_needed=logic_settings.starbeam_powerstars_needed
                     )
 
                 entrance_changes, modified_world_graph = set_starway_requirements(
                     world_graph=modified_world_graph,
-                    spirits_needed=self.rando_settings.starway_spirits_needed_count,
+                    spirits_needed=logic_settings.starway_spirits_needed_count,
                     specific_spirits=chosen_spirits,
                     powerstars_needed=( # don't expect all, but also don't bottleneck
-                        self.rando_settings.star_hunt_total
-                      - int(  (  self.rando_settings.star_hunt_total
-                               - self.rando_settings.starway_powerstars_needed
+                        logic_settings.star_hunt_total
+                      - int(  (  logic_settings.star_hunt_total
+                               - logic_settings.starway_powerstars_needed
                               )
                             / 2
                         )
                     ),
-                    seed_goal=self.rando_settings.seed_goal
+                    seed_goal=logic_settings.seed_goal
                 )
                 if entrance_changes:
                     self.entrance_list.extend(entrance_changes)
 
-                if self.rando_settings.limit_chapter_logic:
+                if logic_settings.limit_chapter_logic:
                     modified_world_graph = get_limited_chapter_logic(
                         modified_world_graph,
                         chosen_spirits,
-                        self.rando_settings.gear_shuffle_mode
+                        logic_settings.gear_shuffle_mode
                     )
 
                 # Cull unneeded data from world graph if access to maps was
@@ -242,96 +243,38 @@ class RandomSeed:
                 modified_world_graph = enrich_graph_data(modified_world_graph)
 
                 # Adjust further settings
-                hidden_block_mode = self.rando_settings.hidden_block_mode
+                hidden_block_mode = logic_settings.hidden_block_mode
                 if self.rando_settings.glitch_settings.knows_hidden_blocks:
                     # Having this trick enabled is equivalent to mode 3, logic wise
                     hidden_block_mode = 3
 
-                starting_chapter, self.rando_settings.starting_map = self.init_starting_map(
+                starting_chapter, logic_settings.starting_map = self.init_starting_map(
                     self.rando_settings
                 )
                 self.init_starting_partners(self.rando_settings)
 
                 self.init_starting_items(
                     self.rando_settings,
-                    self.rando_settings.magical_seeds_required
                 )
 
                 # Item Placement
                 place_items(
                     item_placement=self.placed_items,
-                    do_custom_seed=self.rando_settings.custom_seed,
-                    do_shuffle_items=self.rando_settings.shuffle_items,
-                    shuffle_overworld_coins=self.rando_settings.include_coins_overworld,
-                    shuffle_block_coins=self.rando_settings.include_coins_blocks,
-                    shuffle_foliage_coins=self.rando_settings.include_coins_foliage,
-                    shuffle_favor_coins=self.rando_settings.include_coins_favors,
-                    do_randomize_shops=self.rando_settings.include_shops,
-                    do_randomize_panels=self.rando_settings.include_panels,
-                    randomize_favors_mode=self.rando_settings.include_favors_mode,
-                    randomize_letters_mode=self.rando_settings.include_letters_mode,
-                    do_randomize_radiotrade=self.rando_settings.include_radiotradeevent,
-                    do_randomize_dojo=self.rando_settings.include_dojo,
-                    gear_shuffle_mode=self.rando_settings.gear_shuffle_mode,
-                    randomize_consumable_mode=self.rando_settings.randomize_consumable_mode,
-                    item_quality=self.rando_settings.item_quality,
-                    itemtrap_mode=self.rando_settings.itemtrap_mode,
-                    starting_map_id=self.rando_settings.starting_map,
-                    startwith_prologue_open=self.rando_settings.prologue_open,
-                    startwith_bluehouse_open=self.rando_settings.bluehouse_open,
-                    startwith_mtrugged_open=self.rando_settings.mtrugged_open,
-                    startwith_forest_open=self.rando_settings.foreverforest_open,
-                    magical_seeds_required=self.rando_settings.magical_seeds_required,
-                    startwith_toybox_open=self.rando_settings.toybox_open,
-                    startwith_whale_open=self.rando_settings.whale_open,
-                    ch7_bridge_visible=self.rando_settings.ch7_bridge_visible,
-                    cook_without_fryingpan=self.rando_settings.cook_without_fryingpan,
+                    logic_settings=self.rando_settings.logic_settings,
                     starting_partners=self.starting_partners,
-                    starting_boots=self.rando_settings.starting_boots,
-                    starting_hammer=self.rando_settings.starting_hammer,
-                    speedyspin=self.rando_settings.always_speedyspin,
-                    ispy=self.rando_settings.always_ispy,
-                    peekaboo=self.rando_settings.always_peekaboo,
-                    partners_always_usable=self.rando_settings.partners_always_usable,
-                    partners_in_default_locations=self.rando_settings.partners_in_default_locations,
                     hidden_block_mode=hidden_block_mode,
-                    keyitems_outside_dungeon=self.rando_settings.keyitems_outside_dungeon,
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
-                    add_item_pouches=self.rando_settings.add_item_pouches,
-                    add_unused_badge_duplicates=self.rando_settings.add_unused_badge_duplicates,
-                    add_beta_items=self.rando_settings.add_beta_items,
-                    do_progressive_badges=self.rando_settings.progressive_badges,
-                    badge_pool_limit=self.rando_settings.badge_pool_limit,
-                    bowsers_castle_mode=self.rando_settings.bowsers_castle_mode,
-                    star_hunt_stars=self.rando_settings.star_hunt_total,
-                    partner_upgrade_shuffle=self.rando_settings.partner_upgrade_shuffle,
-                    random_puzzles=self.rando_settings.randomize_puzzles,
-                    shuffle_starbeam=self.rando_settings.shuffle_starbeam,
                     world_graph=modified_world_graph
                 )
 
                 # Determine item placement spheres
                 self.item_spheres_dict = get_item_spheres(
                     item_placement= self.placed_items,
-                    starting_map_id=self.rando_settings.starting_map,
-                    startwith_prologue_open=self.rando_settings.prologue_open,
-                    startwith_bluehouse_open=self.rando_settings.bluehouse_open,
-                    startwith_mtrugged_open=self.rando_settings.mtrugged_open,
-                    startwith_forest_open=self.rando_settings.foreverforest_open,
-                    magical_seeds_required=self.rando_settings.magical_seeds_required,
-                    startwith_toybox_open=self.rando_settings.toybox_open,
-                    startwith_whale_open=self.rando_settings.whale_open,
-                    ch7_bridge_visible=self.rando_settings.ch7_bridge_visible,
-                    cook_without_fryingpan=self.rando_settings.cook_without_fryingpan,
+                    logic_settings = logic_settings,
                     starting_partners=self.starting_partners,
-                    starting_boots=self.rando_settings.starting_boots,
-                    starting_hammer=self.rando_settings.starting_hammer,
-                    partners_always_usable=self.rando_settings.partners_always_usable,
                     hidden_block_mode=hidden_block_mode,
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
-                    startwith_speedyspin=self.rando_settings.always_speedyspin,
                     world_graph=modified_world_graph,
-                    shuffle_items=self.rando_settings.shuffle_items
                 )
 
                 break
@@ -346,7 +289,7 @@ class RandomSeed:
                     raise
 
         # Write ingame hint area for star beam, if shuffled
-        if self.rando_settings.shuffle_starbeam:
+        if logic_settings.shuffle_starbeam:
             for node_id in modified_world_graph:
                 cur_node = modified_world_graph[node_id].get("node")
                 if (    cur_node # check for edge_index
@@ -358,18 +301,18 @@ class RandomSeed:
                         # Peach's Castle entrance. Let's rebind those to
                         # Toad Town and Peach's Castle respectively
                         if cur_node.map_area.map_id == 1:
-                            self.rando_settings.starbeam_location = area_name_id_map["MAC"]
+                            logic_settings.starbeam_location = area_name_id_map["MAC"]
                         else:
-                            self.rando_settings.starbeam_location = area_name_id_map["KKJ"]
+                            logic_settings.starbeam_location = area_name_id_map["KKJ"]
                     else:
-                        self.rando_settings.starbeam_location = cur_node.map_area.area_id
+                        logic_settings.starbeam_location = cur_node.map_area.area_id
                     break
 
         # Setup puzzles and minigames
         # (have to set up the Dry Dry Outpost shop puzzles before item prices
         # get adjusted)
         self.puzzle_minigame_data, spoilerlog_info = get_puzzles_minigames(
-            self.rando_settings.randomize_puzzles,
+            logic_settings.randomize_puzzles,
             get_dro_shop_items(modified_world_graph)
         )
         self.spoilerlog_additions["puzzle_solutions"] = spoilerlog_info
@@ -379,7 +322,7 @@ class RandomSeed:
             if "Shop" in node.identifier:
                 node.current_item.base_price = get_shop_price(
                     node,
-                    self.rando_settings.include_shops,
+                    logic_settings.include_shops,
                     self.rando_settings.merlow_reward_pricing
                 )
 
@@ -391,7 +334,7 @@ class RandomSeed:
         # Randomize blocks if needed and not already done logically
         if not self.placed_blocks:
             self.placed_blocks = get_block_placement(
-                self.rando_settings.shuffle_blocks,
+                logic_settings.shuffle_blocks,
                 supers_are_yellow=False
             )
 
@@ -424,12 +367,12 @@ class RandomSeed:
             self.rando_settings.allow_itemhints,
             self.placed_items,
             self.starting_partners,
-            self.rando_settings.partners_in_default_locations,
-            self.rando_settings.include_shops,
-            self.rando_settings.include_panels,
-            self.rando_settings.include_favors_mode,
-            self.rando_settings.include_letters_mode,
-            self.rando_settings.keyitems_outside_dungeon
+            logic_settings.partners_in_default_locations,
+            logic_settings.include_shops,
+            logic_settings.include_panels,
+            logic_settings.include_favors_mode,
+            logic_settings.include_letters_mode,
+            logic_settings.keyitems_outside_dungeon
         )
 
         # Random quiz
@@ -468,14 +411,14 @@ class RandomSeed:
         rando_settings:OptionSet
     ):
         # Choose random starting partners if necessary
-        if rando_settings.random_partners:
+        if rando_settings.logic_settings.random_partners:
             self.starting_partners = get_rnd_starting_partners(
-                num_rnd_partners_min=rando_settings.random_partners_min,
-                num_rnd_partners_max=rando_settings.random_partners_max,
+                num_rnd_partners_min=rando_settings.logic_settings.random_partners_min,
+                num_rnd_partners_max=rando_settings.logic_settings.random_partners_max,
                 rando_settings=rando_settings
             )
         else:
-            self.starting_partners = rando_settings.starting_partners
+            self.starting_partners = rando_settings.logic_settings.starting_partners
 
 
     def init_starting_map(
@@ -486,7 +429,7 @@ class RandomSeed:
         Initializes the starting map and returns its chapter number. If the
         starting map is to be chosen at random, pick from curated list.
         """
-        starting_map_value = rando_settings.starting_map
+        starting_map_value = rando_settings.logic_settings.starting_map
         start_chapter = None
         if starting_map_value == 0xFFFFFFFF:
             # Pick random starting location
@@ -507,14 +450,13 @@ class RandomSeed:
     def init_starting_items(
         self,
         rando_settings:OptionSet,
-        magical_seeds_needed:int
     ):
         """
         Initialize the starting items from either the chosen starting items or
         pick them randomly.
         """
         self.starting_items = []
-        if rando_settings.random_starting_items:
+        if rando_settings.logic_settings.random_starting_items:
             starting_item_options = [0 for _ in range(16)]
 
             # Set up allowed items
@@ -524,26 +466,17 @@ class RandomSeed:
             all_allowed_starting_items.extend(allowed_starting_key_items)
 
             excluded_items = get_items_to_exclude(
-                do_randomize_dojo=rando_settings.include_dojo,
+                logic_settings=rando_settings.logic_settings,
                 starting_partners=self.starting_partners,
-                startwith_bluehouse_open=rando_settings.bluehouse_open,
-                startwith_forest_open=rando_settings.foreverforest_open,
-                magical_seeds_required=magical_seeds_needed,
-                bowsers_castle_mode=rando_settings.bowsers_castle_mode,
-                always_speedyspin=rando_settings.always_speedyspin,
-                always_ispy=rando_settings.always_ispy,
-                always_peekaboo=rando_settings.always_peekaboo,
-                do_progressive_badges=rando_settings.progressive_badges,
-                gear_shuffle_mode=rando_settings.gear_shuffle_mode,
-                do_partner_upgrade_shuffle=(rando_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF)
+                do_partner_upgrade_shuffle=(rando_settings.logic_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF)
             )
             for item_obj in excluded_items:
                 if item_obj.value in all_allowed_starting_items:
                     all_allowed_starting_items.remove(item_obj.value)
 
             starting_items_amount = random.randint(
-                rando_settings.random_starting_items_min,
-                rando_settings.random_starting_items_max
+                rando_settings.logic_settings.random_starting_items_min,
+                rando_settings.logic_settings.random_starting_items_max
             )
 
             for i in range(starting_items_amount):
@@ -559,22 +492,22 @@ class RandomSeed:
                     self.starting_items.append(random_item_obj)
                     starting_item_options[i] = random_item_id
 
-            rando_settings.starting_item_0 = starting_item_options[0]
-            rando_settings.starting_item_1 = starting_item_options[1]
-            rando_settings.starting_item_2 = starting_item_options[2]
-            rando_settings.starting_item_3 = starting_item_options[3]
-            rando_settings.starting_item_4 = starting_item_options[4]
-            rando_settings.starting_item_5 = starting_item_options[5]
-            rando_settings.starting_item_6 = starting_item_options[6]
-            rando_settings.starting_item_7 = starting_item_options[7]
-            rando_settings.starting_item_8 = starting_item_options[8]
-            rando_settings.starting_item_9 = starting_item_options[9]
-            rando_settings.starting_item_A = starting_item_options[10]
-            rando_settings.starting_item_B = starting_item_options[11]
-            rando_settings.starting_item_C = starting_item_options[12]
-            rando_settings.starting_item_D = starting_item_options[13]
-            rando_settings.starting_item_E = starting_item_options[14]
-            rando_settings.starting_item_F = starting_item_options[15]
+            rando_settings.logic_settings.starting_item_0 = starting_item_options[0]
+            rando_settings.logic_settings.starting_item_1 = starting_item_options[1]
+            rando_settings.logic_settings.starting_item_2 = starting_item_options[2]
+            rando_settings.logic_settings.starting_item_3 = starting_item_options[3]
+            rando_settings.logic_settings.starting_item_4 = starting_item_options[4]
+            rando_settings.logic_settings.starting_item_5 = starting_item_options[5]
+            rando_settings.logic_settings.starting_item_6 = starting_item_options[6]
+            rando_settings.logic_settings.starting_item_7 = starting_item_options[7]
+            rando_settings.logic_settings.starting_item_8 = starting_item_options[8]
+            rando_settings.logic_settings.starting_item_9 = starting_item_options[9]
+            rando_settings.logic_settings.starting_item_A = starting_item_options[10]
+            rando_settings.logic_settings.starting_item_B = starting_item_options[11]
+            rando_settings.logic_settings.starting_item_C = starting_item_options[12]
+            rando_settings.logic_settings.starting_item_D = starting_item_options[13]
+            rando_settings.logic_settings.starting_item_E = starting_item_options[14]
+            rando_settings.logic_settings.starting_item_F = starting_item_options[15]
         else:
             self.starting_items = self.rando_settings.get_startitem_list()
 

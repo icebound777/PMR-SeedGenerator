@@ -11,6 +11,7 @@ from db.item import Item
 from db.map_area import MapArea
 
 from models.MarioInventory import MarioInventory
+from models.options.LogicOptionSet import LogicOptionSet
 
 from rando_enums.enum_options import (
     BowserCastleMode,
@@ -218,19 +219,8 @@ def _find_new_nodes_and_edges(
 
 
 def get_items_to_exclude(
-    do_randomize_dojo:bool,
+    logic_settings:LogicOptionSet,
     starting_partners:list,
-    startwith_bluehouse_open:bool,
-    startwith_forest_open:bool,
-    magical_seeds_required:int,
-    bowsers_castle_mode:int,
-    always_speedyspin:bool,
-    always_ispy:bool,
-    always_peekaboo:bool,
-    do_progressive_badges:bool,
-    gear_shuffle_mode:int,
-    starting_hammer:int=-1,
-    starting_boots:int=-1,
     do_partner_upgrade_shuffle:bool=False
 ) -> list:
     """
@@ -239,66 +229,70 @@ def get_items_to_exclude(
     """
     excluded_items = []
 
-    if do_randomize_dojo:
+    if logic_settings.include_dojo:
         for item_name in exclude_due_to_settings.get("do_randomize_dojo"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
     for partner_string in starting_partners:
         partner_item = Item.get(Item.item_name == partner_string)
         excluded_items.append(partner_item)
-    if startwith_bluehouse_open:
+    if logic_settings.bluehouse_open:
         for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if startwith_forest_open:
+    if logic_settings.foreverforest_open:
         for item_name in exclude_due_to_settings.get("startwith_forest_open"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if magical_seeds_required < 4:
-        for item_name in exclude_due_to_settings.get("magical_seeds_required").get(magical_seeds_required):
+    if logic_settings.magical_seeds_required < 4:
+        for item_name in (
+            exclude_due_to_settings
+                .get("magical_seeds_required")
+                .get(logic_settings.magical_seeds_required)
+        ):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if bowsers_castle_mode > BowserCastleMode.VANILLA:
+    if logic_settings.bowsers_castle_mode > BowserCastleMode.VANILLA:
         for item_name in exclude_due_to_settings.get("shorten_bowsers_castle"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if bowsers_castle_mode == BowserCastleMode.BOSSRUSH:
+    if logic_settings.bowsers_castle_mode == BowserCastleMode.BOSSRUSH:
         for item_name in exclude_due_to_settings.get("boss_rush"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if always_speedyspin:
+    if logic_settings.always_speedyspin:
         for item_name in exclude_due_to_settings.get("always_speedyspin"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if always_ispy:
+    if logic_settings.always_ispy:
         for item_name in exclude_due_to_settings.get("always_ispy"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if always_peekaboo:
+    if logic_settings.always_peekaboo:
         for item_name in exclude_due_to_settings.get("always_peekaboo"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if do_progressive_badges:
+    if logic_settings.progressive_badges:
         for item_name in exclude_due_to_settings.get("do_progressive_badges"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if gear_shuffle_mode >= GearShuffleMode.GEAR_LOCATION_SHUFFLE:
-        if starting_hammer == StartingHammer.ULTRAHAMMER:
+    if logic_settings.gear_shuffle_mode >= GearShuffleMode.GEAR_LOCATION_SHUFFLE:
+        if logic_settings.starting_hammer == StartingHammer.ULTRAHAMMER:
             item = Item.get(Item.item_name == "HammerProxy3")
             excluded_items.append(item)
-        if starting_hammer >= StartingHammer.SUPERHAMMER:
+        if logic_settings.starting_hammer >= StartingHammer.SUPERHAMMER:
             item = Item.get(Item.item_name == "HammerProxy2")
             excluded_items.append(item)
-        if starting_hammer >= StartingHammer.HAMMER:
+        if logic_settings.starting_hammer >= StartingHammer.HAMMER:
             item = Item.get(Item.item_name == "HammerProxy1")
             excluded_items.append(item)
-        if starting_boots == StartingBoots.ULTRABOOTS:
+        if logic_settings.starting_boots == StartingBoots.ULTRABOOTS:
             item = Item.get(Item.item_name == "BootsProxy3")
             excluded_items.append(item)
-        if starting_boots >= StartingBoots.SUPERBOOTS:
+        if logic_settings.starting_boots >= StartingBoots.SUPERBOOTS:
             item = Item.get(Item.item_name == "BootsProxy2")
             excluded_items.append(item)
-        if starting_boots >= StartingBoots.BOOTS:
+        if logic_settings.starting_boots >= StartingBoots.BOOTS:
             item = Item.get(Item.item_name == "BootsProxy1")
             excluded_items.append(item)
     if do_partner_upgrade_shuffle:
@@ -315,42 +309,10 @@ def _generate_item_pools(
     pool_misc_progression_items:list,
     pool_other_items:list,
     all_item_nodes:list,
-    shuffle_overworld_coins:bool,
-    shuffle_block_coins:bool,
-    shuffle_foliage_coins:bool,
-    shuffle_favor_coins:bool,
-    do_randomize_shops:bool,
-    do_randomize_panels:bool,
-    randomize_favors_mode:int,
-    randomize_letters_mode:int,
-    do_randomize_radiotrade:bool,
-    do_randomize_dojo:bool,
-    gear_shuffle_mode:int,
-    randomize_consumable_mode:int,
-    item_quality:int,
-    itemtrap_mode:int,
-    startwith_bluehouse_open:bool,
-    startwith_forest_open:bool,
-    magical_seeds_required:int,
-    keyitems_outside_dungeon:bool,
-    partners_in_default_locations:bool,
-    always_speedyspin,
-    always_ispy,
-    always_peekaboo,
-    starting_partners:list,
+    logic_settings:LogicOptionSet,
     starting_items:list,
-    starting_boots:int,
-    starting_hammer:int,
-    add_item_pouches:bool,
-    add_unused_badge_duplicates:bool,
-    add_beta_items:bool,
-    do_progressive_badges:bool,
-    badge_pool_limit:int,
-    bowsers_castle_mode:int,
-    star_hunt_stars:int,
+    starting_partners:list,
     do_partner_upgrade_shuffle:bool,
-    random_puzzles:bool,
-    shuffle_starbeam:bool,
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -379,7 +341,7 @@ def _generate_item_pools(
             # current_item value
             if (    current_node.vanilla_item.item_name == "Coin"
                 and current_node_id in overworld_coin_locations
-                and not shuffle_overworld_coins
+                and not logic_settings.include_coins_overworld
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -387,7 +349,7 @@ def _generate_item_pools(
 
             if (    current_node.vanilla_item.item_name == "Coin"
                 and current_node_id in block_coin_locations
-                and not shuffle_block_coins
+                and not logic_settings.include_coins_blocks
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -395,7 +357,7 @@ def _generate_item_pools(
 
             if (    current_node.vanilla_item.item_name == "Coin"
                 and current_node_id in bush_tree_coin_locations
-                and not shuffle_foliage_coins
+                and not logic_settings.include_coins_foliage
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -403,62 +365,62 @@ def _generate_item_pools(
 
             if (    current_node.vanilla_item.item_name == "Coin"
                 and current_node_id in favor_coin_locations
-                and not shuffle_favor_coins
+                and not logic_settings.include_coins_favors
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node.key_name_item.startswith("Shop")
-                and not do_randomize_shops
+                and not logic_settings.include_shops
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node.key_name_item == "HiddenPanel"
-                and not do_randomize_panels
+                and not logic_settings.include_panels
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id in kootfavors_reward_locations
-                and randomize_favors_mode == IncludeFavorsMode.NOT_RANDOMIZED
+                and logic_settings.include_favors_mode == IncludeFavorsMode.NOT_RANDOMIZED
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id in kootfavors_keyitem_locations
-                and randomize_favors_mode <= IncludeFavorsMode.RND_REWARD_VANILLA_KEYITEMS
+                and logic_settings.include_favors_mode <= IncludeFavorsMode.RND_REWARD_VANILLA_KEYITEMS
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id in chainletter_giver_locations
-                and randomize_letters_mode < IncludeLettersMode.FULL_SHUFFLE
+                and logic_settings.include_letters_mode < IncludeLettersMode.FULL_SHUFFLE
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id == chainletter_final_reward_location
-                and randomize_letters_mode < IncludeLettersMode.RANDOM_CHAIN_REWARD
+                and logic_settings.include_letters_mode < IncludeLettersMode.RANDOM_CHAIN_REWARD
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id in simpleletter_locations
-                and randomize_letters_mode < IncludeLettersMode.SIMPLE_LETTERS
+                and logic_settings.include_letters_mode < IncludeLettersMode.SIMPLE_LETTERS
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    not do_randomize_radiotrade
+            if (    not logic_settings.include_radiotradeevent
                 and current_node_id in radio_trade_event_locations
             ):
                 current_node.current_item = current_node.vanilla_item
@@ -466,37 +428,37 @@ def _generate_item_pools(
                 continue
 
             if (   current_node_id in dojo_locations
-                and not do_randomize_dojo
+                and not logic_settings.include_dojo
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node_id == "MAC_02/GiftD"
-                and startwith_forest_open
+                and logic_settings.foreverforest_open
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
             if (    current_node.key_name_item == "Partner"
-                and partners_in_default_locations
+                and logic_settings.partners_in_default_locations
                 and current_node.vanilla_item.item_name not in starting_partners
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    gear_shuffle_mode == GearShuffleMode.VANILLA
+            if (    logic_settings.gear_shuffle_mode == GearShuffleMode.VANILLA
                 and current_node.vanilla_item.item_type == "GEAR"
                 and (   current_node.identifier != "KMR_04/Bush7_Drop1"
-                     or starting_hammer == StartingHammer.HAMMERLESS)
+                     or logic_settings.starting_hammer == StartingHammer.HAMMERLESS)
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    gear_shuffle_mode == GearShuffleMode.VANILLA
+            if (    logic_settings.gear_shuffle_mode == GearShuffleMode.VANILLA
                 and current_node.identifier == "KMR_04/Bush7_Drop1"
             ):
                 # special casing so the hammer bush is never empty but also
@@ -505,7 +467,7 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    not random_puzzles
+            if (    not logic_settings.randomize_puzzles
                 and current_node.identifier in [
                         "DRO_01/ShopItemB",
                         "DRO_01/ShopItemD",
@@ -516,7 +478,7 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if (    not shuffle_starbeam
+            if (    not logic_settings.shuffle_starbeam
                 and current_node.identifier == "HOS_05/GiftA"
             ):
                 current_node.current_item = current_node.vanilla_item
@@ -529,8 +491,8 @@ def _generate_item_pools(
             # Special casing for hammer bush during gear location shuffle w/o
             # hammerless: add modified "gear" Tayce T item to gear locations
             if (    current_node.identifier == "KMR_04/Bush7_Drop1"
-                and starting_hammer != StartingHammer.HAMMERLESS
-                and gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE
+                and logic_settings.starting_hammer != StartingHammer.HAMMERLESS
+                and logic_settings.gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE
             ):
                 modified_taycet = _get_random_taycet_item()
                 modified_taycet.item_type = "GEAR"
@@ -539,7 +501,7 @@ def _generate_item_pools(
 
             # Item shall be randomized: Add it to the correct item pool
             if (current_node.vanilla_item.progression
-            or (do_randomize_shops and "StarPiece" in current_node.vanilla_item.item_name)
+            or (logic_settings.include_shops and "StarPiece" in current_node.vanilla_item.item_name)
             or current_node.vanilla_item.item_type == "GEAR"
             ):
                 pool_progression_items.append(current_node.vanilla_item)
@@ -570,7 +532,7 @@ def _generate_item_pools(
     )
 
     # Add Power Stars, if needed
-    if star_hunt_stars > 0:
+    if logic_settings.star_hunt_total > 0:
         stars_added = 0
         for power_star_item in (
             Item
@@ -579,14 +541,14 @@ def _generate_item_pools(
                 Item.item_name % "PowerStar*"
             )
         ):
-            if stars_added >= star_hunt_stars:
+            if stars_added >= logic_settings.star_hunt_total:
                 break
 
             pool_progression_items.append(power_star_item)
             stars_added += 1
 
     # Add Item Pouches, if needed
-    if add_item_pouches:
+    if logic_settings.add_item_pouches:
         pouch_items = [
             Item.get(Item.item_name == "PouchA"),
             Item.get(Item.item_name == "PouchB"),
@@ -598,7 +560,7 @@ def _generate_item_pools(
         pool_other_items.extend(pouch_items)
 
     # Add unused badge duplicates, if needed
-    if add_unused_badge_duplicates:
+    if logic_settings.add_unused_badge_duplicates:
         unused_badge_duplicates = []
         for item in Item.select().where(Item.unused_duplicates == True):
             unused_badge_duplicates.append(item)
@@ -606,7 +568,7 @@ def _generate_item_pools(
         pool_badges.extend(unused_badge_duplicates)
 
     # Add beta items, if needed
-    if add_beta_items:
+    if logic_settings.add_beta_items:
         beta_items = []
         for item in Item.select().where(Item.unused_duplicates == False).where(Item.unused == True):
             beta_items.append(item)
@@ -614,7 +576,7 @@ def _generate_item_pools(
         pool_badges.extend(beta_items)
 
     # Add progressive badges, if needed
-    if do_progressive_badges:
+    if logic_settings.progressive_badges:
         new_badges = []
         for item in Item.select().where(Item.item_name.in_(progressive_badges)):
             new_badges.append(item)
@@ -622,7 +584,7 @@ def _generate_item_pools(
         pool_badges.extend(new_badges)
 
     # If we start jumpless, add a progressive boots item to the item pool
-    if starting_boots == StartingBoots.JUMPLESS:
+    if logic_settings.starting_boots == StartingBoots.JUMPLESS:
         new_boots = Item.get(Item.item_name == "BootsProxy1")
 
         pool_progression_items.append(new_boots)
@@ -634,19 +596,8 @@ def _generate_item_pools(
 
     # Adjust item pools based on settings
     items_to_remove_from_pools = get_items_to_exclude(
-        do_randomize_dojo,
+        logic_settings,
         starting_partners,
-        startwith_bluehouse_open,
-        startwith_forest_open,
-        magical_seeds_required,
-        bowsers_castle_mode,
-        always_speedyspin,
-        always_ispy,
-        always_peekaboo,
-        do_progressive_badges,
-        gear_shuffle_mode,
-        starting_hammer,
-        starting_boots,
         do_partner_upgrade_shuffle
     )
     items_to_remove_from_pools.extend(starting_items)
@@ -669,9 +620,9 @@ def _generate_item_pools(
 
     # If we have set a badge pool limit and exceed that, remove random badges
     # until that condition is satisfied
-    if len(pool_badges) > badge_pool_limit:
+    if len(pool_badges) > logic_settings.badge_pool_limit:
         random.shuffle(pool_badges)
-        while len(pool_badges) > badge_pool_limit:
+        while len(pool_badges) > logic_settings.badge_pool_limit:
             pool_badges.pop()
 
     # If the item pool is the wrong size now, fix it by filling up or clearing
@@ -710,20 +661,20 @@ def _generate_item_pools(
     # Randomize consumables if needed
     pool_other_items = get_randomized_itempool(
         pool_other_items,
-        randomize_consumable_mode,
-        item_quality,
-        add_beta_items
+        logic_settings.randomize_consumable_mode,
+        logic_settings.item_quality,
+        logic_settings.add_beta_items,
     )
 
     pool_other_items = get_trapped_itempool(
-        pool_other_items,
-        itemtrap_mode,
-        randomize_favors_mode,
-        do_randomize_dojo,
-        keyitems_outside_dungeon,
-        (star_hunt_stars > 0),
-        add_beta_items,
-        do_partner_upgrade_shuffle
+        itempool = pool_other_items,
+        trap_mode = logic_settings.itemtrap_mode,
+        randomize_favors_mode = logic_settings.include_favors_mode,
+        do_randomize_dojo = logic_settings.include_dojo,
+        keyitems_outside_dungeon = logic_settings.keyitems_outside_dungeon,
+        power_star_hunt = (logic_settings.star_hunt_total > 0),
+        add_beta_items = logic_settings.add_beta_items,
+        do_partner_upgrade_shuffle = do_partner_upgrade_shuffle,
     )
 
     return pool_other_items
@@ -808,51 +759,10 @@ def find_empty_reachable_nodes(
 
 def _algo_assumed_fill(
     item_placement,
-    shuffle_overworld_coins:bool,
-    shuffle_block_coins:bool,
-    shuffle_foliage_coins:bool,
-    shuffle_favor_coins:bool,
-    do_randomize_shops,
-    do_randomize_panels,
-    randomize_favors_mode:int,
-    randomize_letters_mode:int,
-    do_randomize_radiotrade:bool,
-    do_randomize_dojo,
-    gear_shuffle_mode:int,
-    randomize_consumable_mode:int,
-    item_quality,
-    itemtrap_mode,
-    starting_map_id,
-    startwith_prologue_open:bool,
-    startwith_bluehouse_open,
-    startwith_mtrugged_open:bool,
-    startwith_forest_open:bool,
-    magical_seeds_required:int,
-    startwith_toybox_open,
-    startwith_whale_open,
-    ch7_bridge_visible:bool,
-    cook_without_fryingpan:bool,
+    logic_settings:LogicOptionSet,
     starting_partners,
-    starting_boots,
-    starting_hammer,
-    speedyspin,
-    ispy,
-    peekaboo,
-    partners_always_usable,
-    partners_in_default_locations,
     hidden_block_mode:int,
-    keyitems_outside_dungeon:bool,
     starting_items:list,
-    add_item_pouches:bool,
-    add_unused_badge_duplicates:bool,
-    add_beta_items:bool,
-    do_progressive_badges:bool,
-    badge_pool_limit:int,
-    bowsers_castle_mode:int,
-    star_hunt_stars:int,
-    partner_upgrade_shuffle:int,
-    random_puzzles:bool,
-    shuffle_starbeam:bool,
     world_graph
 ):
 
@@ -872,47 +782,17 @@ def _algo_assumed_fill(
         pool_misc_progression_items,
         pool_other_items,
         all_item_nodes,
-        shuffle_overworld_coins,
-        shuffle_block_coins,
-        shuffle_foliage_coins,
-        shuffle_favor_coins,
-        do_randomize_shops,
-        do_randomize_panels,
-        randomize_favors_mode,
-        randomize_letters_mode,
-        do_randomize_radiotrade,
-        do_randomize_dojo,
-        gear_shuffle_mode,
-        randomize_consumable_mode,
-        item_quality,
-        itemtrap_mode,
-        startwith_bluehouse_open,
-        startwith_forest_open,
-        magical_seeds_required,
-        keyitems_outside_dungeon,
-        partners_in_default_locations,
-        speedyspin,
-        ispy,
-        peekaboo,
-        starting_partners,
+        logic_settings,
         starting_items,
-        starting_boots,
-        starting_hammer,
-        add_item_pouches,
-        add_unused_badge_duplicates,
-        add_beta_items,
-        do_progressive_badges,
-        badge_pool_limit,
-        bowsers_castle_mode,
-        star_hunt_stars,
-        (partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF),
-        random_puzzles,
-        shuffle_starbeam,
+        starting_partners,
+        (logic_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF),
     )
 
-    starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
+    starting_node_id = get_startingnode_id_from_startingmap_id(
+        logic_settings.starting_map,
+    )
 
-    if random_puzzles and do_randomize_shops:
+    if logic_settings.randomize_puzzles and logic_settings.include_shops:
         # Force at least 3 different non-uniques into the Dry Dry Outpost shop
         # which are at least somewhat affordable
         affordable_nonuniques = set([
@@ -965,7 +845,7 @@ def _algo_assumed_fill(
     random.shuffle(pool_combined_progression_items)
 
     dungeon_restricted_items = {}
-    if not keyitems_outside_dungeon:
+    if not logic_settings.keyitems_outside_dungeon:
         for dungeon in limited_by_item_areas:
             for itemlist in limited_by_item_areas[dungeon].values():
                 for item in itemlist:
@@ -973,10 +853,10 @@ def _algo_assumed_fill(
                     dungeon_restricted_items[item] = dungeon
         pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 
-    if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
+    if logic_settings.gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
         pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
 
-    if partner_upgrade_shuffle == PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
+    if logic_settings.partner_upgrade_shuffle == PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
         # Special handling: non-progression which has to be placed first
         pool_upgrade_items = [
             item for item in pool_other_items
@@ -1000,22 +880,22 @@ def _algo_assumed_fill(
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()
         mario = MarioInventory(
-            starting_boots,
-            starting_hammer,
+            logic_settings.starting_boots,
+            logic_settings.starting_hammer,
             starting_partners,
             starting_items,
-            partners_always_usable,
-            hidden_block_mode,
-            magical_seeds_required,
-            startwith_prologue_open,
-            startwith_bluehouse_open,
-            startwith_mtrugged_open,
-            startwith_forest_open,
-            startwith_toybox_open,
-            startwith_whale_open,
-            ch7_bridge_visible,
-            speedyspin,
-            cook_without_fryingpan,
+            logic_settings.partners_always_usable,
+            logic_settings.hidden_block_mode,
+            logic_settings.magical_seeds_required,
+            logic_settings.prologue_open,
+            logic_settings.bluehouse_open,
+            logic_settings.mtrugged_open,
+            logic_settings.foreverforest_open,
+            logic_settings.toybox_open,
+            logic_settings.whale_open,
+            logic_settings.ch7_bridge_visible,
+            logic_settings.always_speedyspin,
+            logic_settings.cook_without_fryingpan,
             vanilla_start=False
         )
 
@@ -1040,7 +920,7 @@ def _algo_assumed_fill(
             ]
             dungeon_restricted_items.pop(item.item_name)
 
-        if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
+        if logic_settings.gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
             # Note: Boots 1 (Jumpless start) has to be placed elsewhere, as all
             # gear locations are unreachable otherwise
             if item.item_type == "GEAR" and item.item_name != "BootsProxy1":
@@ -1069,10 +949,10 @@ def _algo_assumed_fill(
         item_node_id = item_node.identifier
 
         if (    item_node_id == "KMR_06/ItemA"
-            and (   shuffle_overworld_coins
-                 or shuffle_block_coins
-                 or shuffle_foliage_coins
-                 or shuffle_favor_coins)
+            and (   logic_settings.include_coins_overworld
+                 or logic_settings.include_coins_blocks
+                 or logic_settings.include_coins_foliage
+                 or logic_settings.include_coins_favors)
         ):
             # Do not put coin on the Goomba Road sign due to glitchy graphics
             item_index = -1
@@ -1117,25 +997,11 @@ def _algo_assumed_fill(
 
 def get_item_spheres(
     item_placement,
-    starting_map_id,
-    startwith_prologue_open:bool,
-    startwith_bluehouse_open,
-    startwith_mtrugged_open:bool,
-    startwith_forest_open:bool,
-    magical_seeds_required:int,
-    startwith_toybox_open,
-    startwith_whale_open,
-    ch7_bridge_visible,
-    cook_without_fryingpan:bool,
+    logic_settings:LogicOptionSet,
     starting_partners,
-    starting_boots,
-    starting_hammer,
-    partners_always_usable,
     hidden_block_mode:int,
     starting_items:list,
-    startwith_speedyspin,
     world_graph,
-    shuffle_items:bool
 ) -> dict:
     """
     Builds and returns a dictionary containing progression spheres and their
@@ -1153,7 +1019,9 @@ def get_item_spheres(
     print("Gathering Item Spheres Data")
 
     # Set node to start graph traversal from
-    starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
+    starting_node_id = get_startingnode_id_from_startingmap_id(
+        logic_settings.starting_map,
+    )
 
     # Find initially reachable nodes within the world graph
     non_traversable_edges[starting_node_id] = [
@@ -1164,30 +1032,30 @@ def get_item_spheres(
 
     vanilla_start = (
             starting_node_id == "KMR_02/1"
-        and not shuffle_items
-        and starting_hammer == -1
+        and not logic_settings.shuffle_items
+        and logic_settings.starting_hammer == -1
         and "Bombette" not in starting_partners
-        and not partners_always_usable
+        and not logic_settings.partners_always_usable
     )
 
     # Init Mario Inventory
     mario = MarioInventory(
-        starting_boots,
-        starting_hammer,
+        logic_settings.starting_boots,
+        logic_settings.starting_hammer,
         starting_partners,
         starting_items,
-        partners_always_usable,
-        hidden_block_mode,
-        magical_seeds_required,
-        startwith_prologue_open,
-        startwith_bluehouse_open,
-        startwith_mtrugged_open,
-        startwith_forest_open,
-        startwith_toybox_open,
-        startwith_whale_open,
-        ch7_bridge_visible,
-        startwith_speedyspin,
-        cook_without_fryingpan,
+        logic_settings.partners_always_usable,
+        logic_settings.hidden_block_mode,
+        logic_settings.magical_seeds_required,
+        logic_settings.prologue_open,
+        logic_settings.bluehouse_open,
+        logic_settings.mtrugged_open,
+        logic_settings.foreverforest_open,
+        logic_settings.toybox_open,
+        logic_settings.whale_open,
+        logic_settings.ch7_bridge_visible,
+        logic_settings.always_speedyspin,
+        logic_settings.cook_without_fryingpan,
         vanilla_start
     )
 
@@ -1202,18 +1070,18 @@ def get_item_spheres(
 
         spheres_dict["starting_items"].append(f"{item}{item_suffix}")
 
-    if starting_boots == 2:
+    if logic_settings.starting_boots == 2:
         spheres_dict["starting_items"].append("ProgressiveBoots*")
-    if starting_boots >= 1:
+    if logic_settings.starting_boots >= 1:
         spheres_dict["starting_items"].append("ProgressiveBoots*")
-    if starting_boots >= 0:
+    if logic_settings.starting_boots >= 0:
         spheres_dict["starting_items"].append("ProgressiveBoots*")
 
-    if starting_hammer == 2:
+    if logic_settings.starting_hammer == 2:
         spheres_dict["starting_items"].append("ProgressiveHammer*")
-    if starting_hammer >= 1:
+    if logic_settings.starting_hammer >= 1:
         spheres_dict["starting_items"].append("ProgressiveHammer*")
-    if starting_hammer >= 0:
+    if logic_settings.starting_hammer >= 0:
         spheres_dict["starting_items"].append("ProgressiveHammer*")
 
     # Scan spheres
@@ -1298,53 +1166,10 @@ def get_item_spheres(
 
 def place_items(
     item_placement,
-    do_custom_seed:bool,
-    do_shuffle_items,
-    shuffle_overworld_coins:bool,
-    shuffle_block_coins:bool,
-    shuffle_foliage_coins:bool,
-    shuffle_favor_coins:bool,
-    do_randomize_shops,
-    do_randomize_panels,
-    randomize_favors_mode:int,
-    randomize_letters_mode:int,
-    do_randomize_radiotrade:bool,
-    do_randomize_dojo,
-    gear_shuffle_mode:int,
-    randomize_consumable_mode:int,
-    item_quality,
-    itemtrap_mode,
-    starting_map_id,
-    startwith_prologue_open:bool,
-    startwith_bluehouse_open,
-    startwith_mtrugged_open:bool,
-    startwith_forest_open:bool,
-    magical_seeds_required:int,
-    startwith_toybox_open,
-    startwith_whale_open,
-    ch7_bridge_visible:bool,
-    cook_without_fryingpan:bool,
+    logic_settings:LogicOptionSet,
     starting_partners,
-    starting_boots,
-    starting_hammer,
-    speedyspin,
-    ispy,
-    peekaboo,
-    partners_always_usable:bool,
-    partners_in_default_locations,
     hidden_block_mode:int,
-    keyitems_outside_dungeon:bool,
     starting_items:list,
-    add_item_pouches:list,
-    add_unused_badge_duplicates:bool,
-    add_beta_items:bool,
-    do_progressive_badges:bool,
-    badge_pool_limit:int,
-    bowsers_castle_mode:int,
-    star_hunt_stars:int,
-    partner_upgrade_shuffle:int,
-    random_puzzles:bool,
-    shuffle_starbeam:bool,
     world_graph = None
 ):
     """Places items into item locations according to chosen settings."""
@@ -1352,7 +1177,7 @@ def place_items(
     #fmt = '[%(levelname)s] %(asctime)s - %(message)s'
     #logging.basicConfig(level=level, format=fmt)
 
-    if not do_shuffle_items:
+    if not logic_settings.shuffle_items:
         # Place items in their vanilla locations
         for node in Node.select().where(Node.key_name_item.is_null(False)):
             node.current_item = node.vanilla_item
@@ -1364,56 +1189,13 @@ def place_items(
                 "DRO_01/ShopItemD", "DRO_01/ShopItemE", "DRO_01/ShopItemF"
             ]:
                 world_graph[node.identifier]["node"].current_item = node.vanilla_item
-    elif do_custom_seed:
-        raise ValueError
     else:
         # Place items in a backward fill, ensuring a maximally deep fill.
         _algo_assumed_fill(
             item_placement,
-            shuffle_overworld_coins,
-            shuffle_block_coins,
-            shuffle_foliage_coins,
-            shuffle_favor_coins,
-            do_randomize_shops,
-            do_randomize_panels,
-            randomize_favors_mode,
-            randomize_letters_mode,
-            do_randomize_radiotrade,
-            do_randomize_dojo,
-            gear_shuffle_mode,
-            randomize_consumable_mode,
-            item_quality,
-            itemtrap_mode,
-            starting_map_id,
-            startwith_prologue_open,
-            startwith_bluehouse_open,
-            startwith_mtrugged_open,
-            startwith_forest_open,
-            magical_seeds_required,
-            startwith_toybox_open,
-            startwith_whale_open,
-            ch7_bridge_visible,
-            cook_without_fryingpan,
+            logic_settings,
             starting_partners,
-            starting_boots,
-            starting_hammer,
-            speedyspin,
-            ispy,
-            peekaboo,
-            partners_always_usable,
-            partners_in_default_locations,
             hidden_block_mode,
-            keyitems_outside_dungeon,
             starting_items,
-            add_item_pouches,
-            add_unused_badge_duplicates,
-            add_beta_items,
-            do_progressive_badges,
-            badge_pool_limit,
-            bowsers_castle_mode,
-            star_hunt_stars,
-            partner_upgrade_shuffle,
-            random_puzzles,
-            shuffle_starbeam,
             world_graph
         )
