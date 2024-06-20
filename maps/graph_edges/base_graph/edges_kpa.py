@@ -5,7 +5,7 @@ edges_kpa = [
     {"from": {"map": "KPA_01",  "id": 1}, "to": {"map": "KPA_03",  "id": 0}, "reqs": []}, # Dark Cave 1 Exit Top Left -> Dark Cave 2 Exit Right
 
     {"from": {"map": "KPA_01",  "id": 0}, "to": {"map": "KPA_01",  "id": 1}, "reqs": [["Watt"],["Parakarry"]]}, #? Dark Cave 1 Door Bottom Left -> Dark Cave 1 Exit Top Left
-    {"from": {"map": "KPA_01",  "id": 1}, "to": {"map": "KPA_01",  "id": 0}, "reqs": [["Watt"],]}, #? Dark Cave 1 Exit Top Left -> Dark Cave 1 Door Bottom Left
+    {"from": {"map": "KPA_01",  "id": 1}, "to": {"map": "KPA_01",  "id": 0}, "reqs": [["Watt"]]}, #? Dark Cave 1 Exit Top Left -> Dark Cave 1 Door Bottom Left
 
     {"from": {"map": "KPA_01",  "id": 1}, "to": {"map": "KPA_01",  "id": "YBlockA"}, "reqs": [["Watt"],["Parakarry"],["can_hit_floating_blocks"]]}, #* Dark Cave 1 Exit Top Left -> YBlockA (POWBlock)
 
