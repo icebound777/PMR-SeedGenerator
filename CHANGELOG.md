@@ -51,8 +51,9 @@
 
 ### Bug Fixes
 
-* Fixed a bug that could rarely cause unintended item prices for shop items in Dry Dry Outpost if `Randomize Puzzles` and `Include Shops` were turned on
-* Lowered logical star piece requirements for some of Merlow's trades (the original calculations were off)
+* Fix a bug that could rarely cause unintended item prices for shop items in Dry Dry Outpost if `Randomize Puzzles` and `Include Shops` were turned on
+* Lower logical star piece requirements for some of Merlow's trades (the original calculations were off)
+* Fix broken seed generation if both `Mystery Only` and `Random Puzzles` are turned on
 * Homeward Shroom now properly reloads the music if the munching SFX is skipped by unpausing manually
 * Fix entrance rando issues with having Watt/Sushie/Lakilester active through certain loading zones
 * Fix counting star spirits twice during same-seed multiplayer
