@@ -4,19 +4,19 @@ edges_kpa = [
     {"from": {"map": "KPA_01",  "id": 0}, "to": {"map": "KPA_14",  "id": 1}, "reqs": []}, # Dark Cave 1 Door Bottom Left -> Lava Channel 3 Door Right
     {"from": {"map": "KPA_01",  "id": 1}, "to": {"map": "KPA_03",  "id": 0}, "reqs": []}, # Dark Cave 1 Exit Top Left -> Dark Cave 2 Exit Right
 
-    {"from": {"map": "KPA_01",  "id": 0}, "to": {"map": "KPA_01",  "id": 1}, "reqs": [["Parakarry"]]}, #? Dark Cave 1 Door Bottom Left -> Dark Cave 1 Exit Top Left
-    {"from": {"map": "KPA_01",  "id": 1}, "to": {"map": "KPA_01",  "id": 0}, "reqs": []}, #? Dark Cave 1 Exit Top Left -> Dark Cave 1 Door Bottom Left
+    {"from": {"map": "KPA_01",  "id": 0}, "to": {"map": "KPA_01",  "id": 1}, "reqs": [["Watt"],["Parakarry"]]}, #? Dark Cave 1 Door Bottom Left -> Dark Cave 1 Exit Top Left
+    {"from": {"map": "KPA_01",  "id": 1}, "to": {"map": "KPA_01",  "id": 0}, "reqs": [["Watt"]]}, #? Dark Cave 1 Exit Top Left -> Dark Cave 1 Door Bottom Left
 
-    {"from": {"map": "KPA_01",  "id": 1}, "to": {"map": "KPA_01",  "id": "YBlockA"}, "reqs": [["Parakarry"],["can_hit_floating_blocks"]]}, #* Dark Cave 1 Exit Top Left -> YBlockA (POWBlock)
+    {"from": {"map": "KPA_01",  "id": 1}, "to": {"map": "KPA_01",  "id": "YBlockA"}, "reqs": [["Watt"],["Parakarry"],["can_hit_floating_blocks"]]}, #* Dark Cave 1 Exit Top Left -> YBlockA (POWBlock)
 
     # KPA_03 Dark Cave 2
     {"from": {"map": "KPA_03",  "id": 0}, "to": {"map": "KPA_01",  "id": 1}, "reqs": []}, # Dark Cave 2 Exit Right -> Dark Cave 1 Exit Top Left
     {"from": {"map": "KPA_03",  "id": 1}, "to": {"map": "KPA_04",  "id": 0}, "reqs": []}, # Dark Cave 2 Door Top Left -> Cave Exit Door Right
 
-    {"from": {"map": "KPA_03",  "id": 0}, "to": {"map": "KPA_03",  "id": 1}, "reqs": [["Parakarry"]]}, #? Dark Cave 2 Exit Right -> Dark Cave 2 Door Top Left
-    {"from": {"map": "KPA_03",  "id": 1}, "to": {"map": "KPA_03",  "id": 0}, "reqs": [["can_climb_steps"]]}, #? Dark Cave 2 Door Top Left -> Dark Cave 2 Exit Right
+    {"from": {"map": "KPA_03",  "id": 0}, "to": {"map": "KPA_03",  "id": 1}, "reqs": [["Watt"],["Parakarry"]]}, #? Dark Cave 2 Exit Right -> Dark Cave 2 Door Top Left
+    {"from": {"map": "KPA_03",  "id": 1}, "to": {"map": "KPA_03",  "id": 0}, "reqs": [["Watt"],["can_climb_steps"]]}, #? Dark Cave 2 Door Top Left -> Dark Cave 2 Exit Right
 
-    {"from": {"map": "KPA_03",  "id": 0}, "to": {"map": "KPA_03",  "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Dark Cave 2 Exit Right -> YBlockA (ShootingStar)
+    {"from": {"map": "KPA_03",  "id": 0}, "to": {"map": "KPA_03",  "id": "YBlockA"}, "reqs": [["Watt"],["can_hit_floating_blocks"]]}, #* Dark Cave 2 Exit Right -> YBlockA (ShootingStar)
 
     # KPA_04 Cave Exit
     {"from": {"map": "KPA_04",  "id": 0}, "to": {"map": "KPA_03",  "id": 1}, "reqs": []}, # Cave Exit Door Right -> Dark Cave 2 Door Top Left

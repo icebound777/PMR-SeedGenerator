@@ -49,8 +49,8 @@ edges_kkj = [
     {"from": {"map": "KKJ_13", "id": 0}, "to": {"map": "KKJ_12", "id": 1}, "reqs": []}, # Window Hallway (4F) Door Left -> Stairs Hallway (3F) Door Right
     {"from": {"map": "KKJ_13", "id": 1}, "to": {"map": "KKJ_22", "id": 0}, "reqs": []}, # Window Hallway (4F) Door Right -> Double Staircase (4F) Door Bottom Left
 
-    {"from": {"map": "KKJ_13", "id": 0}, "to": {"map": "KKJ_13", "id": 1}, "reqs": []}, #? Window Hallway (4F) Door Left -> Window Hallway (4F) Door Right
-    {"from": {"map": "KKJ_13", "id": 1}, "to": {"map": "KKJ_13", "id": 0}, "reqs": []}, #? Window Hallway (4F) Door Right -> Window Hallway (4F) Door Left
+    {"from": {"map": "KKJ_13", "id": 0}, "to": {"map": "KKJ_13", "id": 1}, "reqs": [["StarBeam"]]}, #? Window Hallway (4F) Door Left -> Window Hallway (4F) Door Right
+    {"from": {"map": "KKJ_13", "id": 1}, "to": {"map": "KKJ_13", "id": 0}, "reqs": [["StarBeam"]]}, #? Window Hallway (4F) Door Right -> Window Hallway (4F) Door Left
 
     # KKJ_14 Peach's Room (2F)
     {"from": {"map": "KKJ_14", "id": 0}, "to": {"map": "KKJ_11", "id": 4}, "reqs": []}, # Peach's Room (2F) Door Left -> Upper Hall (2F) Door Bottom Back
@@ -111,7 +111,7 @@ edges_kkj = [
     # KKJ_25 Final Boss Arena (6F)
     {"from": {"map": "KKJ_25", "id": 0}, "to": {"map": "KKJ_24", "id": 1}, "reqs": []}, # Final Boss Arena (6F) Door Left -> Tower Staircase (5F) Door Top
 
-    {"from": {"map": "KKJ_25", "id": 0}, "to": {"map": "KKJ_24", "id": 1}, "reqs": [["RF_HasStarbeam"]], "pseudoitems": ["YOUWIN"]}, #+ Beat Bowser
+    {"from": {"map": "KKJ_25", "id": 0}, "to": {"map": "KKJ_25", "id": 0}, "reqs": [["StarBeam"]], "pseudoitems": ["YOUWIN"]}, #+ Beat Bowser
 
     # KKJ_26 Balcony (2F)
     {"from": {"map": "KKJ_26", "id": 0}, "to": {"map": "KKJ_14", "id": 1}, "reqs": []}, # Balcony (2F) Door Left -> Peach's Room (2F) Door Right

@@ -4,6 +4,7 @@ the game according to the settings chosen.
 """
 import random
 #import logging
+from copy import deepcopy
 
 from db.node import Node
 from db.item import Item
@@ -26,6 +27,7 @@ from rando_modules.modify_itempool \
            get_trapped_itempool
 
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
+from rando_modules.item_pool_too_small_error import ItemPoolTooSmallError
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
 from metadata.itemlocation_special import \
@@ -347,7 +349,8 @@ def _generate_item_pools(
     bowsers_castle_mode:int,
     star_hunt_stars:int,
     do_partner_upgrade_shuffle:bool,
-    random_puzzles:bool
+    random_puzzles:bool,
+    shuffle_starbeam:bool,
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -508,6 +511,13 @@ def _generate_item_pools(
                         "DRO_01/ShopItemD",
                         "DRO_01/ShopItemE"
                     ]
+            ):
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    not shuffle_starbeam
+                and current_node.identifier == "HOS_05/GiftA"
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -686,8 +696,11 @@ def _generate_item_pools(
                 trashable_items = pool_coins_only
             else:
                 trashable_items = pool_illogical_consumables
-            trashable_items.pop()
-            cur_itempool_size -= 1
+            try:
+                trashable_items.pop()
+                cur_itempool_size -= 1
+            except IndexError:
+                raise ItemPoolTooSmallError()
 
     # Re-join the non-required items into one array
     pool_other_items.extend(pool_coins_only)
@@ -839,6 +852,7 @@ def _algo_assumed_fill(
     star_hunt_stars:int,
     partner_upgrade_shuffle:int,
     random_puzzles:bool,
+    shuffle_starbeam:bool,
     world_graph
 ):
 
@@ -892,7 +906,8 @@ def _algo_assumed_fill(
         bowsers_castle_mode,
         star_hunt_stars,
         (partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF),
-        random_puzzles
+        random_puzzles,
+        shuffle_starbeam,
     )
 
     starting_node_id = get_startingnode_id_from_startingmap_id(starting_map_id)
@@ -930,13 +945,18 @@ def _algo_assumed_fill(
             else:
                 pool_other_items.remove(shop_code_item)
 
+        # avoid item object references
+        copied_shop_code_items = []
+        for item in shop_code_items:
+            copied_shop_code_items.append(deepcopy(item))
+
         # place into random dro shop slots
         shop_slot_ids = random.sample(
             population=["ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
             k=3
         )
         while shop_slot_ids:
-            world_graph[f"DRO_01/{shop_slot_ids.pop()}"]["node"].current_item = shop_code_items.pop()
+            world_graph[f"DRO_01/{shop_slot_ids.pop()}"]["node"].current_item = copied_shop_code_items.pop()
 
 
     print("Placing progression items...")
@@ -1012,7 +1032,12 @@ def _algo_assumed_fill(
 
         if item.item_name in dungeon_restricted_items:
             dungeon = dungeon_restricted_items[item.item_name]
-            candidate_locations = [node for node in candidate_locations if node.identifier[:3] == dungeon]
+            candidate_locations = [
+                node for node in candidate_locations
+                if (    node.identifier[:3] == dungeon
+                    and node.identifier != "TRD_00/ChestB" # not chest on Koopa Fortress ledge
+                )
+            ]
             dungeon_restricted_items.pop(item.item_name)
 
         if gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
@@ -1319,6 +1344,7 @@ def place_items(
     star_hunt_stars:int,
     partner_upgrade_shuffle:int,
     random_puzzles:bool,
+    shuffle_starbeam:bool,
     world_graph = None
 ):
     """Places items into item locations according to chosen settings."""
@@ -1388,5 +1414,6 @@ def place_items(
             star_hunt_stars,
             partner_upgrade_shuffle,
             random_puzzles,
+            shuffle_starbeam,
             world_graph
         )

@@ -27,7 +27,9 @@ class GlitchOptionSet():
         self.clippy_boots_metal_block_skip = False
         self.island_pipe_blooper_skip = False
         self.parakarryless_sewer_star_piece = False
+        self.clippy_sewers_upgrade_block = False
         self.sewer_blocks_without_ultra_boots = False
+        self.chapter_7_bridge_with_super_boots = False
         self.first_block_to_shiver_city_without_super_boots = False
         self.blocks_to_shiver_city_kooper_shell_item_throw = False
         self.sewer_yellow_block_with_ultra_boots = False
@@ -65,6 +67,7 @@ class GlitchOptionSet():
         self.parakarryless_super_hammer_room_ultra_boots = False
         self.parakarryless_super_hammer_room_normal_boots = False
         self.ruins_locks_skip_clippy = False
+        self.ruins_stone_skip = False
 
         self.forever_forest_backwards = False
 
@@ -93,12 +96,14 @@ class GlitchOptionSet():
         self.gourmet_guy_skip_laki = False
         self.gourmet_guy_skip_parakarry = False
         self.bowless_green_station = False
+        self.clippy_green_station_coin_block = False
         self.kooperless_red_station_shooting_star = False
         self.gearless_red_station_shooting_star = False
         self.parakarryless_blue_block_city_gap = False
         self.blue_switch_skip_laki = False
         self.blue_switch_skip_ultra_boots = False
         self.red_barricade_skip = False
+        self.wattless_dark_room = False
         self.hammerless_blue_station_laki = False
         self.hammerless_pink_station_laki = False
 
@@ -114,9 +119,9 @@ class GlitchOptionSet():
         self.ultra_hammer_skip_laki = False
         self.ultra_hammer_skip_sushie = False
         self.flarakarry = False
-        self.parakarryless_flarakarry_bombette = False
         self.parakarryless_flarakarry_laki = False
-        self.volcano_sushie_glitch = False
+        self.volcano_sushie_glitch_superboots = False
+        self.volcano_sushie_glitch_goombario = False
 
         self.early_laki_lzs = False
         self.early_laki_bombette_push = False
@@ -144,6 +149,7 @@ class GlitchOptionSet():
         self.sushieless_warehouse_key_kooper = False
 
         self.mirror_clip = False
+        self.kooper_puzzle_skip = False
 
         self.bowless_bowsers_castle_basement = False
         self.fast_flood_room_kooper = False
