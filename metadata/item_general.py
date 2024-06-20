@@ -109,7 +109,6 @@ progressive_badges = [
 ]
 
 unplaceable_items = [
-    "Nothing",
     "Boots",
     "SuperBoots",
     "UltraBoots",
