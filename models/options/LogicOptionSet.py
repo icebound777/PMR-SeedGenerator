@@ -7,6 +7,8 @@ from rando_enums.enum_options import (
     IncludeLettersMode,
     RandomizeConsumablesMode,
     ItemTrapMode,
+    PartnerShuffle,
+    DojoShuffle,
 )
 
 class LogicOptionSet():
@@ -26,13 +28,13 @@ class LogicOptionSet():
         self.include_coins_foliage = True
         self.include_coins_favors = False
         self.include_shops = bool(get_option_default_value("IncludeShops"))
-        self.progression_on_rowf = True
+        self.progression_on_rowf = 5
         self.progression_on_merlow = True
         self.include_panels = bool(get_option_default_value("IncludePanels"))
         self.include_favors_mode = IncludeFavorsMode.NOT_RANDOMIZED
         self.include_letters_mode = IncludeLettersMode.NOT_RANDOMIZED
         self.include_radiotradeevent = False
-        self.include_dojo = False
+        self.include_dojo = DojoShuffle.OFF
         self.keyitems_outside_dungeon = True
         self.keyitems_outside_chapter = True # "Keysanity" # false -> NYI
 
@@ -88,7 +90,7 @@ class LogicOptionSet():
         self.start_with_sushie = bool(get_option_default_value("StartWithSushie"))
         self.start_with_lakilester = bool(get_option_default_value("StartWithLakilester"))
 
-        self.partners_in_default_locations = True
+        self.partner_shuffle = PartnerShuffle.VANILLA
         self.partners_always_usable = bool(get_option_default_value("PartnersAlwaysUsable"))
         self.random_partners = False
         self.random_partners_min = 1

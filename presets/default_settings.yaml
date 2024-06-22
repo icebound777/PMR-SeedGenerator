@@ -42,13 +42,13 @@ IncludeCoinsBlocks    : true
 IncludeCoinsFoliage   : true
 IncludeCoinsFavors    : false # always false if IncludeFavorsMode:0
 IncludeShops          : true
-ProgressionOnRowf     : true # irrelevant if IncludeShops:false
+ProgressionOnRowf     : 5 # 0: no progression, 1-5: item sets in logic (irrelevant if IncludeShops:false)
 ProgressionOnMerlow   : true # irrelevant if IncludeShops:false
 IncludePanels         : true
 IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
 IncludeLettersMode    : 0 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
 IncludeRadioTradeEvent: false
-IncludeDojo           : false
+IncludeDojo           : 0 # 0: don't shuffle, 1-5: Chan-Master3
 KeyitemsOutsideDungeon: false
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
@@ -123,7 +123,7 @@ StartWithPartners: { # ignored if StartWithRandomPartners true
     Lakilester: false
 }
 
-PartnersInDefaultLocations: true
+PartnerShuffle            : 0 # 0: vanilla, 1: shuffled, 2: partners anywhere
 PartnersAlwaysUsable      : true
 StartWithRandomPartners   : false
 RandomPartnersMin         : 1 # 1-8

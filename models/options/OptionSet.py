@@ -16,7 +16,9 @@ from rando_enums.enum_options import (
     MusicRandomizationType,
     PartnerUpgradeShuffle,
     SeedGoal,
-    DungeonEntranceShuffle
+    DungeonEntranceShuffle,
+    PartnerShuffle,
+    DojoShuffle,
 )
 from models.options.LogicOptionSet import LogicOptionSet
 from models.options.PaletteOptionSet import PaletteOptionSet
@@ -361,8 +363,8 @@ class OptionSet:
                 elif partner == "Lakilester":
                     self.logic_settings.start_with_lakilester = start_with_partner
 
-        if "PartnersInDefaultLocations" in options_dict:
-            self.logic_settings.partners_in_default_locations = options_dict.get("PartnersInDefaultLocations")
+        if "PartnerShuffle" in options_dict:
+            self.logic_settings.partner_shuffle = options_dict.get("PartnerShuffle")
         if "PartnersAlwaysUsable" in options_dict:
             self.logic_settings.partners_always_usable = options_dict.get("PartnersAlwaysUsable")
         if "StartWithRandomPartners" in options_dict:
@@ -478,7 +480,7 @@ class OptionSet:
             map_tracker_bits += 0x40
         if self.logic_settings.include_coins_foliage:
             map_tracker_bits += 0x80
-        if self.logic_settings.include_dojo:
+        if self.logic_settings.include_dojo != DojoShuffle.OFF:
             map_tracker_bits += 0x100
         if self.logic_settings.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
             map_tracker_bits += 0x200
@@ -966,13 +968,19 @@ class OptionSet:
         basic_assert("IncludeCoinsFoliage", bool)
         basic_assert("IncludeCoinsFavors", bool)
         basic_assert("IncludeShops", bool)
-        basic_assert("ProgressionOnRowf", bool)
+        if "ProgressionOnRowf" in options_dict:
+            assert (    isinstance(options_dict["ProgressionOnRowf"], int)
+                    and 0 <= options_dict["ProgressionOnRowf"] <= 5
+            )
         basic_assert("ProgressionOnMerlow", bool)
         basic_assert("IncludePanels", bool)
         basic_assert("IncludeFavorsMode", int)
         basic_assert("IncludeLettersMode", int)
         basic_assert("IncludeRadioTradeEvent", bool)
-        basic_assert("IncludeDojo", bool)
+        if "IncludeDojo" in options_dict:
+            assert (    isinstance(options_dict["IncludeDojo"], int)
+                    and DojoShuffle.OFF <= options_dict["IncludeDojo"] <= DojoShuffle.INCLUDE_MASTER3
+            )
         basic_assert("KeyitemsOutsideDungeon", bool)
         basic_assert("KeyitemsOutsideChapter", bool) #NYI
 
@@ -1120,7 +1128,10 @@ class OptionSet:
                     and all(isinstance(value, bool) for value in options_dict.get("StartWithPartners").values())
                     and any(value for value in options_dict.get("StartWithPartners").values()))
 
-        basic_assert("PartnersInDefaultLocations", bool)
+        if "PartnerShuffle" in options_dict:
+            assert (    isinstance(options_dict["PartnerShuffle"], int)
+                    and PartnerShuffle.VANILLA <= options_dict["PartnerShuffle"] <= PartnerShuffle.ANYWHERE
+            )
         basic_assert("PartnersAlwaysUsable", bool)
         basic_assert("StartWithRandomPartners", bool)
         if "RandomPartnersMin" in options_dict:
@@ -1692,9 +1703,11 @@ class OptionSet:
         web_settings["RandomQuiz"] = self.random_quiz
         web_settings["SkipQuiz"] = self.skip_quiz
         web_settings["QuizmoAlwaysAppears"] = self.quizmo_always_appears
-        web_settings["PartnersInDefaultLocations"] = self.logic_settings.partners_in_default_locations
+
+        web_settings["PartnerShuffle"] = self.logic_settings.partner_shuffle
         web_settings["PartnersAlwaysUsable"] = self.logic_settings.partners_always_usable
         web_settings["StartWithRandomPartners"] = self.logic_settings.random_partners
+
         web_settings["WriteSpoilerLog"] = self.write_spoilerlog
         web_settings["RomanNumerals"] = self.roman_numerals
         web_settings["IncludeDojo"] = self.logic_settings.include_dojo

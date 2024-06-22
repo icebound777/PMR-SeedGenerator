@@ -367,12 +367,12 @@ class RandomSeed:
             self.rando_settings.allow_itemhints,
             self.placed_items,
             self.starting_partners,
-            logic_settings.partners_in_default_locations,
+            logic_settings.partner_shuffle,
             logic_settings.include_shops,
             logic_settings.include_panels,
             logic_settings.include_favors_mode,
             logic_settings.include_letters_mode,
-            logic_settings.keyitems_outside_dungeon
+            logic_settings.keyitems_outside_dungeon,
         )
 
         # Random quiz

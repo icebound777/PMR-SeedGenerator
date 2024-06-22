@@ -20,7 +20,9 @@ from rando_enums.enum_options import (
     StartingHammer,
     IncludeFavorsMode,
     IncludeLettersMode,
-    PartnerUpgradeShuffle
+    PartnerUpgradeShuffle,
+    PartnerShuffle,
+    DojoShuffle,
 )
 
 from rando_modules.modify_itempool \
@@ -51,6 +53,7 @@ from metadata.item_exclusion \
     import exclude_due_to_settings, exclude_from_taycet_placement
 from metadata.item_general import taycet_items, progressive_badges
 from metadata.node_exclusion import exclude_from_trap_placement
+from metadata.partners_meta import all_partners
 
 from metadata.verbose_area_names import verbose_area_names
 from metadata.verbose_item_names import verbose_item_names
@@ -229,8 +232,8 @@ def get_items_to_exclude(
     """
     excluded_items = []
 
-    if logic_settings.include_dojo:
-        for item_name in exclude_due_to_settings.get("do_randomize_dojo"):
+    if logic_settings.include_dojo != DojoShuffle.OFF:
+        for item_name in exclude_due_to_settings["do_randomize_dojo"][logic_settings.include_dojo]:
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
     for partner_string in starting_partners:
@@ -427,8 +430,8 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if (   current_node_id in dojo_locations
-                and not logic_settings.include_dojo
+            if (    current_node_id in dojo_locations[5] # all dojo locations
+                and current_node_id not in dojo_locations[logic_settings.include_dojo]
             ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -442,7 +445,7 @@ def _generate_item_pools(
                 continue
 
             if (    current_node.key_name_item == "Partner"
-                and logic_settings.partners_in_default_locations
+                and logic_settings.partner_shuffle == PartnerShuffle.VANILLA
                 and current_node.vanilla_item.item_name not in starting_partners
             ):
                 current_node.current_item = current_node.vanilla_item
@@ -853,6 +856,11 @@ def _algo_assumed_fill(
                     dungeon_restricted_items[item] = dungeon
         pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 
+    if logic_settings.partner_shuffle == PartnerShuffle.SHUFFLED:
+        pool_combined_progression_items.sort(
+            key = lambda x: x.item_name in all_partners
+        )
+
     if logic_settings.gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
         pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
 
@@ -919,6 +927,18 @@ def _algo_assumed_fill(
                 )
             ]
             dungeon_restricted_items.pop(item.item_name)
+
+        if logic_settings.partner_shuffle == PartnerShuffle.SHUFFLED:
+            if item.item_type == "PARTNER":
+                candidate_locations = [
+                    node for node in candidate_locations
+                    if node.vanilla_item.item_type == "PARTNER"
+                ]
+            else:
+                candidate_locations = [
+                    node for node in candidate_locations
+                    if node.vanilla_item.item_type != "PARTNER"
+                ]
 
         if logic_settings.gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
             # Note: Boots 1 (Jumpless start) has to be placed elsewhere, as all

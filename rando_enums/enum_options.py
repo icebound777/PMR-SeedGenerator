@@ -106,3 +106,18 @@ class DungeonEntranceShuffle(IntEnum):
     OFF = 0
     ONLY_SPIRIT_DUNGEONS = 1
     INCLUDE_BOWSERSCASTLE = 2
+
+@unique
+class PartnerShuffle(IntEnum):
+    VANILLA = 0
+    SHUFFLED = 1
+    ANYWHERE = 2
+
+@unique
+class DojoShuffle(IntEnum):
+    OFF = 0
+    INCLUDE_CHAN = 1
+    INCLUDE_LEE = 2
+    INCLUDE_MASTER1 = 3
+    INCLUDE_MASTER2 = 4
+    INCLUDE_MASTER3 = 5

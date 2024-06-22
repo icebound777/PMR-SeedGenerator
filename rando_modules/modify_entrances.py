@@ -1085,12 +1085,12 @@ def get_glitched_logic(
 
 def adjust_shop_logic(
     world_graph: dict,
-    rowf_in_logic:bool,
+    rowf_sets_in_logic:int,
     merlow_in_logic:bool,
     ripcheato_cnt_in_logic:int
 ):
-    if not rowf_in_logic:
-        world_graph = _set_rowf_out_of_logic(world_graph)
+    if rowf_sets_in_logic < 5:
+        world_graph = _set_rowf_out_of_logic(world_graph, rowf_sets_in_logic)
     if not merlow_in_logic:
         world_graph = _set_merlow_out_of_logic(world_graph)
 
@@ -1099,13 +1099,48 @@ def adjust_shop_logic(
     return world_graph
 
 
-def _set_rowf_out_of_logic(world_graph:dict):
+def _set_rowf_out_of_logic(
+    world_graph: dict,
+    rowf_sets_in_logic: int
+):
     remove_rowf_edges = []
     adjusted_rowf_edges = []
 
-    for edge in world_graph["MAC_01/0"]["edge_list"]:
+    if rowf_sets_in_logic == 4:
+        nodeid_modify = "MAC_01/ShopBadgeK"
+        exclude_edge_targets = [
+            "ShopBadgeN"
+        ]
+    elif rowf_sets_in_logic == 3:
+        nodeid_modify = "MAC_01/ShopBadgeH"
+        exclude_edge_targets = [
+            "ShopBadgeK"
+        ]
+    elif rowf_sets_in_logic == 2:
+        nodeid_modify = "MAC_01/ShopBadgeE"
+        exclude_edge_targets = [
+            "ShopBadgeH"
+        ]
+    elif rowf_sets_in_logic == 1:
+        nodeid_modify = "MAC_01/0"
+        exclude_edge_targets = [
+            "ShopBadgeE"
+        ]
+    else: # == 0
+        nodeid_modify = "MAC_01/0"
+        exclude_edge_targets = [
+            "ShopBadgeA",
+            "ShopBadgeB",
+            "ShopBadgeC",
+            "ShopBadgeD",
+            "ShopBadgeE",
+        ]
+
+    for edge in world_graph[nodeid_modify]["edge_list"]:
         if (    isinstance(edge["to"]["id"], str)
-            and edge["to"]["id"].startswith("ShopBadge")
+            and any(True for x in exclude_edge_targets
+                    if x == edge["to"]["id"]
+            )
         ):
             remove_rowf_edges.append(deepcopy(edge))
 
