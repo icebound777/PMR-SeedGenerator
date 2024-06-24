@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.27.1 (beta)
+
+### Bug Fixes (0.27.1)
+
+* Fix a bug with `Require Specific Spirits` and `Goal: Open Star Way`, where the holograms of the spirits required to rescue don't show up on Shooting Star Summit.
+
 ## 0.27.0 (beta)
 
 ### Feature Changes
