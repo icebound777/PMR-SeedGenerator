@@ -32,9 +32,10 @@ from db.move            import create_moves
 from db.quiz            import create_quizzes
 from db.puzzle          import create_puzzles
 from db.palette         import Palette, create_palettes
-from rando_modules.random_palettes     \
-    import get_randomized_coinpalette, \
-           get_randomized_palettes
+from rando_modules.random_palettes import (
+    get_randomized_coinpalette,
+    get_randomized_palettes
+)
 from rando_modules.random_audio import get_randomized_audio
 
 
