@@ -24,6 +24,13 @@
   * (new) Shuffle spirit dungeons, and include Bowser's Castle
     Note: For inclusion of Bowser's Castle, the `Star Way Spirits Needed` setting has to be set to require fewer than 7 star spirits.
 
+### Miscellaneous
+
+* Spoiler log
+  * Moved `Ruined Castle Grounds - Muss T. Letter Reward` from the `Peachs Castle Grounds` area to the `Toad Town` area
+  * Moved `Hijacked Castle Entrance - Hidden Block` from the `Peachs Castle Grounds` area to the `Peachs Castle` area
+  * The `Ruined Castle Grounds` area is a bit weirdly laid out, so these changes were made to make finding these two locations within the spoiler log easier
+
 ### Additional Technical Changelog
 
 * Yaml settings changes:

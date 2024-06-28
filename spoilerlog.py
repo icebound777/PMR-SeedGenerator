@@ -78,6 +78,15 @@ def write_spoiler_log(
         map_verbose_name = (node.map_area.verbose_name)
         map_verbose_name = map_verbose_name.replace("'", "")
 
+        # Special casing: Move 'Peachs Castle Grounds' info to 'Toad Town' and
+        # 'Peachs Castle', respectively. Peachs Castle Grounds is kind of a
+        # weird area, and this way the info becomes easier to understand
+        if area_name == "Peachs Castle Grounds":
+            if map_verbose_name == "Ruined Castle Grounds":
+                area_name = "Toad Town"
+            elif map_verbose_name == "Hijacked Castle Entrance":
+                area_name = "Peachs Castle"
+
         # Get verbose names for map and item
         if (    node.map_area.name in verbose_item_locations
             and node.key_name_item in verbose_item_locations.get(node.map_area.name)):
