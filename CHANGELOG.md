@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.27.1a (beta)
+
+### Bug Fixes
+
+* Fix a bug that caused the `Star Beam` item to be treated as non-progression, causing issues while generating seeds that had `Limited Chapter Logic` and `Shuffle Star Beam` turned on.
+
 ## 0.27.1 (beta)
 
 ### Bug Fixes (0.27.1)
@@ -8,7 +14,7 @@
 
 ## 0.27.0 (beta)
 
-### Feature Changes
+### Feature Changes (0.27.0)
 
 * Removed `Star Hunt` option and reworked Power Stars:
   * `Star Way Spirits Needed` and `Star Way Power Stars Needed` options now determine how many spirits and power stars are needed to open Star Way. Any combination is valid, like 7 spirits & 0 power stars, 0 spirits & 50 power stars, 4 spirits & 30 power stars etc.
@@ -35,13 +41,13 @@
     * "[Star Beam icon] \<current> / 20", if Mario has 10 or more, but fewer than 20 Power Stars,
     * "[Power Star icon] \<current> / 35", if Mario has 20 or more Power Stars
 
-### Logic changes
+### Logic changes (0.27.0)
 
 * While `Keyitems Outside Dungeon` (aka Keysanity) is turned off, the FP Plus chest in the Koopa Bros. Fortress area is no longer a valid location for Koopa Fortress Keys
 * Now expects Watt for traversing the dark caves in Bowser's Castle
 * Now expects having enough star spirits and power stars to both open Star Way and get the Star Beam, to get past chapter 8 Jr. Troopa and Hallway Bowser (only relevant in prep for entrance rando)
 
-### Tricks & Glitches
+### Tricks & Glitches (0.27.0)
 
 * New options
   * "Volcano Sushie Glitch w/ Goombario save block storage"
@@ -55,7 +61,7 @@
 * Removed options
   * Flarakarry (Bombette) (due to it possibly causing a softlock)
 
-### Bug Fixes
+### Bug Fixes (0.27.0)
 
 * Fix a bug that could rarely cause unintended item prices for shop items in Dry Dry Outpost if `Randomize Puzzles` and `Include Shops` were turned on
 * Lower logical star piece requirements for some of Merlow's trades (the original calculations were off)
@@ -68,11 +74,11 @@
 * Fix Kent C. Koopa breaking the coin cap when handing back the 50 coins when defeated after paying him
 * Fix frozen camera during Kooper's Shell turn-in cutscene
 
-### Miscellaneous
+### Miscellaneous (0.27.0)
 
 * Renamed some locations in the spoiler log for clarity
 
-### Additional Technical Changelog
+### Additional Technical Changelog (0.27.0)
 
 * Added ModFlag `1100` which gets set to True once the current seed goal is reached
 * Split up chapter 8 progress byte into flags
