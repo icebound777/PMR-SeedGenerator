@@ -121,3 +121,9 @@ class DojoShuffle(IntEnum):
     INCLUDE_MASTER1 = 3
     INCLUDE_MASTER2 = 4
     INCLUDE_MASTER3 = 5
+
+@unique
+class RequiredSpirits(IntEnum):
+    ANY = 0
+    SPECIFIC = 1
+    SPECIFIC_AND_LIMITCHAPTERLOGIC = 2

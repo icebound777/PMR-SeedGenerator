@@ -9,6 +9,7 @@ from rando_enums.enum_options import (
     GearShuffleMode,
     PartnerUpgradeShuffle,
     DungeonEntranceShuffle,
+    RequiredSpirits,
 )
 
 from itemhints import get_itemhints
@@ -177,7 +178,7 @@ class RandomSeed:
 
                 ## Setup star spirits, power stars, and relevant logic
                 chosen_spirits = []
-                if (    logic_settings.require_specific_spirits
+                if (    logic_settings.required_spirits >= RequiredSpirits.SPECIFIC
                     and 0 < logic_settings.starway_spirits_needed_count < 7
                 ):
                     all_spirits = [
@@ -228,7 +229,7 @@ class RandomSeed:
                 if entrance_changes:
                     self.entrance_list.extend(entrance_changes)
 
-                if logic_settings.limit_chapter_logic:
+                if logic_settings.required_spirits == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC:
                     modified_world_graph = get_limited_chapter_logic(
                         modified_world_graph,
                         chosen_spirits,
