@@ -48,6 +48,12 @@
     * Changed: Value data type is now `int` (was `boolean`)
     * `0` = Off, `1` = spirit dungeons, `2` = spirit dungeons + Bowser's Castle
 
+## 0.27.1a (beta)
+
+### Bug Fixes (0.27.1a)
+
+* Fix a bug that caused the `Star Beam` item to be treated as non-progression, causing issues while generating seeds that had `Limited Chapter Logic` and `Shuffle Star Beam` turned on.
+
 ## 0.27.1 (beta)
 
 ### Bug Fixes (0.27.1)
