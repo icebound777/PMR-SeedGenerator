@@ -24,6 +24,10 @@
   * (new) Shuffle spirit dungeons, and include Bowser's Castle
     Note: For inclusion of Bowser's Castle, the `Star Way Spirits Needed` setting has to be set to require fewer than 7 star spirits.
 
+### Logic changes
+
+* Reaching the top of Shooting Star Summit now expects having the Boots (formerly expected Boots or Parakarry)
+
 ### Miscellaneous
 
 * Spoiler log
