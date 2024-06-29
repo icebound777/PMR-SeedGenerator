@@ -1521,7 +1521,7 @@ class OptionSet:
             load_dbkey(self.random_formations, "RandomFormations"),
 
             # Item Placement
-            load_dbkey(self.logic_setting.shuffle_items, "ShuffleItems"),
+            load_dbkey(self.logic_settings.shuffle_items, "ShuffleItems"),
             load_dbkey(self.logic_settings.include_shops, "IncludeShops"),
             load_dbkey(self.logic_settings.include_panels, "IncludePanels"),
 
