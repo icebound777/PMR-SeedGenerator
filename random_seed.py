@@ -114,10 +114,12 @@ class RandomSeed:
                     logic_settings.magical_seeds_required = random.randint(0, 4)
 
                 if logic_settings.starway_spirits_needed_count == -1:
-                    logic_settings.starway_spirits_needed_count = random.randint(0,7)
+                    # note: don't roll zero here
+                    logic_settings.starway_spirits_needed_count = random.randint(1, 7)
 
                 if logic_settings.starbeam_spirits_needed == -1:
-                    logic_settings.starbeam_spirits_needed = random.randint(0,7)
+                    # note: don't roll zero here
+                    logic_settings.starbeam_spirits_needed = random.randint(1, 7)
 
                 # Modify entrances if needed
                 if logic_settings.bowsers_castle_mode == BowserCastleMode.SHORTEN:

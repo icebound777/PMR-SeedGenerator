@@ -17,6 +17,10 @@
   * Partners completely vanilla
   * (new) Partners shuffled among vanilla partner locations
   * Partners shuffled anywhere
+* Changed `Star Way Spirits Required`:
+  * If `Star Way Spirits Required` is set to random, then a number between 1 and 7 spirits will be chosen for opening Star Way (was: a number between 0 and 7)
+* Changed `Star Beam Spirits Required`:
+  * If `Star Beam Spirits Required` is set to random, then a number between 1 and 7 spirits will be chosen for receiving the Star Beam (was: a number between 0 and 7)
 * Changed `Shuffle Dungeon Entrances`:
   This setting now has three different values:
   * No dungeon shuffle
