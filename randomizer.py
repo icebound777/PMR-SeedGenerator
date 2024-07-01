@@ -31,6 +31,7 @@ from db.actor_attribute import create_actor_attributes
 from db.move            import create_moves
 from db.quiz            import create_quizzes
 from db.puzzle          import create_puzzles
+from db.battle          import create_battles
 from db.palette         import Palette, create_palettes
 from rando_modules.random_palettes     \
     import get_randomized_coinpalette, \
@@ -64,6 +65,7 @@ def init_randomizer(rebuild_database=False):
         create_moves()
         create_quizzes()
         create_puzzles()
+        create_battles()
 
 
 def set_cheap_shopitems(placed_items):
