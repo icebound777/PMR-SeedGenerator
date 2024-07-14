@@ -31,6 +31,7 @@
 ### Logic changes
 
 * Reaching the top of Shooting Star Summit now expects having the Boots (formerly expected Boots or Parakarry)
+* Fixed logic always expecting Parakarry or Boots for reaching the vanilla location of the Odd Key item
 
 ### Miscellaneous
 

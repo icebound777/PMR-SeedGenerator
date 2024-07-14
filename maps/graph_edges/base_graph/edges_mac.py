@@ -123,6 +123,7 @@ edges_mac = [
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "GiftD"},       "reqs": [["RF_ClosedForest"]]}, #* Southern District Exit Top -> GiftD (ForestPass)
     {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Southern District Exit Top -> HiddenPanel (StarPiece)
     {"from": {"map": "MAC_02", "id": 5}, "to": {"map": "MAC_02", "id": "ItemA"},       "reqs": []}, #* Southern District Blue House Pipe -> ItemA (OddKey)
+    {"from": {"map": "MAC_02", "id": 2}, "to": {"map": "MAC_02", "id": "ItemA"},       "reqs": [["OddKey","GF_MAC02_UnlockedHouse"]], "pseudoitems": ["GF_MAC02_UnlockedHouse"]}, #* Southern District Blue House Pipe -> ItemA (OddKey)
 
     # Tayce T. related
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanVisitTayceT"]}, #+ Can visit Tayce T. for cooking
