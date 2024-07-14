@@ -7,9 +7,7 @@ from db.db import db
 class Battle(Model):
     # name
     name = CharField()
-    # battleID (potentially modified)
-    battle_id = IntegerField()
-    # vanilla battleID
+    # unmodified battleID
     vanilla_battle_id = IntegerField()
 
     def get_key(self):
@@ -34,6 +32,5 @@ def create_battles():
     for data in battle_keys.values():
         battle, _ = Battle.get_or_create(
             name = data["name"],
-            battle_id = battle_values[data["name"]],
             vanilla_battle_id = battle_values[data["name"]]
         )
