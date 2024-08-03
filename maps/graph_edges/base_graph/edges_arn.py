@@ -10,7 +10,7 @@ edges_arn = [
     {"from": {"map": "ARN_02", "id": 0},         "to": {"map": "ARN_02", "id": "ItemA"},   "reqs": [["Kooper"]]}, #* Wasteland Ascent 1 Exit West -> ItemA (DizzyDial)
     {"from": {"map": "ARN_02", "id": 0},         "to": {"map": "ARN_02", "id": "ItemB"},   "reqs": [["can_climb_steps"]]}, #* Wasteland Ascent 1 Exit West -> ItemB (Letter07)
     {"from": {"map": "ARN_02", "id": 0},         "to": {"map": "ARN_02", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Wasteland Ascent 1 Exit West -> YBlockA (Coin)
-    {"from": {"map": "ARN_02", "id": 0}, "to": {"map": "ARN_02", "id": "YBlockB"}, "reqs": [["can_climb_steps"], ["can_hit_floating_blocks"]]}, #+ Wasteland Ascent 1 Exit West -> YBlockB (Coin)
+    {"from": {"map": "ARN_02", "id": 0}, "to": {"map": "ARN_02", "id": "YBlockB"}, "reqs": [["can_climb_steps"], ["can_hit_floating_blocks"]]}, #* Wasteland Ascent 1 Exit West -> YBlockB (Coin)
     {"from": {"map": "ARN_02", "id": "YBlockB"}, "to": {"map": "ARN_02", "id": "YBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockC (RepelGel)
 
     # ARN_03 Ghost Town 1
