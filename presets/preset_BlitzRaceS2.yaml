@@ -1,6 +1,6 @@
 ---
 # PAPER MARIO RANDOMIZER SETTINGS
-SettingsName: Blitz / Limit Chapter Logic 4 Chapters
+SettingsName: Blitz Race (S2)
 
 # General
 BlocksMatchContent  : true
@@ -12,7 +12,7 @@ BadgeSynergy        : false
 AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
-CutsceneMode         : 1 # 0:vanilla, 1:shortened, 2:minimal
+CutsceneMode         : 2 # 0:vanilla, 1:shortened, 2:minimal
 SkipEpilogue         : true
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : true

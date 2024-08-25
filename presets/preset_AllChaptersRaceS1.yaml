@@ -1,6 +1,6 @@
 ---
 # PAPER MARIO RANDOMIZER SETTINGS
-SettingsName: Standard Race (S0) Preset
+SettingsName: All Chapters Race (S1) Preset
 
 # General
 BlocksMatchContent  : true
@@ -12,7 +12,7 @@ BadgeSynergy        : false
 AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
-CutsceneMode         : 1 # 0:vanilla, 1:shortened, 2:minimal
+CutsceneMode         : 2 # 0:vanilla, 1:shortened, 2:minimal
 SkipEpilogue         : true
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : true
@@ -53,7 +53,7 @@ KeyitemsOutsideDungeon: true
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
 # Item Pool Modification
-GearShuffleMode         : 0 # 0:vanilla, 1:location shuffle, 2:full shuffle
+GearShuffleMode         : 2 # 0:vanilla, 1:location shuffle, 2:full shuffle
 AddItemPouches          : false
 PartnerUpgradeShuffle   : 0 # 0:off, 1:super block locations, 2:full shuffle
 AddUnusedBadgeDuplicates: false
@@ -131,13 +131,13 @@ RandomPartnersMax         : 1 # 1-8
 
 # Pre-opened areas
 MagicalSeedsRequired: 2 # -1:Random
-PrologueOpen        : false
+PrologueOpen        : true
 BlueHouseOpen       : false
 MtRuggedOpen        : false
 ForeverForestOpen   : true
 ToyboxOpen          : false
 WhaleOpen           : false
-Ch7BridgeVisible    : true
+Ch7BridgeVisible    : false
 
 # Goal Settings
 SeedGoal                : 0 # 0: Defeat Bowser, 1: Open StarWay
