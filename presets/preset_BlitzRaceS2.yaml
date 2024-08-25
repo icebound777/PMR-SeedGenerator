@@ -1,10 +1,10 @@
 ---
 # PAPER MARIO RANDOMIZER SETTINGS
-SettingsName: Standard Race (S1) Preset
+SettingsName: Blitz Race (S2)
 
 # General
 BlocksMatchContent  : true
-HiddenBlockMode     : 2 # 0:vanilla, 1:Watt out, 2:Watt acquired, 3:always visible
+HiddenBlockMode     : 3 # 0:vanilla, 1:Watt out, 2:Watt acquired, 3:always visible
 AllowPhysicsGlitches: true
 BadgeSynergy        : false
 
@@ -12,7 +12,7 @@ BadgeSynergy        : false
 AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
-CutsceneMode         : 1 # 0:vanilla, 1:shortened, 2:minimal
+CutsceneMode         : 2 # 0:vanilla, 1:shortened, 2:minimal
 SkipEpilogue         : true
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : true
@@ -24,7 +24,7 @@ ProgressiveScaling      : false
 
 ChallengeMode  : false
 CapEnemyXP     : false
-XPMultiplier   : 1
+XPMultiplier   : 1.5
 DoubleDamage   : false
 QuadrupleDamage: false
 OHKO           : false
@@ -46,7 +46,7 @@ IncludeCoinsFoliage   : false
 IncludeCoinsFavors    : false # always false if IncludeFavorsMode:0
 IncludeShops          : true
 ProgressionOnRowf     : true # irrelevant if IncludeShops:false
-ProgressionOnMerlow   : true # irrelevant if IncludeShops:false
+ProgressionOnMerlow   : false # irrelevant if IncludeShops:false
 IncludePanels         : false
 IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
 IncludeLettersMode    : 0 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
@@ -68,7 +68,7 @@ ItemQuality             : 100
 ItemTrapMode            : 0 # 0:off, 1:sparse, 2:moderate, 3:plenty
 
 # Item Misc
-CookWithoutFryingPan : false
+CookWithoutFryingPan : true
 MerlowRewardPricing  : 0 # 0:Cheap (5-30), 1:Normal (10-60)
 RipCheatoItemsInLogic: 6 # 0-11
 AllowItemHints       : false
@@ -92,13 +92,13 @@ StartingMaxBP    : 3
 StartingStarPower: 0
 StartingBoots    : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
 StartingHammer   : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
-StartingCoins    : 100
+StartingCoins    : 150
 
 StartWithRandomItems: false
 RandomItemsMin      : 0
 RandomItemsMax      : 16
-StartingItem0       : 0x000 # Nothing
-StartingItem1       : 0x000 # Nothing
+StartingItem0       : 0x00F # UltraStone
+StartingItem1       : 0x029 # Cookbook
 StartingItem2       : 0x000 # Nothing
 StartingItem3       : 0x000 # Nothing
 StartingItem4       : 0x000 # Nothing
@@ -143,12 +143,12 @@ WhaleOpen           : false
 Ch7BridgeVisible    : false
 
 # Goal Settings
-StarWaySpiritsNeededCnt: 7 # -1:Random
-RequireSpecificSpirits : false # always false if StarWaySpiritsNeededCnt: 7
+StarWaySpiritsNeededCnt: 4 # -1:Random
+RequireSpecificSpirits : true # always false if StarWaySpiritsNeededCnt: 7
 ShuffleStarBeam        : false
 StarBeamSpiritsNeeded  : 0 # -1:Random
 StarBeamPowerStarsNeeded: 0
-LimitChapterLogic      : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
+LimitChapterLogic      : true # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
 BowsersCastleMode      : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 StarWayPowerStarsNeeded: 0 # max 120
 StarHuntTotal          : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded
@@ -175,7 +175,7 @@ RandomizePuzzles: false
 
 # Quizmo Quizzes
 RandomQuiz         : true
-QuizmoAlwaysAppears: false
+QuizmoAlwaysAppears: true
 SkipQuiz           : true
 
 # Spoilerlog
