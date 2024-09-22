@@ -1,6 +1,6 @@
 ---
 # PAPER MARIO RANDOMIZER SETTINGS
-SettingsName: Blitz / Limit Chapter Logic 4 Chapters
+SettingsName: Blitz Race (S3)
 
 # General
 BlocksMatchContent  : true
@@ -12,7 +12,7 @@ BadgeSynergy        : false
 AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
-CutsceneMode         : 1 # 0:vanilla, 1:shortened, 2:minimal
+CutsceneMode         : 2 # 0:vanilla, 1:shortened, 2:minimal
 SkipEpilogue         : true
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : true
@@ -40,13 +40,13 @@ CustomSeed: false # NYI
 
 # Item Placement
 ShuffleItems          : true
-IncludeCoinsOverworld : false
-IncludeCoinsBlocks    : false
+IncludeCoinsOverworld : true
+IncludeCoinsBlocks    : true
 IncludeCoinsFoliage   : false
 IncludeCoinsFavors    : false # always false if IncludeFavorsMode:0
 IncludeShops          : true
 ProgressionOnRowf     : true # irrelevant if IncludeShops:false
-ProgressionOnMerlow   : false # irrelevant if IncludeShops:false
+ProgressionOnMerlow   : true # irrelevant if IncludeShops:false
 IncludePanels         : false
 IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
 IncludeLettersMode    : 0 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
@@ -57,8 +57,8 @@ KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
 # Item Pool Modification
 GearShuffleMode         : 2 # 0:vanilla, 1:location shuffle, 2:full shuffle
-AddItemPouches          : false
-PartnerUpgradeShuffle   : 0 # 0:off, 1:super block locations, 2:full shuffle
+AddItemPouches          : true
+PartnerUpgradeShuffle   : 2 # 0:off, 1:super block locations, 2:full shuffle
 AddUnusedBadgeDuplicates: false
 AddBetaItems            : false
 ProgressiveBadges       : false
@@ -73,7 +73,7 @@ MerlowRewardPricing  : 0 # 0:Cheap (5-30), 1:Normal (10-60)
 RipCheatoItemsInLogic: 6 # 0-11
 AllowItemHints       : false
 # Mystery? item options
-RandomChoice         : true
+RandomChoice         : false
 MysteryRandomPick    : false
 # Below are never used, they get hardcoded overwritten, just for doc purposes
 ItemChoiceA          : 0x08A # Mushroom
@@ -143,12 +143,12 @@ WhaleOpen           : false
 Ch7BridgeVisible    : false
 
 # Goal Settings
-StarWaySpiritsNeededCnt: 4 # -1:Random
-RequireSpecificSpirits : true # always false if StarWaySpiritsNeededCnt: 7
+StarWaySpiritsNeededCnt: 7 # -1:Random
+RequireSpecificSpirits : false # always false if StarWaySpiritsNeededCnt: 7
 ShuffleStarBeam        : false
 StarBeamSpiritsNeeded  : 0 # -1:Random
 StarBeamPowerStarsNeeded: 0
-LimitChapterLogic      : true # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
+LimitChapterLogic      : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
 BowsersCastleMode      : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 StarWayPowerStarsNeeded: 0 # max 120
 StarHuntTotal          : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded
