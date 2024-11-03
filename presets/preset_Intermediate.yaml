@@ -34,6 +34,7 @@ NoHealingItems : false
 DropStarPoints : true
 
 RandomFormations: true
+BossShuffleMode : 0 # 0: off, 1: shuffle chapter bosses
 
 # Item Placement
 ShuffleItems          : true

@@ -20,6 +20,7 @@ from rando_modules.logic import \
     get_items_to_exclude
 from rando_modules.random_blocks import get_block_placement
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
+from rando_modules.random_battles import get_boss_battles
 from rando_modules.modify_entrances import (
     get_shorter_bowsercastle,
     get_bowsercastle_bossrush,
@@ -70,6 +71,7 @@ class RandomSeed:
         self.placed_blocks = []
         self.entrance_list = []
         self.enemy_stats = []
+        self.battles = []
         self.chapter_changes = {}
         self.battle_formations = []
         self.move_costs = []
@@ -340,9 +342,16 @@ class RandomSeed:
                 supers_are_yellow=False
             )
 
+        # Randomize boss battle if needed
+        self.battles, boss_chapter_map = get_boss_battles(
+            self.rando_settings.boss_shuffle_mode,
+        )
+        self.spoilerlog_additions["boss_battles"] = boss_chapter_map
+
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(
             self.rando_settings.shuffle_chapter_difficulty,
+            boss_chapter_map,
             self.rando_settings.progressive_scaling,
             starting_chapter
         )

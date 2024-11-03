@@ -90,6 +90,14 @@ class Table:
                 "value": value
             })
 
+        # Battle IDs
+        battles = kwargs.get("battle_list")
+        for key, value in battles:
+            table_data.append({
+                "key": key,
+                "value": value
+            })
+
         # Actor Attributes
         actor_attributes = kwargs.get("actor_data")
         for key, value in actor_attributes:

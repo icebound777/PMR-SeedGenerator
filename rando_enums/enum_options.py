@@ -121,3 +121,8 @@ class DojoShuffle(IntEnum):
     INCLUDE_MASTER1 = 3
     INCLUDE_MASTER2 = 4
     INCLUDE_MASTER3 = 5
+
+@unique
+class BossShuffleMode(IntEnum):
+    OFF = 0
+    CHAPTER_BOSSES = 1

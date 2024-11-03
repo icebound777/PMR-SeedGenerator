@@ -8,6 +8,7 @@ from db.node import Node
 
 from rando_enums.enum_types import BlockType
 
+from metadata.formations_meta import chapter_bossname_map
 from metadata.partners_meta import partner_moves
 from metadata.verbose_area_names import verbose_area_names
 from metadata.verbose_item_names import verbose_item_names
@@ -25,6 +26,7 @@ def write_spoiler_log(
     move_costs:list=None,
     block_locations:list=None,
     puzzle_solutions:list=None,
+    battle_shuffles:list=None,
     seed_hash_items:list=None,
     spoilerlog_additions:dict=None
 ):
@@ -49,6 +51,19 @@ def write_spoiler_log(
         spoiler_dict["difficulty"] = dict()
         for old_chapter, new_chapter in random_chapter_difficulty.items():
             spoiler_dict["difficulty"][f"chapter {old_chapter}"] = new_chapter
+
+    # Add shuffled battles
+    if spoilerlog_additions and spoilerlog_additions.get("boss_battles"):
+        spoiler_dict["boss_battles"] = dict()
+        # spoilerlog_additions.get("boss_battles") ^= {4: 1, 3: 6, ...}
+        tmp_list = list()
+        for k, v in spoilerlog_additions.get("boss_battles").items():
+            tmp_list.append((v, k))
+        tmp_list.sort(key=lambda tuple: tuple[0])
+        for chapter_boss_tuple in tmp_list:
+            boss_name = chapter_bossname_map[chapter_boss_tuple[1]]
+            spoiler_dict["boss_battles"][chapter_boss_tuple[0]] = boss_name
+
 
     # Add required spirits, if specific
     if spoilerlog_additions and spoilerlog_additions.get("required_spirits"):
