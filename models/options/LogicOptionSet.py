@@ -122,7 +122,7 @@ class LogicOptionSet():
 
         # Entrance Shuffle
         self.shuffle_dungeon_rooms = bool(get_option_default_value("ShuffleDungeonRooms"))
-        self.shuffle_dungeon_entrances = bool(get_option_default_value("ShuffleDungeonEntrances"))
+        self.shuffle_dungeon_entrances = get_option_default_value("ShuffleDungeonEntrances")
         self.shuffle_entrances_by_all = bool(get_option_default_value("ShuffleEntrancesByAll"))
         self.match_entrance_type = bool(get_option_default_value("MatchEntranceTypes"))
         self.random_oneway_entrances = False # NYI
