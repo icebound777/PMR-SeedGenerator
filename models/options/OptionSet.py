@@ -1824,7 +1824,7 @@ class OptionSet:
         web_settings["StarWayPowerStarsNeeded"] = self.logic_settings.starway_powerstars_needed
         web_settings["StarHuntTotal"] = self.logic_settings.star_hunt_total
 
-        if self.random_partners:
+        if self.logic_settings.random_partners:
             web_settings["RandomPartnersMax"] = self.logic_settings.random_partners_min
             web_settings["RandomPartnersMin"] = self.logic_settings.random_partners_max
         else:
