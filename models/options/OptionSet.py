@@ -1,6 +1,7 @@
 from db.item import Item
 from db.option import Option
 
+from random import randint
 from rando_enums.enum_ingame import StarSpirits
 from rando_enums.enum_options import (
     BowserCastleMode,
@@ -284,17 +285,37 @@ class OptionSet:
         # Starting setup
         if "StartingMap" in options_dict:
             self.logic_settings.starting_map = options_dict.get("StartingMap")
-        if "StartingMaxHP" in options_dict:
-            self.starting_maxhp = options_dict.get("StartingMaxHP")
-        if "StartingMaxFP" in options_dict:
-            self.starting_maxfp = options_dict.get("StartingMaxFP")
-        if "StartingMaxBP" in options_dict:
-            self.starting_maxbp = options_dict.get("StartingMaxBP")
-        self.starting_level = int(
-            ((self.starting_maxhp - 5) / 5)
-            + ((self.starting_maxfp - 5) / 5)
-            + ((self.starting_maxbp - 3) / 3)
-        )
+        randomLevel = False
+        if "StartingLevel" in options_dict:
+            # if starting level is specified, randomly fill stats up to that level
+            level = options_dict.get("StartingLevel")
+            if level >= 0:
+                self.starting_level = level
+                self.starting_maxhp = 5
+                self.starting_maxfp = 5
+                self.starting_maxbp = 3
+                randomLevel = True
+                while level >= 0:
+                    level -= 1
+                    stat = randint(0,3)
+                    if stat == 0 and self.starting_maxhp < 50:
+                        self.starting_maxhp += 5
+                    elif stat == 1 and self.starting_maxfp < 50:
+                        self.starting_maxfp += 5
+                    elif self.starting_maxbp < 30:
+                        self.starting_maxbp += 3
+        if randomLevel == False:
+            if "StartingMaxHP" in options_dict:
+                self.starting_maxhp = options_dict.get("StartingMaxHP")
+            if "StartingMaxFP" in options_dict:
+                self.starting_maxfp = options_dict.get("StartingMaxFP")
+            if "StartingMaxBP" in options_dict:
+                self.starting_maxbp = options_dict.get("StartingMaxBP")
+            self.starting_level = int(
+                ((self.starting_maxhp - 5) / 5)
+                + ((self.starting_maxfp - 5) / 5)
+                + ((self.starting_maxbp - 3) / 3)
+            )
         if "StartingStarPower" in options_dict:
             self.starting_starpower = options_dict.get("StartingStarPower")
         if "StartingBoots" in options_dict:
