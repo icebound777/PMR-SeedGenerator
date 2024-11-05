@@ -295,7 +295,7 @@ class OptionSet:
                 self.starting_maxfp = 5
                 self.starting_maxbp = 3
                 randomLevel = True
-                while level >= 0:
+                while level > 0:
                     level -= 1
                     stat = randint(0,3)
                     while True:
