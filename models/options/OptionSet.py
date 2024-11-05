@@ -297,7 +297,7 @@ class OptionSet:
                 randomLevel = True
                 while level > 0:
                     level -= 1
-                    stat = randint(0,3)
+                    stat = randint(0,2)
                     while True:
                         # rollover if a stat is already maxed
                         if stat == 0:
