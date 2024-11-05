@@ -288,8 +288,7 @@ class OptionSet:
         randomLevel = False
         if "StartingLevel" in options_dict:
             # if starting level is specified, randomly fill stats up to that level
-            level = options_dict.get("StartingLevel")
-            level = min(level, 27)
+            level = min(options_dict.get("StartingLevel"), 27) # clamp to max level
             if level >= 0:
                 self.starting_level = level
                 self.starting_maxhp = 5
@@ -299,24 +298,23 @@ class OptionSet:
                 while level >= 0:
                     level -= 1
                     stat = randint(0,3)
-                    stat_valid = False
-                    while stat_valid == False:
+                    while True:
                         # rollover if a stat is already maxed
                         if stat == 0:
                             if self.starting_maxhp >= 50:
                                 stat += 1
                             else:
-                                stat_valid = True
+                                break
                         if stat == 1:
                             if self.starting_maxfp >= 50:
                                 stat += 1
                             else:
-                                stat_valid = True
+                                break
                         if stat == 2:
                             if self.starting_maxbp >= 30:
                                 stat = 0
                             else:
-                                stat_valid = True
+                                break
 
                     # apply stat
                     if stat == 0:
