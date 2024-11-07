@@ -4,6 +4,11 @@
 
 ### Feature Changes
 
+* `Boss Shuffle` option:
+  * Allows shuffling which boss is encountered at the end of each dungeon area. The map and cutscenes are unaffected by this, but a different boss will load upon fading into the battle.
+  * During `Vanilla Difficulty` and `Shuffle Chapter Difficulty` the shuffled boss inherits the difficulty of the chapter it is encountered in (instead of the difficulty assigned to its original chapter)
+    * Example: General Guy gets shuffled as the boss within Koopa Bros. Fortress, then General Guy will have the same difficulty as the rest of chapter 1.
+  * For technical reasons bosses cannot appear in more than one chapter at the moment. So each of the seven main chapter bosses will always be encountered exactly once per seed.
 * Changed `Progression On Rowf`:
   * Instead of marking either all or none of Rowf's item sets for holding progression, now allows choosing the maximum number of item sets which may hold progression.
   * Can be turned off, or set a value from 1-5
@@ -27,6 +32,8 @@
   * Shuffle spirit dungeons
   * (new) Shuffle spirit dungeons, and include Bowser's Castle
     Note: For inclusion of Bowser's Castle, the `Star Way Spirits Needed` setting has to be set to require fewer than 7 star spirits.
+* QoL: Adjusted the Pulse Stone key item
+  * Beeping now turns off after using tricks to enter then Dry Dry Ruins entrance loading zone without raising the ruins
 
 ### Logic changes
 
@@ -56,6 +63,10 @@
   * Changed `ShuffleDungeonEntrances`
     * Changed: Value data type is now `int` (was `boolean`)
     * `0` = Off, `1` = spirit dungeons, `2` = spirit dungeons + Bowser's Castle
+* Misc. generator changes:
+  * Fixed broken Python requirements file
+  * Added Dockerfile and devcontainer configuration
+    * (not sure if the Docker container it set up 100% cleanly, but the devcontainer works)
 
 ## 0.27.1a (beta)
 
