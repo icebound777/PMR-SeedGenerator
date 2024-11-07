@@ -33,7 +33,7 @@
   * (new) Shuffle spirit dungeons, and include Bowser's Castle
     Note: For inclusion of Bowser's Castle, the `Star Way Spirits Needed` setting has to be set to require fewer than 7 star spirits.
 * QoL: Adjusted the Pulse Stone key item
-  * Beeping now turns off after using tricks to enter then Dry Dry Ruins entrance loading zone without raising the ruins
+  * Beeping now turns off after using tricks to enter the Dry Dry Ruins entrance loading zone without raising the ruins
 
 ### Logic changes
 
@@ -66,7 +66,7 @@
 * Misc. generator changes:
   * Fixed broken Python requirements file
   * Added Dockerfile and devcontainer configuration
-    * (not sure if the Docker container it set up 100% cleanly, but the devcontainer works)
+    * (not sure if the Docker container is set up 100% cleanly, but the devcontainer works)
 
 ## 0.27.1a (beta)
 
