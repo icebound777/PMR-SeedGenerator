@@ -269,6 +269,7 @@ def write_data_to_array(
     music_list:list,
     mapmirror_list:list,
     puzzle_list:list,
+    battle_list:list,
     seed_id: int
 ):
     """
@@ -292,6 +293,7 @@ def write_data_to_array(
         music_list=music_list,
         mapmirror_list=mapmirror_list,
         puzzle_list=puzzle_list,
+        battle_list=battle_list
     )
 
     # Update table info with variable data
@@ -619,6 +621,7 @@ def web_randomizer(jsonSettings, world_graph):
         music_list=random_seed.music_list,
         mapmirror_list=random_seed.static_map_mirroring,
         puzzle_list=random_seed.puzzle_minigame_data,
+        battle_list=random_seed.battles,
         seed_id=random_seed.seed_hash
     )
     patch_file = io.BytesIO(operations)
@@ -653,6 +656,7 @@ def web_randomizer(jsonSettings, world_graph):
         move_costs=random_seed.move_costs,
         block_locations=random_seed.placed_blocks,
         puzzle_solutions=random_seed.puzzle_minigame_data,
+        battle_shuffles=random_seed.battles,
         spoilerlog_additions=random_seed.spoilerlog_additions,
         seed_hash_items=random_seed.seed_hash_items
     )
