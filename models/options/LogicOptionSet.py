@@ -21,6 +21,9 @@ class LogicOptionSet():
         self.always_ispy = bool(get_option_default_value("AlwaysISpy"))
         self.always_peekaboo = bool(get_option_default_value("AlwaysPeekaboo"))
 
+        # Difficulty and Enemies
+        self.boss_shuffle_mode = get_option_default_value("BossShuffleMode")
+
         # Item Placement
         self.shuffle_items = bool(get_option_default_value("ShuffleItems"))
         self.include_coins_overworld = True

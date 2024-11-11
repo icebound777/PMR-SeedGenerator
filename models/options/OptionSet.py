@@ -61,7 +61,6 @@ class OptionSet:
         self.drop_starpoints = bool(get_option_default_value("DropStarPoints"))
 
         self.random_formations = bool(get_option_default_value("RandomFormations"))
-        self.boss_shuffle_mode = BossShuffleMode.OFF
 
         # Map Check Tracker (auto-set, not changeable via settings)
         self.map_tracker_check_bits = get_option_default_value("EnabledCheckBits")
@@ -198,7 +197,7 @@ class OptionSet:
         if "RandomFormations" in options_dict:
             self.random_formations = options_dict.get("RandomFormations")
         if "BossShuffleMode" in options_dict:
-            self.boss_shuffle_mode = options_dict.get("BossShuffleMode")
+            self.logic_settings.boss_shuffle_mode = options_dict.get("BossShuffleMode")
 
         # Item Placement
         if "ShuffleItems" in options_dict:
@@ -1527,6 +1526,7 @@ class OptionSet:
             load_dbkey(self.drop_starpoints, "DropStarPoints"),
 
             load_dbkey(self.random_formations, "RandomFormations"),
+            load_dbkey(self.logic_settings.boss_shuffle_mode, "BossShuffleMode"),
 
             # Item Placement
             load_dbkey(self.logic_settings.shuffle_items, "ShuffleItems"),
@@ -1693,7 +1693,7 @@ class OptionSet:
         web_settings["ForeverForestOpen"] = self.logic_settings.foreverforest_open
         web_settings["ShuffleChapterDifficulty"] = self.shuffle_chapter_difficulty
         web_settings["RandomFormations"] = self.random_formations
-        web_settings["BossShuffleMode"] = self.boss_shuffle_mode
+        web_settings["BossShuffleMode"] = self.logic_settings.boss_shuffle_mode
         web_settings["ShuffleItems"] = self.logic_settings.shuffle_items
         web_settings["IncludeCoinsOverworld"] = self.logic_settings.include_coins_overworld
         web_settings["IncludeCoinsBlocks"] = self.logic_settings.include_coins_blocks

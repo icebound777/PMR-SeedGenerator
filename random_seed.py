@@ -344,7 +344,7 @@ class RandomSeed:
 
         # Randomize boss battle if needed
         self.battles, boss_chapter_map = get_boss_battles(
-            self.rando_settings.boss_shuffle_mode,
+            logic_settings.boss_shuffle_mode,
         )
         self.spoilerlog_additions["boss_battles"] = boss_chapter_map
 
