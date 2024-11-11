@@ -39,6 +39,7 @@
 
 * Reaching the top of Shooting Star Summit now expects having the Boots (formerly expected Boots or Parakarry)
 * Fixed logic always expecting Parakarry or Boots for reaching the vanilla location of the Odd Key item
+* Fixed logic not requiring being able to climb ledges in Gusty Gulch, while there are very obvious ledges preventing Mario from continuing (only affected glitched logic seeds)
 
 ### Quality of Life
 
