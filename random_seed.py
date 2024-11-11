@@ -14,6 +14,7 @@ from rando_enums.enum_options import (
 from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
 from models.options.OptionSet import OptionSet
+from models.options.LogicOptionSet import LogicOptionSet
 from rando_modules.logic import \
     place_items,\
     get_item_spheres,\
@@ -267,7 +268,7 @@ class RandomSeed:
                 starting_chapter, logic_settings.starting_map = self.init_starting_map(
                     self.rando_settings
                 )
-                self.init_starting_partners(self.rando_settings)
+                self.init_starting_partners(logic_settings)
 
                 self.init_starting_items(
                     self.rando_settings,
@@ -425,17 +426,17 @@ class RandomSeed:
 
     def init_starting_partners(
         self,
-        rando_settings:OptionSet
+        logic_settings:LogicOptionSet
     ):
         # Choose random starting partners if necessary
-        if rando_settings.logic_settings.random_partners:
+        if logic_settings.random_partners:
             self.starting_partners = get_rnd_starting_partners(
-                num_rnd_partners_min=rando_settings.logic_settings.random_partners_min,
-                num_rnd_partners_max=rando_settings.logic_settings.random_partners_max,
-                rando_settings=rando_settings
+                num_rnd_partners_min=logic_settings.random_partners_min,
+                num_rnd_partners_max=logic_settings.random_partners_max,
+                logic_settings=logic_settings
             )
         else:
-            self.starting_partners = rando_settings.logic_settings.starting_partners
+            self.starting_partners = logic_settings.starting_partners
 
 
     def init_starting_map(
