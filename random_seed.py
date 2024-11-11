@@ -20,7 +20,7 @@ from rando_modules.logic import \
     get_items_to_exclude
 from rando_modules.random_blocks import get_block_placement
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
-from rando_modules.random_battles import get_boss_battles
+from rando_modules.modify_entrances import get_shuffled_battles
 from rando_modules.modify_entrances import (
     get_shorter_bowsercastle,
     get_bowsercastle_bossrush,
@@ -107,6 +107,7 @@ class RandomSeed:
                 self.placed_items = []
                 self.entrance_list = []
                 self.placed_blocks = []
+                self.battles = []
                 self.spoilerlog_additions = {}
                 self.item_spheres_dict = None
                 logic_settings = self.rando_settings.logic_settings
@@ -149,6 +150,7 @@ class RandomSeed:
                         self.spoilerlog_additions["entrances"] = []
                     self.spoilerlog_additions["entrances"].extend(spoilerlog_info)
 
+                # Set up partner upgrade shuffle if needed
                 if logic_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF:
                     modified_world_graph, self.placed_blocks = get_partner_upgrade_shuffle(
                         modified_world_graph,
@@ -162,12 +164,22 @@ class RandomSeed:
                         modified_world_graph,
                         logic_settings.gear_shuffle_mode
                     )
+
                 modified_world_graph = adjust_shop_logic(
                     modified_world_graph,
                     logic_settings.progression_on_rowf,
                     logic_settings.progression_on_merlow,
                     logic_settings.ripcheato_items_in_logic
                 )
+
+                # Randomize battles if needed
+                modified_world_graph, self.battles, boss_chapter_map = get_shuffled_battles(
+                    modified_world_graph,
+                    logic_settings.boss_shuffle_mode,
+                )
+                self.spoilerlog_additions["boss_battles"] = boss_chapter_map
+
+                # Set up trick & glitch logic
                 modified_world_graph = get_glitched_logic(
                     modified_world_graph,
                     self.rando_settings.glitch_settings,
@@ -341,12 +353,6 @@ class RandomSeed:
                 logic_settings.shuffle_blocks,
                 supers_are_yellow=False
             )
-
-        # Randomize boss battle if needed
-        self.battles, boss_chapter_map = get_boss_battles(
-            logic_settings.boss_shuffle_mode,
-        )
-        self.spoilerlog_additions["boss_battles"] = boss_chapter_map
 
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(

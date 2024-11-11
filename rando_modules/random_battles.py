@@ -11,12 +11,6 @@ from metadata.formations_meta import chapter_battle_mapping
 from rando_enums.enum_options import BossShuffleMode
 
 
-#@dataclasses.dataclass
-#class Battledata:
-#    db_data: List[Tuple[int, int]]
-#    boss_chapter_map: Dict[int, int]
-
-
 def get_boss_battles(
     boss_shuffle_mode: BossShuffleMode
 ) -> tuple[list[tuple[int, int]], dict[int, int]]:
