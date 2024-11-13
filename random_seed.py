@@ -126,14 +126,17 @@ class RandomSeed:
                     logic_settings.starbeam_spirits_needed = random.randint(1, 7)
 
                 # Modify entrances if needed
+                entrance_changes = []
                 if logic_settings.bowsers_castle_mode == BowserCastleMode.SHORTEN:
-                    self.entrance_list, modified_world_graph = get_shorter_bowsercastle(
+                    entrance_changes, modified_world_graph = get_shorter_bowsercastle(
                         modified_world_graph
                     )
                 elif logic_settings.bowsers_castle_mode == BowserCastleMode.BOSSRUSH:
-                    self.entrance_list, modified_world_graph = get_bowsercastle_bossrush(
+                    entrance_changes, modified_world_graph = get_bowsercastle_bossrush(
                         modified_world_graph
                     )
+                if entrance_changes:
+                    self.extend_entrances(entrance_changes)
 
                 if (    logic_settings.shuffle_dungeon_entrances
                     and logic_settings.shuffle_items
@@ -146,7 +149,7 @@ class RandomSeed:
                         ),
                         write_spoilers = self.rando_settings.write_spoilerlog,
                     )
-                    self.entrance_list.extend(entrance_changes)
+                    self.extend_entrances(entrance_changes)
                     if self.spoilerlog_additions.get("entrances") is None:
                         self.spoilerlog_additions["entrances"] = []
                     self.spoilerlog_additions["entrances"].extend(spoilerlog_info)
@@ -239,7 +242,7 @@ class RandomSeed:
                     seed_goal=logic_settings.seed_goal
                 )
                 if entrance_changes:
-                    self.entrance_list.extend(entrance_changes)
+                    self.extend_entrances(entrance_changes)
 
                 if logic_settings.limit_chapter_logic:
                     modified_world_graph = get_limited_chapter_logic(
@@ -528,6 +531,62 @@ class RandomSeed:
             rando_settings.logic_settings.starting_item_F = starting_item_options[15]
         else:
             self.starting_items = self.rando_settings.get_startitem_list()
+
+
+    def extend_entrances(
+        self,
+        entrance_changes: list[tuple[int, int]]
+    ) -> None:
+        """
+        Extends the seed's entrance modifications.
+        If entrance randomization, or static entrance changes like Shorten BC,
+        results in modifying the same entrance multiple times, then we have
+        to handle these changes in a specific way.
+        While the worldgraph can handle modification of this kind, the new
+        entrance links to be written to the ROM cannot resolve these entrance
+        link chains themselves.
+        Here we have to check for entrances getting modified multiple times
+        and adjust the links accordingly.
+        Example:
+            in vanilla, LZ 1 leads to Entrance A.
+            We now re-link this connection, so LZ 1 leads to Entrance B.
+                (this writes "EntranceA: EntranceB" to the ROM, as in
+                "anything that, in vanilla, goes to EntranceA now goes to
+                EntranceB")
+            We now re-link this connection again, so LZ 1 leads to Entrance C.
+                (this writes "EntranceB: EntranceC" to the ROM)
+            However, "EntranceB: EntranceC" is wrong as far as the ROM is
+            concerned, and the only entrance link written to ROM
+            should be "EntranceA: EntranceC", because the ROM cannot resolve
+            entrance link chains.
+        """
+        if len(self.entrance_list) == 0:
+            self.entrance_list.extend(entrance_changes)
+        else:
+            chain_extensions: dict[int, tuple[int, int]] = {}
+            new_changes: list[tuple[int, int]] = []
+
+            # iterate over all new entrance changes:
+            # if they want to modify an entrance that has not been modified
+            # before, then we just add them to the list of changes.
+            # if they want to modify an entrance that has already been
+            # re-linked, then we have to resolve such a link chain by changing
+            # the existing entrance link, instead of adding to the link list.
+            for tup in entrance_changes:
+                found_existing_link: bool = False
+                for i, entrance_change_tup in enumerate(self.entrance_list):
+                    if tup[0] & 0xFFFFFF == entrance_change_tup[1]:
+                        chain_extensions[i] = tup
+                        found_existing_link = True
+                        break
+                if not found_existing_link:
+                    new_changes.append(tup)
+
+            for entrance_index, extension_tup in chain_extensions.items():
+                self.entrance_list[entrance_index] = (
+                    self.entrance_list[entrance_index][0], extension_tup[1]
+                )
+            self.entrance_list.extend(new_changes)
 
 
     def set_seed_hash(self) -> tuple():
