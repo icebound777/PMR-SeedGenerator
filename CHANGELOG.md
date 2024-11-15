@@ -32,8 +32,12 @@
   This setting now has three different values:
   * No dungeon shuffle
   * Shuffle spirit dungeons
-  * (new) Shuffle spirit dungeons, and include Bowser's Castle
-    Note: For inclusion of Bowser's Castle, the `Star Way Spirits Needed` setting has to be set to require fewer than 7 star spirits.
+  * (new) Shuffle spirit dungeons, and include Bowser's Castle  
+    (Note: For inclusion of Bowser's Castle, the `Star Way Spirits Needed` setting has to be set to require fewer than 7 star spirits.)
+* Changed `Hammerless Start` and `Jumpless Start` item placement logic:
+  * Now has a vastly increased chance of placing the first gear item later into the seed progression.
+  * It happened quite often during these seeds that the first hammer/boots upgrade (respectively) could be found super early, somewhat defeating the point of these settings. This change tries to combat this. While it will still happen that you find these gear upgrades right away, the chances of that happening should be lower now.
+  * Does not affect seeds that are made with neither `Hammerless Start` nor `Jumpless Start` settings.
 
 ### Logic changes
 
