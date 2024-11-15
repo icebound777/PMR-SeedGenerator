@@ -51,6 +51,7 @@ class GlitchOptionSet():
 
         self.mt_rugged_quake_hammer_and_letter_with_laki = False
         self.parakarryless_mt_rugged_seed = False
+        self.parakarryless_mt_rugged_seed_clippy = False
         self.buzzar_gap_skip_clippy = False
         self.mt_rugged_coins_with_kooper = False
         self.mt_rugged_station_jumpless_climb_bombette = False

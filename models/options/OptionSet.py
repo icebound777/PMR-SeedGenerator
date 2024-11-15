@@ -694,6 +694,8 @@ class OptionSet:
             self.glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki = options_dict.get("MtRuggedQuakeHammerAndLetterWithLaki")
         if "ParakarrylessMtRuggedSeed" in options_dict:
             self.glitch_settings.parakarryless_mt_rugged_seed = options_dict.get("ParakarrylessMtRuggedSeed")
+        if "ParakarrylessMtRuggedSeedClippy" in options_dict:
+            self.glitch_settings.parakarryless_mt_rugged_seed_clippy = options_dict.get("ParakarrylessMtRuggedSeedClippy")
         if "BuzzarGapSkipClippy" in options_dict:
             self.glitch_settings.buzzar_gap_skip_clippy = options_dict.get("BuzzarGapSkipClippy")
         if "ParakarrylessMtRuggedStarPiece" in options_dict:
@@ -1379,6 +1381,7 @@ class OptionSet:
 
         basic_assert("MtRuggedQuakeHammerAndLetterWithLaki", bool)
         basic_assert("ParakarrylessMtRuggedSeed", bool)
+        basic_assert("ParakarrylessMtRuggedSeedClippy", bool)
         basic_assert("BuzzarGapSkipClippy", bool)
         basic_assert("ParakarrylessMtRuggedStarPiece", bool)
         basic_assert("MtRuggedCoinsWithKooper", bool)
@@ -1914,6 +1917,7 @@ class OptionSet:
         # Glitches: Mt. Rugged
         web_settings["MtRuggedQuakeHammerAndLetterWithLaki"] = self.glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki
         web_settings["ParakarrylessMtRuggedSeed"] = self.glitch_settings.parakarryless_mt_rugged_seed
+        web_settings["ParakarrylessMtRuggedSeedClippy"] = self.glitch_settings.parakarryless_mt_rugged_seed_clippy
         web_settings["BuzzarGapSkipClippy"] = self.glitch_settings.buzzar_gap_skip_clippy
         web_settings["ParakarrylessMtRuggedStarPiece"] = self.glitch_settings.parakarryless_mt_rugged_star_piece
         web_settings["MtRuggedCoinsWithKooper"] = self.glitch_settings.mt_rugged_coins_with_kooper
