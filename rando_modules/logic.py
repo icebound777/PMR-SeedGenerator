@@ -861,7 +861,10 @@ def _algo_assumed_fill(
             key = lambda x: x.item_name in all_partners
         )
 
-    if logic_settings.gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE:
+    if (   logic_settings.gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE
+        or logic_settings.starting_hammer == StartingHammer.HAMMERLESS
+        or logic_settings.starting_boots == StartingBoots.JUMPLESS
+    ):
         pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
 
     if logic_settings.partner_upgrade_shuffle == PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
