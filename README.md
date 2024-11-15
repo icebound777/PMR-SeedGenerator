@@ -56,8 +56,9 @@ with assistance and contributions by
 * Jdog
 * Quackles
 * Rain
-* Jdaster64
 * MrN829
 * MrCheeze
 * AmazingAmpharos
 * Boingboingsplat
+* Phantom5800
+* christianlegge
