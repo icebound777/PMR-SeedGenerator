@@ -92,7 +92,7 @@ from maps.graph_edges.glitched_logic.mac_sushieless_toad_town_star_piece import 
 from maps.graph_edges.glitched_logic.mac_whale_early import \
     edges_mac_add_whale_early_lzs
 from maps.graph_edges.glitched_logic.mac_toad_town_sushie_glitch import \
-    edges_mac_add_toad_town_sushie_glitch
+    edges_mac_add_toad_town_sushie_glitch_gearless, edges_mac_add_toad_town_sushie_glitch_jump_or_hammer, edges_mac_add_toad_town_sushie_glitch_full_gear, edges_mac_add_toad_town_sushie_glitch
 
 # Glitched Logic - Toad Town Tunnels
 from maps.graph_edges.glitched_logic.tik_island_pipe_blooper_skip import \
@@ -792,7 +792,13 @@ def get_glitched_logic(
         all_new_edges.extend(edges_mac_add_whale_early_lzs)
     if glitch_settings.sushiesless_toad_town_star_piece:
         all_new_edges.extend(edges_mac_add_sushieless_starpiece)
+    if glitch_settings.toad_town_sushie_glitch_gearless:
+        all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch_gearless)
     if glitch_settings.toad_town_sushie_glitch:
+        all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch_jump_or_hammer)
+    if glitch_settings.toad_town_sushie_glitch_full_gear:
+        all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch_full_gear)
+    if glitch_settings.toad_town_sushie_glitch_gearless or glitch_settings.toad_town_sushie_glitch or glitch_settings.toad_town_sushie_glitch_full_gear:
         all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch)
 
     # Toad Town Tunnels

@@ -638,8 +638,12 @@ class OptionSet:
             self.glitch_settings.whale_early = options_dict.get("WhaleEarly")
         if "SushielessToadTownStarPiece" in options_dict:
             self.glitch_settings.sushiesless_toad_town_star_piece = options_dict.get("SushielessToadTownStarPiece")
+        if "ToadTownSushieGlitchGearless" in options_dict:
+            self.glitch_settings.toad_town_sushie_glitch_gearless = options_dict.get("ToadTownSushieGlitchGearless")
         if "ToadTownSushieGlitch" in options_dict:
             self.glitch_settings.toad_town_sushie_glitch = options_dict.get("ToadTownSushieGlitch")
+        if "ToadTownSushieGlitchFullGear" in options_dict:
+            self.glitch_settings.toad_town_sushie_glitch_full_gear = options_dict.get("ToadTownSushieGlitchFullGear")
 
         if "ClippyBootsStoneBlockSkip" in options_dict:
             self.glitch_settings.clippy_boots_stone_block_skip = options_dict.get("ClippyBootsStoneBlockSkip")
@@ -1345,7 +1349,9 @@ class OptionSet:
         basic_assert("EarlyStoreroomHammerlessLure", bool)
         basic_assert("WhaleEarly", bool)
         basic_assert("SushielessToadTownStarPiece", bool)
+        basic_assert("ToadTownSushieGlitchGearless", bool)
         basic_assert("ToadTownSushieGlitch", bool)
+        basic_assert("ToadTownSushieGlitchFullGear", bool)
 
         basic_assert("ClippyBootsStoneBlockSkip", bool)
         basic_assert("ClippyBootsMetalBlockSkip", bool)
@@ -1874,7 +1880,9 @@ class OptionSet:
         web_settings["EarlyStoreroomHammerlessLure"] = self.glitch_settings.early_storeroom_hammerless_lure
         web_settings["WhaleEarly"]= self.glitch_settings.whale_early
         web_settings["SushielessToadTownStarPiece"] = self.glitch_settings.sushiesless_toad_town_star_piece
+        web_settings["ToadTownSushieGlitchGearless"] = self.glitch_settings.toad_town_sushie_glitch_gearless
         web_settings["ToadTownSushieGlitch"] = self.glitch_settings.toad_town_sushie_glitch
+        web_settings["ToadTownSushieGlitchFullGear"] = self.glitch_settings.toad_town_sushie_glitch_full_gear
 
         # Glitches: Toad Town Tunnels
         web_settings["ClippyBootsStoneBlockSkip"] = self.glitch_settings.clippy_boots_stone_block_skip
