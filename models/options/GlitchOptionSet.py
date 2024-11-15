@@ -70,6 +70,7 @@ class GlitchOptionSet():
         self.parakarryless_super_hammer_room_ultra_boots = False
         self.parakarryless_super_hammer_room_normal_boots = False
         self.ruins_locks_skip_clippy = False
+        self.ruins_puzzle_solution_early = False
         self.ruins_stone_skip = False
 
         self.forever_forest_backwards = False

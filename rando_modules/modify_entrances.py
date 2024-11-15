@@ -174,6 +174,8 @@ from maps.graph_edges.glitched_logic.isk_ruins_locks_skip import \
     edges_isk_add_ruins_locks_skip_clippy
 from maps.graph_edges.glitched_logic.isk_ruins_stone_skip import \
     edges_isk_add_ruins_stone_skip
+from maps.graph_edges.glitched_logic.isk_ruins_puzzle_solution_early import \
+    edges_isk_add_ruins_puzzle_solution_early
 
 # Glitched Logic - Forever Forest
 from maps.graph_edges.glitched_logic.mim_forever_forest_backwards import \
@@ -894,6 +896,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_isk_add_ruins_key_laki_jump)
     if glitch_settings.ruins_locks_skip_clippy:
         all_new_edges.extend(edges_isk_add_ruins_locks_skip_clippy)
+    if glitch_settings.ruins_puzzle_solution_early:
+        all_new_edges.extend(edges_isk_add_ruins_puzzle_solution_early)
     if glitch_settings.ruins_stone_skip:
         all_new_edges.extend(edges_isk_add_ruins_stone_skip)
 
