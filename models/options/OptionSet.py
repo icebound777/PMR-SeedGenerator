@@ -73,7 +73,7 @@ class OptionSet:
         self.mystery_settings = MysteryOptionSet()
 
         # Starting setup
-        self.starting_level = get_option_default_value("StartingLevel")
+        self.starting_level = self.random_starting_level = get_option_default_value("StartingLevel")
         self.starting_maxhp = get_option_default_value("StartingMaxHP")
         self.starting_maxfp = get_option_default_value("StartingMaxFP")
         self.starting_maxbp = get_option_default_value("StartingMaxBP")
@@ -285,56 +285,19 @@ class OptionSet:
         # Starting setup
         if "StartingMap" in options_dict:
             self.logic_settings.starting_map = options_dict.get("StartingMap")
-        randomLevel = False
         if "StartingLevel" in options_dict:
-            # if starting level is specified, randomly fill stats up to that level
-            level = min(options_dict.get("StartingLevel"), 27) # clamp to max level
-            if level >= 0:
-                self.starting_level = level
-                self.starting_maxhp = 5
-                self.starting_maxfp = 5
-                self.starting_maxbp = 3
-                randomLevel = True
-                while level > 0:
-                    level -= 1
-                    stat = randint(0,2)
-                    while True:
-                        # rollover if a stat is already maxed
-                        if stat == 0:
-                            if self.starting_maxhp >= 50:
-                                stat += 1
-                            else:
-                                break
-                        if stat == 1:
-                            if self.starting_maxfp >= 50:
-                                stat += 1
-                            else:
-                                break
-                        if stat == 2:
-                            if self.starting_maxbp >= 30:
-                                stat = 0
-                            else:
-                                break
-
-                    # apply stat
-                    if stat == 0:
-                        self.starting_maxhp += 5
-                    elif stat == 1:
-                        self.starting_maxfp += 5
-                    else:
-                        self.starting_maxbp += 3
-        if randomLevel == False:
-            if "StartingMaxHP" in options_dict:
-                self.starting_maxhp = options_dict.get("StartingMaxHP")
-            if "StartingMaxFP" in options_dict:
-                self.starting_maxfp = options_dict.get("StartingMaxFP")
-            if "StartingMaxBP" in options_dict:
-                self.starting_maxbp = options_dict.get("StartingMaxBP")
-            self.starting_level = int(
-                ((self.starting_maxhp - 5) / 5)
-                + ((self.starting_maxfp - 5) / 5)
-                + ((self.starting_maxbp - 3) / 3)
-            )
+            self.random_starting_level = options_dict.get("StartingLevel")
+        if "StartingMaxHP" in options_dict:
+            self.starting_maxhp = options_dict.get("StartingMaxHP")
+        if "StartingMaxFP" in options_dict:
+            self.starting_maxfp = options_dict.get("StartingMaxFP")
+        if "StartingMaxBP" in options_dict:
+            self.starting_maxbp = options_dict.get("StartingMaxBP")
+        self.starting_level = int(
+            ((self.starting_maxhp - 5) / 5)
+            + ((self.starting_maxfp - 5) / 5)
+            + ((self.starting_maxbp - 3) / 3)
+        )
         if "StartingStarPower" in options_dict:
             self.starting_starpower = options_dict.get("StartingStarPower")
         if "StartingBoots" in options_dict:
