@@ -9,7 +9,9 @@ def get_shuffled_chapter_difficulty(
     shuffle_chapter_difficulty:bool,
     boss_chapter_map: dict[int, int], # e.g. General Guy -> chapter 1, so {4: 1}
     progressive_scaling:bool,
-    starting_chapter:int
+    starting_chapter:int,
+    manual_scaling:bool,
+    manual_chapter_scales:list[int]
 ):
     # Load and reorganize actor param data into different format
     # format example:
@@ -64,6 +66,8 @@ def get_shuffled_chapter_difficulty(
     chapters_to_shuffle = [1,2,3,4,5,6,7]
     if shuffle_chapter_difficulty:
         random.shuffle(chapters_to_shuffle)
+    elif manual_scaling:
+        chapters_to_shuffle = manual_chapter_scales.values()
 
     chapter_dict = {}
     for old_chapter_number, new_chapter_number in enumerate(chapters_to_shuffle):

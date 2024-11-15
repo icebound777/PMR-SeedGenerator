@@ -371,7 +371,9 @@ class RandomSeed:
             self.rando_settings.shuffle_chapter_difficulty,
             boss_chapter_map,
             self.rando_settings.progressive_scaling,
-            starting_chapter
+            starting_chapter,
+            self.rando_settings.manual_scaling,
+            self.rando_settings.manual_scales
         )
 
         # Randomize enemy battle formations
