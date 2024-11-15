@@ -74,9 +74,10 @@ def get_shuffled_chapter_difficulty(
         chapter_dict[old_chapter_number + 1] = new_chapter_number
     # Chapter 8 is never shuffled
     chapter_dict[8] = 8
+    print(chapter_dict)
 
     # Check if the chapter we are starting in is too high of a level: adjust it
-    if starting_chapter != 0 and chapter_dict[starting_chapter] > 3:
+    if manual_scaling == False and starting_chapter != 0 and chapter_dict[starting_chapter] > 3:
         original_chapters = list(chapter_dict.keys())
         random.shuffle(original_chapters)
         for original_chapter in original_chapters:
@@ -95,7 +96,7 @@ def get_shuffled_chapter_difficulty(
         if (
                actor_name not in all_enemy_stats
             or actor_stat_name not in all_enemy_stats[actor_name]
-            or (not progressive_scaling and not shuffle_chapter_difficulty)
+            or (not progressive_scaling and not shuffle_chapter_difficulty and not manual_scaling)
         ):
             # not supposed to be random, so write defaults
             value = actor_attribute.value
