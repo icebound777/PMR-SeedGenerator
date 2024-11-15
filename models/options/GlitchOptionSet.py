@@ -21,7 +21,9 @@ class GlitchOptionSet():
         self.early_storeroom_hammerless_lure = False
         self.whale_early = False
         self.sushiesless_toad_town_star_piece = False
+        self.toad_town_sushie_glitch_gearless = False
         self.toad_town_sushie_glitch = False
+        self.toad_town_sushie_glitch_full_gear = False
 
         self.clippy_boots_stone_block_skip = False
         self.clippy_boots_metal_block_skip = False
