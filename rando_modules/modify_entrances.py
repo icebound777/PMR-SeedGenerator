@@ -141,6 +141,8 @@ from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_laki 
     edges_iwa_add_quake_hammer_and_letter_laki
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed import \
     edges_iwa_add_parakarryless_mt_rugged_seed
+from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed_clippu import \
+    edges_iwa_add_parakarryless_mt_rugged_seed_clippy
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_star_piece import \
     edges_iwa_add_parakarryless_star_piece_laki
 from maps.graph_edges.glitched_logic.iwa_buzzar_gap_skip import \
@@ -852,6 +854,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_iwa_add_quake_hammer_and_letter_laki)
     if glitch_settings.parakarryless_mt_rugged_seed:
         all_new_edges.extend(edges_iwa_add_parakarryless_mt_rugged_seed)
+    if glitch_settings.parakarryless_mt_rugged_seed_clippy:
+        all_new_edges.extend(edges_iwa_add_parakarryless_mt_rugged_seed_clippy)
     if glitch_settings.parakarryless_mt_rugged_star_piece:
         all_new_edges.extend(edges_iwa_add_parakarryless_star_piece_laki)
     if glitch_settings.buzzar_gap_skip_clippy:
