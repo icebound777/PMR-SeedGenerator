@@ -52,12 +52,12 @@ class OptionSet:
         self.manual_scaling = False
         self.manual_scales = {
             "Chapter1": 1,
-            "Chapter2": 1,
-            "Chapter3": 1,
-            "Chapter4": 1,
-            "Chapter5": 1,
-            "Chapter6": 1,
-            "Chapter7": 1,
+            "Chapter2": 2,
+            "Chapter3": 3,
+            "Chapter4": 4,
+            "Chapter5": 5,
+            "Chapter6": 6,
+            "Chapter7": 7,
             "Chapter8": 8
         }
 
