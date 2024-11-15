@@ -14,6 +14,7 @@ class GlitchOptionSet():
         self.blue_house_skip = False
         self.blue_house_skip_laki = False
         self.blue_house_skip_toad_lure = False
+        self.jumpless_dane_t_letters = False
         self.bowless_toy_box_hammer = False
         self.bowless_toy_box_hammerless_lure = False
         self.early_storeroom_parakarry = False

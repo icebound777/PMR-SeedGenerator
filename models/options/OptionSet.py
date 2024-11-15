@@ -624,6 +624,8 @@ class OptionSet:
             self.glitch_settings.blue_house_skip_laki = options_dict.get("BlueHouseSkipLaki")
         if "BlueHouseSkipToadLure" in options_dict:
             self.glitch_settings.blue_house_skip_toad_lure = options_dict.get("BlueHouseSkipToadLure")
+        if "JumplessDaneTLetters" in options_dict:
+            self.glitch_settings.jumpless_dane_t_letters = options_dict.get("JumplessDaneTLetters")
         if "BowlessToyBoxHammer" in options_dict:
             self.glitch_settings.bowless_toy_box_hammer = options_dict.get("BowlessToyBoxHammer")
         if "BowlessToyBoxHammerlessLure" in options_dict:
@@ -1346,6 +1348,7 @@ class OptionSet:
         basic_assert("BlueHouseSkip", bool)
         basic_assert("BlueHouseSkipLaki", bool)
         basic_assert("BlueHouseSkipToadLure", bool)
+        basic_assert("JumplessDaneTLetters", bool)
         basic_assert("BowlessToyBoxHammer", bool)
         basic_assert("BowlessToyBoxHammerlessLure", bool)
         basic_assert("EarlyStoreroomParakarry", bool)
@@ -1879,6 +1882,7 @@ class OptionSet:
         web_settings["BlueHouseSkip"] = self.glitch_settings.blue_house_skip
         web_settings["BlueHouseSkipLaki"] = self.glitch_settings.blue_house_skip_laki
         web_settings["BlueHouseSkipToadLure"] = self.glitch_settings.blue_house_skip_toad_lure
+        web_settings["JumplessDaneTLetters"] = self.glitch_settings.jumpless_dane_t_letters
         web_settings["BowlessToyBoxHammer"] = self.glitch_settings.bowless_toy_box_hammer
         web_settings["BowlessToyBoxHammerlessLure"] = self.glitch_settings.bowless_toy_box_hammerless_lure
         web_settings["EarlyStoreroomParakarry"] = self.glitch_settings.early_storeroom_parakarry
