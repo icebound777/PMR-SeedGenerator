@@ -74,7 +74,6 @@ def get_shuffled_chapter_difficulty(
         chapter_dict[old_chapter_number + 1] = new_chapter_number
     # Chapter 8 is never shuffled
     chapter_dict[8] = 8
-    print(chapter_dict)
 
     # Check if the chapter we are starting in is too high of a level: adjust it
     if manual_scaling == False and starting_chapter != 0 and chapter_dict[starting_chapter] > 3:
