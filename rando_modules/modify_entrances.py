@@ -143,7 +143,7 @@ from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_laki 
     edges_iwa_add_quake_hammer_and_letter_laki
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed import \
     edges_iwa_add_parakarryless_mt_rugged_seed
-from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed_clippu import \
+from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed_clippy import \
     edges_iwa_add_parakarryless_mt_rugged_seed_clippy
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_star_piece import \
     edges_iwa_add_parakarryless_star_piece_laki
