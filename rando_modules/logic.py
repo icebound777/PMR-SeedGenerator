@@ -1056,7 +1056,7 @@ def get_item_spheres(
     vanilla_start = (
             starting_node_id == "KMR_02/1"
         and not logic_settings.shuffle_items
-        and logic_settings.starting_hammer == -1
+        and logic_settings.starting_hammer == StartingHammer.HAMMERLESS
         and "Bombette" not in starting_partners
         and not logic_settings.partners_always_usable
     )
@@ -1093,18 +1093,18 @@ def get_item_spheres(
 
         spheres_dict["starting_items"].append(f"{item}{item_suffix}")
 
-    if logic_settings.starting_boots == 2:
+    if logic_settings.starting_boots == StartingBoots.ULTRABOOTS:
         spheres_dict["starting_items"].append("ProgressiveBoots*")
-    if logic_settings.starting_boots >= 1:
+    if logic_settings.starting_boots >= StartingBoots.SUPERBOOTS:
         spheres_dict["starting_items"].append("ProgressiveBoots*")
-    if logic_settings.starting_boots >= 0:
+    if logic_settings.starting_boots >= StartingBoots.BOOTS:
         spheres_dict["starting_items"].append("ProgressiveBoots*")
 
-    if logic_settings.starting_hammer == 2:
+    if logic_settings.starting_hammer == StartingHammer.ULTRAHAMMER:
         spheres_dict["starting_items"].append("ProgressiveHammer*")
-    if logic_settings.starting_hammer >= 1:
+    if logic_settings.starting_hammer >= StartingHammer.SUPERHAMMER:
         spheres_dict["starting_items"].append("ProgressiveHammer*")
-    if logic_settings.starting_hammer >= 0:
+    if logic_settings.starting_hammer >= StartingHammer.HAMMER:
         spheres_dict["starting_items"].append("ProgressiveHammer*")
 
     # Scan spheres
