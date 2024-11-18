@@ -647,6 +647,9 @@ class OptionSet:
         if "ToadTownSushieGlitchFullGear" in options_dict:
             self.glitch_settings.toad_town_sushie_glitch_full_gear = options_dict.get("ToadTownSushieGlitchFullGear")
 
+        if "JumplessSummitClimb" in options_dict:
+            self.glitch_settings.jumpless_summit_climb = options_dict.get("JumplessSummitClimb")
+
         if "ClippyBootsStoneBlockSkip" in options_dict:
             self.glitch_settings.clippy_boots_stone_block_skip = options_dict.get("ClippyBootsStoneBlockSkip")
         if "ClippyBootsMetalBlockSkip" in options_dict:
@@ -1370,6 +1373,8 @@ class OptionSet:
         basic_assert("ToadTownSushieGlitch", bool)
         basic_assert("ToadTownSushieGlitchFullGear", bool)
 
+        basic_assert("JumplessSummitClimb", bool)
+
         basic_assert("ClippyBootsStoneBlockSkip", bool)
         basic_assert("ClippyBootsMetalBlockSkip", bool)
         basic_assert("IslandPipeBlooperSkip", bool)
@@ -1908,6 +1913,9 @@ class OptionSet:
         web_settings["ToadTownSushieGlitchGearless"] = self.glitch_settings.toad_town_sushie_glitch_gearless
         web_settings["ToadTownSushieGlitch"] = self.glitch_settings.toad_town_sushie_glitch
         web_settings["ToadTownSushieGlitchFullGear"] = self.glitch_settings.toad_town_sushie_glitch_full_gear
+
+        # Glitches: Shooting Star Summit
+        web_settings["JumplessSummitClimb"] = self.glitch_settings.jumpless_summit_climb
 
         # Glitches: Toad Town Tunnels
         web_settings["ClippyBootsStoneBlockSkip"] = self.glitch_settings.clippy_boots_stone_block_skip

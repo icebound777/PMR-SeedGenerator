@@ -96,6 +96,10 @@ from maps.graph_edges.glitched_logic.mac_whale_early import \
 from maps.graph_edges.glitched_logic.mac_toad_town_sushie_glitch import \
     edges_mac_add_toad_town_sushie_glitch_gearless, edges_mac_add_toad_town_sushie_glitch_jump_or_hammer, edges_mac_add_toad_town_sushie_glitch_full_gear, edges_mac_add_toad_town_sushie_glitch
 
+# Glitched Logic - Shooting Star Summit
+from maps.graph_edges.glitched_logic.hos_jumpless_summit_climb import \
+    edges_hos_add_jumpless_summit_climb
+
 # Glitched Logic - Toad Town Tunnels
 from maps.graph_edges.glitched_logic.tik_island_pipe_blooper_skip import \
     edges_tik_add_island_pipe_blooper_skip
@@ -814,6 +818,10 @@ def get_glitched_logic(
         all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch_full_gear)
     if glitch_settings.toad_town_sushie_glitch_gearless or glitch_settings.toad_town_sushie_glitch or glitch_settings.toad_town_sushie_glitch_full_gear:
         all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch)
+
+    # Shooting Star Summit
+    if glitch_settings.jumpless_summit_climb:
+        all_new_edges.extend(edges_hos_add_jumpless_summit_climb)
 
     # Toad Town Tunnels
     if glitch_settings.clippy_boots_stone_block_skip:
