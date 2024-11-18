@@ -387,6 +387,7 @@ MirrorClip                                      : false
 KooperPuzzleSkip                                : false
 
 BowlessBowsersCastleBasement                    : false
+WattlessDarkBasement                            : false
 BasementSkipParakarry                           : false
 BasementSkipLakilester                          : false
 BasementSkipHammer                              : false

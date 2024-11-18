@@ -900,6 +900,8 @@ class OptionSet:
 
         if "BowlessBowsersCastleBasement" in options_dict:
             self.glitch_settings.bowless_bowsers_castle_basement = options_dict.get("BowlessBowsersCastleBasement")
+        if "WattlessDarkBasement" in options_dict:
+            self.glitch_settings.wattless_dark_basement = options_dict.get("WattlessDarkBasement")
         if "BasementSkipParakarry" in options_dict:
             self.glitch_settings.basement_skip_parakarry = options_dict.get("BasementSkipParakarry")
         if "BasementSkipLakilester" in options_dict:
@@ -1508,6 +1510,7 @@ class OptionSet:
         basic_assert("KooperPuzzleSkip", bool)
 
         basic_assert("BowlessBowsersCastleBasement", bool)
+        basic_assert("WattlessDarkBasement", bool)
         basic_assert("BasementSkipParakarry", bool)
         basic_assert("BasementSkipLakilester", bool)
         basic_assert("BasementSkipHammer", bool)
@@ -2065,6 +2068,7 @@ class OptionSet:
 
         # Glitches: Bowser's Castle
         web_settings["BowlessBowsersCastleBasement"] = self.glitch_settings.bowless_bowsers_castle_basement
+        web_settings["WattlessDarkBasement"] = self.glitch_settings.wattless_dark_basement
         web_settings["BombettelessBowsersCastleBasement"] = self.glitch_settings.bombetteless_bowsers_castle_basement
         web_settings["BasementSkipParakarry"] = self.glitch_settings.basement_skip_parakarry
         web_settings["BasementSkipLakilester"] = self.glitch_settings.basement_skip_lakilester
