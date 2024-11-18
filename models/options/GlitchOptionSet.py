@@ -164,6 +164,7 @@ class GlitchOptionSet():
         self.basement_skip_hammer = False
         self.bowsers_castle_hub1_stair_clip = False
         self.fast_flood_room_kooper = False
+        self.fast_flood_room_kooperless = False
         self.fast_flood_room_bombette_ultra_boots = False
         self.cannonless = False
         self.bombetteless_bowsers_castle_basement = False

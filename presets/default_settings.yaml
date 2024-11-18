@@ -392,6 +392,7 @@ BasementSkipLakilester                          : false
 BasementSkipHammer                              : false
 BowsersCastleHub1StairClip                      : false
 FastFloodRoomKooper                             : false
+FastFloodRoomKooperless                         : false
 FastFloodRoomBombetteUltraBoots                 : false
 Cannonless                                      : false
 BombettelessBowsersCastleBasement               : false

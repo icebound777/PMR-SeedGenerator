@@ -311,7 +311,7 @@ from maps.graph_edges.glitched_logic.kpa_basement_skip import \
 from maps.graph_edges.glitched_logic.kpa_hub1_stair_clip import \
     edges_kpa_add_hub1_stair_clip
 from maps.graph_edges.glitched_logic.kpa_fast_flood_room import \
-    edges_kpa_add_fast_flood_room_bombette_ultra_boots, edges_kpa_add_fast_flood_room_kooper
+    edges_kpa_add_fast_flood_room_bombette_ultra_boots, edges_kpa_add_fast_flood_room_kooper, edges_kpa_add_fast_flood_room_kooperless
 from maps.graph_edges.glitched_logic.kpa_cannonless import \
     edges_kpa_add_cannonless
 from maps.graph_edges.glitched_logic.kpa_bombetteless_bowsers_castle_basement import \
@@ -1103,6 +1103,8 @@ def get_glitched_logic(
             all_new_edges.extend(edges_kpa_add_hub1_stair_clip)
         if glitch_settings.fast_flood_room_kooper:
             all_new_edges.extend(edges_kpa_add_fast_flood_room_kooper)
+        if glitch_settings.fast_flood_room_kooperless:
+            all_new_edges.extend(edges_kpa_add_fast_flood_room_kooperless)
         if glitch_settings.fast_flood_room_bombette_ultra_boots:
             all_new_edges.extend(edges_kpa_add_fast_flood_room_bombette_ultra_boots)
         if glitch_settings.bombetteless_bowsers_castle_basement:
