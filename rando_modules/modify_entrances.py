@@ -300,6 +300,8 @@ from maps.graph_edges.glitched_logic.pra_kooper_puzzle_skip import \
 # Glitched Logic - Bowser's Castle
 from maps.graph_edges.glitched_logic.kpa_bowless_bowsers_castle_basement import \
     edges_kpa_add_bowless_bowsers_castle_basement_laki
+from maps.graph_edges.glitched_logic.kpa_hub1_stair_clip import \
+    edges_kpa_add_hub1_stair_clip
 from maps.graph_edges.glitched_logic.kpa_fast_flood_room import \
     edges_kpa_add_fast_flood_room_bombette_ultra_boots, edges_kpa_add_fast_flood_room_kooper
 from maps.graph_edges.glitched_logic.kpa_cannonless import \
@@ -1077,6 +1079,8 @@ def get_glitched_logic(
     if bowsers_castle_mode == BowserCastleMode.VANILLA:
         if glitch_settings.bowless_bowsers_castle_basement:
             all_new_edges.extend(edges_kpa_add_bowless_bowsers_castle_basement_laki)
+        if glitch_settings.bowsers_castle_hub1_stair_clip:
+            all_new_edges.extend(edges_kpa_add_hub1_stair_clip)
         if glitch_settings.fast_flood_room_kooper:
             all_new_edges.extend(edges_kpa_add_fast_flood_room_kooper)
         if glitch_settings.fast_flood_room_bombette_ultra_boots:
