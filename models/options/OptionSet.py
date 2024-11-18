@@ -901,6 +901,8 @@ class OptionSet:
             self.glitch_settings.fast_flood_room_kooper = options_dict.get("FastFloodRoomKooper")
         if "FastFloodRoomBombetteUltraBoots" in options_dict:
             self.glitch_settings.fast_flood_room_bombette_ultra_boots = options_dict.get("FastFloodRoomBombetteUltraBoots")
+        if "Cannonless" in options_dict:
+            self.glitch_settings.cannonless = options_dict.get("Cannonless")
         if "BombettelessBowsersCastleBasement" in options_dict:
             self.glitch_settings.bombetteless_bowsers_castle_basement = options_dict.get("BombettelessBowsersCastleBasement")
 
@@ -1495,6 +1497,7 @@ class OptionSet:
         basic_assert("BowlessBowsersCastleBasement", bool)
         basic_assert("FastFloodRoomKooper", bool)
         basic_assert("FastFloodRoomBombetteUltraBoots", bool)
+        basic_assert("Cannonless", bool)
         basic_assert("BombettelessBowsersCastleBasement", bool)
 
         basic_assert("BreakYellowBlocksWithSuperBoots", bool)
@@ -2045,6 +2048,7 @@ class OptionSet:
         web_settings["BombettelessBowsersCastleBasement"] = self.glitch_settings.bombetteless_bowsers_castle_basement
         web_settings["FastFloodRoomKooper"] = self.glitch_settings.fast_flood_room_kooper
         web_settings["FastFloodRoomBombetteUltraBoots"] = self.glitch_settings.fast_flood_room_bombette_ultra_boots
+        web_settings["Cannonless"] = self.glitch_settings.cannonless
 
         # Glitches: Global
         web_settings["BreakStoneBlocksWithUltraBoots"] = self.glitch_settings.break_stone_blocks_with_ultra_boots
