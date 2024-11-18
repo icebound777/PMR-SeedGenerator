@@ -159,6 +159,7 @@ class GlitchOptionSet():
         self.bowless_bowsers_castle_basement = False
         self.fast_flood_room_kooper = False
         self.fast_flood_room_bombette_ultra_boots = False
+        self.cannonless = False
         self.bombetteless_bowsers_castle_basement = False
 
         self.break_yellow_blocks_with_super_boots = False

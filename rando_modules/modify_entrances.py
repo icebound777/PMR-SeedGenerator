@@ -302,6 +302,8 @@ from maps.graph_edges.glitched_logic.kpa_bowless_bowsers_castle_basement import 
     edges_kpa_add_bowless_bowsers_castle_basement_laki
 from maps.graph_edges.glitched_logic.kpa_fast_flood_room import \
     edges_kpa_add_fast_flood_room_bombette_ultra_boots, edges_kpa_add_fast_flood_room_kooper
+from maps.graph_edges.glitched_logic.kpa_cannonless import \
+    edges_kpa_add_cannonless
 from maps.graph_edges.glitched_logic.kpa_bombetteless_bowsers_castle_basement import \
     edges_kpa_add_bombetteless_bowsers_castle_basement_laki
 
@@ -1081,6 +1083,10 @@ def get_glitched_logic(
             all_new_edges.extend(edges_kpa_add_fast_flood_room_bombette_ultra_boots)
         if glitch_settings.bombetteless_bowsers_castle_basement:
             all_new_edges.extend(edges_kpa_add_bombetteless_bowsers_castle_basement_laki)
+
+    if bowsers_castle_mode == BowserCastleMode.SHORTEN or bowsers_castle_mode == BowserCastleMode.VANILLA:
+        if glitch_settings.cannonless:
+            all_new_edges.extend(edges_kpa_add_cannonless)
 
     # Global
     if glitch_settings.break_stone_blocks_with_ultra_boots:
