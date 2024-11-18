@@ -383,8 +383,10 @@ MirrorClip                                      : false
 KooperPuzzleSkip                                : false
 
 BowlessBowsersCastleBasement                    : false
+BowsersCastleHub1StairClip                      : false
 FastFloodRoomKooper                             : false
 FastFloodRoomBombetteUltraBoots                 : false
+Cannonless                                      : false
 BombettelessBowsersCastleBasement               : false
 
 BreakYellowBlocksWithSuperBoots                 : false
