@@ -912,6 +912,8 @@ class OptionSet:
             self.glitch_settings.bowsers_castle_hub1_stair_clip = options_dict.get("BowsersCastleHub1StairClip")
         if "FastFloodRoomKooper" in options_dict:
             self.glitch_settings.fast_flood_room_kooper = options_dict.get("FastFloodRoomKooper")
+        if "FastFloodRoomKooperless" in options_dict:
+            self.glitch_settings.fast_flood_room_kooperless = options_dict.get("FastFloodRoomKooperless")
         if "FastFloodRoomBombetteUltraBoots" in options_dict:
             self.glitch_settings.fast_flood_room_bombette_ultra_boots = options_dict.get("FastFloodRoomBombetteUltraBoots")
         if "Cannonless" in options_dict:
@@ -1516,6 +1518,7 @@ class OptionSet:
         basic_assert("BasementSkipHammer", bool)
         basic_assert("BowsersCastleHub1StairClip", bool)
         basic_assert("FastFloodRoomKooper", bool)
+        basic_assert("FastFloodRoomKooperless", bool)
         basic_assert("FastFloodRoomBombetteUltraBoots", bool)
         basic_assert("Cannonless", bool)
         basic_assert("BombettelessBowsersCastleBasement", bool)
@@ -2075,6 +2078,7 @@ class OptionSet:
         web_settings["BasementSkipHammer"] = self.glitch_settings.basement_skip_hammer
         web_settings["BowsersCastleHub1StairClip"] = self.glitch_settings.bowsers_castle_hub1_stair_clip
         web_settings["FastFloodRoomKooper"] = self.glitch_settings.fast_flood_room_kooper
+        web_settings["FastFloodRoomKooperless"] = self.glitch_settings.fast_flood_room_kooperless
         web_settings["FastFloodRoomBombetteUltraBoots"] = self.glitch_settings.fast_flood_room_bombette_ultra_boots
         web_settings["Cannonless"] = self.glitch_settings.cannonless
 
