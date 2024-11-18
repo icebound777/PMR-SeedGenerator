@@ -62,7 +62,7 @@ def write_spoiler_log(
         tmp_list.sort(key=lambda tuple: tuple[0])
         for chapter_boss_tuple in tmp_list:
             boss_name = chapter_bossname_map[chapter_boss_tuple[1]]
-            spoiler_dict["boss_battles"][chapter_boss_tuple[0]] = boss_name
+            spoiler_dict["boss_battles"][f"chapter {chapter_boss_tuple[0]}"] = boss_name
 
 
     # Add required spirits, if specific
