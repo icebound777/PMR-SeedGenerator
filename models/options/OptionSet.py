@@ -897,6 +897,12 @@ class OptionSet:
 
         if "BowlessBowsersCastleBasement" in options_dict:
             self.glitch_settings.bowless_bowsers_castle_basement = options_dict.get("BowlessBowsersCastleBasement")
+        if "BasementSkipParakarry" in options_dict:
+            self.glitch_settings.basement_skip_parakarry = options_dict.get("BasementSkipParakarry")
+        if "BasementSkipLakilester" in options_dict:
+            self.glitch_settings.basement_skip_lakilester = options_dict.get("BasementSkipLakilester")
+        if "BasementSkipHammer" in options_dict:
+            self.glitch_settings.basement_skip_hammer = options_dict.get("BasementSkipHammer")
         if "BowsersCastleHub1StairClip" in options_dict:
             self.glitch_settings.bowsers_castle_hub1_stair_clip = options_dict.get("BowsersCastleHub1StairClip")
         if "FastFloodRoomKooper" in options_dict:
@@ -1497,6 +1503,9 @@ class OptionSet:
         basic_assert("KooperPuzzleSkip", bool)
 
         basic_assert("BowlessBowsersCastleBasement", bool)
+        basic_assert("BasementSkipParakarry", bool)
+        basic_assert("BasementSkipLakilester", bool)
+        basic_assert("BasementSkipHammer", bool)
         basic_assert("BowsersCastleHub1StairClip", bool)
         basic_assert("FastFloodRoomKooper", bool)
         basic_assert("FastFloodRoomBombetteUltraBoots", bool)
@@ -2049,6 +2058,9 @@ class OptionSet:
         # Glitches: Bowser's Castle
         web_settings["BowlessBowsersCastleBasement"] = self.glitch_settings.bowless_bowsers_castle_basement
         web_settings["BombettelessBowsersCastleBasement"] = self.glitch_settings.bombetteless_bowsers_castle_basement
+        web_settings["BasementSkipParakarry"] = self.glitch_settings.basement_skip_parakarry
+        web_settings["BasementSkipLakilester"] = self.glitch_settings.basement_skip_lakilester
+        web_settings["BasementSkipHammer"] = self.glitch_settings.basement_skip_hammer
         web_settings["BowsersCastleHub1StairClip"] = self.glitch_settings.bowsers_castle_hub1_stair_clip
         web_settings["FastFloodRoomKooper"] = self.glitch_settings.fast_flood_room_kooper
         web_settings["FastFloodRoomBombetteUltraBoots"] = self.glitch_settings.fast_flood_room_bombette_ultra_boots

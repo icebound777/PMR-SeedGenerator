@@ -157,6 +157,9 @@ class GlitchOptionSet():
         self.kooper_puzzle_skip = False
 
         self.bowless_bowsers_castle_basement = False
+        self.basement_skip_parakarry = False
+        self.basement_skip_lakilester = False
+        self.basement_skip_hammer = False
         self.bowsers_castle_hub1_stair_clip = False
         self.fast_flood_room_kooper = False
         self.fast_flood_room_bombette_ultra_boots = False

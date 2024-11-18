@@ -383,6 +383,9 @@ MirrorClip                                      : false
 KooperPuzzleSkip                                : false
 
 BowlessBowsersCastleBasement                    : false
+BasementSkipParakarry                           : false
+BasementSkipLakilester                          : false
+BasementSkipHammer                              : false
 BowsersCastleHub1StairClip                      : false
 FastFloodRoomKooper                             : false
 FastFloodRoomBombetteUltraBoots                 : false
