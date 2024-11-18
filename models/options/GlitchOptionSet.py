@@ -25,6 +25,7 @@ class GlitchOptionSet():
         self.toad_town_sushie_glitch_gearless = False
         self.toad_town_sushie_glitch = False
         self.toad_town_sushie_glitch_full_gear = False
+        self.jumpless_summit_climb = False
 
         self.clippy_boots_stone_block_skip = False
         self.clippy_boots_metal_block_skip = False

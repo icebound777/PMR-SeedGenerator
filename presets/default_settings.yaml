@@ -249,7 +249,11 @@ EarlyStoreroomHammer                            : false
 EarlyStoreroomHammerlessLure                    : false
 WhaleEarly                                      : false
 SushielessToadTownStarPiece                     : false
+ToadTownSushieGlitchGearless                    : false
 ToadTownSushieGlitch                            : false
+ToadTownSushieGlitchFullGear                    : false
+
+JumplessSummitClimb                             : false
 
 ClippyBootsStoneBlockSkip                       : false
 ClippyBootsMetalBlockSkip                       : false
