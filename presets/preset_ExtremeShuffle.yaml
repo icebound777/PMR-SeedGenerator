@@ -21,6 +21,17 @@ HiddenPanelVisibility: 0 # 0:vanilla, 1:texture-edit
 # Difficulty and Enemies
 ShuffleChapterDifficulty: true
 ProgressiveScaling      : false
+ManualScaling           : false
+ManualScales: {
+    Chapter1: 1,
+    Chapter2: 2,
+    Chapter3: 3,
+    Chapter4: 4,
+    Chapter5: 5,
+    Chapter6: 6,
+    Chapter7: 7,
+    Chapter8: 8
+}
 
 ChallengeMode  : false
 CapEnemyXP     : false
@@ -84,6 +95,7 @@ ItemChoiceG          : 0x085 # Pebble
 
 # Starting setup
 StartingMap      : 0x00010104 # 0x00010104:Toad Town Gate District, 0xFFFFFFFF:RandomFromSelection
+StartingLevel    : -1 # no forced starting level, setting this will ignore the starting stats and randomly fill instead
 StartingMaxHP    : 10
 StartingMaxFP    : 5
 StartingMaxBP    : 3
