@@ -34,9 +34,7 @@ NoHealingItems : false
 DropStarPoints : true
 
 RandomFormations: true
-
-# Custom Seed / Planned Seed / "Plandomizer"
-CustomSeed: false # NYI
+BossShuffleMode : 0 # 0: off, 1: shuffle chapter bosses
 
 # Item Placement
 ShuffleItems          : true
@@ -45,13 +43,13 @@ IncludeCoinsBlocks    : false
 IncludeCoinsFoliage   : false
 IncludeCoinsFavors    : false # always false if IncludeFavorsMode:0
 IncludeShops          : true
-ProgressionOnRowf     : true # irrelevant if IncludeShops:false
+ProgressionOnRowf     : 5 # 0: no progression, 1-5: item sets in logic (irrelevant if IncludeShops:false)
 ProgressionOnMerlow   : true # irrelevant if IncludeShops:false
 IncludePanels         : true
 IncludeFavorsMode     : 1 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
 IncludeLettersMode    : 1 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
 IncludeRadioTradeEvent: false
-IncludeDojo           : false
+IncludeDojo           : 0 # 0: don't shuffle, 1-5: Chan-Master3
 KeyitemsOutsideDungeon: true
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
@@ -126,7 +124,7 @@ StartWithPartners: { # ignored if StartWithRandomPartners true
     Lakilester: false
 }
 
-PartnersInDefaultLocations: false
+PartnerShuffle            : 2 # 0: vanilla, 1: shuffled, 2: partners anywhere
 PartnersAlwaysUsable      : false
 StartWithRandomPartners   : true
 RandomPartnersMin         : 1 # 1-8
@@ -143,20 +141,20 @@ WhaleOpen           : false
 Ch7BridgeVisible    : true
 
 # Goal Settings
-StarWaySpiritsNeededCnt: 7 # -1:Random
-RequireSpecificSpirits : false # always false if StarWaySpiritsNeededCnt: 7
-ShuffleStarBeam        : false
-StarBeamSpiritsNeeded  : 0 # -1:Random
+SeedGoal                : 0 # 0: Defeat Bowser, 1: Open StarWay
+BowsersCastleMode       : 1 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
+StarWaySpiritsNeededCnt : 7 # -1:Random
+StarWayPowerStarsNeeded : 0 # max 120
+ShuffleStarBeam         : false
+StarBeamSpiritsNeeded   : 0 # -1:Random
 StarBeamPowerStarsNeeded: 0
-LimitChapterLogic      : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
-BowsersCastleMode      : 1 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
-StarWayPowerStarsNeeded: 0 # max 120
-StarHuntTotal          : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded
-SeedGoal               : 0 # 0: Defeat Bowser, 1: Open StarWay
+StarHuntTotal           : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded
+RequireSpecificSpirits  : false # always false if StarWaySpiritsNeededCnt: 7
+LimitChapterLogic       : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
 
 # Entrance Shuffle
 ShuffleDungeonRooms     : false # NYI
-ShuffleDungeonEntrances : false
+ShuffleDungeonEntrances : 0 # 0:off, 1:shuffle spirit dungeons only, 2:also include BowsersCastle
 ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI
 RandomizeOnewayEntrances: false # NYI

@@ -225,6 +225,7 @@ ID  | Stat
 055 | Lakilester Rank (0: base, 1: super, 2: ultra)
 05D | Bow Rank        (0: base, 1: super, 2: ultra)
 28E | Max Star Power
+292 | Star Beam Level (0: none, 1: Star Beam, 2: Peach Beam)
 ```
 
 ## ModBytes
@@ -603,6 +604,8 @@ Star Haven - Shop Item 3                       | ModFlag   1027
 Star Haven - Shop Item 4                       | ModFlag   1028
 Star Haven - Shop Item 5                       | ModFlag   1029
 Star Haven - Shop Item 6                       | ModFlag   102A
+
+Star Sanctuary - Gift of the Stars             | ModFlag     81
 ```
 
 #### Koopa Region

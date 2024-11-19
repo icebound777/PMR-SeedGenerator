@@ -3,6 +3,8 @@ This file lists item locations that are, under certain circumstances, handled
 in special ways.
 """
 
+from rando_enums.enum_options import DojoShuffle
+
 # Item locations that are associated with Koopa Koot's favors.
 # These may be excluded from randomization.
 kootfavors_reward_locations = [
@@ -76,13 +78,34 @@ simpleletter_locations = [
     "SAM_01/GiftB", # Mayor Penguin
 ]
 
-dojo_locations = [
-    "MAC_00/DojoA",
-    "MAC_00/DojoB",
-    "MAC_00/DojoC",
-    "MAC_00/DojoD",
-    "MAC_00/DojoE",
-]
+dojo_locations = {
+    DojoShuffle.OFF: [],
+    DojoShuffle.INCLUDE_CHAN: [
+        "MAC_00/DojoA",
+    ],
+    DojoShuffle.INCLUDE_LEE: [
+        "MAC_00/DojoA",
+        "MAC_00/DojoB",
+    ],
+    DojoShuffle.INCLUDE_MASTER1: [
+        "MAC_00/DojoA",
+        "MAC_00/DojoB",
+        "MAC_00/DojoC",
+    ],
+    DojoShuffle.INCLUDE_MASTER2: [
+        "MAC_00/DojoA",
+        "MAC_00/DojoB",
+        "MAC_00/DojoC",
+        "MAC_00/DojoD",
+    ],
+    DojoShuffle.INCLUDE_MASTER3: [
+        "MAC_00/DojoA",
+        "MAC_00/DojoB",
+        "MAC_00/DojoC",
+        "MAC_00/DojoD",
+        "MAC_00/DojoE",
+    ],
+}
 
 bush_tree_coin_locations = [
     "KMR_02/Bush2_Drop1",

@@ -1,5 +1,91 @@
 # Changelog
 
+## 0.28.0 (beta)
+
+### Feature Changes
+
+* `Boss Shuffle` option:
+  * Allows shuffling which boss is encountered at the end of each dungeon area. The map and cutscenes are unaffected by this, but a different boss will load upon fading into the battle.
+  * During `Vanilla Difficulty` and `Shuffle Chapter Difficulty` the shuffled boss inherits the difficulty of the chapter it is encountered in (instead of the difficulty assigned to its original chapter)
+    * Example: General Guy gets shuffled as the boss within Koopa Bros. Fortress, then General Guy will have the same difficulty as the rest of chapter 1.
+  * During `Boss Shuffle` Mario can run away from the seven dungeon boss battles on the very first turn. This will place Mario one room before the boss battle. After the first turn the option to run away will again be disabled.
+  * Note: Whichever boss gets shuffled into chapter 3, thus replacing the Tubba's Heart battle, will not give any star points. This is to mimic the original Tubba's Heart battle not giving star points, either. If Tubba's Heart is shuffled into another chapter, then it will now grant star points. That battle is still won by lowering the Heart's HP to 5 or lower.
+  * Note: For technical reasons bosses cannot appear in more than one chapter at the moment. So each of the seven main chapter bosses will always be encountered exactly once per seed.
+* Changed `Progression On Rowf`:
+  * Instead of marking either all or none of Rowf's item sets for holding progression, now allows choosing the maximum number of item sets which may hold progression.
+  * Can be turned off, or set a value from 1-5
+* Changed `Include Dojo`:
+  * Instead of either having the four degree-cards and the diploma being vanilla, or having them all removed and placing other random items as dojo rewards, now allows choosing the maximum number of dojo battles that can hold random items
+  * Can be turned off, or set a value from 1-5 (for Chan, Lee, and Master 1-3)
+  * The battles that won't hold random items will still keep the original degree-cards / diploma items
+  * Any value from 1-5 will count all 5 dojo item locations on the pause menu's map, even if some of them don't hold shuffled items
+* Changed `Shuffle Partners` / `Partners In Default Locations`:
+  This setting now has three different values:
+  * Partners completely vanilla
+  * (new) Partners shuffled among vanilla partner locations
+  * Partners shuffled anywhere
+* Changed `Star Way Spirits Required`:
+  * If `Star Way Spirits Required` is set to random, then a number between 1 and 7 spirits will be chosen for opening Star Way (was: a number between 0 and 7)
+* Changed `Star Beam Spirits Required`:
+  * If `Star Beam Spirits Required` is set to random, then a number between 1 and 7 spirits will be chosen for receiving the Star Beam (was: a number between 0 and 7)
+* Changed `Shuffle Dungeon Entrances`:
+  This setting now has three different values:
+  * No dungeon shuffle
+  * Shuffle spirit dungeons
+  * (new) Shuffle spirit dungeons, and include Bowser's Castle  
+    (Note: For inclusion of Bowser's Castle, the `Star Way Spirits Needed` setting has to be set to require fewer than 7 star spirits.)
+* Changed `Hammerless Start` and `Jumpless Start` item placement logic:
+  * Now has a vastly increased chance of placing the first gear item later into the seed progression.
+  * It happened quite often during these seeds that the first hammer/boots upgrade (respectively) could be found super early, somewhat defeating the point of these settings. This change tries to combat this. While it will still happen that you find these gear upgrades right away, the chances of that happening should be lower now.
+  * Does not affect seeds that are made with neither `Hammerless Start` nor `Jumpless Start` settings.
+
+### Logic changes
+
+* Reaching the top of Shooting Star Summit now expects having the Boots (formerly expected Boots or Parakarry)
+* Fixed logic always expecting Parakarry or Boots for reaching the vanilla location of the Odd Key item
+* Fixed logic not requiring being able to climb ledges in Gusty Gulch, while there are very obvious ledges preventing Mario from continuing (only affected glitched logic seeds)
+
+### Quality of Life
+
+* Adjusted the Pulse Stone key item
+  * Beeping now turns off permanently after using tricks to enter the Dry Dry Ruins entrance loading zone without raising the ruins
+
+### Miscellaneous
+
+* Spoiler log
+  * Moved `Ruined Castle Grounds - Muss T. Letter Reward` from the `Peachs Castle Grounds` area to the `Toad Town` area
+  * Moved `Hijacked Castle Entrance - Hidden Block` from the `Peachs Castle Grounds` area to the `Peachs Castle` area
+  * The `Peachs Castle Grounds` area is a bit weirdly laid out, so these changes were made to make finding these two locations within the spoiler log easier
+
+### Additional Technical Changelog
+
+* Yaml settings changes:
+  * Changed `ProgressionOnRowf`
+    * Value data type is now `int` (was `boolean`)
+    * `0` = Off, `1`-`5`: 1-5 item sets may hold progression
+  * Changed `IncludeDojo`
+    * Value data type is now `int` (was `boolean`)
+    * `0` = Off, `1`-`5`: 1-5 dojo battles may hold progression
+  * `PartnersInDefaultLocations`:
+    * Renamed to `PartnerShuffle`
+    * Changed: Value data type is now `int` (was `boolean`)
+    * `0` = vanilla, `1` = shuffled among vanilla locations, `2` = anywhere
+  * Changed `ShuffleDungeonEntrances`
+    * Changed: Value data type is now `int` (was `boolean`)
+    * `0` = Off, `1` = spirit dungeons, `2` = spirit dungeons + Bowser's Castle
+  * Added `BossShuffleMode`
+    * `0` = Off, `1` = Shuffle Chapter Bosses
+* Misc. generator changes:
+  * Fixed broken Python requirements file
+  * Added Dockerfile and devcontainer configuration
+    * (not sure if the Docker container is set up 100% cleanly, but the devcontainer works)
+
+## 0.27.1a (beta)
+
+### Bug Fixes (0.27.1a)
+
+* Fix a bug that caused the `Star Beam` item to be treated as non-progression, causing issues while generating seeds that had `Limited Chapter Logic` and `Shuffle Star Beam` turned on.
+
 ## 0.27.1 (beta)
 
 ### Bug Fixes (0.27.1)
@@ -8,7 +94,7 @@
 
 ## 0.27.0 (beta)
 
-### Feature Changes
+### Feature Changes (0.27.0)
 
 * Removed `Star Hunt` option and reworked Power Stars:
   * `Star Way Spirits Needed` and `Star Way Power Stars Needed` options now determine how many spirits and power stars are needed to open Star Way. Any combination is valid, like 7 spirits & 0 power stars, 0 spirits & 50 power stars, 4 spirits & 30 power stars etc.
@@ -35,13 +121,13 @@
     * "[Star Beam icon] \<current> / 20", if Mario has 10 or more, but fewer than 20 Power Stars,
     * "[Power Star icon] \<current> / 35", if Mario has 20 or more Power Stars
 
-### Logic changes
+### Logic changes (0.27.0)
 
 * While `Keyitems Outside Dungeon` (aka Keysanity) is turned off, the FP Plus chest in the Koopa Bros. Fortress area is no longer a valid location for Koopa Fortress Keys
 * Now expects Watt for traversing the dark caves in Bowser's Castle
 * Now expects having enough star spirits and power stars to both open Star Way and get the Star Beam, to get past chapter 8 Jr. Troopa and Hallway Bowser (only relevant in prep for entrance rando)
 
-### Tricks & Glitches
+### Tricks & Glitches (0.27.0)
 
 * New options
   * "Volcano Sushie Glitch w/ Goombario save block storage"
@@ -55,7 +141,7 @@
 * Removed options
   * Flarakarry (Bombette) (due to it possibly causing a softlock)
 
-### Bug Fixes
+### Bug Fixes (0.27.0)
 
 * Fix a bug that could rarely cause unintended item prices for shop items in Dry Dry Outpost if `Randomize Puzzles` and `Include Shops` were turned on
 * Lower logical star piece requirements for some of Merlow's trades (the original calculations were off)
@@ -68,11 +154,11 @@
 * Fix Kent C. Koopa breaking the coin cap when handing back the 50 coins when defeated after paying him
 * Fix frozen camera during Kooper's Shell turn-in cutscene
 
-### Miscellaneous
+### Miscellaneous (0.27.0)
 
 * Renamed some locations in the spoiler log for clarity
 
-### Additional Technical Changelog
+### Additional Technical Changelog (0.27.0)
 
 * Added ModFlag `1100` which gets set to True once the current seed goal is reached
 * Split up chapter 8 progress byte into flags

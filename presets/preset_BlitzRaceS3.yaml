@@ -1,10 +1,10 @@
 ---
 # PAPER MARIO RANDOMIZER SETTINGS
-SettingsName: Standard Race (S0) Preset
+SettingsName: Blitz Race (S3)
 
 # General
 BlocksMatchContent  : true
-HiddenBlockMode     : 2 # 0:vanilla, 1:Watt out, 2:Watt acquired, 3:always visible
+HiddenBlockMode     : 3 # 0:vanilla, 1:Watt out, 2:Watt acquired, 3:always visible
 AllowPhysicsGlitches: true
 BadgeSynergy        : false
 
@@ -12,7 +12,7 @@ BadgeSynergy        : false
 AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
-CutsceneMode         : 1 # 0:vanilla, 1:shortened, 2:minimal
+CutsceneMode         : 2 # 0:vanilla, 1:shortened, 2:minimal
 SkipEpilogue         : true
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : true
@@ -24,7 +24,7 @@ ProgressiveScaling      : false
 
 ChallengeMode  : false
 CapEnemyXP     : false
-XPMultiplier   : 1
+XPMultiplier   : 1.5
 DoubleDamage   : false
 QuadrupleDamage: false
 OHKO           : false
@@ -34,31 +34,29 @@ NoHealingItems : false
 DropStarPoints : false
 
 RandomFormations: true
-
-# Custom Seed / Planned Seed / "Plandomizer"
-CustomSeed: false # NYI
+BossShuffleMode : 0 # 0: off, 1: shuffle chapter bosses
 
 # Item Placement
 ShuffleItems          : true
-IncludeCoinsOverworld : false
-IncludeCoinsBlocks    : false
+IncludeCoinsOverworld : true
+IncludeCoinsBlocks    : true
 IncludeCoinsFoliage   : false
 IncludeCoinsFavors    : false # always false if IncludeFavorsMode:0
 IncludeShops          : true
-ProgressionOnRowf     : true # irrelevant if IncludeShops:false
-ProgressionOnMerlow   : true # irrelevant if IncludeShops:false
+ProgressionOnRowf     : 5 # 0: no progression, 1-5: item sets in logic (irrelevant if IncludeShops:false)
+ProgressionOnMerlow   : false # irrelevant if IncludeShops:false
 IncludePanels         : false
 IncludeFavorsMode     : 0 # 1:RndRewardsVanillaKeyitems, 2:FullShuffle
 IncludeLettersMode    : 0 # 1:simpleLetters, 2:vanillaChainRndChainReward, 3:FullShuffle
 IncludeRadioTradeEvent: false
-IncludeDojo           : false
+IncludeDojo           : 0 # 0: don't shuffle, 1-5: Chan-Master3
 KeyitemsOutsideDungeon: true
 KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
 # Item Pool Modification
-GearShuffleMode         : 0 # 0:vanilla, 1:location shuffle, 2:full shuffle
-AddItemPouches          : false
-PartnerUpgradeShuffle   : 0 # 0:off, 1:super block locations, 2:full shuffle
+GearShuffleMode         : 2 # 0:vanilla, 1:location shuffle, 2:full shuffle
+AddItemPouches          : true
+PartnerUpgradeShuffle   : 2 # 0:off, 1:super block locations, 2:full shuffle
 AddUnusedBadgeDuplicates: false
 AddBetaItems            : false
 ProgressiveBadges       : false
@@ -68,12 +66,12 @@ ItemQuality             : 100
 ItemTrapMode            : 0 # 0:off, 1:sparse, 2:moderate, 3:plenty
 
 # Item Misc
-CookWithoutFryingPan : false
+CookWithoutFryingPan : true
 MerlowRewardPricing  : 0 # 0:Cheap (5-30), 1:Normal (10-60)
 RipCheatoItemsInLogic: 6 # 0-11
 AllowItemHints       : false
 # Mystery? item options
-RandomChoice         : false
+RandomChoice         : true
 MysteryRandomPick    : false
 # Below are never used, they get hardcoded overwritten, just for doc purposes
 ItemChoiceA          : 0x08A # Mushroom
@@ -92,13 +90,13 @@ StartingMaxBP    : 3
 StartingStarPower: 0
 StartingBoots    : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
 StartingHammer   : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
-StartingCoins    : 100
+StartingCoins    : 150
 
 StartWithRandomItems: false
 RandomItemsMin      : 0
 RandomItemsMax      : 16
-StartingItem0       : 0x000 # Nothing
-StartingItem1       : 0x000 # Nothing
+StartingItem0       : 0x00F # UltraStone
+StartingItem1       : 0x029 # Cookbook
 StartingItem2       : 0x000 # Nothing
 StartingItem3       : 0x000 # Nothing
 StartingItem4       : 0x000 # Nothing
@@ -126,7 +124,7 @@ StartWithPartners: { # ignored if StartWithRandomPartners true
     Lakilester: false
 }
 
-PartnersInDefaultLocations: false
+PartnerShuffle            : 2 # 0: vanilla, 1: shuffled, 2: partners anywhere
 PartnersAlwaysUsable      : false
 StartWithRandomPartners   : true
 RandomPartnersMin         : 1 # 1-8
@@ -134,29 +132,29 @@ RandomPartnersMax         : 1 # 1-8
 
 # Pre-opened areas
 MagicalSeedsRequired: 2 # -1:Random
-PrologueOpen        : false
+PrologueOpen        : true
 BlueHouseOpen       : false
 MtRuggedOpen        : false
 ForeverForestOpen   : true
 ToyboxOpen          : false
 WhaleOpen           : false
-Ch7BridgeVisible    : true
+Ch7BridgeVisible    : false
 
 # Goal Settings
-StarWaySpiritsNeededCnt: 7 # -1:Random
-RequireSpecificSpirits : false # always false if StarWaySpiritsNeededCnt: 7
-ShuffleStarBeam        : false
-StarBeamSpiritsNeeded  : 0 # -1:Random
+SeedGoal                : 0 # 0: Defeat Bowser, 1: Open StarWay
+BowsersCastleMode       : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
+StarWaySpiritsNeededCnt : 4 # -1:Random
+StarWayPowerStarsNeeded : 0 # max 120
+ShuffleStarBeam         : false
+StarBeamSpiritsNeeded   : 0 # -1:Random
 StarBeamPowerStarsNeeded: 0
-LimitChapterLogic      : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
-BowsersCastleMode      : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
-StarWayPowerStarsNeeded: 0 # max 120
-StarHuntTotal          : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded
-SeedGoal               : 0 # 0: Defeat Bowser, 1: Open StarWay
+StarHuntTotal           : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded
+RequireSpecificSpirits  : true # always false if StarWaySpiritsNeededCnt: 7
+LimitChapterLogic       : true # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
 
 # Entrance Shuffle
 ShuffleDungeonRooms     : false # NYI
-ShuffleDungeonEntrances : false
+ShuffleDungeonEntrances : 0 # 0:off, 1:shuffle spirit dungeons only, 2:also include BowsersCastle
 ShuffleEntrancesByAll   : false # NYI
 MatchEntranceTypes      : true  # NYI
 RandomizeOnewayEntrances: false # NYI
@@ -175,7 +173,7 @@ RandomizePuzzles: false
 
 # Quizmo Quizzes
 RandomQuiz         : true
-QuizmoAlwaysAppears: false
+QuizmoAlwaysAppears: true
 SkipQuiz           : true
 
 # Spoilerlog

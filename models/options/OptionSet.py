@@ -1,8 +1,6 @@
 from db.item import Item
 from db.option import Option
 
-from metadata.area_name_mappings import area_name_id_map
-
 from rando_enums.enum_ingame import StarSpirits
 from rando_enums.enum_options import (
     BowserCastleMode,
@@ -17,8 +15,13 @@ from rando_enums.enum_options import (
     MerlowRewardPricing,
     MusicRandomizationType,
     PartnerUpgradeShuffle,
-    SeedGoal
+    SeedGoal,
+    DungeonEntranceShuffle,
+    PartnerShuffle,
+    DojoShuffle,
+    BossShuffleMode,
 )
+from models.options.LogicOptionSet import LogicOptionSet
 from models.options.PaletteOptionSet import PaletteOptionSet
 from models.options.MysteryOptionSet import MysteryOptionSet
 from models.options.GlitchOptionSet import GlitchOptionSet
@@ -30,14 +33,10 @@ class OptionSet:
         """ Load Defaults from DB """
         # General
         self.blocks_match_content = bool(get_option_default_value("BlocksMatchContent"))
-        self.hidden_block_mode = get_option_default_value("HiddenBlockMode")
         self.allow_physics_glitches = bool(get_option_default_value("AllowPhysicsGlitches"))
         self.badge_synergy = bool(get_option_default_value("BadgeSynergy"))
 
         # QOL
-        self.always_speedyspin = bool(get_option_default_value("AlwaysSpeedySpin"))
-        self.always_ispy = bool(get_option_default_value("AlwaysISpy"))
-        self.always_peekaboo = bool(get_option_default_value("AlwaysPeekaboo"))
         self.cutscene_mode = get_option_default_value("CutsceneMode")
         self.fast_text_skip = get_option_default_value("FastTextSkip")
         self.skip_epilogue = bool(get_option_default_value("SkipEpilogue"))
@@ -63,138 +62,28 @@ class OptionSet:
 
         self.random_formations = bool(get_option_default_value("RandomFormations"))
 
-        # Custom Seed / Planned Seed / "Plandomizer"
-        self.custom_seed = False
-
-        # Item Placement
-        self.shuffle_items = bool(get_option_default_value("ShuffleItems"))
-        self.include_coins_overworld = True
-        self.include_coins_blocks = True
-        self.include_coins_foliage = True
-        self.include_coins_favors = False
-        self.include_shops = bool(get_option_default_value("IncludeShops"))
-        self.progression_on_rowf = True
-        self.progression_on_merlow = True
-        self.include_panels = bool(get_option_default_value("IncludePanels"))
-        self.include_favors_mode = IncludeFavorsMode.NOT_RANDOMIZED
-        self.include_letters_mode = IncludeLettersMode.NOT_RANDOMIZED
-        self.include_radiotradeevent = False
-        self.include_dojo = False
-        self.keyitems_outside_dungeon = True
-        self.keyitems_outside_chapter = True # "Keysanity" # false -> NYI
-
-        # Item Pool Modification
-        self.gear_shuffle_mode = get_option_default_value("GearShuffleMode")
-        self.add_item_pouches = False
-        self.partner_upgrade_shuffle = get_option_default_value("PartnerUpgradeShuffle")
-        self.add_unused_badge_duplicates = False
-        self.add_beta_items = False
-        self.progressive_badges = False
-        self.badge_pool_limit = 128 # literal cap of Paper Mario
-        self.randomize_consumable_mode = RandomizeConsumablesMode.OFF
-        self.item_quality = 100
-        self.itemtrap_mode = ItemTrapMode.OFF
-
         # Map Check Tracker (auto-set, not changeable via settings)
         self.map_tracker_check_bits = get_option_default_value("EnabledCheckBits")
         self.map_tracker_shop_bits = get_option_default_value("EnabledShopBits")
 
         # Item Misc
-        self.cook_without_fryingpan = bool(get_option_default_value("CookWithoutFryingPan"))
         self.merlow_reward_pricing = MerlowRewardPricing.NORMAL
-        self.ripcheato_items_in_logic = 6
         self.allow_itemhints = True
         self.mystery_settings = MysteryOptionSet()
 
         # Starting setup
-        self.starting_map = get_option_default_value("StartingMap") # mac_00 Entry 4
         self.starting_level = get_option_default_value("StartingLevel")
         self.starting_maxhp = get_option_default_value("StartingMaxHP")
         self.starting_maxfp = get_option_default_value("StartingMaxFP")
         self.starting_maxbp = get_option_default_value("StartingMaxBP")
         self.starting_starpower = get_option_default_value("StartingStarPower")
-        self.starting_boots = get_option_default_value("StartingBoots")
-        self.starting_hammer = get_option_default_value("StartingHammer")
         self.starting_coins = get_option_default_value("StartingCoins")
-
-        self.random_starting_items = False
-        self.random_starting_items_min = 0
-        self.random_starting_items_max = 16
-        self.starting_item_0 = get_option_default_value("StartingItem0")
-        self.starting_item_1 = get_option_default_value("StartingItem1")
-        self.starting_item_2 = get_option_default_value("StartingItem2")
-        self.starting_item_3 = get_option_default_value("StartingItem3")
-        self.starting_item_4 = get_option_default_value("StartingItem4")
-        self.starting_item_5 = get_option_default_value("StartingItem5")
-        self.starting_item_6 = get_option_default_value("StartingItem6")
-        self.starting_item_7 = get_option_default_value("StartingItem7")
-        self.starting_item_8 = get_option_default_value("StartingItem8")
-        self.starting_item_9 = get_option_default_value("StartingItem9")
-        self.starting_item_A = get_option_default_value("StartingItemA")
-        self.starting_item_B = get_option_default_value("StartingItemB")
-        self.starting_item_C = get_option_default_value("StartingItemC")
-        self.starting_item_D = get_option_default_value("StartingItemD")
-        self.starting_item_E = get_option_default_value("StartingItemE")
-        self.starting_item_F = get_option_default_value("StartingItemF")
-
-        # Partners
-        self.starting_partners = ["Goombario"]
-        self.start_with_goombario = bool(get_option_default_value("StartWithGoombario"))
-        self.start_with_kooper = bool(get_option_default_value("StartWithKooper"))
-        self.start_with_bombette = bool(get_option_default_value("StartWithBombette"))
-        self.start_with_parakarry = bool(get_option_default_value("StartWithParakarry"))
-        self.start_with_bow = bool(get_option_default_value("StartWithBow"))
-        self.start_with_watt = bool(get_option_default_value("StartWithWatt"))
-        self.start_with_sushie = bool(get_option_default_value("StartWithSushie"))
-        self.start_with_lakilester = bool(get_option_default_value("StartWithLakilester"))
-
-        self.partners_in_default_locations = True
-        self.partners_always_usable = bool(get_option_default_value("PartnersAlwaysUsable"))
-        self.random_partners = False
-        self.random_partners_min = 1
-        self.random_partners_max = 1
-
-        # Pre-opened areas
-        self.magical_seeds_required = get_option_default_value("MagicalSeedsRequired")
-        self.prologue_open = bool(get_option_default_value("PrologueOpen"))
-        self.bluehouse_open = bool(get_option_default_value("BlueHouseOpen"))
-        self.mtrugged_open = bool(get_option_default_value("MtRuggedOpen"))
-        self.foreverforest_open = bool(get_option_default_value("ForeverForestOpen"))
-        self.toybox_open = bool(get_option_default_value("ToyboxOpen"))
-        self.whale_open = bool(get_option_default_value("WhaleOpen"))
-        self.ch7_bridge_visible = bool(get_option_default_value("Ch7BridgeVisible"))
-
-        # Goal Settings
-        self.starway_spirits_needed_count = get_option_default_value("StarWaySpiritsNeededCnt")
-        self.require_specific_spirits = False
-        self.shuffle_starbeam = False
-        self.starbeam_location = area_name_id_map["HOS"]
-        self.starbeam_spirits_needed = get_option_default_value("StarBeamSpiritsNeeded")
-        self.starbeam_powerstars_needed = get_option_default_value("StarBeamPowerStarsNeeded")
-        self.limit_chapter_logic = False
-        self.starway_spirits_needed_encoded = get_option_default_value("StarWaySpiritsNeededEnc")
-        self.bowsers_castle_mode = get_option_default_value("BowsersCastleMode")
-        self.starway_powerstars_needed = get_option_default_value("StarWayPowerStarsNeeded")
-        self.star_hunt_total = get_option_default_value("StarHuntTotal")
-        self.seed_goal = get_option_default_value("SeedGoal")
-
-        # Entrance Shuffle
-        self.shuffle_dungeon_rooms = bool(get_option_default_value("ShuffleDungeonRooms"))
-        self.shuffle_dungeon_entrances = bool(get_option_default_value("ShuffleDungeonEntrances"))
-        self.shuffle_entrances_by_all = bool(get_option_default_value("ShuffleEntrancesByAll"))
-        self.match_entrance_type = bool(get_option_default_value("MatchEntranceTypes"))
-        self.random_oneway_entrances = False # NYI
-        self.unpaired_entrances = False # NYI
 
         # Costs of Moves and Badges
         self.random_badges_bp = RandomMoveCosts.VANILLA
         self.random_badges_fp = RandomMoveCosts.VANILLA
         self.random_partner_fp = RandomMoveCosts.VANILLA
         self.random_starpower_sp = RandomMoveCosts.VANILLA
-
-        # Misc Gameplay Randomization
-        self.shuffle_blocks = False
-        self.randomize_puzzles = False
 
         # Quizmo Quizzes
         self.random_quiz = bool(get_option_default_value("RandomQuiz"))
@@ -235,6 +124,10 @@ class OptionSet:
         # Glitched Logic
         self.glitch_settings = GlitchOptionSet()
 
+        # Package logic impacting settings into an option subset for
+        # better readability of the code
+        self.logic_settings = LogicOptionSet()
+
 
     def update_options(self, options_dict=None):
 
@@ -251,7 +144,7 @@ class OptionSet:
         if "BlocksMatchContent" in options_dict:
             self.blocks_match_content = options_dict.get("BlocksMatchContent")
         if "HiddenBlockMode" in options_dict:
-            self.hidden_block_mode = options_dict.get("HiddenBlockMode")
+            self.logic_settings.hidden_block_mode = options_dict.get("HiddenBlockMode")
         if "AllowPhysicsGlitches" in options_dict:
             self.allow_physics_glitches = options_dict.get("AllowPhysicsGlitches")
         if "BadgeSynergy" in options_dict:
@@ -259,11 +152,11 @@ class OptionSet:
 
         # QOL
         if "AlwaysSpeedySpin" in options_dict:
-            self.always_speedyspin = options_dict.get("AlwaysSpeedySpin")
+            self.logic_settings.always_speedyspin = options_dict.get("AlwaysSpeedySpin")
         if "AlwaysISpy" in options_dict:
-            self.always_ispy = options_dict.get("AlwaysISpy")
+            self.logic_settings.always_ispy = options_dict.get("AlwaysISpy")
         if "AlwaysPeekaboo" in options_dict:
-            self.always_peekaboo = options_dict.get("AlwaysPeekaboo")
+            self.logic_settings.always_peekaboo = options_dict.get("AlwaysPeekaboo")
         if "CutsceneMode" in options_dict:
             self.cutscene_mode = options_dict.get("CutsceneMode")
             self.fast_text_skip = (self.cutscene_mode > 0)
@@ -307,72 +200,70 @@ class OptionSet:
 
         if "RandomFormations" in options_dict:
             self.random_formations = options_dict.get("RandomFormations")
-
-        # Custom Seed / Planned Seed / "Plandomizer"
-        if "CustomSeed" in options_dict:
-            self.custom_seed = options_dict.get("CustomSeed")
+        if "BossShuffleMode" in options_dict:
+            self.logic_settings.boss_shuffle_mode = options_dict.get("BossShuffleMode")
 
         # Item Placement
         if "ShuffleItems" in options_dict:
-            self.shuffle_items = options_dict.get("ShuffleItems")
+            self.logic_settings.shuffle_items = options_dict.get("ShuffleItems")
         if "IncludeCoinsOverworld" in options_dict:
-            self.include_coins_overworld = options_dict.get("IncludeCoinsOverworld")
+            self.logic_settings.include_coins_overworld = options_dict.get("IncludeCoinsOverworld")
         if "IncludeCoinsBlocks" in options_dict:
-            self.include_coins_blocks = options_dict.get("IncludeCoinsBlocks")
+            self.logic_settings.include_coins_blocks = options_dict.get("IncludeCoinsBlocks")
         if "IncludeCoinsFoliage" in options_dict:
-            self.include_coins_foliage = options_dict.get("IncludeCoinsFoliage")
+            self.logic_settings.include_coins_foliage = options_dict.get("IncludeCoinsFoliage")
         if "IncludeCoinsFavors" in options_dict:
-            self.include_coins_favors = options_dict.get("IncludeCoinsFavors")
+            self.logic_settings.include_coins_favors = options_dict.get("IncludeCoinsFavors")
         if "IncludeShops" in options_dict:
-            self.include_shops = options_dict.get("IncludeShops")
+            self.logic_settings.include_shops = options_dict.get("IncludeShops")
         if "ProgressionOnRowf" in options_dict:
-            self.progression_on_rowf = options_dict.get("ProgressionOnRowf")
+            self.logic_settings.progression_on_rowf = options_dict.get("ProgressionOnRowf")
         if "ProgressionOnMerlow" in options_dict:
-            self.progression_on_merlow = options_dict.get("ProgressionOnMerlow")
+            self.logic_settings.progression_on_merlow = options_dict.get("ProgressionOnMerlow")
         if "IncludePanels" in options_dict:
-            self.include_panels = options_dict.get("IncludePanels")
+            self.logic_settings.include_panels = options_dict.get("IncludePanels")
         if "IncludeFavorsMode" in options_dict:
-            self.include_favors_mode = options_dict.get("IncludeFavorsMode")
+            self.logic_settings.include_favors_mode = options_dict.get("IncludeFavorsMode")
         if "IncludeLettersMode" in options_dict:
-            self.include_letters_mode = options_dict.get("IncludeLettersMode")
+            self.logic_settings.include_letters_mode = options_dict.get("IncludeLettersMode")
         if "IncludeRadioTradeEvent" in options_dict:
-            self.include_radiotradeevent = options_dict.get("IncludeRadioTradeEvent")
+            self.logic_settings.include_radiotradeevent = options_dict.get("IncludeRadioTradeEvent")
         if "IncludeDojo" in options_dict:
-            self.include_dojo = options_dict.get("IncludeDojo")
+            self.logic_settings.include_dojo = options_dict.get("IncludeDojo")
         if "KeyitemsOutsideDungeon" in options_dict:
-            self.keyitems_outside_dungeon = options_dict.get("KeyitemsOutsideDungeon")
+            self.logic_settings.keyitems_outside_dungeon = options_dict.get("KeyitemsOutsideDungeon")
         if "KeyitemsOutsideChapter" in options_dict:
-            self.keyitems_outside_chapter = options_dict.get("KeyitemsOutsideChapter")
+            self.logic_settings.keyitems_outside_chapter = options_dict.get("KeyitemsOutsideChapter")
 
         # Item Pool Modification
         if "GearShuffleMode" in options_dict:
-            self.gear_shuffle_mode = options_dict.get("GearShuffleMode")
+            self.logic_settings.gear_shuffle_mode = options_dict.get("GearShuffleMode")
         if "AddItemPouches" in options_dict:
-            self.add_item_pouches = options_dict.get("AddItemPouches")
+            self.logic_settings.add_item_pouches = options_dict.get("AddItemPouches")
         if "PartnerUpgradeShuffle" in options_dict:
-            self.partner_upgrade_shuffle = options_dict.get("PartnerUpgradeShuffle")
+            self.logic_settings.partner_upgrade_shuffle = options_dict.get("PartnerUpgradeShuffle")
         if "AddUnusedBadgeDuplicates" in options_dict:
-            self.add_unused_badge_duplicates = options_dict.get("AddUnusedBadgeDuplicates")
+            self.logic_settings.add_unused_badge_duplicates = options_dict.get("AddUnusedBadgeDuplicates")
         if "AddBetaItems" in options_dict:
-            self.add_beta_items = options_dict.get("AddBetaItems")
+            self.logic_settings.add_beta_items = options_dict.get("AddBetaItems")
         if "ProgressiveBadges" in options_dict:
-            self.progressive_badges = options_dict.get("ProgressiveBadges")
+            self.logic_settings.progressive_badges = options_dict.get("ProgressiveBadges")
         if "BadgePoolLimit" in options_dict:
-            self.badge_pool_limit = options_dict.get("BadgePoolLimit")
+            self.logic_settings.badge_pool_limit = options_dict.get("BadgePoolLimit")
         if "RandomConsumableMode" in options_dict:
-            self.randomize_consumable_mode = options_dict.get("RandomConsumableMode")
+            self.logic_settings.randomize_consumable_mode = options_dict.get("RandomConsumableMode")
         if "ItemQuality" in options_dict:
-            self.item_quality = options_dict.get("ItemQuality")
+            self.logic_settings.item_quality = options_dict.get("ItemQuality")
         if "ItemTrapMode" in options_dict:
-            self.itemtrap_mode = options_dict.get("ItemTrapMode")
+            self.logic_settings.itemtrap_mode = options_dict.get("ItemTrapMode")
 
         # Item Misc
         if "CookWithoutFryingPan" in options_dict:
-            self.cook_without_fryingpan = options_dict.get("CookWithoutFryingPan")
+            self.logic_settings.cook_without_fryingpan = options_dict.get("CookWithoutFryingPan")
         if "MerlowRewardPricing" in options_dict:
             self.merlow_reward_pricing = options_dict.get("MerlowRewardPricing")
         if "RipCheatoItemsInLogic" in options_dict:
-            self.ripcheato_items_in_logic = options_dict.get("RipCheatoItemsInLogic")
+            self.logic_settings.ripcheato_items_in_logic = options_dict.get("RipCheatoItemsInLogic")
         if "AllowItemHints" in options_dict:
             self.allow_itemhints = options_dict.get("AllowItemHints")
         if "RandomChoice" in options_dict:
@@ -396,7 +287,7 @@ class OptionSet:
 
         # Starting setup
         if "StartingMap" in options_dict:
-            self.starting_map = options_dict.get("StartingMap")
+            self.logic_settings.starting_map = options_dict.get("StartingMap")
         if "StartingMaxHP" in options_dict:
             self.starting_maxhp = options_dict.get("StartingMaxHP")
         if "StartingMaxFP" in options_dict:
@@ -411,144 +302,144 @@ class OptionSet:
         if "StartingStarPower" in options_dict:
             self.starting_starpower = options_dict.get("StartingStarPower")
         if "StartingBoots" in options_dict:
-            self.starting_boots = options_dict.get("StartingBoots")
+            self.logic_settings.starting_boots = options_dict.get("StartingBoots")
         if "StartingHammer" in options_dict:
-            self.starting_hammer = options_dict.get("StartingHammer")
+            self.logic_settings.starting_hammer = options_dict.get("StartingHammer")
         if "StartingCoins" in options_dict:
             self.starting_coins = options_dict.get("StartingCoins")
 
         if "StartWithRandomItems" in options_dict:
-            self.random_starting_items = options_dict.get("StartWithRandomItems")
+            self.logic_settings.random_starting_items = options_dict.get("StartWithRandomItems")
         if "RandomItemsMin" in options_dict:
-            self.random_starting_items_min = options_dict.get("RandomItemsMin")
+            self.logic_settings.random_starting_items_min = options_dict.get("RandomItemsMin")
         if "RandomItemsMax" in options_dict:
-            self.random_starting_items_max = options_dict.get("RandomItemsMax")
+            self.logic_settings.random_starting_items_max = options_dict.get("RandomItemsMax")
         if "StartingItem0" in options_dict:
-            self.starting_item_0 = options_dict.get("StartingItem0")
+            self.logic_settings.starting_item_0 = options_dict.get("StartingItem0")
         if "StartingItem1" in options_dict:
-            self.starting_item_1 = options_dict.get("StartingItem1")
+            self.logic_settings.starting_item_1 = options_dict.get("StartingItem1")
         if "StartingItem2" in options_dict:
-            self.starting_item_2 = options_dict.get("StartingItem2")
+            self.logic_settings.starting_item_2 = options_dict.get("StartingItem2")
         if "StartingItem3" in options_dict:
-            self.starting_item_3 = options_dict.get("StartingItem3")
+            self.logic_settings.starting_item_3 = options_dict.get("StartingItem3")
         if "StartingItem4" in options_dict:
-            self.starting_item_4 = options_dict.get("StartingItem4")
+            self.logic_settings.starting_item_4 = options_dict.get("StartingItem4")
         if "StartingItem5" in options_dict:
-            self.starting_item_5 = options_dict.get("StartingItem5")
+            self.logic_settings.starting_item_5 = options_dict.get("StartingItem5")
         if "StartingItem6" in options_dict:
-            self.starting_item_6 = options_dict.get("StartingItem6")
+            self.logic_settings.starting_item_6 = options_dict.get("StartingItem6")
         if "StartingItem7" in options_dict:
-            self.starting_item_7 = options_dict.get("StartingItem7")
+            self.logic_settings.starting_item_7 = options_dict.get("StartingItem7")
         if "StartingItem8" in options_dict:
-            self.starting_item_8 = options_dict.get("StartingItem8")
+            self.logic_settings.starting_item_8 = options_dict.get("StartingItem8")
         if "StartingItem9" in options_dict:
-            self.starting_item_9 = options_dict.get("StartingItem9")
+            self.logic_settings.starting_item_9 = options_dict.get("StartingItem9")
         if "StartingItemA" in options_dict:
-            self.starting_item_A = options_dict.get("StartingItemA")
+            self.logic_settings.starting_item_A = options_dict.get("StartingItemA")
         if "StartingItemB" in options_dict:
-            self.starting_item_B = options_dict.get("StartingItemB")
+            self.logic_settings.starting_item_B = options_dict.get("StartingItemB")
         if "StartingItemC" in options_dict:
-            self.starting_item_C = options_dict.get("StartingItemC")
+            self.logic_settings.starting_item_C = options_dict.get("StartingItemC")
         if "StartingItemD" in options_dict:
-            self.starting_item_D = options_dict.get("StartingItemD")
+            self.logic_settings.starting_item_D = options_dict.get("StartingItemD")
         if "StartingItemE" in options_dict:
-            self.starting_item_E = options_dict.get("StartingItemE")
+            self.logic_settings.starting_item_E = options_dict.get("StartingItemE")
         if "StartingItemF" in options_dict:
-            self.starting_item_F = options_dict.get("StartingItemF")
+            self.logic_settings.starting_item_F = options_dict.get("StartingItemF")
 
         # Partners
         if "StartWithPartners" in options_dict:
-            self.starting_partners.clear()
+            self.logic_settings.starting_partners.clear()
             for partner, start_with_partner in options_dict.get("StartWithPartners").items():
                 if start_with_partner:
-                    self.starting_partners.append(partner)
+                    self.logic_settings.starting_partners.append(partner)
                 if partner == "Goombario":
-                    self.start_with_goombario = start_with_partner
+                    self.logic_settings.start_with_goombario = start_with_partner
                 elif partner == "Kooper":
-                    self.start_with_kooper = start_with_partner
+                    self.logic_settings.start_with_kooper = start_with_partner
                 elif partner == "Bombette":
-                    self.start_with_bombette = start_with_partner
+                    self.logic_settings.start_with_bombette = start_with_partner
                 elif partner == "Parakarry":
-                    self.start_with_parakarry = start_with_partner
+                    self.logic_settings.start_with_parakarry = start_with_partner
                 elif partner == "Bow":
-                    self.start_with_bow = start_with_partner
+                    self.logic_settings.start_with_bow = start_with_partner
                 elif partner == "Watt":
-                    self.start_with_watt = start_with_partner
+                    self.logic_settings.start_with_watt = start_with_partner
                 elif partner == "Sushie":
-                    self.start_with_sushie = start_with_partner
+                    self.logic_settings.start_with_sushie = start_with_partner
                 elif partner == "Lakilester":
-                    self.start_with_lakilester = start_with_partner
+                    self.logic_settings.start_with_lakilester = start_with_partner
 
-        if "PartnersInDefaultLocations" in options_dict:
-            self.partners_in_default_locations = options_dict.get("PartnersInDefaultLocations")
+        if "PartnerShuffle" in options_dict:
+            self.logic_settings.partner_shuffle = options_dict.get("PartnerShuffle")
         if "PartnersAlwaysUsable" in options_dict:
-            self.partners_always_usable = options_dict.get("PartnersAlwaysUsable")
+            self.logic_settings.partners_always_usable = options_dict.get("PartnersAlwaysUsable")
         if "StartWithRandomPartners" in options_dict:
-            self.random_partners = options_dict.get("StartWithRandomPartners")
+            self.logic_settings.random_partners = options_dict.get("StartWithRandomPartners")
         if "RandomPartnersMin" in options_dict:
-            self.random_partners_min = options_dict.get("RandomPartnersMin")
+            self.logic_settings.random_partners_min = options_dict.get("RandomPartnersMin")
         if "RandomPartnersMax" in options_dict:
-            self.random_partners_max = options_dict.get("RandomPartnersMax")
+            self.logic_settings.random_partners_max = options_dict.get("RandomPartnersMax")
 
         # Pre-opened areas
         if "MagicalSeedsRequired" in options_dict:
-            self.magical_seeds_required = options_dict.get("MagicalSeedsRequired")
+            self.logic_settings.magical_seeds_required = options_dict.get("MagicalSeedsRequired")
         if "PrologueOpen" in options_dict:
-            self.prologue_open = options_dict.get("PrologueOpen")
+            self.logic_settings.prologue_open = options_dict.get("PrologueOpen")
         if "BlueHouseOpen" in options_dict:
-            self.bluehouse_open = options_dict.get("BlueHouseOpen")
+            self.logic_settings.bluehouse_open = options_dict.get("BlueHouseOpen")
         if "MtRuggedOpen" in options_dict:
-            self.mtrugged_open = options_dict.get("MtRuggedOpen")
+            self.logic_settings.mtrugged_open = options_dict.get("MtRuggedOpen")
         if "ForeverForestOpen" in options_dict:
-            self.foreverforest_open = options_dict.get("ForeverForestOpen")
+            self.logic_settings.foreverforest_open = options_dict.get("ForeverForestOpen")
         if "ToyboxOpen" in options_dict:
-            self.toybox_open = options_dict.get("ToyboxOpen")
+            self.logic_settings.toybox_open = options_dict.get("ToyboxOpen")
         if "WhaleOpen" in options_dict:
-            self.whale_open = options_dict.get("WhaleOpen")
+            self.logic_settings.whale_open = options_dict.get("WhaleOpen")
         if "Ch7BridgeVisible" in options_dict:
-            self.ch7_bridge_visible = options_dict.get("Ch7BridgeVisible")
+            self.logic_settings.ch7_bridge_visible = options_dict.get("Ch7BridgeVisible")
 
         # Goal Settings
+        if "SeedGoal" in options_dict:
+            self.logic_settings.seed_goal = options_dict.get("SeedGoal")
+        if "BowsersCastleMode" in options_dict:
+            self.logic_settings.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
         if "StarWaySpiritsNeededCnt" in options_dict:
-            self.starway_spirits_needed_count = options_dict.get("StarWaySpiritsNeededCnt")
+            self.logic_settings.starway_spirits_needed_count = options_dict.get("StarWaySpiritsNeededCnt")
         # auto-set, not changeable via settings
         #if "StarWaySpiritsNeededEnc" in options_dict:
         #    self.starway_spirits_needed_encoded = options_dict.get("StarWaySpiritsNeededEnc")
-        if "RequireSpecificSpirits" in options_dict:
-            self.require_specific_spirits = options_dict.get("RequireSpecificSpirits")
+        if "StarWayPowerStarsNeeded" in options_dict:
+            self.logic_settings.starway_powerstars_needed = options_dict.get("StarWayPowerStarsNeeded")
         if "ShuffleStarBeam" in options_dict:
-            self.shuffle_starbeam = options_dict.get("ShuffleStarBeam")
+            self.logic_settings.shuffle_starbeam = options_dict.get("ShuffleStarBeam")
         # auto-set, not changeable via settings
         #if "StarBeamArea" in options_dict:
         #    self.starbeam_location = options_dict.get("StarBeamArea")
         if "StarBeamSpiritsNeeded" in options_dict:
-            self.starbeam_spirits_needed = options_dict.get("StarBeamSpiritsNeeded")
+            self.logic_settings.starbeam_spirits_needed = options_dict.get("StarBeamSpiritsNeeded")
         if "StarBeamPowerStarsNeeded" in options_dict:
-            self.starbeam_powerstars_needed = options_dict.get("StarBeamPowerStarsNeeded")
-        if "LimitChapterLogic" in options_dict:
-            self.limit_chapter_logic = options_dict.get("LimitChapterLogic")
-        if "BowsersCastleMode" in options_dict:
-            self.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
-        if "StarWayPowerStarsNeeded" in options_dict:
-            self.starway_powerstars_needed = options_dict.get("StarWayPowerStarsNeeded")
+            self.logic_settings.starbeam_powerstars_needed = options_dict.get("StarBeamPowerStarsNeeded")
         if "StarHuntTotal" in options_dict:
-            self.star_hunt_total = options_dict.get("StarHuntTotal")
-        if "SeedGoal" in options_dict:
-            self.seed_goal = options_dict.get("SeedGoal")
+            self.logic_settings.star_hunt_total = options_dict.get("StarHuntTotal")
+        if "RequireSpecificSpirits" in options_dict:
+            self.logic_settings.require_specific_spirits = options_dict.get("RequireSpecificSpirits")
+        if "LimitChapterLogic" in options_dict:
+            self.logic_settings.limit_chapter_logic = options_dict.get("LimitChapterLogic")
 
         # Entrance Shuffle
         if "ShuffleDungeonRooms" in options_dict:
-            self.shuffle_dungeon_rooms = options_dict.get("ShuffleDungeonRooms")
+            self.logic_settings.shuffle_dungeon_rooms = options_dict.get("ShuffleDungeonRooms")
         if "ShuffleDungeonEntrances" in options_dict:
-            self.shuffle_dungeon_entrances = options_dict.get("ShuffleDungeonEntrances")
+            self.logic_settings.shuffle_dungeon_entrances = options_dict.get("ShuffleDungeonEntrances")
         if "ShuffleEntrancesByAll" in options_dict:
-            self.shuffle_entrances_by_all = options_dict.get("ShuffleEntrancesByAll")
+            self.logic_settings.shuffle_entrances_by_all = options_dict.get("ShuffleEntrancesByAll")
         if "MatchEntranceTypes" in options_dict:
-            self.match_entrance_type = options_dict.get("MatchEntranceTypes")
+            self.logic_settings.match_entrance_type = options_dict.get("MatchEntranceTypes")
         if "RandomizeOnewayEntrances" in options_dict:
-            self.random_oneway_entrances = options_dict.get("RandomizeOnewayEntrances")
+            self.logic_settings.random_oneway_entrances = options_dict.get("RandomizeOnewayEntrances")
         if "UnpairedEntrances" in options_dict:
-            self.unpaired_entrances = options_dict.get("UnpairedEntrances")
+            self.logic_settings.unpaired_entrances = options_dict.get("UnpairedEntrances")
 
         # Costs of Moves and Badges
         if "RandomBadgesBP" in options_dict:
@@ -562,9 +453,9 @@ class OptionSet:
 
         # Misc Gameplay Randomization
         if "ShuffleBlocks" in options_dict:
-            self.shuffle_blocks = options_dict.get("ShuffleBlocks")
+            self.logic_settings.shuffle_blocks = options_dict.get("ShuffleBlocks")
         if "RandomizePuzzles" in options_dict:
-            self.randomize_puzzles = options_dict.get("RandomizePuzzles")
+            self.logic_settings.randomize_puzzles = options_dict.get("RandomizePuzzles")
 
         # Map Check Tracker (static)
         #   0x1    # regular checks
@@ -584,39 +475,39 @@ class OptionSet:
         #   0x4000 # vanilla or shorten bowser's castle
         #   0x8000 # multi coin blocks
         map_tracker_bits = 0x1 + 0x2
-        if self.include_panels:
+        if self.logic_settings.include_panels:
             map_tracker_bits += 0x4
-        if self.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
+        if self.logic_settings.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
             map_tracker_bits += 0x8
-        if self.include_coins_overworld:
+        if self.logic_settings.include_coins_overworld:
             map_tracker_bits += 0x10
-        if self.include_coins_blocks:
+        if self.logic_settings.include_coins_blocks:
             map_tracker_bits += 0x20
-        if self.include_coins_favors:
+        if self.logic_settings.include_coins_favors:
             map_tracker_bits += 0x40
-        if self.include_coins_foliage:
+        if self.logic_settings.include_coins_foliage:
             map_tracker_bits += 0x80
-        if self.include_dojo:
+        if self.logic_settings.include_dojo != DojoShuffle.OFF:
             map_tracker_bits += 0x100
-        if self.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
+        if self.logic_settings.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
             map_tracker_bits += 0x200
-        if self.include_radiotradeevent:
+        if self.logic_settings.include_radiotradeevent:
             map_tracker_bits += 0x400
-        if self.include_letters_mode != IncludeLettersMode.NOT_RANDOMIZED:
+        if self.logic_settings.include_letters_mode != IncludeLettersMode.NOT_RANDOMIZED:
             map_tracker_bits += 0x800
-        if not self.foreverforest_open:
+        if not self.logic_settings.foreverforest_open:
             map_tracker_bits += 0x1000
-        if self.bowsers_castle_mode == BowserCastleMode.VANILLA:
+        if self.logic_settings.bowsers_castle_mode == BowserCastleMode.VANILLA:
             map_tracker_bits += 0x2000
-        if self.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
+        if self.logic_settings.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
             map_tracker_bits += 0x4000
-        if (    self.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
-            and self.shuffle_blocks
+        if (    self.logic_settings.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
+            and self.logic_settings.shuffle_blocks
         ):
             map_tracker_bits += 0x8000
         self.map_tracker_check_bits = map_tracker_bits
         self.map_tracker_shop_bits = 0x7
-        if self.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
+        if self.logic_settings.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
             self.map_tracker_shop_bits += 0x8
 
         # Quizmo Quizzes
@@ -1018,7 +909,7 @@ class OptionSet:
         if "KnowsHiddenBlocks" in options_dict:
             self.glitch_settings.knows_hidden_blocks = options_dict.get("KnowsHiddenBlocks")
         if "KnowsPuzzleSolutions" in options_dict:
-            if not self.randomize_puzzles:
+            if not self.logic_settings.randomize_puzzles:
                 self.glitch_settings.knows_puzzle_solutions = options_dict.get("KnowsPuzzleSolutions")
         if "ReachHighBlocksWithSuperBoots" in options_dict:
             self.glitch_settings.reach_high_blocks_with_super_boots = options_dict.get("ReachHighBlocksWithSuperBoots")
@@ -1079,6 +970,10 @@ class OptionSet:
         basic_assert("DropStarPoints", bool)
 
         basic_assert("RandomFormations", bool)
+        if "BossShuffleMode" in options_dict:
+            assert (    isinstance(options_dict["BossShuffleMode"], int)
+                    and BossShuffleMode.OFF <= options_dict["BossShuffleMode"] <= BossShuffleMode.CHAPTER_BOSSES
+            )
 
         # Custom Seed / Planned Seed / "Plandomizer"
         basic_assert("CustomSeed", bool)
@@ -1090,13 +985,19 @@ class OptionSet:
         basic_assert("IncludeCoinsFoliage", bool)
         basic_assert("IncludeCoinsFavors", bool)
         basic_assert("IncludeShops", bool)
-        basic_assert("ProgressionOnRowf", bool)
+        if "ProgressionOnRowf" in options_dict:
+            assert (    isinstance(options_dict["ProgressionOnRowf"], int)
+                    and 0 <= options_dict["ProgressionOnRowf"] <= 5
+            )
         basic_assert("ProgressionOnMerlow", bool)
         basic_assert("IncludePanels", bool)
         basic_assert("IncludeFavorsMode", int)
         basic_assert("IncludeLettersMode", int)
         basic_assert("IncludeRadioTradeEvent", bool)
-        basic_assert("IncludeDojo", bool)
+        if "IncludeDojo" in options_dict:
+            assert (    isinstance(options_dict["IncludeDojo"], int)
+                    and DojoShuffle.OFF <= options_dict["IncludeDojo"] <= DojoShuffle.INCLUDE_MASTER3
+            )
         basic_assert("KeyitemsOutsideDungeon", bool)
         basic_assert("KeyitemsOutsideChapter", bool) #NYI
 
@@ -1244,7 +1145,10 @@ class OptionSet:
                     and all(isinstance(value, bool) for value in options_dict.get("StartWithPartners").values())
                     and any(value for value in options_dict.get("StartWithPartners").values()))
 
-        basic_assert("PartnersInDefaultLocations", bool)
+        if "PartnerShuffle" in options_dict:
+            assert (    isinstance(options_dict["PartnerShuffle"], int)
+                    and PartnerShuffle.VANILLA <= options_dict["PartnerShuffle"] <= PartnerShuffle.ANYWHERE
+            )
         basic_assert("PartnersAlwaysUsable", bool)
         basic_assert("StartWithRandomPartners", bool)
         if "RandomPartnersMin" in options_dict:
@@ -1276,10 +1180,27 @@ class OptionSet:
         basic_assert("Ch7BridgeVisible", bool)
 
         # Goal Settings
+        if "SeedGoal" in options_dict:
+            assert (    isinstance(options_dict.get("SeedGoal"), int)
+                    and SeedGoal.DEFEAT_BOWSER <= options_dict.get("SeedGoal") <= SeedGoal.OPEN_STARWAY
+            )
+        basic_assert("BowsersCastleMode", int)
         if "StarWaySpiritsNeededCnt" in options_dict:
             assert (    isinstance(options_dict.get("StarWaySpiritsNeededCnt"), int)
                     and -1 <= options_dict.get("StarWaySpiritsNeededCnt") <= 7)
-        basic_assert("RequireSpecificSpirits", bool)
+        if "StarWayPowerStarsNeeded" in options_dict:
+            assert (    isinstance(options_dict.get("StarWayPowerStarsNeeded"), int)
+                    and 0 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
+            )
+            try:
+                if (    "ShuffleItems" in options_dict
+                    and not options_dict.get("ShuffleItems")
+                ):
+                    assert (options_dict.get("StarWayPowerStarsNeeded") == 0)
+            except AssertionError:
+                raise ValueError(
+                    "No item shuffle but star hunt is not a valid setting-combination!",
+                )
         basic_assert("ShuffleStarBeam", bool)
         if "StarBeamSpiritsNeeded" in options_dict:
             assert (    isinstance(options_dict.get("StarBeamSpiritsNeeded"), int)
@@ -1297,6 +1218,13 @@ class OptionSet:
                 raise ValueError(
                     "No item shuffle but star hunt is not a valid setting-combination!",
                 )
+        if "StarHuntTotal" in options_dict:
+            assert (    isinstance(options_dict.get("StarHuntTotal"), int)
+                    and 0 <= options_dict.get("StarHuntTotal") <= 120
+                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarWayPowerStarsNeeded")
+                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarBeamPowerStarsNeeded")
+            )
+        basic_assert("RequireSpecificSpirits", bool)
         if "LimitChapterLogic" in options_dict:
             assert (    isinstance(options_dict.get("LimitChapterLogic"), bool)
                     and not (    options_dict["LimitChapterLogic"]
@@ -1312,34 +1240,15 @@ class OptionSet:
                 raise ValueError(
                     "LCL does not support requiring more than zero spirits for Star Beam!",
                 )
-        basic_assert("BowsersCastleMode", int)
-        if "StarWayPowerStarsNeeded" in options_dict:
-            assert (    isinstance(options_dict.get("StarWayPowerStarsNeeded"), int)
-                    and 0 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
-            )
-            try:
-                if (    "ShuffleItems" in options_dict
-                    and not options_dict.get("ShuffleItems")
-                ):
-                    assert (options_dict.get("StarWayPowerStarsNeeded") == 0)
-            except AssertionError:
-                raise ValueError(
-                    "No item shuffle but star hunt is not a valid setting-combination!",
-                )
-        if "StarHuntTotal" in options_dict:
-            assert (    isinstance(options_dict.get("StarHuntTotal"), int)
-                    and 0 <= options_dict.get("StarHuntTotal") <= 120
-                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarWayPowerStarsNeeded")
-                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarBeamPowerStarsNeeded")
-            )
-        if "SeedGoal" in options_dict:
-            assert (    isinstance(options_dict.get("SeedGoal"), int)
-                    and SeedGoal.DEFEAT_BOWSER <= options_dict.get("SeedGoal") <= SeedGoal.OPEN_STARWAY
-            )
 
         # Entrance Shuffle
         basic_assert("ShuffleDungeonRooms", bool)
-        basic_assert("ShuffleDungeonEntrances", bool)
+        if "ShuffleDungeonEntrances" in options_dict:
+            assert (    isinstance(options_dict["ShuffleDungeonEntrances"], int)
+                    and DungeonEntranceShuffle.OFF
+                        <= options_dict["ShuffleDungeonEntrances"]
+                        <= DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
+            )
         basic_assert("ShuffleEntrancesByAll", bool)
         basic_assert("MatchEntranceTypes", bool)
         basic_assert("RandomizeOnewayEntrances", bool)
@@ -1600,14 +1509,14 @@ class OptionSet:
         return [
             # General
             load_dbkey(self.blocks_match_content, "BlocksMatchContent"),
-            load_dbkey(self.hidden_block_mode, "HiddenBlockMode"),
+            load_dbkey(self.logic_settings.hidden_block_mode, "HiddenBlockMode"),
             load_dbkey(self.allow_physics_glitches, "AllowPhysicsGlitches"),
             load_dbkey(self.badge_synergy, "BadgeSynergy"),
 
             # QOL
-            load_dbkey(self.always_speedyspin, "AlwaysSpeedySpin"),
-            load_dbkey(self.always_ispy, "AlwaysISpy"),
-            load_dbkey(self.always_peekaboo, "AlwaysPeekaboo"),
+            load_dbkey(self.logic_settings.always_speedyspin, "AlwaysSpeedySpin"),
+            load_dbkey(self.logic_settings.always_ispy, "AlwaysISpy"),
+            load_dbkey(self.logic_settings.always_peekaboo, "AlwaysPeekaboo"),
             load_dbkey(self.cutscene_mode, "CutsceneMode"),
             load_dbkey(self.fast_text_skip, "FastTextSkip"),
             load_dbkey(self.skip_epilogue, "SkipEpilogue"),
@@ -1631,22 +1540,23 @@ class OptionSet:
             load_dbkey(self.drop_starpoints, "DropStarPoints"),
 
             load_dbkey(self.random_formations, "RandomFormations"),
+            load_dbkey(self.logic_settings.boss_shuffle_mode, "BossShuffleMode"),
 
             # Item Placement
-            load_dbkey(self.shuffle_items, "ShuffleItems"),
-            load_dbkey(self.include_shops, "IncludeShops"),
-            load_dbkey(self.include_panels, "IncludePanels"),
+            load_dbkey(self.logic_settings.shuffle_items, "ShuffleItems"),
+            load_dbkey(self.logic_settings.include_shops, "IncludeShops"),
+            load_dbkey(self.logic_settings.include_panels, "IncludePanels"),
 
             # Item Pool Modification
-            load_dbkey(self.gear_shuffle_mode, "GearShuffleMode"),
-            load_dbkey(self.partner_upgrade_shuffle, "PartnerUpgradeShuffle"),
+            load_dbkey(self.logic_settings.gear_shuffle_mode, "GearShuffleMode"),
+            load_dbkey(self.logic_settings.partner_upgrade_shuffle, "PartnerUpgradeShuffle"),
 
             # Map Check Tracker (auto-set, not changeable via settings)
             load_dbkey(self.map_tracker_check_bits, "EnabledCheckBits"),
             load_dbkey(self.map_tracker_shop_bits, "EnabledShopBits"),
 
             # Item Misc
-            load_dbkey(self.cook_without_fryingpan, "CookWithoutFryingPan"),
+            load_dbkey(self.logic_settings.cook_without_fryingpan, "CookWithoutFryingPan"),
             load_dbkey(self.mystery_settings.mystery_random_choice, "RandomChoice"),
             load_dbkey(self.mystery_settings.mystery_itemA, "ItemChoiceA"),
             load_dbkey(self.mystery_settings.mystery_itemB, "ItemChoiceB"),
@@ -1657,71 +1567,71 @@ class OptionSet:
             load_dbkey(self.mystery_settings.mystery_itemG, "ItemChoiceG"),
 
             # Starting setup
-            load_dbkey(self.starting_map, "StartingMap"),
+            load_dbkey(self.logic_settings.starting_map, "StartingMap"),
             load_dbkey(self.starting_level, "StartingLevel"),
             load_dbkey(self.starting_maxhp, "StartingMaxHP"),
             load_dbkey(self.starting_maxfp, "StartingMaxFP"),
             load_dbkey(self.starting_maxbp, "StartingMaxBP"),
             load_dbkey(self.starting_starpower, "StartingStarPower"),
-            load_dbkey(self.starting_boots, "StartingBoots"),
-            load_dbkey(self.starting_hammer, "StartingHammer"),
+            load_dbkey(self.logic_settings.starting_boots, "StartingBoots"),
+            load_dbkey(self.logic_settings.starting_hammer, "StartingHammer"),
             load_dbkey(self.starting_coins, "StartingCoins"),
 
-            load_dbkey(self.starting_item_0, "StartingItem0"),
-            load_dbkey(self.starting_item_1, "StartingItem1"),
-            load_dbkey(self.starting_item_2, "StartingItem2"),
-            load_dbkey(self.starting_item_3, "StartingItem3"),
-            load_dbkey(self.starting_item_4, "StartingItem4"),
-            load_dbkey(self.starting_item_5, "StartingItem5"),
-            load_dbkey(self.starting_item_6, "StartingItem6"),
-            load_dbkey(self.starting_item_7, "StartingItem7"),
-            load_dbkey(self.starting_item_8, "StartingItem8"),
-            load_dbkey(self.starting_item_9, "StartingItem9"),
-            load_dbkey(self.starting_item_A, "StartingItemA"),
-            load_dbkey(self.starting_item_B, "StartingItemB"),
-            load_dbkey(self.starting_item_C, "StartingItemC"),
-            load_dbkey(self.starting_item_D, "StartingItemD"),
-            load_dbkey(self.starting_item_E, "StartingItemE"),
-            load_dbkey(self.starting_item_F, "StartingItemF"),
+            load_dbkey(self.logic_settings.starting_item_0, "StartingItem0"),
+            load_dbkey(self.logic_settings.starting_item_1, "StartingItem1"),
+            load_dbkey(self.logic_settings.starting_item_2, "StartingItem2"),
+            load_dbkey(self.logic_settings.starting_item_3, "StartingItem3"),
+            load_dbkey(self.logic_settings.starting_item_4, "StartingItem4"),
+            load_dbkey(self.logic_settings.starting_item_5, "StartingItem5"),
+            load_dbkey(self.logic_settings.starting_item_6, "StartingItem6"),
+            load_dbkey(self.logic_settings.starting_item_7, "StartingItem7"),
+            load_dbkey(self.logic_settings.starting_item_8, "StartingItem8"),
+            load_dbkey(self.logic_settings.starting_item_9, "StartingItem9"),
+            load_dbkey(self.logic_settings.starting_item_A, "StartingItemA"),
+            load_dbkey(self.logic_settings.starting_item_B, "StartingItemB"),
+            load_dbkey(self.logic_settings.starting_item_C, "StartingItemC"),
+            load_dbkey(self.logic_settings.starting_item_D, "StartingItemD"),
+            load_dbkey(self.logic_settings.starting_item_E, "StartingItemE"),
+            load_dbkey(self.logic_settings.starting_item_F, "StartingItemF"),
 
             # Partners
-            load_dbkey(self.start_with_goombario, "StartWithGoombario"),
-            load_dbkey(self.start_with_kooper, "StartWithKooper"),
-            load_dbkey(self.start_with_bombette, "StartWithBombette"),
-            load_dbkey(self.start_with_parakarry, "StartWithParakarry"),
-            load_dbkey(self.start_with_bow, "StartWithBow"),
-            load_dbkey(self.start_with_watt, "StartWithWatt"),
-            load_dbkey(self.start_with_sushie, "StartWithSushie"),
-            load_dbkey(self.start_with_lakilester, "StartWithLakilester"),
+            load_dbkey(self.logic_settings.start_with_goombario, "StartWithGoombario"),
+            load_dbkey(self.logic_settings.start_with_kooper, "StartWithKooper"),
+            load_dbkey(self.logic_settings.start_with_bombette, "StartWithBombette"),
+            load_dbkey(self.logic_settings.start_with_parakarry, "StartWithParakarry"),
+            load_dbkey(self.logic_settings.start_with_bow, "StartWithBow"),
+            load_dbkey(self.logic_settings.start_with_watt, "StartWithWatt"),
+            load_dbkey(self.logic_settings.start_with_sushie, "StartWithSushie"),
+            load_dbkey(self.logic_settings.start_with_lakilester, "StartWithLakilester"),
 
-            load_dbkey(self.partners_always_usable, "PartnersAlwaysUsable"),
+            load_dbkey(self.logic_settings.partners_always_usable, "PartnersAlwaysUsable"),
 
             # Pre-opened areas
-            load_dbkey(self.magical_seeds_required, "MagicalSeedsRequired"),
-            load_dbkey(self.prologue_open, "PrologueOpen"),
-            load_dbkey(self.bluehouse_open, "BlueHouseOpen"),
-            load_dbkey(self.mtrugged_open, "MtRuggedOpen"),
-            load_dbkey(self.foreverforest_open, "ForeverForestOpen"),
-            load_dbkey(self.toybox_open, "ToyboxOpen"),
-            load_dbkey(self.whale_open, "WhaleOpen"),
-            load_dbkey(self.ch7_bridge_visible, "Ch7BridgeVisible"),
+            load_dbkey(self.logic_settings.magical_seeds_required, "MagicalSeedsRequired"),
+            load_dbkey(self.logic_settings.prologue_open, "PrologueOpen"),
+            load_dbkey(self.logic_settings.bluehouse_open, "BlueHouseOpen"),
+            load_dbkey(self.logic_settings.mtrugged_open, "MtRuggedOpen"),
+            load_dbkey(self.logic_settings.foreverforest_open, "ForeverForestOpen"),
+            load_dbkey(self.logic_settings.toybox_open, "ToyboxOpen"),
+            load_dbkey(self.logic_settings.whale_open, "WhaleOpen"),
+            load_dbkey(self.logic_settings.ch7_bridge_visible, "Ch7BridgeVisible"),
 
             # Goal Settings
-            load_dbkey(self.starway_spirits_needed_count, "StarWaySpiritsNeededCnt"),
-            load_dbkey(self.starway_spirits_needed_encoded, "StarWaySpiritsNeededEnc"),
-            load_dbkey(self.starbeam_location, "StarBeamArea"),
-            load_dbkey(self.starbeam_spirits_needed, "StarBeamSpiritsNeeded"),
-            load_dbkey(self.starbeam_powerstars_needed, "StarBeamPowerStarsNeeded"),
-            load_dbkey(self.bowsers_castle_mode, "BowsersCastleMode"),
-            load_dbkey(self.starway_powerstars_needed, "StarWayPowerStarsNeeded"),
-            load_dbkey(self.star_hunt_total, "StarHuntTotal"),
-            load_dbkey(self.seed_goal, "SeedGoal"),
+            load_dbkey(self.logic_settings.starway_spirits_needed_count, "StarWaySpiritsNeededCnt"),
+            load_dbkey(self.logic_settings.starway_spirits_needed_encoded, "StarWaySpiritsNeededEnc"),
+            load_dbkey(self.logic_settings.starbeam_location, "StarBeamArea"),
+            load_dbkey(self.logic_settings.starbeam_spirits_needed, "StarBeamSpiritsNeeded"),
+            load_dbkey(self.logic_settings.starbeam_powerstars_needed, "StarBeamPowerStarsNeeded"),
+            load_dbkey(self.logic_settings.bowsers_castle_mode, "BowsersCastleMode"),
+            load_dbkey(self.logic_settings.starway_powerstars_needed, "StarWayPowerStarsNeeded"),
+            load_dbkey(self.logic_settings.star_hunt_total, "StarHuntTotal"),
+            load_dbkey(self.logic_settings.seed_goal, "SeedGoal"),
 
             # Entrance Shuffle
-            load_dbkey(self.shuffle_dungeon_rooms, "ShuffleDungeonRooms"),
-            load_dbkey(self.shuffle_dungeon_entrances, "ShuffleDungeonEntrances"),
-            load_dbkey(self.shuffle_entrances_by_all, "ShuffleEntrancesByAll"),
-            load_dbkey(self.match_entrance_type, "MatchEntranceTypes"),
+            load_dbkey(self.logic_settings.shuffle_dungeon_rooms, "ShuffleDungeonRooms"),
+            load_dbkey(self.logic_settings.shuffle_dungeon_entrances, "ShuffleDungeonEntrances"),
+            load_dbkey(self.logic_settings.shuffle_entrances_by_all, "ShuffleEntrancesByAll"),
+            load_dbkey(self.logic_settings.match_entrance_type, "MatchEntranceTypes"),
 
             # Quizmo Quizzes
             load_dbkey(self.random_quiz, "RandomQuiz"),
@@ -1753,7 +1663,7 @@ class OptionSet:
         """Returns this OptionSet's starting items as list of Item objects."""
         starting_items = []
 
-        for self_key, self_value in self.__dict__.items():
+        for self_key, self_value in self.logic_settings.__dict__.items():
             if self_key.startswith("starting_item"):
                 item_id = self_value
                 if item_id != 0:
@@ -1779,10 +1689,10 @@ class OptionSet:
         #self.StarRodModVersion = StarRodModVersion
         #self.SettingsString = SettingsString
 
-        web_settings["AlwaysSpeedySpin"] = self.always_speedyspin
-        web_settings["AlwaysISpy"] = self.always_ispy
-        web_settings["AlwaysPeekaboo"] = self.always_peekaboo
-        web_settings["HiddenBlockMode"] = self.hidden_block_mode
+        web_settings["AlwaysSpeedySpin"] = self.logic_settings.always_speedyspin
+        web_settings["AlwaysISpy"] = self.logic_settings.always_ispy
+        web_settings["AlwaysPeekaboo"] = self.logic_settings.always_peekaboo
+        web_settings["HiddenBlockMode"] = self.logic_settings.hidden_block_mode
         web_settings["AllowPhysicsGlitches"] = self.allow_physics_glitches
         web_settings["StartingCoins"] = self.starting_coins
         web_settings["CapEnemyXP"] = self.cap_enemy_xp
@@ -1792,25 +1702,26 @@ class OptionSet:
         web_settings["OHKO"] = self.ohko
         web_settings["NoSaveBlocks"] = self.no_save_blocks
         web_settings["NoHeartBlocks"] = self.no_heart_blocks
-        web_settings["MagicalSeedsRequired"] = self.magical_seeds_required
-        web_settings["BlueHouseOpen"] = self.bluehouse_open
-        web_settings["ToyboxOpen"] = self.toybox_open
-        web_settings["WhaleOpen"] = self.whale_open
-        web_settings["Ch7BridgeVisible"] = self.ch7_bridge_visible
-        web_settings["MtRuggedOpen"] = self.mtrugged_open
-        web_settings["ForeverForestOpen"] = self.foreverforest_open
+        web_settings["MagicalSeedsRequired"] = self.logic_settings.magical_seeds_required
+        web_settings["BlueHouseOpen"] = self.logic_settings.bluehouse_open
+        web_settings["ToyboxOpen"] = self.logic_settings.toybox_open
+        web_settings["WhaleOpen"] = self.logic_settings.whale_open
+        web_settings["Ch7BridgeVisible"] = self.logic_settings.ch7_bridge_visible
+        web_settings["MtRuggedOpen"] = self.logic_settings.mtrugged_open
+        web_settings["ForeverForestOpen"] = self.logic_settings.foreverforest_open
         web_settings["ShuffleChapterDifficulty"] = self.shuffle_chapter_difficulty
         web_settings["RandomFormations"] = self.random_formations
-        web_settings["ShuffleItems"] = self.shuffle_items
-        web_settings["IncludeCoinsOverworld"] = self.include_coins_overworld
-        web_settings["IncludeCoinsBlocks"] = self.include_coins_blocks
-        web_settings["IncludeCoinsFavors"] = self.include_coins_favors
-        web_settings["IncludeCoinsFoliage"] = self.include_coins_foliage
-        web_settings["IncludeShops"] = self.include_shops
-        web_settings["IncludePanels"] = self.include_panels
-        web_settings["IncludeFavorsMode"] = int(self.include_favors_mode)
-        web_settings["IncludeLettersMode"] = int(self.include_letters_mode)
-        web_settings["KeyitemsOutsideDungeon"] = self.keyitems_outside_dungeon
+        web_settings["BossShuffleMode"] = self.logic_settings.boss_shuffle_mode
+        web_settings["ShuffleItems"] = self.logic_settings.shuffle_items
+        web_settings["IncludeCoinsOverworld"] = self.logic_settings.include_coins_overworld
+        web_settings["IncludeCoinsBlocks"] = self.logic_settings.include_coins_blocks
+        web_settings["IncludeCoinsFavors"] = self.logic_settings.include_coins_favors
+        web_settings["IncludeCoinsFoliage"] = self.logic_settings.include_coins_foliage
+        web_settings["IncludeShops"] = self.logic_settings.include_shops
+        web_settings["IncludePanels"] = self.logic_settings.include_panels
+        web_settings["IncludeFavorsMode"] = int(self.logic_settings.include_favors_mode)
+        web_settings["IncludeLettersMode"] = int(self.logic_settings.include_letters_mode)
+        web_settings["KeyitemsOutsideDungeon"] = self.logic_settings.keyitems_outside_dungeon
         web_settings["ProgressiveScaling"] = self.progressive_scaling
         web_settings["RandomBadgesBP"] = int(self.random_badges_bp)
         web_settings["RandomBadgesFP"] = int(self.random_badges_fp)
@@ -1819,16 +1730,18 @@ class OptionSet:
         web_settings["RandomQuiz"] = self.random_quiz
         web_settings["SkipQuiz"] = self.skip_quiz
         web_settings["QuizmoAlwaysAppears"] = self.quizmo_always_appears
-        web_settings["PartnersInDefaultLocations"] = self.partners_in_default_locations
-        web_settings["PartnersAlwaysUsable"] = self.partners_always_usable
-        web_settings["StartWithRandomPartners"] = self.random_partners
+
+        web_settings["PartnerShuffle"] = self.logic_settings.partner_shuffle
+        web_settings["PartnersAlwaysUsable"] = self.logic_settings.partners_always_usable
+        web_settings["StartWithRandomPartners"] = self.logic_settings.random_partners
+
         web_settings["WriteSpoilerLog"] = self.write_spoilerlog
         web_settings["RomanNumerals"] = self.roman_numerals
-        web_settings["IncludeDojo"] = self.include_dojo
-        web_settings["BowsersCastleMode"] = self.bowsers_castle_mode
+        web_settings["IncludeDojo"] = self.logic_settings.include_dojo
+        web_settings["BowsersCastleMode"] = self.logic_settings.bowsers_castle_mode
         web_settings["CutsceneMode"] = self.cutscene_mode
         web_settings["SkipEpilogue"] = self.skip_epilogue
-        web_settings["IncludeRadioTradeEvent"] = self.include_radiotradeevent
+        web_settings["IncludeRadioTradeEvent"] = self.logic_settings.include_radiotradeevent
 
         web_settings["ColorMode"] = self.color_mode
         web_settings["Box5ColorA"] = self.color_a
@@ -1861,61 +1774,61 @@ class OptionSet:
         web_settings["EnemiesSetting"] = self.palette_settings.enemies_setting
         web_settings["HammerSetting"] = self.palette_settings.hammer_setting
 
-        web_settings["StartingMap"] = self.starting_map
+        web_settings["StartingMap"] = self.logic_settings.starting_map
         web_settings["StartingMaxHP"] = self.starting_maxhp
         web_settings["StartingMaxFP"] = self.starting_maxfp
         web_settings["StartingMaxBP"] = self.starting_maxbp
         web_settings["StartingLevel"] = self.starting_level
         web_settings["StartingStarPower"] = self.starting_starpower
-        web_settings["StartingBoots"] = self.starting_boots
-        web_settings["StartingHammer"] = self.starting_hammer
+        web_settings["StartingBoots"] = self.logic_settings.starting_boots
+        web_settings["StartingHammer"] = self.logic_settings.starting_hammer
 
-        web_settings["StartingItem0"] = self.starting_item_0
-        web_settings["StartingItem1"] = self.starting_item_1
-        web_settings["StartingItem2"] = self.starting_item_2
-        web_settings["StartingItem3"] = self.starting_item_3
-        web_settings["StartingItem4"] = self.starting_item_4
-        web_settings["StartingItem5"] = self.starting_item_5
-        web_settings["StartingItem6"] = self.starting_item_6
-        web_settings["StartingItem7"] = self.starting_item_7
-        web_settings["StartingItem8"] = self.starting_item_8
-        web_settings["StartingItem9"] = self.starting_item_9
-        web_settings["StartingItemA"] = self.starting_item_A
-        web_settings["StartingItemB"] = self.starting_item_B
-        web_settings["StartingItemC"] = self.starting_item_C
-        web_settings["StartingItemD"] = self.starting_item_D
-        web_settings["StartingItemE"] = self.starting_item_E
-        web_settings["StartingItemF"] = self.starting_item_F
-        web_settings["StartWithRandomItems"] = self.random_starting_items
-        web_settings["RandomItemsMin"] = self.random_starting_items_min
-        web_settings["RandomItemsMax"] = self.random_starting_items_max
+        web_settings["StartingItem0"] = self.logic_settings.starting_item_0
+        web_settings["StartingItem1"] = self.logic_settings.starting_item_1
+        web_settings["StartingItem2"] = self.logic_settings.starting_item_2
+        web_settings["StartingItem3"] = self.logic_settings.starting_item_3
+        web_settings["StartingItem4"] = self.logic_settings.starting_item_4
+        web_settings["StartingItem5"] = self.logic_settings.starting_item_5
+        web_settings["StartingItem6"] = self.logic_settings.starting_item_6
+        web_settings["StartingItem7"] = self.logic_settings.starting_item_7
+        web_settings["StartingItem8"] = self.logic_settings.starting_item_8
+        web_settings["StartingItem9"] = self.logic_settings.starting_item_9
+        web_settings["StartingItemA"] = self.logic_settings.starting_item_A
+        web_settings["StartingItemB"] = self.logic_settings.starting_item_B
+        web_settings["StartingItemC"] = self.logic_settings.starting_item_C
+        web_settings["StartingItemD"] = self.logic_settings.starting_item_D
+        web_settings["StartingItemE"] = self.logic_settings.starting_item_E
+        web_settings["StartingItemF"] = self.logic_settings.starting_item_F
+        web_settings["StartWithRandomItems"] = self.logic_settings.random_starting_items
+        web_settings["RandomItemsMin"] = self.logic_settings.random_starting_items_min
+        web_settings["RandomItemsMax"] = self.logic_settings.random_starting_items_max
 
-        web_settings["StarWaySpiritsNeededCnt"] = self.starway_spirits_needed_count
-        web_settings["RequireSpecificSpirits"] = self.require_specific_spirits
-        web_settings["ShuffleStarBeam"] = self.shuffle_starbeam
-        web_settings["StarBeamSpiritsNeeded"] = self.starbeam_spirits_needed
-        web_settings["StarBeamPowerStarsNeeded"] = self.starbeam_powerstars_needed
-        web_settings["LimitChapterLogic"] = self.limit_chapter_logic
+        web_settings["StarWaySpiritsNeededCnt"] = self.logic_settings.starway_spirits_needed_count
+        web_settings["RequireSpecificSpirits"] = self.logic_settings.require_specific_spirits
+        web_settings["ShuffleStarBeam"] = self.logic_settings.shuffle_starbeam
+        web_settings["StarBeamSpiritsNeeded"] = self.logic_settings.starbeam_spirits_needed
+        web_settings["StarBeamPowerStarsNeeded"] = self.logic_settings.starbeam_powerstars_needed
+        web_settings["LimitChapterLogic"] = self.logic_settings.limit_chapter_logic
         web_settings["BadgeSynergy"] = self.badge_synergy
         web_settings["FoliageItemHints"] = self.foliage_item_hints
         web_settings["RandomText"] = self.random_text
         web_settings["NoHealingItems"] = self.no_healing_items
         web_settings["DropStarPoints"] = self.drop_starpoints
 
-        web_settings["ItemQuality"] = self.item_quality
-        web_settings["RandomConsumableMode"] = int(self.randomize_consumable_mode)
-        web_settings["AddItemPouches"] = self.add_item_pouches
-        web_settings["ItemTrapMode"] = int(self.itemtrap_mode)
-        web_settings["AddUnusedBadgeDuplicates"] = self.add_unused_badge_duplicates
-        web_settings["AddBetaItems"] = self.add_beta_items
-        web_settings["ProgressiveBadges"] = self.progressive_badges
-        web_settings["BadgePoolLimit"] = self.badge_pool_limit
+        web_settings["ItemQuality"] = self.logic_settings.item_quality
+        web_settings["RandomConsumableMode"] = int(self.logic_settings.randomize_consumable_mode)
+        web_settings["AddItemPouches"] = self.logic_settings.add_item_pouches
+        web_settings["ItemTrapMode"] = int(self.logic_settings.itemtrap_mode)
+        web_settings["AddUnusedBadgeDuplicates"] = self.logic_settings.add_unused_badge_duplicates
+        web_settings["AddBetaItems"] = self.logic_settings.add_beta_items
+        web_settings["ProgressiveBadges"] = self.logic_settings.progressive_badges
+        web_settings["BadgePoolLimit"] = self.logic_settings.badge_pool_limit
 
         web_settings["RandomChoice"] = self.mystery_settings.mystery_random_choice
         web_settings["MysteryRandomPick"] = self.mystery_settings.mystery_random_pick
         web_settings["AllowItemHints"] = self.allow_itemhints
-        web_settings["ShuffleBlocks"] = self.shuffle_blocks
-        web_settings["RandomizePuzzles"] = self.randomize_puzzles
+        web_settings["ShuffleBlocks"] = self.logic_settings.shuffle_blocks
+        web_settings["RandomizePuzzles"] = self.logic_settings.randomize_puzzles
         web_settings["RandomPitch"] = self.random_pitch
         web_settings["MuteDangerBeeps"] = self.mute_danger_beeps
         web_settings["ShuffleMusic"] = self.shuffle_music
@@ -1923,36 +1836,36 @@ class OptionSet:
         web_settings["ShuffleJingles"] = self.shuffle_jingles
         web_settings["PawnsEnabled"] = self.mp_pawns_enabled
         web_settings["MultiworldEnabled"] = self.mp_multiworld_enabled
-        web_settings["GearShuffleMode"] = self.gear_shuffle_mode
-        web_settings["PartnerUpgradeShuffle"] = self.partner_upgrade_shuffle
+        web_settings["GearShuffleMode"] = self.logic_settings.gear_shuffle_mode
+        web_settings["PartnerUpgradeShuffle"] = self.logic_settings.partner_upgrade_shuffle
         web_settings["HiddenPanelVisibility"] = self.hiddenpanel_visibility
-        web_settings["CookWithoutFryingPan"] = self.cook_without_fryingpan
-        web_settings["RipCheatoItemsInLogic"] = self.ripcheato_items_in_logic
+        web_settings["CookWithoutFryingPan"] = self.logic_settings.cook_without_fryingpan
+        web_settings["RipCheatoItemsInLogic"] = self.logic_settings.ripcheato_items_in_logic
         web_settings["MerlowRewardPricing"] = int(self.merlow_reward_pricing)
-        web_settings["PrologueOpen"] = self.prologue_open
-        web_settings["ProgressionOnRowf"] = self.progression_on_rowf
-        web_settings["ProgressionOnMerlow"] = self.progression_on_merlow
-        web_settings["ShuffleDungeonEntrances"] = self.shuffle_dungeon_entrances
+        web_settings["PrologueOpen"] = self.logic_settings.prologue_open
+        web_settings["ProgressionOnRowf"] = self.logic_settings.progression_on_rowf
+        web_settings["ProgressionOnMerlow"] = self.logic_settings.progression_on_merlow
+        web_settings["ShuffleDungeonEntrances"] = self.logic_settings.shuffle_dungeon_entrances
         web_settings["MirrorMode"] = self.mirror_mode
         web_settings["StaticMapMirroring"] = self.static_mirroring
 
-        web_settings["SeedGoal"] = self.seed_goal
-        web_settings["StarWayPowerStarsNeeded"] = self.starway_powerstars_needed
-        web_settings["StarHuntTotal"] = self.star_hunt_total
+        web_settings["SeedGoal"] = self.logic_settings.seed_goal
+        web_settings["StarWayPowerStarsNeeded"] = self.logic_settings.starway_powerstars_needed
+        web_settings["StarHuntTotal"] = self.logic_settings.star_hunt_total
 
-        if self.random_partners:
-            web_settings["RandomPartnersMax"] = self.random_partners_min
-            web_settings["RandomPartnersMin"] = self.random_partners_max
+        if self.logic_settings.random_partners:
+            web_settings["RandomPartnersMax"] = self.logic_settings.random_partners_min
+            web_settings["RandomPartnersMin"] = self.logic_settings.random_partners_max
         else:
             web_settings["StartWithPartners"] = {
-                "Goombario": self.start_with_goombario,
-                "Kooper": self.start_with_kooper,
-                "Bombette": self.start_with_bombette,
-                "Parakarry": self.start_with_parakarry,
-                "Bow": self.start_with_bow,
-                "Watt": self.start_with_watt,
-                "Sushie": self.start_with_sushie,
-                "Lakilester": self.start_with_lakilester,
+                "Goombario": self.logic_settings.start_with_goombario,
+                "Kooper": self.logic_settings.start_with_kooper,
+                "Bombette": self.logic_settings.start_with_bombette,
+                "Parakarry": self.logic_settings.start_with_parakarry,
+                "Bow": self.logic_settings.start_with_bow,
+                "Watt": self.logic_settings.start_with_watt,
+                "Sushie": self.logic_settings.start_with_sushie,
+                "Lakilester": self.logic_settings.start_with_lakilester,
             }
 
         # Glitches: Goomba Region
