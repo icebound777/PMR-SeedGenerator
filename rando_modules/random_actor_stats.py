@@ -3,8 +3,11 @@ import random
 from db.actor_attribute import ActorAttribute
 from db.actor_params import ActorParam
 
+from metadata.formations_meta import bossactor_chapter_map
+
 def get_shuffled_chapter_difficulty(
     shuffle_chapter_difficulty:bool,
+    boss_chapter_map: dict[int, int], # e.g. General Guy -> chapter 1, so {4: 1}
     progressive_scaling:bool,
     starting_chapter:int
 ):
@@ -33,9 +36,16 @@ def get_shuffled_chapter_difficulty(
             actor_param.chapter_8,
         ]
 
+        # add actor to all enemy stats
         if not actor_name in all_enemy_stats:
             all_enemy_stats[actor_name] = {}
-        all_enemy_stats[actor_name]["NativeChapter"] = actor_native_chapter
+            if actor_name in [x for x1 in bossactor_chapter_map.values() for x in x1]:
+                # is boss
+                all_enemy_stats[actor_name]["NativeChapter"] = boss_chapter_map[actor_native_chapter]
+            else:
+                # is not boss
+                all_enemy_stats[actor_name]["NativeChapter"] = actor_native_chapter
+
         all_enemy_stats[actor_name][actor_stat_name] = actor_stat_values
 
     # Random chance for enemy promotion: 20%
@@ -61,8 +71,8 @@ def get_shuffled_chapter_difficulty(
     # Chapter 8 is never shuffled
     chapter_dict[8] = 8
 
+    # Check if the chapter we are starting in is too high of a level: adjust it
     if starting_chapter != 0 and chapter_dict[starting_chapter] > 3:
-        # Chapter we are starting in is too high of a level: adjust it
         original_chapters = list(chapter_dict.keys())
         random.shuffle(original_chapters)
         for original_chapter in original_chapters:

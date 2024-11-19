@@ -32,7 +32,11 @@ def shuffle_dungeon_entrances(
         ("SAM_10/1", "PRA_01/0"), # Crystal Palace
     ]
 
-    if shuffle_bowsers_castle:
+    if shuffle_bowsers_castle and starway_spirits_needed_count < 7:
+        # cannot be used with requiring 7 spirits for star way, because
+        # otherwise you'd lock one of the 7 dungeons needed to open star way
+        # behind star way itself
+
         # determine Bowser Castle target entrance (due to BC mode this can vary)
         bc_node_id = "KPA_60/4"
 

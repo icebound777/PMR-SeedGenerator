@@ -31,6 +31,7 @@ from db.actor_attribute import create_actor_attributes
 from db.move            import create_moves
 from db.quiz            import create_quizzes
 from db.puzzle          import create_puzzles
+from db.battle          import create_battles
 from db.palette         import Palette, create_palettes
 from rando_modules.random_palettes     \
     import get_randomized_coinpalette, \
@@ -64,6 +65,7 @@ def init_randomizer(rebuild_database=False):
         create_moves()
         create_quizzes()
         create_puzzles()
+        create_battles()
 
 
 def set_cheap_shopitems(placed_items):
@@ -134,6 +136,7 @@ def write_data_to_rom(
     music_list:list,
     mapmirror_list:list,
     puzzle_list:list,
+    battle_list:list,
     seed_id=random.randint(0, 0xFFFFFFFF)
 ):
     """
@@ -156,6 +159,7 @@ def write_data_to_rom(
         music_list=music_list,
         mapmirror_list=mapmirror_list,
         puzzle_list=puzzle_list,
+        battle_list=battle_list,
     )
 
     # Update table info with variable data
@@ -265,6 +269,7 @@ def write_data_to_array(
     music_list:list,
     mapmirror_list:list,
     puzzle_list:list,
+    battle_list:list,
     seed_id: int
 ):
     """
@@ -288,6 +293,7 @@ def write_data_to_array(
         music_list=music_list,
         mapmirror_list=mapmirror_list,
         puzzle_list=puzzle_list,
+        battle_list=battle_list
     )
 
     # Update table info with variable data
@@ -615,6 +621,7 @@ def web_randomizer(jsonSettings, world_graph):
         music_list=random_seed.music_list,
         mapmirror_list=random_seed.static_map_mirroring,
         puzzle_list=random_seed.puzzle_minigame_data,
+        battle_list=random_seed.battles,
         seed_id=random_seed.seed_hash
     )
     patch_file = io.BytesIO(operations)
@@ -649,6 +656,7 @@ def web_randomizer(jsonSettings, world_graph):
         move_costs=random_seed.move_costs,
         block_locations=random_seed.placed_blocks,
         puzzle_solutions=random_seed.puzzle_minigame_data,
+        battle_shuffles=random_seed.battles,
         spoilerlog_additions=random_seed.spoilerlog_additions,
         seed_hash_items=random_seed.seed_hash_items
     )
@@ -788,6 +796,7 @@ def main_randomizer(args):
             music_list=random_seed.music_list,
             mapmirror_list=random_seed.static_map_mirroring,
             puzzle_list=random_seed.puzzle_minigame_data,
+            battle_list=random_seed.battles,
             seed_id=random_seed.seed_hash
         )
 
@@ -807,6 +816,7 @@ def main_randomizer(args):
             move_costs=random_seed.move_costs,
             block_locations=random_seed.placed_blocks,
             puzzle_solutions=random_seed.puzzle_minigame_data,
+            battle_shuffles=random_seed.battles,
             spoilerlog_additions=random_seed.spoilerlog_additions,
             seed_hash_items=random_seed.seed_hash_items
         )

@@ -263,6 +263,7 @@ def adjust(world_graph, new_edges=None, edges_to_remove=None):
             for old_edge in world_graph[node_id]["edge_list"]:
                 if (    old_edge["from"]["map"] == origin_map_name
                     and old_edge["from"]["id"]  == origin_entrance_id
+                    and old_edge["mapchange"] is True
                 ):
                     old_target_map_info = old_edge["to"]
                     break

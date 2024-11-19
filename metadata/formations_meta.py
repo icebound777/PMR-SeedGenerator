@@ -937,3 +937,59 @@ front_row_enemies = {
     "27-08": "27_EmptyMoleHole",
     "27-09": "27_SlotMachineStart",
 }
+
+bossactor_chapter_map = {
+    1: [
+        "07_FakeBowser",
+        "07_KoopaBrosTower",
+        "07_GNinjakoopa",
+        "07_RNinjakoopa",
+        "07_BNinjakoopa",
+        "07_YNinjakoopa",
+    ],
+    2: [
+        "0C_Chomp",
+        "0C_Tutankoopa",
+    ],
+    3: [
+        "0E_TubbasHeart",
+        "0E_TubbaBlubba",
+    ],
+    4: [
+        "11_GeneralGuy",
+        "11_ToyTank",
+        "11_LightBulb",
+        "29_ShySquad",
+        "2A_StiltGuy",
+        "2B_ShyStack",
+        "2C_ShyGuy",
+        "2D_ShySquad",
+    ],
+    5: [
+        "17_LavaPiranha",
+        "17_PetitPiranha",
+        "17_LavaBud",
+        "17_PetitPiranhaBomb",
+    ],
+    6: [
+        "19_HuffNPuff",
+        "19_TuffPuff",
+    ],
+    7: [
+        "20_CrystalKing",
+        "20_CrystalClone",
+        "20_CrystalBitA",
+        "20_CrystalBitB",
+        "20_CrystalBitC",
+    ],
+}
+
+chapter_bossname_map = {
+    1: "KoopaBros",
+    2: "Tutankoopa",
+    3: "TubbasHeart",
+    4: "GeneralGuy",
+    5: "LavaPiranha",
+    6: "HuffNPuff",
+    7: "CrystalKing",
+}

@@ -12,7 +12,8 @@ from rando_modules.random_blocks import get_block_placement
 from rando_enums.enum_options import (
     GearShuffleMode,
     BowserCastleMode,
-    SeedGoal
+    SeedGoal,
+    BossShuffleMode,
 )
 
 # Imports: Modify Bowser's Castle
@@ -56,6 +57,9 @@ from maps.graph_edges.partner_upgrade_shuffle.edges_pra import edges_pra_add_par
 from maps.graph_edges.partner_upgrade_shuffle.edges_sam import edges_sam_add_partnerupgrades
 from maps.graph_edges.partner_upgrade_shuffle.edges_sbk import edges_sbk_add_partnerupgrades
 from maps.graph_edges.partner_upgrade_shuffle.edges_tik import edges_tik_add_partnerupgrades
+
+# Imports: Battle Shuffle
+from rando_modules.random_battles import get_boss_battles
 
 # Imports: Glitched logic
 from models.options.OptionSet import GlitchOptionSet
@@ -1085,12 +1089,12 @@ def get_glitched_logic(
 
 def adjust_shop_logic(
     world_graph: dict,
-    rowf_in_logic:bool,
+    rowf_sets_in_logic:int,
     merlow_in_logic:bool,
     ripcheato_cnt_in_logic:int
 ):
-    if not rowf_in_logic:
-        world_graph = _set_rowf_out_of_logic(world_graph)
+    if rowf_sets_in_logic < 5:
+        world_graph = _set_rowf_out_of_logic(world_graph, rowf_sets_in_logic)
     if not merlow_in_logic:
         world_graph = _set_merlow_out_of_logic(world_graph)
 
@@ -1099,13 +1103,48 @@ def adjust_shop_logic(
     return world_graph
 
 
-def _set_rowf_out_of_logic(world_graph:dict):
+def _set_rowf_out_of_logic(
+    world_graph: dict,
+    rowf_sets_in_logic: int
+):
     remove_rowf_edges = []
     adjusted_rowf_edges = []
 
-    for edge in world_graph["MAC_01/0"]["edge_list"]:
+    if rowf_sets_in_logic == 4:
+        nodeid_modify = "MAC_01/ShopBadgeK"
+        exclude_edge_targets = [
+            "ShopBadgeN"
+        ]
+    elif rowf_sets_in_logic == 3:
+        nodeid_modify = "MAC_01/ShopBadgeH"
+        exclude_edge_targets = [
+            "ShopBadgeK"
+        ]
+    elif rowf_sets_in_logic == 2:
+        nodeid_modify = "MAC_01/ShopBadgeE"
+        exclude_edge_targets = [
+            "ShopBadgeH"
+        ]
+    elif rowf_sets_in_logic == 1:
+        nodeid_modify = "MAC_01/0"
+        exclude_edge_targets = [
+            "ShopBadgeE"
+        ]
+    else: # == 0
+        nodeid_modify = "MAC_01/0"
+        exclude_edge_targets = [
+            "ShopBadgeA",
+            "ShopBadgeB",
+            "ShopBadgeC",
+            "ShopBadgeD",
+            "ShopBadgeE",
+        ]
+
+    for edge in world_graph[nodeid_modify]["edge_list"]:
         if (    isinstance(edge["to"]["id"], str)
-            and edge["to"]["id"].startswith("ShopBadge")
+            and any(True for x in exclude_edge_targets
+                    if x == edge["to"]["id"]
+            )
         ):
             remove_rowf_edges.append(deepcopy(edge))
 
@@ -1182,3 +1221,72 @@ def _adjust_rip_cheato_logic(world_graph: dict, checks_in_logic:int):
         )
 
     return world_graph
+
+
+def get_shuffled_battles(
+    world_graph: dict,
+    boss_shuffle_mode: BossShuffleMode
+) -> tuple[dict, list[tuple[int, int]], dict[int, int]]:
+    battles_setup, boss_chapter_map = get_boss_battles(boss_shuffle_mode)
+
+    if boss_shuffle_mode != BossShuffleMode.OFF and boss_chapter_map[1] != 1:
+        # boss shuffle is active, and Koopa Bros are placed outside of ch. 1:
+        # move their battle logic to the other chapter
+
+        boss_requirements: dict = {}
+        adjusted_boss_edges: list = []
+        remove_boss_edges: list = []
+
+        # gather Koopa Bros boss edge and remove their battle logic
+        for edge in world_graph["TRD_10/0"]["edge_list"]:
+            if (edge["to"]["map"], edge["to"]["id"]) == ("TRD_10", 0):
+                remove_boss_edges.append(deepcopy(edge))
+                koopa_bros_requirements = deepcopy(edge["reqs"])
+
+                new_edge = deepcopy(edge)
+                new_edge["reqs"] = []
+                adjusted_boss_edges.append(new_edge)
+
+                break
+
+        # gather boss edge of the new Koopa Bros location and add their
+        # battle logic
+        if boss_chapter_map[1] == 2:
+            boss_node_id = "ISK_16/0"
+            boss_edge_target = "ISK_16/0"
+        elif boss_chapter_map[1] == 3:
+            boss_node_id = "ARN_11/0"
+            boss_edge_target = "ARN_11/0"
+        elif boss_chapter_map[1] == 4:
+            boss_node_id = "OMO_15/0"
+            boss_edge_target = "OMO_15/0"
+        elif boss_chapter_map[1] == 5:
+            boss_node_id = "KZN_19/1"
+            boss_edge_target = "KZN_19/2"
+        elif boss_chapter_map[1] == 6:
+            boss_node_id = "FLO_21/0"
+            boss_edge_target = "FLO_21/0"
+        elif boss_chapter_map[1] == 7:
+            boss_node_id = "PRA_32/0"
+            boss_edge_target = "PRA_32/0"
+        else:
+            raise ValueError(f"Boss Shuffle has placed no Koopa Bros!: {boss_chapter_map}")
+
+        for edge in world_graph[boss_node_id]["edge_list"]:
+            if (f"{edge['to']['map']}/{edge['to']['id']}") == boss_edge_target:
+                remove_boss_edges.append(deepcopy(edge))
+
+                new_edge = deepcopy(edge)
+                new_edge["reqs"].extend(koopa_bros_requirements)
+                adjusted_boss_edges.append(new_edge)
+
+                break
+
+        world_graph, _ = adjust(
+            world_graph,
+            new_edges=adjusted_boss_edges,
+            edges_to_remove=remove_boss_edges
+        )
+
+
+    return world_graph, battles_setup, boss_chapter_map
