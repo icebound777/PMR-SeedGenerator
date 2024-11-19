@@ -21,7 +21,7 @@ edges_kpa_add_fast_flood_room_kooper = [
     #? Left Water Puzzle Door Bottom Right Upper Half -> Left Water Puzzle Door Bombable Wall
     {"from": {"map": "KPA_133", "id": 2}, "to": {"map": "KPA_133", "id": 3}, "reqs": [["Lakilester"],["Bombette"], ["can_climb_steps"]], "mapchange": False},
     #* Left Water Puzzle Door Bombable Wall -> ItemA (BowserCastleKey)
-    {"from": {"map": "KPA_133", "id": 3}, "to": {"map": "KPA_133", "id": "ItemA"}, "reqs": [["Lakilester"],["Kooper"]], "mapchange": False},
+    {"from": {"map": "KPA_133", "id": 3}, "to": {"map": "KPA_133", "id": "ItemA"}, "reqs": [["Lakilester"],["Kooper"],["Boots"]], "mapchange": False},
 
     # KPA_134 Right Water Puzzle
     #? Right Water Puzzle Door Bottom Left -> Right Water Puzzle Door Bottom Left Upper Half
