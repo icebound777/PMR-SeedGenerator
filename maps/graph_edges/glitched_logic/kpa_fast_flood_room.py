@@ -1,6 +1,8 @@
 """
 This file represents edges of the world graph that have to be added
 for Glitched Logic: Fast Flood Room
+
+Kooperless Flood Room: https://www.youtube.com/watch?v=uWv5VNh7NtI
 """
 edges_kpa_add_fast_flood_room_kooperless = [
     # KPA_133 Left Water Puzzle
