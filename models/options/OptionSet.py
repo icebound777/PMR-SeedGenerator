@@ -49,18 +49,6 @@ class OptionSet:
         # Difficulty and Enemies
         self.shuffle_chapter_difficulty = False
         self.progressive_scaling = bool(get_option_default_value("ProgressiveScaling"))
-        self.manual_scaling = False
-        self.manual_scales = {
-            "Chapter1": 1,
-            "Chapter2": 2,
-            "Chapter3": 3,
-            "Chapter4": 4,
-            "Chapter5": 5,
-            "Chapter6": 6,
-            "Chapter7": 7,
-            "Chapter8": 8
-        }
-
         self.challenge_mode = bool(get_option_default_value("ChallengeMode"))
         self.cap_enemy_xp = bool(get_option_default_value("CapEnemyXP"))
         self.xp_multiplier = get_option_default_value("XPMultiplier")
@@ -184,10 +172,6 @@ class OptionSet:
             self.shuffle_chapter_difficulty = options_dict.get("ShuffleChapterDifficulty")
         if "ProgressiveScaling" in options_dict:
             self.progressive_scaling = options_dict.get("ProgressiveScaling")
-        if "ManualScaling" in options_dict:
-            self.manual_scaling = options_dict.get("ManualScaling")
-        if "ManualScales" in options_dict:
-            self.manual_scales = options_dict.get("ManualScales")
 
         if "ChallengeMode" in options_dict:
             self.challenge_mode = options_dict.get("ChallengeMode")
@@ -966,23 +950,6 @@ class OptionSet:
         # Difficulty and Enemies
         basic_assert("ShuffleChapterDifficulty", bool)
         basic_assert("ProgressiveScaling", bool)
-        basic_assert("ManualScaling", bool)
-        if "ManualScales" in options_dict:
-            permitted_values = [
-                "Chapter1",
-                "Chapter2",
-                "Chapter3",
-                "Chapter4",
-                "Chapter5",
-                "Chapter6",
-                "Chapter7",
-                "Chapter8"
-            ]
-            assert (    isinstance(options_dict.get("ManualScales"), dict)
-                    and all(key in permitted_values for key in options_dict.get("ManualScales"))
-                    and all(isinstance(value, int) for value in options_dict.get("ManualScales").values())
-                    and any(value for value in options_dict.get("ManualScales").values()))
-
         basic_assert("ChallengeMode", bool)
         basic_assert("CapEnemyXP", bool)
         basic_assert("XPMultiplier", (int,float))
@@ -1548,7 +1515,6 @@ class OptionSet:
 
             # Difficulty and Enemies
             load_dbkey(self.progressive_scaling, "ProgressiveScaling"),
-
             load_dbkey(self.challenge_mode, "ChallengeMode"),
             load_dbkey(self.cap_enemy_xp, "CapEnemyXP"),
             load_dbkey(self.xp_multiplier, "XPMultiplier"),
@@ -1740,8 +1706,6 @@ class OptionSet:
         web_settings["IncludeLettersMode"] = int(self.logic_settings.include_letters_mode)
         web_settings["KeyitemsOutsideDungeon"] = self.logic_settings.keyitems_outside_dungeon
         web_settings["ProgressiveScaling"] = self.progressive_scaling
-        web_settings["ManualScaling"] = self.manual_scaling
-        web_settings["ManualScales"] = self.manual_scales
         web_settings["RandomBadgesBP"] = int(self.random_badges_bp)
         web_settings["RandomBadgesFP"] = int(self.random_badges_fp)
         web_settings["RandomPartnerFP"] = int(self.random_partner_fp)

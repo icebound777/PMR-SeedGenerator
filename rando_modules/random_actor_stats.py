@@ -9,9 +9,7 @@ def get_shuffled_chapter_difficulty(
     shuffle_chapter_difficulty:bool,
     boss_chapter_map: dict[int, int], # e.g. General Guy -> chapter 1, so {4: 1}
     progressive_scaling:bool,
-    starting_chapter:int,
-    manual_scaling:bool,
-    manual_chapter_scales:list[int]
+    starting_chapter:int
 ):
     # Load and reorganize actor param data into different format
     # format example:
@@ -66,8 +64,6 @@ def get_shuffled_chapter_difficulty(
     chapters_to_shuffle = [1,2,3,4,5,6,7]
     if shuffle_chapter_difficulty:
         random.shuffle(chapters_to_shuffle)
-    elif manual_scaling:
-        chapters_to_shuffle = manual_chapter_scales.values()
 
     chapter_dict = {}
     for old_chapter_number, new_chapter_number in enumerate(chapters_to_shuffle):
@@ -76,7 +72,7 @@ def get_shuffled_chapter_difficulty(
     chapter_dict[8] = 8
 
     # Check if the chapter we are starting in is too high of a level: adjust it
-    if manual_scaling == False and starting_chapter != 0 and chapter_dict[starting_chapter] > 3:
+    if starting_chapter != 0 and chapter_dict[starting_chapter] > 3:
         original_chapters = list(chapter_dict.keys())
         random.shuffle(original_chapters)
         for original_chapter in original_chapters:
@@ -95,7 +91,7 @@ def get_shuffled_chapter_difficulty(
         if (
                actor_name not in all_enemy_stats
             or actor_stat_name not in all_enemy_stats[actor_name]
-            or (not progressive_scaling and not shuffle_chapter_difficulty and not manual_scaling)
+            or (not progressive_scaling and not shuffle_chapter_difficulty)
         ):
             # not supposed to be random, so write defaults
             value = actor_attribute.value
