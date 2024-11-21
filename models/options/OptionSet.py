@@ -1,6 +1,7 @@
 from db.item import Item
 from db.option import Option
 
+from random import randint
 from rando_enums.enum_ingame import StarSpirits
 from rando_enums.enum_options import (
     BowserCastleMode,
@@ -48,7 +49,6 @@ class OptionSet:
         # Difficulty and Enemies
         self.shuffle_chapter_difficulty = False
         self.progressive_scaling = bool(get_option_default_value("ProgressiveScaling"))
-
         self.challenge_mode = bool(get_option_default_value("ChallengeMode"))
         self.cap_enemy_xp = bool(get_option_default_value("CapEnemyXP"))
         self.xp_multiplier = get_option_default_value("XPMultiplier")
@@ -72,7 +72,7 @@ class OptionSet:
         self.mystery_settings = MysteryOptionSet()
 
         # Starting setup
-        self.starting_level = get_option_default_value("StartingLevel")
+        self.starting_level = self.random_starting_level = get_option_default_value("StartingLevel")
         self.starting_maxhp = get_option_default_value("StartingMaxHP")
         self.starting_maxfp = get_option_default_value("StartingMaxFP")
         self.starting_maxbp = get_option_default_value("StartingMaxBP")
@@ -284,6 +284,8 @@ class OptionSet:
         # Starting setup
         if "StartingMap" in options_dict:
             self.logic_settings.starting_map = options_dict.get("StartingMap")
+        if "StartingLevel" in options_dict:
+            self.random_starting_level = options_dict.get("StartingLevel")
         if "StartingMaxHP" in options_dict:
             self.starting_maxhp = options_dict.get("StartingMaxHP")
         if "StartingMaxFP" in options_dict:
@@ -1513,7 +1515,6 @@ class OptionSet:
 
             # Difficulty and Enemies
             load_dbkey(self.progressive_scaling, "ProgressiveScaling"),
-
             load_dbkey(self.challenge_mode, "ChallengeMode"),
             load_dbkey(self.cap_enemy_xp, "CapEnemyXP"),
             load_dbkey(self.xp_multiplier, "XPMultiplier"),
