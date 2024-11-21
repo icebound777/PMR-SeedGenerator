@@ -497,7 +497,6 @@ def set_starway_requirements(
         ):
             world_graph["HOS_01/0"]["edge_list"][index]["reqs"].extend(added_requirements)
             #print(world_graph["HOS_01/0"]["edge_list"][index]["reqs"])
-            break
 
     # add requirements to chapter 8 jr. troopa and both bowser battles, so the
     # logic doesn't require going through them too early
