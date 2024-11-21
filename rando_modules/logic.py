@@ -876,8 +876,17 @@ def _algo_assumed_fill(
         ]
         for upgrade in pool_upgrade_items:
             pool_other_items.remove(upgrade)
-
         random.shuffle(pool_upgrade_items)
+
+        available_superblock_locations = len([
+            item_node
+            for item_node in all_item_nodes
+            if "RandomBlockItem" in item_node.identifier
+        ])
+        while len(pool_upgrade_items) > available_superblock_locations:
+            pool_upgrade_items.pop()
+            pool_other_items.append(_get_random_taycet_item())
+
         for item_node in all_item_nodes:
             if item_node.current_item:
                 continue
@@ -886,6 +895,8 @@ def _algo_assumed_fill(
                 item_node.current_item = pool_upgrade_items.pop()
             if not pool_upgrade_items:
                 break
+        if pool_upgrade_items:
+            raise ValueError(f"Could not place all Partner Upgrade items! Items left: {len(pool_upgrade_items)}")
 
 
     while pool_combined_progression_items:
