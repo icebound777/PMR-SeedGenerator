@@ -1,8 +1,18 @@
 # Changelog
 
+## 0.28.1 (beta)
+
+### Bug Fixes
+
+* Fix a bug that caused the chapter 3 boss battle's post-battle cutscene to sometimes not play out properly during `Boss Shuffle: On`, causing a softlock
+* Fix a bug that caused the seed generator to fail at item placement while `Shuffle Partners` was set to `Shuffle among vanilla locations`, if other settings were very restrictive (like jumpless and hammerless start plus Goombario as only partner)
+* Fix a bug that caused the seed generator to fail at item placement while `Seed Goal: Open Starway`, `Dungeon Entrance Shuffle: All + Bowser's Castle`, and `Partner Upgrades: Shuffle among super block locations` were all active
+* Stop an uninteractible Bow-NPC from spawning when re-visiting Lady Bow's Room atop Boo's Mansion during `Cutscene Mode: Minimal`
+* Fix a crash during the Crystal Palace fake Bombettes puzzle if re-entering the puzzle with a non-Bombette partner out. Fixed by resetting the bombable wall in this niche scenario
+
 ## 0.28.0 (beta)
 
-### Feature Changes
+### Feature Changes (0.28.0)
 
 * `Boss Shuffle` option:
   * Allows shuffling which boss is encountered at the end of each dungeon area. The map and cutscenes are unaffected by this, but a different boss will load upon fading into the battle.
@@ -39,25 +49,25 @@
   * It happened quite often during these seeds that the first hammer/boots upgrade (respectively) could be found super early, somewhat defeating the point of these settings. This change tries to combat this. While it will still happen that you find these gear upgrades right away, the chances of that happening should be lower now.
   * Does not affect seeds that are made with neither `Hammerless Start` nor `Jumpless Start` settings.
 
-### Logic changes
+### Logic changes (0.28.0)
 
 * Reaching the top of Shooting Star Summit now expects having the Boots (formerly expected Boots or Parakarry)
 * Fixed logic always expecting Parakarry or Boots for reaching the vanilla location of the Odd Key item
 * Fixed logic not requiring being able to climb ledges in Gusty Gulch, while there are very obvious ledges preventing Mario from continuing (only affected glitched logic seeds)
 
-### Quality of Life
+### Quality of Life (0.28.0)
 
 * Adjusted the Pulse Stone key item
   * Beeping now turns off permanently after using tricks to enter the Dry Dry Ruins entrance loading zone without raising the ruins
 
-### Miscellaneous
+### Miscellaneous (0.28.0)
 
 * Spoiler log
   * Moved `Ruined Castle Grounds - Muss T. Letter Reward` from the `Peachs Castle Grounds` area to the `Toad Town` area
   * Moved `Hijacked Castle Entrance - Hidden Block` from the `Peachs Castle Grounds` area to the `Peachs Castle` area
   * The `Peachs Castle Grounds` area is a bit weirdly laid out, so these changes were made to make finding these two locations within the spoiler log easier
 
-### Additional Technical Changelog
+### Additional Technical Changelog (0.28.0)
 
 * Yaml settings changes:
   * Changed `ProgressionOnRowf`
