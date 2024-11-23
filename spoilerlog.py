@@ -86,6 +86,7 @@ def write_spoiler_log(
         spoiler_dict["entrances"] = spoilerlog_additions["entrances"]
 
     # Add item locations
+    spoiler_dict["items"]: dict[str, dict[str, str]] = dict()
     for node in sorted_by_area:
         area_name = verbose_area_names.get(node.map_area.name[:3])
         area_name = area_name.replace("'", "")
@@ -122,10 +123,10 @@ def write_spoiler_log(
                 currency = "sp"
             current_item_name = f"{current_item_name} ({price} {currency})"
 
-        if area_name not in spoiler_dict:
-            spoiler_dict[area_name] = dict()
-        spoiler_dict[area_name][f"{map_verbose_name} - {item_location}"] = \
-            current_item_name
+        if area_name not in spoiler_dict["items"]:
+            spoiler_dict["items"][area_name]: dict[str, str] = dict()
+        location = f"{map_verbose_name} - {item_location}"
+        spoiler_dict["items"][area_name][location] = current_item_name
 
     # Add puzzle solutions
     if spoilerlog_additions and spoilerlog_additions.get("puzzle_solutions"):
