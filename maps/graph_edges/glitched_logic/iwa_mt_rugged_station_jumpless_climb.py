@@ -9,5 +9,5 @@ edges_iwa_add_mt_rugged_station_jumpless_climb_bombette= [
 
 edges_iwa_add_mt_rugged_station_jumpless_climb_laki= [
     #? Train Station Ride The Train -> Train Station Exit Top Right
-    {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": 1}, "reqs": [["Lakilester"], ["SpeedySpin"],["Hammer"]], "mapchange": False},
+    {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": 1}, "reqs": [["Lakilester"], ["SpeedySpin"], ["Hammer"]], "mapchange": False},
 ]
