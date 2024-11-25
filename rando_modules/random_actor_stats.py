@@ -71,16 +71,17 @@ def get_shuffled_chapter_difficulty(
     # Chapter 8 is never shuffled
     chapter_dict[8] = 8
 
-    # Check if the chapter we are starting in is too high of a level: adjust it
-    if starting_chapter != 0 and chapter_dict[starting_chapter] > 3:
-        original_chapters = list(chapter_dict.keys())
-        random.shuffle(original_chapters)
-        for original_chapter in original_chapters:
-            if chapter_dict[original_chapter] <= 3:
-                swap_chapter = chapter_dict[starting_chapter]
-                chapter_dict[starting_chapter] = chapter_dict[original_chapter]
-                chapter_dict[original_chapter] = swap_chapter
-                break
+    if shuffle_chapter_difficulty:
+        # Check if the chapter we are starting in is too high of a level: adjust it
+        if starting_chapter != 0 and chapter_dict[starting_chapter] > 3:
+            original_chapters = list(chapter_dict.keys())
+            random.shuffle(original_chapters)
+            for original_chapter in original_chapters:
+                if chapter_dict[original_chapter] <= 3:
+                    swap_chapter = chapter_dict[starting_chapter]
+                    chapter_dict[starting_chapter] = chapter_dict[original_chapter]
+                    chapter_dict[original_chapter] = swap_chapter
+                    break
 
     new_enemy_stats = []
 
