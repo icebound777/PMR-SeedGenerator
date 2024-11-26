@@ -60,14 +60,15 @@ def get_shuffled_chapter_difficulty(
         if all_enemy_stats[actor_name]["Promoted"]:
             print(f"Promoted {actor_name}")
 
-    # Randomize chapter order
-    chapters_to_shuffle = [1,2,3,4,5,6,7]
+    # Randomize chapter difficulties
+    chapter_difficulties = [1,2,3,4,5,6,7]
     if shuffle_chapter_difficulty:
-        random.shuffle(chapters_to_shuffle)
+        random.shuffle(chapter_difficulties)
 
+    # Assign difficulties to chapters
     chapter_dict = {}
-    for old_chapter_number, new_chapter_number in enumerate(chapters_to_shuffle):
-        chapter_dict[old_chapter_number + 1] = new_chapter_number
+    for chapter_number, new_difficulty in enumerate(chapter_difficulties):
+        chapter_dict[chapter_number + 1] = new_difficulty
     # Chapter 8 is never shuffled
     chapter_dict[8] = 8
 
