@@ -48,17 +48,56 @@ def get_shuffled_chapter_difficulty(
 
         all_enemy_stats[actor_name][actor_stat_name] = actor_stat_values
 
-    # Random chance for enemy promotion: 20%
-    for actor_name in all_enemy_stats:
-        if not shuffle_chapter_difficulty:
-            all_enemy_stats[actor_name]["Promoted"] = False
-        else:
-            #all_enemy_stats[actor_name]["Promoted"] = (random.random() <= 0.2)
-            all_enemy_stats[actor_name]["Promoted"] = False
+    # Randomly promote enemies to higher scaling
+    _random_enemy_promotions(
+        all_enemy_stats,
+        shuffle_chapter_difficulty
+    )
 
-    for actor_name in all_enemy_stats:
-        if all_enemy_stats[actor_name]["Promoted"]:
-            print(f"Promoted {actor_name}")
+    # Pair chapter numbers with chapter difficulties
+    chapter_dict = _assign_chapter_difficulties(
+        shuffle_chapter_difficulty,
+        starting_chapter,
+    )
+
+    # Set enemy stats according to chapter difficulties
+    new_enemy_stats = []
+    for actor_attribute in ActorAttribute.select():
+        dbkey = actor_attribute.get_key()
+        actor_name = actor_attribute.actor_name
+        actor_stat_name = actor_attribute.attribute
+        if (
+               actor_name not in all_enemy_stats
+            or actor_stat_name not in all_enemy_stats[actor_name]
+            or (not progressive_scaling and not shuffle_chapter_difficulty)
+        ):
+            # not supposed to be random, so write defaults
+            value = actor_attribute.value
+        else:
+            native_chapter = all_enemy_stats[actor_name]["NativeChapter"]
+            if native_chapter == -1:
+                # Special case for Dojo / Kent
+                native_chapter = 1
+            value = int(all_enemy_stats[actor_name][actor_stat_name][chapter_dict.get(native_chapter) - 1])
+            if all_enemy_stats[actor_name]["Promoted"]:
+                value = int(all_enemy_stats[actor_name][actor_stat_name][chapter_dict.get(native_chapter) + 1])
+
+        new_enemy_stats.append((dbkey, value))
+
+    return new_enemy_stats, chapter_dict
+
+
+def _assign_chapter_difficulties(
+    shuffle_chapter_difficulty: bool,
+    starting_chapter: int,
+) -> dict[int, int]:
+    """
+    Pair chapter numbers with chapter difficulties according to given settings,
+    and returns a dictionary representing these pairings.
+    The values set here are of no relevance if chapter scaling is set to
+    progressive.
+    """
+    chapter_dict: dict[int, int] = {}
 
     # Randomize chapter difficulties
     chapter_difficulties = [1,2,3,4,5,6,7]
@@ -84,28 +123,25 @@ def get_shuffled_chapter_difficulty(
                     chapter_dict[original_chapter] = swap_chapter
                     break
 
-    new_enemy_stats = []
+    return chapter_dict
 
-    for actor_attribute in ActorAttribute.select():
-        dbkey = actor_attribute.get_key()
-        actor_name = actor_attribute.actor_name
-        actor_stat_name = actor_attribute.attribute
-        if (
-               actor_name not in all_enemy_stats
-            or actor_stat_name not in all_enemy_stats[actor_name]
-            or (not progressive_scaling and not shuffle_chapter_difficulty)
-        ):
-            # not supposed to be random, so write defaults
-            value = actor_attribute.value
+
+def _random_enemy_promotions(
+    all_enemy_stats: dict,
+    shuffle_chapter_difficulty: bool
+) -> None:
+    """
+    Randomly choose enemies to be promoted, that is to be scaled up by one
+    chapter difficulty.
+    """
+    for actor_name in all_enemy_stats:
+        if not shuffle_chapter_difficulty:
+            all_enemy_stats[actor_name]["Promoted"] = False
         else:
-            native_chapter = all_enemy_stats[actor_name]["NativeChapter"]
-            if native_chapter == -1:
-                # Special case for Dojo / Kent
-                native_chapter = 1
-            value = int(all_enemy_stats[actor_name][actor_stat_name][chapter_dict.get(native_chapter) - 1])
-            if all_enemy_stats[actor_name]["Promoted"]:
-                value = int(all_enemy_stats[actor_name][actor_stat_name][chapter_dict.get(native_chapter) + 1])
+            # Random chance for enemy promotion: 20%
+            #all_enemy_stats[actor_name]["Promoted"] = (random.random() <= 0.2)
+            all_enemy_stats[actor_name]["Promoted"] = False
 
-        new_enemy_stats.append((dbkey, value))
-
-    return new_enemy_stats, chapter_dict
+    for actor_name in all_enemy_stats:
+        if all_enemy_stats[actor_name]["Promoted"]:
+            print(f"Promoted {actor_name}")
