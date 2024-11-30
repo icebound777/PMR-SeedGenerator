@@ -49,7 +49,11 @@ def write_spoiler_log(
         spoiler_dict["difficulty"] = "progressive"
     else:
         spoiler_dict["difficulty"] = dict()
-        for old_chapter, new_chapter in random_chapter_difficulty.items():
+        chapter_tuples = [
+            (old_chapter, new_chapter) for old_chapter, new_chapter in random_chapter_difficulty.items()
+        ]
+        chapter_tuples.sort(key = lambda tuple: tuple[0])
+        for old_chapter, new_chapter in chapter_tuples:
             spoiler_dict["difficulty"][f"chapter {old_chapter}"] = new_chapter
 
     # Add shuffled battles
