@@ -63,7 +63,12 @@ from metadata.item_general import seed_hash_item_names
 from db.item import Item
 
 class RandomSeed:
-    def __init__(self, rando_settings: OptionSet, seed_value=None) -> None:
+    def __init__(
+        self,
+        rando_settings: OptionSet,
+        seed_value: int = None,
+        plando_data: dict = None
+    ) -> None:
 
         self.rando_settings = rando_settings
         self.starting_partners = []
@@ -84,6 +89,10 @@ class RandomSeed:
         self.puzzle_minigame_data = []
         self.item_spheres_dict = None
         self.spoilerlog_additions = {}
+        if plando_data is None:
+            self.plando_data: dict = dict()
+        else:
+            self.plando_data: dict = plando_data
 
         if seed_value is None:
             self.seed_value = random.randint(0, 0xFFFFFFFF)
@@ -363,7 +372,8 @@ class RandomSeed:
             self.rando_settings.shuffle_chapter_difficulty,
             boss_chapter_map,
             self.rando_settings.progressive_scaling,
-            starting_chapter
+            starting_chapter,
+            self.plando_data.get("difficulty"),
         )
 
         # Randomize enemy battle formations

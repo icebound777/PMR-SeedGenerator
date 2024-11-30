@@ -9,7 +9,8 @@ def get_shuffled_chapter_difficulty(
     shuffle_chapter_difficulty:bool,
     boss_chapter_map: dict[int, int], # e.g. General Guy -> chapter 1, so {4: 1}
     progressive_scaling:bool,
-    starting_chapter:int
+    starting_chapter: int,
+    plando_difficulty: dict[int, int] | None,
 ):
     # Load and reorganize actor param data into different format
     # format example:
@@ -56,8 +57,9 @@ def get_shuffled_chapter_difficulty(
 
     # Pair chapter numbers with chapter difficulties
     chapter_dict = _assign_chapter_difficulties(
-        shuffle_chapter_difficulty,
-        starting_chapter,
+        shuffle_chapter_difficulty = shuffle_chapter_difficulty,
+        starting_chapter = starting_chapter,
+        plando_difficulty = plando_difficulty,
     )
 
     # Set enemy stats according to chapter difficulties
@@ -90,6 +92,7 @@ def get_shuffled_chapter_difficulty(
 def _assign_chapter_difficulties(
     shuffle_chapter_difficulty: bool,
     starting_chapter: int,
+    plando_difficulty: dict[int, int] | None,
 ) -> dict[int, int]:
     """
     Pair chapter numbers with chapter difficulties according to given settings,
@@ -97,21 +100,27 @@ def _assign_chapter_difficulties(
     The values set here are of no relevance if chapter scaling is set to
     progressive.
     """
+    chapter_difficulties = [1,2,3,4,5,6,7]
     chapter_dict: dict[int, int] = {}
 
-    # Randomize chapter difficulties
-    chapter_difficulties = [1,2,3,4,5,6,7]
-    if shuffle_chapter_difficulty:
+    if not shuffle_chapter_difficulty:
+        # Vanilla difficulty
+        chapter_dict = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8}
+
+        if plando_difficulty:
+            for k, v in plando_difficulty.items():
+                chapter_dict[k] = v
+
+    elif shuffle_chapter_difficulty and not plando_difficulty:
+        # Shuffle chapter difficulty, making sure the starting chapter is not
+        # harder than ch3 difficulty
         random.shuffle(chapter_difficulties)
 
-    # Assign difficulties to chapters
-    chapter_dict = {}
-    for chapter_number, new_difficulty in enumerate(chapter_difficulties):
-        chapter_dict[chapter_number + 1] = new_difficulty
-    # Chapter 8 is never shuffled
-    chapter_dict[8] = 8
+        for chapter_number, new_difficulty in enumerate(chapter_difficulties):
+            chapter_dict[chapter_number + 1] = new_difficulty
+        # Chapter 8 is never shuffled
+        chapter_dict[8] = 8
 
-    if shuffle_chapter_difficulty:
         # Check if the chapter we are starting in is too high of a level: adjust it
         if starting_chapter != 0 and chapter_dict[starting_chapter] > 3:
             original_chapters = list(chapter_dict.keys())
@@ -122,6 +131,49 @@ def _assign_chapter_difficulties(
                     chapter_dict[starting_chapter] = chapter_dict[original_chapter]
                     chapter_dict[original_chapter] = swap_chapter
                     break
+
+    elif shuffle_chapter_difficulty and plando_difficulty:
+        # Force plando difficulty, then fill any remaining chapters with
+        # difficulties that are not already set, if able
+        if len(plando_difficulty) == 7:
+            # All chapters plando'd
+            chapter_dict = plando_difficulty
+        else:
+            # Not all chapters plando'd
+            for x in plando_difficulty.values():
+                if x in chapter_difficulties:
+                    chapter_difficulties.remove(x)
+
+            not_plandod_chapters = [
+                x for x in range(1, 8)
+                if x not in plando_difficulty.keys()
+            ]
+
+            # Check if the chapter we are starting in is not plando'd:
+            # if it's not, and the plando has not already placed the
+            # difficulties of 1, 2, and 3 anywhere, force one of those
+            # difficulties into the starting chapter
+            if (    starting_chapter != 0
+                and starting_chapter not in plando_difficulty
+                and any([x <= 3 for x in chapter_difficulties])
+            ):
+                starting_difficulty = random.choice([
+                    x for x in chapter_difficulties
+                    if x <= 3
+                ])
+                chapter_dict[starting_chapter] = starting_difficulty
+                chapter_difficulties.remove(starting_difficulty)
+                not_plandod_chapters.remove(starting_chapter)
+
+            random.shuffle(chapter_difficulties)
+
+            while not_plandod_chapters and chapter_difficulties:
+                chapter_dict[not_plandod_chapters.pop()] = chapter_difficulties.pop()
+
+            chapter_dict.update(plando_difficulty)
+
+        # Chapter 8 is never shuffled
+        chapter_dict[8] = 8
 
     return chapter_dict
 

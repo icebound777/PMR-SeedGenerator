@@ -38,6 +38,9 @@ from rando_modules.random_palettes     \
            get_randomized_palettes
 from rando_modules.random_audio import get_randomized_audio
 
+from models.PlandoParsingError import PlandoParsingError
+from plandomizer.plando_validator import validate_from_filepath
+
 
 BASE_MOD_VERSION = "0.10.0 (beta)"
 BASE_MOD_MD5 = "10785ABD05C36F4C6EEF27A80AE03642"
@@ -690,14 +693,25 @@ def main_randomizer(args):
 
     rando_settings = None
     rando_seed = None
+    plando_data = None
 
     write_to_rom = True
 
     try:
         opts, args = getopt.gnu_getopt(
             args,
-            'hdc:t:s:S:rv',
-            ['help', 'dry-run', 'config-file=', 'targetmod=', 'spoilerlog=', 'seed=', 'rebuild-db', 'version']
+            "hdc:t:s:S:rvp:",
+            [
+                "help",
+                "dry-run",
+                "config-file=",
+                "targetmod=",
+                "spoilerlog=",
+                "seed=",
+                "rebuild-db",
+                "version",
+                "plando-file=",
+            ]
         )
         for opt, arg in opts:
             # Print usage
@@ -748,6 +762,18 @@ def main_randomizer(args):
             if opt in ["-S", "--seed"]:
                 rando_seed = int(arg)
 
+            # Plando file for pre-setting usually randomized data
+            if opt in ["-p", "--plando-file"]:
+                plando_data, warnings_and_errors = validate_from_filepath(arg)
+                plando_errors = warnings_and_errors["errors"]
+                if plando_errors:
+                    raise PlandoParsingError(f"Could not parse plando file validly! Reported errors: {plando_errors}")
+                plando_warnings = warnings_and_errors["warnings"]
+                if plando_warnings:
+                    print("Plando-Validator warnings:")
+                    for warn in plando_warnings:
+                        print(f"    {warn}")
+
         for arg in args:
             # Output modded and randomized file
             rando_outputfile = arg
@@ -773,7 +799,7 @@ def main_randomizer(args):
     #
     init_randomizer(rebuild_database=False)
 
-    random_seed = RandomSeed(rando_settings, rando_seed)
+    random_seed = RandomSeed(rando_settings, rando_seed, plando_data)
     random_seed.generate()
 
     # Write data to ROM
