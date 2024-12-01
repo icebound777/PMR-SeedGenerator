@@ -272,6 +272,7 @@ HammerlessPleasantPathBridgeUltraBootsParakarry : false
 InvisibleBridgeClipLzs                          : false
 InvisibleBridgeClipLaki                         : false
 KooperlessPleasantPathThunderBolt               : false
+JumplessKoopaVillageBluePipe                    : false
 
 BombettelessKbfFpPlusLZS                        : false
 BombettelessKbfFpPlusLaki                       : false
@@ -322,6 +323,7 @@ TubbasTableLakiJumpClock                        : false
 TubbasTableUltraBoots                           : false
 TubbasTableLakiJumpStudy                        : false
 TubbasCastleSuperBootsSkip                      : false
+JumplessMegaRush                                : false
 ParakarrylessMegaRush                           : false
 
 ParakarrylessBlueBuildingStarPiece              : false
