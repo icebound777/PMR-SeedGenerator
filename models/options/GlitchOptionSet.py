@@ -95,6 +95,7 @@ class GlitchOptionSet():
         self.tubbas_table_ultra_boots = False
         self.tubbas_table_laki_jump_study = False
         self.tubbas_castle_super_boots_skip = False
+        self.jumpless_mega_rush = False
         self.parakarryless_mega_rush = False
 
         self.parakarryless_blue_building_star_piece = False
