@@ -131,6 +131,8 @@ from maps.graph_edges.glitched_logic.nok_invisible_bridge_clip import \
     edges_nok_add_invisible_bridge_clip_laki, edges_nok_add_invisible_bridge_clip_lzs
 from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_thunderbolt import \
     edges_nok_add_kooperless_thunderbolt
+from maps.graph_edges.glitched_logic.nok_jumpless_koopa_village_blue_pipe import \
+    edges_nok_add_jumpless_koopa_village_blue_pipe
 
 # Glitched Logic - Koopa Bros Fortress
 from maps.graph_edges.glitched_logic.nok_bombetteless_kbf_fp_plus import \
@@ -859,6 +861,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_nok_add_invisible_bridge_clip_lzs)
     if glitch_settings.kooperless_pleasant_path_thunderbolt:
         all_new_edges.extend(edges_nok_add_kooperless_thunderbolt)
+    if glitch_settings.jumpless_koopa_village_blue_pipe:
+        all_new_edges.extend(edges_nok_add_jumpless_koopa_village_blue_pipe)
 
     # Koopa Bros Fortress
     if glitch_settings.bombetteless_kbf_fp_plus_laki:
