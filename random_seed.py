@@ -390,7 +390,8 @@ class RandomSeed:
             self.rando_settings.random_badges_bp,
             self.rando_settings.random_badges_fp,
             self.rando_settings.random_partner_fp,
-            self.rando_settings.random_starpower_sp
+            self.rando_settings.random_starpower_sp,
+            self.plando_data.get("move_costs"),
         )
 
         # Build item hint db
