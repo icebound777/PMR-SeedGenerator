@@ -44,6 +44,7 @@ class GlitchOptionSet():
         self.invisible_bridge_clip_lzs = False
         self.invisible_bridge_clip_laki = False
         self.kooperless_pleasant_path_thunderbolt = False
+        self.jumpless_koopa_village_blue_pipe = False
 
         self.bombetteless_kbf_fp_plus_lzs = False
         self.bombetteless_kbf_fp_plus_laki = False

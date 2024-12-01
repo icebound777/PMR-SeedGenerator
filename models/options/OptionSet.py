@@ -683,6 +683,8 @@ class OptionSet:
             self.glitch_settings.invisible_bridge_clip_laki = options_dict.get("InvisibleBridgeClipLaki")
         if "KooperlessPleasantPathThunderBolt" in options_dict:
             self.glitch_settings.kooperless_pleasant_path_thunderbolt = options_dict.get("KooperlessPleasantPathThunderBolt")
+        if "JumplessKoopaVillageBluePipe" in options_dict:
+            self.glitch_settings.jumpless_koopa_village_blue_pipe = options_dict.get("JumplessKoopaVillageBluePipe")
 
         if "BombettelessKbfFpPlusLZS" in options_dict:
             self.glitch_settings.bombetteless_kbf_fp_plus_lzs = options_dict.get("BombettelessKbfFpPlusLZS")
@@ -1398,6 +1400,7 @@ class OptionSet:
         basic_assert("InvisibleBridgeClipLzs", bool)
         basic_assert("InvisibleBridgeClipLaki", bool)
         basic_assert("KooperlessPleasantPathThunderBolt", bool)
+        basic_assert("JumplessKoopaVillageBluePipe", bool)
 
         basic_assert("BombettelessKbfFpPlusLZS", bool)
         basic_assert("BombettelessKbfFpPlusLaki", bool)
@@ -1945,6 +1948,7 @@ class OptionSet:
         web_settings["InvisibleBridgeClipLzs"]= self.glitch_settings.invisible_bridge_clip_lzs
         web_settings["InvisibleBridgeClipLaki"] = self.glitch_settings.invisible_bridge_clip_laki
         web_settings["KooperlessPleasantPathThunderBolt"] = self.glitch_settings.kooperless_pleasant_path_thunderbolt
+        web_settings["JumplessKoopaVillageBluePipe"] = self.glitch_settings.jumpless_koopa_village_blue_pipe
 
         # Glitches: Koopa Bros Fortress
         web_settings["BombettelessKbfFpPlusLZS"] = self.glitch_settings.bombetteless_kbf_fp_plus_lzs
