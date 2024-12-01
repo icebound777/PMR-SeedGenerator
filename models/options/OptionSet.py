@@ -779,6 +779,8 @@ class OptionSet:
             self.glitch_settings.tubbas_table_laki_jump_study = options_dict.get("TubbasTableLakiJumpStudy")
         if "TubbasCastleSuperBootsSkip" in options_dict:
             self.glitch_settings.tubbas_castle_super_boots_skip = options_dict.get("TubbasCastleSuperBootsSkip")
+        if "JumplessMegaRush" in options_dict:
+            self.glitch_settings.jumpless_mega_rush = options_dict.get("JumplessMegaRush")
         if "ParakarrylessMegaRush" in options_dict:
             self.glitch_settings.parakarryless_mega_rush = options_dict.get("ParakarrylessMegaRush")
 
@@ -1448,6 +1450,7 @@ class OptionSet:
         basic_assert("TubbasTableUltraBoots", bool)
         basic_assert("TubbasTableLakiJumpStudy", bool)
         basic_assert("TubbasCastleSuperBootsSkip", bool)
+        basic_assert("JumplessMegaRush", bool)
         basic_assert("ParakarrylessMegaRush", bool)
 
         basic_assert("ParakarrylessBlueBuildingStarPiece", bool)
@@ -2000,6 +2003,7 @@ class OptionSet:
         web_settings["TubbasTableLakiJumpStudy"] = self.glitch_settings.tubbas_table_laki_jump_study
         web_settings["TubbasTableUltraBoots"] = self.glitch_settings.tubbas_table_ultra_boots
         web_settings["TubbasCastleSuperBootsSkip"]= self.glitch_settings.tubbas_castle_super_boots_skip
+        web_settings["JumplessMegaRush"] = self.glitch_settings.jumpless_mega_rush
         web_settings["ParakarrylessMegaRush"] = self.glitch_settings.parakarryless_mega_rush
 
         # Glitches: Toy Box
