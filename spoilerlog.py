@@ -189,11 +189,13 @@ def write_spoiler_log(
         ## adjust edited move costs
         for move_key, move_cost in move_costs:
             item_id = move_key & 0xFF
+            item_costtype_id = (move_key & 0xFF0000) >> 16
             move = (
                 Move.select(Move.move_name,
                             Move.move_type,
                             Move.cost_type)
                     .where(Move.index == item_id)
+                    .where(Move.area_id == item_costtype_id)
                     .get()
             )
 
