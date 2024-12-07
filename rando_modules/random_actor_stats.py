@@ -41,7 +41,7 @@ def get_shuffled_chapter_difficulty(
         if not actor_name in all_enemy_stats:
             all_enemy_stats[actor_name] = {}
             if (    actor_name in [x for x1 in bossactor_chapter_map.values() for x in x1]
-                and actor_native_chapter in chapter_boss_map
+                and actor_native_chapter in chapter_boss_map.values()
             ):
                 # is boss
                 flipped_chapter_boss_map = {}

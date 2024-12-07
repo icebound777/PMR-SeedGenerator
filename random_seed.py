@@ -189,6 +189,7 @@ class RandomSeed:
                 modified_world_graph, self.battles, chapter_boss_map = get_shuffled_battles(
                     modified_world_graph,
                     logic_settings.boss_shuffle_mode,
+                    self.plando_data.get("boss_battles"),
                 )
                 self.spoilerlog_additions["boss_battles"] = chapter_boss_map
 
