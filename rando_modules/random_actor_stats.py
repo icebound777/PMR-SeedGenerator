@@ -7,7 +7,7 @@ from metadata.formations_meta import bossactor_chapter_map
 
 def get_shuffled_chapter_difficulty(
     shuffle_chapter_difficulty:bool,
-    boss_chapter_map: dict[int, int], # e.g. General Guy -> chapter 1, so {4: 1}
+    chapter_boss_map: dict[int, int], # e.g. chapter 1 -> General Guy, so {1: 4}
     progressive_scaling:bool,
     starting_chapter: int,
     plando_difficulty: dict[int, int] | None,
@@ -40,9 +40,14 @@ def get_shuffled_chapter_difficulty(
         # add actor to all enemy stats
         if not actor_name in all_enemy_stats:
             all_enemy_stats[actor_name] = {}
-            if actor_name in [x for x1 in bossactor_chapter_map.values() for x in x1]:
+            if (    actor_name in [x for x1 in bossactor_chapter_map.values() for x in x1]
+                and actor_native_chapter in chapter_boss_map
+            ):
                 # is boss
-                all_enemy_stats[actor_name]["NativeChapter"] = boss_chapter_map[actor_native_chapter]
+                flipped_chapter_boss_map = {}
+                for chapter, boss in chapter_boss_map.items():
+                    flipped_chapter_boss_map[boss] = chapter
+                all_enemy_stats[actor_name]["NativeChapter"] = flipped_chapter_boss_map[actor_native_chapter]
             else:
                 # is not boss
                 all_enemy_stats[actor_name]["NativeChapter"] = actor_native_chapter

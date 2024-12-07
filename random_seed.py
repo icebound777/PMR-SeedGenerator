@@ -186,11 +186,11 @@ class RandomSeed:
                 )
 
                 # Randomize battles if needed
-                modified_world_graph, self.battles, boss_chapter_map = get_shuffled_battles(
+                modified_world_graph, self.battles, chapter_boss_map = get_shuffled_battles(
                     modified_world_graph,
                     logic_settings.boss_shuffle_mode,
                 )
-                self.spoilerlog_additions["boss_battles"] = boss_chapter_map
+                self.spoilerlog_additions["boss_battles"] = chapter_boss_map
 
                 # Set up trick & glitch logic
                 modified_world_graph = get_glitched_logic(
@@ -370,7 +370,7 @@ class RandomSeed:
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(
             self.rando_settings.shuffle_chapter_difficulty,
-            boss_chapter_map,
+            chapter_boss_map,
             self.rando_settings.progressive_scaling,
             starting_chapter,
             self.plando_data.get("difficulty"),

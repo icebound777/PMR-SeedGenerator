@@ -59,10 +59,9 @@ def write_spoiler_log(
     # Add shuffled battles
     if spoilerlog_additions and spoilerlog_additions.get("boss_battles"):
         spoiler_dict["boss_battles"] = dict()
-        # spoilerlog_additions.get("boss_battles") ^= {4: 1, 3: 6, ...}
         tmp_list = list()
         for k, v in spoilerlog_additions.get("boss_battles").items():
-            tmp_list.append((v, k))
+            tmp_list.append((k, v))
         tmp_list.sort(key=lambda tuple: tuple[0])
         for chapter_boss_tuple in tmp_list:
             boss_name = chapter_bossname_map[chapter_boss_tuple[1]]

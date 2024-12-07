@@ -25,11 +25,12 @@ def get_boss_battles(
         return None
 
     battles_setup: List[Tuple[int, int]] = []
+    chapter_boss_map: dict[int, int] = dict()
 
     if boss_shuffle_mode == BossShuffleMode.OFF:
         for battle in Battle.select():
             battles_setup.append((battle.get_key(), battle.vanilla_battle_id))
-        boss_chapter_map = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7} # default
+        chapter_boss_map = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7} # default
     elif boss_shuffle_mode == BossShuffleMode.CHAPTER_BOSSES:
         db_chapters_keysvalues: dict[int, tuple[int, int]] = dict()
 
@@ -45,10 +46,10 @@ def get_boss_battles(
         chapters: list[int] = list(db_chapters_keysvalues.keys())
         random.shuffle(chapters)
         for chapter, boss in enumerate(iterable=chapters, start=1):
-            boss_chapter_map[boss] = chapter
-        for boss, chapter in boss_chapter_map.items():
+            chapter_boss_map[chapter] = boss
+
             battles_setup.append(
                 (db_chapters_keysvalues[chapter][0], db_chapters_keysvalues[boss][1])
             )
 
-    return battles_setup, boss_chapter_map
+    return battles_setup, chapter_boss_map
