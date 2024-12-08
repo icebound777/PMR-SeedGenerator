@@ -203,8 +203,10 @@ class RandomSeed:
 
                 ## Setup star spirits, power stars, and relevant logic
                 chosen_spirits = []
+                plando_required_spirits: list[int] | None = self.plando_data.get("required_spirits")
                 if (    logic_settings.require_specific_spirits
                     and 0 < logic_settings.starway_spirits_needed_count < 7
+                    and (plando_required_spirits is None or len(plando_required_spirits) < 7)
                 ):
                     all_spirits = [
                         StarSpirits.ELDSTAR,
@@ -215,9 +217,15 @@ class RandomSeed:
                         StarSpirits.KLEVAR,
                         StarSpirits.KALMAR,
                     ]
-                    for _ in range(logic_settings.starway_spirits_needed_count):
-                        rnd_spirit = random.randint(0, len(all_spirits) - 1)
-                        chosen_spirits.append(all_spirits.pop(rnd_spirit))
+                    # Set spirits
+                    if plando_required_spirits is not None:
+                        chosen_spirits.extend(plando_required_spirits)
+                    if len(chosen_spirits) < logic_settings.starway_spirits_needed_count:
+                        all_spirits = list(set(all_spirits) - set(chosen_spirits))
+                        for _ in range(logic_settings.starway_spirits_needed_count - len(chosen_spirits)):
+                            rnd_spirit = random.randint(0, len(all_spirits) - 1)
+                            chosen_spirits.append(all_spirits.pop(rnd_spirit))
+                    # Encode set spirits
                     encoded_spirits = 0
                     for spirit in chosen_spirits:
                         encoded_spirits = encoded_spirits | (1 << (spirit - 1))
