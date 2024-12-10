@@ -302,6 +302,8 @@ from maps.graph_edges.glitched_logic.sam_sushieless_warehouse_key import \
 # Glitched Logic - Crystal Palace
 from maps.graph_edges.glitched_logic.pra_mirror_clip import \
     edges_pra_add_mirror_clip_laki
+from maps.graph_edges.glitched_logic.pra_bombette_puzzle_skip import \
+    edges_pra_add_bombette_puzzle_skip
 from maps.graph_edges.glitched_logic.pra_kooper_puzzle_skip import \
     edges_pra_add_kooper_puzzle_skip
 
@@ -1091,6 +1093,8 @@ def get_glitched_logic(
     # Crystal Palace
     if glitch_settings.mirror_clip:
         all_new_edges.extend(edges_pra_add_mirror_clip_laki)
+    if glitch_settings.bombette_puzzle_skip:
+        all_new_edges.extend(edges_pra_add_bombette_puzzle_skip)
     if glitch_settings.kooper_puzzle_skip:
         all_new_edges.extend(edges_pra_add_kooper_puzzle_skip)
 

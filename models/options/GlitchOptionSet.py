@@ -157,6 +157,7 @@ class GlitchOptionSet():
         self.sushieless_warehouse_key_kooper = False
 
         self.mirror_clip = False
+        self.bombette_puzzle_skip = False
         self.kooper_puzzle_skip = False
 
         self.bowless_bowsers_castle_basement = False
