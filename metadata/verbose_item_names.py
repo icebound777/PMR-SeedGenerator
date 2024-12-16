@@ -83,6 +83,7 @@ verbose_item_names = {
     "PowerPlusX": "PowerPlus",
     "PowerSmash1": "PowerSmash",
     "SmashCharge0": "MiniSmashCharge",
+    "SSmashChg": "SSmashCharge",
     "JumpCharge0": "MiniJumpCharge",
     "SJumpChg": "SJumpCharge",
     "AutoMultibounce": "Autobounce",
