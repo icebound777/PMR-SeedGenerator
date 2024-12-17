@@ -28,7 +28,8 @@ def write_spoiler_log(
     puzzle_solutions:list=None,
     battle_shuffles:list=None,
     seed_hash_items:list=None,
-    spoilerlog_additions:dict=None
+    spoilerlog_additions:dict=None,
+    plando_data:dict=None,
 ):
     """
     Outputs a log file listing the final locations of all items
@@ -249,6 +250,10 @@ def write_spoiler_log(
 
     if block_dict:
         spoiler_dict["superblocks"] = block_dict
+
+    # Add plandomizer data, if available
+    if plando_data:
+        spoiler_dict["plandomizer"] = plando_data
 
     # Output spoiler log
     if is_web_spoiler_log:

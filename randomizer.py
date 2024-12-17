@@ -844,7 +844,8 @@ def main_randomizer(args):
             puzzle_solutions=random_seed.puzzle_minigame_data,
             battle_shuffles=random_seed.battles,
             spoilerlog_additions=random_seed.spoilerlog_additions,
-            seed_hash_items=random_seed.seed_hash_items
+            seed_hash_items=random_seed.seed_hash_items,
+            plando_data=plando_data,
         )
 
     timer_end = time.perf_counter()
