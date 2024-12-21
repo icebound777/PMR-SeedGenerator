@@ -251,6 +251,8 @@ from maps.graph_edges.glitched_logic.jan_raph_skip_english import \
     edges_jan_add_raph_skip_english
 from maps.graph_edges.glitched_logic.jan_raph_skip_parakarry import \
     edges_jan_add_raph_skip_parakarry
+from maps.graph_edges.glitched_logic.jan_raph_skip_lakilester import \
+    edges_jan_add_raph_skip_lakilester
 from maps.graph_edges.glitched_logic.jan_kzn_ch5_sushie_glitch import \
     edges_jan_kzn_add_ch5_sushie_glitch, edges_kzn_add_volcano_sushie_glitch, \
     edges_kzn_add_volcano_sushie_glitch_superboots, edges_kzn_add_volcano_sushie_glitch_goombario
@@ -1009,6 +1011,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_jan_add_raph_skip_english)
     if glitch_settings.raph_skip_parakarry:
         all_new_edges.extend(edges_jan_add_raph_skip_parakarry)
+    if glitch_settings.raph_skip_lakilester:
+        all_new_edges.extend(edges_jan_add_raph_skip_lakilester)
     if glitch_settings.ch5_sushie_glitch:
         all_new_edges.extend(edges_jan_kzn_add_ch5_sushie_glitch)
     if glitch_settings.sushieless_jungle_starpiece_and_letter:

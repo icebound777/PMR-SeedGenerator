@@ -821,6 +821,8 @@ class OptionSet:
             self.glitch_settings.raph_skip_english = options_dict.get("RaphSkipEnglish")
         if "RaphSkipParakarry" in options_dict:
             self.glitch_settings.raph_skip_parakarry = options_dict.get("RaphSkipParakarry")
+        if "RaphSkipLakilester" in options_dict:
+            self.glitch_settings.raph_skip_lakilester = options_dict.get("RaphSkipLakilester")
         if "Ch5SushieGlitch" in options_dict:
             self.glitch_settings.ch5_sushie_glitch = options_dict.get("Ch5SushieGlitch")
         if "SushielessJungleStarpieceAndLetter" in options_dict:
@@ -1476,6 +1478,7 @@ class OptionSet:
 
         basic_assert("RaphSkipEnglish", bool)
         basic_assert("RaphSkipParakarry", bool)
+        basic_assert("RaphSkipLakilester", bool)
         basic_assert("Ch5SushieGlitch", bool)
         basic_assert("SushielessJungleStarpieceAndLetter", bool)
         basic_assert("JumplessDeepJungleLaki", bool)
@@ -2033,6 +2036,7 @@ class OptionSet:
         # Glitches: Jade Jungle
         web_settings["RaphSkipEnglish"] = self.glitch_settings.raph_skip_english
         web_settings["RaphSkipParakarry"] = self.glitch_settings.raph_skip_parakarry
+        web_settings["RaphSkipLakilester"] = self.glitch_settings.raph_skip_lakilester
         web_settings["Ch5SushieGlitch"] = self.glitch_settings.ch5_sushie_glitch
         web_settings["SushielessJungleStarpieceAndLetter"] = self.glitch_settings.sushieless_jungle_starpiece_and_letter
         web_settings["JumplessDeepJungleLaki"] = self.glitch_settings.jumpless_deep_jungle_laki
