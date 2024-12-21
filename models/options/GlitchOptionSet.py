@@ -117,6 +117,7 @@ class GlitchOptionSet():
 
         self.raph_skip_english = False
         self.raph_skip_parakarry = False
+        self.raph_skip_lakilester = False
         self.ch5_sushie_glitch = False
         self.sushieless_jungle_starpiece_and_letter = False
         self.jumpless_deep_jungle_laki = False
