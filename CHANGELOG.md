@@ -2,6 +2,10 @@
 
 ## 0.29.0 (beta)
 
+### Logic changes
+
+* Fixed logic not expecting boots or Kooper for hitting the yellow item block in Tubba's Castle - Stairs to Third Floor
+
 ### Miscellaneous
 
 * RAM locations docs
