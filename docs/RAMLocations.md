@@ -207,10 +207,10 @@ ID  | Stat
 ----+------------------------
 002 | Current HP
 003 | Current Max HP
-004 | True Max HP (includes HP Plus badges)
+004 | True Max HP (excludes HP Plus badges)
 005 | Current FP
 006 | Current Max FP
-007 | True Max FP (includes FP Plus badges)
+007 | True Max FP (excludes FP Plus badges)
 008 | Max BP
 009 | Mario's Level
 00C | Coins

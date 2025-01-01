@@ -1,8 +1,15 @@
 # Changelog
 
+## 0.29.0 (beta)
+
+### Miscellaneous
+
+* RAM locations docs
+  * Fix typo in Player Data struct regarding True Max HP and FP
+
 ## 0.28.1 (beta)
 
-### Bug Fixes
+### Bug Fixes (0.28.1)
 
 * Fix a bug that caused the chapter 3 boss battle's post-battle cutscene to sometimes not play out properly during `Boss Shuffle: On`, causing a softlock
 * Fix a bug that caused the seed generator to fail at item placement while `Shuffle Partners` was set to `Shuffle among vanilla locations`, if other settings were very restrictive (like jumpless and hammerless start plus Goombario as only partner)
