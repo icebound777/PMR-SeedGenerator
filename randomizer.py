@@ -743,7 +743,6 @@ def main_randomizer(args):
                 rando_settings = OptionSet()
                 if "SeedValue" in data and rando_seed is None:
                     rando_seed = data.get("SeedValue")
-                rando_settings.update_options(data)
 
             # Pre-modded Open World PM64 ROM
             if opt in ["-t", "--targetmod"]:
@@ -787,7 +786,7 @@ def main_randomizer(args):
         with open(os.path.abspath(__file__ + "/../presets/default_settings.yaml"), "r", encoding="utf-8") as file:
             data = yaml.load(file, Loader=SafeLoader)
             rando_settings = OptionSet()
-            rando_settings.update_options(data)
+    rando_settings.update_options(data)
 
     # DEFAULTS: Set targetmod if none provided
     if not target_modfile:
