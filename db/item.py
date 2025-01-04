@@ -10,6 +10,7 @@ from metadata.item_general import (
     unplaceable_items
 )
 
+TRAP_FLAG = 0x2000
 
 class Item(Model):
     # keyitem, badge etc
@@ -64,8 +65,7 @@ class Item(Model):
         return (hash(str(self)))
 
     def is_trapped(self):
-        trap_flag = 0x2000
-        return self.value & trap_flag == trap_flag
+        return self.value & TRAP_FLAG == TRAP_FLAG
 
     @classmethod
     def get_type(cls, item_id:int):
