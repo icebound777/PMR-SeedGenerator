@@ -34,7 +34,8 @@ def get_boss_battles(
         for battle in Battle.select():
             battles_setup.append((battle.get_key(), battle.vanilla_battle_id))
         chapter_boss_map = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7} # default
-        chapter_boss_map.update(plando_battles)
+        if plando_battles is not None:
+            chapter_boss_map.update(plando_battles)
     elif boss_shuffle_mode == BossShuffleMode.CHAPTER_BOSSES:
         db_chapters_keysvalues: dict[int, tuple[int, int]] = dict()
 
