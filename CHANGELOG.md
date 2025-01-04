@@ -2,6 +2,17 @@
 
 ## 0.29.0 (beta)
 
+### Feature Changes
+
+* `Plandomizer` feature
+  * The plandomizer (a portmanteau of "planned" and "randomizer") allows pre-setting different values for the seed, which overrule the changes to be made by the seed generator. This allows for forcing specific changes desired by the player.
+  * Currently allows setting the following:
+    * Chapter difficulty
+    * Which bosses appear where
+    * BP, FP, and SP costs of badges, moves of Mario and his partners, and the star powers
+    * Which spirits to rescue for the `Require Specific Spirits` setting
+  * For more details, please refer to the plandomizer module documentation: <https://github.com/icebound777/PMR-Plando-Validator>
+
 ### Miscellaneous
 
 * Spoiler log
