@@ -1180,7 +1180,7 @@ class OptionSet:
                     and -1 <= options_dict.get("StarWaySpiritsNeededCnt") <= 7)
         if "StarWayPowerStarsNeeded" in options_dict:
             assert (    isinstance(options_dict.get("StarWayPowerStarsNeeded"), int)
-                    and 0 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
+                    and -1 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
             )
             try:
                 if (    "ShuffleItems" in options_dict
@@ -1197,7 +1197,7 @@ class OptionSet:
                     and -1 <= options_dict.get("StarBeamSpiritsNeeded") <= 7)
         if "StarBeamPowerStarsNeeded" in options_dict:
             assert (    isinstance(options_dict.get("StarBeamPowerStarsNeeded"), int)
-                    and 0 <= options_dict.get("StarBeamPowerStarsNeeded") <= 120
+                    and -1 <= options_dict.get("StarBeamPowerStarsNeeded") <= 120
             )
             try:
                 if (    "ShuffleItems" in options_dict
@@ -1209,10 +1209,11 @@ class OptionSet:
                     "No item shuffle but star hunt is not a valid setting-combination!",
                 )
         if "StarHuntTotal" in options_dict:
-            assert (    isinstance(options_dict.get("StarHuntTotal"), int)
-                    and 0 <= options_dict.get("StarHuntTotal") <= 120
-                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarWayPowerStarsNeeded")
-                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarBeamPowerStarsNeeded")
+            starthuntotal = options_dict.get("StarHuntTotal")
+            assert (    isinstance(starthuntotal, int)
+                    and -1 <= starthuntotal <= 120
+                    and (starthuntotal >= options_dict.get("StarWayPowerStarsNeeded") or starthuntotal == -1)
+                    and (starthuntotal >= options_dict.get("StarBeamPowerStarsNeeded") or starthuntotal == -1)
             )
         basic_assert("RequireSpecificSpirits", bool)
         if "LimitChapterLogic" in options_dict:

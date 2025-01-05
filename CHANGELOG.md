@@ -2,6 +2,11 @@
 
 ## 0.29.0 (beta)
 
+### Feature Changes
+
+* `Power Star Hunt` related settings:
+  * All three power star hunt settings, `Star Hunt Total`, `Star Way Power Stars Needed`, and `Star Beam Power Stars Needed` can now be set to random. `Star Beam Power Stars Needed` is slightly biased towards rolling higher than the value of `Star Way Power Stars Needed`.
+
 ### Logic changes
 
 * Fixed logic not expecting boots or Kooper for hitting the yellow item block in Tubba's Castle - Stairs to Third Floor
@@ -10,6 +15,13 @@
 
 * RAM locations docs
   * Fix typo in Player Data struct regarding True Max HP and FP
+
+### Additional Technical Changelog
+
+* Yaml settings changes:
+  * `StarWayPowerStarsNeeded` now accepts `-1` as value (to roll randomly)
+  * `StarBeamPowerStarsNeeded` now accepts `-1` as value (to roll randomly)
+  * `StarHuntTotal` now accepts `-1` as value (to roll randomly)
 
 ## 0.28.1 (beta)
 

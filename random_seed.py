@@ -125,6 +125,32 @@ class RandomSeed:
                     # note: don't roll zero here
                     logic_settings.starbeam_spirits_needed = random.randint(1, 7)
 
+                if logic_settings.star_hunt_total == -1:
+                    min_total_stars = max([
+                        logic_settings.starway_powerstars_needed,
+                        logic_settings.starbeam_powerstars_needed,
+                    ])
+                    if min_total_stars == -1:
+                        min_total_stars = 1
+                    logic_settings.star_hunt_total = random.randint(
+                        min_total_stars,
+                        120
+                    )
+                if logic_settings.star_hunt_total == 0:
+                    logic_settings.starway_powerstars_needed = 0
+                elif logic_settings.starway_powerstars_needed == -1:
+                    logic_settings.starway_powerstars_needed = random.randint(
+                        1,
+                        logic_settings.star_hunt_total
+                    )
+                if logic_settings.star_hunt_total == 0:
+                    logic_settings.starbeam_powerstars_needed = 0
+                elif logic_settings.starbeam_powerstars_needed == -1:
+                    logic_settings.starbeam_powerstars_needed = random.randint(
+                        int(logic_settings.starway_powerstars_needed * 0.7) + 1,
+                        logic_settings.star_hunt_total
+                    )
+
                 # Modify entrances if needed
                 entrance_changes = []
                 if logic_settings.bowsers_castle_mode == BowserCastleMode.SHORTEN:
