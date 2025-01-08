@@ -67,6 +67,9 @@ class Item(Model):
     def is_trapped(self):
         return self.value & TRAP_FLAG == TRAP_FLAG
 
+    def set_trapped(self):
+        self.value |= TRAP_FLAG
+
     @classmethod
     def get_type(cls, item_id:int):
         if 0x00 == item_id:

@@ -171,7 +171,6 @@ def get_trapped_itempool(
         if item_node.identifier in kootfavors_keyitem_locations:
             koot_items["keyitems"].append(item_node.vanilla_item.item_name)
 
-    trap_flag = 0x2000
     new_itempool = []
     fakeable_items = []
     dungeon_items = []
@@ -232,7 +231,7 @@ def get_trapped_itempool(
             new_itempool.append(item_obj)
         else:
             new_trapitem = random.choice(fakeable_items)
-            new_trapitem.value = new_trapitem.value | trap_flag
+            new_trapitem.set_trapped()
             new_itempool.append(new_trapitem)
             cnt_traps += 1
 
