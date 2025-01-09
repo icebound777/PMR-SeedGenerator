@@ -92,7 +92,7 @@ class RandomSeed:
         self.item_spheres_dict = None
         self.spoilerlog_additions = {}
         self.plando_data: TransformedPlandoData = TransformedPlandoData(
-            plando_data if plando_data is not None else None
+            plando_data
         )
 
         if seed_value is None:
