@@ -60,6 +60,8 @@ from metadata.starting_items import \
     allowed_starting_key_items
 from metadata.item_general import seed_hash_item_names
 
+from plando_utils.plando_utils import TransformedPlandoData
+
 from db.item import Item
 
 class RandomSeed:
@@ -89,10 +91,9 @@ class RandomSeed:
         self.puzzle_minigame_data = []
         self.item_spheres_dict = None
         self.spoilerlog_additions = {}
-        if plando_data is None:
-            self.plando_data: dict = dict()
-        else:
-            self.plando_data: dict = plando_data
+        self.plando_data: TransformedPlandoData = TransformedPlandoData(
+            plando_data if plando_data is not None else None
+        )
 
         if seed_value is None:
             self.seed_value = random.randint(0, 0xFFFFFFFF)
@@ -189,7 +190,7 @@ class RandomSeed:
                 modified_world_graph, self.battles, chapter_boss_map = get_shuffled_battles(
                     modified_world_graph,
                     logic_settings.boss_shuffle_mode,
-                    self.plando_data.get("boss_battles"),
+                    self.plando_data.boss_battles,
                 )
                 self.spoilerlog_additions["boss_battles"] = chapter_boss_map
 
@@ -203,7 +204,7 @@ class RandomSeed:
 
                 ## Setup star spirits, power stars, and relevant logic
                 chosen_spirits = []
-                plando_required_spirits: list[int] | None = self.plando_data.get("required_spirits")
+                plando_required_spirits: list[int] | None = self.plando_data.required_spirits
                 if (    logic_settings.require_specific_spirits
                     and 0 < logic_settings.starway_spirits_needed_count < 7
                     and (plando_required_spirits is None or len(plando_required_spirits) < 7)
@@ -382,7 +383,7 @@ class RandomSeed:
             chapter_boss_map,
             self.rando_settings.progressive_scaling,
             starting_chapter,
-            self.plando_data.get("difficulty"),
+            self.plando_data.difficulty,
         )
 
         # Randomize enemy battle formations
@@ -400,7 +401,7 @@ class RandomSeed:
             self.rando_settings.random_badges_fp,
             self.rando_settings.random_partner_fp,
             self.rando_settings.random_starpower_sp,
-            self.plando_data.get("move_costs"),
+            self.plando_data.move_costs,
         )
 
         # Build item hint db
