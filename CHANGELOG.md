@@ -6,6 +6,10 @@
 
 * `Power Star Hunt` related settings:
   * All three power star hunt settings, `Star Hunt Total`, `Star Way Power Stars Needed`, and `Star Beam Power Stars Needed` can now be set to random. `Star Beam Power Stars Needed` is slightly biased towards rolling higher than the value of `Star Way Power Stars Needed`.
+  * The price for power stars sold in shops is now dynamic. The more power stars are in the item pool, the lower the price of power stars becomes.
+    * 40 or fewer power stars: random price out of `10,15,20,25,30` coins (same as before)
+    * 41 - 80 power stars: random price out of `5,10,15,20` coins
+    * 81 or more power stars: random price out of `5,10` coins
 
 ### Logic changes
 
