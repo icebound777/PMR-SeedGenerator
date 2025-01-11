@@ -329,6 +329,31 @@ def _generate_item_pools(
     pool_illogical_consumables = []
     pool_badges = []
 
+    def add_to_correct_itempool(
+        new_item: Item,
+    ):
+        if (new_item.progression
+        or (logic_settings.include_shops and "StarPiece" in new_item.item_name)
+        or new_item.item_type == "GEAR"
+        ):
+            pool_progression_items.append(new_item)
+        else:
+            if (    new_item.item_name in progression_miscitems_names
+                and new_item not in pool_misc_progression_items
+            ):
+                # Since progression misc items have to be placed in
+                # replenishable locations, we only need one of each
+                pool_misc_progression_items.append(new_item)
+            else:
+                if new_item.item_type == "COIN":
+                    pool_coins_only.append(new_item)
+                elif new_item.item_type == "ITEM":
+                    pool_illogical_consumables.append(new_item)
+                elif new_item.item_type == "BADGE":
+                    pool_badges.append(new_item)
+                else:
+                    pool_other_items.append(new_item)
+
     # Pre-fill nodes that are not to be randomized
     for node_id in world_graph:
         if node_id == "edge_index":
@@ -503,27 +528,8 @@ def _generate_item_pools(
                 continue
 
             # Item shall be randomized: Add it to the correct item pool
-            if (current_node.vanilla_item.progression
-            or (logic_settings.include_shops and "StarPiece" in current_node.vanilla_item.item_name)
-            or current_node.vanilla_item.item_type == "GEAR"
-            ):
-                pool_progression_items.append(current_node.vanilla_item)
-            else:
-                if (    current_node.vanilla_item.item_name in progression_miscitems_names
-                    and current_node.vanilla_item not in pool_misc_progression_items
-                ):
-                    # Since progression misc items have to be placed in
-                    # replenishable locations, we only need one of each
-                    pool_misc_progression_items.append(current_node.vanilla_item)
-                else:
-                    if current_node.vanilla_item.item_type == "COIN":
-                        pool_coins_only.append(current_node.vanilla_item)
-                    elif current_node.vanilla_item.item_type == "ITEM":
-                        pool_illogical_consumables.append(current_node.vanilla_item)
-                    elif current_node.vanilla_item.item_type == "BADGE":
-                        pool_badges.append(current_node.vanilla_item)
-                    else:
-                        pool_other_items.append(current_node.vanilla_item)
+            add_to_correct_itempool(current_node.vanilla_item)
+
 
     target_itempool_size = (
         len(pool_progression_items)
