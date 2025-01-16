@@ -1,6 +1,6 @@
 from random import randint
 
-def generate_random_stats(level: int):
+def generate_random_stats(level: int) -> tuple[int,int,int,int]:
     level = min(level, 27) # clamp to max level for sanity
     starting_level = level
     starting_hp = 5
