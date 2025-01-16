@@ -113,6 +113,35 @@ class RandomSeed:
                 self.item_spheres_dict = None
                 logic_settings = self.rando_settings.logic_settings
 
+                # Select required star spirits
+                chosen_spirits = []
+                all_spirits = [
+                    StarSpirits.ELDSTAR,
+                    StarSpirits.MAMAR,
+                    StarSpirits.SKOLAR,
+                    StarSpirits.MUSKULAR,
+                    StarSpirits.MISSTAR,
+                    StarSpirits.KLEVAR,
+                    StarSpirits.KALMAR,
+                ]
+                if (    logic_settings.require_specific_spirits
+                    and 0 < logic_settings.starway_spirits_needed_count < 7
+                ):
+                    for _ in range(logic_settings.starway_spirits_needed_count):
+                        rnd_spirit = random.randint(0, len(all_spirits) - 1)
+                        chosen_spirits.append(all_spirits.pop(rnd_spirit))
+                    encoded_spirits = 0
+                    for spirit in chosen_spirits:
+                        encoded_spirits = encoded_spirits | (1 << (spirit - 1))
+                    logic_settings.starway_spirits_needed_encoded = encoded_spirits
+
+                    chosen_spirits.sort()
+                    if self.spoilerlog_additions.get("required_spirits") is None:
+                        self.spoilerlog_additions["required_spirits"] = []
+                    self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
+                else:
+                    chosen_spirits = all_spirits
+
                 # Choose values for options that are set to "random"
                 if logic_settings.magical_seeds_required == -1:
                     logic_settings.magical_seeds_required = random.randint(0, 4)
@@ -144,6 +173,7 @@ class RandomSeed:
                     entrance_changes, modified_world_graph, spoilerlog_info = shuffle_dungeon_entrances(
                         world_graph = modified_world_graph,
                         starway_spirits_needed_count = logic_settings.starway_spirits_needed_count,
+                        required_star_spirits = chosen_spirits,
                         shuffle_bowsers_castle = (
                             logic_settings.shuffle_dungeon_entrances == DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
                         ),
@@ -192,32 +222,6 @@ class RandomSeed:
                 )
 
                 ## Setup star spirits, power stars, and relevant logic
-                chosen_spirits = []
-                if (    logic_settings.require_specific_spirits
-                    and 0 < logic_settings.starway_spirits_needed_count < 7
-                ):
-                    all_spirits = [
-                        StarSpirits.ELDSTAR,
-                        StarSpirits.MAMAR,
-                        StarSpirits.SKOLAR,
-                        StarSpirits.MUSKULAR,
-                        StarSpirits.MISSTAR,
-                        StarSpirits.KLEVAR,
-                        StarSpirits.KALMAR,
-                    ]
-                    for _ in range(logic_settings.starway_spirits_needed_count):
-                        rnd_spirit = random.randint(0, len(all_spirits) - 1)
-                        chosen_spirits.append(all_spirits.pop(rnd_spirit))
-                    encoded_spirits = 0
-                    for spirit in chosen_spirits:
-                        encoded_spirits = encoded_spirits | (1 << (spirit - 1))
-                    logic_settings.starway_spirits_needed_encoded = encoded_spirits
-
-                    chosen_spirits.sort()
-                    if self.spoilerlog_additions.get("required_spirits") is None:
-                        self.spoilerlog_additions["required_spirits"] = []
-                    self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
-
                 if (   logic_settings.starbeam_spirits_needed > 0
                     or logic_settings.starbeam_powerstars_needed > 0
                 ):
