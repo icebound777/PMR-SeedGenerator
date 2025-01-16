@@ -83,15 +83,15 @@ ItemChoiceF          : 0x082 # ThunderRage
 ItemChoiceG          : 0x085 # Pebble
 
 # Starting setup
-StartingMap      : 0x00010104 # 0x00010104:Toad Town Gate District, 0xFFFFFFFF:RandomFromSelection
-StartingLevel    : -1 # no forced starting level, setting this will ignore the starting stats and randomly fill instead
-StartingMaxHP    : 10
-StartingMaxFP    : 5
-StartingMaxBP    : 3
-StartingStarPower: 0
-StartingBoots    : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
-StartingHammer   : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
-StartingCoins    : 150
+StartingMap             : 0x00010104 # 0x00010104:Toad Town Gate District, 0xFFFFFFFF:RandomFromSelection
+RandomStartingLevel     : -1 # no forced starting level, setting this will ignore the starting stats and randomly fill instead
+StartingMaxHP           : 10
+StartingMaxFP           : 5
+StartingMaxBP           : 3
+StartingStarPower       : 0
+StartingBoots           : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
+StartingHammer          : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
+StartingCoins           : 50
 
 StartWithRandomItems: false
 RandomItemsMin      : 0

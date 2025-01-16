@@ -71,7 +71,8 @@ class OptionSet:
         self.mystery_settings = MysteryOptionSet()
 
         # Starting setup
-        self.starting_level = self.random_starting_level = get_option_default_value("StartingLevel")
+        self.starting_level = get_option_default_value("StartingLevel")
+        self.random_starting_level = -1
         self.starting_maxhp = get_option_default_value("StartingMaxHP")
         self.starting_maxfp = get_option_default_value("StartingMaxFP")
         self.starting_maxbp = get_option_default_value("StartingMaxBP")
@@ -283,8 +284,8 @@ class OptionSet:
         # Starting setup
         if "StartingMap" in options_dict:
             self.logic_settings.starting_map = options_dict.get("StartingMap")
-        if "StartingLevel" in options_dict:
-            self.random_starting_level = options_dict.get("StartingLevel")
+        if "RandomStartingLevel" in options_dict:
+            self.random_starting_level = options_dict.get("RandomStartingLevel")
         if "StartingMaxHP" in options_dict:
             self.starting_maxhp = options_dict.get("StartingMaxHP")
         if "StartingMaxFP" in options_dict:
@@ -1061,6 +1062,7 @@ class OptionSet:
         # Starting setup
         basic_assert("StartingMap", int)
         basic_assert("StartingLevel", int)
+        basic_assert("RandomStartingLevel", int)
         basic_assert("StartingMaxHP", int)
         basic_assert("StartingMaxFP", int)
         basic_assert("StartingMaxBP", int)
@@ -1761,6 +1763,7 @@ class OptionSet:
         web_settings["StartingMaxFP"] = self.starting_maxfp
         web_settings["StartingMaxBP"] = self.starting_maxbp
         web_settings["StartingLevel"] = self.starting_level
+        web_settings["RandomStartingLevel"] = self.random_starting_level
         web_settings["StartingStarPower"] = self.starting_starpower
         web_settings["StartingBoots"] = self.logic_settings.starting_boots
         web_settings["StartingHammer"] = self.logic_settings.starting_hammer
