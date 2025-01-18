@@ -91,7 +91,7 @@ StartingMaxBP           : 3
 StartingStarPower       : 0
 StartingBoots           : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
 StartingHammer          : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
-StartingCoins           : 50
+StartingCoins           : 100
 
 StartWithRandomItems: false
 RandomItemsMin      : 0
