@@ -84,10 +84,10 @@ ItemChoiceG          : 0x085 # Pebble
 
 # Starting setup
 StartingMap             : 0x00010104 # 0x00010104:Toad Town Gate District, 0xFFFFFFFF:RandomFromSelection
-RandomStartingLevel     : -1 # no forced starting level, setting this will ignore the starting stats and randomly fill instead
-StartingMaxHP           : 10
-StartingMaxFP           : 5
-StartingMaxBP           : 3
+RandomStartingStatsLevel: -1 # -1: off, 0-27: starting level to choose random stats for
+StartingMaxHP           : 10 # ignored if RandomStartingStatsLevel > -1
+StartingMaxFP           : 5 # ignored if RandomStartingStatsLevel > -1
+StartingMaxBP           : 3 # ignored if RandomStartingStatsLevel > -1
 StartingStarPower       : 0
 StartingBoots           : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
 StartingHammer          : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra

@@ -387,11 +387,13 @@ class RandomSeed:
             )
 
         # Randomize stat distribution if needed
-        if self.rando_settings.random_starting_level >= 0:
+        if self.rando_settings.random_starting_stats_level >= 0:
             self.rando_settings.starting_level, \
             self.rando_settings.starting_maxhp, \
             self.rando_settings.starting_maxfp, \
-            self.rando_settings.starting_maxbp = generate_random_stats(self.rando_settings.random_starting_level)
+            self.rando_settings.starting_maxbp = generate_random_stats(
+                self.rando_settings.random_starting_stats_level
+            )
 
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(

@@ -4,6 +4,8 @@
 
 ### Feature Changes
 
+* `Random Starting Stats` option:
+  * Allows starting the seed with random amounts of HP, FP, and BP by choosing the level to generate these starting stats for
 * `Power Star Hunt` related settings:
   * All three power star hunt settings, `Star Hunt Total`, `Star Way Power Stars Needed`, and `Star Beam Power Stars Needed` can now be set to random. `Star Beam Power Stars Needed` is slightly biased towards rolling higher than the value of `Star Way Power Stars Needed`.
   * The price for power stars sold in shops is now dynamic. The more power stars are in the item pool, the lower the price of power stars becomes.
@@ -23,6 +25,9 @@
 ### Additional Technical Changelog
 
 * Yaml settings changes:
+  * Added `RandomStartingStatsLevel`
+    * `-1` = Off, `0` - `27` = Level to generate random starting stats for
+    * If not turned off, generator will ignore `StartingMaxHP`, `StartingMaxFP`, and `StartingMaxBP`
   * `StarWayPowerStarsNeeded` now accepts `-1` as value (to roll randomly)
   * `StarBeamPowerStarsNeeded` now accepts `-1` as value (to roll randomly)
   * `StarHuntTotal` now accepts `-1` as value (to roll randomly)
