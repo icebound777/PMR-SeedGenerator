@@ -290,7 +290,10 @@ class RandomSeed:
                 starting_chapter, logic_settings.starting_map = self.init_starting_map(
                     self.rando_settings
                 )
-                self.init_starting_partners(logic_settings)
+                self.init_starting_partners(
+                    logic_settings,
+                    self.plando_data.partners_placed,
+                )
 
                 self.init_starting_items(
                     self.rando_settings,
@@ -303,7 +306,9 @@ class RandomSeed:
                     starting_partners=self.starting_partners,
                     hidden_block_mode=hidden_block_mode,
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
-                    world_graph=modified_world_graph
+                    world_graph=modified_world_graph,
+                    plando_item_placement=self.plando_data.item_placement,
+                    plando_traps_placed=self.plando_data.trap_count,
                 )
 
                 # Determine item placement spheres
@@ -450,16 +455,28 @@ class RandomSeed:
 
     def init_starting_partners(
         self,
-        logic_settings:LogicOptionSet
+        logic_settings:LogicOptionSet,
+        plandod_partners: list[str],
     ):
         # Choose random starting partners if necessary
         if logic_settings.random_partners:
             self.starting_partners = get_rnd_starting_partners(
                 num_rnd_partners_min=logic_settings.random_partners_min,
                 num_rnd_partners_max=logic_settings.random_partners_max,
-                logic_settings=logic_settings
+                logic_settings=logic_settings,
+                plandod_partners=plandod_partners,
             )
         else:
+            if (any([
+                    True for x in logic_settings.starting_partners
+                    if x in plandod_partners
+                ])
+            ):
+                raise ValueError(
+                    "ERROR: Chosen starting partners: Cannot start the seed with "\
+                    "these partners, because one or more of them is already "\
+                    "placed by the plandomizer!"
+                )
             self.starting_partners = logic_settings.starting_partners
 
 

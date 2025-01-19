@@ -139,7 +139,8 @@ def get_trapped_itempool(
     keyitems_outside_dungeon:bool,
     power_star_hunt:bool,
     add_beta_items:bool,
-    do_partner_upgrade_shuffle:bool
+    do_partner_upgrade_shuffle:bool,
+    already_placed_traps_count:int,
 ) -> list:
     """
     Modifies and returns a given item pool after placing trap items.
@@ -163,6 +164,11 @@ def get_trapped_itempool(
         max_traps = 35
     else:
         max_traps = 80
+
+    if already_placed_traps_count >= max_traps:
+        return itempool
+    else:
+        max_traps = max_traps - already_placed_traps_count
 
     koot_items = {"rewards": [], "keyitems": []}
     for item_node in Node.select().where(Node.vanilla_item.is_null(False)):

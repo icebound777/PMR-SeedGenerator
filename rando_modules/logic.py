@@ -316,6 +316,8 @@ def _generate_item_pools(
     starting_items:list,
     starting_partners:list,
     do_partner_upgrade_shuffle:bool,
+    plando_item_placement: dict[str | Item] | None,
+    plando_traps_placed: int,
 ):
     """
     Generates item pools for items to be shuffled (depending on chosen
@@ -325,9 +327,15 @@ def _generate_item_pools(
     pool_other_items (every other item). Additionally marks item nodes that
     shall not be randomized as already filled.
     """
+    if plando_item_placement is None:
+        plando_item_placement = dict()
+    items_plandod: int = 0
+
     pool_coins_only = []
     pool_illogical_consumables = []
     pool_badges = []
+
+    items_to_remove_from_pools: list[Item] = []
 
     def add_to_correct_itempool(
         new_item: Item,
@@ -513,6 +521,14 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
+            if current_node_id in plando_item_placement:
+                add_to_correct_itempool(current_node.vanilla_item)
+                current_node.current_item = plando_item_placement[current_node_id]
+                all_item_nodes.append(current_node)
+                items_to_remove_from_pools.append(plando_item_placement[current_node_id])
+                items_plandod += 1
+                continue
+
             # Check all remaining nodes for items to add to the pools
             all_item_nodes.append(current_node)
 
@@ -538,6 +554,7 @@ def _generate_item_pools(
         + len(pool_illogical_consumables)
         + len(pool_badges)
         + len(pool_other_items)
+        - items_plandod
     )
 
     # Add Power Stars, if needed
@@ -604,11 +621,11 @@ def _generate_item_pools(
             pool_other_items.append(item)
 
     # Adjust item pools based on settings
-    items_to_remove_from_pools = get_items_to_exclude(
+    items_to_remove_from_pools.extend(get_items_to_exclude(
         logic_settings,
         starting_partners,
         do_partner_upgrade_shuffle
-    )
+    ))
     items_to_remove_from_pools.extend(starting_items)
 
     while items_to_remove_from_pools:
@@ -625,8 +642,14 @@ def _generate_item_pools(
         if item in pool_other_items:
             pool_other_items.remove(item)
             continue
-        #logging.info("Attempted to remove %s from item pools, but no pool holds such item.", item)
-
+        if item in pool_coins_only:
+            pool_coins_only.remove(item)
+            continue
+        if item in pool_illogical_consumables:
+            pool_illogical_consumables.remove(item)
+            continue
+        #if not item.is_trapped():
+        #    print(f"Attempted to remove {item} from item pools, but no pool holds such item.")
     # If we have set a badge pool limit and exceed that, remove random badges
     # until that condition is satisfied
     if len(pool_badges) > logic_settings.badge_pool_limit:
@@ -684,6 +707,7 @@ def _generate_item_pools(
         power_star_hunt = (logic_settings.star_hunt_total > 0),
         add_beta_items = logic_settings.add_beta_items,
         do_partner_upgrade_shuffle = do_partner_upgrade_shuffle,
+        already_placed_traps_count = plando_traps_placed,
     )
 
     return pool_other_items
@@ -772,7 +796,9 @@ def _algo_assumed_fill(
     starting_partners,
     hidden_block_mode:int,
     starting_items:list,
-    world_graph
+    world_graph,
+    plando_item_placement: dict[str | Item] | None,
+    plando_traps_placed: int,
 ):
 
     # Declare and init additional data structures
@@ -795,6 +821,8 @@ def _algo_assumed_fill(
         starting_items,
         starting_partners,
         (logic_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF),
+        plando_item_placement,
+        plando_traps_placed,
     )
 
     starting_node_id = get_startingnode_id_from_startingmap_id(
@@ -845,7 +873,12 @@ def _algo_assumed_fill(
             k=3
         )
         while shop_slot_ids:
-            world_graph[f"DRO_01/{shop_slot_ids.pop()}"]["node"].current_item = copied_shop_code_items.pop()
+            slot_id = shop_slot_ids.pop()
+            shop_code_item = copied_shop_code_items.pop()
+            if not world_graph[f"DRO_01/{slot_id}"]["node"].current_item:
+                world_graph[f"DRO_01/{slot_id}"]["node"].current_item = shop_code_item
+            else:
+                pool_other_items.append(shop_code_item)
 
 
     print("Placing progression items...")
@@ -1199,7 +1232,9 @@ def place_items(
     starting_partners,
     hidden_block_mode:int,
     starting_items:list,
-    world_graph = None
+    world_graph = None,
+    plando_item_placement: dict[str, Item] | None = None,
+    plando_traps_placed: int = 0,
 ):
     """Places items into item locations according to chosen settings."""
     #level = logging.INFO
@@ -1226,5 +1261,7 @@ def place_items(
             starting_partners,
             hidden_block_mode,
             starting_items,
-            world_graph
+            world_graph,
+            plando_item_placement,
+            plando_traps_placed,
         )
