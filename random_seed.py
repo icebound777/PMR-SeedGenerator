@@ -371,7 +371,7 @@ class RandomSeed:
                     node,
                     logic_settings.include_shops,
                     self.rando_settings.merlow_reward_pricing,
-                    self.logic_settings.star_hunt_total,
+                    logic_settings.star_hunt_total,
                 )
 
         # Modify Mystery? item
