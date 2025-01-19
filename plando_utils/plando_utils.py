@@ -66,6 +66,8 @@ class TransformedPlandoData():
                     key_name_item = location_id
                     break
 
+            return f"{map_id}/{key_name_item}"
+
 
         def lookup_item(item_str: str) -> Item:
             item_name_plando: str = item_str
