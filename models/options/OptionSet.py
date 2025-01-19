@@ -916,7 +916,6 @@ class OptionSet:
         if self.logic_settings.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
             self.map_tracker_shop_bits += 0x8
 
-        print(f"{self.logic_settings.progressive_badges=}")
 
 
     def validate_options(self, options_dict):
