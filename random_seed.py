@@ -36,6 +36,7 @@ from rando_modules.modify_entrances import (
 from rando_modules.random_entrances import shuffle_dungeon_entrances
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_map_mirroring import get_mirrored_map_list
+from rando_modules.random_stat_distribution import generate_random_stats
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
 from rando_modules.random_palettes import \
@@ -384,6 +385,13 @@ class RandomSeed:
                 logic_settings.shuffle_blocks,
                 supers_are_yellow=False
             )
+
+        # Randomize stat distribution if needed
+        if self.rando_settings.random_starting_level >= 0:
+            self.rando_settings.starting_level, \
+            self.rando_settings.starting_maxhp, \
+            self.rando_settings.starting_maxfp, \
+            self.rando_settings.starting_maxbp = generate_random_stats(self.rando_settings.random_starting_level)
 
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(
