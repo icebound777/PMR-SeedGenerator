@@ -2073,6 +2073,6 @@ def _overrule_settings_with_plando(
                     elif cur_item in progressive_badges["progressives"]:
                         forced_progressive_badges = True
                     elif cur_item.endswith("Upgrade"):
-                        forced_partner_upgrade_shuffle = True
+                        forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.FULL
 
     return forced_progressive_badges, forced_partner_upgrade_shuffle
