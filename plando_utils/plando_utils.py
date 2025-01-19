@@ -35,11 +35,9 @@ class TransformedPlandoData():
 
 
         def lookup_nodeid(area_str: str, location_str: str) -> str:
-            #print("+++")
-            #print(location_str)
             verbose_map_name = location_str[:location_str.index(" - ")]
             verbose_location_name = location_str[location_str.index(" - ")+3:]
-            #print(verbose_map_name)
+
             if verbose_map_name in ["Ruined Castle Grounds","Hijacked Castle Entrance"]:
                 area_str = "Peachs Castle Grounds"
             for k, v in verbose_area_names.items():
@@ -59,8 +57,7 @@ class TransformedPlandoData():
 
                     map_id = map_area.name
                     break
-            #print(map_id)
-            #print(verbose_location_name)
+
             map_location_dict = verbose_item_locations[map_id]
             for location_id, location_name in map_location_dict.items():
                 if location_name.replace("'", "") == verbose_location_name:
@@ -72,7 +69,6 @@ class TransformedPlandoData():
 
         def lookup_item(item_str: str) -> Item:
             item_name_plando: str = item_str
-            #print(f"{item_name_plando=}")
             item_is_trap: bool = False
 
             regex_match = re.match(r"TRAP \((.*)\)", item_name_plando)
@@ -125,5 +121,3 @@ class TransformedPlandoData():
                     self.trap_count += 1
                 elif item_obj.item_name in all_partners:
                     self.partners_placed.append(item_obj.item_name)
-
-        print(self.shop_prices)
