@@ -367,7 +367,8 @@ class RandomSeed:
                 node.current_item.base_price = get_shop_price(
                     node,
                     logic_settings.include_shops,
-                    self.rando_settings.merlow_reward_pricing
+                    self.rando_settings.merlow_reward_pricing,
+                    self.plando_data.shop_prices,
                 )
 
         # Modify Mystery? item

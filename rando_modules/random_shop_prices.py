@@ -8,13 +8,18 @@ from rando_enums.enum_options import MerlowRewardPricing
 def get_shop_price(
     node:Node,
     do_randomize_shops:bool,
-    merlow_costs:int
+    merlow_costs:int,
+    plando_shop_prices: dict[str, int],
 ) -> int:
     """
     Return the price for an item for offer within a shop (regular or Merlow's).
     Merlow gets special pricing rules as he deals in star pieces.
     """
     buy_price = 0
+
+    # Check if the price is plando'd
+    if node.identifier in plando_shop_prices:
+        return plando_shop_prices[node.identifier]
 
     if node.identifier.startswith("HOS_06") and "Shop" in node.identifier:
         # Merlow's shop

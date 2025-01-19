@@ -14,6 +14,7 @@ class TransformedPlandoData():
     def __init__(self, plando_data: dict | None) -> None:
         self.partners_placed: list[str] = list()
         self.trap_count: int = 0
+        self.shop_prices: dict[str, int] = dict()
 
         if plando_data is None:
             self.boss_battles: dict[int, int] | None = None
@@ -107,6 +108,9 @@ class TransformedPlandoData():
             for location, item_or_dict in arealocation_dict.items():
                 # get location
                 node_id = lookup_nodeid(area, location)
+                # get item price, if shop
+                if isinstance(item_or_dict, dict) and item_or_dict.get("price") is not None:
+                    self.shop_prices[node_id] = item_or_dict["price"]
                 # get item
                 if isinstance(item_or_dict, str):
                     item_obj = lookup_item(item_or_dict)
@@ -121,3 +125,5 @@ class TransformedPlandoData():
                     self.trap_count += 1
                 elif item_obj.item_name in all_partners:
                     self.partners_placed.append(item_obj.item_name)
+
+        print(self.shop_prices)
