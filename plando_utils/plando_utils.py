@@ -13,6 +13,8 @@ from db.map_area import MapArea
 class TransformedPlandoData():
     def __init__(self, plando_data: dict | None) -> None:
         self.partners_placed: list[str] = list()
+        self.badges_placed: list[str] = list()
+        self.keyitems_placed: list[str] = list()
         self.trap_count: int = 0
         self.shop_prices: dict[str, int] = dict()
 
@@ -121,3 +123,7 @@ class TransformedPlandoData():
                     self.trap_count += 1
                 elif item_obj.item_name in all_partners:
                     self.partners_placed.append(item_obj.item_name)
+                elif item_obj.item_type == "BADGE":
+                    self.badges_placed.append(item_obj.item_name)
+                elif item_obj.item_type in ["KEYITEM", "STARPIECE"]:
+                    self.keyitems_placed.append(item_obj.item_name)

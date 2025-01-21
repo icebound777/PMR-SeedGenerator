@@ -297,6 +297,8 @@ class RandomSeed:
 
                 self.init_starting_items(
                     self.rando_settings,
+                    self.plando_data.keyitems_placed,
+                    self.plando_data.badges_placed,
                 )
 
                 # Item Placement
@@ -510,6 +512,8 @@ class RandomSeed:
     def init_starting_items(
         self,
         rando_settings:OptionSet,
+        plando_keyitems: list[str],
+        plando_badges: list[str],
     ):
         """
         Initialize the starting items from either the chosen starting items or
@@ -524,6 +528,16 @@ class RandomSeed:
             all_allowed_starting_items.extend(allowed_starting_badges)
             all_allowed_starting_items.extend(allowed_starting_items)
             all_allowed_starting_items.extend(allowed_starting_key_items)
+
+            # Exclude items that are already placed by the plandomizer
+            for keyitem_str in plando_keyitems:
+                keyitem_obj = Item.get(Item.item_name == keyitem_str)
+                if keyitem_obj.value in all_allowed_starting_items:
+                    all_allowed_starting_items.remove(keyitem_obj.value)
+            for badge_str in plando_badges:
+                badge_obj = Item.get(Item.item_name == badge_str)
+                if badge_obj.value in all_allowed_starting_items:
+                    all_allowed_starting_items.remove(badge_obj.value)
 
             excluded_items = get_items_to_exclude(
                 logic_settings=rando_settings.logic_settings,
@@ -569,6 +583,16 @@ class RandomSeed:
             rando_settings.logic_settings.starting_item_E = starting_item_options[14]
             rando_settings.logic_settings.starting_item_F = starting_item_options[15]
         else:
+            if (any([
+                    True for x in self.rando_settings.get_startitem_list()
+                    if x.item_name in plando_keyitems or x.item_name in plando_badges
+                ])
+            ):
+                raise ValueError(
+                    "ERROR: Chosen starting items: Cannot start the seed with "\
+                    "these items, because one or more of them are already "\
+                    "placed by the plandomizer!"
+                )
             self.starting_items = self.rando_settings.get_startitem_list()
 
 
