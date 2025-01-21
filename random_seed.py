@@ -171,7 +171,7 @@ class RandomSeed:
                     entrance_changes, modified_world_graph, spoilerlog_info = shuffle_dungeon_entrances(
                         world_graph = modified_world_graph,
                         starway_spirits_needed_count = logic_settings.starway_spirits_needed_count,
-                        required_star_spirits = chosen_spirits if logic_settings.require_specific_spirits else all_spirits,
+                        required_star_spirits = chosen_spirits if (logic_settings.require_specific_spirits and 0 < logic_settings.starway_spirits_needed_count < 7) else all_spirits,
                         shuffle_bowsers_castle = (
                             logic_settings.shuffle_dungeon_entrances == DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
                         ),
