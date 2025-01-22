@@ -16,6 +16,7 @@ class TransformedPlandoData():
         self.badges_placed: list[str] = list()
         self.keyitems_placed: list[str] = list()
         self.trap_count: int = 0
+        self.magical_seeds_count: int = 0
         self.shop_prices: dict[str, int] = dict()
 
         if plando_data is None:
@@ -127,3 +128,6 @@ class TransformedPlandoData():
                     self.badges_placed.append(item_obj.item_name)
                 elif item_obj.item_type in ["KEYITEM", "STARPIECE"]:
                     self.keyitems_placed.append(item_obj.item_name)
+
+                    if item_obj.item_name.startswith("MagicalSeed"):
+                        self.magical_seeds_count += 1

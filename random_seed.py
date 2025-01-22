@@ -125,7 +125,12 @@ class RandomSeed:
 
                 # Choose values for options that are set to "random"
                 if logic_settings.magical_seeds_required == -1:
-                    logic_settings.magical_seeds_required = random.randint(0, 4)
+                    logic_settings.magical_seeds_required = random.randint(
+                        self.plando_data.magical_seeds_count,
+                        4
+                    )
+                elif self.plando_data.magical_seeds_count > logic_settings.magical_seeds_required:
+                    logic_settings.magical_seeds_required = self.plando_data.magical_seeds_count
 
                 if logic_settings.starway_spirits_needed_count == -1:
                     # note: don't roll zero here
