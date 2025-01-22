@@ -28,7 +28,7 @@ from models.options.GlitchOptionSet import GlitchOptionSet
 
 from models.options.option_utility import get_option_default_value
 
-from plandomizer.plando_metadata import progressive_badges
+from plandomizer.plando_metadata import progressive_badges, force_puzzlerando_locations
 
 class OptionSet:
     def __init__(self):
@@ -854,7 +854,9 @@ class OptionSet:
             self.glitch_settings.reach_high_blocks_with_super_boots = options_dict.get("ReachHighBlocksWithSuperBoots")
 
         # Overrule certain settings depending on plando data
-        forced_progressive_badges, forced_partner_upgrade_shuffle = \
+        forced_progressive_badges,\
+        forced_partner_upgrade_shuffle,\
+        forced_random_puzzles = \
             _overrule_settings_with_plando(
                 plando_data
             )
@@ -862,6 +864,8 @@ class OptionSet:
             self.logic_settings.progressive_badges = forced_progressive_badges
         if forced_partner_upgrade_shuffle is not None:
             self.logic_settings.partner_upgrade_shuffle = forced_partner_upgrade_shuffle
+        if forced_random_puzzles is not None:
+            self.logic_settings.randomize_puzzles = forced_random_puzzles
 
         # Map Check Tracker (static)
         #   0x1    # regular checks
@@ -2047,18 +2051,19 @@ class OptionSet:
 
 def _overrule_settings_with_plando(
     plando_data: dict | None,
-) -> tuple[bool | None, bool | None]:
+) -> tuple[bool | None, PartnerUpgradeShuffle | None, bool | None]:
     forced_progressive_badges: bool = None
     forced_partner_upgrade_shuffle: bool = None
+    forced_random_puzzles: bool = None
 
     if plando_data is None:
-        return forced_progressive_badges, forced_partner_upgrade_shuffle
+        return forced_progressive_badges, forced_partner_upgrade_shuffle, forced_random_puzzles
 
     else:
          item_placement_areas: None | dict[str, dict[str, str | dict[str, str | int]]] = plando_data.get("items")
          if item_placement_areas is not None:
             for area_locations in item_placement_areas.values():
-                for item in area_locations.values():
+                for item_location, item in area_locations.items():
                     cur_item: str = None
                     if isinstance(item, dict) and item.get("item") is not None:
                         cur_item = item["item"]
@@ -2067,6 +2072,9 @@ def _overrule_settings_with_plando(
                     else:
                         continue
 
+                    if item_location in force_puzzlerando_locations:
+                        forced_random_puzzles = True
+
                     if cur_item in progressive_badges["originals"]:
                         forced_progressive_badges = False
                     elif cur_item in progressive_badges["progressives"]:
@@ -2074,4 +2082,4 @@ def _overrule_settings_with_plando(
                     elif cur_item.endswith("Upgrade"):
                         forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.FULL
 
-    return forced_progressive_badges, forced_partner_upgrade_shuffle
+    return forced_progressive_badges, forced_partner_upgrade_shuffle, forced_random_puzzles
