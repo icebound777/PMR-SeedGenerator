@@ -19,11 +19,16 @@
 
 ### Miscellaneous
 
+* Spoiler log
+  * Renamed the item locations of the beach palm tree that drops two items to make differentiating between the one-time item and the replenishable item easier
 * RAM locations docs
   * Fix typo in Player Data struct regarding True Max HP and FP
 
 ### Additional Technical Changelog
 
+* Spoiler log
+  * Renamed the `Jade Jungle Beach` item location `In Palm Tree 6` to `In Palm Tree 6 (one-off)`
+  * Renamed the `Jade Jungle Beach` item location `In Palm Tree 6 2` to `In Palm Tree 6 (replenish)`
 * Yaml settings changes:
   * Added `RandomStartingStatsLevel`
     * `-1` = Off, `0` - `27` = Level to generate random starting stats for
