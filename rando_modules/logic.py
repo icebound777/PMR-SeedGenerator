@@ -685,18 +685,18 @@ def _generate_item_pools(
             except IndexError:
                 raise ItemPoolTooSmallError()
 
-    # Re-join the non-required items into one array
-    pool_other_items.extend(pool_coins_only)
-    pool_other_items.extend(pool_illogical_consumables)
-    pool_other_items.extend(pool_badges)
-
     # Randomize consumables if needed
-    pool_other_items = get_randomized_itempool(
-        pool_other_items,
+    pool_illogical_consumables = get_randomized_itempool(
+        pool_illogical_consumables,
         logic_settings.randomize_consumable_mode,
         logic_settings.item_quality,
         logic_settings.add_beta_items,
     )
+
+    # Re-join the non-required items into one array
+    pool_other_items.extend(pool_coins_only)
+    pool_other_items.extend(pool_illogical_consumables)
+    pool_other_items.extend(pool_badges)
 
     pool_other_items = get_trapped_itempool(
         itempool = pool_other_items,
