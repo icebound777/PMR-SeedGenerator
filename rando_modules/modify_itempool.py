@@ -211,7 +211,8 @@ def get_trapped_itempool(
     add_beta_items:bool,
     do_partner_upgrade_shuffle:bool,
     already_placed_traps_count:int,
-) -> list:
+    plando_trap_placeholders: list[str],
+) -> tuple[list[Item], dict[str, Item]]:
     """
     Modifies and returns a given item pool after placing trap items.
     This swaps out consumable items with trap items, which do not actually give
@@ -224,21 +225,18 @@ def get_trapped_itempool(
     # 1: sparse
     # 2: moderate
     # 3: plenty
-
     if trap_mode == 0:
-        return itempool
-
-    if trap_mode == 1:
+        max_traps = 0
+    elif trap_mode == 1:
         max_traps = 15
     elif trap_mode == 2:
         max_traps = 35
     else:
         max_traps = 80
 
-    if already_placed_traps_count >= max_traps:
-        return itempool
-    else:
-        max_traps = max_traps - already_placed_traps_count
+    cnt_traps = already_placed_traps_count
+    if max_traps <= cnt_traps and len(plando_trap_placeholders) == 0:
+        return itempool, dict()
 
     new_itempool = []
     fakeable_items: list[Item] = _get_fakeable_items(
@@ -250,7 +248,15 @@ def get_trapped_itempool(
         do_partner_upgrade_shuffle = do_partner_upgrade_shuffle,
     )
 
-    cnt_traps = 0
+    # Resolve plando trap placeholders to random items
+    resolved_trap_placeholders: dict[str, Item] = dict()
+    for trap_location in plando_trap_placeholders:
+        new_trapitem = random.choice(fakeable_items)
+        new_trapitem.set_trapped()
+        resolved_trap_placeholders[trap_location] = new_trapitem
+        cnt_traps += 1
+
+    # Add traps if not enough placed already
     shuffled_pool = itempool.copy()
     random.shuffle(shuffled_pool)
 
@@ -263,4 +269,4 @@ def get_trapped_itempool(
             new_itempool.append(new_trapitem)
             cnt_traps += 1
 
-    return new_itempool
+    return new_itempool, resolved_trap_placeholders

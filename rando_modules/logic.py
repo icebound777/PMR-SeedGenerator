@@ -318,7 +318,9 @@ def _generate_item_pools(
     do_partner_upgrade_shuffle:bool,
     plando_item_placement: dict[str | Item] | None,
     plando_traps_placed: int,
-):
+    plando_item_placeholders: dict[str, str],
+    plando_trap_placeholders: list[str],
+) -> tuple[list[Item], dict[str, Item], dict[str, Item]]:
     """
     Generates item pools for items to be shuffled (depending on chosen
     settings this may exclude certain items). The item pools generated are
@@ -693,12 +695,34 @@ def _generate_item_pools(
         logic_settings.add_beta_items,
     )
 
+    # Swap plandomizer placeholders for concrete items
+    # "Consumable"s and "NonProgression" should be randomly picked from
+    # pool_illogical_consumables and pool_illogical_consumables+pool_badges
+    # respectively, while traps should be handled by get_trapped_itempool
+    resolved_item_placeholders: dict[str, Item] = dict()
+    if len(plando_item_placeholders) > 0:
+        for node_id, placeholder in plando_item_placeholders.items():
+            possible_items = pool_illogical_consumables
+            if placeholder == "NonProgression":
+                possible_items.extend(deepcopy(pool_badges))
+                possible_items.extend(deepcopy(pool_coins_only))
+
+            resolved_placeholder = deepcopy(random.choice(possible_items))
+            resolved_item_placeholders[node_id] = resolved_placeholder
+
+            if resolved_placeholder in pool_illogical_consumables:
+                pool_illogical_consumables.remove(resolved_placeholder)
+            elif resolved_placeholder in pool_badges:
+                pool_badges.remove(resolved_placeholder)
+            else: # has to be pool_coins_only
+                pool_coins_only.remove(resolved_placeholder)
+
     # Re-join the non-required items into one array
     pool_other_items.extend(pool_coins_only)
     pool_other_items.extend(pool_illogical_consumables)
     pool_other_items.extend(pool_badges)
 
-    pool_other_items = get_trapped_itempool(
+    pool_other_items, resolved_trap_placeholders = get_trapped_itempool(
         itempool = pool_other_items,
         trap_mode = logic_settings.itemtrap_mode,
         randomize_favors_mode = logic_settings.include_favors_mode,
@@ -708,9 +732,10 @@ def _generate_item_pools(
         add_beta_items = logic_settings.add_beta_items,
         do_partner_upgrade_shuffle = do_partner_upgrade_shuffle,
         already_placed_traps_count = plando_traps_placed,
+        plando_trap_placeholders = plando_trap_placeholders,
     )
 
-    return pool_other_items
+    return pool_other_items, resolved_item_placeholders, resolved_trap_placeholders
 
 
 def find_available_nodes(
@@ -799,6 +824,8 @@ def _algo_assumed_fill(
     world_graph,
     plando_item_placement: dict[str | Item] | None,
     plando_traps_placed: int,
+    plando_item_placeholders: dict[str, str],
+    plando_trap_placeholders: list[str],
 ):
 
     # Declare and init additional data structures
@@ -811,7 +838,7 @@ def _algo_assumed_fill(
 
     # Generate item pool
     print("Generating item pool...")
-    pool_other_items = _generate_item_pools(
+    pool_other_items, resolved_item_placeholders, resolved_trap_placeholders = _generate_item_pools(
         world_graph,
         pool_progression_items,
         pool_misc_progression_items,
@@ -823,7 +850,17 @@ def _algo_assumed_fill(
         (logic_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF),
         plando_item_placement,
         plando_traps_placed,
+        plando_item_placeholders,
+        plando_trap_placeholders,
     )
+
+    # Pre-place plando'd generic placeholder items "Consumable",
+    # "NonProgression", and "TRAP", which have been resolved to actual items
+    for node_id, item_obj in resolved_item_placeholders.items():
+        world_graph[node_id]["node"].current_item = item_obj
+    for node_id, item_obj in resolved_trap_placeholders.items():
+        world_graph[node_id]["node"].current_item = item_obj
+
 
     starting_node_id = get_startingnode_id_from_startingmap_id(
         logic_settings.starting_map,
@@ -1232,6 +1269,8 @@ def place_items(
     starting_partners,
     hidden_block_mode:int,
     starting_items:list,
+    plando_item_placeholders: dict[str, str],
+    plando_trap_placeholders: list[str],
     world_graph = None,
     plando_item_placement: dict[str, Item] | None = None,
     plando_traps_placed: int = 0,
@@ -1264,4 +1303,6 @@ def place_items(
             world_graph,
             plando_item_placement,
             plando_traps_placed,
+            plando_item_placeholders,
+            plando_trap_placeholders,
         )

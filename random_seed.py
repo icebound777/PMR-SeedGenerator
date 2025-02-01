@@ -313,6 +313,8 @@ class RandomSeed:
                     starting_partners=self.starting_partners,
                     hidden_block_mode=hidden_block_mode,
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
+                    plando_item_placeholders=self.plando_data.item_placeholders,
+                    plando_trap_placeholders=self.plando_data.trap_placeholders,
                     world_graph=modified_world_graph,
                     plando_item_placement=self.plando_data.item_placement,
                     plando_traps_placed=self.plando_data.trap_count,

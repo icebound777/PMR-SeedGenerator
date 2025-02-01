@@ -6,6 +6,8 @@ from metadata.verbose_area_names import verbose_area_names
 
 from metadata.partners_meta import all_partners
 
+from plandomizer.plando_metadata import allowed_placeholders
+
 from db.item import Item
 from db.map_area import MapArea
 
@@ -18,6 +20,8 @@ class TransformedPlandoData():
         self.trap_count: int = 0
         self.magical_seeds_count: int = 0
         self.shop_prices: dict[str, int] = dict()
+        self.item_placeholders: dict[str, str] = dict()
+        self.trap_placeholders: list[str] = list()
 
         if plando_data is None:
             self.boss_battles: dict[int, int] | None = None
@@ -112,7 +116,15 @@ class TransformedPlandoData():
                     self.shop_prices[node_id] = item_or_dict["price"]
                 # get item
                 if isinstance(item_or_dict, str):
-                    item_obj = lookup_item(item_or_dict)
+                    if item_or_dict in allowed_placeholders:
+                        if item_or_dict == "TRAP":
+                            self.trap_placeholders.append(node_id)
+                            self.trap_count += 1
+                        else:
+                            self.item_placeholders[node_id] = item_or_dict
+                        continue
+                    else:
+                        item_obj = lookup_item(item_or_dict)
                 elif isinstance(item_or_dict, dict) and item_or_dict.get("item") is not None:
                     item_obj = lookup_item(item_or_dict["item"])
                 else:
