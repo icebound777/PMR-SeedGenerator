@@ -419,7 +419,7 @@ def _generate_item_pools(
             if (    current_node.key_name_item == "HiddenPanel"
                 and not logic_settings.include_panels
             ):
-                current_node.current_item = current_node.vanilla_item
+                current_node.current_item = Item.get(Item.item_name == "StarPiece")
                 all_item_nodes.append(current_node)
                 continue
 
@@ -454,7 +454,7 @@ def _generate_item_pools(
             if (    current_node_id in simpleletter_locations
                 and logic_settings.include_letters_mode < IncludeLettersMode.SIMPLE_LETTERS
             ):
-                current_node.current_item = current_node.vanilla_item
+                current_node.current_item = Item.get(Item.item_name == "StarPiece")
                 all_item_nodes.append(current_node)
                 continue
 

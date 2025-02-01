@@ -173,7 +173,6 @@ unplaceable_items = [
     "StarPoint",
     "HeartPoint",
     "FlowerPoint",
-    "StarPiece",
     "Present",
     "CakeDone",
     "CakeBare",
