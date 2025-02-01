@@ -707,14 +707,17 @@ def _generate_item_pools(
                 possible_items.extend(deepcopy(pool_badges))
                 possible_items.extend(deepcopy(pool_coins_only))
 
-            resolved_placeholder = deepcopy(random.choice(possible_items))
+            if len(possible_items) > 0:
+                resolved_placeholder = deepcopy(random.choice(possible_items))
+            else:
+                resolved_placeholder = _get_random_taycet_item()
             resolved_item_placeholders[node_id] = resolved_placeholder
 
             if resolved_placeholder in pool_illogical_consumables:
                 pool_illogical_consumables.remove(resolved_placeholder)
             elif resolved_placeholder in pool_badges:
                 pool_badges.remove(resolved_placeholder)
-            else: # has to be pool_coins_only
+            elif resolved_placeholder in pool_coins_only:
                 pool_coins_only.remove(resolved_placeholder)
 
     # Re-join the non-required items into one array
