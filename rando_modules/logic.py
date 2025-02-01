@@ -677,7 +677,7 @@ def _generate_item_pools(
     if target_itempool_size < cur_itempool_size:
         random.shuffle(pool_illogical_consumables)
         while target_itempool_size < cur_itempool_size:
-            if len(pool_coins_only) > 20:
+            if len(pool_coins_only) > 20 or len(pool_illogical_consumables) == 0:
                 trashable_items = pool_coins_only
             else:
                 trashable_items = pool_illogical_consumables
