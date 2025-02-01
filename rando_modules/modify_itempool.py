@@ -269,4 +269,13 @@ def get_trapped_itempool(
             new_itempool.append(new_trapitem)
             cnt_traps += 1
 
+    # Make space in item pool for resolved traps by randomly removing
+    # coins and consumables
+    for _ in resolved_trap_placeholders:
+        rem_item = random.choice([
+            x for x in new_itempool
+            if x.item_type in ["COIN","ITEM"]
+        ])
+        new_itempool.remove(rem_item)
+
     return new_itempool, resolved_trap_placeholders

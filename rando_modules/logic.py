@@ -702,7 +702,7 @@ def _generate_item_pools(
     resolved_item_placeholders: dict[str, Item] = dict()
     if len(plando_item_placeholders) > 0:
         for node_id, placeholder in plando_item_placeholders.items():
-            possible_items = pool_illogical_consumables
+            possible_items = deepcopy(pool_illogical_consumables)
             if placeholder == "NonProgression":
                 possible_items.extend(deepcopy(pool_badges))
                 possible_items.extend(deepcopy(pool_coins_only))
