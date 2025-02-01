@@ -880,27 +880,48 @@ def _algo_assumed_fill(
         ])
         unique_nonuniques = sorted(list(dict.fromkeys(affordable_nonuniques)))
 
+        manual_shop_fill_count: int = 0
         if len(unique_nonuniques) < 3:
             # We might have to place progression consumables here if the item
             # pool is too small, for example during "mystery only"
-            unique_nonuniques.extend(
-                random.sample(
-                    [
-                        x for x in pool_misc_progression_items
-                        if not ("Proxy") in x.item_name
-                    ],
-                    k=3-len(unique_nonuniques)
+            try:
+                unique_nonuniques.extend(
+                    random.sample(
+                        [
+                            x for x in pool_misc_progression_items
+                            if not ("Proxy") in x.item_name
+                        ],
+                        k=3-len(unique_nonuniques)
+                    )
                 )
-            )
+            except ValueError:
+                # Plando has already placed any item we could have as part of
+                # the shop code, so we have to fill it with more items out
+                # of thin air
+                if len(unique_nonuniques) < 3:
+                    unique_nonuniques.append(Item.get(Item.item_name == "StinkyHerb"))
+                    manual_shop_fill_count += 1
+                if len(unique_nonuniques) < 3:
+                    unique_nonuniques.append(Item.get(Item.item_name == "Pebble"))
+                    manual_shop_fill_count += 1
+                if len(unique_nonuniques) < 3:
+                    unique_nonuniques.append(Item.get(Item.item_name == "Mistake"))
+                    manual_shop_fill_count += 1
 
         shop_code_items = random.sample(unique_nonuniques, k=3)
         for shop_code_item in shop_code_items:
             # check if some of the consumables are relevant to progression
             # if so, then remove them from the misc progression instead
-            if shop_code_item in pool_misc_progression_items:
-                pool_misc_progression_items.remove(shop_code_item)
-            else:
-                pool_other_items.remove(shop_code_item)
+            try:
+                if shop_code_item in pool_misc_progression_items:
+                    pool_misc_progression_items.remove(shop_code_item)
+                else:
+                    pool_other_items.remove(shop_code_item)
+            except ValueError:
+                if manual_shop_fill_count > 0:
+                    manual_shop_fill_count -= 1
+                else:
+                    raise
 
         # avoid item object references
         copied_shop_code_items = []
