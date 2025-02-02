@@ -36,6 +36,7 @@ from rando_modules.modify_entrances import (
 from rando_modules.random_entrances import shuffle_dungeon_entrances
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_map_mirroring import get_mirrored_map_list
+from rando_modules.random_stat_distribution import generate_random_stats
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
 from rando_modules.random_palettes import \
@@ -139,6 +140,32 @@ class RandomSeed:
                 if logic_settings.starbeam_spirits_needed == -1:
                     # note: don't roll zero here
                     logic_settings.starbeam_spirits_needed = random.randint(1, 7)
+
+                if logic_settings.star_hunt_total == -1:
+                    min_total_stars = max([
+                        logic_settings.starway_powerstars_needed,
+                        logic_settings.starbeam_powerstars_needed,
+                    ])
+                    if min_total_stars == -1:
+                        min_total_stars = 1
+                    logic_settings.star_hunt_total = random.randint(
+                        min_total_stars,
+                        120
+                    )
+                if logic_settings.star_hunt_total == 0:
+                    logic_settings.starway_powerstars_needed = 0
+                elif logic_settings.starway_powerstars_needed == -1:
+                    logic_settings.starway_powerstars_needed = random.randint(
+                        1,
+                        logic_settings.star_hunt_total
+                    )
+                if logic_settings.star_hunt_total == 0:
+                    logic_settings.starbeam_powerstars_needed = 0
+                elif logic_settings.starbeam_powerstars_needed == -1:
+                    logic_settings.starbeam_powerstars_needed = random.randint(
+                        int(logic_settings.starway_powerstars_needed * 0.7) + 1,
+                        logic_settings.star_hunt_total
+                    )
 
                 # Modify entrances if needed
                 entrance_changes = []
@@ -377,6 +404,7 @@ class RandomSeed:
                     node,
                     logic_settings.include_shops,
                     self.rando_settings.merlow_reward_pricing,
+                    logic_settings.star_hunt_total,
                     self.plando_data.shop_prices,
                 )
 
@@ -390,6 +418,15 @@ class RandomSeed:
             self.placed_blocks = get_block_placement(
                 logic_settings.shuffle_blocks,
                 supers_are_yellow=False
+            )
+
+        # Randomize stat distribution if needed
+        if self.rando_settings.random_starting_stats_level >= 0:
+            self.rando_settings.starting_level, \
+            self.rando_settings.starting_maxhp, \
+            self.rando_settings.starting_maxfp, \
+            self.rando_settings.starting_maxbp = generate_random_stats(
+                self.rando_settings.random_starting_stats_level
             )
 
         # Randomize chapter difficulty / enemy stats if needed

@@ -83,14 +83,15 @@ ItemChoiceF          : 0x082 # ThunderRage
 ItemChoiceG          : 0x085 # Pebble
 
 # Starting setup
-StartingMap      : 0x00010104 # 0x00010104:Toad Town Gate District, 0xFFFFFFFF:RandomFromSelection
-StartingMaxHP    : 10
-StartingMaxFP    : 5
-StartingMaxBP    : 3
-StartingStarPower: 0
-StartingBoots    : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
-StartingHammer   : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
-StartingCoins    : 100
+StartingMap             : 0x00010104 # 0x00010104:Toad Town Gate District, 0xFFFFFFFF:RandomFromSelection
+RandomStartingStatsLevel: -1 # -1: off, 0-27: starting level to choose random stats for
+StartingMaxHP           : 10 # ignored if RandomStartingStatsLevel > -1
+StartingMaxFP           : 5 # ignored if RandomStartingStatsLevel > -1
+StartingMaxBP           : 3 # ignored if RandomStartingStatsLevel > -1
+StartingStarPower       : 0
+StartingBoots           : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
+StartingHammer          : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
+StartingCoins           : 100
 
 StartWithRandomItems: false
 RandomItemsMin      : 0
@@ -144,11 +145,11 @@ Ch7BridgeVisible    : true
 SeedGoal                : 0 # 0: Defeat Bowser, 1: Open StarWay
 BowsersCastleMode       : 0 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 StarWaySpiritsNeededCnt : 7 # -1:Random
-StarWayPowerStarsNeeded : 0 # max 120
+StarWayPowerStarsNeeded : 0 # max 120, -1:Random
 ShuffleStarBeam         : false
 StarBeamSpiritsNeeded   : 0 # -1:Random
-StarBeamPowerStarsNeeded: 0
-StarHuntTotal           : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded
+StarBeamPowerStarsNeeded: 0 # -1:Random
+StarHuntTotal           : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded, -1:Random
 RequireSpecificSpirits  : false # always false if StarWaySpiritsNeededCnt: 7
 LimitChapterLogic       : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
 

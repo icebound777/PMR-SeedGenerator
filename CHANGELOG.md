@@ -14,6 +14,18 @@
     * BP, FP, and SP costs of badges, moves of Mario and his partners, and the star powers
     * Which spirits to rescue for the `Require Specific Spirits` setting
   * For more details, please refer to the plandomizer module documentation: <https://github.com/icebound777/PMR-Plando-Validator>
+* `Random Starting Stats` option:
+  * Allows starting the seed with random amounts of HP, FP, and BP by choosing the level to generate these starting stats for
+* `Power Star Hunt` related settings:
+  * All three power star hunt settings, `Star Hunt Total`, `Star Way Power Stars Needed`, and `Star Beam Power Stars Needed` can now be set to random. `Star Beam Power Stars Needed` is slightly biased towards rolling higher than the value of `Star Way Power Stars Needed`.
+  * The price for power stars sold in shops is now dynamic. The more power stars are in the item pool, the lower the price of power stars becomes.
+    * 40 or fewer power stars: random price out of `10,15,20,25,30` coins (same as before)
+    * 41 - 80 power stars: random price out of `5,10,15,20` coins
+    * 81 or more power stars: random price out of `5,10` coins
+
+### Logic changes
+
+* Fixed logic not expecting boots or Kooper for hitting the yellow item block in Tubba's Castle - Stairs to Third Floor
 
 ### Miscellaneous
 
@@ -26,6 +38,32 @@
   * Rename the Super Smash Charge badge from `SSmashChg` to `SSmashCharge` for consistency with the other charge badges.
   * Differentiate the two letters to Goompapa and the two letters to Koover by appending `1` and `2` to the respective item names.
   * If the plandomizer feature is used, the spoiler log will now display that data in a new `plandomizer` subcategory.
+  * Renamed the item locations of the beach palm tree that drops two items to make differentiating between the one-time item and the replenishable item easier
+* RAM locations docs
+  * Fix typo in Player Data struct regarding True Max HP and FP
+
+### Additional Technical Changelog
+
+* Spoiler log
+  * Renamed the `Jade Jungle Beach` item location `In Palm Tree 6` to `In Palm Tree 6 (one-off)`
+  * Renamed the `Jade Jungle Beach` item location `In Palm Tree 6 2` to `In Palm Tree 6 (replenish)`
+* Yaml settings changes:
+  * Added `RandomStartingStatsLevel`
+    * `-1` = Off, `0` - `27` = Level to generate random starting stats for
+    * If not turned off, generator will ignore `StartingMaxHP`, `StartingMaxFP`, and `StartingMaxBP`
+  * `StarWayPowerStarsNeeded` now accepts `-1` as value (to roll randomly)
+  * `StarBeamPowerStarsNeeded` now accepts `-1` as value (to roll randomly)
+  * `StarHuntTotal` now accepts `-1` as value (to roll randomly)
+
+## 0.28.1 (beta)
+
+### Bug Fixes (0.28.1)
+
+* Fix a bug that caused the chapter 3 boss battle's post-battle cutscene to sometimes not play out properly during `Boss Shuffle: On`, causing a softlock
+* Fix a bug that caused the seed generator to fail at item placement while `Shuffle Partners` was set to `Shuffle among vanilla locations`, if other settings were very restrictive (like jumpless and hammerless start plus Goombario as only partner)
+* Fix a bug that caused the seed generator to fail at item placement while `Seed Goal: Open Starway`, `Dungeon Entrance Shuffle: All + Bowser's Castle`, and `Partner Upgrades: Shuffle among super block locations` were all active
+* Stop an uninteractible Bow-NPC from spawning when re-visiting Lady Bow's Room atop Boo's Mansion during `Cutscene Mode: Minimal`
+* Fix a crash during the Crystal Palace fake Bombettes puzzle if re-entering the puzzle with a non-Bombette partner out. Fixed by resetting the bombable wall in this niche scenario
 
 ## 0.28.0 (beta)
 

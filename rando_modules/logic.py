@@ -971,16 +971,16 @@ def _algo_assumed_fill(
                     dungeon_restricted_items[item] = dungeon
         pool_combined_progression_items.sort(key=lambda x: x.item_name in dungeon_restricted_items.keys())
 
-    if logic_settings.partner_shuffle == PartnerShuffle.SHUFFLED:
-        pool_combined_progression_items.sort(
-            key = lambda x: x.item_name in all_partners
-        )
-
     if (   logic_settings.gear_shuffle_mode == GearShuffleMode.GEAR_LOCATION_SHUFFLE
         or logic_settings.starting_hammer == StartingHammer.HAMMERLESS
         or logic_settings.starting_boots == StartingBoots.JUMPLESS
     ):
         pool_combined_progression_items.sort(key=lambda x: x.item_type == "GEAR")
+
+    if logic_settings.partner_shuffle == PartnerShuffle.SHUFFLED:
+        pool_combined_progression_items.sort(
+            key = lambda x: x.item_name in all_partners
+        )
 
     if logic_settings.partner_upgrade_shuffle == PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
         # Special handling: non-progression which has to be placed first
@@ -991,8 +991,17 @@ def _algo_assumed_fill(
         ]
         for upgrade in pool_upgrade_items:
             pool_other_items.remove(upgrade)
-
         random.shuffle(pool_upgrade_items)
+
+        available_superblock_locations = len([
+            item_node
+            for item_node in all_item_nodes
+            if "RandomBlockItem" in item_node.identifier
+        ])
+        while len(pool_upgrade_items) > available_superblock_locations:
+            pool_upgrade_items.pop()
+            pool_other_items.append(_get_random_taycet_item())
+
         for item_node in all_item_nodes:
             if item_node.current_item:
                 continue
@@ -1001,6 +1010,8 @@ def _algo_assumed_fill(
                 item_node.current_item = pool_upgrade_items.pop()
             if not pool_upgrade_items:
                 break
+        if pool_upgrade_items:
+            raise ValueError(f"Could not place all Partner Upgrade items! Items left: {len(pool_upgrade_items)}")
 
 
     while pool_combined_progression_items:
