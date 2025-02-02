@@ -14,6 +14,7 @@ class GlitchOptionSet():
         self.blue_house_skip = False
         self.blue_house_skip_laki = False
         self.blue_house_skip_toad_lure = False
+        self.jumpless_dane_t_letters = False
         self.bowless_toy_box_hammer = False
         self.bowless_toy_box_hammerless_lure = False
         self.early_storeroom_parakarry = False
@@ -21,7 +22,10 @@ class GlitchOptionSet():
         self.early_storeroom_hammerless_lure = False
         self.whale_early = False
         self.sushiesless_toad_town_star_piece = False
+        self.toad_town_sushie_glitch_gearless = False
         self.toad_town_sushie_glitch = False
+        self.toad_town_sushie_glitch_full_gear = False
+        self.jumpless_summit_climb = False
 
         self.clippy_boots_stone_block_skip = False
         self.clippy_boots_metal_block_skip = False
@@ -40,6 +44,7 @@ class GlitchOptionSet():
         self.invisible_bridge_clip_lzs = False
         self.invisible_bridge_clip_laki = False
         self.kooperless_pleasant_path_thunderbolt = False
+        self.jumpless_koopa_village_blue_pipe = False
 
         self.bombetteless_kbf_fp_plus_lzs = False
         self.bombetteless_kbf_fp_plus_laki = False
@@ -49,6 +54,7 @@ class GlitchOptionSet():
 
         self.mt_rugged_quake_hammer_and_letter_with_laki = False
         self.parakarryless_mt_rugged_seed = False
+        self.parakarryless_mt_rugged_seed_clippy = False
         self.buzzar_gap_skip_clippy = False
         self.mt_rugged_coins_with_kooper = False
         self.mt_rugged_station_jumpless_climb_bombette = False
@@ -67,6 +73,7 @@ class GlitchOptionSet():
         self.parakarryless_super_hammer_room_ultra_boots = False
         self.parakarryless_super_hammer_room_normal_boots = False
         self.ruins_locks_skip_clippy = False
+        self.ruins_puzzle_solution_early = False
         self.ruins_stone_skip = False
 
         self.forever_forest_backwards = False
@@ -89,6 +96,7 @@ class GlitchOptionSet():
         self.tubbas_table_ultra_boots = False
         self.tubbas_table_laki_jump_study = False
         self.tubbas_castle_super_boots_skip = False
+        self.jumpless_mega_rush = False
         self.parakarryless_mega_rush = False
 
         self.parakarryless_blue_building_star_piece = False
@@ -109,6 +117,7 @@ class GlitchOptionSet():
 
         self.raph_skip_english = False
         self.raph_skip_parakarry = False
+        self.raph_skip_lakilester = False
         self.ch5_sushie_glitch = False
         self.sushieless_jungle_starpiece_and_letter = False
         self.jumpless_deep_jungle_laki = False
@@ -149,11 +158,19 @@ class GlitchOptionSet():
         self.sushieless_warehouse_key_kooper = False
 
         self.mirror_clip = False
+        self.bombette_puzzle_skip = False
         self.kooper_puzzle_skip = False
 
         self.bowless_bowsers_castle_basement = False
+        self.wattless_dark_basement = False
+        self.basement_skip_parakarry = False
+        self.basement_skip_lakilester = False
+        self.basement_skip_hammer = False
+        self.bowsers_castle_hub1_stair_clip = False
         self.fast_flood_room_kooper = False
+        self.fast_flood_room_kooperless = False
         self.fast_flood_room_bombette_ultra_boots = False
+        self.cannonless = False
         self.bombetteless_bowsers_castle_basement = False
 
         self.break_yellow_blocks_with_super_boots = False

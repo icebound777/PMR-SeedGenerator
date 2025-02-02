@@ -243,6 +243,7 @@ OddKeyEarly                                     : false
 BlueHouseSkip                                   : false
 BlueHouseSkipLaki                               : false
 BlueHouseSkipToadLure                           : false
+JumplessDaneTLetters                            : false
 BowlessToyBoxHammer                             : false
 BowlessToyBoxHammerlessLure                     : false
 EarlyStoreroomParakarry                         : false
@@ -250,7 +251,11 @@ EarlyStoreroomHammer                            : false
 EarlyStoreroomHammerlessLure                    : false
 WhaleEarly                                      : false
 SushielessToadTownStarPiece                     : false
+ToadTownSushieGlitchGearless                    : false
 ToadTownSushieGlitch                            : false
+ToadTownSushieGlitchFullGear                    : false
+
+JumplessSummitClimb                             : false
 
 ClippyBootsStoneBlockSkip                       : false
 ClippyBootsMetalBlockSkip                       : false
@@ -269,6 +274,7 @@ HammerlessPleasantPathBridgeUltraBootsParakarry : false
 InvisibleBridgeClipLzs                          : false
 InvisibleBridgeClipLaki                         : false
 KooperlessPleasantPathThunderBolt               : false
+JumplessKoopaVillageBluePipe                    : false
 
 BombettelessKbfFpPlusLZS                        : false
 BombettelessKbfFpPlusLaki                       : false
@@ -278,6 +284,7 @@ WaterStaircaseSkip                              : false
 
 MtRuggedQuakeHammerAndLetterWithLaki            : false
 ParakarrylessMtRuggedSeed                       : false
+ParakarrylessMtRuggedSeedClippy                 : false
 BuzzarGapSkipClippy                             : false
 MtRuggedCoinsWithKooper                         : false
 MtRuggedStationJumplessClimbBombette            : false
@@ -297,6 +304,7 @@ ParakarrylessSecondSandRoomNormalBoots          : false
 ParakarrylessSuperHammerRoomUltraBoots          : false
 ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
+RuinsPuzzleSolutionEarly                        : false
 RuinsStoneSkip                                  : false
 
 ForeverForestBackwards                          : false
@@ -319,6 +327,7 @@ TubbasTableLakiJumpClock                        : false
 TubbasTableUltraBoots                           : false
 TubbasTableLakiJumpStudy                        : false
 TubbasCastleSuperBootsSkip                      : false
+JumplessMegaRush                                : false
 ParakarrylessMegaRush                           : false
 
 ParakarrylessBlueBuildingStarPiece              : false
@@ -339,6 +348,7 @@ HammerlessPinkStationLaki                       : false
 
 RaphSkipEnglish                                 : false
 RaphSkipParakarry                               : false
+RaphSkipLakilester                              : false
 Ch5SushieGlitch                                 : false
 SushielessJungleStarpieceAndLetter              : false
 JumplessDeepJungleLaki                          : false
@@ -380,11 +390,19 @@ SushielessWarehouseKeyBombette                  : false
 SushielessWarehouseKeyKooper                    : false
 
 MirrorClip                                      : false
+BombettePuzzleSkip                              : false
 KooperPuzzleSkip                                : false
 
 BowlessBowsersCastleBasement                    : false
+WattlessDarkBasement                            : false
+BasementSkipParakarry                           : false
+BasementSkipLakilester                          : false
+BasementSkipHammer                              : false
+BowsersCastleHub1StairClip                      : false
 FastFloodRoomKooper                             : false
+FastFloodRoomKooperless                         : false
 FastFloodRoomBombetteUltraBoots                 : false
+Cannonless                                      : false
 BombettelessBowsersCastleBasement               : false
 
 BreakYellowBlocksWithSuperBoots                 : false
