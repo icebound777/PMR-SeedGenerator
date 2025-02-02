@@ -316,7 +316,11 @@ def _generate_item_pools(
     starting_items:list,
     starting_partners:list,
     do_partner_upgrade_shuffle:bool,
-):
+    plando_item_placement: dict[str | Item] | None,
+    plando_traps_placed: int,
+    plando_item_placeholders: dict[str, str],
+    plando_trap_placeholders: list[str],
+) -> tuple[list[Item], dict[str, Item], dict[str, Item]]:
     """
     Generates item pools for items to be shuffled (depending on chosen
     settings this may exclude certain items). The item pools generated are
@@ -325,9 +329,40 @@ def _generate_item_pools(
     pool_other_items (every other item). Additionally marks item nodes that
     shall not be randomized as already filled.
     """
+    if plando_item_placement is None:
+        plando_item_placement = dict()
+    items_plandod: int = 0
+
     pool_coins_only = []
     pool_illogical_consumables = []
     pool_badges = []
+
+    items_to_remove_from_pools: list[Item] = []
+
+    def add_to_correct_itempool(
+        new_item: Item,
+    ):
+        if (new_item.progression
+        or (logic_settings.include_shops and "StarPiece" in new_item.item_name)
+        or new_item.item_type == "GEAR"
+        ):
+            pool_progression_items.append(new_item)
+        else:
+            if (    new_item.item_name in progression_miscitems_names
+                and new_item not in pool_misc_progression_items
+            ):
+                # Since progression misc items have to be placed in
+                # replenishable locations, we only need one of each
+                pool_misc_progression_items.append(new_item)
+            else:
+                if new_item.item_type == "COIN":
+                    pool_coins_only.append(new_item)
+                elif new_item.item_type == "ITEM":
+                    pool_illogical_consumables.append(new_item)
+                elif new_item.item_type == "BADGE":
+                    pool_badges.append(new_item)
+                else:
+                    pool_other_items.append(new_item)
 
     # Pre-fill nodes that are not to be randomized
     for node_id in world_graph:
@@ -384,7 +419,7 @@ def _generate_item_pools(
             if (    current_node.key_name_item == "HiddenPanel"
                 and not logic_settings.include_panels
             ):
-                current_node.current_item = current_node.vanilla_item
+                current_node.current_item = Item.get(Item.item_name == "StarPiece")
                 all_item_nodes.append(current_node)
                 continue
 
@@ -419,7 +454,7 @@ def _generate_item_pools(
             if (    current_node_id in simpleletter_locations
                 and logic_settings.include_letters_mode < IncludeLettersMode.SIMPLE_LETTERS
             ):
-                current_node.current_item = current_node.vanilla_item
+                current_node.current_item = Item.get(Item.item_name == "StarPiece")
                 all_item_nodes.append(current_node)
                 continue
 
@@ -488,6 +523,14 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
+            if current_node_id in plando_item_placement:
+                add_to_correct_itempool(current_node.vanilla_item)
+                current_node.current_item = plando_item_placement[current_node_id]
+                all_item_nodes.append(current_node)
+                items_to_remove_from_pools.append(plando_item_placement[current_node_id])
+                items_plandod += 1
+                continue
+
             # Check all remaining nodes for items to add to the pools
             all_item_nodes.append(current_node)
 
@@ -503,27 +546,8 @@ def _generate_item_pools(
                 continue
 
             # Item shall be randomized: Add it to the correct item pool
-            if (current_node.vanilla_item.progression
-            or (logic_settings.include_shops and "StarPiece" in current_node.vanilla_item.item_name)
-            or current_node.vanilla_item.item_type == "GEAR"
-            ):
-                pool_progression_items.append(current_node.vanilla_item)
-            else:
-                if (    current_node.vanilla_item.item_name in progression_miscitems_names
-                    and current_node.vanilla_item not in pool_misc_progression_items
-                ):
-                    # Since progression misc items have to be placed in
-                    # replenishable locations, we only need one of each
-                    pool_misc_progression_items.append(current_node.vanilla_item)
-                else:
-                    if current_node.vanilla_item.item_type == "COIN":
-                        pool_coins_only.append(current_node.vanilla_item)
-                    elif current_node.vanilla_item.item_type == "ITEM":
-                        pool_illogical_consumables.append(current_node.vanilla_item)
-                    elif current_node.vanilla_item.item_type == "BADGE":
-                        pool_badges.append(current_node.vanilla_item)
-                    else:
-                        pool_other_items.append(current_node.vanilla_item)
+            add_to_correct_itempool(current_node.vanilla_item)
+
 
     target_itempool_size = (
         len(pool_progression_items)
@@ -532,6 +556,7 @@ def _generate_item_pools(
         + len(pool_illogical_consumables)
         + len(pool_badges)
         + len(pool_other_items)
+        - items_plandod
     )
 
     # Add Power Stars, if needed
@@ -598,11 +623,11 @@ def _generate_item_pools(
             pool_other_items.append(item)
 
     # Adjust item pools based on settings
-    items_to_remove_from_pools = get_items_to_exclude(
+    items_to_remove_from_pools.extend(get_items_to_exclude(
         logic_settings,
         starting_partners,
         do_partner_upgrade_shuffle
-    )
+    ))
     items_to_remove_from_pools.extend(starting_items)
 
     while items_to_remove_from_pools:
@@ -619,8 +644,14 @@ def _generate_item_pools(
         if item in pool_other_items:
             pool_other_items.remove(item)
             continue
-        #logging.info("Attempted to remove %s from item pools, but no pool holds such item.", item)
-
+        if item in pool_coins_only:
+            pool_coins_only.remove(item)
+            continue
+        if item in pool_illogical_consumables:
+            pool_illogical_consumables.remove(item)
+            continue
+        #if not item.is_trapped():
+        #    print(f"Attempted to remove {item} from item pools, but no pool holds such item.")
     # If we have set a badge pool limit and exceed that, remove random badges
     # until that condition is satisfied
     if len(pool_badges) > logic_settings.badge_pool_limit:
@@ -646,7 +677,7 @@ def _generate_item_pools(
     if target_itempool_size < cur_itempool_size:
         random.shuffle(pool_illogical_consumables)
         while target_itempool_size < cur_itempool_size:
-            if len(pool_coins_only) > 20:
+            if len(pool_coins_only) > 20 or len(pool_illogical_consumables) == 0:
                 trashable_items = pool_coins_only
             else:
                 trashable_items = pool_illogical_consumables
@@ -656,20 +687,45 @@ def _generate_item_pools(
             except IndexError:
                 raise ItemPoolTooSmallError()
 
-    # Re-join the non-required items into one array
-    pool_other_items.extend(pool_coins_only)
-    pool_other_items.extend(pool_illogical_consumables)
-    pool_other_items.extend(pool_badges)
-
     # Randomize consumables if needed
-    pool_other_items = get_randomized_itempool(
-        pool_other_items,
+    pool_illogical_consumables = get_randomized_itempool(
+        pool_illogical_consumables,
         logic_settings.randomize_consumable_mode,
         logic_settings.item_quality,
         logic_settings.add_beta_items,
     )
 
-    pool_other_items = get_trapped_itempool(
+    # Swap plandomizer placeholders for concrete items
+    # "Consumable"s and "NonProgression" should be randomly picked from
+    # pool_illogical_consumables and pool_illogical_consumables+pool_badges
+    # respectively, while traps should be handled by get_trapped_itempool
+    resolved_item_placeholders: dict[str, Item] = dict()
+    if len(plando_item_placeholders) > 0:
+        for node_id, placeholder in plando_item_placeholders.items():
+            possible_items = deepcopy(pool_illogical_consumables)
+            if placeholder == "NonProgression":
+                possible_items.extend(deepcopy(pool_badges))
+                possible_items.extend(deepcopy(pool_coins_only))
+
+            if len(possible_items) > 0:
+                resolved_placeholder = deepcopy(random.choice(possible_items))
+            else:
+                resolved_placeholder = _get_random_taycet_item()
+            resolved_item_placeholders[node_id] = resolved_placeholder
+
+            if resolved_placeholder in pool_illogical_consumables:
+                pool_illogical_consumables.remove(resolved_placeholder)
+            elif resolved_placeholder in pool_badges:
+                pool_badges.remove(resolved_placeholder)
+            elif resolved_placeholder in pool_coins_only:
+                pool_coins_only.remove(resolved_placeholder)
+
+    # Re-join the non-required items into one array
+    pool_other_items.extend(pool_coins_only)
+    pool_other_items.extend(pool_illogical_consumables)
+    pool_other_items.extend(pool_badges)
+
+    pool_other_items, resolved_trap_placeholders = get_trapped_itempool(
         itempool = pool_other_items,
         trap_mode = logic_settings.itemtrap_mode,
         randomize_favors_mode = logic_settings.include_favors_mode,
@@ -678,9 +734,11 @@ def _generate_item_pools(
         power_star_hunt = (logic_settings.star_hunt_total > 0),
         add_beta_items = logic_settings.add_beta_items,
         do_partner_upgrade_shuffle = do_partner_upgrade_shuffle,
+        already_placed_traps_count = plando_traps_placed,
+        plando_trap_placeholders = plando_trap_placeholders,
     )
 
-    return pool_other_items
+    return pool_other_items, resolved_item_placeholders, resolved_trap_placeholders
 
 
 def find_available_nodes(
@@ -766,7 +824,11 @@ def _algo_assumed_fill(
     starting_partners,
     hidden_block_mode:int,
     starting_items:list,
-    world_graph
+    world_graph,
+    plando_item_placement: dict[str | Item] | None,
+    plando_traps_placed: int,
+    plando_item_placeholders: dict[str, str],
+    plando_trap_placeholders: list[str],
 ):
 
     # Declare and init additional data structures
@@ -779,7 +841,7 @@ def _algo_assumed_fill(
 
     # Generate item pool
     print("Generating item pool...")
-    pool_other_items = _generate_item_pools(
+    pool_other_items, resolved_item_placeholders, resolved_trap_placeholders = _generate_item_pools(
         world_graph,
         pool_progression_items,
         pool_misc_progression_items,
@@ -789,57 +851,110 @@ def _algo_assumed_fill(
         starting_items,
         starting_partners,
         (logic_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF),
+        plando_item_placement,
+        plando_traps_placed,
+        plando_item_placeholders,
+        plando_trap_placeholders,
     )
+
+    # Pre-place plando'd generic placeholder items "Consumable",
+    # "NonProgression", and "TRAP", which have been resolved to actual items
+    for node_id, item_obj in resolved_item_placeholders.items():
+        world_graph[node_id]["node"].current_item = item_obj
+    for node_id, item_obj in resolved_trap_placeholders.items():
+        world_graph[node_id]["node"].current_item = item_obj
+
 
     starting_node_id = get_startingnode_id_from_startingmap_id(
         logic_settings.starting_map,
     )
 
     if logic_settings.randomize_puzzles and logic_settings.include_shops:
-        # Force at least 3 different non-uniques into the Dry Dry Outpost shop
-        # which are at least somewhat affordable
-        affordable_nonuniques = set([
-            x for x in pool_other_items
-            if    (x.item_type == "ITEM" and x.base_price <= 10 and x.value <= 0xFF)
-            #      consumable                affordable             not the berry keys
-               or x.item_type == "COIN"
-        ])
-        unique_nonuniques = sorted(list(dict.fromkeys(affordable_nonuniques)))
+        # Check which slots are pre-filled, if any
+        filled_slots: list[str] = list()
+        shop_code_candidates: set[str] = set()
 
-        if len(unique_nonuniques) < 3:
-            # We might have to place progression consumables here if the item
-            # pool is too small, for example during "mystery only"
-            unique_nonuniques.extend(
-                random.sample(
-                    [
-                        x for x in pool_misc_progression_items
-                        if not ("Proxy") in x.item_name
-                    ],
-                    k=3-len(unique_nonuniques)
-                )
+        shop_array = ["ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"]
+        for slot_id in shop_array:
+            slot_item = world_graph[f"DRO_01/{slot_id}"]["node"].current_item
+            if slot_item is not None:
+                filled_slots.append(slot_id)
+                if slot_item.item_type in ["ITEM","COIN"] and slot_item.base_price <= 10:
+                    shop_code_candidates.add(slot_item.item_name)
+        missing_code_candidates_cnt: int = (3 - len(shop_code_candidates))
+
+        if (    len(filled_slots) < 6 # there are slots left to fill
+            and len(shop_code_candidates) < 3 # we don't have 3 elligible consumables yet
+            and len(filled_slots) + missing_code_candidates_cnt <= 6
+            # do we even have enough slots left to get to 3 consumables
+        ):
+            # Force at least 3 different non-uniques into the Dry Dry Outpost shop
+            # which are at least somewhat affordable
+            affordable_nonuniques = set([
+                x for x in pool_other_items
+                if    (x.item_type == "ITEM" and x.base_price <= 10 and x.value <= 0xFF)
+                #      consumable                affordable             not the berry keys
+                   or x.item_type == "COIN"
+            ])
+            unique_nonuniques = sorted(list(dict.fromkeys(affordable_nonuniques)))
+
+            manual_shop_fill_count: int = 0
+            if len(unique_nonuniques) < missing_code_candidates_cnt:
+                # We might have to place progression consumables here if the item
+                # pool is too small, for example during "mystery only"
+                try:
+                    unique_nonuniques.extend(
+                        random.sample(
+                            [
+                                x for x in pool_misc_progression_items
+                                if not ("Proxy") in x.item_name
+                            ],
+                            k=missing_code_candidates_cnt - len(unique_nonuniques)
+                        )
+                    )
+                except ValueError:
+                    # Plando has already placed any item we could have as part of
+                    # the shop code, so we have to fill it with more items out
+                    # of thin air
+                    if len(unique_nonuniques) < missing_code_candidates_cnt:
+                        unique_nonuniques.append(Item.get(Item.item_name == "StinkyHerb"))
+                        manual_shop_fill_count += 1
+                    if len(unique_nonuniques) < missing_code_candidates_cnt:
+                        unique_nonuniques.append(Item.get(Item.item_name == "Pebble"))
+                        manual_shop_fill_count += 1
+                    if len(unique_nonuniques) < missing_code_candidates_cnt:
+                        unique_nonuniques.append(Item.get(Item.item_name == "Mistake"))
+                        manual_shop_fill_count += 1
+
+            shop_code_items = random.sample(unique_nonuniques, k=missing_code_candidates_cnt)
+            for shop_code_item in shop_code_items:
+                # check if some of the consumables are relevant to progression
+                # if so, then remove them from the misc progression instead
+                try:
+                    if shop_code_item in pool_misc_progression_items:
+                        pool_misc_progression_items.remove(shop_code_item)
+                    else:
+                        pool_other_items.remove(shop_code_item)
+                except ValueError:
+                    if manual_shop_fill_count > 0:
+                        manual_shop_fill_count -= 1
+                    else:
+                        raise
+
+            # avoid item object references
+            copied_shop_code_items = []
+            for item in shop_code_items:
+                copied_shop_code_items.append(deepcopy(item))
+
+            # place into random dro shop slots
+            shop_slot_ids = random.sample(
+                population=[x for x in shop_array if world_graph[f"DRO_01/{x}"]["node"].current_item is None],
+                k=missing_code_candidates_cnt
             )
-
-        shop_code_items = random.sample(unique_nonuniques, k=3)
-        for shop_code_item in shop_code_items:
-            # check if some of the consumables are relevant to progression
-            # if so, then remove them from the misc progression instead
-            if shop_code_item in pool_misc_progression_items:
-                pool_misc_progression_items.remove(shop_code_item)
-            else:
-                pool_other_items.remove(shop_code_item)
-
-        # avoid item object references
-        copied_shop_code_items = []
-        for item in shop_code_items:
-            copied_shop_code_items.append(deepcopy(item))
-
-        # place into random dro shop slots
-        shop_slot_ids = random.sample(
-            population=["ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
-            k=3
-        )
-        while shop_slot_ids:
-            world_graph[f"DRO_01/{shop_slot_ids.pop()}"]["node"].current_item = copied_shop_code_items.pop()
+            while shop_slot_ids:
+                slot_id = shop_slot_ids.pop()
+                shop_code_item = copied_shop_code_items.pop()
+                world_graph[f"DRO_01/{slot_id}"]["node"].current_item = shop_code_item
 
 
     print("Placing progression items...")
@@ -1204,7 +1319,11 @@ def place_items(
     starting_partners,
     hidden_block_mode:int,
     starting_items:list,
-    world_graph = None
+    plando_item_placeholders: dict[str, str],
+    plando_trap_placeholders: list[str],
+    world_graph = None,
+    plando_item_placement: dict[str, Item] | None = None,
+    plando_traps_placed: int = 0,
 ):
     """Places items into item locations according to chosen settings."""
     #level = logging.INFO
@@ -1231,5 +1350,9 @@ def place_items(
             starting_partners,
             hidden_block_mode,
             starting_items,
-            world_graph
+            world_graph,
+            plando_item_placement,
+            plando_traps_placed,
+            plando_item_placeholders,
+            plando_trap_placeholders,
         )

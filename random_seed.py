@@ -61,10 +61,17 @@ from metadata.starting_items import \
     allowed_starting_key_items
 from metadata.item_general import seed_hash_item_names
 
+from plando_utils.plando_utils import TransformedPlandoData
+
 from db.item import Item
 
 class RandomSeed:
-    def __init__(self, rando_settings: OptionSet, seed_value=None) -> None:
+    def __init__(
+        self,
+        rando_settings: OptionSet,
+        seed_value: int = None,
+        plando_data: dict = None
+    ) -> None:
 
         self.rando_settings = rando_settings
         self.starting_partners = []
@@ -85,6 +92,9 @@ class RandomSeed:
         self.puzzle_minigame_data = []
         self.item_spheres_dict = None
         self.spoilerlog_additions = {}
+        self.plando_data: TransformedPlandoData = TransformedPlandoData(
+            plando_data
+        )
 
         if seed_value is None:
             self.seed_value = random.randint(0, 0xFFFFFFFF)
@@ -116,7 +126,12 @@ class RandomSeed:
 
                 # Choose values for options that are set to "random"
                 if logic_settings.magical_seeds_required == -1:
-                    logic_settings.magical_seeds_required = random.randint(0, 4)
+                    logic_settings.magical_seeds_required = random.randint(
+                        self.plando_data.magical_seeds_count,
+                        4
+                    )
+                elif self.plando_data.magical_seeds_count > logic_settings.magical_seeds_required:
+                    logic_settings.magical_seeds_required = self.plando_data.magical_seeds_count
 
                 if logic_settings.starway_spirits_needed_count == -1:
                     # note: don't roll zero here
@@ -204,11 +219,12 @@ class RandomSeed:
                 )
 
                 # Randomize battles if needed
-                modified_world_graph, self.battles, boss_chapter_map = get_shuffled_battles(
+                modified_world_graph, self.battles, chapter_boss_map = get_shuffled_battles(
                     modified_world_graph,
                     logic_settings.boss_shuffle_mode,
+                    self.plando_data.boss_battles,
                 )
-                self.spoilerlog_additions["boss_battles"] = boss_chapter_map
+                self.spoilerlog_additions["boss_battles"] = chapter_boss_map
 
                 # Set up trick & glitch logic
                 modified_world_graph = get_glitched_logic(
@@ -220,8 +236,10 @@ class RandomSeed:
 
                 ## Setup star spirits, power stars, and relevant logic
                 chosen_spirits = []
+                plando_required_spirits: list[int] | None = self.plando_data.required_spirits
                 if (    logic_settings.require_specific_spirits
                     and 0 < logic_settings.starway_spirits_needed_count < 7
+                    and (plando_required_spirits is None or len(plando_required_spirits) < 7)
                 ):
                     all_spirits = [
                         StarSpirits.ELDSTAR,
@@ -232,9 +250,15 @@ class RandomSeed:
                         StarSpirits.KLEVAR,
                         StarSpirits.KALMAR,
                     ]
-                    for _ in range(logic_settings.starway_spirits_needed_count):
-                        rnd_spirit = random.randint(0, len(all_spirits) - 1)
-                        chosen_spirits.append(all_spirits.pop(rnd_spirit))
+                    # Set spirits
+                    if plando_required_spirits is not None:
+                        chosen_spirits.extend(plando_required_spirits)
+                    if len(chosen_spirits) < logic_settings.starway_spirits_needed_count:
+                        all_spirits = list(set(all_spirits) - set(chosen_spirits))
+                        for _ in range(logic_settings.starway_spirits_needed_count - len(chosen_spirits)):
+                            rnd_spirit = random.randint(0, len(all_spirits) - 1)
+                            chosen_spirits.append(all_spirits.pop(rnd_spirit))
+                    # Encode set spirits
                     encoded_spirits = 0
                     for spirit in chosen_spirits:
                         encoded_spirits = encoded_spirits | (1 << (spirit - 1))
@@ -298,10 +322,15 @@ class RandomSeed:
                 starting_chapter, logic_settings.starting_map = self.init_starting_map(
                     self.rando_settings
                 )
-                self.init_starting_partners(logic_settings)
+                self.init_starting_partners(
+                    logic_settings,
+                    self.plando_data.partners_placed,
+                )
 
                 self.init_starting_items(
                     self.rando_settings,
+                    self.plando_data.keyitems_placed,
+                    self.plando_data.badges_placed,
                 )
 
                 # Item Placement
@@ -311,7 +340,11 @@ class RandomSeed:
                     starting_partners=self.starting_partners,
                     hidden_block_mode=hidden_block_mode,
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
-                    world_graph=modified_world_graph
+                    plando_item_placeholders=self.plando_data.item_placeholders,
+                    plando_trap_placeholders=self.plando_data.trap_placeholders,
+                    world_graph=modified_world_graph,
+                    plando_item_placement=self.plando_data.item_placement,
+                    plando_traps_placed=self.plando_data.trap_count,
                 )
 
                 # Determine item placement spheres
@@ -372,6 +405,7 @@ class RandomSeed:
                     logic_settings.include_shops,
                     self.rando_settings.merlow_reward_pricing,
                     logic_settings.star_hunt_total,
+                    self.plando_data.shop_prices,
                 )
 
         # Modify Mystery? item
@@ -398,9 +432,10 @@ class RandomSeed:
         # Randomize chapter difficulty / enemy stats if needed
         self.enemy_stats, self.chapter_changes = get_shuffled_chapter_difficulty(
             self.rando_settings.shuffle_chapter_difficulty,
-            boss_chapter_map,
+            chapter_boss_map,
             self.rando_settings.progressive_scaling,
-            starting_chapter
+            starting_chapter,
+            self.plando_data.difficulty,
         )
 
         # Randomize enemy battle formations
@@ -417,7 +452,8 @@ class RandomSeed:
             self.rando_settings.random_badges_bp,
             self.rando_settings.random_badges_fp,
             self.rando_settings.random_partner_fp,
-            self.rando_settings.random_starpower_sp
+            self.rando_settings.random_starpower_sp,
+            self.plando_data.move_costs,
         )
 
         # Build item hint db
@@ -466,16 +502,28 @@ class RandomSeed:
 
     def init_starting_partners(
         self,
-        logic_settings:LogicOptionSet
+        logic_settings:LogicOptionSet,
+        plandod_partners: list[str],
     ):
         # Choose random starting partners if necessary
         if logic_settings.random_partners:
             self.starting_partners = get_rnd_starting_partners(
                 num_rnd_partners_min=logic_settings.random_partners_min,
                 num_rnd_partners_max=logic_settings.random_partners_max,
-                logic_settings=logic_settings
+                logic_settings=logic_settings,
+                plandod_partners=plandod_partners,
             )
         else:
+            if (any([
+                    True for x in logic_settings.starting_partners
+                    if x in plandod_partners
+                ])
+            ):
+                raise ValueError(
+                    "ERROR: Chosen starting partners: Cannot start the seed with "\
+                    "these partners, because one or more of them is already "\
+                    "placed by the plandomizer!"
+                )
             self.starting_partners = logic_settings.starting_partners
 
 
@@ -508,6 +556,8 @@ class RandomSeed:
     def init_starting_items(
         self,
         rando_settings:OptionSet,
+        plando_keyitems: list[str],
+        plando_badges: list[str],
     ):
         """
         Initialize the starting items from either the chosen starting items or
@@ -522,6 +572,16 @@ class RandomSeed:
             all_allowed_starting_items.extend(allowed_starting_badges)
             all_allowed_starting_items.extend(allowed_starting_items)
             all_allowed_starting_items.extend(allowed_starting_key_items)
+
+            # Exclude items that are already placed by the plandomizer
+            for keyitem_str in plando_keyitems:
+                keyitem_obj = Item.get(Item.item_name == keyitem_str)
+                if keyitem_obj.value in all_allowed_starting_items:
+                    all_allowed_starting_items.remove(keyitem_obj.value)
+            for badge_str in plando_badges:
+                badge_obj = Item.get(Item.item_name == badge_str)
+                if badge_obj.value in all_allowed_starting_items:
+                    all_allowed_starting_items.remove(badge_obj.value)
 
             excluded_items = get_items_to_exclude(
                 logic_settings=rando_settings.logic_settings,
@@ -567,6 +627,16 @@ class RandomSeed:
             rando_settings.logic_settings.starting_item_E = starting_item_options[14]
             rando_settings.logic_settings.starting_item_F = starting_item_options[15]
         else:
+            if (any([
+                    True for x in self.rando_settings.get_startitem_list()
+                    if x.item_name in plando_keyitems or x.item_name in plando_badges
+                ])
+            ):
+                raise ValueError(
+                    "ERROR: Chosen starting items: Cannot start the seed with "\
+                    "these items, because one or more of them are already "\
+                    "placed by the plandomizer!"
+                )
             self.starting_items = self.rando_settings.get_startitem_list()
 
 

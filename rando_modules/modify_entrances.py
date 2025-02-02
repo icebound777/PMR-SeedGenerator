@@ -1225,13 +1225,17 @@ def _adjust_rip_cheato_logic(world_graph: dict, checks_in_logic:int):
 
 def get_shuffled_battles(
     world_graph: dict,
-    boss_shuffle_mode: BossShuffleMode
+    boss_shuffle_mode: BossShuffleMode,
+    plando_battles: dict | None,
 ) -> tuple[dict, list[tuple[int, int]], dict[int, int]]:
-    battles_setup, boss_chapter_map = get_boss_battles(boss_shuffle_mode)
+    battles_setup, chapter_boss_map = get_boss_battles(
+        boss_shuffle_mode = boss_shuffle_mode,
+        plando_battles = plando_battles,
+    )
 
-    if boss_shuffle_mode != BossShuffleMode.OFF and boss_chapter_map[1] != 1:
-        # boss shuffle is active, and Koopa Bros are placed outside of ch. 1:
-        # move their battle logic to the other chapter
+    if boss_shuffle_mode != BossShuffleMode.OFF or plando_battles:
+        # boss shuffle or plando are active: Koopa Bros may be placed outside
+        # of ch. 1: move/copy their battle logic to the other chapter(s)
 
         boss_requirements: dict = {}
         adjusted_boss_edges: list = []
@@ -1240,8 +1244,11 @@ def get_shuffled_battles(
         # gather Koopa Bros boss edge and remove their battle logic
         for edge in world_graph["TRD_10/0"]["edge_list"]:
             if (edge["to"]["map"], edge["to"]["id"]) == ("TRD_10", 0):
-                remove_boss_edges.append(deepcopy(edge))
                 koopa_bros_requirements = deepcopy(edge["reqs"])
+                if chapter_boss_map[1] != 1:
+                    # if Koopa Bros are no longer in ch. 1: remove their
+                    # battle logic
+                    remove_boss_edges.append(deepcopy(edge))
 
                 new_edge = deepcopy(edge)
                 new_edge["reqs"] = []
@@ -1249,38 +1256,41 @@ def get_shuffled_battles(
 
                 break
 
-        # gather boss edge of the new Koopa Bros location and add their
-        # battle logic
-        if boss_chapter_map[1] == 2:
-            boss_node_id = "ISK_16/0"
-            boss_edge_target = "ISK_16/0"
-        elif boss_chapter_map[1] == 3:
-            boss_node_id = "ARN_11/0"
-            boss_edge_target = "ARN_11/0"
-        elif boss_chapter_map[1] == 4:
-            boss_node_id = "OMO_15/0"
-            boss_edge_target = "OMO_15/0"
-        elif boss_chapter_map[1] == 5:
-            boss_node_id = "KZN_19/1"
-            boss_edge_target = "KZN_19/2"
-        elif boss_chapter_map[1] == 6:
-            boss_node_id = "FLO_21/0"
-            boss_edge_target = "FLO_21/0"
-        elif boss_chapter_map[1] == 7:
-            boss_node_id = "PRA_32/0"
-            boss_edge_target = "PRA_32/0"
-        else:
-            raise ValueError(f"Boss Shuffle has placed no Koopa Bros!: {boss_chapter_map}")
+        # gather boss edges of any new Koopa Bros location(s) and add their
+        # battle logic there
+        new_kb_boss_edges: list[tuple[str, str]] = []
+        for chapter, boss in chapter_boss_map.items():
+            if chapter != 1 and boss == 1:
+                if chapter == 2:
+                    boss_node_id = "ISK_16/0"
+                    boss_edge_target = "ISK_16/0"
+                elif chapter == 3:
+                    boss_node_id = "ARN_11/0"
+                    boss_edge_target = "ARN_11/0"
+                elif chapter == 4:
+                    boss_node_id = "OMO_15/0"
+                    boss_edge_target = "OMO_15/0"
+                elif chapter == 5:
+                    boss_node_id = "KZN_19/1"
+                    boss_edge_target = "KZN_19/2"
+                elif chapter == 6:
+                    boss_node_id = "FLO_21/0"
+                    boss_edge_target = "FLO_21/0"
+                elif chapter == 7:
+                    boss_node_id = "PRA_32/0"
+                    boss_edge_target = "PRA_32/0"
+                new_kb_boss_edges.append((boss_node_id, boss_edge_target))
 
-        for edge in world_graph[boss_node_id]["edge_list"]:
-            if (f"{edge['to']['map']}/{edge['to']['id']}") == boss_edge_target:
-                remove_boss_edges.append(deepcopy(edge))
+        for boss_node_id, boss_edge_target in new_kb_boss_edges:
+            for edge in world_graph[boss_node_id]["edge_list"]:
+                if (f"{edge['to']['map']}/{edge['to']['id']}") == boss_edge_target:
+                    remove_boss_edges.append(deepcopy(edge))
 
-                new_edge = deepcopy(edge)
-                new_edge["reqs"].extend(koopa_bros_requirements)
-                adjusted_boss_edges.append(new_edge)
+                    new_edge = deepcopy(edge)
+                    new_edge["reqs"].extend(koopa_bros_requirements)
+                    adjusted_boss_edges.append(new_edge)
 
-                break
+                    break
 
         world_graph, _ = adjust(
             world_graph,
@@ -1289,4 +1299,4 @@ def get_shuffled_battles(
         )
 
 
-    return world_graph, battles_setup, boss_chapter_map
+    return world_graph, battles_setup, chapter_boss_map
