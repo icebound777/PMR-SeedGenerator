@@ -7,6 +7,8 @@
 * `Plandomizer` feature
   * The plandomizer (a portmanteau of "planned" and "randomizer") allows pre-setting different values for the seed, which overrule the changes to be made by the seed generator. This allows for forcing specific changes desired by the player.
   * Currently allows setting the following:
+    * Item placement in most item locations
+    * Prices in regular shops
     * Chapter difficulty
     * Which bosses appear where
     * BP, FP, and SP costs of badges, moves of Mario and his partners, and the star powers
