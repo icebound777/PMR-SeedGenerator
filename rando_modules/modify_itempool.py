@@ -131,38 +131,17 @@ def get_randomized_itempool(itempool:list, consumable_mode:int, quality:int, add
     assert(len(itempool) == len(new_itempool))
     return new_itempool
 
-def get_trapped_itempool(
-    itempool:list,
-    trap_mode:int,
-    randomize_favors_mode:int,
-    do_randomize_dojo:bool,
-    keyitems_outside_dungeon:bool,
-    power_star_hunt:bool,
-    add_beta_items:bool,
-    do_partner_upgrade_shuffle:bool
-) -> list:
-    """
-    Modifies and returns a given item pool after placing trap items.
-    This swaps out consumable items with trap items, which do not actually give
-    the item to Mario, and instead damage him and make him drop coins.
-    The items need not necessarily look like consumables, and can use the
-    sprites of badges, key items and others instead.
-    """
-    # Trap mode:
-    # 0: no traps
-    # 1: sparse
-    # 2: moderate
-    # 3: plenty
 
-    if trap_mode == 0:
-        return itempool
-
-    if trap_mode == 1:
-        max_traps = 15
-    elif trap_mode == 2:
-        max_traps = 35
-    else:
-        max_traps = 80
+def _get_fakeable_items(
+    randomize_favors_mode: int,
+    do_randomize_dojo: bool,
+    keyitems_outside_dungeon: bool,
+    power_star_hunt: bool,
+    add_beta_items: bool,
+    do_partner_upgrade_shuffle: bool,
+) -> list[Item]:
+    fakeable_items = []
+    dungeon_items = []
 
     koot_items = {"rewards": [], "keyitems": []}
     for item_node in Node.select().where(Node.vanilla_item.is_null(False)):
@@ -171,10 +150,6 @@ def get_trapped_itempool(
         if item_node.identifier in kootfavors_keyitem_locations:
             koot_items["keyitems"].append(item_node.vanilla_item.item_name)
 
-    trap_flag = 0x2000
-    new_itempool = []
-    fakeable_items = []
-    dungeon_items = []
     for item in (Item
                  .select()
                  .where(Item.item_type.in_(["KEYITEM","PARTNER","BADGE","GEAR"]))
@@ -223,7 +198,65 @@ def get_trapped_itempool(
         item_ultrastone = Item.get(Item.item_name == "UltraStone")
         fakeable_items.extend([item_ultrastone] * 9)
 
-    cnt_traps = 0
+    return fakeable_items
+
+
+def get_trapped_itempool(
+    itempool:list,
+    trap_mode:int,
+    randomize_favors_mode:int,
+    do_randomize_dojo:bool,
+    keyitems_outside_dungeon:bool,
+    power_star_hunt:bool,
+    add_beta_items:bool,
+    do_partner_upgrade_shuffle:bool,
+    already_placed_traps_count:int,
+    plando_trap_placeholders: list[str],
+) -> tuple[list[Item], dict[str, Item]]:
+    """
+    Modifies and returns a given item pool after placing trap items.
+    This swaps out consumable items with trap items, which do not actually give
+    the item to Mario, and instead damage him and make him drop coins.
+    The items need not necessarily look like consumables, and can use the
+    sprites of badges, key items and others instead.
+    """
+    # Trap mode:
+    # 0: no traps
+    # 1: sparse
+    # 2: moderate
+    # 3: plenty
+    if trap_mode == 0:
+        max_traps = 0
+    elif trap_mode == 1:
+        max_traps = 15
+    elif trap_mode == 2:
+        max_traps = 35
+    else:
+        max_traps = 80
+
+    cnt_traps = already_placed_traps_count
+    if max_traps <= cnt_traps and len(plando_trap_placeholders) == 0:
+        return itempool, dict()
+
+    new_itempool = []
+    fakeable_items: list[Item] = _get_fakeable_items(
+        randomize_favors_mode = randomize_favors_mode,
+        do_randomize_dojo = do_randomize_dojo,
+        keyitems_outside_dungeon = keyitems_outside_dungeon,
+        power_star_hunt = power_star_hunt,
+        add_beta_items = add_beta_items,
+        do_partner_upgrade_shuffle = do_partner_upgrade_shuffle,
+    )
+
+    # Resolve plando trap placeholders to random items
+    resolved_trap_placeholders: dict[str, Item] = dict()
+    for trap_location in plando_trap_placeholders:
+        new_trapitem = random.choice(fakeable_items)
+        new_trapitem.set_trapped()
+        resolved_trap_placeholders[trap_location] = new_trapitem
+        cnt_traps += 1
+
+    # Add traps if not enough placed already
     shuffled_pool = itempool.copy()
     random.shuffle(shuffled_pool)
 
@@ -232,8 +265,17 @@ def get_trapped_itempool(
             new_itempool.append(item_obj)
         else:
             new_trapitem = random.choice(fakeable_items)
-            new_trapitem.value = new_trapitem.value | trap_flag
+            new_trapitem.set_trapped()
             new_itempool.append(new_trapitem)
             cnt_traps += 1
 
-    return new_itempool
+    # Make space in item pool for resolved traps by randomly removing
+    # coins and consumables
+    for _ in resolved_trap_placeholders:
+        rem_item = random.choice([
+            x for x in new_itempool
+            if x.item_type in ["COIN","ITEM"]
+        ])
+        new_itempool.remove(rem_item)
+
+    return new_itempool, resolved_trap_placeholders

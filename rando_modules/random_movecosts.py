@@ -106,12 +106,45 @@ def _get_fully_random_costs(movetype:str, costtype:str) -> list:
     return fully_random_costs
 
 
+def _overwrite_with_plando(
+    move_costs: list[int, int],
+    plando_move_costs: dict[str, dict[str, dict[str, int]]],
+) -> None:
+    """
+    Overwrites the costs for moves with values set using the plandomizer.
+    """
+    # plando_move_costs:
+    # dict[move_type, dict[move_name, dict[move_cost_type, move_cost]]]
+    # to mimic the layout within the sqlite db's 'move' table.
+    # also starpower cost are 'FP', for reasons
+    move_cost_changes: list[tuple[int, int, int]] = list()
+
+    for move in Move.select():
+        lower_move_type = (move.move_type).lower()
+        if (    lower_move_type in plando_move_costs
+            and move.move_name in plando_move_costs[lower_move_type]
+            and move.cost_type in plando_move_costs[lower_move_type][move.move_name]
+        ):
+            for i, move_tuple in enumerate(move_costs):
+                if move_tuple[0] == move.get_key():
+                    move_cost_changes.append((
+                        i,
+                        move_tuple[0],
+                        plando_move_costs[lower_move_type][move.move_name][move.cost_type]
+                    ))
+                    break
+
+    for index, move_dbkey, new_move_cost in move_cost_changes:
+        move_costs[index] = (move_dbkey, new_move_cost)
+
+
 def get_randomized_moves(
     badges_bp_setting:int,
     badges_fp_setting:int,
     partner_fp_setting:int,
-    starpower_setting:int
-):
+    starpower_setting:int,
+    plando_move_costs: dict[str, dict[str, dict[str, int]]] | None
+) -> list[tuple[int, int]]:
     """
     Returns a list of tuples where the first value holds the dbkey for a move
     cost and the second value holds the shuffled FP,BP,SP cost.
@@ -139,5 +172,8 @@ def get_randomized_moves(
     if (starpower_setting in rnd_cost_functions):
         new_cost = rnd_cost_functions.get(starpower_setting)("STARPOWER", "FP")
         move_costs.extend(new_cost)
+
+    if plando_move_costs:
+        _overwrite_with_plando(move_costs, plando_move_costs)
 
     return move_costs

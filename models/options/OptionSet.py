@@ -28,6 +28,8 @@ from models.options.GlitchOptionSet import GlitchOptionSet
 
 from models.options.option_utility import get_option_default_value
 
+from plandomizer.plando_metadata import progressive_badges, force_puzzlerando_locations
+
 class OptionSet:
     def __init__(self):
         """ Load Defaults from DB """
@@ -48,7 +50,6 @@ class OptionSet:
         # Difficulty and Enemies
         self.shuffle_chapter_difficulty = False
         self.progressive_scaling = bool(get_option_default_value("ProgressiveScaling"))
-
         self.challenge_mode = bool(get_option_default_value("ChallengeMode"))
         self.cap_enemy_xp = bool(get_option_default_value("CapEnemyXP"))
         self.xp_multiplier = get_option_default_value("XPMultiplier")
@@ -73,6 +74,7 @@ class OptionSet:
 
         # Starting setup
         self.starting_level = get_option_default_value("StartingLevel")
+        self.random_starting_stats_level = -1
         self.starting_maxhp = get_option_default_value("StartingMaxHP")
         self.starting_maxfp = get_option_default_value("StartingMaxFP")
         self.starting_maxbp = get_option_default_value("StartingMaxBP")
@@ -125,7 +127,7 @@ class OptionSet:
         self.logic_settings = LogicOptionSet()
 
 
-    def update_options(self, options_dict=None):
+    def update_options(self, options_dict=None, plando_data=None):
 
         try:
             self.validate_options(options_dict)
@@ -284,6 +286,8 @@ class OptionSet:
         # Starting setup
         if "StartingMap" in options_dict:
             self.logic_settings.starting_map = options_dict.get("StartingMap")
+        if "RandomStartingStatsLevel" in options_dict:
+            self.random_starting_stats_level = options_dict.get("RandomStartingStatsLevel")
         if "StartingMaxHP" in options_dict:
             self.starting_maxhp = options_dict.get("StartingMaxHP")
         if "StartingMaxFP" in options_dict:
@@ -452,59 +456,6 @@ class OptionSet:
             self.logic_settings.shuffle_blocks = options_dict.get("ShuffleBlocks")
         if "RandomizePuzzles" in options_dict:
             self.logic_settings.randomize_puzzles = options_dict.get("RandomizePuzzles")
-
-        # Map Check Tracker (static)
-        #   0x1    # regular checks
-        #   0x2    # gear
-        #   0x4    # panels
-        #   0x8    # super blocks
-        #   0x10   # overworld coins
-        #   0x20   # block coins
-        #   0x40   # favor coins
-        #   0x80   # foliage coins
-        #   0x100  # dojo
-        #   0x200  # koot favors
-        #   0x400  # radio trade event
-        #   0x800  # letter delivery
-        #   0x1000 # forever forest open
-        #   0x2000 # vanilla bowser's castle
-        #   0x4000 # vanilla or shorten bowser's castle
-        #   0x8000 # multi coin blocks
-        map_tracker_bits = 0x1 + 0x2
-        if self.logic_settings.include_panels:
-            map_tracker_bits += 0x4
-        if self.logic_settings.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
-            map_tracker_bits += 0x8
-        if self.logic_settings.include_coins_overworld:
-            map_tracker_bits += 0x10
-        if self.logic_settings.include_coins_blocks:
-            map_tracker_bits += 0x20
-        if self.logic_settings.include_coins_favors:
-            map_tracker_bits += 0x40
-        if self.logic_settings.include_coins_foliage:
-            map_tracker_bits += 0x80
-        if self.logic_settings.include_dojo != DojoShuffle.OFF:
-            map_tracker_bits += 0x100
-        if self.logic_settings.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
-            map_tracker_bits += 0x200
-        if self.logic_settings.include_radiotradeevent:
-            map_tracker_bits += 0x400
-        if self.logic_settings.include_letters_mode != IncludeLettersMode.NOT_RANDOMIZED:
-            map_tracker_bits += 0x800
-        if not self.logic_settings.foreverforest_open:
-            map_tracker_bits += 0x1000
-        if self.logic_settings.bowsers_castle_mode == BowserCastleMode.VANILLA:
-            map_tracker_bits += 0x2000
-        if self.logic_settings.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
-            map_tracker_bits += 0x4000
-        if (    self.logic_settings.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
-            and self.logic_settings.shuffle_blocks
-        ):
-            map_tracker_bits += 0x8000
-        self.map_tracker_check_bits = map_tracker_bits
-        self.map_tracker_shop_bits = 0x7
-        if self.logic_settings.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
-            self.map_tracker_shop_bits += 0x8
 
         # Quizmo Quizzes
         if "RandomQuiz" in options_dict:
@@ -904,6 +855,74 @@ class OptionSet:
         if "ReachHighBlocksWithSuperBoots" in options_dict:
             self.glitch_settings.reach_high_blocks_with_super_boots = options_dict.get("ReachHighBlocksWithSuperBoots")
 
+        # Overrule certain settings depending on plando data
+        forced_progressive_badges,\
+        forced_partner_upgrade_shuffle,\
+        forced_random_puzzles = \
+            _overrule_settings_with_plando(
+                plando_data
+            )
+        if forced_progressive_badges is not None:
+            self.logic_settings.progressive_badges = forced_progressive_badges
+        if forced_partner_upgrade_shuffle is not None:
+            self.logic_settings.partner_upgrade_shuffle = forced_partner_upgrade_shuffle
+        if forced_random_puzzles is not None:
+            self.logic_settings.randomize_puzzles = forced_random_puzzles
+
+        # Map Check Tracker (static)
+        #   0x1    # regular checks
+        #   0x2    # gear
+        #   0x4    # panels
+        #   0x8    # super blocks
+        #   0x10   # overworld coins
+        #   0x20   # block coins
+        #   0x40   # favor coins
+        #   0x80   # foliage coins
+        #   0x100  # dojo
+        #   0x200  # koot favors
+        #   0x400  # radio trade event
+        #   0x800  # letter delivery
+        #   0x1000 # forever forest open
+        #   0x2000 # vanilla bowser's castle
+        #   0x4000 # vanilla or shorten bowser's castle
+        #   0x8000 # multi coin blocks
+        map_tracker_bits = 0x1 + 0x2
+        if self.logic_settings.include_panels:
+            map_tracker_bits += 0x4
+        if self.logic_settings.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
+            map_tracker_bits += 0x8
+        if self.logic_settings.include_coins_overworld:
+            map_tracker_bits += 0x10
+        if self.logic_settings.include_coins_blocks:
+            map_tracker_bits += 0x20
+        if self.logic_settings.include_coins_favors:
+            map_tracker_bits += 0x40
+        if self.logic_settings.include_coins_foliage:
+            map_tracker_bits += 0x80
+        if self.logic_settings.include_dojo != DojoShuffle.OFF:
+            map_tracker_bits += 0x100
+        if self.logic_settings.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
+            map_tracker_bits += 0x200
+        if self.logic_settings.include_radiotradeevent:
+            map_tracker_bits += 0x400
+        if self.logic_settings.include_letters_mode != IncludeLettersMode.NOT_RANDOMIZED:
+            map_tracker_bits += 0x800
+        if not self.logic_settings.foreverforest_open:
+            map_tracker_bits += 0x1000
+        if self.logic_settings.bowsers_castle_mode == BowserCastleMode.VANILLA:
+            map_tracker_bits += 0x2000
+        if self.logic_settings.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
+            map_tracker_bits += 0x4000
+        if (    self.logic_settings.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
+            and self.logic_settings.shuffle_blocks
+        ):
+            map_tracker_bits += 0x8000
+        self.map_tracker_check_bits = map_tracker_bits
+        self.map_tracker_shop_bits = 0x7
+        if self.logic_settings.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
+            self.map_tracker_shop_bits += 0x8
+
+
 
     def validate_options(self, options_dict):
         if options_dict is None:
@@ -1060,6 +1079,7 @@ class OptionSet:
         # Starting setup
         basic_assert("StartingMap", int)
         basic_assert("StartingLevel", int)
+        basic_assert("RandomStartingStatsLevel", int)
         basic_assert("StartingMaxHP", int)
         basic_assert("StartingMaxFP", int)
         basic_assert("StartingMaxBP", int)
@@ -1180,7 +1200,7 @@ class OptionSet:
                     and -1 <= options_dict.get("StarWaySpiritsNeededCnt") <= 7)
         if "StarWayPowerStarsNeeded" in options_dict:
             assert (    isinstance(options_dict.get("StarWayPowerStarsNeeded"), int)
-                    and 0 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
+                    and -1 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
             )
             try:
                 if (    "ShuffleItems" in options_dict
@@ -1197,7 +1217,7 @@ class OptionSet:
                     and -1 <= options_dict.get("StarBeamSpiritsNeeded") <= 7)
         if "StarBeamPowerStarsNeeded" in options_dict:
             assert (    isinstance(options_dict.get("StarBeamPowerStarsNeeded"), int)
-                    and 0 <= options_dict.get("StarBeamPowerStarsNeeded") <= 120
+                    and -1 <= options_dict.get("StarBeamPowerStarsNeeded") <= 120
             )
             try:
                 if (    "ShuffleItems" in options_dict
@@ -1209,10 +1229,11 @@ class OptionSet:
                     "No item shuffle but star hunt is not a valid setting-combination!",
                 )
         if "StarHuntTotal" in options_dict:
-            assert (    isinstance(options_dict.get("StarHuntTotal"), int)
-                    and 0 <= options_dict.get("StarHuntTotal") <= 120
-                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarWayPowerStarsNeeded")
-                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarBeamPowerStarsNeeded")
+            starthuntotal = options_dict.get("StarHuntTotal")
+            assert (    isinstance(starthuntotal, int)
+                    and -1 <= starthuntotal <= 120
+                    and (starthuntotal >= options_dict.get("StarWayPowerStarsNeeded") or starthuntotal == -1)
+                    and (starthuntotal >= options_dict.get("StarBeamPowerStarsNeeded") or starthuntotal == -1)
             )
         basic_assert("RequireSpecificSpirits", bool)
         if "LimitChapterLogic" in options_dict:
@@ -1513,7 +1534,6 @@ class OptionSet:
 
             # Difficulty and Enemies
             load_dbkey(self.progressive_scaling, "ProgressiveScaling"),
-
             load_dbkey(self.challenge_mode, "ChallengeMode"),
             load_dbkey(self.cap_enemy_xp, "CapEnemyXP"),
             load_dbkey(self.xp_multiplier, "XPMultiplier"),
@@ -1761,6 +1781,7 @@ class OptionSet:
         web_settings["StartingMaxFP"] = self.starting_maxfp
         web_settings["StartingMaxBP"] = self.starting_maxbp
         web_settings["StartingLevel"] = self.starting_level
+        web_settings["RandomStartingStatsLevel"] = self.random_starting_stats_level
         web_settings["StartingStarPower"] = self.starting_starpower
         web_settings["StartingBoots"] = self.logic_settings.starting_boots
         web_settings["StartingHammer"] = self.logic_settings.starting_hammer
@@ -2030,3 +2051,39 @@ class OptionSet:
         web_settings["ReachHighBlocksWithSuperBoots"] = self.glitch_settings.reach_high_blocks_with_super_boots
 
         return web_settings
+
+
+def _overrule_settings_with_plando(
+    plando_data: dict | None,
+) -> tuple[bool | None, PartnerUpgradeShuffle | None, bool | None]:
+    forced_progressive_badges: bool = None
+    forced_partner_upgrade_shuffle: bool = None
+    forced_random_puzzles: bool = None
+
+    if plando_data is None:
+        return forced_progressive_badges, forced_partner_upgrade_shuffle, forced_random_puzzles
+
+    else:
+         item_placement_areas: None | dict[str, dict[str, str | dict[str, str | int]]] = plando_data.get("items")
+         if item_placement_areas is not None:
+            for area_locations in item_placement_areas.values():
+                for item_location, item in area_locations.items():
+                    cur_item: str = None
+                    if isinstance(item, dict) and item.get("item") is not None:
+                        cur_item = item["item"]
+                    elif isinstance(item, str):
+                        cur_item = item
+                    else:
+                        continue
+
+                    if item_location in force_puzzlerando_locations:
+                        forced_random_puzzles = True
+
+                    if cur_item in progressive_badges["originals"]:
+                        forced_progressive_badges = False
+                    elif cur_item in progressive_badges["progressives"]:
+                        forced_progressive_badges = True
+                    elif cur_item.endswith("Upgrade"):
+                        forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.FULL
+
+    return forced_progressive_badges, forced_partner_upgrade_shuffle, forced_random_puzzles

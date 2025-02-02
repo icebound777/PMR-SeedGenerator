@@ -28,7 +28,8 @@ def write_spoiler_log(
     puzzle_solutions:list=None,
     battle_shuffles:list=None,
     seed_hash_items:list=None,
-    spoilerlog_additions:dict=None
+    spoilerlog_additions:dict=None,
+    plando_data:dict=None,
 ):
     """
     Outputs a log file listing the final locations of all items
@@ -49,20 +50,23 @@ def write_spoiler_log(
         spoiler_dict["difficulty"] = "progressive"
     else:
         spoiler_dict["difficulty"] = dict()
-        for old_chapter, new_chapter in random_chapter_difficulty.items():
+        chapter_tuples = [
+            (old_chapter, new_chapter) for old_chapter, new_chapter in random_chapter_difficulty.items()
+        ]
+        chapter_tuples.sort(key = lambda tuple: tuple[0])
+        for old_chapter, new_chapter in chapter_tuples:
             spoiler_dict["difficulty"][f"chapter {old_chapter}"] = new_chapter
 
     # Add shuffled battles
     if spoilerlog_additions and spoilerlog_additions.get("boss_battles"):
         spoiler_dict["boss_battles"] = dict()
-        # spoilerlog_additions.get("boss_battles") ^= {4: 1, 3: 6, ...}
         tmp_list = list()
         for k, v in spoilerlog_additions.get("boss_battles").items():
-            tmp_list.append((v, k))
+            tmp_list.append((k, v))
         tmp_list.sort(key=lambda tuple: tuple[0])
         for chapter_boss_tuple in tmp_list:
             boss_name = chapter_bossname_map[chapter_boss_tuple[1]]
-            spoiler_dict["boss_battles"][chapter_boss_tuple[0]] = boss_name
+            spoiler_dict["boss_battles"][f"chapter {chapter_boss_tuple[0]}"] = boss_name
 
 
     # Add required spirits, if specific
@@ -86,6 +90,7 @@ def write_spoiler_log(
         spoiler_dict["entrances"] = spoilerlog_additions["entrances"]
 
     # Add item locations
+    spoiler_dict["items"]: dict[str, dict[str, str]] = dict()
     for node in sorted_by_area:
         area_name = verbose_area_names.get(node.map_area.name[:3])
         area_name = area_name.replace("'", "")
@@ -122,10 +127,10 @@ def write_spoiler_log(
                 currency = "sp"
             current_item_name = f"{current_item_name} ({price} {currency})"
 
-        if area_name not in spoiler_dict:
-            spoiler_dict[area_name] = dict()
-        spoiler_dict[area_name][f"{map_verbose_name} - {item_location}"] = \
-            current_item_name
+        if area_name not in spoiler_dict["items"]:
+            spoiler_dict["items"][area_name]: dict[str, str] = dict()
+        location = f"{map_verbose_name} - {item_location}"
+        spoiler_dict["items"][area_name][location] = current_item_name
 
     # Add puzzle solutions
     if spoilerlog_additions and spoilerlog_additions.get("puzzle_solutions"):
@@ -184,11 +189,13 @@ def write_spoiler_log(
         ## adjust edited move costs
         for move_key, move_cost in move_costs:
             item_id = move_key & 0xFF
+            item_costtype_id = (move_key & 0xFF0000) >> 16
             move = (
                 Move.select(Move.move_name,
                             Move.move_type,
                             Move.cost_type)
                     .where(Move.index == item_id)
+                    .where(Move.area_id == item_costtype_id)
                     .get()
             )
 
@@ -243,6 +250,10 @@ def write_spoiler_log(
 
     if block_dict:
         spoiler_dict["superblocks"] = block_dict
+
+    # Add plandomizer data, if available
+    if plando_data:
+        spoiler_dict["plandomizer"] = plando_data
 
     # Output spoiler log
     if is_web_spoiler_log:
