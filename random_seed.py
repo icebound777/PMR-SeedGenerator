@@ -122,42 +122,7 @@ class RandomSeed:
                 self.battles = []
                 self.spoilerlog_additions = {}
                 self.item_spheres_dict = None
-                logic_settings = self.rando_settings.logic_settings
-
-                # Select required star spirits
-                chosen_spirits = []
-                all_spirits = [
-                    StarSpirits.ELDSTAR,
-                    StarSpirits.MAMAR,
-                    StarSpirits.SKOLAR,
-                    StarSpirits.MUSKULAR,
-                    StarSpirits.MISSTAR,
-                    StarSpirits.KLEVAR,
-                    StarSpirits.KALMAR,
-                ]
-                plando_required_spirits: list[int] | None = self.plando_data.required_spirits
-                if (    logic_settings.require_specific_spirits
-                    and 0 < logic_settings.starway_spirits_needed_count < 7
-                    and (plando_required_spirits is None or len(plando_required_spirits) < 7)
-                ):
-                    # Set spirits
-                    if plando_required_spirits is not None:
-                        chosen_spirits.extend(plando_required_spirits)
-                    if len(chosen_spirits) < logic_settings.starway_spirits_needed_count:
-                        all_spirits = list(set(all_spirits) - set(chosen_spirits))
-                        for _ in range(logic_settings.starway_spirits_needed_count - len(chosen_spirits)):
-                            rnd_spirit = random.randint(0, len(all_spirits) - 1)
-                            chosen_spirits.append(all_spirits.pop(rnd_spirit))
-                    # Encode set spirits
-                    encoded_spirits = 0
-                    for spirit in chosen_spirits:
-                        encoded_spirits = encoded_spirits | (1 << (spirit - 1))
-                    logic_settings.starway_spirits_needed_encoded = encoded_spirits
-
-                    chosen_spirits.sort()
-                    if self.spoilerlog_additions.get("required_spirits") is None:
-                        self.spoilerlog_additions["required_spirits"] = []
-                    self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
+                logic_settings = deepcopy(self.rando_settings.logic_settings)
 
                 # Choose values for options that are set to "random"
                 if logic_settings.magical_seeds_required == -1:
@@ -201,6 +166,41 @@ class RandomSeed:
                         int(logic_settings.starway_powerstars_needed * 0.7) + 1,
                         logic_settings.star_hunt_total
                     )
+
+                # Select required star spirits
+                chosen_spirits = []
+                all_spirits = [
+                    StarSpirits.ELDSTAR,
+                    StarSpirits.MAMAR,
+                    StarSpirits.SKOLAR,
+                    StarSpirits.MUSKULAR,
+                    StarSpirits.MISSTAR,
+                    StarSpirits.KLEVAR,
+                    StarSpirits.KALMAR,
+                ]
+                plando_required_spirits: list[int] | None = self.plando_data.required_spirits
+                if (    logic_settings.require_specific_spirits
+                    and 0 < logic_settings.starway_spirits_needed_count < 7
+                    and (plando_required_spirits is None or len(plando_required_spirits) < 7)
+                ):
+                    # Set spirits
+                    if plando_required_spirits is not None:
+                        chosen_spirits.extend(plando_required_spirits)
+                    if len(chosen_spirits) < logic_settings.starway_spirits_needed_count:
+                        all_spirits = list(set(all_spirits) - set(chosen_spirits))
+                        for _ in range(logic_settings.starway_spirits_needed_count - len(chosen_spirits)):
+                            rnd_spirit = random.randint(0, len(all_spirits) - 1)
+                            chosen_spirits.append(all_spirits.pop(rnd_spirit))
+                    # Encode set spirits
+                    encoded_spirits = 0
+                    for spirit in chosen_spirits:
+                        encoded_spirits = encoded_spirits | (1 << (spirit - 1))
+                    logic_settings.starway_spirits_needed_encoded = encoded_spirits
+
+                    chosen_spirits.sort()
+                    if self.spoilerlog_additions.get("required_spirits") is None:
+                        self.spoilerlog_additions["required_spirits"] = []
+                    self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
 
                 # Modify entrances if needed
                 entrance_changes = []
