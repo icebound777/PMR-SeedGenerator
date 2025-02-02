@@ -55,6 +55,8 @@
   * "Bowsers Castle Hub1 Stair Clip"
   * "Fast Flood Room (Kooperless)"
   * "Cannonless"
+* Changed
+  * Renamed `Toad Town Sushie Glitch` to `Toad Town Sushie Glitch One Gear`
 
 ### Bug Fixes
 

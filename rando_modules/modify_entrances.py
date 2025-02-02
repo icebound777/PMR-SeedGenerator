@@ -821,11 +821,11 @@ def get_glitched_logic(
         all_new_edges.extend(edges_mac_add_sushieless_starpiece)
     if glitch_settings.toad_town_sushie_glitch_gearless:
         all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch_gearless)
-    if glitch_settings.toad_town_sushie_glitch:
+    if glitch_settings.toad_town_sushie_glitch_onegear:
         all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch_jump_or_hammer)
     if glitch_settings.toad_town_sushie_glitch_full_gear:
         all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch_full_gear)
-    if glitch_settings.toad_town_sushie_glitch_gearless or glitch_settings.toad_town_sushie_glitch or glitch_settings.toad_town_sushie_glitch_full_gear:
+    if glitch_settings.toad_town_sushie_glitch_gearless or glitch_settings.toad_town_sushie_glitch_onegear or glitch_settings.toad_town_sushie_glitch_full_gear:
         all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch)
 
     # Shooting Star Summit
