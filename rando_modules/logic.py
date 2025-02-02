@@ -870,76 +870,91 @@ def _algo_assumed_fill(
     )
 
     if logic_settings.randomize_puzzles and logic_settings.include_shops:
-        # Force at least 3 different non-uniques into the Dry Dry Outpost shop
-        # which are at least somewhat affordable
-        affordable_nonuniques = set([
-            x for x in pool_other_items
-            if    (x.item_type == "ITEM" and x.base_price <= 10 and x.value <= 0xFF)
-            #      consumable                affordable             not the berry keys
-               or x.item_type == "COIN"
-        ])
-        unique_nonuniques = sorted(list(dict.fromkeys(affordable_nonuniques)))
+        # Check which slots are pre-filled, if any
+        filled_slots: list[str] = list()
+        shop_code_candidates: set[str] = set()
 
-        manual_shop_fill_count: int = 0
-        if len(unique_nonuniques) < 3:
-            # We might have to place progression consumables here if the item
-            # pool is too small, for example during "mystery only"
-            try:
-                unique_nonuniques.extend(
-                    random.sample(
-                        [
-                            x for x in pool_misc_progression_items
-                            if not ("Proxy") in x.item_name
-                        ],
-                        k=3-len(unique_nonuniques)
+        shop_array = ["ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"]
+        for slot_id in shop_array:
+            slot_item = world_graph[f"DRO_01/{slot_id}"]["node"].current_item
+            if slot_item is not None:
+                filled_slots.append(slot_id)
+                if slot_item.item_type in ["ITEM","COIN"] and slot_item.base_price <= 10:
+                    shop_code_candidates.add(slot_item.item_name)
+        missing_code_candidates_cnt: int = (3 - len(shop_code_candidates))
+
+        if (    len(filled_slots) < 6 # there are slots left to fill
+            and len(shop_code_candidates) < 3 # we don't have 3 elligible consumables yet
+            and len(filled_slots) + missing_code_candidates_cnt <= 6
+            # do we even have enough slots left to get to 3 consumables
+        ):
+            # Force at least 3 different non-uniques into the Dry Dry Outpost shop
+            # which are at least somewhat affordable
+            affordable_nonuniques = set([
+                x for x in pool_other_items
+                if    (x.item_type == "ITEM" and x.base_price <= 10 and x.value <= 0xFF)
+                #      consumable                affordable             not the berry keys
+                   or x.item_type == "COIN"
+            ])
+            unique_nonuniques = sorted(list(dict.fromkeys(affordable_nonuniques)))
+
+            manual_shop_fill_count: int = 0
+            if len(unique_nonuniques) < missing_code_candidates_cnt:
+                # We might have to place progression consumables here if the item
+                # pool is too small, for example during "mystery only"
+                try:
+                    unique_nonuniques.extend(
+                        random.sample(
+                            [
+                                x for x in pool_misc_progression_items
+                                if not ("Proxy") in x.item_name
+                            ],
+                            k=missing_code_candidates_cnt - len(unique_nonuniques)
+                        )
                     )
-                )
-            except ValueError:
-                # Plando has already placed any item we could have as part of
-                # the shop code, so we have to fill it with more items out
-                # of thin air
-                if len(unique_nonuniques) < 3:
-                    unique_nonuniques.append(Item.get(Item.item_name == "StinkyHerb"))
-                    manual_shop_fill_count += 1
-                if len(unique_nonuniques) < 3:
-                    unique_nonuniques.append(Item.get(Item.item_name == "Pebble"))
-                    manual_shop_fill_count += 1
-                if len(unique_nonuniques) < 3:
-                    unique_nonuniques.append(Item.get(Item.item_name == "Mistake"))
-                    manual_shop_fill_count += 1
+                except ValueError:
+                    # Plando has already placed any item we could have as part of
+                    # the shop code, so we have to fill it with more items out
+                    # of thin air
+                    if len(unique_nonuniques) < missing_code_candidates_cnt:
+                        unique_nonuniques.append(Item.get(Item.item_name == "StinkyHerb"))
+                        manual_shop_fill_count += 1
+                    if len(unique_nonuniques) < missing_code_candidates_cnt:
+                        unique_nonuniques.append(Item.get(Item.item_name == "Pebble"))
+                        manual_shop_fill_count += 1
+                    if len(unique_nonuniques) < missing_code_candidates_cnt:
+                        unique_nonuniques.append(Item.get(Item.item_name == "Mistake"))
+                        manual_shop_fill_count += 1
 
-        shop_code_items = random.sample(unique_nonuniques, k=3)
-        for shop_code_item in shop_code_items:
-            # check if some of the consumables are relevant to progression
-            # if so, then remove them from the misc progression instead
-            try:
-                if shop_code_item in pool_misc_progression_items:
-                    pool_misc_progression_items.remove(shop_code_item)
-                else:
-                    pool_other_items.remove(shop_code_item)
-            except ValueError:
-                if manual_shop_fill_count > 0:
-                    manual_shop_fill_count -= 1
-                else:
-                    raise
+            shop_code_items = random.sample(unique_nonuniques, k=missing_code_candidates_cnt)
+            for shop_code_item in shop_code_items:
+                # check if some of the consumables are relevant to progression
+                # if so, then remove them from the misc progression instead
+                try:
+                    if shop_code_item in pool_misc_progression_items:
+                        pool_misc_progression_items.remove(shop_code_item)
+                    else:
+                        pool_other_items.remove(shop_code_item)
+                except ValueError:
+                    if manual_shop_fill_count > 0:
+                        manual_shop_fill_count -= 1
+                    else:
+                        raise
 
-        # avoid item object references
-        copied_shop_code_items = []
-        for item in shop_code_items:
-            copied_shop_code_items.append(deepcopy(item))
+            # avoid item object references
+            copied_shop_code_items = []
+            for item in shop_code_items:
+                copied_shop_code_items.append(deepcopy(item))
 
-        # place into random dro shop slots
-        shop_slot_ids = random.sample(
-            population=["ShopItemA","ShopItemB","ShopItemC","ShopItemD","ShopItemE","ShopItemF"],
-            k=3
-        )
-        while shop_slot_ids:
-            slot_id = shop_slot_ids.pop()
-            shop_code_item = copied_shop_code_items.pop()
-            if not world_graph[f"DRO_01/{slot_id}"]["node"].current_item:
+            # place into random dro shop slots
+            shop_slot_ids = random.sample(
+                population=[x for x in shop_array if world_graph[f"DRO_01/{x}"]["node"].current_item is None],
+                k=missing_code_candidates_cnt
+            )
+            while shop_slot_ids:
+                slot_id = shop_slot_ids.pop()
+                shop_code_item = copied_shop_code_items.pop()
                 world_graph[f"DRO_01/{slot_id}"]["node"].current_item = shop_code_item
-            else:
-                pool_other_items.append(shop_code_item)
 
 
     print("Placing progression items...")
