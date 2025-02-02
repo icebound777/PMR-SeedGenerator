@@ -243,6 +243,7 @@ OddKeyEarly                                     : false
 BlueHouseSkip                                   : false
 BlueHouseSkipLaki                               : false
 BlueHouseSkipToadLure                           : false
+JumplessDaneTLetters                            : false
 BowlessToyBoxHammer                             : false
 BowlessToyBoxHammerlessLure                     : false
 EarlyStoreroomParakarry                         : false
@@ -283,6 +284,7 @@ WaterStaircaseSkip                              : false
 
 MtRuggedQuakeHammerAndLetterWithLaki            : false
 ParakarrylessMtRuggedSeed                       : false
+ParakarrylessMtRuggedSeedClippy                 : false
 BuzzarGapSkipClippy                             : false
 MtRuggedCoinsWithKooper                         : false
 MtRuggedStationJumplessClimbBombette            : false
@@ -302,6 +304,7 @@ ParakarrylessSecondSandRoomNormalBoots          : false
 ParakarrylessSuperHammerRoomUltraBoots          : false
 ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
+RuinsPuzzleSolutionEarly                        : false
 RuinsStoneSkip                                  : false
 
 ForeverForestBackwards                          : false
