@@ -35,6 +35,27 @@
 
 * Entering the toy box in Toad Town will now automatically set the door to the toy box to be open. This is only relevant if you glitched around the toy box door into the toy box.
 
+### Tricks & Glitches
+
+* New options
+  * "Jumpless Dane T. Letters"
+  * "Toad Town Sushie Glitch Gearless"
+  * "Toad Town Sushie Glitch Full Gear"
+  * "Jumpless Summit Climb"
+  * "Jumpless Koopa Village Blue Pipe"
+  * "Parakarryless Mt. Rugged Seed (Clippy variant)"
+  * "Ruins Puzzle Solution Early"
+  * "Jumpless Mega Rush"
+  * "Raph Skip (Lakilester)"
+  * "Bombette Puzzle Skip"
+  * "Wattless Dark Basement"
+  * "Basement Skip (Parakarry)"
+  * "Basement Skip (Lakilester)"
+  * "Basement Skip (Hammer)"
+  * "Bowsers Castle Hub1 Stair Clip"
+  * "Fast Flood Room (Kooperless)"
+  * "Cannonless"
+
 ### Bug Fixes
 
 * Fixed the vanilla bug of being able to jump into a certain lava loading zone in the basement of Bowser's Castle, possibly causing softlocks or crashes.
