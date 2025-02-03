@@ -96,6 +96,36 @@
   * `StarWayPowerStarsNeeded` now accepts `-1` as value (to roll randomly)
   * `StarBeamPowerStarsNeeded` now accepts `-1` as value (to roll randomly)
   * `StarHuntTotal` now accepts `-1` as value (to roll randomly)
+  * Added `JumplessDaneTLetters` (bool)
+  * Added `ToadTownSushieGlitchGearless` (bool)
+  * Renamed `ToadTownSushieGlitch` to `ToadTownSushieGlitchOneGear`
+  * Added `ToadTownSushieGlitchFullGear` (bool)
+  * Added `JumplessSummitClimb` (bool)
+  * Added `JumplessKoopaVillageBluePipe` (bool)
+  * Added `ParakarrylessMtRuggedSeedClippy` (bool)
+  * Added `RuinsPuzzleSolutionEarly` (bool)
+  * Added `JumplessMegaRush` (bool)
+  * Added `RaphSkipLakilester` (bool)
+  * Added `BombettePuzzleSkip` (bool)
+  * Added `WattlessDarkBasement` (bool)
+  * Added `BasementSkipParakarry` (bool)
+  * Added `BasementSkipLakilester` (bool)
+  * Added `BasementSkipHammer` (bool)
+  * Added `BowsersCastleHub1StairClip` (bool)
+  * Added `FastFloodRoomKooperless` (bool)
+  * Added `Cannonless` (bool)
+* Changed Item IDs due to internal rework of berry items
+  * Items removed:
+    * `CakeProxy`, ID 0x25C (always unused)
+    * `BlueBerryProxy1`, ID 0x25D (was now unused)
+    * `BlueBerryProxy2`, ID 0x25E (was now unused)
+    * `RedBerryProxy1`, ID 0x25F (was now unused)
+    * `RedBerryProxy2`, ID 0x260 (was now unused)
+    * `YellowBerryProxy1`, ID 0x261 (was now unused)
+    * `YellowBerryProxy2`, ID 0x262 (was now unused)
+    * `BubbleBerryProxy1`, ID 0x263 (was now unused)
+    * `BubbleBerryProxy2`, ID 0x264 (was now unused)
+  * This change shifts all items beyond item ID 0x264 down by 9 item IDs. The final item in the list is now `Bow` on item ID 0x291
 
 ## 0.28.1 (beta)
 
