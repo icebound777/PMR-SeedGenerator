@@ -587,7 +587,7 @@ def web_apply_cosmetic_options(
     return patch_file
 
 
-def web_randomizer(settingsJson, plandoJson, world_graph):
+def web_randomizer(settingsJson, plandoData, world_graph):
     """
     Main randomizer module for the website. Instead of writing to ROM the
     changes are written to a byte array to be handled during a following
@@ -596,7 +596,6 @@ def web_randomizer(settingsJson, plandoJson, world_graph):
     timer_start = time.perf_counter()
 
     settingsData = json.loads(settingsJson)
-    plandoData = json.loads(plandoJson)
 
     rando_settings = OptionSet()
     rando_settings.update_options(settingsData)
