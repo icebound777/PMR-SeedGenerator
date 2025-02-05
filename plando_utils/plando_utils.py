@@ -38,6 +38,9 @@ class TransformedPlandoData():
 
         self.item_placement: dict[str, Item] | None = dict()
 
+        if not plando_data.get("items"):
+            return
+
         items_already_resolved: set[str] = set()
 
 
