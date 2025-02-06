@@ -125,14 +125,19 @@ def _overwrite_with_plando(
             and move.move_name in plando_move_costs[lower_move_type]
             and move.cost_type in plando_move_costs[lower_move_type][move.move_name]
         ):
+            new_move_cost = plando_move_costs[lower_move_type][move.move_name][move.cost_type]
             for i, move_tuple in enumerate(move_costs):
                 if move_tuple[0] == move.get_key():
                     move_cost_changes.append((
                         i,
                         move_tuple[0],
-                        plando_move_costs[lower_move_type][move.move_name][move.cost_type]
+                        new_move_cost
                     ))
                     break
+            else:
+                # the move cost isn't randomized in the first place, so just
+                # append it
+                move_costs.append((move.get_key(), new_move_cost))
 
     for index, move_dbkey, new_move_cost in move_cost_changes:
         move_costs[index] = (move_dbkey, new_move_cost)
