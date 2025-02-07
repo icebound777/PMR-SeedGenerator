@@ -30,6 +30,7 @@ from rando_modules.modify_itempool \
            get_trapped_itempool
 
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
+from rando_modules.unbeatable_plando_placement_error import UnbeatablPlandoPlacementError
 from rando_modules.item_pool_too_small_error import ItemPoolTooSmallError
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
@@ -829,6 +830,7 @@ def _algo_assumed_fill(
     plando_traps_placed: int,
     plando_item_placeholders: dict[str, str],
     plando_trap_placeholders: list[str],
+    is_progression_plandod: bool,
 ):
 
     # Declare and init additional data structures
@@ -868,6 +870,74 @@ def _algo_assumed_fill(
     starting_node_id = get_startingnode_id_from_startingmap_id(
         logic_settings.starting_map,
     )
+
+    # If we have any items plando'd that can influence progression in any way:
+    # Run a sanity pre-check of the world graph with all not plando'd items
+    # as starting items, just to make sure the plando isn't impossible to begin
+    # with
+    if is_progression_plandod:
+        all_progression_yet_to_be_placed: list = []
+        all_progression_yet_to_be_placed.extend([
+            x for x in pool_progression_items
+            if x not in plando_item_placement
+        ])
+        all_progression_yet_to_be_placed.extend([
+            x for x in pool_misc_progression_items
+            if x not in plando_item_placement
+        ])
+
+        mario = MarioInventory(
+            logic_settings.starting_boots,
+            logic_settings.starting_hammer,
+            starting_partners,
+            starting_items,
+            logic_settings.partners_always_usable,
+            logic_settings.hidden_block_mode,
+            logic_settings.magical_seeds_required,
+            logic_settings.prologue_open,
+            logic_settings.bluehouse_open,
+            logic_settings.mtrugged_open,
+            logic_settings.foreverforest_open,
+            logic_settings.toybox_open,
+            logic_settings.whale_open,
+            logic_settings.ch7_bridge_visible,
+            logic_settings.always_speedyspin,
+            logic_settings.cook_without_fryingpan,
+            vanilla_start=False,
+        )
+        for item in all_progression_yet_to_be_placed:
+            mario.add(item.item_name)
+
+        # Find reachable nodes within the world graph
+        non_traversable_edges = dict()
+        non_traversable_edges[starting_node_id] = [
+            edge["edge_id"] for edge in world_graph[starting_node_id]["edge_list"]
+        ]
+
+        _ = find_available_nodes(
+            world_graph,
+            starting_node_id,
+            mario
+        )
+
+        if "YOUWIN" not in mario.items:
+            unreachable_items: list = list()
+            for location, unreachable_item in [
+                (location, item.item_name) for location, item in plando_item_placement.items()
+                if item not in mario.items
+            ]:
+                loc_area = verbose_area_names[location[:3]]
+                loc_map = Node.get(Node.identifier == location).map_area.verbose_name
+                verbose_location = verbose_item_locations[location.split("/")[0]][location.split("/")[1]]
+                verbose_location = verbose_location.replace("'", "")
+                unreachable_items.append((
+                    f"{loc_area}: {loc_map} - {verbose_location}",
+                    unreachable_item
+                ))
+            raise UnbeatablPlandoPlacementError(
+                "Plandomizer error: Could not build beatable seed! "
+                f"Progression logically unreachable: {unreachable_items}"
+            )
 
     if logic_settings.randomize_puzzles and logic_settings.include_shops:
         # Check which slots are pre-filled, if any
@@ -1324,6 +1394,7 @@ def place_items(
     world_graph = None,
     plando_item_placement: dict[str, Item] | None = None,
     plando_traps_placed: int = 0,
+    is_progression_plandod: bool = False,
 ):
     """Places items into item locations according to chosen settings."""
     #level = logging.INFO
@@ -1355,4 +1426,5 @@ def place_items(
             plando_traps_placed,
             plando_item_placeholders,
             plando_trap_placeholders,
+            is_progression_plandod,
         )

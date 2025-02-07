@@ -48,6 +48,7 @@ from rando_modules.random_puzzles_minigames import get_puzzles_minigames, get_dr
 from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.random_shop_prices import get_shop_price
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
+from rando_modules.unbeatable_plando_placement_error import UnbeatablPlandoPlacementError
 from worldgraph import \
     generate as generate_world_graph,\
     check_unreachable_from_start,\
@@ -355,6 +356,7 @@ class RandomSeed:
                     world_graph=modified_world_graph,
                     plando_item_placement=self.plando_data.item_placement,
                     plando_traps_placed=self.plando_data.trap_count,
+                    is_progression_plandod = (len(self.plando_data.keyitems_placed) > 0),
                 )
 
                 # Determine item placement spheres
@@ -369,6 +371,10 @@ class RandomSeed:
 
                 break
 
+            except UnbeatablPlandoPlacementError:
+                # Item placement in plandomizer prohibits logical seed
+                # completion, so just raise w/o trying 10 times
+                raise
             except UnbeatableSeedError:
                 print(f"Failed to place items! Fail count: {placement_attempt}")
                 if placement_attempt == 10:

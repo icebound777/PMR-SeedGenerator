@@ -1,0 +1,2 @@
+class UnbeatablPlandoPlacementError(Exception):
+    pass
