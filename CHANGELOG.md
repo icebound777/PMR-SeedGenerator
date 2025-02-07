@@ -25,6 +25,8 @@
     * 81 or more power stars: random price out of `5,10` coins
 * `Dungeon Entrance Shuffle`
   * If combining `Dungeon Entrance Shuffle: spirit dungeon + Bowser's Castle` and `Limit Chapter Logic`, now only dungeons that are logically required will enter the shuffle, and only shuffle among themselves. This solves the odd case of having to enter logically non-required areas to reach required dungeons.
+* `Randomize Puzzles` option:
+  * Can now include `Blue Berry`, `Red Berry`, `Yellow Berry`, and `Bubble Berry` items in the Dry Dry Outpost shop code puzzles.
 * `Cutscene Mode: Minimal`
   * Removed some dialogue from the Toad "inn keeper" in Peach's Castle.
 

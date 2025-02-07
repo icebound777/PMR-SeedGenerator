@@ -970,10 +970,7 @@ def _algo_assumed_fill(
                 try:
                     unique_nonuniques.extend(
                         random.sample(
-                            [
-                                x for x in pool_misc_progression_items
-                                if not ("Proxy") in x.item_name
-                            ],
+                            pool_misc_progression_items,
                             k=missing_code_candidates_cnt - len(unique_nonuniques)
                         )
                     )
