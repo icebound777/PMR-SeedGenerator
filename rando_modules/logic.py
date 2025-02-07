@@ -909,11 +909,6 @@ def _algo_assumed_fill(
             mario.add(item.item_name)
 
         # Find reachable nodes within the world graph
-        non_traversable_edges = dict()
-        non_traversable_edges[starting_node_id] = [
-            edge["edge_id"] for edge in world_graph[starting_node_id]["edge_list"]
-        ]
-
         _ = find_available_nodes(
             world_graph,
             starting_node_id,
