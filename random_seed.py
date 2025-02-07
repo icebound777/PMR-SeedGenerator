@@ -101,6 +101,8 @@ class RandomSeed:
         else:
             self.seed_value = seed_value
 
+        self.rando_settings.plando_active = self.plando_data.plando_active
+
 
     def generate(self, world_graph = None):
 

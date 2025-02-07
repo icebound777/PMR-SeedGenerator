@@ -29,6 +29,7 @@ class TransformedPlandoData():
             self.difficulty: dict[int, int] | None = None
             self.move_costs: dict[str, dict[str, dict[str, int]]] | None = None
             self.item_placement: dict[str, Item] | None = None
+            self.plando_active = False
             return
 
         self.boss_battles: dict[int, int] | None  = plando_data.get("boss_battles")
@@ -37,6 +38,14 @@ class TransformedPlandoData():
         self.move_costs: dict[str, dict[str, dict[str, int]]] | None = plando_data.get("move_costs")
 
         self.item_placement: dict[str, Item] | None = dict()
+
+        self.plando_active = (
+            (self.boss_battles is not None and len(self.boss_battles) > 0)
+         or (self.required_spirits is not None and len(self.required_spirits) > 0)
+         or (self.difficulty is not None and len(self.difficulty) > 0)
+         or (self.move_costs is not None and len(self.move_costs) > 0)
+         or (plando_data.get("items") is not None and len(plando_data.get("items")) > 0)
+        )
 
         if not plando_data.get("items"):
             return

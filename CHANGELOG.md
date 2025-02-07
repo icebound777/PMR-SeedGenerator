@@ -13,6 +13,7 @@
     * Which bosses appear where
     * BP, FP, and SP costs of badges, moves of Mario and his partners, and the star powers
     * Which spirits to rescue for the `Require Specific Spirits` setting
+  * If any changes are made to a seed using the plandomizer, the save select screen will show a `Plando` label to inform the player of this.
   * For more details, please refer to the plandomizer module documentation: <https://github.com/icebound777/PMR-Plando-Validator>
 * `Random Starting Stats` option:
   * Allows starting the seed with random amounts of HP, FP, and BP by choosing the level to generate these starting stats for

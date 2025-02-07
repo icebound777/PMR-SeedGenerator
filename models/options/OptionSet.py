@@ -904,6 +904,8 @@ class OptionSet:
         if forced_random_puzzles is not None:
             self.logic_settings.randomize_puzzles = forced_random_puzzles
 
+        self.plando_active = False
+
         # Map Check Tracker (static)
         #   0x1    # regular checks
         #   0x2    # gear
@@ -1609,6 +1611,9 @@ class OptionSet:
             # Item Pool Modification
             load_dbkey(self.logic_settings.gear_shuffle_mode, "GearShuffleMode"),
             load_dbkey(self.logic_settings.partner_upgrade_shuffle, "PartnerUpgradeShuffle"),
+
+            # Plandomizer warning label
+            load_dbkey(self.plando_active, "PlandomizerActive"),
 
             # Map Check Tracker (auto-set, not changeable via settings)
             load_dbkey(self.map_tracker_check_bits, "EnabledCheckBits"),
