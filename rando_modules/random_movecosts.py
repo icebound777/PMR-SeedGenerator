@@ -8,6 +8,8 @@ from db.move import Move
 
 from rando_enums.enum_options import RandomMoveCosts
 
+from metadata.verbose_item_names import verbose_item_names
+
 
 value_limits = {
     "BADGE":     {"BP": {"min": 1,"max": 8,}, "FP": {"min": 1,"max": 7,}},
@@ -120,12 +122,19 @@ def _overwrite_with_plando(
     move_cost_changes: list[tuple[int, int, int]] = list()
 
     for move in Move.select():
+        move_name = move.move_name
+        # Quick fix for altered move names
+        if move_name in ["AutoMultibounce","SmashCharge0","JumpCharge0","EarthquakeJump"]:
+            move_name = verbose_item_names[move_name]
+        if move_name.startswith("ChillOut"): # ChillOutMove, ChillOutBadge
+            move_name = "ChillOut"
+
         lower_move_type = (move.move_type).lower()
         if (    lower_move_type in plando_move_costs
-            and move.move_name in plando_move_costs[lower_move_type]
-            and move.cost_type in plando_move_costs[lower_move_type][move.move_name]
+            and move_name in plando_move_costs[lower_move_type]
+            and move.cost_type in plando_move_costs[lower_move_type][move_name]
         ):
-            new_move_cost = plando_move_costs[lower_move_type][move.move_name][move.cost_type]
+            new_move_cost = plando_move_costs[lower_move_type][move_name][move.cost_type]
             for i, move_tuple in enumerate(move_costs):
                 if move_tuple[0] == move.get_key():
                     move_cost_changes.append((
