@@ -127,20 +127,23 @@ class TransformedPlandoData():
                 if isinstance(item_or_dict, dict) and item_or_dict.get("price") is not None:
                     self.shop_prices[node_id] = item_or_dict["price"]
                 # get item
+                item_name: str = None
                 if isinstance(item_or_dict, str):
-                    if item_or_dict in allowed_placeholders:
-                        if item_or_dict == "TRAP":
-                            self.trap_placeholders.append(node_id)
-                            self.trap_count += 1
-                        else:
-                            self.item_placeholders[node_id] = item_or_dict
-                        continue
-                    else:
-                        item_obj = lookup_item(item_or_dict)
+                    item_name = item_or_dict
                 elif isinstance(item_or_dict, dict) and item_or_dict.get("item") is not None:
-                    item_obj = lookup_item(item_or_dict["item"])
-                else:
+                    item_name = item_or_dict["item"]
+                if item_name is None:
                     continue
+
+                if item_name in allowed_placeholders:
+                    if item_name == "TRAP":
+                        self.trap_placeholders.append(node_id)
+                        self.trap_count += 1
+                    else:
+                        self.item_placeholders[node_id] = item_name
+                    continue
+
+                item_obj = lookup_item(item_name)
 
                 self.item_placement[node_id] = item_obj
 
