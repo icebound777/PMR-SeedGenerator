@@ -125,7 +125,8 @@ class RandomSeed:
                 self.battles = []
                 self.spoilerlog_additions = {}
                 self.item_spheres_dict = None
-                logic_settings = deepcopy(self.rando_settings.logic_settings)
+                dc_rando_settings = deepcopy(self.rando_settings)
+                logic_settings = dc_rando_settings.logic_settings
 
                 # Choose values for options that are set to "random"
                 if logic_settings.magical_seeds_required == -1:
@@ -234,7 +235,7 @@ class RandomSeed:
                         shuffle_bowsers_castle = (
                             logic_settings.shuffle_dungeon_entrances == DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
                         ),
-                        write_spoilers = self.rando_settings.write_spoilerlog,
+                        write_spoilers = dc_rando_settings.write_spoilerlog,
                     )
                     self.extend_entrances(entrance_changes)
                     if self.spoilerlog_additions.get("entrances") is None:
@@ -246,7 +247,7 @@ class RandomSeed:
                     modified_world_graph, self.placed_blocks = get_partner_upgrade_shuffle(
                         modified_world_graph,
                         logic_settings.shuffle_blocks,
-                        self.rando_settings.glitch_settings
+                        dc_rando_settings.glitch_settings
                     )
 
                 # Adjust graph logic if needed
@@ -274,7 +275,7 @@ class RandomSeed:
                 # Set up trick & glitch logic
                 modified_world_graph = get_glitched_logic(
                     modified_world_graph,
-                    self.rando_settings.glitch_settings,
+                    dc_rando_settings.glitch_settings,
                     logic_settings.bowsers_castle_mode,
                     logic_settings.shuffle_dungeon_entrances
                 )
@@ -326,12 +327,12 @@ class RandomSeed:
 
                 # Adjust further settings
                 hidden_block_mode = logic_settings.hidden_block_mode
-                if self.rando_settings.glitch_settings.knows_hidden_blocks:
+                if dc_rando_settings.glitch_settings.knows_hidden_blocks:
                     # Having this trick enabled is equivalent to mode 3, logic wise
                     hidden_block_mode = 3
 
                 starting_chapter, logic_settings.starting_map = self.init_starting_map(
-                    self.rando_settings
+                    dc_rando_settings
                 )
                 self.init_starting_partners(
                     logic_settings,
@@ -339,7 +340,7 @@ class RandomSeed:
                 )
 
                 self.init_starting_items(
-                    self.rando_settings,
+                    dc_rando_settings,
                     self.plando_data.keyitems_placed,
                     self.plando_data.badges_placed,
                 )
@@ -347,7 +348,7 @@ class RandomSeed:
                 # Item Placement
                 place_items(
                     item_placement=self.placed_items,
-                    logic_settings=self.rando_settings.logic_settings,
+                    logic_settings=logic_settings,
                     starting_partners=self.starting_partners,
                     hidden_block_mode=hidden_block_mode,
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
@@ -368,6 +369,9 @@ class RandomSeed:
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
                     world_graph=modified_world_graph,
                 )
+
+                self.rando_settings = dc_rando_settings
+                logic_settings = self.rando_settings.logic_settings
 
                 break
 

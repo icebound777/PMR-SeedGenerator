@@ -805,7 +805,7 @@ def main_randomizer(args):
     if write_to_rom:
         write_data_to_rom(
             target_modfile=target_modfile,
-            options=rando_settings,
+            options=random_seed.rando_settings,
             placed_items=random_seed.placed_items,
             placed_blocks=random_seed.placed_blocks,
             entrance_list=random_seed.entrance_list,
