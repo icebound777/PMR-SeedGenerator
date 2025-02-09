@@ -608,7 +608,7 @@ def web_randomizer(settingsJson, plandoData, world_graph):
 
     # Write data to byte array
     operations, palette_offset, cosmetics_offset, audio_offset, music_offset = write_data_to_array(
-        options=rando_settings,
+        options=random_seed.rando_settings,
         placed_items=random_seed.placed_items,
         placed_blocks=random_seed.placed_blocks,
         entrance_list=random_seed.entrance_list,
@@ -653,7 +653,7 @@ def web_randomizer(settingsJson, plandoData, world_graph):
     spoiler_log_file = write_spoiler_log(
         random_seed.placed_items,
         random_chapter_difficulty=random_seed.chapter_changes,
-        settings=rando_settings,
+        settings=random_seed.rando_settings,
         is_web_spoiler_log=True,
         spheres_dict=random_seed.item_spheres_dict,
         move_costs=random_seed.move_costs,
