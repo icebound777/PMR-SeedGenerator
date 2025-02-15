@@ -31,6 +31,7 @@ from rando_modules.modify_itempool \
 
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
 from rando_modules.unbeatable_plando_placement_error import UnbeatablPlandoPlacementError
+from rando_modules.plando_settings_mismatch_error import PlandoSettingsMismatchError
 from rando_modules.item_pool_too_small_error import ItemPoolTooSmallError
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
@@ -366,6 +367,11 @@ def _generate_item_pools(
                     pool_other_items.append(new_item)
 
     # Pre-fill nodes that are not to be randomized
+    all_plando_locations = (
+        list(plando_item_placement.keys())
+      + list(plando_item_placeholders.keys())
+      + plando_trap_placeholders
+    )
     for node_id in world_graph:
         if node_id == "edge_index":
             continue
@@ -382,6 +388,11 @@ def _generate_item_pools(
                 and current_node_id in overworld_coin_locations
                 and not logic_settings.include_coins_overworld
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Shuffle Overworld Coins\" setting being turned off"
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -390,6 +401,11 @@ def _generate_item_pools(
                 and current_node_id in block_coin_locations
                 and not logic_settings.include_coins_blocks
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Shuffle Coin Blocks\" setting being turned off"
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -398,6 +414,11 @@ def _generate_item_pools(
                 and current_node_id in bush_tree_coin_locations
                 and not logic_settings.include_coins_foliage
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Shuffle Overworld Coins\" setting being turned off"
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -406,6 +427,11 @@ def _generate_item_pools(
                 and current_node_id in favor_coin_locations
                 and not logic_settings.include_coins_favors
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Shuffle Favor Coins\" setting being turned off"
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -413,6 +439,11 @@ def _generate_item_pools(
             if (    current_node.key_name_item.startswith("Shop")
                 and not logic_settings.include_shops
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Shopsanity\" setting being turned off"
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -420,6 +451,11 @@ def _generate_item_pools(
             if (    current_node.key_name_item == "HiddenPanel"
                 and not logic_settings.include_panels
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Include Hidden Panels\" setting being turned off"
+                    )
                 current_node.current_item = Item.get(Item.item_name == "StarPiece")
                 all_item_nodes.append(current_node)
                 continue
@@ -427,6 +463,11 @@ def _generate_item_pools(
             if (    current_node_id in kootfavors_reward_locations
                 and logic_settings.include_favors_mode == IncludeFavorsMode.NOT_RANDOMIZED
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Koopa Koot Favors\" setting set to \"Vanilla\""
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -434,6 +475,11 @@ def _generate_item_pools(
             if (    current_node_id in kootfavors_keyitem_locations
                 and logic_settings.include_favors_mode <= IncludeFavorsMode.RND_REWARD_VANILLA_KEYITEMS
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Koopa Koot Favors\" setting not set to \"Full Shuffle\""
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -441,6 +487,11 @@ def _generate_item_pools(
             if (    current_node_id in chainletter_giver_locations
                 and logic_settings.include_letters_mode < IncludeLettersMode.FULL_SHUFFLE
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Letter Delivery Rewards\" setting not set to \"Full Shuffle\""
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -448,6 +499,11 @@ def _generate_item_pools(
             if (    current_node_id == chainletter_final_reward_location
                 and logic_settings.include_letters_mode < IncludeLettersMode.RANDOM_CHAIN_REWARD
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Letter Delivery Rewards\" setting set to \"Vanilla\""
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -455,6 +511,11 @@ def _generate_item_pools(
             if (    current_node_id in simpleletter_locations
                 and logic_settings.include_letters_mode < IncludeLettersMode.SIMPLE_LETTERS
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Letter Delivery Rewards\" setting set to \"Vanilla\""
+                    )
                 current_node.current_item = Item.get(Item.item_name == "StarPiece")
                 all_item_nodes.append(current_node)
                 continue
@@ -462,6 +523,11 @@ def _generate_item_pools(
             if (    not logic_settings.include_radiotradeevent
                 and current_node_id in radio_trade_event_locations
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Trading Event\" setting being turned off"
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -469,6 +535,11 @@ def _generate_item_pools(
             if (    current_node_id in dojo_locations[5] # all dojo locations
                 and current_node_id not in dojo_locations[logic_settings.include_dojo]
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Dojo Rewards\" setting being set too low"
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -476,6 +547,11 @@ def _generate_item_pools(
             if (    current_node_id == "MAC_02/GiftD"
                 and logic_settings.foreverforest_open
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Open Forever Forest\" setting being turned on"
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -484,6 +560,11 @@ def _generate_item_pools(
                 and logic_settings.partner_shuffle == PartnerShuffle.VANILLA
                 and current_node.vanilla_item.item_name not in starting_partners
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Partner Shuffle\" setting being set to \"Vanilla\""
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -493,6 +574,11 @@ def _generate_item_pools(
                 and (   current_node.identifier != "KMR_04/Bush7_Drop1"
                      or logic_settings.starting_hammer == StartingHammer.HAMMERLESS)
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Gear Shuffle\" setting being set to \"Vanilla\""
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -500,6 +586,11 @@ def _generate_item_pools(
             if (    logic_settings.gear_shuffle_mode == GearShuffleMode.VANILLA
                 and current_node.identifier == "KMR_04/Bush7_Drop1"
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Gear Shuffle\" setting being set to \"Vanilla\""
+                    )
                 # special casing so the hammer bush is never empty but also
                 # never holds required items or badges
                 current_node.current_item = _get_random_taycet_item()
@@ -513,6 +604,7 @@ def _generate_item_pools(
                         "DRO_01/ShopItemE"
                     ]
             ):
+                # no plando exception necessary, because handled by OptionSet.py
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -520,6 +612,7 @@ def _generate_item_pools(
             if (    not logic_settings.shuffle_starbeam
                 and current_node.identifier == "HOS_05/GiftA"
             ):
+                # no plando exception necessary, because handled by OptionSet.py
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
