@@ -2182,6 +2182,8 @@ def _overrule_settings_with_plando(
                         forced_progressive_badges = True
                     elif cur_item.endswith("Upgrade"):
                         forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.FULL
+                    elif cur_item == "StarBeam":
+                        forced_shuffle_starbeam = True
 
     return (
         forced_progressive_badges,
