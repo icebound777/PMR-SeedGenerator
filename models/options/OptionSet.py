@@ -28,7 +28,11 @@ from models.options.GlitchOptionSet import GlitchOptionSet
 
 from models.options.option_utility import get_option_default_value
 
-from plandomizer.plando_metadata import progressive_badges, force_puzzlerando_locations
+from plandomizer.plando_metadata import (
+    progressive_badges,
+    force_puzzlerando_locations,
+    force_starbeam_shuffle_location,
+)
 
 class OptionSet:
     def __init__(self):
@@ -893,7 +897,8 @@ class OptionSet:
         # Overrule certain settings depending on plando data
         forced_progressive_badges,\
         forced_partner_upgrade_shuffle,\
-        forced_random_puzzles = \
+        forced_random_puzzles,\
+        forced_shuffle_starbeam = \
             _overrule_settings_with_plando(
                 plando_data
             )
@@ -903,6 +908,8 @@ class OptionSet:
             self.logic_settings.partner_upgrade_shuffle = forced_partner_upgrade_shuffle
         if forced_random_puzzles is not None:
             self.logic_settings.randomize_puzzles = forced_random_puzzles
+        if forced_shuffle_starbeam is not None:
+            self.logic_settings.shuffle_starbeam = forced_shuffle_starbeam
 
         self.plando_active = False
 
@@ -2132,13 +2139,24 @@ class OptionSet:
 
 def _overrule_settings_with_plando(
     plando_data: dict | None,
-) -> tuple[bool | None, PartnerUpgradeShuffle | None, bool | None]:
+) -> tuple[
+    bool | None,
+    PartnerUpgradeShuffle | None,
+    bool | None,
+    bool | None,
+]:
     forced_progressive_badges: bool = None
     forced_partner_upgrade_shuffle: bool = None
     forced_random_puzzles: bool = None
+    forced_shuffle_starbeam: bool = None
 
     if plando_data is None:
-        return forced_progressive_badges, forced_partner_upgrade_shuffle, forced_random_puzzles
+        return (
+            forced_progressive_badges,
+            forced_partner_upgrade_shuffle,
+            forced_random_puzzles,
+            forced_shuffle_starbeam
+        )
 
     else:
          item_placement_areas: None | dict[str, dict[str, str | dict[str, str | int]]] = plando_data.get("items")
@@ -2155,6 +2173,8 @@ def _overrule_settings_with_plando(
 
                     if item_location in force_puzzlerando_locations:
                         forced_random_puzzles = True
+                    if item_location == force_starbeam_shuffle_location:
+                        forced_shuffle_starbeam = True
 
                     if cur_item in progressive_badges["originals"]:
                         forced_progressive_badges = False
@@ -2163,4 +2183,9 @@ def _overrule_settings_with_plando(
                     elif cur_item.endswith("Upgrade"):
                         forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.FULL
 
-    return forced_progressive_badges, forced_partner_upgrade_shuffle, forced_random_puzzles
+    return (
+        forced_progressive_badges,
+        forced_partner_upgrade_shuffle,
+        forced_random_puzzles,
+        forced_shuffle_starbeam
+    )
