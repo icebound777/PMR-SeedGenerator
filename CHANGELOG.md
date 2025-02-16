@@ -33,6 +33,7 @@
 ### Logic changes
 
 * Fixed logic not expecting boots or Kooper for hitting the yellow item block in Tubba's Castle - Stairs to Third Floor
+* Fixed logic for the three `Ultra Hammer Skip` glitch settings, and the two `Flarakarry` glitch settings. Formerly these didn't apply properly, so these settings would always count as being turned off
 
 ### Quality of Life
 
