@@ -7,12 +7,13 @@ from db.palette import Palette
 from rando_enums.enum_options import RandomPalettes
 
 from models.options.OptionSet import PaletteOptionSet
-from metadata.palettes_meta import \
-    mario_n_partner_sprite_names, \
-    boss_sprite_names, \
-    enemy_sprite_names, \
-    hammer_sprite_names, \
+from metadata.palettes_meta import (
+    mario_n_partner_sprite_names,
+    boss_sprite_names,
+    enemy_sprite_names,
+    hammer_sprite_names,
     special_vanilla_palette_ids
+)
 
 
 

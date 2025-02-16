@@ -20,22 +20,23 @@ from calculate_crc import recalculate_crcs
 from models.options.OptionSet import OptionSet, PaletteOptionSet
 
 from spoilerlog import write_spoiler_log
-from db.option          import Option, create_options
-from db.map_meta        import create_mapmeta
-from db.item            import create_items
-from db.node            import create_nodes
-from db.block           import create_blocks
-from db.actor           import create_actors
-from db.actor_params    import create_actor_params
+from db.option import Option, create_options
+from db.map_meta import create_mapmeta
+from db.item import create_items
+from db.node import create_nodes
+from db.block import create_blocks
+from db.actor import create_actors
+from db.actor_params import create_actor_params
 from db.actor_attribute import create_actor_attributes
-from db.move            import create_moves
-from db.quiz            import create_quizzes
-from db.puzzle          import create_puzzles
-from db.battle          import create_battles
-from db.palette         import Palette, create_palettes
-from rando_modules.random_palettes     \
-    import get_randomized_coinpalette, \
-           get_randomized_palettes
+from db.move import create_moves
+from db.quiz import create_quizzes
+from db.puzzle import create_puzzles
+from db.battle import create_battles
+from db.palette import Palette, create_palettes
+from rando_modules.random_palettes import (
+    get_randomized_coinpalette,
+    get_randomized_palettes,
+)
 from rando_modules.random_audio import get_randomized_audio
 
 from models.PlandoParsingError import PlandoParsingError

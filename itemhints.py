@@ -6,13 +6,14 @@ from rando_enums.enum_options import (
 )
 
 from metadata.item_source_types import item_source_types as source_types
-from metadata.itemlocation_special \
-    import kootfavors_reward_locations,\
-           kootfavors_keyitem_locations,\
-           chainletter_giver_locations,\
-           chainletter_final_reward_location,\
-           simpleletter_locations,\
-           limited_by_item_areas
+from metadata.itemlocation_special import (
+    kootfavors_reward_locations,
+    kootfavors_keyitem_locations,
+    chainletter_giver_locations,
+    chainletter_final_reward_location,
+    simpleletter_locations,
+    limited_by_item_areas,
+)
 from metadata.partners_meta import all_partners
 
 def get_itemhints(
