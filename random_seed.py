@@ -9,6 +9,7 @@ from rando_enums.enum_options import (
     GearShuffleMode,
     PartnerUpgradeShuffle,
     DungeonEntranceShuffle,
+    RequiredSpirits,
 )
 
 from itemhints import get_itemhints
@@ -185,8 +186,7 @@ class RandomSeed:
 
                 # Unset settings that become meaningless due to other settings
                 if logic_settings.starway_spirits_needed_count in [0, 7]:
-                    logic_settings.require_specific_spirits = False
-                    logic_settings.limit_chapter_logic = False
+                    logic_settings.required_spirits = RequiredSpirits.ANY
 
                 # Select required star spirits
                 chosen_spirits = []
@@ -200,7 +200,7 @@ class RandomSeed:
                     StarSpirits.KALMAR,
                 ]
                 plando_required_spirits: list[int] | None = self.plando_data.required_spirits
-                if (    logic_settings.require_specific_spirits
+                if (    logic_settings.required_spirits >= RequiredSpirits.SPECIFIC
                     and 0 < logic_settings.starway_spirits_needed_count < 7
                     and (plando_required_spirits is None or len(plando_required_spirits) < 7)
                 ):
@@ -243,7 +243,7 @@ class RandomSeed:
                         world_graph = modified_world_graph,
                         starway_spirits_needed_count = logic_settings.starway_spirits_needed_count,
                         required_star_spirits = chosen_spirits,
-                        limit_chapter_logic = logic_settings.limit_chapter_logic,
+                        limit_chapter_logic = (required_spirits == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC),
                         shuffle_bowsers_castle = (
                             logic_settings.shuffle_dungeon_entrances == DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
                         ),
@@ -319,7 +319,7 @@ class RandomSeed:
                 if entrance_changes:
                     self.extend_entrances(entrance_changes)
 
-                if logic_settings.limit_chapter_logic:
+                if logic_settings.required_spirits == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC:
                     modified_world_graph = get_limited_chapter_logic(
                         modified_world_graph,
                         chosen_spirits,
