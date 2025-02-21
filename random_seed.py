@@ -544,8 +544,8 @@ class RandomSeed:
                     if x in plandod_partners
                 ])
             ):
-                raise ValueError(
-                    "ERROR: Chosen starting partners: Cannot start the seed with "\
+                raise PlandoSettingsMismatchError(
+                    "Plandomizer error: Chosen starting partners: Cannot start the seed with "\
                     "these partners, because one or more of them is already "\
                     "placed by the plandomizer!"
                 )
@@ -657,8 +657,8 @@ class RandomSeed:
                     if x.item_name in plando_keyitems or x.item_name in plando_badges
                 ])
             ):
-                raise ValueError(
-                    "ERROR: Chosen starting items: Cannot start the seed with "\
+                raise PlandoSettingsMismatchError(
+                    "Plandomizer error: Chosen starting items: Cannot start the seed with "\
                     "these items, because one or more of them are already "\
                     "placed by the plandomizer!"
                 )
