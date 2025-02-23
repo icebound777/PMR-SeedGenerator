@@ -123,6 +123,9 @@ class RandomSeed:
         print(f"Seed: {self.seed_value}")
         random.seed(self.seed_value)
 
+        # Check settings against plandomizer
+        self.plando_data.verify_against_settings(self.rando_settings)
+
         # Prepare world graph if not provided
         if world_graph is None:
             print("Generating World Graph ...")
@@ -555,8 +558,8 @@ class RandomSeed:
                     if x in plandod_partners
                 ])
             ):
-                raise ValueError(
-                    "ERROR: Chosen starting partners: Cannot start the seed with "\
+                raise PlandoSettingsMismatchError(
+                    "Plandomizer error: Chosen starting partners: Cannot start the seed with "\
                     "these partners, because one or more of them is already "\
                     "placed by the plandomizer!"
                 )
@@ -668,8 +671,8 @@ class RandomSeed:
                     if x.item_name in plando_keyitems or x.item_name in plando_badges
                 ])
             ):
-                raise ValueError(
-                    "ERROR: Chosen starting items: Cannot start the seed with "\
+                raise PlandoSettingsMismatchError(
+                    "Plandomizer error: Chosen starting items: Cannot start the seed with "\
                     "these items, because one or more of them are already "\
                     "placed by the plandomizer!"
                 )

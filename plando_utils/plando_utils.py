@@ -1,12 +1,20 @@
 import re
 
+from models.options.OptionSet import OptionSet
+
 from metadata.verbose_item_names import inverted_verbose_names
 from metadata.verbose_item_locations import verbose_item_locations
 from metadata.verbose_area_names import verbose_area_names
 
 from metadata.partners_meta import all_partners
 
-from plandomizer.plando_metadata import allowed_placeholders
+from plandomizer.plando_metadata import (
+    allowed_placeholders,
+    rowf_badges,
+    merlow_badges,
+)
+
+from rando_modules.plando_settings_mismatch_error import PlandoSettingsMismatchError
 
 from db.item import Item
 from db.map_area import MapArea
@@ -16,6 +24,7 @@ class TransformedPlandoData():
     def __init__(self, plando_data: dict | None) -> None:
         self.partners_placed: list[str] = list()
         self.badges_placed: list[str] = list()
+        self.shop_badges_placed: bool = False
         self.keyitems_placed: list[str] = list()
         self.trap_count: int = 0
         self.magical_seeds_count: int = 0
@@ -143,6 +152,9 @@ class TransformedPlandoData():
                         self.item_placeholders[node_id] = item_name
                     continue
 
+                if item_name in rowf_badges or item_name in merlow_badges:
+                    self.shop_badges_placed = True
+
                 item_obj = lookup_item(item_name)
 
                 self.item_placement[node_id] = item_obj
@@ -158,3 +170,20 @@ class TransformedPlandoData():
 
                     if item_obj.item_name.startswith("MagicalSeed"):
                         self.magical_seeds_count += 1
+
+
+    def verify_against_settings(self, rando_settings: OptionSet):
+        """
+        Run assertions on randomizer settings, to check if they clash with
+        plandomizer data.
+        """
+
+        # Assert that we have Shop Shuffle active if we have plando'd
+        # one of the shop badges
+        if (    self.shop_badges_placed
+            and not rando_settings.logic_settings.include_shops
+        ):
+            raise PlandoSettingsMismatchError(
+                "Plandomizer error: Shop shuffle is turned off, but one or "\
+                "more of the badges from Rowf's or Merlow's shops are plando'd"
+            )

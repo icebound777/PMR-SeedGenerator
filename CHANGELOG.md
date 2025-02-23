@@ -36,7 +36,7 @@
     * 41 - 80 power stars: random price out of `5,10,15,20` coins
     * 81 or more power stars: random price out of `5,10` coins
 * `Dungeon Entrance Shuffle`
-  * If combining `Dungeon Entrance Shuffle: spirit dungeon + Bowser's Castle` and `Limit Chapter Logic`, now only dungeons that are logically required will enter the shuffle, and only shuffle among themselves. This solves the odd case of having to enter logically non-required areas to reach required dungeons.
+  * If combining `Dungeon Entrance Shuffle` and `Limit Chapter Logic`, now only dungeons that are logically required will enter the shuffle, and only shuffle among themselves. This solves the odd case of having to enter logically non-required areas to reach required dungeons.
 * `Randomize Puzzles` option:
   * Can now include `Blue Berry`, `Red Berry`, `Yellow Berry`, and `Bubble Berry` items in the Dry Dry Outpost shop code puzzles.
 * `Cutscene Mode: Minimal`
@@ -100,6 +100,8 @@
     * `Jade Jungle Beach - In Palm Tree 6 2` to `Jade Jungle Beach - In Palm Tree 6 (replenish)`
 * RAM locations docs
   * Fix typo in Player Data struct regarding True Max HP and FP
+* README file:
+  * Added note about needing to clone submodules as well from now on, due to the plandomizer being such a submodule
 * Internally reworked how star pieces in non-randomized locations behave (hidden panels and letter rewards). The item pickup for those vanilla star pieces will now look slightly different, but they will still count as regular star pieces.
 * Internally reworked how the berry key items work. This was necessary for making the plandomizer implementation of the berries less painful. Ideally, players should not notice any difference to before.
 

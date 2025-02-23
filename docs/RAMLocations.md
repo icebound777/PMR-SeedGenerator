@@ -1112,8 +1112,8 @@ Beach - In Palm Tree 2                           | ModFlag   106C
 Beach - In Palm Tree 3                           | ModFlag   106D
 Beach - In Palm Tree 4                           | ModFlag   106E
 Beach - In Palm Tree 5                           | ModFlag   106F
-Beach - In Palm Tree 6                           | GameFlag   4E4
-Beach - In Palm Tree 6 2                         | ModFlag   1070
+Beach - In Palm Tree 6 (one-off)                 | GameFlag   4E4
+Beach - In Palm Tree 6 (replenish)               | ModFlag   1070
 
 Village Cove - Village Leader Reward             | ModFlag   1071
 Village Cove - Hidden Panel                      | GameFlag   4F5
