@@ -111,6 +111,9 @@ class RandomSeed:
         print(f"Seed: {self.seed_value}")
         random.seed(self.seed_value)
 
+        # Check settings against plandomizer
+        self.plando_data.verify_against_settings(self.rando_settings)
+
         # Prepare world graph if not provided
         if world_graph is None:
             print("Generating World Graph ...")
