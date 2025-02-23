@@ -88,6 +88,8 @@
     * `Jade Jungle Beach - In Palm Tree 6 2` to `Jade Jungle Beach - In Palm Tree 6 (replenish)`
 * RAM locations docs
   * Fix typo in Player Data struct regarding True Max HP and FP
+* README file:
+  * Added note about needing to clone submodules as well from now on, due to the plandomizer being such a submodule
 * Internally reworked how star pieces in non-randomized locations behave (hidden panels and letter rewards). The item pickup for those vanilla star pieces will now look slightly different, but they will still count as regular star pieces.
 * Internally reworked how the berry key items work. This was necessary for making the plandomizer implementation of the berries less painful. Ideally, players should not notice any difference to before.
 
