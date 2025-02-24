@@ -122,16 +122,16 @@
   * Added `Cannonless` (bool)
 * Changed Item IDs due to internal rework of berry items
   * Items removed:
-    * `CakeProxy`, ID 0x25C (always unused)
-    * `BlueBerryProxy1`, ID 0x25D (was now unused)
-    * `BlueBerryProxy2`, ID 0x25E (was now unused)
-    * `RedBerryProxy1`, ID 0x25F (was now unused)
-    * `RedBerryProxy2`, ID 0x260 (was now unused)
-    * `YellowBerryProxy1`, ID 0x261 (was now unused)
-    * `YellowBerryProxy2`, ID 0x262 (was now unused)
-    * `BubbleBerryProxy1`, ID 0x263 (was now unused)
-    * `BubbleBerryProxy2`, ID 0x264 (was now unused)
-  * This change shifts all items beyond item ID 0x264 down by 9 item IDs. The final item in the list is now `Bow` on item ID 0x291
+    * `CakeProxy`, ID 0x2BA (always unused)
+    * `BlueBerryProxy1`, ID 0x2BB (was now unused)
+    * `BlueBerryProxy2`, ID 0x2BC (was now unused)
+    * `RedBerryProxy1`, ID 0x2BD (was now unused)
+    * `RedBerryProxy2`, ID 0x2BE (was now unused)
+    * `YellowBerryProxy1`, ID 0x2BF (was now unused)
+    * `YellowBerryProxy2`, ID 0x2C0 (was now unused)
+    * `BubbleBerryProxy1`, ID 0x2C1 (was now unused)
+    * `BubbleBerryProxy2`, ID 0x2C2 (was now unused)
+  * This change shifts all items beyond item ID 0x2B9 down by 9 item IDs. The final item in the list is now `Bow` on item ID 0x2EF
 
 ## 0.28.1 (beta)
 
