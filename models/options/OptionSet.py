@@ -28,6 +28,12 @@ from models.options.GlitchOptionSet import GlitchOptionSet
 
 from models.options.option_utility import get_option_default_value
 
+from plandomizer.plando_metadata import (
+    progressive_badges,
+    force_puzzlerando_locations,
+    force_starbeam_shuffle_location,
+)
+
 class OptionSet:
     def __init__(self):
         """ Load Defaults from DB """
@@ -48,7 +54,6 @@ class OptionSet:
         # Difficulty and Enemies
         self.shuffle_chapter_difficulty = False
         self.progressive_scaling = bool(get_option_default_value("ProgressiveScaling"))
-
         self.challenge_mode = bool(get_option_default_value("ChallengeMode"))
         self.cap_enemy_xp = bool(get_option_default_value("CapEnemyXP"))
         self.xp_multiplier = get_option_default_value("XPMultiplier")
@@ -73,6 +78,7 @@ class OptionSet:
 
         # Starting setup
         self.starting_level = get_option_default_value("StartingLevel")
+        self.random_starting_stats_level = -1
         self.starting_maxhp = get_option_default_value("StartingMaxHP")
         self.starting_maxfp = get_option_default_value("StartingMaxFP")
         self.starting_maxbp = get_option_default_value("StartingMaxBP")
@@ -129,7 +135,7 @@ class OptionSet:
         self.logic_settings = LogicOptionSet()
 
 
-    def update_options(self, options_dict=None):
+    def update_options(self, options_dict=None, plando_data=None):
 
         try:
             self.validate_options(options_dict)
@@ -288,6 +294,8 @@ class OptionSet:
         # Starting setup
         if "StartingMap" in options_dict:
             self.logic_settings.starting_map = options_dict.get("StartingMap")
+        if "RandomStartingStatsLevel" in options_dict:
+            self.random_starting_stats_level = options_dict.get("RandomStartingStatsLevel")
         if "StartingMaxHP" in options_dict:
             self.starting_maxhp = options_dict.get("StartingMaxHP")
         if "StartingMaxFP" in options_dict:
@@ -457,59 +465,6 @@ class OptionSet:
         if "RandomizePuzzles" in options_dict:
             self.logic_settings.randomize_puzzles = options_dict.get("RandomizePuzzles")
 
-        # Map Check Tracker (static)
-        #   0x1    # regular checks
-        #   0x2    # gear
-        #   0x4    # panels
-        #   0x8    # super blocks
-        #   0x10   # overworld coins
-        #   0x20   # block coins
-        #   0x40   # favor coins
-        #   0x80   # foliage coins
-        #   0x100  # dojo
-        #   0x200  # koot favors
-        #   0x400  # radio trade event
-        #   0x800  # letter delivery
-        #   0x1000 # forever forest open
-        #   0x2000 # vanilla bowser's castle
-        #   0x4000 # vanilla or shorten bowser's castle
-        #   0x8000 # multi coin blocks
-        map_tracker_bits = 0x1 + 0x2
-        if self.logic_settings.include_panels:
-            map_tracker_bits += 0x4
-        if self.logic_settings.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
-            map_tracker_bits += 0x8
-        if self.logic_settings.include_coins_overworld:
-            map_tracker_bits += 0x10
-        if self.logic_settings.include_coins_blocks:
-            map_tracker_bits += 0x20
-        if self.logic_settings.include_coins_favors:
-            map_tracker_bits += 0x40
-        if self.logic_settings.include_coins_foliage:
-            map_tracker_bits += 0x80
-        if self.logic_settings.include_dojo != DojoShuffle.OFF:
-            map_tracker_bits += 0x100
-        if self.logic_settings.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
-            map_tracker_bits += 0x200
-        if self.logic_settings.include_radiotradeevent:
-            map_tracker_bits += 0x400
-        if self.logic_settings.include_letters_mode != IncludeLettersMode.NOT_RANDOMIZED:
-            map_tracker_bits += 0x800
-        if not self.logic_settings.foreverforest_open:
-            map_tracker_bits += 0x1000
-        if self.logic_settings.bowsers_castle_mode == BowserCastleMode.VANILLA:
-            map_tracker_bits += 0x2000
-        if self.logic_settings.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
-            map_tracker_bits += 0x4000
-        if (    self.logic_settings.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
-            and self.logic_settings.shuffle_blocks
-        ):
-            map_tracker_bits += 0x8000
-        self.map_tracker_check_bits = map_tracker_bits
-        self.map_tracker_shop_bits = 0x7
-        if self.logic_settings.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
-            self.map_tracker_shop_bits += 0x8
-
         # Quizmo Quizzes
         if "RandomQuiz" in options_dict:
             self.random_quiz = options_dict.get("RandomQuiz")
@@ -632,6 +587,8 @@ class OptionSet:
             self.glitch_settings.blue_house_skip_laki = options_dict.get("BlueHouseSkipLaki")
         if "BlueHouseSkipToadLure" in options_dict:
             self.glitch_settings.blue_house_skip_toad_lure = options_dict.get("BlueHouseSkipToadLure")
+        if "JumplessDaneTLetters" in options_dict:
+            self.glitch_settings.jumpless_dane_t_letters = options_dict.get("JumplessDaneTLetters")
         if "BowlessToyBoxHammer" in options_dict:
             self.glitch_settings.bowless_toy_box_hammer = options_dict.get("BowlessToyBoxHammer")
         if "BowlessToyBoxHammerlessLure" in options_dict:
@@ -646,8 +603,15 @@ class OptionSet:
             self.glitch_settings.whale_early = options_dict.get("WhaleEarly")
         if "SushielessToadTownStarPiece" in options_dict:
             self.glitch_settings.sushiesless_toad_town_star_piece = options_dict.get("SushielessToadTownStarPiece")
-        if "ToadTownSushieGlitch" in options_dict:
-            self.glitch_settings.toad_town_sushie_glitch = options_dict.get("ToadTownSushieGlitch")
+        if "ToadTownSushieGlitchGearless" in options_dict:
+            self.glitch_settings.toad_town_sushie_glitch_gearless = options_dict.get("ToadTownSushieGlitchGearless")
+        if "ToadTownSushieGlitchOneGear" in options_dict:
+            self.glitch_settings.toad_town_sushie_glitch_onegear = options_dict.get("ToadTownSushieGlitchOneGear")
+        if "ToadTownSushieGlitchFullGear" in options_dict:
+            self.glitch_settings.toad_town_sushie_glitch_full_gear = options_dict.get("ToadTownSushieGlitchFullGear")
+
+        if "JumplessSummitClimb" in options_dict:
+            self.glitch_settings.jumpless_summit_climb = options_dict.get("JumplessSummitClimb")
 
         if "ClippyBootsStoneBlockSkip" in options_dict:
             self.glitch_settings.clippy_boots_stone_block_skip = options_dict.get("ClippyBootsStoneBlockSkip")
@@ -682,6 +646,8 @@ class OptionSet:
             self.glitch_settings.invisible_bridge_clip_laki = options_dict.get("InvisibleBridgeClipLaki")
         if "KooperlessPleasantPathThunderBolt" in options_dict:
             self.glitch_settings.kooperless_pleasant_path_thunderbolt = options_dict.get("KooperlessPleasantPathThunderBolt")
+        if "JumplessKoopaVillageBluePipe" in options_dict:
+            self.glitch_settings.jumpless_koopa_village_blue_pipe = options_dict.get("JumplessKoopaVillageBluePipe")
 
         if "BombettelessKbfFpPlusLZS" in options_dict:
             self.glitch_settings.bombetteless_kbf_fp_plus_lzs = options_dict.get("BombettelessKbfFpPlusLZS")
@@ -698,6 +664,8 @@ class OptionSet:
             self.glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki = options_dict.get("MtRuggedQuakeHammerAndLetterWithLaki")
         if "ParakarrylessMtRuggedSeed" in options_dict:
             self.glitch_settings.parakarryless_mt_rugged_seed = options_dict.get("ParakarrylessMtRuggedSeed")
+        if "ParakarrylessMtRuggedSeedClippy" in options_dict:
+            self.glitch_settings.parakarryless_mt_rugged_seed_clippy = options_dict.get("ParakarrylessMtRuggedSeedClippy")
         if "BuzzarGapSkipClippy" in options_dict:
             self.glitch_settings.buzzar_gap_skip_clippy = options_dict.get("BuzzarGapSkipClippy")
         if "ParakarrylessMtRuggedStarPiece" in options_dict:
@@ -734,6 +702,8 @@ class OptionSet:
             self.glitch_settings.parakarryless_super_hammer_room_normal_boots = options_dict.get("ParakarrylessSuperHammerRoomNormalBoots")
         if "RuinsLocksSkipClippy" in options_dict:
             self.glitch_settings.ruins_locks_skip_clippy = options_dict.get("RuinsLocksSkipClippy")
+        if "RuinsPuzzleSolutionEarly" in options_dict:
+            self.glitch_settings.ruins_puzzle_solution_early = options_dict.get("RuinsPuzzleSolutionEarly")
         if "RuinsStoneSkip" in options_dict:
             self.glitch_settings.ruins_stone_skip = options_dict.get("RuinsStoneSkip")
 
@@ -774,6 +744,8 @@ class OptionSet:
             self.glitch_settings.tubbas_table_laki_jump_study = options_dict.get("TubbasTableLakiJumpStudy")
         if "TubbasCastleSuperBootsSkip" in options_dict:
             self.glitch_settings.tubbas_castle_super_boots_skip = options_dict.get("TubbasCastleSuperBootsSkip")
+        if "JumplessMegaRush" in options_dict:
+            self.glitch_settings.jumpless_mega_rush = options_dict.get("JumplessMegaRush")
         if "ParakarrylessMegaRush" in options_dict:
             self.glitch_settings.parakarryless_mega_rush = options_dict.get("ParakarrylessMegaRush")
 
@@ -812,6 +784,8 @@ class OptionSet:
             self.glitch_settings.raph_skip_english = options_dict.get("RaphSkipEnglish")
         if "RaphSkipParakarry" in options_dict:
             self.glitch_settings.raph_skip_parakarry = options_dict.get("RaphSkipParakarry")
+        if "RaphSkipLakilester" in options_dict:
+            self.glitch_settings.raph_skip_lakilester = options_dict.get("RaphSkipLakilester")
         if "Ch5SushieGlitch" in options_dict:
             self.glitch_settings.ch5_sushie_glitch = options_dict.get("Ch5SushieGlitch")
         if "SushielessJungleStarpieceAndLetter" in options_dict:
@@ -890,15 +864,31 @@ class OptionSet:
 
         if "MirrorClip" in options_dict:
             self.glitch_settings.mirror_clip = options_dict.get("MirrorClip")
+        if "BombettePuzzleSkip" in options_dict:
+            self.glitch_settings.bombette_puzzle_skip = options_dict.get("BombettePuzzleSkip")
         if "KooperPuzzleSkip" in options_dict:
             self.glitch_settings.kooper_puzzle_skip = options_dict.get("KooperPuzzleSkip")
 
         if "BowlessBowsersCastleBasement" in options_dict:
             self.glitch_settings.bowless_bowsers_castle_basement = options_dict.get("BowlessBowsersCastleBasement")
+        if "WattlessDarkBasement" in options_dict:
+            self.glitch_settings.wattless_dark_basement = options_dict.get("WattlessDarkBasement")
+        if "BasementSkipParakarry" in options_dict:
+            self.glitch_settings.basement_skip_parakarry = options_dict.get("BasementSkipParakarry")
+        if "BasementSkipLakilester" in options_dict:
+            self.glitch_settings.basement_skip_lakilester = options_dict.get("BasementSkipLakilester")
+        if "BasementSkipHammer" in options_dict:
+            self.glitch_settings.basement_skip_hammer = options_dict.get("BasementSkipHammer")
+        if "BowsersCastleHub1StairClip" in options_dict:
+            self.glitch_settings.bowsers_castle_hub1_stair_clip = options_dict.get("BowsersCastleHub1StairClip")
         if "FastFloodRoomKooper" in options_dict:
             self.glitch_settings.fast_flood_room_kooper = options_dict.get("FastFloodRoomKooper")
+        if "FastFloodRoomKooperless" in options_dict:
+            self.glitch_settings.fast_flood_room_kooperless = options_dict.get("FastFloodRoomKooperless")
         if "FastFloodRoomBombetteUltraBoots" in options_dict:
             self.glitch_settings.fast_flood_room_bombette_ultra_boots = options_dict.get("FastFloodRoomBombetteUltraBoots")
+        if "Cannonless" in options_dict:
+            self.glitch_settings.cannonless = options_dict.get("Cannonless")
         if "BombettelessBowsersCastleBasement" in options_dict:
             self.glitch_settings.bombetteless_bowsers_castle_basement = options_dict.get("BombettelessBowsersCastleBasement")
 
@@ -913,6 +903,79 @@ class OptionSet:
                 self.glitch_settings.knows_puzzle_solutions = options_dict.get("KnowsPuzzleSolutions")
         if "ReachHighBlocksWithSuperBoots" in options_dict:
             self.glitch_settings.reach_high_blocks_with_super_boots = options_dict.get("ReachHighBlocksWithSuperBoots")
+
+        # Overrule certain settings depending on plando data
+        forced_progressive_badges,\
+        forced_partner_upgrade_shuffle,\
+        forced_random_puzzles,\
+        forced_shuffle_starbeam = \
+            _overrule_settings_with_plando(
+                plando_data
+            )
+        if forced_progressive_badges is not None:
+            self.logic_settings.progressive_badges = forced_progressive_badges
+        if forced_partner_upgrade_shuffle is not None:
+            self.logic_settings.partner_upgrade_shuffle = forced_partner_upgrade_shuffle
+        if forced_random_puzzles is not None:
+            self.logic_settings.randomize_puzzles = forced_random_puzzles
+        if forced_shuffle_starbeam is not None:
+            self.logic_settings.shuffle_starbeam = forced_shuffle_starbeam
+
+        self.plando_active = False
+
+        # Map Check Tracker (static)
+        #   0x1    # regular checks
+        #   0x2    # gear
+        #   0x4    # panels
+        #   0x8    # super blocks
+        #   0x10   # overworld coins
+        #   0x20   # block coins
+        #   0x40   # favor coins
+        #   0x80   # foliage coins
+        #   0x100  # dojo
+        #   0x200  # koot favors
+        #   0x400  # radio trade event
+        #   0x800  # letter delivery
+        #   0x1000 # forever forest open
+        #   0x2000 # vanilla bowser's castle
+        #   0x4000 # vanilla or shorten bowser's castle
+        #   0x8000 # multi coin blocks
+        map_tracker_bits = 0x1 + 0x2
+        if self.logic_settings.include_panels:
+            map_tracker_bits += 0x4
+        if self.logic_settings.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
+            map_tracker_bits += 0x8
+        if self.logic_settings.include_coins_overworld:
+            map_tracker_bits += 0x10
+        if self.logic_settings.include_coins_blocks:
+            map_tracker_bits += 0x20
+        if self.logic_settings.include_coins_favors:
+            map_tracker_bits += 0x40
+        if self.logic_settings.include_coins_foliage:
+            map_tracker_bits += 0x80
+        if self.logic_settings.include_dojo != DojoShuffle.OFF:
+            map_tracker_bits += 0x100
+        if self.logic_settings.include_favors_mode != IncludeFavorsMode.NOT_RANDOMIZED:
+            map_tracker_bits += 0x200
+        if self.logic_settings.include_radiotradeevent:
+            map_tracker_bits += 0x400
+        if self.logic_settings.include_letters_mode != IncludeLettersMode.NOT_RANDOMIZED:
+            map_tracker_bits += 0x800
+        if not self.logic_settings.foreverforest_open:
+            map_tracker_bits += 0x1000
+        if self.logic_settings.bowsers_castle_mode == BowserCastleMode.VANILLA:
+            map_tracker_bits += 0x2000
+        if self.logic_settings.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
+            map_tracker_bits += 0x4000
+        if (    self.logic_settings.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
+            and self.logic_settings.shuffle_blocks
+        ):
+            map_tracker_bits += 0x8000
+        self.map_tracker_check_bits = map_tracker_bits
+        self.map_tracker_shop_bits = 0x7
+        if self.logic_settings.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
+            self.map_tracker_shop_bits += 0x8
+
 
 
     def validate_options(self, options_dict):
@@ -1070,6 +1133,7 @@ class OptionSet:
         # Starting setup
         basic_assert("StartingMap", int)
         basic_assert("StartingLevel", int)
+        basic_assert("RandomStartingStatsLevel", int)
         basic_assert("StartingMaxHP", int)
         basic_assert("StartingMaxFP", int)
         basic_assert("StartingMaxBP", int)
@@ -1190,7 +1254,7 @@ class OptionSet:
                     and -1 <= options_dict.get("StarWaySpiritsNeededCnt") <= 7)
         if "StarWayPowerStarsNeeded" in options_dict:
             assert (    isinstance(options_dict.get("StarWayPowerStarsNeeded"), int)
-                    and 0 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
+                    and -1 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
             )
             try:
                 if (    "ShuffleItems" in options_dict
@@ -1207,7 +1271,7 @@ class OptionSet:
                     and -1 <= options_dict.get("StarBeamSpiritsNeeded") <= 7)
         if "StarBeamPowerStarsNeeded" in options_dict:
             assert (    isinstance(options_dict.get("StarBeamPowerStarsNeeded"), int)
-                    and 0 <= options_dict.get("StarBeamPowerStarsNeeded") <= 120
+                    and -1 <= options_dict.get("StarBeamPowerStarsNeeded") <= 120
             )
             try:
                 if (    "ShuffleItems" in options_dict
@@ -1219,10 +1283,11 @@ class OptionSet:
                     "No item shuffle but star hunt is not a valid setting-combination!",
                 )
         if "StarHuntTotal" in options_dict:
-            assert (    isinstance(options_dict.get("StarHuntTotal"), int)
-                    and 0 <= options_dict.get("StarHuntTotal") <= 120
-                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarWayPowerStarsNeeded")
-                    and options_dict.get("StarHuntTotal") >= options_dict.get("StarBeamPowerStarsNeeded")
+            starthuntotal = options_dict.get("StarHuntTotal")
+            assert (    isinstance(starthuntotal, int)
+                    and -1 <= starthuntotal <= 120
+                    and (starthuntotal >= options_dict.get("StarWayPowerStarsNeeded") or starthuntotal == -1)
+                    and (starthuntotal >= options_dict.get("StarBeamPowerStarsNeeded") or starthuntotal == -1)
             )
         basic_assert("RequireSpecificSpirits", bool)
         if "LimitChapterLogic" in options_dict:
@@ -1348,6 +1413,7 @@ class OptionSet:
         basic_assert("BlueHouseSkip", bool)
         basic_assert("BlueHouseSkipLaki", bool)
         basic_assert("BlueHouseSkipToadLure", bool)
+        basic_assert("JumplessDaneTLetters", bool)
         basic_assert("BowlessToyBoxHammer", bool)
         basic_assert("BowlessToyBoxHammerlessLure", bool)
         basic_assert("EarlyStoreroomParakarry", bool)
@@ -1355,7 +1421,11 @@ class OptionSet:
         basic_assert("EarlyStoreroomHammerlessLure", bool)
         basic_assert("WhaleEarly", bool)
         basic_assert("SushielessToadTownStarPiece", bool)
-        basic_assert("ToadTownSushieGlitch", bool)
+        basic_assert("ToadTownSushieGlitchGearless", bool)
+        basic_assert("ToadTownSushieGlitchOneGear", bool)
+        basic_assert("ToadTownSushieGlitchFullGear", bool)
+
+        basic_assert("JumplessSummitClimb", bool)
 
         basic_assert("ClippyBootsStoneBlockSkip", bool)
         basic_assert("ClippyBootsMetalBlockSkip", bool)
@@ -1374,6 +1444,7 @@ class OptionSet:
         basic_assert("InvisibleBridgeClipLzs", bool)
         basic_assert("InvisibleBridgeClipLaki", bool)
         basic_assert("KooperlessPleasantPathThunderBolt", bool)
+        basic_assert("JumplessKoopaVillageBluePipe", bool)
 
         basic_assert("BombettelessKbfFpPlusLZS", bool)
         basic_assert("BombettelessKbfFpPlusLaki", bool)
@@ -1383,6 +1454,7 @@ class OptionSet:
 
         basic_assert("MtRuggedQuakeHammerAndLetterWithLaki", bool)
         basic_assert("ParakarrylessMtRuggedSeed", bool)
+        basic_assert("ParakarrylessMtRuggedSeedClippy", bool)
         basic_assert("BuzzarGapSkipClippy", bool)
         basic_assert("ParakarrylessMtRuggedStarPiece", bool)
         basic_assert("MtRuggedCoinsWithKooper", bool)
@@ -1402,6 +1474,7 @@ class OptionSet:
         basic_assert("ParakarrylessSuperHammerRoomUltraBoots", bool)
         basic_assert("ParakarrylessSuperHammerRoomNormalBoots", bool)
         basic_assert("RuinsLocksSkipClippy", bool)
+        basic_assert("RuinsPuzzleSolutionEarly", bool)
         basic_assert("RuinsStoneSkip", bool)
 
         basic_assert("ForeverForestBackwards", bool)
@@ -1424,6 +1497,7 @@ class OptionSet:
         basic_assert("TubbasTableUltraBoots", bool)
         basic_assert("TubbasTableLakiJumpStudy", bool)
         basic_assert("TubbasCastleSuperBootsSkip", bool)
+        basic_assert("JumplessMegaRush", bool)
         basic_assert("ParakarrylessMegaRush", bool)
 
         basic_assert("ParakarrylessBlueBuildingStarPiece", bool)
@@ -1444,6 +1518,7 @@ class OptionSet:
 
         basic_assert("RaphSkipEnglish", bool)
         basic_assert("RaphSkipParakarry", bool)
+        basic_assert("RaphSkipLakilester", bool)
         basic_assert("Ch5SushieGlitch", bool)
         basic_assert("SushielessJungleStarpieceAndLetter", bool)
         basic_assert("JumplessDeepJungleLaki", bool)
@@ -1485,11 +1560,19 @@ class OptionSet:
         basic_assert("SushielessWarehouseKeyKooper", bool)
 
         basic_assert("MirrorClip", bool)
+        basic_assert("BombettePuzzleSkip", bool)
         basic_assert("KooperPuzzleSkip", bool)
 
         basic_assert("BowlessBowsersCastleBasement", bool)
+        basic_assert("WattlessDarkBasement", bool)
+        basic_assert("BasementSkipParakarry", bool)
+        basic_assert("BasementSkipLakilester", bool)
+        basic_assert("BasementSkipHammer", bool)
+        basic_assert("BowsersCastleHub1StairClip", bool)
         basic_assert("FastFloodRoomKooper", bool)
+        basic_assert("FastFloodRoomKooperless", bool)
         basic_assert("FastFloodRoomBombetteUltraBoots", bool)
+        basic_assert("Cannonless", bool)
         basic_assert("BombettelessBowsersCastleBasement", bool)
 
         basic_assert("BreakYellowBlocksWithSuperBoots", bool)
@@ -1527,7 +1610,6 @@ class OptionSet:
 
             # Difficulty and Enemies
             load_dbkey(self.progressive_scaling, "ProgressiveScaling"),
-
             load_dbkey(self.challenge_mode, "ChallengeMode"),
             load_dbkey(self.cap_enemy_xp, "CapEnemyXP"),
             load_dbkey(self.xp_multiplier, "XPMultiplier"),
@@ -1550,6 +1632,9 @@ class OptionSet:
             # Item Pool Modification
             load_dbkey(self.logic_settings.gear_shuffle_mode, "GearShuffleMode"),
             load_dbkey(self.logic_settings.partner_upgrade_shuffle, "PartnerUpgradeShuffle"),
+
+            # Plandomizer warning label
+            load_dbkey(self.plando_active, "PlandomizerActive"),
 
             # Map Check Tracker (auto-set, not changeable via settings)
             load_dbkey(self.map_tracker_check_bits, "EnabledCheckBits"),
@@ -1779,6 +1864,7 @@ class OptionSet:
         web_settings["StartingMaxFP"] = self.starting_maxfp
         web_settings["StartingMaxBP"] = self.starting_maxbp
         web_settings["StartingLevel"] = self.starting_level
+        web_settings["RandomStartingStatsLevel"] = self.random_starting_stats_level
         web_settings["StartingStarPower"] = self.starting_starpower
         web_settings["StartingBoots"] = self.logic_settings.starting_boots
         web_settings["StartingHammer"] = self.logic_settings.starting_hammer
@@ -1883,6 +1969,7 @@ class OptionSet:
         web_settings["BlueHouseSkip"] = self.glitch_settings.blue_house_skip
         web_settings["BlueHouseSkipLaki"] = self.glitch_settings.blue_house_skip_laki
         web_settings["BlueHouseSkipToadLure"] = self.glitch_settings.blue_house_skip_toad_lure
+        web_settings["JumplessDaneTLetters"] = self.glitch_settings.jumpless_dane_t_letters
         web_settings["BowlessToyBoxHammer"] = self.glitch_settings.bowless_toy_box_hammer
         web_settings["BowlessToyBoxHammerlessLure"] = self.glitch_settings.bowless_toy_box_hammerless_lure
         web_settings["EarlyStoreroomParakarry"] = self.glitch_settings.early_storeroom_parakarry
@@ -1890,7 +1977,12 @@ class OptionSet:
         web_settings["EarlyStoreroomHammerlessLure"] = self.glitch_settings.early_storeroom_hammerless_lure
         web_settings["WhaleEarly"]= self.glitch_settings.whale_early
         web_settings["SushielessToadTownStarPiece"] = self.glitch_settings.sushiesless_toad_town_star_piece
-        web_settings["ToadTownSushieGlitch"] = self.glitch_settings.toad_town_sushie_glitch
+        web_settings["ToadTownSushieGlitchGearless"] = self.glitch_settings.toad_town_sushie_glitch_gearless
+        web_settings["ToadTownSushieGlitchOneGear"] = self.glitch_settings.toad_town_sushie_glitch_onegear
+        web_settings["ToadTownSushieGlitchFullGear"] = self.glitch_settings.toad_town_sushie_glitch_full_gear
+
+        # Glitches: Shooting Star Summit
+        web_settings["JumplessSummitClimb"] = self.glitch_settings.jumpless_summit_climb
 
         # Glitches: Toad Town Tunnels
         web_settings["ClippyBootsStoneBlockSkip"] = self.glitch_settings.clippy_boots_stone_block_skip
@@ -1911,6 +2003,7 @@ class OptionSet:
         web_settings["InvisibleBridgeClipLzs"]= self.glitch_settings.invisible_bridge_clip_lzs
         web_settings["InvisibleBridgeClipLaki"] = self.glitch_settings.invisible_bridge_clip_laki
         web_settings["KooperlessPleasantPathThunderBolt"] = self.glitch_settings.kooperless_pleasant_path_thunderbolt
+        web_settings["JumplessKoopaVillageBluePipe"] = self.glitch_settings.jumpless_koopa_village_blue_pipe
 
         # Glitches: Koopa Bros Fortress
         web_settings["BombettelessKbfFpPlusLZS"] = self.glitch_settings.bombetteless_kbf_fp_plus_lzs
@@ -1922,6 +2015,7 @@ class OptionSet:
         # Glitches: Mt. Rugged
         web_settings["MtRuggedQuakeHammerAndLetterWithLaki"] = self.glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki
         web_settings["ParakarrylessMtRuggedSeed"] = self.glitch_settings.parakarryless_mt_rugged_seed
+        web_settings["ParakarrylessMtRuggedSeedClippy"] = self.glitch_settings.parakarryless_mt_rugged_seed_clippy
         web_settings["BuzzarGapSkipClippy"] = self.glitch_settings.buzzar_gap_skip_clippy
         web_settings["ParakarrylessMtRuggedStarPiece"] = self.glitch_settings.parakarryless_mt_rugged_star_piece
         web_settings["MtRuggedCoinsWithKooper"] = self.glitch_settings.mt_rugged_coins_with_kooper
@@ -1943,6 +2037,7 @@ class OptionSet:
         web_settings["ParakarrylessSuperHammerRoomUltraBoots"] = self.glitch_settings.parakarryless_super_hammer_room_ultra_boots
         web_settings["ParakarrylessSuperHammerRoomNormalBoots"] = self.glitch_settings.parakarryless_super_hammer_room_normal_boots
         web_settings["RuinsLocksSkipClippy"] = self.glitch_settings.ruins_locks_skip_clippy
+        web_settings["RuinsPuzzleSolutionEarly"] = self.glitch_settings.ruins_puzzle_solution_early
         web_settings["RuinsStoneSkip"] = self.glitch_settings.ruins_stone_skip
 
         # Glitches: Boo's Mansion
@@ -1967,6 +2062,7 @@ class OptionSet:
         web_settings["TubbasTableLakiJumpStudy"] = self.glitch_settings.tubbas_table_laki_jump_study
         web_settings["TubbasTableUltraBoots"] = self.glitch_settings.tubbas_table_ultra_boots
         web_settings["TubbasCastleSuperBootsSkip"]= self.glitch_settings.tubbas_castle_super_boots_skip
+        web_settings["JumplessMegaRush"] = self.glitch_settings.jumpless_mega_rush
         web_settings["ParakarrylessMegaRush"] = self.glitch_settings.parakarryless_mega_rush
 
         # Glitches: Toy Box
@@ -1989,6 +2085,7 @@ class OptionSet:
         # Glitches: Jade Jungle
         web_settings["RaphSkipEnglish"] = self.glitch_settings.raph_skip_english
         web_settings["RaphSkipParakarry"] = self.glitch_settings.raph_skip_parakarry
+        web_settings["RaphSkipLakilester"] = self.glitch_settings.raph_skip_lakilester
         web_settings["Ch5SushieGlitch"] = self.glitch_settings.ch5_sushie_glitch
         web_settings["SushielessJungleStarpieceAndLetter"] = self.glitch_settings.sushieless_jungle_starpiece_and_letter
         web_settings["JumplessDeepJungleLaki"] = self.glitch_settings.jumpless_deep_jungle_laki
@@ -2034,13 +2131,21 @@ class OptionSet:
 
         # Glitches: Crystal Palace
         web_settings["MirrorClip"] = self.glitch_settings.mirror_clip
+        web_settings["BombettePuzzleSkip"] = self.glitch_settings.bombette_puzzle_skip
         web_settings["KooperPuzzleSkip"] = self.glitch_settings.kooper_puzzle_skip
 
         # Glitches: Bowser's Castle
         web_settings["BowlessBowsersCastleBasement"] = self.glitch_settings.bowless_bowsers_castle_basement
+        web_settings["WattlessDarkBasement"] = self.glitch_settings.wattless_dark_basement
         web_settings["BombettelessBowsersCastleBasement"] = self.glitch_settings.bombetteless_bowsers_castle_basement
+        web_settings["BasementSkipParakarry"] = self.glitch_settings.basement_skip_parakarry
+        web_settings["BasementSkipLakilester"] = self.glitch_settings.basement_skip_lakilester
+        web_settings["BasementSkipHammer"] = self.glitch_settings.basement_skip_hammer
+        web_settings["BowsersCastleHub1StairClip"] = self.glitch_settings.bowsers_castle_hub1_stair_clip
         web_settings["FastFloodRoomKooper"] = self.glitch_settings.fast_flood_room_kooper
+        web_settings["FastFloodRoomKooperless"] = self.glitch_settings.fast_flood_room_kooperless
         web_settings["FastFloodRoomBombetteUltraBoots"] = self.glitch_settings.fast_flood_room_bombette_ultra_boots
+        web_settings["Cannonless"] = self.glitch_settings.cannonless
 
         # Glitches: Global
         web_settings["BreakStoneBlocksWithUltraBoots"] = self.glitch_settings.break_stone_blocks_with_ultra_boots
@@ -2050,3 +2155,59 @@ class OptionSet:
         web_settings["ReachHighBlocksWithSuperBoots"] = self.glitch_settings.reach_high_blocks_with_super_boots
 
         return web_settings
+
+
+def _overrule_settings_with_plando(
+    plando_data: dict | None,
+) -> tuple[
+    bool | None,
+    PartnerUpgradeShuffle | None,
+    bool | None,
+    bool | None,
+]:
+    forced_progressive_badges: bool = None
+    forced_partner_upgrade_shuffle: bool = None
+    forced_random_puzzles: bool = None
+    forced_shuffle_starbeam: bool = None
+
+    if plando_data is None:
+        return (
+            forced_progressive_badges,
+            forced_partner_upgrade_shuffle,
+            forced_random_puzzles,
+            forced_shuffle_starbeam
+        )
+
+    else:
+         item_placement_areas: None | dict[str, dict[str, str | dict[str, str | int]]] = plando_data.get("items")
+         if item_placement_areas is not None:
+            for area_locations in item_placement_areas.values():
+                for item_location, item in area_locations.items():
+                    cur_item: str = None
+                    if isinstance(item, dict) and item.get("item") is not None:
+                        cur_item = item["item"]
+                    elif isinstance(item, str):
+                        cur_item = item
+                    else:
+                        continue
+
+                    if item_location in force_puzzlerando_locations:
+                        forced_random_puzzles = True
+                    if item_location == force_starbeam_shuffle_location:
+                        forced_shuffle_starbeam = True
+
+                    if cur_item in progressive_badges["originals"]:
+                        forced_progressive_badges = False
+                    elif cur_item in progressive_badges["progressives"]:
+                        forced_progressive_badges = True
+                    elif cur_item.endswith("Upgrade"):
+                        forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.FULL
+                    elif cur_item == "StarBeam":
+                        forced_shuffle_starbeam = True
+
+    return (
+        forced_progressive_badges,
+        forced_partner_upgrade_shuffle,
+        forced_random_puzzles,
+        forced_shuffle_starbeam
+    )

@@ -8,6 +8,8 @@ from db.move import Move
 
 from rando_enums.enum_options import RandomMoveCosts
 
+from metadata.verbose_item_names import verbose_item_names
+
 
 value_limits = {
     "BADGE":     {"BP": {"min": 1,"max": 8,}, "FP": {"min": 1,"max": 7,}},
@@ -106,12 +108,57 @@ def _get_fully_random_costs(movetype:str, costtype:str) -> list:
     return fully_random_costs
 
 
+def _overwrite_with_plando(
+    move_costs: list[int, int],
+    plando_move_costs: dict[str, dict[str, dict[str, int]]],
+) -> None:
+    """
+    Overwrites the costs for moves with values set using the plandomizer.
+    """
+    # plando_move_costs:
+    # dict[move_type, dict[move_name, dict[move_cost_type, move_cost]]]
+    # to mimic the layout within the sqlite db's 'move' table.
+    # also starpower cost are 'FP', for reasons
+    move_cost_changes: list[tuple[int, int, int]] = list()
+
+    for move in Move.select():
+        move_name = move.move_name
+        # Quick fix for altered move names
+        if move_name in ["AutoMultibounce","SmashCharge0","JumpCharge0","EarthquakeJump"]:
+            move_name = verbose_item_names[move_name]
+        if move_name.startswith("ChillOut"): # ChillOutMove, ChillOutBadge
+            move_name = "ChillOut"
+
+        lower_move_type = (move.move_type).lower()
+        if (    lower_move_type in plando_move_costs
+            and move_name in plando_move_costs[lower_move_type]
+            and move.cost_type in plando_move_costs[lower_move_type][move_name]
+        ):
+            new_move_cost = plando_move_costs[lower_move_type][move_name][move.cost_type]
+            for i, move_tuple in enumerate(move_costs):
+                if move_tuple[0] == move.get_key():
+                    move_cost_changes.append((
+                        i,
+                        move_tuple[0],
+                        new_move_cost
+                    ))
+                    break
+            else:
+                # the move cost isn't randomized in the first place, so just
+                # append it
+                move_costs.append((move.get_key(), new_move_cost))
+
+    for index, move_dbkey, new_move_cost in move_cost_changes:
+        move_costs[index] = (move_dbkey, new_move_cost)
+
+
 def get_randomized_moves(
     badges_bp_setting:int,
     badges_fp_setting:int,
     partner_fp_setting:int,
-    starpower_setting:int
-):
+    starpower_setting:int,
+    plando_move_costs: dict[str, dict[str, dict[str, int]]] | None
+) -> list[tuple[int, int]]:
     """
     Returns a list of tuples where the first value holds the dbkey for a move
     cost and the second value holds the shuffled FP,BP,SP cost.
@@ -139,5 +186,8 @@ def get_randomized_moves(
     if (starpower_setting in rnd_cost_functions):
         new_cost = rnd_cost_functions.get(starpower_setting)("STARPOWER", "FP")
         move_costs.extend(new_cost)
+
+    if plando_move_costs:
+        _overwrite_with_plando(move_costs, plando_move_costs)
 
     return move_costs

@@ -10,6 +10,7 @@ from metadata.item_general import (
     unplaceable_items
 )
 
+TRAP_FLAG = 0x2000
 
 class Item(Model):
     # keyitem, badge etc
@@ -64,8 +65,10 @@ class Item(Model):
         return (hash(str(self)))
 
     def is_trapped(self):
-        trap_flag = 0x2000
-        return self.value & trap_flag == trap_flag
+        return self.value & TRAP_FLAG == TRAP_FLAG
+
+    def set_trapped(self):
+        self.value |= TRAP_FLAG
 
     @classmethod
     def get_type(cls, item_id:int):
@@ -73,9 +76,9 @@ class Item(Model):
             return "NOTHING"
         elif 0x07 <= item_id <= 0x7F or (0x16D <= item_id <= 0x17E):
             return "KEYITEM"
-        elif 0x80 <= item_id <= 0xDF or 0x2BA <= item_id <= 0x2C2:
+        elif 0x80 <= item_id <= 0xDF:
             return "ITEM"
-        elif 0xE0 <= item_id <= 0x155 or 0x2C9 <= item_id <= 0x2D7:
+        elif 0xE0 <= item_id <= 0x155 or 0x2C0 <= item_id <= 0x2CE:
             return "BADGE"
         elif 0x156 <= item_id <= 0x15C:
             return {
@@ -90,13 +93,13 @@ class Item(Model):
             return "STARPIECE"
         elif 0x1DC <= item_id <= 0x25B:
             return "POWERSTAR"
-        elif 0x2C3 <= item_id <= 0x2C8:
+        elif 0x2BA <= item_id <= 0x2BF:
             return "GEAR"
-        elif 0x2DD == item_id:
+        elif 0x2D4 == item_id:
             return "STARPOWER"
-        elif 0x2DE <= item_id <= 0x2EF:
+        elif 0x2D5 <= item_id <= 0x2E6:
             return "PARTNERUPGRADE"
-        elif 0x2F0 <= item_id <= 0x2F8:
+        elif 0x2E7 <= item_id <= 0x2EF:
             return "PARTNER"
         else:
             return "OTHER"
@@ -134,10 +137,6 @@ def create_items():
             continue
         item_name = item["Name"]
         base_price = int(item["Sell Value"], 10) if item["Sell Value"] != "FFFF" else 50
-        if "BubbleBerryProxy" in item_name:
-            base_price = 3
-        elif "BerryProxy" in item_name:
-            base_price = 2
         item,_ = Item.get_or_create(
             item_type = Item.get_type(item_id),
             value = item_id,

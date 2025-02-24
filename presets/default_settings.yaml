@@ -83,14 +83,15 @@ ItemChoiceF          : 0x082 # ThunderRage
 ItemChoiceG          : 0x085 # Pebble
 
 # Starting setup
-StartingMap      : 0x00010104 # 0x00010104:Toad Town Gate District, 0xFFFFFFFF:RandomFromSelection
-StartingMaxHP    : 10
-StartingMaxFP    : 5
-StartingMaxBP    : 3
-StartingStarPower: 0
-StartingBoots    : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
-StartingHammer   : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
-StartingCoins    : 50
+StartingMap             : 0x00010104 # 0x00010104:Toad Town Gate District, 0xFFFFFFFF:RandomFromSelection
+RandomStartingStatsLevel: -1 # -1: off, 0-27: starting level to choose random stats for
+StartingMaxHP           : 10
+StartingMaxFP           : 5
+StartingMaxBP           : 3
+StartingStarPower       : 0
+StartingBoots           : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
+StartingHammer          : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
+StartingCoins           : 50
 
 StartWithRandomItems: false
 RandomItemsMin      : 0
@@ -144,11 +145,11 @@ Ch7BridgeVisible    : true
 SeedGoal                : 0 # 0: Defeat Bowser, 1: Open StarWay
 BowsersCastleMode       : 0 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
 StarWaySpiritsNeededCnt : 7 # -1:Random
-StarWayPowerStarsNeeded : 0 # max 120
+StarWayPowerStarsNeeded : 0 # max 120, -1:Random
 ShuffleStarBeam         : false
 StarBeamSpiritsNeeded   : 0 # -1:Random
-StarBeamPowerStarsNeeded: 0
-StarHuntTotal           : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded
+StarBeamPowerStarsNeeded: 0 # -1:Random
+StarHuntTotal           : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded, -1:Random
 RequireSpecificSpirits  : false # always false if StarWaySpiritsNeededCnt: 7
 LimitChapterLogic       : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
 
@@ -242,6 +243,7 @@ OddKeyEarly                                     : false
 BlueHouseSkip                                   : false
 BlueHouseSkipLaki                               : false
 BlueHouseSkipToadLure                           : false
+JumplessDaneTLetters                            : false
 BowlessToyBoxHammer                             : false
 BowlessToyBoxHammerlessLure                     : false
 EarlyStoreroomParakarry                         : false
@@ -249,7 +251,11 @@ EarlyStoreroomHammer                            : false
 EarlyStoreroomHammerlessLure                    : false
 WhaleEarly                                      : false
 SushielessToadTownStarPiece                     : false
-ToadTownSushieGlitch                            : false
+ToadTownSushieGlitchGearless                    : false
+ToadTownSushieGlitchOneGear                     : false
+ToadTownSushieGlitchFullGear                    : false
+
+JumplessSummitClimb                             : false
 
 ClippyBootsStoneBlockSkip                       : false
 ClippyBootsMetalBlockSkip                       : false
@@ -268,6 +274,7 @@ HammerlessPleasantPathBridgeUltraBootsParakarry : false
 InvisibleBridgeClipLzs                          : false
 InvisibleBridgeClipLaki                         : false
 KooperlessPleasantPathThunderBolt               : false
+JumplessKoopaVillageBluePipe                    : false
 
 BombettelessKbfFpPlusLZS                        : false
 BombettelessKbfFpPlusLaki                       : false
@@ -277,6 +284,7 @@ WaterStaircaseSkip                              : false
 
 MtRuggedQuakeHammerAndLetterWithLaki            : false
 ParakarrylessMtRuggedSeed                       : false
+ParakarrylessMtRuggedSeedClippy                 : false
 BuzzarGapSkipClippy                             : false
 MtRuggedCoinsWithKooper                         : false
 MtRuggedStationJumplessClimbBombette            : false
@@ -296,6 +304,7 @@ ParakarrylessSecondSandRoomNormalBoots          : false
 ParakarrylessSuperHammerRoomUltraBoots          : false
 ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
+RuinsPuzzleSolutionEarly                        : false
 RuinsStoneSkip                                  : false
 
 ForeverForestBackwards                          : false
@@ -318,6 +327,7 @@ TubbasTableLakiJumpClock                        : false
 TubbasTableUltraBoots                           : false
 TubbasTableLakiJumpStudy                        : false
 TubbasCastleSuperBootsSkip                      : false
+JumplessMegaRush                                : false
 ParakarrylessMegaRush                           : false
 
 ParakarrylessBlueBuildingStarPiece              : false
@@ -338,6 +348,7 @@ HammerlessPinkStationLaki                       : false
 
 RaphSkipEnglish                                 : false
 RaphSkipParakarry                               : false
+RaphSkipLakilester                              : false
 Ch5SushieGlitch                                 : false
 SushielessJungleStarpieceAndLetter              : false
 JumplessDeepJungleLaki                          : false
@@ -379,11 +390,19 @@ SushielessWarehouseKeyBombette                  : false
 SushielessWarehouseKeyKooper                    : false
 
 MirrorClip                                      : false
+BombettePuzzleSkip                              : false
 KooperPuzzleSkip                                : false
 
 BowlessBowsersCastleBasement                    : false
+WattlessDarkBasement                            : false
+BasementSkipParakarry                           : false
+BasementSkipLakilester                          : false
+BasementSkipHammer                              : false
+BowsersCastleHub1StairClip                      : false
 FastFloodRoomKooper                             : false
+FastFloodRoomKooperless                         : false
 FastFloodRoomBombetteUltraBoots                 : false
+Cannonless                                      : false
 BombettelessBowsersCastleBasement               : false
 
 BreakYellowBlocksWithSuperBoots                 : false

@@ -26,7 +26,7 @@ def main(seed_id):
     if(seed_id is not None):
         document =  db.collection(firestore_seed_collection).document(seed_id).get()
         if not document.exists:
-            raise Exception(f"No Document with SeedID: {seed_id} was found in collection: {firestore_failure_collection}")
+            raise Exception(f"No Document with SeedID: {seed_id} was found in collection: {firestore_seed_collection}")
     else:
         document =  db.collection(firestore_seed_collection).order_by("CreationDate", direction=firestore.Query.DESCENDING).limit(1).get()[0]
     

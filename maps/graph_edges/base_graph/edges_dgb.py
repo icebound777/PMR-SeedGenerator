@@ -159,7 +159,7 @@ edges_dgb = [
     {"from": {"map": "DGB_14", "id": 0}, "to": {"map": "DGB_14", "id": 1}, "reqs": []}, #? Stairs to Third Floor Door Bottom Right -> Stairs to Third Floor Door Top Right
     {"from": {"map": "DGB_14", "id": 1}, "to": {"map": "DGB_14", "id": 0}, "reqs": []}, #? Stairs to Third Floor Door Top Right -> Stairs to Third Floor Door Bottom Right
 
-    {"from": {"map": "DGB_14", "id": 0}, "to": {"map": "DGB_14", "id": "YBlockA"}, "reqs": []}, #* Stairs to Third Floor Door Bottom Right -> YBlockA (MapleSyrup)
+    {"from": {"map": "DGB_14", "id": 0}, "to": {"map": "DGB_14", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Stairs to Third Floor Door Bottom Right -> YBlockA (MapleSyrup)
 
     # DGB_15 West Hall (3F)
     {"from": {"map": "DGB_15", "id": 0}, "to": {"map": "DGB_14", "id": 1}, "reqs": []}, # West Hall (3F) Door Far Left -> Stairs to Third Floor Door Top Right

@@ -102,20 +102,21 @@ progression_items = {
     0x017A : "BowserCastleKeyC",
     0x017B : "BowserCastleKeyD",
     0x017C : "BowserCastleKeyE",
-    0x02C3 : "BootsProxy1",
-    0x02C4 : "BootsProxy2",
-    0x02C5 : "BootsProxy3",
-    0x02C6 : "HammerProxy1",
-    0x02C7 : "HammerProxy2",
-    0x02C8 : "HammerProxy3",
-    0x02F0 : "Goombario",
-    0x02F1 : "Kooper",
-    0x02F2 : "Bombette",
-    0x02F3 : "Parakarry",
-    0x02F5 : "Watt",
-    0x02F6 : "Sushie",
-    0x02F7 : "Lakilester",
-    0x02F8 : "Bow",
+    0x02BA : "BootsProxy1",
+    0x02BB : "BootsProxy2",
+    0x02BC : "BootsProxy3",
+    0x02BD : "HammerProxy1",
+    0x02BE : "HammerProxy2",
+    0x02BF : "HammerProxy3",
+    0x02D4 : "StarBeam",
+    0x02E7 : "Goombario",
+    0x02E8 : "Kooper",
+    0x02E9 : "Bombette",
+    0x02EA : "Parakarry",
+    0x02EC : "Watt",
+    0x02ED : "Sushie",
+    0x02EE : "Lakilester",
+    0x02EF : "Bow",
 }
     # 0x0078 ??
 
@@ -127,10 +128,10 @@ progression_miscitems = [
     "SuperShroom", # 0x008C (as ingredient for above)
     "Lemon",       # 0x009C (LemonCandy for AntiGuy)
     "Lime",        # 0x009D (Koopa Koot)
-    "BlueBerryProxy1",   # 0x01DD (Blue Flower Guard / Flower Fields Well)
-    "RedBerryProxy1",    # 0x01DF (Red Flower Guard)
-    "YellowBerryProxy1", # 0x01E1 (Yellow Flower Guard)
-    "BubbleBerryProxy1", # 0x01E3 (BubbleFlower)
+    "BlueBerry",   # 0x01DD (Blue Flower Guard / Flower Fields Well)
+    "RedBerry",    # 0x01DF (Red Flower Guard)
+    "YellowBerry", # 0x01E1 (Yellow Flower Guard)
+    "BubbleBerry", # 0x01E3 (BubbleFlower)
     "Goomnut",     # 0x00A5 (Koopa Koot: NuttyCake from Tayce T.)
     "KoopaLeaf",   # 0x00A6 (Koopa Koot: KoopaTea from Tayce T.)
     "DriedPasta",  # 0x00A7 (Koopa Koot: +KoopaLeaf -> Koopasta from Tayce T.)
