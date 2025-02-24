@@ -934,6 +934,21 @@ def _algo_assumed_fill(
     pool_other_items = []
     pool_misc_progression_items = []
 
+    # Clean out plando'd locations for item placeholders and trap placeholders
+    # which aren't actually part of the world graph (e.g. BowserCastleMode)
+    remove_from_placeholders: list[str] = []
+    for node_id in plando_item_placeholders:
+        if node_id not in world_graph:
+            remove_from_placeholders.append(node_id)
+    for node_id in remove_from_placeholders:
+        plando_item_placeholders.pop(node_id)
+    remove_from_placeholders: list[str] = []
+    for node_id in plando_trap_placeholders:
+        if node_id not in world_graph:
+            remove_from_placeholders.append(node_id)
+    for node_id in remove_from_placeholders:
+        plando_trap_placeholders.pop(node_id)
+
     # Generate item pool
     print("Generating item pool...")
     pool_other_items, resolved_item_placeholders, resolved_trap_placeholders = _generate_item_pools(
