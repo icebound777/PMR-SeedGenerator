@@ -133,12 +133,12 @@ edges_kpa = [
     {"from": {"map": "KPA_32",  "id": 2}, "to": {"map": "KPA_51",  "id": 0}, "reqs": []}, # Lower Grand Hall Door Top Right -> Hall to Water Puzzle Door Left
     {"from": {"map": "KPA_32",  "id": 3}, "to": {"map": "KPA_96",  "id": 0}, "reqs": []}, # Lower Grand Hall Door Top Left -> Item Shop Door Right
 
-    {"from": {"map": "KPA_32",  "id": 0}, "to": {"map": "KPA_32",  "id": 1}, "reqs": []}, #? Lower Grand Hall Door Bottom Left -> Lower Grand Hall Door Bottom Right
-    {"from": {"map": "KPA_32",  "id": 1}, "to": {"map": "KPA_32",  "id": 0}, "reqs": []}, #? Lower Grand Hall Door Bottom Right -> Lower Grand Hall Door Bottom Left
-    {"from": {"map": "KPA_32",  "id": 0}, "to": {"map": "KPA_32",  "id": 2}, "reqs": [["Boots"]]}, #? Lower Grand Hall Door Bottom Left -> Lower Grand Hall Door Top Right
-    {"from": {"map": "KPA_32",  "id": 2}, "to": {"map": "KPA_32",  "id": 0}, "reqs": []}, #? Lower Grand Hall Door Top Right -> Lower Grand Hall Door Bottom Left
-    {"from": {"map": "KPA_32",  "id": 0}, "to": {"map": "KPA_32",  "id": 3}, "reqs": [["Boots"]]}, #? Lower Grand Hall Door Bottom Left -> Lower Grand Hall Door Top Left
+    {"from": {"map": "KPA_32",  "id": 3}, "to": {"map": "KPA_32",  "id": 2}, "reqs": []}, #? Lower Grand Hall Door Top Left -> Lower Grand Hall Door Top Right
+    {"from": {"map": "KPA_32",  "id": 2}, "to": {"map": "KPA_32",  "id": 3}, "reqs": []}, #? Lower Grand Hall Door Top Right -> Lower Grand Hall Door Top Left
     {"from": {"map": "KPA_32",  "id": 3}, "to": {"map": "KPA_32",  "id": 0}, "reqs": []}, #? Lower Grand Hall Door Top Left -> Lower Grand Hall Door Bottom Left
+    {"from": {"map": "KPA_32",  "id": 0}, "to": {"map": "KPA_32",  "id": 3}, "reqs": [["Boots"]]}, #? Lower Grand Hall Door Bottom Left -> Lower Grand Hall Door Top Left
+    {"from": {"map": "KPA_32",  "id": 1}, "to": {"map": "KPA_32",  "id": 0}, "reqs": []}, #? Lower Grand Hall Door Bottom Right -> Lower Grand Hall Door Bottom Left
+    {"from": {"map": "KPA_32",  "id": 0}, "to": {"map": "KPA_32",  "id": 1}, "reqs": []}, #? Lower Grand Hall Door Bottom Left -> Lower Grand Hall Door Bottom Right
 
     # KPA_33 Upper Grand Hall
     {"from": {"map": "KPA_33",  "id": 0}, "to": {"map": "KPA_94",  "id": 1}, "reqs": []}, # Upper Grand Hall Door Bottom Left -> Stairs to West Upper Jail Door Top Right
