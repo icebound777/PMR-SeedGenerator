@@ -207,10 +207,10 @@ ID  | Stat
 ----+------------------------
 002 | Current HP
 003 | Current Max HP
-004 | True Max HP (includes HP Plus badges)
+004 | True Max HP (excludes HP Plus badges)
 005 | Current FP
 006 | Current Max FP
-007 | True Max FP (includes FP Plus badges)
+007 | True Max FP (excludes FP Plus badges)
 008 | Max BP
 009 | Mario's Level
 00C | Coins
@@ -1112,8 +1112,8 @@ Beach - In Palm Tree 2                           | ModFlag   106C
 Beach - In Palm Tree 3                           | ModFlag   106D
 Beach - In Palm Tree 4                           | ModFlag   106E
 Beach - In Palm Tree 5                           | ModFlag   106F
-Beach - In Palm Tree 6                           | GameFlag   4E4
-Beach - In Palm Tree 6 2                         | ModFlag   1070
+Beach - In Palm Tree 6 (one-off)                 | GameFlag   4E4
+Beach - In Palm Tree 6 (replenish)               | ModFlag   1070
 
 Village Cove - Village Leader Reward             | ModFlag   1071
 Village Cove - Hidden Panel                      | GameFlag   4F5

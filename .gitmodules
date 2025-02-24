@@ -1,0 +1,3 @@
+[submodule "plandomizer"]
+	path = plandomizer
+	url = git@github.com:icebound777/PMR-Plando-Validator.git

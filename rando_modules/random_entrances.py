@@ -11,28 +11,62 @@ from db.node import Node
 from worldgraph import adjust
 
 from metadata.verbose_area_names import verbose_area_names
+from rando_enums.enum_ingame import StarSpirits
 
 def shuffle_dungeon_entrances(
     world_graph:dict,
     starway_spirits_needed_count:int,
+    required_star_spirits:list[int],
+    limit_chapter_logic: bool,
     shuffle_bowsers_castle:bool,
     write_spoilers:bool
 ) -> dict:
     if starway_spirits_needed_count > 6:
         shuffle_bowsers_castle = False
 
-    dungeon_border_node_ids = [
-        ("NOK_15/1", "TRD_00/0"), # Koopa Bros Fortress main
-        #("NOK_15/2", "TRD_00/4"), # Koopa Bros Fortress chest ledge
-        ("SBK_02/4", "ISK_01/0"), # Dry Dry Ruins
-        ("ARN_04/1", "DGB_00/0"), # Tubba Blubbas Castle
-        ("MAC_04/2", "OMO_03/4"), # Shy Guys Toybox
-        ("JAN_22/2", "KZN_01/0"), # Mt. Lavalava
-        ("MAC_01/5", "FLO_00/0"), # Flower Fields
-        ("SAM_10/1", "PRA_01/0"), # Crystal Palace
-    ]
+    if limit_chapter_logic and len(required_star_spirits) > 0:
+        dungeon_border_node_ids = []
+        if StarSpirits.ELDSTAR in required_star_spirits:
+            dungeon_border_node_ids.append(
+                ("NOK_15/1", "TRD_00/0") # Koopa Bros Fortress
+            )
+        if StarSpirits.MAMAR in required_star_spirits:
+            dungeon_border_node_ids.append(
+                ("SBK_02/4", "ISK_01/0") # Dry Dry Ruins
+            )
+        if StarSpirits.SKOLAR in required_star_spirits:
+            dungeon_border_node_ids.append(
+                ("ARN_04/1", "DGB_00/0") # Tubba Blubbas Castle
+            )
+        if StarSpirits.MUSKULAR in required_star_spirits:
+            dungeon_border_node_ids.append(
+                ("MAC_04/2", "OMO_03/4") # Shy Guys Toybox
+            )
+        if StarSpirits.MISSTAR in required_star_spirits:
+            dungeon_border_node_ids.append(
+                ("JAN_22/2", "KZN_01/0") # Mt. Lavalava
+            )
+        if StarSpirits.KLEVAR in required_star_spirits:
+            dungeon_border_node_ids.append(
+                ("MAC_01/5", "FLO_00/0") # Flower Fields
+            )
+        if StarSpirits.KALMAR in required_star_spirits:
+            dungeon_border_node_ids.append(
+                ("SAM_10/1", "PRA_01/0") # Crystal Palace
+            )
+    else:
+        dungeon_border_node_ids = [
+            ("NOK_15/1", "TRD_00/0"), # Koopa Bros Fortress main
+            #("NOK_15/2", "TRD_00/4"), # Koopa Bros Fortress chest ledge
+            ("SBK_02/4", "ISK_01/0"), # Dry Dry Ruins
+            ("ARN_04/1", "DGB_00/0"), # Tubba Blubbas Castle
+            ("MAC_04/2", "OMO_03/4"), # Shy Guys Toybox
+            ("JAN_22/2", "KZN_01/0"), # Mt. Lavalava
+            ("MAC_01/5", "FLO_00/0"), # Flower Fields
+            ("SAM_10/1", "PRA_01/0"), # Crystal Palace
+        ]
 
-    if shuffle_bowsers_castle and starway_spirits_needed_count < 7:
+    if shuffle_bowsers_castle and starway_spirits_needed_count < 7 and not limit_chapter_logic:
         # cannot be used with requiring 7 spirits for star way, because
         # otherwise you'd lock one of the 7 dungeons needed to open star way
         # behind star way itself

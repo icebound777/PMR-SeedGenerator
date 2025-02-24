@@ -83,6 +83,8 @@ from maps.graph_edges.glitched_logic.mac_odd_key_early import \
     edges_mac_odd_key_early
 from maps.graph_edges.glitched_logic.mac_blue_house_skip import \
     edges_mac_add_bhs_jump, edges_mac_add_bhs_laki, edges_mac_add_bhs_toad_lure
+from maps.graph_edges.glitched_logic.mac_jumpless_dane_t_letters import \
+    edges_mac_jumpless_dane_t_letters
 from maps.graph_edges.glitched_logic.mac_bowless_toy_box import \
     edges_mac_add_bowless_toybox_hammer_lure, edges_mac_add_bowless_toybox_hammerless_lure
 from maps.graph_edges.glitched_logic.mac_enter_storeroom_without_key import \
@@ -92,7 +94,11 @@ from maps.graph_edges.glitched_logic.mac_sushieless_toad_town_star_piece import 
 from maps.graph_edges.glitched_logic.mac_whale_early import \
     edges_mac_add_whale_early_lzs
 from maps.graph_edges.glitched_logic.mac_toad_town_sushie_glitch import \
-    edges_mac_add_toad_town_sushie_glitch
+    edges_mac_add_toad_town_sushie_glitch_gearless, edges_mac_add_toad_town_sushie_glitch_jump_or_hammer, edges_mac_add_toad_town_sushie_glitch_full_gear, edges_mac_add_toad_town_sushie_glitch
+
+# Glitched Logic - Shooting Star Summit
+from maps.graph_edges.glitched_logic.hos_jumpless_summit_climb import \
+    edges_hos_add_jumpless_summit_climb
 
 # Glitched Logic - Toad Town Tunnels
 from maps.graph_edges.glitched_logic.tik_island_pipe_blooper_skip import \
@@ -125,6 +131,8 @@ from maps.graph_edges.glitched_logic.nok_invisible_bridge_clip import \
     edges_nok_add_invisible_bridge_clip_laki, edges_nok_add_invisible_bridge_clip_lzs
 from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_thunderbolt import \
     edges_nok_add_kooperless_thunderbolt
+from maps.graph_edges.glitched_logic.nok_jumpless_koopa_village_blue_pipe import \
+    edges_nok_add_jumpless_koopa_village_blue_pipe
 
 # Glitched Logic - Koopa Bros Fortress
 from maps.graph_edges.glitched_logic.nok_bombetteless_kbf_fp_plus import \
@@ -141,6 +149,8 @@ from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_laki 
     edges_iwa_add_quake_hammer_and_letter_laki
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed import \
     edges_iwa_add_parakarryless_mt_rugged_seed
+from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed_clippy import \
+    edges_iwa_add_parakarryless_mt_rugged_seed_clippy
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_star_piece import \
     edges_iwa_add_parakarryless_star_piece_laki
 from maps.graph_edges.glitched_logic.iwa_buzzar_gap_skip import \
@@ -172,6 +182,8 @@ from maps.graph_edges.glitched_logic.isk_ruins_locks_skip import \
     edges_isk_add_ruins_locks_skip_clippy
 from maps.graph_edges.glitched_logic.isk_ruins_stone_skip import \
     edges_isk_add_ruins_stone_skip
+from maps.graph_edges.glitched_logic.isk_ruins_puzzle_solution_early import \
+    edges_isk_add_ruins_puzzle_solution_early
 
 # Glitched Logic - Forever Forest
 from maps.graph_edges.glitched_logic.mim_forever_forest_backwards import \
@@ -203,6 +215,8 @@ from maps.graph_edges.glitched_logic.dgb_tubbas_table_jump_study import \
     edges_dgb_add_tubbas_table_laki_jump_study
 from maps.graph_edges.glitched_logic.dgb_tubba_castle_super_boots_skip import \
     edges_dgb_add_tubbas_castle_super_boots_skip_laki
+from maps.graph_edges.glitched_logic.dgb_jumpless_mega_rush import \
+    edges_dgb_add_jumpless_mega_rush
 from maps.graph_edges.glitched_logic.dgb_parakarryless_mega_rush import \
     edges_dgb_add_parakarryless_mega_rush
 
@@ -237,6 +251,8 @@ from maps.graph_edges.glitched_logic.jan_raph_skip_english import \
     edges_jan_add_raph_skip_english
 from maps.graph_edges.glitched_logic.jan_raph_skip_parakarry import \
     edges_jan_add_raph_skip_parakarry
+from maps.graph_edges.glitched_logic.jan_raph_skip_lakilester import \
+    edges_jan_add_raph_skip_lakilester
 from maps.graph_edges.glitched_logic.jan_kzn_ch5_sushie_glitch import \
     edges_jan_kzn_add_ch5_sushie_glitch, edges_kzn_add_volcano_sushie_glitch, \
     edges_kzn_add_volcano_sushie_glitch_superboots, edges_kzn_add_volcano_sushie_glitch_goombario
@@ -288,14 +304,24 @@ from maps.graph_edges.glitched_logic.sam_sushieless_warehouse_key import \
 # Glitched Logic - Crystal Palace
 from maps.graph_edges.glitched_logic.pra_mirror_clip import \
     edges_pra_add_mirror_clip_laki
+from maps.graph_edges.glitched_logic.pra_bombette_puzzle_skip import \
+    edges_pra_add_bombette_puzzle_skip
 from maps.graph_edges.glitched_logic.pra_kooper_puzzle_skip import \
     edges_pra_add_kooper_puzzle_skip
 
 # Glitched Logic - Bowser's Castle
 from maps.graph_edges.glitched_logic.kpa_bowless_bowsers_castle_basement import \
     edges_kpa_add_bowless_bowsers_castle_basement_laki
+from maps.graph_edges.glitched_logic.kpa_wattless_dark_basement import \
+    edges_kpa_add_wattless_dark_basement
+from maps.graph_edges.glitched_logic.kpa_basement_skip import \
+    edges_kpa_add_basement_skip_parakarry, edges_kpa_add_basement_skip_lakilester, edges_kpa_add_basement_skip_hammer
+from maps.graph_edges.glitched_logic.kpa_hub1_stair_clip import \
+    edges_kpa_add_hub1_stair_clip
 from maps.graph_edges.glitched_logic.kpa_fast_flood_room import \
-    edges_kpa_add_fast_flood_room_bombette_ultra_boots, edges_kpa_add_fast_flood_room_kooper
+    edges_kpa_add_fast_flood_room_bombette_ultra_boots, edges_kpa_add_fast_flood_room_kooper, edges_kpa_add_fast_flood_room_kooperless
+from maps.graph_edges.glitched_logic.kpa_cannonless import \
+    edges_kpa_add_cannonless
 from maps.graph_edges.glitched_logic.kpa_bombetteless_bowsers_castle_basement import \
     edges_kpa_add_bombetteless_bowsers_castle_basement_laki
 
@@ -479,7 +505,6 @@ def set_starway_requirements(
         ):
             world_graph["HOS_01/0"]["edge_list"][index]["reqs"].extend(added_requirements)
             #print(world_graph["HOS_01/0"]["edge_list"][index]["reqs"])
-            break
 
     # add requirements to chapter 8 jr. troopa and both bowser battles, so the
     # logic doesn't require going through them too early
@@ -778,6 +803,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_mac_add_bhs_laki)
     if glitch_settings.blue_house_skip_toad_lure:
         all_new_edges.extend(edges_mac_add_bhs_toad_lure)
+    if glitch_settings.jumpless_dane_t_letters:
+        all_new_edges.extend(edges_mac_jumpless_dane_t_letters)
     if glitch_settings.bowless_toy_box_hammer:
         all_new_edges.extend(edges_mac_add_bowless_toybox_hammer_lure)
     if glitch_settings.bowless_toy_box_hammerless_lure:
@@ -792,8 +819,18 @@ def get_glitched_logic(
         all_new_edges.extend(edges_mac_add_whale_early_lzs)
     if glitch_settings.sushiesless_toad_town_star_piece:
         all_new_edges.extend(edges_mac_add_sushieless_starpiece)
-    if glitch_settings.toad_town_sushie_glitch:
+    if glitch_settings.toad_town_sushie_glitch_gearless:
+        all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch_gearless)
+    if glitch_settings.toad_town_sushie_glitch_onegear:
+        all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch_jump_or_hammer)
+    if glitch_settings.toad_town_sushie_glitch_full_gear:
+        all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch_full_gear)
+    if glitch_settings.toad_town_sushie_glitch_gearless or glitch_settings.toad_town_sushie_glitch_onegear or glitch_settings.toad_town_sushie_glitch_full_gear:
         all_new_edges.extend(edges_mac_add_toad_town_sushie_glitch)
+
+    # Shooting Star Summit
+    if glitch_settings.jumpless_summit_climb:
+        all_new_edges.extend(edges_hos_add_jumpless_summit_climb)
 
     # Toad Town Tunnels
     if glitch_settings.clippy_boots_stone_block_skip:
@@ -828,6 +865,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_nok_add_invisible_bridge_clip_lzs)
     if glitch_settings.kooperless_pleasant_path_thunderbolt:
         all_new_edges.extend(edges_nok_add_kooperless_thunderbolt)
+    if glitch_settings.jumpless_koopa_village_blue_pipe:
+        all_new_edges.extend(edges_nok_add_jumpless_koopa_village_blue_pipe)
 
     # Koopa Bros Fortress
     if glitch_settings.bombetteless_kbf_fp_plus_laki:
@@ -846,6 +885,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_iwa_add_quake_hammer_and_letter_laki)
     if glitch_settings.parakarryless_mt_rugged_seed:
         all_new_edges.extend(edges_iwa_add_parakarryless_mt_rugged_seed)
+    if glitch_settings.parakarryless_mt_rugged_seed_clippy:
+        all_new_edges.extend(edges_iwa_add_parakarryless_mt_rugged_seed_clippy)
     if glitch_settings.parakarryless_mt_rugged_star_piece:
         all_new_edges.extend(edges_iwa_add_parakarryless_star_piece_laki)
     if glitch_settings.buzzar_gap_skip_clippy:
@@ -884,6 +925,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_isk_add_ruins_key_laki_jump)
     if glitch_settings.ruins_locks_skip_clippy:
         all_new_edges.extend(edges_isk_add_ruins_locks_skip_clippy)
+    if glitch_settings.ruins_puzzle_solution_early:
+        all_new_edges.extend(edges_isk_add_ruins_puzzle_solution_early)
     if glitch_settings.ruins_stone_skip:
         all_new_edges.extend(edges_isk_add_ruins_stone_skip)
 
@@ -928,6 +971,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_dgb_add_tubbas_table_laki_jump_study)
     if glitch_settings.tubbas_castle_super_boots_skip:
         all_new_edges.extend(edges_dgb_add_tubbas_castle_super_boots_skip_laki)
+    if glitch_settings.jumpless_mega_rush:
+        all_new_edges.extend(edges_dgb_add_jumpless_mega_rush)
     if glitch_settings.parakarryless_mega_rush:
         all_new_edges.extend(edges_dgb_add_parakarryless_mega_rush)
 
@@ -966,6 +1011,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_jan_add_raph_skip_english)
     if glitch_settings.raph_skip_parakarry:
         all_new_edges.extend(edges_jan_add_raph_skip_parakarry)
+    if glitch_settings.raph_skip_lakilester:
+        all_new_edges.extend(edges_jan_add_raph_skip_lakilester)
     if glitch_settings.ch5_sushie_glitch:
         all_new_edges.extend(edges_jan_kzn_add_ch5_sushie_glitch)
     if glitch_settings.sushieless_jungle_starpiece_and_letter:
@@ -1050,6 +1097,8 @@ def get_glitched_logic(
     # Crystal Palace
     if glitch_settings.mirror_clip:
         all_new_edges.extend(edges_pra_add_mirror_clip_laki)
+    if glitch_settings.bombette_puzzle_skip:
+        all_new_edges.extend(edges_pra_add_bombette_puzzle_skip)
     if glitch_settings.kooper_puzzle_skip:
         all_new_edges.extend(edges_pra_add_kooper_puzzle_skip)
 
@@ -1057,12 +1106,28 @@ def get_glitched_logic(
     if bowsers_castle_mode == BowserCastleMode.VANILLA:
         if glitch_settings.bowless_bowsers_castle_basement:
             all_new_edges.extend(edges_kpa_add_bowless_bowsers_castle_basement_laki)
+        if glitch_settings.wattless_dark_basement:
+            all_new_edges.extend(edges_kpa_add_wattless_dark_basement)
+        if glitch_settings.basement_skip_parakarry:
+            all_new_edges.extend(edges_kpa_add_basement_skip_parakarry)
+        if glitch_settings.basement_skip_lakilester:
+            all_new_edges.extend(edges_kpa_add_basement_skip_lakilester)
+        if glitch_settings.basement_skip_hammer:
+            all_new_edges.extend(edges_kpa_add_basement_skip_hammer)
+        if glitch_settings.bowsers_castle_hub1_stair_clip:
+            all_new_edges.extend(edges_kpa_add_hub1_stair_clip)
         if glitch_settings.fast_flood_room_kooper:
             all_new_edges.extend(edges_kpa_add_fast_flood_room_kooper)
+        if glitch_settings.fast_flood_room_kooperless:
+            all_new_edges.extend(edges_kpa_add_fast_flood_room_kooperless)
         if glitch_settings.fast_flood_room_bombette_ultra_boots:
             all_new_edges.extend(edges_kpa_add_fast_flood_room_bombette_ultra_boots)
         if glitch_settings.bombetteless_bowsers_castle_basement:
             all_new_edges.extend(edges_kpa_add_bombetteless_bowsers_castle_basement_laki)
+
+    if bowsers_castle_mode == BowserCastleMode.SHORTEN or bowsers_castle_mode == BowserCastleMode.VANILLA:
+        if glitch_settings.cannonless:
+            all_new_edges.extend(edges_kpa_add_cannonless)
 
     # Global
     if glitch_settings.break_stone_blocks_with_ultra_boots:
@@ -1225,13 +1290,17 @@ def _adjust_rip_cheato_logic(world_graph: dict, checks_in_logic:int):
 
 def get_shuffled_battles(
     world_graph: dict,
-    boss_shuffle_mode: BossShuffleMode
+    boss_shuffle_mode: BossShuffleMode,
+    plando_battles: dict | None,
 ) -> tuple[dict, list[tuple[int, int]], dict[int, int]]:
-    battles_setup, boss_chapter_map = get_boss_battles(boss_shuffle_mode)
+    battles_setup, chapter_boss_map = get_boss_battles(
+        boss_shuffle_mode = boss_shuffle_mode,
+        plando_battles = plando_battles,
+    )
 
-    if boss_shuffle_mode != BossShuffleMode.OFF and boss_chapter_map[1] != 1:
-        # boss shuffle is active, and Koopa Bros are placed outside of ch. 1:
-        # move their battle logic to the other chapter
+    if boss_shuffle_mode != BossShuffleMode.OFF or plando_battles:
+        # boss shuffle or plando are active: Koopa Bros may be placed outside
+        # of ch. 1: move/copy their battle logic to the other chapter(s)
 
         boss_requirements: dict = {}
         adjusted_boss_edges: list = []
@@ -1240,8 +1309,11 @@ def get_shuffled_battles(
         # gather Koopa Bros boss edge and remove their battle logic
         for edge in world_graph["TRD_10/0"]["edge_list"]:
             if (edge["to"]["map"], edge["to"]["id"]) == ("TRD_10", 0):
-                remove_boss_edges.append(deepcopy(edge))
                 koopa_bros_requirements = deepcopy(edge["reqs"])
+                if chapter_boss_map[1] != 1:
+                    # if Koopa Bros are no longer in ch. 1: remove their
+                    # battle logic
+                    remove_boss_edges.append(deepcopy(edge))
 
                 new_edge = deepcopy(edge)
                 new_edge["reqs"] = []
@@ -1249,38 +1321,41 @@ def get_shuffled_battles(
 
                 break
 
-        # gather boss edge of the new Koopa Bros location and add their
-        # battle logic
-        if boss_chapter_map[1] == 2:
-            boss_node_id = "ISK_16/0"
-            boss_edge_target = "ISK_16/0"
-        elif boss_chapter_map[1] == 3:
-            boss_node_id = "ARN_11/0"
-            boss_edge_target = "ARN_11/0"
-        elif boss_chapter_map[1] == 4:
-            boss_node_id = "OMO_15/0"
-            boss_edge_target = "OMO_15/0"
-        elif boss_chapter_map[1] == 5:
-            boss_node_id = "KZN_19/1"
-            boss_edge_target = "KZN_19/2"
-        elif boss_chapter_map[1] == 6:
-            boss_node_id = "FLO_21/0"
-            boss_edge_target = "FLO_21/0"
-        elif boss_chapter_map[1] == 7:
-            boss_node_id = "PRA_32/0"
-            boss_edge_target = "PRA_32/0"
-        else:
-            raise ValueError(f"Boss Shuffle has placed no Koopa Bros!: {boss_chapter_map}")
+        # gather boss edges of any new Koopa Bros location(s) and add their
+        # battle logic there
+        new_kb_boss_edges: list[tuple[str, str]] = []
+        for chapter, boss in chapter_boss_map.items():
+            if chapter != 1 and boss == 1:
+                if chapter == 2:
+                    boss_node_id = "ISK_16/0"
+                    boss_edge_target = "ISK_16/0"
+                elif chapter == 3:
+                    boss_node_id = "ARN_11/0"
+                    boss_edge_target = "ARN_11/0"
+                elif chapter == 4:
+                    boss_node_id = "OMO_15/0"
+                    boss_edge_target = "OMO_15/0"
+                elif chapter == 5:
+                    boss_node_id = "KZN_19/1"
+                    boss_edge_target = "KZN_19/2"
+                elif chapter == 6:
+                    boss_node_id = "FLO_21/0"
+                    boss_edge_target = "FLO_21/0"
+                elif chapter == 7:
+                    boss_node_id = "PRA_32/0"
+                    boss_edge_target = "PRA_32/0"
+                new_kb_boss_edges.append((boss_node_id, boss_edge_target))
 
-        for edge in world_graph[boss_node_id]["edge_list"]:
-            if (f"{edge['to']['map']}/{edge['to']['id']}") == boss_edge_target:
-                remove_boss_edges.append(deepcopy(edge))
+        for boss_node_id, boss_edge_target in new_kb_boss_edges:
+            for edge in world_graph[boss_node_id]["edge_list"]:
+                if (f"{edge['to']['map']}/{edge['to']['id']}") == boss_edge_target:
+                    remove_boss_edges.append(deepcopy(edge))
 
-                new_edge = deepcopy(edge)
-                new_edge["reqs"].extend(koopa_bros_requirements)
-                adjusted_boss_edges.append(new_edge)
+                    new_edge = deepcopy(edge)
+                    new_edge["reqs"].extend(koopa_bros_requirements)
+                    adjusted_boss_edges.append(new_edge)
 
-                break
+                    break
 
         world_graph, _ = adjust(
             world_graph,
@@ -1289,4 +1364,4 @@ def get_shuffled_battles(
         )
 
 
-    return world_graph, battles_setup, boss_chapter_map
+    return world_graph, battles_setup, chapter_boss_map

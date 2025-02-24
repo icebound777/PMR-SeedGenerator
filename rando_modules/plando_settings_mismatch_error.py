@@ -1,0 +1,2 @@
+class PlandoSettingsMismatchError(Exception):
+    pass

@@ -93,6 +93,10 @@ allowed_starting_items = [
 	0x09B, # SuperSoda
 	0x09C, # Lemon
 	0x09D, # Lime
+	0x09E, # BlueBerry
+	0x09F, # RedBerry
+	0x0A0, # YellowBerry
+	0x0A1, # BubbleBerry
 	0x0A2, # JamminJelly
 	0x0A3, # MapleSyrup
 	0x0A4, # HoneySyrup
@@ -150,10 +154,6 @@ allowed_starting_items = [
 	0x0D8, # BoiledEgg
 	0x0D9, # YoshiCookie
 	0x0DA, # JellyShroom,
-	0x25D, # BlueBerryProxy1
-	0x25F, # RedBerryProxy1
-	0x261, # YellowBerryProxy1
-	0x263, # BubbleBerryProxy1
 ]
 
 allowed_starting_badges = [

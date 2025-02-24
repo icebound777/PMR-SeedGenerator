@@ -4,10 +4,22 @@ for Glitched Logic: Toad Town Sushie Glitch.
 An additional partner is required to switch in battle and exit the sushie glitch
 state.
 """
-edges_mac_add_toad_town_sushie_glitch = [
+edges_mac_add_toad_town_sushie_glitch_gearless = [
     #? Gate District Exit Left -> Gate District Exit Right
-    {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 1}, "reqs": [["Sushie"], ["Hammer", "Boots"], ["can_end_sushie_glitch"]], "pseudoitems": ["RF_ToadTownSushieGlitch"], "mapchange": False},
+    {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 1}, "reqs": [["Sushie"], ["can_end_sushie_glitch"]], "pseudoitems": ["RF_ToadTownSushieGlitch"], "mapchange": False}
+]
 
+edges_mac_add_toad_town_sushie_glitch_jump_or_hammer = [
+    #? Gate District Exit Left -> Gate District Exit Right
+    {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 1}, "reqs": [["Sushie"], ["Hammer", "Boots"], ["can_end_sushie_glitch"]], "pseudoitems": ["RF_ToadTownSushieGlitch"], "mapchange": False}
+]
+
+edges_mac_add_toad_town_sushie_glitch_full_gear = [
+    #? Gate District Exit Left -> Gate District Exit Right
+    {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 1}, "reqs": [["Sushie"], ["Hammer"], ["Boots"], ["can_end_sushie_glitch"]], "pseudoitems": ["RF_ToadTownSushieGlitch"], "mapchange": False}
+]
+
+edges_mac_add_toad_town_sushie_glitch = [
     #? Goomba King's Castle Exit Right -> Goomba King's Castle Exit Left
     {"from": {"map": "KMR_11", "id": 1}, "to": {"map": "KMR_11", "id": 0}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
 

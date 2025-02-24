@@ -9,6 +9,10 @@ although we do not offer support for that.
 
 * [Web generator repo](https://github.com/Pronyo-Chan/paper-mario-randomizer)
 * Base mod repo: (currently private)
+* [Plandomizer submodule repo](https://github.com/icebound777/PMR-Plando-Validator)
+
+This repository uses git submodules, so keep that in mind mind when cloning:  
+`git clone --recurse-submodules`
 
 ## Requirements
 

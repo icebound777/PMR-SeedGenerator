@@ -1,8 +1,141 @@
 # Changelog
 
-## 0.28.1 (beta)
+## 0.29.0 (beta)
+
+### Feature Changes
+
+* `Plandomizer` feature
+  * The plandomizer (a portmanteau of "planned" and "randomizer") allows pre-setting different values for the seed, which overrule the changes to be made by the seed generator. This allows for forcing specific changes desired by the player.
+  * Currently allows setting the following:
+    * Item placement in most item locations
+    * Prices in regular shops
+    * Chapter difficulty
+    * Which bosses appear where
+    * BP, FP, and SP costs of badges, moves of Mario and his partners, and the star powers
+    * Which spirits to rescue for the `Require Specific Spirits` setting
+  * If any changes are made to a seed using the plandomizer, the save select screen will show a `Plando` label to inform the player of this.
+  * For more details, please refer to the plandomizer module documentation: <https://github.com/icebound777/PMR-Plando-Validator>
+* `Random Starting Stats` option:
+  * Allows starting the seed with random amounts of HP, FP, and BP by choosing the level to generate these starting stats for
+* `Power Star Hunt` related settings:
+  * All three power star hunt settings, `Star Hunt Total`, `Star Way Power Stars Needed`, and `Star Beam Power Stars Needed` can now be set to random. `Star Beam Power Stars Needed` is slightly biased towards rolling higher than the value of `Star Way Power Stars Needed`.
+  * The price for power stars sold in shops is now dynamic. The more power stars are in the item pool, the lower the price of power stars becomes.
+    * 40 or fewer power stars: random price out of `10,15,20,25,30` coins (same as before)
+    * 41 - 80 power stars: random price out of `5,10,15,20` coins
+    * 81 or more power stars: random price out of `5,10` coins
+* `Dungeon Entrance Shuffle`
+  * If combining `Dungeon Entrance Shuffle` and `Limit Chapter Logic`, now only dungeons that are logically required will enter the shuffle, and only shuffle among themselves. This solves the odd case of having to enter logically non-required areas to reach required dungeons.
+* `Randomize Puzzles` option:
+  * Can now include `Blue Berry`, `Red Berry`, `Yellow Berry`, and `Bubble Berry` items in the Dry Dry Outpost shop code puzzles.
+* `Cutscene Mode: Minimal`
+  * Removed some dialogue from the Toad "inn keeper" in Peach's Castle.
+
+### Logic changes
+
+* Fixed logic not expecting boots or Kooper for hitting the yellow item block in Tubba's Castle - Stairs to Third Floor
+* Fixed logic for the three `Ultra Hammer Skip` glitch settings, and the two `Flarakarry` glitch settings. Formerly these didn't apply properly, so these settings would always count as being turned off
+
+### Quality of Life
+
+* Entering the toy box in Toad Town will now automatically set the door to the toy box to be open. This is only relevant if you glitched around the toy box door into the toy box.
+
+### Tricks & Glitches
+
+* New options
+  * "Jumpless Dane T. Letters"
+  * "Toad Town Sushie Glitch Gearless"
+  * "Toad Town Sushie Glitch Full Gear"
+  * "Jumpless Summit Climb"
+  * "Jumpless Koopa Village Blue Pipe"
+  * "Parakarryless Mt. Rugged Seed (Clippy variant)"
+  * "Ruins Puzzle Solution Early"
+  * "Jumpless Mega Rush"
+  * "Raph Skip (Lakilester)"
+  * "Bombette Puzzle Skip"
+  * "Wattless Dark Basement"
+  * "Basement Skip (Parakarry)"
+  * "Basement Skip (Lakilester)"
+  * "Basement Skip (Hammer)"
+  * "Bowsers Castle Hub1 Stair Clip"
+  * "Fast Flood Room (Kooperless)"
+  * "Cannonless"
+* Changed
+  * Renamed `Toad Town Sushie Glitch` to `Toad Town Sushie Glitch One Gear`
 
 ### Bug Fixes
+
+* Fixed the vanilla bug of being able to jump into a certain lava loading zone in the basement of Bowser's Castle, possibly causing softlocks or crashes.
+* Fixed certain issues with the cutscene of the ravens building the zipline during `Cutscene Mode: Minimal`, which could cause weird behavior or crashes during the cutscene if playing on original hardware.
+* Fixed an issue that would sometimes put the menu cursor onto the wrong partner instead of the active partner in the partner menu in battle. This was an edge case that could happen if Bow had not been unlocked yet, and the player was opening the partner menu while having Watt, Sushie, or Lakilester as their active partner.
+* Fixed possible buggy behavior and softlock potential when touching an item trap while riding Lakilester. Now item trap knockback is disabled while riding Lakilester.
+* Fixed missing star piece "plink" sound effect when a star piece item bounces on the floor. This has been an issue for over three years and apparently nobody noticed :)
+
+### Miscellaneous
+
+* Entrance randomizer preparations
+  * Added a bomb trigger to the uppermost floor of the second Water Puzzle room in Bowser's Castle. This allows blowing up the wall from this side, which is normally not possible
+* Spoiler log
+  * Moved the item placement areas into their own `items` subcategory.
+  * For boss battles, renamed the chapters from just numbers to `chapter #`.
+  * Fixed an issue that caused badge BP values to show as vanilla, despite being changed for the seed.
+  * Remove the space from partner upgrades for consistency (e.g. `Bombette Upgrade` to `BombetteUpgrade`).
+  * Adjust capitalization of star pieces for consistency (`Starpiece` to `StarPiece`).
+  * Rename the Super Smash Charge badge from `SSmashChg` to `SSmashCharge` for consistency with the other charge badges.
+  * Differentiate the two letters to Goompapa and the two letters to Koover by appending `1` and `2` to the respective item names.
+  * If the plandomizer feature is used, the spoiler log will now display that data in a new `plandomizer` subcategory.
+  * Renamed the item locations of the beach palm tree that drops two items to make differentiating between the one-time item and the replenishable item easier
+    * `Jade Jungle Beach - In Palm Tree 6` to `Jade Jungle Beach - In Palm Tree 6 (one-off)`
+    * `Jade Jungle Beach - In Palm Tree 6 2` to `Jade Jungle Beach - In Palm Tree 6 (replenish)`
+* RAM locations docs
+  * Fix typo in Player Data struct regarding True Max HP and FP
+* README file:
+  * Added note about needing to clone submodules as well from now on, due to the plandomizer being such a submodule
+* Internally reworked how star pieces in non-randomized locations behave (hidden panels and letter rewards). The item pickup for those vanilla star pieces will now look slightly different, but they will still count as regular star pieces.
+* Internally reworked how the berry key items work. This was necessary for making the plandomizer implementation of the berries less painful. Ideally, players should not notice any difference to before.
+
+### Additional Technical Changelog
+
+* Yaml settings changes:
+  * Added `RandomStartingStatsLevel`
+    * `-1` = Off, `0` - `27` = Level to generate random starting stats for
+    * If not turned off, generator will ignore `StartingMaxHP`, `StartingMaxFP`, and `StartingMaxBP`
+  * `StarWayPowerStarsNeeded` now accepts `-1` as value (to roll randomly)
+  * `StarBeamPowerStarsNeeded` now accepts `-1` as value (to roll randomly)
+  * `StarHuntTotal` now accepts `-1` as value (to roll randomly)
+  * Added `JumplessDaneTLetters` (bool)
+  * Added `ToadTownSushieGlitchGearless` (bool)
+  * Renamed `ToadTownSushieGlitch` to `ToadTownSushieGlitchOneGear`
+  * Added `ToadTownSushieGlitchFullGear` (bool)
+  * Added `JumplessSummitClimb` (bool)
+  * Added `JumplessKoopaVillageBluePipe` (bool)
+  * Added `ParakarrylessMtRuggedSeedClippy` (bool)
+  * Added `RuinsPuzzleSolutionEarly` (bool)
+  * Added `JumplessMegaRush` (bool)
+  * Added `RaphSkipLakilester` (bool)
+  * Added `BombettePuzzleSkip` (bool)
+  * Added `WattlessDarkBasement` (bool)
+  * Added `BasementSkipParakarry` (bool)
+  * Added `BasementSkipLakilester` (bool)
+  * Added `BasementSkipHammer` (bool)
+  * Added `BowsersCastleHub1StairClip` (bool)
+  * Added `FastFloodRoomKooperless` (bool)
+  * Added `Cannonless` (bool)
+* Changed Item IDs due to internal rework of berry items
+  * Items removed:
+    * `CakeProxy`, ID 0x25C (always unused)
+    * `BlueBerryProxy1`, ID 0x25D (was now unused)
+    * `BlueBerryProxy2`, ID 0x25E (was now unused)
+    * `RedBerryProxy1`, ID 0x25F (was now unused)
+    * `RedBerryProxy2`, ID 0x260 (was now unused)
+    * `YellowBerryProxy1`, ID 0x261 (was now unused)
+    * `YellowBerryProxy2`, ID 0x262 (was now unused)
+    * `BubbleBerryProxy1`, ID 0x263 (was now unused)
+    * `BubbleBerryProxy2`, ID 0x264 (was now unused)
+  * This change shifts all items beyond item ID 0x264 down by 9 item IDs. The final item in the list is now `Bow` on item ID 0x291
+
+## 0.28.1 (beta)
+
+### Bug Fixes (0.28.1)
 
 * Fix a bug that caused the chapter 3 boss battle's post-battle cutscene to sometimes not play out properly during `Boss Shuffle: On`, causing a softlock
 * Fix a bug that caused the seed generator to fail at item placement while `Shuffle Partners` was set to `Shuffle among vanilla locations`, if other settings were very restrictive (like jumpless and hammerless start plus Goombario as only partner)

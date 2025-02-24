@@ -5,6 +5,8 @@ world traversal. This is required for checking randomization logic.
 
 from metadata.partners_meta import all_partners
 
+from rando_enums.enum_options import StartingBoots, StartingHammer
+
 class MarioInventory:
     """
     Represents a state of Mario's inventory, including items, partners and more
@@ -12,8 +14,8 @@ class MarioInventory:
     """
     def __init__(
         self,
-        starting_boots:int=0,
-        starting_hammer:int=0,
+        starting_boots:int=StartingBoots.BOOTS,
+        starting_hammer:int=StartingHammer.HAMMER,
         starting_partners:list=None,
         starting_items:list=None,
         partners_always_usable:bool=True,
@@ -39,8 +41,8 @@ class MarioInventory:
         Starting equipment irrelevant to world graph traversal (such as Lucky
         Star, starting coins) is ignored.
         """
-        assert(isinstance(starting_boots, int) and starting_boots in range(-1,3))
-        assert(isinstance(starting_hammer, int) and starting_hammer in range(-1,3))
+        assert(isinstance(starting_boots, int) and starting_boots in range(StartingBoots.JUMPLESS, StartingBoots.ULTRABOOTS + 1))
+        assert(isinstance(starting_hammer, int) and starting_hammer in range(StartingHammer.HAMMERLESS,StartingHammer.ULTRAHAMMER + 1))
         assert(starting_partners is None or isinstance(starting_partners, list))
         if starting_partners is None:
             starting_partners = ["Goombario"]
@@ -73,18 +75,18 @@ class MarioInventory:
         self.starspirits = set()
         self.item_history = []
 
-        if starting_boots == 2:
+        if starting_boots == StartingBoots.ULTRABOOTS:
             self.add("BootsProxy3")
-        if starting_boots >= 1:
+        if starting_boots >= StartingBoots.SUPERBOOTS:
             self.add("BootsProxy2")
-        if starting_boots >= 0:
+        if starting_boots >= StartingBoots.BOOTS:
             self.add("BootsProxy1")
 
-        if starting_hammer == 2:
+        if starting_hammer == StartingHammer.ULTRAHAMMER:
             self.add("HammerProxy3")
-        if starting_hammer >= 1:
+        if starting_hammer >= StartingHammer.SUPERHAMMER:
             self.add("HammerProxy2")
-        if starting_hammer >= 0:
+        if starting_hammer >= StartingHammer.HAMMER:
             self.add("HammerProxy1")
 
         self.add(starting_partners)
@@ -162,7 +164,7 @@ class MarioInventory:
                     self.item_history.append(f"+{item_object} (Battle)")
                     is_new_pseudoitem = True
             elif item_object.find("StarPiece") != -1:
-                if item_object not in self.starpieces:
+                if item_object not in self.starpieces or item_object == "StarPiece":
                     if item_object.startswith("Three"):
                         self.starpiece_count += 3
                     else:
