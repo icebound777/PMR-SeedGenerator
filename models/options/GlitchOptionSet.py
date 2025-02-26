@@ -40,6 +40,7 @@ class GlitchOptionSet():
         self.jumpless_sewer_shooting_star = False
 
         self.kooperless_pleasant_path_star_piece = False
+        self.pleasant_path_clippy_traversal = False
         self.hammerless_pleasant_path_bridge_ultra_boots_parakarry = False
         self.invisible_bridge_clip_lzs = False
         self.invisible_bridge_clip_laki = False

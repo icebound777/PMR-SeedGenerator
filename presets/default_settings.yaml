@@ -273,6 +273,7 @@ SewerYellowBlockWithUltraBoots                  : false
 JumplessSewerShootingStar                       : false
 
 KooperlessPleasantPathStarPiece                 : false
+PleasantPathClippyTraversal                     : false
 HammerlessPleasantPathBridgeUltraBootsParakarry : false
 InvisibleBridgeClipLzs                          : false
 InvisibleBridgeClipLaki                         : false
@@ -324,6 +325,7 @@ KooperlessGustyGulchDizzyDialJump               : false
 KooperlessGustyGulchDizzyDialLaki               : false
 KooperlessGustyGulchDizzyDialParakarry          : false
 GustyGulchGapSkip                               : false
+GustyGulchClippyTraversal                       : false
 
 BowlessTubbasCastle                             : false
 TubbasTableLakiJumpClock                        : false

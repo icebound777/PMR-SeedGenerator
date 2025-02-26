@@ -641,6 +641,8 @@ class OptionSet:
 
         if "KooperlessPleasantPathStarPiece" in options_dict:
             self.glitch_settings.kooperless_pleasant_path_star_piece = options_dict.get("KooperlessPleasantPathStarPiece")
+        if "PleasantPathClippyTraversal" in options_dict:
+            self.glitch_settings.pleasant_path_clippy_traversal = options_dict.get("PlesantPathClippyTraversal")
         if "HammerlessPleasantPathBridgeUltraBootsParakarry" in options_dict:
             self.glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry = options_dict.get("HammerlessPleasantPathBridgeUltraBootsParakarry")
         if "InvisibleBridgeClipLzs" in options_dict:
@@ -1471,6 +1473,7 @@ class OptionSet:
         basic_assert("JumplessSewerShootingStar", bool)
 
         basic_assert("KooperlessPleasantPathStarPiece", bool)
+        basic_assert("PleasantPathClippyTraversal", bool)
         basic_assert("HammerlessPleasantPathBridgeUltraBootsParakarry", bool)
         basic_assert("InvisibleBridgeClipLzs", bool)
         basic_assert("InvisibleBridgeClipLaki", bool)
@@ -2034,6 +2037,7 @@ class OptionSet:
 
         # Glitches: Plesant Path
         web_settings["KooperlessPleasantPathStarPiece"] = self.glitch_settings.kooperless_pleasant_path_star_piece
+        web_settings["PleasantPathClippyTraversal"] = self.glitch_settings.pleasant_path_clippy_traversal
         web_settings["HammerlessPleasantPathBridgeUltraBootsParakarry"] = self.glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry
         web_settings["InvisibleBridgeClipLzs"]= self.glitch_settings.invisible_bridge_clip_lzs
         web_settings["InvisibleBridgeClipLaki"] = self.glitch_settings.invisible_bridge_clip_laki

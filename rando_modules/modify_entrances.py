@@ -151,6 +151,9 @@ from maps.graph_edges.glitched_logic.tik_jumpless_sewer_shooting_star import (
 from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_star_piece import (
     edges_nok_add_kooperless_starpiece_clippy,
 )
+from maps.graph_edges.glitched_logic.nok_pleasant_path_clippy_traversal import (
+    edges_nok_add_pleasant_path_clippy_traversal
+)
 from maps.graph_edges.glitched_logic.nok_hammerless_pleasant_path_bridge_skip import (
     edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry,
 )
@@ -973,6 +976,8 @@ def get_glitched_logic(
     # Pleasant Path
     if glitch_settings.kooperless_pleasant_path_star_piece:
         all_new_edges.extend(edges_nok_add_kooperless_starpiece_clippy)
+    if glitch_settings.pleasant_path_clippy_traversal:
+        all_new_edges.extend(edges_nok_add_pleasant_path_clippy_traversal)
     if glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry:
         all_new_edges.extend(edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry)
     if glitch_settings.invisible_bridge_clip_laki:
