@@ -90,6 +90,7 @@ class GlitchOptionSet():
         self.kooperless_gusty_gulch_dizzy_dial_laki = False
         self.kooperless_gusty_gulch_dizzy_dial_parakarry = False
         self.gusty_gulch_gap_skip = False
+        self.gusty_gulch_clippy_traversal = False
 
         self.bowless_tubbas_castle = False
         self.tubbas_table_laki_jump_clock = False

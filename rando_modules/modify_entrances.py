@@ -268,6 +268,9 @@ from maps.graph_edges.glitched_logic.mim_gusty_gulch_gate_skip import (
 from maps.graph_edges.glitched_logic.arn_gusty_gulch_gap_skip import (
     edges_arn_add_gusty_gulch_gap_skip_jump,
 )
+from maps.graph_edges.glitched_logic.arn_gusty_gulch_clippy_traversal import (
+    edges_arn_add_gusty_gulch_clippy_traversal
+)
 from maps.graph_edges.glitched_logic.arn_kooperless_gusty_gulch_dizzy_dial import (
     edges_arn_add_gusty_gulch_dizzy_dial_jump,
     edges_arn_add_gusty_gulch_dizzy_dial_laki,
@@ -1072,6 +1075,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_arn_add_gusty_gulch_dizzy_dial_parakarry)
     if glitch_settings.gusty_gulch_gap_skip:
         all_new_edges.extend(edges_arn_add_gusty_gulch_gap_skip_jump)
+    if glitch_settings.gusty_gulch_clippy_traversal:
+        all_new_edges.extend(edges_arn_add_gusty_gulch_clippy_traversal)
 
     # Tubba's Castle
     if glitch_settings.bowless_tubbas_castle:
