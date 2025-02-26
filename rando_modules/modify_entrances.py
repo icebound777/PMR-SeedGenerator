@@ -187,6 +187,9 @@ from maps.graph_edges.glitched_logic.trd_water_staircase_skip import (
 from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_laki import (
     edges_iwa_add_quake_hammer_and_letter_laki,
 )
+from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_room_jumpless_clippy import (
+    edges_iwa_add_quake_hammer_room_jumpless_clippy
+)
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed import (
     edges_iwa_add_parakarryless_mt_rugged_seed,
 )
@@ -1005,6 +1008,8 @@ def get_glitched_logic(
     # Mt. Rugged
     if glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki:
         all_new_edges.extend(edges_iwa_add_quake_hammer_and_letter_laki)
+    if glitch_settings.mt_rugged_quake_hammer_room_jumpless_clippy:
+        all_new_edges.extend(edges_iwa_add_quake_hammer_room_jumpless_clippy)
     if glitch_settings.parakarryless_mt_rugged_seed:
         all_new_edges.extend(edges_iwa_add_parakarryless_mt_rugged_seed)
     if glitch_settings.parakarryless_mt_rugged_seed_clippy:
