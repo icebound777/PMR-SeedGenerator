@@ -54,6 +54,7 @@ class GlitchOptionSet():
         self.water_staircase_skip = False
 
         self.mt_rugged_quake_hammer_and_letter_with_laki = False
+        self.mt_rugged_quake_hammer_room_jumpless_clippy = False
         self.parakarryless_mt_rugged_seed = False
         self.parakarryless_mt_rugged_seed_clippy = False
         self.buzzar_gap_skip_clippy = False
