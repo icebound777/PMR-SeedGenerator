@@ -681,6 +681,8 @@ class OptionSet:
             self.glitch_settings.mt_rugged_station_jumpless_climb_bombette = options_dict.get("MtRuggedStationJumplessClimbBombette")
         if "MtRuggedStationJumplessClimbLaki" in options_dict:
             self.glitch_settings.mt_rugged_station_jumpless_climb_laki = options_dict.get("MtRuggedStationJumplessClimbLaki")
+        if "MtRuggedStationJumplessClimbLakiBlockClip" in options_dict:
+            self.glitch_settings.mt_rugged_station_jumpless_climb_laki_block_clip = options_dict.get("MtRuggedStationJumplessClimbLakiBlockClip")
         if "JumplessMtRuggedTrainPlatformParakarry" in options_dict:
             self.glitch_settings.jumpless_mt_rugged_train_platform_parakarry = options_dict.get("JumplessMtRuggedTrainPlatformParakarry")
 
@@ -1494,6 +1496,7 @@ class OptionSet:
         basic_assert("MtRuggedCoinsWithKooper", bool)
         basic_assert("MtRuggedStationJumplessClimbBombette", bool)
         basic_assert("MtRuggedStationJumplessClimbLaki", bool)
+        basic_assert("MtRuggedStationJumplessClimbLakiBlockClip", bool)
         basic_assert("JumplessMtRuggedTrainPlatformParakarry", bool)
 
         basic_assert("DesertBrickBlockItemWithParakarry", bool)
@@ -2060,6 +2063,7 @@ class OptionSet:
         web_settings["MtRuggedCoinsWithKooper"] = self.glitch_settings.mt_rugged_coins_with_kooper
         web_settings["MtRuggedStationJumplessClimbBombette"] = self.glitch_settings.mt_rugged_station_jumpless_climb_bombette
         web_settings["MtRuggedStationJumplessClimbLaki"] = self.glitch_settings.mt_rugged_station_jumpless_climb_laki
+        web_settings["MtRuggedStationJumplessClimbLakiBlockClip"] = self.glitch_settings.mt_rugged_station_jumpless_climb_laki_block_clip
         web_settings["JumplessMtRuggedTrainPlatformParakarry"] = self.glitch_settings.jumpless_mt_rugged_train_platform_parakarry
 
         # Glitches: Dry Dry Desert

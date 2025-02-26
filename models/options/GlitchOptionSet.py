@@ -60,6 +60,7 @@ class GlitchOptionSet():
         self.mt_rugged_coins_with_kooper = False
         self.mt_rugged_station_jumpless_climb_bombette = False
         self.mt_rugged_station_jumpless_climb_laki = False
+        self.mt_rugged_station_jumpless_climb_laki_block_clip = False
         self.jumpless_mt_rugged_train_platform_parakarry = False
         self.parakarryless_mt_rugged_star_piece = False
         self.desert_brick_block_item_with_parakarry = False
