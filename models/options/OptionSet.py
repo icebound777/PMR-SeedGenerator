@@ -723,6 +723,8 @@ class OptionSet:
             self.glitch_settings.kooperless_gusty_gulch_dizzy_dial_parakarry = options_dict.get("KooperlessGustyGulchDizzyDialParakarry")
         if "GustyGulchGapSkip" in options_dict:
             self.glitch_settings.gusty_gulch_gap_skip = options_dict.get("GustyGulchGapSkip")
+        if "GustyGulchClippyTraversal" in options_dict:
+            self.glitch_settings.gusty_gulch_clippy_traversal = options_dict.get("GustyGulchClippyTraversal")
 
         if "BowlessTubbasCastle" in options_dict:
             self.glitch_settings.bowless_tubbas_castle = options_dict.get("BowlessTubbasCastle")
@@ -1477,6 +1479,7 @@ class OptionSet:
         basic_assert("KooperlessGustyGulchDizzyDialLaki", bool)
         basic_assert("KooperlessGustyGulchDizzyDialParakarry", bool)
         basic_assert("GustyGulchGapSkip", bool)
+        basic_assert("GustyGulchClippyTraversal", bool)
 
         basic_assert("BowlessTubbasCastle", bool)
         basic_assert("TubbasTableLakiJumpClock", bool)
@@ -2035,6 +2038,7 @@ class OptionSet:
         web_settings["KooperlessGustyGulchDizzyDialLaki"] = self.glitch_settings.kooperless_gusty_gulch_dizzy_dial_laki
         web_settings["KooperlessGustyGulchDizzyDialParakarry"]= self.glitch_settings.kooperless_gusty_gulch_dizzy_dial_parakarry
         web_settings["GustyGulchGapSkip"] = self.glitch_settings.gusty_gulch_gap_skip
+        web_settings["GustyGulchClippyTraversal"] = self.glitch_settings.gusty_gulch_clippy_traversal
 
         # Glitches: Tubba's Castle
         web_settings["BowlessTubbasCastle"] = self.glitch_settings.bowless_tubbas_castle
