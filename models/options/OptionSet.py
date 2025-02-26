@@ -675,6 +675,8 @@ class OptionSet:
             self.glitch_settings.buzzar_gap_skip_clippy = options_dict.get("BuzzarGapSkipClippy")
         if "ParakarrylessMtRuggedStarPiece" in options_dict:
             self.glitch_settings.parakarryless_mt_rugged_star_piece = options_dict.get("ParakarrylessMtRuggedStarPiece")
+        if "ParakarrylessMtRuggedStarPieceClippy" in options_dict:
+            self.glitch_settings.parakarryless_mt_rugged_star_piece_clippy = options_dict.get("ParakarrylessMtRuggedStarPieceClippy")
         if "MtRuggedCoinsWithKooper" in options_dict:
             self.glitch_settings.mt_rugged_coins_with_kooper = options_dict.get("MtRuggedCoinsWithKooper")
         if "MtRuggedStationJumplessClimbBombette" in options_dict:
@@ -1493,6 +1495,7 @@ class OptionSet:
         basic_assert("ParakarrylessMtRuggedSeedClippy", bool)
         basic_assert("BuzzarGapSkipClippy", bool)
         basic_assert("ParakarrylessMtRuggedStarPiece", bool)
+        basic_assert("ParakarrylessMtRuggedStarPieceClippy", bool)
         basic_assert("MtRuggedCoinsWithKooper", bool)
         basic_assert("MtRuggedStationJumplessClimbBombette", bool)
         basic_assert("MtRuggedStationJumplessClimbLaki", bool)
@@ -2060,6 +2063,7 @@ class OptionSet:
         web_settings["ParakarrylessMtRuggedSeedClippy"] = self.glitch_settings.parakarryless_mt_rugged_seed_clippy
         web_settings["BuzzarGapSkipClippy"] = self.glitch_settings.buzzar_gap_skip_clippy
         web_settings["ParakarrylessMtRuggedStarPiece"] = self.glitch_settings.parakarryless_mt_rugged_star_piece
+        web_settings["ParakarrylessMtRuggedStarPieceClippy"] = self.glitch_settings.parakarryless_mt_rugged_star_piece_clippy
         web_settings["MtRuggedCoinsWithKooper"] = self.glitch_settings.mt_rugged_coins_with_kooper
         web_settings["MtRuggedStationJumplessClimbBombette"] = self.glitch_settings.mt_rugged_station_jumpless_climb_bombette
         web_settings["MtRuggedStationJumplessClimbLaki"] = self.glitch_settings.mt_rugged_station_jumpless_climb_laki

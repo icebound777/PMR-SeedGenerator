@@ -1011,6 +1011,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_iwa_add_parakarryless_mt_rugged_seed_clippy)
     if glitch_settings.parakarryless_mt_rugged_star_piece:
         all_new_edges.extend(edges_iwa_add_parakarryless_star_piece_laki)
+    if glitch_settings.parakarryless_mt_rugged_star_piece_clippy:
+        all_new_edges.extend(edges_iwa_add_parakarryless_star_piece_clippy)
     if glitch_settings.buzzar_gap_skip_clippy:
         all_new_edges.extend(edges_iwa_add_buzzar_gap_skip_clippy)
     if glitch_settings.mt_rugged_coins_with_kooper:

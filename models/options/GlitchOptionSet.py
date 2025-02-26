@@ -63,6 +63,7 @@ class GlitchOptionSet():
         self.mt_rugged_station_jumpless_climb_laki_block_clip = False
         self.jumpless_mt_rugged_train_platform_parakarry = False
         self.parakarryless_mt_rugged_star_piece = False
+        self.parakarryless_mt_rugged_star_piece_clippy = False
         self.desert_brick_block_item_with_parakarry = False
         self.early_ruins_laki_jump = False
         self.early_ruins_ultra_boots = False
