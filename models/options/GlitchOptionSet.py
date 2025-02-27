@@ -139,6 +139,7 @@ class GlitchOptionSet():
 
         self.early_laki_lzs = False
         self.early_laki_bombette_push = False
+        self.lakiless_elevator_room = False
         self.bombetteless_mega_smash = False
         self.sun_tower_skip = False
         self.yellow_berry_gate_skip_lzs = False

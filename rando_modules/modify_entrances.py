@@ -282,6 +282,8 @@ from maps.graph_edges.glitched_logic.kzn_flarakarry import \
 # Glitched Logic - Flower Fields
 from maps.graph_edges.glitched_logic.flo_early_lakilester import \
     edges_flo_add_early_lakilester_bombette_push, edges_flo_add_early_lakilester_without_bombette
+from maps.graph_edges.glitched_logic.flo_lakiless_elevator_room import \
+    edges_flo_add_lakiless_elevator_room
 from maps.graph_edges.glitched_logic.flo_bombetteless_mega_smash import \
     edges_flo_add_bombetteless_mega_smash
 from maps.graph_edges.glitched_logic.flo_sun_tower_skip import \
@@ -1067,6 +1069,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_flo_add_early_lakilester_without_bombette)
     if glitch_settings.early_laki_bombette_push:
         all_new_edges.extend(edges_flo_add_early_lakilester_bombette_push)
+    if glitch_settings.lakiless_elevator_room:
+        all_new_edges.extend(edges_flo_add_lakiless_elevator_room)
     if glitch_settings.bombetteless_mega_smash:
         all_new_edges.extend(edges_flo_add_bombetteless_mega_smash)
     if glitch_settings.sun_tower_skip:
