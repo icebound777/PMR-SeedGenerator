@@ -573,6 +573,8 @@ class OptionSet:
             self.glitch_settings.goomba_village_entry_fence_clip = options_dict.get("GoombaVillageEntryFenceClip")
         if "GoombaVillageNpcLureExit" in options_dict:
             self.glitch_settings.goomba_village_npc_lure_exit = options_dict.get("GoombaVillageNpcLureExit")
+        if "ClippyLedgeStarPiece" in options_dict:
+            self.glitch_settings.clippy_ledge_starpiece = options_dict.get("ClippyLedgeStarPiece")
         if "HammerlessJrPlaygroundLaki" in options_dict:
             self.glitch_settings.hammerless_jr_playground_laki = options_dict.get("HammerlessJrPlaygroundLaki")
         if "GoombaVillageLakiExit" in options_dict:
@@ -1445,6 +1447,7 @@ class OptionSet:
         basic_assert("ReverseGoombaKingBridge", bool)
         basic_assert("GoombaVillageEntryFenceClip", bool)
         basic_assert("GoombaVillageNpcLureExit", bool)
+        basic_assert("ClippyLedgeStarPiece", bool)
         basic_assert("HammerlessJrPlaygroundLaki", bool)
         basic_assert("PrologueSushieGlitchKsj", bool)
         basic_assert("PrologueSushieGlitchUltraBootsLaki", bool)
@@ -2009,6 +2012,7 @@ class OptionSet:
         web_settings["ReverseGoombaKingBridge"] = self.glitch_settings.reverse_goomba_king_bridge
         web_settings["GoombaVillageEntryFenceClip"] = self.glitch_settings.goomba_village_entry_fence_clip
         web_settings["GoombaVillageNpcLureExit"] = self.glitch_settings.goomba_village_npc_lure_exit
+        web_settings["ClippyLedgeStarPiece"] = self.glitch_settings.clippy_ledge_starpiece
         web_settings["HammerlessJrPlaygroundLaki"] = self.glitch_settings.hammerless_jr_playground_laki
         web_settings["GoombaVillageLakiExit"] = self.glitch_settings.goomba_village_laki_exit
         web_settings["PrologueSushieGlitchKsj"] = self.glitch_settings.prologue_sushie_glitch_ksj

@@ -66,6 +66,9 @@ from maps.graph_edges.glitched_logic.kmr_goomba_village_hammerless_exit import (
     edges_kmr_add_goomba_village_hammerless_exit_npc_lure,
     edges_kmr_add_goomba_village_hammerless_exit_laki,
 )
+from maps.graph_edges.glitched_logic.kmr_clippy_ledge_starpiece import (
+    edges_kmr_add_clippy_ledge_starpiece,
+)
 from maps.graph_edges.glitched_logic.kmr_hammerless_jr_playground_laki import (
     edges_kmr_add_hammerless_jr_playground_laki,
 )
@@ -909,6 +912,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_kmr_add_goomba_village_hammerless_exit_npc_lure)
     if glitch_settings.goomba_village_laki_exit:
         all_new_edges.extend(edges_kmr_add_goomba_village_hammerless_exit_laki)
+    if glitch_settings.clippy_ledge_starpiece:
+        all_new_edges.extend(edges_kmr_add_clippy_ledge_starpiece)
     if glitch_settings.hammerless_jr_playground_laki:
         all_new_edges.extend(edges_kmr_add_hammerless_jr_playground_laki)
     if glitch_settings.prologue_sushie_glitch_ksj:
