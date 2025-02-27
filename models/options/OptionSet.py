@@ -831,6 +831,8 @@ class OptionSet:
             self.glitch_settings.early_laki_lzs = options_dict.get("EarlyLakiLZS")
         if "EarlyLakiBombettePush" in options_dict:
             self.glitch_settings.early_laki_bombette_push = options_dict.get("EarlyLakiBombettePush")
+        if "LakilessElevatorRoom" in options_dict:
+            self.glitch_settings.lakiless_elevator_room = options_dict.get("LakilessElevatorRoom")
         if "BombettelessMegaSmash" in options_dict:
             self.glitch_settings.bombetteless_mega_smash = options_dict.get("BombettelessMegaSmash")
         if "SunTowerSkip" in options_dict:
@@ -1580,6 +1582,7 @@ class OptionSet:
 
         basic_assert("EarlyLakiLZS", bool)
         basic_assert("EarlyLakiBombettePush", bool)
+        basic_assert("LakilessElevatorRoom", bool)
         basic_assert("BombettelessMegaSmash", bool)
         basic_assert("SunTowerSkip", bool)
         basic_assert("YellowBerryGateSkipLZS", bool)
@@ -2157,6 +2160,7 @@ class OptionSet:
         # Glitches: Flower Fields
         web_settings["EarlyLakiLZS"] = self.glitch_settings.early_laki_lzs
         web_settings["EarlyLakiBombettePush"] = self.glitch_settings.early_laki_bombette_push
+        web_settings["LakilessElevatorRoom"] = self.glitch_settings.lakiless_elevator_room
         web_settings["BombettelessMegaSmash"] = self.glitch_settings.bombetteless_mega_smash
         web_settings["SunTowerSkip"]= self.glitch_settings.sun_tower_skip
         web_settings["YellowBerryGateSkipLZS"] = self.glitch_settings.yellow_berry_gate_skip_lzs
