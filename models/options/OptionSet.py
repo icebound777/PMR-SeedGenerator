@@ -696,6 +696,8 @@ class OptionSet:
 
         if "DesertBrickBlockItemWithParakarry" in options_dict:
             self.glitch_settings.desert_brick_block_item_with_parakarry = options_dict.get("DesertBrickBlockItemWithParakarry")
+        if "JumplessAttackFXC" in options_dict:
+            self.glitch_settings.jumpless_attack_fx_c = options_dict.get("JumplessAttackFXC")
         if "EarlyRuinsLakiJump" in options_dict:
             self.glitch_settings.early_ruins_laki_jump = options_dict.get("EarlyRuinsLakiJump")
         if "EarlyRuinsUltraBoots" in options_dict:
@@ -1514,6 +1516,7 @@ class OptionSet:
         basic_assert("JumplessMtRuggedTrainPlatformParakarry", bool)
 
         basic_assert("DesertBrickBlockItemWithParakarry", bool)
+        basic_assert("JumplessAttackFXC", bool)
         basic_assert("EarlyRuinsLakiJump", bool)
         basic_assert("EarlyRuinsUltraBoots", bool)
 
@@ -2087,6 +2090,7 @@ class OptionSet:
 
         # Glitches: Dry Dry Desert
         web_settings["DesertBrickBlockItemWithParakarry"] = self.glitch_settings.desert_brick_block_item_with_parakarry
+        web_settings["JumplessAttackFXC"] = self.glitch_settings.jumpless_attack_fx_c
         web_settings["EarlyRuinsLakiJump"] = self.glitch_settings.early_ruins_laki_jump
         web_settings["EarlyRuinsUltraBoots"] = self.glitch_settings.early_ruins_ultra_boots
 

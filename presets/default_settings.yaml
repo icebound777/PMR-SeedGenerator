@@ -302,6 +302,7 @@ ParakarrylessMtRuggedStarPieceClippy            : false
 JumplessMtRuggedTrainPlatformParakarry          : false
 
 DesertBrickBlockItemWithParakarry               : false
+JumplessAttackFXC                               : false
 EarlyRuinsLakiJump                              : false
 EarlyRuinsUltraBoots                            : false
 

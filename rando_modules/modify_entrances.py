@@ -224,6 +224,9 @@ from maps.graph_edges.glitched_logic.iwa_jumpless_mt_rugged_train_platform impor
 from maps.graph_edges.glitched_logic.sbk_desert_brick_block_item_with_parakarry import (
     edges_sbk_add_desert_brick_block_item_parakarry,
 )
+from maps.graph_edges.glitched_logic.sbk_jumpless_attack_fx_c import (
+    edges_sbk_add_jumpless_attack_fx_c,
+)
 from maps.graph_edges.glitched_logic.sbk_early_ruins import (
     edges_sbk_add_laki,
     edges_sbk_add_ultraboots,
@@ -1051,6 +1054,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_sbk_add_ultraboots)
     if glitch_settings.desert_brick_block_item_with_parakarry:
         all_new_edges.extend(edges_sbk_add_desert_brick_block_item_parakarry)
+    if glitch_settings.jumpless_attack_fx_c:
+        all_new_edges.extend(edges_sbk_add_jumpless_attack_fx_c)
 
     # Dry Dry Ruins
     if glitch_settings.artifact_jump_laki:
