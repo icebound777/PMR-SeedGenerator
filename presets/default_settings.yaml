@@ -238,6 +238,7 @@ ReverseGoombaKingBridge                         : false
 GoombaVillageEntryFenceClip                     : false
 GoombaVillageNpcLureExit                        : false
 ClippyLedgeStarPiece                            : false
+JumplessFireFlower                              : false
 HammerlessJrPlaygroundLaki                      : false
 GoombaVillageLakiExit                           : false
 PrologueSushieGlitchKsj                         : false
