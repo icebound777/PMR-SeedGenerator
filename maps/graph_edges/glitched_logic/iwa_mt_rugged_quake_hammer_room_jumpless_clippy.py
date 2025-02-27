@@ -12,4 +12,10 @@ edges_iwa_add_quake_hammer_room_jumpless_clippy = [
     {"from": {"map": "IWA_01", "id": 1}, "to": {"map": "IWA_01", "id": 3}, "reqs": [["Lakilester"]], "mapchange": False},
     #? Mt Rugged 2 Exit Bottom Right -> Mt Rugged 2 Exit Top Right
     {"from": {"map": "IWA_01", "id": 2}, "to": {"map": "IWA_01", "id": 3}, "reqs": [["Lakilester"]], "mapchange": False},
+    #? Mt Rugged 2 Exit Bottom Left -> Mt Rugged 2 Exit Bottom Right
+    {"from": {"map": "IWA_01", "id": 0}, "to": {"map": "IWA_01", "id": 2}, "reqs": [["Lakilester"]], "mapchange": False},
+    #? Mt Rugged 2 Exit Top Left -> Mt Rugged 2 Exit Bottom Right
+    {"from": {"map": "IWA_01", "id": 1}, "to": {"map": "IWA_01", "id": 2}, "reqs": [["Lakilester"]], "mapchange": False},
+    #? Mt Rugged 2 Exit Top Right -> Mt Rugged 2 Exit Bottom Right
+    {"from": {"map": "IWA_01", "id": 3}, "to": {"map": "IWA_01", "id": 2}, "reqs": [["Lakilester"]], "mapchange": False},
 ]
