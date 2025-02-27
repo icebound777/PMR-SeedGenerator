@@ -7,5 +7,5 @@ the playground in prologue: https://youtu.be/BgYnyoo-DFY
 edges_kmr_add_jumpless_fire_flower = [
     #* Bottom of the Cliff Exit Left -> ItemA (Coin)
     # the rest of the coins and fire flower are implicitly implied by edges_kmr
-    {{"map": "KMR_03", "id": 0}, "to": {"map": "KMR_03", "id": "ItemA"}, "reqs": [["Lakilester"]]}, 
+    {"from": {"map": "KMR_03", "id": 0}, "to": {"map": "KMR_03", "id": "ItemA"}, "reqs": [["Lakilester"]]}, 
 ]

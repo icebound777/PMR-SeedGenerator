@@ -12,7 +12,7 @@ edges_iwa_add_mt_rugged_station_jumpless_climb_laki_block_clip= [
     {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": 1}, "reqs": [["Lakilester"], ["SpeedySpin"], ["Hammer"]], "mapchange": False},
 ]
 
-edges_iwa_add_mt_rugged_station_jumpless_climb_laki_block_clip= [
+edges_iwa_add_mt_rugged_station_jumpless_climb_laki= [
     #? Train Station Ride The Train -> Train Station Exit Top Right
     {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": 1}, "reqs": [["Lakilester"], ["SpeedySpin"]], "mapchange": False},
 ]
