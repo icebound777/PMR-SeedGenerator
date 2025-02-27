@@ -6,6 +6,7 @@ class GlitchOptionSet():
         self.goomba_village_entry_fence_clip = False
         self.goomba_village_npc_lure_exit = False
         self.clippy_ledge_starpiece = False
+        self.jumpless_fire_flower = False
         self.hammerless_jr_playground_laki = False
         self.goomba_village_laki_exit = False
         self.prologue_sushie_glitch_ksj = False
