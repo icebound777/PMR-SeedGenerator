@@ -622,6 +622,10 @@ def _generate_item_pools(
             if current_node_id in plando_item_placement:
                 add_to_correct_itempool(current_node.vanilla_item)
                 current_node.current_item = plando_item_placement[current_node_id]
+                if (    plando_item_placement[current_node_id].item_name in progression_miscitems_names
+                    and is_itemlocation_replenishable(current_node)
+                ):
+                    current_node.current_item.progression = True
                 all_item_nodes.append(current_node)
                 items_to_remove_from_pools.append(plando_item_placement[current_node_id])
                 items_plandod += 1
@@ -731,7 +735,7 @@ def _generate_item_pools(
         if item in pool_progression_items:
             pool_progression_items.remove(item)
             continue
-        if item in pool_misc_progression_items:
+        if item in pool_misc_progression_items and item.progression:
             pool_misc_progression_items.remove(item)
             continue
         if item in pool_badges:
