@@ -988,14 +988,8 @@ def _algo_assumed_fill(
     # with
     if is_progression_plandod:
         all_progression_yet_to_be_placed: list = []
-        all_progression_yet_to_be_placed.extend([
-            x for x in pool_progression_items
-            if x not in plando_item_placement
-        ])
-        all_progression_yet_to_be_placed.extend([
-            x for x in pool_misc_progression_items
-            if x not in plando_item_placement
-        ])
+        all_progression_yet_to_be_placed.extend(pool_progression_items)
+        all_progression_yet_to_be_placed.extend(pool_misc_progression_items)
 
         mario = MarioInventory(
             logic_settings.starting_boots,
