@@ -2,6 +2,10 @@
 
 ## 0.30.0 (beta)
 
+### Bug Fixes
+
+* Fixed an issue that would rarely cause the `Cake` item to be considered the logical progression for getting past Gourmet Guy, instead of requiring the `CakeMix` item and access to Tayce T.'s cooking
+
 ### Miscellaneous
 
 * RAM locations docs
