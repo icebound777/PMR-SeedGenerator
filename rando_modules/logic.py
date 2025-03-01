@@ -344,7 +344,7 @@ def _generate_item_pools(
     def add_to_correct_itempool(
         new_item: Item,
     ):
-        if (new_item.progression
+        if ((new_item.progression and new_item.item_type != 'ITEM')
         or (logic_settings.include_shops and "StarPiece" in new_item.item_name)
         or new_item.item_type == "GEAR"
         ):
