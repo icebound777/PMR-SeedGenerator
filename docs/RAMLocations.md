@@ -927,7 +927,7 @@ Basement - Shop Item 4                         | ModFlag   105E
 Basement - Shop Item 5                         | ModFlag   105F
 Basement - Shop Item 6                         | ModFlag   1060
 
-Super Boots Room - In Big Chest                | GameFlag   3C7
+Super Boots Room - In Big Chest                | ModFlag     35
 Super Boots Room - In Crate                    | GameFlag   3CA
 Super Boots Room - Hidden Panel                | GameFlag   3CC
 

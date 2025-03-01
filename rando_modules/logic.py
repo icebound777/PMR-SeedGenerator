@@ -355,7 +355,9 @@ def _generate_item_pools(
             ):
                 # Since progression misc items have to be placed in
                 # replenishable locations, we only need one of each
-                pool_misc_progression_items.append(new_item)
+                prog_misc_item = new_item
+                prog_misc_item.progression = True
+                pool_misc_progression_items.append(prog_misc_item)
             else:
                 if new_item.item_type == "COIN":
                     pool_coins_only.append(new_item)
@@ -894,8 +896,9 @@ def find_empty_reachable_nodes(
             item_node = reachable_item_nodes[node_id]
             current_item = item_node.current_item
             if current_item:
-                mario.add(current_item.item_name)
-                found_new_items = True
+                if current_item.progression:
+                    mario.add(current_item.item_name)
+                    found_new_items = True
                 filled_item_node_ids.add(node_id)
 
             checked_item_node_ids.add(node_id)
@@ -1097,12 +1100,13 @@ def _algo_assumed_fill(
                         manual_shop_fill_count += 1
 
             shop_code_items = random.sample(unique_nonuniques, k=missing_code_candidates_cnt)
-            for shop_code_item in shop_code_items:
+            for i, shop_code_item in enumerate(shop_code_items):
                 # check if some of the consumables are relevant to progression
                 # if so, then remove them from the misc progression instead
                 try:
                     if shop_code_item in pool_misc_progression_items:
                         pool_misc_progression_items.remove(shop_code_item)
+                        shop_code_items[i].progression = True
                     else:
                         pool_other_items.remove(shop_code_item)
                 except ValueError:
