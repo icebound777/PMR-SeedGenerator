@@ -169,8 +169,8 @@ RandomPartnerFP  : 3
 RandomStarpowerSP: 3
 
 # Misc Gameplay Randomization
-ShuffleBlocks   : true
-RandomizePuzzles: true
+MultiCoinBlockShuffle: 2 # 0: off, 1: shuffle, 2: anywhere
+RandomizePuzzles     : true
 
 # Quizmo Quizzes
 RandomQuiz         : true

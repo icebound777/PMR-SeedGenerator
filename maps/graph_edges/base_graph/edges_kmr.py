@@ -69,16 +69,17 @@ edges_kmr  = [
     # KMR_04 Jr. Troopa's Playground
     {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_03", "id": 0}, "reqs": []}, # Jr. Troopa's Playground Exit Right -> Bottom of the Cliff Exit Left
 
-    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Tree1_Drop1"},  "reqs": [["can_shake_trees"]]}, #* Jr. Troopa's Playground Exit Right -> Tree1_Drop1 (Coin)
-    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Tree2_Drop1"},  "reqs": [["can_shake_trees"]]}, #* Jr. Troopa's Playground Exit Right -> Tree2_Drop1 (Coin)
-    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Tree3_Drop1A"}, "reqs": [["can_shake_trees"]]}, #* Jr. Troopa's Playground Exit Right -> Tree3_Drop1A (Dolly)
-    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush1_Drop1"},  "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush1_Drop1 (Coin)
-    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush2_Drop1"},  "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush2_Drop1 (Coin)
-    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush3_Drop1A"}, "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush3_Drop1A (Coin)
-    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush3_Drop1B"}, "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush3_Drop1B (Coin)
-    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush4_Drop1"},  "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush4_Drop1 (Coin)
-    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush5_Drop1"},  "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush5_Drop1 (Coin)
-    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush7_Drop1"},  "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush7_Drop1 (Hammer)
+    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Tree1_Drop1"},      "reqs": [["can_shake_trees"]]}, #* Jr. Troopa's Playground Exit Right -> Tree1_Drop1 (Coin)
+    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Tree2_Drop1"},      "reqs": [["can_shake_trees"]]}, #* Jr. Troopa's Playground Exit Right -> Tree2_Drop1 (Coin)
+    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Tree3_Drop1A"},     "reqs": [["can_shake_trees"]]}, #* Jr. Troopa's Playground Exit Right -> Tree3_Drop1A (Dolly)
+    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush1_Drop1"},      "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush1_Drop1 (Coin)
+    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush2_Drop1"},      "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush2_Drop1 (Coin)
+    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush3_Drop1A"},     "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush3_Drop1A (Coin)
+    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush3_Drop1B"},     "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush3_Drop1B (Coin)
+    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush4_Drop1"},      "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush4_Drop1 (Coin)
+    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush5_Drop1"},      "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush5_Drop1 (Coin)
+    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "Bush7_Drop1"},      "reqs": []}, #* Jr. Troopa's Playground Exit Right -> Bush7_Drop1 (Hammer)
+    {"from": {"map": "KMR_04", "id": 0}, "to": {"map": "KMR_04", "id": "RandomBlockItemA"}, "reqs": [["can_hit_grounded_blocks"]]}, #* Jr. Troopa's Playground -> RandomBlockItemA (CoinBag)
 
     # KMR_09 Goomba Road 1
     {"from": {"map": "KMR_09", "id": 0}, "to": {"map": "KMR_02", "id": 0}, "reqs": []}, # Goomba Road 1 Exit Left -> Goomba Village Exit Right

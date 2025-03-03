@@ -97,6 +97,12 @@ class PartnerUpgradeShuffle(IntEnum):
     FULL = 2
 
 @unique
+class MultiCoinBlockShuffle(IntEnum):
+    OFF = 0
+    SHUFFLE = 1
+    ANYWHERE = 2
+
+@unique
 class SeedGoal(IntEnum):
     DEFEAT_BOWSER = 0
     OPEN_STARWAY = 1

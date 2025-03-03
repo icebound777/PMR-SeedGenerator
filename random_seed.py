@@ -19,14 +19,12 @@ from rando_modules.logic import \
     place_items,\
     get_item_spheres,\
     get_items_to_exclude
-from rando_modules.random_blocks import get_block_placement
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.modify_entrances import get_shuffled_battles
 from rando_modules.modify_entrances import (
     get_shorter_bowsercastle,
     get_bowsercastle_bossrush,
     get_gear_location_shuffle,
-    get_partner_upgrade_shuffle,
     get_glitched_logic,
     adjust_shop_logic,
     set_starway_requirements,
@@ -79,7 +77,6 @@ class RandomSeed:
         self.starting_partners = []
         self.starting_items = []
         self.placed_items = []
-        self.placed_blocks = []
         self.entrance_list = []
         self.enemy_stats = []
         self.battles = []
@@ -125,7 +122,6 @@ class RandomSeed:
                 modified_world_graph = deepcopy(world_graph)
                 self.placed_items = []
                 self.entrance_list = []
-                self.placed_blocks = []
                 self.battles = []
                 self.spoilerlog_additions = {}
                 self.item_spheres_dict = None
@@ -246,13 +242,6 @@ class RandomSeed:
                         self.spoilerlog_additions["entrances"] = []
                     self.spoilerlog_additions["entrances"].extend(spoilerlog_info)
 
-                # Set up partner upgrade shuffle if needed
-                if logic_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF:
-                    modified_world_graph, self.placed_blocks = get_partner_upgrade_shuffle(
-                        modified_world_graph,
-                        logic_settings.shuffle_blocks,
-                        dc_rando_settings.glitch_settings
-                    )
 
                 # Adjust graph logic if needed
                 if logic_settings.gear_shuffle_mode != GearShuffleMode.VANILLA:
@@ -440,13 +429,6 @@ class RandomSeed:
         self.rando_settings.mystery_settings = get_random_mystery(
             self.rando_settings.mystery_settings
         )
-
-        # Randomize blocks if needed and not already done logically
-        if not self.placed_blocks:
-            self.placed_blocks = get_block_placement(
-                logic_settings.shuffle_blocks,
-                supers_are_yellow=False
-            )
 
         # Randomize stat distribution if needed
         if self.rando_settings.random_starting_stats_level >= 0:

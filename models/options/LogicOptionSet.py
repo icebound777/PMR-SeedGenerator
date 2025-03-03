@@ -9,6 +9,7 @@ from rando_enums.enum_options import (
     ItemTrapMode,
     PartnerShuffle,
     DojoShuffle,
+    MultiCoinBlockShuffle,
 )
 
 class LogicOptionSet():
@@ -132,5 +133,5 @@ class LogicOptionSet():
         self.unpaired_entrances = False # NYI
 
         # Misc Gameplay Randomization
-        self.shuffle_blocks = False
+        self.multicoin_block_shuffle = MultiCoinBlockShuffle.OFF
         self.randomize_puzzles = False

@@ -7,8 +7,6 @@ from copy import deepcopy
 
 from worldgraph import adjust
 
-from rando_modules.random_blocks import get_block_placement
-
 from rando_enums.enum_options import (
     GearShuffleMode,
     BowserCastleMode,
@@ -39,24 +37,6 @@ from maps.graph_edges.goal_openstarway.edges_hos import (
     edges_hos_goal_openstarway_add,
     edges_hos_goal_openstarway_remove
 )
-
-# Imports: Partner Upgrade Shuffle
-from rando_enums.enum_types import BlockType
-from maps.graph_edges.partner_upgrade_shuffle.edges_arn import edges_arn_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_dgb import edges_dgb_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_flo import edges_flo_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_isk import edges_isk_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_iwa import edges_iwa_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_jan import edges_jan_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_kmr import edges_kmr_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_kzn import edges_kzn_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_mac import edges_mac_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_nok import edges_nok_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_omo import edges_omo_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_pra import edges_pra_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_sam import edges_sam_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_sbk import edges_sbk_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_tik import edges_tik_add_partnerupgrades
 
 # Imports: Battle Shuffle
 from rando_modules.random_battles import get_boss_battles
@@ -407,62 +387,6 @@ def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     )
 
     return world_graph
-
-
-def get_partner_upgrade_shuffle(
-    world_graph: dict,
-    shuffle_blocks: bool,
-    glitch_settings: GlitchOptionSet
-) -> (dict, list):
-    """
-    Returns the modified world graph itself for Partner Upgrade Shuffle,
-    with upgrades shuffled between SuperBlock locations and, if needed,
-    MultiCoinBlock locations.
-    """
-    block_placement = get_block_placement(
-        shuffle_blocks,
-        supers_are_yellow=True
-    )
-
-    # handle upgrade block glitch logic first
-    if glitch_settings.clippy_sewers_upgrade_block:
-        edges_tik_add_partnerupgrades.extend(edges_tik_add_clippy_sewers_upgrade_block)
-    if glitch_settings.clippy_green_station_coin_block:
-        edges_omo_add_partnerupgrades.extend(edges_omo_clippy_green_station_coin_block)
-
-    edges_partner_upgrade = []
-    edges_partner_upgrade.extend(edges_arn_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_dgb_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_flo_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_isk_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_iwa_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_jan_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_kmr_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_kzn_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_mac_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_nok_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_omo_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_pra_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_sam_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_sbk_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_tik_add_partnerupgrades)
-
-    all_new_edges = []
-
-    for block_dbkey, block_type in block_placement:
-        if block_type == BlockType.YELLOW:
-            # add relevant graph edge to new edges
-            for cur_block_dbkey, edge in edges_partner_upgrade:
-                if block_dbkey == cur_block_dbkey:
-                    all_new_edges.append(edge)
-
-    world_graph, _ = adjust(
-        world_graph,
-        new_edges=all_new_edges,
-        edges_to_remove=[]
-    )
-
-    return world_graph, block_placement
 
 
 def set_starway_requirements(
@@ -841,6 +765,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_tik_add_island_pipe_blooper_skip)
     if glitch_settings.parakarryless_sewer_star_piece:
         all_new_edges.extend(edges_tik_add_parakarryless_sewer_star_piece)
+    if glitch_settings.clippy_sewers_upgrade_block:
+        edges_tik_add_partnerupgrades.extend(edges_tik_add_clippy_sewers_upgrade_block)
     if glitch_settings.sewer_blocks_without_ultra_boots:
         all_new_edges.extend(edges_tik_add_sewer_blocks_without_ultra_boots)
     if glitch_settings.chapter_7_bridge_with_super_boots:
@@ -987,6 +913,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_omo_add_gourmet_guy_skip_parakarry)
     if glitch_settings.bowless_green_station:
         all_new_edges.extend(edges_omo_add_bowless_green_station_laki)
+    if glitch_settings.clippy_green_station_coin_block:
+        edges_omo_add_partnerupgrades.extend(edges_omo_clippy_green_station_coin_block)
     if glitch_settings.kooperless_red_station_shooting_star:
         all_new_edges.extend(edges_omo_add_red_station_shooting_star_parakarry)
     if glitch_settings.gearless_red_station_shooting_star:

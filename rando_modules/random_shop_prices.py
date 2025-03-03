@@ -100,6 +100,9 @@ def get_shop_price(
             elif item_type == "COIN":
                 buy_price = 1
 
+            elif node.current_item.item_name == "CoinBag":
+                buy_price = 10
+
             elif item_type == "STARPIECE":
                 buy_price = random.choice([2,4,6,8,10])
 

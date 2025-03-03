@@ -43,6 +43,8 @@ edges_kzn = [
     # KZN_04 Fire Bar Bridge
     {"from": {"map": "KZN_04", "id": 0}, "to": {"map": "KZN_03", "id": 1}, "reqs": []}, # Fire Bar Bridge Exit West -> Central Cavern Exit East Upper
 
+    {"from": {"map": "KZN_04", "id": 0}, "to": {"map": "KZN_04", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Fire Bar Bridge Exit West -> RandomBlockItemA (GenericUpgrade)
+
     # KZN_05 Descent Toward Ultra Hammer
     {"from": {"map": "KZN_05", "id": 0}, "to": {"map": "KZN_06", "id": 0}, "reqs": []}, # Descent Toward Ultra Hammer Exit West -> Flowing Lava Puzzle Exit East Upper
     {"from": {"map": "KZN_05", "id": 1}, "to": {"map": "KZN_03", "id": 3}, "reqs": []}, # Descent Toward Ultra Hammer Exit East -> Central Cavern Exit West Lower
@@ -81,8 +83,9 @@ edges_kzn = [
     {"from": {"map": "KZN_09", "id": 0}, "to": {"map": "KZN_09", "id": 2}, "reqs": []}, #? Zipline Cavern Exit West Upper -> Zipline Cavern Exit West Lower
     {"from": {"map": "KZN_09", "id": 1}, "to": {"map": "KZN_09", "id": 2}, "reqs": [["can_climb_steps"]]}, #? Zipline Cavern Exit East -> Zipline Cavern Exit West Lower
 
-    {"from": {"map": "KZN_09", "id": 2}, "to": {"map": "KZN_09", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Zipline Cavern Exit West Lower -> HiddenPanel (StarPiece)
-    {"from": {"map": "KZN_09", "id": 1}, "to": {"map": "KZN_09", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Zipline Cavern Exit East -> HiddenPanel (StarPiece)
+    {"from": {"map": "KZN_09", "id": 2}, "to": {"map": "KZN_09", "id": "HiddenPanel"},      "reqs": [["can_flip_panels"]]}, #* Zipline Cavern Exit West Lower -> HiddenPanel (StarPiece)
+    {"from": {"map": "KZN_09", "id": 1}, "to": {"map": "KZN_09", "id": "HiddenPanel"},      "reqs": [["can_flip_panels"]]}, #* Zipline Cavern Exit East -> HiddenPanel (StarPiece)
+    {"from": {"map": "KZN_09", "id": 0}, "to": {"map": "KZN_09", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Zipline Cavern Exit West Upper -> RandomBlockItemA (GenericUpgrade)
 
     # KZN_10 Descent Toward Boss
     {"from": {"map": "KZN_10", "id": 0}, "to": {"map": "KZN_09", "id": 1}, "reqs": []}, # Descent Toward Boss Exit West -> Zipline Cavern Exit East

@@ -2,14 +2,32 @@
 
 ## 0.30.0 (beta)
 
+### Feature Changes
+
+* `Multi Coin Block Shuffle` feature
+  * Was formerly called `Shuffle Blocks`.
+  * Can now choose between the values `off`, `shuffle` (was formerly `on`), and `anywhere`.
+  * The value `shuffle` is no longer biased to be evenly distributed. This now gives the areas with more block locations (like Dry Dry Desert) a higher chance at having more super blocks.
+  * If the value `anywhere` is chosen, then Multi Coin Blocks can be shuffled into non-block locations. If this happens, they will instead turn into the new `Coin Bag` item, which gives 10 coins on pick-up.
+    * Shoutouts to **typographics** for designing the item sprite for the new `Coin Bag` item!
+
+### Quality of Life
+
+* Made Harry, the shop keeper in southern Toad Town, offer to buy, check, and claim Mario's items without first unlocking his storeroom using the Storeroom Key.
+
 ### Bug Fixes
 
 * Fixed an issue that would rarely cause the `Cake` item to be considered the logical progression for getting past Gourmet Guy, instead of requiring the `CakeMix` item and access to Tayce T.'s cooking
 
 ### Miscellaneous
 
+* Modified credits scene
+  * Added `typographics` to the in-game credits, for making the `Coin Bag` item sprite.
+  * Removed `Jdaster64` from the in-game credits, as he was originally added there due to a misunderstanding. Sorry Jdaster, hope you don't mind too much :)
 * RAM locations docs
-  * Fix wrong item check collected flag for Boo's Mansion - Super Boots Room - In Big Chest. This should stop auto-trackers marking the item as collected even if the item is never picked up
+  * Fix wrong item check collected flag for Boo's Mansion - Super Boots Room - In Big Chest. This should stop auto-trackers marking the item as collected even if the item is never picked up.
+* New bomb trigger for Toad Town playroom
+  * We originally moved the Bombette bomb trigger for opening the Toad Town playroom over to the tree, because the bomb trigger was on the wrong side of the map. We now moved that bomb trigger back to its original, wrong position, and added a second bomb trigger next to the tree. This way both of these locations work for opening the playroom, so you can show off knowing this obscure bug to your friends again :)
 
 ## 0.29.0 (beta)
 

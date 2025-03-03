@@ -15,6 +15,7 @@ from rando_enums.enum_options import (
     MerlowRewardPricing,
     MusicRandomizationType,
     PartnerUpgradeShuffle,
+    MultiCoinBlockShuffle,
     SeedGoal,
     DungeonEntranceShuffle,
     PartnerShuffle,
@@ -456,8 +457,8 @@ class OptionSet:
             self.random_starpower_sp = options_dict.get("RandomStarpowerSP")
 
         # Misc Gameplay Randomization
-        if "ShuffleBlocks" in options_dict:
-            self.logic_settings.shuffle_blocks = options_dict.get("ShuffleBlocks")
+        if "MultiCoinBlockShuffle" in options_dict:
+            self.logic_settings.multicoin_block_shuffle = options_dict.get("MultiCoinBlockShuffle")
         if "RandomizePuzzles" in options_dict:
             self.logic_settings.randomize_puzzles = options_dict.get("RandomizePuzzles")
 
@@ -957,9 +958,7 @@ class OptionSet:
             map_tracker_bits += 0x2000
         if self.logic_settings.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
             map_tracker_bits += 0x4000
-        if (    self.logic_settings.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
-            and self.logic_settings.shuffle_blocks
-        ):
+        if self.logic_settings.multicoin_block_shuffle == MultiCoinBlockShuffle.ANYWHERE:
             map_tracker_bits += 0x8000
         self.map_tracker_check_bits = map_tracker_bits
         self.map_tracker_shop_bits = 0x7
@@ -1895,7 +1894,7 @@ class OptionSet:
         web_settings["RandomChoice"] = self.mystery_settings.mystery_random_choice
         web_settings["MysteryRandomPick"] = self.mystery_settings.mystery_random_pick
         web_settings["AllowItemHints"] = self.allow_itemhints
-        web_settings["ShuffleBlocks"] = self.logic_settings.shuffle_blocks
+        web_settings["MultiCoinBlockShuffle"] = self.logic_settings.multicoin_block_shuffle
         web_settings["RandomizePuzzles"] = self.logic_settings.randomize_puzzles
         web_settings["RandomPitch"] = self.random_pitch
         web_settings["MuteDangerBeeps"] = self.mute_danger_beeps

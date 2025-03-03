@@ -322,6 +322,7 @@ verbose_item_names = {
     "PouchC": "ItemPouch",
     "PouchD": "ItemPouch",
     "PouchE": "ItemPouch",
+    "GenericUpgrade": "SuperBlock",
     "GoombarioUp1": "GoombarioUpgrade",
     "KooperUp1": "KooperUpgrade",
     "BombetteUp1": "BombetteUpgrade",

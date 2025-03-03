@@ -24,7 +24,6 @@ from db.option          import Option, create_options
 from db.map_meta        import create_mapmeta
 from db.item            import create_items
 from db.node            import create_nodes
-from db.block           import create_blocks
 from db.actor           import create_actors
 from db.actor_params    import create_actor_params
 from db.actor_attribute import create_actor_attributes
@@ -60,7 +59,6 @@ def init_randomizer(rebuild_database=False):
         create_mapmeta()
         create_items()
         create_nodes()
-        create_blocks()
         create_actors()
         create_actor_params()
         create_actor_attributes()
@@ -125,7 +123,6 @@ def write_data_to_rom(
     target_modfile:str,
     options:OptionSet,
     placed_items:list,
-    placed_blocks:list,
     entrance_list:list,
     enemy_stats:list,
     battle_formations:list,
@@ -153,7 +150,6 @@ def write_data_to_rom(
     table_data = rom_table.generate_pairs(
         options=options,
         items=placed_items,
-        blocks=placed_blocks,
         entrances=entrance_list,
         actor_data=enemy_stats,
         move_costs=move_costs,
@@ -258,7 +254,6 @@ def write_data_to_rom(
 def write_data_to_array(
     options:OptionSet,
     placed_items:list,
-    placed_blocks:list,
     entrance_list:list,
     enemy_stats:list,
     battle_formations:list,
@@ -287,7 +282,6 @@ def write_data_to_array(
     table_data = rom_table.generate_pairs(
         options=options,
         items=placed_items,
-        blocks=placed_blocks,
         entrances = entrance_list,
         actor_data=enemy_stats,
         move_costs=move_costs,
@@ -610,7 +604,6 @@ def web_randomizer(settingsJson, plandoData, world_graph):
     operations, palette_offset, cosmetics_offset, audio_offset, music_offset = write_data_to_array(
         options=random_seed.rando_settings,
         placed_items=random_seed.placed_items,
-        placed_blocks=random_seed.placed_blocks,
         entrance_list=random_seed.entrance_list,
         enemy_stats=random_seed.enemy_stats,
         battle_formations=random_seed.battle_formations,
@@ -657,7 +650,6 @@ def web_randomizer(settingsJson, plandoData, world_graph):
         is_web_spoiler_log=True,
         spheres_dict=random_seed.item_spheres_dict,
         move_costs=random_seed.move_costs,
-        block_locations=random_seed.placed_blocks,
         puzzle_solutions=random_seed.puzzle_minigame_data,
         battle_shuffles=random_seed.battles,
         spoilerlog_additions=random_seed.spoilerlog_additions,
@@ -807,7 +799,6 @@ def main_randomizer(args):
             target_modfile=target_modfile,
             options=random_seed.rando_settings,
             placed_items=random_seed.placed_items,
-            placed_blocks=random_seed.placed_blocks,
             entrance_list=random_seed.entrance_list,
             enemy_stats=random_seed.enemy_stats,
             battle_formations=random_seed.battle_formations,
@@ -839,7 +830,6 @@ def main_randomizer(args):
             spoilerlog_file=target_spoilerfile,
             spheres_dict=random_seed.item_spheres_dict,
             move_costs=random_seed.move_costs,
-            block_locations=random_seed.placed_blocks,
             puzzle_solutions=random_seed.puzzle_minigame_data,
             battle_shuffles=random_seed.battles,
             spoilerlog_additions=random_seed.spoilerlog_additions,

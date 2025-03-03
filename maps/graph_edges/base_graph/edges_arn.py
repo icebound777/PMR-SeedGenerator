@@ -30,9 +30,10 @@ edges_arn = [
     {"from": {"map": "ARN_04", "id": 0}, "to": {"map": "ARN_04", "id": 1}, "reqs": [["Parakarry"]]}, #? Wasteland Ascent 2 Exit West -> Wasteland Ascent 2 Exit East
     {"from": {"map": "ARN_04", "id": 1}, "to": {"map": "ARN_04", "id": 0}, "reqs": []}, #? Wasteland Ascent 2 Exit East -> Wasteland Ascent 2 Exit West
 
-    {"from": {"map": "ARN_04", "id": 1},         "to": {"map": "ARN_04", "id": "ItemA"},   "reqs": []}, #* Wasteland Ascent 2 Exit East -> ItemA (StarPiece)
-    {"from": {"map": "ARN_04", "id": 1},         "to": {"map": "ARN_04", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Wasteland Ascent 2 Exit East -> YBlockA (SuperShroom)
-    {"from": {"map": "ARN_04", "id": "YBlockA"}, "to": {"map": "ARN_04", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "ARN_04", "id": 1},         "to": {"map": "ARN_04", "id": "ItemA"},            "reqs": []}, #* Wasteland Ascent 2 Exit East -> ItemA (StarPiece)
+    {"from": {"map": "ARN_04", "id": 1},         "to": {"map": "ARN_04", "id": "YBlockA"},          "reqs": [["can_hit_floating_blocks"]]}, #* Wasteland Ascent 2 Exit East -> YBlockA (SuperShroom)
+    {"from": {"map": "ARN_04", "id": "YBlockA"}, "to": {"map": "ARN_04", "id": "YBlockB"},          "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "ARN_04", "id": 1},         "to": {"map": "ARN_04", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Wasteland Ascent 2 Exit East -> RandomBlockItemA (CoinBag)
 
     # ARN_05 Ghost Town 2
     {"from": {"map": "ARN_05", "id": 0}, "to": {"map": "ARN_03", "id": 1}, "reqs": []}, # Ghost Town 2 Exit West -> Ghost Town 1 Exit East

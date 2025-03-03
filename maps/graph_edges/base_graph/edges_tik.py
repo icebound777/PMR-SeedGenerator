@@ -81,7 +81,8 @@ edges_tik = [
     {"from": {"map": "TIK_07", "id": 0}, "to": {"map": "TIK_07", "id": 2}, "reqs": [["Boots"]]}, #? Elevator Attic Room (B2) Exit Left -> Elevator Attic Room (B2) Green Pipe Right
     {"from": {"map": "TIK_07", "id": 1}, "to": {"map": "TIK_07", "id": 0}, "reqs": []}, #? Elevator Attic Room (B2) Green Pipe Left -> Elevator Attic Room (B2) Exit Left
 
-    {"from": {"map": "TIK_07", "id": 0}, "to": {"map": "TIK_07", "id": "ItemA"}, "reqs": [["Parakarry"]]}, #* Elevator Attic Room (B2) Exit Left -> ItemA (StarPiece)
+    {"from": {"map": "TIK_07", "id": 0}, "to": {"map": "TIK_07", "id": "ItemA"},            "reqs": [["Parakarry"]]}, #* Elevator Attic Room (B2) Exit Left -> ItemA (StarPiece)
+    {"from": {"map": "TIK_07", "id": 0}, "to": {"map": "TIK_07", "id": "RandomBlockItemA"}, "reqs": [["can_climb_steps"],["can_hit_floating_blocks"]]}, #* Elevator Attic Room (B2) Exit Left -> RandomBlockItemA (GenericUpgrade)
 
     # TIK_08 Second Level Entry (B2)
     {"from": {"map": "TIK_08", "id": 0}, "to": {"map": "TIK_09", "id": 1}, "reqs": []}, # Second Level Entry (B2) Exit Left -> Warp Zone 2 (B2) Exit Right
@@ -115,12 +116,15 @@ edges_tik = [
     # TIK_10 Block Puzzle Room (B2)
     {"from": {"map": "TIK_10", "id": 0}, "to": {"map": "TIK_09", "id": 0}, "reqs": []}, # Block Puzzle Room (B2) Exit Right -> Warp Zone 2 (B2) Exit Left
 
-    {"from": {"map": "TIK_10", "id": 0},               "to": {"map": "TIK_10", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"],["can_climb_steps"]]}, #* Block Puzzle Room (B2) Exit Right -> HiddenYBlockA (Coin)
-    {"from": {"map": "TIK_10", "id": "HiddenYBlockA"}, "to": {"map": "TIK_10", "id": "HiddenYBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> HiddenYBlockB (Coin)
-    {"from": {"map": "TIK_10", "id": "HiddenYBlockA"}, "to": {"map": "TIK_10", "id": "HiddenYBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> HiddenYBlockC (Coin)
+    {"from": {"map": "TIK_10", "id": 0},               "to": {"map": "TIK_10", "id": "HiddenYBlockA"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"],["can_climb_steps"]]}, #* Block Puzzle Room (B2) Exit Right -> HiddenYBlockA (Coin)
+    {"from": {"map": "TIK_10", "id": "HiddenYBlockA"}, "to": {"map": "TIK_10", "id": "HiddenYBlockB"},    "reqs": []}, #+ SHARED REQUIREMENTS -> HiddenYBlockB (Coin)
+    {"from": {"map": "TIK_10", "id": "HiddenYBlockA"}, "to": {"map": "TIK_10", "id": "HiddenYBlockC"},    "reqs": []}, #+ SHARED REQUIREMENTS -> HiddenYBlockC (Coin)
+    {"from": {"map": "TIK_10", "id": "HiddenYBlockA"}, "to": {"map": "TIK_10", "id": "RandomBlockItemA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> RandomBlockItemA (GenericUpgrade)
 
     # TIK_12 Metal Block Room (B3)
     {"from": {"map": "TIK_12", "id": 0}, "to": {"map": "TIK_04", "id": 3}, "reqs": []}, # Metal Block Room (B3) Green Pipe Left -> Scales Room (B2) Green Pipe BottomRight
+
+    {"from": {"map": "TIK_12", "id": 0}, "to": {"map": "TIK_12", "id": "RandomBlockItemA"}, "reqs": [["UltraHammer"],["can_climb_steps"],["can_hit_floating_blocks"]]}, #* Metal Block Room (B3) Green Pipe Left -> RandomBlockItemA (GenericUpgrade)
 
     # TIK_14 Rip Cheato Antechamber (B3)
     {"from": {"map": "TIK_14", "id": 0}, "to": {"map": "TIK_21", "id": 2}, "reqs": []}, # Rip Cheato Antechamber (B3) Green Pipe Left -> Hidden Blocks Room (B2) Green Pipe BottomRight
@@ -155,6 +159,8 @@ edges_tik = [
     {"from": {"map": "TIK_17", "id": 0}, "to": {"map": "TIK_17", "id": 1}, "reqs": [["can_climb_steps"]]}, #? Frozen Room (B3) Green Pipe Left -> Frozen Room (B3) Green Pipe Right
     {"from": {"map": "TIK_17", "id": 1}, "to": {"map": "TIK_17", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Frozen Room (B3) Green Pipe Right -> Frozen Room (B3) Green Pipe Left
 
+    {"from": {"map": "TIK_17", "id": 0}, "to": {"map": "TIK_17", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Frozen Room (B3) Green Pipe Left -> RandomBlockItemA (GenericUpgrade)
+
     # TIK_18 Hall to Blooper 1 (B1)
     {"from": {"map": "TIK_18", "id": 0}, "to": {"map": "TIK_06", "id": 1}, "reqs": []}, # Hall to Blooper 1 (B1) Exit Left -> Sewer Entrance (B1) Exit Right
     {"from": {"map": "TIK_18", "id": 1}, "to": {"map": "TIK_02", "id": 0}, "reqs": []}, # Hall to Blooper 1 (B1) Exit Right -> Blooper Boss 1 (B1) Exit Left
@@ -162,10 +168,13 @@ edges_tik = [
     {"from": {"map": "TIK_18", "id": 0}, "to": {"map": "TIK_18", "id": 1}, "reqs": []}, #? Hall to Blooper 1 (B1) Exit Left -> Hall to Blooper 1 (B1) Exit Right
     {"from": {"map": "TIK_18", "id": 1}, "to": {"map": "TIK_18", "id": 0}, "reqs": []}, #? Hall to Blooper 1 (B1) Exit Right -> Hall to Blooper 1 (B1) Exit Left
 
-    {"from": {"map": "TIK_18", "id": 0}, "to": {"map": "TIK_18", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* Hall to Blooper 1 (B1) Exit Left -> HiddenYBlockA (SuperShroom)
+    {"from": {"map": "TIK_18", "id": 0}, "to": {"map": "TIK_18", "id": "HiddenYBlockA"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* Hall to Blooper 1 (B1) Exit Left -> HiddenYBlockA (SuperShroom)
+    {"from": {"map": "TIK_18", "id": 0}, "to": {"map": "TIK_18", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Hall to Blooper 1 (B1) Exit Left -> RandomBlockItemA (CoinBag)
 
     # TIK_19 Under the Toad Town Pond
     {"from": {"map": "TIK_19", "id": 0}, "to": {"map": "MAC_00", "id": 3}, "reqs": []}, # Under the Toad Town Pond Green Pipe Left -> Gate District Island Pipe
+
+    {"from": {"map": "TIK_19", "id": 0}, "to": {"map": "TIK_19", "id": "RandomBlockItemA"}, "reqs": [["can_climb_steps"],["can_hit_floating_blocks"]]}, #* Under the Toad Town Pond Green Pipe Left -> RandomBlockItemA (GenericUpgrade)
 
     # TIK_20 Room with Spikes (B2)
     {"from": {"map": "TIK_20", "id": 0}, "to": {"map": "TIK_08", "id": 1}, "reqs": []}, # Room with Spikes (B2) Exit Left -> Second Level Entry (B2) Exit Right

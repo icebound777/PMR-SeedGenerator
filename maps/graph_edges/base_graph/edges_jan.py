@@ -155,14 +155,15 @@ edges_jan = [
     {"from": {"map": "JAN_08", "id": 0}, "to": {"map": "JAN_08", "id": 2}, "reqs": [["Sushie"]]}, #? SW Jungle (Super Block) Exit Bottom Left -> SW Jungle (Super Block) Exit Top
     {"from": {"map": "JAN_08", "id": 2}, "to": {"map": "JAN_08", "id": 0}, "reqs": [["Sushie"]]}, #? SW Jungle (Super Block) Exit Top -> SW Jungle (Super Block) Exit Bottom Left
 
-    {"from": {"map": "JAN_08", "id": 0},       "to": {"map": "JAN_08", "id": "ItemA"},         "reqs": [["Sushie"]]}, #* SW Jungle (Super Block) Exit Bottom Left -> ItemA (Coin)
-    {"from": {"map": "JAN_08", "id": "ItemA"}, "to": {"map": "JAN_08", "id": "ItemB"},         "reqs": []}, #+ SHARED REQUIREMENTS -> ItemB (Coin)
-    {"from": {"map": "JAN_08", "id": "ItemA"}, "to": {"map": "JAN_08", "id": "ItemC"},         "reqs": []}, #+ SHARED REQUIREMENTS -> ItemC (Coin)
-    {"from": {"map": "JAN_08", "id": 2},       "to": {"map": "JAN_08", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* SW Jungle (Super Block) Exit Top -> HiddenYBlockA (ThunderRage)
-    {"from": {"map": "JAN_08", "id": 2},       "to": {"map": "JAN_08", "id": "Bush1_Drop1"},   "reqs": []}, #* SW Jungle (Super Block) Exit Top -> Bush1_Drop1 (Coin)
-    {"from": {"map": "JAN_08", "id": 0},       "to": {"map": "JAN_08", "id": "Bush2_Drop1"},   "reqs": []}, #* SW Jungle (Super Block) Exit Bottom Left -> Bush2_Drop1 (Coin)
-    {"from": {"map": "JAN_08", "id": 2},       "to": {"map": "JAN_08", "id": "Tree2_Drop1"},   "reqs": [["can_shake_trees"]]}, #* SW Jungle (Super Block) Exit Top -> Tree2_Drop1 (Coin)
-    {"from": {"map": "JAN_08", "id": 2},       "to": {"map": "JAN_08", "id": "Tree3_Drop1"},   "reqs": [["can_shake_trees"]]}, #* SW Jungle (Super Block) Exit Top -> Tree3_Drop1 (Coin)
+    {"from": {"map": "JAN_08", "id": 0},       "to": {"map": "JAN_08", "id": "ItemA"},            "reqs": [["Sushie"]]}, #* SW Jungle (Super Block) Exit Bottom Left -> ItemA (Coin)
+    {"from": {"map": "JAN_08", "id": "ItemA"}, "to": {"map": "JAN_08", "id": "ItemB"},            "reqs": []}, #+ SHARED REQUIREMENTS -> ItemB (Coin)
+    {"from": {"map": "JAN_08", "id": "ItemA"}, "to": {"map": "JAN_08", "id": "ItemC"},            "reqs": []}, #+ SHARED REQUIREMENTS -> ItemC (Coin)
+    {"from": {"map": "JAN_08", "id": 2},       "to": {"map": "JAN_08", "id": "HiddenYBlockA"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* SW Jungle (Super Block) Exit Top -> HiddenYBlockA (ThunderRage)
+    {"from": {"map": "JAN_08", "id": 2},       "to": {"map": "JAN_08", "id": "Bush1_Drop1"},      "reqs": []}, #* SW Jungle (Super Block) Exit Top -> Bush1_Drop1 (Coin)
+    {"from": {"map": "JAN_08", "id": 0},       "to": {"map": "JAN_08", "id": "Bush2_Drop1"},      "reqs": []}, #* SW Jungle (Super Block) Exit Bottom Left -> Bush2_Drop1 (Coin)
+    {"from": {"map": "JAN_08", "id": 2},       "to": {"map": "JAN_08", "id": "Tree2_Drop1"},      "reqs": [["can_shake_trees"]]}, #* SW Jungle (Super Block) Exit Top -> Tree2_Drop1 (Coin)
+    {"from": {"map": "JAN_08", "id": 2},       "to": {"map": "JAN_08", "id": "Tree3_Drop1"},      "reqs": [["can_shake_trees"]]}, #* SW Jungle (Super Block) Exit Top -> Tree3_Drop1 (Coin)
+    {"from": {"map": "JAN_08", "id": 2},       "to": {"map": "JAN_08", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* SW Jungle (Super Block) Exit Top -> RandomBlockItemA (GenericUpgrade)
 
     {"from": {"map": "JAN_08", "id": 0}, "to": {"map": "JAN_08", "id": 0}, "reqs": [["RF_YoshiKidsMissing"]], "pseudoitems": ["RF_SavedYoshiKid_3"]}, #+ Save Yoshi Kid
 

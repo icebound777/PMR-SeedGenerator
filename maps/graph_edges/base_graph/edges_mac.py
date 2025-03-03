@@ -213,11 +213,12 @@ edges_mac = [
     {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 3}, "reqs": [["Hammer","SuperBoots","Bombette"]]}, #? Port District Exit Right -> Port District Enter Whale
     {"from": {"map": "MAC_05", "id": 3}, "to": {"map": "MAC_05", "id": 0}, "reqs": []}, #? Port District Enter Whale -> Port District Exit Right
 
-    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": "GiftA"},       "reqs": []}, #* Port District Exit Right -> GiftA (Lyrics)
-    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": "GiftB"},       "reqs": [["Melody"]]}, #* Port District Exit Right -> GiftB (AttackFXD)
-    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": "GiftC"},       "reqs": [["Parakarry"],["Letter15"]]}, #* Port District Exit Right -> GiftC (Letter16)
-    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": "GiftD"},       "reqs": [["RF_RadioTradeEvt3"],["Coconut"]], "pseudoitems": ["RF_RadioTradeEvt3Done"]}, #* Port District Exit Right -> GiftD (YummyMeal)
-    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Port District Exit Right -> HiddenPanel (StarPiece)
+    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": "GiftA"},            "reqs": []}, #* Port District Exit Right -> GiftA (Lyrics)
+    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": "GiftB"},            "reqs": [["Melody"]]}, #* Port District Exit Right -> GiftB (AttackFXD)
+    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": "GiftC"},            "reqs": [["Parakarry"],["Letter15"]]}, #* Port District Exit Right -> GiftC (Letter16)
+    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": "GiftD"},            "reqs": [["RF_RadioTradeEvt3"],["Coconut"]], "pseudoitems": ["RF_RadioTradeEvt3Done"]}, #* Port District Exit Right -> GiftD (YummyMeal)
+    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": "HiddenPanel"},      "reqs": [["can_flip_panels"]]}, #* Port District Exit Right -> HiddenPanel (StarPiece)
+    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": "RandomBlockItemA"}, "reqs": [["Boots"]]}, #* Port District Exit Right -> RandomBlockItemA (CoinBag)
 
     {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 0}, "reqs": [], "pseudoitems": ["StarPiece_MAC_1",
                                                                                                       # "StarPiece_MAC_2",
