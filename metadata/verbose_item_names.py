@@ -568,8 +568,8 @@ inverted_verbose_names = {
         "StarPiece4D",
         "StarPiece4E",
         "StarPiece4F",
-        "StarPiece50",
         "StarPiece51",
+        "StarPiece50",
     ],
     "ThreeStarPieces": [
         "ThreeStarPieces0",
