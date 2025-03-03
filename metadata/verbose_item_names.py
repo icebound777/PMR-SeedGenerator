@@ -343,14 +343,14 @@ verbose_item_names = {
 
 inverted_verbose_names = {
     "ProgressiveBoots": [
-        "BootsProxy1",
-        "BootsProxy2",
         "BootsProxy3",
+        "BootsProxy2",
+        "BootsProxy1",
     ],
     "ProgressiveHammer": [
-        "HammerProxy1",
-        "HammerProxy2",
         "HammerProxy3",
+        "HammerProxy2",
+        "HammerProxy1",
     ],
     "JellyShroom": "JellyShroom1",
     "Letter (To Merlon)": "Letter01",
