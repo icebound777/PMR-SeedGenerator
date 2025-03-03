@@ -15,10 +15,6 @@
 
 * Made Harry, the shop keeper in southern Toad Town, offer to buy, check, and claim Mario's items without first unlocking his storeroom using the Storeroom Key.
 
-### Bug Fixes
-
-* Fixed an issue that would rarely cause the `Cake` item to be considered the logical progression for getting past Gourmet Guy, instead of requiring the `CakeMix` item and access to Tayce T.'s cooking
-
 ### Miscellaneous
 
 * Modified credits scene
@@ -28,6 +24,12 @@
   * Fix wrong item check collected flag for Boo's Mansion - Super Boots Room - In Big Chest. This should stop auto-trackers marking the item as collected even if the item is never picked up.
 * New bomb trigger for Toad Town playroom
   * We originally moved the Bombette bomb trigger for opening the Toad Town playroom over to the tree, because the bomb trigger was on the wrong side of the map. We now moved that bomb trigger back to its original, wrong position, and added a second bomb trigger next to the tree. This way both of these locations work for opening the playroom, so you can show off knowing this obscure bug to your friends again :)
+
+## 0.29.0a (beta)
+
+### Bug Fixes (0.29.0a)
+
+* Fixed an issue that would rarely cause the `Cake` item to be considered the logical progression for getting past Gourmet Guy, instead of requiring the `CakeMix` item and access to Tayce T.'s cooking
 
 ## 0.29.0 (beta)
 
