@@ -25,6 +25,12 @@
 * New bomb trigger for Toad Town playroom
   * We originally moved the Bombette bomb trigger for opening the Toad Town playroom over to the tree, because the bomb trigger was on the wrong side of the map. We now moved that bomb trigger back to its original, wrong position, and added a second bomb trigger next to the tree. This way both of these locations work for opening the playroom, so you can show off knowing this obscure bug to your friends again :)
 
+## 0.29.1 (beta)
+
+### Bug Fixes (0.29.1)
+
+* Fixed an issue of `Blue Berry` items not respawning from the replenishible crates in Boo's Mansion.
+
 ## 0.29.0a (beta)
 
 ### Bug Fixes (0.29.0a)
