@@ -165,7 +165,7 @@ class TransformedPlandoData():
                     self.partners_placed.append(item_obj.item_name)
                 elif item_obj.item_type == "BADGE":
                     self.badges_placed.append(item_obj.item_name)
-                elif item_obj.item_type in ["KEYITEM", "STARPIECE"]:
+                elif item_obj.item_type in ["KEYITEM", "STARPIECE", "GEAR"]:
                     self.keyitems_placed.append(item_obj.item_name)
 
                     if item_obj.item_name.startswith("MagicalSeed"):
