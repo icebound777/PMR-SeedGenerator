@@ -1,10 +1,11 @@
 # Changelog
 
-## 0.30.0 (beta)
+## 0.29.1 (beta)
 
 ### Bug Fixes
 
-* Fixed an issue that would rarely cause the `Cake` item to be considered the logical progression for getting past Gourmet Guy, instead of requiring the `CakeMix` item and access to Tayce T.'s cooking
+* Fixed an issue that would rarely cause the `Cake` item to be considered the logical progression for getting past Gourmet Guy, instead of requiring the `CakeMix` item and access to Tayce T.'s cooking.
+* Fixed an issue of `Blue Berry` items not respawning from the replenishible crates in Boo's Mansion.
 
 ### Miscellaneous
 
