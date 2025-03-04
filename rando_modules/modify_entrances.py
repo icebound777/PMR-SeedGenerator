@@ -53,6 +53,10 @@ from maps.graph_edges.glitched_logic.kmr_goomba_village_entry_fence_clip import 
     edges_kmr_add_goomba_village_entry_fence_clip
 from maps.graph_edges.glitched_logic.kmr_goomba_village_hammerless_exit import \
     edges_kmr_add_goomba_village_hammerless_exit_npc_lure, edges_kmr_add_goomba_village_hammerless_exit_laki
+from maps.graph_edges.glitched_logic.kmr_clippy_ledge_starpiece import \
+    edges_kmr_add_clippy_ledge_starpiece
+from maps.graph_edges.glitched_logic.kmr_jumpless_fire_flower import \
+    edges_kmr_add_jumpless_fire_flower
 from maps.graph_edges.glitched_logic.kmr_hammerless_jr_playground_laki import \
     edges_kmr_add_hammerless_jr_playground_laki
 from maps.graph_edges.glitched_logic.kmr_prologue_sushie_glitch import \
@@ -105,6 +109,8 @@ from maps.graph_edges.glitched_logic.tik_jumpless_sewer_shooting_star import \
 # Glitched Logic - Pleasant Path
 from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_star_piece import \
     edges_nok_add_kooperless_starpiece_clippy
+from maps.graph_edges.glitched_logic.nok_pleasant_path_clippy_traversal import \
+    edges_nok_add_pleasant_path_clippy_traversal
 from maps.graph_edges.glitched_logic.nok_hammerless_pleasant_path_bridge_skip import \
     edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry
 from maps.graph_edges.glitched_logic.nok_invisible_bridge_clip import \
@@ -127,6 +133,8 @@ from maps.graph_edges.glitched_logic.trd_water_staircase_skip import \
 # Glitched Logic - Mt.Rugged
 from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_laki import \
     edges_iwa_add_quake_hammer_and_letter_laki
+from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_room_jumpless_clippy import \
+    edges_iwa_add_quake_hammer_room_jumpless_clippy
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed import \
     edges_iwa_add_parakarryless_mt_rugged_seed
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed_clippy import \
@@ -138,13 +146,17 @@ from maps.graph_edges.glitched_logic.iwa_buzzar_gap_skip import \
 from maps.graph_edges.glitched_logic.iwa_mt_rugged_coins_with_kooper import \
     edges_iwa_add_mt_rugged_coins_with_kooper
 from maps.graph_edges.glitched_logic.iwa_mt_rugged_station_jumpless_climb import \
-    edges_iwa_add_mt_rugged_station_jumpless_climb_bombette, edges_iwa_add_mt_rugged_station_jumpless_climb_laki
+    edges_iwa_add_mt_rugged_station_jumpless_climb_bombette, \
+    edges_iwa_add_mt_rugged_station_jumpless_climb_laki, \
+    edges_iwa_add_mt_rugged_station_jumpless_climb_laki_block_clip
 from maps.graph_edges.glitched_logic.iwa_jumpless_mt_rugged_train_platform import \
     edges_iwa_add_jumpless_mt_rugged_train_platform_parakarry
 
 # Glitched Logic - Dry Dry Desert
 from maps.graph_edges.glitched_logic.sbk_desert_brick_block_item_with_parakarry import \
     edges_sbk_add_desert_brick_block_item_parakarry
+from maps.graph_edges.glitched_logic.sbk_jumpless_attack_fx_c import \
+    edges_sbk_add_jumpless_attack_fx_c
 from maps.graph_edges.glitched_logic.sbk_early_ruins import \
     edges_sbk_add_laki, edges_sbk_add_ultraboots
 
@@ -182,6 +194,8 @@ from maps.graph_edges.glitched_logic.mim_gusty_gulch_gate_skip import \
     edges_mim_add_gusty_gulch_gate_skip_lzs, edges_mim_add_gusty_gulch_gate_skip_laki
 from maps.graph_edges.glitched_logic.arn_gusty_gulch_gap_skip import \
     edges_arn_add_gusty_gulch_gap_skip_jump
+from maps.graph_edges.glitched_logic.arn_gusty_gulch_clippy_traversal import \
+    edges_arn_add_gusty_gulch_clippy_traversal
 from maps.graph_edges.glitched_logic.arn_kooperless_gusty_gulch_dizzy_dial import \
     edges_arn_add_gusty_gulch_dizzy_dial_jump, edges_arn_add_gusty_gulch_dizzy_dial_laki, edges_arn_add_gusty_gulch_dizzy_dial_parakarry
 
@@ -254,6 +268,8 @@ from maps.graph_edges.glitched_logic.kzn_flarakarry import \
 # Glitched Logic - Flower Fields
 from maps.graph_edges.glitched_logic.flo_early_lakilester import \
     edges_flo_add_early_lakilester_bombette_push, edges_flo_add_early_lakilester_without_bombette
+from maps.graph_edges.glitched_logic.flo_lakiless_elevator_room import \
+    edges_flo_add_lakiless_elevator_room
 from maps.graph_edges.glitched_logic.flo_bombetteless_mega_smash import \
     edges_flo_add_bombetteless_mega_smash
 from maps.graph_edges.glitched_logic.flo_sun_tower_skip import \
@@ -709,6 +725,10 @@ def get_glitched_logic(
         all_new_edges.extend(edges_kmr_add_goomba_village_hammerless_exit_npc_lure)
     if glitch_settings.goomba_village_laki_exit:
         all_new_edges.extend(edges_kmr_add_goomba_village_hammerless_exit_laki)
+    if glitch_settings.clippy_ledge_starpiece:
+        all_new_edges.extend(edges_kmr_add_clippy_ledge_starpiece)
+    if glitch_settings.jumpless_fire_flower:
+        all_new_edges.extend(edges_kmr_add_jumpless_fire_flower)
     if glitch_settings.hammerless_jr_playground_laki:
         all_new_edges.extend(edges_kmr_add_hammerless_jr_playground_laki)
     if glitch_settings.prologue_sushie_glitch_ksj:
@@ -783,6 +803,8 @@ def get_glitched_logic(
     # Pleasant Path
     if glitch_settings.kooperless_pleasant_path_star_piece:
         all_new_edges.extend(edges_nok_add_kooperless_starpiece_clippy)
+    if glitch_settings.pleasant_path_clippy_traversal:
+        all_new_edges.extend(edges_nok_add_pleasant_path_clippy_traversal)
     if glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry:
         all_new_edges.extend(edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry)
     if glitch_settings.invisible_bridge_clip_laki:
@@ -809,12 +831,16 @@ def get_glitched_logic(
     # Mt. Rugged
     if glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki:
         all_new_edges.extend(edges_iwa_add_quake_hammer_and_letter_laki)
+    if glitch_settings.mt_rugged_quake_hammer_room_jumpless_clippy:
+        all_new_edges.extend(edges_iwa_add_quake_hammer_room_jumpless_clippy)
     if glitch_settings.parakarryless_mt_rugged_seed:
         all_new_edges.extend(edges_iwa_add_parakarryless_mt_rugged_seed)
     if glitch_settings.parakarryless_mt_rugged_seed_clippy:
         all_new_edges.extend(edges_iwa_add_parakarryless_mt_rugged_seed_clippy)
     if glitch_settings.parakarryless_mt_rugged_star_piece:
         all_new_edges.extend(edges_iwa_add_parakarryless_star_piece_laki)
+    if glitch_settings.parakarryless_mt_rugged_star_piece_clippy:
+        all_new_edges.extend(edges_iwa_add_parakarryless_star_piece_clippy)
     if glitch_settings.buzzar_gap_skip_clippy:
         all_new_edges.extend(edges_iwa_add_buzzar_gap_skip_clippy)
     if glitch_settings.mt_rugged_coins_with_kooper:
@@ -823,6 +849,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_bombette)
     if glitch_settings.mt_rugged_station_jumpless_climb_laki:
         all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_laki)
+    if glitch_settings.mt_rugged_station_jumpless_climb_laki_block_clip:
+        all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_laki_block_clip)
     if glitch_settings.jumpless_mt_rugged_train_platform_parakarry:
         all_new_edges.extend(edges_iwa_add_jumpless_mt_rugged_train_platform_parakarry)
 
@@ -833,6 +861,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_sbk_add_ultraboots)
     if glitch_settings.desert_brick_block_item_with_parakarry:
         all_new_edges.extend(edges_sbk_add_desert_brick_block_item_parakarry)
+    if glitch_settings.jumpless_attack_fx_c:
+        all_new_edges.extend(edges_sbk_add_jumpless_attack_fx_c)
 
     # Dry Dry Ruins
     if glitch_settings.artifact_jump_laki:
@@ -885,6 +915,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_arn_add_gusty_gulch_dizzy_dial_parakarry)
     if glitch_settings.gusty_gulch_gap_skip:
         all_new_edges.extend(edges_arn_add_gusty_gulch_gap_skip_jump)
+    if glitch_settings.gusty_gulch_clippy_traversal:
+        all_new_edges.extend(edges_arn_add_gusty_gulch_clippy_traversal)
 
     # Tubba's Castle
     if glitch_settings.bowless_tubbas_castle:
@@ -977,6 +1009,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_flo_add_early_lakilester_without_bombette)
     if glitch_settings.early_laki_bombette_push:
         all_new_edges.extend(edges_flo_add_early_lakilester_bombette_push)
+    if glitch_settings.lakiless_elevator_room:
+        all_new_edges.extend(edges_flo_add_lakiless_elevator_room)
     if glitch_settings.bombetteless_mega_smash:
         all_new_edges.extend(edges_flo_add_bombetteless_mega_smash)
     if glitch_settings.sun_tower_skip:
