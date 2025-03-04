@@ -422,7 +422,7 @@ def _generate_item_pools(
                 if current_node_id in all_plando_locations:
                     raise PlandoSettingsMismatchError(
                         "Plandomizer error: An item location is plando'd which clashes "\
-                        "with the \"Shuffle Overworld Coins\" setting being turned off"
+                        "with the \"Shuffle Foliage Coins\" setting being turned off"
                     )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
