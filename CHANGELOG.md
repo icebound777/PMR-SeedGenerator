@@ -15,6 +15,14 @@
 
 * Made Harry, the shop keeper in southern Toad Town, offer to buy, check, and claim Mario's items without first unlocking his storeroom using the Storeroom Key.
 
+### Bug Fixes
+
+* Plandomizer
+  * Fix generation issues when placing gear items.
+  * Fix generation issues when placing every possible starpiece item.
+  * Fix generator not checking plando for beatability if only gear items are placed.
+  * Fix incorrect error message when placing items into foliage coin locations without having foliage coins shuffled.
+
 ### Miscellaneous
 
 * Modified credits scene
