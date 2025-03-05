@@ -1,6 +1,6 @@
 """
-This modules offers the randomization logic and takes care of actually randomizing
-the game according to the settings chosen.
+This modules offers the randomization logic and takes care of actually
+randomizing the game according to the settings chosen.
 """
 import random
 #import logging
@@ -26,36 +26,45 @@ from rando_enums.enum_options import (
     DojoShuffle,
 )
 
-from rando_modules.modify_itempool \
-    import get_randomized_itempool,\
-           get_trapped_itempool
+from rando_modules.modify_itempool import (
+    get_randomized_itempool,
+    get_trapped_itempool,
+)
 
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
-from rando_modules.unbeatable_plando_placement_error import UnbeatablPlandoPlacementError
-from rando_modules.plando_settings_mismatch_error import PlandoSettingsMismatchError
+from rando_modules.unbeatable_plando_placement_error import (
+    UnbeatablPlandoPlacementError,
+)
+from rando_modules.plando_settings_mismatch_error import (
+    PlandoSettingsMismatchError,
+)
 from rando_modules.item_pool_too_small_error import ItemPoolTooSmallError
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
-from metadata.itemlocation_special import \
-    kootfavors_reward_locations,          \
-    kootfavors_keyitem_locations,         \
-    chainletter_giver_locations,          \
-    chainletter_final_reward_location,    \
-    simpleletter_locations,               \
-    radio_trade_event_locations,          \
-    dojo_locations,                       \
-    limited_by_item_areas,                \
-    bush_tree_coin_locations,             \
-    overworld_coin_locations,             \
-    block_coin_locations,                 \
-    favor_coin_locations,                 \
-    superblock_locations,                 \
-    multicoinblock_locations
-from metadata.progression_items                                 \
-    import progression_miscitems as progression_miscitems_names, \
-           progression_items
-from metadata.item_exclusion \
-    import exclude_due_to_settings, exclude_from_taycet_placement
+from metadata.itemlocation_special import (
+    kootfavors_reward_locations,
+    kootfavors_keyitem_locations,
+    chainletter_giver_locations,
+    chainletter_final_reward_location,
+    simpleletter_locations,
+    radio_trade_event_locations,
+    dojo_locations,
+    limited_by_item_areas,
+    bush_tree_coin_locations,
+    overworld_coin_locations,
+    block_coin_locations,
+    favor_coin_locations,
+    superblock_locations,
+    multicoinblock_locations,
+)
+from metadata.progression_items import (
+    progression_miscitems as progression_miscitems_names,
+    progression_items,
+)
+from metadata.item_exclusion import (
+    exclude_due_to_settings,
+    exclude_from_taycet_placement,
+)
 from metadata.item_general import taycet_items, progressive_badges
 from metadata.node_exclusion import exclude_from_trap_placement
 from metadata.partners_meta import all_partners

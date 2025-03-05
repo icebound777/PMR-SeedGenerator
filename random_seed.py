@@ -9,16 +9,18 @@ from rando_enums.enum_options import (
     GearShuffleMode,
     PartnerUpgradeShuffle,
     DungeonEntranceShuffle,
+    RequiredSpirits,
 )
 
 from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
 from models.options.OptionSet import OptionSet
 from models.options.LogicOptionSet import LogicOptionSet
-from rando_modules.logic import \
-    place_items,\
-    get_item_spheres,\
-    get_items_to_exclude
+from rando_modules.logic import (
+    place_items,
+    get_item_spheres,
+    get_items_to_exclude,
+)
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.modify_entrances import get_shuffled_battles
 from rando_modules.modify_entrances import (
@@ -29,7 +31,7 @@ from rando_modules.modify_entrances import (
     adjust_shop_logic,
     set_starway_requirements,
     set_starbeam_requirements,
-    get_limited_chapter_logic
+    get_limited_chapter_logic,
 )
 from rando_modules.random_entrances import shuffle_dungeon_entrances
 from rando_modules.random_formations import get_random_formations
@@ -37,28 +39,38 @@ from rando_modules.random_map_mirroring import get_mirrored_map_list
 from rando_modules.random_stat_distribution import generate_random_stats
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
-from rando_modules.random_palettes import \
-    get_randomized_coinpalette,\
-    get_randomized_palettes
+from rando_modules.random_palettes import (
+    get_randomized_coinpalette,
+    get_randomized_palettes,
+)
 from rando_modules.random_audio import get_randomized_audio
 from rando_modules.random_partners import get_rnd_starting_partners
-from rando_modules.random_puzzles_minigames import get_puzzles_minigames, get_dro_shop_items
+from rando_modules.random_puzzles_minigames import (
+    get_puzzles_minigames,
+    get_dro_shop_items
+)
 from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.random_shop_prices import get_shop_price
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
-from rando_modules.unbeatable_plando_placement_error import UnbeatablPlandoPlacementError
-from rando_modules.plando_settings_mismatch_error import PlandoSettingsMismatchError
-from worldgraph import \
-    generate as generate_world_graph,\
-    check_unreachable_from_start,\
+from rando_modules.unbeatable_plando_placement_error import (
+    UnbeatablPlandoPlacementError,
+)
+from rando_modules.plando_settings_mismatch_error import (
+    PlandoSettingsMismatchError,
+)
+from worldgraph import (
+    generate as generate_world_graph,
+    check_unreachable_from_start,
     enrich_graph_data
+)
 
 from rando_enums.enum_ingame import StarSpirits
 from metadata.starting_maps import starting_maps
-from metadata.starting_items import \
-    allowed_starting_badges,\
-    allowed_starting_items,\
+from metadata.starting_items import (
+    allowed_starting_badges,
+    allowed_starting_items,
     allowed_starting_key_items
+)
 from metadata.item_general import seed_hash_item_names
 
 from plando_utils.plando_utils import TransformedPlandoData
@@ -173,8 +185,7 @@ class RandomSeed:
 
                 # Unset settings that become meaningless due to other settings
                 if logic_settings.starway_spirits_needed_count in [0, 7]:
-                    logic_settings.require_specific_spirits = False
-                    logic_settings.limit_chapter_logic = False
+                    logic_settings.required_spirits = RequiredSpirits.ANY
 
                 # Select required star spirits
                 chosen_spirits = []
@@ -188,7 +199,7 @@ class RandomSeed:
                     StarSpirits.KALMAR,
                 ]
                 plando_required_spirits: list[int] | None = self.plando_data.required_spirits
-                if (    logic_settings.require_specific_spirits
+                if (    logic_settings.required_spirits >= RequiredSpirits.SPECIFIC
                     and 0 < logic_settings.starway_spirits_needed_count < 7
                     and (plando_required_spirits is None or len(plando_required_spirits) < 7)
                 ):
@@ -231,7 +242,7 @@ class RandomSeed:
                         world_graph = modified_world_graph,
                         starway_spirits_needed_count = logic_settings.starway_spirits_needed_count,
                         required_star_spirits = chosen_spirits,
-                        limit_chapter_logic = logic_settings.limit_chapter_logic,
+                        limit_chapter_logic = (required_spirits == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC),
                         shuffle_bowsers_castle = (
                             logic_settings.shuffle_dungeon_entrances == DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
                         ),
@@ -300,7 +311,7 @@ class RandomSeed:
                 if entrance_changes:
                     self.extend_entrances(entrance_changes)
 
-                if logic_settings.limit_chapter_logic:
+                if logic_settings.required_spirits == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC:
                     modified_world_graph = get_limited_chapter_logic(
                         modified_world_graph,
                         chosen_spirits,

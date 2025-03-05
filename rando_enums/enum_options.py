@@ -132,3 +132,9 @@ class DojoShuffle(IntEnum):
 class BossShuffleMode(IntEnum):
     OFF = 0
     CHAPTER_BOSSES = 1
+
+@unique
+class RequiredSpirits(IntEnum):
+    ANY = 0
+    SPECIFIC = 1
+    SPECIFIC_AND_LIMITCHAPTERLOGIC = 2

@@ -150,8 +150,7 @@ ShuffleStarBeam         : true
 StarBeamSpiritsNeeded   : 0 # -1:Random
 StarBeamPowerStarsNeeded: 0 # -1:Random
 StarHuntTotal           : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded, -1:Random
-RequireSpecificSpirits  : false # always false if StarWaySpiritsNeededCnt: 7
-LimitChapterLogic       : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
+RequiredSpirits         : 0 # 0:any, 1:require specific spirits, 2: limit chapter logic
 
 # Entrance Shuffle
 ShuffleDungeonRooms     : false # NYI

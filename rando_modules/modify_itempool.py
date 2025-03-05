@@ -5,16 +5,15 @@ from copy import deepcopy
 from db.item import Item
 from db.node import Node
 
-from rando_enums.enum_options import \
-    IncludeFavorsMode,\
-    RandomizeConsumablesMode
+from rando_enums.enum_options import IncludeFavorsMode, RandomizeConsumablesMode
 
 from metadata.item_exclusion import exclude_due_to_settings
 from metadata.item_scores import item_scores
-from metadata.itemlocation_special import \
-    kootfavors_reward_locations, \
-    kootfavors_keyitem_locations, \
-    limited_by_item_areas
+from metadata.itemlocation_special import (
+    kootfavors_reward_locations,
+    kootfavors_keyitem_locations,
+    limited_by_item_areas,
+)
 
 def _get_random_consumables(n:int, available_items:list) -> list:
     """

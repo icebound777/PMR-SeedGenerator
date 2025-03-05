@@ -13,7 +13,7 @@ from metadata.formations_meta import (
     flying_enemies,
     battlestage_ceilings,
     battlestage_ceiling_formations,
-    ceiling_enemies
+    ceiling_enemies,
 )
 
 

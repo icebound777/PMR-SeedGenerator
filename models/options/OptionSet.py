@@ -21,6 +21,7 @@ from rando_enums.enum_options import (
     PartnerShuffle,
     DojoShuffle,
     BossShuffleMode,
+    RequiredSpirits,
 )
 from models.options.LogicOptionSet import LogicOptionSet
 from models.options.PaletteOptionSet import PaletteOptionSet
@@ -427,10 +428,8 @@ class OptionSet:
             self.logic_settings.starbeam_powerstars_needed = options_dict.get("StarBeamPowerStarsNeeded")
         if "StarHuntTotal" in options_dict:
             self.logic_settings.star_hunt_total = options_dict.get("StarHuntTotal")
-        if "RequireSpecificSpirits" in options_dict:
-            self.logic_settings.require_specific_spirits = options_dict.get("RequireSpecificSpirits")
-        if "LimitChapterLogic" in options_dict:
-            self.logic_settings.limit_chapter_logic = options_dict.get("LimitChapterLogic")
+        if "RequiredSpirits" in options_dict:
+            self.logic_settings.required_spirits = options_dict.get("RequiredSpirits")
 
         # Entrance Shuffle
         if "ShuffleDungeonRooms" in options_dict:
@@ -1278,14 +1277,15 @@ class OptionSet:
                     and (starthuntotal >= options_dict.get("StarWayPowerStarsNeeded") or starthuntotal == -1)
                     and (starthuntotal >= options_dict.get("StarBeamPowerStarsNeeded") or starthuntotal == -1)
             )
-        basic_assert("RequireSpecificSpirits", bool)
-        if "LimitChapterLogic" in options_dict:
-            assert (    isinstance(options_dict.get("LimitChapterLogic"), bool)
-                    and not (    options_dict["LimitChapterLogic"]
+        if "RequiredSpirits" in options_dict:
+            assert (    isinstance(options_dict.get("RequiredSpirits"), int)
+                    and RequiredSpirits.ANY <= options_dict["RequiredSpirits"] <= RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
+                    and not (    options_dict["RequiredSpirits"] == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
                              and (   options_dict.get("KeyitemsOutsideDungeon") is None
-                                  or not options_dict["KeyitemsOutsideDungeon"])))
+                                  or not options_dict["KeyitemsOutsideDungeon"]))
+            )
             try:
-                assert (not (    options_dict["LimitChapterLogic"]
+                assert (not (    options_dict["RequiredSpirits"]
                              and options_dict.get("StarBeamSpiritsNeeded") is not None
                              and options_dict["StarBeamSpiritsNeeded"] != 0
                         )
@@ -1871,11 +1871,10 @@ class OptionSet:
         web_settings["RandomItemsMax"] = self.logic_settings.random_starting_items_max
 
         web_settings["StarWaySpiritsNeededCnt"] = self.logic_settings.starway_spirits_needed_count
-        web_settings["RequireSpecificSpirits"] = self.logic_settings.require_specific_spirits
+        web_settings["RequiredSpirits"] = self.logic_settings.required_spirits
         web_settings["ShuffleStarBeam"] = self.logic_settings.shuffle_starbeam
         web_settings["StarBeamSpiritsNeeded"] = self.logic_settings.starbeam_spirits_needed
         web_settings["StarBeamPowerStarsNeeded"] = self.logic_settings.starbeam_powerstars_needed
-        web_settings["LimitChapterLogic"] = self.logic_settings.limit_chapter_logic
         web_settings["BadgeSynergy"] = self.badge_synergy
         web_settings["FoliageItemHints"] = self.foliage_item_hints
         web_settings["RandomText"] = self.random_text

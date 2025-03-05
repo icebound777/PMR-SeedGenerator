@@ -10,6 +10,7 @@ from rando_enums.enum_options import (
     PartnerShuffle,
     DojoShuffle,
     MultiCoinBlockShuffle,
+    RequiredSpirits,
 )
 
 class LogicOptionSet():
@@ -121,8 +122,7 @@ class LogicOptionSet():
         self.starbeam_spirits_needed = get_option_default_value("StarBeamSpiritsNeeded")
         self.starbeam_powerstars_needed = get_option_default_value("StarBeamPowerStarsNeeded")
         self.star_hunt_total = get_option_default_value("StarHuntTotal")
-        self.require_specific_spirits = False
-        self.limit_chapter_logic = False
+        self.required_spirits = RequiredSpirits.ANY
 
         # Entrance Shuffle
         self.shuffle_dungeon_rooms = bool(get_option_default_value("ShuffleDungeonRooms"))
