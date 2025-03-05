@@ -357,7 +357,9 @@ def _generate_item_pools(
         new_item: Item,
     ):
         if ((new_item.progression and new_item.item_type != 'ITEM')
-        or (logic_settings.include_shops and "StarPiece" in new_item.item_name)
+        or (    logic_settings.include_shops
+            and logic_settings.progression_on_merlow
+            and "StarPiece" in new_item.item_name)
         or new_item.item_type == "GEAR"
         ):
             pool_progression_items.append(new_item)
@@ -1251,7 +1253,7 @@ def _algo_assumed_fill(
             key = lambda x: x.item_name in all_partners
         )
 
-
+    yay = False
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()
         mario = MarioInventory(
@@ -1282,6 +1284,9 @@ def _algo_assumed_fill(
             starting_node_id,
             mario
         )
+        if not yay:
+            yay = True
+            print(mario.partners)
         if item.item_name in progression_miscitems_names:
             candidate_locations = [node for node in candidate_locations if is_itemlocation_replenishable(node)]
 
