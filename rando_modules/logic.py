@@ -1070,7 +1070,9 @@ def _algo_assumed_fill(
             unreachable_items: list = list()
             for location, unreachable_item in [
                 (location, item.item_name) for location, item in plando_item_placement.items()
-                if item not in mario.items
+                if     item.item_name not in mario.items
+                   and item.progression
+                   and not item.is_trapped()
             ]:
                 loc_area = verbose_area_names[location[:3]]
                 loc_map = Node.get(Node.identifier == location).map_area.verbose_name
