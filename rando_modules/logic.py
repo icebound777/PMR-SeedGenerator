@@ -356,11 +356,8 @@ def _generate_item_pools(
     def add_to_correct_itempool(
         new_item: Item,
     ):
-        if ((new_item.progression and new_item.item_type != 'ITEM')
-        or (    logic_settings.include_shops
-            and logic_settings.progression_on_merlow
-            and "StarPiece" in new_item.item_name)
-        or new_item.item_type == "GEAR"
+        if (    new_item.progression
+            and new_item.item_type != 'ITEM'
         ):
             pool_progression_items.append(new_item)
         else:
@@ -473,6 +470,8 @@ def _generate_item_pools(
                         "with the \"Include Hidden Panels\" setting being turned off"
                     )
                 current_node.current_item = Item.get(Item.item_name == "StarPiece")
+                if (logic_settings.include_shops and logic_settings.progression_on_merlow):
+                    current_node.current_item.progression = True
                 all_item_nodes.append(current_node)
                 continue
 
@@ -659,7 +658,13 @@ def _generate_item_pools(
                 continue
 
             if current_node_id in plando_item_placement:
-                add_to_correct_itempool(current_node.vanilla_item)
+                item_to_shuffle = current_node.vanilla_item
+                if (    item_to_shuffle.item_type == "STARPIECE"
+                    and logic_settings.include_shops
+                    and logic_settings.progression_on_merlow
+                ):
+                    item_to_shuffle.progression = True
+                add_to_correct_itempool(item_to_shuffle)
                 current_node.current_item = plando_item_placement[current_node_id]
                 if (    plando_item_placement[current_node_id].item_name in progression_miscitems_names
                     and is_itemlocation_replenishable(current_node)
@@ -685,7 +690,13 @@ def _generate_item_pools(
                 continue
 
             # Item shall be randomized: Add it to the correct item pool
-            add_to_correct_itempool(current_node.vanilla_item)
+            item_to_shuffle = current_node.vanilla_item
+            if (    item_to_shuffle.item_type == "STARPIECE"
+                and logic_settings.include_shops
+                and logic_settings.progression_on_merlow
+            ):
+                item_to_shuffle.progression = True
+            add_to_correct_itempool(item_to_shuffle)
 
 
     target_itempool_size = (
@@ -1253,7 +1264,6 @@ def _algo_assumed_fill(
             key = lambda x: x.item_name in all_partners
         )
 
-    yay = False
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()
         mario = MarioInventory(
@@ -1284,9 +1294,7 @@ def _algo_assumed_fill(
             starting_node_id,
             mario
         )
-        if not yay:
-            yay = True
-            print(mario.partners)
+
         if item.item_name in progression_miscitems_names:
             candidate_locations = [node for node in candidate_locations if is_itemlocation_replenishable(node)]
 
