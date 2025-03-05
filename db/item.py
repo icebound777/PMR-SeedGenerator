@@ -142,7 +142,7 @@ def create_items():
             value = item_id,
             item_name = item_name,
             base_price = base_price,
-            progression = (item_id in progression_items.keys()),
+            progression = (item_id in progression_items.keys() or item_name.startswith("PowerStar")),
             unused = item_name in unused_items,
             unused_duplicates = item_name in unused_duplicates,
             unplaceable = item_name in unplaceable_items
