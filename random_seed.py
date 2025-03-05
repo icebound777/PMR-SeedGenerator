@@ -570,13 +570,26 @@ class RandomSeed:
         plando_badges: list[str],
     ):
         """
-        Initialize the starting items from either the chosen starting items or
-        pick them randomly.
+        Initialize the starting items from the chosen starting items, and add
+        randomly picked ones if necessary.
         """
-        self.starting_items = []
-        if rando_settings.logic_settings.random_starting_items:
-            starting_item_options = [0 for _ in range(16)]
+        self.starting_items = self.rando_settings.get_startitem_list()
 
+        if (any([
+                True for x in self.starting_items
+                if x.item_name in plando_keyitems or x.item_name in plando_badges
+            ])
+        ):
+            raise PlandoSettingsMismatchError(
+                "Plandomizer error: Chosen starting items: Cannot start the seed with "\
+                "these items, because one or more of them are already "\
+                "placed by the plandomizer!"
+            )
+
+        count_chosen_starting_items: int = len(self.starting_items)
+        if (    rando_settings.logic_settings.random_starting_items
+            and count_chosen_starting_items < 16
+        ):
             # Set up allowed items
             all_allowed_starting_items = []
             all_allowed_starting_items.extend(allowed_starting_badges)
@@ -598,16 +611,28 @@ class RandomSeed:
                 starting_partners=self.starting_partners,
                 do_partner_upgrade_shuffle=(rando_settings.logic_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF)
             )
+
+            for item_name in plando_keyitems:
+                excluded_items.append(Item.get(Item.item_name == item_name))
+            for item_name in plando_badges:
+                excluded_items.append(Item.get(Item.item_name == item_name))
+
             for item_obj in excluded_items:
                 if item_obj.value in all_allowed_starting_items:
                     all_allowed_starting_items.remove(item_obj.value)
 
             starting_items_amount = random.randint(
-                rando_settings.logic_settings.random_starting_items_min,
-                rando_settings.logic_settings.random_starting_items_max
+                min(
+                    rando_settings.logic_settings.random_starting_items_min,
+                    16 - count_chosen_starting_items
+                ),
+                min(
+                    rando_settings.logic_settings.random_starting_items_max,
+                    16 - count_chosen_starting_items
+                )
             )
 
-            for i in range(starting_items_amount):
+            while len(self.starting_items) < count_chosen_starting_items + starting_items_amount:
                 random_item_id = random.choice(all_allowed_starting_items)
                 random_item_obj = Item.get_or_none(Item.value == random_item_id)
                 if random_item_obj is not None:
@@ -618,36 +643,41 @@ class RandomSeed:
                         continue
 
                     self.starting_items.append(random_item_obj)
-                    starting_item_options[i] = random_item_id
 
-            rando_settings.logic_settings.starting_item_0 = starting_item_options[0]
-            rando_settings.logic_settings.starting_item_1 = starting_item_options[1]
-            rando_settings.logic_settings.starting_item_2 = starting_item_options[2]
-            rando_settings.logic_settings.starting_item_3 = starting_item_options[3]
-            rando_settings.logic_settings.starting_item_4 = starting_item_options[4]
-            rando_settings.logic_settings.starting_item_5 = starting_item_options[5]
-            rando_settings.logic_settings.starting_item_6 = starting_item_options[6]
-            rando_settings.logic_settings.starting_item_7 = starting_item_options[7]
-            rando_settings.logic_settings.starting_item_8 = starting_item_options[8]
-            rando_settings.logic_settings.starting_item_9 = starting_item_options[9]
-            rando_settings.logic_settings.starting_item_A = starting_item_options[10]
-            rando_settings.logic_settings.starting_item_B = starting_item_options[11]
-            rando_settings.logic_settings.starting_item_C = starting_item_options[12]
-            rando_settings.logic_settings.starting_item_D = starting_item_options[13]
-            rando_settings.logic_settings.starting_item_E = starting_item_options[14]
-            rando_settings.logic_settings.starting_item_F = starting_item_options[15]
-        else:
-            if (any([
-                    True for x in self.rando_settings.get_startitem_list()
-                    if x.item_name in plando_keyitems or x.item_name in plando_badges
-                ])
-            ):
-                raise PlandoSettingsMismatchError(
-                    "Plandomizer error: Chosen starting items: Cannot start the seed with "\
-                    "these items, because one or more of them are already "\
-                    "placed by the plandomizer!"
-                )
-            self.starting_items = self.rando_settings.get_startitem_list()
+                    # Fill the next open slot in the starting items with the
+                    # newly picked random starting item
+                    if len(self.starting_items) == 1:
+                        rando_settings.logic_settings.starting_item_0 = random_item_id
+                    elif len(self.starting_items) == 2:
+                        rando_settings.logic_settings.starting_item_1 = random_item_id
+                    elif len(self.starting_items) == 3:
+                        rando_settings.logic_settings.starting_item_2 = random_item_id
+                    elif len(self.starting_items) == 4:
+                        rando_settings.logic_settings.starting_item_3 = random_item_id
+                    elif len(self.starting_items) == 5:
+                        rando_settings.logic_settings.starting_item_4 = random_item_id
+                    elif len(self.starting_items) == 6:
+                        rando_settings.logic_settings.starting_item_5 = random_item_id
+                    elif len(self.starting_items) == 7:
+                        rando_settings.logic_settings.starting_item_6 = random_item_id
+                    elif len(self.starting_items) == 8:
+                        rando_settings.logic_settings.starting_item_7 = random_item_id
+                    elif len(self.starting_items) == 9:
+                        rando_settings.logic_settings.starting_item_8 = random_item_id
+                    elif len(self.starting_items) == 10:
+                        rando_settings.logic_settings.starting_item_9 = random_item_id
+                    elif len(self.starting_items) == 11:
+                        rando_settings.logic_settings.starting_item_A = random_item_id
+                    elif len(self.starting_items) == 12:
+                        rando_settings.logic_settings.starting_item_B = random_item_id
+                    elif len(self.starting_items) == 13:
+                        rando_settings.logic_settings.starting_item_C = random_item_id
+                    elif len(self.starting_items) == 14:
+                        rando_settings.logic_settings.starting_item_D = random_item_id
+                    elif len(self.starting_items) == 15:
+                        rando_settings.logic_settings.starting_item_E = random_item_id
+                    elif len(self.starting_items) == 16:
+                        rando_settings.logic_settings.starting_item_F = random_item_id
 
 
     def extend_entrances(

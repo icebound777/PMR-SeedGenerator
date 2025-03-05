@@ -10,10 +10,14 @@
   * The value `shuffle` is no longer biased to be evenly distributed. This now gives the areas with more block locations (like Dry Dry Desert) a higher chance at having more super blocks.
   * If the value `anywhere` is chosen, then Multi Coin Blocks can be shuffled into non-block locations. If this happens, they will instead turn into the new `Coin Bag` item, which gives 10 coins on pick-up.
     * Shoutouts to **typographics** for designing the item sprite for the new `Coin Bag` item!
+* `Starting Items` feature
+  * Now allows having both chosen starting items and random starting items at the same time.
+  * The number of starting items still cannot exceed 16.
+  * Specificly chosen starting items will overrule random starting items. So if the player chooses 10 specific starting items, and sets the number of randomly chosen starting items to 10, only 6 starting items will be chosen randomly regardless.
 
 ### Quality of Life
 
-* Made Harry, the shop keeper in southern Toad Town, offer to buy, check, and claim Mario's items without first unlocking his storeroom using the Storeroom Key.
+* Made Harry, the shop keeper in southern Toad Town, offer to buy, check, and claim Mario's items without first unlocking his storeroom using the `Storeroom Key`.
 
 ### Bug Fixes
 
