@@ -26,6 +26,7 @@
   * Fix generation issues when placing every possible starpiece item.
   * Fix generator not checking plando for beatability if only gear items are placed.
   * Fix incorrect error message when placing items into foliage coin locations without having foliage coins shuffled.
+  * Fix power stars placed via plando not counting as progression.
 
 ### Miscellaneous
 
