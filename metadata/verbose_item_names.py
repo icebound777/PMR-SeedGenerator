@@ -715,6 +715,7 @@ inverted_verbose_names = {
         "PouchD",
         "PouchE",
     ],
+    "SuperBlock": "GenericUpgrade",
     "GoombarioUpgrade": [
         "GoombarioUp1",
         "GoombarioUp2",

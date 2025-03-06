@@ -34,6 +34,7 @@ from plandomizer.plando_metadata import (
     progressive_badges,
     force_puzzlerando_locations,
     force_starbeam_shuffle_location,
+    block_locations,
 )
 
 class OptionSet:
@@ -898,18 +899,27 @@ class OptionSet:
         forced_progressive_badges,\
         forced_partner_upgrade_shuffle,\
         forced_random_puzzles,\
-        forced_shuffle_starbeam = \
+        forced_shuffle_starbeam,\
+        forced_multicoinblock_shuffle = \
             _overrule_settings_with_plando(
                 plando_data
             )
         if forced_progressive_badges is not None:
             self.logic_settings.progressive_badges = forced_progressive_badges
         if forced_partner_upgrade_shuffle is not None:
-            self.logic_settings.partner_upgrade_shuffle = forced_partner_upgrade_shuffle
+            self.logic_settings.partner_upgrade_shuffle = max([
+                self.logic_settings.partner_upgrade_shuffle,
+                forced_partner_upgrade_shuffle,
+            ])
         if forced_random_puzzles is not None:
             self.logic_settings.randomize_puzzles = forced_random_puzzles
         if forced_shuffle_starbeam is not None:
             self.logic_settings.shuffle_starbeam = forced_shuffle_starbeam
+        if forced_multicoinblock_shuffle is not None:
+            self.logic_settings.multicoin_block_shuffle = max([
+                self.logic_settings.multicoin_block_shuffle,
+                forced_multicoinblock_shuffle,
+            ])
 
         self.plando_active = False
 
@@ -2142,24 +2152,27 @@ def _overrule_settings_with_plando(
     PartnerUpgradeShuffle | None,
     bool | None,
     bool | None,
+    MultiCoinBlockShuffle | None,
 ]:
     forced_progressive_badges: bool = None
     forced_partner_upgrade_shuffle: bool = None
     forced_random_puzzles: bool = None
     forced_shuffle_starbeam: bool = None
+    forced_multicoinblock_shuffle: MultiCoinBlockShuffle = None
 
     if plando_data is None:
         return (
             forced_progressive_badges,
             forced_partner_upgrade_shuffle,
             forced_random_puzzles,
-            forced_shuffle_starbeam
+            forced_shuffle_starbeam,
+            forced_multicoinblock_shuffle,
         )
 
     else:
          item_placement_areas: None | dict[str, dict[str, str | dict[str, str | int]]] = plando_data.get("items")
          if item_placement_areas is not None:
-            for area_locations in item_placement_areas.values():
+            for area_name, area_locations in item_placement_areas.items():
                 for item_location, item in area_locations.items():
                     cur_item: str = None
                     if isinstance(item, dict) and item.get("item") is not None:
@@ -2173,6 +2186,23 @@ def _overrule_settings_with_plando(
                         forced_random_puzzles = True
                     if item_location == force_starbeam_shuffle_location:
                         forced_shuffle_starbeam = True
+                    if (    area_name in block_locations
+                        and item_location in block_locations[area_name]
+                    ):
+                        if "MultiCoinBlock" in item_location:
+                            if cur_item == "SuperBlock" or cur_item.endswith("Upgrade"):
+                                forced_multicoinblock_shuffle = MultiCoinBlockShuffle.SHUFFLE
+                                forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
+                            elif cur_item != "CoinBag":
+                                forced_multicoinblock_shuffle = MultiCoinBlockShuffle.ANYWHERE
+                                forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.FULL
+                        else: # "SuperBlock" in item_location
+                            if cur_item == "CoinBag":
+                                forced_multicoinblock_shuffle = MultiCoinBlockShuffle.SHUFFLE
+                                forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
+                            elif cur_item != "SuperBlock" and not cur_item.endswith("Upgrade"):
+                                forced_multicoinblock_shuffle = MultiCoinBlockShuffle.ANYWHERE
+                                forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.FULL
 
                     if cur_item in progressive_badges["originals"]:
                         forced_progressive_badges = False
@@ -2187,5 +2217,6 @@ def _overrule_settings_with_plando(
         forced_progressive_badges,
         forced_partner_upgrade_shuffle,
         forced_random_puzzles,
-        forced_shuffle_starbeam
+        forced_shuffle_starbeam,
+        forced_multicoinblock_shuffle,
     )
