@@ -1,8 +1,20 @@
 # Changelog
 
+## 0.29.1 (beta)
+
+### Bug Fixes
+
+* Fixed an issue that would rarely cause the `Cake` item to be considered the logical progression for getting past Gourmet Guy, instead of requiring the `CakeMix` item and access to Tayce T.'s cooking.
+* Fixed an issue of `Blue Berry` items not respawning from the replenishible crates in Boo's Mansion.
+
+### Miscellaneous
+
+* RAM locations docs
+  * Fix wrong item check collected flag for Boo's Mansion - Super Boots Room - In Big Chest. This should stop auto-trackers marking the item as collected even if the item is never picked up
+
 ## 0.29.0 (beta)
 
-### Feature Changes
+### Feature Changes (0.29.0)
 
 * `Plandomizer` feature
   * The plandomizer (a portmanteau of "planned" and "randomizer") allows pre-setting different values for the seed, which overrule the changes to be made by the seed generator. This allows for forcing specific changes desired by the player.
@@ -30,16 +42,16 @@
 * `Cutscene Mode: Minimal`
   * Removed some dialogue from the Toad "inn keeper" in Peach's Castle.
 
-### Logic changes
+### Logic changes (0.29.0)
 
 * Fixed logic not expecting boots or Kooper for hitting the yellow item block in Tubba's Castle - Stairs to Third Floor
 * Fixed logic for the three `Ultra Hammer Skip` glitch settings, and the two `Flarakarry` glitch settings. Formerly these didn't apply properly, so these settings would always count as being turned off
 
-### Quality of Life
+### Quality of Life (0.29.0)
 
 * Entering the toy box in Toad Town will now automatically set the door to the toy box to be open. This is only relevant if you glitched around the toy box door into the toy box.
 
-### Tricks & Glitches
+### Tricks & Glitches (0.29.0)
 
 * New options
   * "Jumpless Dane T. Letters"
@@ -62,7 +74,7 @@
 * Changed
   * Renamed `Toad Town Sushie Glitch` to `Toad Town Sushie Glitch One Gear`
 
-### Bug Fixes
+### Bug Fixes (0.29.0)
 
 * Fixed the vanilla bug of being able to jump into a certain lava loading zone in the basement of Bowser's Castle, possibly causing softlocks or crashes.
 * Fixed certain issues with the cutscene of the ravens building the zipline during `Cutscene Mode: Minimal`, which could cause weird behavior or crashes during the cutscene if playing on original hardware.
@@ -70,7 +82,7 @@
 * Fixed possible buggy behavior and softlock potential when touching an item trap while riding Lakilester. Now item trap knockback is disabled while riding Lakilester.
 * Fixed missing star piece "plink" sound effect when a star piece item bounces on the floor. This has been an issue for over three years and apparently nobody noticed :)
 
-### Miscellaneous
+### Miscellaneous (0.29.0)
 
 * Entrance randomizer preparations
   * Added a bomb trigger to the uppermost floor of the second Water Puzzle room in Bowser's Castle. This allows blowing up the wall from this side, which is normally not possible
@@ -93,7 +105,7 @@
 * Internally reworked how star pieces in non-randomized locations behave (hidden panels and letter rewards). The item pickup for those vanilla star pieces will now look slightly different, but they will still count as regular star pieces.
 * Internally reworked how the berry key items work. This was necessary for making the plandomizer implementation of the berries less painful. Ideally, players should not notice any difference to before.
 
-### Additional Technical Changelog
+### Additional Technical Changelog (0.29.0)
 
 * Yaml settings changes:
   * Added `RandomStartingStatsLevel`

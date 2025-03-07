@@ -344,7 +344,7 @@ def _generate_item_pools(
     def add_to_correct_itempool(
         new_item: Item,
     ):
-        if (new_item.progression
+        if ((new_item.progression and new_item.item_type != 'ITEM')
         or (logic_settings.include_shops and "StarPiece" in new_item.item_name)
         or new_item.item_type == "GEAR"
         ):
@@ -355,7 +355,9 @@ def _generate_item_pools(
             ):
                 # Since progression misc items have to be placed in
                 # replenishable locations, we only need one of each
-                pool_misc_progression_items.append(new_item)
+                prog_misc_item = new_item
+                prog_misc_item.progression = True
+                pool_misc_progression_items.append(prog_misc_item)
             else:
                 if new_item.item_type == "COIN":
                     pool_coins_only.append(new_item)
@@ -620,6 +622,10 @@ def _generate_item_pools(
             if current_node_id in plando_item_placement:
                 add_to_correct_itempool(current_node.vanilla_item)
                 current_node.current_item = plando_item_placement[current_node_id]
+                if (    plando_item_placement[current_node_id].item_name in progression_miscitems_names
+                    and is_itemlocation_replenishable(current_node)
+                ):
+                    current_node.current_item.progression = True
                 all_item_nodes.append(current_node)
                 items_to_remove_from_pools.append(plando_item_placement[current_node_id])
                 items_plandod += 1
@@ -729,7 +735,7 @@ def _generate_item_pools(
         if item in pool_progression_items:
             pool_progression_items.remove(item)
             continue
-        if item in pool_misc_progression_items:
+        if item in pool_misc_progression_items and item.progression:
             pool_misc_progression_items.remove(item)
             continue
         if item in pool_badges:
@@ -894,8 +900,9 @@ def find_empty_reachable_nodes(
             item_node = reachable_item_nodes[node_id]
             current_item = item_node.current_item
             if current_item:
-                mario.add(current_item.item_name)
-                found_new_items = True
+                if current_item.progression:
+                    mario.add(current_item.item_name)
+                    found_new_items = True
                 filled_item_node_ids.add(node_id)
 
             checked_item_node_ids.add(node_id)
@@ -985,14 +992,8 @@ def _algo_assumed_fill(
     # with
     if is_progression_plandod:
         all_progression_yet_to_be_placed: list = []
-        all_progression_yet_to_be_placed.extend([
-            x for x in pool_progression_items
-            if x not in plando_item_placement
-        ])
-        all_progression_yet_to_be_placed.extend([
-            x for x in pool_misc_progression_items
-            if x not in plando_item_placement
-        ])
+        all_progression_yet_to_be_placed.extend(pool_progression_items)
+        all_progression_yet_to_be_placed.extend(pool_misc_progression_items)
 
         mario = MarioInventory(
             logic_settings.starting_boots,
@@ -1097,12 +1098,13 @@ def _algo_assumed_fill(
                         manual_shop_fill_count += 1
 
             shop_code_items = random.sample(unique_nonuniques, k=missing_code_candidates_cnt)
-            for shop_code_item in shop_code_items:
+            for i, shop_code_item in enumerate(shop_code_items):
                 # check if some of the consumables are relevant to progression
                 # if so, then remove them from the misc progression instead
                 try:
                     if shop_code_item in pool_misc_progression_items:
                         pool_misc_progression_items.remove(shop_code_item)
+                        shop_code_items[i].progression = True
                     else:
                         pool_other_items.remove(shop_code_item)
                 except ValueError:
