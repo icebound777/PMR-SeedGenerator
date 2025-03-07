@@ -10,6 +10,8 @@
   * The value `shuffle` is no longer biased to be evenly distributed. This now gives the areas with more block locations (like Dry Dry Desert) a higher chance at having more super blocks.
   * If the value `anywhere` is chosen, then Multi Coin Blocks can be shuffled into non-block locations. If this happens, they will instead turn into the new `Coin Bag` item, which gives 10 coins on pick-up.
     * Shoutouts to **typographics** for designing the item sprite for the new `Coin Bag` item!
+* `Plandomizer` feature
+  * Now allows placing items into MultiCoinBlock and SuperBlock locations.
 * `Starting Items` feature
   * Now allows having both chosen starting items and random starting items at the same time.
   * The number of starting items still cannot exceed 16.
