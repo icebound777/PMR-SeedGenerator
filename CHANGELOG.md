@@ -52,6 +52,13 @@
 * Yaml settings changes:
   * Renamed `RequireSpecificSpirits` to `RequiredSpirits`, and is now int (was bool)
   * Removed `LimitChapterLogic`
+  * Added `ISpyPanelHints` (int)
+    * 0: off, 1: vague, 2: concrete
+* Changed Item IDs due to new `Coin Bag` and ISpy panel hint items
+  * New `Coin Bag` item on ID 0x277
+  * New panel hint dummy items on IDs 0x278 - 0x27C (unplaceable)
+  * New `Generic Upgrade` item (used for spawning super blocks) on ID 0x27D
+  * This change shifts all other items beyond item ID 0x276 up by 7 item IDs. The final item in the list is now `Bow` on item ID 0x298
 
 ## 0.29.1 (beta)
 
