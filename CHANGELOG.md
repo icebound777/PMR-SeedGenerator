@@ -35,6 +35,7 @@
   * Fix generator not checking plando for beatability if only gear items are placed.
   * Fix incorrect error message when placing items into foliage coin locations without having foliage coins shuffled.
   * Fix power stars placed via plando not counting as progression.
+  * Made the plando generation error message less useless by now only reporting progression items that are not reachable (instead of just reporting every single plando'd item, which really didn't help).
 * Random Formations
   * If more than 2 Sky Guys appear in the same battle formation, visual bugs start occuring. To avoid these, now only up to 2 Sky Guys may appear per battle.
 

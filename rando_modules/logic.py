@@ -1084,6 +1084,11 @@ def _algo_assumed_fill(
             for location, unreachable_item in [
                 (location, item.item_name) for location, item in plando_item_placement.items()
                 if     item.item_name not in mario.items
+                   and item.item_name not in mario.partners
+                   and item.item_name not in mario.boots
+                   and item.item_name not in mario.hammer
+                   and item.item_name not in mario.starpieces
+                   and item.item_name not in mario.powerstars
                    and item.progression
                    and not item.is_trapped()
             ]:
