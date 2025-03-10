@@ -10,6 +10,12 @@
   * The value `shuffle` is no longer biased to be evenly distributed. This now gives the areas with more block locations (like Dry Dry Desert) a higher chance at having more super blocks.
   * If the value `anywhere` is chosen, then Multi Coin Blocks can be shuffled into non-block locations. If this happens, they will instead turn into the new `Coin Bag` item, which gives 10 coins on pick-up.
     * Shoutouts to **typographics** for designing the item sprite for the new `Coin Bag` item!
+* `ISpy Panel Hints` option
+  * Allows adding hints about the contents of the hidden panels. These hints will appear as slightly transparent item sprites above each panel, hinting at what is inside. To see these hints, either equip the ISpy badge, or turn on the `Always ISpy` option. The hint will disappear once the panel item counts as collected.
+  * This option has three different values:
+    * `Off`: Don't show panel hints
+    * `Vague`: Display a generic item sprite, based on the type of the item inside of the panel. For the item types of 'gear', 'partner', 'badge', 'key', and 'consumable', new greyed-out, generic item sprites with question marks in the middle are added to the game.
+    * `Concrete`: Display the item sprite of the exact item inside of the panel
 * `Plandomizer` feature
   * Now allows placing items into MultiCoinBlock and SuperBlock locations.
 * `Starting Items` feature

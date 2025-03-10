@@ -17,6 +17,7 @@ SkipEpilogue         : true
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : true
 HiddenPanelVisibility: 1 # 0:vanilla, 1:texture-edit
+ISpyPanelHints       : 0 # 0:off, 1:vague, 2:concrete
 
 # Difficulty and Enemies
 ShuffleChapterDifficulty: true

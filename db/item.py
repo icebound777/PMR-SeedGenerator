@@ -97,9 +97,9 @@ class Item(Model):
             return "GEAR"
         elif 0x276 == item_id:
             return "STARPOWER"
-        elif 0x278 <= item_id <= 0x28A:
+        elif 0x27D <= item_id <= 0x28F:
             return "PARTNERUPGRADE"
-        elif 0x28B <= item_id <= 0x293:
+        elif 0x290 <= item_id <= 0x298:
             return "PARTNER"
         else:
             return "OTHER"

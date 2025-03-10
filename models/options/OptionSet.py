@@ -52,6 +52,7 @@ class OptionSet:
         self.peachcastle_return_pipe = bool(get_option_default_value("PeachCastleReturnPipe"))
         self.foliage_item_hints = bool(get_option_default_value("FoliageItemHints"))
         self.hiddenpanel_visibility = get_option_default_value("HiddenPanelVisibility")
+        self.ispy_panel_hints = get_option_default_value("ISpyPanelHints")
         self.mute_danger_beeps = bool(get_option_default_value("MuteDangerBeeps"))
 
         # Difficulty and Enemies
@@ -173,6 +174,8 @@ class OptionSet:
             self.foliage_item_hints = options_dict.get("FoliageItemHints")
         if "HiddenPanelVisibility" in options_dict:
             self.hiddenpanel_visibility = options_dict.get("HiddenPanelVisibility")
+        if "ISpyPanelHints" in options_dict:
+            self.ispy_panel_hints = options_dict.get("ISpyPanelHints")
         if "MuteDangerBeeps" in options_dict:
             self.mute_danger_beeps = options_dict.get("MuteDangerBeeps")
 
@@ -1015,6 +1018,7 @@ class OptionSet:
         basic_assert("PeachCastleReturnPipe", bool)
         basic_assert("FoliageItemHints", bool)
         basic_assert("HiddenPanelVisibility", int)
+        basic_assert("ISpyPanelHints", int)
 
         # Difficulty and Enemies
         basic_assert("ShuffleChapterDifficulty", bool)
@@ -1601,6 +1605,7 @@ class OptionSet:
             load_dbkey(self.peachcastle_return_pipe, "PeachCastleReturnPipe"),
             load_dbkey(self.foliage_item_hints, "FoliageItemHints"),
             load_dbkey(self.hiddenpanel_visibility, "HiddenPanelVisibility"),
+            load_dbkey(self.ispy_panel_hints, "ISpyPanelHints"),
             load_dbkey(self.mute_danger_beeps, "MuteDangerBeeps"),
 
             # Difficulty and Enemies
@@ -1913,6 +1918,7 @@ class OptionSet:
         web_settings["GearShuffleMode"] = self.logic_settings.gear_shuffle_mode
         web_settings["PartnerUpgradeShuffle"] = self.logic_settings.partner_upgrade_shuffle
         web_settings["HiddenPanelVisibility"] = self.hiddenpanel_visibility
+        web_settings["ISpyPanelHints"] = self.ispy_panel_hints
         web_settings["CookWithoutFryingPan"] = self.logic_settings.cook_without_fryingpan
         web_settings["RipCheatoItemsInLogic"] = self.logic_settings.ripcheato_items_in_logic
         web_settings["MerlowRewardPricing"] = int(self.merlow_reward_pricing)
