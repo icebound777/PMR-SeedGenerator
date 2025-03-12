@@ -22,6 +22,8 @@
   * Now allows having both chosen starting items and random starting items at the same time.
   * The number of starting items still cannot exceed 16.
   * Specificly chosen starting items will overrule random starting items. So if the player chooses 10 specific starting items, and sets the number of randomly chosen starting items to 10, only 6 starting items will be chosen randomly regardless.
+* `Chet Rippo Available` feature
+  * Allows disabling Chet Rippo, the shady NPC in Toad Town that allows reallocating Mario's stats for a small fee.
 
 ### Quality of Life
 
@@ -60,6 +62,7 @@
   * Removed `LimitChapterLogic`
   * Added `ISpyPanelHints` (int)
     * 0: off, 1: vague, 2: concrete
+  * Added `ChetRippoAvailable` (bool)
 * Changed Item IDs due to new `Coin Bag` and ISpy panel hint items
   * New `Coin Bag` item on ID 0x277
   * New panel hint dummy items on IDs 0x278 - 0x27C (unplaceable)

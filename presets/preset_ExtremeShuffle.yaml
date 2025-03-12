@@ -23,16 +23,17 @@ ISpyPanelHints       : 0 # 0:off, 1:vague, 2:concrete
 ShuffleChapterDifficulty: true
 ProgressiveScaling      : false
 
-ChallengeMode  : false
-CapEnemyXP     : false
-XPMultiplier   : 1
-DoubleDamage   : false
-QuadrupleDamage: false
-OHKO           : false
-NoSaveBlocks   : false
-NoHeartBlocks  : false
-NoHealingItems : false
-DropStarPoints : true
+ChallengeMode     : false
+CapEnemyXP        : false
+XPMultiplier      : 1
+DoubleDamage      : false
+QuadrupleDamage   : false
+OHKO              : false
+NoSaveBlocks      : false
+NoHeartBlocks     : false
+NoHealingItems    : false
+DropStarPoints    : true
+ChetRippoAvailable: true
 
 RandomFormations: true
 BossShuffleMode : 1 # 0: off, 1: shuffle chapter bosses

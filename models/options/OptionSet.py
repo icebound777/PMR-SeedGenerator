@@ -68,6 +68,7 @@ class OptionSet:
         self.no_heart_blocks = bool(get_option_default_value("NoHeartBlocks"))
         self.no_healing_items = bool(get_option_default_value("NoHealingItems"))
         self.drop_starpoints = bool(get_option_default_value("DropStarPoints"))
+        self.chetrippo_available = bool(get_option_default_value("ChetRippoAvailable"))
 
         self.random_formations = bool(get_option_default_value("RandomFormations"))
 
@@ -205,6 +206,8 @@ class OptionSet:
             self.no_healing_items = options_dict.get("NoHealingItems")
         if "DropStarPoints" in options_dict:
             self.drop_starpoints = options_dict.get("DropStarPoints")
+        if "ChetRippoAvailable" in options_dict:
+            self.chetrippo_available = options_dict.get("ChetRippoAvailable")
 
         if "RandomFormations" in options_dict:
             self.random_formations = options_dict.get("RandomFormations")
@@ -1033,6 +1036,7 @@ class OptionSet:
         basic_assert("NoHeartBlocks", bool)
         basic_assert("NoHealingItems", bool)
         basic_assert("DropStarPoints", bool)
+        basic_assert("ChetRippoAvailable", bool)
 
         basic_assert("RandomFormations", bool)
         if "BossShuffleMode" in options_dict:
@@ -1620,6 +1624,7 @@ class OptionSet:
             load_dbkey(self.no_heart_blocks, "NoHeartBlocks"),
             load_dbkey(self.no_healing_items, "NoHealingItems"),
             load_dbkey(self.drop_starpoints, "DropStarPoints"),
+            load_dbkey(self.chetrippo_available, "ChetRippoAvailable"),
 
             load_dbkey(self.random_formations, "RandomFormations"),
             load_dbkey(self.logic_settings.boss_shuffle_mode, "BossShuffleMode"),
@@ -1895,6 +1900,7 @@ class OptionSet:
         web_settings["RandomText"] = self.random_text
         web_settings["NoHealingItems"] = self.no_healing_items
         web_settings["DropStarPoints"] = self.drop_starpoints
+        web_settings["ChetRippoAvailable"] = self.chetrippo_available
 
         web_settings["ItemQuality"] = self.logic_settings.item_quality
         web_settings["RandomConsumableMode"] = int(self.logic_settings.randomize_consumable_mode)
