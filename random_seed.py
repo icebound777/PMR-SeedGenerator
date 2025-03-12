@@ -10,6 +10,7 @@ from rando_enums.enum_options import (
     PartnerUpgradeShuffle,
     DungeonEntranceShuffle,
     RequiredSpirits,
+    BowserDoorQuiz,
 )
 
 from itemhints import get_itemhints
@@ -291,7 +292,8 @@ class RandomSeed:
                     modified_world_graph = set_starbeam_requirements(
                         world_graph=modified_world_graph,
                         spirits_needed=logic_settings.starbeam_spirits_needed,
-                        powerstars_needed=logic_settings.starbeam_powerstars_needed
+                        powerstars_needed=logic_settings.starbeam_powerstars_needed,
+                        forced_antiguysunit=(logic_settings.bowserdoor_quiz == BowserDoorQuiz.ANTI_GUYS_UNIT),
                     )
 
                 entrance_changes, modified_world_graph = set_starway_requirements(
@@ -306,7 +308,8 @@ class RandomSeed:
                             / 2
                         )
                     ),
-                    seed_goal=logic_settings.seed_goal
+                    seed_goal=logic_settings.seed_goal,
+                    forced_antiguysunit=(logic_settings.bowserdoor_quiz == BowserDoorQuiz.ANTI_GUYS_UNIT),
                 )
                 if entrance_changes:
                     self.extend_entrances(entrance_changes)

@@ -172,6 +172,7 @@ RandomStarpowerSP: 3
 # Misc Gameplay Randomization
 MultiCoinBlockShuffle: 2 # 0: off, 1: shuffle, 2: anywhere
 RandomizePuzzles     : true
+BowserDoorQuiz       : 0 # 0: do quiz, 1: must defeat anti guys unit, 2: skip
 
 # Quizmo Quizzes
 RandomQuiz         : true

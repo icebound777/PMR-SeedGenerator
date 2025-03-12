@@ -138,3 +138,9 @@ class RequiredSpirits(IntEnum):
     ANY = 0
     SPECIFIC = 1
     SPECIFIC_AND_LIMITCHAPTERLOGIC = 2
+
+@unique
+class BowserDoorQuiz(IntEnum):
+    DO_QUIZ = 0
+    ANTI_GUYS_UNIT = 1
+    SKIP = 2

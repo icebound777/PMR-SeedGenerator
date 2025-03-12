@@ -561,7 +561,8 @@ def set_starway_requirements(
     spirits_needed: int,
     specific_spirits: list,
     powerstars_needed: int,
-    seed_goal: SeedGoal
+    seed_goal: SeedGoal,
+    forced_antiguysunit: bool,
 ) -> dict:
     """
     Returns the modified world graph itself, modified to set the spirits
@@ -597,9 +598,18 @@ def set_starway_requirements(
             world_graph["HOS_01/0"]["edge_list"][index]["reqs"].extend(added_requirements)
             #print(world_graph["HOS_01/0"]["edge_list"][index]["reqs"])
 
-    # add requirements to chapter 8 jr. troopa and both bowser battles, so the
-    # logic doesn't require going through them too early
+    # add requirements to anti guys unit (if forced), chapter 8 jr. troopa, and
+    # both bowser battles, so the # logic doesn't require going through them
+    # too early
 
+    ## anti guys unit
+    if forced_antiguysunit:
+        for index, entrance in enumerate(world_graph["KPA_82/0"]["edge_list"]):
+            if (    entrance["to"]["map"] == "KPA_82"
+                and entrance["to"]["id"] == 1
+            ):
+                world_graph["KPA_82/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+                break
     ## ch8 jr. troopa
     for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
         if (    entrance["to"]["map"] == "KPA_83"
@@ -675,6 +685,7 @@ def set_starbeam_requirements(
     world_graph: dict,
     spirits_needed: int,
     powerstars_needed: int,
+    forced_antiguysunit: bool,
 ) -> dict:
     """
     Returns the modified world graph itself, modified to set the spirits
@@ -696,10 +707,19 @@ def set_starbeam_requirements(
             #print(world_graph["HOS_05/0"]["edge_list"][index]["reqs"])
             break
 
-    # add requirements to chapter 8 jr. troopa and both bowser battles, so the
-    # logic doesn't require going through them too early.
+    # add requirements to anti guys unit (if forced), chapter 8 jr. troopa, and
+    # both bowser battles, so the # logic doesn't require going through them
+    # too early.
     # this will add onto requirements placed by set_starway_requirements
 
+    ## anti guys unit
+    if forced_antiguysunit:
+        for index, entrance in enumerate(world_graph["KPA_82/0"]["edge_list"]):
+            if (    entrance["to"]["map"] == "KPA_82"
+                and entrance["to"]["id"] == 1
+            ):
+                world_graph["KPA_82/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+                break
     ## ch8 jr. troopa
     for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
         if (    entrance["to"]["map"] == "KPA_83"

@@ -11,6 +11,7 @@ from rando_enums.enum_options import (
     DojoShuffle,
     MultiCoinBlockShuffle,
     RequiredSpirits,
+    BowserDoorQuiz,
 )
 
 class LogicOptionSet():
@@ -135,3 +136,4 @@ class LogicOptionSet():
         # Misc Gameplay Randomization
         self.multicoin_block_shuffle = MultiCoinBlockShuffle.OFF
         self.randomize_puzzles = False
+        self.bowserdoor_quiz = BowserDoorQuiz.DO_QUIZ

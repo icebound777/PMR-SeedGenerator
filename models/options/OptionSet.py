@@ -22,6 +22,7 @@ from rando_enums.enum_options import (
     DojoShuffle,
     BossShuffleMode,
     RequiredSpirits,
+    BowserDoorQuiz,
 )
 from models.options.LogicOptionSet import LogicOptionSet
 from models.options.PaletteOptionSet import PaletteOptionSet
@@ -467,6 +468,8 @@ class OptionSet:
             self.logic_settings.multicoin_block_shuffle = options_dict.get("MultiCoinBlockShuffle")
         if "RandomizePuzzles" in options_dict:
             self.logic_settings.randomize_puzzles = options_dict.get("RandomizePuzzles")
+        if "BowserDoorQuiz" in options_dict:
+            self.logic_settings.bowserdoor_quiz = options_dict.get("BowserDoorQuiz")
 
         # Quizmo Quizzes
         if "RandomQuiz" in options_dict:
@@ -1335,6 +1338,12 @@ class OptionSet:
         # Misc Gameplay Randomization
         basic_assert("ShuffleBlocks", bool)
         basic_assert("RandomizePuzzles", bool)
+        if "BowserDoorQuiz" in options_dict:
+            assert (    isinstance(options_dict["BowserDoorQuiz"], int)
+                    and BowserDoorQuiz.DO_QUIZ
+                        <= options_dict["BowserDoorQuiz"]
+                        <= BowserDoorQuiz.SKIP
+            )
 
         # Quizmo Quizzes
         basic_assert("RandomQuiz", bool)
@@ -1916,6 +1925,7 @@ class OptionSet:
         web_settings["AllowItemHints"] = self.allow_itemhints
         web_settings["MultiCoinBlockShuffle"] = self.logic_settings.multicoin_block_shuffle
         web_settings["RandomizePuzzles"] = self.logic_settings.randomize_puzzles
+        web_settings["BowserDoorQuiz"] = self.logic_settings.bowserdoor_quiz
         web_settings["RandomPitch"] = self.random_pitch
         web_settings["MuteDangerBeeps"] = self.mute_danger_beeps
         web_settings["ShuffleMusic"] = self.shuffle_music
