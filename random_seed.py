@@ -243,7 +243,7 @@ class RandomSeed:
                         world_graph = modified_world_graph,
                         starway_spirits_needed_count = logic_settings.starway_spirits_needed_count,
                         required_star_spirits = chosen_spirits,
-                        limit_chapter_logic = (required_spirits == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC),
+                        limit_chapter_logic = (logic_settings.required_spirits == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC),
                         shuffle_bowsers_castle = (
                             logic_settings.shuffle_dungeon_entrances == DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
                         ),
