@@ -44,6 +44,9 @@
 * Modified credits scene
   * Added `typographics` to the in-game credits, for making the `Coin Bag` item sprite.
   * Removed `Jdaster64` from the in-game credits, as he was originally added there due to a misunderstanding. Sorry Jdaster, hope you don't mind too much :)
+* Modified base item pool
+  * The item pool will now always include all 80 vanilla badges, regardless of your chosen settings. This makes sure that the `Deep Focus` from Bowser's Castle, and the `Deep Focus`, `Last Stand`, and `Power Rush` from Peach's Castle are always available.
+  * Formerly, some or all of those badges could be absent from the item pool, depending on the chosen values for the `Bowser's Castle Mode` and `Seed Goal` settings.
 * Changed the internal handling of `Require Specific Spirits` and `Limit Chapter Logic`. These settings are now merged into a single setting called `RequiredSpirits`.
 * RAM locations docs
   * Fix wrong item check collected flag for Boo's Mansion - Super Boots Room - In Big Chest. This should stop auto-trackers marking the item as collected even if the item is never picked up.

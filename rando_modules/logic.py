@@ -709,6 +709,21 @@ def _generate_item_pools(
         - items_plandod
     )
 
+    # Make sure that every vanilla badge is in the item pool, regardless of
+    # chosen settings
+    for vanilla_badge in (
+        Item
+        .select()
+        .where(Item.item_type == "BADGE")
+        .where(Item.unused == False)
+        .where(Item.unplaceable == False)
+        .where(~(Item.item_name % "*Proxy*"))
+    ):
+        if (    vanilla_badge not in pool_badges
+            and vanilla_badge not in pool_progression_items
+        ):
+            pool_badges.append(vanilla_badge)
+
     # Add Power Stars, if needed
     if logic_settings.star_hunt_total > 0:
         stars_added = 0
