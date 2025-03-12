@@ -953,7 +953,7 @@ def get_glitched_logic(
     if glitch_settings.parakarryless_sewer_star_piece:
         all_new_edges.extend(edges_tik_add_parakarryless_sewer_star_piece)
     if glitch_settings.clippy_sewers_upgrade_block:
-        edges_tik_add_partnerupgrades.extend(edges_tik_add_clippy_sewers_upgrade_block)
+        all_new_edges.extend(edges_tik_add_clippy_sewers_upgrade_block)
     if glitch_settings.sewer_blocks_without_ultra_boots:
         all_new_edges.extend(edges_tik_add_sewer_blocks_without_ultra_boots)
     if glitch_settings.chapter_7_bridge_with_super_boots:
@@ -1101,7 +1101,7 @@ def get_glitched_logic(
     if glitch_settings.bowless_green_station:
         all_new_edges.extend(edges_omo_add_bowless_green_station_laki)
     if glitch_settings.clippy_green_station_coin_block:
-        edges_omo_add_partnerupgrades.extend(edges_omo_clippy_green_station_coin_block)
+        all_new_edges.extend(edges_omo_clippy_green_station_coin_block)
     if glitch_settings.kooperless_red_station_shooting_star:
         all_new_edges.extend(edges_omo_add_red_station_shooting_star_parakarry)
     if glitch_settings.gearless_red_station_shooting_star:
