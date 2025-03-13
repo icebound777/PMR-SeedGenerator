@@ -1742,6 +1742,7 @@ class OptionSet:
             load_dbkey(self.logic_settings.match_entrance_type, "MatchEntranceTypes"),
 
             # Misc
+            load_dbkey(self.logic_settings.bowserdoor_quiz, "BowserDoorQuiz"),
             load_dbkey(self.logic_settings.kentckoopa, "KentCKoopa"),
 
             # Quizmo Quizzes
