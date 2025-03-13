@@ -144,3 +144,10 @@ class BowserDoorQuiz(IntEnum):
     DO_QUIZ = 0
     ANTI_GUYS_UNIT = 1
     SKIP = 2
+
+@unique
+class KentCKoopa(IntEnum):
+    BLOCKS_PLEASANT_PATH = 0
+    MUST_FIGHT = 1
+    ALREADY_PAID = 2
+    ALREADY_DEFEATED = 3

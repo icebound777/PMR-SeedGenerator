@@ -12,6 +12,7 @@ from rando_enums.enum_options import (
     MultiCoinBlockShuffle,
     RequiredSpirits,
     BowserDoorQuiz,
+    KentCKoopa,
 )
 
 class LogicOptionSet():
@@ -137,3 +138,4 @@ class LogicOptionSet():
         self.multicoin_block_shuffle = MultiCoinBlockShuffle.OFF
         self.randomize_puzzles = False
         self.bowserdoor_quiz = BowserDoorQuiz.DO_QUIZ
+        self.kentckoopa = KentCKoopa.BLOCKS_PLEASANT_PATH

@@ -1082,6 +1082,7 @@ def _algo_assumed_fill(
             logic_settings.ch7_bridge_visible,
             logic_settings.always_speedyspin,
             logic_settings.cook_without_fryingpan,
+            logic_settings.kentckoopa,
             vanilla_start=False,
         )
         for item in all_progression_yet_to_be_placed:
@@ -1303,6 +1304,7 @@ def _algo_assumed_fill(
             logic_settings.ch7_bridge_visible,
             logic_settings.always_speedyspin,
             logic_settings.cook_without_fryingpan,
+            logic_settings.kentckoopa,
             vanilla_start=False
         )
 
@@ -1476,6 +1478,7 @@ def get_item_spheres(
         logic_settings.ch7_bridge_visible,
         logic_settings.always_speedyspin,
         logic_settings.cook_without_fryingpan,
+        logic_settings.kentckoopa,
         vanilla_start
     )
 

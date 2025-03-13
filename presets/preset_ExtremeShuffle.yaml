@@ -173,6 +173,7 @@ RandomStarpowerSP: 3
 MultiCoinBlockShuffle: 2 # 0: off, 1: shuffle, 2: anywhere
 RandomizePuzzles     : true
 BowserDoorQuiz       : 0 # 0: do quiz, 1: must defeat anti guys unit, 2: skip
+KentCKoopa           : 0 # 0: guards pleasant path, 1: must defeat, 2: already paid, 3: already defeated
 
 # Quizmo Quizzes
 RandomQuiz         : true

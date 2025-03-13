@@ -23,6 +23,7 @@ from rando_enums.enum_options import (
     BossShuffleMode,
     RequiredSpirits,
     BowserDoorQuiz,
+    KentCKoopa,
 )
 from models.options.LogicOptionSet import LogicOptionSet
 from models.options.PaletteOptionSet import PaletteOptionSet
@@ -470,6 +471,8 @@ class OptionSet:
             self.logic_settings.randomize_puzzles = options_dict.get("RandomizePuzzles")
         if "BowserDoorQuiz" in options_dict:
             self.logic_settings.bowserdoor_quiz = options_dict.get("BowserDoorQuiz")
+        if "KentCKoopa" in options_dict:
+            self.logic_settings.kentckoopa = options_dict.get("KentCKoopa")
 
         # Quizmo Quizzes
         if "RandomQuiz" in options_dict:
@@ -1344,6 +1347,12 @@ class OptionSet:
                         <= options_dict["BowserDoorQuiz"]
                         <= BowserDoorQuiz.SKIP
             )
+        if "KentCKoopa" in options_dict:
+            assert (    isinstance(options_dict["KentCKoopa"], int)
+                    and KentCKoopa.BLOCKS_PLEASANT_PATH
+                        <= options_dict["KentCKoopa"]
+                        <= KentCKoopa.ALREADY_DEFEATED
+            )
 
         # Quizmo Quizzes
         basic_assert("RandomQuiz", bool)
@@ -1732,6 +1741,9 @@ class OptionSet:
             load_dbkey(self.logic_settings.shuffle_entrances_by_all, "ShuffleEntrancesByAll"),
             load_dbkey(self.logic_settings.match_entrance_type, "MatchEntranceTypes"),
 
+            # Misc
+            load_dbkey(self.logic_settings.kentckoopa, "KentCKoopa"),
+
             # Quizmo Quizzes
             load_dbkey(self.random_quiz, "RandomQuiz"),
             load_dbkey(self.quizmo_always_appears, "QuizmoAlwaysAppears"),
@@ -1926,6 +1938,7 @@ class OptionSet:
         web_settings["MultiCoinBlockShuffle"] = self.logic_settings.multicoin_block_shuffle
         web_settings["RandomizePuzzles"] = self.logic_settings.randomize_puzzles
         web_settings["BowserDoorQuiz"] = self.logic_settings.bowserdoor_quiz
+        web_settings["KentCKoopa"] = self.logic_settings.kentckoopa
         web_settings["RandomPitch"] = self.random_pitch
         web_settings["MuteDangerBeeps"] = self.mute_danger_beeps
         web_settings["ShuffleMusic"] = self.shuffle_music
