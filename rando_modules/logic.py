@@ -1407,7 +1407,7 @@ def _algo_assumed_fill(
                 item_node.current_item = random_item
                 #logging.debug("%s: %s", item_node_id, random_item.item_name)
 
-            except ValueError as err:
+            except ValueError:
                 #logging.warning("pool_other_items size: %d", len(pool_other_items))
                 #raise
                 item_node.current_item = item_node.vanilla_item

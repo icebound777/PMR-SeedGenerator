@@ -262,7 +262,6 @@ def write_data_to_array(
     itemhints:list,
     coin_palette_data:list,
     coin_palette_targets:list,
-    coin_palette_crcs:list,
     palette_data:list,
     quiz_data:list,
     music_list:list,
@@ -612,7 +611,6 @@ def web_randomizer(settingsJson, plandoData, world_graph):
         itemhints=random_seed.itemhints,
         coin_palette_data=random_seed.coin_palette.data,
         coin_palette_targets=random_seed.coin_palette.targets,
-        coin_palette_crcs=random_seed.coin_palette.crcs,
         palette_data=random_seed.palette_data,
         quiz_data=random_seed.quiz_list,
         music_list=random_seed.music_list,
@@ -651,8 +649,6 @@ def web_randomizer(settingsJson, plandoData, world_graph):
         is_web_spoiler_log=True,
         spheres_dict=random_seed.item_spheres_dict,
         move_costs=random_seed.move_costs,
-        puzzle_solutions=random_seed.puzzle_minigame_data,
-        battle_shuffles=random_seed.battles,
         spoilerlog_additions=random_seed.spoilerlog_additions,
         seed_hash_items=random_seed.seed_hash_items
     )
@@ -831,8 +827,6 @@ def main_randomizer(args):
             spoilerlog_file=target_spoilerfile,
             spheres_dict=random_seed.item_spheres_dict,
             move_costs=random_seed.move_costs,
-            puzzle_solutions=random_seed.puzzle_minigame_data,
-            battle_shuffles=random_seed.battles,
             spoilerlog_additions=random_seed.spoilerlog_additions,
             seed_hash_items=random_seed.seed_hash_items,
             plando_data=plando_data,

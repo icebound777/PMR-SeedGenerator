@@ -1417,7 +1417,6 @@ def get_shuffled_battles(
         # boss shuffle or plando are active: Koopa Bros may be placed outside
         # of ch. 1: move/copy their battle logic to the other chapter(s)
 
-        boss_requirements: dict = {}
         adjusted_boss_edges: list = []
         remove_boss_edges: list = []
 

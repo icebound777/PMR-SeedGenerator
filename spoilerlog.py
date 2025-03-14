@@ -1,10 +1,7 @@
 import io
 import json
 
-from db.puzzle import Puzzle
 from db.move import Move
-from db.map_area import MapArea
-from db.node import Node
 
 from metadata.formations_meta import chapter_bossname_map
 from metadata.partners_meta import partner_moves
@@ -23,9 +20,6 @@ def write_spoiler_log(
     is_web_spoiler_log=False,
     spheres_dict:dict=None,
     move_costs:list=None,
-    block_locations:list=None,
-    puzzle_solutions:list=None,
-    battle_shuffles:list=None,
     seed_hash_items:list=None,
     spoilerlog_additions:dict=None,
     plando_data:dict=None,

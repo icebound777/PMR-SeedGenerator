@@ -25,7 +25,7 @@ def get_boss_battles(
                 return chapter
         return None
 
-    battles_setup: List[Tuple[int, int]] = []
+    battles_setup: list[tuple[int, int]] = []
     chapter_boss_map: dict[int, int] = dict()
 
     if plando_battles is not None and len(plando_battles) == 7:
@@ -120,4 +120,6 @@ def get_boss_battles(
             #     (db_chapters_keysvalues[7].dbkey, db_chapters_keysvalues[6].dbvalue)
             # ]
 
+    print(f"{battles_setup=}")
+    print(f"{chapter_boss_map=}")
     return battles_setup, chapter_boss_map

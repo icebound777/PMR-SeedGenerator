@@ -1,6 +1,5 @@
 from copy import deepcopy
 import random
-import datetime
 
 from metadata.area_name_mappings import area_name_id_map
 
@@ -750,7 +749,7 @@ class RandomSeed:
             self.entrance_list.extend(new_changes)
 
 
-    def set_seed_hash(self) -> tuple():
+    def set_seed_hash(self):
         """
         Randomly selects 4 items and their indices for displaying an item icon
         hash representing the seeded game on the save select screen.
