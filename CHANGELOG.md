@@ -30,6 +30,13 @@
     * `Do Quiz`: Behaves as before
     * `Anti Guys Unit`: No quiz, but a forced battle against the Anti Guys Unit
     * `Skip`: Quiz counts as already completed
+* `Kent C Koopa` feature
+  * Allows changing how Kent C Koopa on Pleasant Path behaves.
+  * Possible values:
+    * `Blocks Pleasant Path`: Behaves as before
+    * `Must Defeat`: No paying him, but a battle is required. Logically expects a way to flip him over and 2 chapters beaten
+    * `Already Paid`: Stands on the side of Pleasant Path as if already paid
+    * `Already Defeated`: Removed from Pleasant Path as if already defeated
 
 ### Quality of Life
 
@@ -71,6 +78,8 @@
   * Added `ChetRippoAvailable` (bool)
   * Added `BowserDoorQuiz` (int)
     * 0: Do quiz, 1: Forced Anti Guys Unit battle, 2: Skip quiz
+  * Added `KentCKoopa` (int)
+    * 0: Blocks Pleasant Path, 1: Must defeat, 2: Already paid, 3: Already defeated
 * Changed Item IDs due to new `Coin Bag` and ISpy panel hint items
   * New `Coin Bag` item on ID 0x277
   * New panel hint dummy items on IDs 0x278 - 0x27C (unplaceable)
