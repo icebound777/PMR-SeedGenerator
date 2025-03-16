@@ -29,48 +29,87 @@ def shuffle_dungeon_entrances(
                 break
         return target_node_id
 
+    outside_dungeon_nodeids: dict[int, str] = {
+        StarSpirits.ELDSTAR:  "NOK_15/1",
+        StarSpirits.MAMAR:    "SBK_02/4",
+        StarSpirits.SKOLAR:   "ARN_04/1",
+        StarSpirits.MUSKULAR: "MAC_04/2",
+        StarSpirits.MISSTAR:  "JAN_22/2",
+        StarSpirits.KLEVAR:   "MAC_01/5",
+        StarSpirits.KALMAR:   "SAM_10/1",
+        8: "HOS_20/2",
+    }
+
     if starway_spirits_needed_count > 6:
         shuffle_bowsers_castle = False
 
     if limit_chapter_logic and len(required_star_spirits) > 0:
         dungeon_border_node_ids = []
         if StarSpirits.ELDSTAR in required_star_spirits:
+            node_id = outside_dungeon_nodeids[StarSpirits.ELDSTAR]
             dungeon_border_node_ids.append(
-                ("NOK_15/1", get_target_entrance("NOK_15/1")) # Koopa Bros Fortress
+                (node_id, get_target_entrance(node_id)) # Koopa Bros Fortress
             )
         if StarSpirits.MAMAR in required_star_spirits:
+            node_id = outside_dungeon_nodeids[StarSpirits.MAMAR]
             dungeon_border_node_ids.append(
-                ("SBK_02/4", get_target_entrance("SBK_02/4")) # Dry Dry Ruins
+                (node_id, get_target_entrance(node_id)) # Koopa Bros Fortress
             )
         if StarSpirits.SKOLAR in required_star_spirits:
+            node_id = outside_dungeon_nodeids[StarSpirits.SKOLAR]
             dungeon_border_node_ids.append(
-                ("ARN_04/1", get_target_entrance("ARN_04/1")) # Tubba Blubbas Castle
+                (node_id, get_target_entrance(node_id)) # Koopa Bros Fortress
             )
         if StarSpirits.MUSKULAR in required_star_spirits:
+            node_id = outside_dungeon_nodeids[StarSpirits.MUSKULAR]
             dungeon_border_node_ids.append(
-                ("MAC_04/2", get_target_entrance("MAC_04/2")) # Shy Guys Toybox
+                (node_id, get_target_entrance(node_id)) # Koopa Bros Fortress
             )
         if StarSpirits.MISSTAR in required_star_spirits:
+            node_id = outside_dungeon_nodeids[StarSpirits.MISSTAR]
             dungeon_border_node_ids.append(
-                ("JAN_22/2", get_target_entrance("JAN_22/2")) # Mt. Lavalava
+                (node_id, get_target_entrance(node_id)) # Koopa Bros Fortress
             )
         if StarSpirits.KLEVAR in required_star_spirits:
+            node_id = outside_dungeon_nodeids[StarSpirits.KLEVAR]
             dungeon_border_node_ids.append(
-                ("MAC_01/5", get_target_entrance("MAC_01/5")) # Flower Fields
+                (node_id, get_target_entrance(node_id)) # Koopa Bros Fortress
             )
         if StarSpirits.KALMAR in required_star_spirits:
+            node_id = outside_dungeon_nodeids[StarSpirits.KALMAR]
             dungeon_border_node_ids.append(
-                ("SAM_10/1", get_target_entrance("SAM_10/1")) # Crystal Palace
+                (node_id, get_target_entrance(node_id)) # Koopa Bros Fortress
             )
     else:
         dungeon_border_node_ids = [
-            ("NOK_15/1", get_target_entrance("NOK_15/1")), # Koopa Bros Fortress main
-            ("SBK_02/4", get_target_entrance("SBK_02/4")), # Dry Dry Ruins
-            ("ARN_04/1", get_target_entrance("ARN_04/1")), # Tubba Blubbas Castle
-            ("MAC_04/2", get_target_entrance("MAC_04/2")), # Shy Guys Toybox
-            ("JAN_22/2", get_target_entrance("JAN_22/2")), # Mt. Lavalava
-            ("MAC_01/5", get_target_entrance("MAC_01/5")), # Flower Fields
-            ("SAM_10/1", get_target_entrance("SAM_10/1")), # Crystal Palace
+            (
+                outside_dungeon_nodeids[StarSpirits.ELDSTAR],
+                get_target_entrance(outside_dungeon_nodeids[StarSpirits.ELDSTAR])
+            ), # Koopa Bros Fortress main
+            (
+                outside_dungeon_nodeids[StarSpirits.MAMAR],
+                get_target_entrance(outside_dungeon_nodeids[StarSpirits.MAMAR])
+            ), # Dry Dry Ruins
+            (
+                outside_dungeon_nodeids[StarSpirits.SKOLAR],
+                get_target_entrance(outside_dungeon_nodeids[StarSpirits.SKOLAR])
+            ), # Tubba Blubbas Castle
+            (
+                outside_dungeon_nodeids[StarSpirits.MUSKULAR],
+                get_target_entrance(outside_dungeon_nodeids[StarSpirits.MUSKULAR])
+            ), # Shy Guys Toybox
+            (
+                outside_dungeon_nodeids[StarSpirits.MISSTAR],
+                get_target_entrance(outside_dungeon_nodeids[StarSpirits.MISSTAR])
+            ), # Mt. Lavalava
+            (
+                outside_dungeon_nodeids[StarSpirits.KLEVAR],
+                get_target_entrance(outside_dungeon_nodeids[StarSpirits.KLEVAR])
+            ), # Flower Fields
+            (
+                outside_dungeon_nodeids[StarSpirits.KALMAR],
+                get_target_entrance(outside_dungeon_nodeids[StarSpirits.KALMAR])
+            ), # Crystal Palace
         ]
 
     if shuffle_bowsers_castle and starway_spirits_needed_count < 7 and not limit_chapter_logic:
@@ -80,7 +119,10 @@ def shuffle_dungeon_entrances(
 
         # determine Bowser Castle target entrance (due to BC mode this can vary)
         dungeon_border_node_ids.append(
-            ("HOS_20/2", get_target_entrance("HOS_20/2")) # Bowsers Castle
+            (
+                outside_dungeon_nodeids[8],
+                get_target_entrance(outside_dungeon_nodeids[8])
+            ) # Bowsers Castle
         )
 
     add_edges = []
