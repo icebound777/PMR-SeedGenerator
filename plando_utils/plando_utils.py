@@ -8,6 +8,8 @@ from metadata.verbose_area_names import verbose_area_names
 
 from metadata.partners_meta import all_partners
 
+from rando_enums.enum_options import RequiredSpirits, SeedGoal
+
 from plandomizer.plando_metadata import (
     allowed_placeholders,
     rowf_badges,
@@ -39,12 +41,14 @@ class TransformedPlandoData():
             self.move_costs: dict[str, dict[str, dict[str, int]]] | None = None
             self.item_placement: dict[str, Item] | None = None
             self.plando_active = False
+            self.dungeon_entrances: dict[int, int] | None = None
             return
 
         self.boss_battles: dict[int, int] | None  = plando_data.get("boss_battles")
         self.required_spirits: list[int] | None = plando_data.get("required_spirits")
         self.difficulty: dict[int, int] | None = plando_data.get("difficulty")
         self.move_costs: dict[str, dict[str, dict[str, int]]] | None = plando_data.get("move_costs")
+        self.dungeon_entrances: dict[int, int] | None = plando_data.get("dungeon_entrances")
 
         self.item_placement: dict[str, Item] | None = dict()
 
@@ -54,6 +58,7 @@ class TransformedPlandoData():
          or (self.difficulty is not None and len(self.difficulty) > 0)
          or (self.move_costs is not None and len(self.move_costs) > 0)
          or (plando_data.get("items") is not None and len(plando_data.get("items")) > 0)
+         or (self.dungeon_entrances is not None and len(self.dungeon_entrances) > 0)
         )
 
         if not plando_data.get("items"):
@@ -186,4 +191,61 @@ class TransformedPlandoData():
             raise PlandoSettingsMismatchError(
                 "Plandomizer error: Shop shuffle is turned off, but one or "\
                 "more of the badges from Rowf's or Merlow's shops are plando'd"
+            )
+
+        # Assert that Required Spirits is not set to Limit Chapter Logic if
+        # a chapter 8 entrance is plando'd
+        if (    rando_settings.logic_settings.required_spirits == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
+            and self.dungeon_entrances is not None
+            and (   8 in self.dungeon_entrances
+                 or 8 in self.dungeon_entrances.values()
+                )
+        ):
+            raise PlandoSettingsMismatchError(
+                "Plandomizer error: Limit Chapter Logic is active, but "\
+                "a chapter 8 dungeon entrance is set"
+            )
+
+        # Assert that if the seed goal is set to Open Star Way and Required
+        # Spirits is active, none of the required spirit's dungeons are behind
+        # Star Haven
+        if (    rando_settings.logic_settings.seed_goal == SeedGoal.OPEN_STARWAY
+            and self.dungeon_entrances is not None
+            and self.required_spirits is not None
+            and 8 in self.dungeon_entrances
+            and self.dungeon_entrances[8] in self.required_spirits
+        ):
+            raise PlandoSettingsMismatchError(
+                "Plandomizer error: The Seed Goal is Open Star Way, but "\
+                "one of the chapters required to beat the game is connected "
+                "to Star Haven"
+            )
+
+        # Assert that if Required Spirits is active in any way, none of
+        # the required dungeons are behind Star Haven
+        if (    self.dungeon_entrances is not None
+            and self.required_spirits is not None
+            and rando_settings.logic_settings.required_spirits != RequiredSpirits.ANY
+            and 8 in self.dungeon_entrances
+            and any(
+                    True for x in self.required_spirits
+                    if x == self.dungeon_entrances[8]
+                )
+        ):
+            raise PlandoSettingsMismatchError(
+                "Plandomizer error: Required Spirits is set active, but one "\
+                "of the required spirits is placed behind Star Haven"
+            )
+
+        # Assert that if Star Way requires 7 spirits to open, that no
+        # chapter 8 connection is plando'd
+        if (    self.dungeon_entrances is not None
+            and rando_settings.logic_settings.starway_spirits_needed_count == 7
+            and (   8 in self.dungeon_entrances
+                 or 8 in self.dungeon_entrances.values()
+                )
+        ):
+            raise PlandoSettingsMismatchError(
+                "Plandomizer error: The number of spirits to open Star Way "\
+                "is set to 7, but a chapter 8 dungeon connection is plando'd"
             )

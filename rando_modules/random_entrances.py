@@ -19,7 +19,8 @@ def shuffle_dungeon_entrances(
     required_star_spirits:list[int],
     limit_chapter_logic: bool,
     shuffle_bowsers_castle:bool,
-    write_spoilers:bool
+    write_spoilers:bool,
+    plando_dungeon_entrances:dict | None,
 ) -> dict:
     def get_target_entrance(starting_node: str) -> str | None:
         target_node_id: str | None = None
@@ -67,12 +68,20 @@ def shuffle_dungeon_entrances(
     # Randomly pair dungeon entry points to dungeons
     shuffled_chapter_pairs: list[tuple[int, int]] = list()
     dungeon_entry_points = dungeons_to_shuffle.copy()
+    if plando_dungeon_entrances is not None:
+        for k, v in plando_dungeon_entrances.items():
+            dungeon_entry_points.remove(k)
+            dungeons_to_shuffle.remove(v)
+
     random.shuffle(dungeons_to_shuffle)
     while dungeons_to_shuffle:
         shuffled_chapter_pairs.append(
             (dungeon_entry_points.pop(), dungeons_to_shuffle.pop())
         )
 
+    if plando_dungeon_entrances is not None:
+        for k, v in plando_dungeon_entrances.items():
+            shuffled_chapter_pairs.append((k, v))
     # Re-link dungeon entrances for dungeon connections that aren't vanilla
     add_edges = []
     remove_edges = []

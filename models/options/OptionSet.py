@@ -912,7 +912,8 @@ class OptionSet:
         forced_partner_upgrade_shuffle,\
         forced_random_puzzles,\
         forced_shuffle_starbeam,\
-        forced_multicoinblock_shuffle = \
+        forced_multicoinblock_shuffle,\
+        forced_shuffle_dungeon_entrances = \
             _overrule_settings_with_plando(
                 plando_data
             )
@@ -932,6 +933,8 @@ class OptionSet:
                 self.logic_settings.multicoin_block_shuffle,
                 forced_multicoinblock_shuffle,
             ])
+        if forced_shuffle_dungeon_entrances is not None:
+            self.logic_settings.shuffle_dungeon_entrances = forced_shuffle_dungeon_entrances
 
         self.plando_active = False
 
@@ -2189,12 +2192,14 @@ def _overrule_settings_with_plando(
     bool | None,
     bool | None,
     MultiCoinBlockShuffle | None,
+    bool | None,
 ]:
     forced_progressive_badges: bool = None
     forced_partner_upgrade_shuffle: bool = None
     forced_random_puzzles: bool = None
     forced_shuffle_starbeam: bool = None
     forced_multicoinblock_shuffle: MultiCoinBlockShuffle = None
+    forced_shuffle_dungeon_entrances: bool = None
 
     if plando_data is None:
         return (
@@ -2203,11 +2208,12 @@ def _overrule_settings_with_plando(
             forced_random_puzzles,
             forced_shuffle_starbeam,
             forced_multicoinblock_shuffle,
+            forced_shuffle_dungeon_entrances,
         )
 
     else:
-         item_placement_areas: None | dict[str, dict[str, str | dict[str, str | int]]] = plando_data.get("items")
-         if item_placement_areas is not None:
+        item_placement_areas: None | dict[str, dict[str, str | dict[str, str | int]]] = plando_data.get("items")
+        if item_placement_areas is not None:
             for area_name, area_locations in item_placement_areas.items():
                 for item_location, item in area_locations.items():
                     cur_item: str = None
@@ -2249,10 +2255,17 @@ def _overrule_settings_with_plando(
                     elif cur_item == "StarBeam":
                         forced_shuffle_starbeam = True
 
+    if plando_data.get("dungeon_entrances") is not None:
+        if 8 in plando_data["dungeon_entrances"] or 8 in plando_data["dungeon_entrances"].values():
+            forced_shuffle_dungeon_entrances = DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
+        else:
+            forced_shuffle_dungeon_entrances = DungeonEntranceShuffle.ONLY_SPIRIT_DUNGEONS
+
     return (
         forced_progressive_badges,
         forced_partner_upgrade_shuffle,
         forced_random_puzzles,
         forced_shuffle_starbeam,
         forced_multicoinblock_shuffle,
+        forced_shuffle_dungeon_entrances,
     )

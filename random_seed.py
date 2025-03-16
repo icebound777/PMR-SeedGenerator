@@ -247,6 +247,7 @@ class RandomSeed:
                             logic_settings.shuffle_dungeon_entrances == DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
                         ),
                         write_spoilers = dc_rando_settings.write_spoilerlog,
+                        plando_dungeon_entrances = self.plando_data.dungeon_entrances,
                     )
                     self.extend_entrances(entrance_changes)
                     if self.spoilerlog_additions.get("entrances") is None:
