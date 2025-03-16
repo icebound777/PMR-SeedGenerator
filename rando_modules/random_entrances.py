@@ -21,6 +21,14 @@ def shuffle_dungeon_entrances(
     shuffle_bowsers_castle:bool,
     write_spoilers:bool
 ) -> dict:
+    def get_target_entrance(starting_node: str) -> str | None:
+        target_node_id: str | None = None
+        for edge in world_graph[starting_node]["edge_list"]:
+            if edge["to"]["map"][:3] != starting_node[:3]:
+                target_node_id = f"{edge['to']['map']}/{edge['to']['id']}"
+                break
+        return target_node_id
+
     if starway_spirits_needed_count > 6:
         shuffle_bowsers_castle = False
 
@@ -28,42 +36,41 @@ def shuffle_dungeon_entrances(
         dungeon_border_node_ids = []
         if StarSpirits.ELDSTAR in required_star_spirits:
             dungeon_border_node_ids.append(
-                ("NOK_15/1", "TRD_00/0") # Koopa Bros Fortress
+                ("NOK_15/1", get_target_entrance("NOK_15/1")) # Koopa Bros Fortress
             )
         if StarSpirits.MAMAR in required_star_spirits:
             dungeon_border_node_ids.append(
-                ("SBK_02/4", "ISK_01/0") # Dry Dry Ruins
+                ("SBK_02/4", get_target_entrance("SBK_02/4")) # Dry Dry Ruins
             )
         if StarSpirits.SKOLAR in required_star_spirits:
             dungeon_border_node_ids.append(
-                ("ARN_04/1", "DGB_00/0") # Tubba Blubbas Castle
+                ("ARN_04/1", get_target_entrance("ARN_04/1")) # Tubba Blubbas Castle
             )
         if StarSpirits.MUSKULAR in required_star_spirits:
             dungeon_border_node_ids.append(
-                ("MAC_04/2", "OMO_03/4") # Shy Guys Toybox
+                ("MAC_04/2", get_target_entrance("MAC_04/2")) # Shy Guys Toybox
             )
         if StarSpirits.MISSTAR in required_star_spirits:
             dungeon_border_node_ids.append(
-                ("JAN_22/2", "KZN_01/0") # Mt. Lavalava
+                ("JAN_22/2", get_target_entrance("JAN_22/2")) # Mt. Lavalava
             )
         if StarSpirits.KLEVAR in required_star_spirits:
             dungeon_border_node_ids.append(
-                ("MAC_01/5", "FLO_00/0") # Flower Fields
+                ("MAC_01/5", get_target_entrance("MAC_01/5")) # Flower Fields
             )
         if StarSpirits.KALMAR in required_star_spirits:
             dungeon_border_node_ids.append(
-                ("SAM_10/1", "PRA_01/0") # Crystal Palace
+                ("SAM_10/1", get_target_entrance("SAM_10/1")) # Crystal Palace
             )
     else:
         dungeon_border_node_ids = [
-            ("NOK_15/1", "TRD_00/0"), # Koopa Bros Fortress main
-            #("NOK_15/2", "TRD_00/4"), # Koopa Bros Fortress chest ledge
-            ("SBK_02/4", "ISK_01/0"), # Dry Dry Ruins
-            ("ARN_04/1", "DGB_00/0"), # Tubba Blubbas Castle
-            ("MAC_04/2", "OMO_03/4"), # Shy Guys Toybox
-            ("JAN_22/2", "KZN_01/0"), # Mt. Lavalava
-            ("MAC_01/5", "FLO_00/0"), # Flower Fields
-            ("SAM_10/1", "PRA_01/0"), # Crystal Palace
+            ("NOK_15/1", get_target_entrance("NOK_15/1")), # Koopa Bros Fortress main
+            ("SBK_02/4", get_target_entrance("SBK_02/4")), # Dry Dry Ruins
+            ("ARN_04/1", get_target_entrance("ARN_04/1")), # Tubba Blubbas Castle
+            ("MAC_04/2", get_target_entrance("MAC_04/2")), # Shy Guys Toybox
+            ("JAN_22/2", get_target_entrance("JAN_22/2")), # Mt. Lavalava
+            ("MAC_01/5", get_target_entrance("MAC_01/5")), # Flower Fields
+            ("SAM_10/1", get_target_entrance("SAM_10/1")), # Crystal Palace
         ]
 
     if shuffle_bowsers_castle and starway_spirits_needed_count < 7 and not limit_chapter_logic:
@@ -72,15 +79,8 @@ def shuffle_dungeon_entrances(
         # behind star way itself
 
         # determine Bowser Castle target entrance (due to BC mode this can vary)
-        bc_node_id = "KPA_60/4"
-
-        for edge in world_graph["HOS_20/2"]["edge_list"]:
-            if edge.get("mapchange") is not None and edge["mapchange"]:
-                bc_node_id = f"{edge['to']['map']}/{edge['to']['id']}"
-                break
-
         dungeon_border_node_ids.append(
-            ("HOS_20/2", bc_node_id) # Bowsers Castle
+            ("HOS_20/2", get_target_entrance("HOS_20/2")) # Bowsers Castle
         )
 
     add_edges = []
