@@ -18,6 +18,7 @@
     * `Concrete`: Display the item sprite of the exact item inside of the panel
 * `Plandomizer` feature
   * Now allows placing items into MultiCoinBlock and SuperBlock locations.
+  * Now allows choosing the dungeon connections for dungeon entrance shuffle.
 * `Starting Items` feature
   * Now allows having both chosen starting items and random starting items at the same time.
   * The number of starting items still cannot exceed 16.
