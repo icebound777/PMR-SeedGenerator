@@ -39,6 +39,11 @@
     * `Already Paid`: Stands on the side of Pleasant Path as if already paid
     * `Already Defeated`: Removed from Pleasant Path as if already defeated
 
+### Logic changes
+
+* Bowser's Castle
+  * In addition to the old requirements, now also expects `Watt` or the `Wattless Dark Basement` trick setting for logically entering the Bowser's Castle basement via the first Bowser door's trap door. This aims to avoid having to do the dark basement backwards if the player uses the Homeward Shroom to escape the basement early.
+
 ### Quality of Life
 
 * Made Harry, the shop keeper in southern Toad Town, offer to buy, check, and claim Mario's items without first unlocking his storeroom using the `Storeroom Key`.

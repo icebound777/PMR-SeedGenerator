@@ -49,7 +49,7 @@ edges_kpa = [
     {"from": {"map": "KPA_81",  "id": 2}, "to": {"map": "KPA_32",  "id": 0}, "reqs": []}, # Guard Door 1 Guard Door Right -> Lower Grand Hall Door Bottom Left
     {"from": {"map": "KPA_81",  "id": 3}, "to": {"map": "KPA_04",  "id": 1}, "reqs": []}, # Guard Door 1 Hidden Door Top -> Cave Exit Hidden Door Bottom
 
-    {"from": {"map": "KPA_81",  "id": 0}, "to": {"map": "KPA_81",  "id": 1}, "reqs": [["Bombette"], ["Lakilester"], ["Parakarry"], ["Bow"]]}, #? Guard Door 1 Door Left -> Guard Door 1 Fall In Trap Door
+    {"from": {"map": "KPA_81",  "id": 0}, "to": {"map": "KPA_81",  "id": 1}, "reqs": [["Bombette"], ["Lakilester"], ["Parakarry"], ["Bow"], ["Watt","RF_WattlessBasement"]]}, #? Guard Door 1 Door Left -> Guard Door 1 Fall In Trap Door
     {"from": {"map": "KPA_81",  "id": 1}, "to": {"map": "KPA_81",  "id": 0}, "reqs": []}, #? Guard Door 1 Fall In Trap Door -> Guard Door 1 Door Left
     {"from": {"map": "KPA_81",  "id": 0}, "to": {"map": "KPA_81",  "id": 2}, "reqs": [["RF_Ch8_FirstGuardDoor"]]}, #? Guard Door 1 Door Left -> Guard Door 1 Guard Door Right
     {"from": {"map": "KPA_81",  "id": 2}, "to": {"map": "KPA_81",  "id": 0}, "reqs": []}, #? Guard Door 1 Guard Door Right -> Guard Door 1 Door Left
