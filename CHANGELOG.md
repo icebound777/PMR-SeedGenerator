@@ -47,6 +47,7 @@
 ### Quality of Life
 
 * Made Harry, the shop keeper in southern Toad Town, offer to buy, check, and claim Mario's items without first unlocking his storeroom using the `Storeroom Key`.
+* Mark pre-planted `Magical Seeds` on the pause menu's item tracker. This only happens once Mario reaches Toad Town's plaza district, to avoid auto-trackers being able to read this info early.
 
 ### Bug Fixes
 
@@ -62,6 +63,8 @@
   * If more than 2 Sky Guys appear in the same battle formation, visual bugs start occuring. To avoid these, now only up to 2 Sky Guys may appear per battle.
 * Tricks & Glitches
   * Fix `Knows Hidden Block Locations` setting never applying at all, and instead always expecting being able to see these blocks.
+* Partners Always Usable
+  * While `Partners Always Usable` is active, the ghost versions of Kooper and Bombette can now properly hit Whacka and Watt's lantern.
 
 ### Miscellaneous
 
