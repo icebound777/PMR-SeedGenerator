@@ -1342,7 +1342,12 @@ class OptionSet:
         basic_assert("RandomStarpowerSP", int)
 
         # Misc Gameplay Randomization
-        basic_assert("ShuffleBlocks", bool)
+        if "MultiCoinBlockShuffle" in options_dict:
+            assert (    isinstance(options_dict["MultiCoinBlockShuffle"], int)
+                    and MultiCoinBlockShuffle.OFF
+                        <= options_dict["MultiCoinBlockShuffle"]
+                        <= MultiCoinBlockShuffle.ANYWHERE
+            )
         basic_assert("RandomizePuzzles", bool)
         if "BowserDoorQuiz" in options_dict:
             assert (    isinstance(options_dict["BowserDoorQuiz"], int)
