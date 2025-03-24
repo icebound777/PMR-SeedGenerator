@@ -1972,8 +1972,8 @@ class OptionSet:
         web_settings["StarHuntTotal"] = self.logic_settings.star_hunt_total
 
         if self.logic_settings.random_partners:
-            web_settings["RandomPartnersMax"] = self.logic_settings.random_partners_min
-            web_settings["RandomPartnersMin"] = self.logic_settings.random_partners_max
+            web_settings["RandomPartnersMax"] = self.logic_settings.random_partners_max
+            web_settings["RandomPartnersMin"] = self.logic_settings.random_partners_min
         else:
             web_settings["StartWithPartners"] = {
                 "Goombario": self.logic_settings.start_with_goombario,
