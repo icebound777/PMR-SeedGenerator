@@ -646,7 +646,7 @@ class OptionSet:
         if "KooperlessPleasantPathStarPiece" in options_dict:
             self.glitch_settings.kooperless_pleasant_path_star_piece = options_dict.get("KooperlessPleasantPathStarPiece")
         if "PleasantPathClippyTraversal" in options_dict:
-            self.glitch_settings.pleasant_path_clippy_traversal = options_dict.get("PlesantPathClippyTraversal")
+            self.glitch_settings.pleasant_path_clippy_traversal = options_dict.get("PleasantPathClippyTraversal")
         if "HammerlessPleasantPathBridgeUltraBootsParakarry" in options_dict:
             self.glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry = options_dict.get("HammerlessPleasantPathBridgeUltraBootsParakarry")
         if "InvisibleBridgeClipLzs" in options_dict:

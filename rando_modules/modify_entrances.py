@@ -204,6 +204,7 @@ from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed_clippy imp
 )
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_star_piece import (
     edges_iwa_add_parakarryless_star_piece_laki,
+    edges_iwa_add_parakarryless_star_piece_clippy,
 )
 from maps.graph_edges.glitched_logic.iwa_buzzar_gap_skip import (
     edges_iwa_add_buzzar_gap_skip_clippy,
