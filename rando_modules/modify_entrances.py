@@ -160,7 +160,8 @@ from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed import \
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed_clippy import \
     edges_iwa_add_parakarryless_mt_rugged_seed_clippy
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_star_piece import \
-    edges_iwa_add_parakarryless_star_piece_laki
+    edges_iwa_add_parakarryless_star_piece_laki, \
+    edges_iwa_add_parakarryless_star_piece_clippy
 from maps.graph_edges.glitched_logic.iwa_buzzar_gap_skip import \
     edges_iwa_add_buzzar_gap_skip_clippy
 from maps.graph_edges.glitched_logic.iwa_mt_rugged_coins_with_kooper import \
