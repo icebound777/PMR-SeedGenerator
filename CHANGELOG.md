@@ -65,6 +65,8 @@
   * Fix `Knows Hidden Block Locations` setting never applying at all, and instead always expecting being able to see these blocks.
 * Partners Always Usable
   * While `Partners Always Usable` is active, the ghost versions of Kooper and Bombette can now properly hit Whacka and Watt's lantern.
+* Stability
+  * (Hopefully) fix crash that could happen during `Cutscene Mode: Minimal` when talking to Raphael Raven to get the Ultra Stone. This only affected console players and likely those who played on the ares emulator.
 
 ### Miscellaneous
 
