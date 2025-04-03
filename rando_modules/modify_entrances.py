@@ -899,7 +899,8 @@ def get_glitched_logic(
     world_graph: dict,
     glitch_settings: GlitchOptionSet,
     bowsers_castle_mode: int,
-    shuffle_dungeon_entrances: bool
+    shuffle_dungeon_entrances: bool,
+    randomize_puzzles: bool
 ):
     """
     Returns the modified world graph itself for glitched logic, depending
@@ -1203,7 +1204,7 @@ def get_glitched_logic(
         all_new_edges.extend(edges_flo_add_early_lakilester_without_bombette)
     if glitch_settings.early_laki_bombette_push:
         all_new_edges.extend(edges_flo_add_early_lakilester_bombette_push)
-    if glitch_settings.lakiless_elevator_room:
+    if glitch_settings.lakiless_elevator_room and not randomize_puzzles:
         all_new_edges.extend(edges_flo_add_lakiless_elevator_room)
     if glitch_settings.bombetteless_mega_smash:
         all_new_edges.extend(edges_flo_add_bombetteless_mega_smash)

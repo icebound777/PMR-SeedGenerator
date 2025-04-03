@@ -282,7 +282,8 @@ class RandomSeed:
                     modified_world_graph,
                     dc_rando_settings.glitch_settings,
                     logic_settings.bowsers_castle_mode,
-                    logic_settings.shuffle_dungeon_entrances
+                    logic_settings.shuffle_dungeon_entrances,
+                    logic_settings.randomize_puzzles
                 )
 
                 ## Setup star spirits, power stars, and relevant logic
