@@ -237,6 +237,8 @@ PrologueGelEarly                                : false
 ReverseGoombaKingBridge                         : false
 GoombaVillageEntryFenceClip                     : false
 GoombaVillageNpcLureExit                        : false
+ClippyLedgeStarPiece                            : false
+JumplessFireFlower                              : false
 HammerlessJrPlaygroundLaki                      : false
 GoombaVillageLakiExit                           : false
 PrologueSushieGlitchKsj                         : false
@@ -273,6 +275,7 @@ SewerYellowBlockWithUltraBoots                  : false
 JumplessSewerShootingStar                       : false
 
 KooperlessPleasantPathStarPiece                 : false
+PleasantPathClippyTraversal                     : false
 HammerlessPleasantPathBridgeUltraBootsParakarry : false
 InvisibleBridgeClipLzs                          : false
 InvisibleBridgeClipLaki                         : false
@@ -286,16 +289,20 @@ BombettelessRightFortressJailKey                : false
 WaterStaircaseSkip                              : false
 
 MtRuggedQuakeHammerAndLetterWithLaki            : false
+MtRuggedQuakeHammerRoomJumplessClippy           : false
 ParakarrylessMtRuggedSeed                       : false
 ParakarrylessMtRuggedSeedClippy                 : false
 BuzzarGapSkipClippy                             : false
 MtRuggedCoinsWithKooper                         : false
 MtRuggedStationJumplessClimbBombette            : false
 MtRuggedStationJumplessClimbLaki                : false
+MtRuggedStationJumplessClimbLakiBlockClip       : false
 ParakarrylessMtRuggedStarPiece                  : false
+ParakarrylessMtRuggedStarPieceClippy            : false
 JumplessMtRuggedTrainPlatformParakarry          : false
 
 DesertBrickBlockItemWithParakarry               : false
+JumplessAttackFXC                               : false
 EarlyRuinsLakiJump                              : false
 EarlyRuinsUltraBoots                            : false
 
@@ -324,6 +331,7 @@ KooperlessGustyGulchDizzyDialJump               : false
 KooperlessGustyGulchDizzyDialLaki               : false
 KooperlessGustyGulchDizzyDialParakarry          : false
 GustyGulchGapSkip                               : false
+GustyGulchClippyTraversal                       : false
 
 BowlessTubbasCastle                             : false
 TubbasTableLakiJumpClock                        : false
@@ -369,6 +377,7 @@ VolcanoSushieGlitchGoombario                    : false
 
 EarlyLakiLZS                                    : false
 EarlyLakiBombettePush                           : false
+LakilessElevatorRoom                            : false
 BombettelessMegaSmash                           : false
 SunTowerSkip                                    : false
 YellowBerryGateSkipLZS                          : false
