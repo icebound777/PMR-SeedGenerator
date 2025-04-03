@@ -43,7 +43,7 @@ from maps.graph_edges.gear_location_shuffle.edges_tik import (
 # Imports: Star Hunt
 from maps.graph_edges.goal_openstarway.edges_hos import (
     edges_hos_goal_openstarway_add,
-    edges_hos_goal_openstarway_remove
+    edges_hos_goal_openstarway_remove,
 )
 
 # Imports: Battle Shuffle
@@ -158,14 +158,14 @@ from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_star_piece imp
     edges_nok_add_kooperless_starpiece_clippy,
 )
 from maps.graph_edges.glitched_logic.nok_pleasant_path_clippy_traversal import (
-    edges_nok_add_pleasant_path_clippy_traversal
+    edges_nok_add_pleasant_path_clippy_traversal,
 )
 from maps.graph_edges.glitched_logic.nok_hammerless_pleasant_path_bridge_skip import (
     edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry,
 )
 from maps.graph_edges.glitched_logic.nok_invisible_bridge_clip import (
     edges_nok_add_invisible_bridge_clip_laki,
-    edges_nok_add_invisible_bridge_clip_lzs
+    edges_nok_add_invisible_bridge_clip_lzs,
 )
 from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_thunderbolt import (
     edges_nok_add_kooperless_thunderbolt,
@@ -194,7 +194,7 @@ from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_laki 
     edges_iwa_add_quake_hammer_and_letter_laki,
 )
 from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_room_jumpless_clippy import (
-    edges_iwa_add_quake_hammer_room_jumpless_clippy
+    edges_iwa_add_quake_hammer_room_jumpless_clippy,
 )
 from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed import (
     edges_iwa_add_parakarryless_mt_rugged_seed,
@@ -286,7 +286,7 @@ from maps.graph_edges.glitched_logic.arn_gusty_gulch_gap_skip import (
     edges_arn_add_gusty_gulch_gap_skip_jump,
 )
 from maps.graph_edges.glitched_logic.arn_gusty_gulch_clippy_traversal import (
-    edges_arn_add_gusty_gulch_clippy_traversal
+    edges_arn_add_gusty_gulch_clippy_traversal,
 )
 from maps.graph_edges.glitched_logic.arn_kooperless_gusty_gulch_dizzy_dial import (
     edges_arn_add_gusty_gulch_dizzy_dial_jump,
@@ -403,7 +403,7 @@ from maps.graph_edges.glitched_logic.flo_early_lakilester import (
     edges_flo_add_early_lakilester_without_bombette,
 )
 from maps.graph_edges.glitched_logic.flo_lakiless_elevator_room import (
-    edges_flo_add_lakiless_elevator_room
+    edges_flo_add_lakiless_elevator_room,
 )
 from maps.graph_edges.glitched_logic.flo_bombetteless_mega_smash import (
     edges_flo_add_bombetteless_mega_smash,
@@ -440,7 +440,7 @@ from maps.graph_edges.glitched_logic.sam_ch7_sushie_glitch import (
 )
 from maps.graph_edges.glitched_logic.sam_shiver_mtn_hidden_block_without_ultra_boots import (
     edges_sam_add_shiver_mountain_hidden_block_normal_throw,
-    edges_sam_add_shiver_mountain_hidden_block_laki_throw
+    edges_sam_add_shiver_mountain_hidden_block_laki_throw,
 )
 from maps.graph_edges.glitched_logic.sam_snowmen_skip import (
     edges_sam_add_snowmen_skip_laki,
