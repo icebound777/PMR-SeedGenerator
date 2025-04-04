@@ -49,6 +49,23 @@
 * Made Harry, the shop keeper in southern Toad Town, offer to buy, check, and claim Mario's items without first unlocking his storeroom using the `Storeroom Key`.
 * Mark pre-planted `Magical Seeds` on the pause menu's item tracker. This only happens once Mario reaches Toad Town's plaza district, to avoid auto-trackers being able to read this info early.
 
+### Tricks & Glitches
+
+* New options
+  * `Clippy Ledge Star Piece` (Prologue)
+  * `Jumpless Fire Flower` (Prologue)
+  * `Pleasant Path Clippy Traversal` (Chapter 1)
+  * `Mt Rugged Quake Hammer Room Jumpless (Clippy variant)` (Chapter 2)
+  * `Mt Rugged Station Jumpless Climb Laki Block Clip` (Chapter 2)
+  * `Parakarryless Mt Rugged Star Piece Clippy` (Chapter 2)
+  * `Jumpless Attack FXC` (Chapter 2)
+  * `Gusty Gulch Clippy Traversal` (Chapter 3)
+  * `Lakiless Elevator Room` (Chapter 6)
+* Changed
+  * Fix entrance logic of `Mt. Rugged Quake Hammer + Letter with Laki`
+  * Add Super Block to `Mt. Rugged Station Jumpless Climb (Laki Teleport)`
+  * Consider jumpless start for `Parakarry-less Mt. Rugged Star Piece`
+
 ### Bug Fixes
 
 * Plandomizer
