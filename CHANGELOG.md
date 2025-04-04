@@ -114,6 +114,15 @@
     * 0: Do quiz, 1: Forced Anti Guys Unit battle, 2: Skip quiz
   * Added `KentCKoopa` (int)
     * 0: Blocks Pleasant Path, 1: Must defeat, 2: Already paid, 3: Already defeated
+  * Added `ClippyLedgeStarPiece` (bool)
+  * Added `JumplessFireFlower` (bool)
+  * Added `PleasantPathClippyTraversal` (bool)
+  * Added `MtRuggedQuakeHammerRoomJumplessClippy` (bool)
+  * Added `MtRuggedStationJumplessClimbLakiBlockClip` (bool)
+  * Added `ParakarrylessMtRuggedStarPieceClippy` (bool)
+  * Added `JumplessAttackFXC` (bool)
+  * Added `GustyGulchClippyTraversal` (bool)
+  * Added `LakilessElevatorRoom` (bool)
 * Changed Item IDs due to new `Coin Bag` and ISpy panel hint items
   * New `Coin Bag` item on ID 0x277
   * New panel hint dummy items on IDs 0x278 - 0x27C (unplaceable)
