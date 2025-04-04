@@ -664,13 +664,13 @@ edges_sbk = [
     {"from": {"map": "SBK_66", "id": 0}, "to": {"map": "SBK_66", "id": 2}, "reqs": []}, #? S3E3 South of Oasis Exit North -> S3E3 South of Oasis Exit West
     {"from": {"map": "SBK_66", "id": 2}, "to": {"map": "SBK_66", "id": 0}, "reqs": []}, #? S3E3 South of Oasis Exit West -> S3E3 South of Oasis Exit North
 
-    {"from": {"map": "SBK_66", "id": 0}, "to": {"map": "SBK_66", "id": "Tree3_Drop1"},      "reqs": [["can_shake_trees"]]}, #* S3E3 South of Oasis Exit North -> Tree3_Drop1 (Coin)
-    {"from": {"map": "SBK_66", "id": 0}, "to": {"map": "SBK_66", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* S3E3 South of Oasis Exit North -> RandomBlockItemA (CoinBag)
-    {"from": {"map": "SBK_66", "id": 0}, "to": {"map": "SBK_66", "id": "RandomBlockItemB"}, "reqs": [["can_hit_floating_blocks"]]}, #* S3E3 South of Oasis Exit North -> RandomBlockItemB (CoinBag)
-    {"from": {"map": "SBK_66", "id": 0}, "to": {"map": "SBK_66", "id": "RandomBlockItemC"}, "reqs": [["can_hit_floating_blocks"]]}, #* S3E3 South of Oasis Exit North -> RandomBlockItemC (CoinBag)
-    {"from": {"map": "SBK_66", "id": 0}, "to": {"map": "SBK_66", "id": "RandomBlockItemD"}, "reqs": [["can_hit_floating_blocks"]]}, #* S3E3 South of Oasis Exit North -> RandomBlockItemD (CoinBag)
-    {"from": {"map": "SBK_66", "id": 0}, "to": {"map": "SBK_66", "id": "RandomBlockItemE"}, "reqs": [["can_hit_floating_blocks"]]}, #* S3E3 South of Oasis Exit North -> RandomBlockItemE (CoinBag)
-    {"from": {"map": "SBK_66", "id": 0}, "to": {"map": "SBK_66", "id": "RandomBlockItemF"}, "reqs": [["can_hit_floating_blocks"]]}, #* S3E3 South of Oasis Exit North -> RandomBlockItemF (CoinBag)
+    {"from": {"map": "SBK_66", "id": 0},                  "to": {"map": "SBK_66", "id": "Tree3_Drop1"},      "reqs": [["can_shake_trees"]]}, #* S3E3 South of Oasis Exit North -> Tree3_Drop1 (Coin)
+    {"from": {"map": "SBK_66", "id": 0},                  "to": {"map": "SBK_66", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* S3E3 South of Oasis Exit North -> RandomBlockItemA (CoinBag)
+    {"from": {"map": "SBK_66", "id": "RandomBlockItemA"}, "to": {"map": "SBK_66", "id": "RandomBlockItemB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> RandomBlockItemB (CoinBag)
+    {"from": {"map": "SBK_66", "id": "RandomBlockItemA"}, "to": {"map": "SBK_66", "id": "RandomBlockItemC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> RandomBlockItemC (CoinBag)
+    {"from": {"map": "SBK_66", "id": "RandomBlockItemA"}, "to": {"map": "SBK_66", "id": "RandomBlockItemD"}, "reqs": []}, #+ SHARED REQUIREMENTS -> RandomBlockItemD (CoinBag)
+    {"from": {"map": "SBK_66", "id": "RandomBlockItemA"}, "to": {"map": "SBK_66", "id": "RandomBlockItemE"}, "reqs": []}, #+ SHARED REQUIREMENTS -> RandomBlockItemE (CoinBag)
+    {"from": {"map": "SBK_66", "id": "RandomBlockItemA"}, "to": {"map": "SBK_66", "id": "RandomBlockItemF"}, "reqs": []}, #+ SHARED REQUIREMENTS -> RandomBlockItemF (CoinBag)
 
     # SBK_99 Entrance
     {"from": {"map": "SBK_99", "id": 0}, "to": {"map": "IWA_04", "id": 1}, "reqs": []}, # Entrance Exit West -> Suspension Bridge Exit Right

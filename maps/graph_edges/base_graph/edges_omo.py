@@ -129,7 +129,7 @@ edges_omo = [
     {"from": {"map": "OMO_09", "id": "ItemA"}, "to": {"map": "OMO_09", "id": "ChestA"},           "reqs": []}, #+ SHARED REQUIREMENTS -> ChestA (Dictionary)
     {"from": {"map": "OMO_09", "id": "ItemO"}, "to": {"map": "OMO_09", "id": "ItemH"},            "reqs": [["Boots"]]}, #+ CHAINED REQUIREMENTS -> ItemH (StarPiece)
     {"from": {"map": "OMO_09", "id": 0},       "to": {"map": "OMO_09", "id": "ItemO"},            "reqs": [["Bow"]]}, #* GRN Treadmills/Slot Machine Exit West -> ItemO (MysteryNote)
-    {"from": {"map": "OMO_09", "id": "ItemH"}, "to": {"map": "OMO_09", "id": "RandomBlockItemA"}, "reqs": [["Parakarry"]]}, #+ CHAINED REQUIREMENTS -> RandomBlockItemA (CoinBag)
+    {"from": {"map": "OMO_09", "id": "ItemA"}, "to": {"map": "OMO_09", "id": "RandomBlockItemA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> RandomBlockItemA (CoinBag)
 
     # Treadmill Coins
     {"from": {"map": "OMO_09", "id": 0}, "to": {"map": "OMO_09", "id": "ItemB"}, "reqs": []}, #* GRN Treadmills/Slot Machine Exit West -> ItemB (Coin)
@@ -220,5 +220,5 @@ edges_omo = [
     {"from": {"map": "OMO_17", "id": 0},         "to": {"map": "OMO_17", "id": "YBlockA"},          "reqs": [["can_hit_floating_blocks"]]}, #* PNK Tracks Hallway Exit West (South) -> YBlockA (Coin)
     {"from": {"map": "OMO_17", "id": 1},         "to": {"map": "OMO_17", "id": "YBlockB"},          "reqs": [["can_hit_floating_blocks"]]}, #* PNK Tracks Hallway Exit West (North) -> YBlockB (Coin)
     {"from": {"map": "OMO_17", "id": "YBlockB"}, "to": {"map": "OMO_17", "id": "YBlockC"},          "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockC (Coin)
-    {"from": {"map": "OMO_17", "id": 1},         "to": {"map": "OMO_17", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* PNK Tracks Hallway Exit West (North) -> RandomBlockItemB (CoinBag)
+    {"from": {"map": "OMO_17", "id": "YBlockB"}, "to": {"map": "OMO_17", "id": "RandomBlockItemA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> RandomBlockItemB (CoinBag)
 ]
