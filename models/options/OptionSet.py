@@ -573,6 +573,10 @@ class OptionSet:
             self.glitch_settings.goomba_village_entry_fence_clip = options_dict.get("GoombaVillageEntryFenceClip")
         if "GoombaVillageNpcLureExit" in options_dict:
             self.glitch_settings.goomba_village_npc_lure_exit = options_dict.get("GoombaVillageNpcLureExit")
+        if "ClippyLedgeStarPiece" in options_dict:
+            self.glitch_settings.clippy_ledge_starpiece = options_dict.get("ClippyLedgeStarPiece")
+        if "JumplessFireFlower" in options_dict:
+            self.glitch_settings.jumpless_fire_flower = options_dict.get("JumplessFireFlower")
         if "HammerlessJrPlaygroundLaki" in options_dict:
             self.glitch_settings.hammerless_jr_playground_laki = options_dict.get("HammerlessJrPlaygroundLaki")
         if "GoombaVillageLakiExit" in options_dict:
@@ -641,6 +645,8 @@ class OptionSet:
 
         if "KooperlessPleasantPathStarPiece" in options_dict:
             self.glitch_settings.kooperless_pleasant_path_star_piece = options_dict.get("KooperlessPleasantPathStarPiece")
+        if "PleasantPathClippyTraversal" in options_dict:
+            self.glitch_settings.pleasant_path_clippy_traversal = options_dict.get("PleasantPathClippyTraversal")
         if "HammerlessPleasantPathBridgeUltraBootsParakarry" in options_dict:
             self.glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry = options_dict.get("HammerlessPleasantPathBridgeUltraBootsParakarry")
         if "InvisibleBridgeClipLzs" in options_dict:
@@ -665,6 +671,8 @@ class OptionSet:
 
         if "MtRuggedQuakeHammerAndLetterWithLaki" in options_dict:
             self.glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki = options_dict.get("MtRuggedQuakeHammerAndLetterWithLaki")
+        if "MtRuggedQuakeHammerRoomJumplessClippy" in options_dict:
+            self.glitch_settings.mt_rugged_quake_hammer_room_jumpless_clippy = options_dict.get("MtRuggedQuakeHammerRoomJumplessClippy")
         if "ParakarrylessMtRuggedSeed" in options_dict:
             self.glitch_settings.parakarryless_mt_rugged_seed = options_dict.get("ParakarrylessMtRuggedSeed")
         if "ParakarrylessMtRuggedSeedClippy" in options_dict:
@@ -673,17 +681,23 @@ class OptionSet:
             self.glitch_settings.buzzar_gap_skip_clippy = options_dict.get("BuzzarGapSkipClippy")
         if "ParakarrylessMtRuggedStarPiece" in options_dict:
             self.glitch_settings.parakarryless_mt_rugged_star_piece = options_dict.get("ParakarrylessMtRuggedStarPiece")
+        if "ParakarrylessMtRuggedStarPieceClippy" in options_dict:
+            self.glitch_settings.parakarryless_mt_rugged_star_piece_clippy = options_dict.get("ParakarrylessMtRuggedStarPieceClippy")
         if "MtRuggedCoinsWithKooper" in options_dict:
             self.glitch_settings.mt_rugged_coins_with_kooper = options_dict.get("MtRuggedCoinsWithKooper")
         if "MtRuggedStationJumplessClimbBombette" in options_dict:
             self.glitch_settings.mt_rugged_station_jumpless_climb_bombette = options_dict.get("MtRuggedStationJumplessClimbBombette")
         if "MtRuggedStationJumplessClimbLaki" in options_dict:
             self.glitch_settings.mt_rugged_station_jumpless_climb_laki = options_dict.get("MtRuggedStationJumplessClimbLaki")
+        if "MtRuggedStationJumplessClimbLakiBlockClip" in options_dict:
+            self.glitch_settings.mt_rugged_station_jumpless_climb_laki_block_clip = options_dict.get("MtRuggedStationJumplessClimbLakiBlockClip")
         if "JumplessMtRuggedTrainPlatformParakarry" in options_dict:
             self.glitch_settings.jumpless_mt_rugged_train_platform_parakarry = options_dict.get("JumplessMtRuggedTrainPlatformParakarry")
 
         if "DesertBrickBlockItemWithParakarry" in options_dict:
             self.glitch_settings.desert_brick_block_item_with_parakarry = options_dict.get("DesertBrickBlockItemWithParakarry")
+        if "JumplessAttackFXC" in options_dict:
+            self.glitch_settings.jumpless_attack_fx_c = options_dict.get("JumplessAttackFXC")
         if "EarlyRuinsLakiJump" in options_dict:
             self.glitch_settings.early_ruins_laki_jump = options_dict.get("EarlyRuinsLakiJump")
         if "EarlyRuinsUltraBoots" in options_dict:
@@ -736,6 +750,8 @@ class OptionSet:
             self.glitch_settings.kooperless_gusty_gulch_dizzy_dial_parakarry = options_dict.get("KooperlessGustyGulchDizzyDialParakarry")
         if "GustyGulchGapSkip" in options_dict:
             self.glitch_settings.gusty_gulch_gap_skip = options_dict.get("GustyGulchGapSkip")
+        if "GustyGulchClippyTraversal" in options_dict:
+            self.glitch_settings.gusty_gulch_clippy_traversal = options_dict.get("GustyGulchClippyTraversal")
 
         if "BowlessTubbasCastle" in options_dict:
             self.glitch_settings.bowless_tubbas_castle = options_dict.get("BowlessTubbasCastle")
@@ -821,6 +837,8 @@ class OptionSet:
             self.glitch_settings.early_laki_lzs = options_dict.get("EarlyLakiLZS")
         if "EarlyLakiBombettePush" in options_dict:
             self.glitch_settings.early_laki_bombette_push = options_dict.get("EarlyLakiBombettePush")
+        if "LakilessElevatorRoom" in options_dict:
+            self.glitch_settings.lakiless_elevator_room = options_dict.get("LakilessElevatorRoom")
         if "BombettelessMegaSmash" in options_dict:
             self.glitch_settings.bombetteless_mega_smash = options_dict.get("BombettelessMegaSmash")
         if "SunTowerSkip" in options_dict:
@@ -1433,6 +1451,8 @@ class OptionSet:
         basic_assert("ReverseGoombaKingBridge", bool)
         basic_assert("GoombaVillageEntryFenceClip", bool)
         basic_assert("GoombaVillageNpcLureExit", bool)
+        basic_assert("ClippyLedgeStarPiece", bool)
+        basic_assert("JumplessFireFlower", bool)
         basic_assert("HammerlessJrPlaygroundLaki", bool)
         basic_assert("PrologueSushieGlitchKsj", bool)
         basic_assert("PrologueSushieGlitchUltraBootsLaki", bool)
@@ -1469,6 +1489,7 @@ class OptionSet:
         basic_assert("JumplessSewerShootingStar", bool)
 
         basic_assert("KooperlessPleasantPathStarPiece", bool)
+        basic_assert("PleasantPathClippyTraversal", bool)
         basic_assert("HammerlessPleasantPathBridgeUltraBootsParakarry", bool)
         basic_assert("InvisibleBridgeClipLzs", bool)
         basic_assert("InvisibleBridgeClipLaki", bool)
@@ -1482,16 +1503,20 @@ class OptionSet:
         basic_assert("WaterStaircaseSkip", bool)
 
         basic_assert("MtRuggedQuakeHammerAndLetterWithLaki", bool)
+        basic_assert("MtRuggedQuakeHammerRoomJumplessClippy", bool)
         basic_assert("ParakarrylessMtRuggedSeed", bool)
         basic_assert("ParakarrylessMtRuggedSeedClippy", bool)
         basic_assert("BuzzarGapSkipClippy", bool)
         basic_assert("ParakarrylessMtRuggedStarPiece", bool)
+        basic_assert("ParakarrylessMtRuggedStarPieceClippy", bool)
         basic_assert("MtRuggedCoinsWithKooper", bool)
         basic_assert("MtRuggedStationJumplessClimbBombette", bool)
         basic_assert("MtRuggedStationJumplessClimbLaki", bool)
+        basic_assert("MtRuggedStationJumplessClimbLakiBlockClip", bool)
         basic_assert("JumplessMtRuggedTrainPlatformParakarry", bool)
 
         basic_assert("DesertBrickBlockItemWithParakarry", bool)
+        basic_assert("JumplessAttackFXC", bool)
         basic_assert("EarlyRuinsLakiJump", bool)
         basic_assert("EarlyRuinsUltraBoots", bool)
 
@@ -1520,6 +1545,7 @@ class OptionSet:
         basic_assert("KooperlessGustyGulchDizzyDialLaki", bool)
         basic_assert("KooperlessGustyGulchDizzyDialParakarry", bool)
         basic_assert("GustyGulchGapSkip", bool)
+        basic_assert("GustyGulchClippyTraversal", bool)
 
         basic_assert("BowlessTubbasCastle", bool)
         basic_assert("TubbasTableLakiJumpClock", bool)
@@ -1565,6 +1591,7 @@ class OptionSet:
 
         basic_assert("EarlyLakiLZS", bool)
         basic_assert("EarlyLakiBombettePush", bool)
+        basic_assert("LakilessElevatorRoom", bool)
         basic_assert("BombettelessMegaSmash", bool)
         basic_assert("SunTowerSkip", bool)
         basic_assert("YellowBerryGateSkipLZS", bool)
@@ -1991,6 +2018,8 @@ class OptionSet:
         web_settings["ReverseGoombaKingBridge"] = self.glitch_settings.reverse_goomba_king_bridge
         web_settings["GoombaVillageEntryFenceClip"] = self.glitch_settings.goomba_village_entry_fence_clip
         web_settings["GoombaVillageNpcLureExit"] = self.glitch_settings.goomba_village_npc_lure_exit
+        web_settings["ClippyLedgeStarPiece"] = self.glitch_settings.clippy_ledge_starpiece
+        web_settings["JumplessFireFlower"] = self.glitch_settings.jumpless_fire_flower
         web_settings["HammerlessJrPlaygroundLaki"] = self.glitch_settings.hammerless_jr_playground_laki
         web_settings["GoombaVillageLakiExit"] = self.glitch_settings.goomba_village_laki_exit
         web_settings["PrologueSushieGlitchKsj"] = self.glitch_settings.prologue_sushie_glitch_ksj
@@ -2031,6 +2060,7 @@ class OptionSet:
 
         # Glitches: Plesant Path
         web_settings["KooperlessPleasantPathStarPiece"] = self.glitch_settings.kooperless_pleasant_path_star_piece
+        web_settings["PleasantPathClippyTraversal"] = self.glitch_settings.pleasant_path_clippy_traversal
         web_settings["HammerlessPleasantPathBridgeUltraBootsParakarry"] = self.glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry
         web_settings["InvisibleBridgeClipLzs"]= self.glitch_settings.invisible_bridge_clip_lzs
         web_settings["InvisibleBridgeClipLaki"] = self.glitch_settings.invisible_bridge_clip_laki
@@ -2046,17 +2076,21 @@ class OptionSet:
 
         # Glitches: Mt. Rugged
         web_settings["MtRuggedQuakeHammerAndLetterWithLaki"] = self.glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki
+        web_settings["MtRuggedQuakeHammerRoomJumplessClippy"] = self.glitch_settings.mt_rugged_quake_hammer_room_jumpless_clippy
         web_settings["ParakarrylessMtRuggedSeed"] = self.glitch_settings.parakarryless_mt_rugged_seed
         web_settings["ParakarrylessMtRuggedSeedClippy"] = self.glitch_settings.parakarryless_mt_rugged_seed_clippy
         web_settings["BuzzarGapSkipClippy"] = self.glitch_settings.buzzar_gap_skip_clippy
         web_settings["ParakarrylessMtRuggedStarPiece"] = self.glitch_settings.parakarryless_mt_rugged_star_piece
+        web_settings["ParakarrylessMtRuggedStarPieceClippy"] = self.glitch_settings.parakarryless_mt_rugged_star_piece_clippy
         web_settings["MtRuggedCoinsWithKooper"] = self.glitch_settings.mt_rugged_coins_with_kooper
         web_settings["MtRuggedStationJumplessClimbBombette"] = self.glitch_settings.mt_rugged_station_jumpless_climb_bombette
         web_settings["MtRuggedStationJumplessClimbLaki"] = self.glitch_settings.mt_rugged_station_jumpless_climb_laki
+        web_settings["MtRuggedStationJumplessClimbLakiBlockClip"] = self.glitch_settings.mt_rugged_station_jumpless_climb_laki_block_clip
         web_settings["JumplessMtRuggedTrainPlatformParakarry"] = self.glitch_settings.jumpless_mt_rugged_train_platform_parakarry
 
         # Glitches: Dry Dry Desert
         web_settings["DesertBrickBlockItemWithParakarry"] = self.glitch_settings.desert_brick_block_item_with_parakarry
+        web_settings["JumplessAttackFXC"] = self.glitch_settings.jumpless_attack_fx_c
         web_settings["EarlyRuinsLakiJump"] = self.glitch_settings.early_ruins_laki_jump
         web_settings["EarlyRuinsUltraBoots"] = self.glitch_settings.early_ruins_ultra_boots
 
@@ -2087,6 +2121,7 @@ class OptionSet:
         web_settings["KooperlessGustyGulchDizzyDialLaki"] = self.glitch_settings.kooperless_gusty_gulch_dizzy_dial_laki
         web_settings["KooperlessGustyGulchDizzyDialParakarry"]= self.glitch_settings.kooperless_gusty_gulch_dizzy_dial_parakarry
         web_settings["GustyGulchGapSkip"] = self.glitch_settings.gusty_gulch_gap_skip
+        web_settings["GustyGulchClippyTraversal"] = self.glitch_settings.gusty_gulch_clippy_traversal
 
         # Glitches: Tubba's Castle
         web_settings["BowlessTubbasCastle"] = self.glitch_settings.bowless_tubbas_castle
@@ -2137,6 +2172,7 @@ class OptionSet:
         # Glitches: Flower Fields
         web_settings["EarlyLakiLZS"] = self.glitch_settings.early_laki_lzs
         web_settings["EarlyLakiBombettePush"] = self.glitch_settings.early_laki_bombette_push
+        web_settings["LakilessElevatorRoom"] = self.glitch_settings.lakiless_elevator_room
         web_settings["BombettelessMegaSmash"] = self.glitch_settings.bombetteless_mega_smash
         web_settings["SunTowerSkip"]= self.glitch_settings.sun_tower_skip
         web_settings["YellowBerryGateSkipLZS"] = self.glitch_settings.yellow_berry_gate_skip_lzs
