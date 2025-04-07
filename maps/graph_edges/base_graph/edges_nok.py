@@ -118,8 +118,8 @@ edges_nok = [
     {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "MAC_01", "id": 1}, "reqs": []}, # Pleasant Path Entry Exit Left -> Plaza District Exit Right
     {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_12", "id": 0}, "reqs": []}, # Pleasant Path Entry Exit Right -> Pleasant Path Bridge Exit Left
 
-    {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "NOK_11", "id": 1}, "reqs": [["RF_CanPassKentC",{"starspirits": 2}],["RF_CanPassKentC","Goombario"],["RF_CanPassKentC","Boots"]]}, #? Pleasant Path Entry Exit Left -> Pleasant Path Entry Exit Right
-    {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": 0}, "reqs": [["RF_CanPassKentC",{"starspirits": 2}],["RF_CanPassKentC","Goombario"],["RF_CanPassKentC","Boots"]]}, #? Pleasant Path Entry Exit Right -> Pleasant Path Entry Exit Left
+    {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "NOK_11", "id": 1}, "reqs": [["RF_CanPassKentC",{"starspirits": 2}],["RF_CanPassKentC","Goombario"],["RF_CanPassKentC","Boots","Hammer"]]}, #? Pleasant Path Entry Exit Left -> Pleasant Path Entry Exit Right
+    {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": 0}, "reqs": [["RF_CanPassKentC",{"starspirits": 2}],["RF_CanPassKentC","Goombario"],["RF_CanPassKentC","Boots","Hammer"]]}, #? Pleasant Path Entry Exit Right -> Pleasant Path Entry Exit Left
 
     {"from": {"map": "NOK_11", "id": 1},         "to": {"map": "NOK_11", "id": "RBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Pleasant Path Entry Exit Left -> RBlockA (DizzyAttack)
     {"from": {"map": "NOK_11", "id": "RBlockA"}, "to": {"map": "NOK_11", "id": "YBlockA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockA (Coin)
