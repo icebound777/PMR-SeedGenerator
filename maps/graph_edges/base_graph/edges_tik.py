@@ -169,8 +169,8 @@ edges_tik = [
     {"from": {"map": "TIK_18", "id": 0}, "to": {"map": "TIK_18", "id": 1}, "reqs": []}, #? Hall to Blooper 1 (B1) Exit Left -> Hall to Blooper 1 (B1) Exit Right
     {"from": {"map": "TIK_18", "id": 1}, "to": {"map": "TIK_18", "id": 0}, "reqs": []}, #? Hall to Blooper 1 (B1) Exit Right -> Hall to Blooper 1 (B1) Exit Left
 
-    {"from": {"map": "TIK_18", "id": 0}, "to": {"map": "TIK_18", "id": "HiddenYBlockA"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* Hall to Blooper 1 (B1) Exit Left -> HiddenYBlockA (SuperShroom)
-    {"from": {"map": "TIK_18", "id": 0}, "to": {"map": "TIK_18", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Hall to Blooper 1 (B1) Exit Left -> RandomBlockItemA (CoinBag)
+    {"from": {"map": "TIK_18", "id": "RandomBlockItemA"}, "to": {"map": "TIK_18", "id": "HiddenYBlockA"},    "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockA (SuperShroom)
+    {"from": {"map": "TIK_18", "id": 0},                  "to": {"map": "TIK_18", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Hall to Blooper 1 (B1) Exit Left -> RandomBlockItemA (CoinBag)
 
     # TIK_19 Under the Toad Town Pond
     {"from": {"map": "TIK_19", "id": 0}, "to": {"map": "MAC_00", "id": 3}, "reqs": []}, # Under the Toad Town Pond Green Pipe Left -> Gate District Island Pipe
