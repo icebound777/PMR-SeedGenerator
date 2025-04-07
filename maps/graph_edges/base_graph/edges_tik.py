@@ -160,6 +160,7 @@ edges_tik = [
     {"from": {"map": "TIK_17", "id": 1}, "to": {"map": "TIK_17", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Frozen Room (B3) Green Pipe Right -> Frozen Room (B3) Green Pipe Left
 
     {"from": {"map": "TIK_17", "id": 0}, "to": {"map": "TIK_17", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Frozen Room (B3) Green Pipe Left -> RandomBlockItemA (GenericUpgrade)
+    {"from": {"map": "TIK_17", "id": 1}, "to": {"map": "TIK_17", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Frozen Room (B3) Green Pipe Right -> RandomBlockItemA (GenericUpgrade)
 
     # TIK_18 Hall to Blooper 1 (B1)
     {"from": {"map": "TIK_18", "id": 0}, "to": {"map": "TIK_06", "id": 1}, "reqs": []}, # Hall to Blooper 1 (B1) Exit Left -> Sewer Entrance (B1) Exit Right
