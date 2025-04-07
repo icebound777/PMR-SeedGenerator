@@ -35,7 +35,7 @@
   * Allows changing how Kent C Koopa on Pleasant Path behaves.
   * Possible values:
     * `Blocks Pleasant Path`: Behaves as before
-    * `Must Defeat`: No paying him, but a battle is required. Logically expects a way to flip him over and 2 chapters beaten
+    * `Must Defeat`: No paying him, but a battle is required. Logically expects 2 chapters beaten, a way to flip him over, and a way for Mario to attack consistently (Hammer or Boots)
     * `Already Paid`: Stands on the side of Pleasant Path as if already paid
     * `Already Defeated`: Removed from Pleasant Path as if already defeated
 
