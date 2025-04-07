@@ -1330,7 +1330,7 @@ class OptionSet:
                                   or not options_dict["KeyitemsOutsideDungeon"]))
             )
             try:
-                assert (not (    options_dict["RequiredSpirits"]
+                assert (not (    options_dict["RequiredSpirits"] == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
                              and options_dict.get("StarBeamSpiritsNeeded") is not None
                              and options_dict["StarBeamSpiritsNeeded"] != 0
                         )
