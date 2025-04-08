@@ -103,6 +103,8 @@ edges_isk = [
     {"from": {"map": "ISK_10", "id": 2}, "to": {"map": "ISK_10", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Vertical Shaft Exit Bottom Right -> Vertical Shaft Exit Top Right
     {"from": {"map": "ISK_10", "id": 0}, "to": {"map": "ISK_10", "id": 2}, "reqs": []}, #? Vertical Shaft Exit Top Right -> Vertical Shaft Exit Bottom Right
 
+    {"from": {"map": "ISK_10", "id": 2}, "to": {"map": "ISK_10", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Vertical Shaft Exit Bottom Right -> RandomBlockItemA (GenericUpgrade)
+
     # ISK_11 Stone Puzzle Room
     {"from": {"map": "ISK_11", "id": 0}, "to": {"map": "ISK_08", "id": 3}, "reqs": []}, # Stone Puzzle Room Exit Left -> Descending Stairs 2 Exit Bottom Right
     {"from": {"map": "ISK_11", "id": 1}, "to": {"map": "ISK_12", "id": 0}, "reqs": [[{"RuinsKey": 4}]]}, # Stone Puzzle Room Exit Top Right -> Sand Drainage Room 3 Exit Upper Room Left

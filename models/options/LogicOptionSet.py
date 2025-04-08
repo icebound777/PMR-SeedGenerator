@@ -9,6 +9,10 @@ from rando_enums.enum_options import (
     ItemTrapMode,
     PartnerShuffle,
     DojoShuffle,
+    MultiCoinBlockShuffle,
+    RequiredSpirits,
+    BowserDoorQuiz,
+    KentCKoopa,
 )
 
 class LogicOptionSet():
@@ -120,8 +124,7 @@ class LogicOptionSet():
         self.starbeam_spirits_needed = get_option_default_value("StarBeamSpiritsNeeded")
         self.starbeam_powerstars_needed = get_option_default_value("StarBeamPowerStarsNeeded")
         self.star_hunt_total = get_option_default_value("StarHuntTotal")
-        self.require_specific_spirits = False
-        self.limit_chapter_logic = False
+        self.required_spirits = RequiredSpirits.ANY
 
         # Entrance Shuffle
         self.shuffle_dungeon_rooms = bool(get_option_default_value("ShuffleDungeonRooms"))
@@ -132,5 +135,7 @@ class LogicOptionSet():
         self.unpaired_entrances = False # NYI
 
         # Misc Gameplay Randomization
-        self.shuffle_blocks = False
+        self.multicoin_block_shuffle = MultiCoinBlockShuffle.OFF
         self.randomize_puzzles = False
+        self.bowserdoor_quiz = BowserDoorQuiz.DO_QUIZ
+        self.kentckoopa = KentCKoopa.BLOCKS_PLEASANT_PATH

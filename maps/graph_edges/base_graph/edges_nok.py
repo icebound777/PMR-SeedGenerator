@@ -118,10 +118,10 @@ edges_nok = [
     {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "MAC_01", "id": 1}, "reqs": []}, # Pleasant Path Entry Exit Left -> Plaza District Exit Right
     {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_12", "id": 0}, "reqs": []}, # Pleasant Path Entry Exit Right -> Pleasant Path Bridge Exit Left
 
-    {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "NOK_11", "id": 1}, "reqs": []}, #? Pleasant Path Entry Exit Left -> Pleasant Path Entry Exit Right
-    {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": 0}, "reqs": []}, #? Pleasant Path Entry Exit Right -> Pleasant Path Entry Exit Left
+    {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "NOK_11", "id": 1}, "reqs": [["RF_CanPassKentC",{"starspirits": 2}],["RF_CanPassKentC","Boots","Goombario"],["RF_CanPassKentC","Boots","Hammer"]]}, #? Pleasant Path Entry Exit Left -> Pleasant Path Entry Exit Right
+    {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": 0}, "reqs": [["RF_CanPassKentC",{"starspirits": 2}],["RF_CanPassKentC","Boots","Goombario"],["RF_CanPassKentC","Boots","Hammer"]]}, #? Pleasant Path Entry Exit Right -> Pleasant Path Entry Exit Left
 
-    {"from": {"map": "NOK_11", "id": 0},         "to": {"map": "NOK_11", "id": "RBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Pleasant Path Entry Exit Left -> RBlockA (DizzyAttack)
+    {"from": {"map": "NOK_11", "id": 1},         "to": {"map": "NOK_11", "id": "RBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Pleasant Path Entry Exit Left -> RBlockA (DizzyAttack)
     {"from": {"map": "NOK_11", "id": "RBlockA"}, "to": {"map": "NOK_11", "id": "YBlockA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockA (Coin)
     {"from": {"map": "NOK_11", "id": "RBlockA"}, "to": {"map": "NOK_11", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (FrightJar)
 
@@ -134,10 +134,11 @@ edges_nok = [
 
     {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_12", "id": 0}, "reqs": [["can_shake_trees"]], "pseudoitems": ["MF_NOK12_BuiltBridge"]}, #+ Pleasant Path Bridge Exit Left
 
-    {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_12", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Pleasant Path Bridge Exit Left -> YBlockA (POWBlock)
-    {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_12", "id": "ItemA"},   "reqs": [["Kooper"],["MF_NOK12_BuiltBridge"]]}, #* Pleasant Path Bridge Exit Left -> ItemA (StarPiece)
-    {"from": {"map": "NOK_12", "id": 1}, "to": {"map": "NOK_12", "id": "ItemA"},   "reqs": [["Kooper"]]}, #* Pleasant Path Bridge Exit Right -> ItemA (StarPiece)
-    {"from": {"map": "NOK_12", "id": 1}, "to": {"map": "NOK_12", "id": "ItemB"},   "reqs": []}, #* Pleasant Path Bridge Exit Right -> ItemB (SleepySheep)
+    {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_12", "id": "YBlockA"},          "reqs": [["can_hit_floating_blocks"]]}, #* Pleasant Path Bridge Exit Left -> YBlockA (POWBlock)
+    {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_12", "id": "ItemA"},            "reqs": [["Kooper"],["MF_NOK12_BuiltBridge"]]}, #* Pleasant Path Bridge Exit Left -> ItemA (StarPiece)
+    {"from": {"map": "NOK_12", "id": 1}, "to": {"map": "NOK_12", "id": "ItemA"},            "reqs": [["Kooper"]]}, #* Pleasant Path Bridge Exit Right -> ItemA (StarPiece)
+    {"from": {"map": "NOK_12", "id": 1}, "to": {"map": "NOK_12", "id": "ItemB"},            "reqs": []}, #* Pleasant Path Bridge Exit Right -> ItemB (SleepySheep)
+    {"from": {"map": "NOK_12", "id": 1}, "to": {"map": "NOK_12", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Pleasant Path Bridge Exit Right -> RandomBlockItemA (CoinBag)
 
     # NOK_13 Pleasant Crossroads
     {"from": {"map": "NOK_13", "id": 0}, "to": {"map": "NOK_12", "id": 1}, "reqs": []}, # Pleasant Crossroads Exit Left -> Pleasant Path Bridge Exit Right

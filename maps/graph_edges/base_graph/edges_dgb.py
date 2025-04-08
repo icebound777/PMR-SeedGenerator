@@ -66,6 +66,8 @@ edges_dgb = [
     {"from": {"map": "DGB_04", "id": 0}, "to": {"map": "DGB_04", "id": 1}, "reqs": []}, #? Stairs to Basement Door Top Right -> Stairs to Basement Door Bottom Right
     {"from": {"map": "DGB_04", "id": 1}, "to": {"map": "DGB_04", "id": 0}, "reqs": []}, #? Stairs to Basement Door Bottom Right -> Stairs to Basement Door Top Right
 
+    {"from": {"map": "DGB_04", "id": 0}, "to": {"map": "DGB_04", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Stairs to Basement -> RandomBlockItemA (GenericUpgrade)
+
     # DGB_05 Stairs Above Basement
     {"from": {"map": "DGB_05", "id": 0}, "to": {"map": "DGB_03", "id": 2}, "reqs": []}, # Stairs Above Basement Door Top -> Table/Clock Room (1/2F) Door 1F Top Left
     {"from": {"map": "DGB_05", "id": 1}, "to": {"map": "DGB_06", "id": 1}, "reqs": [["SuperBoots"]]}, # Stairs Above Basement Hole Bottom -> Basement Fall From Ceiling

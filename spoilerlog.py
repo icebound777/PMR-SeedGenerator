@@ -1,18 +1,14 @@
 import io
 import json
 
-from db.puzzle import Puzzle
 from db.move import Move
-from db.map_area import MapArea
-from db.node import Node
-
-from rando_enums.enum_types import BlockType
 
 from metadata.formations_meta import chapter_bossname_map
 from metadata.partners_meta import partner_moves
 from metadata.verbose_area_names import verbose_area_names
 from metadata.verbose_item_names import verbose_item_names
 from metadata.verbose_item_locations import verbose_item_locations
+from metadata.itemlocation_special import superblock_locations, multicoinblock_locations
 
 from models.options.OptionSet import OptionSet
 
@@ -24,9 +20,6 @@ def write_spoiler_log(
     is_web_spoiler_log=False,
     spheres_dict:dict=None,
     move_costs:list=None,
-    block_locations:list=None,
-    puzzle_solutions:list=None,
-    battle_shuffles:list=None,
     seed_hash_items:list=None,
     spoilerlog_additions:dict=None,
     plando_data:dict=None,
@@ -117,6 +110,13 @@ def write_spoiler_log(
 
         if current_item_name in verbose_item_names:
             current_item_name = verbose_item_names.get(current_item_name)
+        elif (    current_item_name == "CoinBag"
+              and (   node.identifier in superblock_locations
+                   or node.identifier in multicoinblock_locations)
+        ):
+            # CoinBag in random block location turns that location into a
+            # MultiCoinBlock
+            current_item_name = "MultiCoinBlock"
         if node.current_item.is_trapped():
             current_item_name = f"TRAP ({current_item_name})"
         if node.is_shop():
@@ -223,33 +223,6 @@ def write_spoiler_log(
     partners_ordered["Lakilester"] = spoiler_dict["move_costs"]["partner"]["Lakilester"]
 
     spoiler_dict["move_costs"]["partner"] = partners_ordered
-
-    # Add super block locations
-    block_dict = dict()
-    block_locations.sort(key=lambda x: x[0])
-    for location_key, block_type in block_locations:
-        if block_type == BlockType.SUPER:
-            # resolve location
-            area_id = (location_key & 0xFF0000) >> 16
-            map_id = (location_key & 0xFF00) >> 8
-            map_area = (
-                MapArea.select(MapArea.name, MapArea.verbose_name)
-                    .where(MapArea.area_id == area_id)
-                    .where(MapArea.map_id == map_id)
-                    .get()
-            )
-            cur_map_name, cur_verbose_map = map_area.name, map_area.verbose_name
-            cur_verbose_area = verbose_area_names.get(cur_map_name[:3])
-
-            cur_verbose_map = cur_verbose_map.replace("'", "")
-            cur_verbose_area = cur_verbose_area.replace("'", "")
-
-            if cur_verbose_area not in block_dict:
-                block_dict[cur_verbose_area] = []
-            block_dict[cur_verbose_area].append(cur_verbose_map)
-
-    if block_dict:
-        spoiler_dict["superblocks"] = block_dict
 
     # Add plandomizer data, if available
     if plando_data:

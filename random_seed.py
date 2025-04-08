@@ -1,6 +1,5 @@
 from copy import deepcopy
 import random
-import datetime
 
 from metadata.area_name_mappings import area_name_id_map
 
@@ -9,29 +8,30 @@ from rando_enums.enum_options import (
     GearShuffleMode,
     PartnerUpgradeShuffle,
     DungeonEntranceShuffle,
+    RequiredSpirits,
+    BowserDoorQuiz,
 )
 
 from itemhints import get_itemhints
 from models.CoinPalette import CoinPalette
 from models.options.OptionSet import OptionSet
 from models.options.LogicOptionSet import LogicOptionSet
-from rando_modules.logic import \
-    place_items,\
-    get_item_spheres,\
-    get_items_to_exclude
-from rando_modules.random_blocks import get_block_placement
+from rando_modules.logic import (
+    place_items,
+    get_item_spheres,
+    get_items_to_exclude,
+)
 from rando_modules.random_actor_stats import get_shuffled_chapter_difficulty
 from rando_modules.modify_entrances import get_shuffled_battles
 from rando_modules.modify_entrances import (
     get_shorter_bowsercastle,
     get_bowsercastle_bossrush,
     get_gear_location_shuffle,
-    get_partner_upgrade_shuffle,
     get_glitched_logic,
     adjust_shop_logic,
     set_starway_requirements,
     set_starbeam_requirements,
-    get_limited_chapter_logic
+    get_limited_chapter_logic,
 )
 from rando_modules.random_entrances import shuffle_dungeon_entrances
 from rando_modules.random_formations import get_random_formations
@@ -39,28 +39,38 @@ from rando_modules.random_map_mirroring import get_mirrored_map_list
 from rando_modules.random_stat_distribution import generate_random_stats
 from rando_modules.random_movecosts import get_randomized_moves
 from rando_modules.random_mystery import get_random_mystery
-from rando_modules.random_palettes import \
-    get_randomized_coinpalette,\
-    get_randomized_palettes
+from rando_modules.random_palettes import (
+    get_randomized_coinpalette,
+    get_randomized_palettes,
+)
 from rando_modules.random_audio import get_randomized_audio
 from rando_modules.random_partners import get_rnd_starting_partners
-from rando_modules.random_puzzles_minigames import get_puzzles_minigames, get_dro_shop_items
+from rando_modules.random_puzzles_minigames import (
+    get_puzzles_minigames,
+    get_dro_shop_items
+)
 from rando_modules.random_quizzes import get_randomized_quizzes
 from rando_modules.random_shop_prices import get_shop_price
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
-from rando_modules.unbeatable_plando_placement_error import UnbeatablPlandoPlacementError
-from rando_modules.plando_settings_mismatch_error import PlandoSettingsMismatchError
-from worldgraph import \
-    generate as generate_world_graph,\
-    check_unreachable_from_start,\
+from rando_modules.unbeatable_plando_placement_error import (
+    UnbeatablPlandoPlacementError,
+)
+from rando_modules.plando_settings_mismatch_error import (
+    PlandoSettingsMismatchError,
+)
+from worldgraph import (
+    generate as generate_world_graph,
+    check_unreachable_from_start,
     enrich_graph_data
+)
 
 from rando_enums.enum_ingame import StarSpirits
 from metadata.starting_maps import starting_maps
-from metadata.starting_items import \
-    allowed_starting_badges,\
-    allowed_starting_items,\
+from metadata.starting_items import (
+    allowed_starting_badges,
+    allowed_starting_items,
     allowed_starting_key_items
+)
 from metadata.item_general import seed_hash_item_names
 
 from plando_utils.plando_utils import TransformedPlandoData
@@ -79,7 +89,6 @@ class RandomSeed:
         self.starting_partners = []
         self.starting_items = []
         self.placed_items = []
-        self.placed_blocks = []
         self.entrance_list = []
         self.enemy_stats = []
         self.battles = []
@@ -125,7 +134,6 @@ class RandomSeed:
                 modified_world_graph = deepcopy(world_graph)
                 self.placed_items = []
                 self.entrance_list = []
-                self.placed_blocks = []
                 self.battles = []
                 self.spoilerlog_additions = {}
                 self.item_spheres_dict = None
@@ -177,8 +185,7 @@ class RandomSeed:
 
                 # Unset settings that become meaningless due to other settings
                 if logic_settings.starway_spirits_needed_count in [0, 7]:
-                    logic_settings.require_specific_spirits = False
-                    logic_settings.limit_chapter_logic = False
+                    logic_settings.required_spirits = RequiredSpirits.ANY
 
                 # Select required star spirits
                 chosen_spirits = []
@@ -192,7 +199,7 @@ class RandomSeed:
                     StarSpirits.KALMAR,
                 ]
                 plando_required_spirits: list[int] | None = self.plando_data.required_spirits
-                if (    logic_settings.require_specific_spirits
+                if (    logic_settings.required_spirits >= RequiredSpirits.SPECIFIC
                     and 0 < logic_settings.starway_spirits_needed_count < 7
                     and (plando_required_spirits is None or len(plando_required_spirits) < 7)
                 ):
@@ -235,24 +242,18 @@ class RandomSeed:
                         world_graph = modified_world_graph,
                         starway_spirits_needed_count = logic_settings.starway_spirits_needed_count,
                         required_star_spirits = chosen_spirits,
-                        limit_chapter_logic = logic_settings.limit_chapter_logic,
+                        limit_chapter_logic = (logic_settings.required_spirits == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC),
                         shuffle_bowsers_castle = (
                             logic_settings.shuffle_dungeon_entrances == DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
                         ),
                         write_spoilers = dc_rando_settings.write_spoilerlog,
+                        plando_dungeon_entrances = self.plando_data.dungeon_entrances,
                     )
                     self.extend_entrances(entrance_changes)
                     if self.spoilerlog_additions.get("entrances") is None:
                         self.spoilerlog_additions["entrances"] = []
                     self.spoilerlog_additions["entrances"].extend(spoilerlog_info)
 
-                # Set up partner upgrade shuffle if needed
-                if logic_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF:
-                    modified_world_graph, self.placed_blocks = get_partner_upgrade_shuffle(
-                        modified_world_graph,
-                        logic_settings.shuffle_blocks,
-                        dc_rando_settings.glitch_settings
-                    )
 
                 # Adjust graph logic if needed
                 if logic_settings.gear_shuffle_mode != GearShuffleMode.VANILLA:
@@ -281,7 +282,8 @@ class RandomSeed:
                     modified_world_graph,
                     dc_rando_settings.glitch_settings,
                     logic_settings.bowsers_castle_mode,
-                    logic_settings.shuffle_dungeon_entrances
+                    logic_settings.shuffle_dungeon_entrances,
+                    logic_settings.randomize_puzzles
                 )
 
                 ## Setup star spirits, power stars, and relevant logic
@@ -291,7 +293,8 @@ class RandomSeed:
                     modified_world_graph = set_starbeam_requirements(
                         world_graph=modified_world_graph,
                         spirits_needed=logic_settings.starbeam_spirits_needed,
-                        powerstars_needed=logic_settings.starbeam_powerstars_needed
+                        powerstars_needed=logic_settings.starbeam_powerstars_needed,
+                        forced_antiguysunit=(logic_settings.bowserdoor_quiz == BowserDoorQuiz.ANTI_GUYS_UNIT),
                     )
 
                 entrance_changes, modified_world_graph = set_starway_requirements(
@@ -306,12 +309,13 @@ class RandomSeed:
                             / 2
                         )
                     ),
-                    seed_goal=logic_settings.seed_goal
+                    seed_goal=logic_settings.seed_goal,
+                    forced_antiguysunit=(logic_settings.bowserdoor_quiz == BowserDoorQuiz.ANTI_GUYS_UNIT),
                 )
                 if entrance_changes:
                     self.extend_entrances(entrance_changes)
 
-                if logic_settings.limit_chapter_logic:
+                if logic_settings.required_spirits == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC:
                     modified_world_graph = get_limited_chapter_logic(
                         modified_world_graph,
                         chosen_spirits,
@@ -440,13 +444,6 @@ class RandomSeed:
         self.rando_settings.mystery_settings = get_random_mystery(
             self.rando_settings.mystery_settings
         )
-
-        # Randomize blocks if needed and not already done logically
-        if not self.placed_blocks:
-            self.placed_blocks = get_block_placement(
-                logic_settings.shuffle_blocks,
-                supers_are_yellow=False
-            )
 
         # Randomize stat distribution if needed
         if self.rando_settings.random_starting_stats_level >= 0:
@@ -588,13 +585,26 @@ class RandomSeed:
         plando_badges: list[str],
     ):
         """
-        Initialize the starting items from either the chosen starting items or
-        pick them randomly.
+        Initialize the starting items from the chosen starting items, and add
+        randomly picked ones if necessary.
         """
-        self.starting_items = []
-        if rando_settings.logic_settings.random_starting_items:
-            starting_item_options = [0 for _ in range(16)]
+        self.starting_items = self.rando_settings.get_startitem_list()
 
+        if (any([
+                True for x in self.starting_items
+                if x.item_name in plando_keyitems or x.item_name in plando_badges
+            ])
+        ):
+            raise PlandoSettingsMismatchError(
+                "Plandomizer error: Chosen starting items: Cannot start the seed with "\
+                "these items, because one or more of them are already "\
+                "placed by the plandomizer!"
+            )
+
+        count_chosen_starting_items: int = len(self.starting_items)
+        if (    rando_settings.logic_settings.random_starting_items
+            and count_chosen_starting_items < 16
+        ):
             # Set up allowed items
             all_allowed_starting_items = []
             all_allowed_starting_items.extend(allowed_starting_badges)
@@ -616,16 +626,28 @@ class RandomSeed:
                 starting_partners=self.starting_partners,
                 do_partner_upgrade_shuffle=(rando_settings.logic_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF)
             )
+
+            for item_name in plando_keyitems:
+                excluded_items.append(Item.get(Item.item_name == item_name))
+            for item_name in plando_badges:
+                excluded_items.append(Item.get(Item.item_name == item_name))
+
             for item_obj in excluded_items:
                 if item_obj.value in all_allowed_starting_items:
                     all_allowed_starting_items.remove(item_obj.value)
 
             starting_items_amount = random.randint(
-                rando_settings.logic_settings.random_starting_items_min,
-                rando_settings.logic_settings.random_starting_items_max
+                min(
+                    rando_settings.logic_settings.random_starting_items_min,
+                    16 - count_chosen_starting_items
+                ),
+                min(
+                    rando_settings.logic_settings.random_starting_items_max,
+                    16 - count_chosen_starting_items
+                )
             )
 
-            for i in range(starting_items_amount):
+            while len(self.starting_items) < count_chosen_starting_items + starting_items_amount:
                 random_item_id = random.choice(all_allowed_starting_items)
                 random_item_obj = Item.get_or_none(Item.value == random_item_id)
                 if random_item_obj is not None:
@@ -636,36 +658,41 @@ class RandomSeed:
                         continue
 
                     self.starting_items.append(random_item_obj)
-                    starting_item_options[i] = random_item_id
 
-            rando_settings.logic_settings.starting_item_0 = starting_item_options[0]
-            rando_settings.logic_settings.starting_item_1 = starting_item_options[1]
-            rando_settings.logic_settings.starting_item_2 = starting_item_options[2]
-            rando_settings.logic_settings.starting_item_3 = starting_item_options[3]
-            rando_settings.logic_settings.starting_item_4 = starting_item_options[4]
-            rando_settings.logic_settings.starting_item_5 = starting_item_options[5]
-            rando_settings.logic_settings.starting_item_6 = starting_item_options[6]
-            rando_settings.logic_settings.starting_item_7 = starting_item_options[7]
-            rando_settings.logic_settings.starting_item_8 = starting_item_options[8]
-            rando_settings.logic_settings.starting_item_9 = starting_item_options[9]
-            rando_settings.logic_settings.starting_item_A = starting_item_options[10]
-            rando_settings.logic_settings.starting_item_B = starting_item_options[11]
-            rando_settings.logic_settings.starting_item_C = starting_item_options[12]
-            rando_settings.logic_settings.starting_item_D = starting_item_options[13]
-            rando_settings.logic_settings.starting_item_E = starting_item_options[14]
-            rando_settings.logic_settings.starting_item_F = starting_item_options[15]
-        else:
-            if (any([
-                    True for x in self.rando_settings.get_startitem_list()
-                    if x.item_name in plando_keyitems or x.item_name in plando_badges
-                ])
-            ):
-                raise PlandoSettingsMismatchError(
-                    "Plandomizer error: Chosen starting items: Cannot start the seed with "\
-                    "these items, because one or more of them are already "\
-                    "placed by the plandomizer!"
-                )
-            self.starting_items = self.rando_settings.get_startitem_list()
+                    # Fill the next open slot in the starting items with the
+                    # newly picked random starting item
+                    if len(self.starting_items) == 1:
+                        rando_settings.logic_settings.starting_item_0 = random_item_id
+                    elif len(self.starting_items) == 2:
+                        rando_settings.logic_settings.starting_item_1 = random_item_id
+                    elif len(self.starting_items) == 3:
+                        rando_settings.logic_settings.starting_item_2 = random_item_id
+                    elif len(self.starting_items) == 4:
+                        rando_settings.logic_settings.starting_item_3 = random_item_id
+                    elif len(self.starting_items) == 5:
+                        rando_settings.logic_settings.starting_item_4 = random_item_id
+                    elif len(self.starting_items) == 6:
+                        rando_settings.logic_settings.starting_item_5 = random_item_id
+                    elif len(self.starting_items) == 7:
+                        rando_settings.logic_settings.starting_item_6 = random_item_id
+                    elif len(self.starting_items) == 8:
+                        rando_settings.logic_settings.starting_item_7 = random_item_id
+                    elif len(self.starting_items) == 9:
+                        rando_settings.logic_settings.starting_item_8 = random_item_id
+                    elif len(self.starting_items) == 10:
+                        rando_settings.logic_settings.starting_item_9 = random_item_id
+                    elif len(self.starting_items) == 11:
+                        rando_settings.logic_settings.starting_item_A = random_item_id
+                    elif len(self.starting_items) == 12:
+                        rando_settings.logic_settings.starting_item_B = random_item_id
+                    elif len(self.starting_items) == 13:
+                        rando_settings.logic_settings.starting_item_C = random_item_id
+                    elif len(self.starting_items) == 14:
+                        rando_settings.logic_settings.starting_item_D = random_item_id
+                    elif len(self.starting_items) == 15:
+                        rando_settings.logic_settings.starting_item_E = random_item_id
+                    elif len(self.starting_items) == 16:
+                        rando_settings.logic_settings.starting_item_F = random_item_id
 
 
     def extend_entrances(
@@ -724,7 +751,7 @@ class RandomSeed:
             self.entrance_list.extend(new_changes)
 
 
-    def set_seed_hash(self) -> tuple():
+    def set_seed_hash(self):
         """
         Randomly selects 4 items and their indices for displaying an item icon
         hash representing the seeded game on the save select screen.

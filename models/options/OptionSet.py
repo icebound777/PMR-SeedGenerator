@@ -15,11 +15,15 @@ from rando_enums.enum_options import (
     MerlowRewardPricing,
     MusicRandomizationType,
     PartnerUpgradeShuffle,
+    MultiCoinBlockShuffle,
     SeedGoal,
     DungeonEntranceShuffle,
     PartnerShuffle,
     DojoShuffle,
     BossShuffleMode,
+    RequiredSpirits,
+    BowserDoorQuiz,
+    KentCKoopa,
 )
 from models.options.LogicOptionSet import LogicOptionSet
 from models.options.PaletteOptionSet import PaletteOptionSet
@@ -32,6 +36,7 @@ from plandomizer.plando_metadata import (
     progressive_badges,
     force_puzzlerando_locations,
     force_starbeam_shuffle_location,
+    block_locations,
 )
 
 class OptionSet:
@@ -49,6 +54,7 @@ class OptionSet:
         self.peachcastle_return_pipe = bool(get_option_default_value("PeachCastleReturnPipe"))
         self.foliage_item_hints = bool(get_option_default_value("FoliageItemHints"))
         self.hiddenpanel_visibility = get_option_default_value("HiddenPanelVisibility")
+        self.ispy_panel_hints = get_option_default_value("ISpyPanelHints")
         self.mute_danger_beeps = bool(get_option_default_value("MuteDangerBeeps"))
 
         # Difficulty and Enemies
@@ -64,6 +70,7 @@ class OptionSet:
         self.no_heart_blocks = bool(get_option_default_value("NoHeartBlocks"))
         self.no_healing_items = bool(get_option_default_value("NoHealingItems"))
         self.drop_starpoints = bool(get_option_default_value("DropStarPoints"))
+        self.chetrippo_available = bool(get_option_default_value("ChetRippoAvailable"))
 
         self.random_formations = bool(get_option_default_value("RandomFormations"))
 
@@ -174,6 +181,8 @@ class OptionSet:
             self.foliage_item_hints = options_dict.get("FoliageItemHints")
         if "HiddenPanelVisibility" in options_dict:
             self.hiddenpanel_visibility = options_dict.get("HiddenPanelVisibility")
+        if "ISpyPanelHints" in options_dict:
+            self.ispy_panel_hints = options_dict.get("ISpyPanelHints")
         if "MuteDangerBeeps" in options_dict:
             self.mute_danger_beeps = options_dict.get("MuteDangerBeeps")
 
@@ -203,6 +212,8 @@ class OptionSet:
             self.no_healing_items = options_dict.get("NoHealingItems")
         if "DropStarPoints" in options_dict:
             self.drop_starpoints = options_dict.get("DropStarPoints")
+        if "ChetRippoAvailable" in options_dict:
+            self.chetrippo_available = options_dict.get("ChetRippoAvailable")
 
         if "RandomFormations" in options_dict:
             self.random_formations = options_dict.get("RandomFormations")
@@ -430,10 +441,8 @@ class OptionSet:
             self.logic_settings.starbeam_powerstars_needed = options_dict.get("StarBeamPowerStarsNeeded")
         if "StarHuntTotal" in options_dict:
             self.logic_settings.star_hunt_total = options_dict.get("StarHuntTotal")
-        if "RequireSpecificSpirits" in options_dict:
-            self.logic_settings.require_specific_spirits = options_dict.get("RequireSpecificSpirits")
-        if "LimitChapterLogic" in options_dict:
-            self.logic_settings.limit_chapter_logic = options_dict.get("LimitChapterLogic")
+        if "RequiredSpirits" in options_dict:
+            self.logic_settings.required_spirits = options_dict.get("RequiredSpirits")
 
         # Entrance Shuffle
         if "ShuffleDungeonRooms" in options_dict:
@@ -460,10 +469,14 @@ class OptionSet:
             self.random_starpower_sp = options_dict.get("RandomStarpowerSP")
 
         # Misc Gameplay Randomization
-        if "ShuffleBlocks" in options_dict:
-            self.logic_settings.shuffle_blocks = options_dict.get("ShuffleBlocks")
+        if "MultiCoinBlockShuffle" in options_dict:
+            self.logic_settings.multicoin_block_shuffle = options_dict.get("MultiCoinBlockShuffle")
         if "RandomizePuzzles" in options_dict:
             self.logic_settings.randomize_puzzles = options_dict.get("RandomizePuzzles")
+        if "BowserDoorQuiz" in options_dict:
+            self.logic_settings.bowserdoor_quiz = options_dict.get("BowserDoorQuiz")
+        if "KentCKoopa" in options_dict:
+            self.logic_settings.kentckoopa = options_dict.get("KentCKoopa")
 
         # Quizmo Quizzes
         if "RandomQuiz" in options_dict:
@@ -570,6 +583,10 @@ class OptionSet:
             self.glitch_settings.goomba_village_entry_fence_clip = options_dict.get("GoombaVillageEntryFenceClip")
         if "GoombaVillageNpcLureExit" in options_dict:
             self.glitch_settings.goomba_village_npc_lure_exit = options_dict.get("GoombaVillageNpcLureExit")
+        if "ClippyLedgeStarPiece" in options_dict:
+            self.glitch_settings.clippy_ledge_starpiece = options_dict.get("ClippyLedgeStarPiece")
+        if "JumplessFireFlower" in options_dict:
+            self.glitch_settings.jumpless_fire_flower = options_dict.get("JumplessFireFlower")
         if "HammerlessJrPlaygroundLaki" in options_dict:
             self.glitch_settings.hammerless_jr_playground_laki = options_dict.get("HammerlessJrPlaygroundLaki")
         if "GoombaVillageLakiExit" in options_dict:
@@ -638,6 +655,8 @@ class OptionSet:
 
         if "KooperlessPleasantPathStarPiece" in options_dict:
             self.glitch_settings.kooperless_pleasant_path_star_piece = options_dict.get("KooperlessPleasantPathStarPiece")
+        if "PleasantPathClippyTraversal" in options_dict:
+            self.glitch_settings.pleasant_path_clippy_traversal = options_dict.get("PleasantPathClippyTraversal")
         if "HammerlessPleasantPathBridgeUltraBootsParakarry" in options_dict:
             self.glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry = options_dict.get("HammerlessPleasantPathBridgeUltraBootsParakarry")
         if "InvisibleBridgeClipLzs" in options_dict:
@@ -662,6 +681,8 @@ class OptionSet:
 
         if "MtRuggedQuakeHammerAndLetterWithLaki" in options_dict:
             self.glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki = options_dict.get("MtRuggedQuakeHammerAndLetterWithLaki")
+        if "MtRuggedQuakeHammerRoomJumplessClippy" in options_dict:
+            self.glitch_settings.mt_rugged_quake_hammer_room_jumpless_clippy = options_dict.get("MtRuggedQuakeHammerRoomJumplessClippy")
         if "ParakarrylessMtRuggedSeed" in options_dict:
             self.glitch_settings.parakarryless_mt_rugged_seed = options_dict.get("ParakarrylessMtRuggedSeed")
         if "ParakarrylessMtRuggedSeedClippy" in options_dict:
@@ -670,17 +691,23 @@ class OptionSet:
             self.glitch_settings.buzzar_gap_skip_clippy = options_dict.get("BuzzarGapSkipClippy")
         if "ParakarrylessMtRuggedStarPiece" in options_dict:
             self.glitch_settings.parakarryless_mt_rugged_star_piece = options_dict.get("ParakarrylessMtRuggedStarPiece")
+        if "ParakarrylessMtRuggedStarPieceClippy" in options_dict:
+            self.glitch_settings.parakarryless_mt_rugged_star_piece_clippy = options_dict.get("ParakarrylessMtRuggedStarPieceClippy")
         if "MtRuggedCoinsWithKooper" in options_dict:
             self.glitch_settings.mt_rugged_coins_with_kooper = options_dict.get("MtRuggedCoinsWithKooper")
         if "MtRuggedStationJumplessClimbBombette" in options_dict:
             self.glitch_settings.mt_rugged_station_jumpless_climb_bombette = options_dict.get("MtRuggedStationJumplessClimbBombette")
         if "MtRuggedStationJumplessClimbLaki" in options_dict:
             self.glitch_settings.mt_rugged_station_jumpless_climb_laki = options_dict.get("MtRuggedStationJumplessClimbLaki")
+        if "MtRuggedStationJumplessClimbLakiBlockClip" in options_dict:
+            self.glitch_settings.mt_rugged_station_jumpless_climb_laki_block_clip = options_dict.get("MtRuggedStationJumplessClimbLakiBlockClip")
         if "JumplessMtRuggedTrainPlatformParakarry" in options_dict:
             self.glitch_settings.jumpless_mt_rugged_train_platform_parakarry = options_dict.get("JumplessMtRuggedTrainPlatformParakarry")
 
         if "DesertBrickBlockItemWithParakarry" in options_dict:
             self.glitch_settings.desert_brick_block_item_with_parakarry = options_dict.get("DesertBrickBlockItemWithParakarry")
+        if "JumplessAttackFXC" in options_dict:
+            self.glitch_settings.jumpless_attack_fx_c = options_dict.get("JumplessAttackFXC")
         if "EarlyRuinsLakiJump" in options_dict:
             self.glitch_settings.early_ruins_laki_jump = options_dict.get("EarlyRuinsLakiJump")
         if "EarlyRuinsUltraBoots" in options_dict:
@@ -733,6 +760,8 @@ class OptionSet:
             self.glitch_settings.kooperless_gusty_gulch_dizzy_dial_parakarry = options_dict.get("KooperlessGustyGulchDizzyDialParakarry")
         if "GustyGulchGapSkip" in options_dict:
             self.glitch_settings.gusty_gulch_gap_skip = options_dict.get("GustyGulchGapSkip")
+        if "GustyGulchClippyTraversal" in options_dict:
+            self.glitch_settings.gusty_gulch_clippy_traversal = options_dict.get("GustyGulchClippyTraversal")
 
         if "BowlessTubbasCastle" in options_dict:
             self.glitch_settings.bowless_tubbas_castle = options_dict.get("BowlessTubbasCastle")
@@ -818,6 +847,8 @@ class OptionSet:
             self.glitch_settings.early_laki_lzs = options_dict.get("EarlyLakiLZS")
         if "EarlyLakiBombettePush" in options_dict:
             self.glitch_settings.early_laki_bombette_push = options_dict.get("EarlyLakiBombettePush")
+        if "LakilessElevatorRoom" in options_dict:
+            self.glitch_settings.lakiless_elevator_room = options_dict.get("LakilessElevatorRoom")
         if "BombettelessMegaSmash" in options_dict:
             self.glitch_settings.bombetteless_mega_smash = options_dict.get("BombettelessMegaSmash")
         if "SunTowerSkip" in options_dict:
@@ -908,18 +939,30 @@ class OptionSet:
         forced_progressive_badges,\
         forced_partner_upgrade_shuffle,\
         forced_random_puzzles,\
-        forced_shuffle_starbeam = \
+        forced_shuffle_starbeam,\
+        forced_multicoinblock_shuffle,\
+        forced_shuffle_dungeon_entrances = \
             _overrule_settings_with_plando(
                 plando_data
             )
         if forced_progressive_badges is not None:
             self.logic_settings.progressive_badges = forced_progressive_badges
         if forced_partner_upgrade_shuffle is not None:
-            self.logic_settings.partner_upgrade_shuffle = forced_partner_upgrade_shuffle
+            self.logic_settings.partner_upgrade_shuffle = max([
+                self.logic_settings.partner_upgrade_shuffle,
+                forced_partner_upgrade_shuffle,
+            ])
         if forced_random_puzzles is not None:
             self.logic_settings.randomize_puzzles = forced_random_puzzles
         if forced_shuffle_starbeam is not None:
             self.logic_settings.shuffle_starbeam = forced_shuffle_starbeam
+        if forced_multicoinblock_shuffle is not None:
+            self.logic_settings.multicoin_block_shuffle = max([
+                self.logic_settings.multicoin_block_shuffle,
+                forced_multicoinblock_shuffle,
+            ])
+        if forced_shuffle_dungeon_entrances is not None:
+            self.logic_settings.shuffle_dungeon_entrances = forced_shuffle_dungeon_entrances
 
         self.plando_active = False
 
@@ -967,9 +1010,7 @@ class OptionSet:
             map_tracker_bits += 0x2000
         if self.logic_settings.bowsers_castle_mode <= BowserCastleMode.SHORTEN:
             map_tracker_bits += 0x4000
-        if (    self.logic_settings.partner_upgrade_shuffle >= PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
-            and self.logic_settings.shuffle_blocks
-        ):
+        if self.logic_settings.multicoin_block_shuffle == MultiCoinBlockShuffle.ANYWHERE:
             map_tracker_bits += 0x8000
         self.map_tracker_check_bits = map_tracker_bits
         self.map_tracker_shop_bits = 0x7
@@ -1017,6 +1058,7 @@ class OptionSet:
         basic_assert("PeachCastleReturnPipe", bool)
         basic_assert("FoliageItemHints", bool)
         basic_assert("HiddenPanelVisibility", int)
+        basic_assert("ISpyPanelHints", int)
 
         # Difficulty and Enemies
         basic_assert("ShuffleChapterDifficulty", bool)
@@ -1031,6 +1073,7 @@ class OptionSet:
         basic_assert("NoHeartBlocks", bool)
         basic_assert("NoHealingItems", bool)
         basic_assert("DropStarPoints", bool)
+        basic_assert("ChetRippoAvailable", bool)
 
         basic_assert("RandomFormations", bool)
         if "BossShuffleMode" in options_dict:
@@ -1289,14 +1332,15 @@ class OptionSet:
                     and (starthuntotal >= options_dict.get("StarWayPowerStarsNeeded") or starthuntotal == -1)
                     and (starthuntotal >= options_dict.get("StarBeamPowerStarsNeeded") or starthuntotal == -1)
             )
-        basic_assert("RequireSpecificSpirits", bool)
-        if "LimitChapterLogic" in options_dict:
-            assert (    isinstance(options_dict.get("LimitChapterLogic"), bool)
-                    and not (    options_dict["LimitChapterLogic"]
+        if "RequiredSpirits" in options_dict:
+            assert (    isinstance(options_dict.get("RequiredSpirits"), int)
+                    and RequiredSpirits.ANY <= options_dict["RequiredSpirits"] <= RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
+                    and not (    options_dict["RequiredSpirits"] == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
                              and (   options_dict.get("KeyitemsOutsideDungeon") is None
-                                  or not options_dict["KeyitemsOutsideDungeon"])))
+                                  or not options_dict["KeyitemsOutsideDungeon"]))
+            )
             try:
-                assert (not (    options_dict["LimitChapterLogic"]
+                assert (not (    options_dict["RequiredSpirits"] == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
                              and options_dict.get("StarBeamSpiritsNeeded") is not None
                              and options_dict["StarBeamSpiritsNeeded"] != 0
                         )
@@ -1326,8 +1370,25 @@ class OptionSet:
         basic_assert("RandomStarpowerSP", int)
 
         # Misc Gameplay Randomization
-        basic_assert("ShuffleBlocks", bool)
+        if "MultiCoinBlockShuffle" in options_dict:
+            assert (    isinstance(options_dict["MultiCoinBlockShuffle"], int)
+                    and MultiCoinBlockShuffle.OFF
+                        <= options_dict["MultiCoinBlockShuffle"]
+                        <= MultiCoinBlockShuffle.ANYWHERE
+            )
         basic_assert("RandomizePuzzles", bool)
+        if "BowserDoorQuiz" in options_dict:
+            assert (    isinstance(options_dict["BowserDoorQuiz"], int)
+                    and BowserDoorQuiz.DO_QUIZ
+                        <= options_dict["BowserDoorQuiz"]
+                        <= BowserDoorQuiz.SKIP
+            )
+        if "KentCKoopa" in options_dict:
+            assert (    isinstance(options_dict["KentCKoopa"], int)
+                    and KentCKoopa.BLOCKS_PLEASANT_PATH
+                        <= options_dict["KentCKoopa"]
+                        <= KentCKoopa.ALREADY_DEFEATED
+            )
 
         # Quizmo Quizzes
         basic_assert("RandomQuiz", bool)
@@ -1404,6 +1465,8 @@ class OptionSet:
         basic_assert("ReverseGoombaKingBridge", bool)
         basic_assert("GoombaVillageEntryFenceClip", bool)
         basic_assert("GoombaVillageNpcLureExit", bool)
+        basic_assert("ClippyLedgeStarPiece", bool)
+        basic_assert("JumplessFireFlower", bool)
         basic_assert("HammerlessJrPlaygroundLaki", bool)
         basic_assert("PrologueSushieGlitchKsj", bool)
         basic_assert("PrologueSushieGlitchUltraBootsLaki", bool)
@@ -1440,6 +1503,7 @@ class OptionSet:
         basic_assert("JumplessSewerShootingStar", bool)
 
         basic_assert("KooperlessPleasantPathStarPiece", bool)
+        basic_assert("PleasantPathClippyTraversal", bool)
         basic_assert("HammerlessPleasantPathBridgeUltraBootsParakarry", bool)
         basic_assert("InvisibleBridgeClipLzs", bool)
         basic_assert("InvisibleBridgeClipLaki", bool)
@@ -1453,16 +1517,20 @@ class OptionSet:
         basic_assert("WaterStaircaseSkip", bool)
 
         basic_assert("MtRuggedQuakeHammerAndLetterWithLaki", bool)
+        basic_assert("MtRuggedQuakeHammerRoomJumplessClippy", bool)
         basic_assert("ParakarrylessMtRuggedSeed", bool)
         basic_assert("ParakarrylessMtRuggedSeedClippy", bool)
         basic_assert("BuzzarGapSkipClippy", bool)
         basic_assert("ParakarrylessMtRuggedStarPiece", bool)
+        basic_assert("ParakarrylessMtRuggedStarPieceClippy", bool)
         basic_assert("MtRuggedCoinsWithKooper", bool)
         basic_assert("MtRuggedStationJumplessClimbBombette", bool)
         basic_assert("MtRuggedStationJumplessClimbLaki", bool)
+        basic_assert("MtRuggedStationJumplessClimbLakiBlockClip", bool)
         basic_assert("JumplessMtRuggedTrainPlatformParakarry", bool)
 
         basic_assert("DesertBrickBlockItemWithParakarry", bool)
+        basic_assert("JumplessAttackFXC", bool)
         basic_assert("EarlyRuinsLakiJump", bool)
         basic_assert("EarlyRuinsUltraBoots", bool)
 
@@ -1491,6 +1559,7 @@ class OptionSet:
         basic_assert("KooperlessGustyGulchDizzyDialLaki", bool)
         basic_assert("KooperlessGustyGulchDizzyDialParakarry", bool)
         basic_assert("GustyGulchGapSkip", bool)
+        basic_assert("GustyGulchClippyTraversal", bool)
 
         basic_assert("BowlessTubbasCastle", bool)
         basic_assert("TubbasTableLakiJumpClock", bool)
@@ -1536,6 +1605,7 @@ class OptionSet:
 
         basic_assert("EarlyLakiLZS", bool)
         basic_assert("EarlyLakiBombettePush", bool)
+        basic_assert("LakilessElevatorRoom", bool)
         basic_assert("BombettelessMegaSmash", bool)
         basic_assert("SunTowerSkip", bool)
         basic_assert("YellowBerryGateSkipLZS", bool)
@@ -1606,6 +1676,7 @@ class OptionSet:
             load_dbkey(self.peachcastle_return_pipe, "PeachCastleReturnPipe"),
             load_dbkey(self.foliage_item_hints, "FoliageItemHints"),
             load_dbkey(self.hiddenpanel_visibility, "HiddenPanelVisibility"),
+            load_dbkey(self.ispy_panel_hints, "ISpyPanelHints"),
             load_dbkey(self.mute_danger_beeps, "MuteDangerBeeps"),
 
             # Difficulty and Enemies
@@ -1620,6 +1691,7 @@ class OptionSet:
             load_dbkey(self.no_heart_blocks, "NoHeartBlocks"),
             load_dbkey(self.no_healing_items, "NoHealingItems"),
             load_dbkey(self.drop_starpoints, "DropStarPoints"),
+            load_dbkey(self.chetrippo_available, "ChetRippoAvailable"),
 
             load_dbkey(self.random_formations, "RandomFormations"),
             load_dbkey(self.logic_settings.boss_shuffle_mode, "BossShuffleMode"),
@@ -1717,6 +1789,10 @@ class OptionSet:
             load_dbkey(self.logic_settings.shuffle_dungeon_entrances, "ShuffleDungeonEntrances"),
             load_dbkey(self.logic_settings.shuffle_entrances_by_all, "ShuffleEntrancesByAll"),
             load_dbkey(self.logic_settings.match_entrance_type, "MatchEntranceTypes"),
+
+            # Misc
+            load_dbkey(self.logic_settings.bowserdoor_quiz, "BowserDoorQuiz"),
+            load_dbkey(self.logic_settings.kentckoopa, "KentCKoopa"),
 
             # Quizmo Quizzes
             load_dbkey(self.random_quiz, "RandomQuiz"),
@@ -1890,16 +1966,16 @@ class OptionSet:
         web_settings["RandomItemsMax"] = self.logic_settings.random_starting_items_max
 
         web_settings["StarWaySpiritsNeededCnt"] = self.logic_settings.starway_spirits_needed_count
-        web_settings["RequireSpecificSpirits"] = self.logic_settings.require_specific_spirits
+        web_settings["RequiredSpirits"] = self.logic_settings.required_spirits
         web_settings["ShuffleStarBeam"] = self.logic_settings.shuffle_starbeam
         web_settings["StarBeamSpiritsNeeded"] = self.logic_settings.starbeam_spirits_needed
         web_settings["StarBeamPowerStarsNeeded"] = self.logic_settings.starbeam_powerstars_needed
-        web_settings["LimitChapterLogic"] = self.logic_settings.limit_chapter_logic
         web_settings["BadgeSynergy"] = self.badge_synergy
         web_settings["FoliageItemHints"] = self.foliage_item_hints
         web_settings["RandomText"] = self.random_text
         web_settings["NoHealingItems"] = self.no_healing_items
         web_settings["DropStarPoints"] = self.drop_starpoints
+        web_settings["ChetRippoAvailable"] = self.chetrippo_available
 
         web_settings["ItemQuality"] = self.logic_settings.item_quality
         web_settings["RandomConsumableMode"] = int(self.logic_settings.randomize_consumable_mode)
@@ -1913,8 +1989,10 @@ class OptionSet:
         web_settings["RandomChoice"] = self.mystery_settings.mystery_random_choice
         web_settings["MysteryRandomPick"] = self.mystery_settings.mystery_random_pick
         web_settings["AllowItemHints"] = self.allow_itemhints
-        web_settings["ShuffleBlocks"] = self.logic_settings.shuffle_blocks
+        web_settings["MultiCoinBlockShuffle"] = self.logic_settings.multicoin_block_shuffle
         web_settings["RandomizePuzzles"] = self.logic_settings.randomize_puzzles
+        web_settings["BowserDoorQuiz"] = self.logic_settings.bowserdoor_quiz
+        web_settings["KentCKoopa"] = self.logic_settings.kentckoopa
         web_settings["RandomPitch"] = self.random_pitch
         web_settings["MuteDangerBeeps"] = self.mute_danger_beeps
         web_settings["ShuffleMusic"] = self.shuffle_music
@@ -1925,6 +2003,7 @@ class OptionSet:
         web_settings["GearShuffleMode"] = self.logic_settings.gear_shuffle_mode
         web_settings["PartnerUpgradeShuffle"] = self.logic_settings.partner_upgrade_shuffle
         web_settings["HiddenPanelVisibility"] = self.hiddenpanel_visibility
+        web_settings["ISpyPanelHints"] = self.ispy_panel_hints
         web_settings["CookWithoutFryingPan"] = self.logic_settings.cook_without_fryingpan
         web_settings["RipCheatoItemsInLogic"] = self.logic_settings.ripcheato_items_in_logic
         web_settings["MerlowRewardPricing"] = int(self.merlow_reward_pricing)
@@ -1940,8 +2019,8 @@ class OptionSet:
         web_settings["StarHuntTotal"] = self.logic_settings.star_hunt_total
 
         if self.logic_settings.random_partners:
-            web_settings["RandomPartnersMax"] = self.logic_settings.random_partners_min
-            web_settings["RandomPartnersMin"] = self.logic_settings.random_partners_max
+            web_settings["RandomPartnersMax"] = self.logic_settings.random_partners_max
+            web_settings["RandomPartnersMin"] = self.logic_settings.random_partners_min
         else:
             web_settings["StartWithPartners"] = {
                 "Goombario": self.logic_settings.start_with_goombario,
@@ -1959,6 +2038,8 @@ class OptionSet:
         web_settings["ReverseGoombaKingBridge"] = self.glitch_settings.reverse_goomba_king_bridge
         web_settings["GoombaVillageEntryFenceClip"] = self.glitch_settings.goomba_village_entry_fence_clip
         web_settings["GoombaVillageNpcLureExit"] = self.glitch_settings.goomba_village_npc_lure_exit
+        web_settings["ClippyLedgeStarPiece"] = self.glitch_settings.clippy_ledge_starpiece
+        web_settings["JumplessFireFlower"] = self.glitch_settings.jumpless_fire_flower
         web_settings["HammerlessJrPlaygroundLaki"] = self.glitch_settings.hammerless_jr_playground_laki
         web_settings["GoombaVillageLakiExit"] = self.glitch_settings.goomba_village_laki_exit
         web_settings["PrologueSushieGlitchKsj"] = self.glitch_settings.prologue_sushie_glitch_ksj
@@ -1999,6 +2080,7 @@ class OptionSet:
 
         # Glitches: Plesant Path
         web_settings["KooperlessPleasantPathStarPiece"] = self.glitch_settings.kooperless_pleasant_path_star_piece
+        web_settings["PleasantPathClippyTraversal"] = self.glitch_settings.pleasant_path_clippy_traversal
         web_settings["HammerlessPleasantPathBridgeUltraBootsParakarry"] = self.glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry
         web_settings["InvisibleBridgeClipLzs"]= self.glitch_settings.invisible_bridge_clip_lzs
         web_settings["InvisibleBridgeClipLaki"] = self.glitch_settings.invisible_bridge_clip_laki
@@ -2014,17 +2096,21 @@ class OptionSet:
 
         # Glitches: Mt. Rugged
         web_settings["MtRuggedQuakeHammerAndLetterWithLaki"] = self.glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki
+        web_settings["MtRuggedQuakeHammerRoomJumplessClippy"] = self.glitch_settings.mt_rugged_quake_hammer_room_jumpless_clippy
         web_settings["ParakarrylessMtRuggedSeed"] = self.glitch_settings.parakarryless_mt_rugged_seed
         web_settings["ParakarrylessMtRuggedSeedClippy"] = self.glitch_settings.parakarryless_mt_rugged_seed_clippy
         web_settings["BuzzarGapSkipClippy"] = self.glitch_settings.buzzar_gap_skip_clippy
         web_settings["ParakarrylessMtRuggedStarPiece"] = self.glitch_settings.parakarryless_mt_rugged_star_piece
+        web_settings["ParakarrylessMtRuggedStarPieceClippy"] = self.glitch_settings.parakarryless_mt_rugged_star_piece_clippy
         web_settings["MtRuggedCoinsWithKooper"] = self.glitch_settings.mt_rugged_coins_with_kooper
         web_settings["MtRuggedStationJumplessClimbBombette"] = self.glitch_settings.mt_rugged_station_jumpless_climb_bombette
         web_settings["MtRuggedStationJumplessClimbLaki"] = self.glitch_settings.mt_rugged_station_jumpless_climb_laki
+        web_settings["MtRuggedStationJumplessClimbLakiBlockClip"] = self.glitch_settings.mt_rugged_station_jumpless_climb_laki_block_clip
         web_settings["JumplessMtRuggedTrainPlatformParakarry"] = self.glitch_settings.jumpless_mt_rugged_train_platform_parakarry
 
         # Glitches: Dry Dry Desert
         web_settings["DesertBrickBlockItemWithParakarry"] = self.glitch_settings.desert_brick_block_item_with_parakarry
+        web_settings["JumplessAttackFXC"] = self.glitch_settings.jumpless_attack_fx_c
         web_settings["EarlyRuinsLakiJump"] = self.glitch_settings.early_ruins_laki_jump
         web_settings["EarlyRuinsUltraBoots"] = self.glitch_settings.early_ruins_ultra_boots
 
@@ -2055,6 +2141,7 @@ class OptionSet:
         web_settings["KooperlessGustyGulchDizzyDialLaki"] = self.glitch_settings.kooperless_gusty_gulch_dizzy_dial_laki
         web_settings["KooperlessGustyGulchDizzyDialParakarry"]= self.glitch_settings.kooperless_gusty_gulch_dizzy_dial_parakarry
         web_settings["GustyGulchGapSkip"] = self.glitch_settings.gusty_gulch_gap_skip
+        web_settings["GustyGulchClippyTraversal"] = self.glitch_settings.gusty_gulch_clippy_traversal
 
         # Glitches: Tubba's Castle
         web_settings["BowlessTubbasCastle"] = self.glitch_settings.bowless_tubbas_castle
@@ -2105,6 +2192,7 @@ class OptionSet:
         # Glitches: Flower Fields
         web_settings["EarlyLakiLZS"] = self.glitch_settings.early_laki_lzs
         web_settings["EarlyLakiBombettePush"] = self.glitch_settings.early_laki_bombette_push
+        web_settings["LakilessElevatorRoom"] = self.glitch_settings.lakiless_elevator_room
         web_settings["BombettelessMegaSmash"] = self.glitch_settings.bombetteless_mega_smash
         web_settings["SunTowerSkip"]= self.glitch_settings.sun_tower_skip
         web_settings["YellowBerryGateSkipLZS"] = self.glitch_settings.yellow_berry_gate_skip_lzs
@@ -2164,24 +2252,30 @@ def _overrule_settings_with_plando(
     PartnerUpgradeShuffle | None,
     bool | None,
     bool | None,
+    MultiCoinBlockShuffle | None,
+    bool | None,
 ]:
     forced_progressive_badges: bool = None
     forced_partner_upgrade_shuffle: bool = None
     forced_random_puzzles: bool = None
     forced_shuffle_starbeam: bool = None
+    forced_multicoinblock_shuffle: MultiCoinBlockShuffle = None
+    forced_shuffle_dungeon_entrances: bool = None
 
     if plando_data is None:
         return (
             forced_progressive_badges,
             forced_partner_upgrade_shuffle,
             forced_random_puzzles,
-            forced_shuffle_starbeam
+            forced_shuffle_starbeam,
+            forced_multicoinblock_shuffle,
+            forced_shuffle_dungeon_entrances,
         )
 
     else:
-         item_placement_areas: None | dict[str, dict[str, str | dict[str, str | int]]] = plando_data.get("items")
-         if item_placement_areas is not None:
-            for area_locations in item_placement_areas.values():
+        item_placement_areas: None | dict[str, dict[str, str | dict[str, str | int]]] = plando_data.get("items")
+        if item_placement_areas is not None:
+            for area_name, area_locations in item_placement_areas.items():
                 for item_location, item in area_locations.items():
                     cur_item: str = None
                     if isinstance(item, dict) and item.get("item") is not None:
@@ -2195,6 +2289,23 @@ def _overrule_settings_with_plando(
                         forced_random_puzzles = True
                     if item_location == force_starbeam_shuffle_location:
                         forced_shuffle_starbeam = True
+                    if (    area_name in block_locations
+                        and item_location in block_locations[area_name]
+                    ):
+                        if "MultiCoinBlock" in item_location:
+                            if cur_item == "SuperBlock" or cur_item.endswith("Upgrade"):
+                                forced_multicoinblock_shuffle = MultiCoinBlockShuffle.SHUFFLE
+                                forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
+                            elif cur_item != "CoinBag":
+                                forced_multicoinblock_shuffle = MultiCoinBlockShuffle.ANYWHERE
+                                forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.FULL
+                        else: # "SuperBlock" in item_location
+                            if cur_item == "CoinBag":
+                                forced_multicoinblock_shuffle = MultiCoinBlockShuffle.SHUFFLE
+                                forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
+                            elif cur_item != "SuperBlock" and not cur_item.endswith("Upgrade"):
+                                forced_multicoinblock_shuffle = MultiCoinBlockShuffle.ANYWHERE
+                                forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.FULL
 
                     if cur_item in progressive_badges["originals"]:
                         forced_progressive_badges = False
@@ -2205,9 +2316,17 @@ def _overrule_settings_with_plando(
                     elif cur_item == "StarBeam":
                         forced_shuffle_starbeam = True
 
+    if plando_data.get("dungeon_entrances") is not None:
+        if 8 in plando_data["dungeon_entrances"] or 8 in plando_data["dungeon_entrances"].values():
+            forced_shuffle_dungeon_entrances = DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
+        else:
+            forced_shuffle_dungeon_entrances = DungeonEntranceShuffle.ONLY_SPIRIT_DUNGEONS
+
     return (
         forced_progressive_badges,
         forced_partner_upgrade_shuffle,
         forced_random_puzzles,
-        forced_shuffle_starbeam
+        forced_shuffle_starbeam,
+        forced_multicoinblock_shuffle,
+        forced_shuffle_dungeon_entrances,
     )

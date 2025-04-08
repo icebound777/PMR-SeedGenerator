@@ -19,84 +19,81 @@ def shuffle_dungeon_entrances(
     required_star_spirits:list[int],
     limit_chapter_logic: bool,
     shuffle_bowsers_castle:bool,
-    write_spoilers:bool
+    write_spoilers:bool,
+    plando_dungeon_entrances:dict | None,
 ) -> dict:
+    def get_target_entrance(starting_node: str) -> str | None:
+        target_node_id: str | None = None
+        for edge in world_graph[starting_node]["edge_list"]:
+            if edge["to"]["map"][:3] != starting_node[:3]:
+                target_node_id = f"{edge['to']['map']}/{edge['to']['id']}"
+                break
+        return target_node_id
+
+    outside_dungeon_nodeids: dict[int, str] = {
+        StarSpirits.ELDSTAR:  "NOK_15/1",
+        StarSpirits.MAMAR:    "SBK_02/4",
+        StarSpirits.SKOLAR:   "ARN_04/1",
+        StarSpirits.MUSKULAR: "MAC_04/2",
+        StarSpirits.MISSTAR:  "JAN_22/2",
+        StarSpirits.KLEVAR:   "MAC_01/5",
+        StarSpirits.KALMAR:   "SAM_10/1",
+        8: "HOS_20/2",
+    }
+
     if starway_spirits_needed_count > 6:
         shuffle_bowsers_castle = False
 
+    dungeons_to_shuffle: list[int] = list()
+
     if limit_chapter_logic and len(required_star_spirits) > 0:
-        dungeon_border_node_ids = []
-        if StarSpirits.ELDSTAR in required_star_spirits:
-            dungeon_border_node_ids.append(
-                ("NOK_15/1", "TRD_00/0") # Koopa Bros Fortress
-            )
-        if StarSpirits.MAMAR in required_star_spirits:
-            dungeon_border_node_ids.append(
-                ("SBK_02/4", "ISK_01/0") # Dry Dry Ruins
-            )
-        if StarSpirits.SKOLAR in required_star_spirits:
-            dungeon_border_node_ids.append(
-                ("ARN_04/1", "DGB_00/0") # Tubba Blubbas Castle
-            )
-        if StarSpirits.MUSKULAR in required_star_spirits:
-            dungeon_border_node_ids.append(
-                ("MAC_04/2", "OMO_03/4") # Shy Guys Toybox
-            )
-        if StarSpirits.MISSTAR in required_star_spirits:
-            dungeon_border_node_ids.append(
-                ("JAN_22/2", "KZN_01/0") # Mt. Lavalava
-            )
-        if StarSpirits.KLEVAR in required_star_spirits:
-            dungeon_border_node_ids.append(
-                ("MAC_01/5", "FLO_00/0") # Flower Fields
-            )
-        if StarSpirits.KALMAR in required_star_spirits:
-            dungeon_border_node_ids.append(
-                ("SAM_10/1", "PRA_01/0") # Crystal Palace
-            )
+        dungeons_to_shuffle = required_star_spirits
     else:
-        dungeon_border_node_ids = [
-            ("NOK_15/1", "TRD_00/0"), # Koopa Bros Fortress main
-            #("NOK_15/2", "TRD_00/4"), # Koopa Bros Fortress chest ledge
-            ("SBK_02/4", "ISK_01/0"), # Dry Dry Ruins
-            ("ARN_04/1", "DGB_00/0"), # Tubba Blubbas Castle
-            ("MAC_04/2", "OMO_03/4"), # Shy Guys Toybox
-            ("JAN_22/2", "KZN_01/0"), # Mt. Lavalava
-            ("MAC_01/5", "FLO_00/0"), # Flower Fields
-            ("SAM_10/1", "PRA_01/0"), # Crystal Palace
+        dungeons_to_shuffle = [
+            StarSpirits.ELDSTAR,
+            StarSpirits.MAMAR,
+            StarSpirits.SKOLAR,
+            StarSpirits.MUSKULAR,
+            StarSpirits.MISSTAR,
+            StarSpirits.KLEVAR,
+            StarSpirits.KALMAR,
         ]
 
     if shuffle_bowsers_castle and starway_spirits_needed_count < 7 and not limit_chapter_logic:
         # cannot be used with requiring 7 spirits for star way, because
         # otherwise you'd lock one of the 7 dungeons needed to open star way
         # behind star way itself
+        dungeons_to_shuffle.append(8)
 
-        # determine Bowser Castle target entrance (due to BC mode this can vary)
-        bc_node_id = "KPA_60/4"
+    # Randomly pair dungeon entry points to dungeons
+    shuffled_chapter_pairs: list[tuple[int, int]] = list()
+    dungeon_entry_points = dungeons_to_shuffle.copy()
+    if plando_dungeon_entrances is not None:
+        for k, v in plando_dungeon_entrances.items():
+            dungeon_entry_points.remove(k)
+            dungeons_to_shuffle.remove(v)
 
-        for edge in world_graph["HOS_20/2"]["edge_list"]:
-            if edge.get("mapchange") is not None and edge["mapchange"]:
-                bc_node_id = f"{edge['to']['map']}/{edge['to']['id']}"
-                break
-
-        dungeon_border_node_ids.append(
-            ("HOS_20/2", bc_node_id) # Bowsers Castle
+    random.shuffle(dungeons_to_shuffle)
+    while dungeons_to_shuffle:
+        shuffled_chapter_pairs.append(
+            (dungeon_entry_points.pop(), dungeons_to_shuffle.pop())
         )
 
+    if plando_dungeon_entrances is not None:
+        for k, v in plando_dungeon_entrances.items():
+            shuffled_chapter_pairs.append((k, v))
+    # Re-link dungeon entrances for dungeon connections that aren't vanilla
     add_edges = []
     remove_edges = []
 
     spirit_warp_relinks = []
 
-    outside_dungeon_node_ids = [i[0] for i in dungeon_border_node_ids]
-    inside_dungeon_node_ids = [i[1] for i in dungeon_border_node_ids]
+    shuffled_chapter_pairs.sort(key=lambda x: int(x[0]))
+    for from_chapter, to_chapter in shuffled_chapter_pairs:
+        if from_chapter != to_chapter:
+            outside_node_id = outside_dungeon_nodeids[from_chapter]
+            inside_node_id = get_target_entrance(outside_dungeon_nodeids[to_chapter])
 
-    for outside_node_id in outside_dungeon_node_ids:
-        i = random.randint(0, len(inside_dungeon_node_ids) - 1)
-        inside_node_id = inside_dungeon_node_ids.pop(i)
-
-        if (outside_node_id, inside_node_id) not in dungeon_border_node_ids:
-            # print(f"mod: {outside_node_id} -> {inside_node_id}")
             # find original edges
             for edge in world_graph[outside_node_id]["edge_list"]:
                 if edge.get("mapchange") is not None and edge["mapchange"]:
@@ -114,13 +111,9 @@ def shuffle_dungeon_entrances(
                     new_edge["to"]["map"] = new_target_map
                     new_edge["to"]["id"] = new_target_id
                     add_edges.append(new_edge)
+
                     # modify star spirit warp target
-                    orig_outside = None
-                    for outside, inside in dungeon_border_node_ids:
-                        if inside == inside_node_id:
-                            orig_outside = outside[:-2]
-                            break
-                    # print(f"{orig_outside=}")
+                    orig_outside: str = outside_dungeon_nodeids[to_chapter][:-2]
                     spirit_warp_entrance_data = (
                         MapArea.select(MapArea.area_id,
                                        MapArea.map_id,
@@ -158,7 +151,7 @@ def shuffle_dungeon_entrances(
                         spirit_warp_relinks.append((dbkey, dbvalue))
 
         # else:
-        #     print(f"van: {outside_node_id} -> {inside_node_id}")
+        #     print(f"van: {from_chapter} -> {to_chapter}")
 
     entrance_changes = []
     if add_edges and remove_edges:

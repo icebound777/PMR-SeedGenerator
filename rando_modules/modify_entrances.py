@@ -7,8 +7,6 @@ from copy import deepcopy
 
 from worldgraph import adjust
 
-from rando_modules.random_blocks import get_block_placement
-
 from rando_enums.enum_options import (
     GearShuffleMode,
     BowserCastleMode,
@@ -17,46 +15,36 @@ from rando_enums.enum_options import (
 )
 
 # Imports: Modify Bowser's Castle
-from maps.graph_edges.bc_shorten.edges_kpa import \
-    edges_kpa_add, edges_kpa_remove
-from maps.graph_edges.bc_bossrush.edges_hos import \
-    edges_hos_add, edges_hos_remove
-from maps.graph_edges.bc_bossrush.edges_kpa import \
-    edges_kpa_add    as edges_kpa_bossrush_add, \
-    edges_kpa_remove as edges_kpa_bossrush_remove
-from maps.graph_edges.gear_location_shuffle.edges_isk import \
-    edges_isk_add    as edges_isk_gls_add, \
-    edges_isk_remove as edges_isk_gls_remove
-from maps.graph_edges.gear_location_shuffle.edges_kzn import \
-    edges_kzn_add    as edges_kzn_gls_add, \
-    edges_kzn_remove as edges_kzn_gls_remove
-from maps.graph_edges.gear_location_shuffle.edges_tik import \
-    edges_tik_add    as edges_tik_gls_add, \
-    edges_tik_remove as edges_tik_gls_remove
+from maps.graph_edges.bc_shorten.edges_kpa import (
+    edges_kpa_add,
+    edges_kpa_remove,
+)
+from maps.graph_edges.bc_bossrush.edges_hos import (
+    edges_hos_add,
+    edges_hos_remove,
+)
+from maps.graph_edges.bc_bossrush.edges_kpa import (
+    edges_kpa_add as edges_kpa_bossrush_add,
+    edges_kpa_remove as edges_kpa_bossrush_remove,
+)
+from maps.graph_edges.gear_location_shuffle.edges_isk import (
+    edges_isk_add as edges_isk_gls_add,
+    edges_isk_remove as edges_isk_gls_remove,
+)
+from maps.graph_edges.gear_location_shuffle.edges_kzn import (
+    edges_kzn_add as edges_kzn_gls_add,
+    edges_kzn_remove as edges_kzn_gls_remove,
+)
+from maps.graph_edges.gear_location_shuffle.edges_tik import (
+    edges_tik_add as edges_tik_gls_add,
+    edges_tik_remove as edges_tik_gls_remove,
+)
 
 # Imports: Star Hunt
 from maps.graph_edges.goal_openstarway.edges_hos import (
     edges_hos_goal_openstarway_add,
-    edges_hos_goal_openstarway_remove
+    edges_hos_goal_openstarway_remove,
 )
-
-# Imports: Partner Upgrade Shuffle
-from rando_enums.enum_types import BlockType
-from maps.graph_edges.partner_upgrade_shuffle.edges_arn import edges_arn_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_dgb import edges_dgb_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_flo import edges_flo_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_isk import edges_isk_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_iwa import edges_iwa_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_jan import edges_jan_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_kmr import edges_kmr_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_kzn import edges_kzn_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_mac import edges_mac_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_nok import edges_nok_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_omo import edges_omo_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_pra import edges_pra_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_sam import edges_sam_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_sbk import edges_sbk_add_partnerupgrades
-from maps.graph_edges.partner_upgrade_shuffle.edges_tik import edges_tik_add_partnerupgrades
 
 # Imports: Battle Shuffle
 from rando_modules.random_battles import get_boss_battles
@@ -65,275 +53,457 @@ from rando_modules.random_battles import get_boss_battles
 from models.options.OptionSet import GlitchOptionSet
 
 # Glitched Logic - Prologue
-from maps.graph_edges.glitched_logic.kmr_prologue_gel_early import \
-    edges_kmr_add_prologue_gel_early
-from maps.graph_edges.glitched_logic.kmr_reverse_goomba_king_bridge import \
-    edges_kmr_add_reverse_goomba_king_bridge
-from maps.graph_edges.glitched_logic.kmr_goomba_village_entry_fence_clip import \
-    edges_kmr_add_goomba_village_entry_fence_clip
-from maps.graph_edges.glitched_logic.kmr_goomba_village_hammerless_exit import \
-    edges_kmr_add_goomba_village_hammerless_exit_npc_lure, edges_kmr_add_goomba_village_hammerless_exit_laki
-from maps.graph_edges.glitched_logic.kmr_hammerless_jr_playground_laki import \
-    edges_kmr_add_hammerless_jr_playground_laki
-from maps.graph_edges.glitched_logic.kmr_prologue_sushie_glitch import \
-    edges_kmr_add_prologue_sushie_glitch_ksj, edges_kmr_add_prologue_sushie_glitch_common, edges_kmr_add_prologue_sushie_glitch_ultra_boots_laki
+from maps.graph_edges.glitched_logic.kmr_prologue_gel_early import (
+    edges_kmr_add_prologue_gel_early,
+)
+from maps.graph_edges.glitched_logic.kmr_reverse_goomba_king_bridge import (
+    edges_kmr_add_reverse_goomba_king_bridge,
+)
+from maps.graph_edges.glitched_logic.kmr_goomba_village_entry_fence_clip import (
+    edges_kmr_add_goomba_village_entry_fence_clip,
+)
+from maps.graph_edges.glitched_logic.kmr_goomba_village_hammerless_exit import (
+    edges_kmr_add_goomba_village_hammerless_exit_npc_lure,
+    edges_kmr_add_goomba_village_hammerless_exit_laki,
+)
+from maps.graph_edges.glitched_logic.kmr_clippy_ledge_starpiece import (
+    edges_kmr_add_clippy_ledge_starpiece,
+)
+from maps.graph_edges.glitched_logic.kmr_jumpless_fire_flower import (
+    edges_kmr_add_jumpless_fire_flower,
+)
+from maps.graph_edges.glitched_logic.kmr_hammerless_jr_playground_laki import (
+    edges_kmr_add_hammerless_jr_playground_laki,
+)
+from maps.graph_edges.glitched_logic.kmr_prologue_sushie_glitch import (
+    edges_kmr_add_prologue_sushie_glitch_ksj,
+    edges_kmr_add_prologue_sushie_glitch_common,
+    edges_kmr_add_prologue_sushie_glitch_ultra_boots_laki,
+)
 
 # Glitched Logic - Toad Town
-from maps.graph_edges.glitched_logic.mac_odd_key_early import \
-    edges_mac_odd_key_early
-from maps.graph_edges.glitched_logic.mac_blue_house_skip import \
-    edges_mac_add_bhs_jump, edges_mac_add_bhs_laki, edges_mac_add_bhs_toad_lure
-from maps.graph_edges.glitched_logic.mac_jumpless_dane_t_letters import \
-    edges_mac_jumpless_dane_t_letters
-from maps.graph_edges.glitched_logic.mac_bowless_toy_box import \
-    edges_mac_add_bowless_toybox_hammer_lure, edges_mac_add_bowless_toybox_hammerless_lure
-from maps.graph_edges.glitched_logic.mac_enter_storeroom_without_key import \
-    edges_mac_add_storeroom_without_key_hammer, edges_mac_add_storeroom_without_key_parakarry, edges_mac_add_storeroom_without_key_hammerless_lure
-from maps.graph_edges.glitched_logic.mac_sushieless_toad_town_star_piece import \
-    edges_mac_add_sushieless_starpiece
-from maps.graph_edges.glitched_logic.mac_whale_early import \
-    edges_mac_add_whale_early_lzs
-from maps.graph_edges.glitched_logic.mac_toad_town_sushie_glitch import \
-    edges_mac_add_toad_town_sushie_glitch_gearless, edges_mac_add_toad_town_sushie_glitch_jump_or_hammer, edges_mac_add_toad_town_sushie_glitch_full_gear, edges_mac_add_toad_town_sushie_glitch
+from maps.graph_edges.glitched_logic.mac_odd_key_early import (
+    edges_mac_odd_key_early,
+)
+from maps.graph_edges.glitched_logic.mac_blue_house_skip import (
+    edges_mac_add_bhs_jump,
+    edges_mac_add_bhs_laki,
+    edges_mac_add_bhs_toad_lure,
+)
+from maps.graph_edges.glitched_logic.mac_jumpless_dane_t_letters import (
+    edges_mac_jumpless_dane_t_letters,
+)
+from maps.graph_edges.glitched_logic.mac_bowless_toy_box import (
+    edges_mac_add_bowless_toybox_hammer_lure,
+    edges_mac_add_bowless_toybox_hammerless_lure,
+)
+from maps.graph_edges.glitched_logic.mac_enter_storeroom_without_key import (
+    edges_mac_add_storeroom_without_key_hammer,
+    edges_mac_add_storeroom_without_key_parakarry,
+    edges_mac_add_storeroom_without_key_hammerless_lure,
+)
+from maps.graph_edges.glitched_logic.mac_sushieless_toad_town_star_piece import (
+    edges_mac_add_sushieless_starpiece,
+)
+from maps.graph_edges.glitched_logic.mac_whale_early import (
+    edges_mac_add_whale_early_lzs,
+)
+from maps.graph_edges.glitched_logic.mac_toad_town_sushie_glitch import (
+    edges_mac_add_toad_town_sushie_glitch_gearless,
+    edges_mac_add_toad_town_sushie_glitch_jump_or_hammer,
+    edges_mac_add_toad_town_sushie_glitch_full_gear,
+    edges_mac_add_toad_town_sushie_glitch,
+)
 
 # Glitched Logic - Shooting Star Summit
-from maps.graph_edges.glitched_logic.hos_jumpless_summit_climb import \
-    edges_hos_add_jumpless_summit_climb
+from maps.graph_edges.glitched_logic.hos_jumpless_summit_climb import (
+    edges_hos_add_jumpless_summit_climb,
+)
 
 # Glitched Logic - Toad Town Tunnels
-from maps.graph_edges.glitched_logic.tik_island_pipe_blooper_skip import \
-    edges_tik_add_island_pipe_blooper_skip
-from maps.graph_edges.glitched_logic.tik_parakarryless_sewer_star_piece import \
-    edges_tik_add_parakarryless_sewer_star_piece
-from maps.graph_edges.glitched_logic.tik_clippy_sewers_upgrade_block import \
-    edges_tik_add_clippy_sewers_upgrade_block
-from maps.graph_edges.glitched_logic.tik_sewer_blocks_without_ultra_boots import \
-    edges_tik_add_sewer_blocks_without_ultra_boots
-from maps.graph_edges.glitched_logic.tik_chapter_7_bridge_with_super_boots import \
-    edges_tik_add_chapter_7_bridge_with_super_boots
-from maps.graph_edges.glitched_logic.tik_clippy_boots import \
-    edges_tik_add_clippy_boots_metal_block_skip, edges_tik_add_clippy_boots_stone_block_skip
-from maps.graph_edges.glitched_logic.tik_first_block_to_shiver_city_without_super_boots import \
-    edges_tik_add_first_block_to_shiver_city_witout_super_boots
-from maps.graph_edges.glitched_logic.tik_blocks_to_shiver_city_kooper_shell_item_throw import \
-    edges_tik_add_blocks_to_shiver_city_kooper_shell_item_throw
-from maps.graph_edges.glitched_logic.tik_break_sewer_yellow_block_with_ultra_boots import \
-    edges_tik_add_break_sewer_yellow_block_with_ultra_boots
-from maps.graph_edges.glitched_logic.tik_jumpless_sewer_shooting_star import \
-    edges_tik_add_jumpless_sewer_shooting_star_kooper
+from maps.graph_edges.glitched_logic.tik_island_pipe_blooper_skip import (
+    edges_tik_add_island_pipe_blooper_skip,
+)
+from maps.graph_edges.glitched_logic.tik_parakarryless_sewer_star_piece import (
+    edges_tik_add_parakarryless_sewer_star_piece,
+)
+from maps.graph_edges.glitched_logic.tik_clippy_sewers_upgrade_block import (
+    edges_tik_add_clippy_sewers_upgrade_block,
+)
+from maps.graph_edges.glitched_logic.tik_sewer_blocks_without_ultra_boots import (
+    edges_tik_add_sewer_blocks_without_ultra_boots,
+)
+from maps.graph_edges.glitched_logic.tik_chapter_7_bridge_with_super_boots import (
+    edges_tik_add_chapter_7_bridge_with_super_boots,
+)
+from maps.graph_edges.glitched_logic.tik_clippy_boots import (
+    edges_tik_add_clippy_boots_metal_block_skip,
+    edges_tik_add_clippy_boots_stone_block_skip,
+)
+from maps.graph_edges.glitched_logic.tik_first_block_to_shiver_city_without_super_boots import (
+    edges_tik_add_first_block_to_shiver_city_witout_super_boots,
+)
+from maps.graph_edges.glitched_logic.tik_blocks_to_shiver_city_kooper_shell_item_throw import (
+    edges_tik_add_blocks_to_shiver_city_kooper_shell_item_throw,
+)
+from maps.graph_edges.glitched_logic.tik_break_sewer_yellow_block_with_ultra_boots import (
+    edges_tik_add_break_sewer_yellow_block_with_ultra_boots,
+)
+from maps.graph_edges.glitched_logic.tik_jumpless_sewer_shooting_star import (
+    edges_tik_add_jumpless_sewer_shooting_star_kooper,
+)
 
 # Glitched Logic - Pleasant Path
-from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_star_piece import \
-    edges_nok_add_kooperless_starpiece_clippy
-from maps.graph_edges.glitched_logic.nok_hammerless_pleasant_path_bridge_skip import \
-    edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry
-from maps.graph_edges.glitched_logic.nok_invisible_bridge_clip import \
-    edges_nok_add_invisible_bridge_clip_laki, edges_nok_add_invisible_bridge_clip_lzs
-from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_thunderbolt import \
-    edges_nok_add_kooperless_thunderbolt
-from maps.graph_edges.glitched_logic.nok_jumpless_koopa_village_blue_pipe import \
-    edges_nok_add_jumpless_koopa_village_blue_pipe
+from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_star_piece import (
+    edges_nok_add_kooperless_starpiece_clippy,
+)
+from maps.graph_edges.glitched_logic.nok_pleasant_path_clippy_traversal import (
+    edges_nok_add_pleasant_path_clippy_traversal,
+)
+from maps.graph_edges.glitched_logic.nok_hammerless_pleasant_path_bridge_skip import (
+    edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry,
+)
+from maps.graph_edges.glitched_logic.nok_invisible_bridge_clip import (
+    edges_nok_add_invisible_bridge_clip_laki,
+    edges_nok_add_invisible_bridge_clip_lzs,
+)
+from maps.graph_edges.glitched_logic.nok_kooperless_pleasant_path_thunderbolt import (
+    edges_nok_add_kooperless_thunderbolt,
+)
+from maps.graph_edges.glitched_logic.nok_jumpless_koopa_village_blue_pipe import (
+    edges_nok_add_jumpless_koopa_village_blue_pipe,
+)
 
 # Glitched Logic - Koopa Bros Fortress
-from maps.graph_edges.glitched_logic.nok_bombetteless_kbf_fp_plus import \
-    edges_nok_add_bombetteless_fp_plus_laki, edges_nok_add_bombetteless_fp_plus_lzs
-from maps.graph_edges.glitched_logic.trd_laki_jailbreak import \
-    edges_trd_add_laki_jailbreak
-from maps.graph_edges.glitched_logic.trd_bombetteless_right_fortress_jail_key import \
-    edges_trd_add_bombetteless_right_key
-from maps.graph_edges.glitched_logic.trd_water_staircase_skip import \
-    edges_trd_add_water_staircase_skip
+from maps.graph_edges.glitched_logic.nok_bombetteless_kbf_fp_plus import (
+    edges_nok_add_bombetteless_fp_plus_laki,
+    edges_nok_add_bombetteless_fp_plus_lzs,
+)
+from maps.graph_edges.glitched_logic.trd_laki_jailbreak import (
+    edges_trd_add_laki_jailbreak,
+)
+from maps.graph_edges.glitched_logic.trd_bombetteless_right_fortress_jail_key import (
+    edges_trd_add_bombetteless_right_key,
+)
+from maps.graph_edges.glitched_logic.trd_water_staircase_skip import (
+    edges_trd_add_water_staircase_skip,
+)
 
 # Glitched Logic - Mt.Rugged
-from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_laki import \
-    edges_iwa_add_quake_hammer_and_letter_laki
-from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed import \
-    edges_iwa_add_parakarryless_mt_rugged_seed
-from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed_clippy import \
-    edges_iwa_add_parakarryless_mt_rugged_seed_clippy
-from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_star_piece import \
-    edges_iwa_add_parakarryless_star_piece_laki
-from maps.graph_edges.glitched_logic.iwa_buzzar_gap_skip import \
-    edges_iwa_add_buzzar_gap_skip_clippy
-from maps.graph_edges.glitched_logic.iwa_mt_rugged_coins_with_kooper import \
-    edges_iwa_add_mt_rugged_coins_with_kooper
-from maps.graph_edges.glitched_logic.iwa_mt_rugged_station_jumpless_climb import \
-    edges_iwa_add_mt_rugged_station_jumpless_climb_bombette, edges_iwa_add_mt_rugged_station_jumpless_climb_laki
-from maps.graph_edges.glitched_logic.iwa_jumpless_mt_rugged_train_platform import \
-    edges_iwa_add_jumpless_mt_rugged_train_platform_parakarry
+from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_laki import (
+    edges_iwa_add_quake_hammer_and_letter_laki,
+)
+from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_room_jumpless_clippy import (
+    edges_iwa_add_quake_hammer_room_jumpless_clippy,
+)
+from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed import (
+    edges_iwa_add_parakarryless_mt_rugged_seed,
+)
+from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_seed_clippy import (
+    edges_iwa_add_parakarryless_mt_rugged_seed_clippy,
+)
+from maps.graph_edges.glitched_logic.iwa_parakarryless_mt_rugged_star_piece import (
+    edges_iwa_add_parakarryless_star_piece_laki,
+    edges_iwa_add_parakarryless_star_piece_clippy,
+)
+from maps.graph_edges.glitched_logic.iwa_buzzar_gap_skip import (
+    edges_iwa_add_buzzar_gap_skip_clippy,
+)
+from maps.graph_edges.glitched_logic.iwa_mt_rugged_coins_with_kooper import (
+    edges_iwa_add_mt_rugged_coins_with_kooper,
+)
+from maps.graph_edges.glitched_logic.iwa_mt_rugged_station_jumpless_climb import (
+    edges_iwa_add_mt_rugged_station_jumpless_climb_bombette,
+    edges_iwa_add_mt_rugged_station_jumpless_climb_laki,
+    edges_iwa_add_mt_rugged_station_jumpless_climb_laki_block_clip,
+)
+from maps.graph_edges.glitched_logic.iwa_jumpless_mt_rugged_train_platform import (
+    edges_iwa_add_jumpless_mt_rugged_train_platform_parakarry,
+)
 
 # Glitched Logic - Dry Dry Desert
-from maps.graph_edges.glitched_logic.sbk_desert_brick_block_item_with_parakarry import \
-    edges_sbk_add_desert_brick_block_item_parakarry
-from maps.graph_edges.glitched_logic.sbk_early_ruins import \
-    edges_sbk_add_laki, edges_sbk_add_ultraboots
+from maps.graph_edges.glitched_logic.sbk_desert_brick_block_item_with_parakarry import (
+    edges_sbk_add_desert_brick_block_item_parakarry,
+)
+from maps.graph_edges.glitched_logic.sbk_jumpless_attack_fx_c import (
+    edges_sbk_add_jumpless_attack_fx_c,
+)
+from maps.graph_edges.glitched_logic.sbk_early_ruins import (
+    edges_sbk_add_laki,
+    edges_sbk_add_ultraboots,
+)
 
 # Glitched Logic - Dry Dry Ruins
-from maps.graph_edges.glitched_logic.isk_artifact_jump import \
-    edges_isk_add_artifact_jump_laki, edges_isk_add_artifact_jump_ultra_boots
-from maps.graph_edges.glitched_logic.isk_ruins_key_laki_jump import \
-    edges_isk_add_ruins_key_laki_jump
-from maps.graph_edges.glitched_logic.isk_parakarryless_second_sand_room import \
-    edges_isk_add_parakarryless_second_sand_room_normal_boots, \
-    edges_isk_add_parakarryless_second_sand_room_ultra_boots
-from maps.graph_edges.glitched_logic.isk_parakarryless_super_hammer_room import \
-    edges_isk_add_parakarryless_super_hammer_room_normal_boots, edges_isk_add_parakarryless_super_hammer_room_ultra_boots
-from maps.graph_edges.glitched_logic.isk_ruins_locks_skip import \
-    edges_isk_add_ruins_locks_skip_clippy
-from maps.graph_edges.glitched_logic.isk_ruins_stone_skip import \
-    edges_isk_add_ruins_stone_skip
-from maps.graph_edges.glitched_logic.isk_ruins_puzzle_solution_early import \
-    edges_isk_add_ruins_puzzle_solution_early
+from maps.graph_edges.glitched_logic.isk_artifact_jump import (
+    edges_isk_add_artifact_jump_laki,
+    edges_isk_add_artifact_jump_ultra_boots,
+)
+from maps.graph_edges.glitched_logic.isk_ruins_key_laki_jump import (
+    edges_isk_add_ruins_key_laki_jump,
+)
+from maps.graph_edges.glitched_logic.isk_parakarryless_second_sand_room import (
+    edges_isk_add_parakarryless_second_sand_room_normal_boots,
+    edges_isk_add_parakarryless_second_sand_room_ultra_boots,
+)
+from maps.graph_edges.glitched_logic.isk_parakarryless_super_hammer_room import (
+    edges_isk_add_parakarryless_super_hammer_room_normal_boots,
+    edges_isk_add_parakarryless_super_hammer_room_ultra_boots,
+)
+from maps.graph_edges.glitched_logic.isk_ruins_locks_skip import (
+    edges_isk_add_ruins_locks_skip_clippy,
+)
+from maps.graph_edges.glitched_logic.isk_ruins_stone_skip import (
+    edges_isk_add_ruins_stone_skip,
+)
+from maps.graph_edges.glitched_logic.isk_ruins_puzzle_solution_early import (
+    edges_isk_add_ruins_puzzle_solution_early,
+)
 
 # Glitched Logic - Forever Forest
-from maps.graph_edges.glitched_logic.mim_forever_forest_backwards import \
-    edges_mim_add_forever_forest_backwards
+from maps.graph_edges.glitched_logic.mim_forever_forest_backwards import (
+    edges_mim_add_forever_forest_backwards,
+)
 
 # Glitched Logic - Boo's Mansion
-from maps.graph_edges.glitched_logic.obk_record_skip import \
-    edges_obk_add_record_skip_bombette_push, edges_obk_add_record_skip_spin_jump
-from maps.graph_edges.glitched_logic.obk_parakarryless_boos_portrait import \
-    edges_obk_add_boo_portrait_kooper, edges_obk_add_boo_portrait_laki
-from maps.graph_edges.glitched_logic.mim_jumpless_mansion_entry import \
-    edges_mim_add_jumpless_mansion_entry_parakarry
+from maps.graph_edges.glitched_logic.obk_record_skip import (
+    edges_obk_add_record_skip_bombette_push,
+    edges_obk_add_record_skip_spin_jump,
+)
+from maps.graph_edges.glitched_logic.obk_parakarryless_boos_portrait import (
+    edges_obk_add_boo_portrait_kooper,
+    edges_obk_add_boo_portrait_laki,
+)
+from maps.graph_edges.glitched_logic.mim_jumpless_mansion_entry import (
+    edges_mim_add_jumpless_mansion_entry_parakarry,
+)
 
 # Glitched Logic - Gusty Gulch
-from maps.graph_edges.glitched_logic.mim_gusty_gulch_gate_skip import \
-    edges_mim_add_gusty_gulch_gate_skip_lzs, edges_mim_add_gusty_gulch_gate_skip_laki
-from maps.graph_edges.glitched_logic.arn_gusty_gulch_gap_skip import \
-    edges_arn_add_gusty_gulch_gap_skip_jump
-from maps.graph_edges.glitched_logic.arn_kooperless_gusty_gulch_dizzy_dial import \
-    edges_arn_add_gusty_gulch_dizzy_dial_jump, edges_arn_add_gusty_gulch_dizzy_dial_laki, edges_arn_add_gusty_gulch_dizzy_dial_parakarry
+from maps.graph_edges.glitched_logic.mim_gusty_gulch_gate_skip import (
+    edges_mim_add_gusty_gulch_gate_skip_lzs,
+    edges_mim_add_gusty_gulch_gate_skip_laki,
+)
+from maps.graph_edges.glitched_logic.arn_gusty_gulch_gap_skip import (
+    edges_arn_add_gusty_gulch_gap_skip_jump,
+)
+from maps.graph_edges.glitched_logic.arn_gusty_gulch_clippy_traversal import (
+    edges_arn_add_gusty_gulch_clippy_traversal,
+)
+from maps.graph_edges.glitched_logic.arn_kooperless_gusty_gulch_dizzy_dial import (
+    edges_arn_add_gusty_gulch_dizzy_dial_jump,
+    edges_arn_add_gusty_gulch_dizzy_dial_laki,
+    edges_arn_add_gusty_gulch_dizzy_dial_parakarry,
+)
 
 # Glitched Logic - Tubba's Castle
-from maps.graph_edges.glitched_logic.dgb_bowless_tubbas_castle import \
-    edges_dgb_add_bowless_tubbas_castle
-from maps.graph_edges.glitched_logic.dgb_tubbas_table_jump_clock import \
-    edges_dgb_add_tubbas_table_clock_laki_jump,\
-    edges_dgb_add_tubbas_table_clock_ultra_boots
-from maps.graph_edges.glitched_logic.dgb_tubbas_table_jump_study import \
-    edges_dgb_add_tubbas_table_laki_jump_study
-from maps.graph_edges.glitched_logic.dgb_tubba_castle_super_boots_skip import \
-    edges_dgb_add_tubbas_castle_super_boots_skip_laki
-from maps.graph_edges.glitched_logic.dgb_jumpless_mega_rush import \
-    edges_dgb_add_jumpless_mega_rush
-from maps.graph_edges.glitched_logic.dgb_parakarryless_mega_rush import \
-    edges_dgb_add_parakarryless_mega_rush
+from maps.graph_edges.glitched_logic.dgb_bowless_tubbas_castle import (
+    edges_dgb_add_bowless_tubbas_castle,
+)
+from maps.graph_edges.glitched_logic.dgb_tubbas_table_jump_clock import (
+    edges_dgb_add_tubbas_table_clock_laki_jump,
+    edges_dgb_add_tubbas_table_clock_ultra_boots,
+)
+from maps.graph_edges.glitched_logic.dgb_tubbas_table_jump_study import (
+    edges_dgb_add_tubbas_table_laki_jump_study,
+)
+from maps.graph_edges.glitched_logic.dgb_tubba_castle_super_boots_skip import (
+    edges_dgb_add_tubbas_castle_super_boots_skip_laki,
+)
+from maps.graph_edges.glitched_logic.dgb_jumpless_mega_rush import (
+    edges_dgb_add_jumpless_mega_rush,
+)
+from maps.graph_edges.glitched_logic.dgb_parakarryless_mega_rush import (
+    edges_dgb_add_parakarryless_mega_rush,
+)
 
 # Glitched Logic - Toy Box
-from maps.graph_edges.glitched_logic.omo_gourmet_guy_skip import \
-    edges_omo_add_gourmet_guy_skip_jump, edges_omo_add_gourmet_guy_skip_laki, edges_omo_add_gourmet_guy_skip_parakarry
-from maps.graph_edges.glitched_logic.omo_parakarryless_blue_station_star_piece import \
-    edges_omo_add_parakarryless_blue_station_star_piece
-from maps.graph_edges.glitched_logic.omo_bowless_green_station import \
-    edges_omo_add_bowless_green_station_laki
-from maps.graph_edges.glitched_logic.omo_clippy_green_station_coin_block import \
-    edges_omo_clippy_green_station_coin_block
-from maps.graph_edges.glitched_logic.omo_kooperless_red_station_shooting_star import \
-    edges_omo_add_red_station_shooting_star_parakarry
-from maps.graph_edges.glitched_logic.omo_gearless_red_station_shooting_star import \
-    edges_omo_add_red_station_shooting_star_gearless
-from maps.graph_edges.glitched_logic.omo_parakarryless_blue_block_city_gap import \
-    edges_omo_add_parakarryless_blue_block_city_gap
-from maps.graph_edges.glitched_logic.omo_blue_switch_skip import \
-    edges_omo_add_blue_switch_skip_laki, edges_omo_add_blue_switch_skip_ultra_boots
-from maps.graph_edges.glitched_logic.omo_red_barricade_skip import \
-    edges_omo_add_red_barricade_skip
-from maps.graph_edges.glitched_logic.omo_wattless_dark_room import \
-    edges_omo_add_wattless_dark_room
-from maps.graph_edges.glitched_logic.omo_hammerless_blue_station import \
-    edges_omo_add_hammerless_blue_station_laki
-from maps.graph_edges.glitched_logic.omo_hammerless_pink_station import \
-    edges_omo_add_hammerless_pink_station_laki
+from maps.graph_edges.glitched_logic.omo_gourmet_guy_skip import (
+    edges_omo_add_gourmet_guy_skip_jump,
+    edges_omo_add_gourmet_guy_skip_laki,
+    edges_omo_add_gourmet_guy_skip_parakarry,
+)
+from maps.graph_edges.glitched_logic.omo_parakarryless_blue_station_star_piece import (
+    edges_omo_add_parakarryless_blue_station_star_piece,
+)
+from maps.graph_edges.glitched_logic.omo_bowless_green_station import (
+    edges_omo_add_bowless_green_station_laki,
+)
+from maps.graph_edges.glitched_logic.omo_clippy_green_station_coin_block import (
+    edges_omo_clippy_green_station_coin_block,
+)
+from maps.graph_edges.glitched_logic.omo_kooperless_red_station_shooting_star import (
+    edges_omo_add_red_station_shooting_star_parakarry,
+)
+from maps.graph_edges.glitched_logic.omo_gearless_red_station_shooting_star import (
+    edges_omo_add_red_station_shooting_star_gearless,
+)
+from maps.graph_edges.glitched_logic.omo_parakarryless_blue_block_city_gap import (
+    edges_omo_add_parakarryless_blue_block_city_gap,
+)
+from maps.graph_edges.glitched_logic.omo_blue_switch_skip import (
+    edges_omo_add_blue_switch_skip_laki,
+    edges_omo_add_blue_switch_skip_ultra_boots,
+)
+from maps.graph_edges.glitched_logic.omo_red_barricade_skip import (
+    edges_omo_add_red_barricade_skip,
+)
+from maps.graph_edges.glitched_logic.omo_wattless_dark_room import (
+    edges_omo_add_wattless_dark_room,
+)
+from maps.graph_edges.glitched_logic.omo_hammerless_blue_station import (
+    edges_omo_add_hammerless_blue_station_laki,
+)
+from maps.graph_edges.glitched_logic.omo_hammerless_pink_station import (
+    edges_omo_add_hammerless_pink_station_laki,
+)
 
 # Glitched Logic - Jade Jungle
-from maps.graph_edges.glitched_logic.jan_raph_skip_english import \
-    edges_jan_add_raph_skip_english
-from maps.graph_edges.glitched_logic.jan_raph_skip_parakarry import \
-    edges_jan_add_raph_skip_parakarry
-from maps.graph_edges.glitched_logic.jan_raph_skip_lakilester import \
-    edges_jan_add_raph_skip_lakilester
-from maps.graph_edges.glitched_logic.jan_kzn_ch5_sushie_glitch import \
-    edges_jan_kzn_add_ch5_sushie_glitch, edges_kzn_add_volcano_sushie_glitch, \
-    edges_kzn_add_volcano_sushie_glitch_superboots, edges_kzn_add_volcano_sushie_glitch_goombario
-from maps.graph_edges.glitched_logic.jan_sushieless_jungle_starpiece_and_letter import \
-    edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs
-from maps.graph_edges.glitched_logic.jan_jumpless_deep_jungle import \
-    edges_jan_add_jumpless_deep_jungle_laki
+from maps.graph_edges.glitched_logic.jan_raph_skip_english import (
+    edges_jan_add_raph_skip_english,
+)
+from maps.graph_edges.glitched_logic.jan_raph_skip_parakarry import (
+    edges_jan_add_raph_skip_parakarry,
+)
+from maps.graph_edges.glitched_logic.jan_raph_skip_lakilester import (
+    edges_jan_add_raph_skip_lakilester,
+)
+from maps.graph_edges.glitched_logic.jan_kzn_ch5_sushie_glitch import (
+    edges_jan_kzn_add_ch5_sushie_glitch,
+    edges_kzn_add_volcano_sushie_glitch,
+    edges_kzn_add_volcano_sushie_glitch_superboots,
+    edges_kzn_add_volcano_sushie_glitch_goombario,
+)
+from maps.graph_edges.glitched_logic.jan_sushieless_jungle_starpiece_and_letter import (
+    edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs,
+)
+from maps.graph_edges.glitched_logic.jan_jumpless_deep_jungle import (
+    edges_jan_add_jumpless_deep_jungle_laki,
+)
 
 # Glitched Logic - Mt. Lavalava
-from maps.graph_edges.glitched_logic.kzn_kooperless_lavalava_pow_block import \
-    edges_kzn_add_kooperless_pow_block_parakarry, edges_kzn_add_kooperless_pow_block_super_boots
-from maps.graph_edges.glitched_logic.kzn_jumpless_lavalava_pow_block import \
-    edges_kzn_add_jumpless_pow_block_kooper
-from maps.graph_edges.glitched_logic.kzn_ultra_hammer_skip import \
-    edges_kzn_add_ultra_hammer_skip, edges_kzn_add_ultra_hammer_skip_laki, edges_kzn_add_ultra_hammer_skip_sushie
-from maps.graph_edges.glitched_logic.kzn_flarakarry import \
-    edges_kzn_add_flarakarry_laki, edges_kzn_add_flarakarry_parakarry
+from maps.graph_edges.glitched_logic.kzn_kooperless_lavalava_pow_block import (
+    edges_kzn_add_kooperless_pow_block_parakarry,
+    edges_kzn_add_kooperless_pow_block_super_boots,
+)
+from maps.graph_edges.glitched_logic.kzn_jumpless_lavalava_pow_block import (
+    edges_kzn_add_jumpless_pow_block_kooper,
+)
+from maps.graph_edges.glitched_logic.kzn_ultra_hammer_skip import (
+    edges_kzn_add_ultra_hammer_skip,
+    edges_kzn_add_ultra_hammer_skip_laki,
+    edges_kzn_add_ultra_hammer_skip_sushie,
+)
+from maps.graph_edges.glitched_logic.kzn_flarakarry import (
+    edges_kzn_add_flarakarry_laki,
+    edges_kzn_add_flarakarry_parakarry,
+)
 
 # Glitched Logic - Flower Fields
-from maps.graph_edges.glitched_logic.flo_early_lakilester import \
-    edges_flo_add_early_lakilester_bombette_push, edges_flo_add_early_lakilester_without_bombette
-from maps.graph_edges.glitched_logic.flo_bombetteless_mega_smash import \
-    edges_flo_add_bombetteless_mega_smash
-from maps.graph_edges.glitched_logic.flo_sun_tower_skip import \
-    edges_flo_add_sun_tower_skip_lzs
-from maps.graph_edges.glitched_logic.flo_yellow_berry_gate_skip import \
-    edges_flo_add_yellow_berry_gate_skip_bombette_push, edges_flo_add_yellow_berry_gate_skip_laki, edges_flo_add_yellow_berry_gate_skip_lzs
-from maps.graph_edges.glitched_logic.flo_red_berry_gate_skip import \
-    edges_flo_add_red_berry_gate_skip_bombette_push, edges_flo_add_red_berry_gate_skip_laki
-from maps.graph_edges.glitched_logic.flo_blue_berry_gate_skip import \
-    edges_flo_add_blue_berry_gate_skip_bombette_push, edges_flo_add_blue_berry_gate_skip_laki
-from maps.graph_edges.glitched_logic.flo_bubble_berry_tree_early import \
-    edges_flo_add_bubble_berry_tree_early_laki, edges_flo_add_bubble_berry_tree_early_ultra_boots
+from maps.graph_edges.glitched_logic.flo_early_lakilester import (
+    edges_flo_add_early_lakilester_bombette_push,
+    edges_flo_add_early_lakilester_without_bombette,
+)
+from maps.graph_edges.glitched_logic.flo_lakiless_elevator_room import (
+    edges_flo_add_lakiless_elevator_room,
+)
+from maps.graph_edges.glitched_logic.flo_bombetteless_mega_smash import (
+    edges_flo_add_bombetteless_mega_smash,
+)
+from maps.graph_edges.glitched_logic.flo_sun_tower_skip import (
+    edges_flo_add_sun_tower_skip_lzs,
+)
+from maps.graph_edges.glitched_logic.flo_yellow_berry_gate_skip import (
+    edges_flo_add_yellow_berry_gate_skip_bombette_push,
+    edges_flo_add_yellow_berry_gate_skip_laki,
+    edges_flo_add_yellow_berry_gate_skip_lzs,
+)
+from maps.graph_edges.glitched_logic.flo_red_berry_gate_skip import (
+    edges_flo_add_red_berry_gate_skip_bombette_push,
+    edges_flo_add_red_berry_gate_skip_laki,
+)
+from maps.graph_edges.glitched_logic.flo_blue_berry_gate_skip import (
+    edges_flo_add_blue_berry_gate_skip_bombette_push,
+    edges_flo_add_blue_berry_gate_skip_laki,
+)
+from maps.graph_edges.glitched_logic.flo_bubble_berry_tree_early import (
+    edges_flo_add_bubble_berry_tree_early_laki,
+    edges_flo_add_bubble_berry_tree_early_ultra_boots,
+)
 
 # Glitched Logic - Shiver Region
-from maps.graph_edges.glitched_logic.sam_murder_solved_early import \
-    edges_sam_add_murder_solved_early_laki, edges_sam_add_murder_solved_early_bombette_push
-from maps.graph_edges.glitched_logic.sam_ch7_sushie_glitch import \
-    edges_sam_add_ch7_sushie_glitch, edges_sam_add_star_stone_with_ch7_sushie_glitch
-from maps.graph_edges.glitched_logic.sam_shiver_mtn_hidden_block_without_ultra_boots import \
-    edges_sam_add_shiver_mountain_hidden_block_normal_throw, edges_sam_add_shiver_mountain_hidden_block_laki_throw
-from maps.graph_edges.glitched_logic.sam_snowmen_skip import \
-    edges_sam_add_snowmen_skip_laki
-from maps.graph_edges.glitched_logic.sam_shiver_mountain_switch_skip import \
-    edges_sam_add_shiver_mountain_switch_skip
-from maps.graph_edges.glitched_logic.sam_sushieless_warehouse_key import \
-    edges_sam_add_sushieless_warehouse_key_bombette_push, edges_sam_add_sushieless_warehouse_key_kooper_ksj
+from maps.graph_edges.glitched_logic.sam_murder_solved_early import (
+    edges_sam_add_murder_solved_early_laki,
+    edges_sam_add_murder_solved_early_bombette_push,
+)
+from maps.graph_edges.glitched_logic.sam_ch7_sushie_glitch import (
+    edges_sam_add_ch7_sushie_glitch,
+    edges_sam_add_star_stone_with_ch7_sushie_glitch,
+)
+from maps.graph_edges.glitched_logic.sam_shiver_mtn_hidden_block_without_ultra_boots import (
+    edges_sam_add_shiver_mountain_hidden_block_normal_throw,
+    edges_sam_add_shiver_mountain_hidden_block_laki_throw,
+)
+from maps.graph_edges.glitched_logic.sam_snowmen_skip import (
+    edges_sam_add_snowmen_skip_laki,
+)
+from maps.graph_edges.glitched_logic.sam_shiver_mountain_switch_skip import (
+    edges_sam_add_shiver_mountain_switch_skip,
+)
+from maps.graph_edges.glitched_logic.sam_sushieless_warehouse_key import (
+    edges_sam_add_sushieless_warehouse_key_bombette_push,
+    edges_sam_add_sushieless_warehouse_key_kooper_ksj,
+)
 
 # Glitched Logic - Crystal Palace
-from maps.graph_edges.glitched_logic.pra_mirror_clip import \
-    edges_pra_add_mirror_clip_laki
-from maps.graph_edges.glitched_logic.pra_bombette_puzzle_skip import \
-    edges_pra_add_bombette_puzzle_skip
-from maps.graph_edges.glitched_logic.pra_kooper_puzzle_skip import \
-    edges_pra_add_kooper_puzzle_skip
+from maps.graph_edges.glitched_logic.pra_mirror_clip import (
+    edges_pra_add_mirror_clip_laki,
+)
+from maps.graph_edges.glitched_logic.pra_bombette_puzzle_skip import (
+    edges_pra_add_bombette_puzzle_skip,
+)
+from maps.graph_edges.glitched_logic.pra_kooper_puzzle_skip import (
+    edges_pra_add_kooper_puzzle_skip,
+)
 
 # Glitched Logic - Bowser's Castle
-from maps.graph_edges.glitched_logic.kpa_bowless_bowsers_castle_basement import \
-    edges_kpa_add_bowless_bowsers_castle_basement_laki
-from maps.graph_edges.glitched_logic.kpa_wattless_dark_basement import \
-    edges_kpa_add_wattless_dark_basement
-from maps.graph_edges.glitched_logic.kpa_basement_skip import \
-    edges_kpa_add_basement_skip_parakarry, edges_kpa_add_basement_skip_lakilester, edges_kpa_add_basement_skip_hammer
-from maps.graph_edges.glitched_logic.kpa_hub1_stair_clip import \
-    edges_kpa_add_hub1_stair_clip
-from maps.graph_edges.glitched_logic.kpa_fast_flood_room import \
-    edges_kpa_add_fast_flood_room_bombette_ultra_boots, edges_kpa_add_fast_flood_room_kooper, edges_kpa_add_fast_flood_room_kooperless
-from maps.graph_edges.glitched_logic.kpa_cannonless import \
-    edges_kpa_add_cannonless
-from maps.graph_edges.glitched_logic.kpa_bombetteless_bowsers_castle_basement import \
-    edges_kpa_add_bombetteless_bowsers_castle_basement_laki
+from maps.graph_edges.glitched_logic.kpa_bowless_bowsers_castle_basement import (
+    edges_kpa_add_bowless_bowsers_castle_basement_laki,
+)
+from maps.graph_edges.glitched_logic.kpa_wattless_dark_basement import (
+    edges_kpa_add_wattless_dark_basement,
+)
+from maps.graph_edges.glitched_logic.kpa_basement_skip import (
+    edges_kpa_add_basement_skip_parakarry,
+    edges_kpa_add_basement_skip_lakilester,
+    edges_kpa_add_basement_skip_hammer,
+)
+from maps.graph_edges.glitched_logic.kpa_hub1_stair_clip import (
+    edges_kpa_add_hub1_stair_clip,
+)
+from maps.graph_edges.glitched_logic.kpa_fast_flood_room import (
+    edges_kpa_add_fast_flood_room_bombette_ultra_boots,
+    edges_kpa_add_fast_flood_room_kooper,
+    edges_kpa_add_fast_flood_room_kooperless,
+)
+from maps.graph_edges.glitched_logic.kpa_cannonless import (
+    edges_kpa_add_cannonless,
+)
+from maps.graph_edges.glitched_logic.kpa_bombetteless_bowsers_castle_basement import (
+    edges_kpa_add_bombetteless_bowsers_castle_basement_laki,
+)
 
 # Glitched Logic - Global
-from maps.graph_edges.glitched_logic.global_break_stone_blocks_with_ultra_boots import \
-    edges_kmr_tik_isk_add_break_stone_blocks_ultra_boots
-from maps.graph_edges.glitched_logic.kmr_break_yellow_blocks_with_super_boots import \
-    edges_kmr_add_break_yellow_blocks_super_boots
-from maps.graph_edges.glitched_logic.global_knows_puzzle_solutions import \
-    edges_global_knows_puzzle_solutions
-from maps.graph_edges.glitched_logic.global_reach_high_blocks_with_super_boots import \
-    edges_global_reach_high_blocks_with_super_boots
+from maps.graph_edges.glitched_logic.global_break_stone_blocks_with_ultra_boots import (
+    edges_kmr_tik_isk_add_break_stone_blocks_ultra_boots,
+)
+from maps.graph_edges.glitched_logic.kmr_break_yellow_blocks_with_super_boots import (
+    edges_kmr_add_break_yellow_blocks_super_boots,
+)
+from maps.graph_edges.glitched_logic.global_knows_puzzle_solutions import (
+    edges_global_knows_puzzle_solutions,
+)
+from maps.graph_edges.glitched_logic.global_reach_high_blocks_with_super_boots import (
+    edges_global_reach_high_blocks_with_super_boots,
+)
 
 
 def get_shorter_bowsercastle(world_graph: dict):
@@ -409,68 +579,13 @@ def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     return world_graph
 
 
-def get_partner_upgrade_shuffle(
-    world_graph: dict,
-    shuffle_blocks: bool,
-    glitch_settings: GlitchOptionSet
-) -> (dict, list):
-    """
-    Returns the modified world graph itself for Partner Upgrade Shuffle,
-    with upgrades shuffled between SuperBlock locations and, if needed,
-    MultiCoinBlock locations.
-    """
-    block_placement = get_block_placement(
-        shuffle_blocks,
-        supers_are_yellow=True
-    )
-
-    # handle upgrade block glitch logic first
-    if glitch_settings.clippy_sewers_upgrade_block:
-        edges_tik_add_partnerupgrades.extend(edges_tik_add_clippy_sewers_upgrade_block)
-    if glitch_settings.clippy_green_station_coin_block:
-        edges_omo_add_partnerupgrades.extend(edges_omo_clippy_green_station_coin_block)
-
-    edges_partner_upgrade = []
-    edges_partner_upgrade.extend(edges_arn_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_dgb_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_flo_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_isk_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_iwa_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_jan_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_kmr_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_kzn_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_mac_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_nok_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_omo_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_pra_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_sam_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_sbk_add_partnerupgrades)
-    edges_partner_upgrade.extend(edges_tik_add_partnerupgrades)
-
-    all_new_edges = []
-
-    for block_dbkey, block_type in block_placement:
-        if block_type == BlockType.YELLOW:
-            # add relevant graph edge to new edges
-            for cur_block_dbkey, edge in edges_partner_upgrade:
-                if block_dbkey == cur_block_dbkey:
-                    all_new_edges.append(edge)
-
-    world_graph, _ = adjust(
-        world_graph,
-        new_edges=all_new_edges,
-        edges_to_remove=[]
-    )
-
-    return world_graph, block_placement
-
-
 def set_starway_requirements(
     world_graph: dict,
     spirits_needed: int,
     specific_spirits: list,
     powerstars_needed: int,
-    seed_goal: SeedGoal
+    seed_goal: SeedGoal,
+    forced_antiguysunit: bool,
 ) -> dict:
     """
     Returns the modified world graph itself, modified to set the spirits
@@ -506,9 +621,18 @@ def set_starway_requirements(
             world_graph["HOS_01/0"]["edge_list"][index]["reqs"].extend(added_requirements)
             #print(world_graph["HOS_01/0"]["edge_list"][index]["reqs"])
 
-    # add requirements to chapter 8 jr. troopa and both bowser battles, so the
-    # logic doesn't require going through them too early
+    # add requirements to anti guys unit (if forced), chapter 8 jr. troopa, and
+    # both bowser battles, so the # logic doesn't require going through them
+    # too early
 
+    ## anti guys unit
+    if forced_antiguysunit:
+        for index, entrance in enumerate(world_graph["KPA_82/0"]["edge_list"]):
+            if (    entrance["to"]["map"] == "KPA_82"
+                and entrance["to"]["id"] == 1
+            ):
+                world_graph["KPA_82/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+                break
     ## ch8 jr. troopa
     for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
         if (    entrance["to"]["map"] == "KPA_83"
@@ -584,6 +708,7 @@ def set_starbeam_requirements(
     world_graph: dict,
     spirits_needed: int,
     powerstars_needed: int,
+    forced_antiguysunit: bool,
 ) -> dict:
     """
     Returns the modified world graph itself, modified to set the spirits
@@ -605,10 +730,19 @@ def set_starbeam_requirements(
             #print(world_graph["HOS_05/0"]["edge_list"][index]["reqs"])
             break
 
-    # add requirements to chapter 8 jr. troopa and both bowser battles, so the
-    # logic doesn't require going through them too early.
+    # add requirements to anti guys unit (if forced), chapter 8 jr. troopa, and
+    # both bowser battles, so the # logic doesn't require going through them
+    # too early.
     # this will add onto requirements placed by set_starway_requirements
 
+    ## anti guys unit
+    if forced_antiguysunit:
+        for index, entrance in enumerate(world_graph["KPA_82/0"]["edge_list"]):
+            if (    entrance["to"]["map"] == "KPA_82"
+                and entrance["to"]["id"] == 1
+            ):
+                world_graph["KPA_82/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+                break
     ## ch8 jr. troopa
     for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
         if (    entrance["to"]["map"] == "KPA_83"
@@ -765,7 +899,8 @@ def get_glitched_logic(
     world_graph: dict,
     glitch_settings: GlitchOptionSet,
     bowsers_castle_mode: int,
-    shuffle_dungeon_entrances: bool
+    shuffle_dungeon_entrances: bool,
+    randomize_puzzles: bool
 ):
     """
     Returns the modified world graph itself for glitched logic, depending
@@ -785,6 +920,10 @@ def get_glitched_logic(
         all_new_edges.extend(edges_kmr_add_goomba_village_hammerless_exit_npc_lure)
     if glitch_settings.goomba_village_laki_exit:
         all_new_edges.extend(edges_kmr_add_goomba_village_hammerless_exit_laki)
+    if glitch_settings.clippy_ledge_starpiece:
+        all_new_edges.extend(edges_kmr_add_clippy_ledge_starpiece)
+    if glitch_settings.jumpless_fire_flower:
+        all_new_edges.extend(edges_kmr_add_jumpless_fire_flower)
     if glitch_settings.hammerless_jr_playground_laki:
         all_new_edges.extend(edges_kmr_add_hammerless_jr_playground_laki)
     if glitch_settings.prologue_sushie_glitch_ksj:
@@ -841,6 +980,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_tik_add_island_pipe_blooper_skip)
     if glitch_settings.parakarryless_sewer_star_piece:
         all_new_edges.extend(edges_tik_add_parakarryless_sewer_star_piece)
+    if glitch_settings.clippy_sewers_upgrade_block:
+        all_new_edges.extend(edges_tik_add_clippy_sewers_upgrade_block)
     if glitch_settings.sewer_blocks_without_ultra_boots:
         all_new_edges.extend(edges_tik_add_sewer_blocks_without_ultra_boots)
     if glitch_settings.chapter_7_bridge_with_super_boots:
@@ -857,6 +998,8 @@ def get_glitched_logic(
     # Pleasant Path
     if glitch_settings.kooperless_pleasant_path_star_piece:
         all_new_edges.extend(edges_nok_add_kooperless_starpiece_clippy)
+    if glitch_settings.pleasant_path_clippy_traversal:
+        all_new_edges.extend(edges_nok_add_pleasant_path_clippy_traversal)
     if glitch_settings.hammerless_pleasant_path_bridge_ultra_boots_parakarry:
         all_new_edges.extend(edges_nok_add_hammerless_bridge_skip_ultra_boots_parakarry)
     if glitch_settings.invisible_bridge_clip_laki:
@@ -883,12 +1026,16 @@ def get_glitched_logic(
     # Mt. Rugged
     if glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki:
         all_new_edges.extend(edges_iwa_add_quake_hammer_and_letter_laki)
+    if glitch_settings.mt_rugged_quake_hammer_room_jumpless_clippy:
+        all_new_edges.extend(edges_iwa_add_quake_hammer_room_jumpless_clippy)
     if glitch_settings.parakarryless_mt_rugged_seed:
         all_new_edges.extend(edges_iwa_add_parakarryless_mt_rugged_seed)
     if glitch_settings.parakarryless_mt_rugged_seed_clippy:
         all_new_edges.extend(edges_iwa_add_parakarryless_mt_rugged_seed_clippy)
     if glitch_settings.parakarryless_mt_rugged_star_piece:
         all_new_edges.extend(edges_iwa_add_parakarryless_star_piece_laki)
+    if glitch_settings.parakarryless_mt_rugged_star_piece_clippy:
+        all_new_edges.extend(edges_iwa_add_parakarryless_star_piece_clippy)
     if glitch_settings.buzzar_gap_skip_clippy:
         all_new_edges.extend(edges_iwa_add_buzzar_gap_skip_clippy)
     if glitch_settings.mt_rugged_coins_with_kooper:
@@ -897,6 +1044,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_bombette)
     if glitch_settings.mt_rugged_station_jumpless_climb_laki:
         all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_laki)
+    if glitch_settings.mt_rugged_station_jumpless_climb_laki_block_clip:
+        all_new_edges.extend(edges_iwa_add_mt_rugged_station_jumpless_climb_laki_block_clip)
     if glitch_settings.jumpless_mt_rugged_train_platform_parakarry:
         all_new_edges.extend(edges_iwa_add_jumpless_mt_rugged_train_platform_parakarry)
 
@@ -907,6 +1056,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_sbk_add_ultraboots)
     if glitch_settings.desert_brick_block_item_with_parakarry:
         all_new_edges.extend(edges_sbk_add_desert_brick_block_item_parakarry)
+    if glitch_settings.jumpless_attack_fx_c:
+        all_new_edges.extend(edges_sbk_add_jumpless_attack_fx_c)
 
     # Dry Dry Ruins
     if glitch_settings.artifact_jump_laki:
@@ -959,6 +1110,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_arn_add_gusty_gulch_dizzy_dial_parakarry)
     if glitch_settings.gusty_gulch_gap_skip:
         all_new_edges.extend(edges_arn_add_gusty_gulch_gap_skip_jump)
+    if glitch_settings.gusty_gulch_clippy_traversal:
+        all_new_edges.extend(edges_arn_add_gusty_gulch_clippy_traversal)
 
     # Tubba's Castle
     if glitch_settings.bowless_tubbas_castle:
@@ -987,6 +1140,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_omo_add_gourmet_guy_skip_parakarry)
     if glitch_settings.bowless_green_station:
         all_new_edges.extend(edges_omo_add_bowless_green_station_laki)
+    if glitch_settings.clippy_green_station_coin_block:
+        all_new_edges.extend(edges_omo_clippy_green_station_coin_block)
     if glitch_settings.kooperless_red_station_shooting_star:
         all_new_edges.extend(edges_omo_add_red_station_shooting_star_parakarry)
     if glitch_settings.gearless_red_station_shooting_star:
@@ -1049,6 +1204,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_flo_add_early_lakilester_without_bombette)
     if glitch_settings.early_laki_bombette_push:
         all_new_edges.extend(edges_flo_add_early_lakilester_bombette_push)
+    if glitch_settings.lakiless_elevator_room and not randomize_puzzles:
+        all_new_edges.extend(edges_flo_add_lakiless_elevator_room)
     if glitch_settings.bombetteless_mega_smash:
         all_new_edges.extend(edges_flo_add_bombetteless_mega_smash)
     if glitch_settings.sun_tower_skip:
@@ -1302,7 +1459,6 @@ def get_shuffled_battles(
         # boss shuffle or plando are active: Koopa Bros may be placed outside
         # of ch. 1: move/copy their battle logic to the other chapter(s)
 
-        boss_requirements: dict = {}
         adjusted_boss_edges: list = []
         remove_boss_edges: list = []
 

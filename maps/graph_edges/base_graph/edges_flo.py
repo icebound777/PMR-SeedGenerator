@@ -38,8 +38,9 @@ edges_flo = [
     {"from": {"map": "FLO_16", "id": 0}, "to": {"map": "FLO_16", "id": 1}, "reqs": [["SuperBoots"], ["Lakilester"]]}, #? (NE) Elevators Exit Left -> (NE) Elevators Exit Right
     {"from": {"map": "FLO_16", "id": 1}, "to": {"map": "FLO_16", "id": 0}, "reqs": [["SuperBoots","Lakilester"]]}, #? (NE) Elevators Exit Right -> (NE) Elevators Exit Left
 
-    {"from": {"map": "FLO_16", "id": 1}, "to": {"map": "FLO_16", "id": "ItemA"}, "reqs": [["SuperBoots"]]}, #* (NE) Elevators Exit Right -> ItemA (StarPiece)
-    {"from": {"map": "FLO_16", "id": 0}, "to": {"map": "FLO_16", "id": "ItemB"}, "reqs": [["can_climb_steps","Kooper","Lakilester"]]}, #* (NE) Elevators Exit Left -> ItemB (StinkyHerb)
+    {"from": {"map": "FLO_16", "id": 1}, "to": {"map": "FLO_16", "id": "ItemA"},            "reqs": [["SuperBoots"]]}, #* (NE) Elevators Exit Right -> ItemA (StarPiece)
+    {"from": {"map": "FLO_16", "id": 0}, "to": {"map": "FLO_16", "id": "ItemB"},            "reqs": [["can_climb_steps","Kooper","Lakilester"]]}, #* (NE) Elevators Exit Left -> ItemB (StinkyHerb)
+    {"from": {"map": "FLO_16", "id": 1}, "to": {"map": "FLO_16", "id": "RandomBlockItemA"}, "reqs": [["can_climb_steps"],["can_hit_floating_blocks"]]}, #* (NE) Elevators Exit Right -> RandomBlockItemA (GenericUpgrade)
 
     # FLO_17 (NE) Fallen Logs
     {"from": {"map": "FLO_17", "id": 0}, "to": {"map": "FLO_16", "id": 1}, "reqs": []}, # (NE) Fallen Logs Exit Left -> (NE) Elevators Exit Right
@@ -90,10 +91,11 @@ edges_flo = [
     {"from": {"map": "FLO_08", "id": 0}, "to": {"map": "FLO_08", "id": 1}, "reqs": [["GF_FLO08_GaveYellowBerry"], ["Parakarry","Lakilester"]]}, #? (SE) Briar Platforming Exit Left -> (SE) Briar Platforming Exit Right
     {"from": {"map": "FLO_08", "id": 1}, "to": {"map": "FLO_08", "id": 0}, "reqs": [["GF_FLO08_GaveYellowBerry"], ["Parakarry","Lakilester"]]}, #? (SE) Briar Platforming Exit Right -> (SE) Briar Platforming Exit Left
 
-    {"from": {"map": "FLO_08", "id": 1},              "to": {"map": "FLO_08", "id": "ItemA"},        "reqs": []}, #* (SE) Briar Platforming Exit Right -> ItemA (StarPiece)
-    {"from": {"map": "FLO_08", "id": 0},              "to": {"map": "FLO_08", "id": "ItemB"},        "reqs": []}, #* (SE) Briar Platforming Exit Left -> ItemB (StinkyHerb)
-    {"from": {"map": "FLO_08", "id": 1},              "to": {"map": "FLO_08", "id": "Tree1_Drop1A"}, "reqs": [["can_shake_trees"]]}, #* (SE) Briar Platforming Exit Right -> Tree1_Drop1A (BlueBerry)
-    {"from": {"map": "FLO_08", "id": "Tree1_Drop1A"}, "to": {"map": "FLO_08", "id": "Tree1_Drop1B"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemA (BlueBerry)
+    {"from": {"map": "FLO_08", "id": 1},              "to": {"map": "FLO_08", "id": "ItemA"},            "reqs": []}, #* (SE) Briar Platforming Exit Right -> ItemA (StarPiece)
+    {"from": {"map": "FLO_08", "id": 0},              "to": {"map": "FLO_08", "id": "ItemB"},            "reqs": []}, #* (SE) Briar Platforming Exit Left -> ItemB (StinkyHerb)
+    {"from": {"map": "FLO_08", "id": 1},              "to": {"map": "FLO_08", "id": "Tree1_Drop1A"},     "reqs": [["can_shake_trees"]]}, #* (SE) Briar Platforming Exit Right -> Tree1_Drop1A (BlueBerry)
+    {"from": {"map": "FLO_08", "id": "Tree1_Drop1A"}, "to": {"map": "FLO_08", "id": "Tree1_Drop1B"},     "reqs": []}, #+ SHARED REQUIREMENTS -> ItemA (BlueBerry)
+    {"from": {"map": "FLO_08", "id": 1},              "to": {"map": "FLO_08", "id": "RandomBlockItemA"}, "reqs": [["can_climb_steps"],["can_hit_floating_blocks"]]}, #* (SE) Briar Platforming Exit Right -> RandomBlockItemA (GenericUpgrade)
 
     {"from": {"map": "FLO_08", "id": 0}, "to": {"map": "FLO_08", "id": 0}, "reqs": [["YellowBerry"]], "pseudoitems": ["GF_FLO08_GaveYellowBerry"]}, #+ (SE) Briar Platforming Exit Left
 
@@ -175,6 +177,8 @@ edges_flo = [
     #+ Left Side edges
     {"from": {"map": "FLO_11", "id": 1}, "to": {"map": "FLO_11", "id": 7}, "reqs": [["Boots"]]}, #? (West) Maze Exit Left -> (West) Maze Pipe Left
     {"from": {"map": "FLO_11", "id": 7}, "to": {"map": "FLO_11", "id": 1}, "reqs": []}, #? (West) Maze Pipe Left -> (West) Maze Exit Left
+
+    {"from": {"map": "FLO_11", "id": 1}, "to": {"map": "FLO_11", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* (West) Maze Exit Left -> RandomBlockItemA (CoinBag)
 
     # FLO_12 (West) Rosie's Trellis
     {"from": {"map": "FLO_12", "id": 0}, "to": {"map": "FLO_11", "id": 1}, "reqs": []}, # (West) Rosie's Trellis Exit Right -> (West) Maze Exit Left

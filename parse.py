@@ -234,6 +234,18 @@ def gather_values():
                 raise ValueError
             return value
 
+        if value.startswith(".PanelHints"):
+            # As per definition in DatabaseDefaults.patch in base mod
+            if "Off" in value:
+                value = 0
+            elif "Vague" in value:
+                value = 1
+            elif "Concrete" in value:
+                value = 2
+            else:
+                raise ValueError
+            return value
+
         return None
 
     values = {

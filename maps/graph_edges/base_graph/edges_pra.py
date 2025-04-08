@@ -108,6 +108,9 @@ edges_pra = [
     {"from": {"map": "PRA_14", "id": 0}, "to": {"map": "PRA_14", "id": 1}, "reqs": []}, #? Blue Mirror Hall 2 Bombable Wall -> Blue Mirror Hall 2 Bombable Wall (Mirror Side)
     {"from": {"map": "PRA_14", "id": 1}, "to": {"map": "PRA_14", "id": 0}, "reqs": []}, #? Blue Mirror Hall 2 Bombable Wall (Mirror Side) -> Blue Mirror Hall 2 Bombable Wall
 
+    {"from": {"map": "PRA_14", "id": 0}, "to": {"map": "PRA_14", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Blue Mirror Hall 2 Bombable Wall -> RandomBlockItemA (CoinBag)
+    {"from": {"map": "PRA_14", "id": 0}, "to": {"map": "PRA_14", "id": "RandomBlockItemB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Blue Mirror Hall 2 Bombable Wall -> RandomBlockItemB (CoinBag)
+
     # PRA_15 Star Piece Cave
     {"from": {"map": "PRA_15", "id": 0}, "to": {"map": "PRA_01", "id": 3}, "reqs": []}, # Star Piece Cave Cave Entrance -> Entrance Cave Entrance
 

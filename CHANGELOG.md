@@ -1,16 +1,145 @@
 # Changelog
 
-## 0.29.1 (beta)
+## 0.30.0 (beta)
+
+### Feature Changes
+
+* `Multi Coin Block Shuffle` feature
+  * Was formerly called `Shuffle Blocks`.
+  * Can now choose between the values `off`, `shuffle` (was formerly `on`), and `anywhere`.
+  * The value `shuffle` is no longer biased to be evenly distributed. This now gives the areas with more block locations (like Dry Dry Desert) a higher chance at having more super blocks.
+  * If the value `anywhere` is chosen, then Multi Coin Blocks can be shuffled into non-block locations. If this happens, they will instead turn into the new `Coin Bag` item, which gives 10 coins on pick-up.
+    * Shoutouts to **typographics** for designing the item sprite for the new `Coin Bag` item!
+* `ISpy Panel Hints` option
+  * Allows adding hints about the contents of the hidden panels. These hints will appear as slightly transparent item sprites above each panel, hinting at what is inside. To see these hints, either equip the ISpy badge, or turn on the `Always ISpy` option. The hint will disappear once the panel item counts as collected.
+  * This option has three different values:
+    * `Off`: Don't show panel hints
+    * `Vague`: Display a generic item sprite, based on the type of the item inside of the panel. For the item types of 'gear', 'partner', 'badge', 'key', and 'consumable', new greyed-out, generic item sprites with question marks in the middle are added to the game.
+    * `Concrete`: Display the item sprite of the exact item inside of the panel
+* `Plandomizer` feature
+  * Now allows placing items into MultiCoinBlock and SuperBlock locations.
+  * Now allows choosing the dungeon connections for dungeon entrance shuffle.
+* `Starting Items` feature
+  * Now allows having both chosen starting items and random starting items at the same time.
+  * The number of starting items still cannot exceed 16.
+  * Specificly chosen starting items will overrule random starting items. So if the player chooses 10 specific starting items, and sets the number of randomly chosen starting items to 10, only 6 starting items will be chosen randomly regardless.
+* `Chet Rippo Available` feature
+  * Allows disabling Chet Rippo, the shady NPC in Toad Town that allows reallocating Mario's stats for a small fee.
+* `Bowser Door Quiz` feature
+  * Allows changing how the Bowser Door Quiz in Bowser's Castle behaves.
+  * Possible values:
+    * `Do Quiz`: Behaves as before
+    * `Anti Guys Unit`: No quiz, but a forced battle against the Anti Guys Unit
+    * `Skip`: Quiz counts as already completed
+* `Kent C Koopa` feature
+  * Allows changing how Kent C Koopa on Pleasant Path behaves.
+  * Possible values:
+    * `Blocks Pleasant Path`: Behaves as before
+    * `Must Defeat`: No paying him, but a battle is required. Logically expects 2 chapters beaten, a way to flip him over, and a way for Mario to attack consistently (Hammer or Boots)
+    * `Already Paid`: Stands on the side of Pleasant Path as if already paid
+    * `Already Defeated`: Removed from Pleasant Path as if already defeated
+
+### Logic changes
+
+* Bowser's Castle
+  * In addition to the old requirements, now also expects `Watt` or the `Wattless Dark Basement` trick setting for logically entering the Bowser's Castle basement via the first Bowser door's trap door. This aims to avoid having to do the dark basement backwards if the player uses the Homeward Shroom to escape the basement early.
+
+### Quality of Life
+
+* Made Harry, the shop keeper in southern Toad Town, offer to buy, check, and claim Mario's items without first unlocking his storeroom using the `Storeroom Key`.
+* Mark pre-planted `Magical Seeds` on the pause menu's item tracker. This only happens once Mario reaches Toad Town's plaza district, to avoid auto-trackers being able to read this info early.
+
+### Tricks & Glitches
+
+* New options
+  * `Clippy Ledge Star Piece` (Prologue)
+  * `Jumpless Fire Flower` (Prologue)
+  * `Pleasant Path Clippy Traversal` (Chapter 1)
+  * `Mt Rugged Quake Hammer Room Jumpless (Clippy variant)` (Chapter 2)
+  * `Mt Rugged Station Jumpless Climb Laki Block Clip` (Chapter 2)
+  * `Parakarryless Mt Rugged Star Piece Clippy` (Chapter 2)
+  * `Jumpless Attack FXC` (Chapter 2)
+  * `Gusty Gulch Clippy Traversal` (Chapter 3)
+  * `Lakiless Elevator Room` (Chapter 6)
+* Changed
+  * Fix entrance logic of `Mt. Rugged Quake Hammer + Letter with Laki`
+  * Add Super Block to `Mt. Rugged Station Jumpless Climb (Laki Teleport)`
+  * Consider jumpless start for `Parakarry-less Mt. Rugged Star Piece`
 
 ### Bug Fixes
 
-* Fixed an issue that would rarely cause the `Cake` item to be considered the logical progression for getting past Gourmet Guy, instead of requiring the `CakeMix` item and access to Tayce T.'s cooking.
-* Fixed an issue of `Blue Berry` items not respawning from the replenishible crates in Boo's Mansion.
+* Plandomizer
+  * Fix generation issues when placing gear items.
+  * Fix generation issues when placing every possible starpiece item.
+  * Fix generator not checking plando for beatability if only gear items are placed.
+  * Fix incorrect error message when placing items into foliage coin locations without having foliage coins shuffled.
+  * Fix power stars placed via plando not counting as progression.
+  * Made the plando generation error message less useless by now only reporting progression items that are not reachable (instead of just reporting every single plando'd item, which really didn't help).
+  * Fix bosses placed via plando not being written to the ROM if all 7 chapter bosses were manually chosen.
+* Random Formations
+  * If more than 2 Sky Guys appear in the same battle formation, visual bugs start occuring. To avoid these, now only up to 2 Sky Guys may appear per battle.
+* Tricks & Glitches
+  * Fix `Knows Hidden Block Locations` setting never applying at all, and instead always expecting being able to see these blocks.
+* Partners Always Usable
+  * While `Partners Always Usable` is active, the ghost versions of Kooper and Bombette can now properly hit Whacka and Watt's lantern.
+* Stability
+  * (Hopefully) fix crash that could happen during `Cutscene Mode: Minimal` when talking to Raphael Raven to get the Ultra Stone. This only affected console players and likely those who played on the ares emulator.
+  * Fix crash during Huff n Puff battle if a full-room attack caused too many visual effects to play at once.
 
 ### Miscellaneous
 
+* Modified credits scene
+  * Added `typographics` to the in-game credits, for making the `Coin Bag` item sprite.
+* Modified base item pool
+  * The item pool will now always include all 80 vanilla badges, regardless of your chosen settings. This makes sure that the `Deep Focus` from Bowser's Castle, and the `Deep Focus`, `Last Stand`, and `Power Rush` from Peach's Castle are always available.
+  * Formerly, some or all of those badges could be absent from the item pool, depending on the chosen values for the `Bowser's Castle Mode` and `Seed Goal` settings.
+* Changed the internal handling of `Require Specific Spirits` and `Limit Chapter Logic`. These settings are now merged into a single setting called `RequiredSpirits`.
+* Added a new item sprite for the `Three Star Pieces` item.
+* Adjusted enemy spawns
+  * Formerly, one Paragoomba enemy and one Spiked Goomba enemy would spawn on the Pleasant Path map just east of Toad Town, even if Kent C. Koopa or Jr. Troopa were present. These enemies will no longer spawn while Kent or Jr. Troopa are around, to more closely mimic vanilla spawning behavior.
 * RAM locations docs
-  * Fix wrong item check collected flag for Boo's Mansion - Super Boots Room - In Big Chest. This should stop auto-trackers marking the item as collected even if the item is never picked up
+  * Fix wrong item check collected flag for Boo's Mansion - Super Boots Room - In Big Chest. This should stop auto-trackers marking the item as collected even if the item is never picked up.
+* New bomb trigger for Toad Town playroom
+  * We originally moved the Bombette bomb trigger for opening the Toad Town playroom over to the tree, because the bomb trigger was on the wrong side of the map. We now moved that bomb trigger back to its original, wrong position, and added a second bomb trigger next to the tree. This way both of these locations work for opening the playroom, so you can show off knowing this obscure bug to your friends again :)
+
+### Additional Technical Changelog
+
+* Yaml settings changes:
+  * Renamed `RequireSpecificSpirits` to `RequiredSpirits`, and is now int (was bool)
+  * Removed `LimitChapterLogic`
+  * Added `ISpyPanelHints` (int)
+    * 0: off, 1: vague, 2: concrete
+  * Added `ChetRippoAvailable` (bool)
+  * Added `BowserDoorQuiz` (int)
+    * 0: Do quiz, 1: Forced Anti Guys Unit battle, 2: Skip quiz
+  * Added `KentCKoopa` (int)
+    * 0: Blocks Pleasant Path, 1: Must defeat, 2: Already paid, 3: Already defeated
+  * Added `ClippyLedgeStarPiece` (bool)
+  * Added `JumplessFireFlower` (bool)
+  * Added `PleasantPathClippyTraversal` (bool)
+  * Added `MtRuggedQuakeHammerRoomJumplessClippy` (bool)
+  * Added `MtRuggedStationJumplessClimbLakiBlockClip` (bool)
+  * Added `ParakarrylessMtRuggedStarPieceClippy` (bool)
+  * Added `JumplessAttackFXC` (bool)
+  * Added `GustyGulchClippyTraversal` (bool)
+  * Added `LakilessElevatorRoom` (bool)
+* Changed Item IDs due to new `Coin Bag` and ISpy panel hint items
+  * New `Coin Bag` item on ID 0x2D5
+  * New panel hint dummy items on IDs 0x2D6 - 0x2DA (unplaceable)
+  * New `Generic Upgrade` item (used for spawning super blocks) on ID 0x2DB
+  * This change shifts all other items beyond item ID 0x2D4 up by 7 item IDs. The final item in the list is now `Bow` on item ID 0x2F6
+
+## 0.29.1 (beta)
+
+### Bug Fixes (0.29.1)
+
+* Fixed an issue of `Blue Berry` items not respawning from the replenishible crates in Boo's Mansion.
+
+## 0.29.0a (beta)
+
+### Bug Fixes (0.29.0a)
+
+* Fixed an issue that would rarely cause the `Cake` item to be considered the logical progression for getting past Gourmet Guy, instead of requiring the `CakeMix` item and access to Tayce T.'s cooking
 
 ## 0.29.0 (beta)
 

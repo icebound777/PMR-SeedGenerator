@@ -305,6 +305,52 @@ radio_trade_event_locations = [
     "MAC_05/GiftD",
 ]
 
+superblock_locations: list[str] = [
+    "DGB_04/RandomBlockItemA",
+    "FLO_08/RandomBlockItemA",
+    "FLO_16/RandomBlockItemA",
+    "ISK_10/RandomBlockItemA",
+    "IWA_10/RandomBlockItemA",
+    "JAN_08/RandomBlockItemA",
+    "KZN_04/RandomBlockItemA",
+    "KZN_09/RandomBlockItemA",
+    "OMO_11/RandomBlockItemA",
+    "SAM_08/RandomBlockItemA",
+    "SBK_56/RandomBlockItemA",
+    "TIK_07/RandomBlockItemA",
+    "TIK_10/RandomBlockItemA",
+    "TIK_12/RandomBlockItemA",
+    "TIK_17/RandomBlockItemA",
+    "TIK_19/RandomBlockItemA",
+]
+
+multicoinblock_locations: list[str] = [
+    "ARN_04/RandomBlockItemA",
+    "KMR_04/RandomBlockItemA",
+    "MAC_05/RandomBlockItemA",
+    "NOK_12/RandomBlockItemA",
+    "FLO_11/RandomBlockItemA",
+    "OMO_09/RandomBlockItemA",
+    "OMO_11/RandomBlockItemB",
+    "OMO_17/RandomBlockItemA",
+    "PRA_14/RandomBlockItemA",
+    "PRA_14/RandomBlockItemB",
+    "TIK_18/RandomBlockItemA",
+    "SBK_06/RandomBlockItemA",
+    "SBK_14/RandomBlockItemA",
+    "SBK_25/RandomBlockItemA",
+    "SBK_25/RandomBlockItemB",
+    "SBK_40/RandomBlockItemA",
+    "SBK_52/RandomBlockItemA",
+    "SBK_55/RandomBlockItemA",
+    "SBK_66/RandomBlockItemA",
+    "SBK_66/RandomBlockItemB",
+    "SBK_66/RandomBlockItemC",
+    "SBK_66/RandomBlockItemD",
+    "SBK_66/RandomBlockItemE",
+    "SBK_66/RandomBlockItemF",
+]
+
 # Areas that are considered 'limited by item'.
 # 'Limited by item' areas are only allowed to hold a subset of specific
 # randomized items, instead of every item available in the pool.
