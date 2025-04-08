@@ -1,20 +1,24 @@
 """
 This file represents edges of the world graph that have to be added
 for Glitched Logic: Parakarry-less Mt.Rugged Star Piece.
+
+Clippy version is part of this video: https://youtu.be/yLdXnkNiXPs
 """
 edges_iwa_add_parakarryless_star_piece_laki = [
     #* Mt Rugged 4 Exit Bottom Right -> ItemB (StarPiece)
+    # edges_iwa has ItemB -> rest of items on this platform
     {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemB"}, "reqs": [["Lakilester"],["can_climb_steps"]], "mapchange": False},
-    #* Mt Rugged 4 Exit Bottom Right -> ItemC (Coin) (circle-right)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemC"}, "reqs": [["Lakilester"],["can_climb_steps"]], "mapchange": False},
-    #* Mt Rugged 4 Exit Bottom Right -> ItemD (Coin)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemD"}, "reqs": [["Lakilester"],["can_climb_steps"]], "mapchange": False},
-    #* Mt Rugged 4 Exit Bottom Right -> ItemE (Coin)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemE"}, "reqs": [["Lakilester"],["can_climb_steps"]], "mapchange": False},
-    #* Mt Rugged 4 Exit Bottom Right -> ItemF (Coin)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemF"}, "reqs": [["Lakilester"],["can_climb_steps"]], "mapchange": False},
-    #* Mt Rugged 4 Exit Bottom Right -> ItemG (Coin)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemG"}, "reqs": [["Lakilester"],["can_climb_steps"]], "mapchange": False},
-    #* Mt Rugged 4 Exit Bottom Right -> ItemH (Coin)
-    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemH"}, "reqs": [["Lakilester"],["can_climb_steps"]], "mapchange": False},
+    # ItemC special case because it can be logically acquired with Kooper and thus has a different requirement chain
+    {"from": {"map": "IWA_03", "id": "ChestA"}, "to": {"map": "IWA_03", "id": "ItemC"}, "reqs": [["Lakilester"],["can_climb_steps"]], "mapchange": False}
+]
+
+edges_iwa_add_parakarryless_star_piece_clippy = [
+    #* Mt Rugged 4 Exit Bottom Right -> ItemB (StarPiece)
+    # edges_iwa has ItemB -> rest of items on this platform
+    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ItemB"}, "reqs": [["Lakilester"]], "mapchange": False},
+    #* Mt Rugged 4 Exit Bottom Right -> ChestA (DamageDodgeB)
+    # edges_iwa has ChestA -> YBlockA / YBlockC, this is still possible with clippy and no jump
+    {"from": {"map": "IWA_03", "id": 0}, "to": {"map": "IWA_03", "id": "ChestA"}, "reqs": [["Lakilester"]], "mapchange": False},
+    # ItemC special case because it can be logically acquired with Kooper and thus has a different requirement chain
+    {"from": {"map": "IWA_03", "id": "ChestA"}, "to": {"map": "IWA_03", "id": "ItemC"}, "reqs": [["Lakilester"]], "mapchange": False}
 ]

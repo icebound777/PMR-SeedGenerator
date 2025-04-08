@@ -5,7 +5,7 @@ world traversal. This is required for checking randomization logic.
 
 from metadata.partners_meta import all_partners
 
-from rando_enums.enum_options import StartingBoots, StartingHammer
+from rando_enums.enum_options import StartingBoots, StartingHammer, KentCKoopa
 
 class MarioInventory:
     """
@@ -30,6 +30,7 @@ class MarioInventory:
         ch7_bridge_visible:bool=True,
         startwith_speedyspin:bool=True,
         cook_without_fryingpan:bool=True,
+        kent_c_koopa:KentCKoopa=KentCKoopa.BLOCKS_PLEASANT_PATH,
         vanilla_start:bool=False
     ):
         """
@@ -61,6 +62,7 @@ class MarioInventory:
         assert(isinstance(ch7_bridge_visible, bool))
         assert(isinstance(startwith_speedyspin, bool))
         assert(isinstance(cook_without_fryingpan, bool))
+        assert(isinstance(kent_c_koopa, int))
         assert(isinstance(vanilla_start, bool))
 
         self.boots = set()
@@ -132,6 +134,9 @@ class MarioInventory:
 
         if cook_without_fryingpan:
             self.add("RF_CanCook")
+
+        if kent_c_koopa != KentCKoopa.MUST_FIGHT:
+            self.add("RF_CanPassKentC")
 
         if vanilla_start:
             self.add("RF_BrokenVeranda")

@@ -13,7 +13,7 @@ from metadata.formations_meta import (
     flying_enemies,
     battlestage_ceilings,
     battlestage_ceiling_formations,
-    ceiling_enemies
+    ceiling_enemies,
 )
 
 
@@ -345,6 +345,7 @@ def get_random_formations(
                 # Select an enemy at random for each occupied file
                 current_enemylist = []
                 placed_healer = False
+                count_skyguys: int = 0
 
                 for i in range(1, rnd_number_of_enemies + 1):
                     force_matching_firstfile = True
@@ -353,9 +354,15 @@ def get_random_formations(
                         # appearing in the field, so first strikes don't get
                         # weird
                         current_enemylist.append(front_row_enemy)
+                        if front_row_enemy == "10_SkyGuy":
+                            count_skyguys += 1
                     else:
                         while True:
                             new_enemy = random.choice(available_enemies)
+                            # In case of SkyGuy, we cannot allow more than 2 of
+                            # those per battle, otherwise visual bugs occur
+                            if new_enemy == "10_SkyGuy" and count_skyguys >= 2:
+                                continue
                             # In case of bat, check if battle stage has ceiling.
                             # If not, pick other enemy
                             if "Swoop" in new_enemy:
@@ -376,6 +383,8 @@ def get_random_formations(
                                         continue
                                     placed_healer = True
                                 current_enemylist.append(new_enemy)
+                                if new_enemy == "10_SkyGuy":
+                                    count_skyguys += 1
                                 break
 
                 # Build new formation for current battle with chosen enemies

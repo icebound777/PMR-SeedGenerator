@@ -322,6 +322,7 @@ verbose_item_names = {
     "PouchC": "ItemPouch",
     "PouchD": "ItemPouch",
     "PouchE": "ItemPouch",
+    "GenericUpgrade": "SuperBlock",
     "GoombarioUp1": "GoombarioUpgrade",
     "KooperUp1": "KooperUpgrade",
     "BombetteUp1": "BombetteUpgrade",
@@ -342,14 +343,14 @@ verbose_item_names = {
 
 inverted_verbose_names = {
     "ProgressiveBoots": [
-        "BootsProxy1",
-        "BootsProxy2",
         "BootsProxy3",
+        "BootsProxy2",
+        "BootsProxy1",
     ],
     "ProgressiveHammer": [
-        "HammerProxy1",
-        "HammerProxy2",
         "HammerProxy3",
+        "HammerProxy2",
+        "HammerProxy1",
     ],
     "JellyShroom": "JellyShroom1",
     "Letter (To Merlon)": "Letter01",
@@ -567,8 +568,8 @@ inverted_verbose_names = {
         "StarPiece4D",
         "StarPiece4E",
         "StarPiece4F",
-        "StarPiece50",
         "StarPiece51",
+        "StarPiece50",
     ],
     "ThreeStarPieces": [
         "ThreeStarPieces0",
@@ -714,6 +715,7 @@ inverted_verbose_names = {
         "PouchD",
         "PouchE",
     ],
+    "SuperBlock": "GenericUpgrade",
     "GoombarioUpgrade": [
         "GoombarioUp1",
         "GoombarioUp2",

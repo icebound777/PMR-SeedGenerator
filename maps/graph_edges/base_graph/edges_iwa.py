@@ -77,15 +77,16 @@ edges_iwa = [
     {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": 1}, "reqs": [["Boots"]]}, #? Train Station Ride The Train -> Train Station Exit Top Right
     {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": 0}, "reqs": [["Boots"]]}, #? Train Station Exit Top Right -> Train Station Ride The Train
 
-    {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": "Bush1_Drop1"}, "reqs": []}, #* Train Station Ride The Train -> Bush1_Drop1 (Coin) Bottom Bush
-    {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Bush1_Drop1"}, "reqs": []}, #* Train Station Exit Top Right -> Bush1_Drop1 (Coin) Bottom Bush
-    {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": "Bush2_Drop1"}, "reqs": []}, #* Train Station Ride The Train -> Bush2_Drop1 (Coin) Right Bush
-    {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Bush2_Drop1"}, "reqs": []}, #* Train Station Exit Top Right -> Bush2_Drop1 (Coin) Right Bush
-    {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": "Bush3_Drop1"}, "reqs": []}, #* Train Station Ride The Train -> Bush3_Drop1 (Coin) Left Bush
-    {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Bush3_Drop1"}, "reqs": []}, #* Train Station Exit Top Right -> Bush3_Drop1 (Coin) Left Bush
-    {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": "Bush4_Drop1"}, "reqs": []}, #* TrainTrain Station Ride The Train -> Bush4_Drop1 (Egg2) Top Bush
-    {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Bush4_Drop1"}, "reqs": []}, #* Train Station Exit Top Right -> Bush4_Drop1 (Egg2) Top Bush
-    {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Partner"},     "reqs": [["has_parakarry_letters"]]}, #* Train Station Exit Top Right -> Partner (Parakarry)
+    {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": "Bush1_Drop1"},      "reqs": []}, #* Train Station Ride The Train -> Bush1_Drop1 (Coin) Bottom Bush
+    {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Bush1_Drop1"},      "reqs": []}, #* Train Station Exit Top Right -> Bush1_Drop1 (Coin) Bottom Bush
+    {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": "Bush2_Drop1"},      "reqs": []}, #* Train Station Ride The Train -> Bush2_Drop1 (Coin) Right Bush
+    {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Bush2_Drop1"},      "reqs": []}, #* Train Station Exit Top Right -> Bush2_Drop1 (Coin) Right Bush
+    {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": "Bush3_Drop1"},      "reqs": []}, #* Train Station Ride The Train -> Bush3_Drop1 (Coin) Left Bush
+    {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Bush3_Drop1"},      "reqs": []}, #* Train Station Exit Top Right -> Bush3_Drop1 (Coin) Left Bush
+    {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": "Bush4_Drop1"},      "reqs": []}, #* TrainTrain Station Ride The Train -> Bush4_Drop1 (Egg2) Top Bush
+    {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Bush4_Drop1"},      "reqs": []}, #* Train Station Exit Top Right -> Bush4_Drop1 (Egg2) Top Bush
+    {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Partner"},          "reqs": [["has_parakarry_letters"]]}, #* Train Station Exit Top Right -> Partner (Parakarry)
+    {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "RandomBlockItemA"}, "reqs": [["SuperHammer"],["can_hit_floating_blocks"]]}, #* Train Station Exit Top Right -> RandomBlockItemA (GenericUpgrade)
 
     # IWA_11 Train Ride Scene
     {"from": {"map": "IWA_11", "id": 0}, "to": {"map": "MAC_03", "id": 1}, "reqs": []}, # Train Ride Scene Exit Left -> Station District Train

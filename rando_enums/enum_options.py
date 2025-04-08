@@ -97,6 +97,12 @@ class PartnerUpgradeShuffle(IntEnum):
     FULL = 2
 
 @unique
+class MultiCoinBlockShuffle(IntEnum):
+    OFF = 0
+    SHUFFLE = 1
+    ANYWHERE = 2
+
+@unique
 class SeedGoal(IntEnum):
     DEFEAT_BOWSER = 0
     OPEN_STARWAY = 1
@@ -126,3 +132,22 @@ class DojoShuffle(IntEnum):
 class BossShuffleMode(IntEnum):
     OFF = 0
     CHAPTER_BOSSES = 1
+
+@unique
+class RequiredSpirits(IntEnum):
+    ANY = 0
+    SPECIFIC = 1
+    SPECIFIC_AND_LIMITCHAPTERLOGIC = 2
+
+@unique
+class BowserDoorQuiz(IntEnum):
+    DO_QUIZ = 0
+    ANTI_GUYS_UNIT = 1
+    SKIP = 2
+
+@unique
+class KentCKoopa(IntEnum):
+    BLOCKS_PLEASANT_PATH = 0
+    MUST_FIGHT = 1
+    ALREADY_PAID = 2
+    ALREADY_DEFEATED = 3

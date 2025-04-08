@@ -16,4 +16,7 @@ edges_kpa_add_wattless_dark_basement = [
     {"from": {"map": "KPA_03",  "id": 1}, "to": {"map": "KPA_03",  "id": 0}, "reqs": [["can_climb_steps"]]}, 
     #* Dark Cave 2 Exit Right -> YBlockA (ShootingStar)]
     {"from": {"map": "KPA_03",  "id": 0}, "to": {"map": "KPA_03",  "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, 
+
+    #+ KPA_81 Guard Door 1
+    {"from": {"map": "KPA_81",  "id": 0}, "to": {"map": "KPA_81",  "id": 0}, "reqs": [], "pseudoitems": ["RF_WattlessBasement"]},
 ]

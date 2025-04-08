@@ -96,22 +96,22 @@ exclude_due_to_settings = {
     ],
     "partner_upgrade_shuffle": [
         "UltraStone",
-        "Nothing", # Goombario 1
-        "Nothing", # Goombario 2
-        "Nothing", # Kooper 1
-        "Nothing", # Kooper 2
-        "Nothing", # Bombette 1
-        "Nothing", # Bombette 2
-        "Nothing", # Parakarry 1
-        "Nothing", # Parakarry 2
-        "Nothing", # Watt 1
-        "Nothing", # Watt 2
-        "Nothing", # Sushie 1
-        "Nothing", # Sushie 2
-        "Nothing", # Lakilester 1
-        "Nothing", # Lakilester 2
-        "Nothing", # Bow 1
-        "Nothing", # Bow 2
+        "GenericUpgrade", # Goombario 1
+        "GenericUpgrade", # Goombario 2
+        "GenericUpgrade", # Kooper 1
+        "GenericUpgrade", # Kooper 2
+        "GenericUpgrade", # Bombette 1
+        "GenericUpgrade", # Bombette 2
+        "GenericUpgrade", # Parakarry 1
+        "GenericUpgrade", # Parakarry 2
+        "GenericUpgrade", # Watt 1
+        "GenericUpgrade", # Watt 2
+        "GenericUpgrade", # Sushie 1
+        "GenericUpgrade", # Sushie 2
+        "GenericUpgrade", # Lakilester 1
+        "GenericUpgrade", # Lakilester 2
+        "GenericUpgrade", # Bow 1
+        "GenericUpgrade", # Bow 2
     ]
 }
 

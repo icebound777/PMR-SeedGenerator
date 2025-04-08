@@ -17,21 +17,23 @@ SkipEpilogue         : true
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : false
 HiddenPanelVisibility: 0 # 0:vanilla, 1:texture-edit
+ISpyPanelHints       : 0 # 0:off, 1:vague, 2:concrete
 
 # Difficulty and Enemies
 ShuffleChapterDifficulty: false
 ProgressiveScaling      : true
 
-ChallengeMode  : false
-CapEnemyXP     : true
-XPMultiplier   : 1
-DoubleDamage   : false
-QuadrupleDamage: false
-OHKO           : false
-NoSaveBlocks   : false
-NoHeartBlocks  : false
-NoHealingItems : false
-DropStarPoints : true
+ChallengeMode     : false
+CapEnemyXP        : true
+XPMultiplier      : 1
+DoubleDamage      : false
+QuadrupleDamage   : false
+OHKO              : false
+NoSaveBlocks      : false
+NoHeartBlocks     : false
+NoHealingItems    : false
+DropStarPoints    : true
+ChetRippoAvailable: true
 
 RandomFormations: true
 BossShuffleMode : 0 # 0: off, 1: shuffle chapter bosses
@@ -150,8 +152,7 @@ ShuffleStarBeam         : false
 StarBeamSpiritsNeeded   : 0 # -1:Random
 StarBeamPowerStarsNeeded: 0 # -1:Random
 StarHuntTotal           : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded, -1:Random
-RequireSpecificSpirits  : false # always false if StarWaySpiritsNeededCnt: 7
-LimitChapterLogic       : false # always false if RequireSpecificSpirits: false; requires KeyitemsOutsideDungeon
+RequiredSpirits         : 0 # 0:any, 1:require specific spirits, 2: limit chapter logic
 
 # Entrance Shuffle
 ShuffleDungeonRooms     : false # NYI
@@ -169,8 +170,10 @@ RandomPartnerFP  : 0
 RandomStarpowerSP: 0
 
 # Misc Gameplay Randomization
-ShuffleBlocks   : false
-RandomizePuzzles: false
+MultiCoinBlockShuffle: 0 # 0: off, 1: shuffle, 2: anywhere
+RandomizePuzzles     : false
+BowserDoorQuiz       : 0 # 0: do quiz, 1: must defeat anti guys unit, 2: skip
+KentCKoopa           : 0 # 0: blocks pleasant path, 1: must defeat, 2: already paid, 3: already defeated
 
 # Quizmo Quizzes
 RandomQuiz         : true
@@ -234,6 +237,8 @@ PrologueGelEarly                                : false
 ReverseGoombaKingBridge                         : false
 GoombaVillageEntryFenceClip                     : false
 GoombaVillageNpcLureExit                        : false
+ClippyLedgeStarPiece                            : false
+JumplessFireFlower                              : false
 HammerlessJrPlaygroundLaki                      : false
 GoombaVillageLakiExit                           : false
 PrologueSushieGlitchKsj                         : false
@@ -270,6 +275,7 @@ SewerYellowBlockWithUltraBoots                  : false
 JumplessSewerShootingStar                       : false
 
 KooperlessPleasantPathStarPiece                 : false
+PleasantPathClippyTraversal                     : false
 HammerlessPleasantPathBridgeUltraBootsParakarry : false
 InvisibleBridgeClipLzs                          : false
 InvisibleBridgeClipLaki                         : false
@@ -283,16 +289,20 @@ BombettelessRightFortressJailKey                : false
 WaterStaircaseSkip                              : false
 
 MtRuggedQuakeHammerAndLetterWithLaki            : false
+MtRuggedQuakeHammerRoomJumplessClippy           : false
 ParakarrylessMtRuggedSeed                       : false
 ParakarrylessMtRuggedSeedClippy                 : false
 BuzzarGapSkipClippy                             : false
 MtRuggedCoinsWithKooper                         : false
 MtRuggedStationJumplessClimbBombette            : false
 MtRuggedStationJumplessClimbLaki                : false
+MtRuggedStationJumplessClimbLakiBlockClip       : false
 ParakarrylessMtRuggedStarPiece                  : false
+ParakarrylessMtRuggedStarPieceClippy            : false
 JumplessMtRuggedTrainPlatformParakarry          : false
 
 DesertBrickBlockItemWithParakarry               : false
+JumplessAttackFXC                               : false
 EarlyRuinsLakiJump                              : false
 EarlyRuinsUltraBoots                            : false
 
@@ -321,6 +331,7 @@ KooperlessGustyGulchDizzyDialJump               : false
 KooperlessGustyGulchDizzyDialLaki               : false
 KooperlessGustyGulchDizzyDialParakarry          : false
 GustyGulchGapSkip                               : false
+GustyGulchClippyTraversal                       : false
 
 BowlessTubbasCastle                             : false
 TubbasTableLakiJumpClock                        : false
@@ -366,6 +377,7 @@ VolcanoSushieGlitchGoombario                    : false
 
 EarlyLakiLZS                                    : false
 EarlyLakiBombettePush                           : false
+LakilessElevatorRoom                            : false
 BombettelessMegaSmash                           : false
 SunTowerSkip                                    : false
 YellowBerryGateSkipLZS                          : false

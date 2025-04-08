@@ -108,9 +108,10 @@ edges_sam = [
     {"from": {"map": "SAM_08", "id": 1}, "to": {"map": "SAM_08", "id": 1}, "reqs": [["Hammer"]], "pseudoitems": ["RF_DefeatedFirstDuplighost"]}, #+ Shiver Mountain Hills Exit East
     {"from": {"map": "SAM_08", "id": 0}, "to": {"map": "SAM_08", "id": 0}, "reqs": [["Kooper"],["Hammer"]], "pseudoitems": ["RF_DefeatedFirstDuplighost"]}, #+ Shiver Mountain Hills Exit East
 
-    {"from": {"map": "SAM_08", "id": 0},       "to": {"map": "SAM_08", "id": "ItemA"}, "reqs": []}, #* Shiver Mountain Hills Exit West -> ItemA (Pebble)
-    {"from": {"map": "SAM_08", "id": 1},       "to": {"map": "SAM_08", "id": "ItemA"}, "reqs": []}, #* Shiver Mountain Hills Exit East -> ItemA (Pebble)
-    {"from": {"map": "SAM_08", "id": "ItemA"}, "to": {"map": "SAM_08", "id": 0},       "reqs": [["can_climb_steps"]]}, #* ItemA (Pebble) -> Shiver Mountain Hills Exit West
+    {"from": {"map": "SAM_08", "id": 0},       "to": {"map": "SAM_08", "id": "ItemA"},            "reqs": []}, #* Shiver Mountain Hills Exit West -> ItemA (Pebble)
+    {"from": {"map": "SAM_08", "id": 1},       "to": {"map": "SAM_08", "id": "ItemA"},            "reqs": []}, #* Shiver Mountain Hills Exit East -> ItemA (Pebble)
+    {"from": {"map": "SAM_08", "id": "ItemA"}, "to": {"map": "SAM_08", "id": 0},                  "reqs": [["can_climb_steps"]]}, #* ItemA (Pebble) -> Shiver Mountain Hills Exit West
+    {"from": {"map": "SAM_08", "id": 1},       "to": {"map": "SAM_08", "id": "RandomBlockItemA"}, "reqs": [["can_climb_steps"],["can_hit_floating_blocks"]]}, #* Shiver Mountain Hills Exit East -> RandomBlockItemA (GenericUpgrade)
 
     # SAM_09 Shiver Mountain Tunnel
     {"from": {"map": "SAM_09", "id": 0}, "to": {"map": "SAM_08", "id": 1}, "reqs": []}, # Shiver Mountain Tunnel Exit West -> Shiver Mountain Hills Exit East

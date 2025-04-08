@@ -5,6 +5,8 @@ class GlitchOptionSet():
         self.reverse_goomba_king_bridge = False
         self.goomba_village_entry_fence_clip = False
         self.goomba_village_npc_lure_exit = False
+        self.clippy_ledge_starpiece = False
+        self.jumpless_fire_flower = False
         self.hammerless_jr_playground_laki = False
         self.goomba_village_laki_exit = False
         self.prologue_sushie_glitch_ksj = False
@@ -40,6 +42,7 @@ class GlitchOptionSet():
         self.jumpless_sewer_shooting_star = False
 
         self.kooperless_pleasant_path_star_piece = False
+        self.pleasant_path_clippy_traversal = False
         self.hammerless_pleasant_path_bridge_ultra_boots_parakarry = False
         self.invisible_bridge_clip_lzs = False
         self.invisible_bridge_clip_laki = False
@@ -53,15 +56,19 @@ class GlitchOptionSet():
         self.water_staircase_skip = False
 
         self.mt_rugged_quake_hammer_and_letter_with_laki = False
+        self.mt_rugged_quake_hammer_room_jumpless_clippy = False
         self.parakarryless_mt_rugged_seed = False
         self.parakarryless_mt_rugged_seed_clippy = False
         self.buzzar_gap_skip_clippy = False
         self.mt_rugged_coins_with_kooper = False
         self.mt_rugged_station_jumpless_climb_bombette = False
         self.mt_rugged_station_jumpless_climb_laki = False
+        self.mt_rugged_station_jumpless_climb_laki_block_clip = False
         self.jumpless_mt_rugged_train_platform_parakarry = False
         self.parakarryless_mt_rugged_star_piece = False
+        self.parakarryless_mt_rugged_star_piece_clippy = False
         self.desert_brick_block_item_with_parakarry = False
+        self.jumpless_attack_fx_c = False
         self.early_ruins_laki_jump = False
         self.early_ruins_ultra_boots = False
 
@@ -90,6 +97,7 @@ class GlitchOptionSet():
         self.kooperless_gusty_gulch_dizzy_dial_laki = False
         self.kooperless_gusty_gulch_dizzy_dial_parakarry = False
         self.gusty_gulch_gap_skip = False
+        self.gusty_gulch_clippy_traversal = False
 
         self.bowless_tubbas_castle = False
         self.tubbas_table_laki_jump_clock = False
@@ -134,6 +142,7 @@ class GlitchOptionSet():
 
         self.early_laki_lzs = False
         self.early_laki_bombette_push = False
+        self.lakiless_elevator_room = False
         self.bombetteless_mega_smash = False
         self.sun_tower_skip = False
         self.yellow_berry_gate_skip_lzs = False

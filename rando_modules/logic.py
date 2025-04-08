@@ -1,6 +1,6 @@
 """
-This modules offers the randomization logic and takes care of actually randomizing
-the game according to the settings chosen.
+This modules offers the randomization logic and takes care of actually
+randomizing the game according to the settings chosen.
 """
 import random
 #import logging
@@ -21,38 +21,50 @@ from rando_enums.enum_options import (
     IncludeFavorsMode,
     IncludeLettersMode,
     PartnerUpgradeShuffle,
+    MultiCoinBlockShuffle,
     PartnerShuffle,
     DojoShuffle,
 )
 
-from rando_modules.modify_itempool \
-    import get_randomized_itempool,\
-           get_trapped_itempool
+from rando_modules.modify_itempool import (
+    get_randomized_itempool,
+    get_trapped_itempool,
+)
 
 from rando_modules.unbeatable_seed_error import UnbeatableSeedError
-from rando_modules.unbeatable_plando_placement_error import UnbeatablPlandoPlacementError
-from rando_modules.plando_settings_mismatch_error import PlandoSettingsMismatchError
+from rando_modules.unbeatable_plando_placement_error import (
+    UnbeatablPlandoPlacementError,
+)
+from rando_modules.plando_settings_mismatch_error import (
+    PlandoSettingsMismatchError,
+)
 from rando_modules.item_pool_too_small_error import ItemPoolTooSmallError
 
 from metadata.itemlocation_replenish import replenishing_itemlocations
-from metadata.itemlocation_special import \
-    kootfavors_reward_locations,          \
-    kootfavors_keyitem_locations,         \
-    chainletter_giver_locations,          \
-    chainletter_final_reward_location,    \
-    simpleletter_locations,               \
-    radio_trade_event_locations,          \
-    dojo_locations,                       \
-    limited_by_item_areas,                \
-    bush_tree_coin_locations,             \
-    overworld_coin_locations,             \
-    block_coin_locations,                 \
-    favor_coin_locations
-from metadata.progression_items                                 \
-    import progression_miscitems as progression_miscitems_names, \
-           progression_items
-from metadata.item_exclusion \
-    import exclude_due_to_settings, exclude_from_taycet_placement
+from metadata.itemlocation_special import (
+    kootfavors_reward_locations,
+    kootfavors_keyitem_locations,
+    chainletter_giver_locations,
+    chainletter_final_reward_location,
+    simpleletter_locations,
+    radio_trade_event_locations,
+    dojo_locations,
+    limited_by_item_areas,
+    bush_tree_coin_locations,
+    overworld_coin_locations,
+    block_coin_locations,
+    favor_coin_locations,
+    superblock_locations,
+    multicoinblock_locations,
+)
+from metadata.progression_items import (
+    progression_miscitems as progression_miscitems_names,
+    progression_items,
+)
+from metadata.item_exclusion import (
+    exclude_due_to_settings,
+    exclude_from_taycet_placement,
+)
 from metadata.item_general import taycet_items, progressive_badges
 from metadata.node_exclusion import exclude_from_trap_placement
 from metadata.partners_meta import all_partners
@@ -344,9 +356,8 @@ def _generate_item_pools(
     def add_to_correct_itempool(
         new_item: Item,
     ):
-        if ((new_item.progression and new_item.item_type != 'ITEM')
-        or (logic_settings.include_shops and "StarPiece" in new_item.item_name)
-        or new_item.item_type == "GEAR"
+        if (    new_item.progression
+            and new_item.item_type != 'ITEM'
         ):
             pool_progression_items.append(new_item)
         else:
@@ -419,7 +430,7 @@ def _generate_item_pools(
                 if current_node_id in all_plando_locations:
                     raise PlandoSettingsMismatchError(
                         "Plandomizer error: An item location is plando'd which clashes "\
-                        "with the \"Shuffle Overworld Coins\" setting being turned off"
+                        "with the \"Shuffle Foliage Coins\" setting being turned off"
                     )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
@@ -459,6 +470,8 @@ def _generate_item_pools(
                         "with the \"Include Hidden Panels\" setting being turned off"
                     )
                 current_node.current_item = Item.get(Item.item_name == "StarPiece")
+                if (logic_settings.include_shops and logic_settings.progression_on_merlow):
+                    current_node.current_item.progression = True
                 all_item_nodes.append(current_node)
                 continue
 
@@ -571,6 +584,31 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
+            if (    current_node_id in multicoinblock_locations
+                and logic_settings.multicoin_block_shuffle == MultiCoinBlockShuffle.OFF
+            ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Multi Coin Block Shuffle\" setting being set to \"Off\""
+                    )
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
+            if (    current_node_id in superblock_locations
+                and logic_settings.partner_upgrade_shuffle == PartnerUpgradeShuffle.OFF
+                and logic_settings.multicoin_block_shuffle == MultiCoinBlockShuffle.OFF
+            ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Partner Upgrade Shuffle\" setting being set to \"Off\""
+                    )
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
             if (    logic_settings.gear_shuffle_mode == GearShuffleMode.VANILLA
                 and current_node.vanilla_item.item_type == "GEAR"
                 and (   current_node.identifier != "KMR_04/Bush7_Drop1"
@@ -620,7 +658,13 @@ def _generate_item_pools(
                 continue
 
             if current_node_id in plando_item_placement:
-                add_to_correct_itempool(current_node.vanilla_item)
+                item_to_shuffle = current_node.vanilla_item
+                if (    item_to_shuffle.item_type == "STARPIECE"
+                    and logic_settings.include_shops
+                    and logic_settings.progression_on_merlow
+                ):
+                    item_to_shuffle.progression = True
+                add_to_correct_itempool(item_to_shuffle)
                 current_node.current_item = plando_item_placement[current_node_id]
                 if (    plando_item_placement[current_node_id].item_name in progression_miscitems_names
                     and is_itemlocation_replenishable(current_node)
@@ -646,7 +690,13 @@ def _generate_item_pools(
                 continue
 
             # Item shall be randomized: Add it to the correct item pool
-            add_to_correct_itempool(current_node.vanilla_item)
+            item_to_shuffle = current_node.vanilla_item
+            if (    item_to_shuffle.item_type == "STARPIECE"
+                and logic_settings.include_shops
+                and logic_settings.progression_on_merlow
+            ):
+                item_to_shuffle.progression = True
+            add_to_correct_itempool(item_to_shuffle)
 
 
     target_itempool_size = (
@@ -658,6 +708,21 @@ def _generate_item_pools(
         + len(pool_other_items)
         - items_plandod
     )
+
+    # Make sure that every vanilla badge is in the item pool, regardless of
+    # chosen settings
+    for vanilla_badge in (
+        Item
+        .select()
+        .where(Item.item_type == "BADGE")
+        .where(Item.unused == False)
+        .where(Item.unplaceable == False)
+        .where(~(Item.item_name % "*Proxy*"))
+    ):
+        if (    vanilla_badge not in pool_badges
+            and vanilla_badge not in pool_progression_items
+        ):
+            pool_badges.append(vanilla_badge)
 
     # Add Power Stars, if needed
     if logic_settings.star_hunt_total > 0:
@@ -719,7 +784,12 @@ def _generate_item_pools(
 
     # If we shuffle partner upgrades, add upgrade items to the item pool
     if do_partner_upgrade_shuffle:
-        for item in Item.select().where(Item.item_type == "PARTNERUPGRADE").where(Item.unplaceable != 1):
+        for item in (Item
+                     .select()
+                     .where(Item.item_type == "PARTNERUPGRADE")
+                     .where(Item.unplaceable != 1)
+                     .where(Item.item_name != "GenericUpgrade")
+        ):
             pool_other_items.append(item)
 
     # Adjust item pools based on settings
@@ -1001,7 +1071,7 @@ def _algo_assumed_fill(
             starting_partners,
             starting_items,
             logic_settings.partners_always_usable,
-            logic_settings.hidden_block_mode,
+            hidden_block_mode,
             logic_settings.magical_seeds_required,
             logic_settings.prologue_open,
             logic_settings.bluehouse_open,
@@ -1012,6 +1082,7 @@ def _algo_assumed_fill(
             logic_settings.ch7_bridge_visible,
             logic_settings.always_speedyspin,
             logic_settings.cook_without_fryingpan,
+            logic_settings.kentckoopa,
             vanilla_start=False,
         )
         for item in all_progression_yet_to_be_placed:
@@ -1028,7 +1099,14 @@ def _algo_assumed_fill(
             unreachable_items: list = list()
             for location, unreachable_item in [
                 (location, item.item_name) for location, item in plando_item_placement.items()
-                if item not in mario.items
+                if     item.item_name not in mario.items
+                   and item.item_name not in mario.partners
+                   and item.item_name not in mario.boots
+                   and item.item_name not in mario.hammer
+                   and item.item_name not in mario.starpieces
+                   and item.item_name not in mario.powerstars
+                   and item.progression
+                   and not item.is_trapped()
             ]:
                 loc_area = verbose_area_names[location[:3]]
                 loc_map = Node.get(Node.identifier == location).map_area.verbose_name
@@ -1129,6 +1207,59 @@ def _algo_assumed_fill(
                 world_graph[f"DRO_01/{slot_id}"]["node"].current_item = shop_code_item
 
 
+    # Place CoinBag items into MultiCoinBlock locations if necessary
+    candidate_locations = multicoinblock_locations.copy()
+    candidate_locations.extend(superblock_locations.copy())
+    # Remove locations that may have a partner upgrade item placed by
+    # the PartnerUpgradeShuffle.OFF option
+    candidate_locations = [
+        x for x in candidate_locations
+        if world_graph[x]["node"].current_item is None
+    ]
+    if logic_settings.multicoin_block_shuffle == MultiCoinBlockShuffle.SHUFFLE:
+        coinbag_itemobj = Item.get(Item.item_name == "CoinBag")
+        while coinbag_itemobj in pool_other_items:
+            random_block_location = random.choice(candidate_locations)
+            world_graph[random_block_location]["node"].current_item = coinbag_itemobj
+            candidate_locations.remove(random_block_location)
+            pool_other_items.remove(coinbag_itemobj)
+    if logic_settings.multicoin_block_shuffle >= MultiCoinBlockShuffle.SHUFFLE:
+        # If PartnerUpgradeShuffle is turned off, we now need to also place
+        # the GenericUpgrade items into the remaining random block locations.
+        # If PartnerUpgradeShuffle is not turned off, then we don't have
+        # any GenericUpgrade items to place within the item pool
+        genericupgrade_itemobj = Item.get(Item.item_name == "GenericUpgrade")
+        while genericupgrade_itemobj in pool_other_items:
+            random_block_location = random.choice(candidate_locations)
+            world_graph[random_block_location]["node"].current_item = genericupgrade_itemobj
+            candidate_locations.remove(random_block_location)
+            pool_other_items.remove(genericupgrade_itemobj)
+
+    # Place Partner Upgrade items into random block locations if necessary:
+    if logic_settings.partner_upgrade_shuffle == PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
+        candidate_locations = multicoinblock_locations.copy()
+        candidate_locations.extend(superblock_locations.copy())
+        # Remove locations that may have a CoinBag item placed by
+        # the MultiCoinBlockShuffle.SHUFFLE option
+        candidate_locations = [
+            x for x in candidate_locations
+            if world_graph[x]["node"].current_item is None
+        ]
+        partner_upgrades = [
+            x for x in pool_other_items
+            if     x.item_type == "PARTNERUPGRADE"
+               and x.item_name != "GenericUpgrade"
+               and not x.is_trapped()
+        ]
+        random.shuffle(partner_upgrades)
+        while partner_upgrades:
+            random_block_location = random.choice(candidate_locations)
+            partner_upgrade_itemobj = partner_upgrades.pop()
+            world_graph[random_block_location]["node"].current_item = partner_upgrade_itemobj
+            candidate_locations.remove(random_block_location)
+            pool_other_items.remove(partner_upgrade_itemobj)
+
+
     print("Placing progression items...")
     #Place progression items, both key and replenishable
     pool_combined_progression_items = pool_progression_items + pool_misc_progression_items
@@ -1154,38 +1285,6 @@ def _algo_assumed_fill(
             key = lambda x: x.item_name in all_partners
         )
 
-    if logic_settings.partner_upgrade_shuffle == PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
-        # Special handling: non-progression which has to be placed first
-        pool_upgrade_items = [
-            item for item in pool_other_items
-            if     item.item_type == "PARTNERUPGRADE"
-               and not item.is_trapped()
-        ]
-        for upgrade in pool_upgrade_items:
-            pool_other_items.remove(upgrade)
-        random.shuffle(pool_upgrade_items)
-
-        available_superblock_locations = len([
-            item_node
-            for item_node in all_item_nodes
-            if "RandomBlockItem" in item_node.identifier
-        ])
-        while len(pool_upgrade_items) > available_superblock_locations:
-            pool_upgrade_items.pop()
-            pool_other_items.append(_get_random_taycet_item())
-
-        for item_node in all_item_nodes:
-            if item_node.current_item:
-                continue
-            item_node_id = item_node.identifier
-            if "RandomBlockItem" in item_node_id:
-                item_node.current_item = pool_upgrade_items.pop()
-            if not pool_upgrade_items:
-                break
-        if pool_upgrade_items:
-            raise ValueError(f"Could not place all Partner Upgrade items! Items left: {len(pool_upgrade_items)}")
-
-
     while pool_combined_progression_items:
         item = pool_combined_progression_items.pop()
         mario = MarioInventory(
@@ -1194,7 +1293,7 @@ def _algo_assumed_fill(
             starting_partners,
             starting_items,
             logic_settings.partners_always_usable,
-            logic_settings.hidden_block_mode,
+            hidden_block_mode,
             logic_settings.magical_seeds_required,
             logic_settings.prologue_open,
             logic_settings.bluehouse_open,
@@ -1205,6 +1304,7 @@ def _algo_assumed_fill(
             logic_settings.ch7_bridge_visible,
             logic_settings.always_speedyspin,
             logic_settings.cook_without_fryingpan,
+            logic_settings.kentckoopa,
             vanilla_start=False
         )
 
@@ -1216,6 +1316,7 @@ def _algo_assumed_fill(
             starting_node_id,
             mario
         )
+
         if item.item_name in progression_miscitems_names:
             candidate_locations = [node for node in candidate_locations if is_itemlocation_replenishable(node)]
 
@@ -1306,7 +1407,7 @@ def _algo_assumed_fill(
                 item_node.current_item = random_item
                 #logging.debug("%s: %s", item_node_id, random_item.item_name)
 
-            except ValueError as err:
+            except ValueError:
                 #logging.warning("pool_other_items size: %d", len(pool_other_items))
                 #raise
                 item_node.current_item = item_node.vanilla_item
@@ -1366,7 +1467,7 @@ def get_item_spheres(
         starting_partners,
         starting_items,
         logic_settings.partners_always_usable,
-        logic_settings.hidden_block_mode,
+        hidden_block_mode,
         logic_settings.magical_seeds_required,
         logic_settings.prologue_open,
         logic_settings.bluehouse_open,
@@ -1377,6 +1478,7 @@ def get_item_spheres(
         logic_settings.ch7_bridge_visible,
         logic_settings.always_speedyspin,
         logic_settings.cook_without_fryingpan,
+        logic_settings.kentckoopa,
         vanilla_start
     )
 
@@ -1456,6 +1558,13 @@ def get_item_spheres(
             full_location = f"{map} - {item_location}"
             if item.item_name in verbose_item_names:
                 item_name = verbose_item_names[item.item_name]
+            elif (    item.item_name == "CoinBag"
+                  and (   node.identifier in superblock_locations
+                       or node.identifier in multicoinblock_locations)
+            ):
+                # CoinBag in random block location turns that location into a
+                # MultiCoinBlock
+                item_name = "MultiCoinBlock"
             else:
                 item_name = item.item_name
 

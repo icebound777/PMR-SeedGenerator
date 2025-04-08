@@ -25,29 +25,26 @@ def get_boss_battles(
                 return chapter
         return None
 
-    battles_setup: List[Tuple[int, int]] = []
+    battles_setup: list[tuple[int, int]] = []
     chapter_boss_map: dict[int, int] = dict()
+    db_chapters_keysvalues: dict[int, tuple[int, int]] = dict()
+
+    for battle in Battle.select():
+        key, value = battle.get_key(), battle.vanilla_battle_id
+
+        battle_group = get_battle_group(value)
+        chapter = get_battle_chapter(battle_group)
+        assert(chapter is not None)
+
+        db_chapters_keysvalues[chapter] = (key, value)
 
     if plando_battles is not None and len(plando_battles) == 7:
         chapter_boss_map = plando_battles
     elif boss_shuffle_mode == BossShuffleMode.OFF:
-        for battle in Battle.select():
-            battles_setup.append((battle.get_key(), battle.vanilla_battle_id))
         chapter_boss_map = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7} # default
         if plando_battles is not None:
             chapter_boss_map.update(plando_battles)
     elif boss_shuffle_mode == BossShuffleMode.CHAPTER_BOSSES:
-        db_chapters_keysvalues: dict[int, tuple[int, int]] = dict()
-
-        for battle in Battle.select():
-            key, value = battle.get_key(), battle.vanilla_battle_id
-
-            battle_group = get_battle_group(value)
-            chapter = get_battle_chapter(battle_group)
-            assert(chapter is not None)
-
-            db_chapters_keysvalues[chapter] = (key, value)
-
         chapters: list[int] = list(db_chapters_keysvalues.keys())
         # chapters = [1,2,3,4,5,6,7]
 
@@ -106,18 +103,18 @@ def get_boss_battles(
                 #     7: 6,
                 # }
 
-        for chapter, boss in chapter_boss_map.items():
-            battles_setup.append(
-                (db_chapters_keysvalues[chapter][0], db_chapters_keysvalues[boss][1])
-            )
-            # battles_setup = [
-            #     (db_chapters_keysvalues[1].dbkey, db_chapters_keysvalues[4].dbvalue)
-            #     (db_chapters_keysvalues[2].dbkey, db_chapters_keysvalues[3].dbvalue)
-            #     (db_chapters_keysvalues[3].dbkey, db_chapters_keysvalues[5].dbvalue)
-            #     (db_chapters_keysvalues[4].dbkey, db_chapters_keysvalues[7].dbvalue)
-            #     (db_chapters_keysvalues[5].dbkey, db_chapters_keysvalues[2].dbvalue)
-            #     (db_chapters_keysvalues[6].dbkey, db_chapters_keysvalues[1].dbvalue)
-            #     (db_chapters_keysvalues[7].dbkey, db_chapters_keysvalues[6].dbvalue)
-            # ]
+    for chapter, boss in chapter_boss_map.items():
+        battles_setup.append(
+            (db_chapters_keysvalues[chapter][0], db_chapters_keysvalues[boss][1])
+        )
+        # battles_setup = [
+        #     (db_chapters_keysvalues[1].dbkey, db_chapters_keysvalues[4].dbvalue)
+        #     (db_chapters_keysvalues[2].dbkey, db_chapters_keysvalues[3].dbvalue)
+        #     (db_chapters_keysvalues[3].dbkey, db_chapters_keysvalues[5].dbvalue)
+        #     (db_chapters_keysvalues[4].dbkey, db_chapters_keysvalues[7].dbvalue)
+        #     (db_chapters_keysvalues[5].dbkey, db_chapters_keysvalues[2].dbvalue)
+        #     (db_chapters_keysvalues[6].dbkey, db_chapters_keysvalues[1].dbvalue)
+        #     (db_chapters_keysvalues[7].dbkey, db_chapters_keysvalues[6].dbvalue)
+        # ]
 
     return battles_setup, chapter_boss_map

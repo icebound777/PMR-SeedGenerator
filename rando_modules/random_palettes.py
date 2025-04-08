@@ -7,12 +7,13 @@ from db.palette import Palette
 from rando_enums.enum_options import RandomPalettes
 
 from models.options.OptionSet import PaletteOptionSet
-from metadata.palettes_meta import \
-    mario_n_partner_sprite_names, \
-    boss_sprite_names, \
-    enemy_sprite_names, \
-    hammer_sprite_names, \
+from metadata.palettes_meta import (
+    mario_n_partner_sprite_names,
+    boss_sprite_names,
+    enemy_sprite_names,
+    hammer_sprite_names,
     special_vanilla_palette_ids
+)
 
 
 
@@ -122,28 +123,28 @@ def get_randomized_coinpalette(color_id:int, should_randomize_color:bool):
     ]
 
     # temp. unused
-    all_coin_palette_crcs = {
-        COIN_COLOR_GOLD: [
-            0xD4C3F881,
-            0xCB3B5A00
-        ],
-        COIN_COLOR_RED: [
-            0x2BCD223A,
-            0x3CC7D7D5
-        ],
-        COIN_COLOR_BLUE: [
-            0xEE094F68,
-            0x421628A3
-        ],
-        COIN_COLOR_PURPLE: [
-            0xB99EDAC8,
-            0x7E0C334A
-        ],
-        COIN_COLOR_SILVER: [
-            0x82A4AB59,
-            0xBF600802
-        ]
-    }
+    #all_coin_palette_crcs = {
+    #    COIN_COLOR_GOLD: [
+    #        0xD4C3F881,
+    #        0xCB3B5A00
+    #    ],
+    #    COIN_COLOR_RED: [
+    #        0x2BCD223A,
+    #        0x3CC7D7D5
+    #    ],
+    #    COIN_COLOR_BLUE: [
+    #        0xEE094F68,
+    #        0x421628A3
+    #    ],
+    #    COIN_COLOR_PURPLE: [
+    #        0xB99EDAC8,
+    #        0x7E0C334A
+    #    ],
+    #    COIN_COLOR_SILVER: [
+    #        0x82A4AB59,
+    #        0xBF600802
+    #    ]
+    #}
 
     if should_randomize_color:
         # Choose random coin palette, ignoring given color id

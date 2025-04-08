@@ -109,6 +109,7 @@ progressive_badges = [
 ]
 
 unplaceable_items = [
+    "Nothing",
     "Boots",
     "SuperBoots",
     "UltraBoots",
@@ -198,6 +199,11 @@ unplaceable_items = [
     "GoompaUp1",
     "GoompaUp2",
     "Goompa",
+    "PanelHintBadge",
+    "PanelHintConsumable",
+    "PanelHintGear",
+    "PanelHintKey",
+    "PanelHintPartner",
 ]
 
 # List of 0xFF items for displaying a seed hash on the save select screen.

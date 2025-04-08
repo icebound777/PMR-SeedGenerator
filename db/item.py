@@ -97,9 +97,9 @@ class Item(Model):
             return "GEAR"
         elif 0x276 == item_id:
             return "STARPOWER"
-        elif 0x277 <= item_id <= 0x288:
+        elif 0x27D <= item_id <= 0x28F:
             return "PARTNERUPGRADE"
-        elif 0x289 <= item_id <= 0x291:
+        elif 0x290 <= item_id <= 0x298:
             return "PARTNER"
         else:
             return "OTHER"
@@ -142,7 +142,7 @@ def create_items():
             value = item_id,
             item_name = item_name,
             base_price = base_price,
-            progression = (item_id in progression_items.keys()),
+            progression = (item_id in progression_items.keys() or item_name.startswith("PowerStar")),
             unused = item_name in unused_items,
             unused_duplicates = item_name in unused_duplicates,
             unplaceable = item_name in unplaceable_items
