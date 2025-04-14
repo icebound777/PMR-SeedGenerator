@@ -12,7 +12,7 @@ SEEDS_PROD = "seeds-prod"
 SEEDS_FAIL_DEV = "seeds-fail"
 SEEDS_FAIL_PROD = "seeds-fail-prod"
 
-firestore_seed_collection = SEEDS_FAIL_DEV # Change this to fetch from different DB collection
+firestore_seed_collection = SEEDS_FAIL_PROD # Change this to fetch from different DB collection
 
 # Regenerates a failed seed by id, or latest if no id provided. Failed seed is also saved as failed_seed.json
 # Requires you to have the service_account.json DB key in the same folder
