@@ -1,8 +1,15 @@
 # Changelog
 
+## 0.30.0a (beta)
+
+### Bug Fixes
+
+* Stability
+  * Fix seed generation error during the settings combinations of `Seed Goal: Open Star Way`, `Dungeon Entrance Shuffle: Spirit dungeon + Bowser's Castle`, and `Partner Upgrade Shuffle` or `Multi Coin Block Shuffle`: These combinations would often fail due to placing a dungeon into the unreachable chapter 8, but still attempting to put Multi Coin Blocks and Super Blocks / Partner Upgrade items in there
+
 ## 0.30.0 (beta)
 
-### Feature Changes
+### Feature Changes (0.30.0)
 
 * `Multi Coin Block Shuffle` feature
   * Was formerly called `Shuffle Blocks`.
@@ -39,17 +46,17 @@
     * `Already Paid`: Stands on the side of Pleasant Path as if already paid
     * `Already Defeated`: Removed from Pleasant Path as if already defeated
 
-### Logic changes
+### Logic changes (0.30.0)
 
 * Bowser's Castle
   * In addition to the old requirements, now also expects `Watt` or the `Wattless Dark Basement` trick setting for logically entering the Bowser's Castle basement via the first Bowser door's trap door. This aims to avoid having to do the dark basement backwards if the player uses the Homeward Shroom to escape the basement early.
 
-### Quality of Life
+### Quality of Life (0.30.0)
 
 * Made Harry, the shop keeper in southern Toad Town, offer to buy, check, and claim Mario's items without first unlocking his storeroom using the `Storeroom Key`.
 * Mark pre-planted `Magical Seeds` on the pause menu's item tracker. This only happens once Mario reaches Toad Town's plaza district, to avoid auto-trackers being able to read this info early.
 
-### Tricks & Glitches
+### Tricks & Glitches (0.30.0)
 
 * New options
   * `Clippy Ledge Star Piece` (Prologue)
@@ -66,7 +73,7 @@
   * Add Super Block to `Mt. Rugged Station Jumpless Climb (Laki Teleport)`
   * Consider jumpless start for `Parakarry-less Mt. Rugged Star Piece`
 
-### Bug Fixes
+### Bug Fixes (0.30.0)
 
 * Plandomizer
   * Fix generation issues when placing gear items.
@@ -86,7 +93,7 @@
   * (Hopefully) fix crash that could happen during `Cutscene Mode: Minimal` when talking to Raphael Raven to get the Ultra Stone. This only affected console players and likely those who played on the ares emulator.
   * Fix crash during Huff n Puff battle if a full-room attack caused too many visual effects to play at once.
 
-### Miscellaneous
+### Miscellaneous (0.30.0)
 
 * Modified credits scene
   * Added `typographics` to the in-game credits, for making the `Coin Bag` item sprite.
@@ -102,7 +109,7 @@
 * New bomb trigger for Toad Town playroom
   * We originally moved the Bombette bomb trigger for opening the Toad Town playroom over to the tree, because the bomb trigger was on the wrong side of the map. We now moved that bomb trigger back to its original, wrong position, and added a second bomb trigger next to the tree. This way both of these locations work for opening the playroom, so you can show off knowing this obscure bug to your friends again :)
 
-### Additional Technical Changelog
+### Additional Technical Changelog (0.30.0)
 
 * Yaml settings changes:
   * Renamed `RequireSpecificSpirits` to `RequiredSpirits`, and is now int (was bool)

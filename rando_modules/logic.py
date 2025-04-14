@@ -820,6 +820,15 @@ def _generate_item_pools(
         if item in pool_illogical_consumables:
             pool_illogical_consumables.remove(item)
             continue
+        # If we get this far, then we have more partner upgrades than partner
+        # upgrade locations in the item pool, so we have to remove some
+        if item.item_type == "PARTNERUPGRADE":
+            partner_upgrade = random.choice([
+                x
+                for x in pool_other_items
+                if x.item_type == "PARTNERUPGRADE"
+            ])
+            pool_other_items.remove(partner_upgrade)
         #if not item.is_trapped():
         #    print(f"Attempted to remove {item} from item pools, but no pool holds such item.")
     # If we have set a badge pool limit and exceed that, remove random badges
@@ -1210,6 +1219,16 @@ def _algo_assumed_fill(
     # Place CoinBag items into MultiCoinBlock locations if necessary
     candidate_locations = multicoinblock_locations.copy()
     candidate_locations.extend(superblock_locations.copy())
+
+    # Check for locations removed due to Seed Goal Open Star Way +
+    # Shuffle Dungeon Entrances + Bowser's Castle
+    for loc in multicoinblock_locations:
+        if world_graph.get(loc) is None:
+            candidate_locations.remove(loc)
+    for loc in superblock_locations:
+        if world_graph.get(loc) is None:
+            candidate_locations.remove(loc)
+
     # Remove locations that may have a partner upgrade item placed by
     # the PartnerUpgradeShuffle.OFF option
     candidate_locations = [
@@ -1239,11 +1258,13 @@ def _algo_assumed_fill(
     if logic_settings.partner_upgrade_shuffle == PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS:
         candidate_locations = multicoinblock_locations.copy()
         candidate_locations.extend(superblock_locations.copy())
-        # Remove locations that may have a CoinBag item placed by
-        # the MultiCoinBlockShuffle.SHUFFLE option
+        # Remove locations that may be unreachable due to Seed Goal Open Star
+        # Way + Dungeon Entrance shuffle, or that may have a CoinBag item placed
+        # by the MultiCoinBlockShuffle.SHUFFLE option
         candidate_locations = [
             x for x in candidate_locations
-            if world_graph[x]["node"].current_item is None
+            if world_graph.get(x) is not None
+            and world_graph[x]["node"].current_item is None
         ]
         partner_upgrades = [
             x for x in pool_other_items
