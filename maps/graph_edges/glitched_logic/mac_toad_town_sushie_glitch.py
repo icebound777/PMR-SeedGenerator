@@ -52,6 +52,13 @@ edges_mac_add_toad_town_sushie_glitch = [
     #? Path to Fortress 1 Exit Right -> Path to Fortress 1 Exit Left
     {"from": {"map": "NOK_14", "id": 1}, "to": {"map": "NOK_14", "id": 0}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
 
+    #? Stump Eyes Wrong Exit (To Previous) -> Stump Eyes Correct Exit
+    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_02", "id": 0}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
+    #? Stump Eyes Wrong Exit (To Previous) -> Get Lost In The Forest 1
+    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_02", "id": 2}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
+    #? Stump Eyes Wrong Exit (To Previous) -> Get Lost In The Forest 2
+    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_02", "id": 3}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
+
     #? Exit to Gusty Gulch Exit West -> Exit to Gusty Gulch Exit East
     {"from": {"map": "MIM_12", "id": 0}, "to": {"map": "MIM_12", "id": 1}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
     #? Exit to Gusty Gulch Exit East -> Exit to Gusty Gulch Exit West
