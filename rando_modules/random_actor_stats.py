@@ -38,9 +38,10 @@ def get_shuffled_chapter_difficulty(
         ]
 
         # add actor to all enemy stats
-        if not actor_name in all_enemy_stats:
+        if actor_name not in all_enemy_stats:
             all_enemy_stats[actor_name] = {}
             if (    actor_name in [x for x1 in bossactor_chapter_map.values() for x in x1]
+                and actor_name != "0E_TubbaBlubba"
                 and actor_native_chapter in chapter_boss_map.values()
             ):
                 # is boss

@@ -1,8 +1,15 @@
 # Changelog
 
-## 0.30.0a (beta)
+## Next version
 
 ### Bug Fixes
+
+* Boss Shuffle
+  * Fix the final Tubba Blubba battle not properly scaling with whatever chapter 3 was scaled to. Instead Tubba scaled the same as whatever chapter the battle against Tubba's Heart was shuffled into.
+
+## 0.30.0a (beta)
+
+### Bug Fixes (0.30.0a)
 
 * Stability
   * Fix seed generation error during the settings combinations of `Seed Goal: Open Star Way`, `Dungeon Entrance Shuffle: Spirit dungeon + Bowser's Castle`, and `Partner Upgrade Shuffle` or `Multi Coin Block Shuffle`: These combinations would often fail due to placing a dungeon into the unreachable chapter 8, but still attempting to put Multi Coin Blocks and Super Blocks / Partner Upgrade items in there
