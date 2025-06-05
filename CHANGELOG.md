@@ -2,6 +2,13 @@
 
 ## Next version
 
+### Logic changes
+
+* Fixed logic not expecting boots for traversing the `RED Moving Platforms` room in Shy Guy's Toybox. Realistically this edge case has not come up yet, but could with further glitched logic additions.
+* Logic for the `Toad Town Sushie Glitch` trick setting
+  * Fixed it not setting the prologue as reachable.
+  * Fixed it not setting Forever Forest as traversable if the seed started with the forest closed off.
+
 ### Bug Fixes
 
 * Boss Shuffle
