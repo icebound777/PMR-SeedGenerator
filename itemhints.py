@@ -25,7 +25,8 @@ def get_itemhints(
     do_randomize_panels:bool,
     favors_mode:int,
     randomize_letters_mode:int,
-    keyitems_outside_dungeon:bool
+    keyitems_outside_dungeon:bool,
+    forever_forest_open:bool,
 ):
     """
     Returns a list of item hint lists for a given list of item nodes.
@@ -105,6 +106,10 @@ def get_itemhints(
                 continue
             if (    item_node.identifier in simpleletter_locations
                 and randomize_letters_mode < IncludeLettersMode.SIMPLE_LETTERS
+            ):
+                continue
+            if (    item_node.identifier == "MAC_02/GiftD"
+                and forever_forest_open
             ):
                 continue
             if (    item_node.current_item.item_name in limited_keyitems

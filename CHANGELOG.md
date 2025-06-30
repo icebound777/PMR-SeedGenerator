@@ -13,6 +13,8 @@
 
 * Boss Shuffle
   * Fix the final Tubba Blubba battle not properly scaling with whatever chapter 3 was scaled to. Instead Tubba scaled the same as whatever chapter the battle against Tubba's Heart was shuffled into.
+* Item Hints
+  * Fix Merluvlee hinting the Forest Pass even if the Fice T. item location is unavailable due to Forever Forest being set to always open.
 
 ## 0.30.0a (beta)
 
