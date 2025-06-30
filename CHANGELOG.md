@@ -2,6 +2,11 @@
 
 ## Next version
 
+### Feature Changes
+
+* Item Hints feature
+  * Merluvlee will no longer waste Mario's money by hinting these badges: Attack FX C, Slow Go
+
 ### Logic changes
 
 * Fixed logic not expecting boots for traversing the `RED Moving Platforms` room in Shy Guy's Toybox. Realistically this edge case has not come up yet, but could with further glitched logic additions.

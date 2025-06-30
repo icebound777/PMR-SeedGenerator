@@ -62,17 +62,15 @@ def get_itemhints(
         "DoubleDip",
         "QuickChange",
         "AllorNothing",
-        "SlowGo", # :D
         "MegaRush",
         "DefendPlusA",
-        "Berserker", # :D
+        "Berserker",
         "MegaQuake",
         "SJumpChg",
         "PowerRush",
         "SpeedySpin",
         "DamageDodgeA",
         "DamageDodgeB",
-        "AttackFXC", # :D
     ]
 
     # The hints table is build by pairing an item id with a word describing
