@@ -288,7 +288,6 @@ edges_jan = [
     {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": "ItemA"}, "reqs": []}, #* Path to the Volcano Exit Left -> ItemA (JamminJelly)
 
     {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": 0}, "reqs": [["MF_Ch5_RafaelMovedRoot"]], "pseudoitems": ["MF_Ch5_ZiplineBuilt"]}, #+ Let Raphael build the zipline
-    {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": 0}, "reqs": [["MF_Ch5_FoundEscapeRoute"]], "pseudoitems": ["STARSPIRIT_5", "MF_Ch5_RescuedStarSpirit"]}, #+ Get Star Spirit after escaping Volcano
 
     # JAN_23 Great Treetop Roost
     {"from": {"map": "JAN_23", "id": 0}, "to": {"map": "JAN_19", "id": 1}, "reqs": []}, # Great Treetop Roost Exit Left -> Upper Great Tree Interior Exit Top

@@ -657,6 +657,12 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
+            if "BossReward" in current_node.identifier:
+                # Star Spirits are always vanilla for now
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
             if current_node_id in plando_item_placement:
                 item_to_shuffle = current_node.vanilla_item
                 if (    item_to_shuffle.item_type == "STARPIECE"

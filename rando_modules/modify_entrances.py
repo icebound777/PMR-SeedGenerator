@@ -13,6 +13,8 @@ from rando_enums.enum_options import (
     SeedGoal,
     BossShuffleMode,
 )
+from rando_enums.enum_ingame import StarSpirits
+
 
 # Imports: Modify Bowser's Castle
 from maps.graph_edges.bc_shorten.edges_kpa import (
@@ -599,9 +601,19 @@ def set_starway_requirements(
         added_requirements.append([{"starspirits": spirits_needed}])
 
     # set specific spirits, if required
-    # the logic knows the spirits as "STARSPIRIT_X", where X is in 1-7
     for spirit_number in specific_spirits:
-        added_requirements.append([f"STARSPIRIT_{spirit_number}"])
+        if spirit_number == StarSpirits.ELDSTAR:
+            added_requirements.append(["Eldstar"])
+        elif spirit_number == StarSpirits.MAMAR:
+            added_requirements.append(["Mamar"])
+        elif spirit_number == StarSpirits.SKOLAR:
+            added_requirements.append(["Skolar"])
+        elif spirit_number == StarSpirits.MUSKULAR:
+            added_requirements.append(["Muskular"])
+        elif spirit_number == StarSpirits.KLEVAR:
+            added_requirements.append(["Klevar"])
+        elif spirit_number == StarSpirits.KALMAR:
+            added_requirements.append(["Kalmar"])
 
     if powerstars_needed > 0:
         added_requirements.append([{"powerstars": powerstars_needed}])
@@ -861,26 +873,6 @@ def get_limited_chapter_logic(
                     if type(edge["to"]["id"]) is str: # is item location
                         if (f"{edge['to']['map']}/{edge['to']['id']}") not in gear_node_ids:
                             world_graph[node_id]["edge_list"][index]["reqs"].extend([["YOUWIN"]])
-
-    # Remove logic from star spirits we do not need to rescue.
-    # This is so Rowf doesn't require us to still save them.
-    area_spiritnode_pairs = [
-        ("TRD", "TRD_10/0"),
-        ("ISK", "ISK_16/0"),
-        ("ARN", "ARN_07/0"),
-        ("OMO", "OMO_15/0"),
-        ("JAN", "JAN_22/0"),
-        ("FLO", "FLO_21/0"),
-        ("PRA", "PRA_32/0")
-    ]
-    for pair in area_spiritnode_pairs:
-        if pair[0] in out_of_logic_areas:
-            for index, edge in enumerate(world_graph[pair[1]]["edge_list"]):
-                if (   "pseudoitems" in edge
-                    and any(True for x in edge["pseudoitems"] if x.startswith("STARSPIRIT_"))
-                ):
-                    world_graph[pair[1]]["edge_list"][index]["reqs"].extend([["YOUWIN"]])
-                    break
 
     # Special case: block Kolorado's Camp in the desert if ch2 is out of logic
     kolorados_camp = ("SBK", "SBK_30/0")

@@ -292,6 +292,7 @@ item_source_types = {
     "TRD_06": {"Partner": SRC_GIVENBYNPC},
     "TRD_08": {"ItemA": SRC_LAYINGAROUND,},
     "TRD_09": {"YBlockA": SRC_ITEMBLOCK,},
+    "TRD_10": {"BossReward": SRC_DROPPEDBYENEMY,},
 
 # Mt Rugged
     "IWA_00": {"ItemA": SRC_LAYINGAROUND,
@@ -415,6 +416,7 @@ item_source_types = {
     "ISK_12": {"ItemA": SRC_LAYINGAROUND,},
     "ISK_13": {"ItemA": SRC_LAYINGAROUND,},
     "ISK_14": {"ItemA": SRC_LAYINGAROUND,},
+    "ISK_16": {"BossReward": SRC_DROPPEDBYENEMY,},
 
 # Forever Forest
     "MIM_04": {"GiftA": SRC_GIVENBYNPC,},
@@ -461,6 +463,8 @@ item_source_types = {
                "YBlockA": SRC_ITEMBLOCK,
                "YBlockB": SRC_ITEMBLOCK,
                "RandomBlockItemA": SRC_ITEMBLOCK,},
+    "ARN_07": {"BossReward": SRC_DROPPEDBYENEMY,},
+
 
 # Tubba's Castle
     "DGB_03": {"ItemA": SRC_LAYINGAROUND,},
@@ -553,6 +557,7 @@ item_source_types = {
     "OMO_13": {"ChestA": SRC_CHEST,
                "HiddenYBlockA": SRC_HIDDENBLOCK,
                "YBlockA": SRC_ITEMBLOCK,},
+    "OMO_15": {"BossReward": SRC_DROPPEDBYENEMY,},
     "OMO_17": {"YBlockA": SRC_ITEMBLOCK,
                "YBlockB": SRC_ITEMBLOCK,
                "YBlockC": SRC_ITEMBLOCK,
@@ -642,7 +647,8 @@ item_source_types = {
                "RandomBlockItemA": SRC_ITEMBLOCK,},
     "KZN_18": {"HiddenPanel": SRC_HIDDENTILE,},
     "KZN_19": {"YBlockA": SRC_ITEMBLOCK,
-               "YBlockB": SRC_ITEMBLOCK,},
+               "YBlockB": SRC_ITEMBLOCK,
+               "BossReward": SRC_DROPPEDBYENEMY,},
 
 # Flower Fields
     "FLO_03": {"GiftA": SRC_GIVENBYNPC,
@@ -673,6 +679,7 @@ item_source_types = {
     "FLO_17": {"HiddenYBlockA": SRC_HIDDENBLOCK,
                "ItemA": SRC_LAYINGAROUND,},
     "FLO_19": {"ItemA": SRC_LAYINGAROUND,},
+    "FLO_21": {"BossReward": SRC_DROPPEDBYENEMY,},
     "FLO_22": {"ItemA": SRC_GIVENBYNPC,},
     "FLO_23": {"HiddenYBlockA": SRC_HIDDENBLOCK,
                "HiddenYBlockB": SRC_HIDDENBLOCK,},
@@ -737,6 +744,7 @@ item_source_types = {
                "HiddenYBlockA": SRC_HIDDENBLOCK,},
     "PRA_27": {"ChestA": SRC_CHEST,},
     "PRA_28": {"ChestA": SRC_CHEST,},
+    "PRA_32": {"BossReward": SRC_DROPPEDBYENEMY,},
     "PRA_35": {"ChestA": SRC_CHEST,},
 
 # Bowser's Castle

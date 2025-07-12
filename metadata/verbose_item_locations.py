@@ -275,6 +275,7 @@ verbose_item_locations = {
     "TRD_06": {"Partner": "Bombette Partner"},
     "TRD_08": {"ItemA": "On The Ground",},
     "TRD_09": {"YBlockA": "Block Behind Rock",},
+    "TRD_10": {"BossReward": "Boss Reward",},
 
 # Mt Rugged
     "IWA_00": {"ItemA": "On Slide 1",
@@ -398,6 +399,7 @@ verbose_item_locations = {
     "ISK_12": {"ItemA": "On Ledge",},
     "ISK_13": {"ItemA": "On Pedestal",},
     "ISK_14": {"ItemA": "On Pedestal",},
+    "ISK_16": {"BossReward": "Boss Reward",},
 
 # Forever Forest
     "MIM_04": {"GiftA": "Bub-ulb Gift",},
@@ -444,6 +446,7 @@ verbose_item_locations = {
                "YBlockA": "Yellow Block Left",
                "YBlockB": "Yellow Block Right",
                "RandomBlockItemA": "In MultiCoinBlock",},
+    "ARN_07": {"BossReward": "Boss Reward",},
 
 # Tubba's Castle
     "DGB_03": {"ItemA": "On Table",},
@@ -536,6 +539,7 @@ verbose_item_locations = {
     "OMO_13": {"ChestA": "In Chest",
                "HiddenYBlockA": "Hidden Block",
                "YBlockA": "Yellow Block",},
+    "OMO_15": {"BossReward": "Boss Reward",},
     "OMO_17": {"YBlockA": "Yellow Block South",
                "YBlockB": "Yellow Block North 1",
                "YBlockC": "Yellow Block North 2",
@@ -625,7 +629,8 @@ verbose_item_locations = {
                "RandomBlockItemA": "In SuperBlock",},
     "KZN_18": {"HiddenPanel": "Hidden Panel",},
     "KZN_19": {"YBlockA": "Yellow Block Left",
-               "YBlockB": "Yellow Block Right",},
+               "YBlockB": "Yellow Block Right",
+               "BossReward": "Boss Reward",},
 
 # Flower Fields
     "FLO_03": {"GiftA": "Petunia Gift",
@@ -656,6 +661,7 @@ verbose_item_locations = {
     "FLO_17": {"HiddenYBlockA": "Hidden Block",
                "ItemA": "In The Flowers",},
     "FLO_19": {"ItemA": "On Cloud",},
+    "FLO_21": {"BossReward": "Boss Reward",},
     "FLO_22": {"ItemA": "Well BlueBerry Reward",},
     "FLO_23": {"HiddenYBlockA": "Upper Hidden Block",
                "HiddenYBlockB": "Lower Hidden Block",},
@@ -720,6 +726,7 @@ verbose_item_locations = {
                "HiddenYBlockA": "Hidden Block",},
     "PRA_27": {"ChestA": "In Chest",},
     "PRA_28": {"ChestA": "In Chest",},
+    "PRA_32": {"BossReward": "Boss Reward",},
     "PRA_35": {"ChestA": "In Chest",},
 
 # Bowser's Castle

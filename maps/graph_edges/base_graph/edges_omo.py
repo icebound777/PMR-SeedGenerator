@@ -204,7 +204,7 @@ edges_omo = [
     # OMO_15 RED General Guy Room
     {"from": {"map": "OMO_15", "id": 0}, "to": {"map": "OMO_14", "id": 1}, "reqs": []}, # RED General Guy Room Exit West -> RED Boss Antechamber Exit East
 
-    {"from": {"map": "OMO_15", "id": 0}, "to": {"map": "OMO_15", "id": 0}, "reqs": [], "pseudoitems": ["STARSPIRIT_4"]}, # RED General Guy Room Exit West -> RED Boss Antechamber Exit East
+    {"from": {"map": "OMO_15", "id": 0}, "to": {"map": "OMO_15", "id": "BossReward"}, "reqs": []}, #* RED General Guy Room Exit West -> BossReward (Muskular)
 
     # OMO_17 PNK Tracks Hallway
     {"from": {"map": "OMO_17", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": []}, # PNK Tracks Hallway Exit West (South) -> PNK Gourmet Guy Crossing Exit East (South)
