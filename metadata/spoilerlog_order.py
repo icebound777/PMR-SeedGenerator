@@ -84,14 +84,13 @@ custom_map_order = {
     6: { # NOK - Koopa Region
         4: 0,   # Pleasant Path Entry
         5: 1,   # Pleasant Path Bridge
-        5: 2,   # Pleasant Path Bridge
-        6: 3,   # Pleasant Crossroads
-        7: 4,   # Path to Fortress 1
-        8: 5,   # Path to Fortress 2
-        0: 6,   # Koopa Village 1
-        1: 7,   # Koopa Village 2
-        2: 8,   # Behind Koopa Village
-        3: 9,   # Fuzzy Forest
+        6: 2,   # Pleasant Crossroads
+        7: 3,   # Path to Fortress 1
+        8: 4,   # Path to Fortress 2
+        0: 5,   # Koopa Village 1
+        1: 6,   # Koopa Village 2
+        2: 7,   # Behind Koopa Village
+        3: 8,   # Fuzzy Forest
     },
     7: { # TRD - Koopa Bros Fortress
         0: 0,   # Fortress Exterior
