@@ -214,7 +214,7 @@ edges_pra = [
     # PRA_32 Crystal Summit
     {"from": {"map": "PRA_32", "id": 0}, "to": {"map": "PRA_40", "id": 1}, "reqs": []}, # Crystal Summit Door West -> Boss Antechamber Door East
 
-    {"from": {"map": "PRA_32", "id": 0}, "to": {"map": "PRA_32", "id": "BossReward"}, "reqs": []}, #* Crystal Summit Door West -> BossReward (Kalmar)
+    {"from": {"map": "PRA_32", "id": 0}, "to": {"map": "PRA_32", "id": "BossReward"}, "reqs": [], "pseudoitems": ["CHAPTERCLEAR_7"]}, #* Crystal Summit Door West -> BossReward (Kalmar)
 
     # PRA_33 Turnstyle Room
     {"from": {"map": "PRA_33", "id": 0}, "to": {"map": "PRA_35", "id": 0}, "reqs": []}, # Turnstyle Room Door East -> Triple Dip Room Door West

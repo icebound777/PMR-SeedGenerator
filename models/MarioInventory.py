@@ -75,6 +75,7 @@ class MarioInventory:
         self.favors = set()
         self.flags = set()
         self.starspirits = set()
+        self.chapter_clears: set[str] = set()
         self.item_history = []
 
         if starting_boots == StartingBoots.ULTRABOOTS:
@@ -193,6 +194,10 @@ class MarioInventory:
                   and item_object not in self.hammer
             ):
                 self.hammer.add(item_object)
+                is_new_pseudoitem = True
+            elif item_object.startswith("CHAPTERCLEAR"):
+                if item_object not in self.chapter_clears:
+                    self.chapter_clears.add(item_object)
                 is_new_pseudoitem = True
             elif item_object in ["Eldstar","Mamar","Skolar","Muskular","Misstar","Klevar","Kalmar"]:
                 if item_object not in self.starspirits:
@@ -321,6 +326,12 @@ class MarioInventory:
                     # Check star spirits count
                     if ("starspirits" in req
                     and len(self.starspirits) >= req["starspirits"]
+                    ):
+                        group_fulfilled = True
+                        break
+                    # Check chapter clears
+                    if (    "chapterclears" in req
+                        and len(self.chapter_clears) >= req["chapterclears"]
                     ):
                         group_fulfilled = True
                         break
