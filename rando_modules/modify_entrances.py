@@ -1456,7 +1456,7 @@ def get_shuffled_battles(
 
         # gather Koopa Bros boss edge and remove their battle logic
         for edge in world_graph["TRD_10/0"]["edge_list"]:
-            if (edge["to"]["map"], edge["to"]["id"]) == ("TRD_10", 0):
+            if (edge["to"]["map"], edge["to"]["id"]) == ("TRD_10", "BossReward"):
                 koopa_bros_requirements = deepcopy(edge["reqs"])
                 if chapter_boss_map[1] != 1:
                     # if Koopa Bros are no longer in ch. 1: remove their
