@@ -1476,22 +1476,22 @@ def get_shuffled_battles(
             if chapter != 1 and boss == 1:
                 if chapter == 2:
                     boss_node_id = "ISK_16/0"
-                    boss_edge_target = "ISK_16/0"
+                    boss_edge_target = "ISK_16/BossReward"
                 elif chapter == 3:
-                    boss_node_id = "ARN_11/0"
-                    boss_edge_target = "ARN_11/0"
+                    boss_node_id = "ARN_07/0"
+                    boss_edge_target = "ARN_07/BossReward"
                 elif chapter == 4:
                     boss_node_id = "OMO_15/0"
-                    boss_edge_target = "OMO_15/0"
+                    boss_edge_target = "OMO_15/BossReward"
                 elif chapter == 5:
                     boss_node_id = "KZN_19/1"
-                    boss_edge_target = "KZN_19/2"
+                    boss_edge_target = "KZN_19/BossReward"
                 elif chapter == 6:
                     boss_node_id = "FLO_21/0"
-                    boss_edge_target = "FLO_21/0"
+                    boss_edge_target = "FLO_21/BossReward"
                 elif chapter == 7:
                     boss_node_id = "PRA_32/0"
-                    boss_edge_target = "PRA_32/0"
+                    boss_edge_target = "PRA_32/BossReward"
                 new_kb_boss_edges.append((boss_node_id, boss_edge_target))
 
         for boss_node_id, boss_edge_target in new_kb_boss_edges:
