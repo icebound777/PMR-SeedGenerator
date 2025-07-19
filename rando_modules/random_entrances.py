@@ -47,7 +47,7 @@ def shuffle_dungeon_entrances(
     dungeons_to_shuffle: list[int] = list()
 
     if limit_chapter_logic and len(required_star_spirits) > 0:
-        dungeons_to_shuffle = required_star_spirits
+        dungeons_to_shuffle = required_star_spirits.copy()
     else:
         dungeons_to_shuffle = [
             StarSpirits.ELDSTAR,
