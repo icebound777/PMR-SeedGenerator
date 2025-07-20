@@ -147,7 +147,7 @@ class RandomSeed:
                         4
                     )
                 elif self.plando_data.magical_seeds_count > logic_settings.magical_seeds_required:
-                    logic_settings.magical_seeds_required = self.plando_data.magical_seeds_counts_count
+                    logic_settings.magical_seeds_required = self.plando_data.magical_seeds_count
 
                 if logic_settings.starway_chapters_needed_count == -1:
                     # note: don't roll zero here
