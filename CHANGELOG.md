@@ -1,11 +1,38 @@
 # Changelog
 
-## Next version
+## 0.31.0 (beta)
 
 ### Feature Changes
 
+* Star Spirits as items
+  * The 7 Star Spirits have been turned into items and can now be shuffled away from their usual spots guarded by the chapter bosses.
+  * Picking up any Star Spirit item marks that spirit on the corresponding pause menu tab, increases Mario's Star Energy by one, and unlocks the next Star Power move.
+  * The boss rewards, regardless of whether the Star Spirits are in their vanilla location or not, are now included in the pause menu map's item check counters.
+* `Spirit Shuffle Mode` option
+  * The new option for shuffling the Star Spirit items.
+  * This option has three different values:
+    * `Vanilla`: Star Spirits are chapter boss rewards, as before
+    * `Same Chapter`: Star Spirits are items that get shuffled into different locations within their respective "home" chapter. E.g. the Star Spirit of chapter 1, Eldstar, could appear anywhere in the Koopa Region or Koopa Bros. Fortress (including panels or Koopa Koot favors, if those are turned on).
+    * `Anywhere`: Star Spirits are items that get shuffled anywhere
+* New `Star Way Chapters Needed` and `Star Beam Chapters Needed` options
+  * These options join Star Spirits and Power Stars as possible requirements for opening Star Way and for obtaining the Star Beam item location, respectively.
+  * The sign posts on Shooting Star Summit and in Star Sanctuary have been updated to include the required number of chapters to beat, if any.
+* `Required Spirits` option renamed to `Required Chapters`
+  * Star Way requiring specific spirits has been changed to Star Way requiring specific chapters instead. If you keep the new `Spirit Shuffle Mode` set to vanilla, then this change has absolutely no impact on your seed logic when compared to before.
+  * The holograms on Shooting Star Summit, which used to show which specific spirits were required, now instead show other NPC holograms corresponding to the chapters that need to be cleared:
+    * Chapter 1: Koopa hologram
+    * Chapter 2: Mouser hologram
+    * Chapter 3: Boo hologram
+    * Chapter 4: Shy Guy hologram
+    * Chapter 5: Yoshi kid hologram
+    * Chapter 6: Bub-ulb hologram
+    * Chapter 7: Penguin hologram
+  * It is no longer possible to require specific spirits for Star Way or Star Beam.
+* `Plandomizer` feature
+  * Now allows placing Star Spirit items.
+  * Now allows placing items into Boss Reward item locations (see Miscellaneous > Spoiler Log further below).
 * Item Hints feature
-  * Merluvlee will no longer waste Mario's money by hinting these badges: Attack FX C, Slow Go
+  * Merluvlee will no longer waste Mario's money by hinting these badges: `Attack FX C`, `Slow Go`.
 
 ### Logic changes
 
@@ -13,6 +40,8 @@
 * Logic for the `Toad Town Sushie Glitch` trick setting
   * Fixed it not setting the prologue as reachable.
   * Fixed it not setting Forever Forest as traversable if the seed started with the forest closed off.
+* Logic for saved spirits / cleared chapters
+  * All seed progression that formerly checked how many spirits Mario had saved now instead checks how many chapters Mario has cleared. This includes, but is not limited to, Rowf's badge shop progress, the unlocking of Koopa Koot favors, and the logic for accessing the different dojo battles. This also affects Progressive Scaling.
 
 ### Bug Fixes
 
@@ -20,6 +49,38 @@
   * Fix the final Tubba Blubba battle not properly scaling with whatever chapter 3 was scaled to. Instead Tubba scaled the same as whatever chapter the battle against Tubba's Heart was shuffled into.
 * Item Hints
   * Fix Merluvlee hinting the Forest Pass even if the Fice T. item location is unavailable due to Forever Forest being set to always open.
+
+### Miscellaneous
+
+* Spoiler Log
+  * Added `Boss Reward` item locations for each of the 7 main chapter bosses.
+    * This now finally makes it clear which boss is expected to be defeated when. Formerly this could only be guessed from item locations starting to appear which require a certain number of spirits.
+  * Renamed `required_spirits` section to `required_chapters`.
+  * `required_chapters` no longer lists Star Spirit names, and now only gives the chapter numbers.
+* RAM locations docs
+  * Updated the changed item IDs for the partners
+  * Added missing Star Beam item ID to `Key Items` list
+  * Added Star Spirit item IDs to `Key Items` list
+  * Added the 7 new `Boss Reward` item check collected flags
+
+### Additional Technical Changelog
+
+* Changed item IDs due to the new Star Spirit items
+  * New `Eldstar` item on ID 0x277
+  * New `Mamar` item on ID 0x278
+  * New `Skolar` item on ID 0x279
+  * New `Muskular` item on ID 0x27A
+  * New `Misstar` item on ID 0x27B
+  * New `Klevar` item on ID 0x27C
+  * New `Kalmar` item on ID 0x27D
+  * This change shifts all other items beyond item ID 0x276 up by 7 item IDs. The final item in the list is now `Bow` on item ID 0x29F
+* New `STARSPIRIT` item type within seed generator code
+  * The Star Spirit items have a new, aptly named item type associated with them
+* Yaml settings changes:
+  * Added `SpiritShuffleMode` (int)
+  * Renamed `RequiredSpirits` to `RequiredChapters`
+  * Added `StarWayChaptersNeededCnt` (int)
+  * Added `StarBeamChaptersNeeded` (int)
 
 ## 0.30.0a (beta)
 
