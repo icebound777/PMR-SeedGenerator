@@ -505,6 +505,7 @@ class RandomSeed:
             logic_settings.include_letters_mode,
             logic_settings.keyitems_outside_dungeon,
             logic_settings.foreverforest_open,
+            logic_settings.spirit_shuffle_mode,
         )
 
         # Random quiz

@@ -3,6 +3,7 @@ from rando_enums.enum_options import (
     IncludeFavorsMode,
     IncludeLettersMode,
     PartnerShuffle,
+    SpiritShuffleMode,
 )
 
 from metadata.item_source_types import item_source_types as source_types
@@ -27,6 +28,7 @@ def get_itemhints(
     randomize_letters_mode:int,
     keyitems_outside_dungeon:bool,
     forever_forest_open:bool,
+    spirit_shuffle_mode:SpiritShuffleMode,
 ):
     """
     Returns a list of item hint lists for a given list of item nodes.
@@ -76,7 +78,7 @@ def get_itemhints(
     # The hints table is build by pairing an item id with a word describing
     # a map and a item source type (like 'given by npc' or 'in block')
     for item_node in placed_items:
-        if item_node.current_item.item_type in ["KEYITEM","BADGE","STARPIECE","PARTNER"]:
+        if item_node.current_item.item_type in ["KEYITEM","BADGE","STARPIECE","PARTNER","STARSPIRIT"]:
             # Skip current item hint if not randomized
             if (    item_node.key_name_item.startswith("Shop")
                 and not do_randomize_shops
@@ -127,6 +129,12 @@ def get_itemhints(
                 or (    item_node.current_item.item_type == "KEYITEM"
                     and item_node.current_item.item_name in uninteresting_keyitems)
                 or item_node.current_item.is_trapped()
+            ):
+                continue
+
+            # Skip Star Spirits if not randomized
+            if (    item_node.current_item.item_type == "STARSPIRIT"
+                and spirit_shuffle_mode == SpiritShuffleMode.VANILLA
             ):
                 continue
 
