@@ -199,6 +199,10 @@ class MarioInventory:
                 if item_object not in self.chapter_clears:
                     self.chapter_clears.add(item_object)
                 is_new_pseudoitem = True
+            elif item_object in ["Eldstar","Mamar","Skolar","Muskular","Misstar","Klevar","Kalmar"]:
+                if item_object not in self.starspirits:
+                    self.starspirits.add(item_object)
+                is_new_pseudoitem = True
             else:
                 if item_object not in self.items:
                     self.items.add(item_object)
