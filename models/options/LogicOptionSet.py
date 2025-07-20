@@ -123,6 +123,7 @@ class LogicOptionSet():
         self.starway_powerstars_needed = get_option_default_value("StarWayPowerStarsNeeded")
         self.shuffle_starbeam = False
         self.starbeam_location = area_name_id_map["HOS"]
+        self.starbeam_chapters_needed = get_option_default_value("StarBeamChaptersNeeded")
         self.starbeam_spirits_needed = get_option_default_value("StarBeamSpiritsNeeded")
         self.starbeam_powerstars_needed = get_option_default_value("StarBeamPowerStarsNeeded")
         self.star_hunt_total = get_option_default_value("StarHuntTotal")

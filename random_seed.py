@@ -10,6 +10,7 @@ from rando_enums.enum_options import (
     DungeonEntranceShuffle,
     RequiredChapters,
     BowserDoorQuiz,
+    SpiritShuffleMode,
 )
 
 from itemhints import get_itemhints
@@ -151,18 +152,31 @@ class RandomSeed:
                 if logic_settings.starway_chapters_needed_count == -1:
                     # note: don't roll zero here
                     logic_settings.starway_chapters_needed_count = random.randint(1, 7)
+                if logic_settings.starway_chapters_needed_count in [0, 7]:
+                    logic_settings.required_chapters = RequiredChapters.ANY
 
                 if logic_settings.starway_spirits_needed_count == -1:
                     # note: don't roll zero here
-                    logic_settings.starway_spirits_needed_count = random.randint(1, 7)
+                    if logic_settings.required_chapters == RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC:
+                        logic_settings.starway_spirits_needed_count = random.randint(1, logic_settings.starway_chapters_needed_count)
+                    else:
+                        logic_settings.starway_spirits_needed_count = random.randint(1, 7)
 
-                if logic_settings.starbeam_chapters_needed_count == -1:
+                if logic_settings.starbeam_chapters_needed == -1:
                     # note: don't roll zero here
-                    logic_settings.starbeam_chapters_needed_count = random.randint(1, 7)
+                    if logic_settings.required_chapters == RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC:
+                        logic_settings.starbeam_chapters_needed = 0
+                    else:
+                        logic_settings.starbeam_chapters_needed = random.randint(1, 7)
 
                 if logic_settings.starbeam_spirits_needed == -1:
                     # note: don't roll zero here
-                    logic_settings.starbeam_spirits_needed = random.randint(1, 7)
+                    if (    logic_settings.required_chapters == RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC
+                        and logic_settings.spirit_shuffle_mode != SpiritShuffleMode.ANYWHERE
+                    ):
+                        logic_settings.starbeam_spirits_needed = random.randint(1, logic_settings.starway_chapters_needed_count)
+                    else:
+                        logic_settings.starbeam_spirits_needed = random.randint(1, 7)
 
                 if logic_settings.star_hunt_total == -1:
                     min_total_stars = max([
@@ -189,10 +203,6 @@ class RandomSeed:
                         int(logic_settings.starway_powerstars_needed * 0.7) + 1,
                         logic_settings.star_hunt_total
                     )
-
-                # Unset settings that become meaningless due to other settings
-                if logic_settings.starway_chapters_needed_count in [0, 7]:
-                    logic_settings.required_chapters = RequiredChapters.ANY
 
                 # Select required chapters
                 chosen_chapters = []
