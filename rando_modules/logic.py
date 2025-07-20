@@ -662,6 +662,11 @@ def _generate_item_pools(
             if (    logic_settings.spirit_shuffle_mode == SpiritShuffleMode.VANILLA
                 and "BossReward" in current_node.identifier
             ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Spirit Shuffle Mode\" setting being set to \"Vanilla\""
+                    )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
