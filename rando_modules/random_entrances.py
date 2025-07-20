@@ -46,7 +46,7 @@ def shuffle_dungeon_entrances(
     dungeons_to_shuffle: list[int] = list()
 
     if limit_chapter_logic and len(required_chapters) > 0:
-        dungeons_to_shuffle = required_chapters
+        dungeons_to_shuffle = required_chapters.copy()
     else:
         dungeons_to_shuffle = [1,2,3,4,5,6,7]
 
