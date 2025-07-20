@@ -7,6 +7,8 @@ from copy import deepcopy
 
 from worldgraph import adjust
 
+from metadata.area_name_mappings import chapter_areaname_map
+
 from rando_enums.enum_options import (
     GearShuffleMode,
     BowserCastleMode,
@@ -584,7 +586,8 @@ def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
 def set_starway_requirements(
     world_graph: dict,
     spirits_needed: int,
-    specific_spirits: list,
+    chapters_needed: int,
+    specific_chapters: list,
     powerstars_needed: int,
     seed_goal: SeedGoal,
     forced_antiguysunit: bool,
@@ -600,21 +603,15 @@ def set_starway_requirements(
     if spirits_needed > 0:
         added_requirements.append([{"starspirits": spirits_needed}])
 
-    # set specific spirits, if required
-    for spirit_number in specific_spirits:
-        if spirit_number == StarSpirits.ELDSTAR:
-            added_requirements.append(["Eldstar"])
-        elif spirit_number == StarSpirits.MAMAR:
-            added_requirements.append(["Mamar"])
-        elif spirit_number == StarSpirits.SKOLAR:
-            added_requirements.append(["Skolar"])
-        elif spirit_number == StarSpirits.MUSKULAR:
-            added_requirements.append(["Muskular"])
-        elif spirit_number == StarSpirits.KLEVAR:
-            added_requirements.append(["Klevar"])
-        elif spirit_number == StarSpirits.KALMAR:
-            added_requirements.append(["Kalmar"])
+    # set number of chapters needed
+    if chapters_needed > 0:
+        added_requirements.append([{"chapterclears": chapters_needed}])
 
+    # set specific spirits, if required
+    for chapter_number in specific_chapters:
+        added_requirements.append([f"CHAPTERCLEAR_{chapter_number}"])
+
+    # set number of power stars needed
     if powerstars_needed > 0:
         added_requirements.append([{"powerstars": powerstars_needed}])
 
@@ -718,16 +715,19 @@ def set_starway_requirements(
 
 def set_starbeam_requirements(
     world_graph: dict,
+    chapters_needed: int,
     spirits_needed: int,
     powerstars_needed: int,
     forced_antiguysunit: bool,
 ) -> dict:
     """
-    Returns the modified world graph itself, modified to set the spirits
-    and power stars required to collect the Star Beam item location.
+    Returns the modified world graph itself, modified to set the chapters,
+    spirits, and power stars required to collect the Star Beam item location.
     """
     added_requirements = []
 
+    if chapters_needed > 0:
+        added_requirements.append([{"chapterclears": chapters_needed}])
     if spirits_needed > 0:
         added_requirements.append([{"starspirits": spirits_needed}])
     if powerstars_needed > 0:
@@ -828,7 +828,7 @@ def set_starbeam_requirements(
 
 def get_limited_chapter_logic(
     world_graph: dict,
-    chosen_spirits: list,
+    chosen_chapters: list,
     gear_shuffle_mode: GearShuffleMode
 ) -> dict:
     """
@@ -838,19 +838,9 @@ def get_limited_chapter_logic(
     effectively out of logic, but still allows the item placement to put
     some progression items outside of the required chapters.
     """
-    chapter_areaname_map = {
-        1: ["NOK","TRD"],
-        2: ["IWA","SBK","DRO","ISK"],
-        3: ["MIM","OBK","ARN","DGB"],
-        4: ["OMO"],
-        5: ["JAN","KZN"],
-        6: ["FLO"],
-        7: ["SAM","PRA"],
-        8: ["KPA"]
-    }
     out_of_logic_areas = []
-    for chapter, area_list in chapter_areaname_map.items():
-        if chapter not in chosen_spirits:
+    for chapter in chapter_areaname_map.keys():
+        if chapter not in chosen_chapters:
             out_of_logic_areas.extend(chapter_areaname_map[chapter])
 
     if gear_shuffle_mode == GearShuffleMode.FULL_SHUFFLE:

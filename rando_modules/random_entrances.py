@@ -11,12 +11,11 @@ from db.node import Node
 from worldgraph import adjust
 
 from metadata.verbose_area_names import verbose_area_names
-from rando_enums.enum_ingame import StarSpirits
 
 def shuffle_dungeon_entrances(
     world_graph:dict,
-    starway_spirits_needed_count:int,
-    required_star_spirits:list[int],
+    starway_chapters_needed_count:int,
+    required_chapters: list[int],
     limit_chapter_logic: bool,
     shuffle_bowsers_castle:bool,
     write_spoilers:bool,
@@ -31,36 +30,31 @@ def shuffle_dungeon_entrances(
         return target_node_id
 
     outside_dungeon_nodeids: dict[int, str] = {
-        StarSpirits.ELDSTAR:  "NOK_15/1",
-        StarSpirits.MAMAR:    "SBK_02/4",
-        StarSpirits.SKOLAR:   "ARN_04/1",
-        StarSpirits.MUSKULAR: "MAC_04/2",
-        StarSpirits.MISSTAR:  "JAN_22/2",
-        StarSpirits.KLEVAR:   "MAC_01/5",
-        StarSpirits.KALMAR:   "SAM_10/1",
+        1: "NOK_15/1",
+        2: "SBK_02/4",
+        3: "ARN_04/1",
+        4: "MAC_04/2",
+        5: "JAN_22/2",
+        6: "MAC_01/5",
+        7: "SAM_10/1",
         8: "HOS_20/2",
     }
 
-    if starway_spirits_needed_count > 6:
+    if starway_chapters_needed_count > 6:
         shuffle_bowsers_castle = False
 
     dungeons_to_shuffle: list[int] = list()
 
-    if limit_chapter_logic and len(required_star_spirits) > 0:
-        dungeons_to_shuffle = required_star_spirits
+    if limit_chapter_logic and len(required_chapters) > 0:
+        dungeons_to_shuffle = required_chapters
     else:
-        dungeons_to_shuffle = [
-            StarSpirits.ELDSTAR,
-            StarSpirits.MAMAR,
-            StarSpirits.SKOLAR,
-            StarSpirits.MUSKULAR,
-            StarSpirits.MISSTAR,
-            StarSpirits.KLEVAR,
-            StarSpirits.KALMAR,
-        ]
+        dungeons_to_shuffle = [1,2,3,4,5,6,7]
 
-    if shuffle_bowsers_castle and starway_spirits_needed_count < 7 and not limit_chapter_logic:
-        # cannot be used with requiring 7 spirits for star way, because
+    if (    shuffle_bowsers_castle
+        and starway_chapters_needed_count < 7
+        and not limit_chapter_logic
+    ):
+        # cannot be used with requiring 7 chapters for star way, because
         # otherwise you'd lock one of the 7 dungeons needed to open star way
         # behind star way itself
         dungeons_to_shuffle.append(8)

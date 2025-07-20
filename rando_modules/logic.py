@@ -24,6 +24,7 @@ from rando_enums.enum_options import (
     MultiCoinBlockShuffle,
     PartnerShuffle,
     DojoShuffle,
+    SpiritShuffleMode,
 )
 
 from rando_modules.modify_itempool import (
@@ -57,6 +58,7 @@ from metadata.itemlocation_special import (
     superblock_locations,
     multicoinblock_locations,
 )
+from metadata.area_name_mappings import chapter_areaname_map
 from metadata.progression_items import (
     progression_miscitems as progression_miscitems_names,
     progression_items,
@@ -657,8 +659,9 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
-            if "BossReward" in current_node.identifier:
-                # Star Spirits are always vanilla for now
+            if (    logic_settings.spirit_shuffle_mode == SpiritShuffleMode.VANILLA
+                and "BossReward" in current_node.identifier
+            ):
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
@@ -1292,6 +1295,9 @@ def _algo_assumed_fill(
     pool_combined_progression_items = pool_progression_items + pool_misc_progression_items
     random.shuffle(pool_combined_progression_items)
 
+    if logic_settings.spirit_shuffle_mode == SpiritShuffleMode.SAME_CHAPTER:
+        pool_combined_progression_items.sort(key=lambda x: x.item_type == "STARSPIRIT")
+
     dungeon_restricted_items = {}
     if not logic_settings.keyitems_outside_dungeon:
         for dungeon in limited_by_item_areas:
@@ -1376,6 +1382,25 @@ def _algo_assumed_fill(
                 candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
             else:
                 candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type != "GEAR"]
+
+        if (    item.item_type == "STARSPIRIT"
+            and logic_settings.spirit_shuffle_mode == SpiritShuffleMode.SAME_CHAPTER
+        ):
+            spirit_chapter_map = {
+                "Eldstar": 1,
+                "Mamar": 2,
+                "Skolar": 3,
+                "Muskular": 4,
+                "Misstar": 5,
+                "Klevar": 6,
+                "Kalmar": 7,
+            }
+            area_list = chapter_areaname_map[spirit_chapter_map[item.item_name]]
+            candidate_locations = [
+                node
+                for node in candidate_locations
+                if any(True for area in area_list if node.identifier.startswith(area))
+            ]
 
 
         if len(candidate_locations) == 0:

@@ -8,7 +8,7 @@ from metadata.verbose_area_names import verbose_area_names
 
 from metadata.partners_meta import all_partners
 
-from rando_enums.enum_options import RequiredSpirits, SeedGoal
+from rando_enums.enum_options import RequiredChapters, SeedGoal
 
 from plandomizer.plando_metadata import (
     allowed_placeholders,
@@ -36,7 +36,7 @@ class TransformedPlandoData():
 
         if plando_data is None:
             self.boss_battles: dict[int, int] | None = None
-            self.required_spirits: list[int] | None = None
+            self.required_chapters: list[int] | None = None
             self.difficulty: dict[int, int] | None = None
             self.move_costs: dict[str, dict[str, dict[str, int]]] | None = None
             self.item_placement: dict[str, Item] | None = None
@@ -45,7 +45,7 @@ class TransformedPlandoData():
             return
 
         self.boss_battles: dict[int, int] | None  = plando_data.get("boss_battles")
-        self.required_spirits: list[int] | None = plando_data.get("required_spirits")
+        self.required_chapters: list[int] | None = plando_data.get("required_chapters")
         self.difficulty: dict[int, int] | None = plando_data.get("difficulty")
         self.move_costs: dict[str, dict[str, dict[str, int]]] | None = plando_data.get("move_costs")
         self.dungeon_entrances: dict[int, int] | None = plando_data.get("dungeon_entrances")
@@ -54,7 +54,7 @@ class TransformedPlandoData():
 
         self.plando_active = (
             (self.boss_battles is not None and len(self.boss_battles) > 0)
-         or (self.required_spirits is not None and len(self.required_spirits) > 0)
+         or (self.required_chapters is not None and len(self.required_chapters) > 0)
          or (self.difficulty is not None and len(self.difficulty) > 0)
          or (self.move_costs is not None and len(self.move_costs) > 0)
          or (plando_data.get("items") is not None and len(plando_data.get("items")) > 0)
@@ -193,9 +193,9 @@ class TransformedPlandoData():
                 "more of the badges from Rowf's or Merlow's shops are plando'd"
             )
 
-        # Assert that Required Spirits is not set to Limit Chapter Logic if
+        # Assert that Required Chapters is not set to Limit Chapter Logic if
         # a chapter 8 entrance is plando'd
-        if (    rando_settings.logic_settings.required_spirits == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
+        if (    rando_settings.logic_settings.required_chapters == RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC
             and self.dungeon_entrances is not None
             and (   8 in self.dungeon_entrances
                  or 8 in self.dungeon_entrances.values()
@@ -207,13 +207,13 @@ class TransformedPlandoData():
             )
 
         # Assert that if the seed goal is set to Open Star Way and Required
-        # Spirits is active, none of the required spirit's dungeons are behind
+        # Chapters is active, none of the required chapters' dungeons are behind
         # Star Haven
         if (    rando_settings.logic_settings.seed_goal == SeedGoal.OPEN_STARWAY
             and self.dungeon_entrances is not None
-            and self.required_spirits is not None
+            and self.required_chapters is not None
             and 8 in self.dungeon_entrances
-            and self.dungeon_entrances[8] in self.required_spirits
+            and self.dungeon_entrances[8] in self.required_chapters
         ):
             raise PlandoSettingsMismatchError(
                 "Plandomizer error: The Seed Goal is Open Star Way, but "\
@@ -221,31 +221,31 @@ class TransformedPlandoData():
                 "to Star Haven"
             )
 
-        # Assert that if Required Spirits is active in any way, none of
+        # Assert that if Required Chapters is active in any way, none of
         # the required dungeons are behind Star Haven
         if (    self.dungeon_entrances is not None
-            and self.required_spirits is not None
-            and rando_settings.logic_settings.required_spirits != RequiredSpirits.ANY
+            and self.required_chapters is not None
+            and rando_settings.logic_settings.required_chapters != RequiredChapters.ANY
             and 8 in self.dungeon_entrances
             and any(
-                    True for x in self.required_spirits
+                    True for x in self.required_chapters
                     if x == self.dungeon_entrances[8]
                 )
         ):
             raise PlandoSettingsMismatchError(
-                "Plandomizer error: Required Spirits is set active, but one "\
-                "of the required spirits is placed behind Star Haven"
+                "Plandomizer error: Required Chapters is set active, but one "\
+                "of the required chapters is placed behind Star Haven"
             )
 
-        # Assert that if Star Way requires 7 spirits to open, that no
+        # Assert that if Star Way requires 7 chapters to open, that no
         # chapter 8 connection is plando'd
         if (    self.dungeon_entrances is not None
-            and rando_settings.logic_settings.starway_spirits_needed_count == 7
+            and rando_settings.logic_settings.starway_chapters_needed_count == 7
             and (   8 in self.dungeon_entrances
                  or 8 in self.dungeon_entrances.values()
                 )
         ):
             raise PlandoSettingsMismatchError(
-                "Plandomizer error: The number of spirits to open Star Way "\
+                "Plandomizer error: The number of chapters to open Star Way "\
                 "is set to 7, but a chapter 8 dungeon connection is plando'd"
             )

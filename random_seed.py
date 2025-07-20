@@ -8,7 +8,7 @@ from rando_enums.enum_options import (
     GearShuffleMode,
     PartnerUpgradeShuffle,
     DungeonEntranceShuffle,
-    RequiredSpirits,
+    RequiredChapters,
     BowserDoorQuiz,
 )
 
@@ -64,7 +64,6 @@ from worldgraph import (
     enrich_graph_data
 )
 
-from rando_enums.enum_ingame import StarSpirits
 from metadata.starting_maps import starting_maps
 from metadata.starting_items import (
     allowed_starting_badges,
@@ -147,11 +146,19 @@ class RandomSeed:
                         4
                     )
                 elif self.plando_data.magical_seeds_count > logic_settings.magical_seeds_required:
-                    logic_settings.magical_seeds_required = self.plando_data.magical_seeds_count
+                    logic_settings.magical_seeds_required = self.plando_data.magical_seeds_counts_count
+
+                if logic_settings.starway_chapters_needed_count == -1:
+                    # note: don't roll zero here
+                    logic_settings.starway_chapters_needed_count = random.randint(1, 7)
 
                 if logic_settings.starway_spirits_needed_count == -1:
                     # note: don't roll zero here
                     logic_settings.starway_spirits_needed_count = random.randint(1, 7)
+
+                if logic_settings.starbeam_chapters_needed_count == -1:
+                    # note: don't roll zero here
+                    logic_settings.starbeam_chapters_needed_count = random.randint(1, 7)
 
                 if logic_settings.starbeam_spirits_needed == -1:
                     # note: don't roll zero here
@@ -184,43 +191,35 @@ class RandomSeed:
                     )
 
                 # Unset settings that become meaningless due to other settings
-                if logic_settings.starway_spirits_needed_count in [0, 7]:
-                    logic_settings.required_spirits = RequiredSpirits.ANY
+                if logic_settings.starway_chapters_needed_count in [0, 7]:
+                    logic_settings.required_chapters = RequiredChapters.ANY
 
-                # Select required star spirits
-                chosen_spirits = []
-                all_spirits = [
-                    StarSpirits.ELDSTAR,
-                    StarSpirits.MAMAR,
-                    StarSpirits.SKOLAR,
-                    StarSpirits.MUSKULAR,
-                    StarSpirits.MISSTAR,
-                    StarSpirits.KLEVAR,
-                    StarSpirits.KALMAR,
-                ]
-                plando_required_spirits: list[int] | None = self.plando_data.required_spirits
-                if (    logic_settings.required_spirits >= RequiredSpirits.SPECIFIC
-                    and 0 < logic_settings.starway_spirits_needed_count < 7
-                    and (plando_required_spirits is None or len(plando_required_spirits) < 7)
+                # Select required chapters
+                chosen_chapters = []
+                all_chapters = [1,2,3,4,5,6,7]
+                plando_required_chapters: list[int] | None = self.plando_data.required_chapters
+                if (    logic_settings.required_chapters >= RequiredChapters.SPECIFIC
+                    and 0 < logic_settings.starway_chapters_needed_count < 7
+                    and (plando_required_chapters is None or len(plando_required_chapters) < 7)
                 ):
-                    # Set spirits
-                    if plando_required_spirits is not None:
-                        chosen_spirits.extend(plando_required_spirits)
-                    if len(chosen_spirits) < logic_settings.starway_spirits_needed_count:
-                        all_spirits = list(set(all_spirits) - set(chosen_spirits))
-                        for _ in range(logic_settings.starway_spirits_needed_count - len(chosen_spirits)):
-                            rnd_spirit = random.randint(0, len(all_spirits) - 1)
-                            chosen_spirits.append(all_spirits.pop(rnd_spirit))
-                    # Encode set spirits
-                    encoded_spirits = 0
-                    for spirit in chosen_spirits:
-                        encoded_spirits = encoded_spirits | (1 << (spirit - 1))
-                    logic_settings.starway_spirits_needed_encoded = encoded_spirits
+                    # Set chapters
+                    if plando_required_chapters is not None:
+                        chosen_chapters.extend(plando_required_chapters)
+                    if len(chosen_chapters) < logic_settings.starway_chapters_needed_count:
+                        all_chapters = list(set(all_chapters) - set(chosen_chapters))
+                        for _ in range(logic_settings.starway_chapters_needed_count - len(chosen_chapters)):
+                            rnd_chapter = random.randint(0, len(all_chapters) - 1)
+                            chosen_chapters.append(all_chapters.pop(rnd_chapter))
+                    # Encode set chapters
+                    encoded_chapters = 0
+                    for chapter in chosen_chapters:
+                        encoded_chapters = encoded_chapters | (1 << (chapter - 1))
+                    logic_settings.starway_chapters_needed_encoded = encoded_chapters
 
-                    chosen_spirits.sort()
-                    if self.spoilerlog_additions.get("required_spirits") is None:
-                        self.spoilerlog_additions["required_spirits"] = []
-                    self.spoilerlog_additions["required_spirits"].extend(chosen_spirits)
+                    chosen_chapters.sort()
+                    if self.spoilerlog_additions.get("required_chapters") is None:
+                        self.spoilerlog_additions["required_chapters"] = []
+                    self.spoilerlog_additions["required_chapters"].extend(chosen_chapters)
 
                 # Modify entrances if needed
                 entrance_changes = []
@@ -240,9 +239,9 @@ class RandomSeed:
                 ):
                     entrance_changes, modified_world_graph, spoilerlog_info = shuffle_dungeon_entrances(
                         world_graph = modified_world_graph,
-                        starway_spirits_needed_count = logic_settings.starway_spirits_needed_count,
-                        required_star_spirits = chosen_spirits,
-                        limit_chapter_logic = (logic_settings.required_spirits == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC),
+                        starway_chapters_needed_count = logic_settings.starway_chapters_needed_count,
+                        required_chapters = chosen_chapters,
+                        limit_chapter_logic = (logic_settings.required_chapters == RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC),
                         shuffle_bowsers_castle = (
                             logic_settings.shuffle_dungeon_entrances == DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
                         ),
@@ -286,12 +285,14 @@ class RandomSeed:
                     logic_settings.randomize_puzzles
                 )
 
-                ## Setup star spirits, power stars, and relevant logic
-                if (   logic_settings.starbeam_spirits_needed > 0
+                ## Setup chapters, star spirits, power stars, and relevant logic
+                if (   logic_settings.starbeam_chapters_needed > 0
+                    or logic_settings.starbeam_spirits_needed > 0
                     or logic_settings.starbeam_powerstars_needed > 0
                 ):
                     modified_world_graph = set_starbeam_requirements(
                         world_graph=modified_world_graph,
+                        chapters_needed=logic_settings.starbeam_chapters_needed,
                         spirits_needed=logic_settings.starbeam_spirits_needed,
                         powerstars_needed=logic_settings.starbeam_powerstars_needed,
                         forced_antiguysunit=(logic_settings.bowserdoor_quiz == BowserDoorQuiz.ANTI_GUYS_UNIT),
@@ -300,7 +301,8 @@ class RandomSeed:
                 entrance_changes, modified_world_graph = set_starway_requirements(
                     world_graph=modified_world_graph,
                     spirits_needed=logic_settings.starway_spirits_needed_count,
-                    specific_spirits=chosen_spirits,
+                    chapters_needed=logic_settings.starway_chapters_needed_count,
+                    specific_chapters=chosen_chapters,
                     powerstars_needed=( # don't expect all, but also don't bottleneck
                         logic_settings.star_hunt_total
                       - int(  (  logic_settings.star_hunt_total
@@ -315,11 +317,11 @@ class RandomSeed:
                 if entrance_changes:
                     self.extend_entrances(entrance_changes)
 
-                if logic_settings.required_spirits == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC:
+                if logic_settings.required_chapters == RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC:
                     modified_world_graph = get_limited_chapter_logic(
-                        modified_world_graph,
-                        chosen_spirits,
-                        logic_settings.gear_shuffle_mode
+                        world_graph=modified_world_graph,
+                        chosen_chapters=chosen_chapters,
+                        gear_shuffle_mode=logic_settings.gear_shuffle_mode,
                     )
 
                 # Cull unneeded data from world graph if access to maps was

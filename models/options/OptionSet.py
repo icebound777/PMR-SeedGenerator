@@ -251,6 +251,8 @@ class OptionSet:
         # Item Pool Modification
         if "GearShuffleMode" in options_dict:
             self.logic_settings.gear_shuffle_mode = options_dict.get("GearShuffleMode")
+        if "SpiritShuffleMode" in options_dict:
+            self.logic_settings.spirit_shuffle_mode = options_dict.get("SpiritShuffleMode")
         if "AddItemPouches" in options_dict:
             self.logic_settings.add_item_pouches = options_dict.get("AddItemPouches")
         if "PartnerUpgradeShuffle" in options_dict:
@@ -422,8 +424,8 @@ class OptionSet:
         if "StarWaySpiritsNeededCnt" in options_dict:
             self.logic_settings.starway_spirits_needed_count = options_dict.get("StarWaySpiritsNeededCnt")
         # auto-set, not changeable via settings
-        #if "StarWaySpiritsNeededEnc" in options_dict:
-        #    self.starway_spirits_needed_encoded = options_dict.get("StarWaySpiritsNeededEnc")
+        #if "StarWayChaptersNeededEnc" in options_dict:
+        #    self.starway_chapters_needed_encoded = options_dict.get("StarWayChaptersNeededEnc")
         if "StarWayPowerStarsNeeded" in options_dict:
             self.logic_settings.starway_powerstars_needed = options_dict.get("StarWayPowerStarsNeeded")
         if "ShuffleStarBeam" in options_dict:
@@ -1689,6 +1691,7 @@ class OptionSet:
 
             # Item Pool Modification
             load_dbkey(self.logic_settings.gear_shuffle_mode, "GearShuffleMode"),
+            load_dbkey(self.logic_settings.spirit_shuffle_mode, "SpiritShuffleMode"),
             load_dbkey(self.logic_settings.partner_upgrade_shuffle, "PartnerUpgradeShuffle"),
 
             # Plandomizer warning label
@@ -1761,7 +1764,7 @@ class OptionSet:
 
             # Goal Settings
             load_dbkey(self.logic_settings.starway_spirits_needed_count, "StarWaySpiritsNeededCnt"),
-            load_dbkey(self.logic_settings.starway_spirits_needed_encoded, "StarWaySpiritsNeededEnc"),
+            load_dbkey(self.logic_settings.starway_chapters_needed_encoded, "StarWayChaptersNeededEnc"),
             load_dbkey(self.logic_settings.starbeam_location, "StarBeamArea"),
             load_dbkey(self.logic_settings.starbeam_spirits_needed, "StarBeamSpiritsNeeded"),
             load_dbkey(self.logic_settings.starbeam_powerstars_needed, "StarBeamPowerStarsNeeded"),
@@ -1981,6 +1984,7 @@ class OptionSet:
         web_settings["ShuffleMusicMode"] = int(self.shuffle_music_mode)
         web_settings["ShuffleJingles"] = self.shuffle_jingles
         web_settings["GearShuffleMode"] = self.logic_settings.gear_shuffle_mode
+        web_settings["SpiritShuffleMode"] = self.logic_settings.spirit_shuffle_mode
         web_settings["PartnerUpgradeShuffle"] = self.logic_settings.partner_upgrade_shuffle
         web_settings["HiddenPanelVisibility"] = self.hiddenpanel_visibility
         web_settings["ISpyPanelHints"] = self.ispy_panel_hints

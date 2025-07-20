@@ -26,10 +26,10 @@ edges_mac = [
     {"from": {"map": "MAC_00", "id": 0},       "to": {"map": "MAC_00", "id": "ShopItemE"},   "reqs": []}, #* Gate District Exit Left -> ShopItemE (HoneySyrup)
     {"from": {"map": "MAC_00", "id": 0},       "to": {"map": "MAC_00", "id": "ShopItemF"},   "reqs": []}, #* Gate District Exit Left -> ShopItemF (Mushroom)
     {"from": {"map": "MAC_00", "id": 0},       "to": {"map": "MAC_00", "id": "DojoA"},       "reqs": [["Boots","Goombario","Watt","Sushie"]]}, #* Gate District Exit Left -> Dojo Fight A (First Degree Card)
-    {"from": {"map": "MAC_00", "id": "DojoA"}, "to": {"map": "MAC_00", "id": "DojoB"},       "reqs": [[{"starspirits": 1}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight B (Second Degree Card)
-    {"from": {"map": "MAC_00", "id": "DojoB"}, "to": {"map": "MAC_00", "id": "DojoC"},       "reqs": [[{"starspirits": 3}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight C (Third Degree Card)
-    {"from": {"map": "MAC_00", "id": "DojoC"}, "to": {"map": "MAC_00", "id": "DojoD"},       "reqs": [[{"starspirits": 4}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight D (Fourth Degree Card)
-    {"from": {"map": "MAC_00", "id": "DojoD"}, "to": {"map": "MAC_00", "id": "DojoE"},       "reqs": [[{"starspirits": 5}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight E (Diploma)
+    {"from": {"map": "MAC_00", "id": "DojoA"}, "to": {"map": "MAC_00", "id": "DojoB"},       "reqs": [[{"chapterclears": 1}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight B (Second Degree Card)
+    {"from": {"map": "MAC_00", "id": "DojoB"}, "to": {"map": "MAC_00", "id": "DojoC"},       "reqs": [[{"chapterclears": 3}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight C (Third Degree Card)
+    {"from": {"map": "MAC_00", "id": "DojoC"}, "to": {"map": "MAC_00", "id": "DojoD"},       "reqs": [[{"chapterclears": 4}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight D (Fourth Degree Card)
+    {"from": {"map": "MAC_00", "id": "DojoD"}, "to": {"map": "MAC_00", "id": "DojoE"},       "reqs": [[{"chapterclears": 5}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight E (Diploma)
 
     {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanVisitRussT"]}, #+ Can decipher MysteryNote
 
