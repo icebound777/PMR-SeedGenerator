@@ -607,7 +607,8 @@ def set_starway_requirements(
     if chapters_needed > 0:
         added_requirements.append([{"chapterclears": chapters_needed}])
 
-    # set specific spirits, if required
+    # set specific chapters, if required
+    # the logic knows the chapters as "CHAPTERCLEAR_X", where X is in 1-7
     for chapter_number in specific_chapters:
         added_requirements.append([f"CHAPTERCLEAR_{chapter_number}"])
 
