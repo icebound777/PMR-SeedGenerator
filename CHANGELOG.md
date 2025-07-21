@@ -33,6 +33,11 @@
   * Now allows placing items into Boss Reward item locations (see Miscellaneous > Spoiler Log further below).
 * Item Hints feature
   * Merluvlee will no longer waste Mario's money by hinting these badges: `Attack FX C`, `Slow Go`.
+* Koopa Koot favors
+  * If the `Red Jar` has already been handed in to Koopa Koot, but the Red Jar item check was not yet acquired using the shop code, Koopa Koot will now repeat the shop code when talked to again.
+* `Cutscene Mode: Minimal`
+  * Now skips the Huff n Puff dialogue of him taunting Mario after hitting him with a charged lightning attack
+  * Now removes the interactive dialogue box of talking to Wise Wisterwood (the big tree) in Flower Fields. In most cases this dialogue was already removed, this change should now also cover a rarer edge case where the dialogue could still appear.
 
 ### Logic changes
 
@@ -43,12 +48,23 @@
 * Logic for saved spirits / cleared chapters
   * All seed progression that formerly checked how many spirits Mario had saved now instead checks how many chapters Mario has cleared. This includes, but is not limited to, Rowf's badge shop progress, the unlocking of Koopa Koot favors, and the logic for accessing the different dojo battles. This also affects Progressive Scaling.
 
+### Tricks & Glitches
+
+* `Toad Town Sushie Glitch`
+  * During `Cutscene Mode: Minimal` the bub-ulb in Forever Forest will now give their regular, un-shortened dialogue if this map of the forest was entered while riding Sushie. This should alleviate a mismatch in usefulness of this glitch between `Cutscene Mode: Minimal` and the other `Cutscene Mode` settings.
+
 ### Bug Fixes
 
 * Boss Shuffle
   * Fix the final Tubba Blubba battle not properly scaling with whatever chapter 3 was scaled to. Instead Tubba scaled the same as whatever chapter the battle against Tubba's Heart was shuffled into.
 * Item Hints
   * Fix Merluvlee hinting the Forest Pass even if the Fice T. item location is unavailable due to Forever Forest being set to always open.
+* Random Mystery
+  * Fix issue with the `Mystery?` item set to `Random on every use`, where sometimes the item sprite shown on the roulette would not match the item that was actually used.
+* NPC interaction
+  * Fix minor bug where, rarely, talking to Luigi would result in him just not starting any dialogue.
+* Loading Zones
+  * Fix issue with how the randomizer handles loading zones, which could cause a rarely used glitch in Mt. Lavalava to not work.
 
 ### Miscellaneous
 
