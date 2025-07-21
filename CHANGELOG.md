@@ -82,6 +82,13 @@
   * Added `StarWayChaptersNeededCnt` (int)
   * Added `StarBeamChaptersNeeded` (int)
 
+## 0.30.0b (beta)
+
+### Bug Fixes (0.30.0b)
+
+* Stability
+  * Fix seed generation error during the settings combination of `Required Spirits: Limit Chapter Logic` and `Dungeon Entrance Shuffle`
+
 ## 0.30.0a (beta)
 
 ### Bug Fixes (0.30.0a)
