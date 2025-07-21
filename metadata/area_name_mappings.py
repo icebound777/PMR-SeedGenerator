@@ -82,3 +82,14 @@ area_name_edges_map = {
     "TIK": edges_tik,
     "TRD": edges_trd,
 }
+
+chapter_areaname_map = {
+    1: ["NOK","TRD"],
+    2: ["IWA","SBK","DRO","ISK"],
+    3: ["MIM","OBK","ARN","DGB"],
+    4: ["OMO"],
+    5: ["JAN","KZN"],
+    6: ["FLO"],
+    7: ["SAM","PRA"],
+    8: ["KPA"],
+}

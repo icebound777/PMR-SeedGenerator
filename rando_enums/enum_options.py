@@ -134,7 +134,7 @@ class BossShuffleMode(IntEnum):
     CHAPTER_BOSSES = 1
 
 @unique
-class RequiredSpirits(IntEnum):
+class RequiredChapters(IntEnum):
     ANY = 0
     SPECIFIC = 1
     SPECIFIC_AND_LIMITCHAPTERLOGIC = 2
@@ -151,3 +151,9 @@ class KentCKoopa(IntEnum):
     MUST_FIGHT = 1
     ALREADY_PAID = 2
     ALREADY_DEFEATED = 3
+
+@unique
+class SpiritShuffleMode(IntEnum):
+    VANILLA = 0
+    SAME_CHAPTER = 1
+    ANYWHERE = 2

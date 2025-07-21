@@ -7,7 +7,7 @@ from rando_enums.enum_options import (
     IncludeFavorsMode,
     IncludeLettersMode,
     RandomizeConsumablesMode,
-    ItemTrapMode,
+    SpiritShuffleMode,
     RandomMoveCosts,
     HiddenBlockMode,
     StartingBoots,
@@ -21,7 +21,7 @@ from rando_enums.enum_options import (
     PartnerShuffle,
     DojoShuffle,
     BossShuffleMode,
-    RequiredSpirits,
+    RequiredChapters,
     BowserDoorQuiz,
     KentCKoopa,
 )
@@ -251,6 +251,8 @@ class OptionSet:
         # Item Pool Modification
         if "GearShuffleMode" in options_dict:
             self.logic_settings.gear_shuffle_mode = options_dict.get("GearShuffleMode")
+        if "SpiritShuffleMode" in options_dict:
+            self.logic_settings.spirit_shuffle_mode = options_dict.get("SpiritShuffleMode")
         if "AddItemPouches" in options_dict:
             self.logic_settings.add_item_pouches = options_dict.get("AddItemPouches")
         if "PartnerUpgradeShuffle" in options_dict:
@@ -419,11 +421,13 @@ class OptionSet:
             self.logic_settings.seed_goal = options_dict.get("SeedGoal")
         if "BowsersCastleMode" in options_dict:
             self.logic_settings.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
+        if "StarWayChaptersNeededCnt" in options_dict:
+            self.logic_settings.starway_chapters_needed_count = options_dict.get("StarWayChaptersNeededCnt")
         if "StarWaySpiritsNeededCnt" in options_dict:
             self.logic_settings.starway_spirits_needed_count = options_dict.get("StarWaySpiritsNeededCnt")
         # auto-set, not changeable via settings
-        #if "StarWaySpiritsNeededEnc" in options_dict:
-        #    self.starway_spirits_needed_encoded = options_dict.get("StarWaySpiritsNeededEnc")
+        #if "StarWayChaptersNeededEnc" in options_dict:
+        #    self.starway_chapters_needed_encoded = options_dict.get("StarWayChaptersNeededEnc")
         if "StarWayPowerStarsNeeded" in options_dict:
             self.logic_settings.starway_powerstars_needed = options_dict.get("StarWayPowerStarsNeeded")
         if "ShuffleStarBeam" in options_dict:
@@ -431,14 +435,16 @@ class OptionSet:
         # auto-set, not changeable via settings
         #if "StarBeamArea" in options_dict:
         #    self.starbeam_location = options_dict.get("StarBeamArea")
+        if "StarBeamChaptersNeeded" in options_dict:
+            self.logic_settings.starbeam_chapters_needed = options_dict.get("StarBeamChaptersNeeded")
         if "StarBeamSpiritsNeeded" in options_dict:
             self.logic_settings.starbeam_spirits_needed = options_dict.get("StarBeamSpiritsNeeded")
         if "StarBeamPowerStarsNeeded" in options_dict:
             self.logic_settings.starbeam_powerstars_needed = options_dict.get("StarBeamPowerStarsNeeded")
         if "StarHuntTotal" in options_dict:
             self.logic_settings.star_hunt_total = options_dict.get("StarHuntTotal")
-        if "RequiredSpirits" in options_dict:
-            self.logic_settings.required_spirits = options_dict.get("RequiredSpirits")
+        if "RequiredChapters" in options_dict:
+            self.logic_settings.required_chapters = options_dict.get("RequiredChapters")
 
         # Entrance Shuffle
         if "ShuffleDungeonRooms" in options_dict:
@@ -1282,9 +1288,32 @@ class OptionSet:
                     and SeedGoal.DEFEAT_BOWSER <= options_dict.get("SeedGoal") <= SeedGoal.OPEN_STARWAY
             )
         basic_assert("BowsersCastleMode", int)
+        if "StarWayChaptersNeededCnt" in options_dict:
+            assert (    isinstance(options_dict.get("StarWayChaptersNeededCnt"), int)
+                    and -1 <= options_dict.get("StarWayChaptersNeededCnt") <= 7
+            )
         if "StarWaySpiritsNeededCnt" in options_dict:
             assert (    isinstance(options_dict.get("StarWaySpiritsNeededCnt"), int)
-                    and -1 <= options_dict.get("StarWaySpiritsNeededCnt") <= 7)
+                    and -1 <= options_dict["StarWaySpiritsNeededCnt"] <= 7
+            )
+            try:
+                # if LCL, and spirits needed > chapters needed, and spirit shuffle != anywhere -> problem
+                assert not (
+                        "RequiredChapters" in options_dict
+                    and options_dict["RequiredChapters"] == RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC
+                    and (   "SpiritShuffleMode" not in options_dict
+                         or options_dict["SpiritShuffleMode"] != SpiritShuffleMode.ANYWHERE
+                    )
+                    and (    "StarWayChaptersNeededCnt" in options_dict
+                         and 0 <= options_dict["StarWayChaptersNeededCnt"] <= 7
+                         and options_dict["StarWaySpiritsNeededCnt"] > options_dict["StarWayChaptersNeededCnt"]
+                    )
+                )
+            except AssertionError:
+                raise ValueError(
+                    "Limit Chapter Logic is active, but Shooting Star Summit "
+                    "requires more star spirits than are reachable in logic!"
+                )
         if "StarWayPowerStarsNeeded" in options_dict:
             assert (    isinstance(options_dict.get("StarWayPowerStarsNeeded"), int)
                     and -1 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
@@ -1299,6 +1328,9 @@ class OptionSet:
                     "No item shuffle but star hunt is not a valid setting-combination!",
                 )
         basic_assert("ShuffleStarBeam", bool)
+        if "StarBeamChaptersNeeded" in options_dict:
+            assert (    isinstance(options_dict.get("StarBeamChaptersNeeded"), int)
+                    and -1 <= options_dict.get("StarBeamChaptersNeeded") <= 7)
         if "StarBeamSpiritsNeeded" in options_dict:
             assert (    isinstance(options_dict.get("StarBeamSpiritsNeeded"), int)
                     and -1 <= options_dict.get("StarBeamSpiritsNeeded") <= 7)
@@ -1322,22 +1354,22 @@ class OptionSet:
                     and (starthuntotal >= options_dict.get("StarWayPowerStarsNeeded") or starthuntotal == -1)
                     and (starthuntotal >= options_dict.get("StarBeamPowerStarsNeeded") or starthuntotal == -1)
             )
-        if "RequiredSpirits" in options_dict:
-            assert (    isinstance(options_dict.get("RequiredSpirits"), int)
-                    and RequiredSpirits.ANY <= options_dict["RequiredSpirits"] <= RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
-                    and not (    options_dict["RequiredSpirits"] == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
+        if "RequiredChapters" in options_dict:
+            assert (    isinstance(options_dict.get("RequiredChapters"), int)
+                    and RequiredChapters.ANY <= options_dict["RequiredChapters"] <= RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC
+                    and not (    options_dict["RequiredChapters"] == RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC
                              and (   options_dict.get("KeyitemsOutsideDungeon") is None
                                   or not options_dict["KeyitemsOutsideDungeon"]))
             )
             try:
-                assert (not (    options_dict["RequiredSpirits"] == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
-                             and options_dict.get("StarBeamSpiritsNeeded") is not None
-                             and options_dict["StarBeamSpiritsNeeded"] != 0
+                assert (not (    options_dict["RequiredChapters"] == RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC
+                             and options_dict.get("StarBeamChaptersNeeded") is not None
+                             and options_dict["StarBeamChaptersNeeded"] != 0
                         )
                 )
             except:
                 raise ValueError(
-                    "LCL does not support requiring more than zero spirits for Star Beam!",
+                    "LCL does not support requiring more than zero chapters for Star Beam!",
                 )
 
         # Entrance Shuffle
@@ -1689,6 +1721,7 @@ class OptionSet:
 
             # Item Pool Modification
             load_dbkey(self.logic_settings.gear_shuffle_mode, "GearShuffleMode"),
+            load_dbkey(self.logic_settings.spirit_shuffle_mode, "SpiritShuffleMode"),
             load_dbkey(self.logic_settings.partner_upgrade_shuffle, "PartnerUpgradeShuffle"),
 
             # Plandomizer warning label
@@ -1761,9 +1794,11 @@ class OptionSet:
 
             # Goal Settings
             load_dbkey(self.logic_settings.starway_spirits_needed_count, "StarWaySpiritsNeededCnt"),
-            load_dbkey(self.logic_settings.starway_spirits_needed_encoded, "StarWaySpiritsNeededEnc"),
+            load_dbkey(self.logic_settings.starway_chapters_needed_count, "StarWayChaptersNeededCnt"),
+            load_dbkey(self.logic_settings.starway_chapters_needed_encoded, "StarWayChaptersNeededEnc"),
             load_dbkey(self.logic_settings.starbeam_location, "StarBeamArea"),
             load_dbkey(self.logic_settings.starbeam_spirits_needed, "StarBeamSpiritsNeeded"),
+            load_dbkey(self.logic_settings.starbeam_chapters_needed, "StarBeamChaptersNeeded"),
             load_dbkey(self.logic_settings.starbeam_powerstars_needed, "StarBeamPowerStarsNeeded"),
             load_dbkey(self.logic_settings.bowsers_castle_mode, "BowsersCastleMode"),
             load_dbkey(self.logic_settings.starway_powerstars_needed, "StarWayPowerStarsNeeded"),
@@ -1948,8 +1983,10 @@ class OptionSet:
         web_settings["RandomItemsMax"] = self.logic_settings.random_starting_items_max
 
         web_settings["StarWaySpiritsNeededCnt"] = self.logic_settings.starway_spirits_needed_count
-        web_settings["RequiredSpirits"] = self.logic_settings.required_spirits
+        web_settings["StarWayChaptersNeededCnt"] = self.logic_settings.starway_chapters_needed_count
+        web_settings["RequiredChapters"] = self.logic_settings.required_chapters
         web_settings["ShuffleStarBeam"] = self.logic_settings.shuffle_starbeam
+        web_settings["StarBeamChaptersNeeded"] = self.logic_settings.starbeam_chapters_needed
         web_settings["StarBeamSpiritsNeeded"] = self.logic_settings.starbeam_spirits_needed
         web_settings["StarBeamPowerStarsNeeded"] = self.logic_settings.starbeam_powerstars_needed
         web_settings["BadgeSynergy"] = self.badge_synergy
@@ -1981,6 +2018,7 @@ class OptionSet:
         web_settings["ShuffleMusicMode"] = int(self.shuffle_music_mode)
         web_settings["ShuffleJingles"] = self.shuffle_jingles
         web_settings["GearShuffleMode"] = self.logic_settings.gear_shuffle_mode
+        web_settings["SpiritShuffleMode"] = self.logic_settings.spirit_shuffle_mode
         web_settings["PartnerUpgradeShuffle"] = self.logic_settings.partner_upgrade_shuffle
         web_settings["HiddenPanelVisibility"] = self.hiddenpanel_visibility
         web_settings["ISpyPanelHints"] = self.ispy_panel_hints

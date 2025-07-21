@@ -109,6 +109,9 @@ def get_shop_price(
             elif item_type == "STARPOWER":
                 buy_price = random.choice([30,35,40,45,50])
 
+            elif item_type == "STARSPIRIT":
+                buy_price = random.choice([40,45,50,55,60])
+
             else:
                 buy_price = 35
         else:

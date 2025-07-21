@@ -7,12 +7,16 @@ from copy import deepcopy
 
 from worldgraph import adjust
 
+from metadata.area_name_mappings import chapter_areaname_map
+
 from rando_enums.enum_options import (
     GearShuffleMode,
     BowserCastleMode,
     SeedGoal,
     BossShuffleMode,
 )
+from rando_enums.enum_ingame import StarSpirits
+
 
 # Imports: Modify Bowser's Castle
 from maps.graph_edges.bc_shorten.edges_kpa import (
@@ -582,7 +586,8 @@ def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
 def set_starway_requirements(
     world_graph: dict,
     spirits_needed: int,
-    specific_spirits: list,
+    chapters_needed: int,
+    specific_chapters: list,
     powerstars_needed: int,
     seed_goal: SeedGoal,
     forced_antiguysunit: bool,
@@ -598,11 +603,16 @@ def set_starway_requirements(
     if spirits_needed > 0:
         added_requirements.append([{"starspirits": spirits_needed}])
 
-    # set specific spirits, if required
-    # the logic knows the spirits as "STARSPIRIT_X", where X is in 1-7
-    for spirit_number in specific_spirits:
-        added_requirements.append([f"STARSPIRIT_{spirit_number}"])
+    # set number of chapters needed
+    if chapters_needed > 0:
+        added_requirements.append([{"chapterclears": chapters_needed}])
 
+    # set specific chapters, if required
+    # the logic knows the chapters as "CHAPTERCLEAR_X", where X is in 1-7
+    for chapter_number in specific_chapters:
+        added_requirements.append([f"CHAPTERCLEAR_{chapter_number}"])
+
+    # set number of power stars needed
     if powerstars_needed > 0:
         added_requirements.append([{"powerstars": powerstars_needed}])
 
@@ -706,16 +716,19 @@ def set_starway_requirements(
 
 def set_starbeam_requirements(
     world_graph: dict,
+    chapters_needed: int,
     spirits_needed: int,
     powerstars_needed: int,
     forced_antiguysunit: bool,
 ) -> dict:
     """
-    Returns the modified world graph itself, modified to set the spirits
-    and power stars required to collect the Star Beam item location.
+    Returns the modified world graph itself, modified to set the chapters,
+    spirits, and power stars required to collect the Star Beam item location.
     """
     added_requirements = []
 
+    if chapters_needed > 0:
+        added_requirements.append([{"chapterclears": chapters_needed}])
     if spirits_needed > 0:
         added_requirements.append([{"starspirits": spirits_needed}])
     if powerstars_needed > 0:
@@ -816,7 +829,7 @@ def set_starbeam_requirements(
 
 def get_limited_chapter_logic(
     world_graph: dict,
-    chosen_spirits: list,
+    chosen_chapters: list,
     gear_shuffle_mode: GearShuffleMode
 ) -> dict:
     """
@@ -826,19 +839,9 @@ def get_limited_chapter_logic(
     effectively out of logic, but still allows the item placement to put
     some progression items outside of the required chapters.
     """
-    chapter_areaname_map = {
-        1: ["NOK","TRD"],
-        2: ["IWA","SBK","DRO","ISK"],
-        3: ["MIM","OBK","ARN","DGB"],
-        4: ["OMO"],
-        5: ["JAN","KZN"],
-        6: ["FLO"],
-        7: ["SAM","PRA"],
-        8: ["KPA"]
-    }
     out_of_logic_areas = []
-    for chapter, area_list in chapter_areaname_map.items():
-        if chapter not in chosen_spirits:
+    for chapter in chapter_areaname_map.keys():
+        if chapter not in chosen_chapters:
             out_of_logic_areas.extend(chapter_areaname_map[chapter])
 
     if gear_shuffle_mode == GearShuffleMode.FULL_SHUFFLE:
@@ -861,26 +864,6 @@ def get_limited_chapter_logic(
                     if type(edge["to"]["id"]) is str: # is item location
                         if (f"{edge['to']['map']}/{edge['to']['id']}") not in gear_node_ids:
                             world_graph[node_id]["edge_list"][index]["reqs"].extend([["YOUWIN"]])
-
-    # Remove logic from star spirits we do not need to rescue.
-    # This is so Rowf doesn't require us to still save them.
-    area_spiritnode_pairs = [
-        ("TRD", "TRD_10/0"),
-        ("ISK", "ISK_16/0"),
-        ("ARN", "ARN_07/0"),
-        ("OMO", "OMO_15/0"),
-        ("JAN", "JAN_22/0"),
-        ("FLO", "FLO_21/0"),
-        ("PRA", "PRA_32/0")
-    ]
-    for pair in area_spiritnode_pairs:
-        if pair[0] in out_of_logic_areas:
-            for index, edge in enumerate(world_graph[pair[1]]["edge_list"]):
-                if (   "pseudoitems" in edge
-                    and any(True for x in edge["pseudoitems"] if x.startswith("STARSPIRIT_"))
-                ):
-                    world_graph[pair[1]]["edge_list"][index]["reqs"].extend([["YOUWIN"]])
-                    break
 
     # Special case: block Kolorado's Camp in the desert if ch2 is out of logic
     kolorados_camp = ("SBK", "SBK_30/0")
@@ -1464,7 +1447,7 @@ def get_shuffled_battles(
 
         # gather Koopa Bros boss edge and remove their battle logic
         for edge in world_graph["TRD_10/0"]["edge_list"]:
-            if (edge["to"]["map"], edge["to"]["id"]) == ("TRD_10", 0):
+            if (edge["to"]["map"], edge["to"]["id"]) == ("TRD_10", "BossReward"):
                 koopa_bros_requirements = deepcopy(edge["reqs"])
                 if chapter_boss_map[1] != 1:
                     # if Koopa Bros are no longer in ch. 1: remove their
@@ -1484,22 +1467,22 @@ def get_shuffled_battles(
             if chapter != 1 and boss == 1:
                 if chapter == 2:
                     boss_node_id = "ISK_16/0"
-                    boss_edge_target = "ISK_16/0"
+                    boss_edge_target = "ISK_16/BossReward"
                 elif chapter == 3:
-                    boss_node_id = "ARN_11/0"
-                    boss_edge_target = "ARN_11/0"
+                    boss_node_id = "ARN_07/0"
+                    boss_edge_target = "ARN_07/BossReward"
                 elif chapter == 4:
                     boss_node_id = "OMO_15/0"
-                    boss_edge_target = "OMO_15/0"
+                    boss_edge_target = "OMO_15/BossReward"
                 elif chapter == 5:
                     boss_node_id = "KZN_19/1"
-                    boss_edge_target = "KZN_19/2"
+                    boss_edge_target = "KZN_19/BossReward"
                 elif chapter == 6:
                     boss_node_id = "FLO_21/0"
-                    boss_edge_target = "FLO_21/0"
+                    boss_edge_target = "FLO_21/BossReward"
                 elif chapter == 7:
                     boss_node_id = "PRA_32/0"
-                    boss_edge_target = "PRA_32/0"
+                    boss_edge_target = "PRA_32/BossReward"
                 new_kb_boss_edges.append((boss_node_id, boss_edge_target))
 
         for boss_node_id, boss_edge_target in new_kb_boss_edges:

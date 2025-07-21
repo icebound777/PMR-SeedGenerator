@@ -32,9 +32,9 @@ edges_nok = [
                                                                                                      #  "StarPiece_NOK_6",
                                                                                                      #  "StarPiece_NOK_7",
                                                                                                        "StarPiece_NOK_8"]}, #+ Quizmo StarPieces
-    {"from": {"map": "NOK_01", "id": 0}, "to": {"map": "NOK_01", "id": 0}, "reqs": [[{"starspirits": 1}],["RF_Ch1_Fuzzies_Banished"]], "pseudoitems": ["RF_RadioTradeEvt1"]}, #+ Radio Trade Event 1
-    {"from": {"map": "NOK_01", "id": 0}, "to": {"map": "NOK_01", "id": 0}, "reqs": [[{"starspirits": 3}],["RF_RadioTradeEvt1Done"]], "pseudoitems": ["RF_RadioTradeEvt2"]}, #+ Radio Trade Event 2
-    {"from": {"map": "NOK_01", "id": 0}, "to": {"map": "NOK_01", "id": 0}, "reqs": [[{"starspirits": 5}],["RF_RadioTradeEvt2Done"]], "pseudoitems": ["RF_RadioTradeEvt3"]}, #+ Radio Trade Event 3
+    {"from": {"map": "NOK_01", "id": 0}, "to": {"map": "NOK_01", "id": 0}, "reqs": [[{"chapterclears": 1}],["RF_Ch1_Fuzzies_Banished"]], "pseudoitems": ["RF_RadioTradeEvt1"]}, #+ Radio Trade Event 1
+    {"from": {"map": "NOK_01", "id": 0}, "to": {"map": "NOK_01", "id": 0}, "reqs": [[{"chapterclears": 3}],["RF_RadioTradeEvt1Done"]], "pseudoitems": ["RF_RadioTradeEvt2"]}, #+ Radio Trade Event 2
+    {"from": {"map": "NOK_01", "id": 0}, "to": {"map": "NOK_01", "id": 0}, "reqs": [[{"chapterclears": 5}],["RF_RadioTradeEvt2Done"]], "pseudoitems": ["RF_RadioTradeEvt3"]}, #+ Radio Trade Event 3
 
     # NOK_02 Koopa Village 2
     {"from": {"map": "NOK_02", "id": 0}, "to": {"map": "NOK_01", "id": 1}, "reqs": []}, # Koopa Village 2 Exit Left -> Koopa Village 1 Exit Right
@@ -58,38 +58,38 @@ edges_nok = [
     {"from": {"map": "NOK_02", "id": "KootGift00"}, "to": {"map": "NOK_02", "id": "KootGift01"},  "reqs": [["SleepySheep"]]}, #+ CHAINED REQUIREMENTS -> KootGift01 (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift01"}, "to": {"map": "NOK_02", "id": "GiftB"},       "reqs": []}, #+ SHARED REQUIREMENTS -> GiftB (SilverCredit)
     # Koopa Koot Favors (*MB_SpiritsRescued < 2)
-    {"from": {"map": "NOK_02", "id": "KootGift01"}, "to": {"map": "NOK_02", "id": "KootGift02"},  "reqs": [["KootTheTape"],[{"starspirits": 1}]]}, #+ CHAINED REQUIREMENTS -> KootGift02 (Coin)
+    {"from": {"map": "NOK_02", "id": "KootGift01"}, "to": {"map": "NOK_02", "id": "KootGift02"},  "reqs": [["KootTheTape"],[{"chapterclears": 1}]]}, #+ CHAINED REQUIREMENTS -> KootGift02 (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift02"}, "to": {"map": "NOK_02", "id": "KootGift03"},  "reqs": [["KoopaTea"]]}, #+ CHAINED REQUIREMENTS -> KootGift03 (StarPiece)
     {"from": {"map": "NOK_02", "id": "KootGift03"}, "to": {"map": "NOK_02", "id": "KootGift04"},  "reqs": [["KootLuigiAutograph"]]}, #+ CHAINED REQUIREMENTS -> KootGift04 (Coin)
     # Koopa Koot Favors (*MB_SpiritsRescued < 3)
-    {"from": {"map": "NOK_02", "id": "KootGift04"}, "to": {"map": "NOK_02", "id": "KootGift05"},  "reqs": [["KootEmptyWallet"],[{"starspirits": 2}]]}, #+ CHAINED REQUIREMENTS -> KootGift05 (Coin)
+    {"from": {"map": "NOK_02", "id": "KootGift04"}, "to": {"map": "NOK_02", "id": "KootGift05"},  "reqs": [["KootEmptyWallet"],[{"chapterclears": 2}]]}, #+ CHAINED REQUIREMENTS -> KootGift05 (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift05"}, "to": {"map": "NOK_02", "id": "KootGift06"},  "reqs": [["TastyTonic"]]}, #+ CHAINED REQUIREMENTS -> KootGift06 (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift06"}, "to": {"map": "NOK_02", "id": "KootGift07"},  "reqs": [["KootMerluvleeAutograph"]]}, #+ CHAINED REQUIREMENTS -> KootGift07 (StarPiece)
     # Koopa Koot Favors (*MB_SpiritsRescued < 4)
-    {"from": {"map": "NOK_02", "id": "KootGift07"}, "to": {"map": "NOK_02", "id": "KootGift08"},  "reqs": [["RF_CanReadToadTownNews"],[{"starspirits": 3}]]}, #+ CHAINED REQUIREMENTS -> KootGift08 (Coin)
+    {"from": {"map": "NOK_02", "id": "KootGift07"}, "to": {"map": "NOK_02", "id": "KootGift08"},  "reqs": [["RF_CanReadToadTownNews"],[{"chapterclears": 3}]]}, #+ CHAINED REQUIREMENTS -> KootGift08 (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift08"}, "to": {"map": "NOK_02", "id": "KootGift09"},  "reqs": [["LifeShroom"]]}, #+ CHAINED REQUIREMENTS -> KootGift09 (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift09"}, "to": {"map": "NOK_02", "id": "GiftC"},       "reqs": []}, #+ SHARED REQUIREMENTS -> GiftC (GoldCredit)
     {"from": {"map": "NOK_02", "id": "KootGift09"}, "to": {"map": "NOK_02", "id": "KootGift0A"},  "reqs": [["NuttyCake"]]}, #+ CHAINED REQUIREMENTS -> KootGift0A (Coin)
     # Koopa Koot Favors (*MB_SpiritsRescued < 5)
-    {"from": {"map": "NOK_02", "id": "KootGift0A"}, "to": {"map": "NOK_02", "id": "KootGift0B"},  "reqs": [["Bombette"],["MF_Ch1_RescuedStarSpirit"],[{"starspirits": 4}]]}, #+ CHAINED REQUIREMENTS -> KootGift0B (StarPiece)
+    {"from": {"map": "NOK_02", "id": "KootGift0A"}, "to": {"map": "NOK_02", "id": "KootGift0B"},  "reqs": [["Bombette"],["MF_Ch1_RescuedStarSpirit"],[{"chapterclears": 4}]]}, #+ CHAINED REQUIREMENTS -> KootGift0B (StarPiece)
     {"from": {"map": "NOK_02", "id": "KootGift0B"}, "to": {"map": "NOK_02", "id": "KootGift0C"},  "reqs": [["KootOldPhoto"]]}, #+ CHAINED REQUIREMENTS -> KootGift0C (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift0C"}, "to": {"map": "NOK_02", "id": "KootGift0D"},  "reqs": [["Koopasta"]]}, #+ CHAINED REQUIREMENTS -> KootGift0D (Coin)
     # Koopa Koot Favors (*MB_SpiritsRescued < 6)
-    {"from": {"map": "NOK_02", "id": "KootGift0D"}, "to": {"map": "NOK_02", "id": "KootGift0E"},  "reqs": [["KootGlasses"],[{"starspirits": 5}]]}, #+ CHAINED REQUIREMENTS -> KootGift0E (Coin)
+    {"from": {"map": "NOK_02", "id": "KootGift0D"}, "to": {"map": "NOK_02", "id": "KootGift0E"},  "reqs": [["KootGlasses"],[{"chapterclears": 5}]]}, #+ CHAINED REQUIREMENTS -> KootGift0E (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift0E"}, "to": {"map": "NOK_02", "id": "KootGift0F"},  "reqs": [["Lime"]]}, #+ CHAINED REQUIREMENTS -> KootGift0F (StarPiece)
     {"from": {"map": "NOK_02", "id": "KootGift0F"}, "to": {"map": "NOK_02", "id": "KootGift10"},  "reqs": [["KookyCookie"]]}, #+ CHAINED REQUIREMENTS -> KootGift10 (Coin)
     # Koopa Koot Favors (*MB_SpiritsRescued >= 6)
-    {"from": {"map": "NOK_02", "id": "KootGift10"}, "to": {"map": "NOK_02", "id": "KootGift11"},  "reqs": [["KootPackage"],[{"starspirits": 6}]]}, #+ CHAINED REQUIREMENTS -> KootGift11 (Coin)
+    {"from": {"map": "NOK_02", "id": "KootGift10"}, "to": {"map": "NOK_02", "id": "KootGift11"},  "reqs": [["KootPackage"],[{"chapterclears": 6}]]}, #+ CHAINED REQUIREMENTS -> KootGift11 (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift11"}, "to": {"map": "NOK_02", "id": "KootGift12"},  "reqs": [["Coconut"]], "pseudoitems": ["FAVOR_7_02_done"]}, #+ CHAINED REQUIREMENTS -> KootGift12 (Coin)
     {"from": {"map": "NOK_02", "id": "KootGift12"}, "to": {"map": "NOK_02", "id": "KootGift13"},  "reqs": [["KootRedJar"]]}, #+ CHAINED REQUIREMENTS -> KootGift13 (StarPiece)
     #+ Koopa Koot Favors: Active Favor Flags
-    {"from": {"map": "NOK_02", "id": "KootGift01"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [[{"starspirits": 1}]], "pseudoitems": ["FAVOR_2_01_active"]}, #+ Get KootTheTape from Goompa
-    {"from": {"map": "NOK_02", "id": "KootGift03"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [],                     "pseudoitems": ["FAVOR_2_03_active"]}, #+ Get KootLuigiAutgraph from Luigi
-    {"from": {"map": "NOK_02", "id": "KootGift04"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [[{"starspirits": 2}]], "pseudoitems": ["FAVOR_3_01_active"]}, #+ Get KootEmptyWallet from Bush
-    {"from": {"map": "NOK_02", "id": "KootGift06"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [],                     "pseudoitems": ["FAVOR_3_03_active"]}, #+ Get KootMerluvleeAutograph from Merluvlee
-    {"from": {"map": "NOK_02", "id": "KootGift0B"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [],                     "pseudoitems": ["FAVOR_5_02_active"]}, #+ Get KootOldPhoto from Franky
-    {"from": {"map": "NOK_02", "id": "KootGift0D"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [[{"starspirits": 5}]], "pseudoitems": ["FAVOR_6_01_active"]}, #+ Get KootGlasses from Bush
-    {"from": {"map": "NOK_02", "id": "KootGift10"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [[{"starspirits": 6}]], "pseudoitems": ["FAVOR_7_01_active"]}, #+ Get KootPackage from Gusty Gulch Boo
+    {"from": {"map": "NOK_02", "id": "KootGift01"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [[{"chapterclears": 1}]], "pseudoitems": ["FAVOR_2_01_active"]}, #+ Get KootTheTape from Goompa
+    {"from": {"map": "NOK_02", "id": "KootGift03"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [],                       "pseudoitems": ["FAVOR_2_03_active"]}, #+ Get KootLuigiAutgraph from Luigi
+    {"from": {"map": "NOK_02", "id": "KootGift04"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [[{"chapterclears": 2}]], "pseudoitems": ["FAVOR_3_01_active"]}, #+ Get KootEmptyWallet from Bush
+    {"from": {"map": "NOK_02", "id": "KootGift06"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [],                       "pseudoitems": ["FAVOR_3_03_active"]}, #+ Get KootMerluvleeAutograph from Merluvlee
+    {"from": {"map": "NOK_02", "id": "KootGift0B"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [],                       "pseudoitems": ["FAVOR_5_02_active"]}, #+ Get KootOldPhoto from Franky
+    {"from": {"map": "NOK_02", "id": "KootGift0D"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [[{"chapterclears": 5}]], "pseudoitems": ["FAVOR_6_01_active"]}, #+ Get KootGlasses from Bush
+    {"from": {"map": "NOK_02", "id": "KootGift10"}, "to": {"map": "NOK_02", "id": 0}, "reqs": [[{"chapterclears": 6}]], "pseudoitems": ["FAVOR_7_01_active"]}, #+ Get KootPackage from Gusty Gulch Boo
 
     {"from": {"map": "NOK_02", "id": 0}, "to": {"map": "NOK_02", "id": 0}, "reqs": [["RF_Ch1_Fuzzies_Banished"]], "pseudoitems": ["StarPiece_NOK_1",
                                                                                                                                #   "StarPiece_NOK_2",
@@ -118,8 +118,8 @@ edges_nok = [
     {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "MAC_01", "id": 1}, "reqs": []}, # Pleasant Path Entry Exit Left -> Plaza District Exit Right
     {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_12", "id": 0}, "reqs": []}, # Pleasant Path Entry Exit Right -> Pleasant Path Bridge Exit Left
 
-    {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "NOK_11", "id": 1}, "reqs": [["RF_CanPassKentC",{"starspirits": 2}],["RF_CanPassKentC","Boots","Goombario"],["RF_CanPassKentC","Boots","Hammer"]]}, #? Pleasant Path Entry Exit Left -> Pleasant Path Entry Exit Right
-    {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": 0}, "reqs": [["RF_CanPassKentC",{"starspirits": 2}],["RF_CanPassKentC","Boots","Goombario"],["RF_CanPassKentC","Boots","Hammer"]]}, #? Pleasant Path Entry Exit Right -> Pleasant Path Entry Exit Left
+    {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "NOK_11", "id": 1}, "reqs": [["RF_CanPassKentC",{"chapterclears": 2}],["RF_CanPassKentC","Boots","Goombario"],["RF_CanPassKentC","Boots","Hammer"]]}, #? Pleasant Path Entry Exit Left -> Pleasant Path Entry Exit Right
+    {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": 0}, "reqs": [["RF_CanPassKentC",{"chapterclears": 2}],["RF_CanPassKentC","Boots","Goombario"],["RF_CanPassKentC","Boots","Hammer"]]}, #? Pleasant Path Entry Exit Right -> Pleasant Path Entry Exit Left
 
     {"from": {"map": "NOK_11", "id": 1},         "to": {"map": "NOK_11", "id": "RBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Pleasant Path Entry Exit Left -> RBlockA (DizzyAttack)
     {"from": {"map": "NOK_11", "id": "RBlockA"}, "to": {"map": "NOK_11", "id": "YBlockA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockA (Coin)
