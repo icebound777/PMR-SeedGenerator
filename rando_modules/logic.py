@@ -355,6 +355,8 @@ def _generate_item_pools(
 
     items_to_remove_from_pools: list[Item] = []
 
+    is_final_letterreward_shuffled = True
+
     def add_to_correct_itempool(
         new_item: Item,
     ):
@@ -523,6 +525,7 @@ def _generate_item_pools(
                     )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
+                is_final_letterreward_shuffled = False
                 continue
 
             if (    current_node_id in simpleletter_locations
@@ -725,6 +728,8 @@ def _generate_item_pools(
 
     # Make sure that every vanilla badge is in the item pool, regardless of
     # chosen settings
+    # Special case: The final letter reward is not shuffled, which means
+    # Lucky Day is not in any item pools, but is still available
     for vanilla_badge in (
         Item
         .select()
@@ -735,6 +740,8 @@ def _generate_item_pools(
     ):
         if (    vanilla_badge not in pool_badges
             and vanilla_badge not in pool_progression_items
+            and (   vanilla_badge.item_name != "LuckyDay"
+                 or is_final_letterreward_shuffled)
         ):
             pool_badges.append(vanilla_badge)
 
