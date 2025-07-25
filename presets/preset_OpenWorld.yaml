@@ -247,7 +247,6 @@ GoombaVillageLakiExit                           : false
 PrologueSushieGlitchKsj                         : false
 PrologueSushieGlitchUltraBootsLaki              : false
 
-OddKeyEarly                                     : false
 BlueHouseSkip                                   : false
 BlueHouseSkipLaki                               : false
 BlueHouseSkipToadLure                           : false
@@ -422,6 +421,7 @@ BombettelessBowsersCastleBasement               : false
 
 BreakYellowBlocksWithSuperBoots                 : false
 BreakStoneBlocksWithUltraBoots                  : false
+HammerClipItemGrab                              : false
 KnowsHiddenBlocks                               : false
 KnowsPuzzleSolutions                            : false
 ReachHighBlocksWithSuperBoots                   : false

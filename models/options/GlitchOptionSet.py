@@ -12,7 +12,7 @@ class GlitchOptionSet():
         self.prologue_sushie_glitch_ksj = False
         self.prologue_sushie_glitch_ultra_boots_laki = False
 
-        self.odd_key_early = False
+        self.hammer_clip_item_grab = False
         self.blue_house_skip = False
         self.blue_house_skip_laki = False
         self.blue_house_skip_toad_lure = False
