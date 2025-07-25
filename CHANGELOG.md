@@ -99,6 +99,9 @@
   * Renamed `RequiredSpirits` to `RequiredChapters`
   * Added `StarWayChaptersNeededCnt` (int)
   * Added `StarBeamChaptersNeeded` (int)
+* Homeward Shroom guard function
+  * Added a guard function to the Homeward Shroom activation. This can delay starting the warp until the game is in a game state that is unlikely to cause any issues.
+  During regular gameplay the player should never notice any difference to before. This change is intended to allow third-party tools (like multiworld clients or crowd control) to trigger the Homeward Shroom without having to worry about checking for an unclean game state that may cause softlocks or crashes (like warping out of a cutscene or a shop storage dialogue).
 
 ## 0.30.0b (beta)
 
