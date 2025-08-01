@@ -2334,7 +2334,9 @@ def _overrule_settings_with_plando(
                     elif cur_item == "StarBeam":
                         forced_shuffle_starbeam = True
 
-    if plando_data.get("dungeon_entrances") is not None:
+    if (    plando_data.get("dungeon_entrances") is not None
+        and len(plando_data["dungeon_entrances"]) > 0
+    ):
         if 8 in plando_data["dungeon_entrances"] or 8 in plando_data["dungeon_entrances"].values():
             forced_shuffle_dungeon_entrances = DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
         else:

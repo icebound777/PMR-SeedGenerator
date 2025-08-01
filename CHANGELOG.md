@@ -63,6 +63,8 @@
   * Fix Merluvlee hinting the Forest Pass even if the Fice T. item location is unavailable due to Forever Forest being set to always open.
 * Random Mystery
   * Fix issue with the `Mystery?` item set to `Random on every use`, where sometimes the item sprite shown on the roulette would not match the item that was actually used.
+* Plandomizer
+  * Fix the plandomizer sometimes turning on dungeon entrance shuffle even if no dungeon connections were plando'd.
 * NPC interaction
   * Fix minor bug where, rarely, talking to Luigi would result in him just not starting any dialogue.
 * Loading Zones
