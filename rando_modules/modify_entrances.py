@@ -86,9 +86,6 @@ from maps.graph_edges.glitched_logic.kmr_prologue_sushie_glitch import (
 )
 
 # Glitched Logic - Toad Town
-from maps.graph_edges.glitched_logic.mac_odd_key_early import (
-    edges_mac_odd_key_early,
-)
 from maps.graph_edges.glitched_logic.mac_blue_house_skip import (
     edges_mac_add_bhs_jump,
     edges_mac_add_bhs_laki,
@@ -501,6 +498,9 @@ from maps.graph_edges.glitched_logic.global_break_stone_blocks_with_ultra_boots 
 )
 from maps.graph_edges.glitched_logic.kmr_break_yellow_blocks_with_super_boots import (
     edges_kmr_add_break_yellow_blocks_super_boots,
+)
+from maps.graph_edges.glitched_logic.global_hammer_clip_item_grab import (
+    edges_global_hammer_clip_item_grab,
 )
 from maps.graph_edges.glitched_logic.global_knows_puzzle_solutions import (
     edges_global_knows_puzzle_solutions,
@@ -917,8 +917,6 @@ def get_glitched_logic(
         all_new_edges.extend(edges_kmr_add_prologue_sushie_glitch_common)
 
     # Toad Town
-    if glitch_settings.odd_key_early:
-        all_new_edges.extend(edges_mac_odd_key_early)
     if glitch_settings.blue_house_skip:
         all_new_edges.extend(edges_mac_add_bhs_jump)
     if glitch_settings.blue_house_skip_laki:
@@ -1274,6 +1272,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_kmr_tik_isk_add_break_stone_blocks_ultra_boots)
     if glitch_settings.break_yellow_blocks_with_super_boots:
         all_new_edges.extend(edges_kmr_add_break_yellow_blocks_super_boots)
+    if glitch_settings.hammer_clip_item_grab:
+        all_new_edges.extend(edges_global_hammer_clip_item_grab)
     if glitch_settings.knows_puzzle_solutions:
         all_new_edges.extend(edges_global_knows_puzzle_solutions)
     if glitch_settings.reach_high_blocks_with_super_boots:

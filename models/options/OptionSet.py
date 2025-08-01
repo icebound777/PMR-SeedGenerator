@@ -592,8 +592,6 @@ class OptionSet:
         if "PrologueSushieGlitchUltraBootsLaki" in options_dict:
             self.glitch_settings.prologue_sushie_glitch_ultra_boots_laki = options_dict.get("PrologueSushieGlitchUltraBootsLaki")
 
-        if "OddKeyEarly" in options_dict:
-            self.glitch_settings.odd_key_early = options_dict.get("OddKeyEarly")
         if "BlueHouseSkip" in options_dict:
             self.glitch_settings.blue_house_skip = options_dict.get("BlueHouseSkip")
         if "BlueHouseSkipLaki" in options_dict:
@@ -923,6 +921,8 @@ class OptionSet:
             self.glitch_settings.break_yellow_blocks_with_super_boots = options_dict.get("BreakYellowBlocksWithSuperBoots")
         if "BreakStoneBlocksWithUltraBoots" in options_dict:
             self.glitch_settings.break_stone_blocks_with_ultra_boots = options_dict.get("BreakStoneBlocksWithUltraBoots")
+        if "HammerClipItemGrab" in options_dict:
+            self.glitch_settings.hammer_clip_item_grab = options_dict.get("HammerClipItemGrab")
         if "KnowsHiddenBlocks" in options_dict:
             self.glitch_settings.knows_hidden_blocks = options_dict.get("KnowsHiddenBlocks")
         if "KnowsPuzzleSolutions" in options_dict:
@@ -1490,7 +1490,6 @@ class OptionSet:
         basic_assert("PrologueSushieGlitchUltraBootsLaki", bool)
         basic_assert("GoombaVillageLakiExit", bool)
 
-        basic_assert("OddKeyEarly", bool)
         basic_assert("BlueHouseSkip", bool)
         basic_assert("BlueHouseSkipLaki", bool)
         basic_assert("BlueHouseSkipToadLure", bool)
@@ -1665,6 +1664,7 @@ class OptionSet:
 
         basic_assert("BreakYellowBlocksWithSuperBoots", bool)
         basic_assert("BreakStoneBlocksWithUltraBoots", bool)
+        basic_assert("HammerClipItemGrab", bool)
         basic_assert("KnowsHiddenBlocks", bool)
         basic_assert("KnowsPuzzleSolutions", bool)
         basic_assert("ReachHighBlocksWithSuperBoots", bool)
@@ -2064,7 +2064,6 @@ class OptionSet:
         web_settings["PrologueSushieGlitchUltraBootsLaki"] = self.glitch_settings.prologue_sushie_glitch_ultra_boots_laki
 
         # Glitches: Toad Town
-        web_settings["OddKeyEarly"] = self.glitch_settings.odd_key_early
         web_settings["BlueHouseSkip"] = self.glitch_settings.blue_house_skip
         web_settings["BlueHouseSkipLaki"] = self.glitch_settings.blue_house_skip_laki
         web_settings["BlueHouseSkipToadLure"] = self.glitch_settings.blue_house_skip_toad_lure
@@ -2256,6 +2255,7 @@ class OptionSet:
         # Glitches: Global
         web_settings["BreakStoneBlocksWithUltraBoots"] = self.glitch_settings.break_stone_blocks_with_ultra_boots
         web_settings["BreakYellowBlocksWithSuperBoots"] = self.glitch_settings.break_yellow_blocks_with_super_boots
+        web_settings["HammerClipItemGrab"] = self.glitch_settings.hammer_clip_item_grab
         web_settings["KnowsHiddenBlocks"] = self.glitch_settings.knows_hidden_blocks
         web_settings["KnowsPuzzleSolutions"] = self.glitch_settings.knows_puzzle_solutions
         web_settings["ReachHighBlocksWithSuperBoots"] = self.glitch_settings.reach_high_blocks_with_super_boots
