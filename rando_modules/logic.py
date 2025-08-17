@@ -67,7 +67,12 @@ from metadata.item_exclusion import (
     exclude_due_to_settings,
     exclude_from_taycet_placement,
 )
-from metadata.item_general import taycet_items, progressive_badges
+from metadata.item_general import (
+    taycet_items,
+    progressive_badges,
+    rowf_shop_badges,
+    merlow_shop_badges,
+)
 from metadata.node_exclusion import exclude_from_trap_placement
 from metadata.partners_meta import all_partners
 
@@ -742,6 +747,9 @@ def _generate_item_pools(
             and vanilla_badge not in pool_progression_items
             and (   vanilla_badge.item_name != "LuckyDay"
                  or is_final_letterreward_shuffled)
+            and (   logic_settings.include_shops
+                 or (    vanilla_badge.item_name not in rowf_shop_badges
+                     and vanilla_badge.item_name not in merlow_shop_badges))
         ):
             pool_badges.append(vanilla_badge)
 

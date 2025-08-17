@@ -69,6 +69,7 @@
   * Fix the final Tubba Blubba battle not properly scaling with whatever chapter 3 was scaled to. Instead Tubba scaled the same as whatever chapter the battle against Tubba's Heart was shuffled into.
 * Item pool generation
   * Fix two `Lucky Day` badges being available in each seed if letter rewards were not shuffled.
+  * Fix duplicates of usually unique badges being put into the item pool if shop shuffle is turned off.
 * Item Hints
   * Fix Merluvlee hinting the Forest Pass even if the Fice T. item location is unavailable due to Forever Forest being set to always open.
 * Random Mystery

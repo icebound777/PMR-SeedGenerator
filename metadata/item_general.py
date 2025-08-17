@@ -487,3 +487,40 @@ seed_hash_item_names = [
     #"Super Boots",
     #"Ultra Boots",
 ]
+
+rowf_shop_badges: list[str] = [
+    "SpeedySpin",
+    "FirstAttack",
+    "Multibounce",
+    "DDownPound",
+    "DodgeMaster",
+    "SleepStomp",
+    "DoubleDip",
+    "JumpCharge",
+    "SpinSmash",
+    "GroupFocus",
+    "AllorNothing",
+    "HPPlusC",
+    "FPPlusC",
+    "SSmashChg",
+    "DamageDodgeA",
+    "MegaQuake",
+]
+
+merlow_shop_badges: list[str] = [
+    "AttackFXA",
+    "PayOff",
+    "ChillOut",
+    "PrettyLucky",
+    "FeelingFine",
+    "HappyHeartA",
+    "HappyFlowerA",
+    "Peekaboo",
+    "ZapTap",
+    "HeartFinder",
+    "FlowerFinder",
+    "HPDrain",
+    "MoneyMoney",
+    "FlowerSaverA",
+    "PowerPlusA",
+]
