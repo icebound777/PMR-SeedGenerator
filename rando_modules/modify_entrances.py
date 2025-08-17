@@ -15,7 +15,6 @@ from rando_enums.enum_options import (
     SeedGoal,
     BossShuffleMode,
 )
-from rando_enums.enum_ingame import StarSpirits
 
 
 # Imports: Modify Bowser's Castle

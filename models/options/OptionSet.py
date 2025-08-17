@@ -1,7 +1,6 @@
 from db.item import Item
 from db.option import Option
 
-from rando_enums.enum_ingame import StarSpirits
 from rando_enums.enum_options import (
     BowserCastleMode,
     IncludeFavorsMode,
