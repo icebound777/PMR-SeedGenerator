@@ -295,11 +295,6 @@ def get_items_to_exclude(
         for item_name in exclude_due_to_settings.get("do_progressive_badges"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
-    if not logic_settings.include_shops:
-        for item_name in exclude_due_to_settings.get("not_include_shops"):
-            item = Item.get(Item.item_name == item_name)
-            if item not in excluded_items:
-                excluded_items.append(item)
     if logic_settings.gear_shuffle_mode >= GearShuffleMode.GEAR_LOCATION_SHUFFLE:
         if logic_settings.starting_hammer == StartingHammer.ULTRAHAMMER:
             item = Item.get(Item.item_name == "HammerProxy3")
