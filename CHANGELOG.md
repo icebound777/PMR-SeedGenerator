@@ -31,11 +31,16 @@
 * `Plandomizer` feature
   * Now allows placing Star Spirit items.
   * Now allows placing items into Boss Reward item locations (see Miscellaneous > Spoiler Log further below).
+* Extended letter item names
+  * The letters now have their names extended while in the pause menu, showing which NPC they belong to without having to check their item descriptions. For example, the letter to the red yoshi kid was formerly shown as `Letter` in the pause menu, but will now be shown as `Letter (Red Yoshi Kid)` instead.
 * Item Hints feature
   * Merluvlee will no longer waste Mario's money by hinting these badges: `Attack FX C`, `Slow Go`.
 * Koopa Koot favors
   * If the `Red Jar` has already been handed in to Koopa Koot, but the Red Jar item check was not yet acquired using the shop code, Koopa Koot will now repeat the shop code when talked to again.
+* All Cutscene Modes
+  * Now allows earlier skipping of the cutscene of traveling the beanstalk upwards.
 * `Cutscene Mode: Minimal`
+  * Slightly speed up the cutscene of planting the beanstalk, in turn making it skippable earlier.
   * Now skips the Huff n Puff dialogue of him taunting Mario after hitting him with a charged lightning attack
   * Now removes the interactive dialogue box of talking to Wise Wisterwood (the big tree) in Flower Fields. In most cases this dialogue was already removed, this change should now also cover a rarer edge case where the dialogue could still appear.
 
@@ -55,6 +60,11 @@
 
 ### Bug Fixes
 
+* Vanilla bugs
+  * Fix the vanilla bug of item chests softlocking or crashing the game when another item was picked up at the same time. This was fixed by disallowing item pickups while the interact prompt (red exclamation point above Mario) is visible.
+* Item spawning
+  * When a player managed to get ahold of an item in an unexpected way, and that item was also placed into the store room in Toad Town, then entering that map would cause a crash. This usually applies to a broken seed placing a unique item more than once, cheating the item into the inventory via RAM manipulation, or acquiring items early in a multiworld session using server commands.  
+  This issue is now fixed.
 * Boss Shuffle
   * Fix the final Tubba Blubba battle not properly scaling with whatever chapter 3 was scaled to. Instead Tubba scaled the same as whatever chapter the battle against Tubba's Heart was shuffled into.
 * Item pool generation
@@ -69,6 +79,8 @@
   * Fix minor bug where, rarely, talking to Luigi would result in him just not starting any dialogue.
 * Loading Zones
   * Fix issue with how the randomizer handles loading zones, which could cause a rarely used glitch in Mt. Lavalava to not work.
+* Item check flags
+  * Fix the map item tracking referencing the wrong flag for the Boo's Mansion Big Chest item.
 
 ### Miscellaneous
 
@@ -104,6 +116,8 @@
 * Homeward Shroom guard function
   * Added a guard function to the Homeward Shroom activation. This can delay starting the warp until the game is in a game state that is unlikely to cause any issues.
   During regular gameplay the player should never notice any difference to before. This change is intended to allow third-party tools (like multiworld clients or crowd control) to trigger the Homeward Shroom without having to worry about checking for an unclean game state that may cause softlocks or crashes (like warping out of a cutscene or a shop storage dialogue).
+* Item check flags
+  * Slightly moved around many item check flags, so they now trigger more closely to when their item is actually picked up. Should only affect multiworld sessions. The former mismatch was mostly noticable during some longer cutscenes during which Mario gets an item, where the multiworld session would register the item collected far earlier or later than expected.
 
 ## 0.30.0b (beta)
 
