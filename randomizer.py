@@ -592,7 +592,7 @@ def web_randomizer(settingsJson, plandoData, world_graph):
     settingsData = json.loads(settingsJson)
 
     rando_settings = OptionSet()
-    rando_settings.update_options(settingsData)
+    rando_settings.update_options(settingsData, plandoData)
     web_settings = rando_settings.get_web_settings()
 
     init_randomizer(rebuild_database=False)
