@@ -34,7 +34,7 @@ def create_options():
     with open("./debug/values.json", "r") as file:
         option_values= json.load(file)["options"]
 
-    for key,data in option_keys.items():
+    for data in option_keys.values():
         value = option_values[data["name"]]
         option,created = Option.get_or_create(
             name=data["name"],

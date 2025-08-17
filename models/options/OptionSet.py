@@ -144,8 +144,8 @@ class OptionSet:
         except ValueError as err:
             print(f"{err.args}: Settings file not provided.")
             raise
-        except AssertionError as err:
-            print(f"ERROR: Settings file includes invalid data.")
+        except AssertionError:
+            print("ERROR: Settings file includes invalid data.")
             raise
 
         # General
@@ -1025,7 +1025,7 @@ class OptionSet:
             try:
                 if option_name in options_dict:
                     assert isinstance(options_dict.get(option_name), data_type)
-            except AssertionError as err:
+            except AssertionError:
                 print(
                     f"{option_name}/{type(options_dict.get(option_name).get('value'))}: "\
                         f"Wrong data type, expected '{data_type}'."
@@ -1366,7 +1366,7 @@ class OptionSet:
                              and options_dict["StarBeamChaptersNeeded"] != 0
                         )
                 )
-            except:
+            except AssertionError:
                 raise ValueError(
                     "LCL does not support requiring more than zero chapters for Star Beam!",
                 )
