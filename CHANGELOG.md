@@ -50,13 +50,18 @@
 * Logic for the `Toad Town Sushie Glitch` trick setting
   * Fixed it not setting the prologue as reachable.
   * Fixed it not setting Forever Forest as traversable if the seed started with the forest closed off.
+* Fixed logic for the item location `Jade Jungle: Deep Jungle 1 - In Tree (Hit)` not expecting a way for getting onto the ledge the tree sits on.
 * Logic for saved spirits / cleared chapters
   * All seed progression that formerly checked how many spirits Mario had saved now instead checks how many chapters Mario has cleared. This includes, but is not limited to, Rowf's badge shop progress, the unlocking of Koopa Koot favors, and the logic for accessing the different dojo battles. This also affects Progressive Scaling.
 
 ### Tricks & Glitches
 
-* `Toad Town Sushie Glitch`
-  * During `Cutscene Mode: Minimal` the bub-ulb in Forever Forest will now give their regular, un-shortened dialogue if this map of the forest was entered while riding Sushie. This should alleviate a mismatch in usefulness of this glitch between `Cutscene Mode: Minimal` and the other `Cutscene Mode` settings.
+* Changed options
+  * `Toad Town Sushie Glitch`
+    * During `Cutscene Mode: Minimal` the bub-ulb in Forever Forest will now give their regular, un-shortened dialogue if this map of the forest was entered while riding Sushie. This should alleviate a mismatch in usefulness of this glitch between `Cutscene Mode: Minimal` and the other `Cutscene Mode` settings.
+  * `Odd Key Early`
+    * Now logically includes getting the Koopa Bros. Fortress locations of `Left Tower - Top Of Tower` and `Dungeon Fire Room - On The Ground` with only the hammer.
+    * Renamed to `Hammer Clip Item Grab`
 
 ### Bug Fixes
 
