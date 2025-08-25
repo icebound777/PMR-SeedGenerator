@@ -8,4 +8,6 @@ From Mr.Zebra: https://youtu.be/fzaKLpS0wE8?si=WQCWcvbDX75YBxpL
 edges_isk_add_ruins_bomb_wall_skip = [
     #? Descending Stairs 1 Exit Middle Left -> Descending Stairs 1 Exit Top Right Cracked Wall
     {"from": {"map": "ISK_04", "id": 0}, "to": {"map": "ISK_04", "id": 2}, "reqs": [["Lakilester"],["Boots"]], "mapchange": False}, 
+    # Descending Stairs 1 Exit Top Right Cracked Wall -> Sand Drainage Room 2 Exit Upper Room Left
+    {"from": {"map": "ISK_04", "id": 2}, "to": {"map": "ISK_06", "id": 0}, "reqs": [["Lakilester"],["Boots"]], "mapchange": False}, 
 ]
