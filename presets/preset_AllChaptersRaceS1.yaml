@@ -267,6 +267,7 @@ JumplessSummitClimb                             : false
 ClippyBootsStoneBlockSkip                       : false
 ClippyBootsMetalBlockSkip                       : false
 IslandPipeBlooperSkip                           : false
+JumplessIslandPipe                              : false
 ParakarrylessSewerStarPiece                     : false
 ClippySewersUpgradeBlock                        : false
 SewerBlocksWithoutUltraBoots                    : false
@@ -313,6 +314,7 @@ ArtifactJumpUltraBoots                          : false
 RuinsKeyLakiJump                                : false
 ParakarrylessSecondSandRoomUltraBoots           : false
 ParakarrylessSecondSandRoomNormalBoots          : false
+RuinsBombWallSkip                               : false
 ParakarrylessSuperHammerRoomUltraBoots          : false
 ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
@@ -365,6 +367,7 @@ RaphSkipLakilester                              : false
 Ch5SushieGlitch                                 : false
 SushielessJungleStarpieceAndLetter              : false
 JumplessDeepJungleLaki                          : false
+JumplessDeepJungleLedge                         : false
 
 KooperlessLavalavaPowBlockParakarry             : false
 KooperlessLavalavaPowBlockSuperBoots            : false

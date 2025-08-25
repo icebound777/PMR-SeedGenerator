@@ -629,6 +629,8 @@ class OptionSet:
             self.glitch_settings.clippy_boots_metal_block_skip = options_dict.get("ClippyBootsMetalBlockSkip")
         if "IslandPipeBlooperSkip" in options_dict:
             self.glitch_settings.island_pipe_blooper_skip = options_dict.get("IslandPipeBlooperSkip")
+        if "JumplessIslandPipe" in options_dict:
+            self.glitch_settings.jumpless_island_pipe = options_dict.get("JumplessIslandPipe")
         if "ParakarrylessSewerStarPiece" in options_dict:
             self.glitch_settings.parakarryless_sewer_star_piece = options_dict.get("ParakarrylessSewerStarPiece")
         if "ClippySewersUpgradeBlock" in options_dict:
@@ -716,6 +718,8 @@ class OptionSet:
             self.glitch_settings.parakarryless_second_sand_room_ultra_boots = options_dict.get("ParakarrylessSecondSandRoomUltraBoots")
         if "ParakarrylessSecondSandRoomNormalBoots" in options_dict:
             self.glitch_settings.parakarryless_second_sand_room_normal_boots = options_dict.get("ParakarrylessSecondSandRoomNormalBoots")
+        if "RuinsBombWallSkip" in options_dict:
+            self.glitch_settings.ruins_bomb_wall_skip = options_dict.get("RuinsBombWallSkip")
         if "ParakarrylessSuperHammerRoomUltraBoots" in options_dict:
             self.glitch_settings.parakarryless_super_hammer_room_ultra_boots = options_dict.get("ParakarrylessSuperHammerRoomUltraBoots")
         if "ParakarrylessSuperHammerRoomNormalBoots" in options_dict:
@@ -814,6 +818,8 @@ class OptionSet:
             self.glitch_settings.sushieless_jungle_starpiece_and_letter = options_dict.get("SushielessJungleStarpieceAndLetter")
         if "JumplessDeepJungleLaki" in options_dict:
             self.glitch_settings.jumpless_deep_jungle_laki = options_dict.get("JumplessDeepJungleLaki")
+        if "JumplessDeepJungleLedge" in options_dict:
+            self.glitch_settings.jumpless_deep_jungle_ledge = options_dict.get("JumplessDeepJungleLedge")
 
         if "KooperlessLavalavaPowBlockParakarry" in options_dict:
             self.glitch_settings.kooperless_lavalava_pow_block_parakarry = options_dict.get("KooperlessLavalavaPowBlockParakarry")
@@ -1509,6 +1515,7 @@ class OptionSet:
         basic_assert("ClippyBootsStoneBlockSkip", bool)
         basic_assert("ClippyBootsMetalBlockSkip", bool)
         basic_assert("IslandPipeBlooperSkip", bool)
+        basic_assert("JumplessIslandPipe", bool)
         basic_assert("ParakarrylessSewerStarPiece", bool)
         basic_assert("ClippySewersUpgradeBlock", bool)
         basic_assert("SewerBlocksWithoutUltraBoots", bool)
@@ -1555,6 +1562,7 @@ class OptionSet:
         basic_assert("RuinsKeyLakiJump", bool)
         basic_assert("ParakarrylessSecondSandRoomUltraBoots", bool)
         basic_assert("ParakarrylessSecondSandRoomNormalBoots", bool)
+        basic_assert("RuinsBombWallSkip", bool)
         basic_assert("ParakarrylessSuperHammerRoomUltraBoots", bool)
         basic_assert("ParakarrylessSuperHammerRoomNormalBoots", bool)
         basic_assert("RuinsLocksSkipClippy", bool)
@@ -1607,6 +1615,7 @@ class OptionSet:
         basic_assert("Ch5SushieGlitch", bool)
         basic_assert("SushielessJungleStarpieceAndLetter", bool)
         basic_assert("JumplessDeepJungleLaki", bool)
+        basic_assert("JumplessDeepJungleLedge", bool)
 
         basic_assert("KooperlessLavalavaPowBlockParakarry", bool)
         basic_assert("KooperlessLavalavaPowBlockSuperBoots", bool)
@@ -2085,6 +2094,7 @@ class OptionSet:
         web_settings["ClippyBootsStoneBlockSkip"] = self.glitch_settings.clippy_boots_stone_block_skip
         web_settings["ClippyBootsMetalBlockSkip"] = self.glitch_settings.clippy_boots_metal_block_skip
         web_settings["IslandPipeBlooperSkip"] = self.glitch_settings.island_pipe_blooper_skip
+        web_settings["JumplessIslandPipe"] = self.glitch_settings.jumpless_island_pipe
         web_settings["ParakarrylessSewerStarPiece"] = self.glitch_settings.parakarryless_sewer_star_piece
         web_settings["ClippySewersUpgradeBlock"] = self.glitch_settings.clippy_sewers_upgrade_block
         web_settings["SewerBlocksWithoutUltraBoots"] = self.glitch_settings.sewer_blocks_without_ultra_boots
@@ -2136,6 +2146,7 @@ class OptionSet:
         web_settings["RuinsKeyLakiJump"] = self.glitch_settings.ruins_key_laki_jump
         web_settings["ParakarrylessSecondSandRoomUltraBoots"] = self.glitch_settings.parakarryless_second_sand_room_ultra_boots
         web_settings["ParakarrylessSecondSandRoomNormalBoots"] = self.glitch_settings.parakarryless_second_sand_room_normal_boots
+        web_settings["RuinsBombWallSkip"] = self.glitch_settings.ruins_bomb_wall_skip
         web_settings["ParakarrylessSuperHammerRoomUltraBoots"] = self.glitch_settings.parakarryless_super_hammer_room_ultra_boots
         web_settings["ParakarrylessSuperHammerRoomNormalBoots"] = self.glitch_settings.parakarryless_super_hammer_room_normal_boots
         web_settings["RuinsLocksSkipClippy"] = self.glitch_settings.ruins_locks_skip_clippy
@@ -2192,6 +2203,7 @@ class OptionSet:
         web_settings["Ch5SushieGlitch"] = self.glitch_settings.ch5_sushie_glitch
         web_settings["SushielessJungleStarpieceAndLetter"] = self.glitch_settings.sushieless_jungle_starpiece_and_letter
         web_settings["JumplessDeepJungleLaki"] = self.glitch_settings.jumpless_deep_jungle_laki
+        web_settings["JumplessDeepJungleLedge"] = self.glitch_settings.jumpless_deep_jungle_ledge
 
         # Glitches: Mt. Lavalava
         web_settings["KooperlessLavalavaPowBlockParakarry"] = self.glitch_settings.kooperless_lavalava_pow_block_parakarry

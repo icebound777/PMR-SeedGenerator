@@ -123,6 +123,7 @@ from maps.graph_edges.glitched_logic.hos_jumpless_summit_climb import (
 # Glitched Logic - Toad Town Tunnels
 from maps.graph_edges.glitched_logic.tik_island_pipe_blooper_skip import (
     edges_tik_add_island_pipe_blooper_skip,
+    edges_tik_add_jumpless_island_pipe,
 )
 from maps.graph_edges.glitched_logic.tik_parakarryless_sewer_star_piece import (
     edges_tik_add_parakarryless_sewer_star_piece,
@@ -244,6 +245,9 @@ from maps.graph_edges.glitched_logic.isk_ruins_key_laki_jump import (
 from maps.graph_edges.glitched_logic.isk_parakarryless_second_sand_room import (
     edges_isk_add_parakarryless_second_sand_room_normal_boots,
     edges_isk_add_parakarryless_second_sand_room_ultra_boots,
+)
+from maps.graph_edges.glitched_logic.isk_ruins_bomb_wall_skip import (
+    edges_isk_add_ruins_bomb_wall_skip,
 )
 from maps.graph_edges.glitched_logic.isk_parakarryless_super_hammer_room import (
     edges_isk_add_parakarryless_super_hammer_room_normal_boots,
@@ -377,6 +381,9 @@ from maps.graph_edges.glitched_logic.jan_sushieless_jungle_starpiece_and_letter 
 )
 from maps.graph_edges.glitched_logic.jan_jumpless_deep_jungle import (
     edges_jan_add_jumpless_deep_jungle_laki,
+)
+from maps.graph_edges.glitched_logic.jan_jumpless_deep_jungle_ledge import (
+    edges_jan_add_jumpless_deep_jungle_ledge,
 )
 
 # Glitched Logic - Mt. Lavalava
@@ -958,6 +965,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_tik_add_clippy_boots_metal_block_skip)
     if glitch_settings.island_pipe_blooper_skip:
         all_new_edges.extend(edges_tik_add_island_pipe_blooper_skip)
+    if glitch_settings.jumpless_island_pipe:
+        all_new_edges.extend(edges_tik_add_jumpless_island_pipe)
     if glitch_settings.parakarryless_sewer_star_piece:
         all_new_edges.extend(edges_tik_add_parakarryless_sewer_star_piece)
     if glitch_settings.clippy_sewers_upgrade_block:
@@ -1046,6 +1055,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_isk_add_artifact_jump_ultra_boots)
     if glitch_settings.parakarryless_second_sand_room_normal_boots:
         all_new_edges.extend(edges_isk_add_parakarryless_second_sand_room_normal_boots)
+    if glitch_settings.ruins_bomb_wall_skip:
+        all_new_edges.extend(edges_isk_add_ruins_bomb_wall_skip)
     if glitch_settings.parakarryless_second_sand_room_ultra_boots:
         all_new_edges.extend(edges_isk_add_parakarryless_second_sand_room_ultra_boots)
     if glitch_settings.parakarryless_super_hammer_room_normal_boots:
@@ -1154,6 +1165,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs)
     if glitch_settings.jumpless_deep_jungle_laki:
         all_new_edges.extend(edges_jan_add_jumpless_deep_jungle_laki)
+    if glitch_settings.jumpless_deep_jungle_ledge:
+        all_new_edges.extend(edges_jan_add_jumpless_deep_jungle_ledge)
 
     # Mt. Lavalava
     if glitch_settings.kooperless_lavalava_pow_block_parakarry:
