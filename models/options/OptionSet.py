@@ -816,6 +816,8 @@ class OptionSet:
             self.glitch_settings.sushieless_jungle_starpiece_and_letter = options_dict.get("SushielessJungleStarpieceAndLetter")
         if "JumplessDeepJungleLaki" in options_dict:
             self.glitch_settings.jumpless_deep_jungle_laki = options_dict.get("JumplessDeepJungleLaki")
+        if "JumplessDeepJungleLedge" in options_dict:
+            self.glitch_settings.jumpless_deep_jungle_ledge = options_dict.get("JumplessDeepJungleLedge")
 
         if "KooperlessLavalavaPowBlockParakarry" in options_dict:
             self.glitch_settings.kooperless_lavalava_pow_block_parakarry = options_dict.get("KooperlessLavalavaPowBlockParakarry")
@@ -1610,6 +1612,7 @@ class OptionSet:
         basic_assert("Ch5SushieGlitch", bool)
         basic_assert("SushielessJungleStarpieceAndLetter", bool)
         basic_assert("JumplessDeepJungleLaki", bool)
+        basic_assert("JumplessDeepJungleLedge", bool)
 
         basic_assert("KooperlessLavalavaPowBlockParakarry", bool)
         basic_assert("KooperlessLavalavaPowBlockSuperBoots", bool)
@@ -2196,6 +2199,7 @@ class OptionSet:
         web_settings["Ch5SushieGlitch"] = self.glitch_settings.ch5_sushie_glitch
         web_settings["SushielessJungleStarpieceAndLetter"] = self.glitch_settings.sushieless_jungle_starpiece_and_letter
         web_settings["JumplessDeepJungleLaki"] = self.glitch_settings.jumpless_deep_jungle_laki
+        web_settings["JumplessDeepJungleLedge"] = self.glitch_settings.jumpless_deep_jungle_ledge
 
         # Glitches: Mt. Lavalava
         web_settings["KooperlessLavalavaPowBlockParakarry"] = self.glitch_settings.kooperless_lavalava_pow_block_parakarry

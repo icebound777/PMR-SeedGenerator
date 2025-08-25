@@ -379,6 +379,9 @@ from maps.graph_edges.glitched_logic.jan_sushieless_jungle_starpiece_and_letter 
 from maps.graph_edges.glitched_logic.jan_jumpless_deep_jungle import (
     edges_jan_add_jumpless_deep_jungle_laki,
 )
+from maps.graph_edges.glitched_logic.jan_jumpless_deep_jungle_ledge import (
+    edges_jan_add_jumpless_deep_jungle_ledge,
+)
 
 # Glitched Logic - Mt. Lavalava
 from maps.graph_edges.glitched_logic.kzn_kooperless_lavalava_pow_block import (
@@ -1157,6 +1160,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_jan_add_sushieless_jungle_starpiece_and_letter_lzs)
     if glitch_settings.jumpless_deep_jungle_laki:
         all_new_edges.extend(edges_jan_add_jumpless_deep_jungle_laki)
+    if glitch_settings.jumpless_deep_jungle_ledge:
+        all_new_edges.extend(edges_jan_add_jumpless_deep_jungle_ledge)
 
     # Mt. Lavalava
     if glitch_settings.kooperless_lavalava_pow_block_parakarry:

@@ -130,6 +130,7 @@ class GlitchOptionSet():
         self.ch5_sushie_glitch = False
         self.sushieless_jungle_starpiece_and_letter = False
         self.jumpless_deep_jungle_laki = False
+        self.jumpless_deep_jungle_ledge = False
         self.kooperless_lavalava_pow_block_parakarry = False
         self.kooperless_lavalava_pow_block_super_boots = False
         self.jumpless_lavalava_pow_block = False
