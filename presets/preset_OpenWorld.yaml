@@ -314,6 +314,7 @@ ArtifactJumpUltraBoots                          : false
 RuinsKeyLakiJump                                : false
 ParakarrylessSecondSandRoomUltraBoots           : false
 ParakarrylessSecondSandRoomNormalBoots          : false
+RuinsBombWallSkip                               : false
 ParakarrylessSuperHammerRoomUltraBoots          : false
 ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false

@@ -78,6 +78,7 @@ class GlitchOptionSet():
         self.ruins_key_laki_jump = False
         self.parakarryless_second_sand_room_ultra_boots = False
         self.parakarryless_second_sand_room_normal_boots = False
+        self.ruins_bomb_wall_skip = False
         self.parakarryless_super_hammer_room_ultra_boots = False
         self.parakarryless_super_hammer_room_normal_boots = False
         self.ruins_locks_skip_clippy = False

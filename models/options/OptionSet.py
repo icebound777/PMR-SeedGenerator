@@ -718,6 +718,8 @@ class OptionSet:
             self.glitch_settings.parakarryless_second_sand_room_ultra_boots = options_dict.get("ParakarrylessSecondSandRoomUltraBoots")
         if "ParakarrylessSecondSandRoomNormalBoots" in options_dict:
             self.glitch_settings.parakarryless_second_sand_room_normal_boots = options_dict.get("ParakarrylessSecondSandRoomNormalBoots")
+        if "RuinsBombWallSkip" in options_dict:
+            self.glitch_settings.ruins_bomb_wall_skip = options_dict.get("RuinsBombWallSkip")
         if "ParakarrylessSuperHammerRoomUltraBoots" in options_dict:
             self.glitch_settings.parakarryless_super_hammer_room_ultra_boots = options_dict.get("ParakarrylessSuperHammerRoomUltraBoots")
         if "ParakarrylessSuperHammerRoomNormalBoots" in options_dict:
@@ -1560,6 +1562,7 @@ class OptionSet:
         basic_assert("RuinsKeyLakiJump", bool)
         basic_assert("ParakarrylessSecondSandRoomUltraBoots", bool)
         basic_assert("ParakarrylessSecondSandRoomNormalBoots", bool)
+        basic_assert("RuinsBombWallSkip", bool)
         basic_assert("ParakarrylessSuperHammerRoomUltraBoots", bool)
         basic_assert("ParakarrylessSuperHammerRoomNormalBoots", bool)
         basic_assert("RuinsLocksSkipClippy", bool)
@@ -2143,6 +2146,7 @@ class OptionSet:
         web_settings["RuinsKeyLakiJump"] = self.glitch_settings.ruins_key_laki_jump
         web_settings["ParakarrylessSecondSandRoomUltraBoots"] = self.glitch_settings.parakarryless_second_sand_room_ultra_boots
         web_settings["ParakarrylessSecondSandRoomNormalBoots"] = self.glitch_settings.parakarryless_second_sand_room_normal_boots
+        web_settings["RuinsBombWallSkip"] = self.glitch_settings.ruins_bomb_wall_skip
         web_settings["ParakarrylessSuperHammerRoomUltraBoots"] = self.glitch_settings.parakarryless_super_hammer_room_ultra_boots
         web_settings["ParakarrylessSuperHammerRoomNormalBoots"] = self.glitch_settings.parakarryless_super_hammer_room_normal_boots
         web_settings["RuinsLocksSkipClippy"] = self.glitch_settings.ruins_locks_skip_clippy

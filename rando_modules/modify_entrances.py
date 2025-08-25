@@ -246,6 +246,9 @@ from maps.graph_edges.glitched_logic.isk_parakarryless_second_sand_room import (
     edges_isk_add_parakarryless_second_sand_room_normal_boots,
     edges_isk_add_parakarryless_second_sand_room_ultra_boots,
 )
+from maps.graph_edges.glitched_logic.isk_ruins_bomb_wall_skip import (
+    edges_isk_add_ruins_bomb_wall_skip,
+)
 from maps.graph_edges.glitched_logic.isk_parakarryless_super_hammer_room import (
     edges_isk_add_parakarryless_super_hammer_room_normal_boots,
     edges_isk_add_parakarryless_super_hammer_room_ultra_boots,
@@ -1052,6 +1055,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_isk_add_artifact_jump_ultra_boots)
     if glitch_settings.parakarryless_second_sand_room_normal_boots:
         all_new_edges.extend(edges_isk_add_parakarryless_second_sand_room_normal_boots)
+    if glitch_settings.ruins_bomb_wall_skip:
+        all_new_edges.extend(edges_isk_add_ruins_bomb_wall_skip)
     if glitch_settings.parakarryless_second_sand_room_ultra_boots:
         all_new_edges.extend(edges_isk_add_parakarryless_second_sand_room_ultra_boots)
     if glitch_settings.parakarryless_super_hammer_room_normal_boots:
