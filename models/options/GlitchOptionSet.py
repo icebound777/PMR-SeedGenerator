@@ -32,6 +32,7 @@ class GlitchOptionSet():
         self.clippy_boots_stone_block_skip = False
         self.clippy_boots_metal_block_skip = False
         self.island_pipe_blooper_skip = False
+        self.jumpless_island_pipe = False
         self.parakarryless_sewer_star_piece = False
         self.clippy_sewers_upgrade_block = False
         self.sewer_blocks_without_ultra_boots = False

@@ -267,6 +267,7 @@ JumplessSummitClimb                             : false
 ClippyBootsStoneBlockSkip                       : false
 ClippyBootsMetalBlockSkip                       : false
 IslandPipeBlooperSkip                           : false
+JumplessIslandPipe                              : false
 ParakarrylessSewerStarPiece                     : false
 ClippySewersUpgradeBlock                        : false
 SewerBlocksWithoutUltraBoots                    : false

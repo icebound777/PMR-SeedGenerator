@@ -123,6 +123,7 @@ from maps.graph_edges.glitched_logic.hos_jumpless_summit_climb import (
 # Glitched Logic - Toad Town Tunnels
 from maps.graph_edges.glitched_logic.tik_island_pipe_blooper_skip import (
     edges_tik_add_island_pipe_blooper_skip,
+    edges_tik_add_jumpless_island_pipe,
 )
 from maps.graph_edges.glitched_logic.tik_parakarryless_sewer_star_piece import (
     edges_tik_add_parakarryless_sewer_star_piece,
@@ -958,6 +959,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_tik_add_clippy_boots_metal_block_skip)
     if glitch_settings.island_pipe_blooper_skip:
         all_new_edges.extend(edges_tik_add_island_pipe_blooper_skip)
+    if glitch_settings.jumpless_island_pipe:
+        all_new_edges.extend(edges_tik_add_jumpless_island_pipe)
     if glitch_settings.parakarryless_sewer_star_piece:
         all_new_edges.extend(edges_tik_add_parakarryless_sewer_star_piece)
     if glitch_settings.clippy_sewers_upgrade_block:

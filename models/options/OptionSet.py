@@ -629,6 +629,8 @@ class OptionSet:
             self.glitch_settings.clippy_boots_metal_block_skip = options_dict.get("ClippyBootsMetalBlockSkip")
         if "IslandPipeBlooperSkip" in options_dict:
             self.glitch_settings.island_pipe_blooper_skip = options_dict.get("IslandPipeBlooperSkip")
+        if "JumplessIslandPipe" in options_dict:
+            self.glitch_settings.jumpless_island_pipe = options_dict.get("JumplessIslandPipe")
         if "ParakarrylessSewerStarPiece" in options_dict:
             self.glitch_settings.parakarryless_sewer_star_piece = options_dict.get("ParakarrylessSewerStarPiece")
         if "ClippySewersUpgradeBlock" in options_dict:
@@ -1509,6 +1511,7 @@ class OptionSet:
         basic_assert("ClippyBootsStoneBlockSkip", bool)
         basic_assert("ClippyBootsMetalBlockSkip", bool)
         basic_assert("IslandPipeBlooperSkip", bool)
+        basic_assert("JumplessIslandPipe", bool)
         basic_assert("ParakarrylessSewerStarPiece", bool)
         basic_assert("ClippySewersUpgradeBlock", bool)
         basic_assert("SewerBlocksWithoutUltraBoots", bool)
@@ -2085,6 +2088,7 @@ class OptionSet:
         web_settings["ClippyBootsStoneBlockSkip"] = self.glitch_settings.clippy_boots_stone_block_skip
         web_settings["ClippyBootsMetalBlockSkip"] = self.glitch_settings.clippy_boots_metal_block_skip
         web_settings["IslandPipeBlooperSkip"] = self.glitch_settings.island_pipe_blooper_skip
+        web_settings["JumplessIslandPipe"] = self.glitch_settings.jumpless_island_pipe
         web_settings["ParakarrylessSewerStarPiece"] = self.glitch_settings.parakarryless_sewer_star_piece
         web_settings["ClippySewersUpgradeBlock"] = self.glitch_settings.clippy_sewers_upgrade_block
         web_settings["SewerBlocksWithoutUltraBoots"] = self.glitch_settings.sewer_blocks_without_ultra_boots
