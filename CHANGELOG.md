@@ -56,12 +56,18 @@
 
 ### Tricks & Glitches
 
+* New options
+  * `Ruins Bomb Wall Skip` (chapter 2)
+  * `Jumpless Deep Jungle Ledge` (chapter 5)
 * Changed options
   * `Toad Town Sushie Glitch`
     * During `Cutscene Mode: Minimal` the bub-ulb in Forever Forest will now give their regular, un-shortened dialogue if this map of the forest was entered while riding Sushie. This should alleviate a mismatch in usefulness of this glitch between `Cutscene Mode: Minimal` and the other `Cutscene Mode` settings.
   * `Odd Key Early`
     * Now logically includes getting the Koopa Bros. Fortress locations of `Left Tower - Top Of Tower` and `Dungeon Fire Room - On The Ground` with only the hammer.
     * Renamed to `Hammer Clip Item Grab`
+  * `Island Pipe Blooper Skip`
+    * Split up into `Island Pipe Blooper Skip` and `Jumpless Island Pipe`
+    * This is so skipping the blooper doesn't also implicitly, logically expect landing on the blue pipe while jumpless.
 
 ### Bug Fixes
 
@@ -119,6 +125,9 @@
   * Renamed `RequiredSpirits` to `RequiredChapters`
   * Added `StarWayChaptersNeededCnt` (int)
   * Added `StarBeamChaptersNeeded` (int)
+  * Added `JumplessIslandPipe` (bool)
+  * Added `RuinsBombWallSkip` (bool)
+  * Added `JumplessDeepJungleLedge` (bool)
 * Homeward Shroom guard function
   * Added a guard function to the Homeward Shroom activation. This can delay starting the warp until the game is in a game state that is unlikely to cause any issues.
   During regular gameplay the player should never notice any difference to before. This change is intended to allow third-party tools (like multiworld clients or crowd control) to trigger the Homeward Shroom without having to worry about checking for an unclean game state that may cause softlocks or crashes (like warping out of a cutscene or a shop storage dialogue).
