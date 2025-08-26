@@ -12,7 +12,7 @@ class GlitchOptionSet():
         self.prologue_sushie_glitch_ksj = False
         self.prologue_sushie_glitch_ultra_boots_laki = False
 
-        self.odd_key_early = False
+        self.hammer_clip_item_grab = False
         self.blue_house_skip = False
         self.blue_house_skip_laki = False
         self.blue_house_skip_toad_lure = False
@@ -32,6 +32,7 @@ class GlitchOptionSet():
         self.clippy_boots_stone_block_skip = False
         self.clippy_boots_metal_block_skip = False
         self.island_pipe_blooper_skip = False
+        self.jumpless_island_pipe = False
         self.parakarryless_sewer_star_piece = False
         self.clippy_sewers_upgrade_block = False
         self.sewer_blocks_without_ultra_boots = False
@@ -77,6 +78,7 @@ class GlitchOptionSet():
         self.ruins_key_laki_jump = False
         self.parakarryless_second_sand_room_ultra_boots = False
         self.parakarryless_second_sand_room_normal_boots = False
+        self.ruins_bomb_wall_skip = False
         self.parakarryless_super_hammer_room_ultra_boots = False
         self.parakarryless_super_hammer_room_normal_boots = False
         self.ruins_locks_skip_clippy = False
@@ -129,6 +131,7 @@ class GlitchOptionSet():
         self.ch5_sushie_glitch = False
         self.sushieless_jungle_starpiece_and_letter = False
         self.jumpless_deep_jungle_laki = False
+        self.jumpless_deep_jungle_ledge = False
         self.kooperless_lavalava_pow_block_parakarry = False
         self.kooperless_lavalava_pow_block_super_boots = False
         self.jumpless_lavalava_pow_block = False

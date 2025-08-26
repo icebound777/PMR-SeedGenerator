@@ -26,10 +26,10 @@ edges_mac = [
     {"from": {"map": "MAC_00", "id": 0},       "to": {"map": "MAC_00", "id": "ShopItemE"},   "reqs": []}, #* Gate District Exit Left -> ShopItemE (HoneySyrup)
     {"from": {"map": "MAC_00", "id": 0},       "to": {"map": "MAC_00", "id": "ShopItemF"},   "reqs": []}, #* Gate District Exit Left -> ShopItemF (Mushroom)
     {"from": {"map": "MAC_00", "id": 0},       "to": {"map": "MAC_00", "id": "DojoA"},       "reqs": [["Boots","Goombario","Watt","Sushie"]]}, #* Gate District Exit Left -> Dojo Fight A (First Degree Card)
-    {"from": {"map": "MAC_00", "id": "DojoA"}, "to": {"map": "MAC_00", "id": "DojoB"},       "reqs": [[{"starspirits": 1}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight B (Second Degree Card)
-    {"from": {"map": "MAC_00", "id": "DojoB"}, "to": {"map": "MAC_00", "id": "DojoC"},       "reqs": [[{"starspirits": 3}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight C (Third Degree Card)
-    {"from": {"map": "MAC_00", "id": "DojoC"}, "to": {"map": "MAC_00", "id": "DojoD"},       "reqs": [[{"starspirits": 4}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight D (Fourth Degree Card)
-    {"from": {"map": "MAC_00", "id": "DojoD"}, "to": {"map": "MAC_00", "id": "DojoE"},       "reqs": [[{"starspirits": 5}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight E (Diploma)
+    {"from": {"map": "MAC_00", "id": "DojoA"}, "to": {"map": "MAC_00", "id": "DojoB"},       "reqs": [[{"chapterclears": 1}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight B (Second Degree Card)
+    {"from": {"map": "MAC_00", "id": "DojoB"}, "to": {"map": "MAC_00", "id": "DojoC"},       "reqs": [[{"chapterclears": 3}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight C (Third Degree Card)
+    {"from": {"map": "MAC_00", "id": "DojoC"}, "to": {"map": "MAC_00", "id": "DojoD"},       "reqs": [[{"chapterclears": 4}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight D (Fourth Degree Card)
+    {"from": {"map": "MAC_00", "id": "DojoD"}, "to": {"map": "MAC_00", "id": "DojoE"},       "reqs": [[{"chapterclears": 5}]]}, #+ CHAINED REQUIREMENTS -> Dojo Fight E (Diploma)
 
     {"from": {"map": "MAC_00", "id": 0}, "to": {"map": "MAC_00", "id": 0}, "reqs": [], "pseudoitems": ["RF_CanVisitRussT"]}, #+ Can decipher MysteryNote
 
@@ -62,16 +62,16 @@ edges_mac = [
     {"from": {"map": "MAC_01", "id": 0},            "to": {"map": "MAC_01", "id": "ShopBadgeB"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeB (FirstAttack)
     {"from": {"map": "MAC_01", "id": 0},            "to": {"map": "MAC_01", "id": "ShopBadgeC"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeC (Multibounce)
     {"from": {"map": "MAC_01", "id": 0},            "to": {"map": "MAC_01", "id": "ShopBadgeD"},   "reqs": []}, #* Plaza District Exit Left -> ShopBadgeD (DDownPound)
-    {"from": {"map": "MAC_01", "id": 0},            "to": {"map": "MAC_01", "id": "ShopBadgeE"},   "reqs": [[{"starspirits": 1}]]}, #* Plaza District Exit Left -> ShopBadgeE (DodgeMaster)
+    {"from": {"map": "MAC_01", "id": 0},            "to": {"map": "MAC_01", "id": "ShopBadgeE"},   "reqs": [[{"chapterclears": 1}]]}, #* Plaza District Exit Left -> ShopBadgeE (DodgeMaster)
     {"from": {"map": "MAC_01", "id": "ShopBadgeE"}, "to": {"map": "MAC_01", "id": "ShopBadgeF"},   "reqs": []}, #+ CHAINED REQUIREMENTS -> ShopBadgeF (SleepStomp)
     {"from": {"map": "MAC_01", "id": "ShopBadgeE"}, "to": {"map": "MAC_01", "id": "ShopBadgeG"},   "reqs": []}, #+ CHAINED REQUIREMENTS -> ShopBadgeG (DoubleDip)
-    {"from": {"map": "MAC_01", "id": "ShopBadgeE"}, "to": {"map": "MAC_01", "id": "ShopBadgeH"},   "reqs": [[{"starspirits": 2}]]}, #+ CHAINED REQUIREMENTS -> ShopBadgeH (JumpCharge)
+    {"from": {"map": "MAC_01", "id": "ShopBadgeE"}, "to": {"map": "MAC_01", "id": "ShopBadgeH"},   "reqs": [[{"chapterclears": 2}]]}, #+ CHAINED REQUIREMENTS -> ShopBadgeH (JumpCharge)
     {"from": {"map": "MAC_01", "id": "ShopBadgeH"}, "to": {"map": "MAC_01", "id": "ShopBadgeI"},   "reqs": []}, #+ CHAINED REQUIREMENTS -> ShopBadgeI (SpinSmash)
     {"from": {"map": "MAC_01", "id": "ShopBadgeH"}, "to": {"map": "MAC_01", "id": "ShopBadgeJ"},   "reqs": []}, #+ CHAINED REQUIREMENTS -> ShopBadgeJ (GroupFocus)
-    {"from": {"map": "MAC_01", "id": "ShopBadgeH"}, "to": {"map": "MAC_01", "id": "ShopBadgeK"},   "reqs": [[{"starspirits": 3}]]}, #+ CHAINED REQUIREMENTS -> ShopBadgeK (AllorNothing)
+    {"from": {"map": "MAC_01", "id": "ShopBadgeH"}, "to": {"map": "MAC_01", "id": "ShopBadgeK"},   "reqs": [[{"chapterclears": 3}]]}, #+ CHAINED REQUIREMENTS -> ShopBadgeK (AllorNothing)
     {"from": {"map": "MAC_01", "id": "ShopBadgeK"}, "to": {"map": "MAC_01", "id": "ShopBadgeL"},   "reqs": []}, #+ CHAINED REQUIREMENTS -> ShopBadgeL (HPPlusC)
     {"from": {"map": "MAC_01", "id": "ShopBadgeK"}, "to": {"map": "MAC_01", "id": "ShopBadgeM"},   "reqs": []}, #+ CHAINED REQUIREMENTS -> ShopBadgeM (FPPlusC)
-    {"from": {"map": "MAC_01", "id": "ShopBadgeK"}, "to": {"map": "MAC_01", "id": "ShopBadgeN"},   "reqs": [[{"starspirits": 4}]]}, #+ CHAINED REQUIREMENTS -> ShopBadgeN (SSmashChg)
+    {"from": {"map": "MAC_01", "id": "ShopBadgeK"}, "to": {"map": "MAC_01", "id": "ShopBadgeN"},   "reqs": [[{"chapterclears": 4}]]}, #+ CHAINED REQUIREMENTS -> ShopBadgeN (SSmashChg)
     {"from": {"map": "MAC_01", "id": "ShopBadgeN"}, "to": {"map": "MAC_01", "id": "ShopBadgeO"},   "reqs": []}, #+ CHAINED REQUIREMENTS -> ShopBadgeO (DamageDodgeA)
     {"from": {"map": "MAC_01", "id": "ShopBadgeN"}, "to": {"map": "MAC_01", "id": "ShopBadgeP"},   "reqs": []}, #+ CHAINED REQUIREMENTS -> ShopBadgeP (MegaQuake)
 
@@ -82,21 +82,21 @@ edges_mac = [
                                                                                                        #"StarPiece_MAC_3",
                                                                                                        #"StarPiece_MAC_4"
                                                                                                        ]}, #+ Quizmo StarPieces
-    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 0}, "reqs": [[{"starspirits": 2}]], "pseudoitems": ["StarPiece_MAC_5",
-                                                                                                                          # "StarPiece_MAC_6",
-                                                                                                                          # "StarPiece_MAC_7",
-                                                                                                                          # "StarPiece_MAC_8"
-                                                                                                                           ]}, #+ Quizmo StarPieces
-    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 0}, "reqs": [[{"starspirits": 4}]], "pseudoitems": ["StarPiece_MAC_9",
-                                                                                                                        #   "StarPiece_MAC_10",
-                                                                                                                        #   "StarPiece_MAC_11",
-                                                                                                                        #   "StarPiece_MAC_12"
-                                                                                                                           ]}, #+ Quizmo StarPieces
-    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 0}, "reqs": [[{"starspirits": 6}]], "pseudoitems": ["StarPiece_MAC_13",
-                                                                                                                         #  "StarPiece_MAC_14",
-                                                                                                                         #  "StarPiece_MAC_15",
-                                                                                                                         #  "StarPiece_MAC_16"
-                                                                                                                           ]}, #+ Quizmo StarPieces
+    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 0}, "reqs": [[{"chapterclears": 2}]], "pseudoitems": ["StarPiece_MAC_5",
+                                                                                                                            # "StarPiece_MAC_6",
+                                                                                                                            # "StarPiece_MAC_7",
+                                                                                                                            # "StarPiece_MAC_8"
+                                                                                                                             ]}, #+ Quizmo StarPieces
+    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 0}, "reqs": [[{"chapterclears": 4}]], "pseudoitems": ["StarPiece_MAC_9",
+                                                                                                                          #   "StarPiece_MAC_10",
+                                                                                                                          #   "StarPiece_MAC_11",
+                                                                                                                          #   "StarPiece_MAC_12"
+                                                                                                                             ]}, #+ Quizmo StarPieces
+    {"from": {"map": "MAC_01", "id": 0}, "to": {"map": "MAC_01", "id": 0}, "reqs": [[{"chapterclears": 6}]], "pseudoitems": ["StarPiece_MAC_13",
+                                                                                                                           #  "StarPiece_MAC_14",
+                                                                                                                           #  "StarPiece_MAC_15",
+                                                                                                                           #  "StarPiece_MAC_16"
+                                                                                                                             ]}, #+ Quizmo StarPieces
 
     # MAC_02 Southern District
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_04", "id": 0}, "reqs": []}, # Southern District Exit Left -> Residental District Exit Right
@@ -187,17 +187,17 @@ edges_mac = [
                                                                                                       # "StarPiece_MAC_3",
                                                                                                       # "StarPiece_MAC_4"
                                                                                                        ]}, #+ Quizmo StarPieces
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 0}, "reqs": [[{"starspirits": 2}]], "pseudoitems": ["StarPiece_MAC_5",
+    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 0}, "reqs": [[{"chapterclears": 2}]], "pseudoitems": ["StarPiece_MAC_5",
                                                                                                                         #   "StarPiece_MAC_6",
                                                                                                                         #   "StarPiece_MAC_7",
                                                                                                                         #   "StarPiece_MAC_8"
                                                                                                                            ]}, #+ Quizmo StarPieces
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 0}, "reqs": [[{"starspirits": 4}]], "pseudoitems": ["StarPiece_MAC_9",
+    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 0}, "reqs": [[{"chapterclears": 4}]], "pseudoitems": ["StarPiece_MAC_9",
                                                                                                                           # "StarPiece_MAC_10",
                                                                                                                           # "StarPiece_MAC_11",
                                                                                                                           # "StarPiece_MAC_12"
                                                                                                                            ]}, #+ Quizmo StarPieces
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 0}, "reqs": [[{"starspirits": 6}]], "pseudoitems": ["StarPiece_MAC_13",
+    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": 0}, "reqs": [[{"chapterclears": 6}]], "pseudoitems": ["StarPiece_MAC_13",
                                                                                                                         #   "StarPiece_MAC_14",
                                                                                                                         #   "StarPiece_MAC_15",
                                                                                                                         #   "StarPiece_MAC_16"
@@ -225,17 +225,17 @@ edges_mac = [
                                                                                                       # "StarPiece_MAC_3",
                                                                                                       # "StarPiece_MAC_4"
                                                                                                        ]}, #+ Quizmo StarPieces
-    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 0}, "reqs": [[{"starspirits": 2}]], "pseudoitems": ["StarPiece_MAC_5",
+    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 0}, "reqs": [[{"chapterclears": 2}]], "pseudoitems": ["StarPiece_MAC_5",
                                                                                                                           # "StarPiece_MAC_6",
                                                                                                                           # "StarPiece_MAC_7",
                                                                                                                           # "StarPiece_MAC_8"
                                                                                                                            ]}, #+ Quizmo StarPieces
-    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 0}, "reqs": [[{"starspirits": 4}]], "pseudoitems": ["StarPiece_MAC_9",
+    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 0}, "reqs": [[{"chapterclears": 4}]], "pseudoitems": ["StarPiece_MAC_9",
                                                                                                                           # "StarPiece_MAC_10",
                                                                                                                           # "StarPiece_MAC_11",
                                                                                                                           # "StarPiece_MAC_12"
                                                                                                                            ]}, #+ Quizmo StarPieces
-    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 0}, "reqs": [[{"starspirits": 6}]], "pseudoitems": ["StarPiece_MAC_13",
+    {"from": {"map": "MAC_05", "id": 0}, "to": {"map": "MAC_05", "id": 0}, "reqs": [[{"chapterclears": 6}]], "pseudoitems": ["StarPiece_MAC_13",
                                                                                                                           # "StarPiece_MAC_14",
                                                                                                                           # "StarPiece_MAC_15",
                                                                                                                           # "StarPiece_MAC_16"

@@ -299,12 +299,12 @@ def get_random_formations(
         # Build list of areas the formations fall into. This requires the actor
         # names to be prefixed by the area byte, i.e. "06_KoopaTroopa"
         area_id = actor.actor_name[:2]
-        if not area_id in actor_areas:
+        if area_id not in actor_areas:
             actor_areas[area_id] = []
-        if not actor.actor_name in actor_areas[area_id]:
+        if actor.actor_name not in actor_areas[area_id]:
             # Only allow unused MediGuys during ProgressiveScaling
             if (   do_progressive_scaling
-                or not actor.actor_name in unused_mediguys
+                or actor.actor_name not in unused_mediguys
             ):
                 actor_areas[area_id].append(actor.actor_name)
 

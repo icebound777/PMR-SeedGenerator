@@ -77,3 +77,4 @@ def create_moves():
                 map_id=data["map_id"],
                 index=data["value_id"],
             )
+        print (move,created)

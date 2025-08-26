@@ -206,7 +206,7 @@ edges_jan = [
     {"from": {"map": "JAN_12", "id": 1}, "to": {"map": "JAN_12", "id": 0}, "reqs": []}, #? Deep Jungle 1 Exit Top Right -> Deep Jungle 1 Exit Bottom Left
 
     {"from": {"map": "JAN_12", "id": 0}, "to": {"map": "JAN_12", "id": "Tree1_Drop1"},   "reqs": [["Boots"]]}, #* Deep Jungle 1 Exit Bottom Left -> Tree1_Drop1 (Egg)
-    {"from": {"map": "JAN_12", "id": 0}, "to": {"map": "JAN_12", "id": "Tree1_Drop2"},   "reqs": [["can_shake_trees"]]}, #* Deep Jungle 1 Exit Bottom Left -> Tree1_Drop2 (Coin)
+    {"from": {"map": "JAN_12", "id": 0}, "to": {"map": "JAN_12", "id": "Tree1_Drop2"},   "reqs": [["can_shake_trees"],["can_climb_steps"]]}, #* Deep Jungle 1 Exit Bottom Left -> Tree1_Drop2 (Coin)
     {"from": {"map": "JAN_12", "id": 0}, "to": {"map": "JAN_12", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"],["can_climb_steps"]]}, #* Deep Jungle 1 Exit Bottom Left -> HiddenYBlockA (StoneCap)
 
     # JAN_13 Deep Jungle 2 (Block Puzzle)
@@ -288,7 +288,6 @@ edges_jan = [
     {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": "ItemA"}, "reqs": []}, #* Path to the Volcano Exit Left -> ItemA (JamminJelly)
 
     {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": 0}, "reqs": [["MF_Ch5_RafaelMovedRoot"]], "pseudoitems": ["MF_Ch5_ZiplineBuilt"]}, #+ Let Raphael build the zipline
-    {"from": {"map": "JAN_22", "id": 0}, "to": {"map": "JAN_22", "id": 0}, "reqs": [["MF_Ch5_FoundEscapeRoute"]], "pseudoitems": ["STARSPIRIT_5", "MF_Ch5_RescuedStarSpirit"]}, #+ Get Star Spirit after escaping Volcano
 
     # JAN_23 Great Treetop Roost
     {"from": {"map": "JAN_23", "id": 0}, "to": {"map": "JAN_19", "id": 1}, "reqs": []}, # Great Treetop Roost Exit Left -> Upper Great Tree Interior Exit Top

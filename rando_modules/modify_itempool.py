@@ -86,7 +86,7 @@ def get_randomized_itempool(itempool:list, consumable_mode:int, quality:int, add
     def is_consumable(item_obj):
         item_name = item_obj.item_name
         item_score_obj = next((x for x in item_scores if x.get("name") == item_name), None)
-        return item_score_obj != None
+        return item_score_obj is not None
 
     kept_items = [x for x in itempool if not is_consumable(x)]
     removed_items = [x for x in itempool if is_consumable(x)]

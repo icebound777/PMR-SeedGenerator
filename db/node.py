@@ -97,8 +97,8 @@ def create_nodes():
 
     # Create item only nodes
     for _, data in item_keys.items():
-        if (   not data["area_id"] in custom_map_order
-            or not data["map_id"] in custom_map_order[data["area_id"]]
+        if (   data["area_id"] not in custom_map_order
+            or data["map_id"] not in custom_map_order[data["area_id"]]
         ):
             map_order = 100
         else:
@@ -174,8 +174,8 @@ def create_nodes():
         for entrance_id, entrance_data in entrance_keys.items():
 
             if entrance_data["name"] == map_id:
-                if (   not entrance_data["area_id"] in custom_map_order
-                    or not entrance_data["map_id"] in custom_map_order[entrance_data["area_id"]]
+                if (   entrance_data["area_id"] not in custom_map_order
+                    or entrance_data["map_id"] not in custom_map_order[entrance_data["area_id"]]
                 ):
                     map_order = 100
                 else:

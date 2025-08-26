@@ -36,7 +36,7 @@ def create_actor_attributes():
     with open("./debug/values.json", "r") as file:
         actor_values = json.load(file)["actors"]
 
-    for key,actor_data in actor_keys.items():
+    for actor_data in actor_keys.values():
         for attribute,data in actor_data.items():
             value = actor_values[data["name"]][attribute]
 

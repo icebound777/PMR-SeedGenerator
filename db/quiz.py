@@ -35,7 +35,7 @@ def create_quizzes():
     with open("./debug/values.json", "r") as file:
         quiz_values = json.load(file)["quizzes"]
 
-    for key,data in quiz_keys.items():
+    for data in quiz_keys.values():
         value = quiz_values[data["name"]]
 
         quiz,created = Quiz.get_or_create(

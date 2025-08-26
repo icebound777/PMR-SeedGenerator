@@ -1,13 +1,12 @@
 from db.item import Item
 from db.option import Option
 
-from rando_enums.enum_ingame import StarSpirits
 from rando_enums.enum_options import (
     BowserCastleMode,
     IncludeFavorsMode,
     IncludeLettersMode,
     RandomizeConsumablesMode,
-    ItemTrapMode,
+    SpiritShuffleMode,
     RandomMoveCosts,
     HiddenBlockMode,
     StartingBoots,
@@ -21,7 +20,7 @@ from rando_enums.enum_options import (
     PartnerShuffle,
     DojoShuffle,
     BossShuffleMode,
-    RequiredSpirits,
+    RequiredChapters,
     BowserDoorQuiz,
     KentCKoopa,
 )
@@ -145,8 +144,8 @@ class OptionSet:
         except ValueError as err:
             print(f"{err.args}: Settings file not provided.")
             raise
-        except AssertionError as err:
-            print(f"ERROR: Settings file includes invalid data.")
+        except AssertionError:
+            print("ERROR: Settings file includes invalid data.")
             raise
 
         # General
@@ -251,6 +250,8 @@ class OptionSet:
         # Item Pool Modification
         if "GearShuffleMode" in options_dict:
             self.logic_settings.gear_shuffle_mode = options_dict.get("GearShuffleMode")
+        if "SpiritShuffleMode" in options_dict:
+            self.logic_settings.spirit_shuffle_mode = options_dict.get("SpiritShuffleMode")
         if "AddItemPouches" in options_dict:
             self.logic_settings.add_item_pouches = options_dict.get("AddItemPouches")
         if "PartnerUpgradeShuffle" in options_dict:
@@ -419,11 +420,13 @@ class OptionSet:
             self.logic_settings.seed_goal = options_dict.get("SeedGoal")
         if "BowsersCastleMode" in options_dict:
             self.logic_settings.bowsers_castle_mode = options_dict.get("BowsersCastleMode")
+        if "StarWayChaptersNeededCnt" in options_dict:
+            self.logic_settings.starway_chapters_needed_count = options_dict.get("StarWayChaptersNeededCnt")
         if "StarWaySpiritsNeededCnt" in options_dict:
             self.logic_settings.starway_spirits_needed_count = options_dict.get("StarWaySpiritsNeededCnt")
         # auto-set, not changeable via settings
-        #if "StarWaySpiritsNeededEnc" in options_dict:
-        #    self.starway_spirits_needed_encoded = options_dict.get("StarWaySpiritsNeededEnc")
+        #if "StarWayChaptersNeededEnc" in options_dict:
+        #    self.starway_chapters_needed_encoded = options_dict.get("StarWayChaptersNeededEnc")
         if "StarWayPowerStarsNeeded" in options_dict:
             self.logic_settings.starway_powerstars_needed = options_dict.get("StarWayPowerStarsNeeded")
         if "ShuffleStarBeam" in options_dict:
@@ -431,14 +434,16 @@ class OptionSet:
         # auto-set, not changeable via settings
         #if "StarBeamArea" in options_dict:
         #    self.starbeam_location = options_dict.get("StarBeamArea")
+        if "StarBeamChaptersNeeded" in options_dict:
+            self.logic_settings.starbeam_chapters_needed = options_dict.get("StarBeamChaptersNeeded")
         if "StarBeamSpiritsNeeded" in options_dict:
             self.logic_settings.starbeam_spirits_needed = options_dict.get("StarBeamSpiritsNeeded")
         if "StarBeamPowerStarsNeeded" in options_dict:
             self.logic_settings.starbeam_powerstars_needed = options_dict.get("StarBeamPowerStarsNeeded")
         if "StarHuntTotal" in options_dict:
             self.logic_settings.star_hunt_total = options_dict.get("StarHuntTotal")
-        if "RequiredSpirits" in options_dict:
-            self.logic_settings.required_spirits = options_dict.get("RequiredSpirits")
+        if "RequiredChapters" in options_dict:
+            self.logic_settings.required_chapters = options_dict.get("RequiredChapters")
 
         # Entrance Shuffle
         if "ShuffleDungeonRooms" in options_dict:
@@ -586,8 +591,6 @@ class OptionSet:
         if "PrologueSushieGlitchUltraBootsLaki" in options_dict:
             self.glitch_settings.prologue_sushie_glitch_ultra_boots_laki = options_dict.get("PrologueSushieGlitchUltraBootsLaki")
 
-        if "OddKeyEarly" in options_dict:
-            self.glitch_settings.odd_key_early = options_dict.get("OddKeyEarly")
         if "BlueHouseSkip" in options_dict:
             self.glitch_settings.blue_house_skip = options_dict.get("BlueHouseSkip")
         if "BlueHouseSkipLaki" in options_dict:
@@ -626,6 +629,8 @@ class OptionSet:
             self.glitch_settings.clippy_boots_metal_block_skip = options_dict.get("ClippyBootsMetalBlockSkip")
         if "IslandPipeBlooperSkip" in options_dict:
             self.glitch_settings.island_pipe_blooper_skip = options_dict.get("IslandPipeBlooperSkip")
+        if "JumplessIslandPipe" in options_dict:
+            self.glitch_settings.jumpless_island_pipe = options_dict.get("JumplessIslandPipe")
         if "ParakarrylessSewerStarPiece" in options_dict:
             self.glitch_settings.parakarryless_sewer_star_piece = options_dict.get("ParakarrylessSewerStarPiece")
         if "ClippySewersUpgradeBlock" in options_dict:
@@ -713,6 +718,8 @@ class OptionSet:
             self.glitch_settings.parakarryless_second_sand_room_ultra_boots = options_dict.get("ParakarrylessSecondSandRoomUltraBoots")
         if "ParakarrylessSecondSandRoomNormalBoots" in options_dict:
             self.glitch_settings.parakarryless_second_sand_room_normal_boots = options_dict.get("ParakarrylessSecondSandRoomNormalBoots")
+        if "RuinsBombWallSkip" in options_dict:
+            self.glitch_settings.ruins_bomb_wall_skip = options_dict.get("RuinsBombWallSkip")
         if "ParakarrylessSuperHammerRoomUltraBoots" in options_dict:
             self.glitch_settings.parakarryless_super_hammer_room_ultra_boots = options_dict.get("ParakarrylessSuperHammerRoomUltraBoots")
         if "ParakarrylessSuperHammerRoomNormalBoots" in options_dict:
@@ -811,6 +818,8 @@ class OptionSet:
             self.glitch_settings.sushieless_jungle_starpiece_and_letter = options_dict.get("SushielessJungleStarpieceAndLetter")
         if "JumplessDeepJungleLaki" in options_dict:
             self.glitch_settings.jumpless_deep_jungle_laki = options_dict.get("JumplessDeepJungleLaki")
+        if "JumplessDeepJungleLedge" in options_dict:
+            self.glitch_settings.jumpless_deep_jungle_ledge = options_dict.get("JumplessDeepJungleLedge")
 
         if "KooperlessLavalavaPowBlockParakarry" in options_dict:
             self.glitch_settings.kooperless_lavalava_pow_block_parakarry = options_dict.get("KooperlessLavalavaPowBlockParakarry")
@@ -917,6 +926,8 @@ class OptionSet:
             self.glitch_settings.break_yellow_blocks_with_super_boots = options_dict.get("BreakYellowBlocksWithSuperBoots")
         if "BreakStoneBlocksWithUltraBoots" in options_dict:
             self.glitch_settings.break_stone_blocks_with_ultra_boots = options_dict.get("BreakStoneBlocksWithUltraBoots")
+        if "HammerClipItemGrab" in options_dict:
+            self.glitch_settings.hammer_clip_item_grab = options_dict.get("HammerClipItemGrab")
         if "KnowsHiddenBlocks" in options_dict:
             self.glitch_settings.knows_hidden_blocks = options_dict.get("KnowsHiddenBlocks")
         if "KnowsPuzzleSolutions" in options_dict:
@@ -1020,7 +1031,7 @@ class OptionSet:
             try:
                 if option_name in options_dict:
                     assert isinstance(options_dict.get(option_name), data_type)
-            except AssertionError as err:
+            except AssertionError:
                 print(
                     f"{option_name}/{type(options_dict.get(option_name).get('value'))}: "\
                         f"Wrong data type, expected '{data_type}'."
@@ -1282,9 +1293,32 @@ class OptionSet:
                     and SeedGoal.DEFEAT_BOWSER <= options_dict.get("SeedGoal") <= SeedGoal.OPEN_STARWAY
             )
         basic_assert("BowsersCastleMode", int)
+        if "StarWayChaptersNeededCnt" in options_dict:
+            assert (    isinstance(options_dict.get("StarWayChaptersNeededCnt"), int)
+                    and -1 <= options_dict.get("StarWayChaptersNeededCnt") <= 7
+            )
         if "StarWaySpiritsNeededCnt" in options_dict:
             assert (    isinstance(options_dict.get("StarWaySpiritsNeededCnt"), int)
-                    and -1 <= options_dict.get("StarWaySpiritsNeededCnt") <= 7)
+                    and -1 <= options_dict["StarWaySpiritsNeededCnt"] <= 7
+            )
+            try:
+                # if LCL, and spirits needed > chapters needed, and spirit shuffle != anywhere -> problem
+                assert not (
+                        "RequiredChapters" in options_dict
+                    and options_dict["RequiredChapters"] == RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC
+                    and (   "SpiritShuffleMode" not in options_dict
+                         or options_dict["SpiritShuffleMode"] != SpiritShuffleMode.ANYWHERE
+                    )
+                    and (    "StarWayChaptersNeededCnt" in options_dict
+                         and 0 <= options_dict["StarWayChaptersNeededCnt"] <= 7
+                         and options_dict["StarWaySpiritsNeededCnt"] > options_dict["StarWayChaptersNeededCnt"]
+                    )
+                )
+            except AssertionError:
+                raise ValueError(
+                    "Limit Chapter Logic is active, but Shooting Star Summit "
+                    "requires more star spirits than are reachable in logic!"
+                )
         if "StarWayPowerStarsNeeded" in options_dict:
             assert (    isinstance(options_dict.get("StarWayPowerStarsNeeded"), int)
                     and -1 <= options_dict.get("StarWayPowerStarsNeeded") <= 120
@@ -1299,6 +1333,9 @@ class OptionSet:
                     "No item shuffle but star hunt is not a valid setting-combination!",
                 )
         basic_assert("ShuffleStarBeam", bool)
+        if "StarBeamChaptersNeeded" in options_dict:
+            assert (    isinstance(options_dict.get("StarBeamChaptersNeeded"), int)
+                    and -1 <= options_dict.get("StarBeamChaptersNeeded") <= 7)
         if "StarBeamSpiritsNeeded" in options_dict:
             assert (    isinstance(options_dict.get("StarBeamSpiritsNeeded"), int)
                     and -1 <= options_dict.get("StarBeamSpiritsNeeded") <= 7)
@@ -1322,22 +1359,22 @@ class OptionSet:
                     and (starthuntotal >= options_dict.get("StarWayPowerStarsNeeded") or starthuntotal == -1)
                     and (starthuntotal >= options_dict.get("StarBeamPowerStarsNeeded") or starthuntotal == -1)
             )
-        if "RequiredSpirits" in options_dict:
-            assert (    isinstance(options_dict.get("RequiredSpirits"), int)
-                    and RequiredSpirits.ANY <= options_dict["RequiredSpirits"] <= RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
-                    and not (    options_dict["RequiredSpirits"] == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
+        if "RequiredChapters" in options_dict:
+            assert (    isinstance(options_dict.get("RequiredChapters"), int)
+                    and RequiredChapters.ANY <= options_dict["RequiredChapters"] <= RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC
+                    and not (    options_dict["RequiredChapters"] == RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC
                              and (   options_dict.get("KeyitemsOutsideDungeon") is None
                                   or not options_dict["KeyitemsOutsideDungeon"]))
             )
             try:
-                assert (not (    options_dict["RequiredSpirits"] == RequiredSpirits.SPECIFIC_AND_LIMITCHAPTERLOGIC
-                             and options_dict.get("StarBeamSpiritsNeeded") is not None
-                             and options_dict["StarBeamSpiritsNeeded"] != 0
+                assert (not (    options_dict["RequiredChapters"] == RequiredChapters.SPECIFIC_AND_LIMITCHAPTERLOGIC
+                             and options_dict.get("StarBeamChaptersNeeded") is not None
+                             and options_dict["StarBeamChaptersNeeded"] != 0
                         )
                 )
-            except:
+            except AssertionError:
                 raise ValueError(
-                    "LCL does not support requiring more than zero spirits for Star Beam!",
+                    "LCL does not support requiring more than zero chapters for Star Beam!",
                 )
 
         # Entrance Shuffle
@@ -1458,7 +1495,6 @@ class OptionSet:
         basic_assert("PrologueSushieGlitchUltraBootsLaki", bool)
         basic_assert("GoombaVillageLakiExit", bool)
 
-        basic_assert("OddKeyEarly", bool)
         basic_assert("BlueHouseSkip", bool)
         basic_assert("BlueHouseSkipLaki", bool)
         basic_assert("BlueHouseSkipToadLure", bool)
@@ -1479,6 +1515,7 @@ class OptionSet:
         basic_assert("ClippyBootsStoneBlockSkip", bool)
         basic_assert("ClippyBootsMetalBlockSkip", bool)
         basic_assert("IslandPipeBlooperSkip", bool)
+        basic_assert("JumplessIslandPipe", bool)
         basic_assert("ParakarrylessSewerStarPiece", bool)
         basic_assert("ClippySewersUpgradeBlock", bool)
         basic_assert("SewerBlocksWithoutUltraBoots", bool)
@@ -1525,6 +1562,7 @@ class OptionSet:
         basic_assert("RuinsKeyLakiJump", bool)
         basic_assert("ParakarrylessSecondSandRoomUltraBoots", bool)
         basic_assert("ParakarrylessSecondSandRoomNormalBoots", bool)
+        basic_assert("RuinsBombWallSkip", bool)
         basic_assert("ParakarrylessSuperHammerRoomUltraBoots", bool)
         basic_assert("ParakarrylessSuperHammerRoomNormalBoots", bool)
         basic_assert("RuinsLocksSkipClippy", bool)
@@ -1577,6 +1615,7 @@ class OptionSet:
         basic_assert("Ch5SushieGlitch", bool)
         basic_assert("SushielessJungleStarpieceAndLetter", bool)
         basic_assert("JumplessDeepJungleLaki", bool)
+        basic_assert("JumplessDeepJungleLedge", bool)
 
         basic_assert("KooperlessLavalavaPowBlockParakarry", bool)
         basic_assert("KooperlessLavalavaPowBlockSuperBoots", bool)
@@ -1633,6 +1672,7 @@ class OptionSet:
 
         basic_assert("BreakYellowBlocksWithSuperBoots", bool)
         basic_assert("BreakStoneBlocksWithUltraBoots", bool)
+        basic_assert("HammerClipItemGrab", bool)
         basic_assert("KnowsHiddenBlocks", bool)
         basic_assert("KnowsPuzzleSolutions", bool)
         basic_assert("ReachHighBlocksWithSuperBoots", bool)
@@ -1689,6 +1729,7 @@ class OptionSet:
 
             # Item Pool Modification
             load_dbkey(self.logic_settings.gear_shuffle_mode, "GearShuffleMode"),
+            load_dbkey(self.logic_settings.spirit_shuffle_mode, "SpiritShuffleMode"),
             load_dbkey(self.logic_settings.partner_upgrade_shuffle, "PartnerUpgradeShuffle"),
 
             # Plandomizer warning label
@@ -1761,9 +1802,11 @@ class OptionSet:
 
             # Goal Settings
             load_dbkey(self.logic_settings.starway_spirits_needed_count, "StarWaySpiritsNeededCnt"),
-            load_dbkey(self.logic_settings.starway_spirits_needed_encoded, "StarWaySpiritsNeededEnc"),
+            load_dbkey(self.logic_settings.starway_chapters_needed_count, "StarWayChaptersNeededCnt"),
+            load_dbkey(self.logic_settings.starway_chapters_needed_encoded, "StarWayChaptersNeededEnc"),
             load_dbkey(self.logic_settings.starbeam_location, "StarBeamArea"),
             load_dbkey(self.logic_settings.starbeam_spirits_needed, "StarBeamSpiritsNeeded"),
+            load_dbkey(self.logic_settings.starbeam_chapters_needed, "StarBeamChaptersNeeded"),
             load_dbkey(self.logic_settings.starbeam_powerstars_needed, "StarBeamPowerStarsNeeded"),
             load_dbkey(self.logic_settings.bowsers_castle_mode, "BowsersCastleMode"),
             load_dbkey(self.logic_settings.starway_powerstars_needed, "StarWayPowerStarsNeeded"),
@@ -1948,8 +1991,10 @@ class OptionSet:
         web_settings["RandomItemsMax"] = self.logic_settings.random_starting_items_max
 
         web_settings["StarWaySpiritsNeededCnt"] = self.logic_settings.starway_spirits_needed_count
-        web_settings["RequiredSpirits"] = self.logic_settings.required_spirits
+        web_settings["StarWayChaptersNeededCnt"] = self.logic_settings.starway_chapters_needed_count
+        web_settings["RequiredChapters"] = self.logic_settings.required_chapters
         web_settings["ShuffleStarBeam"] = self.logic_settings.shuffle_starbeam
+        web_settings["StarBeamChaptersNeeded"] = self.logic_settings.starbeam_chapters_needed
         web_settings["StarBeamSpiritsNeeded"] = self.logic_settings.starbeam_spirits_needed
         web_settings["StarBeamPowerStarsNeeded"] = self.logic_settings.starbeam_powerstars_needed
         web_settings["BadgeSynergy"] = self.badge_synergy
@@ -1981,6 +2026,7 @@ class OptionSet:
         web_settings["ShuffleMusicMode"] = int(self.shuffle_music_mode)
         web_settings["ShuffleJingles"] = self.shuffle_jingles
         web_settings["GearShuffleMode"] = self.logic_settings.gear_shuffle_mode
+        web_settings["SpiritShuffleMode"] = self.logic_settings.spirit_shuffle_mode
         web_settings["PartnerUpgradeShuffle"] = self.logic_settings.partner_upgrade_shuffle
         web_settings["HiddenPanelVisibility"] = self.hiddenpanel_visibility
         web_settings["ISpyPanelHints"] = self.ispy_panel_hints
@@ -2026,7 +2072,6 @@ class OptionSet:
         web_settings["PrologueSushieGlitchUltraBootsLaki"] = self.glitch_settings.prologue_sushie_glitch_ultra_boots_laki
 
         # Glitches: Toad Town
-        web_settings["OddKeyEarly"] = self.glitch_settings.odd_key_early
         web_settings["BlueHouseSkip"] = self.glitch_settings.blue_house_skip
         web_settings["BlueHouseSkipLaki"] = self.glitch_settings.blue_house_skip_laki
         web_settings["BlueHouseSkipToadLure"] = self.glitch_settings.blue_house_skip_toad_lure
@@ -2049,6 +2094,7 @@ class OptionSet:
         web_settings["ClippyBootsStoneBlockSkip"] = self.glitch_settings.clippy_boots_stone_block_skip
         web_settings["ClippyBootsMetalBlockSkip"] = self.glitch_settings.clippy_boots_metal_block_skip
         web_settings["IslandPipeBlooperSkip"] = self.glitch_settings.island_pipe_blooper_skip
+        web_settings["JumplessIslandPipe"] = self.glitch_settings.jumpless_island_pipe
         web_settings["ParakarrylessSewerStarPiece"] = self.glitch_settings.parakarryless_sewer_star_piece
         web_settings["ClippySewersUpgradeBlock"] = self.glitch_settings.clippy_sewers_upgrade_block
         web_settings["SewerBlocksWithoutUltraBoots"] = self.glitch_settings.sewer_blocks_without_ultra_boots
@@ -2100,6 +2146,7 @@ class OptionSet:
         web_settings["RuinsKeyLakiJump"] = self.glitch_settings.ruins_key_laki_jump
         web_settings["ParakarrylessSecondSandRoomUltraBoots"] = self.glitch_settings.parakarryless_second_sand_room_ultra_boots
         web_settings["ParakarrylessSecondSandRoomNormalBoots"] = self.glitch_settings.parakarryless_second_sand_room_normal_boots
+        web_settings["RuinsBombWallSkip"] = self.glitch_settings.ruins_bomb_wall_skip
         web_settings["ParakarrylessSuperHammerRoomUltraBoots"] = self.glitch_settings.parakarryless_super_hammer_room_ultra_boots
         web_settings["ParakarrylessSuperHammerRoomNormalBoots"] = self.glitch_settings.parakarryless_super_hammer_room_normal_boots
         web_settings["RuinsLocksSkipClippy"] = self.glitch_settings.ruins_locks_skip_clippy
@@ -2156,6 +2203,7 @@ class OptionSet:
         web_settings["Ch5SushieGlitch"] = self.glitch_settings.ch5_sushie_glitch
         web_settings["SushielessJungleStarpieceAndLetter"] = self.glitch_settings.sushieless_jungle_starpiece_and_letter
         web_settings["JumplessDeepJungleLaki"] = self.glitch_settings.jumpless_deep_jungle_laki
+        web_settings["JumplessDeepJungleLedge"] = self.glitch_settings.jumpless_deep_jungle_ledge
 
         # Glitches: Mt. Lavalava
         web_settings["KooperlessLavalavaPowBlockParakarry"] = self.glitch_settings.kooperless_lavalava_pow_block_parakarry
@@ -2218,6 +2266,7 @@ class OptionSet:
         # Glitches: Global
         web_settings["BreakStoneBlocksWithUltraBoots"] = self.glitch_settings.break_stone_blocks_with_ultra_boots
         web_settings["BreakYellowBlocksWithSuperBoots"] = self.glitch_settings.break_yellow_blocks_with_super_boots
+        web_settings["HammerClipItemGrab"] = self.glitch_settings.hammer_clip_item_grab
         web_settings["KnowsHiddenBlocks"] = self.glitch_settings.knows_hidden_blocks
         web_settings["KnowsPuzzleSolutions"] = self.glitch_settings.knows_puzzle_solutions
         web_settings["ReachHighBlocksWithSuperBoots"] = self.glitch_settings.reach_high_blocks_with_super_boots
@@ -2296,7 +2345,9 @@ def _overrule_settings_with_plando(
                     elif cur_item == "StarBeam":
                         forced_shuffle_starbeam = True
 
-    if plando_data.get("dungeon_entrances") is not None:
+    if (    plando_data.get("dungeon_entrances") is not None
+        and len(plando_data["dungeon_entrances"]) > 0
+    ):
         if 8 in plando_data["dungeon_entrances"] or 8 in plando_data["dungeon_entrances"].values():
             forced_shuffle_dungeon_entrances = DungeonEntranceShuffle.INCLUDE_BOWSERSCASTLE
         else:
