@@ -122,6 +122,7 @@ class OptionSet:
         # Multiplayer
         self.mp_pawns_enabled = False
         self.mp_multiworld_enabled = False
+        self.mp_item_pickup_types = 0x11111111 # all item types active
 
         # Joke options
         self.roman_numerals = bool(get_option_default_value("RomanNumerals"))
@@ -566,6 +567,26 @@ class OptionSet:
         #    self.mp_pawns_enabled = options_dict.get("PawnsEnabled")
         #if "MultiworldEnabled" in options_dict:
         #    self.mp_multiworld_enabled = options_dict.get("MultiworldEnabled")
+        if "ItemPickupTypes" in options_dict:
+            all_pickup_types: int = 0
+            for item_pickup_type, is_active in options_dict.get("ItemPickupTypes").items():
+                if item_pickup_type == "Consumables" and is_active:
+                    all_pickup_types = all_pickup_types | 0x1
+                if item_pickup_type == "GearAndPartners" and is_active:
+                    all_pickup_types = all_pickup_types | 0x10
+                if item_pickup_type == "StarPowersAndSpirits" and is_active:
+                    all_pickup_types = all_pickup_types | 0x100
+                if item_pickup_type == "BadgesAndItemPouches" and is_active:
+                    all_pickup_types = all_pickup_types | 0x1000
+                if item_pickup_type == "KeyItems" and is_active:
+                    all_pickup_types = all_pickup_types | 0x10000
+                if item_pickup_type == "PartnerUpgrades" and is_active:
+                    all_pickup_types = all_pickup_types | 0x100000
+                if item_pickup_type == "StarPieces" and is_active:
+                    all_pickup_types = all_pickup_types | 0x1000000
+                if item_pickup_type == "PowerStars" and is_active:
+                    all_pickup_types = all_pickup_types | 0x10000000
+            self.mp_item_pickup_types = all_pickup_types
 
         # Joke options
         if "RomanNumerals" in options_dict:
@@ -1489,6 +1510,20 @@ class OptionSet:
         # Multiplayer
         basic_assert("PawnsEnabled", bool)
         basic_assert("MultiworldEnabled", bool)
+        if "ItemPickupTypes" in options_dict:
+            permitted_values = [
+                "Consumables",
+                "GearAndPartners",
+                "StarPowersAndSpirits",
+                "BadgesAndItemPouches",
+                "KeyItems",
+                "PartnerUpgrades",
+                "StarPieces",
+                "PowerStars",
+            ]
+            assert (    isinstance(options_dict.get("ItemPickupTypes"), dict)
+                    and all(key in permitted_values for key in options_dict.get("ItemPickupTypes"))
+                    and all(isinstance(value, bool) for value in options_dict.get("ItemPickupTypes").values()))
 
         # Joke options
         basic_assert("RomanNumerals", bool)
@@ -1851,6 +1886,7 @@ class OptionSet:
             # Multiplayer
             load_dbkey(self.mp_pawns_enabled, "PawnsEnabled"),
             load_dbkey(self.mp_multiworld_enabled, "MultiworldEnabled"),
+            load_dbkey(self.mp_item_pickup_types, "ItemPickupTypes"),
 
             # Joke options
             load_dbkey(self.roman_numerals, "RomanNumerals"),

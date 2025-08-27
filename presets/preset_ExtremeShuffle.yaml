@@ -8,6 +8,18 @@ HiddenBlockMode     : 0 # 0:vanilla, 1:Watt out, 2:Watt acquired, 3:always visib
 AllowPhysicsGlitches: true
 BadgeSynergy        : false
 
+# Multiplayer
+ItemPickupTypes: {
+    "Consumables": true,
+    "GearAndPartners": true,
+    "StarPowersAndSpirits": true,
+    "BadgesAndItemPouches": true,
+    "KeyItems": true,
+    "PartnerUpgrades": true,
+    "StarPieces": true,
+    "PowerStars": true
+}
+
 # QOL
 AlwaysSpeedySpin     : true
 AlwaysISpy           : false
