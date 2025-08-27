@@ -124,6 +124,14 @@ ID  | Item
 182 | RedBerryKey
 183 | YellowBerryKey
 184 | BubbleBerryKey
+2D4 | StarBeam
+2D5 | Eldstar
+2D6 | Mamar
+2D7 | Skolar
+2D8 | Muskular
+2D9 | Misstar
+2DA | Klevar
+2DB | Kalmar
 ```
 
 ### Gear Upgrades
@@ -144,14 +152,14 @@ ID  | Item
 ```text
 ID  | Item
 ----+------------------------
-2EE | Goombario
-2EF | Kooper
-2F0 | Bombette
-2F1 | Parakarry
-2F3 | Watt
-2F4 | Sushie
-2F5 | Lakilester
-2F6 | Bow
+2F5 | Goombario
+2F6 | Kooper
+2F7 | Bombette
+2F8 | Parakarry
+2FA | Watt
+2FB | Sushie
+2FC | Lakilester
+2FD | Bow
 ```
 
 (for current partner upgrade level, there is no need to check the collected flags for partner upgrade items. Instead check the current partner level in the Player Data, as outlined below)
@@ -709,6 +717,8 @@ Jail - Bombette Partner                        | ModFlag   1045
 Dungeon Fire Room - On The Ground              | GameFlag   288
 
 Battlement - Block Behind Rock                 | GameFlag   280
+
+Boss Battle Room - Boss Reward                 | ModFlag   10AF
 ```
 
 #### Mt Rugged
@@ -892,6 +902,8 @@ Diamond Stone Room - On Pedestal               | GameFlag   373
 Sand Drainage Room 3 - On Ledge                | GameFlag   377
 
 Lunar Stone Room - On Pedestal                 | GameFlag   371
+
+Tutankoopa Room - Boss Reward                  | ModFlag   10B0
 ```
 
 #### Forever Forest
@@ -950,6 +962,8 @@ Lady Bows Room - Bow Partner                   | ModFlag   1063
 ```text
 Location (spoiler log name)                    | Flag type and ID
 -----------------------------------------------+---------------------
+Windmill Exterior - Boss Reward                | ModFlag   10B1
+
 Ghost Town 1 - From Boo (Koopa Koot Favor)     | GameFlag   3F7
 Ghost Town 1 - Yellow Block In House           | GameFlag   3EF
 
@@ -1090,6 +1104,8 @@ RED Lantern Ghost - Watt Partner                 | ModFlag   1069
 RED Boss Barricade - Hidden Block Left           | GameFlag   45B
 RED Boss Barricade - On Brick Block              | GameFlag   45C
 RED Boss Barricade - Yellow Block Right          | GameFlag   45A
+
+RED General Guy Room - Boss Reward               | ModFlag   10B2
 ```
 
 #### Jade Jungle
@@ -1209,6 +1225,7 @@ Boss Antechamber - Hidden Panel                | GameFlag   53B
 
 Boss Room - Yellow Block Left                  | GameFlag   538
 Boss Room - Yellow Block Right                 | GameFlag   539
+Boss Room - Boss Reward                        | ModFlag   10B3
 ```
 
 #### Flower Fields
@@ -1271,6 +1288,8 @@ Location (spoiler log name)                      | Flag type and ID
 (NW) Lakilester - Lakilester Partner             | ModFlag   1089
 
 Cloudy Climb - On Cloud                          | GameFlag   56F
+
+Huff N Puff Room - Boss Reward                   | ModFlag   10B4
 ```
 
 #### Shiver Region
@@ -1354,6 +1373,8 @@ Small Statue Room - Hidden Panel                 | GameFlag   5E8
 Small Statue Room - Hidden Block                 | GameFlag   5E7
 
 P-Up, D-Down Room - In Chest                     | GameFlag   5EA
+
+Crystal Summit - Boss Reward                     | ModFlag   10B5
 ```
 
 #### Bowsers Castle

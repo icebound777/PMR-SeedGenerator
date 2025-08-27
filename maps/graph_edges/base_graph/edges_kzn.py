@@ -128,8 +128,9 @@ edges_kzn = [
     {"from": {"map": "KZN_19", "id": 1}, "to": {"map": "KZN_19", "id": 2}, "reqs": []}, #? Boss Room Exit West Lower -> Boss Room Exit East
     {"from": {"map": "KZN_19", "id": 2}, "to": {"map": "KZN_19", "id": 1}, "reqs": []}, #? Boss Room Exit East -> Boss Room Exit West Lower
 
-    {"from": {"map": "KZN_19", "id": 0},         "to": {"map": "KZN_19", "id": "YBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Boss Room Exit West Upper -> YBlockA (SuperShroom)
-    {"from": {"map": "KZN_19", "id": "YBlockA"}, "to": {"map": "KZN_19", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (MapleSyrup)
+    {"from": {"map": "KZN_19", "id": 0},         "to": {"map": "KZN_19", "id": "YBlockA"},    "reqs": [["can_hit_floating_blocks"]]}, #* Boss Room Exit West Upper -> YBlockA (SuperShroom)
+    {"from": {"map": "KZN_19", "id": "YBlockA"}, "to": {"map": "KZN_19", "id": "YBlockB"},    "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (MapleSyrup)
+    {"from": {"map": "KZN_19", "id": 1},         "to": {"map": "KZN_19", "id": "BossReward"}, "reqs": [["MF_Ch5_FoundEscapeRoute"]], "pseudoitems": ["CHAPTERCLEAR_5","MF_Ch5_RescuedStarSpirit"]}, #* Boss Room Exit West Lower -> BossReward (Misstar)
 
     # KZN_20 Rising Lava 1
     {"from": {"map": "KZN_20", "id": 0}, "to": {"map": "KZN_19", "id": 2}, "reqs": []}, # Rising Lava 1 Exit West -> Boss Room Exit East

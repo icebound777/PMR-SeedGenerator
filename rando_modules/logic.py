@@ -24,6 +24,7 @@ from rando_enums.enum_options import (
     MultiCoinBlockShuffle,
     PartnerShuffle,
     DojoShuffle,
+    SpiritShuffleMode,
 )
 
 from rando_modules.modify_itempool import (
@@ -57,6 +58,7 @@ from metadata.itemlocation_special import (
     superblock_locations,
     multicoinblock_locations,
 )
+from metadata.area_name_mappings import chapter_areaname_map
 from metadata.progression_items import (
     progression_miscitems as progression_miscitems_names,
     progression_items,
@@ -65,7 +67,12 @@ from metadata.item_exclusion import (
     exclude_due_to_settings,
     exclude_from_taycet_placement,
 )
-from metadata.item_general import taycet_items, progressive_badges
+from metadata.item_general import (
+    taycet_items,
+    progressive_badges,
+    rowf_shop_badges,
+    merlow_shop_badges,
+)
 from metadata.node_exclusion import exclude_from_trap_placement
 from metadata.partners_meta import all_partners
 
@@ -353,6 +360,8 @@ def _generate_item_pools(
 
     items_to_remove_from_pools: list[Item] = []
 
+    is_final_letterreward_shuffled = True
+
     def add_to_correct_itempool(
         new_item: Item,
     ):
@@ -521,6 +530,7 @@ def _generate_item_pools(
                     )
                 current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
+                is_final_letterreward_shuffled = False
                 continue
 
             if (    current_node_id in simpleletter_locations
@@ -657,6 +667,18 @@ def _generate_item_pools(
                 all_item_nodes.append(current_node)
                 continue
 
+            if (    logic_settings.spirit_shuffle_mode == SpiritShuffleMode.VANILLA
+                and "BossReward" in current_node.identifier
+            ):
+                if current_node_id in all_plando_locations:
+                    raise PlandoSettingsMismatchError(
+                        "Plandomizer error: An item location is plando'd which clashes "\
+                        "with the \"Spirit Shuffle Mode\" setting being set to \"Vanilla\""
+                    )
+                current_node.current_item = current_node.vanilla_item
+                all_item_nodes.append(current_node)
+                continue
+
             if current_node_id in plando_item_placement:
                 item_to_shuffle = current_node.vanilla_item
                 if (    item_to_shuffle.item_type == "STARPIECE"
@@ -711,6 +733,8 @@ def _generate_item_pools(
 
     # Make sure that every vanilla badge is in the item pool, regardless of
     # chosen settings
+    # Special case: The final letter reward is not shuffled, which means
+    # Lucky Day is not in any item pools, but is still available
     for vanilla_badge in (
         Item
         .select()
@@ -721,6 +745,11 @@ def _generate_item_pools(
     ):
         if (    vanilla_badge not in pool_badges
             and vanilla_badge not in pool_progression_items
+            and (   vanilla_badge.item_name != "LuckyDay"
+                 or is_final_letterreward_shuffled)
+            and (   logic_settings.include_shops
+                 or (    vanilla_badge.item_name not in rowf_shop_badges
+                     and vanilla_badge.item_name not in merlow_shop_badges))
         ):
             pool_badges.append(vanilla_badge)
 
@@ -1286,6 +1315,9 @@ def _algo_assumed_fill(
     pool_combined_progression_items = pool_progression_items + pool_misc_progression_items
     random.shuffle(pool_combined_progression_items)
 
+    if logic_settings.spirit_shuffle_mode == SpiritShuffleMode.SAME_CHAPTER:
+        pool_combined_progression_items.sort(key=lambda x: x.item_type == "STARSPIRIT")
+
     dungeon_restricted_items = {}
     if not logic_settings.keyitems_outside_dungeon:
         for dungeon in limited_by_item_areas:
@@ -1370,6 +1402,25 @@ def _algo_assumed_fill(
                 candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type == "GEAR"]
             else:
                 candidate_locations = [node for node in candidate_locations if node.vanilla_item.item_type != "GEAR"]
+
+        if (    item.item_type == "STARSPIRIT"
+            and logic_settings.spirit_shuffle_mode == SpiritShuffleMode.SAME_CHAPTER
+        ):
+            spirit_chapter_map = {
+                "Eldstar": 1,
+                "Mamar": 2,
+                "Skolar": 3,
+                "Muskular": 4,
+                "Misstar": 5,
+                "Klevar": 6,
+                "Kalmar": 7,
+            }
+            area_list = chapter_areaname_map[spirit_chapter_map[item.item_name]]
+            candidate_locations = [
+                node
+                for node in candidate_locations
+                if any(True for area in area_list if node.identifier.startswith(area))
+            ]
 
 
         if len(candidate_locations) == 0:

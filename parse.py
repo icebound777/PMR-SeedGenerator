@@ -185,7 +185,7 @@ def gather_values():
             return int(value[:-1])
         try:
             value = int(value, 16)
-        except:
+        except ValueError:
             pass
         else:
             return value

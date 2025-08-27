@@ -30,7 +30,7 @@ def create_battles():
 
     # Create battle info
     for data in battle_keys.values():
-        battle, _ = Battle.get_or_create(
+        Battle.get_or_create(
             name = data["name"],
             vanilla_battle_id = battle_values[data["name"]]
         )

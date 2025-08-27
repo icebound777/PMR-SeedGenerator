@@ -19,7 +19,7 @@ firestore_seed_collection = SEEDS_FAIL_PROD # Change this to fetch from differen
 # Usage: To get JSON for SeedID 12345: >python get_failed_seed.py 12345. When the id is ommited, the latest seed will be fetched instead
 def main(seed_id):
     cred = credentials.Certificate('service_account.json')
-    
+
     firebase_admin.initialize_app(cred)
     db = firestore.client()
 
@@ -29,10 +29,10 @@ def main(seed_id):
             raise Exception(f"No Document with SeedID: {seed_id} was found in collection: {firestore_seed_collection}")
     else:
         document =  db.collection(firestore_seed_collection).order_by("CreationDate", direction=firestore.Query.DESCENDING).limit(1).get()[0]
-    
+
     seed_json = document.to_dict()
-            
-    with open(f"failed_seed.json", 'w', encoding='utf-8') as f:
+
+    with open("failed_seed.json", 'w', encoding='utf-8') as f:
         json.dump(seed_json, f, ensure_ascii=False, indent=4, default=str, sort_keys=True)
 
     main_randomizer(["-c", "failed_seed.json"])

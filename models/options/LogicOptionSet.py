@@ -10,7 +10,7 @@ from rando_enums.enum_options import (
     PartnerShuffle,
     DojoShuffle,
     MultiCoinBlockShuffle,
-    RequiredSpirits,
+    RequiredChapters,
     BowserDoorQuiz,
     KentCKoopa,
 )
@@ -47,6 +47,7 @@ class LogicOptionSet():
 
         # Item Pool Modification
         self.gear_shuffle_mode = get_option_default_value("GearShuffleMode")
+        self.spirit_shuffle_mode = get_option_default_value("SpiritShuffleMode")
         self.add_item_pouches = False
         self.partner_upgrade_shuffle = get_option_default_value("PartnerUpgradeShuffle")
         self.add_unused_badge_duplicates = False
@@ -117,14 +118,16 @@ class LogicOptionSet():
         self.seed_goal = get_option_default_value("SeedGoal")
         self.bowsers_castle_mode = get_option_default_value("BowsersCastleMode")
         self.starway_spirits_needed_count = get_option_default_value("StarWaySpiritsNeededCnt")
-        self.starway_spirits_needed_encoded = get_option_default_value("StarWaySpiritsNeededEnc")
+        self.starway_chapters_needed_count = get_option_default_value("StarWayChaptersNeededCnt")
+        self.starway_chapters_needed_encoded = get_option_default_value("StarWayChaptersNeededEnc")
         self.starway_powerstars_needed = get_option_default_value("StarWayPowerStarsNeeded")
         self.shuffle_starbeam = False
         self.starbeam_location = area_name_id_map["HOS"]
+        self.starbeam_chapters_needed = get_option_default_value("StarBeamChaptersNeeded")
         self.starbeam_spirits_needed = get_option_default_value("StarBeamSpiritsNeeded")
         self.starbeam_powerstars_needed = get_option_default_value("StarBeamPowerStarsNeeded")
         self.star_hunt_total = get_option_default_value("StarHuntTotal")
-        self.required_spirits = RequiredSpirits.ANY
+        self.required_chapters = RequiredChapters.ANY
 
         # Entrance Shuffle
         self.shuffle_dungeon_rooms = bool(get_option_default_value("ShuffleDungeonRooms"))

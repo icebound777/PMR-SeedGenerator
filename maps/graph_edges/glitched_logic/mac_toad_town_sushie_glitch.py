@@ -28,7 +28,7 @@ edges_mac_add_toad_town_sushie_glitch = [
     #? Goomba Village Exit Right -> Goomba Village Exit Left
     {"from": {"map": "KMR_02", "id": 0 },  "to": {"map": "KMR_02", "id": 1 },  "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
     #? Toad Town Entrance Exit Right -> Toad Town Entrance Exit Left
-    {"from": {"map": "KMR_10", "id": 1 },  "to": {"map": "KMR_10", "id": 0 },  "reqs": [["RF_PrologueSushieGlitch"]], "mapchange": False},
+    {"from": {"map": "KMR_10", "id": 1 },  "to": {"map": "KMR_10", "id": 0 },  "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
 
     #* Residental District Exit Right -> ItemA (SnowmanDoll)
     {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": "ItemA"}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
@@ -51,6 +51,13 @@ edges_mac_add_toad_town_sushie_glitch = [
     {"from": {"map": "NOK_14", "id": 0}, "to": {"map": "NOK_14", "id": 1}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
     #? Path to Fortress 1 Exit Right -> Path to Fortress 1 Exit Left
     {"from": {"map": "NOK_14", "id": 1}, "to": {"map": "NOK_14", "id": 0}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
+
+    #? Stump Eyes Wrong Exit (To Previous) -> Stump Eyes Correct Exit
+    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_02", "id": 0}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
+    #? Stump Eyes Wrong Exit (To Previous) -> Get Lost In The Forest 1
+    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_02", "id": 2}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
+    #? Stump Eyes Wrong Exit (To Previous) -> Get Lost In The Forest 2
+    {"from": {"map": "MIM_02", "id": 1}, "to": {"map": "MIM_02", "id": 3}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
 
     #? Exit to Gusty Gulch Exit West -> Exit to Gusty Gulch Exit East
     {"from": {"map": "MIM_12", "id": 0}, "to": {"map": "MIM_12", "id": 1}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},

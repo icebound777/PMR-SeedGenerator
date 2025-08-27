@@ -31,7 +31,7 @@ def create_puzzles():
         puzzle_values = json.load(file)["puzzles"]
 
     for data in puzzle_keys.values():
-        puzzle, created = Puzzle.get_or_create(
+        Puzzle.get_or_create(
             name=data["puzzle"],
             default_value=puzzle_values[data["puzzle"]],
             index=data["index"],

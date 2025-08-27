@@ -62,21 +62,12 @@ def write_spoiler_log(
             spoiler_dict["boss_battles"][f"chapter {chapter_boss_tuple[0]}"] = boss_name
 
 
-    # Add required spirits, if specific
-    if spoilerlog_additions and spoilerlog_additions.get("required_spirits"):
+    # Add required chapters, if specific
+    if spoilerlog_additions and spoilerlog_additions.get("required_chapters"):
         additions = []
-        spirit_names = [
-            "Eldstar",
-            "Mamar",
-            "Skolar",
-            "Muskular",
-            "Misstar",
-            "Klevar",
-            "Kalmar"
-        ]
-        for spirit in spoilerlog_additions["required_spirits"]:
-            additions.append(f"{spirit_names[spirit - 1]} (Ch. {spirit})")
-        spoiler_dict["required_spirits"] = additions
+        for chapter in spoilerlog_additions["required_chapters"]:
+            additions.append(f"Chapter {chapter}")
+        spoiler_dict["required_chapters"] = additions
 
     # Add modified entrances
     if spoilerlog_additions and spoilerlog_additions.get("entrances"):

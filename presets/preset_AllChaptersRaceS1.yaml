@@ -57,6 +57,7 @@ KeyitemsOutsideChapter: true # "Keysanity" # false -> NYI
 
 # Item Pool Modification
 GearShuffleMode         : 2 # 0:vanilla, 1:location shuffle, 2:full shuffle
+SpiritShuffleMode       : 0 # 0:vanilla, 1:within home chapter, 2:anywhere
 AddItemPouches          : false
 PartnerUpgradeShuffle   : 0 # 0:off, 1:super block locations, 2:full shuffle
 AddUnusedBadgeDuplicates: false
@@ -146,13 +147,15 @@ Ch7BridgeVisible    : false
 # Goal Settings
 SeedGoal                : 0 # 0: Defeat Bowser, 1: Open StarWay
 BowsersCastleMode       : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
-StarWaySpiritsNeededCnt : 7 # -1:Random
+StarWayChaptersNeededCnt: 7 # -1:Random
+StarWaySpiritsNeededCnt : 0 # -1:Random
 StarWayPowerStarsNeeded : 0 # max 120, -1:Random
 ShuffleStarBeam         : false
+StarBeamChaptersNeeded  : 0 # -1:Random
 StarBeamSpiritsNeeded   : 0 # -1:Random
 StarBeamPowerStarsNeeded: 0 # -1:Random
 StarHuntTotal           : 0 # max 120, must be >= StarWayPowerStarsNeeded and >= StarBeamPowerStarsNeeded, -1:Random
-RequiredSpirits         : 0 # 0:any, 1:require specific spirits, 2: limit chapter logic
+RequiredChapters        : 0 # 0:any, 1:require specific chapters, 2: limit chapter logic
 
 # Entrance Shuffle
 ShuffleDungeonRooms     : false # NYI
@@ -244,7 +247,6 @@ GoombaVillageLakiExit                           : false
 PrologueSushieGlitchKsj                         : false
 PrologueSushieGlitchUltraBootsLaki              : false
 
-OddKeyEarly                                     : false
 BlueHouseSkip                                   : false
 BlueHouseSkipLaki                               : false
 BlueHouseSkipToadLure                           : false
@@ -265,6 +267,7 @@ JumplessSummitClimb                             : false
 ClippyBootsStoneBlockSkip                       : false
 ClippyBootsMetalBlockSkip                       : false
 IslandPipeBlooperSkip                           : false
+JumplessIslandPipe                              : false
 ParakarrylessSewerStarPiece                     : false
 ClippySewersUpgradeBlock                        : false
 SewerBlocksWithoutUltraBoots                    : false
@@ -311,6 +314,7 @@ ArtifactJumpUltraBoots                          : false
 RuinsKeyLakiJump                                : false
 ParakarrylessSecondSandRoomUltraBoots           : false
 ParakarrylessSecondSandRoomNormalBoots          : false
+RuinsBombWallSkip                               : false
 ParakarrylessSuperHammerRoomUltraBoots          : false
 ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
@@ -363,6 +367,7 @@ RaphSkipLakilester                              : false
 Ch5SushieGlitch                                 : false
 SushielessJungleStarpieceAndLetter              : false
 JumplessDeepJungleLaki                          : false
+JumplessDeepJungleLedge                         : false
 
 KooperlessLavalavaPowBlockParakarry             : false
 KooperlessLavalavaPowBlockSuperBoots            : false
@@ -419,6 +424,7 @@ BombettelessBowsersCastleBasement               : false
 
 BreakYellowBlocksWithSuperBoots                 : false
 BreakStoneBlocksWithUltraBoots                  : false
+HammerClipItemGrab                              : false
 KnowsHiddenBlocks                               : false
 KnowsPuzzleSolutions                            : false
 ReachHighBlocksWithSuperBoots                   : false

@@ -1,8 +1,6 @@
 from parse import get_table_info
 
 from db.option import Option
-from models.options.OptionSet import OptionSet
-from models.options.MysteryOptionSet import MysteryOptionSet
 
 class Table:
     instance = None

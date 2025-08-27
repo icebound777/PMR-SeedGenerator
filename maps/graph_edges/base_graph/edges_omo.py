@@ -166,8 +166,8 @@ edges_omo = [
     {"from": {"map": "OMO_11", "id": 0}, "to": {"map": "OMO_12", "id": 0}, "reqs": []}, # RED Moving Platforms Exit West -> RED Lantern Ghost Exit East
     {"from": {"map": "OMO_11", "id": 1}, "to": {"map": "OMO_10", "id": 0}, "reqs": []}, # RED Moving Platforms Exit East -> RED Station Exit West
 
-    {"from": {"map": "OMO_11", "id": 0}, "to": {"map": "OMO_11", "id": 1}, "reqs": []}, #? RED Moving Platforms Exit West -> RED Moving Platforms Exit East
-    {"from": {"map": "OMO_11", "id": 1}, "to": {"map": "OMO_11", "id": 0}, "reqs": []}, #? RED Moving Platforms Exit East -> RED Moving Platforms Exit West
+    {"from": {"map": "OMO_11", "id": 0}, "to": {"map": "OMO_11", "id": 1}, "reqs": [["Boots"]]}, #? RED Moving Platforms Exit West -> RED Moving Platforms Exit East
+    {"from": {"map": "OMO_11", "id": 1}, "to": {"map": "OMO_11", "id": 0}, "reqs": [["Boots"]]}, #? RED Moving Platforms Exit East -> RED Moving Platforms Exit West
 
     {"from": {"map": "OMO_11", "id": 1},         "to": {"map": "OMO_11", "id": "HiddenYBlockA"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit East -> HiddenYBlockA (VoltShroom)
     {"from": {"map": "OMO_11", "id": 0},         "to": {"map": "OMO_11", "id": "HiddenYBlockB"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit West -> HiddenYBlockB (SnowmanDoll)
@@ -204,7 +204,7 @@ edges_omo = [
     # OMO_15 RED General Guy Room
     {"from": {"map": "OMO_15", "id": 0}, "to": {"map": "OMO_14", "id": 1}, "reqs": []}, # RED General Guy Room Exit West -> RED Boss Antechamber Exit East
 
-    {"from": {"map": "OMO_15", "id": 0}, "to": {"map": "OMO_15", "id": 0}, "reqs": [], "pseudoitems": ["STARSPIRIT_4"]}, # RED General Guy Room Exit West -> RED Boss Antechamber Exit East
+    {"from": {"map": "OMO_15", "id": 0}, "to": {"map": "OMO_15", "id": "BossReward"}, "reqs": [], "pseudoitems": ["CHAPTERCLEAR_4"]}, #* RED General Guy Room Exit West -> BossReward (Muskular)
 
     # OMO_17 PNK Tracks Hallway
     {"from": {"map": "OMO_17", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": []}, # PNK Tracks Hallway Exit West (South) -> PNK Gourmet Guy Crossing Exit East (South)
