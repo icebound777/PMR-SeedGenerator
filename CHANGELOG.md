@@ -1,8 +1,16 @@
 # Changelog
 
+## 0.31.1 (beta)
+
+### Bug Fixes
+
+* Fix a rare softlock, where after the hedge maze battle against the Lakitus the cutscene afterwards softlocked. This was caused by having a Crazee Dayzee end the battle by running away, after all the other enemies had already been scared off using Bow's Spook ability.
+* Fix an issue of combining the new `Spirit Shuffle Mode` option with `Dungeon Entrance Shuffle`. If  Misstar in Mt. Lavalava held a consumable as boss reward, but the player's inventory was already full, then she could throw that consumable item off-screen or even out of bounds.
+* Fix a minor oversight with `Cutscene Mode: Minimal`, where the Boo Ring minigame on the first floor of Boo's Mansion would play out slightly slower than intended.
+
 ## 0.31.0 (beta)
 
-### Feature Changes
+### Feature Changes (0.31.0)
 
 * Star Spirits as items
   * The 7 Star Spirits have been turned into items and can now be shuffled away from their usual spots guarded by the chapter bosses.
@@ -44,7 +52,7 @@
   * Now skips the Huff n Puff dialogue of him taunting Mario after hitting him with a charged lightning attack
   * Now removes the interactive dialogue box of talking to Wise Wisterwood (the big tree) in Flower Fields. In most cases this dialogue was already removed, this change should now also cover a rarer edge case where the dialogue could still appear.
 
-### Logic changes
+### Logic changes (0.31.0)
 
 * Fixed logic not expecting boots for traversing the `RED Moving Platforms` room in Shy Guy's Toybox. Realistically this edge case has not come up yet, but could with further glitched logic additions.
 * Logic for the `Toad Town Sushie Glitch` trick setting
@@ -54,7 +62,7 @@
 * Logic for saved spirits / cleared chapters
   * All seed progression that formerly checked how many spirits Mario had saved now instead checks how many chapters Mario has cleared. This includes, but is not limited to, Rowf's badge shop progress, the unlocking of Koopa Koot favors, and the logic for accessing the different dojo battles. This also affects Progressive Scaling.
 
-### Tricks & Glitches
+### Tricks & Glitches (0.31.0)
 
 * New options
   * `Ruins Bomb Wall Skip` (chapter 2)
@@ -69,7 +77,7 @@
     * Split up into `Island Pipe Blooper Skip` and `Jumpless Island Pipe`
     * This is so skipping the blooper doesn't also implicitly, logically expect landing on the blue pipe while jumpless.
 
-### Bug Fixes
+### Bug Fixes (0.31.0)
 
 * Vanilla bugs
   * Fix the vanilla bug of item chests softlocking or crashing the game when another item was picked up at the same time. This was fixed by disallowing item pickups while the interact prompt (red exclamation point above Mario) is visible.
@@ -94,7 +102,7 @@
 * Item check flags
   * Fix the map item tracking referencing the wrong flag for the Boo's Mansion Big Chest item.
 
-### Miscellaneous
+### Miscellaneous (0.31.0)
 
 * Spoiler Log
   * Added `Boss Reward` item locations for each of the 7 main chapter bosses.
@@ -107,7 +115,7 @@
   * Added Star Spirit item IDs to `Key Items` list
   * Added the 7 new `Boss Reward` item check collected flags
 
-### Additional Technical Changelog
+### Additional Technical Changelog (0.31.0)
 
 * Changed item IDs due to the new Star Spirit items
   * New `Eldstar` item on ID 0x277
