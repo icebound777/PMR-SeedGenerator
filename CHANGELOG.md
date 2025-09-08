@@ -1,8 +1,25 @@
 # Changelog
 
-## 0.31.1 (beta)
+## Next Release
 
 ### Bug Fixes
+
+* Tricks & Glitches
+  * Settings not doing anything when turned on
+    * Fix `Tubba's Castle Super Boots Skip (Clippy)` glitch setting
+    * Fix `Ruins Locks Skip` glitch setting
+  * Settings expecting fewer items that are actually needed
+    * Fix `Break Stone Blocks with Ultra Boots`, which assumed Mario could see the hidden block on the `Bottom of the Cliff` map.
+    * `Yellow Berry Gate Skip (Bombette Push)`
+      * Fix that the trick assumed Mario would be put on the upper path, but Mario instead gets put just behind the gate and has to be able to cross the thorny vines.
+      * Fix that the trick assumed Mario could reach the gate from the eastern entrance without any items (only relevant during entrance rando).
+    * Fix `Blue Berry Gate Skip (Bombette Push)`, which assumed Mario could do the trick from the other side (only relevant during entrance rando).
+    * Fix `Red Berry Gate Skip (Bombette Push)`, which assumed Mario could do the trick from the other side (only relevant during entrance rando).
+    * Fix `Mirror Clip`, which assumed Mario could pass through the Crystal Palace mirror without any items.
+
+## 0.31.1 (beta)
+
+### Bug Fixes (0.31.1)
 
 * Fix a rare softlock, where after the hedge maze battle against the Lakitus the cutscene afterwards softlocked. This was caused by having a Crazee Dayzee end the battle by running away, after all the other enemies had already been scared off using Bow's Spook ability.
 * Fix an issue of combining the new `Spirit Shuffle Mode` option with `Dungeon Entrance Shuffle`. If  Misstar in Mt. Lavalava held a consumable as boss reward, but the player's inventory was already full, then she could throw that consumable item off-screen or even out of bounds.
@@ -82,7 +99,7 @@
 * Vanilla bugs
   * Fix the vanilla bug of item chests softlocking or crashing the game when another item was picked up at the same time. This was fixed by disallowing item pickups while the interact prompt (red exclamation point above Mario) is visible.
 * Item spawning
-  * When a player managed to get ahold of an item in an unexpected way, and that item was also placed into the store room in Toad Town, then entering that map would cause a crash. This usually applies to a broken seed placing a unique item more than once, cheating the item into the inventory via RAM manipulation, or acquiring items early in a multiworld session using server commands.  
+  * When a player managed to get ahold of an item in an unexpected way, and that item was also placed into the store room in Toad Town, then entering that map would cause a crash. This usually applies to a broken seed placing a unique item more than once, cheating the item into the inventory via RAM manipulation, or acquiring items early in a multiworld session using server commands.
   This issue is now fixed.
 * Boss Shuffle
   * Fix the final Tubba Blubba battle not properly scaling with whatever chapter 3 was scaled to. Instead Tubba scaled the same as whatever chapter the battle against Tubba's Heart was shuffled into.
@@ -472,7 +489,7 @@
   This setting now has three different values:
   * No dungeon shuffle
   * Shuffle spirit dungeons
-  * (new) Shuffle spirit dungeons, and include Bowser's Castle  
+  * (new) Shuffle spirit dungeons, and include Bowser's Castle
     (Note: For inclusion of Bowser's Castle, the `Star Way Spirits Needed` setting has to be set to require fewer than 7 star spirits.)
 * Changed `Hammerless Start` and `Jumpless Start` item placement logic:
   * Now has a vastly increased chance of placing the first gear item later into the seed progression.
