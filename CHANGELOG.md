@@ -10,12 +10,13 @@
     * Fix `Ruins Locks Skip` glitch setting
   * Settings expecting fewer items that are actually needed
     * Fix `Break Stone Blocks with Ultra Boots` and `Prologue Gel Early`, which assumed Mario could see the hidden block on the `Bottom of the Cliff` map.
+    * Fix `Mirror Clip`, which assumed Mario could pass through the Crystal Palace mirror without any items.
     * `Yellow Berry Gate Skip (Bombette Push)`
       * Fix that the trick assumed Mario would be put on the upper path, but Mario instead gets put just behind the gate and has to be able to cross the thorny vines.
       * Fix that the trick assumed Mario could reach the gate from the eastern entrance without any items (only relevant during entrance rando).
     * Fix `Blue Berry Gate Skip (Bombette Push)`, which assumed Mario could do the trick from the other side (only relevant during entrance rando).
     * Fix `Red Berry Gate Skip (Bombette Push)`, which assumed Mario could do the trick from the other side (only relevant during entrance rando).
-    * Fix `Mirror Clip`, which assumed Mario could pass through the Crystal Palace mirror without any items.
+    * Fix all "blue house skip" tricks, which assumed you could leave the blue house without opening the pad lock (only relevant during entrance rando).
 
 ## 0.31.1 (beta)
 
