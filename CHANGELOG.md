@@ -21,6 +21,8 @@
     * Fix `Red Berry Gate Skip (Bombette Push)`, which assumed Mario could do the trick from the other side (only relevant during entrance rando).
     * Fix all "blue house skip" tricks, which assumed you could leave the blue house without opening the pad lock (only relevant during entrance rando).
     * Fix the "Jump" and "Parakarry" variants of the `Gourmet Guy Skip` trick assuming the tricks can be done backwards (only relevant during entrance rando).
+  * Misc fixes
+    * Fix `Parakaryless Blue Block City Gap` trick not working properly when combined with `Hammerless Blue Station`.
 
 ## 0.31.1 (beta)
 
