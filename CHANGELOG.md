@@ -9,9 +9,10 @@
     * Fix `Tubba's Castle Super Boots Skip (Clippy)` glitch setting
     * Fix `Ruins Locks Skip` glitch setting
     * Fix `Jumpless Mansion Entry` glitch setting not doing anything unless `Forever Forest Backwards` was also active
-  * Settings expecting fewer items that are actually needed
+  * Settings expecting fewer items than are actually needed
     * Fix `Sushie-less Toad Town Star Piece` assuming Mario can enter the house next to the star piece before finishing chapter 4. In this randomizer the house is off-limits until chapter 4 is cleared.
     * Fix `Break Stone Blocks with Ultra Boots` and `Prologue Gel Early`, which assumed Mario could see the hidden block on the `Bottom of the Cliff` map.
+    * Fix `Kooper-less Red Station Shooting Star`, which assumed Mario could get onto the jack-in-the-box without boots.
     * Fix `Mirror Clip`, which assumed Mario could pass through the Crystal Palace mirror without any items.
     * `Yellow Berry Gate Skip (Bombette Push)`
       * Fix that the trick assumed Mario would be put on the upper path, but Mario instead gets put just behind the gate and has to be able to cross the thorny vines.
