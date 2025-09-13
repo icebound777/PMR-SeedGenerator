@@ -22,7 +22,7 @@
     * Fix all "blue house skip" tricks, which assumed you could leave the blue house without opening the pad lock (only relevant during entrance rando).
     * Fix the "Jump" and "Parakarry" variants of the `Gourmet Guy Skip` trick assuming the tricks can be done backwards (only relevant during entrance rando).
   * Misc fixes
-    * Fix `Parakaryless Blue Block City Gap` trick not working properly when combined with `Hammerless Blue Station`.
+    * Fix `Parakaryless Blue Block City Gap` and `Parakarryless Blue Station Star Piece` tricks not working properly when combined with `Hammerless Blue Station`.
 
 ## 0.31.1 (beta)
 
