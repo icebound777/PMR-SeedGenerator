@@ -5,8 +5,6 @@ for Glitched Logic: Parakarry-less Boo's Portrait.
 edges_obk_add_boo_portrait_kooper = [
     #* Library Fall From Ceiling -> ItemA (BooPortrait)
     {"from": {"map": "OBK_06", "id": 0}, "to": {"map": "OBK_06", "id": "ItemA"},  "reqs": [["Kooper"]], "mapchange": False},
-    #* ItemA (BooPortrait) -> Library Fall From Ceiling
-    {"from": {"map": "OBK_06", "id": "ItemA"},  "to": {"map": "OBK_06", "id": 0}, "reqs": [], "mapchange": False},
 ]
 
 edges_obk_add_boo_portrait_laki = [
