@@ -9,7 +9,7 @@
     * Fix `Tubba's Castle Super Boots Skip (Clippy)` glitch setting
     * Fix `Ruins Locks Skip` glitch setting
     * Fix `Jumpless Mansion Entry` glitch setting not doing anything unless `Forever Forest Backwards` was also active
-  * Settings expecting fewer items than are actually needed
+  * Settings expecting fewer items/progress than are/is actually needed
     * Fix `Sushie-less Toad Town Star Piece` assuming Mario can enter the house next to the star piece before finishing chapter 4. In this randomizer the house is off-limits until chapter 4 is cleared.
     * Fix `Break Stone Blocks with Ultra Boots` and `Prologue Gel Early`, which assumed Mario could see the hidden block on the `Bottom of the Cliff` map.
     * Fix `Kooper-less Red Station Shooting Star`, which assumed Mario could get onto the jack-in-the-box without boots.
@@ -22,6 +22,7 @@
     * Fix all "blue house skip" tricks, which assumed you could leave the blue house without opening the pad lock (only relevant during entrance rando).
     * Fix the "Jump" and "Parakarry" variants of the `Gourmet Guy Skip` trick assuming the tricks can be done backwards (only relevant during entrance rando).
     * Fix `Shiver Mountain Switch Skip`, which assumed Mario could do the trick from the other side (only relevant during entrance rando).
+    * Fix `Blocks to Shiver City with Kooper Shell Item Throw` trick assuming that getting out of bounds was possible without being able to reach the door at the top-right of the map.
   * Misc fixes
     * Fix `Parakaryless Blue Block City Gap` and `Parakarryless Blue Station Star Piece` tricks not working properly when combined with `Hammerless Blue Station`.
     * Fix `Wattless Dark Room` and `Kooper Puzzle Skip` tricks triggering generator code for entrance shuffle, even though they have nothing to do with changing loading zones.
