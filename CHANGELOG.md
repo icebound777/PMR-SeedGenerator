@@ -7,6 +7,7 @@
 * Tricks & Glitches
   * Settings not doing anything when turned on
     * Fix `Tubba's Castle Super Boots Skip (Clippy)` glitch setting
+    * Fix `Break Stone Blocks With Ultra Boots` glitch setting not affecting the blocks in Dry Dry Ruins
     * Fix `Ruins Locks Skip` glitch setting
     * Fix `Jumpless Mansion Entry` glitch setting not doing anything unless `Forever Forest Backwards` was also active
   * Settings expecting fewer items/progress than are/is actually needed
