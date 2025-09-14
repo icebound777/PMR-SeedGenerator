@@ -21,6 +21,7 @@
     * Fix `Red Berry Gate Skip (Bombette Push)`, which assumed Mario could do the trick from the other side (only relevant during entrance rando).
     * Fix all "blue house skip" tricks, which assumed you could leave the blue house without opening the pad lock (only relevant during entrance rando).
     * Fix the "Jump" and "Parakarry" variants of the `Gourmet Guy Skip` trick assuming the tricks can be done backwards (only relevant during entrance rando).
+    * Fix `Shiver Mountain Switch Skip`, which assumed Mario could do the trick from the other side (only relevant during entrance rando).
   * Misc fixes
     * Fix `Parakaryless Blue Block City Gap` and `Parakarryless Blue Station Star Piece` tricks not working properly when combined with `Hammerless Blue Station`.
     * Fix `Wattless Dark Room` and `Kooper Puzzle Skip` tricks triggering generator code for entrance shuffle, even though they have nothing to do with changing loading zones.
