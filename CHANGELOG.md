@@ -23,6 +23,7 @@
     * Fix the "Jump" and "Parakarry" variants of the `Gourmet Guy Skip` trick assuming the tricks can be done backwards (only relevant during entrance rando).
   * Misc fixes
     * Fix `Parakaryless Blue Block City Gap` and `Parakarryless Blue Station Star Piece` tricks not working properly when combined with `Hammerless Blue Station`.
+    * Fix `Wattless Dark Room` and `Kooper Puzzle Skip` tricks triggering generator code for entrance shuffle, even though they have nothing to do with changing loading zones.
 
 ## 0.31.1 (beta)
 
