@@ -59,7 +59,7 @@ from rando_modules.unbeatable_plando_placement_error import (
 from rando_modules.plando_settings_mismatch_error import (
     PlandoSettingsMismatchError,
 )
-from worldgraph import (
+from worldgraph.worldgraph import (
     generate as generate_world_graph,
     check_unreachable_from_start,
     enrich_graph_data

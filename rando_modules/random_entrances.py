@@ -8,7 +8,7 @@ from copy import deepcopy
 from db.map_area import MapArea
 from db.node import Node
 
-from worldgraph import adjust
+from worldgraph.worldgraph import adjust
 
 from metadata.verbose_area_names import verbose_area_names
 
