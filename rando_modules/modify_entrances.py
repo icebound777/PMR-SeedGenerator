@@ -5,7 +5,7 @@ accordance to chosen settings.
 """
 from copy import deepcopy
 
-from worldgraph.worldgraph import adjust
+from worldgraph.WorldGraph import adjust
 
 from metadata.area_name_mappings import chapter_areaname_map
 
