@@ -1,7 +1,3 @@
-"""
-This module represents a world graph. This graph maps item locations and the
-connections between them to allow simulated traversal of the in-game world.
-"""
 import logging
 
 from metadata.area_name_mappings import area_name_id_map, area_name_edges_map
@@ -157,34 +153,43 @@ def get_area_edges(area_shorthand:str):
 
     return hashabledicts
 
+class WorldGraph:
+    """
+    Represents a world graph. This graph maps item locations, map entrances,
+    and the connections between them to allow simulated traversal of the in-game
+    world.
+    """
+
+    def __init__(self, node_list: list, edge_list: list):
+        """
+        Generates and returns a world graph instance with nodes' node_ids in
+        string form as keys and a list of neighboring nodes' node_ids in string
+        form as values.
+        """
+        self.nodes: dict = dict()
+
+        if not node_list or len(node_list) == 0:
+            node_list = get_all_nodes()
+        if not edge_list or len(edge_list) == 0:
+            edge_list = get_all_edges()
+
+        for node in node_list:
+            self.nodes[node.identifier] = {}
+            self.nodes[node.identifier]["node"] = node
+            self.nodes[node.identifier]["edge_list"] = []
+
+            edge_list_cpy = edge_list.copy()
+            for edge in edge_list_cpy:
+                if edge.get("from").get("map") == node.map_area.name:
+                    if (   edge.get("from").get("id") == node.entrance_id
+                        or edge.get("from").get("id") == node.key_name_item
+                    ):
+                        self.nodes[node.identifier]["edge_list"].append(edge)
+                        edge_list.remove(edge)
+
 
 def generate(node_list: list, edge_list: list):
-    """
-    Generates and returns a world graph dictionary with nodes' node_ids in
-    string form as keys and a list of neighboring nodes' node_ids in string form
-    as values.
-    """
-    if not node_list or len(node_list) == 0:
-        node_list = get_all_nodes()
-    if not edge_list or len(edge_list) == 0:
-        edge_list = get_all_edges()
-    world_graph = {}
-
-    for node in node_list:
-        world_graph[node.identifier] = {}
-        world_graph[node.identifier]["node"] = node
-        world_graph[node.identifier]["edge_list"] = []
-
-        edge_list_cpy = edge_list.copy()
-        for edge in edge_list_cpy:
-            if edge.get("from").get("map") == node.map_area.name:
-                if (   edge.get("from").get("id") == node.entrance_id
-                    or edge.get("from").get("id") == node.key_name_item
-                ):
-                    world_graph[node.identifier]["edge_list"].append(edge)
-                    edge_list.remove(edge)
-
-    return world_graph
+    return WorldGraph(node_list, edge_list).nodes
 
 
 def enrich_graph_data(world_graph: dict) -> dict:
