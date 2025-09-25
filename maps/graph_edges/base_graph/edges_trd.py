@@ -126,7 +126,6 @@ edges_trd = [
     {"from": {"map": "TRD_08", "id": 0}, "to": {"map": "TRD_07", "id": 1}, "reqs": []}, # Dungeon Fire Room Exit Right -> Dungeon Trap Exit Left
 
     {"from": {"map": "TRD_08", "id": 0}, "to": {"map": "TRD_08", "id": "ItemA"}, "reqs": [["can_climb_steps"]]}, #* Dungeon Fire Room Exit Right -> ItemA (KoopaFortressKey)
-    {"from": {"map": "TRD_08", "id": "ItemA"}, "to": {"map": "TRD_08", "id": 0}, "reqs": []}, #* ItemA (KoopaFortressKey) -> Dungeon Fire Room Exit Right
 
     # TRD_09 Battlement
     {"from": {"map": "TRD_09", "id": 0}, "to": {"map": "TRD_01", "id": 3}, "reqs": []}, # Battlement Exit Left -> Left Tower Exit Top Right
