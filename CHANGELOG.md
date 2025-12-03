@@ -1,6 +1,11 @@
 # Changelog
 
-## Next Release
+## 0.31.2 (beta)
+
+### Feature Changes
+
+* Star Spirits as item traps
+  * If star spirit shuffle and item traps are active, then fake star spirit items may now appear as item traps.
 
 ### Bug Fixes
 
