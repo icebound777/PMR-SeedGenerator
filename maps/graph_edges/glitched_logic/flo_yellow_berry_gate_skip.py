@@ -10,9 +10,13 @@ edges_flo_add_yellow_berry_gate_skip_lzs = [
 edges_flo_add_yellow_berry_gate_skip_laki = [
     #? (SE) Briar Platforming Exit Left -> (SE) Briar Platforming Exit Right
     {"from": {"map": "FLO_08", "id": 0}, "to": {"map": "FLO_08", "id": 1}, "reqs": [["Lakilester"]], "mapchange": False},
+    #* (SE) Briar Platforming Exit Left -> RandomBlockItemA (GenericUpgrade)
+    {"from": {"map": "FLO_08", "id": 0}, "to": {"map": "FLO_08", "id": "RandomBlockItemA"}, "reqs": [["Lakilester"],["can_hit_floating_blocks"]], "mapchange": False},
 ]
 
 edges_flo_add_yellow_berry_gate_skip_bombette_push = [
     #? (SE) Briar Platforming Exit Left -> (SE) Briar Platforming Exit Right
-    {"from": {"map": "FLO_08", "id": 0}, "to": {"map": "FLO_08", "id": 1}, "reqs": [["Bombette"],["Parakarry","Lakilester"]], "mapchange": False},
+    {"from": {"map": "FLO_08", "id": 0}, "to": {"map": "FLO_08", "id": 1}, "reqs": [["Bombette"],["Parakarry","Lakilester","Hammer"]], "mapchange": False},
+    #* (SE) Briar Platforming Exit Left -> RandomBlockItemA (GenericUpgrade)
+    {"from": {"map": "FLO_08", "id": 0}, "to": {"map": "FLO_08", "id": "RandomBlockItemA"}, "reqs": [["Bombette"],["Hammer"],["can_hit_floating_blocks"]], "mapchange": False},
 ]

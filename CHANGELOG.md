@@ -21,8 +21,9 @@
     * Fix `Kooper-less Red Station Shooting Star`, which assumed Mario could get onto the jack-in-the-box without boots.
     * Fix `Mirror Clip`, which assumed Mario could pass through the Crystal Palace mirror without any items.
     * `Yellow Berry Gate Skip (Bombette Push)`
-      * Fix that the trick assumed Mario would be put on the upper path, but Mario instead gets put just behind the gate and has to be able to cross the thorny vines.
+      * Fix that the trick assumed Mario would be put on the upper path even without having the hammer, but Mario instead gets put just behind the gate and has to be able to cross the thorny vines.
       * Fix that the trick assumed Mario could reach the gate from the eastern entrance without any items (only relevant during entrance rando).
+      * Added logic for reaching the upper path partner upgrade block if Mario also has the hammer and boots/Kooper
     * Fix `Blue Berry Gate Skip (Bombette Push)`, which assumed Mario could do the trick from the other side (only relevant during entrance rando).
     * Fix `Red Berry Gate Skip (Bombette Push)`, which assumed Mario could do the trick from the other side (only relevant during entrance rando).
     * Fix all "blue house skip" tricks, which assumed you could leave the blue house without opening the pad lock (only relevant during entrance rando).
@@ -32,6 +33,7 @@
   * Misc fixes
     * Fix `Parakaryless Blue Block City Gap` and `Parakarryless Blue Station Star Piece` tricks not working properly when combined with `Hammerless Blue Station`.
     * Fix `Wattless Dark Room` and `Kooper Puzzle Skip` tricks triggering generator code for entrance shuffle, even though they have nothing to do with changing loading zones.
+    * Fix `Yellow Berry Gate Skip (Lakilester)` not considering the partner upgrade block in that room to be reachable with only Lakilester and Kooper
 
 ## 0.31.1 (beta)
 
