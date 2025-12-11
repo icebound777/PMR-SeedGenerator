@@ -942,6 +942,7 @@ def _generate_item_pools(
         power_star_hunt = (logic_settings.star_hunt_total > 0),
         add_beta_items = logic_settings.add_beta_items,
         do_partner_upgrade_shuffle = do_partner_upgrade_shuffle,
+        do_spirit_shuffle = (logic_settings.spirit_shuffle_mode > 0),
         already_placed_traps_count = plando_traps_placed,
         plando_trap_placeholders = plando_trap_placeholders,
     )

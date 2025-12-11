@@ -138,6 +138,7 @@ def _get_fakeable_items(
     power_star_hunt: bool,
     add_beta_items: bool,
     do_partner_upgrade_shuffle: bool,
+    do_spirit_shuffle:bool,
 ) -> list[Item]:
     fakeable_items = []
     dungeon_items = []
@@ -183,6 +184,15 @@ def _get_fakeable_items(
         item_powerstar = Item.get(Item.item_name == 'PowerStar7F')
         fakeable_items.append(item_powerstar)
 
+    # Add star spirit traps if necessary
+    if do_spirit_shuffle:
+        for item in (
+            Item.
+            select()
+            .where(Item.item_type == "STARSPIRIT")
+        ):
+            fakeable_items.append(item)
+
     # Bias towards placing UltraStone or upgrade traps, as requested by clover
     if do_partner_upgrade_shuffle:
         for item in (
@@ -209,6 +219,7 @@ def get_trapped_itempool(
     power_star_hunt:bool,
     add_beta_items:bool,
     do_partner_upgrade_shuffle:bool,
+    do_spirit_shuffle:bool,
     already_placed_traps_count:int,
     plando_trap_placeholders: list[str],
 ) -> tuple[list[Item], dict[str, Item]]:
@@ -245,6 +256,7 @@ def get_trapped_itempool(
         power_star_hunt = power_star_hunt,
         add_beta_items = add_beta_items,
         do_partner_upgrade_shuffle = do_partner_upgrade_shuffle,
+        do_spirit_shuffle = do_spirit_shuffle,
     )
 
     # Resolve plando trap placeholders to random items

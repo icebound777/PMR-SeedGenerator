@@ -32,12 +32,6 @@ edges_mac_add_toad_town_sushie_glitch = [
 
     #* Residental District Exit Right -> ItemA (SnowmanDoll)
     {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": "ItemA"}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
-    #* Residental District Exit Right -> ItemB (VoltShroom)
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": "ItemB"}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
-    #* Residental District Exit Right -> ItemC (ToyTrain)
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": "ItemC"}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
-    #* Residental District Exit Right -> ItemD (DizzyDial)
-    {"from": {"map": "MAC_04", "id": 0}, "to": {"map": "MAC_04", "id": "ItemD"}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},
 
     #? Pleasant Path Bridge Exit Left -> Pleasant Path Bridge Exit Right
     {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_12", "id": 1}, "reqs": [["RF_ToadTownSushieGlitch"]], "mapchange": False},

@@ -70,10 +70,9 @@ edges_dgb = [
 
     # DGB_05 Stairs Above Basement
     {"from": {"map": "DGB_05", "id": 0}, "to": {"map": "DGB_03", "id": 2}, "reqs": []}, # Stairs Above Basement Door Top -> Table/Clock Room (1/2F) Door 1F Top Left
-    {"from": {"map": "DGB_05", "id": 1}, "to": {"map": "DGB_06", "id": 1}, "reqs": [["SuperBoots"]]}, # Stairs Above Basement Hole Bottom -> Basement Fall From Ceiling
+    {"from": {"map": "DGB_05", "id": 1}, "to": {"map": "DGB_06", "id": 1}, "reqs": []}, # Stairs Above Basement Hole Bottom -> Basement Fall From Ceiling
 
-    {"from": {"map": "DGB_05", "id": 0}, "to": {"map": "DGB_05", "id": 1}, "reqs": []}, #? Stairs Above Basement Door Top -> Stairs Above Basement Hole Bottom
-    {"from": {"map": "DGB_05", "id": 1}, "to": {"map": "DGB_05", "id": 0}, "reqs": []}, #? Stairs Above Basement Hole Bottom -> Stairs Above Basement Door Top
+    {"from": {"map": "DGB_05", "id": 0}, "to": {"map": "DGB_05", "id": 1}, "reqs": [["SuperBoots"]]}, #? Stairs Above Basement Door Top -> Stairs Above Basement Hole Bottom
 
     # DGB_06 Basement
     {"from": {"map": "DGB_06", "id": 0}, "to": {"map": "DGB_04", "id": 1}, "reqs": []}, # Basement Door Bottom Left -> Stairs to Basement Door Bottom Right
@@ -146,7 +145,7 @@ edges_dgb = [
     # DGB_13 Hidden Bedroom (2F)
     {"from": {"map": "DGB_13", "id": 0}, "to": {"map": "DGB_03", "id": 5}, "reqs": []}, # Hidden Bedroom (2F) Door Bottom -> Table/Clock Room (1/2F) 2F Behind The Clock
 
-    {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemA"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> ItemA (MegaRush)
+    {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemA (MegaRush)
     {"from": {"map": "DGB_13", "id": 0},       "to": {"map": "DGB_13", "id": "ItemB"}, "reqs": [["Boots"],["Parakarry"]]}, #* Hidden Bedroom (2F) Door Bottom -> ItemB (Coin)
     {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemC (Coin)
     {"from": {"map": "DGB_13", "id": "ItemB"}, "to": {"map": "DGB_13", "id": "ItemD"}, "reqs": []}, #+ SHARED REQUIREMENTS -> ItemD (Coin)
