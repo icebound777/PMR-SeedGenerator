@@ -793,6 +793,8 @@ class OptionSet:
             self.glitch_settings.gearless_red_station_shooting_star = options_dict.get("GearlessRedStationShootingStar")
         if "ParakarrylessBlueBlockCityGap" in options_dict:
             self.glitch_settings.parakarryless_blue_block_city_gap = options_dict.get("ParakarrylessBlueBlockCityGap")
+        if "AntiGuySkip" in options_dict:
+            self.glitch_settings.anti_guy_skip = options_dict.get("AntiGuySkip")
         if "BlueSwitchSkipLaki" in options_dict:
             self.glitch_settings.blue_switch_skip_laki = options_dict.get("BlueSwitchSkipLaki")
         if "BlueSwitchSkipUltraBoots" in options_dict:
@@ -1602,6 +1604,7 @@ class OptionSet:
         basic_assert("KooperlessRedStationShootingStar", bool)
         basic_assert("GearlessRedStationShootingStar", bool)
         basic_assert("ParakarrylessBlueBlockCityGap", bool)
+        basic_assert("AntiGuySkip", bool)
         basic_assert("BlueSwitchSkipLaki", bool)
         basic_assert("BlueSwitchSkipUltraBoots", bool)
         basic_assert("RedBarricadeSkip", bool)
@@ -2189,6 +2192,7 @@ class OptionSet:
         web_settings["KooperlessRedStationShootingStar"] = self.glitch_settings.kooperless_red_station_shooting_star
         web_settings["GearlessRedStationShootingStar"] = self.glitch_settings.gearless_red_station_shooting_star
         web_settings["ParakarrylessBlueBlockCityGap"] = self.glitch_settings.parakarryless_blue_block_city_gap
+        web_settings["AntiGuySkip"] = self.glitch_settings.anti_guy_skip
         web_settings["BlueSwitchSkipLaki"] = self.glitch_settings.blue_switch_skip_laki
         web_settings["BlueSwitchSkipUltraBoots"] = self.glitch_settings.blue_switch_skip_ultra_boots
         web_settings["RedBarricadeSkip"] = self.glitch_settings.red_barricade_skip

@@ -118,6 +118,7 @@ class GlitchOptionSet():
         self.kooperless_red_station_shooting_star = False
         self.gearless_red_station_shooting_star = False
         self.parakarryless_blue_block_city_gap = False
+        self.anti_guy_skip = False
         self.blue_switch_skip_laki = False
         self.blue_switch_skip_ultra_boots = False
         self.red_barricade_skip = False
