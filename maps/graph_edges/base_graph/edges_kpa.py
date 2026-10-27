@@ -130,10 +130,10 @@ edges_kpa = [
     {"from": {"map": "KPA_14",  "id": 2}, "to": {"map": "KPA_16",  "id": 0}, "reqs": []}, # Lava Channel 3 Lava Door Center -> Lava Control Room Lava Door Left
 
     {"from": {"map": "KPA_14",  "id": 0}, "to": {"map": "KPA_14",  "id": 1}, "reqs": [["GF_KPA16_ShutOffLava"],["can_climb_steps"]]}, #? Lava Channel 3 Door Left -> Lava Channel 3 Door Right
-
     {"from": {"map": "KPA_14",  "id": 1}, "to": {"map": "KPA_14",  "id": 0}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"]]}, #? Lava Channel 3 Door Right -> Lava Channel 3 Door Left
     {"from": {"map": "KPA_14",  "id": 0}, "to": {"map": "KPA_14",  "id": 2}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"],["Bow","GF_KPA16_ShutOffLava"],["Parakarry","GF_KPA16_ShutOffLava"],["can_climb_steps"]]}, #? Lava Channel 3 Door Left -> Lava Channel 3 Lava Door Center
     {"from": {"map": "KPA_14",  "id": 2}, "to": {"map": "KPA_14",  "id": 0}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"]]}, #? Lava Channel 3 Lava Door Center -> Lava Channel 3 Door Left
+    {"from": {"map": "KPA_14",  "id": 1}, "to": {"map": "KPA_14",  "id": 2}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"]]}, #? Lava Channel 3 Door Right -> Lava Channel 3 Lava Door Center
 
     {"from": {"map": "KPA_14",  "id": 0}, "to": {"map": "KPA_14",  "id": "ItemA"}, "reqs": [["Lakilester","GF_KPA16_ShutOffLava"],["Lakilester","can_climb_steps"],["Kooper","Parakarry","GF_KPA16_ShutOffLava"],["Kooper","can_climb_steps"],["Boots","GF_KPA16_ShutOffLava"]]}, #* Lava Channel 3 Door Left -> ItemA (Mystery)
     #+ note: above set up from: "(Laki AND (Kooper OR Parakarry) AND Boots) OR (Lava off AND can_climb_steps)"
