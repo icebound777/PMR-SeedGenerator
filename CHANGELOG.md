@@ -2,6 +2,11 @@
 
 ## next version
 
+### Logic changes
+
+* Bowser's Castle
+  * Fix `Lava Channel 3 - On Island 1` location assuming it was reachable without Boots while the lava is still active. This is a fix solely in preparation for entrance rando, as getting here in the first place in a vanilla world layout is not logically possible without Boots.
+
 ### Tricks & Glitches
 
 * New options
