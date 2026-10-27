@@ -1,13 +1,20 @@
 # Changelog
 
+## next version
+
+### Tricks & Glitches
+
+* New options
+  * `Anti Guy Skip` (chapter 4)
+
 ## 0.31.2 (beta)
 
-### Feature Changes
+### Feature Changes (0.31.2)
 
 * Star Spirits as item traps
   * If star spirit shuffle and item traps are active, then fake star spirit items may now appear as item traps.
 
-### Bug Fixes
+### Bug Fixes (0.31.2)
 
 * Tricks & Glitches
   * Settings not doing anything when turned on
