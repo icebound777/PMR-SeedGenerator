@@ -37,6 +37,7 @@ ChetRippoAvailable: true
 
 RandomFormations: true
 BossShuffleMode : 1 # 0: off, 1: shuffle chapter bosses
+MaxBlooper : 2 # 0: Blooper, 1: Electro Blooper, 2: Super Blooper (vanilla)
 
 # Item Placement
 ShuffleItems          : true

@@ -12,3 +12,4 @@
 *.pyc
 # pyenv
 /.python-version
+/.venv

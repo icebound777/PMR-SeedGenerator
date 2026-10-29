@@ -23,6 +23,7 @@ from rando_enums.enum_options import (
     RequiredChapters,
     BowserDoorQuiz,
     KentCKoopa,
+    MaxBlooper,
 )
 from models.options.LogicOptionSet import LogicOptionSet
 from models.options.PaletteOptionSet import PaletteOptionSet
@@ -72,6 +73,7 @@ class OptionSet:
         self.chetrippo_available = bool(get_option_default_value("ChetRippoAvailable"))
 
         self.random_formations = bool(get_option_default_value("RandomFormations"))
+        self.maxblooper = get_option_default_value("MaxBlooper")
 
         # Map Check Tracker (auto-set, not changeable via settings)
         self.map_tracker_check_bits = get_option_default_value("EnabledCheckBits")
@@ -478,6 +480,8 @@ class OptionSet:
             self.logic_settings.bowserdoor_quiz = options_dict.get("BowserDoorQuiz")
         if "KentCKoopa" in options_dict:
             self.logic_settings.kentckoopa = options_dict.get("KentCKoopa")
+        if "MaxBlooper" in options_dict:
+            self.maxblooper = options_dict.get("MaxBlooper")
 
         # Quizmo Quizzes
         if "RandomQuiz" in options_dict:
@@ -1418,6 +1422,12 @@ class OptionSet:
                         <= options_dict["KentCKoopa"]
                         <= KentCKoopa.ALREADY_DEFEATED
             )
+        if "MaxBlooper" in options_dict:
+            assert (    isinstance(options_dict["MaxBlooper"], int)
+                    and MaxBlooper.BLOOPER
+                        <= options_dict["MaxBlooper"]
+                        <= MaxBlooper.SUPER_BLOOPER
+            )
 
         # Quizmo Quizzes
         basic_assert("RandomQuiz", bool)
@@ -1724,6 +1734,7 @@ class OptionSet:
 
             load_dbkey(self.random_formations, "RandomFormations"),
             load_dbkey(self.logic_settings.boss_shuffle_mode, "BossShuffleMode"),
+            load_dbkey(self.maxblooper, "MaxBlooper"),
 
             # Item Placement
             load_dbkey(self.logic_settings.shuffle_items, "ShuffleItems"),
@@ -1901,6 +1912,7 @@ class OptionSet:
         web_settings["ShuffleChapterDifficulty"] = self.shuffle_chapter_difficulty
         web_settings["RandomFormations"] = self.random_formations
         web_settings["BossShuffleMode"] = self.logic_settings.boss_shuffle_mode
+        web_settings["MaxBlooper"] = self.maxblooper
         web_settings["ShuffleItems"] = self.logic_settings.shuffle_items
         web_settings["IncludeCoinsOverworld"] = self.logic_settings.include_coins_overworld
         web_settings["IncludeCoinsBlocks"] = self.logic_settings.include_coins_blocks

@@ -157,3 +157,9 @@ class SpiritShuffleMode(IntEnum):
     VANILLA = 0
     SAME_CHAPTER = 1
     ANYWHERE = 2
+
+@unique
+class MaxBlooper(IntEnum):
+    BLOOPER = 0
+    ELECTRO_BLOOPER = 1
+    SUPER_BLOOPER = 2
