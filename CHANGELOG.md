@@ -2,6 +2,31 @@
 
 ## next version
 
+### Feature Changes
+
+* New `Max Blooper` option
+  * Allows setting the strongest possible Blooper variant to encounter.
+  * This option has three different values:
+    * `Blooper`: All Bloopers Mario encounters are regular Bloopers.
+    * `Electro Blooper`: Mario encounters Blooper, then Electro Blooper, then Electro Blooper again.
+    * `Super Blooper`: Same as vanilla; Mario encounters Blooper, then Electro Blooper, then Super Blooper.
+* New `Jr. Troopa` option
+  * Allows choosing which Jr. Troopa encounters can happen.
+  * This option has four different values:
+    * `All`: Same as vanilla; Mario encounters Jr. Troopa ...
+      * ... in `Goomba Region - Jr. Troopa's Playground` (avoidable)
+      * ... in `Koopa Region - Pleasant Path Entry` (after clearing chapter 1; avoidable)
+      * ... in `Forever Forest - Laughing Rock` (after opening Boo's Mansion big chest; avoidable)
+      * ... in `Toad Town - Port District` (after defeating Lava Piranha; avoidable)
+      * ... in `Shiver Region - Road to Shiver Snowfield` (unavoidable)
+      * ... in `Bowser's Castle - Guard Door 3` (unavoidable)
+    * `Remove Missable`: Removes all missable encounters, leaving only the encounters ...
+      * ... in `Shiver Region - Road to Shiver Snowfield` (unavoidable)
+      * ... in `Bowser's Castle - Guard Door 3` (unavoidable)
+    * `Chapter 8 Jr. Only`: Removes all encounters, except for the one ...
+      * ... in `Bowser's Castle - Guard Door 3` (unavoidable)
+    * `Remove All`: Jr. Troopa encounters are skipped entirely; he never has to be fought.
+
 ### Logic changes
 
 * Bowser's Castle
