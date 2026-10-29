@@ -28,6 +28,7 @@ from rando_modules.modify_entrances import get_shuffled_battles
 from rando_modules.modify_entrances import (
     get_shorter_bowsercastle,
     get_bowsercastle_bossrush,
+    get_bowsercastle_skip,
     get_gear_location_shuffle,
     get_glitched_logic,
     adjust_shop_logic,
@@ -240,6 +241,10 @@ class RandomSeed:
                     )
                 elif logic_settings.bowsers_castle_mode == BowserCastleMode.BOSSRUSH:
                     entrance_changes, modified_world_graph = get_bowsercastle_bossrush(
+                        modified_world_graph
+                    )
+                elif logic_settings.bowsers_castle_mode >= BowserCastleMode.BOWSERS_ONLY:
+                    entrance_changes, modified_world_graph = get_bowsercastle_skip(
                         modified_world_graph
                     )
                 if entrance_changes:
