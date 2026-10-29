@@ -5,6 +5,8 @@ class BowserCastleMode(IntEnum):
     VANILLA = 0
     SHORTEN = 1
     BOSSRUSH = 2
+    BOWSERS_ONLY = 3
+    FINAL_BOWSER_ONLY = 4
 
 @unique
 class HiddenBlockMode(IntEnum):

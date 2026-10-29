@@ -30,6 +30,14 @@ from maps.graph_edges.bc_bossrush.edges_kpa import (
     edges_kpa_add as edges_kpa_bossrush_add,
     edges_kpa_remove as edges_kpa_bossrush_remove,
 )
+from maps.graph_edges.bc_skip.edges_hos import (
+    edges_hos_add as edges_hos_bcskip_add,
+    edges_hos_remove as edges_hos_bcskip_remove,
+)
+from maps.graph_edges.bc_skip.edges_osr import (
+    edges_osr_add as edges_osr_bcskip_add,
+    edges_osr_remove as edges_osr_bcskip_remove,
+)
 from maps.graph_edges.gear_location_shuffle.edges_isk import (
     edges_isk_add as edges_isk_gls_add,
     edges_isk_remove as edges_isk_gls_remove,
@@ -555,6 +563,32 @@ def get_bowsercastle_bossrush(world_graph: dict):
     all_new_edges.extend(edges_kpa_bossrush_add)
     all_edges_to_remove.extend(edges_hos_remove)
     all_edges_to_remove.extend(edges_kpa_bossrush_remove)
+
+    world_graph, entrance_modifications = adjust(
+        world_graph,
+        new_edges=all_new_edges,
+        edges_to_remove=all_edges_to_remove
+    )
+
+    return entrance_modifications, world_graph
+
+
+def get_bowsercastle_skip(world_graph: dict):
+    """
+    Returns a list of db data tuples representing modified entrances in Peach's
+    Castle Grounds and Shooting Star Summit to skip straight to the front door
+    of Peach's Castle.
+    """
+    # Sets up the following connection:
+    # hos_20 (2) <-> osr_02 (0) (Riding Star Ship Scene <-> Hijacked Castle Entrance)
+    all_new_edges = []
+    all_edges_to_remove = []
+    entrance_modifications = []
+
+    all_new_edges.extend(edges_hos_bcskip_add)
+    all_new_edges.extend(edges_osr_bcskip_add)
+    all_edges_to_remove.extend(edges_hos_bcskip_remove)
+    all_edges_to_remove.extend(edges_osr_bcskip_remove)
 
     world_graph, entrance_modifications = adjust(
         world_graph,

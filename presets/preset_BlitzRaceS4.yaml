@@ -147,7 +147,7 @@ Ch7BridgeVisible    : false
 
 # Goal Settings
 SeedGoal                : 0 # 0: Defeat Bowser, 1: Open StarWay
-BowsersCastleMode       : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
+BowsersCastleMode       : 2 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush, 3:BowsersOnly, 4:FinalBowserOnly
 StarWayChaptersNeededCnt: 4 # -1:Random
 StarWaySpiritsNeededCnt : 0 # -1:Random
 StarWayPowerStarsNeeded : 0 # max 120, -1:Random
