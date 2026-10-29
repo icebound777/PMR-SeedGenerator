@@ -13,6 +13,7 @@ from rando_enums.enum_options import (
     RequiredChapters,
     BowserDoorQuiz,
     KentCKoopa,
+    JrTroopa,
 )
 
 class LogicOptionSet():
@@ -142,3 +143,4 @@ class LogicOptionSet():
         self.randomize_puzzles = False
         self.bowserdoor_quiz = BowserDoorQuiz.DO_QUIZ
         self.kentckoopa = KentCKoopa.BLOCKS_PLEASANT_PATH
+        self.jrtroopa = JrTroopa.ALL

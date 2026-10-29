@@ -600,6 +600,7 @@ def set_starway_requirements(
     powerstars_needed: int,
     seed_goal: SeedGoal,
     forced_antiguysunit: bool,
+    skip_chapter8_jrtroopa: bool,
 ) -> dict:
     """
     Returns the modified world graph itself, modified to set the spirits
@@ -653,18 +654,19 @@ def set_starway_requirements(
                 world_graph["KPA_82/0"]["edge_list"][index]["reqs"].extend(added_requirements)
                 break
     ## ch8 jr. troopa
-    for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
-        if (    entrance["to"]["map"] == "KPA_83"
-            and entrance["to"]["id"] == 1
-        ):
-            world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
-            break
-    for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
-        if (    entrance["to"]["map"] == "KPA_83"
-            and entrance["to"]["id"] == 0
-        ):
-            world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
-            break
+    if not skip_chapter8_jrtroopa:
+        for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
+            if (    entrance["to"]["map"] == "KPA_83"
+                and entrance["to"]["id"] == 1
+            ):
+                world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+                break
+        for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
+            if (    entrance["to"]["map"] == "KPA_83"
+                and entrance["to"]["id"] == 0
+            ):
+                world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+                break
     ## hallway bowser
     for index, entrance in enumerate(world_graph["KKJ_13/0"]["edge_list"]):
         if (    entrance["to"]["map"] == "KKJ_13"
@@ -729,6 +731,7 @@ def set_starbeam_requirements(
     spirits_needed: int,
     powerstars_needed: int,
     forced_antiguysunit: bool,
+    skip_chapter8_jrtroopa: bool,
 ) -> dict:
     """
     Returns the modified world graph itself, modified to set the chapters,
@@ -766,18 +769,19 @@ def set_starbeam_requirements(
                 world_graph["KPA_82/0"]["edge_list"][index]["reqs"].extend(added_requirements)
                 break
     ## ch8 jr. troopa
-    for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
-        if (    entrance["to"]["map"] == "KPA_83"
-            and entrance["to"]["id"] == 1
-        ):
-            world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
-            break
-    for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
-        if (    entrance["to"]["map"] == "KPA_83"
-            and entrance["to"]["id"] == 0
-        ):
-            world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
-            break
+    if not skip_chapter8_jrtroopa:
+        for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
+            if (    entrance["to"]["map"] == "KPA_83"
+                and entrance["to"]["id"] == 1
+            ):
+                world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+                break
+        for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
+            if (    entrance["to"]["map"] == "KPA_83"
+                and entrance["to"]["id"] == 0
+            ):
+                world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+                break
     ## hallway bowser
     for index, entrance in enumerate(world_graph["KKJ_13/0"]["edge_list"]):
         if (    entrance["to"]["map"] == "KKJ_13"

@@ -11,6 +11,7 @@ from rando_enums.enum_options import (
     RequiredChapters,
     BowserDoorQuiz,
     SpiritShuffleMode,
+    JrTroopa,
 )
 
 from itemhints import get_itemhints
@@ -306,6 +307,7 @@ class RandomSeed:
                         spirits_needed=logic_settings.starbeam_spirits_needed,
                         powerstars_needed=logic_settings.starbeam_powerstars_needed,
                         forced_antiguysunit=(logic_settings.bowserdoor_quiz == BowserDoorQuiz.ANTI_GUYS_UNIT),
+                        skip_chapter8_jrtroopa=(logic_settings.jrtroopa == JrTroopa.REMOVED),
                     )
 
                 entrance_changes, modified_world_graph = set_starway_requirements(
@@ -323,6 +325,7 @@ class RandomSeed:
                     ),
                     seed_goal=logic_settings.seed_goal,
                     forced_antiguysunit=(logic_settings.bowserdoor_quiz == BowserDoorQuiz.ANTI_GUYS_UNIT),
+                    skip_chapter8_jrtroopa=(logic_settings.jrtroopa == JrTroopa.REMOVED),
                 )
                 if entrance_changes:
                     self.extend_entrances(entrance_changes)

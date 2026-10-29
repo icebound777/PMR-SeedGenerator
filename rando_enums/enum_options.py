@@ -163,3 +163,10 @@ class MaxBlooper(IntEnum):
     BLOOPER = 0
     ELECTRO_BLOOPER = 1
     SUPER_BLOOPER = 2
+
+@unique
+class JrTroopa(IntEnum):
+    ALL = 0
+    REMOVEMISSABLE = 1
+    CHAPTER8ONLY = 2
+    REMOVED = 3
