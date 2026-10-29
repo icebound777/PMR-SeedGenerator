@@ -24,6 +24,7 @@ from rando_enums.enum_options import (
     BowserDoorQuiz,
     KentCKoopa,
     MaxBlooper,
+    JrTroopa,
 )
 from models.options.LogicOptionSet import LogicOptionSet
 from models.options.PaletteOptionSet import PaletteOptionSet
@@ -482,6 +483,8 @@ class OptionSet:
             self.logic_settings.kentckoopa = options_dict.get("KentCKoopa")
         if "MaxBlooper" in options_dict:
             self.maxblooper = options_dict.get("MaxBlooper")
+        if "JrTroopa" in options_dict:
+            self.logic_settings.jrtroopa = options_dict.get("JrTroopa")
 
         # Quizmo Quizzes
         if "RandomQuiz" in options_dict:
@@ -1428,6 +1431,12 @@ class OptionSet:
                         <= options_dict["MaxBlooper"]
                         <= MaxBlooper.SUPER_BLOOPER
             )
+        if "JrTroopa" in options_dict:
+            assert (    isinstance(options_dict["JrTroopa"], int)
+                    and JrTroopa.ALL
+                        <= options_dict["JrTroopa"]
+                        <= JrTroopa.REMOVED
+            )
 
         # Quizmo Quizzes
         basic_assert("RandomQuiz", bool)
@@ -1836,6 +1845,7 @@ class OptionSet:
             # Misc
             load_dbkey(self.logic_settings.bowserdoor_quiz, "BowserDoorQuiz"),
             load_dbkey(self.logic_settings.kentckoopa, "KentCKoopa"),
+            load_dbkey(self.logic_settings.jrtroopa, "JrTroopa"),
 
             # Quizmo Quizzes
             load_dbkey(self.random_quiz, "RandomQuiz"),
@@ -2035,6 +2045,7 @@ class OptionSet:
         web_settings["RandomizePuzzles"] = self.logic_settings.randomize_puzzles
         web_settings["BowserDoorQuiz"] = self.logic_settings.bowserdoor_quiz
         web_settings["KentCKoopa"] = self.logic_settings.kentckoopa
+        web_settings["JrTroopa"] = self.logic_settings.jrtroopa
         web_settings["RandomPitch"] = self.random_pitch
         web_settings["MuteDangerBeeps"] = self.mute_danger_beeps
         web_settings["ShuffleMusic"] = self.shuffle_music
