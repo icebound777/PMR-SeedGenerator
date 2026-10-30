@@ -51,6 +51,7 @@ class OptionSet:
         # QOL
         self.cutscene_mode = get_option_default_value("CutsceneMode")
         self.fast_text_skip = get_option_default_value("FastTextSkip")
+        self.always_run_away = get_option_default_value("AlwaysRunAway")
         self.skip_epilogue = bool(get_option_default_value("SkipEpilogue"))
         self.peachcastle_return_pipe = bool(get_option_default_value("PeachCastleReturnPipe"))
         self.foliage_item_hints = bool(get_option_default_value("FoliageItemHints"))
@@ -171,6 +172,8 @@ class OptionSet:
         if "CutsceneMode" in options_dict:
             self.cutscene_mode = options_dict.get("CutsceneMode")
             self.fast_text_skip = (self.cutscene_mode > 0)
+        if "AlwaysRunAway" in options_dict:
+            self.always_run_away = options_dict.get("AlwaysRunAway")
         if "SkipEpilogue" in options_dict:
             self.skip_epilogue = options_dict.get("SkipEpilogue")
         if "PeachCastleReturnPipe" in options_dict:
@@ -1064,6 +1067,7 @@ class OptionSet:
                     and 0 <= options_dict.get("CutsceneMode") <= 2
             )
         # ignore FastTextSkip
+        basic_assert("AlwaysRunAway", bool)
         basic_assert("SkipEpilogue", bool)
         basic_assert("PeachCastleReturnPipe", bool)
         basic_assert("FoliageItemHints", bool)
@@ -1720,6 +1724,7 @@ class OptionSet:
             load_dbkey(self.logic_settings.always_peekaboo, "AlwaysPeekaboo"),
             load_dbkey(self.cutscene_mode, "CutsceneMode"),
             load_dbkey(self.fast_text_skip, "FastTextSkip"),
+            load_dbkey(self.always_run_away, "AlwaysRunAway"),
             load_dbkey(self.skip_epilogue, "SkipEpilogue"),
             load_dbkey(self.peachcastle_return_pipe, "PeachCastleReturnPipe"),
             load_dbkey(self.foliage_item_hints, "FoliageItemHints"),
@@ -1951,6 +1956,7 @@ class OptionSet:
         web_settings["IncludeDojo"] = self.logic_settings.include_dojo
         web_settings["BowsersCastleMode"] = self.logic_settings.bowsers_castle_mode
         web_settings["CutsceneMode"] = self.cutscene_mode
+        web_settings["AlwaysRunAway"] = self.always_run_away
         web_settings["SkipEpilogue"] = self.skip_epilogue
         web_settings["IncludeRadioTradeEvent"] = self.logic_settings.include_radiotradeevent
 

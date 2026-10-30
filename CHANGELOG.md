@@ -29,7 +29,9 @@
 * New values for `Bowser's Castle Mode` option
   * The existing values of `Vanilla`, `Shortened`, and `Bossrush` get expanded with two new values:
     * `Bowsers Only`: Skips Bowser's Castle entirely, sending Mario straight to Peach's Castle from Shooting Star Summit. Compared to `BossRush` this avoids the battles against the Duplighosts and Jr. Troopa.
-    * `Final Bowser Only`: Skips Bowser's Castle entirely, sending Mario straight to Peach's Castle from Shooting Star Summit. The Bowser encounter in the hallway of Peach's Castle is skipped as well. If Mario still needs to find the Star Beam, then Bowser is so nice and puts up a sign post in that hallway. which tells Mario where to find the Star Beam.
+    * `Final Bowser Only`: Skips Bowser's Castle entirely, sending Mario straight to Peach's Castle from Shooting Star Summit. The Bowser encounter in the hallway of Peach's Castle is skipped as well. If Mario still needs to find the Star Beam, then Bowser is so nice and puts up a sign post in that hallway, which tells Mario where to find the Star Beam.
+* New `Always run away` option
+  * If turned on, running from battle will automatically fill the run meter to 100%.
 
 ### Logic changes
 
