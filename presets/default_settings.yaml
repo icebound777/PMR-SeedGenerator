@@ -12,6 +12,7 @@ BadgeSynergy        : false
 AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
+AlwaysRunAway        : false
 CutsceneMode         : 1 # 0:vanilla, 1:shortened, 2:minimal
 SkipEpilogue         : false
 PeachCastleReturnPipe: true # false locks the pipe

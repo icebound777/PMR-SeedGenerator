@@ -13,6 +13,7 @@ AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
 CutsceneMode         : 2 # 0:vanilla, 1:shortened, 2:minimal
+AlwaysRunAway        : false
 SkipEpilogue         : true
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : true
