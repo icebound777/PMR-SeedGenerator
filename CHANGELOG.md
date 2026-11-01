@@ -1,9 +1,12 @@
 # Changelog
 
-## next version
+## 0.32.0 (beta)
 
 ### Feature Changes
 
+* New `Progressive Partners` option
+  * Turns all partner and partner upgrade items into progressive partner items. The first of each kind of progressive partner item you find unlocks that partner itself, then the other two items give their upgrades.
+  * Requires `Partner Upgrade Shuffle` to not be turned off.
 * New `Max Blooper` option
   * Allows setting the strongest possible Blooper variant to encounter.
   * This option has three different values:
