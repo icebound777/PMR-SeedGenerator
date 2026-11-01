@@ -339,6 +339,30 @@ verbose_item_names = {
     "SushieUp2": "SushieUpgrade",
     "LakilesterUp2": "LakilesterUpgrade",
     "BowUp2": "BowUpgrade",
+    "GoombarioProxy1": "ProgressiveGoombario",
+    "GoombarioProxy2": "ProgressiveGoombario",
+    "GoombarioProxy3": "ProgressiveGoombario",
+    "KooperProxy1": "ProgressiveKooper",
+    "KooperProxy2": "ProgressiveKooper",
+    "KooperProxy3": "ProgressiveKooper",
+    "BombetteProxy1": "ProgressiveBombette",
+    "BombetteProxy2": "ProgressiveBombette",
+    "BombetteProxy3": "ProgressiveBombette",
+    "ParakarryProxy1": "ProgressiveParakarry",
+    "ParakarryProxy2": "ProgressiveParakarry",
+    "ParakarryProxy3": "ProgressiveParakarry",
+    "WattProxy1": "ProgressiveWatt",
+    "WattProxy2": "ProgressiveWatt",
+    "WattProxy3": "ProgressiveWatt",
+    "SushieProxy1": "ProgressiveSushie",
+    "SushieProxy2": "ProgressiveSushie",
+    "SushieProxy3": "ProgressiveSushie",
+    "LakilesterProxy1": "ProgressiveLakilester",
+    "LakilesterProxy2": "ProgressiveLakilester",
+    "LakilesterProxy3": "ProgressiveLakilester",
+    "BowProxy1": "ProgressiveBow",
+    "BowProxy2": "ProgressiveBow",
+    "BowProxy3": "ProgressiveBow",
 }
 
 inverted_verbose_names = {
@@ -747,5 +771,45 @@ inverted_verbose_names = {
     "LakilesterUpgrade": [
         "LakilesterUp1",
         "LakilesterUp2",
+    ],
+    "ProgressiveGoombario": [
+        "GoombarioProxy1",
+        "GoombarioProxy2",
+        "GoombarioProxy3",
+    ],
+    "ProgressiveKooper": [
+        "KooperProxy1",
+        "KooperProxy2",
+        "KooperProxy3",
+    ],
+    "ProgressiveBombette": [
+        "BombetteProxy1",
+        "BombetteProxy2",
+        "BombetteProxy3",
+    ],
+    "ProgressiveParakarry": [
+        "ParakarryProxy1",
+        "ParakarryProxy2",
+        "ParakarryProxy3",
+    ],
+    "ProgressiveBow": [
+        "BowProxy1",
+        "BowProxy2",
+        "BowProxy3",
+    ],
+    "ProgressiveWatt": [
+        "WattProxy1",
+        "WattProxy2",
+        "WattProxy3",
+    ],
+    "ProgressiveSushie": [
+        "SushieProxy1",
+        "SushieProxy2",
+        "SushieProxy3",
+    ],
+    "ProgressiveLakilester": [
+        "LakilesterProxy1",
+        "LakilesterProxy2",
+        "LakilesterProxy3",
     ],
 }
