@@ -403,6 +403,9 @@ class OptionSet:
         if "RandomPartnersMax" in options_dict:
             self.logic_settings.random_partners_max = options_dict.get("RandomPartnersMax")
 
+        if "ProgressivePartners" in options_dict:
+            self.logic_settings.progressive_partners = options_dict.get("ProgressivePartners")
+
         # Pre-opened areas
         if "MagicalSeedsRequired" in options_dict:
             self.logic_settings.magical_seeds_required = options_dict.get("MagicalSeedsRequired")
@@ -1287,6 +1290,17 @@ class OptionSet:
                             options_dict.get("RandomPartnersMax"))
             )
 
+        if "ProgressivePartners" in options_dict:
+            assert isinstance(options_dict.get("ProgressivePartners"), bool)
+            try:
+                if options_dict.get("ProgressivePartners"):
+                    assert options_dict.get("PartnerUpgradeShuffle") != PartnerUpgradeShuffle.OFF
+            except AssertionError:
+                raise ValueError(
+                    "Progressive Partners is active, but Partner Upgrade Shuffle "
+                    "is turned off despite being required for it!"
+                )
+
         # Pre-opened areas
         if "MagicalSeedsRequired" in options_dict:
             assert (    isinstance(options_dict["MagicalSeedsRequired"], int)
@@ -1950,6 +1964,7 @@ class OptionSet:
         web_settings["PartnerShuffle"] = self.logic_settings.partner_shuffle
         web_settings["PartnersAlwaysUsable"] = self.logic_settings.partners_always_usable
         web_settings["StartWithRandomPartners"] = self.logic_settings.random_partners
+        web_settings["ProgressivePartners"] = self.logic_settings.progressive_partners
 
         web_settings["WriteSpoilerLog"] = self.write_spoilerlog
         web_settings["RomanNumerals"] = self.roman_numerals

@@ -105,6 +105,8 @@ class LogicOptionSet():
         self.random_partners_min = 1
         self.random_partners_max = 1
 
+        self.progressive_partners = False
+
         # Pre-opened areas
         self.magical_seeds_required = get_option_default_value("MagicalSeedsRequired")
         self.prologue_open = bool(get_option_default_value("PrologueOpen"))

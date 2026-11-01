@@ -74,7 +74,7 @@ from metadata.item_general import (
     merlow_shop_badges,
 )
 from metadata.node_exclusion import exclude_from_trap_placement
-from metadata.partners_meta import all_partners
+from metadata.partners_meta import all_partners, all_progressive_partners
 
 from metadata.verbose_area_names import verbose_area_names
 from metadata.verbose_item_names import verbose_item_names
@@ -245,7 +245,8 @@ def _find_new_nodes_and_edges(
 def get_items_to_exclude(
     logic_settings:LogicOptionSet,
     starting_partners:list,
-    do_partner_upgrade_shuffle:bool=False
+    do_partner_upgrade_shuffle:bool=False,
+    do_progressive_partners:bool=False,
 ) -> list:
     """
     Returns a list of items that should not be placed or given to Mario at the
@@ -260,6 +261,8 @@ def get_items_to_exclude(
     for partner_string in starting_partners:
         partner_item = Item.get(Item.item_name == partner_string)
         excluded_items.append(partner_item)
+        if do_progressive_partners:
+            excluded_items.append(Item.get(Item.item_name == f"{partner_string}Proxy1"))
     if logic_settings.bluehouse_open:
         for item_name in exclude_due_to_settings.get("startwith_bluehouse_open"):
             item = Item.get(Item.item_name == item_name)
@@ -323,6 +326,10 @@ def get_items_to_exclude(
         for item_name in exclude_due_to_settings.get("partner_upgrade_shuffle"):
             item = Item.get(Item.item_name == item_name)
             excluded_items.append(item)
+        if do_progressive_partners:
+            for item_name in exclude_due_to_settings.get("progressive_partners"):
+                item = Item.get(Item.item_name == item_name)
+                excluded_items.append(item)
 
     return excluded_items
 
@@ -337,6 +344,7 @@ def _generate_item_pools(
     starting_items:list,
     starting_partners:list,
     do_partner_upgrade_shuffle:bool,
+    do_progressive_partners:bool,
     plando_item_placement: dict[str | Item] | None,
     plando_traps_placed: int,
     plando_item_placeholders: dict[str, str],
@@ -590,7 +598,21 @@ def _generate_item_pools(
                         "Plandomizer error: An item location is plando'd which clashes "\
                         "with the \"Partner Shuffle\" setting being set to \"Vanilla\""
                     )
-                current_node.current_item = current_node.vanilla_item
+                if logic_settings.progressive_partners:
+                    proxy_item = {
+                        "Goombario": "GoombarioProxy1",
+                        "Kooper": "KooperProxy1",
+                        "Bombette": "BombetteProxy1",
+                        "Parakarry": "ParakarryProxy1",
+                        "Bow": "BowProxy1",
+                        "Watt": "WattProxy1",
+                        "Sushie": "SushieProxy1",
+                        "Lakilester": "LakilesterProxy1",
+                    }.get(current_node.vanilla_item.item_name)
+                    current_node.current_item = Item.get(Item.item_name == proxy_item)
+                    items_to_remove_from_pools.append(current_node.current_item)
+                else:
+                    current_node.current_item = current_node.vanilla_item
                 all_item_nodes.append(current_node)
                 continue
 
@@ -812,20 +834,30 @@ def _generate_item_pools(
         pool_progression_items.append(new_boots)
 
     # If we shuffle partner upgrades, add upgrade items to the item pool
+    # If we also do progressive partners, then add progressive partners instead
     if do_partner_upgrade_shuffle:
-        for item in (Item
-                     .select()
-                     .where(Item.item_type == "PARTNERUPGRADE")
-                     .where(Item.unplaceable != 1)
-                     .where(Item.item_name != "GenericUpgrade")
-        ):
-            pool_other_items.append(item)
+        if do_progressive_partners:
+            for item in (Item
+                        .select()
+                        .where(Item.item_type == "PROGRESSIVEPARTNER")
+                        .where(Item.unplaceable != 1)
+            ):
+                pool_progression_items.append(item)
+        else:
+            for item in (Item
+                        .select()
+                        .where(Item.item_type == "PARTNERUPGRADE")
+                        .where(Item.unplaceable != 1)
+                        .where(Item.item_name != "GenericUpgrade")
+            ):
+                pool_other_items.append(item)
 
     # Adjust item pools based on settings
     items_to_remove_from_pools.extend(get_items_to_exclude(
         logic_settings,
         starting_partners,
-        do_partner_upgrade_shuffle
+        do_partner_upgrade_shuffle,
+        do_progressive_partners,
     ))
     items_to_remove_from_pools.extend(starting_items)
 
@@ -852,12 +884,22 @@ def _generate_item_pools(
         # If we get this far, then we have more partner upgrades than partner
         # upgrade locations in the item pool, so we have to remove some
         if item.item_type == "PARTNERUPGRADE":
-            partner_upgrade = random.choice([
-                x
-                for x in pool_other_items
-                if x.item_type == "PARTNERUPGRADE"
-            ])
-            pool_other_items.remove(partner_upgrade)
+            if any([True for x in pool_other_items if x.item_type == "PARTNERUPGRADE"]):
+                partner_upgrade = random.choice([
+                    x
+                    for x in pool_other_items
+                    if x.item_type == "PARTNERUPGRADE"
+                ])
+                pool_other_items.remove(partner_upgrade)
+            else:
+                # If we get this far, then we have have progressive partners instead of
+                # partner upgrades, so we have to remove some of those instead
+                progressive_partner = random.choice([
+                    x
+                    for x in pool_progression_items
+                    if x.item_type == "PROGRESSIVEPARTNER" and "Proxy1" not in x.item_name
+                ])
+                pool_progression_items.remove(progressive_partner)
         #if not item.is_trapped():
         #    print(f"Attempted to remove {item} from item pools, but no pool holds such item.")
     # If we have set a badge pool limit and exceed that, remove random badges
@@ -1077,6 +1119,7 @@ def _algo_assumed_fill(
         starting_items,
         starting_partners,
         (logic_settings.partner_upgrade_shuffle != PartnerUpgradeShuffle.OFF),
+        logic_settings.progressive_partners,
         plando_item_placement,
         plando_traps_placed,
         plando_item_placeholders,
@@ -1296,19 +1339,29 @@ def _algo_assumed_fill(
             if world_graph.get(x) is not None
             and world_graph[x]["node"].current_item is None
         ]
-        partner_upgrades = [
-            x for x in pool_other_items
+
+        dynamic_pool = pool_other_items
+        partner_items = [
+            x for x in dynamic_pool
             if     x.item_type == "PARTNERUPGRADE"
                and x.item_name != "GenericUpgrade"
                and not x.is_trapped()
         ]
-        random.shuffle(partner_upgrades)
-        while partner_upgrades:
+        if not partner_items:
+            dynamic_pool = pool_progression_items
+            partner_items = [
+                x for x in dynamic_pool
+                if     x.item_type == "PROGRESSIVEPARTNER"
+                   and not x.is_trapped()
+                   and "Proxy1" not in x.item_name # Proxy1 reserved for partner locations
+            ]
+        random.shuffle(partner_items)
+        while partner_items:
             random_block_location = random.choice(candidate_locations)
-            partner_upgrade_itemobj = partner_upgrades.pop()
-            world_graph[random_block_location]["node"].current_item = partner_upgrade_itemobj
+            partner_items_itemobj = partner_items.pop()
+            world_graph[random_block_location]["node"].current_item = partner_items_itemobj
             candidate_locations.remove(random_block_location)
-            pool_other_items.remove(partner_upgrade_itemobj)
+            dynamic_pool.remove(partner_items_itemobj)
 
 
     print("Placing progression items...")
@@ -1336,7 +1389,9 @@ def _algo_assumed_fill(
 
     if logic_settings.partner_shuffle == PartnerShuffle.SHUFFLED:
         pool_combined_progression_items.sort(
-            key = lambda x: x.item_name in all_partners
+            key = lambda x:    x.item_name in all_partners
+                            or (    x.item_name in all_progressive_partners
+                                and "Proxy1" in x.item_name)
         )
 
     while pool_combined_progression_items:
@@ -1385,7 +1440,9 @@ def _algo_assumed_fill(
             dungeon_restricted_items.pop(item.item_name)
 
         if logic_settings.partner_shuffle == PartnerShuffle.SHUFFLED:
-            if item.item_type == "PARTNER":
+            if (   item.item_type == ["PARTNER"]
+                or (item.item_type == "PROGRESSIVEPARTNER" and "Proxy1" in item.item_name)
+            ):
                 candidate_locations = [
                     node for node in candidate_locations
                     if node.vanilla_item.item_type == "PARTNER"
