@@ -78,7 +78,14 @@ def get_itemhints(
     # The hints table is build by pairing an item id with a word describing
     # a map and a item source type (like 'given by npc' or 'in block')
     for item_node in placed_items:
-        if item_node.current_item.item_type in ["KEYITEM","BADGE","STARPIECE","PARTNER","STARSPIRIT"]:
+        if item_node.current_item.item_type in [
+            "KEYITEM",
+            "BADGE",
+            "STARPIECE",
+            "PARTNER",
+            "STARSPIRIT",
+            "PROGRESSIVEPARTNER",
+        ]:
             # Skip current item hint if not randomized
             if (    item_node.key_name_item.startswith("Shop")
                 and not do_randomize_shops
