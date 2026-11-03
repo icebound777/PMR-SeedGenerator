@@ -14,6 +14,7 @@ from rando_enums.enum_options import (
     BowserDoorQuiz,
     KentCKoopa,
     JrTroopa,
+    RandomStartingItems,
 )
 
 class LogicOptionSet():
@@ -68,7 +69,7 @@ class LogicOptionSet():
         self.starting_boots = get_option_default_value("StartingBoots") #
         self.starting_hammer = get_option_default_value("StartingHammer") #
 
-        self.random_starting_items = False
+        self.random_starting_items = RandomStartingItems.OFF
         self.random_starting_items_min = 0
         self.random_starting_items_max = 16
         self.starting_item_0 = get_option_default_value("StartingItem0")

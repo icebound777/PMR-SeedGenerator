@@ -35,6 +35,13 @@
     * `Final Bowser Only`: Skips Bowser's Castle entirely, sending Mario straight to Peach's Castle from Shooting Star Summit. The Bowser encounter in the hallway of Peach's Castle is skipped as well. If Mario still needs to find the Star Beam, then Bowser is so nice and puts up a sign post in that hallway, which tells Mario where to find the Star Beam.
 * New `Always run away` option
   * If turned on, running from battle will automatically fill the run meter to 100%.
+* Change `Random Starting Items`
+  * Is now no longer a toggle, instead offers the choice between four settings:
+    * `Off`
+    * `Consumables`
+    * `Consumables + Badges`
+    * `Consumables + Badges + Key Items`
+  * Now takes `Add Unused Badge Duplicates`, `Add Beta Items`, and `Progressive Badges` into account, and thus items that are introduced by those settings can randomly be chosen as starting items.
 
 ### Logic changes
 

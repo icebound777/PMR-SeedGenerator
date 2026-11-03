@@ -98,7 +98,7 @@ StartingBoots           : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
 StartingHammer          : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
 StartingCoins           : 100
 
-StartWithRandomItems: false
+StartWithRandomItems: 0 # 0: Off, 1: consumables, 2: consumables + badges, 3: consumables + badges + key items
 RandomItemsMin      : 0
 RandomItemsMax      : 16
 StartingItem0       : 0x000 # Nothing

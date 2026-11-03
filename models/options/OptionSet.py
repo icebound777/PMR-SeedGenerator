@@ -25,6 +25,7 @@ from rando_enums.enum_options import (
     KentCKoopa,
     MaxBlooper,
     JrTroopa,
+    RandomStartingItems,
 )
 from models.options.LogicOptionSet import LogicOptionSet
 from models.options.PaletteOptionSet import PaletteOptionSet
@@ -1230,7 +1231,12 @@ class OptionSet:
                     and 0 <= options_dict.get("StartingCoins") <= 999
             )
 
-        basic_assert("StartWithRandomItems", bool)
+        if "StartWithRandomItems" in options_dict:
+            assert (    isinstance(options_dict.get("StartWithRandomItems"), int)
+                    and RandomStartingItems.OFF <=
+                        options_dict.get("StartWithRandomItems") <=
+                        RandomStartingItems.CONSUMABLES_BADGES_KEYS
+            )
         if "RandomItemsMin" in options_dict:
             assert (    isinstance(options_dict.get("RandomItemsMin"), int)
                     and 0 <= options_dict.get("RandomItemsMin") <= 16
