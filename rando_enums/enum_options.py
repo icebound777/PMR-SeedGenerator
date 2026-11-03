@@ -172,3 +172,10 @@ class JrTroopa(IntEnum):
     REMOVEMISSABLE = 1
     CHAPTER8ONLY = 2
     REMOVED = 3
+
+@unique
+class RandomStartingItems(IntEnum):
+    OFF = 0
+    CONSUMABLES = 1
+    CONSUMABLES_BADGES = 2
+    CONSUMABLES_BADGES_KEYS = 3

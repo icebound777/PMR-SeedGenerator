@@ -12,6 +12,7 @@ from rando_enums.enum_options import (
     BowserDoorQuiz,
     SpiritShuffleMode,
     JrTroopa,
+    RandomStartingItems,
 )
 
 from itemhints import get_itemhints
@@ -627,14 +628,16 @@ class RandomSeed:
             )
 
         count_chosen_starting_items: int = len(self.starting_items)
-        if (    rando_settings.logic_settings.random_starting_items
+        if (    rando_settings.logic_settings.random_starting_items != RandomStartingItems.OFF
             and count_chosen_starting_items < 16
         ):
             # Set up allowed items
             all_allowed_starting_items = []
-            all_allowed_starting_items.extend(allowed_starting_badges)
             all_allowed_starting_items.extend(allowed_starting_items)
-            all_allowed_starting_items.extend(allowed_starting_key_items)
+            if rando_settings.logic_settings.random_starting_items >= RandomStartingItems.CONSUMABLES_BADGES:
+                all_allowed_starting_items.extend(allowed_starting_badges)
+            if rando_settings.logic_settings.random_starting_items >= RandomStartingItems.CONSUMABLES_BADGES_KEYS:
+                all_allowed_starting_items.extend(allowed_starting_key_items)
 
             # Exclude items that are already placed by the plandomizer
             for keyitem_str in plando_keyitems:
