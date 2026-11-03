@@ -1553,6 +1553,7 @@ def get_item_spheres(
     starting_partners,
     hidden_block_mode:int,
     starting_items:list,
+    item_hint_additions:list,
     world_graph,
 ) -> dict:
     """
@@ -1701,6 +1702,14 @@ def get_item_spheres(
             if item.is_trapped():
                 item_name = f"TRAP ({item_name})"
             else:
+                # If we have progressive partners, set the earliest reachable
+                # ones as hint additions, except starting partners
+                if (    item.item_name in all_progressive_partners
+                    and item_name not in [x[0] for x in item_hint_additions]
+                    and f"{item_name.removeprefix('Progressive')}*" not in spheres_dict["starting_items"]
+                ):
+                    item_hint_additions.append((item_name, deepcopy(node)))
+
                 item_suffix = ""
                 if item.item_type != "ITEM" or is_itemlocation_replenishable(node):
                     if (    f"+{item.item_name}" not in mario.item_history
