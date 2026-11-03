@@ -35,6 +35,7 @@ from models.options.option_utility import get_option_default_value
 
 from plandomizer.plando_metadata import (
     progressive_badges,
+    progressive_partners,
     force_puzzlerando_locations,
     force_starbeam_shuffle_location,
     block_locations,
@@ -954,6 +955,8 @@ class OptionSet:
         # Overrule certain settings depending on plando data
         forced_progressive_badges,\
         forced_partner_upgrade_shuffle,\
+        forced_partner_shuffle,\
+        forced_progressive_partners,\
         forced_random_puzzles,\
         forced_shuffle_starbeam,\
         forced_multicoinblock_shuffle,\
@@ -968,6 +971,13 @@ class OptionSet:
                 self.logic_settings.partner_upgrade_shuffle,
                 forced_partner_upgrade_shuffle,
             ])
+        if forced_partner_shuffle is not None:
+            self.logic_settings.partner_shuffle = max([
+                self.logic_settings.partner_shuffle,
+                forced_partner_shuffle,
+            ])
+        if forced_progressive_partners is not None:
+            self.logic_settings.progressive_partners = forced_progressive_partners
         if forced_random_puzzles is not None:
             self.logic_settings.randomize_puzzles = forced_random_puzzles
         if forced_shuffle_starbeam is not None:
@@ -2327,6 +2337,8 @@ def _overrule_settings_with_plando(
 ) -> tuple[
     bool | None,
     PartnerUpgradeShuffle | None,
+    PartnerShuffle | None,
+    bool | None,
     bool | None,
     bool | None,
     MultiCoinBlockShuffle | None,
@@ -2334,6 +2346,8 @@ def _overrule_settings_with_plando(
 ]:
     forced_progressive_badges: bool = None
     forced_partner_upgrade_shuffle: bool = None
+    forced_partner_shuffle: bool = None
+    forced_progressive_partners: bool = None
     forced_random_puzzles: bool = None
     forced_shuffle_starbeam: bool = None
     forced_multicoinblock_shuffle: MultiCoinBlockShuffle = None
@@ -2343,6 +2357,8 @@ def _overrule_settings_with_plando(
         return (
             forced_progressive_badges,
             forced_partner_upgrade_shuffle,
+            forced_partner_shuffle,
+            forced_progressive_partners,
             forced_random_puzzles,
             forced_shuffle_starbeam,
             forced_multicoinblock_shuffle,
@@ -2392,6 +2408,31 @@ def _overrule_settings_with_plando(
                         forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.FULL
                     elif cur_item == "StarBeam":
                         forced_shuffle_starbeam = True
+                    elif cur_item in progressive_partners["originals"]:
+                        forced_progressive_partners = False
+                    elif cur_item in progressive_partners["progressives"]:
+                        forced_progressive_partners = True
+                        if forced_partner_upgrade_shuffle is None:
+                            forced_partner_upgrade_shuffle = PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS
+                        else:
+                            forced_partner_upgrade_shuffle = max([
+                                forced_partner_upgrade_shuffle,
+                                PartnerUpgradeShuffle.SUPERBLOCKLOCATIONS,
+                            ])
+                        prog_partner_map = {
+                            "Goomba Village - Goombario Partner": "ProgressiveGoombario",
+                            "Koopa Village 2 - Kooper Partner": "ProgressiveKooper",
+                            "Jail - Bombette Partner": "ProgressiveBombette",
+                            "Train Station - Parakarry Partner": "ProgressiveParakarry",
+                            "Lady Bows Room - Bow Partner": "ProgressiveBow",
+                            "RED Lantern Ghost - Watt Partner": "ProgressiveWatt",
+                            "Sushi Tree - Sushie Partner": "ProgressiveSushie",
+                            "(NW) Lakilester - Lakilester Partner": "ProgressiveLakilester",
+                        }
+                        if item_location in prog_partner_map and prog_partner_map[item_location] != cur_item:
+                            # partner is placed in another partner's vanilla location:
+                            # at least shuffle partners
+                            forced_partner_shuffle = PartnerShuffle.SHUFFLED
 
     if (    plando_data.get("dungeon_entrances") is not None
         and len(plando_data["dungeon_entrances"]) > 0
@@ -2404,6 +2445,8 @@ def _overrule_settings_with_plando(
     return (
         forced_progressive_badges,
         forced_partner_upgrade_shuffle,
+        forced_partner_shuffle,
+        forced_progressive_partners,
         forced_random_puzzles,
         forced_shuffle_starbeam,
         forced_multicoinblock_shuffle,

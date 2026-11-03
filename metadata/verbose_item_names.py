@@ -772,44 +772,47 @@ inverted_verbose_names = {
         "LakilesterUp1",
         "LakilesterUp2",
     ],
+    # inverted order is intended here, so Proxy1 is resolved the latest.
+    # this is because Proxy1 is placed as starting partners or used if partners
+    # are vanilla or shuffled
     "ProgressiveGoombario": [
-        "GoombarioProxy1",
-        "GoombarioProxy2",
         "GoombarioProxy3",
+        "GoombarioProxy2",
+        "GoombarioProxy1",
     ],
     "ProgressiveKooper": [
-        "KooperProxy1",
-        "KooperProxy2",
         "KooperProxy3",
+        "KooperProxy2",
+        "KooperProxy1",
     ],
     "ProgressiveBombette": [
-        "BombetteProxy1",
-        "BombetteProxy2",
         "BombetteProxy3",
+        "BombetteProxy2",
+        "BombetteProxy1",
     ],
     "ProgressiveParakarry": [
-        "ParakarryProxy1",
-        "ParakarryProxy2",
         "ParakarryProxy3",
+        "ParakarryProxy2",
+        "ParakarryProxy1",
     ],
     "ProgressiveBow": [
-        "BowProxy1",
-        "BowProxy2",
         "BowProxy3",
+        "BowProxy2",
+        "BowProxy1",
     ],
     "ProgressiveWatt": [
-        "WattProxy1",
-        "WattProxy2",
         "WattProxy3",
+        "WattProxy2",
+        "WattProxy1",
     ],
     "ProgressiveSushie": [
-        "SushieProxy1",
-        "SushieProxy2",
         "SushieProxy3",
+        "SushieProxy2",
+        "SushieProxy1",
     ],
     "ProgressiveLakilester": [
-        "LakilesterProxy1",
-        "LakilesterProxy2",
         "LakilesterProxy3",
+        "LakilesterProxy2",
+        "LakilesterProxy1",
     ],
 }
