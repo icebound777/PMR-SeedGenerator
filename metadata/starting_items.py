@@ -156,6 +156,11 @@ allowed_starting_items = [
 	0x0DA, # JellyShroom,
 ]
 
+allowed_starting_items_beta = [
+    0x087, # InsecticideHerb
+    0x091, # HustleDrink
+]
+
 allowed_starting_badges = [
     0x0E0, # SpinSmash
 	0x0E1, # Multibounce
@@ -237,4 +242,56 @@ allowed_starting_badges = [
 	0x148, # AttackFXC
 	0x14A, # HPPlusC
 	0x14D, # FPPlusC
+]
+
+allowed_starting_badges_progressives = [
+	0x27D, #SmashChargeProxy1
+	0x27E, #SmashChargeProxy2
+	0x27F, #SmashChargeProxy3
+	0x280, #JumpChargeProxy1
+	0x281, #JumpChargeProxy2
+	0x282, #JumpChargeProxy3
+	0x283, #PowerJumpProxy1
+	0x284, #PowerJumpProxy2
+	0x285, #PowerJumpProxy3
+	0x286, #PowerSmashProxy1
+	0x287, #PowerSmashProxy2
+	0x288, #PowerSmashProxy3
+	0x289, #QuakeHammerProxy1
+	0x28A, #QuakeHammerProxy2
+	0x28B, #QuakeHammerProxy3
+]
+
+allowed_starting_badges_beta = [
+    0x0F0, # SmashCharge0
+    0x0F6, # JumpCharge0
+    0x101, # Berserker
+    0x102, # RightOn
+    0x10E, # AutoJump
+    0x10F, # AutoSmash
+    0x110, # CrazyHeart
+    0x115, # MegaHPDrain
+    0x118, # AutoMultibounce
+    0x119, # FlowerFanatic
+    0x122, # SuperJump
+    0x125, # SuperSmash
+    0x12A, # SuperFocus
+    0x131, # EarthquakeJump
+    0x149, # AttackFXF
+    0x150, # HealthyHealthy
+    0x12B, # ShrinkSmash
+]
+
+allowed_starting_badges_unused_duplicates = [
+    0x137, # HappyHeartX
+    0x139, # FlowerSaverX
+    0x13B, # DamageDodgeX
+    0x13D, # PowerPlusX
+    0x13E, # DefendPlusX
+    0x13F, # DefendPlusY
+    0x142, # HappyFlowerX
+    0x14B, # HPPlusX
+    0x14C, # HPPlusY
+    0x14E, # FPPlusX
+    0x14F, # FPPlusY
 ]

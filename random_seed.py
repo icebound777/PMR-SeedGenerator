@@ -71,7 +71,11 @@ from worldgraph import (
 from metadata.starting_maps import starting_maps
 from metadata.starting_items import (
     allowed_starting_badges,
+    allowed_starting_badges_progressives,
+    allowed_starting_badges_beta,
+    allowed_starting_badges_unused_duplicates,
     allowed_starting_items,
+    allowed_starting_items_beta,
     allowed_starting_key_items
 )
 from metadata.item_general import seed_hash_item_names
@@ -634,8 +638,19 @@ class RandomSeed:
             # Set up allowed items
             all_allowed_starting_items = []
             all_allowed_starting_items.extend(allowed_starting_items)
+            if rando_settings.logic_settings.add_beta_items:
+                all_allowed_starting_items.extend(allowed_starting_items_beta)
+
             if rando_settings.logic_settings.random_starting_items >= RandomStartingItems.CONSUMABLES_BADGES:
                 all_allowed_starting_items.extend(allowed_starting_badges)
+
+                if rando_settings.logic_settings.progressive_badges:
+                    all_allowed_starting_items.extend(allowed_starting_badges_progressives)
+                if rando_settings.logic_settings.add_beta_items:
+                    all_allowed_starting_items.extend(allowed_starting_badges_beta)
+                if rando_settings.logic_settings.add_unused_badge_duplicates:
+                    all_allowed_starting_items.extend(allowed_starting_badges_unused_duplicates)
+
             if rando_settings.logic_settings.random_starting_items >= RandomStartingItems.CONSUMABLES_BADGES_KEYS:
                 all_allowed_starting_items.extend(allowed_starting_key_items)
 
@@ -721,6 +736,8 @@ class RandomSeed:
                         rando_settings.logic_settings.starting_item_E = random_item_id
                     elif len(self.starting_items) == 16:
                         rando_settings.logic_settings.starting_item_F = random_item_id
+
+            print(self.starting_items)
 
 
     def extend_entrances(
