@@ -29,6 +29,7 @@ def get_itemhints(
     keyitems_outside_dungeon:bool,
     forever_forest_open:bool,
     spirit_shuffle_mode:SpiritShuffleMode,
+    item_hint_additions:list,
 ):
     """
     Returns a list of item hint lists for a given list of item nodes.
@@ -37,6 +38,30 @@ def get_itemhints(
     """
     if not allow_itemhints:
         return [[0x00000000, 0xFFFFFFFF]]
+
+
+    def get_hint_words(item_node) -> list:
+        cur_area_id = item_node.map_area.area_id
+        cur_map_id = item_node.map_area.map_id
+        cur_map_name = item_node.map_area.name
+        cur_keyname = item_node.key_name_item
+
+        item_id = item_node.current_item.value
+        item_source_id = source_types.get(cur_map_name).get(cur_keyname)
+        if item_source_id is None:
+            print(f"item_source_id is None: {cur_map_name}:{cur_keyname}")
+            raise TypeError
+        #print(f"{cur_map_name=}; {cur_keyname=}")
+
+        hint_word_1 = item_id
+        hint_word_2 = (
+                cur_area_id << 24
+            | cur_map_id  << 16
+            | item_source_id  <<  8
+        )
+
+        return [hint_word_1, hint_word_2]
+
 
     itemhints = []
     limited_keyitems = []
@@ -78,7 +103,13 @@ def get_itemhints(
     # The hints table is build by pairing an item id with a word describing
     # a map and a item source type (like 'given by npc' or 'in block')
     for item_node in placed_items:
-        if item_node.current_item.item_type in ["KEYITEM","BADGE","STARPIECE","PARTNER","STARSPIRIT"]:
+        if item_node.current_item.item_type in [
+            "KEYITEM",
+            "BADGE",
+            "STARPIECE",
+            "PARTNER",
+            "STARSPIRIT",
+        ]:
             # Skip current item hint if not randomized
             if (    item_node.key_name_item.startswith("Shop")
                 and not do_randomize_shops
@@ -138,26 +169,11 @@ def get_itemhints(
             ):
                 continue
 
-            cur_area_id = item_node.map_area.area_id
-            cur_map_id = item_node.map_area.map_id
-            cur_map_name = item_node.map_area.name
-            cur_keyname = item_node.key_name_item
+            itemhints.append(get_hint_words(item_node))
 
-            item_id = item_node.current_item.value
-            item_source_id = source_types.get(cur_map_name).get(cur_keyname)
-            if item_source_id is None:
-                print(f"item_source_id is None: {cur_map_name}:{cur_keyname}")
-                raise TypeError
-            #print(f"{cur_map_name=}; {cur_keyname=}")
-
-            hint_word_1 = item_id
-            hint_word_2 = (
-                  cur_area_id << 24
-                | cur_map_id  << 16
-                | item_source_id  <<  8
-            )
-
-            itemhints.append([hint_word_1, hint_word_2])
+    # Add any special item hints
+    for (_, item_node) in item_hint_additions:
+        itemhints.append(get_hint_words(item_node))
 
     # Terminate hint table
     itemhints.append([0x00000000, 0xFFFFFFFF])

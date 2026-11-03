@@ -135,6 +135,7 @@ PartnersAlwaysUsable      : false
 StartWithRandomPartners   : true
 RandomPartnersMin         : 1 # 1-8
 RandomPartnersMax         : 1 # 1-8
+ProgressivePartners       : false
 
 # Pre-opened areas
 MagicalSeedsRequired: 4 # -1:Random

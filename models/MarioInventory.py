@@ -3,7 +3,7 @@ This module represents Mario's inventory as an abstract object for simulating
 world traversal. This is required for checking randomization logic.
 """
 
-from metadata.partners_meta import all_partners
+from metadata.partners_meta import all_partners, all_progressive_partners
 
 from rando_enums.enum_options import StartingBoots, StartingHammer, KentCKoopa
 
@@ -167,6 +167,16 @@ class MarioInventory:
                     is_new_pseudoitem = True
                 else:
                     self.partners.add(f'{item_object} (Battle)')
+                    self.item_history.append(f"+{item_object} (Battle)")
+                    is_new_pseudoitem = True
+            elif item_object in all_progressive_partners:
+                unproxied_partner = item_object[:-6] # remove "ProxyX"
+                if unproxied_partner not in self.partners:
+                    self.partners.add(unproxied_partner)
+                    self.item_history.append(f"+{item_object}")
+                    is_new_pseudoitem = True
+                else:
+                    self.partners.add(f'{unproxied_partner} (Battle)')
                     self.item_history.append(f"+{item_object} (Battle)")
                     is_new_pseudoitem = True
             elif item_object.find("StarPiece") != -1:

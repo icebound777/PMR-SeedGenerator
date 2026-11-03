@@ -339,6 +339,30 @@ verbose_item_names = {
     "SushieUp2": "SushieUpgrade",
     "LakilesterUp2": "LakilesterUpgrade",
     "BowUp2": "BowUpgrade",
+    "GoombarioProxy1": "ProgressiveGoombario",
+    "GoombarioProxy2": "ProgressiveGoombario",
+    "GoombarioProxy3": "ProgressiveGoombario",
+    "KooperProxy1": "ProgressiveKooper",
+    "KooperProxy2": "ProgressiveKooper",
+    "KooperProxy3": "ProgressiveKooper",
+    "BombetteProxy1": "ProgressiveBombette",
+    "BombetteProxy2": "ProgressiveBombette",
+    "BombetteProxy3": "ProgressiveBombette",
+    "ParakarryProxy1": "ProgressiveParakarry",
+    "ParakarryProxy2": "ProgressiveParakarry",
+    "ParakarryProxy3": "ProgressiveParakarry",
+    "WattProxy1": "ProgressiveWatt",
+    "WattProxy2": "ProgressiveWatt",
+    "WattProxy3": "ProgressiveWatt",
+    "SushieProxy1": "ProgressiveSushie",
+    "SushieProxy2": "ProgressiveSushie",
+    "SushieProxy3": "ProgressiveSushie",
+    "LakilesterProxy1": "ProgressiveLakilester",
+    "LakilesterProxy2": "ProgressiveLakilester",
+    "LakilesterProxy3": "ProgressiveLakilester",
+    "BowProxy1": "ProgressiveBow",
+    "BowProxy2": "ProgressiveBow",
+    "BowProxy3": "ProgressiveBow",
 }
 
 inverted_verbose_names = {
@@ -747,5 +771,48 @@ inverted_verbose_names = {
     "LakilesterUpgrade": [
         "LakilesterUp1",
         "LakilesterUp2",
+    ],
+    # inverted order is intended here, so Proxy1 is resolved the latest.
+    # this is because Proxy1 is placed as starting partners or used if partners
+    # are vanilla or shuffled
+    "ProgressiveGoombario": [
+        "GoombarioProxy3",
+        "GoombarioProxy2",
+        "GoombarioProxy1",
+    ],
+    "ProgressiveKooper": [
+        "KooperProxy3",
+        "KooperProxy2",
+        "KooperProxy1",
+    ],
+    "ProgressiveBombette": [
+        "BombetteProxy3",
+        "BombetteProxy2",
+        "BombetteProxy1",
+    ],
+    "ProgressiveParakarry": [
+        "ParakarryProxy3",
+        "ParakarryProxy2",
+        "ParakarryProxy1",
+    ],
+    "ProgressiveBow": [
+        "BowProxy3",
+        "BowProxy2",
+        "BowProxy1",
+    ],
+    "ProgressiveWatt": [
+        "WattProxy3",
+        "WattProxy2",
+        "WattProxy1",
+    ],
+    "ProgressiveSushie": [
+        "SushieProxy3",
+        "SushieProxy2",
+        "SushieProxy1",
+    ],
+    "ProgressiveLakilester": [
+        "LakilesterProxy3",
+        "LakilesterProxy2",
+        "LakilesterProxy1",
     ],
 }

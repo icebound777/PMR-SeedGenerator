@@ -104,6 +104,7 @@ class RandomSeed:
         self.music_list = []
         self.puzzle_minigame_data = []
         self.item_spheres_dict = None
+        self.item_hint_additions: list[tuple[str, int]] = []
         self.spoilerlog_additions = {}
         self.plando_data: TransformedPlandoData = TransformedPlandoData(
             plando_data
@@ -395,6 +396,7 @@ class RandomSeed:
                     starting_partners=self.starting_partners,
                     hidden_block_mode=hidden_block_mode,
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
+                    item_hint_additions=self.item_hint_additions,
                     world_graph=modified_world_graph,
                 )
 
@@ -514,6 +516,7 @@ class RandomSeed:
             logic_settings.keyitems_outside_dungeon,
             logic_settings.foreverforest_open,
             logic_settings.spirit_shuffle_mode,
+            self.item_hint_additions,
         )
 
         # Random quiz
