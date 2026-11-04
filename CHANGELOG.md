@@ -54,6 +54,20 @@
 * New options
   * `Anti Guy Skip` (chapter 4)
 
+### Additional Technical Changelog
+
+* Changed item IDs due to the new Star Spirit items
+  * New `ProgressiveGoombario` items on IDs 0x262 to 0x264
+  * New `ProgressiveKooper` items on IDs 0x265 to 0x267
+  * New `ProgressiveBombette` items on IDs 0x268 to 0x26A
+  * New `ProgressiveParakarry` items on IDs 0x26B to 26D
+  * New `ProgressiveWatt` items on IDs 0x271 to 0x273
+  * New `ProgressiveSushie` items on IDs 0x274 to 0x276
+  * New `ProgressiveLakilester` items on IDs 0x277 to 0x279
+  * New `ProgressiveBow` items on IDs 0x27A to 0x27C
+  * Filler `ProgressiveGoompa` (unusable) items on IDs 0x26E to 0x270 for technical reasons
+  * This change shifts all other items beyond item ID 0x261 up by 27 item IDs. The final item in the list is now `Bow` on item ID 0x2BA
+
 ## 0.31.2 (beta)
 
 ### Feature Changes (0.31.2)

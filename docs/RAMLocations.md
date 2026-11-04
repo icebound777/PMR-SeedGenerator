@@ -124,14 +124,14 @@ ID  | Item
 182 | RedBerryKey
 183 | YellowBerryKey
 184 | BubbleBerryKey
-276 | StarBeam
-277 | Eldstar
-278 | Mamar
-279 | Skolar
-27A | Muskular
-27B | Misstar
-27C | Klevar
-27D | Kalmar
+291 | StarBeam
+292 | Eldstar
+293 | Mamar
+294 | Skolar
+295 | Muskular
+296 | Misstar
+297 | Klevar
+298 | Kalmar
 ```
 
 ### Gear Upgrades
@@ -152,14 +152,14 @@ ID  | Item
 ```text
 ID  | Item
 ----+------------------------
-297 | Goombario
-298 | Kooper
-299 | Bombette
-29A | Parakarry
-29C | Watt
-29D | Sushie
-29E | Lakilester
-29F | Bow
+2B2 | Goombario
+2B3 | Kooper
+2B4 | Bombette
+2B5 | Parakarry
+2B7 | Watt
+2B8 | Sushie
+2B9 | Lakilester
+2BA | Bow
 ```
 
 (for current partner upgrade level, there is no need to check the collected flags for partner upgrade items. Instead check the current partner level in the Player Data, as outlined below)
