@@ -37,7 +37,7 @@ from rando_modules.modify_entrances import (
     set_starbeam_requirements,
     get_limited_chapter_logic,
 )
-from rando_modules.random_entrances.random_entrances import shuffle_dungeon_entrances
+from rando_modules.random_entrances.dungeon_entrance_shuffle import shuffle_dungeon_entrances
 from rando_modules.random_formations import get_random_formations
 from rando_modules.random_map_mirroring import get_mirrored_map_list
 from rando_modules.random_stat_distribution import generate_random_stats
