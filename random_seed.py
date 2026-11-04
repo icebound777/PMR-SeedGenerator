@@ -737,8 +737,6 @@ class RandomSeed:
                     elif len(self.starting_items) == 16:
                         rando_settings.logic_settings.starting_item_F = random_item_id
 
-            print(self.starting_items)
-
 
     def extend_entrances(
         self,
