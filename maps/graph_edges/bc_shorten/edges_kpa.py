@@ -21,6 +21,9 @@ edges_kpa_add = [
     # KPA_62 Front Door Exterior Front Door -> Entry Lava Hall Door Left
     #+ This removes the key requirement
     {"from": {"map": "KPA_62",  "id": 0}, "to": {"map": "KPA_70",  "id": 0}, "reqs": []},
+    # Front Door Exterior Lava Door Right -> Front Door Exterior Hangar Door Bottom Left
+    #+ Prevent access to the lava channels with glitches
+    {"from": {"map": "KPA_62",  "id": 2}, "to": {"map": "KPA_62",  "id": 3}, "reqs": [], "mapchange": True},
 
     # KPA_82 Guard Door 2 Door Left -> Hall to Guard Door 1 Door Right
     {"from": {"map": "KPA_82",  "id": 0}, "to": {"map": "KPA_50",  "id": 1}, "reqs": [], "mapchange": True},
@@ -56,6 +59,8 @@ edges_kpa_remove = [
     #? KPA_62 Front Door Exterior Front Door -> Entry Lava Hall Door Left
     # This removes the key requirement
     {"from": {"map": "KPA_62",  "id": 0}, "to": {"map": "KPA_70",  "id": 0}, "reqs": [[{"BowserCastleKey": 1}]]},
+    # Front Door Exterior Lava Door Right -> Outside Lower Jail (Lava) Lava Door Left
+    {"from": {"map": "KPA_62",  "id": 2}, "to": {"map": "KPA_11",  "id": 3}, "reqs": []},
 
     # KPA_82 Guard Door 2 Door Left -> Room with Hidden Door 2 Door Right
     {"from": {"map": "KPA_82",  "id": 0}, "to": {"map": "KPA_113", "id": 1}, "reqs": []},

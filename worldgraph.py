@@ -264,6 +264,8 @@ def adjust(world_graph, new_edges=None, edges_to_remove=None):
                 if (    old_edge["from"]["map"] == origin_map_name
                     and old_edge["from"]["id"]  == origin_entrance_id
                     and old_edge["mapchange"] is True
+                    # special casing for shorten BC KPA_62 -> KPA_10 & KPA_11
+                    and (old_edge["to"]["map"], old_edge["to"]["id"]) != ("KPA_10", 3)
                 ):
                     old_target_map_info = old_edge["to"]
                     break

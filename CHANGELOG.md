@@ -54,6 +54,11 @@
 * New options
   * `Anti Guy Skip` (chapter 4)
 
+### Bug Fixes
+
+* Bowser's Castle
+  * During `Shorten Bowser's Castle`, by using a Laki teleport glitch Mario was able to access the jail and lava channel area of the castle, despite them counting as removed from the game world. This could lead to game crashes. This has now been fixed by linking the lava channel area loading zone in such a way that Mario gets spat out on the `Front Door Exterior` map again, properly removing access to the lava channel area.
+
 ### Additional Technical Changelog
 
 * Changed item IDs due to the new Star Spirit items
