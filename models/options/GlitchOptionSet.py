@@ -169,6 +169,7 @@ class GlitchOptionSet():
         self.shiver_mountain_switch_skip = False
         self.sushieless_warehouse_key_bombette = False
         self.sushieless_warehouse_key_kooper = False
+        self.ice_staircase_skip = False
 
         self.mirror_clip = False
         self.bombette_puzzle_skip = False

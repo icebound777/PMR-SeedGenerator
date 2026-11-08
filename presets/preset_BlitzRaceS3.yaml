@@ -410,6 +410,7 @@ SnowmenSkipLaki                                 : false
 ShiverMountainSwitchSkip                        : false
 SushielessWarehouseKeyBombette                  : false
 SushielessWarehouseKeyKooper                    : false
+IceStaircaseSkip                                : false
 
 MirrorClip                                      : false
 BombettePuzzleSkip                              : false
