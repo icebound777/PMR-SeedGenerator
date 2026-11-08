@@ -470,6 +470,9 @@ from maps.graph_edges.glitched_logic.sam_sushieless_warehouse_key import (
     edges_sam_add_sushieless_warehouse_key_bombette_push,
     edges_sam_add_sushieless_warehouse_key_kooper_ksj,
 )
+from maps.graph_edges.glitched_logic.sam_ice_staircase_skip import (
+    edges_sam_add_ice_staircase_skip,
+)
 
 # Glitched Logic - Crystal Palace
 from maps.graph_edges.glitched_logic.pra_mirror_clip import (
@@ -1286,6 +1289,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_sam_add_sushieless_warehouse_key_bombette_push)
     if glitch_settings.sushieless_warehouse_key_kooper:
         all_new_edges.extend(edges_sam_add_sushieless_warehouse_key_kooper_ksj)
+    if glitch_settings.ice_staircase_skip:
+        all_new_edges.extend(edges_sam_add_ice_staircase_skip)
 
     # Crystal Palace
     if glitch_settings.mirror_clip:

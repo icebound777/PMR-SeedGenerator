@@ -908,6 +908,8 @@ class OptionSet:
             self.glitch_settings.sushieless_warehouse_key_bombette = options_dict.get("SushielessWarehouseKeyBombette")
         if "SushielessWarehouseKeyKooper" in options_dict:
             self.glitch_settings.sushieless_warehouse_key_kooper = options_dict.get("SushielessWarehouseKeyKooper")
+        if "IceStaircaseSkip" in options_dict:
+            self.glitch_settings.ice_staircase_skip = options_dict.get("IceStaircaseSkip")
 
         if "MirrorClip" in options_dict:
             self.glitch_settings.mirror_clip = options_dict.get("MirrorClip")
