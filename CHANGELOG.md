@@ -58,8 +58,14 @@
 
 ### Bug Fixes
 
+* Koopa Region
+  * Fix console-exclusive crash when handing in `KooperShell`: If entering and quickly leaving Kooper's House, and then handing in `KooperShell`, it could happen that the current partner could get stuck inside the house. This would then cause a crash during the partner swap to Kooper.
+  * Fix Koopa Koot no longer giving the RedJar shop code hint after handing in the RedJar item.
+* Shiver Region
+  * Fix possible crash when triggering the Kooper-Duplighost scene while the current partner was not Kooper. So far this could only occur when glitching past the blue switch using the chapter 7 Sushie glitch, but this fix will be important for entrance rando as well.
 * Bowser's Castle
   * During `Shorten Bowser's Castle`, by using a Laki teleport glitch Mario was able to access the jail and lava channel area of the castle, despite them counting as removed from the game world. This could lead to game crashes. This has now been fixed by linking the lava channel area loading zone in such a way that Mario gets spat out on the `Front Door Exterior` map again, properly removing access to the lava channel area.
+  * Fix console-exclusive crash when using Bombette's overworld ability in the second water puzzle room.
 
 ### Additional Technical Changelog
 
