@@ -1711,6 +1711,7 @@ class OptionSet:
         basic_assert("ShiverMountainSwitchSkip", bool)
         basic_assert("SushielessWarehouseKeyBombette", bool)
         basic_assert("SushielessWarehouseKeyKooper", bool)
+        basic_assert("IceStaircaseSkip", bool)
 
         basic_assert("MirrorClip", bool)
         basic_assert("BombettePuzzleSkip", bool)
@@ -2310,6 +2311,7 @@ class OptionSet:
         web_settings["ShiverMountainSwitchSkip"] = self.glitch_settings.shiver_mountain_switch_skip
         web_settings["SushielessWarehouseKeyBombette"] = self.glitch_settings.sushieless_warehouse_key_bombette
         web_settings["SushielessWarehouseKeyKooper"] = self.glitch_settings.sushieless_warehouse_key_kooper
+        web_settings["IceStaircaseSkip"] = self.glitch_settings.ice_staircase_skip
 
         # Glitches: Crystal Palace
         web_settings["MirrorClip"] = self.glitch_settings.mirror_clip
