@@ -66,6 +66,8 @@
 * Bowser's Castle
   * During `Shorten Bowser's Castle`, by using a Laki teleport glitch or a Clippy glitch Mario was able to access the jail and lava channel area of the castle, despite them counting as removed from the game world. This could lead to game crashes. This has now been fixed by linking the lava channel area loading zones in such a way that Mario gets spat out on the `Front Door Exterior` map again, properly removing access to the lava channel area.
   * Fix console-exclusive crash when using Bombette's overworld ability in the second water puzzle room.
+* Card LZS softlocks
+  * In vanilla, performing the Card LZS glitch can skip the post-chapterboss cutscenes. However, in the randomizer this leads to a state where the chapters do not count as beaten, but the star spirit cards vanish permanently, making the seed unbeatable if this game state is saved. Now performing the Card LZS glitch instead leads to the card just respawning for Mario to touch again.
 
 ### Additional Technical Changelog
 
