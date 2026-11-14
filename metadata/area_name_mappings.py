@@ -1,3 +1,5 @@
+from typing import Dict
+
 from maps.graph_edges.base_graph.edges_arn import edges_arn
 from maps.graph_edges.base_graph.edges_dgb import edges_dgb
 from maps.graph_edges.base_graph.edges_dro import edges_dro
@@ -92,4 +94,15 @@ chapter_areaname_map = {
     6: ["FLO"],
     7: ["SAM","PRA"],
     8: ["KPA"],
+}
+
+chapter_dungeon_map: Dict[int, str] = {
+    1: "TRD",
+    2: "ISK",
+    3: "DGB",
+    4: "OMO",
+    5: "KZN",
+    6: "FLO",
+    7: "PRA",
+    8: "KPA",
 }
