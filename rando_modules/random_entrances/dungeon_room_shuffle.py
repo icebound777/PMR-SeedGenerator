@@ -100,7 +100,14 @@ def _choose_dungeon_entrance(
 def _can_mario_leave_itemless(
     edge_list: List[Dict[str, Dict[str, str | int] | List]]
 ) -> bool:
-    return True
+    MAP_ID_KBF_DUNGEON_TRAP: str = "TRD_07"
+    cur_map: str = edge_list[0]["from"]["map"]
+    for edge in [x for x in edge_list if x["from"]["map"] != MAP_ID_KBF_DUNGEON_TRAP]:
+        if edge["to"]["map"] != cur_map:
+            # node change edge found: check if no requirements
+            if len(edge["reqs"]) == 0:
+                return True
+    return False
 
 
 def _room_has_more_than_one_exit(cur_dungeon_nodes: List, cur_map: str) -> bool:
