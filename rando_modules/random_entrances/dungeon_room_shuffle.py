@@ -72,3 +72,40 @@ def _get_cur_dungeon_nodes(
                 cur_dungeon_nodes.append(world_graph[node_key])
                 # now we have the node data and all outgoing edges
     return cur_dungeon_nodes
+
+
+def _choose_dungeon_entrance(
+    cur_dungeon_nodes: List,
+) -> Dict:
+    # The main criteria are:
+    #  * Mario can leave the dungeon from there without any items
+    #    -> so we never force warping to home if we get stuck in the dungeon
+    #  * The room has more than one exit
+    #    -> so the entrance is not an immediate dead end
+    possible_entrance_nodes_ids: List[str] = []
+
+    for cur_node in cur_dungeon_nodes:
+        cur_node_edges: List[Dict[str, Dict[str, str | int] | List]] = cur_node["edge_list"]
+        cur_map: str = _get_map_from_node_data(cur_node)
+
+        if (    _can_mario_leave_itemless(cur_node_edges)
+            and _room_has_more_than_one_exit(cur_dungeon_nodes, cur_map)
+        ):
+            possible_entrance_nodes_ids.append(cur_node["node"].identifier)
+
+    print(f"{possible_entrance_nodes_ids=}")
+    return random.choice(possible_entrance_nodes_ids)
+
+
+def _can_mario_leave_itemless(
+    edge_list: List[Dict[str, Dict[str, str | int] | List]]
+) -> bool:
+    return True
+
+
+def _room_has_more_than_one_exit(cur_dungeon_nodes: List, cur_map: str) -> bool:
+    return True
+
+
+def _get_map_from_node_data(node_data: Dict) -> str:
+    return node_data["node"].identifier.split("/")[0]
