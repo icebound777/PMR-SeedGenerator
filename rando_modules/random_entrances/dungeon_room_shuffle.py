@@ -58,3 +58,17 @@ def _get_dungeons_to_shuffle(
     #return dungeons_to_shuffle
     return [1]
 
+
+def _get_cur_dungeon_nodes(
+    world_graph: Dict[str, Dict],
+    cur_dungeon_number: int,
+) -> List:
+    cur_dungeon_nodes: List = list()
+
+    for node_key in world_graph:
+        if node_key.startswith(chapter_dungeon_map[cur_dungeon_number]):
+            cur_node: Node = world_graph[node_key]["node"]
+            if cur_node.entrance_id is not None and node_key != "TRD_00/4":
+                cur_dungeon_nodes.append(world_graph[node_key])
+                # now we have the node data and all outgoing edges
+    return cur_dungeon_nodes
