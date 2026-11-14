@@ -7,4 +7,6 @@ edges_sam_add_ice_staircase_skip = [
     {"from": {"map": "SAM_10", "id": 0}, "to": {"map": "SAM_10", "id": "ItemA"}, "reqs": [["Lakilester"],["Boots"]]},
     #? Shiver Mountain Peaks Exit West -> Shiver Mountain Peaks Exit East
     {"from": {"map": "SAM_10", "id": 0}, "to": {"map": "SAM_10", "id": 1}, "reqs": [["Lakilester"],["Boots"]]},
+    #? Shiver Mountain Peaks Exit West -> Shiver Mountain Peaks Bombable Wall
+    {"from": {"map": "SAM_10", "id": 0}, "to": {"map": "SAM_10", "id": 2}, "reqs": [["Lakilester"],["Boots"]]},
 ]
