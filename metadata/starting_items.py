@@ -81,7 +81,6 @@ allowed_starting_items = [
 	0x08E, # UltraShroom
 	0x08F, # SleepySheep
 	0x090, # POWBlock
-	0x091, # HustleDrink
 	0x092, # StopWatch
 	0x093, # WhackasBump
 	0x094, # Apple
