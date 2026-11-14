@@ -44,3 +44,17 @@ def shuffle_dungeon_rooms(
         None #todo
 
     return entrance_changes, world_graph, spoilers
+
+
+def _get_dungeons_to_shuffle(
+    limit_chapter_logic: bool,
+    required_chapters: List[int],
+) -> List[int]:
+    if limit_chapter_logic and len(required_chapters) > 0:
+        dungeons_to_shuffle = required_chapters.copy()
+    else:
+        #dungeons_to_shuffle = [1,2,3,4,5,6,7,8]
+        dungeons_to_shuffle = [1,2,3,4,5,6,7]
+    #return dungeons_to_shuffle
+    return [1]
+
