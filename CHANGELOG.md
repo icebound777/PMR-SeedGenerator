@@ -52,6 +52,7 @@
 ### Tricks & Glitches
 
 * New options
+  * `Bombette-less Refund Chest` (chapter 1)
   * `Anti Guy Skip` (chapter 4)
   * `Ice Staircase Skip` (chapter 7)
     * Huge thanks to `OfficialVladimirLenin` for providing the JP version collision changes required for adding this trick to the US version!

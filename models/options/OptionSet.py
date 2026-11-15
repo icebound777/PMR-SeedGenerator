@@ -686,6 +686,8 @@ class OptionSet:
             self.glitch_settings.laki_jailbreak = options_dict.get("LakiJailbreak")
         if "BombettelessRightFortressJailKey" in options_dict:
             self.glitch_settings.bombetteless_right_fortress_jail_key = options_dict.get("BombettelessRightFortressJailKey")
+        if "BombettelessRefundChest" in options_dict:
+            self.glitch_settings.bombetteless_refund_chest = options_dict.get("BombettelessRefundChest")
         if "WaterStaircaseSkip" in options_dict:
             self.glitch_settings.water_staircase_skip = options_dict.get("WaterStaircaseSkip")
 
@@ -1594,6 +1596,7 @@ class OptionSet:
         basic_assert("BombettelessKbfFpPlusLaki", bool)
         basic_assert("LakiJailbreak", bool)
         basic_assert("BombettelessRightFortressJailKey", bool)
+        basic_assert("BombettelessRefundChest", bool)
         basic_assert("WaterStaircaseSkip", bool)
 
         basic_assert("MtRuggedQuakeHammerAndLetterWithLaki", bool)
@@ -2184,6 +2187,7 @@ class OptionSet:
         web_settings["BombettelessKbfFpPlusLaki"] = self.glitch_settings.bombetteless_kbf_fp_plus_laki
         web_settings["LakiJailbreak"] = self.glitch_settings.laki_jailbreak
         web_settings["BombettelessRightFortressJailKey"] = self.glitch_settings.bombetteless_right_fortress_jail_key
+        web_settings["BombettelessRefundChest"] = self.glitch_settings.bombetteless_refund_chest
         web_settings["WaterStaircaseSkip"] = self.glitch_settings.water_staircase_skip
 
         # Glitches: Mt. Rugged

@@ -194,6 +194,9 @@ from maps.graph_edges.glitched_logic.trd_laki_jailbreak import (
 from maps.graph_edges.glitched_logic.trd_bombetteless_right_fortress_jail_key import (
     edges_trd_add_bombetteless_right_key,
 )
+from maps.graph_edges.glitched_logic.trd_bombetteless_refund_chest import (
+    edges_trd_add_bombetteless_refund_chest
+)
 from maps.graph_edges.glitched_logic.trd_water_staircase_skip import (
     edges_trd_add_water_staircase_skip,
 )
@@ -1053,6 +1056,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_trd_add_laki_jailbreak)
     if glitch_settings.bombetteless_right_fortress_jail_key:
         all_new_edges.extend(edges_trd_add_bombetteless_right_key)
+    if glitch_settings.bombetteless_refund_chest:
+        all_new_edges.extend(edges_trd_add_bombetteless_refund_chest)
     if glitch_settings.water_staircase_skip:
         all_new_edges.extend(edges_trd_add_water_staircase_skip)
 
