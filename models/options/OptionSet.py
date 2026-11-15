@@ -785,6 +785,8 @@ class OptionSet:
             self.glitch_settings.tubbas_table_ultra_boots = options_dict.get("TubbasTableUltraBoots")
         if "TubbasTableLakiJumpStudy" in options_dict:
             self.glitch_settings.tubbas_table_laki_jump_study = options_dict.get("TubbasTableLakiJumpStudy")
+        if "TubbasTableJumplessStudy" in options_dict:
+            self.glitch_settings.tubbas_table_laki_jump_study = options_dict.get("TubbasTableJumplessStudy")
         if "TubbasCastleSuperBootsSkip" in options_dict:
             self.glitch_settings.tubbas_castle_super_boots_skip = options_dict.get("TubbasCastleSuperBootsSkip")
         if "JumplessMegaRush" in options_dict:
@@ -1649,6 +1651,7 @@ class OptionSet:
         basic_assert("TubbasTableLakiJumpClock", bool)
         basic_assert("TubbasTableUltraBoots", bool)
         basic_assert("TubbasTableLakiJumpStudy", bool)
+        basic_assert("TubbasTableJumplessStudy", bool)
         basic_assert("TubbasCastleSuperBootsSkip", bool)
         basic_assert("JumplessMegaRush", bool)
         basic_assert("ParakarrylessMegaRush", bool)
@@ -2244,6 +2247,7 @@ class OptionSet:
         web_settings["BowlessTubbasCastle"] = self.glitch_settings.bowless_tubbas_castle
         web_settings["TubbasTableLakiJumpClock"] = self.glitch_settings.tubbas_table_laki_jump_clock
         web_settings["TubbasTableLakiJumpStudy"] = self.glitch_settings.tubbas_table_laki_jump_study
+        web_settings["TubbasTableJumplessStudy"] = self.glitch_settings.tubbas_table_jumpless_study
         web_settings["TubbasTableUltraBoots"] = self.glitch_settings.tubbas_table_ultra_boots
         web_settings["TubbasCastleSuperBootsSkip"]= self.glitch_settings.tubbas_castle_super_boots_skip
         web_settings["JumplessMegaRush"] = self.glitch_settings.jumpless_mega_rush

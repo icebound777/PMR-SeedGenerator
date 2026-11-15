@@ -320,6 +320,9 @@ from maps.graph_edges.glitched_logic.dgb_tubbas_table_jump_clock import (
 from maps.graph_edges.glitched_logic.dgb_tubbas_table_jump_study import (
     edges_dgb_add_tubbas_table_laki_jump_study,
 )
+from maps.graph_edges.glitched_logic.dgb_tubbas_table_jumpless_study import (
+    edges_dgb_add_tubbas_table_jumpless_study,
+)
 from maps.graph_edges.glitched_logic.dgb_tubba_castle_super_boots_skip import (
     edges_dgb_add_tubbas_castle_super_boots_skip_laki,
 )
@@ -1162,6 +1165,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_dgb_add_tubbas_table_clock_ultra_boots)
     if glitch_settings.tubbas_table_laki_jump_study:
         all_new_edges.extend(edges_dgb_add_tubbas_table_laki_jump_study)
+    if glitch_settings.tubbas_table_jumpless_study:
+        all_new_edges.extend(edges_dgb_add_tubbas_table_jumpless_study)
     if glitch_settings.tubbas_castle_super_boots_skip:
         all_new_edges.extend(edges_dgb_add_tubbas_castle_super_boots_skip_laki)
     if glitch_settings.jumpless_mega_rush:

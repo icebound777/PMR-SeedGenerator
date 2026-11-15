@@ -53,6 +53,7 @@
 
 * New options
   * `Bombette-less Refund Chest` (chapter 1)
+  * `Tubba's Table Jumpless (Study Room)` (chapter 3)
   * `Anti Guy Skip` (chapter 4)
   * `Ice Staircase Skip` (chapter 7)
     * Huge thanks to `OfficialVladimirLenin` for providing the JP version collision changes required for adding this trick to the US version!
@@ -90,6 +91,8 @@
   * Added `JrTroopa` (int)
   * Changed `StartWithRandomItems` from (bool) to (int)
   * Added more allowed values to `BowsersCastleMode` (int)
+  * Added `BombettelessRefundChest` (bool)
+  * Added `TubbasTableJumplessStudy` (bool)
   * Added `AntiGuySkip` (bool)
   * Added `IceStaircaseSkip` (bool)
 
