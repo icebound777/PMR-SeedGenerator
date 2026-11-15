@@ -745,6 +745,8 @@ class OptionSet:
             self.glitch_settings.parakarryless_super_hammer_room_normal_boots = options_dict.get("ParakarrylessSuperHammerRoomNormalBoots")
         if "RuinsLocksSkipClippy" in options_dict:
             self.glitch_settings.ruins_locks_skip_clippy = options_dict.get("RuinsLocksSkipClippy")
+        if "RuinsLocksSkipLZS" in options_dict:
+            self.glitch_settings.ruins_locks_skip_lzs = options_dict.get("RuinsLocksSkipLZS")
         if "RuinsPuzzleSolutionEarly" in options_dict:
             self.glitch_settings.ruins_puzzle_solution_early = options_dict.get("RuinsPuzzleSolutionEarly")
         if "RuinsStoneSkip" in options_dict:
@@ -1631,6 +1633,7 @@ class OptionSet:
         basic_assert("ParakarrylessSuperHammerRoomUltraBoots", bool)
         basic_assert("ParakarrylessSuperHammerRoomNormalBoots", bool)
         basic_assert("RuinsLocksSkipClippy", bool)
+        basic_assert("RuinsLocksSkipLZS", bool)
         basic_assert("RuinsPuzzleSolutionEarly", bool)
         basic_assert("RuinsStoneSkip", bool)
 
@@ -2227,6 +2230,7 @@ class OptionSet:
         web_settings["ParakarrylessSuperHammerRoomUltraBoots"] = self.glitch_settings.parakarryless_super_hammer_room_ultra_boots
         web_settings["ParakarrylessSuperHammerRoomNormalBoots"] = self.glitch_settings.parakarryless_super_hammer_room_normal_boots
         web_settings["RuinsLocksSkipClippy"] = self.glitch_settings.ruins_locks_skip_clippy
+        web_settings["RuinsLocksSkipLZS"] = self.glitch_settings.ruins_locks_skip_lzs
         web_settings["RuinsPuzzleSolutionEarly"] = self.glitch_settings.ruins_puzzle_solution_early
         web_settings["RuinsStoneSkip"] = self.glitch_settings.ruins_stone_skip
 

@@ -267,8 +267,11 @@ from maps.graph_edges.glitched_logic.isk_parakarryless_super_hammer_room import 
     edges_isk_add_parakarryless_super_hammer_room_normal_boots,
     edges_isk_add_parakarryless_super_hammer_room_ultra_boots,
 )
-from maps.graph_edges.glitched_logic.isk_ruins_locks_skip import (
+from maps.graph_edges.glitched_logic.isk_ruins_locks_skip_clippy import (
     edges_isk_add_ruins_locks_skip_clippy,
+)
+from maps.graph_edges.glitched_logic.isk_ruins_locks_skip_lzs import (
+    edges_isk_add_ruins_locks_skip_lzs
 )
 from maps.graph_edges.glitched_logic.isk_ruins_stone_skip import (
     edges_isk_add_ruins_stone_skip,
@@ -1124,6 +1127,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_isk_add_ruins_key_laki_jump)
     if glitch_settings.ruins_locks_skip_clippy:
         all_new_edges.extend(edges_isk_add_ruins_locks_skip_clippy)
+    if glitch_settings.ruins_locks_skip_lzs:
+        all_new_edges.extend(edges_isk_add_ruins_locks_skip_lzs)
     if glitch_settings.ruins_puzzle_solution_early:
         all_new_edges.extend(edges_isk_add_ruins_puzzle_solution_early)
     if glitch_settings.ruins_stone_skip:

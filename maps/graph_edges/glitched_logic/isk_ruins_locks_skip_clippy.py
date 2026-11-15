@@ -1,6 +1,6 @@
 """
 This file represents edges of the world graph that have to be added
-for Glitched Logic: Ruins Locks Skip.
+for Glitched Logic: Ruins Locks Skip (Clippy).
 """
 edges_isk_add_ruins_locks_skip_clippy = [
     # Sarcophagus Hall 1 Exit Top Right -> Sand Drainage Room 1 Exit Upper Room Left

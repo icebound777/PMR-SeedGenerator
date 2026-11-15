@@ -324,6 +324,7 @@ RuinsBombWallSkip                               : false
 ParakarrylessSuperHammerRoomUltraBoots          : false
 ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
+RuinsLocksSkipLZS                               : false
 RuinsPuzzleSolutionEarly                        : false
 RuinsStoneSkip                                  : false
 

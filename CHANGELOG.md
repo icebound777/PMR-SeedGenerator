@@ -54,6 +54,7 @@
 * New options
   * `Bombette-less Refund Chest` (chapter 1)
   * `Mt. Rugged Quake Hammer + Letter Partnerless` (chapter 2)
+  * `Ruins Locks Skip LZS` (chapter 2)
   * `Tubba's Table Jumpless (Study Room)` (chapter 3)
   * `Anti Guy Skip` (chapter 4)
   * `Ice Staircase Skip` (chapter 7)
@@ -94,6 +95,7 @@
   * Added more allowed values to `BowsersCastleMode` (int)
   * Added `BombettelessRefundChest` (bool)
   * Added `MtRuggedQuakeHammerAndLetterPartnerless` (bool)
+  * Added `RuinsLocksSkipLZS` (bool)
   * Added `TubbasTableJumplessStudy` (bool)
   * Added `AntiGuySkip` (bool)
   * Added `IceStaircaseSkip` (bool)
