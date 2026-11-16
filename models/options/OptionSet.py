@@ -790,7 +790,7 @@ class OptionSet:
         if "TubbasTableLakiJumpStudy" in options_dict:
             self.glitch_settings.tubbas_table_laki_jump_study = options_dict.get("TubbasTableLakiJumpStudy")
         if "TubbasTableJumplessStudy" in options_dict:
-            self.glitch_settings.tubbas_table_laki_jump_study = options_dict.get("TubbasTableJumplessStudy")
+            self.glitch_settings.tubbas_table_jumpless_study = options_dict.get("TubbasTableJumplessStudy")
         if "TubbasCastleSuperBootsSkip" in options_dict:
             self.glitch_settings.tubbas_castle_super_boots_skip = options_dict.get("TubbasCastleSuperBootsSkip")
         if "JumplessMegaRush" in options_dict:
