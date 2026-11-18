@@ -145,6 +145,7 @@ class RandomSeed:
                 self.battles = []
                 self.spoilerlog_additions = {}
                 self.item_spheres_dict = None
+                self.item_hint_additions = []
                 dc_rando_settings = deepcopy(self.rando_settings)
                 logic_settings = dc_rando_settings.logic_settings
 
