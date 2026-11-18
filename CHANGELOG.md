@@ -45,6 +45,8 @@
 
 ### Logic changes
 
+* Tubba's Castle
+  * Fix reaching the boarded up shortcut without the means to break the board already assuming the shortcut was now open.
 * Bowser's Castle
   * Fix `Lava Channel 3 - On Island 1` location assuming it was reachable without Boots while the lava is still active. This is a fix solely in preparation for entrance rando, as getting here in the first place in a vanilla world layout is not logically possible without Boots.
   * Fix `Lava Channel 3 - Lava Door Center` exit not being logically reachable from `Lava Channel 3 - Door Right` with only `Lakilester` and a way onto the ledge.
