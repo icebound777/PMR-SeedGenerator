@@ -1440,7 +1440,7 @@ def _algo_assumed_fill(
             dungeon_restricted_items.pop(item.item_name)
 
         if logic_settings.partner_shuffle == PartnerShuffle.SHUFFLED:
-            if (   item.item_type == ["PARTNER"]
+            if (   item.item_type == "PARTNER"
                 or (item.item_type == "PROGRESSIVEPARTNER" and "Proxy1" in item.item_name)
             ):
                 candidate_locations = [
