@@ -543,6 +543,9 @@ from maps.graph_edges.glitched_logic.global_knows_puzzle_solutions import (
 from maps.graph_edges.glitched_logic.global_reach_high_blocks_with_super_boots import (
     edges_global_reach_high_blocks_with_super_boots,
 )
+from maps.graph_edges.glitched_logic.global_jumpless_blocks_with_parakarry import (
+    edges_global_jumpless_blocks_with_parakarry,
+)
 
 
 def get_shorter_bowsercastle(world_graph: dict):
@@ -1363,6 +1366,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_global_knows_puzzle_solutions)
     if glitch_settings.reach_high_blocks_with_super_boots:
         all_new_edges.extend(edges_global_reach_high_blocks_with_super_boots)
+    if glitch_settings.jumpless_blocks_with_parakarry:
+        all_new_edges.extend(edges_global_jumpless_blocks_with_parakarry)
 
     #print(all_new_edges)
 

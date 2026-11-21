@@ -54,6 +54,7 @@
 ### Tricks & Glitches
 
 * New options
+  * `Jumpless Blocks with Parakarry` (global)
   * `Bombette-less Refund Chest` (chapter 1)
   * `Mt. Rugged Quake Hammer + Letter Partnerless` (chapter 2)
   * `Ruins Locks Skip LZS` (chapter 2)
@@ -90,6 +91,7 @@
   * Filler `ProgressiveGoompa` (unusable) items on IDs 0x26E to 0x270 for technical reasons
   * This change shifts all other items beyond item ID 0x261 up by 27 item IDs. The final item in the list is now `Bow` on item ID 0x2BA
 * Yaml settings changes:
+  * Added `JumplessBlocksWithParakarry` (bool)
   * Added `SkipEpilogue` (bool)
   * Added `MaxBlooper` (int)
   * Added `ProgressivePartners` (bool)

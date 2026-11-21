@@ -439,3 +439,4 @@ HammerClipItemGrab                              : false
 KnowsHiddenBlocks                               : false
 KnowsPuzzleSolutions                            : false
 ReachHighBlocksWithSuperBoots                   : false
+JumplessBlocksWithParakarry                     : false

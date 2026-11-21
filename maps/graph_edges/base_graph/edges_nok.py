@@ -121,9 +121,9 @@ edges_nok = [
     {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "NOK_11", "id": 1}, "reqs": [["RF_CanPassKentC","RF_CanBeatKentC"]]}, #? Pleasant Path Entry Exit Left -> Pleasant Path Entry Exit Right
     {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": 0}, "reqs": [["RF_CanPassKentC","RF_CanBeatKentC"]]}, #? Pleasant Path Entry Exit Right -> Pleasant Path Entry Exit Left
 
-    {"from": {"map": "NOK_11", "id": 1},         "to": {"map": "NOK_11", "id": "RBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Pleasant Path Entry Exit Left -> RBlockA (DizzyAttack)
-    {"from": {"map": "NOK_11", "id": "RBlockA"}, "to": {"map": "NOK_11", "id": "YBlockA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockA (Coin)
-    {"from": {"map": "NOK_11", "id": "RBlockA"}, "to": {"map": "NOK_11", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (FrightJar)
+    {"from": {"map": "NOK_11", "id": "YBlockB"}, "to": {"map": "NOK_11", "id": "RBlockA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> RBlockA (DizzyAttack)
+    {"from": {"map": "NOK_11", "id": "YBlockB"}, "to": {"map": "NOK_11", "id": "YBlockA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockA (Coin)
+    {"from": {"map": "NOK_11", "id": 1},         "to": {"map": "NOK_11", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Pleasant Path Entry Exit Right -> YBlockB (FrightJar)
 
     {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "NOK_11", "id": 0}, "reqs": [[{"chapterclears": 2}],["Boots","Goombario"],["Boots","Hammer"]], "pseudoitems": ["RF_CanBeatKentC"]}, #+ Can Defeat Kent
     {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": 1}, "reqs": [[{"chapterclears": 2}],["Boots","Goombario"],["Boots","Hammer"]], "pseudoitems": ["RF_CanBeatKentC"]}, #+ Can Defeat Kent

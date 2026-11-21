@@ -197,3 +197,4 @@ class GlitchOptionSet():
         self.knows_hidden_blocks = False
         self.knows_puzzle_solutions = False
         self.reach_high_blocks_with_super_boots = False
+        self.jumpless_blocks_with_parakarry = False
