@@ -138,6 +138,8 @@ class MarioInventory:
 
         if kent_c_koopa != KentCKoopa.MUST_FIGHT:
             self.add("RF_CanPassKentC")
+            if kent_c_koopa == KentCKoopa.ALREADY_DEFEATED:
+                self.add("RF_CanBeatKentC")
 
         if vanilla_start:
             self.add("RF_BrokenVeranda")
