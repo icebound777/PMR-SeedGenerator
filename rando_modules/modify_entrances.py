@@ -30,6 +30,14 @@ from maps.graph_edges.bc_bossrush.edges_kpa import (
     edges_kpa_add as edges_kpa_bossrush_add,
     edges_kpa_remove as edges_kpa_bossrush_remove,
 )
+from maps.graph_edges.bc_skip.edges_hos import (
+    edges_hos_add as edges_hos_bcskip_add,
+    edges_hos_remove as edges_hos_bcskip_remove,
+)
+from maps.graph_edges.bc_skip.edges_osr import (
+    edges_osr_add as edges_osr_bcskip_add,
+    edges_osr_remove as edges_osr_bcskip_remove,
+)
 from maps.graph_edges.gear_location_shuffle.edges_isk import (
     edges_isk_add as edges_isk_gls_add,
     edges_isk_remove as edges_isk_gls_remove,
@@ -186,6 +194,9 @@ from maps.graph_edges.glitched_logic.trd_laki_jailbreak import (
 from maps.graph_edges.glitched_logic.trd_bombetteless_right_fortress_jail_key import (
     edges_trd_add_bombetteless_right_key,
 )
+from maps.graph_edges.glitched_logic.trd_bombetteless_refund_chest import (
+    edges_trd_add_bombetteless_refund_chest
+)
 from maps.graph_edges.glitched_logic.trd_water_staircase_skip import (
     edges_trd_add_water_staircase_skip,
 )
@@ -193,6 +204,9 @@ from maps.graph_edges.glitched_logic.trd_water_staircase_skip import (
 # Glitched Logic - Mt.Rugged
 from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_laki import (
     edges_iwa_add_quake_hammer_and_letter_laki,
+)
+from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_and_letter_partnerless import (
+    edges_iwa_add_quake_hammer_and_letter_partnerless
 )
 from maps.graph_edges.glitched_logic.iwa_mt_rugged_quake_hammer_room_jumpless_clippy import (
     edges_iwa_add_quake_hammer_room_jumpless_clippy,
@@ -253,8 +267,11 @@ from maps.graph_edges.glitched_logic.isk_parakarryless_super_hammer_room import 
     edges_isk_add_parakarryless_super_hammer_room_normal_boots,
     edges_isk_add_parakarryless_super_hammer_room_ultra_boots,
 )
-from maps.graph_edges.glitched_logic.isk_ruins_locks_skip import (
+from maps.graph_edges.glitched_logic.isk_ruins_locks_skip_clippy import (
     edges_isk_add_ruins_locks_skip_clippy,
+)
+from maps.graph_edges.glitched_logic.isk_ruins_locks_skip_lzs import (
+    edges_isk_add_ruins_locks_skip_lzs
 )
 from maps.graph_edges.glitched_logic.isk_ruins_stone_skip import (
     edges_isk_add_ruins_stone_skip,
@@ -309,6 +326,9 @@ from maps.graph_edges.glitched_logic.dgb_tubbas_table_jump_clock import (
 from maps.graph_edges.glitched_logic.dgb_tubbas_table_jump_study import (
     edges_dgb_add_tubbas_table_laki_jump_study,
 )
+from maps.graph_edges.glitched_logic.dgb_tubbas_table_jumpless_study import (
+    edges_dgb_add_tubbas_table_jumpless_study,
+)
 from maps.graph_edges.glitched_logic.dgb_tubba_castle_super_boots_skip import (
     edges_dgb_add_tubbas_castle_super_boots_skip_laki,
 )
@@ -343,9 +363,18 @@ from maps.graph_edges.glitched_logic.omo_gearless_red_station_shooting_star impo
 from maps.graph_edges.glitched_logic.omo_parakarryless_blue_block_city_gap import (
     edges_omo_add_parakarryless_blue_block_city_gap,
 )
+from maps.graph_edges.glitched_logic.omo_anti_guy_skip import (
+    edges_omo_add_anti_guy_skip,
+)
+from maps.graph_edges.glitched_logic.omo_blue_station_train_jumpless import (
+    edges_omo_add_blue_station_train_jumpless,
+)
 from maps.graph_edges.glitched_logic.omo_blue_switch_skip import (
     edges_omo_add_blue_switch_skip_laki,
     edges_omo_add_blue_switch_skip_ultra_boots,
+)
+from maps.graph_edges.glitched_logic.omo_moving_platforms_laki_jump import (
+    edges_omo_add_moving_platforms_laki_jump,
 )
 from maps.graph_edges.glitched_logic.omo_red_barricade_skip import (
     edges_omo_add_red_barricade_skip,
@@ -459,6 +488,9 @@ from maps.graph_edges.glitched_logic.sam_sushieless_warehouse_key import (
     edges_sam_add_sushieless_warehouse_key_bombette_push,
     edges_sam_add_sushieless_warehouse_key_kooper_ksj,
 )
+from maps.graph_edges.glitched_logic.sam_ice_staircase_skip import (
+    edges_sam_add_ice_staircase_skip,
+)
 
 # Glitched Logic - Crystal Palace
 from maps.graph_edges.glitched_logic.pra_mirror_clip import (
@@ -514,6 +546,9 @@ from maps.graph_edges.glitched_logic.global_knows_puzzle_solutions import (
 from maps.graph_edges.glitched_logic.global_reach_high_blocks_with_super_boots import (
     edges_global_reach_high_blocks_with_super_boots,
 )
+from maps.graph_edges.glitched_logic.global_jumpless_blocks_with_parakarry import (
+    edges_global_jumpless_blocks_with_parakarry,
+)
 
 
 def get_shorter_bowsercastle(world_graph: dict):
@@ -562,6 +597,32 @@ def get_bowsercastle_bossrush(world_graph: dict):
     return entrance_modifications, world_graph
 
 
+def get_bowsercastle_skip(world_graph: dict):
+    """
+    Returns a list of db data tuples representing modified entrances in Peach's
+    Castle Grounds and Shooting Star Summit to skip straight to the front door
+    of Peach's Castle.
+    """
+    # Sets up the following connection:
+    # hos_20 (2) <-> osr_02 (0) (Riding Star Ship Scene <-> Hijacked Castle Entrance)
+    all_new_edges = []
+    all_edges_to_remove = []
+    entrance_modifications = []
+
+    all_new_edges.extend(edges_hos_bcskip_add)
+    all_new_edges.extend(edges_osr_bcskip_add)
+    all_edges_to_remove.extend(edges_hos_bcskip_remove)
+    all_edges_to_remove.extend(edges_osr_bcskip_remove)
+
+    world_graph, entrance_modifications = adjust(
+        world_graph,
+        new_edges=all_new_edges,
+        edges_to_remove=all_edges_to_remove
+    )
+
+    return entrance_modifications, world_graph
+
+
 def get_gear_location_shuffle(world_graph: dict, gear_shuffle_mode: int):
     """
     Returns the modified world graph itself for Gear Location Shuffle and Full Shuffle,
@@ -597,6 +658,7 @@ def set_starway_requirements(
     powerstars_needed: int,
     seed_goal: SeedGoal,
     forced_antiguysunit: bool,
+    skip_chapter8_jrtroopa: bool,
 ) -> dict:
     """
     Returns the modified world graph itself, modified to set the spirits
@@ -650,18 +712,19 @@ def set_starway_requirements(
                 world_graph["KPA_82/0"]["edge_list"][index]["reqs"].extend(added_requirements)
                 break
     ## ch8 jr. troopa
-    for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
-        if (    entrance["to"]["map"] == "KPA_83"
-            and entrance["to"]["id"] == 1
-        ):
-            world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
-            break
-    for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
-        if (    entrance["to"]["map"] == "KPA_83"
-            and entrance["to"]["id"] == 0
-        ):
-            world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
-            break
+    if not skip_chapter8_jrtroopa:
+        for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
+            if (    entrance["to"]["map"] == "KPA_83"
+                and entrance["to"]["id"] == 1
+            ):
+                world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+                break
+        for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
+            if (    entrance["to"]["map"] == "KPA_83"
+                and entrance["to"]["id"] == 0
+            ):
+                world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+                break
     ## hallway bowser
     for index, entrance in enumerate(world_graph["KKJ_13/0"]["edge_list"]):
         if (    entrance["to"]["map"] == "KKJ_13"
@@ -726,6 +789,7 @@ def set_starbeam_requirements(
     spirits_needed: int,
     powerstars_needed: int,
     forced_antiguysunit: bool,
+    skip_chapter8_jrtroopa: bool,
 ) -> dict:
     """
     Returns the modified world graph itself, modified to set the chapters,
@@ -763,18 +827,19 @@ def set_starbeam_requirements(
                 world_graph["KPA_82/0"]["edge_list"][index]["reqs"].extend(added_requirements)
                 break
     ## ch8 jr. troopa
-    for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
-        if (    entrance["to"]["map"] == "KPA_83"
-            and entrance["to"]["id"] == 1
-        ):
-            world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
-            break
-    for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
-        if (    entrance["to"]["map"] == "KPA_83"
-            and entrance["to"]["id"] == 0
-        ):
-            world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
-            break
+    if not skip_chapter8_jrtroopa:
+        for index, entrance in enumerate(world_graph["KPA_83/0"]["edge_list"]):
+            if (    entrance["to"]["map"] == "KPA_83"
+                and entrance["to"]["id"] == 1
+            ):
+                world_graph["KPA_83/0"]["edge_list"][index]["reqs"].extend(added_requirements)
+                break
+        for index, entrance in enumerate(world_graph["KPA_83/1"]["edge_list"]):
+            if (    entrance["to"]["map"] == "KPA_83"
+                and entrance["to"]["id"] == 0
+            ):
+                world_graph["KPA_83/1"]["edge_list"][index]["reqs"].extend(added_requirements)
+                break
     ## hallway bowser
     for index, entrance in enumerate(world_graph["KKJ_13/0"]["edge_list"]):
         if (    entrance["to"]["map"] == "KKJ_13"
@@ -1009,12 +1074,16 @@ def get_glitched_logic(
         all_new_edges.extend(edges_trd_add_laki_jailbreak)
     if glitch_settings.bombetteless_right_fortress_jail_key:
         all_new_edges.extend(edges_trd_add_bombetteless_right_key)
+    if glitch_settings.bombetteless_refund_chest:
+        all_new_edges.extend(edges_trd_add_bombetteless_refund_chest)
     if glitch_settings.water_staircase_skip:
         all_new_edges.extend(edges_trd_add_water_staircase_skip)
 
     # Mt. Rugged
     if glitch_settings.mt_rugged_quake_hammer_and_letter_with_laki:
         all_new_edges.extend(edges_iwa_add_quake_hammer_and_letter_laki)
+    if glitch_settings.mt_rugged_quake_hammer_and_letter_partnerless:
+        all_new_edges.extend(edges_iwa_add_quake_hammer_and_letter_partnerless)
     if glitch_settings.mt_rugged_quake_hammer_room_jumpless_clippy:
         all_new_edges.extend(edges_iwa_add_quake_hammer_room_jumpless_clippy)
     if glitch_settings.parakarryless_mt_rugged_seed:
@@ -1067,6 +1136,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_isk_add_ruins_key_laki_jump)
     if glitch_settings.ruins_locks_skip_clippy:
         all_new_edges.extend(edges_isk_add_ruins_locks_skip_clippy)
+    if glitch_settings.ruins_locks_skip_lzs:
+        all_new_edges.extend(edges_isk_add_ruins_locks_skip_lzs)
     if glitch_settings.ruins_puzzle_solution_early:
         all_new_edges.extend(edges_isk_add_ruins_puzzle_solution_early)
     if glitch_settings.ruins_stone_skip:
@@ -1113,6 +1184,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_dgb_add_tubbas_table_clock_ultra_boots)
     if glitch_settings.tubbas_table_laki_jump_study:
         all_new_edges.extend(edges_dgb_add_tubbas_table_laki_jump_study)
+    if glitch_settings.tubbas_table_jumpless_study:
+        all_new_edges.extend(edges_dgb_add_tubbas_table_jumpless_study)
     if glitch_settings.tubbas_castle_super_boots_skip:
         all_new_edges.extend(edges_dgb_add_tubbas_castle_super_boots_skip_laki)
     if glitch_settings.jumpless_mega_rush:
@@ -1139,10 +1212,16 @@ def get_glitched_logic(
         all_new_edges.extend(edges_omo_add_red_station_shooting_star_gearless)
     if glitch_settings.parakarryless_blue_block_city_gap:
         all_new_edges.extend(edges_omo_add_parakarryless_blue_block_city_gap)
+    if glitch_settings.anti_guy_skip:
+        all_new_edges.extend(edges_omo_add_anti_guy_skip)
+    if glitch_settings.blue_station_train_jumpless:
+       all_new_edges.extend(edges_omo_add_blue_station_train_jumpless)
     if glitch_settings.blue_switch_skip_laki:
         all_new_edges.extend(edges_omo_add_blue_switch_skip_laki)
     if glitch_settings.blue_switch_skip_ultra_boots:
         all_new_edges.extend(edges_omo_add_blue_switch_skip_ultra_boots)
+    if glitch_settings.moving_platforms_laki_jump:
+        all_new_edges.extend(edges_omo_add_moving_platforms_laki_jump)
     if glitch_settings.red_barricade_skip:
         all_new_edges.extend(edges_omo_add_red_barricade_skip)
     if glitch_settings.wattless_dark_room:
@@ -1243,6 +1322,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_sam_add_sushieless_warehouse_key_bombette_push)
     if glitch_settings.sushieless_warehouse_key_kooper:
         all_new_edges.extend(edges_sam_add_sushieless_warehouse_key_kooper_ksj)
+    if glitch_settings.ice_staircase_skip:
+        all_new_edges.extend(edges_sam_add_ice_staircase_skip)
 
     # Crystal Palace
     if glitch_settings.mirror_clip:
@@ -1290,6 +1371,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_global_knows_puzzle_solutions)
     if glitch_settings.reach_high_blocks_with_super_boots:
         all_new_edges.extend(edges_global_reach_high_blocks_with_super_boots)
+    if glitch_settings.jumpless_blocks_with_parakarry:
+        all_new_edges.extend(edges_global_jumpless_blocks_with_parakarry)
 
     #print(all_new_edges)
 

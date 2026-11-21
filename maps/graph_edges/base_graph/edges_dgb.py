@@ -109,7 +109,7 @@ edges_dgb = [
 
     # DGB_10 Sealed Room (2F)
     {"from": {"map": "DGB_10", "id": 0}, "to": {"map": "DGB_09", "id": 3}, "reqs": []}, # Sealed Room (2F) Cracked Wall Bottom Left -> West Hall (2F) Cracked Wall
-    {"from": {"map": "DGB_10", "id": 1}, "to": {"map": "DGB_11", "id": 3}, "reqs": [["SuperBoots"]]}, # Sealed Room (2F) Top Left Hole -> Covered Tables Room (1F) Spring To Ceiling
+    {"from": {"map": "DGB_10", "id": 1}, "to": {"map": "DGB_11", "id": 3}, "reqs": [["SuperBoots"]], "pseudoitems": ["GF_DGB10_BoardedFloor3"]}, # Sealed Room (2F) Top Left Hole -> Covered Tables Room (1F) Spring To Ceiling
     {"from": {"map": "DGB_10", "id": 2}, "to": {"map": "DGB_11", "id": 2}, "reqs": [["SuperBoots"]]}, # Sealed Room (2F) Top Right Hole -> Covered Tables Room (1F) Top Right Ceiling Hole
     {"from": {"map": "DGB_10", "id": 3}, "to": {"map": "DGB_11", "id": 1}, "reqs": [["SuperBoots"]]}, # Sealed Room (2F) Bottom Right Hole -> Covered Tables Room (1F) Bottom Right Ceiling Hole
 
@@ -119,8 +119,6 @@ edges_dgb = [
     {"from": {"map": "DGB_10", "id": 2}, "to": {"map": "DGB_10", "id": 0}, "reqs": []}, #? Sealed Room (2F) Top Right Hole -> Sealed Room (2F) Cracked Wall Bottom Left
     {"from": {"map": "DGB_10", "id": 0}, "to": {"map": "DGB_10", "id": 3}, "reqs": []}, #? Sealed Room (2F) Cracked Wall Bottom Left -> Sealed Room (2F) Bottom Right Hole
     {"from": {"map": "DGB_10", "id": 3}, "to": {"map": "DGB_10", "id": 0}, "reqs": []}, #? Sealed Room (2F) Bottom Right Hole -> Sealed Room (2F) Cracked Wall Bottom Left
-
-    {"from": {"map": "DGB_10", "id": 1}, "to": {"map": "DGB_10", "id": 1}, "reqs": [], "pseudoitems": ["GF_DGB10_BoardedFloor3"]}, #+ Sealed Room (2F) Top Left Hole
 
     # DGB_11 Covered Tables Room (1F)
     {"from": {"map": "DGB_11", "id": 0}, "to": {"map": "DGB_02", "id": 3}, "reqs": []}, # Covered Tables Room (1F) Door Bottom -> West Hall (1F) Door Top Right

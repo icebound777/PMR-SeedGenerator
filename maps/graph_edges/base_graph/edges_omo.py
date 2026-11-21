@@ -19,20 +19,21 @@ edges_omo = [
     {"from": {"map": "OMO_02", "id": 0}, "to": {"map": "OMO_02", "id": 1}, "reqs": [["Bombette"]]}, #? RED Boss Barricade Exit West -> RED Boss Barricade Exit East
     {"from": {"map": "OMO_02", "id": 1}, "to": {"map": "OMO_02", "id": 0}, "reqs": [["Bombette"]]}, #? RED Boss Barricade Exit East -> RED Boss Barricade Exit West
 
-    {"from": {"map": "OMO_02", "id": 1},         "to": {"map": "OMO_02", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* RED Boss Barricade Exit East -> YBlockA (SleepySheep)
-    {"from": {"map": "OMO_02", "id": "YBlockA"}, "to": {"map": "OMO_02", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS (Coin)
-    {"from": {"map": "OMO_02", "id": 1},         "to": {"map": "OMO_02", "id": "ItemA"},         "reqs": [["Boots"],["Kooper","UltraBoots"],["Hammer","SuperBoots"],["can_see_hidden_blocks","UltraBoots"],["can_hit_floating_blocks","UltraBoots"]]}, #* RED Boss Barricade Exit East -> ItemA (ShootingStar)
+    {"from": {"map": "OMO_02", "id": 1}, "to": {"map": "OMO_02", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* RED Boss Barricade Exit East -> YBlockA (SleepySheep)
+    {"from": {"map": "OMO_02", "id": 1}, "to": {"map": "OMO_02", "id": "HiddenYBlockA"}, "reqs": [["can_hit_floating_blocks"],["can_see_hidden_blocks"]]}, #* RED Boss Barricade Exit East -> HiddenYBlockA (Coin)
+    {"from": {"map": "OMO_02", "id": 1}, "to": {"map": "OMO_02", "id": "ItemA"},         "reqs": [["Boots"],["Kooper","UltraBoots"],["Hammer","SuperBoots"],["can_see_hidden_blocks","UltraBoots"],["can_hit_floating_blocks","UltraBoots"]]}, #* RED Boss Barricade Exit East -> ItemA (ShootingStar)
+    # above hidden block cannot share requirements due to Jumpless Blocks with Parakarry glitch setting
 
     # OMO_03 BLU Station
     {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_13", "id": 1}, "reqs": []}, # BLU Station Exit West -> BLU Anti-Guy Hall Exit East
     {"from": {"map": "OMO_03", "id": 1}, "to": {"map": "OMO_04", "id": 0}, "reqs": []}, # BLU Station Exit East -> BLU Block City Exit West
-    {"from": {"map": "OMO_03", "id": 2}, "to": {"map": "OMO_10", "id": 3}, "reqs": [["MF_Ch4_CanThrowInTrain"],["ToyTrain"],["RF_BlueSwitchPulled"],["Boots"]]}, # BLU Station Ride Train West -> RED Station Ride Train East
-    {"from": {"map": "OMO_03", "id": 3}, "to": {"map": "OMO_06", "id": 2}, "reqs": [["MF_Ch4_CanThrowInTrain"],["ToyTrain"],["Boots"]]}, # BLU Station Ride Train East -> PNK Station Ride Train West
+    {"from": {"map": "OMO_03", "id": 2}, "to": {"map": "OMO_10", "id": 3}, "reqs": [["RF_CanTakeTrain"],["RF_BlueSwitchPulled"]]}, # BLU Station Ride Train West -> RED Station Ride Train East
+    {"from": {"map": "OMO_03", "id": 3}, "to": {"map": "OMO_06", "id": 2}, "reqs": [["RF_CanTakeTrain"]]}, # BLU Station Ride Train East -> PNK Station Ride Train West
     {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "MAC_04", "id": 2}, "reqs": [["can_climb_steps"]]}, # BLU Station Spring to Toad Town -> Residental District Toybox Spring
 
     {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 1}, "reqs": []}, #? BLU Station Exit West -> BLU Station Exit East
     {"from": {"map": "OMO_03", "id": 1}, "to": {"map": "OMO_03", "id": 0}, "reqs": []}, #? BLU Station Exit East -> BLU Station Exit West
-    {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 2}, "reqs": [["MF_Ch4_CanThrowInTrain"],["ToyTrain"],["RF_BlueSwitchPulled"],["Boots"]]}, #? BLU Station Exit West -> BLU Station Ride Train West
+    {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 2}, "reqs": [["RF_CanTakeTrain"],["RF_BlueSwitchPulled"]]}, #? BLU Station Exit West -> BLU Station Ride Train West
     {"from": {"map": "OMO_03", "id": 2}, "to": {"map": "OMO_03", "id": 0}, "reqs": [], "pseudoitems": ["RF_BlueSwitchPulled"]}, #? BLU Station Ride Train West -> BLU Station Exit West
     {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 3}, "reqs": []}, #? BLU Station Exit West -> BLU Station Ride Train East
     {"from": {"map": "OMO_03", "id": 3}, "to": {"map": "OMO_03", "id": 0}, "reqs": []}, #? BLU Station Ride Train East -> BLU Station Exit West
@@ -41,6 +42,8 @@ edges_omo = [
 
     {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": "HiddenPanel"},   "reqs": [["can_flip_panels"]]}, #* BLU Station Spring to Toad Town -> HiddenPanel (StarPiece)
     {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* BLU Station Spring to Toad Town -> HiddenYBlockA (StoneCap)
+
+    {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 0}, "reqs": [["MF_Ch4_CanThrowInTrain"],["ToyTrain"],["Boots"]], "pseudoitems": ["RF_CanTakeTrain"]}, # Can hit the buttons, reach the conductor, and take the train
 
     # OMO_04 BLU Block City
     {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_03", "id": 1}, "reqs": []}, # BLU Block City Exit West -> BLU Station Exit East
@@ -69,11 +72,12 @@ edges_omo = [
     {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 1}, "reqs": [["MF_Ch4_GaveCakeToGourmetGuy"]]}, #? PNK Gourmet Guy Crossing Exit East (South) -> PNK Gourmet Guy Crossing Exit East (North)
     {"from": {"map": "OMO_05", "id": 1}, "to": {"map": "OMO_05", "id": 0}, "reqs": []}, #? PNK Gourmet Guy Crossing Exit East (North) -> PNK Gourmet Guy Crossing Exit East (South)
 
-    {"from": {"map": "OMO_05", "id": 0},               "to": {"map": "OMO_05", "id": "ItemA"},         "reqs": [["MF_Ch4_GaveCakeToGourmetGuy"]]}, #* PNK Gourmet Guy Crossing Exit East (South) -> ItemA (Cookbook)
-    {"from": {"map": "OMO_05", "id": 1},               "to": {"map": "OMO_05", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* PNK Gourmet Guy Crossing Exit East (North) -> YBlockA (Coin)
-    {"from": {"map": "OMO_05", "id": "YBlockA"},       "to": {"map": "OMO_05", "id": "YBlockB"},       "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
-    {"from": {"map": "OMO_05", "id": "YBlockA"},       "to": {"map": "OMO_05", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockA (DizzyDial)
-    {"from": {"map": "OMO_05", "id": "HiddenYBlockA"}, "to": {"map": "OMO_05", "id": "HiddenYBlockB"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> HiddenYBlockB (SuperSoda)
+    {"from": {"map": "OMO_05", "id": 0},         "to": {"map": "OMO_05", "id": "ItemA"},         "reqs": [["MF_Ch4_GaveCakeToGourmetGuy"]]}, #* PNK Gourmet Guy Crossing Exit East (South) -> ItemA (Cookbook)
+    {"from": {"map": "OMO_05", "id": 1},         "to": {"map": "OMO_05", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* PNK Gourmet Guy Crossing Exit East (North) -> YBlockA (Coin)
+    {"from": {"map": "OMO_05", "id": "YBlockA"}, "to": {"map": "OMO_05", "id": "YBlockB"},       "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "OMO_05", "id": "YBlockA"}, "to": {"map": "OMO_05", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockA (DizzyDial)
+    {"from": {"map": "OMO_05", "id": 1},         "to": {"map": "OMO_05", "id": "HiddenYBlockB"}, "reqs": [["can_hit_floating_blocks"],["can_see_hidden_blocks"]]}, #* PNK Gourmet Guy Crossing Exit East (North) -> HiddenYBlockB (SuperSoda)
+    # above hidden blocks cannot share requirements due to Jumpless Blocks with Parakarry glitch setting
 
     {"from": {"map": "OMO_05", "id": 0}, "to": {"map": "OMO_05", "id": 0}, "reqs": [["Cake"]], "pseudoitems": ["MF_Ch4_GaveCakeToGourmetGuy"]}, #+ Give Cake to Gourmet Guy
 
@@ -169,14 +173,16 @@ edges_omo = [
     {"from": {"map": "OMO_11", "id": 0}, "to": {"map": "OMO_11", "id": 1}, "reqs": [["Boots"]]}, #? RED Moving Platforms Exit West -> RED Moving Platforms Exit East
     {"from": {"map": "OMO_11", "id": 1}, "to": {"map": "OMO_11", "id": 0}, "reqs": [["Boots"]]}, #? RED Moving Platforms Exit East -> RED Moving Platforms Exit West
 
-    {"from": {"map": "OMO_11", "id": 1},         "to": {"map": "OMO_11", "id": "HiddenYBlockA"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit East -> HiddenYBlockA (VoltShroom)
-    {"from": {"map": "OMO_11", "id": 0},         "to": {"map": "OMO_11", "id": "HiddenYBlockB"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit West -> HiddenYBlockB (SnowmanDoll)
-    {"from": {"map": "OMO_11", "id": 0},         "to": {"map": "OMO_11", "id": "YBlockA"},          "reqs": [["Boots"]]}, #* RED Moving Platforms Exit West -> YBlockA (Coin)
-    {"from": {"map": "OMO_11", "id": "YBlockA"}, "to": {"map": "OMO_11", "id": "YBlockB"},          "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
-    {"from": {"map": "OMO_11", "id": "YBlockA"}, "to": {"map": "OMO_11", "id": "HiddenRBlockA"},    "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenRBlockA (DeepFocus2)
-    {"from": {"map": "OMO_11", "id": "YBlockA"}, "to": {"map": "OMO_11", "id": "RandomBlockItemA"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> RandomBlockItemA (GenericUpgrade)
-    {"from": {"map": "OMO_11", "id": "YBlockA"}, "to": {"map": "OMO_11", "id": "RandomBlockItemB"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> RandomBlockItemB (CoinBag)
+    {"from": {"map": "OMO_11", "id": 1},                  "to": {"map": "OMO_11", "id": "HiddenYBlockA"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit East -> HiddenYBlockA (VoltShroom)
+    {"from": {"map": "OMO_11", "id": 0},                  "to": {"map": "OMO_11", "id": "HiddenYBlockB"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit West -> HiddenYBlockB (SnowmanDoll)
+    {"from": {"map": "OMO_11", "id": 0},                  "to": {"map": "OMO_11", "id": "YBlockA"},          "reqs": [["Boots"]]}, #* RED Moving Platforms Exit West -> YBlockA (Coin)
+    {"from": {"map": "OMO_11", "id": "YBlockA"},          "to": {"map": "OMO_11", "id": "YBlockB"},          "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "OMO_11", "id": "YBlockA"},          "to": {"map": "OMO_11", "id": "HiddenRBlockA"},    "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenRBlockA (DeepFocus2)
+    {"from": {"map": "OMO_11", "id": 0},                  "to": {"map": "OMO_11", "id": "RandomBlockItemA"}, "reqs": [["Boots"]]}, #* RED Moving Platforms Exit West -> RandomBlockItemA (GenericUpgrade)
+    {"from": {"map": "OMO_11", "id": "RandomBlockItemA"}, "to": {"map": "OMO_11", "id": "RandomBlockItemB"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> RandomBlockItemB (CoinBag)
     #! note: "can_hit_floating_blocks" is partially redundant above as boots is hard-required to reach some of the floating blocks
+    # above random blocks cannot share requirements with the other blocks due
+    # to Jumpless Blocks with Parakarry or moving platforms laki jump glitch settings
 
     # OMO_12 RED Lantern Ghost
     {"from": {"map": "OMO_12", "id": 0}, "to": {"map": "OMO_11", "id": 0}, "reqs": []}, # RED Lantern Ghost Exit East -> RED Moving Platforms Exit West

@@ -61,3 +61,9 @@ partner_moves = {
         "Hurricane",
     ],
 }
+
+all_progressive_partners = [
+    f"{x}Proxy{y+1}"
+    for x in all_partners
+    for y in range(3)
+]

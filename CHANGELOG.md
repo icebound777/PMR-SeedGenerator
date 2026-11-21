@@ -1,13 +1,121 @@
 # Changelog
 
-## 0.31.2 (beta)
+## 0.32.0 (beta)
 
 ### Feature Changes
+
+* New `Progressive Partners` option
+  * Turns all partner and partner upgrade items into progressive partner items. The first of each kind of progressive partner item you find unlocks that partner itself, then the other two items give their upgrades.
+  * Requires `Partner Upgrade Shuffle` to not be turned off.
+* New `Max Blooper` option
+  * Allows setting the strongest possible Blooper variant to encounter.
+  * This option has three different values:
+    * `Blooper`: All Bloopers Mario encounters are regular Bloopers.
+    * `Electro Blooper`: Mario encounters Blooper, then Electro Blooper, then Electro Blooper again.
+    * `Super Blooper`: Same as vanilla; Mario encounters Blooper, then Electro Blooper, then Super Blooper.
+* New `Jr. Troopa` option
+  * Allows choosing which Jr. Troopa encounters can happen.
+  * This option has four different values:
+    * `All`: Same as vanilla; Mario encounters Jr. Troopa ...
+      * ... in `Goomba Region - Jr. Troopa's Playground` (avoidable)
+      * ... in `Koopa Region - Pleasant Path Entry` (after clearing chapter 1; avoidable)
+      * ... in `Forever Forest - Laughing Rock` (after opening Boo's Mansion big chest; avoidable)
+      * ... in `Toad Town - Port District` (after defeating Lava Piranha; avoidable)
+      * ... in `Shiver Region - Road to Shiver Snowfield` (unavoidable)
+      * ... in `Bowser's Castle - Guard Door 3` (unavoidable)
+    * `Remove Missable`: Removes all missable encounters, leaving only the encounters ...
+      * ... in `Shiver Region - Road to Shiver Snowfield` (unavoidable)
+      * ... in `Bowser's Castle - Guard Door 3` (unavoidable)
+    * `Chapter 8 Jr. Only`: Removes all encounters, except for the one ...
+      * ... in `Bowser's Castle - Guard Door 3` (unavoidable)
+    * `Remove All`: Jr. Troopa encounters are skipped entirely; he never has to be fought.
+* New values for `Bowser's Castle Mode` option
+  * The existing values of `Vanilla`, `Shortened`, and `Bossrush` get expanded with two new values:
+    * `Bowsers Only`: Skips Bowser's Castle entirely, sending Mario straight to Peach's Castle from Shooting Star Summit. Compared to `BossRush` this avoids the battles against the Duplighosts and Jr. Troopa.
+    * `Final Bowser Only`: Skips Bowser's Castle entirely, sending Mario straight to Peach's Castle from Shooting Star Summit. The Bowser encounter in the hallway of Peach's Castle is skipped as well. If Mario still needs to find the Star Beam, then Bowser is so nice and puts up a sign post in that hallway, which tells Mario where to find the Star Beam.
+* New `Always run away` option
+  * If turned on, running from battle will automatically fill the run meter to 100%.
+* Change `Random Starting Items`
+  * Is now no longer a toggle, instead offers the choice between four settings:
+    * `Off`
+    * `Consumables`
+    * `Consumables + Badges`
+    * `Consumables + Badges + Key Items`
+  * Now takes `Add Unused Badge Duplicates`, `Add Beta Items`, and `Progressive Badges` into account, and thus items that are introduced by those settings can randomly be chosen as starting items.
+
+### Logic changes
+
+* Tubba's Castle
+  * Fix reaching the boarded up shortcut without the means to break the board already assuming the shortcut was now open.
+* Bowser's Castle
+  * Fix `Lava Channel 3 - On Island 1` location assuming it was reachable without Boots while the lava is still active. This is a fix solely in preparation for entrance rando, as getting here in the first place in a vanilla world layout is not logically possible without Boots.
+  * Fix `Lava Channel 3 - Lava Door Center` exit not being logically reachable from `Lava Channel 3 - Door Right` with only `Lakilester` and a way onto the ledge.
+
+### Tricks & Glitches
+
+* New options
+  * `Jumpless Blocks with Parakarry` (global)
+  * `Bombette-less Refund Chest` (chapter 1)
+  * `Mt. Rugged Quake Hammer + Letter Partnerless` (chapter 2)
+  * `Ruins Locks Skip LZS` (chapter 2)
+  * `Tubba's Table Jumpless (Study Room)` (chapter 3)
+  * `Blue Station Train Jumpless` (chapter 4)
+  * `Anti Guy Skip` (chapter 4)
+  * `Moving Platforms Laki Jump` (chapter 4)
+  * `Ice Staircase Skip` (chapter 7)
+    * Huge thanks to `OfficialVladimirLenin` for providing the JP version collision changes required for adding this trick to the US version!
+
+### Bug Fixes
+
+* Koopa Region
+  * Fix console-exclusive crash when handing in `KooperShell`: If entering and quickly leaving Kooper's House, and then handing in `KooperShell`, it could happen that the current partner could get stuck inside the house. This would then cause a crash during the partner swap to Kooper.
+  * Fix Koopa Koot no longer giving the RedJar shop code hint after handing in the RedJar item.
+* Shiver Region
+  * Fix possible crash when triggering the Kooper-Duplighost scene while the current partner was not Kooper. So far this could only occur when glitching past the blue switch using the chapter 7 Sushie glitch, but this fix will be important for entrance rando as well.
+* Bowser's Castle
+  * During `Shorten Bowser's Castle`, by using a Laki teleport glitch or a Clippy glitch Mario was able to access the jail and lava channel area of the castle, despite them counting as removed from the game world. This could lead to game crashes. This has now been fixed by linking the lava channel area loading zones in such a way that Mario gets spat out on the `Front Door Exterior` map again, properly removing access to the lava channel area.
+  * Fix console-exclusive crash when using Bombette's overworld ability in the second water puzzle room.
+* Card LZS softlocks
+  * In vanilla, performing the Card LZS glitch can skip the post-chapterboss cutscenes. However, in the randomizer this leads to a state where the chapters do not count as beaten, but the star spirit cards vanish permanently, making the seed unbeatable if this game state is saved. Now performing the Card LZS glitch instead leads to the card just respawning for Mario to touch again.
+
+### Additional Technical Changelog
+
+* Changed item IDs due to the new Star Spirit items
+  * New `ProgressiveGoombario` items on IDs 0x262 to 0x264
+  * New `ProgressiveKooper` items on IDs 0x265 to 0x267
+  * New `ProgressiveBombette` items on IDs 0x268 to 0x26A
+  * New `ProgressiveParakarry` items on IDs 0x26B to 26D
+  * New `ProgressiveWatt` items on IDs 0x271 to 0x273
+  * New `ProgressiveSushie` items on IDs 0x274 to 0x276
+  * New `ProgressiveLakilester` items on IDs 0x277 to 0x279
+  * New `ProgressiveBow` items on IDs 0x27A to 0x27C
+  * Filler `ProgressiveGoompa` (unusable) items on IDs 0x26E to 0x270 for technical reasons
+  * This change shifts all other items beyond item ID 0x261 up by 27 item IDs. The final item in the list is now `Bow` on item ID 0x2BA
+* Yaml settings changes:
+  * Added `JumplessBlocksWithParakarry` (bool)
+  * Added `SkipEpilogue` (bool)
+  * Added `MaxBlooper` (int)
+  * Added `ProgressivePartners` (bool)
+  * Added `JrTroopa` (int)
+  * Changed `StartWithRandomItems` from (bool) to (int)
+  * Added more allowed values to `BowsersCastleMode` (int)
+  * Added `BombettelessRefundChest` (bool)
+  * Added `MtRuggedQuakeHammerAndLetterPartnerless` (bool)
+  * Added `RuinsLocksSkipLZS` (bool)
+  * Added `TubbasTableJumplessStudy` (bool)
+  * Added `BlueStationTrainJumpless` (bool)
+  * Added `AntiGuySkip` (bool)
+  * Added `MovingPlatformsLakiJump` (bool)
+  * Added `IceStaircaseSkip` (bool)
+
+## 0.31.2 (beta)
+
+### Feature Changes (0.31.2)
 
 * Star Spirits as item traps
   * If star spirit shuffle and item traps are active, then fake star spirit items may now appear as item traps.
 
-### Bug Fixes
+### Bug Fixes (0.31.2)
 
 * Tricks & Glitches
   * Settings not doing anything when turned on

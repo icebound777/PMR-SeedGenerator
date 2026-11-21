@@ -118,12 +118,15 @@ edges_nok = [
     {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "MAC_01", "id": 1}, "reqs": []}, # Pleasant Path Entry Exit Left -> Plaza District Exit Right
     {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_12", "id": 0}, "reqs": []}, # Pleasant Path Entry Exit Right -> Pleasant Path Bridge Exit Left
 
-    {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "NOK_11", "id": 1}, "reqs": [["RF_CanPassKentC",{"chapterclears": 2}],["RF_CanPassKentC","Boots","Goombario"],["RF_CanPassKentC","Boots","Hammer"]]}, #? Pleasant Path Entry Exit Left -> Pleasant Path Entry Exit Right
-    {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": 0}, "reqs": [["RF_CanPassKentC",{"chapterclears": 2}],["RF_CanPassKentC","Boots","Goombario"],["RF_CanPassKentC","Boots","Hammer"]]}, #? Pleasant Path Entry Exit Right -> Pleasant Path Entry Exit Left
+    {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "NOK_11", "id": 1}, "reqs": [["RF_CanPassKentC","RF_CanBeatKentC"]]}, #? Pleasant Path Entry Exit Left -> Pleasant Path Entry Exit Right
+    {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": 0}, "reqs": [["RF_CanPassKentC","RF_CanBeatKentC"]]}, #? Pleasant Path Entry Exit Right -> Pleasant Path Entry Exit Left
 
-    {"from": {"map": "NOK_11", "id": 1},         "to": {"map": "NOK_11", "id": "RBlockA"}, "reqs": [["can_hit_floating_blocks"]]}, #* Pleasant Path Entry Exit Left -> RBlockA (DizzyAttack)
-    {"from": {"map": "NOK_11", "id": "RBlockA"}, "to": {"map": "NOK_11", "id": "YBlockA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockA (Coin)
-    {"from": {"map": "NOK_11", "id": "RBlockA"}, "to": {"map": "NOK_11", "id": "YBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (FrightJar)
+    {"from": {"map": "NOK_11", "id": "YBlockB"}, "to": {"map": "NOK_11", "id": "RBlockA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> RBlockA (DizzyAttack)
+    {"from": {"map": "NOK_11", "id": "YBlockB"}, "to": {"map": "NOK_11", "id": "YBlockA"}, "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockA (Coin)
+    {"from": {"map": "NOK_11", "id": 1},         "to": {"map": "NOK_11", "id": "YBlockB"}, "reqs": [["can_hit_floating_blocks"]]}, #* Pleasant Path Entry Exit Right -> YBlockB (FrightJar)
+
+    {"from": {"map": "NOK_11", "id": 0}, "to": {"map": "NOK_11", "id": 0}, "reqs": [[{"chapterclears": 2}],["Boots","Goombario"],["Boots","Hammer"]], "pseudoitems": ["RF_CanBeatKentC"]}, #+ Can Defeat Kent
+    {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": 1}, "reqs": [[{"chapterclears": 2}],["Boots","Goombario"],["Boots","Hammer"]], "pseudoitems": ["RF_CanBeatKentC"]}, #+ Can Defeat Kent
 
     # NOK_12 Pleasant Path Bridge
     {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_11", "id": 1}, "reqs": []}, # Pleasant Path Bridge Exit Left -> Pleasant Path Entry Exit Right

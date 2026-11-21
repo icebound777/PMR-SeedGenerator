@@ -11,6 +11,8 @@ from rando_enums.enum_options import (
     RequiredChapters,
     BowserDoorQuiz,
     SpiritShuffleMode,
+    JrTroopa,
+    RandomStartingItems,
 )
 
 from itemhints import get_itemhints
@@ -27,6 +29,7 @@ from rando_modules.modify_entrances import get_shuffled_battles
 from rando_modules.modify_entrances import (
     get_shorter_bowsercastle,
     get_bowsercastle_bossrush,
+    get_bowsercastle_skip,
     get_gear_location_shuffle,
     get_glitched_logic,
     adjust_shop_logic,
@@ -68,7 +71,11 @@ from worldgraph import (
 from metadata.starting_maps import starting_maps
 from metadata.starting_items import (
     allowed_starting_badges,
+    allowed_starting_badges_progressives,
+    allowed_starting_badges_beta,
+    allowed_starting_badges_unused_duplicates,
     allowed_starting_items,
+    allowed_starting_items_beta,
     allowed_starting_key_items
 )
 from metadata.item_general import seed_hash_item_names
@@ -102,6 +109,7 @@ class RandomSeed:
         self.music_list = []
         self.puzzle_minigame_data = []
         self.item_spheres_dict = None
+        self.item_hint_additions: list[tuple[str, int]] = []
         self.spoilerlog_additions = {}
         self.plando_data: TransformedPlandoData = TransformedPlandoData(
             plando_data
@@ -137,6 +145,7 @@ class RandomSeed:
                 self.battles = []
                 self.spoilerlog_additions = {}
                 self.item_spheres_dict = None
+                self.item_hint_additions = []
                 dc_rando_settings = deepcopy(self.rando_settings)
                 logic_settings = dc_rando_settings.logic_settings
 
@@ -241,6 +250,10 @@ class RandomSeed:
                     entrance_changes, modified_world_graph = get_bowsercastle_bossrush(
                         modified_world_graph
                     )
+                elif logic_settings.bowsers_castle_mode >= BowserCastleMode.BOWSERS_ONLY:
+                    entrance_changes, modified_world_graph = get_bowsercastle_skip(
+                        modified_world_graph
+                    )
                 if entrance_changes:
                     self.extend_entrances(entrance_changes)
 
@@ -306,6 +319,7 @@ class RandomSeed:
                         spirits_needed=logic_settings.starbeam_spirits_needed,
                         powerstars_needed=logic_settings.starbeam_powerstars_needed,
                         forced_antiguysunit=(logic_settings.bowserdoor_quiz == BowserDoorQuiz.ANTI_GUYS_UNIT),
+                        skip_chapter8_jrtroopa=(logic_settings.jrtroopa == JrTroopa.REMOVED),
                     )
 
                 entrance_changes, modified_world_graph = set_starway_requirements(
@@ -323,6 +337,7 @@ class RandomSeed:
                     ),
                     seed_goal=logic_settings.seed_goal,
                     forced_antiguysunit=(logic_settings.bowserdoor_quiz == BowserDoorQuiz.ANTI_GUYS_UNIT),
+                    skip_chapter8_jrtroopa=(logic_settings.jrtroopa == JrTroopa.REMOVED),
                 )
                 if entrance_changes:
                     self.extend_entrances(entrance_changes)
@@ -387,6 +402,7 @@ class RandomSeed:
                     starting_partners=self.starting_partners,
                     hidden_block_mode=hidden_block_mode,
                     starting_items=[x for x in self.starting_items if x.item_type != "ITEM"],
+                    item_hint_additions=self.item_hint_additions,
                     world_graph=modified_world_graph,
                 )
 
@@ -506,6 +522,7 @@ class RandomSeed:
             logic_settings.keyitems_outside_dungeon,
             logic_settings.foreverforest_open,
             logic_settings.spirit_shuffle_mode,
+            self.item_hint_additions,
         )
 
         # Random quiz
@@ -616,14 +633,27 @@ class RandomSeed:
             )
 
         count_chosen_starting_items: int = len(self.starting_items)
-        if (    rando_settings.logic_settings.random_starting_items
+        if (    rando_settings.logic_settings.random_starting_items != RandomStartingItems.OFF
             and count_chosen_starting_items < 16
         ):
             # Set up allowed items
             all_allowed_starting_items = []
-            all_allowed_starting_items.extend(allowed_starting_badges)
             all_allowed_starting_items.extend(allowed_starting_items)
-            all_allowed_starting_items.extend(allowed_starting_key_items)
+            if rando_settings.logic_settings.add_beta_items:
+                all_allowed_starting_items.extend(allowed_starting_items_beta)
+
+            if rando_settings.logic_settings.random_starting_items >= RandomStartingItems.CONSUMABLES_BADGES:
+                all_allowed_starting_items.extend(allowed_starting_badges)
+
+                if rando_settings.logic_settings.progressive_badges:
+                    all_allowed_starting_items.extend(allowed_starting_badges_progressives)
+                if rando_settings.logic_settings.add_beta_items:
+                    all_allowed_starting_items.extend(allowed_starting_badges_beta)
+                if rando_settings.logic_settings.add_unused_badge_duplicates:
+                    all_allowed_starting_items.extend(allowed_starting_badges_unused_duplicates)
+
+            if rando_settings.logic_settings.random_starting_items >= RandomStartingItems.CONSUMABLES_BADGES_KEYS:
+                all_allowed_starting_items.extend(allowed_starting_key_items)
 
             # Exclude items that are already placed by the plandomizer
             for keyitem_str in plando_keyitems:
