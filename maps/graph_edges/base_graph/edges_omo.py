@@ -169,14 +169,16 @@ edges_omo = [
     {"from": {"map": "OMO_11", "id": 0}, "to": {"map": "OMO_11", "id": 1}, "reqs": [["Boots"]]}, #? RED Moving Platforms Exit West -> RED Moving Platforms Exit East
     {"from": {"map": "OMO_11", "id": 1}, "to": {"map": "OMO_11", "id": 0}, "reqs": [["Boots"]]}, #? RED Moving Platforms Exit East -> RED Moving Platforms Exit West
 
-    {"from": {"map": "OMO_11", "id": 1},         "to": {"map": "OMO_11", "id": "HiddenYBlockA"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit East -> HiddenYBlockA (VoltShroom)
-    {"from": {"map": "OMO_11", "id": 0},         "to": {"map": "OMO_11", "id": "HiddenYBlockB"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit West -> HiddenYBlockB (SnowmanDoll)
-    {"from": {"map": "OMO_11", "id": 0},         "to": {"map": "OMO_11", "id": "YBlockA"},          "reqs": [["Boots"]]}, #* RED Moving Platforms Exit West -> YBlockA (Coin)
-    {"from": {"map": "OMO_11", "id": "YBlockA"}, "to": {"map": "OMO_11", "id": "YBlockB"},          "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
-    {"from": {"map": "OMO_11", "id": "YBlockA"}, "to": {"map": "OMO_11", "id": "HiddenRBlockA"},    "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenRBlockA (DeepFocus2)
-    {"from": {"map": "OMO_11", "id": "YBlockA"}, "to": {"map": "OMO_11", "id": "RandomBlockItemA"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> RandomBlockItemA (GenericUpgrade)
-    {"from": {"map": "OMO_11", "id": "YBlockA"}, "to": {"map": "OMO_11", "id": "RandomBlockItemB"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> RandomBlockItemB (CoinBag)
+    {"from": {"map": "OMO_11", "id": 1},                  "to": {"map": "OMO_11", "id": "HiddenYBlockA"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit East -> HiddenYBlockA (VoltShroom)
+    {"from": {"map": "OMO_11", "id": 0},                  "to": {"map": "OMO_11", "id": "HiddenYBlockB"},    "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* RED Moving Platforms Exit West -> HiddenYBlockB (SnowmanDoll)
+    {"from": {"map": "OMO_11", "id": 0},                  "to": {"map": "OMO_11", "id": "YBlockA"},          "reqs": [["Boots"]]}, #* RED Moving Platforms Exit West -> YBlockA (Coin)
+    {"from": {"map": "OMO_11", "id": "YBlockA"},          "to": {"map": "OMO_11", "id": "YBlockB"},          "reqs": []}, #+ SHARED REQUIREMENTS -> YBlockB (Coin)
+    {"from": {"map": "OMO_11", "id": "YBlockA"},          "to": {"map": "OMO_11", "id": "HiddenRBlockA"},    "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenRBlockA (DeepFocus2)
+    {"from": {"map": "OMO_11", "id": 0},                  "to": {"map": "OMO_11", "id": "RandomBlockItemA"}, "reqs": [["Boots"]]}, #* RED Moving Platforms Exit West -> RandomBlockItemA (GenericUpgrade)
+    {"from": {"map": "OMO_11", "id": "RandomBlockItemA"}, "to": {"map": "OMO_11", "id": "RandomBlockItemB"}, "reqs": []}, #+ CHAINED REQUIREMENTS -> RandomBlockItemB (CoinBag)
     #! note: "can_hit_floating_blocks" is partially redundant above as boots is hard-required to reach some of the floating blocks
+    # above random blocks cannot share requirements with the other blocks due
+    # to whatever or moving platforms laki jump glitch settings
 
     # OMO_12 RED Lantern Ghost
     {"from": {"map": "OMO_12", "id": 0}, "to": {"map": "OMO_11", "id": 0}, "reqs": []}, # RED Lantern Ghost Exit East -> RED Moving Platforms Exit West

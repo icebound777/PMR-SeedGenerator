@@ -125,6 +125,7 @@ class GlitchOptionSet():
         self.anti_guy_skip = False
         self.blue_switch_skip_laki = False
         self.blue_switch_skip_ultra_boots = False
+        self.moving_platforms_laki_jump = False
         self.red_barricade_skip = False
         self.wattless_dark_room = False
         self.hammerless_blue_station_laki = False

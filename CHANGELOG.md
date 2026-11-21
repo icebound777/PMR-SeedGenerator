@@ -59,6 +59,7 @@
   * `Ruins Locks Skip LZS` (chapter 2)
   * `Tubba's Table Jumpless (Study Room)` (chapter 3)
   * `Anti Guy Skip` (chapter 4)
+  * `Moving Platforms Laki Jump` (chapter 4)
   * `Ice Staircase Skip` (chapter 7)
     * Huge thanks to `OfficialVladimirLenin` for providing the JP version collision changes required for adding this trick to the US version!
 
@@ -100,6 +101,7 @@
   * Added `RuinsLocksSkipLZS` (bool)
   * Added `TubbasTableJumplessStudy` (bool)
   * Added `AntiGuySkip` (bool)
+  * Added `MovingPlatformsLakiJump` (bool)
   * Added `IceStaircaseSkip` (bool)
 
 ## 0.31.2 (beta)

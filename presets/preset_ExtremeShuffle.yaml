@@ -365,6 +365,7 @@ ParakarrylessBlueBlockCityGap                   : false
 AntiGuySkip                                     : false
 BlueSwitchSkipLaki                              : false
 BlueSwitchSkipUltraBoots                        : false
+MovingPlatformsLakiJump                         : false
 RedBarricadeSkip                                : false
 WattlessDarkRoom                                : false
 HammerlessBlueStationLaki                       : false

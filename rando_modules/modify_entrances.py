@@ -370,6 +370,9 @@ from maps.graph_edges.glitched_logic.omo_blue_switch_skip import (
     edges_omo_add_blue_switch_skip_laki,
     edges_omo_add_blue_switch_skip_ultra_boots,
 )
+from maps.graph_edges.glitched_logic.omo_moving_platforms_laki_jump import (
+    edges_omo_add_moving_platforms_laki_jump,
+)
 from maps.graph_edges.glitched_logic.omo_red_barricade_skip import (
     edges_omo_add_red_barricade_skip,
 )
@@ -1209,6 +1212,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_omo_add_blue_switch_skip_laki)
     if glitch_settings.blue_switch_skip_ultra_boots:
         all_new_edges.extend(edges_omo_add_blue_switch_skip_ultra_boots)
+    if glitch_settings.moving_platforms_laki_jump:
+        all_new_edges.extend(edges_omo_add_moving_platforms_laki_jump)
     if glitch_settings.red_barricade_skip:
         all_new_edges.extend(edges_omo_add_red_barricade_skip)
     if glitch_settings.wattless_dark_room:

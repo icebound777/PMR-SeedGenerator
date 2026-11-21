@@ -822,6 +822,8 @@ class OptionSet:
             self.glitch_settings.blue_switch_skip_laki = options_dict.get("BlueSwitchSkipLaki")
         if "BlueSwitchSkipUltraBoots" in options_dict:
             self.glitch_settings.blue_switch_skip_ultra_boots = options_dict.get("BlueSwitchSkipUltraBoots")
+        if "MovingPlatformsLakiJump" in options_dict:
+            self.glitch_settings.moving_platforms_laki_jump = options_dict.get("MovingPlatformsLakiJump")
         if "RedBarricadeSkip" in options_dict:
             self.glitch_settings.red_barricade_skip = options_dict.get("RedBarricadeSkip")
         if "WattlessDarkRoom" in options_dict:
@@ -1674,6 +1676,7 @@ class OptionSet:
         basic_assert("AntiGuySkip", bool)
         basic_assert("BlueSwitchSkipLaki", bool)
         basic_assert("BlueSwitchSkipUltraBoots", bool)
+        basic_assert("MovingPlatformsLakiJump", bool)
         basic_assert("RedBarricadeSkip", bool)
         basic_assert("WattlessDarkRoom", bool)
         basic_assert("HammerlessBlueStationLaki", bool)
@@ -2274,6 +2277,7 @@ class OptionSet:
         web_settings["AntiGuySkip"] = self.glitch_settings.anti_guy_skip
         web_settings["BlueSwitchSkipLaki"] = self.glitch_settings.blue_switch_skip_laki
         web_settings["BlueSwitchSkipUltraBoots"] = self.glitch_settings.blue_switch_skip_ultra_boots
+        web_settings["MovingPlatformsLakiJump"] = self.glitch_settings.moving_platforms_laki_jump
         web_settings["RedBarricadeSkip"] = self.glitch_settings.red_barricade_skip
         web_settings["WattlessDarkRoom"] = self.glitch_settings.wattless_dark_room
         web_settings["HammerlessBlueStationLaki"] = self.glitch_settings.hammerless_blue_station_laki
