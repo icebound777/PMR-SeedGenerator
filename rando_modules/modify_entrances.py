@@ -366,6 +366,9 @@ from maps.graph_edges.glitched_logic.omo_parakarryless_blue_block_city_gap impor
 from maps.graph_edges.glitched_logic.omo_anti_guy_skip import (
     edges_omo_add_anti_guy_skip,
 )
+from maps.graph_edges.glitched_logic.omo_blue_station_train_jumpless import (
+    edges_omo_add_blue_station_train_jumpless,
+)
 from maps.graph_edges.glitched_logic.omo_blue_switch_skip import (
     edges_omo_add_blue_switch_skip_laki,
     edges_omo_add_blue_switch_skip_ultra_boots,
@@ -1211,6 +1214,8 @@ def get_glitched_logic(
         all_new_edges.extend(edges_omo_add_parakarryless_blue_block_city_gap)
     if glitch_settings.anti_guy_skip:
         all_new_edges.extend(edges_omo_add_anti_guy_skip)
+    if glitch_settings.blue_station_train_jumpless:
+       all_new_edges.extend(edges_omo_add_blue_station_train_jumpless)
     if glitch_settings.blue_switch_skip_laki:
         all_new_edges.extend(edges_omo_add_blue_switch_skip_laki)
     if glitch_settings.blue_switch_skip_ultra_boots:

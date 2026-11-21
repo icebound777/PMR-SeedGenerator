@@ -362,6 +362,7 @@ ClippyGreenStationCoinBlock                     : false
 KooperlessRedStationShootingStar                : false
 GearlessRedStationShootingStar                  : false
 ParakarrylessBlueBlockCityGap                   : false
+BlueStationTrainJumpless                        : false
 AntiGuySkip                                     : false
 BlueSwitchSkipLaki                              : false
 BlueSwitchSkipUltraBoots                        : false

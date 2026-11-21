@@ -27,13 +27,13 @@ edges_omo = [
     # OMO_03 BLU Station
     {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_13", "id": 1}, "reqs": []}, # BLU Station Exit West -> BLU Anti-Guy Hall Exit East
     {"from": {"map": "OMO_03", "id": 1}, "to": {"map": "OMO_04", "id": 0}, "reqs": []}, # BLU Station Exit East -> BLU Block City Exit West
-    {"from": {"map": "OMO_03", "id": 2}, "to": {"map": "OMO_10", "id": 3}, "reqs": [["MF_Ch4_CanThrowInTrain"],["ToyTrain"],["RF_BlueSwitchPulled"],["Boots"]]}, # BLU Station Ride Train West -> RED Station Ride Train East
-    {"from": {"map": "OMO_03", "id": 3}, "to": {"map": "OMO_06", "id": 2}, "reqs": [["MF_Ch4_CanThrowInTrain"],["ToyTrain"],["Boots"]]}, # BLU Station Ride Train East -> PNK Station Ride Train West
+    {"from": {"map": "OMO_03", "id": 2}, "to": {"map": "OMO_10", "id": 3}, "reqs": [["RF_CanTakeTrain"],["RF_BlueSwitchPulled"]]}, # BLU Station Ride Train West -> RED Station Ride Train East
+    {"from": {"map": "OMO_03", "id": 3}, "to": {"map": "OMO_06", "id": 2}, "reqs": [["RF_CanTakeTrain"]]}, # BLU Station Ride Train East -> PNK Station Ride Train West
     {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "MAC_04", "id": 2}, "reqs": [["can_climb_steps"]]}, # BLU Station Spring to Toad Town -> Residental District Toybox Spring
 
     {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 1}, "reqs": []}, #? BLU Station Exit West -> BLU Station Exit East
     {"from": {"map": "OMO_03", "id": 1}, "to": {"map": "OMO_03", "id": 0}, "reqs": []}, #? BLU Station Exit East -> BLU Station Exit West
-    {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 2}, "reqs": [["MF_Ch4_CanThrowInTrain"],["ToyTrain"],["RF_BlueSwitchPulled"],["Boots"]]}, #? BLU Station Exit West -> BLU Station Ride Train West
+    {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 2}, "reqs": [["RF_CanTakeTrain"],["RF_BlueSwitchPulled"]]}, #? BLU Station Exit West -> BLU Station Ride Train West
     {"from": {"map": "OMO_03", "id": 2}, "to": {"map": "OMO_03", "id": 0}, "reqs": [], "pseudoitems": ["RF_BlueSwitchPulled"]}, #? BLU Station Ride Train West -> BLU Station Exit West
     {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 3}, "reqs": []}, #? BLU Station Exit West -> BLU Station Ride Train East
     {"from": {"map": "OMO_03", "id": 3}, "to": {"map": "OMO_03", "id": 0}, "reqs": []}, #? BLU Station Ride Train East -> BLU Station Exit West
@@ -42,6 +42,8 @@ edges_omo = [
 
     {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": "HiddenPanel"},   "reqs": [["can_flip_panels"]]}, #* BLU Station Spring to Toad Town -> HiddenPanel (StarPiece)
     {"from": {"map": "OMO_03", "id": 4}, "to": {"map": "OMO_03", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"],["can_hit_floating_blocks"]]}, #* BLU Station Spring to Toad Town -> HiddenYBlockA (StoneCap)
+
+    {"from": {"map": "OMO_03", "id": 0}, "to": {"map": "OMO_03", "id": 0}, "reqs": [["MF_Ch4_CanThrowInTrain"],["ToyTrain"],["Boots"]], "pseudoitems": ["RF_CanTakeTrain"]}, # Can hit the buttons, reach the conductor, and take the train
 
     # OMO_04 BLU Block City
     {"from": {"map": "OMO_04", "id": 0}, "to": {"map": "OMO_03", "id": 1}, "reqs": []}, # BLU Block City Exit West -> BLU Station Exit East
