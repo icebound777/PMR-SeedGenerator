@@ -968,6 +968,8 @@ class OptionSet:
             self.glitch_settings.reach_high_blocks_with_super_boots = options_dict.get("ReachHighBlocksWithSuperBoots")
         if "JumplessBlocksWithParakarry" in options_dict:
             self.glitch_settings.jumpless_blocks_with_parakarry = options_dict.get("JumplessBlocksWithParakarry")
+        if "HiddenBlocksWithBombette" in options_dict:
+            self.glitch_settings.hidden_blocks_with_bombette = options_dict.get("HiddenBlocksWithBombette")
 
         # Overrule certain settings depending on plando data
         forced_progressive_badges,\
@@ -1756,6 +1758,7 @@ class OptionSet:
         basic_assert("KnowsPuzzleSolutions", bool)
         basic_assert("ReachHighBlocksWithSuperBoots", bool)
         basic_assert("JumplessBlocksWithParakarry", bool)
+        basic_assert("HiddenBlocksWithBombette", bool)
 
 
     def get_dbtuples(self):
@@ -2366,6 +2369,7 @@ class OptionSet:
         web_settings["KnowsPuzzleSolutions"] = self.glitch_settings.knows_puzzle_solutions
         web_settings["ReachHighBlocksWithSuperBoots"] = self.glitch_settings.reach_high_blocks_with_super_boots
         web_settings["JumplessBlocksWithParakarry"] = self.glitch_settings.jumpless_blocks_with_parakarry
+        web_settings["HiddenBlocksWithBombette"] = self.glitch_settings.hidden_blocks_with_bombette
 
         return web_settings
 

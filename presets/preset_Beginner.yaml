@@ -441,3 +441,4 @@ KnowsHiddenBlocks                               : false
 KnowsPuzzleSolutions                            : false
 ReachHighBlocksWithSuperBoots                   : false
 JumplessBlocksWithParakarry                     : false
+HiddenBlocksWithBombette                        : false

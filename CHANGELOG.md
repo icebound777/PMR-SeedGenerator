@@ -55,6 +55,7 @@
 
 * New options
   * `Jumpless Blocks with Parakarry` (global)
+  * `Hidden Blocks with Bombette` (global)
   * `Bombette-less Refund Chest` (chapter 1)
   * `Mt. Rugged Quake Hammer + Letter Partnerless` (chapter 2)
   * `Ruins Locks Skip LZS` (chapter 2)
@@ -93,6 +94,7 @@
   * This change shifts all other items beyond item ID 0x261 up by 27 item IDs. The final item in the list is now `Bow` on item ID 0x2BA
 * Yaml settings changes:
   * Added `JumplessBlocksWithParakarry` (bool)
+  * Added `HiddenBlocksWithBombette` (bool)
   * Added `SkipEpilogue` (bool)
   * Added `MaxBlooper` (int)
   * Added `ProgressivePartners` (bool)
