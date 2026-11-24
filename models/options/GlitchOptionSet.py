@@ -54,9 +54,11 @@ class GlitchOptionSet():
         self.bombetteless_kbf_fp_plus_laki = False
         self.laki_jailbreak = False
         self.bombetteless_right_fortress_jail_key = False
+        self.bombetteless_refund_chest = False
         self.water_staircase_skip = False
 
         self.mt_rugged_quake_hammer_and_letter_with_laki = False
+        self.mt_rugged_quake_hammer_and_letter_partnerless = False
         self.mt_rugged_quake_hammer_room_jumpless_clippy = False
         self.parakarryless_mt_rugged_seed = False
         self.parakarryless_mt_rugged_seed_clippy = False
@@ -82,6 +84,7 @@ class GlitchOptionSet():
         self.parakarryless_super_hammer_room_ultra_boots = False
         self.parakarryless_super_hammer_room_normal_boots = False
         self.ruins_locks_skip_clippy = False
+        self.ruins_locks_skip_lzs = False
         self.ruins_puzzle_solution_early = False
         self.ruins_stone_skip = False
 
@@ -105,6 +108,7 @@ class GlitchOptionSet():
         self.tubbas_table_laki_jump_clock = False
         self.tubbas_table_ultra_boots = False
         self.tubbas_table_laki_jump_study = False
+        self.tubbas_table_jumpless_study = False
         self.tubbas_castle_super_boots_skip = False
         self.jumpless_mega_rush = False
         self.parakarryless_mega_rush = False
@@ -118,8 +122,11 @@ class GlitchOptionSet():
         self.kooperless_red_station_shooting_star = False
         self.gearless_red_station_shooting_star = False
         self.parakarryless_blue_block_city_gap = False
+        self.blue_station_train_jumpless = False
+        self.anti_guy_skip = False
         self.blue_switch_skip_laki = False
         self.blue_switch_skip_ultra_boots = False
+        self.moving_platforms_laki_jump = False
         self.red_barricade_skip = False
         self.wattless_dark_room = False
         self.hammerless_blue_station_laki = False
@@ -168,6 +175,7 @@ class GlitchOptionSet():
         self.shiver_mountain_switch_skip = False
         self.sushieless_warehouse_key_bombette = False
         self.sushieless_warehouse_key_kooper = False
+        self.ice_staircase_skip = False
 
         self.mirror_clip = False
         self.bombette_puzzle_skip = False
@@ -190,3 +198,5 @@ class GlitchOptionSet():
         self.knows_hidden_blocks = False
         self.knows_puzzle_solutions = False
         self.reach_high_blocks_with_super_boots = False
+        self.jumpless_blocks_with_parakarry = False
+        self.hidden_blocks_with_bombette = False

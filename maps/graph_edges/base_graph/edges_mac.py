@@ -133,15 +133,10 @@ edges_mac = [
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["CakeMix"],["Lemon"],["Cookbook"]], "pseudoitems": ["LemonCandy"]},
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["KoopaLeaf"],["DriedPasta"],["Cookbook"]], "pseudoitems": ["Koopasta"]},
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["KoopaLeaf"],["CakeMix"],["Cookbook"]], "pseudoitems": ["KookyCookie"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["KoopaLeaf"],["SuperShroom"],["Cookbook"]], "pseudoitems": ["LifeShroom"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["Goomnut"],["SuperShroom"],["Cookbook"]], "pseudoitems": ["LifeShroom"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["StrangeLeaf"],["BlueBerry"],["Cookbook"]], "pseudoitems": ["SleepySheep"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["StrangeLeaf"],["YellowBerry"],["Cookbook"]], "pseudoitems": ["SleepySheep"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["StrangeLeaf"],["RedBerry"],["Cookbook"]], "pseudoitems": ["SleepySheep"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["Lemon"]], "pseudoitems": ["TastyTonic"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["Lime"]], "pseudoitems": ["TastyTonic"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["KoopaLeaf","Goomnut"],["SuperShroom"],["Cookbook"]], "pseudoitems": ["LifeShroom"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["StrangeLeaf"],["BlueBerry","YellowBerry","RedBerry"],["Cookbook"]], "pseudoitems": ["SleepySheep"]},
+    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["Lemon","Lime","Coconut"]], "pseudoitems": ["TastyTonic"]},
     {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["BubbleBerry"],["Cookbook"]], "pseudoitems": ["TastyTonic"]},
-    {"from": {"map": "MAC_02", "id": 0}, "to": {"map": "MAC_02", "id": 0}, "reqs": [["RF_CanCook"],["Coconut"]], "pseudoitems": ["TastyTonic"]},
 
     # MAC_03 Station District
     {"from": {"map": "MAC_03", "id": 0}, "to": {"map": "MAC_02", "id": 3}, "reqs": []}, # Station District Exit Top -> Southern District Exit Bottom

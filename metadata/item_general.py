@@ -204,6 +204,9 @@ unplaceable_items = [
     "PanelHintGear",
     "PanelHintKey",
     "PanelHintPartner",
+    "GoompaProxy1",
+    "GoompaProxy2",
+    "GoompaProxy3",
 ]
 
 # List of 0xFF items for displaying a seed hash on the save select screen.

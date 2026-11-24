@@ -13,6 +13,7 @@ AlwaysSpeedySpin     : true
 AlwaysISpy           : false
 AlwaysPeekaboo       : true
 CutsceneMode         : 1 # 0:vanilla, 1:shortened, 2:minimal
+AlwaysRunAway        : false
 SkipEpilogue         : true
 PeachCastleReturnPipe: true # false locks the pipe
 FoliageItemHints     : false
@@ -37,6 +38,7 @@ ChetRippoAvailable: true
 
 RandomFormations: false
 BossShuffleMode : 0 # 0: off, 1: shuffle chapter bosses
+MaxBlooper : 2 # 0: Blooper, 1: Electro Blooper, 2: Super Blooper (vanilla)
 
 # Item Placement
 ShuffleItems          : true
@@ -96,7 +98,7 @@ StartingBoots           : 0 # -1:Jumpless, 0:Boots, 1:Super, 2:Ultra
 StartingHammer          : 0 # -1:Hammerless, 0:Hammer, 1:Super, 2:Ultra
 StartingCoins           : 100
 
-StartWithRandomItems: false
+StartWithRandomItems: 0 # 0: Off, 1: consumables, 2: consumables + badges, 3: consumables + badges + key items
 RandomItemsMin      : 0
 RandomItemsMax      : 16
 StartingItem0       : 0x000 # Nothing
@@ -133,6 +135,7 @@ PartnersAlwaysUsable      : true
 StartWithRandomPartners   : true
 RandomPartnersMin         : 1 # 1-8
 RandomPartnersMax         : 1 # 1-8
+ProgressivePartners       : false
 
 # Pre-opened areas
 MagicalSeedsRequired: 0 # -1:Random
@@ -146,7 +149,7 @@ Ch7BridgeVisible    : true
 
 # Goal Settings
 SeedGoal                : 0 # 0: Defeat Bowser, 1: Open StarWay
-BowsersCastleMode       : 0 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush
+BowsersCastleMode       : 0 # 0:vanilla, 1:NoPartnersKeys(Shorten), 2:BossRush, 3:BowsersOnly, 4:FinalBowserOnly
 StarWayChaptersNeededCnt: 7 # -1:Random
 StarWaySpiritsNeededCnt : 0 # -1:Random
 StarWayPowerStarsNeeded : 0 # max 120, -1:Random
@@ -177,6 +180,7 @@ MultiCoinBlockShuffle: 0 # 0: off, 1: shuffle, 2: anywhere
 RandomizePuzzles     : false
 BowserDoorQuiz       : 0 # 0: do quiz, 1: must defeat anti guys unit, 2: skip
 KentCKoopa           : 0 # 0: blocks pleasant path, 1: must defeat, 2: already paid, 3: already defeated
+JrTroopa             : 0 # 0: Vanilla, 1: Remove Missable, 2: Ch8 Jr. Only, 3: Remove All
 
 # Quizmo Quizzes
 RandomQuiz         : true
@@ -289,9 +293,11 @@ BombettelessKbfFpPlusLZS                        : false
 BombettelessKbfFpPlusLaki                       : false
 LakiJailbreak                                   : false
 BombettelessRightFortressJailKey                : false
+BombettelessRefundChest                         : false
 WaterStaircaseSkip                              : false
 
 MtRuggedQuakeHammerAndLetterWithLaki            : false
+MtRuggedQuakeHammerAndLetterPartnerless         : false
 MtRuggedQuakeHammerRoomJumplessClippy           : false
 ParakarrylessMtRuggedSeed                       : false
 ParakarrylessMtRuggedSeedClippy                 : false
@@ -318,6 +324,7 @@ RuinsBombWallSkip                               : false
 ParakarrylessSuperHammerRoomUltraBoots          : false
 ParakarrylessSuperHammerRoomNormalBoots         : false
 RuinsLocksSkipClippy                            : false
+RuinsLocksSkipLZS                               : false
 RuinsPuzzleSolutionEarly                        : false
 RuinsStoneSkip                                  : false
 
@@ -341,6 +348,7 @@ BowlessTubbasCastle                             : false
 TubbasTableLakiJumpClock                        : false
 TubbasTableUltraBoots                           : false
 TubbasTableLakiJumpStudy                        : false
+TubbasTableJumplessStudy                        : false
 TubbasCastleSuperBootsSkip                      : false
 JumplessMegaRush                                : false
 ParakarrylessMegaRush                           : false
@@ -354,8 +362,11 @@ ClippyGreenStationCoinBlock                     : false
 KooperlessRedStationShootingStar                : false
 GearlessRedStationShootingStar                  : false
 ParakarrylessBlueBlockCityGap                   : false
+BlueStationTrainJumpless                        : false
+AntiGuySkip                                     : false
 BlueSwitchSkipLaki                              : false
 BlueSwitchSkipUltraBoots                        : false
+MovingPlatformsLakiJump                         : false
 RedBarricadeSkip                                : false
 WattlessDarkRoom                                : false
 HammerlessBlueStationLaki                       : false
@@ -405,6 +416,7 @@ SnowmenSkipLaki                                 : false
 ShiverMountainSwitchSkip                        : false
 SushielessWarehouseKeyBombette                  : false
 SushielessWarehouseKeyKooper                    : false
+IceStaircaseSkip                                : false
 
 MirrorClip                                      : false
 BombettePuzzleSkip                              : false
@@ -428,3 +440,5 @@ HammerClipItemGrab                              : false
 KnowsHiddenBlocks                               : false
 KnowsPuzzleSolutions                            : false
 ReachHighBlocksWithSuperBoots                   : false
+JumplessBlocksWithParakarry                     : false
+HiddenBlocksWithBombette                        : false

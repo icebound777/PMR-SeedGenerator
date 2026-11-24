@@ -180,7 +180,7 @@ edges_tik = [
     # TIK_20 Room with Spikes (B2)
     {"from": {"map": "TIK_20", "id": 0}, "to": {"map": "TIK_08", "id": 1}, "reqs": []}, # Room with Spikes (B2) Exit Left -> Second Level Entry (B2) Exit Right
     {"from": {"map": "TIK_20", "id": 1}, "to": {"map": "TIK_21", "id": 0}, "reqs": []}, # Room with Spikes (B2) Exit Right -> Hidden Blocks Room (B2) Exit Left
-    {"from": {"map": "TIK_20", "id": 2}, "to": {"map": "TIK_23", "id": 1}, "reqs": []}, # Room with Spikes (B2) Green Pipe Center -> Windy Path (B3) Green Pipe
+    {"from": {"map": "TIK_20", "id": 2}, "to": {"map": "TIK_23", "id": 1}, "reqs": []}, # Room with Spikes (B2) Green Pipe Center -> Winding Path (B3) Green Pipe
 
     {"from": {"map": "TIK_20", "id": 0}, "to": {"map": "TIK_20", "id": 1}, "reqs": []}, #? Room with Spikes (B2) Exit Left -> Room with Spikes (B2) Exit Right
     {"from": {"map": "TIK_20", "id": 1}, "to": {"map": "TIK_20", "id": 0}, "reqs": []}, #? Room with Spikes (B2) Exit Right -> Room with Spikes (B2) Exit Left
@@ -215,20 +215,20 @@ edges_tik = [
     {"from": {"map": "TIK_22", "id": 1}, "to": {"map": "TIK_22", "id": 0}, "reqs": []}, #? Path to Shiver City (B2) Green Pipe -> Path to Shiver City (B2) Left Door
 
     # TIK_23 Winding Path (B3)
-    {"from": {"map": "TIK_23", "id": 0}, "to": {"map": "TIK_24", "id": 1}, "reqs": []}, # Windy Path (B3) Exit Left -> Hall to Ultra Boots (B3) Exit Right
-    {"from": {"map": "TIK_23", "id": 1}, "to": {"map": "TIK_20", "id": 2}, "reqs": []}, # Windy Path (B3) Green Pipe -> Room with Spikes (B2) Green Pipe Center
+    {"from": {"map": "TIK_23", "id": 0}, "to": {"map": "TIK_24", "id": 1}, "reqs": []}, # Winding Path (B3) Exit Left -> Hall to Ultra Boots (B3) Exit Right
+    {"from": {"map": "TIK_23", "id": 1}, "to": {"map": "TIK_20", "id": 2}, "reqs": []}, # Winding Path (B3) Green Pipe -> Room with Spikes (B2) Green Pipe Center
 
-    {"from": {"map": "TIK_23", "id": 0}, "to": {"map": "TIK_23", "id": 1}, "reqs": []}, #? Windy Path (B3) Exit Left -> Windy Path (B3) Green Pipe
-    {"from": {"map": "TIK_23", "id": 1}, "to": {"map": "TIK_23", "id": 0}, "reqs": [["SuperHammer"]]}, #? Windy Path (B3) Green Pipe -> Windy Path (B3) Exit Left
+    {"from": {"map": "TIK_23", "id": 0}, "to": {"map": "TIK_23", "id": 1}, "reqs": []}, #? Winding Path (B3) Exit Left -> Winding Path (B3) Green Pipe
+    {"from": {"map": "TIK_23", "id": 1}, "to": {"map": "TIK_23", "id": 0}, "reqs": [["SuperHammer"]]}, #? Winding Path (B3) Green Pipe -> Winding Path (B3) Exit Left
 
     {"from": {"map": "TIK_23", "id": "YBlockA"},       "to": {"map": "TIK_23", "id": "HiddenYBlockA"}, "reqs": [["can_see_hidden_blocks"]]}, #+ CHAINED REQUIREMENTS -> HiddenYBlockA (MapleSyrup)
     {"from": {"map": "TIK_23", "id": "HiddenYBlockA"}, "to": {"map": "TIK_23", "id": "HiddenYBlockB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> HiddenYBlockB (StopWatch)
     {"from": {"map": "TIK_23", "id": "HiddenYBlockA"}, "to": {"map": "TIK_23", "id": "HiddenYBlockC"}, "reqs": []}, #+ SHARED REQUIREMENTS -> HiddenYBlockC (VoltShroom)
-    {"from": {"map": "TIK_23", "id": 1},               "to": {"map": "TIK_23", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* Windy Path (B3) Green Pipe -> YBlockA (Coin)
+    {"from": {"map": "TIK_23", "id": 1},               "to": {"map": "TIK_23", "id": "YBlockA"},       "reqs": [["can_hit_floating_blocks"]]}, #* Winding Path (B3) Green Pipe -> YBlockA (Coin)
 
     # TIK_24 Hall to Ultra Boots (B3)
     {"from": {"map": "TIK_24", "id": 0}, "to": {"map": "TIK_25", "id": 0}, "reqs": []}, # Hall to Ultra Boots (B3) Exit Left -> Ultra Boots Room (B3) Exit Right
-    {"from": {"map": "TIK_24", "id": 1}, "to": {"map": "TIK_23", "id": 0}, "reqs": []}, # Hall to Ultra Boots (B3) Exit Right -> Windy Path (B3) Exit Left
+    {"from": {"map": "TIK_24", "id": 1}, "to": {"map": "TIK_23", "id": 0}, "reqs": []}, # Hall to Ultra Boots (B3) Exit Right -> Winding Path (B3) Exit Left
 
     {"from": {"map": "TIK_24", "id": 0}, "to": {"map": "TIK_24", "id": 1}, "reqs": []}, #? Hall to Ultra Boots (B3) Exit Left -> Hall to Ultra Boots (B3) Exit Right
     {"from": {"map": "TIK_24", "id": 1}, "to": {"map": "TIK_24", "id": 0}, "reqs": [["UltraHammer"]]}, #? Hall to Ultra Boots (B3) Exit Right -> Hall to Ultra Boots (B3) Exit Left

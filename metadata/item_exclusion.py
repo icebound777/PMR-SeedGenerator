@@ -112,7 +112,17 @@ exclude_due_to_settings = {
         "GenericUpgrade", # Lakilester 2
         "GenericUpgrade", # Bow 1
         "GenericUpgrade", # Bow 2
-    ]
+    ],
+    "progressive_partners": [
+        "Goombario",
+        "Kooper",
+        "Bombette",
+        "Parakarry",
+        "Bow",
+        "Watt",
+        "Sushie",
+        "Lakilester",
+    ],
 }
 
 exclude_from_taycet_placement = [

@@ -5,6 +5,8 @@ class BowserCastleMode(IntEnum):
     VANILLA = 0
     SHORTEN = 1
     BOSSRUSH = 2
+    BOWSERS_ONLY = 3
+    FINAL_BOWSER_ONLY = 4
 
 @unique
 class HiddenBlockMode(IntEnum):
@@ -157,3 +159,23 @@ class SpiritShuffleMode(IntEnum):
     VANILLA = 0
     SAME_CHAPTER = 1
     ANYWHERE = 2
+
+@unique
+class MaxBlooper(IntEnum):
+    BLOOPER = 0
+    ELECTRO_BLOOPER = 1
+    SUPER_BLOOPER = 2
+
+@unique
+class JrTroopa(IntEnum):
+    ALL = 0
+    REMOVEMISSABLE = 1
+    CHAPTER8ONLY = 2
+    REMOVED = 3
+
+@unique
+class RandomStartingItems(IntEnum):
+    OFF = 0
+    CONSUMABLES = 1
+    CONSUMABLES_BADGES = 2
+    CONSUMABLES_BADGES_KEYS = 3

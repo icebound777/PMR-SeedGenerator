@@ -267,8 +267,8 @@ edges_sbk = [
     {"from": {"map": "SBK_25", "id": 0}, "to": {"map": "SBK_25", "id": 3}, "reqs": []}, #? N1E2 Exit West -> N1E2 Exit South
     {"from": {"map": "SBK_25", "id": 3}, "to": {"map": "SBK_25", "id": 0}, "reqs": []}, #? N1E2 Exit South -> N1E2 Exit West
 
-    {"from": {"map": "SBK_25", "id": 0}, "to": {"map": "SBK_25", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* N1E2 Exit West -> RandomBlockItemA (CoinBag)
-    {"from": {"map": "SBK_25", "id": 0}, "to": {"map": "SBK_25", "id": "RandomBlockItemB"}, "reqs": [["can_hit_floating_blocks"]]}, #* N1E2 Exit West -> RandomBlockItemB (CoinBag)
+    {"from": {"map": "SBK_25", "id": 0},                  "to": {"map": "SBK_25", "id": "RandomBlockItemA"}, "reqs": [["can_hit_floating_blocks"]]}, #* N1E2 Exit West -> RandomBlockItemA (CoinBag)
+    {"from": {"map": "SBK_25", "id": "RandomBlockItemA"}, "to": {"map": "SBK_25", "id": "RandomBlockItemB"}, "reqs": []}, #+ SHARED REQUIREMENTS -> RandomBlockItemB (CoinBag)
 
     # SBK_26 N1E3
     {"from": {"map": "SBK_26", "id": 0}, "to": {"map": "SBK_25", "id": 1}, "reqs": []}, # N1E3 Exit West -> N1E2 Exit East

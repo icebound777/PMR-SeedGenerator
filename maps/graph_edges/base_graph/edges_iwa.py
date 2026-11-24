@@ -27,6 +27,8 @@ edges_iwa = [
     {"from": {"map": "IWA_01", "id": 1}, "to": {"map": "IWA_01", "id": 0}, "reqs": [["can_climb_steps"]]}, #? Mt Rugged 2 Exit Top Left -> Mt Rugged 2 Exit Bottom Left
 
     {"from": {"map": "IWA_01", "id": 0},       "to": {"map": "IWA_01", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Mt Rugged 2 Exit Bottom Left -> HiddenPanel (StarPiece)
+    {"from": {"map": "IWA_01", "id": 2},       "to": {"map": "IWA_01", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Mt Rugged 2 Exit Bottom Right -> HiddenPanel (StarPiece)
+    {"from": {"map": "IWA_01", "id": 1},       "to": {"map": "IWA_01", "id": "HiddenPanel"}, "reqs": [["can_flip_panels"]]}, #* Mt Rugged 2 Exit Top Left -> HiddenPanel (StarPiece)
     {"from": {"map": "IWA_01", "id": 2},       "to": {"map": "IWA_01", "id": "ItemB"},       "reqs": [["Kooper","Parakarry"]]}, #* Mt Rugged 2 Exit Bottom Right -> ItemB (Letter01)
     {"from": {"map": "IWA_01", "id": "ItemB"}, "to": {"map": "IWA_01", "id": "ItemA"},       "reqs": [["Parakarry"]]}, #* ItemB (Letter01) -> ItemA (QuakeHammer)
 
@@ -83,7 +85,7 @@ edges_iwa = [
     {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Bush2_Drop1"},      "reqs": []}, #* Train Station Exit Top Right -> Bush2_Drop1 (Coin) Right Bush
     {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": "Bush3_Drop1"},      "reqs": []}, #* Train Station Ride The Train -> Bush3_Drop1 (Coin) Left Bush
     {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Bush3_Drop1"},      "reqs": []}, #* Train Station Exit Top Right -> Bush3_Drop1 (Coin) Left Bush
-    {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": "Bush4_Drop1"},      "reqs": []}, #* TrainTrain Station Ride The Train -> Bush4_Drop1 (Egg2) Top Bush
+    {"from": {"map": "IWA_10", "id": 0}, "to": {"map": "IWA_10", "id": "Bush4_Drop1"},      "reqs": []}, #* Train Station Ride The Train -> Bush4_Drop1 (Egg2) Top Bush
     {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Bush4_Drop1"},      "reqs": []}, #* Train Station Exit Top Right -> Bush4_Drop1 (Egg2) Top Bush
     {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "Partner"},          "reqs": [["has_parakarry_letters"]]}, #* Train Station Exit Top Right -> Partner (Parakarry)
     {"from": {"map": "IWA_10", "id": 1}, "to": {"map": "IWA_10", "id": "RandomBlockItemA"}, "reqs": [["SuperHammer"],["can_hit_floating_blocks"]]}, #* Train Station Exit Top Right -> RandomBlockItemA (GenericUpgrade)

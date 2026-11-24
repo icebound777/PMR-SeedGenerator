@@ -13,6 +13,8 @@ from rando_enums.enum_options import (
     RequiredChapters,
     BowserDoorQuiz,
     KentCKoopa,
+    JrTroopa,
+    RandomStartingItems,
 )
 
 class LogicOptionSet():
@@ -67,7 +69,7 @@ class LogicOptionSet():
         self.starting_boots = get_option_default_value("StartingBoots") #
         self.starting_hammer = get_option_default_value("StartingHammer") #
 
-        self.random_starting_items = False
+        self.random_starting_items = RandomStartingItems.OFF
         self.random_starting_items_min = 0
         self.random_starting_items_max = 16
         self.starting_item_0 = get_option_default_value("StartingItem0")
@@ -103,6 +105,8 @@ class LogicOptionSet():
         self.random_partners = False
         self.random_partners_min = 1
         self.random_partners_max = 1
+
+        self.progressive_partners = False
 
         # Pre-opened areas
         self.magical_seeds_required = get_option_default_value("MagicalSeedsRequired")
@@ -142,3 +146,4 @@ class LogicOptionSet():
         self.randomize_puzzles = False
         self.bowserdoor_quiz = BowserDoorQuiz.DO_QUIZ
         self.kentckoopa = KentCKoopa.BLOCKS_PLEASANT_PATH
+        self.jrtroopa = JrTroopa.ALL
