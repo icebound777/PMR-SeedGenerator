@@ -11,9 +11,9 @@ edges_global_jumpless_blocks_with_parakarry = [
 
     # NOK
     #* Pleasant Path Entry Exit Right -> YBlockA (Coin)
-    {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": "YBlockA"}, "reqs": [["Parakarry"]]},
+    {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": "YBlockA"}, "reqs": [["Parakarry"],["RF_CanBeatKentC"]]},
     #* Pleasant Path Entry Exit Right -> RBlockA (DizzyAttack)
-    {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": "RBlockA"}, "reqs": [["Parakarry"]]},
+    {"from": {"map": "NOK_11", "id": 1}, "to": {"map": "NOK_11", "id": "RBlockA"}, "reqs": [["Parakarry"],["RF_CanBeatKentC"]]},
 
     #* Pleasant Path Bridge Exit Left -> YBlockA (POWBlock)
     {"from": {"map": "NOK_12", "id": 0}, "to": {"map": "NOK_12", "id": "YBlockA"}, "reqs": [["Parakarry"]]},
